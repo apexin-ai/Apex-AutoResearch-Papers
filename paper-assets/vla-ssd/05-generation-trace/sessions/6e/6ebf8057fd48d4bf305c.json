@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ebf8057fd48d4bf305c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz stat figs heatmap l1",
+  "task_key": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_stat_figs_heatmap_l1_20260524T043227_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "41f20bb286780950cc9cc2c76fbf422ee84dda4e859de9bfba491a322108c54d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **远程服务器**: matplotlib 3.10.5 已安装\n- **fig_matrix_heatmap.pdf** (26KB): 3×4 热力图，白→深蓝色阶，N/A 灰底斜线，VLA→VLA / VLM→VLA 分隔线，colorbar 含 0.10 阈值线\n- **fig_l1_attention.pdf** (13KB): 水平柱状图，比例制 x 轴，柱端标注绝对数，50% 参考线，图例左上角无遮挡"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-stat-figs-heatmap-l1.md"
+}

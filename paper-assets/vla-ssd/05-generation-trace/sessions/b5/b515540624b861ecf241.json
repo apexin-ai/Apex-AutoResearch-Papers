@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "b515540624b861ecf241",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis kendall w",
+  "task_key": "worker_analysis_kendall_w_20260519T154932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kendall_w_20260519T154932.log",
+    "occurrence": 1,
+    "bytes": 1951037,
+    "sha256": "fec4eb0d1dc650e409a338ab987e580cbd29accf6984f2042d9239c6a41db8c4"
+  },
+  "statistics": {
+    "messages": 916,
+    "user_turns": 1,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 233,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 315,
+      "tool_result": 315,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "b515540624b861ecf241-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b515540624b861ecf241-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 735,
+      "chunks": [
+        {
+          "path": "b515540624b861ecf241-part-0002.json",
+          "message_count": 179
+        },
+        {
+          "path": "b515540624b861ecf241-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b515540624b861ecf241-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b515540624b861ecf241-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b515540624b861ecf241-part-0006.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-kendall-w.md"
+}

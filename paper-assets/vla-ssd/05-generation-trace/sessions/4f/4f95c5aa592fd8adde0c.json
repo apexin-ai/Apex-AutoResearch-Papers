@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f95c5aa592fd8adde0c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra monitor openvla",
+  "task_key": "worker_infra_monitor-openvla_20260515T052938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_monitor-openvla_20260515T052938_result.json",
+    "occurrence": 1,
+    "bytes": 242,
+    "sha256": "cef1646cc8db373dc5435cc8fa6205ed3a4787e626617d9bb70b81549d811eab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **进程**: PID 4471 运行中（已 2 分半）\n- **进度**: 18 个文件中已完成 1 个 safetensors (1.1G)，2 个正在下载\n- **已下载**: 1.3G / ~15G\n\n3 分钟后自动检查下一轮进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-monitor-openvla.md"
+}

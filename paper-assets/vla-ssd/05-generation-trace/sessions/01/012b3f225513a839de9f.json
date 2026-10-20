@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "012b3f225513a839de9f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "eval libero closedloop probe",
+  "task_key": "worker_eval_libero_closedloop_probe_20260520T123214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_libero_closedloop_probe_20260520T123214.log",
+    "occurrence": 1,
+    "bytes": 1960167,
+    "sha256": "9d5d10af0cf80bc2aace6708748c58239fff655ee64b3a51dc61da79f1c70a87"
+  },
+  "statistics": {
+    "messages": 1311,
+    "user_turns": 1,
+    "tool_calls": 564,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 173,
+      "tool_call": 564,
+      "tool_result": 564,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 587,
+      "chunks": [
+        {
+          "path": "012b3f225513a839de9f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0004.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 724,
+      "chunks": [
+        {
+          "path": "012b3f225513a839de9f-part-0004.json",
+          "message_count": 133
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "012b3f225513a839de9f-part-0008.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-libero-closedloop-probe.md"
+}

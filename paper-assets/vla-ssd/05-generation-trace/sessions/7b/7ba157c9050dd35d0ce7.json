@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ba157c9050dd35d0ce7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation p0 cosine metric",
+  "task_key": "worker_code_ablation_p0_cosine_metric_20260516T083517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p0_cosine_metric_20260516T083517_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "ef694bf424ffff5b0688d236ee4762b31b2d0cce1cc22071f0e9c5b44ccc015d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 输出完整且合理。\n\n**结果总结**：\n\n| Condition | Cosine Peak Layer | RSA | Euclidean Peak Layer |\n|---|---|---|---|\n| trained_image_mean | **12** | 0.5744 | 12 |\n| trained_last_preaction | **13** | 0.5783 | — |\n| untrained_image_mean | **0** | 0.5570 | — |\n| untrained_last_preaction | **1** | 0.5707 | — |\n\n**与 euclidean 对比**：\n- **Inverted-U replicated**: True（trained 仍在中间层 peak）\n- **Peak layer shift**: 0（trained_image_mean 的 peak 完全一致在 L12）\n- **Profile correlation**: 全部 > 0.989（cosine 和 euclidean 的逐层 RSA 曲线高度相关）\n\n输出文件：\n- 脚本: `/root/vla-ssd/scripts/ablations/rsa_cosine_action_metric.py`\n- 结果: `/root/autodl-tmp/vla-ssd/results/ablations/rsa_cosine_metric.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-p0-cosine-metric.md"
+}

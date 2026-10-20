@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b96132080bdc66899c3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check spatial new pid",
+  "task_key": "worker_check_spatial_new_pid_20260522T073207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_spatial_new_pid_20260522T073207_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "bc2d1e3e1dd5e3e8766afd32c952c7807903b7b6613c6cadeaa15fad45859bcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **PID**: `636293`（`python scripts/libero_spatial_full_pipeline.py --conditions trained untrained`）\n- **GPU 显存占用**: 15564 MiB（cuda:0）\n- **日志路径**: `/root/runs/vla-ssd/openvla_spatial_standardized_v1.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-spatial-new-pid.md"
+}

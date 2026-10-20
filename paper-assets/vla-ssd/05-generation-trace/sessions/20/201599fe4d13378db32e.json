@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "201599fe4d13378db32e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research check p2v2 status",
+  "task_key": "worker_research_check_p2v2_status_20260516T220259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_p2v2_status_20260516T220259_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "17e80861b1cfa7ff3df6ffcdb701e7ea18b41dd62e0f5001ddd8f24e9b8e473d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n```\n=== P2v2 RESULT ===\n文件: /root/autodl-tmp/vla-ssd/results/ablations/demo_sensitivity_25.json\n大小: 2251 bytes, 生成时间: May 16 19:00\n\n=== COMPARISON ===\nRSA profile correlation: 0.9696\nProbe profile correlation: 0.8189\nRSA peak 50:  layer 12, RSA=0.6282\nRSA peak 25:  layer 12, RSA=0.6059\nProbe peak 50: layer 9, R²=0.6587\nProbe peak 25: layer 11, R²=0.6088\n\n=== DATA DIMENSIONS ===\nLayers with data: rsa_50=33, rsa_25=33, probe_50=33, probe_25=33\n\n=== TMUX ===\n(无 demo 相关 session)\n\n=== 耗时 ===\nelapsed_seconds: 1583.8 (~26 min)\n```\n\n实验已完成。RSA 层间 profile 在 50→25 demos 下相关性 0.97（极高），peak 位置稳定在 layer 12。Probe profile 相关性 0.82，peak 从 layer 9 偏移到 layer 11。整体绝对值下降（RSA 约 -0.02，Probe 约 -0.05~0.07），但 shape 高度保持。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-p2v2-status.md"
+}

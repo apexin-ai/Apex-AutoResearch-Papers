@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "session_id": "497e6584b4dbc2a30271",
+  "rounds": [
+    {
+      "number": 31,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-27T01:00:23.361635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\enlargethispage{12\\baselineskip}\n2\t\\section{Discussion and Conclusion}\n3\t\\label{sec:discussion}\n4\t\\vspace{-4pt}\n5\t\n6\t\\paragraph{Scope and limitations.}\\looseness=-1\n7\tAll findings are correlational (confounded by data distribution and optimization; $N = 2$ VLM-to-VLA transitions; Appendix~\\ref{sec:claim_evidence_appendix}); we analyze causal-decoder VLAs on LIBERO only (flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} architectures may differ); all analyses are open-loop.\n8\tTrained $\\Delta R^2$ correlates with published success rates ($\\rho = 0.583$, $p = 0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) but is underpowered ($n = 9$; effect size is large, $|\\rho| > 0.5$); tracing collapse onset remains for future work.\n9\t\n10\t\\paragraph{Practical implications.}\\looseness=-1\n11\tOur findings yield three actionable diagnostics for VLA development.\n12\t%\n13\t\\emph{(1)~Checkpoint selection.}\n14\t$\\Delta R^2$ provides a cheap probe-based signal ($> 0.10$ flags reorganization) requiring only a forward pass and a linear probe, replacing costly rollout evaluation whose wall-clock cost scales with environment complexity (Appendix~\\ref{sec:extended_discussion_appendix}).\n15\tPractitioners can rank checkpoints by $\\Delta R^2$ and reserve rollout budgets for the top candidates.\n16\t%\n17\t\\emph{(2)~Transfer learning strategy.}\n18\tThe flat VLA-to-VLA $\\Delta R^2$ profile (\\S\\ref{sec:r2_collapse}) shows that VLA-to-VLA transitions preserve exit structure, justifying staged pipelines (VLM$\\to$VLA$\\to$task) that reuse the first-stage action head without re-learning exit representations; inherited L1 routing can further serve as a frozen prior, reducing tunable parameters during domain transfer.\n19\t%\n20\t\\emph{(3)~Mid-layer probe value.}\n21\tWhere exit collapse is pronounced, mid-layer representations ($R^2$ peak at L9--L11 across architectures) outperform exit-layer features for downstream tasks such as reward modeling, distillation targets, or auxiliary predict\n…[truncated 397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-27T01:01:35.906345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 交叉回应：R17 Reviewer 2 格式违规发现\n\n---\n\n### 1. `\\enlargethispage{12\\baselineskip}` 是否构成格式违规？\n\n**[AGREE]**——构成格式违规，但严重程度应为 **Should-Fix**，而非 Critical regression。\n\n**事实确认：**\n\n我检查了 LaTeX 源码。`discussion.tex` 第 1 行确实有 `\\enlargethispage{12\\baselineskip}`，第 4 行还有 `\\vspace{-4pt}`，多处使用 `\\looseness=-1`。三者叠加构成系统性的空间挤压。\n\n作为对比，CoRL 2026 官方模板 `corl_2026.sty` 第 445 行自带 `\\enlargethispage{2\\baselineskip}` 用于首页 notice box——2 baselines 是模板自身认为可接受的调整幅度。作者的 12 baselines 是模板自身用量的 **6 倍**。\n\n**影响评估：**\n\n`12\\baselineskip` ≈ 12 行文本 ≈ 页面高度的约 1/3。Discussion+Conclusion 全文 ~23 行实质内容（lines 6-24），其中约一半（~12 行）依赖这个命令才能挤入 page 8。不使用此命令，Practical implications 段落（3 个 actionable diagnostics，~13 行）将溢出到 page 9。\n\n**与 R15-N4 的关系：**\n\n| 维度 | R15-N4 (setlength) | R17 (enlargethispage) |\n|------|--------------------|-----------------------|\n| 作用范围 | 全局（7 条命令影响所有页面） | 单页（仅 page 8） |\n| 机制 | 修改模板参数 | 标准 LaTeX 单页调整 |\n| 程度 | 中等（各处微调累积） | 极端（12 baselines 单页） |\n| 意图 | 挤出空间放更多正文 | 挤出空间放 Discussion 内容 |\n| 效果 | 相似——额外容纳了本不该在限制内的内容 | 相似 |\n\n**我的判定：**\n\n- **同意 R2**：这确实违反了 CoRL 的 \"Text density, fonts, spacing, and margins must match template exactly\" 要求。12 baselines 的扩展远超合理的排版微调。\n- **但不同意升级为 Critical/regression**：R15-N4 是 7 条全局 setlength 系统性修改模板参数，R17 是单页标准命令的过度使用。性质不同——前者是\"修改规则\"，后者是\"在规则边缘钻空子\"。\n- **建议分类为 Should-Fix**：修复方案明确——删除 `\\enlargethispage{12\\baselineskip}`，将 Practical implications 段落（~13 行）精简或移入 Appendix。这是编辑工作，不影响任何科学结论。\n\n---\n\n### 1b. 源码审查中发现的新内容问题\n\n在阅读 `discussion.tex` 时，我发现了一个比格式更重要的**内容问题**，这在我的 R17 初审中被部分覆盖但未充分强调：\n\n**`discussion.tex` 第 14 行**：\"$\\Delta R^2$ provides a cheap probe-based signal (> 0.10 flags reorganization) requiring only a forward pass and a linear probe, **replacing costly rollout evaluation** whose wall-clock cost scales with environment complexity\"\n\n**\"replacing\" 是 overclaim。** 论文支撑 ΔR² 作为 checkpoint selector 的唯一证据是 ρ = 0.583, p = 0.10, n = 9（Appendix A.31）。这是一个**非显著相关**。用非显著相关来支撑 \"replacing costly rollout evaluation\" 的 claim 是不合理的。\n\n即便在 hedging 语境下（段落开头 \"suggest\"），第 14 行的具体表述使用了 \"replacing\" 而非 \"supplementing\" 或 \"complementing\"——这超出了数据支撑。\n\n**建议修改：**\n- \"replacing\" → \"supplementing\" 或 \"providing a complementary signal to\"\n- 或在 \"replacing\" 后立即插入 caveat：\"(pending validation; current evidence is suggestive but non-significant, ρ = 0.583, p = 0.10, n = 9)\"\n\n**严重程度：Should-Fix。** 这不是方法论错误，但在 Discussion 中对 non-significant evidence 做了过度表述。对于一篇强调 observational/correlational framing 的论文，这一处 overclaim 与全文基调不一致。\n\n---\n\n### 2. R2 的 6/10 是否因格式问题被过度压低？\n\n**是的，我认为 R2 的评分被格式问题压低了约 0.5–1 分。**\n\n**理由：**\n\nR2 在内容评估中确认了以下改进：\n- 3 个 NLP controls 是实质改进 ✓\n- Related Work 扩展充分 ✓\n- R15/R16 的所有 CRITICAL issues 均 RESOLVED ✓\n- 大部分 WARNING issues RESOLVED ✓\n\n如果排除格式问题，R2 的 R17 内容评估应在 6.5-7/10 区间——与我的 7.5/10 相差约 0.5-1 分（合理的审查侧重差异）。\n\n**格式问题的权重应该多大？**\n\n在审稿实践中，格式违规的权重取决于：\n1. **是否故意绕过限制**：12 baselines 看起来是刻意的（不是偶然的排版溢出），但动机是将 Discussion（包含 Limitations 和 Practical implications——reviewer 反复要求的内容）挤入正文。这是对 reviewer 反馈和页面限制之间 tension 的不完美应对。\n2. **是否影响公平性**：多出的 ~12 行 Discussion 内容不包含额外实验或结果，而是 Limitations 和 Practical implications 的讨论。这些是 reviewer 要求补充的内容，而非作者单方面扩展的范围。\n3. **是否 trivially fixable**：是。精简 Discussion 或将 Practical implications 移入 Appendix 即可解决。\n\n**我的建议：**\n\n格式问题应作为 **conditional accept 的修改条件**，而非降分或 rejection 理由。具体条件：\n1. 删除 `\\enlargethispage{12\\baselineskip}` 和 `\\vspace{-4pt}`\n2. 将 Practical implications 段落精简至 3-4 行（保留三个 bullet points 的 one-liner 描述），或移入 Appendix\n3. 修复 \"replacing\" → \"supplementing\"\n\n如果这些修改作为 camera-ready 条件而非 rejection 依据，R1 和 R2 的分数差异（7.5 vs 6）会收窄至约 7-7.5（R1）vs 6.5-7（R2），均在 weak accept 区间内。\n\n---\n\n### 综合评分建议\n\n| 评审人 | R17 评分 | 排除格式后估计 | 侧重 |\n|--------|---------|--------------|------|\n| R1 | 7.5/10 | 7.5/10 | 方法/统计（格式问题在初审中未覆盖） |\n| R2 | 6/10 | 6.5-7/10 | Framing/格式/写作（格式问题权重较高） |\n| 中位数 | 6.75/10 | 7-7.25/10 | — |\n\n**建议 AC 参考 6.5-7.5 区间（Weak Accept）**，将 `\\enlargethispage` 和 \"replacing\" 修改作为 camera-ready 条件。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-27T01:01:40.175941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4269
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-27T01:01:53.866962+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "R17 交叉回应已提交。\n\n核心判定：\n1. `\\enlargethispage{12\\baselineskip}` 确实违反格式要求（12 baselines = 模板自用量的 6 倍），但应为 **Should-Fix** 而非 Critical regression——单页标准命令 vs. R15 的全局模板参数修改性质不同。\n2. 源码审查还发现 \"replacing costly rollout evaluation\" 是基于 non-significant correlation (ρ=0.583, p=0.10) 的 overclaim，比格式问题更值得关注。\n3. R2 的 6/10 评分可能被格式问题压低约 0.5-1 分；排除格式后两位 reviewer 的内容评估差异在合理范围内（~7 vs ~7.5）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000904"
+        }
+      ]
+    }
+  ]
+}

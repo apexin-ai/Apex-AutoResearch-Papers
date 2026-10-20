@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2b2cdddf43cd5398894",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code tracvla spatial probing only",
+  "task_key": "worker_code_tracvla_spatial_probing_only_20260521T042558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tracvla_spatial_probing_only_20260521T042558_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "298fd6c3d883a6fdbd66551bb56798382253ed2690dbbb0e36f995daeafcd83e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证通过。所有 R²=0.0 是预期的（4 个样本无法 fit）。\n\n## 产出总结\n\n### 1. 脚本路径\n`/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py`\n\n### 2. 与 full pipeline 的区别\n| | full pipeline | probing-only |\n|---|---|---|\n| Phase 1 (feature extraction) | 提取 hidden states + L1 attention | 只提取 hidden states（`output_attentions=False`） |\n| Phase 2 (R² probing) | ✅ | ✅ |\n| Phase 3 (L1 attention) | ✅ | ❌ 跳过 |\n| Phase 4 (classification) | ✅ | ❌ 跳过 |\n| Phase 5 (counterfactual) | ✅ | ❌ 跳过 |\n| 默认 conditions | trained,untrained | trained |\n| 模型释放时机 | pipeline 结束后 | Phase 1 后立即释放（probing 不需要模型） |\n| 进度打印 | 每 8 层 | 每 4 层 |\n\n### 3. Dry-run 结果\n- Phase 1: 4 samples, 6.3s\n- Phase 2: 32 layers × 2 positions × 2 seeds, 353s\n- 总耗时: 6.2 min\n- 输出: `action_r2_probing.json` 已正确写入（dry-run R²=0.0 预期）\n\n### 4. 提交命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py --conditions trained\n```\n\n预计运行时间：Phase 1 ~20min（10 tasks × 10 demos × 50 timesteps = 5000 forward passes）+ Phase 2 ~6h（32 层 × 2 positions × 15 seeds）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tracvla-spatial-probing-only.md"
+}

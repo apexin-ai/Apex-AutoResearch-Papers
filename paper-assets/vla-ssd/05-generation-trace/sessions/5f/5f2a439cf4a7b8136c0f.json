@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f2a439cf4a7b8136c0f",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4115,
+    "sha256": "8ff50626f712e3e928fd8145b84fc6704f99373fa8a211cd0b13c8203cd11d80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-17T10:56:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 cuda:0 + cuda:1（仅此两张卡）\n- 双卡并行提取时第二个进程必须 `--gpu 1`（不是 `--gpu 0`），已出过 bug（5/17 spatial cross-inst 提取两个进程都用了 `--gpu 0`）\n- 论文数据统一用 32 层分析数据源（`full_32layer_attention_summary.json`），不要混用 4 层分析的旧数据（untrained L1 text_attn: 32层=7.78% vs 旧=11.7%）\n- Director 明确禁止 Agent 碰 writing_plan.yaml / 论文写作 workflow / paper writing Workers（×3 次指令）——Agent 只做实验+数据\n- `ablation_p2_demo_sensitivity` (PREPARING) 是已被 v2 supersede 的废弃条目，不要尝试执行\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，2× RTX PRO 6000 (48GB each)\n- 工作目录：`/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/结果/checkpoint）\n- Python：`/root/miniconda3/bin/python3.12`\n- Checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b`（trained），`openvla-7b-llama2base`（Llama-2 base 注入版）\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/`（5.9G），特征 trained 24G + untrained 25G\n- HF cache：`/root/autodl-tmp/hf_cache/`（含 NousResearch/Llama-2-7b-hf）\n- 磁盘：250G 总量，~59G 可用\n- 活跃进程：无（GPU 空闲）\n- 活跃 Worker：`worker_code_fix_figure_fontsize_20260517T105547`（修复 fig 字体 7→8pt，应已完成或即将完成）\n\n### 3. 📊 当前状态\n**刚完成**：\n- P0 Llama-2-7B Base 对照实验（DONE/success）—— 三条件梯度清晰：untrained 0/32 → llama2base 9/32 → trained 24/32 instruction-routing heads\n- 全 32 层 attention 分析（三条件）—— trained \"书挡\"型 vs llama2base \"倒U\"型 vs untrained flat 0\n- LIBERO-Spatial cross-instruction probe（DONE/success）—— 完美复现 LIBERO-Goal pattern\n- 论文编译检查：0 errors，7 cosmetic warnings\n- 6 个 publication figures 全部生成并交付\n\n**正在跑**：\n- `worker_code_fix_figure_fontsize` — 修复 fig_32layer_attention + fig_l1_stacked_bar 字体 7→8pt（等回调）\n\n**Registry PREPARING**（均为遗留/已完成/废弃）：\n- `ablation_p2_demo_sensitivity`：被 v2 supersede\n- `fulllayer_action_probe`：未启动\n- `plan010_action_probe_spatial` 和 `plan010_rsa_spatial`：已标记 DONE\n\n### 4. 📋 待办\n- `fix_figure_fontsize` Worker 回调到 → 验证新 PDF 字体 ≥ 8pt，替换 artifacts，MD5 确认后汇报 Director\n- Director 要求新实验 → 检查 GPU 可用 → spawn worker（当前 GPU 全空闲）\n- Round 3 审稿反馈到 → 按 on-experiment-done skill 处理，可能触发 paper 修改或新实验\n- 如果 Director 要求 LIBERO-Spatial 的 cross-instruction figure → 用已有数据生成 side-by-side plot（Goal vs Spatial）\n\n### 5. 🎯 战略上下文\n- **项目阶段**：CoRL 2026 Review Response Phase。Round 1 = Weak Reject 4.5/10。DDL: May 29。\n- **核心发现**：VLA 训练将 LLM attention 从 pretrained 的\"中间层处理\"重组为\"入口-出口书挡路由\"（L0-L1 peak + L31 peak）。三条件梯度 (0→9→24 heads) 完美回应 Reviewer Critical-1。\n- **C2 claim 精确表述**：\"VLA training reorganizes attention from mid-layer processing (pretrained LM pattern) to entry-exit bookend routing, amplifying instruction-attending heads from 9/32 to 24/32\"\n- **易错点**：\n  1. 不要把 32 层分析的 trained L1=24 heads 和独立 L1 分析的 25 heads 混用——数据源不同（init 方式略异），统一用 32 层数据\n  2. Llama2base 深层 probe 不衰减（100%），与 untrained 衰减（82%）形成对比——\"sustained routing requires VLA training\" 这个说法需要修正为 \"sustained routing requires pretrained LLM weights\"\n  3. LIBERO-Spatial untrained 中高层有 ConvergenceWarning（LogReg 2000 iter），accuracy 可能略被低估\n- **决策链**：D044→D047（cross-instruction 发现）→ D048（方案B重构 Functional Specialization）→ D049（Llama-2 对照）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-2.md"
+}

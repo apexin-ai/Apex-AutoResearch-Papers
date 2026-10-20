@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71d0e07bb81af0d020bc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh bootstrap ci lastpreaction",
+  "task_key": "worker_ssh_bootstrap-ci-lastpreaction_20260516T000846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_bootstrap-ci-lastpreaction_20260516T000846_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "e32427bcd9854a1f0cc9218cb2c89dcf1f65fda0151b651e63eef746424543b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|------|------|\n| Trained L19 mean R² | 0.7309 |\n| Untrained best (L32) mean R² | 0.6858 |\n| Observed delta | **+0.0452** |\n| 95% CI | **[0.0321, 0.0585]** |\n| p-value (one-sided) | **< 0.0001** |\n| CI excludes 0 | **Yes** |\n\n所有 10 个 task 的 delta 均为正（range: +0.020 ~ +0.083），差异一致且显著。\n\n**结论**：CI 完全排除 0，trained 显著优于 untrained best layer (p < 0.0001)。Redistribution is training-dependent，支持 Claim 2。\n\n结果已保存到 `/root/autodl-tmp/vla-ssd/results/functional_validation/bootstrap_trained_vs_untrained_lastpreaction.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-bootstrap-ci-lastpreaction.md"
+}

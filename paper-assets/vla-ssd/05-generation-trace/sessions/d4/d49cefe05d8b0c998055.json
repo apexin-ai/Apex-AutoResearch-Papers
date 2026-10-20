@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d49cefe05d8b0c998055",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260516T021635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260516T021635_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "d6745a5f49b22e8cab439af1843192bdb3afe99bd9c7bf7487752a3d8b7b0dd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。两个文件已写入 `docs/paper/`:\n\n**`experiments.tex`** — Section 3 完整 LaTeX，包含:\n- **3.1 Experimental Setup**: LIBERO-Goal, OpenVLA-7B, 5 种表征源, 2×2 实验设计, RSA + functional probe 方法\n- **3.2 Vision Encoder Dominance**: Table 1 (RSA 排序), Figure 2, geometric-functional dissociation (DINO R²≈Proj 但 RSA<<), CKA 排序反转负向结果 (Figure 6)\n- **3.3 LLM Redistributes Action Structure**: Table 2 (probe R²), Figure 3 (per-layer curves), Figure 4 (probe bars), distributed degradation + readout concentration\n- **3.4 Training Routes, Not Creates**: Table 3 (训练效应), Figure 5 (2×2 matrix + instruction control), geometric null + functional concentration dissociation\n\n**`references.bib`** — 12 条 BibTeX，其中 `grant2026` 和 `haon2025` 标记了 `[VERIFY]`，需要补全真实书目信息。其余 10 条基于已知信息填写。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

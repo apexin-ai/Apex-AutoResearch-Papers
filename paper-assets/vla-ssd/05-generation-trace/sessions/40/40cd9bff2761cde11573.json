@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40cd9bff2761cde11573",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code l1 ablation action probe",
+  "task_key": "worker_code_l1_ablation_action_probe_20260517T144437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_ablation_action_probe_20260517T144437_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "44723734ef870e5b90d62d7116a87f5d3ffaa498415b4ae092338c5eac6efef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n- **Job**: `l1_head_ablation` on `westd-19183` cuda:0\n- **脚本**: `/root/vla-ssd/scripts/l1_ablation_action_probe.py`\n- **配置**: 3 conditions (baseline, ablate_all24, ablate_all32) × 3 layers (L1, L8, L13) × 10 tasks × 5 demos\n- **预计时间**: ~50-60 分钟（~6900 forward passes/condition，每帧 ~0.15s）\n- **输出**: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/action_probe_results.json`\n- **日志**: `~/runs/vla-ssd/l1_head_ablation.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l1-ablation-action-probe.md"
+}

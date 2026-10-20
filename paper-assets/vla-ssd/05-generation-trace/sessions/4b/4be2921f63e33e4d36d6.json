@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4be2921f63e33e4d36d6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "chart phi3v cross architecture fix",
+  "task_key": "worker_chart_phi3v_cross_architecture_fix_20260519T185349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_chart_phi3v_cross_architecture_fix_20260519T185349_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "d9c88915f0d648fcf7619bc8fd434d0d5614ea2f722db26a4e4de7f33901e332"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n- **OpenVLA untrained**: `full_32layer_untrained.json`(全零) → `full_32layer_llama2base.json`，标签 \"Llama-2 base\"（L1=9，非零 ✓）\n- **OpenVLA trained**: `libero_finetuned_attention_profile.json` → `full_32layer_trained.json`，标签 \"OXE-trained\"（L1=24, L31=18，完整 bookend ✓）\n- Phi3V 面板和所有布局/样式未改动\n- PDF/PNG 已覆盖原文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/chart-phi3v-cross-architecture-fix.md"
+}

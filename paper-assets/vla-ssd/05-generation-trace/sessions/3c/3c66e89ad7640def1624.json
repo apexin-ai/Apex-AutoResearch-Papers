@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c66e89ad7640def1624",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh timestep accuracy analysis",
+  "task_key": "worker_ssh_timestep-accuracy-analysis_20260515T180416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_timestep-accuracy-analysis_20260515T180416_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "385147c4147bb8e26276c6706ab431c10d6e5e55287df37c1dee07f3306da509"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰：\n\n**Trained VLA (layer 1)**：所有 10 个 bin 均为 **100.0%** accuracy，包括 t=0 初始帧。\n\n**DINO-V2 (layer 0)**：强烈的时间依赖性——\n\n| Bin | DINO Acc | VLA Acc |\n|-----|----------|---------|\n| 0 (t=0~0.1) | **43.3%** | 100% |\n| 1 (t=0.1~0.2) | 79.7% | 100% |\n| 2 | 83.8% | 100% |\n| 5 | 90.4% | 100% |\n| 8 | 99.0% | 100% |\n| 9 (t=0.9~1.0) | 99.1% | 100% |\n\n**关键发现**：\n- DINO 在 bin 0（初始帧）只有 43.3% accuracy（接近随机 10%，但高于 chance → 初始 scene 确实有些视觉差异）\n- DINO early-frame acc 远低于 late-frame（delta = 37.6%），说明 DINO 的 86% 整体 accuracy 主要靠 late frames 撑起来\n- **Trained VLA 在 t=0 就达到 100%** → 这不可能来自视觉差异（初始场景相同），只能来自 language instruction grounding\n\n这是 language grounding 信号存在的强证据：VLA 的隐层表征在第一帧就已经编码了 goal identity，这只能来源于语言指令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-timestep-accuracy-analysis.md"
+}

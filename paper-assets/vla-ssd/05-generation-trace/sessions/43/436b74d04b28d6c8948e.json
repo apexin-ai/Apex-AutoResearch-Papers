@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "436b74d04b28d6c8948e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research verify n demos",
+  "task_key": "worker_research_verify_n_demos_20260516T032717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_n_demos_20260516T032717_result.json",
+    "occurrence": 1,
+    "bytes": 1951,
+    "sha256": "4d0929a73ddcd2abfd034171df69a092ed176ff8f9152580d34d4a5ae9c8059a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 源数据（feature h5 文件中实际 demo 数量）\n\n| Condition | Demos/task | 例外 |\n|-----------|-----------|------|\n| **trained_with_inst** | **50** | 全部 10 tasks 一致 |\n| **untrained_with_inst** | **50** | 全部 10 tasks 一致 |\n| **trained_no_inst** | **50 或 10** | cream_cheese, wine_rack, wine_cabinet, stove 仅 10 demos |\n| **untrained_no_inst** | **50 或 10** | turn_on_the_stove 仅 10 demos |\n| **random_s0** | **50** | 全部 10 tasks 一致 |\n| **shuffled** | **50** | 全部 10 tasks 一致 |\n| **Action hdf5** | **50** | 全部 10 tasks 一致 |\n\n### unified_rsa_results.json\n\n- `n_sample=20` 是**轨迹时间步采样数**（np.linspace），不是 demo 数\n- 代码逻辑（`rsa_unified_vla.py:108-109`）取 feature h5 和 action hdf5 的 demo ID 交集\n- **with_inst / random_s0 / shuffled 条件：50 demos/task**\n- **no_inst 条件：部分 task 仅 10 demos**（trained_no_inst 有 4 个 task 只有 10，untrained_no_inst 有 1 个只有 10）\n- JSON 中**未显式记录 n_demos**\n\n### 其他结果文件\n\n| 文件 | n_demos | 说明 |\n|------|---------|------|\n| **rsa_demo_standardized.json** | **10/task** | 显式标注 `demos_per_task=10`，仅用 demo_0-9，用于跨模型公平对比 |\n| **rsa_siglip_only.json** | 未记录 | 10 tasks |\n| **rsa_clip.json** | 未记录 | |\n| **rsa_branch_split.json** | 未记录 | N=20 同为时间步采样 |\n\n### 结论\n\n**不是所有数据源都统一使用 50 demos/task：**\n1. `trained_no_inst` 有 4 个 task 特征提取不完整（仅 10 demos），`untrained_no_inst` 有 1 个 task 仅 10 demos — 这意味着 unified_rsa_results.json 中这些 task 的 no_inst 条件 RSA 是基于更少的 demo pair 计算的\n2. `rsa_demo_standardized.json` 是有意降采样到 10 demos/task 做跨模型对比，这是 by design\n3. with_inst、random_s0、shuffled 三组确认全部 50 demos/task"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-n-demos.md"
+}

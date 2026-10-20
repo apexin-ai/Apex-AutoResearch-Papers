@@ -1,0 +1,1114 @@
+{
+  "schema_version": "1.0",
+  "id": "3a33a8e94a5f86d0cb47",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "verify new citations arxiv",
+  "task_key": "worker_verify_new_citations_arxiv_20260524T013515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_new_citations_arxiv_20260524T013515.log",
+    "occurrence": 1,
+    "bytes": 40998,
+    "sha256": "6c4cc9f62b3de483acf25dfaef47c6f49c7e6f5345b2c90c561c58006da69cf8"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+                "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "92300f83-7f3b-4cdf-9166-df860660d66f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779593400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8ab03e24-e8a0-46ca-b41e-e25c63f5a6ae",
+                "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to verify two arXiv papers to check if they are real or hallucinated citations. I need to search for each paper using WebSearch. Let me load the WebSearch tool first.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "de25f264-17a9-4e58-a04a-b13722c4f09b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J3YSYyb4tXxdwRRg8xn2KJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11474,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11474
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TdoVDUVjk2fZV9YLAMSGpn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "3ddf03f0-27bf-4259-a53e-1c6ed44269ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J3YSYyb4tXxdwRRg8xn2KJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11474,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11474
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T01:35:25.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TdoVDUVjk2fZV9YLAMSGpn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "7f601653-4c84-488e-8883-d75c54d53e5d",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me search for both papers in parallel.",
+              "signature": "EvMBCmMIDhgCKkBLUjnNIOBn0nx+p2AeO6LdFyYsvahtBN5ii0cU33yz0J/F6ElYOMA++rNN6ElQ5EF4bgdUNFZShscgPBK0LSXwMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOwwTMS/j3aqS3bs7hoMp7/hVz4pq8B7fDAcIjAeWT1REK/Uys2W4W6Gd6+52CQQh5zXA3Ec175hipB9Mr1Wz+aVfeXN+yL43J4c9TkqPmHP+T+P8pmhMAMvzz0+OQtzAVfQgUl1DF2gF+leuFj7UYLFAtzWsvrzLnMVK/WQNhSusLW4lhxmHCI0RsNsGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "b5c49d82-92a6-40b6-b356-be818eeae613",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始验证两篇论文。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "46b1adc7-86b5-4fcc-8aaa-52644f2b1ca3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NaSYgoS2SBZxnvfmfyDtrR",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2603.03818"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "0d5feede-0197-4a6a-8759-a33599128a5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014xvYKs6LGCwDV5wGH6xZyR",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2509.11417"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "6eb458ca-3eed-4daf-94b0-a5fcfb4958d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MZDFut4HGDm23JkGYEDNrr",
+              "name": "WebSearch",
+              "input": {
+                "query": "Pretrained VLAs Resistant to Forgetting continual learning arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "eb786c9f-b313-4ef9-a8fb-2cb8ef53c691",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CFUkSSN4b7irXozyqjgifd",
+              "name": "WebSearch",
+              "input": {
+                "query": "Enhancing Generalization VLA Preserving Pretrained Representations arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "562edf72-ae8f-4c08-8b51-099d8c0dc9ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5jnRqD26wWkTQXYvMLtVe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 662,
+                "cache_read_input_tokens": 23315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 662
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T01:35:42.711Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NaSYgoS2SBZxnvfmfyDtrR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2603.03818\"\n\nLinks: [{\"title\":\"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\",\"url\":\"https://arxiv.org/html/2603.03818\"},{\"title\":\"Accurate PROTAC targeted degradation prediction with DegradeMaster\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.02.03.636343.full.pdf\"},{\"title\":\"Accurate Prediction of Protein Complex Stoichiometry by Integrating AlphaFold3 and Template Information\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.01.12.632663.full.pdf\"},{\"title\":\"[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\",\"url\":\"https://arxiv.org/abs/2603.03818\"},{\"title\":\"my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily\",\"url\":\"https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md\"},{\"title\":\"Enhanced sampling of protein conformations in AlphaFold3 with repulsive bias in the diffusion generative model\",\"url\":\"https://www.biorxiv.org/content/10.64898/2025.12.17.693105.full.pdf\"},{\"title\":\"Pretrained Vision-Language-Action Models are Surprisingly\",\"url\":\"https://arxiv.org/pdf/2603.03818\"},{\"title\":\"AutoPM3: Enhancing Variant Interpretation via LLM-driven PM3 Evidence Extraction from Scientific Literature\",\"url\":\"https://www.biorxiv.org/content/10.1101/2024.10.29.621006.full.pdf\"}]\n\nBased on the search results, arXiv:2603.03818 is a paper by Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, and Yuke Zhu, published on March 17, 2026, titled \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\".\n\nThe paper addresses continual learning in robot policy learning, finding that pretrained Vision-Language-Action (VLA) models are remarkably resistant to forgetting compared with smaller policy models trained from scratch. The researchers found that simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "d5057382-0e0c-4e42-8114-acab3a07f1c6",
+            "tool_use_result": {
+              "query": "arXiv 2603.03818",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01HMme4nz5SU2ozXVTBWxBXW",
+                  "content": [
+                    {
+                      "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+                      "url": "https://arxiv.org/html/2603.03818"
+                    },
+                    {
+                      "title": "Accurate PROTAC targeted degradation prediction with DegradeMaster",
+                      "url": "https://www.biorxiv.org/content/10.1101/2025.02.03.636343.full.pdf"
+                    },
+                    {
+                      "title": "Accurate Prediction of Protein Complex Stoichiometry by Integrating AlphaFold3 and Template Information",
+                      "url": "https://www.biorxiv.org/content/10.1101/2025.01.12.632663.full.pdf"
+                    },
+                    {
+                      "title": "[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+                      "url": "https://arxiv.org/abs/2603.03818"
+                    },
+                    {
+                      "title": "my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily",
+                      "url": "https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md"
+                    },
+                    {
+                      "title": "Enhanced sampling of protein conformations in AlphaFold3 with repulsive bias in the diffusion generative model",
+                      "url": "https://www.biorxiv.org/content/10.64898/2025.12.17.693105.full.pdf"
+                    },
+                    {
+                      "title": "Pretrained Vision-Language-Action Models are Surprisingly",
+                      "url": "https://arxiv.org/pdf/2603.03818"
+                    },
+                    {
+                      "title": "AutoPM3: Enhancing Variant Interpretation via LLM-driven PM3 Evidence Extraction from Scientific Literature",
+                      "url": "https://www.biorxiv.org/content/10.1101/2024.10.29.621006.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, arXiv:2603.03818 is a paper by Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, and Yuke Zhu, published on March 17, 2026, titled \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\".\n\nThe paper addresses continual learning in robot policy learning, finding that pretrained Vision-Language-Action (VLA) models are remarkably resistant to forgetting compared with smaller policy models trained from scratch. The researchers found that simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size."
+              ],
+              "durationSeconds": 6.011414467999999
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T01:35:42.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014xvYKs6LGCwDV5wGH6xZyR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2509.11417\"\n\nLinks: [{\"title\":\"Deubiquitylation and stabilization of p21 by USP11 is critical for cell cycle progression and DNA damage responses\",\"url\":\"https://www.biorxiv.org/content/10.1101/172999.full.pdf\"},{\"title\":\"Large language models for abstract screening in systematic- and scoping reviews: A diagnostic test accuracy study\",\"url\":\"https://www.medrxiv.org/content/10.1101/2024.10.01.24314702.full.pdf\"},{\"title\":\"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\",\"url\":\"https://arxiv.org/abs/2509.11417\"},{\"title\":\"System and method for resisting quantum perturbation threats to quantum communication devices\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11863989\"},{\"title\":\"On-target toxicity limits the efficacy of CDK11 inhibition against cancers with 1p36 deletions\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.08.03.668359.full.pdf\"}]\n\nBased on the search results, arXiv paper 2509.11417 is titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" and discusses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage rich pretrained representations to build generalist robots.\n\nThe paper addresses the problem that direct fine-tuning on robot data often disrupts pretrained representations and limits generalization, and presents a framework that better preserves pretrained features while adapting them for robot manipulation.\n\nThe approach introduces three key components: a dual-encoder design with one frozen vision encoder to retain pretrained features and another trainable for task adaptation, a string-based action tokenizer that casts continuous actions into character sequences aligned with the model's pretraining domain, and a co-training strategy that combines robot demonstrations with vision-language datasets emphasizing spatial reasoning and affordances.\n\nThe paper was published on September 14, 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "ca43e8d7-ba6e-4131-8c8b-a79302753854",
+            "tool_use_result": {
+              "query": "arXiv 2509.11417",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MD3KGWgArmkexeyix8YcCZ",
+                  "content": [
+                    {
+                      "title": "Deubiquitylation and stabilization of p21 by USP11 is critical for cell cycle progression and DNA damage responses",
+                      "url": "https://www.biorxiv.org/content/10.1101/172999.full.pdf"
+                    },
+                    {
+                      "title": "Large language models for abstract screening in systematic- and scoping reviews: A diagnostic test accuracy study",
+                      "url": "https://www.medrxiv.org/content/10.1101/2024.10.01.24314702.full.pdf"
+                    },
+                    {
+                      "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+                      "url": "https://arxiv.org/abs/2509.11417"
+                    },
+                    {
+                      "title": "System and method for resisting quantum perturbation threats to quantum communication devices",
+                      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11863989"
+                    },
+                    {
+                      "title": "On-target toxicity limits the efficacy of CDK11 inhibition against cancers with 1p36 deletions",
+                      "url": "https://www.biorxiv.org/content/10.1101/2025.08.03.668359.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, arXiv paper 2509.11417 is titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" and discusses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage rich pretrained representations to build generalist robots.\n\nThe paper addresses the problem that direct fine-tuning on robot data often disrupts pretrained representations and limits generalization, and presents a framework that better preserves pretrained features while adapting them for robot manipulation.\n\nThe approach introduces three key components: a dual-encoder design with one frozen vision encoder to retain pretrained features and another trainable for task adaptation, a string-based action tokenizer that casts continuous actions into character sequences aligned with the model's pretraining domain, and a co-training strategy that combines robot demonstrations with vision-language datasets emphasizing spatial reasoning and affordances.\n\nThe paper was published on September 14, 2025."
+              ],
+              "durationSeconds": 5.534230366
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T01:35:43.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MZDFut4HGDm23JkGYEDNrr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Pretrained VLAs Resistant to Forgetting continual learning arXiv\"\n\nLinks: [{\"title\":\"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2603.03818\"},{\"title\":\"[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\",\"url\":\"https://arxiv.org/abs/2603.03818\"},{\"title\":\"Pretrained VLAs are Surprisingly Resistant to Forgetting in Continual Learning\",\"url\":\"https://continual-vlas.github.io/forget-me-not/\"},{\"title\":\"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\",\"url\":\"https://arxiv.org/html/2603.03818\"},{\"title\":\"Pretrained Vision-Language-Action Models are Surprisingly\",\"url\":\"https://arxiv.org/pdf/2603.03818\"},{\"title\":\"Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning\",\"url\":\"https://arxiv.org/pdf/2602.10503\"}]\n\nI found the paper you're looking for! Here are the key findings:\n\n**Paper Details:**\nThe paper is titled \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\" by Huihan Liu and 4 other authors, and it found that pretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch.\n\n**Main Findings:**\n- Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.\n- Pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.\n- The effectiveness of ER is consistent across multiple VLAs (Pi0, GR00T N1.5) despite differences in architecture, parameter count, and pretraining recipes, suggesting that effectiveness is a general property of pretrained VLAs.\n\nThe paper was published on March 17, 2026, and is available on arXiv as 2603.03818. You can access it at https://arxiv.org/abs/2603.03818.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "6b90d7f9-f4b7-4623-a511-6211bd8d1c56",
+            "tool_use_result": {
+              "query": "Pretrained VLAs Resistant to Forgetting continual learning arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01JtymsVQEitS2hJe1kvGe8i",
+                  "content": [
+                    {
+                      "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning | alphaXiv",
+                      "url": "https://www.alphaxiv.org/overview/2603.03818"
+                    },
+                    {
+                      "title": "[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+                      "url": "https://arxiv.org/abs/2603.03818"
+                    },
+                    {
+                      "title": "Pretrained VLAs are Surprisingly Resistant to Forgetting in Continual Learning",
+                      "url": "https://continual-vlas.github.io/forget-me-not/"
+                    },
+                    {
+                      "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+                      "url": "https://arxiv.org/html/2603.03818"
+                    },
+                    {
+                      "title": "Pretrained Vision-Language-Action Models are Surprisingly",
+                      "url": "https://arxiv.org/pdf/2603.03818"
+                    },
+                    {
+                      "title": "Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning",
+                      "url": "https://arxiv.org/pdf/2602.10503"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the key findings:\n\n**Paper Details:**\nThe paper is titled \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\" by Huihan Liu and 4 other authors, and it found that pretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch.\n\n**Main Findings:**\n- Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.\n- Pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.\n- The effectiveness of ER is consistent across multiple VLAs (Pi0, GR00T N1.5) despite differences in architecture, parameter count, and pretraining recipes, suggesting that effectiveness is a general property of pretrained VLAs.\n\nThe paper was published on March 17, 2026, and is available on arXiv as 2603.03818. You can access it at https://arxiv.org/abs/2603.03818."
+              ],
+              "durationSeconds": 5.594960592
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T01:35:44.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CFUkSSN4b7irXozyqjgifd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Enhancing Generalization VLA Preserving Pretrained Representations arXiv\"\n\nLinks: [{\"title\":\"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\",\"url\":\"https://arxiv.org/abs/2509.11417\"},{\"title\":\"Enhancing Generalization in Vision-Language-Action Models\",\"url\":\"https://gen-vla.github.io/\"},{\"title\":\"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\",\"url\":\"https://arxiv.org/html/2509.11417v1\"},{\"title\":\"Enhancing Generalization in Vision–Language–Action Models by\",\"url\":\"https://arxiv.org/pdf/2509.11417\"},{\"title\":\"[2511.19878] MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization\",\"url\":\"https://arxiv.org/abs/2511.19878\"},{\"title\":\"MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization\",\"url\":\"https://arxiv.org/pdf/2511.19878\"}]\n\nI found the paper you're looking for! Here are the search results:\n\n## Primary Result\n\nThe paper \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" is arXiv paper 2509.11417, published in September 2025.\n\n## Paper Overview\n\nVision-language-action (VLA) models finetuned from vision-language models (VLMs) hold the promise of leveraging rich pretrained representations to build generalist robots across diverse tasks and environments. However, direct fine-tuning on robot data often disrupts these representations and limits generalization.\n\n## Key Contributions\n\nThe approach introduces three components: (i) a dual-encoder design with one frozen vision encoder to retain pretrained features and another trainable for task adaptation, (ii) a string-based action tokenizer that casts continuous actions into character sequences aligned with the model's pretraining domain, and (iii) a co-training strategy that combines robot demonstrations with vision-language datasets emphasizing spatial reasoning and affordances.\n\nThe paper has been published on arXiv and includes both simulation and real-world evaluations demonstrating improvements in robustness and generalization for robotic manipulation tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "aeaf9a87-841a-40bc-8c1d-b90f0126e25b",
+            "tool_use_result": {
+              "query": "Enhancing Generalization VLA Preserving Pretrained Representations arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_017LNT8gKTRer6pKUNxa5UAM",
+                  "content": [
+                    {
+                      "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+                      "url": "https://arxiv.org/abs/2509.11417"
+                    },
+                    {
+                      "title": "Enhancing Generalization in Vision-Language-Action Models",
+                      "url": "https://gen-vla.github.io/"
+                    },
+                    {
+                      "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+                      "url": "https://arxiv.org/html/2509.11417v1"
+                    },
+                    {
+                      "title": "Enhancing Generalization in Vision–Language–Action Models by",
+                      "url": "https://arxiv.org/pdf/2509.11417"
+                    },
+                    {
+                      "title": "[2511.19878] MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization",
+                      "url": "https://arxiv.org/abs/2511.19878"
+                    },
+                    {
+                      "title": "MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization",
+                      "url": "https://arxiv.org/pdf/2511.19878"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the search results:\n\n## Primary Result\n\nThe paper \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" is arXiv paper 2509.11417, published in September 2025.\n\n## Paper Overview\n\nVision-language-action (VLA) models finetuned from vision-language models (VLMs) hold the promise of leveraging rich pretrained representations to build generalist robots across diverse tasks and environments. However, direct fine-tuning on robot data often disrupts these representations and limits generalization.\n\n## Key Contributions\n\nThe approach introduces three components: (i) a dual-encoder design with one frozen vision encoder to retain pretrained features and another trainable for task adaptation, (ii) a string-based action tokenizer that casts continuous actions into character sequences aligned with the model's pretraining domain, and (iii) a co-training strategy that combines robot demonstrations with vision-language datasets emphasizing spatial reasoning and affordances.\n\nThe paper has been published on arXiv and includes both simulation and real-world evaluations demonstrating improvements in robustness and generalization for robotic manipulation tasks."
+              ],
+              "durationSeconds": 5.945332504000001
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me verify the author details for both papers more carefully.",
+              "signature": "EokCCmMIDhgCKkDfIdaf4Y6oI1jI5jGhtzxrZDJmHDkghj2BQb/ZozaRBvY3shhLJaheGOTa7gSYx7ozKbh6ycrsg69Wo8yBkIMhMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDN5ksvyCfn0eKBogmBoMx1NHZ6LrEYGg0b7jIjBxn1txvt9cDissQfcMkbtBaevJOwKudLtrOh5a9tDYwe9+cC91waILBfkryreUuAwqVLRkLnaFK4GYL8n4LBSrVokHUIYZXDaYro+4tCiwtcVlDJeN2VnOnlGdcw0FmDenS9/uLHAGnlUiQMORiQxCw3ZZLn2t1tqQRA/+Y5t17I98WEu3LRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "c892114e-4d0b-49d7-84ad-2e48b7fd7ab7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DBFQpQn3WdYv6cwjjQbVoP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2722,
+                "cache_read_input_tokens": 23977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在确认作者信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "89beb617-5486-49ff-9d49-2c866021550e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DBFQpQn3WdYv6cwjjQbVoP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2722,
+                "cache_read_input_tokens": 23977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TwARLoLj5SeUYFtWCBLL6A",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2509.11417 authors Grover Gopalkrishnan Ai Christensen"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "6be05059-3fb3-49f1-9bb5-ca97a30eb0ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DBFQpQn3WdYv6cwjjQbVoP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2722,
+                "cache_read_input_tokens": 23977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T01:35:55.093Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TwARLoLj5SeUYFtWCBLL6A",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2509.11417 authors Grover Gopalkrishnan Ai Christensen\"\n\nLinks: [{\"title\":\"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\",\"url\":\"https://arxiv.org/abs/2509.11417\"},{\"title\":\"Identification and functional characterization of two CXCL17 paralogs from zebrafish\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.08.27.672743.full.pdf\"},{\"title\":\"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\",\"url\":\"https://arxiv.org/html/2509.11417\"},{\"title\":\"Sample-Efficient Deep Learning for COVID-19 Diagnosis Based on CT Scans\",\"url\":\"https://www.medrxiv.org/content/10.1101/2020.04.13.20063941.full.pdf\"},{\"title\":\"Enhancing Generalization in Vision–Language–Action Models by\",\"url\":\"https://arxiv.org/pdf/2509.11417\"},{\"title\":\"Identification of the orphan GPR25 as a receptor of the chemokine CXCL17\",\"url\":\"https://www.biorxiv.org/content/10.1101/2024.09.21.614233.full.pdf\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe paper arxiv 2509.11417 is titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" and is authored by Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li.\n\nThe authors are affiliated with UC San Diego and Hillbot. The paper addresses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage pretrained representations to build generalist robots, and presents a framework that better preserves pretrained features while adapting them for robot manipulation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "5d4e834e-d4ea-4c8f-94f9-0782d60faf7d",
+            "tool_use_result": {
+              "query": "arxiv 2509.11417 authors Grover Gopalkrishnan Ai Christensen",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01QW6tiU4wS2nxjC35BMRvpV",
+                  "content": [
+                    {
+                      "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+                      "url": "https://arxiv.org/abs/2509.11417"
+                    },
+                    {
+                      "title": "Identification and functional characterization of two CXCL17 paralogs from zebrafish",
+                      "url": "https://www.biorxiv.org/content/10.1101/2025.08.27.672743.full.pdf"
+                    },
+                    {
+                      "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+                      "url": "https://arxiv.org/html/2509.11417"
+                    },
+                    {
+                      "title": "Sample-Efficient Deep Learning for COVID-19 Diagnosis Based on CT Scans",
+                      "url": "https://www.medrxiv.org/content/10.1101/2020.04.13.20063941.full.pdf"
+                    },
+                    {
+                      "title": "Enhancing Generalization in Vision–Language–Action Models by",
+                      "url": "https://arxiv.org/pdf/2509.11417"
+                    },
+                    {
+                      "title": "Identification of the orphan GPR25 as a receptor of the chemokine CXCL17",
+                      "url": "https://www.biorxiv.org/content/10.1101/2024.09.21.614233.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\nThe paper arxiv 2509.11417 is titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" and is authored by Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li.\n\nThe authors are affiliated with UC San Diego and Hillbot. The paper addresses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage pretrained representations to build generalist robots, and presents a framework that better preserves pretrained features while adapting them for robot manipulation."
+              ],
+              "durationSeconds": 4.932226560000003
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文均已验证完毕。\n\n---\n\n## 论文 1: \"Pretrained VLAs are Surprisingly Resistant to Forgetting\"\n- **arXiv ID 有效**: 是 — [2603.03818](https://arxiv.org/abs/2603.03818) 存在\n- **标题准确**: 部分 — 实际标题为 \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\"（声称标题是缩写版）\n- **作者匹配**: 是 — Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, Yuke Zhu\n- **内容摘要**: Pretrained VLAs 在 continual learning 中对遗忘有极强抵抗力；简单的 Experience Replay (ER) 即可实现接近零遗忘；在 Pi0、GR00T N1.5 等多种 VLA 上一致成立\n- **发表时间**: 2026年3月17日 ✓\n- **结论**: **真实论文** ✓\n\n---\n\n## 论文 2: \"Enhancing Generalization in VLA Models by Preserving Pretrained Representations\"\n- **arXiv ID 有效**: 是 — [2509.11417](https://arxiv.org/abs/2509.11417) 存在\n- **标题准确**: 部分 — 实际标题为 \"Enhancing Generalization in **Vision-Language-Action** Models by Preserving Pretrained Representations\"（声称标题用了缩写 VLA）\n- **作者匹配**: 是 — Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, Xuanlin Li（声称的姓氏列表匹配，缺了 Xuanlin Li）\n- **内容摘要**: VLM→VLA fine-tuning 会破坏 pretrained representations，提出 (1) dual-encoder（一个 frozen + 一个 trainable）, (2) string-based action tokenizer, (3) co-training strategy 结合 robot demo 和 VL 数据集\n- **发表时间**: 2025年9月14日 ✓\n- **结论**: **真实论文** ✓（作者列表少列了 Li，其余准确）\n\n---\n\n两篇均为真实论文，可安全引用。建议在正式引用时使用完整标题和完整作者列表。\n\nSources:\n- [arXiv 2603.03818](https://arxiv.org/abs/2603.03818)\n- [arXiv 2509.11417](https://arxiv.org/abs/2509.11417)\n- [Continual VLAs project page](https://continual-vlas.github.io/forget-me-not/)\n- [Gen-VLA project page](https://gen-vla.github.io/)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "uuid": "249b2cd9-a57c-49f9-bba9-49a12e47b026",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WpNdVLmEgyb74mAggjjqAp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 26699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 659
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文均已验证完毕。\n\n---\n\n## 论文 1: \"Pretrained VLAs are Surprisingly Resistant to Forgetting\"\n- **arXiv ID 有效**: 是 — [2603.03818](https://arxiv.org/abs/2603.03818) 存在\n- **标题准确**: 部分 — 实际标题为 \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\"（声称标题是缩写版）\n- **作者匹配**: 是 — Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, Yuke Zhu\n- **内容摘要**: Pretrained VLAs 在 continual learning 中对遗忘有极强抵抗力；简单的 Experience Replay (ER) 即可实现接近零遗忘；在 Pi0、GR00T N1.5 等多种 VLA 上一致成立\n- **发表时间**: 2026年3月17日 ✓\n- **结论**: **真实论文** ✓\n\n---\n\n## 论文 2: \"Enhancing Generalization in VLA Models by Preserving Pretrained Representations\"\n- **arXiv ID 有效**: 是 — [2509.11417](https://arxiv.org/abs/2509.11417) 存在\n- **标题准确**: 部分 — 实际标题为 \"Enhancing Generalization in **Vision-Language-Action** Models by Preserving Pretrained Representations\"（声称标题用了缩写 VLA）\n- **作者匹配**: 是 — Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, Xuanlin Li（声称的姓氏列表匹配，缺了 Xuanlin Li）\n- **内容摘要**: VLM→VLA fine-tuning 会破坏 pretrained representations，提出 (1) dual-encoder（一个 frozen + 一个 trainable）, (2) string-based action tokenizer, (3) co-training strategy 结合 robot demo 和 VL 数据集\n- **发表时间**: 2025年9月14日 ✓\n- **结论**: **真实论文** ✓（作者列表少列了 Li，其余准确）\n\n---\n\n两篇均为真实论文，可安全引用。建议在正式引用时使用完整标题和完整作者列表。\n\nSources:\n- [arXiv 2603.03818](https://arxiv.org/abs/2603.03818)\n- [arXiv 2509.11417](https://arxiv.org/abs/2509.11417)\n- [Continual VLAs project page](https://continual-vlas.github.io/forget-me-not/)\n- [Gen-VLA project page](https://gen-vla.github.io/)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 50817,
+            "duration_api_ms": 70319,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "3062f603-ba36-4da7-a7f5-ed0195e13e0b",
+            "total_cost_usd": 0.27699824999999995,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 15517,
+              "cache_read_input_tokens": 85832,
+              "output_tokens": 1284,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15517,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 793,
+                  "cache_read_input_tokens": 26699,
+                  "cache_creation_input_tokens": 659,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 659
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 46656,
+                "outputTokens": 1661,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 5,
+                "costUSD": 0.10496100000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1284,
+                "cacheReadInputTokens": 85832,
+                "cacheCreationInputTokens": 15517,
+                "webSearchRequests": 0,
+                "costUSD": 0.17203725,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8d6cedbe-6f49-4d1f-8d46-4f9fce919681"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-new-citations-arxiv.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f810763c21e577c03e9c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v2 final status",
+  "task_key": "worker_check_bootstrap_v2_final_status_20260523T012854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v2_final_status_20260523T012854_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "1bec23bf68f154564a10be30646f5bf580b7229f6b1a20f2c65c65eac434a248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，2/20 conditions 完成。**\n\n### 当前状态 (01:30 UTC)\n| 卡 | 当前任务 | 阶段 | 进度 |\n|---|---|---|---|\n| cuda:0 | openvla_goal/untrained | Bootstrap (1000 iter, 100 workers) | 刚开始 |\n| cuda:1 | tracvla_goal/untrained | Extraction | 1250/5000 |\n\nGPU 进程活跃，0% GPU util 是因为当前阶段是 CPU-bound 的 bootstrap/extraction。\n\n### 已完成结果 (2/20)\n\n| Condition | Peak R² | Exit R² | Delta | CI 95% | 显著? |\n|---|---|---|---|---|---|\n| **openvla_goal/trained** | 0.4556 (L1) | 0.3395 (L31) | 0.116 | **[-0.2528, -0.0117]** | CI 全负 — bootstrap 下 exit > peak，方向反转 |\n| **tracvla_goal/trained** | 0.5399 (L13) | 0.2065 (L31) | 0.334 | **[0.0546, 0.3416]** | CI 不含 0，drop 显著 |\n\n### 预计完成时间\n- cuda:0 (openvla×8 + nora×4 = 12 conditions): ~05:00 UTC\n- cuda:1 (tracvla×8 = 8 conditions): ~05:30 UTC\n\n早期结果符合假设：VLM→VLA (TracVLA) drop 显著，VLA→VLA (OpenVLA) drop 不显著（甚至 bootstrap 下反转）。需要等全部 20 conditions 完成后再下结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v2-final-status.md"
+}

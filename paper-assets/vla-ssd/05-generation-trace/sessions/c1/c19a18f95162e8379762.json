@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19a18f95162e8379762",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh exp2 pca linear pertimestep",
+  "task_key": "worker_ssh_exp2-pca-linear-pertimestep_20260515T192148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-pca-linear-pertimestep_20260515T192148_result.json",
+    "occurrence": 1,
+    "bytes": 1610,
+    "sha256": "c040acd7024806533564ff5744726796b54595e94eb14eb12852b0d385d569d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n```\n=== PCA-1024 + Linear Probe Per-Timestep ===\n  Bin        Range    Trained  Untrained       DINO     Δ(T-U)\n    0    [0.0,0.1)     0.9992     1.0000     0.3540     -0.1pp\n    1    [0.1,0.2)     1.0000     1.0000     0.7662     +0.0pp\n    2    [0.2,0.3)     1.0000     1.0000     0.8244     +0.0pp\n    3    [0.3,0.4)     1.0000     1.0000     0.8676     +0.0pp\n    4    [0.4,0.5)     1.0000     1.0000     0.8575     +0.0pp\n    5    [0.5,0.6)     1.0000     1.0000     0.8903     +0.0pp\n    6    [0.6,0.7)     1.0000     1.0000     0.9618     +0.0pp\n    7    [0.7,0.8)     1.0000     1.0000     0.9574     +0.0pp\n    8    [0.8,0.9)     1.0000     1.0000     0.9690     +0.0pp\n    9    [0.9,1.0)     1.0000     1.0000     0.9676     +0.0pp\n\nOverall: trained=0.9999, untrained=1.0000, dino=0.8397\n```\n\n**Gate: FAIL** — t=0 bin Δ(trained-untrained) = -0.1pp，远低于 15pp 阈值。\n\n关键发现：\n- trained VLA 和 untrained VLA 的 PCA-1024 + linear probe 在所有 timestep bin 上都接近 100% accuracy（包括 t=0）\n- 两者之间几乎没有差异，untrained 甚至略高\n- DINO 整体 83.97%，t=0 最低（35.4%），随 timestep 递增到 ~97%，符合预期（早期帧 goal 信息少）\n\n这说明 PCA-1024 + linear probe 的分类能力太强，对 VLA 特征（4096→1024）来说 goal 分类过于简单，trained/untrained 的差异在这个 probe 下无法体现。DINO 的 per-timestep 梯度是有意义的信号。\n\nJSON 已保存到 `/root/autodl-tmp/vla-ssd/results/pca1024_linear_pertimestep.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp2-pca-linear-pertimestep.md"
+}

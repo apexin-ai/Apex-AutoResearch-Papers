@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47fee195595fcd37ba16",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v2 final condition",
+  "task_key": "worker_check_bootstrap_v2_final_condition_20260523T062741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v2_final_condition_20260523T062741_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "f3c247c592b0f42072bd8c68d37a1bb416702624ce1b3b8b66194f45cbac03a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**tracvla_long/untrained — 未完成，正在运行中**\n\n- PID 723018，100% CPU，正在处理第 2/10 个 task（1200/5000 samples）\n- 每个 task 5000 samples，共 10 个 task，当前约完成 24%\n- 按进度估算，每 50 samples ~17 秒 → 剩余约 38000 samples → 约 **2 小时**完成\n\n**完成进度：19/20**\n\n已完成的 19 个 JSON：\n\n| arch | suite | trained | untrained |\n|------|-------|---------|-----------|\n| openvla | goal | ✅ | ✅ |\n| openvla | spatial | ✅ | ✅ |\n| openvla | object | ✅ | ✅ |\n| openvla | long | ✅ | ✅ |\n| tracvla | goal | ✅ | ✅ |\n| tracvla | spatial | ✅ | ✅ |\n| tracvla | object | ✅ | ✅ |\n| tracvla | long | ✅ | ❌ (运行中) |\n| nora | goal | ✅ | ✅ |\n| nora | spatial | ✅ | ✅ |\n\n注意：输出目录是 `bootstrap_r2`（非 `bootstrap_v2`），JSON 文件名为 `{trained,untrained}.json`（非 `bootstrap_r2_results.json`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v2-final-condition.md"
+}

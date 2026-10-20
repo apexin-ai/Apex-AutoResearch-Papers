@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c14379c92114264ee31f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig claim evidence",
+  "task_key": "worker_draw_fig_claim_evidence_20260523T170142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig_claim_evidence_20260523T170142_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "d71ebceee07f1886be09f15b632534df76659c662571d63e3d6283442ff88a09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- `/root/vla-ssd/paper_figures/fig_claim_evidence.pdf` (29K)\n- `/root/vla-ssd/paper_figures/fig_claim_evidence.png` (203K, 300 dpi)\n\n三行三列布局：左侧深灰行标题（Training-Associated Exit Collapse / Action-Relevant Sensitivity / Inherited Visual Prior），右侧 Finding（浅蓝）→ Evidence（浅绿）→ Limitation（浅橙）三列圆角矩形，列间箭头连接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig-claim-evidence.md"
+}

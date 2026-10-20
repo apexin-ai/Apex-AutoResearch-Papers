@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe4b812b991e481a8584",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code cross inst classification probe",
+  "task_key": "worker_code_cross_inst_classification_probe_20260516T235147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_inst_classification_probe_20260516T235147_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "07f3f211fa25ce80e0af60a16c93a9853c24c761a1d8192fd7dba1ee3aa1f017"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results:\n\n## Classification Results (10-way, chance = 10%)\n\n### Trained Model\n\n| Position | L0 | L8 | L16 | L24 | L31 |\n|----------|----|----|-----|-----|-----|\n| **image_mean** | 10.0% | 10.0% | 10.0% | 10.0% | 9.6% |\n| **last_preaction** | 10.0% | **100%** | **100%** | **100%** | **100%** |\n\n### Untrained Model\n\n| Position | L0 | L8 | L16 | L24 | L31 |\n|----------|----|----|-----|-----|-----|\n| **image_mean** | 10.0% | 10.0% | 10.0% | 10.0% | 10.0% |\n| **last_preaction** | 10.0% | 98.2% | 92.3% | 86.4% | 82.0% |\n\n### DINOv2 baseline: 10.0% (chance)\n\nKey findings:\n- **image_mean** never encodes instruction identity (always at chance) — visual tokens are purely visual regardless of instruction\n- **last_preaction in trained model** hits perfect 100% classification from L8 onward — the action token perfectly encodes which instruction was given, and this generalizes across unseen tasks\n- **last_preaction in untrained model** also classifies well (98.2% at L8), but accuracy *degrades* in deeper layers (down to 82% at L31) — the random projection head diffuses the signal. In contrast, training makes the instruction encoding stronger and perfectly maintained through all layers\n\nResults saved to `/root/autodl-tmp/vla-ssd/results/cross_instruction/classification_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-inst-classification-probe.md"
+}

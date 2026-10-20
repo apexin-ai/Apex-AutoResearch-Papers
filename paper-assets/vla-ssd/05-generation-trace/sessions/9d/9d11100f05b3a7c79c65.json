@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d11100f05b3a7c79c65",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan010 libero spatial",
+  "task_key": "worker_ssh_plan010-libero-spatial_20260516T020355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan010-libero-spatial_20260516T020355_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "e5adf436cf0cceeefc27200bc807b0500a3ac9d6ca1c9e611b7d56eef30697df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：**LIBERO-Spatial 数据不在服务器上。**\n\n服务器上有的 LIBERO 数据：\n- `libero_goal/` — 10 tasks（已完成分析）\n- `libero_10/` — 10 tasks（LIBERO-Long，长时域多步任务）\n- `libero_90/` — 90 tasks（预训练集）\n\n没有 `libero_spatial/` 或 `libero_object/`。服务器无外网，无法下载。\n\n**可行替代方案：** 用 `libero_10`（LIBERO-Long）作为第二个 benchmark。它有 10 个来自不同场景（kitchen/living room/study）的长时域任务，任务结构与 LIBERO-Goal 差异更大（多步操作 vs 单步目标），更能测试 findings 的 generalizability。\n\n是否用 LIBERO-Long（libero_10）替代执行？还是等获取 LIBERO-Spatial 数据后再做？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan010-libero-spatial.md"
+}

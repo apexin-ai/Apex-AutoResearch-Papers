@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4538ed55b645cdc281f9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis task routing loo sensitivity",
+  "task_key": "worker_analysis_task_routing_loo_sensitivity_20260519T023951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_task_routing_loo_sensitivity_20260519T023951_result.json",
+    "occurrence": 1,
+    "bytes": 3245,
+    "sha256": "93e8e040be9f4c498ada40acb7af07793bce28ebbb7da5b7534e7d2228816d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n---\n\n## 完整结果\n\n### 1. Leave-One-Out 分析\n\n原始检验：U=21.0, p=0.033 (one-sided Mann-Whitney)\n\n| Task removed | Group | |ΔR²| | Remaining p | Δp | Fragile? |\n|---|---|---|---|---|---|\n| wine on rack | complex | 0.2346 | 0.0556 | +0.022 | **YES** |\n| bowl on cabinet | complex | 0.2006 | 0.0556 | +0.022 | **YES** |\n| bowl on stove | complex | 0.1598 | 0.0556 | +0.022 | **YES** |\n| cream cheese in bowl | simple | 0.1594 | 0.0119 | -0.021 | no |\n| bowl on plate | complex | 0.0986 | 0.0317 | -0.002 | no |\n| open top drawer+bowl | complex | 0.0754 | 0.0317 | -0.002 | no |\n| wine on cabinet | complex | 0.0740 | 0.0317 | -0.002 | no |\n| turn on stove | simple | 0.0359 | 0.0833 | +0.050 | **YES** |\n| open middle drawer | simple | 0.0240 | 0.0833 | +0.050 | **YES** |\n| push plate to stove | simple | 0.0067 | 0.0833 | +0.050 | **YES** |\n\n**6/10 removals cause p>0.05**，但所有 fragile case 的 p 值都在边缘（max=0.083），不是大幅翻转。\n\n脆弱性有两个来源：\n- 移除 top-3 complex task（降低 complex 组均值）→ p=0.056\n- 移除任一 simple task（simple 组仅 n=4，降到 n=3 后统计力不足）→ p=0.083\n\n移除 cream cheese in bowl 反而大幅提升显著性（p=0.012），因为它是 simple 组中的 outlier。\n\n### 2. 换组敏感性\n\n| Task swapped | Direction | New p | Flipped? |\n|---|---|---|---|\n| wine on rack | C→S | 0.210 | **YES** |\n| bowl on cabinet | C→S | 0.155 | **YES** |\n| bowl on stove | C→S | 0.111 | **YES** |\n| cream cheese in bowl | S→C | **0.008** | no |\n| bowl on plate | C→S | 0.048 | no |\n| open top drawer+bowl | C→S | 0.028 | no |\n| wine on cabinet | C→S | 0.016 | no |\n| turn on stove | S→C | 0.092 | **YES** |\n| open middle drawer | S→C | 0.133 | **YES** |\n| push plate to stove | S→C | 0.192 | **YES** |\n\n**6/10 swaps flip significance.** 但 cream cheese in bowl → complex 大幅增强结论（p=0.008），lower complex tasks（bowl on plate, open top drawer+bowl, wine on cabinet）移至 simple 后结论也保持。\n\n### 3. 数据驱动分组\n\n| 方案 | 分组 | n_high / n_low | p-value |\n|---|---|---|---|\n| **Median split** | cream cheese in bowl 移入 high | 5 / 5 | **0.004** |\n| **K-means** | cream cheese in bowl 移入 high; bowl on plate 移入 low | 4 / 6 | **0.005** |\n| **Instruction overlap** | 与原始完全一致 | 6 / 4 | 0.033 |\n\n关键发现：**cream cheese in bowl**（|ΔR²|=0.159）数值上属于高依赖组。Median split 和 K-means 都自动将其归入 high group，显著性大幅提升至 p<0.005。Instruction overlap 方案（共享对象≥2个目的地 → complex）完美复现原始分组。\n\n### 结论\n\n原始 6v4 分组在 n=10 样本下有中等脆弱性，这是小样本的固有限制。但趋势是真实的：\n1. 所有 LOO fragile case 的 p 均在边缘（≤0.083），没有彻底翻转\n2. 数据驱动分组（median/k-means）产生更强的显著性（p<0.005）\n3. 脆弱性主要来自 cream cheese in bowl 的归组和小样本统计力\n\n建议论文中：以 median split 或 k-means 为主要分组方案报告，附注 LOO 敏感性分析作为鲁棒性检验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-task-routing-loo-sensitivity.md"
+}

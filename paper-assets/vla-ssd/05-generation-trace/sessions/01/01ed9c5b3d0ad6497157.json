@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01ed9c5b3d0ad6497157",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis attention decomposition and pertask r2",
+  "task_key": "worker_analysis_attention_decomposition_and_pertask_r2_20260518T171404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_attention_decomposition_and_pertask_r2_20260518T171404_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "c6fcb3b4dd796011fc81aad2aa28125e46b760b0d9f98a4ad3e76742f113331c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "B2 + B3 完成。结果总结：\n\n### B2: Attention Decomposition\n\n**Trained model L1 (5 samples averaged):**\n\n| Group | Instruction | Vision | BOS sink |\n|-------|------------|--------|----------|\n| Instr-dominant 24 heads | **62.4%** | 18.8% | 18.8% |\n| Control 8 heads | **44.9%** | 27.1% | 28.0% |\n| Delta | **+17.5pp** | -8.3pp | -9.2pp |\n\n**Training effect:** 训练前两组 instruction attention 几乎相同 (~11-12%)，训练后 instruction-dominant heads 的 instruction attention 增幅（+50.9pp）远大于 control heads（+32.6pp）。分类名副其实。\n\n### B3: Per-task R² Distribution\n\n- **5-demo baseline:** L1 mean=0.256, std=0.070, range=[0.186, 0.385]；L13 mean=0.524, std=0.113, range=[0.386, 0.734]\n- **50-demo ablation (all24 vs baseline):** L1 all 10/10 tasks positive (mean +0.0586)，L8 8/10 positive，L13 only 5/10 positive\n- **Task variability:** CV 约 0.17-0.28（取决于层），说明 R² 跨任务差异显著\n- 最高 R² task: \"turn on the stove\"，最低: \"open the middle drawer\"\n\n输出文件：\n- `/root/autodl-tmp/vla-ssd/results/attention_decomposition.json`\n- `/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json`\n\nRegistry: `attention_decomposition` -> DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-attention-decomposition-and-pertask-r2.md"
+}

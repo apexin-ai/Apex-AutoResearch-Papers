@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a92f4dfe677038c5a8e5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper number consistency check",
+  "task_key": "worker_paper_number_consistency_check_20260525T195523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_number_consistency_check_20260525T195523_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "fda9229322cf3ea4a3b4baffb136c9bcc123817ca0a20879287eea3036edfd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告完成。结果：\n\n- **78项检查**：62✅ / 2❌ / 14⚠️\n- **论文内部一致性良好**：experiments.tex ↔ appendix 所有数字交叉验证通过，Bonferroni 统计量与 JSON 精确匹配，cross-arch peaks (0.637/0.634) 与 15-seed 数据吻合\n- **2个问题**：\n  1. 本地 counterfactual data files (pilot, 10 demos/task) 的 d 值与论文最终值不一致——数据文件是中间结果，论文用 50 demos/task 的最终分析，内部不矛盾但建议归档最终数据\n  2. Figure caption 写 \"0.16–0.46\" vs Discussion 写 \"0.15–0.45\"——同一范围 [0.156, 0.455] 的不同 rounding，影响极小\n- **14项需要 SSH 验证**：主要是 Table 1 per-suite ΔR² + CI（demo-level CV 结果在服务器上）、N=63,228、ΔMSE=-0.001 等\n\n输出文件：`artifacts/number_consistency_check_v1.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-number-consistency-check.md"
+}

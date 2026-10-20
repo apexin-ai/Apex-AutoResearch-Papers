@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3600863107d85c709f9",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4088,
+    "sha256": "48100a5f2de059b806b85eadd60d9750d34dbd22486d8a7bc927cac61c9f1d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-17T21:57:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，其他 GPU 不可用\n- GPU 编号从 0 开始：脚本里 `--gpu 0` 配合 `CUDA_VISIBLE_DEVICES=X` 映射物理卡\n- 不要动 paper/writing：Director 明确禁止（×3）Agent 碰 writing_plan.yaml 或 spawn paper writing Workers\n- Probe N 精确数字：n_train=50,480, n_val=12,748, total=63,228（不是 63,728）\n- L1 instruction-dominant heads 数量有争议（24 vs 25），验证 Worker 已派发但未返回——**不要在验证前引用任何具体数字**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd/`，结果目录 `/root/autodl-tmp/vla-ssd/results/`\n- Python：`/root/miniconda3/bin/python3.12`，conda base env\n- 模型：openvla-7b (trained + untrained variants)，Llama-2-7b-hf（通过 OpenVLA 架构加载）\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero_goal/`（50 demos/task × 10 tasks）\n- 活跃进程：\n  - `llama2base_action_probe` (PID 913312, tmux=llama2base_action_probe, cuda:1, cron registered, ~30 min remaining)\n  - cuda:0 空闲\n- 关键结果文件：\n  - `results/l1_head_ablation/action_probe_50demos.json` — 50-demo 3-condition 结果\n  - `results/l1_head_ablation/action_probe_50demos_control8.json` — control8 结果\n  - `results/l1_head_ablation/ablation_50demos_combined.json` — 4-condition 合并分析\n  - `results/rsa/unified_rsa_results.json` — RSA 权威数据源\n  - `results/demo_sensitivity_25/results.json` — 25-demo subsample 稳定性\n  - `results/figures/` — fig_rsa_perlayer_curve.pdf, fig_ablation_4condition_bar.pdf, fig_ablation_3layer_grouped.pdf\n- 分析脚本：`scripts/analyze_ablation_50demos.py`（已验证可跑）\n\n### 3. 📊 当前状态\n**刚完成 critical path**：50-demo ablation 4-condition 全表已出并汇报 Director。\n\nRegistry RUNNING：\n- `llama2base_action_probe`：Llama-2 base 33-layer action R² probe（补充 C2 三条件对比），ETA ~30 min\n\n未返回的 Worker：\n- `worker_debug_l1_head_count_verify_20260517T215604`：验证 L1 dominant heads 是 24 还是 25，Director 紧急要求，**优先处理此回调**\n\n所有其他实验 DONE：ablation_50demos_main (success), ablation_50demos_control8 (success), ablation_p2_demo_sensitivity (success), l1_head_ablation (success)\n\n### 4. 📋 待办\n- **l1_head_count_verify Worker 回调到达** → 立即汇报 Director：确切数量 + head indices + 代码是否一致。如果是 25 不是 24，消融实验少 ablate 了 1 个 head，需要讨论是否重跑\n- **llama2base_action_probe cron 回调** → 读结果，更新 registry，汇报 Director 三条件 action R² 对比表（untrained vs llama2base vs trained at L1/L8/L13）\n- **cuda:0 空闲** → Director 可能分配新任务，或等 llama2base 完成后两卡都空闲\n- **所有数据齐备后** → Director 将启动 Paper Agent 做综合 rewrite（C2 升为唯一核心 claim）\n\n### 5. 🎯 战略上下文\n- **CoRL 2026**：Abstract DDL May 26（9天），Paper DDL May 29（12天）\n- **Round 4 Weak Reject**（3 critical + 7 warning），reframe 策略已定：C1 降为框架，C2 升为唯一核心 claim，C3 降为 qualified observation\n- **N3 已解决**：50-demo ablation 消除欠拟合 confound，capacity trade-off 显著（all24 vs baseline L1 Δ=+0.059, p<0.0001）+ specificity confirmed（all24 vs control8 Δ=+0.042, p<0.0001）\n- **GPU 预算紧张**：~22/26 GPU·h used，剩余 ~4h（llama2base 用 ~1h 后剩 ~3h）\n- **易错点**：\n  - 24 vs 25 heads 不一致可能影响消融实验有效性——等验证结果再说\n  - RSA last_preaction per-layer FDR 0/33 通过是 power ceiling 问题，不是\"无差异\"——paper 中必须解释\n  - control8 也有小显著效应（+0.017, p=0.008）——不能说\"control8 无效应\"，要说\"效应小 3.5 倍且 specificity check 显著\"\n  - image_mean RSA rise 边际显著（p=0.053）——frame 为\"training prevents decline\"而非\"training creates rise\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

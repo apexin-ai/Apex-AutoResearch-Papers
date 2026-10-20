@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b77f3d5f38cb1ea9f8d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis openvla long cf trained",
+  "task_key": "worker_analysis_openvla_long_cf_trained_20260521T224214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_openvla_long_cf_trained_20260521T224214_result.json",
+    "occurrence": 1,
+    "bytes": 1516,
+    "sha256": "43faa93022e6a3c2c3a8c67711fc9de8cca91bb11172e089ad19ad9f770f0057"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果: `openvla_long_cf_trained`\n\n**状态**: 成功完成 (EXIT_CODE=0, 90.0 min)\n\n### Counterfactual Sensitivity (Cohen's d, global)\n\n| Rank | Condition | Cohen's d | Cross-task mean d | MSE mean | Token div |\n|------|-----------|-----------|-------------------|----------|-----------|\n| 1 | **shuffled** | 0.5646 | 0.5664 | 0.032518 | 0.999 |\n| 2 | **wrong** | 0.5453 | 0.5452 | 0.030466 | 0.999 |\n| 3 | **empty** | 0.5048 | 0.5063 | 0.026031 | 1.000 |\n| 4 | **paraphrased** | 0.4486 | 0.4454 | 0.022493 | 0.957 |\n\n### Ranking 对比\n\n- **Hypothesized**: empty > wrong > shuffled > para\n- **Observed**: shuffled > wrong > empty > para\n\nParaphrased 最低这一点与其他 suite 一致，但 shuffled 升至第一、empty 降至第三，与 Goal/Spatial/Object suite 的 ordering 不同。Top-3 条件间差距较小（d=0.50–0.56），paraphrased 明显低于其余三者。\n\n### 注意事项\n- Paraphrased 的 token_divergence=0.957 明显低于其他条件（~1.0），符合语义保留预期\n- Per-task variance: paraphrased 的 CV=0.2516 最高，部分 task d 低至 0.28（LIVING_ROOM_SCENE5/6）\n- 无 untrained 对照数据（遵守 C001: 不下 trained vs untrained 对比结论）\n\n### 文件路径\n- **log_path**: `~/runs/vla-ssd/openvla_long_cf_trained.log`\n- **result_path**: `/root/autodl-tmp/vla-ssd/results/libero_long/counterfactual_combined.json`\n- **checkpoint**: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-openvla-long-cf-trained.md"
+}

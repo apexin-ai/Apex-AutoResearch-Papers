@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bedfc06e6008fd7bd55e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug finetuned probe check",
+  "task_key": "worker_debug_finetuned_probe_check_20260519T074259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_finetuned_probe_check_20260519T074259_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "6b32918530f6553ee12cfc93a57395fb7207ffbc4bbcb0080905bd356171d0f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在 Phase 1（特征提取），正在处理最后一个 task（task_9，50 frames 中已到约 50%）。\n\n**当前状态**：\n- Phase 1 特征提取即将完成（task_9 是最后一个）\n- 之后还需 Phase 2（probe fitting + LOOCV），预计还需几分钟\n- 进程已运行约 9 小时（CPU time 554 min）\n\n结果文件尚未生成，需要等实验全部完成。建议几分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-finetuned-probe-check.md"
+}

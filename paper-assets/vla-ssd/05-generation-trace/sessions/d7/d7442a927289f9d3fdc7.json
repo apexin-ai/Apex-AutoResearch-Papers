@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7442a927289f9d3fdc7",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778889603.md",
+  "task_key": "loop_3_1778889603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778889603.md",
+    "occurrence": 1,
+    "bytes": 3997,
+    "sha256": "78cb0a84168fe52b9b4e11bf4d01a64aa4200fac94ed109ce823060467b24e0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T23:58:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** on westd-19183。禁止用其他 GPU\n- 服务器无外网：所有 HF/AutoProcessor 操作必须 `local_files_only=True`\n- 论文主数值用 **image_mean 聚合**（公平对比），last_preaction 放 supplementary\n- Claim 2 已从 \"LLM degrades\" reframe 为 **\"LLM redistributes\"**（D031/D033 决策）。不要再用 \"degrades\" 措辞\n- Untrained model = `from_config()` 重新初始化 LLM（random），保留 SigLIP。不是 fine-tuned vs pre-fine-tuning\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-19183**，2×RTX PRO 6000\n- 工作目录：`/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/特征/结果）\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 已提取特征：`/root/autodl-tmp/vla-ssd/features/{trained,untrained}/`（10 task × 50 demos × 33 layers × 4096d H5）\n- SigLIP projector 特征：`/root/autodl-tmp/vla-ssd/results/siglip_projector_features/`\n- DINO 特征：`/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/`\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/{rsa,functional_validation,figure_data}/`\n- Plan 008 脚本：`/root/vla-ssd/scripts/extract_features_rand_inst.py` + `rsa_instruction_control.py`\n- 活跃进程：plan008-random-s0 (cuda:0, ~48min extraction)，plan008-shuffled (cuda:1, ~48min)，CKA verification (CPU)，untrained-last-preaction probe (cuda:1, 接近完成)\n\n### 3. 📊 当前状态\n**刚做完**：Functional probe V2（三方对比 + bootstrap CI + L10/L11 诊断）。所有 Director 修正已执行。\n\n**等待回调的 Worker**：\n- `worker_ssh_untrained-last-preaction-probe` — **re-dream 唯一 blocker**，turn 21，应即将完成\n- `worker_ssh_plan008-random-s0` — cuda:0 特征提取 ~48 min\n- `worker_ssh_plan008-shuffled` — cuda:1 特征提取 ~48 min（等 untrained probe 结束后启动）\n- `worker_ssh_plan009-cka-verification` — CPU CKA 分析\n\n**Registry PREPARING**：plan_008_random_inst_control, plan_009_cka_verification\n\n### 4. 📋 待办\n- **untrained-last-preaction 回调到达** → 读结果，更新 registry。若 R² > 0.706 → redistribution 是 architecture-intrinsic（支持 Claim 3）。若 < 0.706 → Claim 3 需微调。**立即汇报 Director，这解除 re-dream blocker**\n- **plan008 两个 Worker 回调** → 合并 random_s0 + shuffled RSA 结果，与 normal (0.488) 和 empty (0.480) 对比。更新 plan_008 registry + 汇报\n- **plan009 CKA 回调** → 验证 CKA 是否与 RSA 一致（预期一致），更新 registry\n- **Director re-dream 后** → 根据新 dream 结果决定是否启动 Paper Agent（CoRL DDL: abstract May 26, paper May 29）\n- **GPU 空出后（plan008 完成）** → 如时间允许，跑 wrong_task 条件（plan_008 第三种控制）\n\n### 5. 🎯 战略上下文\n**核心发现链**：SigLIP+projector RSA=0.615 >> VLA ~0.49 >> DINO 0.388（geometric）。但 functional probe 发现 DINO(0.712) ≈ Projector(0.706) > LLM image_mean(0.683) < LLM last_preaction(0.731)。形成 **geometric-functional dissociation**。\n\n**D031/D033 确定的 3 Claims**：\n1. Vision Encoder Dominance（geometric alignment 由 SigLIP 决定）\n2. LLM Redistributes（geometric 降解 but functional 信息集中到 output token，净贡献仅 +3.5%）\n3. Training & Instruction Invariance（2×2 matrix + bootstrap CI 含 0）\n\n**易错点**：\n- DINO action R²=0.712 与 projector 0.706 无显著差异（p=0.22）——不要说 \"DINO beats projector\"\n- Untrained image_mean L10/L11 R² 骤降是 pathological random init，不是 feature extraction bug\n- MVP-2 的 DINO R²=0.676 是 LIBERO-10 数据，V2 的 0.712 是 LIBERO-Goal——不同 benchmark，以 V2 为准\n- paper_framing.md 已更新到 redistribution narrative，Evidence Inventory 中 bootstrap CI on training effect 标绿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778889603.md"
+}

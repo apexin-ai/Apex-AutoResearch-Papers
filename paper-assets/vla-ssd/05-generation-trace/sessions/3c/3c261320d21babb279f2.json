@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c261320d21babb279f2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz fig counterfactual bar v5 precise",
+  "task_key": "worker_viz_fig_counterfactual_bar_v5_precise_20260524T052701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_counterfactual_bar_v5_precise_20260524T052701_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "c36185a1016c766f6d23495ce5f1021f0b3eb3034ecac72c8de4c7e82f83c1e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Panel B 已更新**：Phi-3-Vision（4 suites × 4 conditions）和 Qwen2.5-VL（2 suites × 4 conditions）全部使用精确 per-condition 数据，不再是 flat 近似值\n- **论文已编译**：37 页，0 errors，PDF 已复制到 `artifacts/paper/main.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-counterfactual-bar-v5-precise.md"
+}

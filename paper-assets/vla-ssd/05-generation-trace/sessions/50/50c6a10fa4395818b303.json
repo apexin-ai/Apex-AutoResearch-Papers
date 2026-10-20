@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50c6a10fa4395818b303",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check gpu and shuffled orphan",
+  "task_key": "worker_ssh_check-gpu-and-shuffled-orphan_20260516T000110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-gpu-and-shuffled-orphan_20260516T000110_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "8375b7ca55f193f5bfb349059057079031baac76ff16185b961f7c1823f1d03f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 0** | 16419MiB / 97887MiB, 0% util — PID 678338 (extract random s0) |\n| **GPU 1** | 17106MiB / 97887MiB, 86% util — PID 677540 (untrained probe, 704MiB) + PID 678183 (extract shuffled, 16388MiB) |\n| **plan008-random-s0** | **alive** — PID 678338, `extract_features_rand_inst.py --instruction_mode random --seed 0 --gpu 0`, 运行 ~3min |\n| **plan008-shuffled** | **alive** — PID 678183, `extract_features_rand_inst.py --instruction_mode shuffled --gpu 1`, 运行 ~3min，不是 orphan |\n| **untrained probe** | **alive** — PID 677540, `untrained_last_preaction_probe.py`, cuda:1, 运行 ~8min |\n\n三个进程全部正常运行。GPU 1 同时跑 untrained probe 和 shuffled 特征提取，显存共占 ~17GB/98GB，空间充裕。GPU 0 利用率 0% 说明 random-s0 可能在做 I/O 或刚完成一个 batch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-and-shuffled-orphan.md"
+}

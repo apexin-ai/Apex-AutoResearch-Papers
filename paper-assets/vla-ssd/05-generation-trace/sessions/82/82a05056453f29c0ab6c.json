@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82a05056453f29c0ab6c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora cf final check",
+  "task_key": "worker_ssh_nora_cf_final_check_20260522T023334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_cf_final_check_20260522T023334_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "86fb2f311a5c99b7ee756b674a6821f34091f5e1713d74e9c6cf81764e6066cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 597685 还在运行（已 ~9.5 分钟），后台等待脚本（PID 598544）在循环检查。2 分钟后我会再次轮询 `/tmp/wait_result.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-cf-final-check.md"
+}

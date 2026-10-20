@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14b71b53c83f195836f3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dense l1 l8 extraction script",
+  "task_key": "worker_code_dense_l1_l8_extraction_script_20260517T000052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dense_l1_l8_extraction_script_20260517T000052_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "d9262e68a5b4ae8a0cabf0e66364827d4c7c4820ce72b5178fb7831f52dabcee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validated. Here's the summary:\n\n**Script:** `/root/vla-ssd/scripts/cross_instruction_extract_dense.py`\n\n**Dry-run result:** Passed. 1 task × 1 frame × 2 instructions = 2 forward passes completed in <1s. Output shape confirmed `(9, 4096)` for both `image_mean` and `last_preaction`. `f.attrs['layers'] = [0,1,2,3,4,5,6,7,8]` correctly stored.\n\n**Run commands (when ready):**\n```bash\n# trained (~4-5 min)\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/cross_instruction_extract_dense.py --condition trained --gpu 0\n\n# untrained (~4-5 min)\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/cross_instruction_extract_dense.py --condition untrained --gpu 0\n```\n\n**Estimated runtime:** ~4-5 min per condition. The forward pass computes all 32 layers regardless; hooking 9 vs 5 adds negligible overhead. Total ~8-10 min for both conditions.\n\n**Key differences from original:**\n- `LAYER_INDICES = [0,1,2,3,4,5,6,7,8]` (9 layers) vs `[0,8,16,24,31]` (5 layers)\n- Output shape `(9, 4096)` vs `(5, 4096)`\n- Output dir: `/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/`\n- Filenames: `{trained,untrained}_cross_inst_dense.h5`\n- Default model path corrected to `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dense-l1-l8-extraction-script.md"
+}

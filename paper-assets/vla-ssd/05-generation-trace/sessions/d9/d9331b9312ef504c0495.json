@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d9331b9312ef504c0495",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh p0 functional action probe",
+  "task_key": "worker_ssh_p0-functional-action-probe_20260515T232234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-functional-action-probe_20260515T232234.log",
+    "occurrence": 1,
+    "bytes": 768906,
+    "sha256": "301c405e58b2f3408c50251342f1f09318e3c2d5de3d3b628e737cfc7334f522"
+  },
+  "statistics": {
+    "messages": 467,
+    "user_turns": 0,
+    "tool_calls": 200,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 61,
+      "tool_call": 200,
+      "tool_result": 200,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 467,
+      "chunks": [
+        {
+          "path": "d9331b9312ef504c0495-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9331b9312ef504c0495-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9331b9312ef504c0495-part-0003.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-p0-functional-action-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d4882a16b378e56599",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research vla probing beyond vision",
+  "task_key": "worker_research_vla-probing-beyond-vision_20260515T135955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_vla-probing-beyond-vision_20260515T135955_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "91884aec907716675ba95dbdbed46c0cc31d973282be7bdda41d92a02b298a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册工具不可用，文件已写入 artifacts 目录。\n\n调研完成。文件位于 `artifacts/literature_map_probing.md`，覆盖 14 篇论文，5 个方向。\n\n**核心发现**：\n\n多篇论文（Grant 2026, VLM4VLA 2025, LIBERO-Plus 2025）独立验证了你遇到的 \"vision encoder dominates\" 问题。关键突破口来自 Grant et al. 的发现：**在 LIBERO-Goal suite 中（多个 goal 共享同一 scene），language 编码变得关键**（94%→10% under wrong prompts）。\n\n**Top-3 推荐 probing task**：\n\n1. **Instruction-Conditioned Probing on LIBERO-Goal**（2-3天）— 同一视觉场景、不同 instruction，probe 预测 instruction identity。最快验证 LLM 的独特贡献\n2. **Counterfactual Activation Injection**（3-5天）— 注入 wrong-prompt activations，测量 probing accuracy 下降幅度作为 language contribution 度量\n3. **Cross-modal Causal Tracing**（5-7天）— 扰动 visual tokens 后逐层恢复，追踪 LLM 层中非视觉来源的 task structure 信息\n\n建议先做 Task 1，在 LIBERO-Goal（而非 Spatial/Object）上做 instruction identity probing，2-3天可出结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-vla-probing-beyond-vision.md"
+}

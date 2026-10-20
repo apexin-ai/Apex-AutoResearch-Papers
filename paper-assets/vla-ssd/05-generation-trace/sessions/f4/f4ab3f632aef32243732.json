@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ab3f632aef32243732",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_10_1779405598.md",
+  "task_key": "loop_10_1779405598",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779405598.md",
+    "occurrence": 1,
+    "bytes": 4708,
+    "sha256": "ef7cf2cdd8f345b8fa1ce32173d5aa368342a6a2a30679935550edb559e78e3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-21T21:07:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19183 的 cuda:0 和 cuda:1（gpu_ids=[0,1]）\n- 论文 DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）\n- Closed-loop behavioral validation 已确认不可行（D078/D087，SR=0/30），不要再尝试\n- 16 个阴性实验已全部审视完毕，无值得重试的（ROADMAP 明确记录）\n- Reviewer session 瘫痪中（已 escalate 6 次），post_to_reviewer 可能无响应\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/autodl-tmp/vla-ssd/`\n- Python：conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- 模型路径：`/root/autodl-tmp/vla-ssd/checkpoints/`（openvla-7b 各 fine-tuned 变体）\n- 数据路径：`/root/autodl-tmp/vla-ssd/data/libero/`（libero_goal / libero_spatial / libero_object）\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/`\n- 磁盘：充裕（/autodl-pub 5.3T/7.3T 可用）\n- 活跃进程：nora_goal_pipeline_v2（PID 526939，cuda:1，RUNNING）\n- cuda:0 当前空闲（libero_object_full_pipeline 刚完成）\n\n### 3. 📊 当前状态\n刚收到 `libero_object_full_pipeline` 实验完成 cron 回调（ANALYZING 状态，进程正常退出）。已派 Worker `worker_analysis_libero_object_full_pipeline_20260521T050524` 去服务器读日志和结果文件进行分析，**Worker 尚未返回**。\n\nRegistry 概览（126 实验）：\n- **RUNNING**: `nora_goal_pipeline_v2`（cuda:1）— 测试 NORA (Qwen2.5-VL-3B) 是否也有 convergent routing，第三架构验证\n- **ANALYZING**: `libero_object_full_pipeline`（cuda:0）— LIBERO-Object 跨 task-type 泛化验证，等 Worker 分析结果\n- **PREPARING (8个)**: tracvla_spatial_trained, libero_finetuned_probe, behavioral_smoketest_diag, behavioral_pilot_v2, behavioral_pilot, fulllayer_action_probe, l1_head_ablation_control8, l1_head_ablation_50demos\n- **DONE**: 116（88 success, 16 negative, 2 failed, 10 killed）\n\n等待中：\n1. Worker 回调：`worker_analysis_libero_object_full_pipeline` → 分析完后需更新 registry + 汇报 Director\n2. Cron：`nora_goal_pipeline_v2` 运行中，完成后会触发回调\n3. Director 决策：Round 15 fresh 审稿结果待出\n\n### 4. 📋 待办\n- `worker_analysis_libero_object_full_pipeline` 回调到达 → 读分析结果 → update_registry(conclusion+metrics+status=DONE) → 刷新 report.md → 按 on-experiment-done 流程汇报 Director（success 走扩展 claim / negative 走证伪推导）\n- `nora_goal_pipeline_v2` cron 回调到达 → 同上流程分析（注意这是第二次尝试，v1 已 failed，检查是否修复了之前的问题）\n- nora_goal_pipeline_v2 若 success → 三架构 convergence 确立，C2 claim 可升级为 \"architecture-independent\"\n- nora_goal_pipeline_v2 若 negative/failed → 只有双架构证据（OpenVLA + TracVLA-Phi3V），论文维持现有 framing\n- Round 15 审稿结果到达 → 根据 reviewer feedback 决定 Round 16 提交策略\n- cuda:0 空闲 → libero_object 分析完后，评估是否有高价值实验可填充（ROADMAP 说\"高价值维度已穷尽，保留给 Round 15 反馈后 targeted work\"）\n\n### 5. 🎯 战略上下文\n- **核心发现**：VLA 微调产生 convergent entry-exit routing architecture（L1 instruction-dominant attention heads + inverted-U R² profile + counterfactual sensitivity）。已在 OpenVLA (Llama-2) + TracVLA-Phi3V (Phi-3) 双架构 × LIBERO-Goal + Spatial 双 benchmark 复现\n- **论文 33 页，0 critical warnings**，统计补充完备（Bonferroni 63 tests、permutation 10K、paired d_z、power analysis）\n- **结构性天花板**（审稿反复提）：(1) 无 closed-loop behavioral evidence (2) 纯 representational analysis scope (3) LIBERO-only benchmark\n- **libero_object_full_pipeline 的战略意义**：如果 success，扩展 \"cross-task-type\" 泛化证据，部分缓解 \"LIBERO-only\" 审稿意见\n- **nora_goal_pipeline_v2 的战略意义**：第三架构 (Qwen2.5-VL) 验证，如果 success 则 claim 从 \"two-model pattern\" 升级为 \"architecture-independent phenomenon\"\n- **易错点**：(1) 不要尝试 closed-loop（D078/D087 已确认死路）(2) 不要混淆 TracVLA-Phi3V 的 model identity bias（trace augmentation，D079 已接受） (3) PREPARING 的 8 个实验大多是 behavioral 相关，closed-loop 已关闭后这些可能需要重新评估是否还有意义\n- **决策链关键节点**：D078 关闭闭环 → D079 接受 TracVLA bias → D080 全资源转 Path A → D082-D083 framing 升级为 convergent architecture → D084-D086 跨架构 R² 集成 → D087 确认 closed-loop infeasible\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779405598.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c0d6c8160d77697fcad",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code control b preparation",
+  "task_key": "worker_code_control-b-preparation_20260515T132206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_control-b-preparation_20260515T132206_result.json",
+    "occurrence": 1,
+    "bytes": 2514,
+    "sha256": "56e3d41d7c64cde8533546fe60bf600945dedb06d99fc8e0566636eaeeb0dbb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是分析结果。\n\n---\n\n## Control B（Label Permutation）验证报告\n\n### 脚本状态：就绪\n\n`train_probes.py` 内置 `--shuffle_labels` 参数（L63），实现正确：\n\n```python\n# L467-468\nif shuffle_labels:\n    y_tr = y_tr[torch.randperm(len(y_tr))]\n    y_val = y_val[torch.randperm(len(y_val))]\n```\n\n逻辑：特征对 `(X_tr, X_val)` 不变，仅对距离标签做随机排列。符合标准 permutation test null control。\n\n### 命名歧义（需注意）\n\n代码中有**两个**不同的 control flag：\n\n| Flag | 代码注释 | 实际行为 |\n|------|---------|---------|\n| `--shuffle_cross_trajectory` | \"Control B\" | 跨轨迹配对（改变特征对结构） |\n| `--shuffle_labels` | \"Negative control\" | 标签置换（保留特征对，shuffle 标签） |\n\n任务定义的 Control B 是 **label permutation**，应使用 `--shuffle_labels`。现有 `dinov2_shuffle/` 目录（ρ=0.650, `cross_trajectory: true`）是跨轨迹 control，不是 label permutation。\n\n### 输出路径\n\n`save_results` 写入 `output_dir/temporal_distance/`。**必须用不同的 `--output_dir`**，否则会覆盖正常 probe 结果。\n\n### 完整运行命令\n\n```bash\ncd /root/vla-ssd\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\npython scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained_label_perm/ \\\n  --probe_type temporal_distance \\\n  --shuffle_labels\n```\n\n### analyze_results.py 兼容性\n\n`analyze_results.py` 不专门处理 Control B。它通过 `--results_dirs name:path` 接受任意数量的结果目录进行对比。Control B 结果只需作为额外条目传入：\n\n```bash\npython scripts/analyze_results.py \\\n  --results_dirs trained:results/trained/,label_perm:results/trained_label_perm/,... \\\n  --output_dir results/analysis/\n```\n\nverdict 逻辑（`compute_judgment`）不依赖 Control B——它只用 trained/untrained/dinov2 做判断。Control B 结果会在对比表和图中展示，但不影响 PASS/FAIL 判定。\n\n### Features 确认\n\nTrained features 存在（10 个 task .h5 文件），33 层 × 4096 维。\n\n### 预估运行时间\n\n33 层全跑，每层约 30 秒（基于 dinov2 单层 ~11 epoch 的训练时间推算），总计约 **15-20 分钟**。\n\n### 无需修复的问题\n\n脚本可直接运行，无需代码修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-control-b-preparation.md"
+}

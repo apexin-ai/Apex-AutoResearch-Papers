@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbd36ad16947f3cb1ae3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra check and extract",
+  "task_key": "worker_infra_check-and-extract_20260515T092752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-and-extract_20260515T092752_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "1e4f8471e8f4a4bec8e7c1cd0c1e96f92dfe6d0f3e1abe104d460ac05fc0485d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**完成汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| Shard 1 下载 | 6,948,961,960 bytes ✓ |\n| 3 shards 验证 | 805 + 154 + 23 tensors, 全部 OK ✓ |\n| Dry-run | 输出 (272, 33, 4096) shape, 正常 ✓ |\n| Trained 提取 (GPU 0) | 已提交: `openvla-trained-extract`, log: `~/runs/vla-ssd/openvla-trained-extract.log` |\n| Untrained 提取 (GPU 1) | **未提交** — `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/` 不存在，需要先初始化 untrained checkpoint |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-and-extract.md"
+}

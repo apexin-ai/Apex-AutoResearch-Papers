@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5dd55967a9ab1ef139a",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_13.md",
+    "occurrence": 1,
+    "bytes": 2794,
+    "sha256": "5725585ee9d9d18f23b5b8b35f148f6a33a0a699d85399d80e412ccf4059da87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-27T12:14:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-19183 的 cuda:0 和 cuda:1（已通知 Manager 回收但未确认，卡还挂项目名下）\n- 论文已提交就绪，DDL 5/29，**禁止对论文做任何非用户要求的改动**——Abstract 微调已是最后一次\n- 项目处于审稿阶段，review_chat_id: `oc_554a5023cde4d603635cf97e6ab8151a`\n- 107 个 success 实验已全部完成，Reviewer 已确认无值得跑的新实验——不要启动新实验线\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com)，工作目录 /root/vla-ssd\n- 最新 PDF：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/submission_package/main.pdf`（5/27 06:54 编译）\n- 提交包目录：`artifacts/submission_package/`\n- 活跃进程：无。Agent/Reviewer/Worker 全部空闲，0 个实验在跑\n- GPU：2 张分配（cuda:0 + cuda:1），利用率 0%，已催 Manager 回收 3 次未确认\n\n### 3. 📊 当前状态\n- 刚完成：Abstract 微调（加入 NLP controls 证据点），Discussion prescriptive 改动因页面溢出放弃\n- 刚处理：用户周雪阳要求发 PDF，已上传最新版本\n- 等待中：(1) 用户确认谁来提交 OpenReview + 什么时候提交（已催两次）；(2) Manager 确认 GPU 回收（已催三次）\n- Registry：156 个实验，145 完成（109 success），11 个低优先级待处理（不影响论文）\n- Reviewer 刚批准 RESET_BOTH，本 handoff 后 Director 也会重置\n\n### 4. 📋 待办\n- 用户回复提交计划 → 配合准备提交材料 / 发给 co-author\n- 用户持续不回复且距 DDL < 24h → 再发紧急催促，建议 co-author 代提交\n- Manager 回复 GPU 回收 → 确认完成\n- Manager 持续不回复 → 升级处理\n- 如果用户要求对论文做最后修改 → 派 Paper Agent 执行，改完重编译验证字体\n\n### 5. 🎯 战略上下文\n- 中稿率估计 53-58%，瓶颈是 venue fit（analysis paper at robotics venue），非实验可解决\n- Reviewer 逐项评估过四个进攻方向（未挖掘 insight / visualization / seed 稳定性 / robustness），均无实质性 ROI\n- 写作层面也评估过（Intro hook / contribution / Discussion / Abstract），仅 Abstract 微调有净收益且已执行\n- 易错点：不要因为中稿率不高就启动新实验线——107 个实验的统计基础已足够坚实（15 seeds, bootstrap CI, permutation test, 3 NLP controls），问题在 paper type 不在证据量\n- 关键决策链：从 method paper 路线转为 systematic analysis 路线（有完整的 Method→Analysis 切换论证）\n- 用户周雪阳刚要过 PDF 说明在关注，但提交操作仍未确认——这是唯一阻塞项\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13.md"
+}

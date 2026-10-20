@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "954c65970ba1f4b4fa36",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "knowledge paper provenance rebuild",
+  "task_key": "worker_knowledge_paper_provenance_rebuild_20260518T174151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_provenance_rebuild_20260518T174151.log",
+    "occurrence": 1,
+    "bytes": 808699,
+    "sha256": "a2ecffcd4bd0724a9bc5ad6817958c39bc1d54442809c5115890caa6380198c4"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 2,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "assistant": 22,
+      "tool_call": 57,
+      "tool_result": 57,
+      "record": 1,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "954c65970ba1f4b4fa36-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "954c65970ba1f4b4fa36-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "954c65970ba1f4b4fa36-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "954c65970ba1f4b4fa36-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-paper-provenance-rebuild.md"
+}

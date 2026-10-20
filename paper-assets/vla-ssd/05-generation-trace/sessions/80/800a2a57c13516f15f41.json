@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "800a2a57c13516f15f41",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan008 shuffled rsa",
+  "task_key": "worker_ssh_plan008-shuffled-rsa_20260516T000130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan008-shuffled-rsa_20260516T000130_result.json",
+    "occurrence": 1,
+    "bytes": 1429,
+    "sha256": "27a525ef4f91bdb2c983f6a90e6077e329d20c8b9fbd0943c3409fbf945e1e80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 特征提取状态：进行中\n\n| 条件 | GPU | 进度 | 预计完成 |\n|------|-----|------|----------|\n| **shuffled** | cuda:1 | Task 1/10, ~82% (2.3/2.8 GB) | ~55 min |\n| **random_s0** | cuda:0 | Task 1/10, 同步进行 | ~55 min |\n\n两个进程均从 07:58 启动，当前服务器时间 08:04。每个 task 约 6 分钟，10 个 task 总计约 60 分钟，预计 **~09:00** 完成。\n\n### 2. Token-level control 已完成\n\n`shuffled_token_control.json` 已有结果（这是 probe accuracy，不是 RSA）：\n- Original probe accuracy: **100%** (10/10 tasks)\n- Shuffled probe accuracy: **20.6% ± 7.1%** (5 次 shuffle 平均)\n- 结论：shuffled instruction 严重破坏了 token-level 线性可分性\n\n### 3. 已有 RSA 基线（rsa_instruction_control_last_preaction.json）\n\n仅包含 `normal` vs `empty`，尚无 shuffled/random 条件：\n\n| 条件 | Peak RSA | Peak Layer |\n|------|----------|------------|\n| normal | 0.4888 | L16 |\n| empty | 0.4723 | L16 |\n| delta | -0.0165 | — |\n\n### 4. 下一步\n\n特征提取完成后，运行：\n```bash\npython scripts/rsa_instruction_control.py\n```\n脚本会自动检测 `shuffled`、`random_s0` 目录并纳入对比分析。\n\n### 5. random_s0 状态\n\n已在提取中（同上），GPU 0 上并行运行。\n\n需要等约 55 分钟后回来运行 RSA 分析。是否需要我设定自动轮询？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan008-shuffled-rsa.md"
+}

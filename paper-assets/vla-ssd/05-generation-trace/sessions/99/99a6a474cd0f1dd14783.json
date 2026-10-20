@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99a6a474cd0f1dd14783",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig matrix heatmap",
+  "task_key": "worker_draw_fig_matrix_heatmap_20260523T170103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig_matrix_heatmap_20260523T170103_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "92b504a3c8fd246cc0f3eda8fd7b11207fa84cf43562d060820db46eee0072e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已生成：\n\n- `/root/vla-ssd/paper_figures/fig_matrix_heatmap.pdf` (43KB)\n- `/root/vla-ssd/paper_figures/fig_matrix_heatmap.png` (172KB)\n\n3×4 heatmap，Blues colormap 编码 ΔR²（0→0.7），N/A 格灰底斜线，OpenVLA 与 TracVLA 之间有分隔线，colorbar 上标注 0.10 阈值虚线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig-matrix-heatmap.md"
+}

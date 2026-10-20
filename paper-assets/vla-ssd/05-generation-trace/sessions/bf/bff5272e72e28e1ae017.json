@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bff5272e72e28e1ae017",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check extraction progress",
+  "task_key": "worker_ssh_check-extraction-progress_20260515T210616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-extraction-progress_20260515T210616_result.json",
+    "occurrence": 1,
+    "bytes": 1914,
+    "sha256": "d3a7bc62ce3d8d9448f30b56b1814fb0289aa97f2603f124e69803cde1f726a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 进程状态\n| PID | 任务 | 运行时间 | 状态 |\n|-----|------|---------|------|\n| 658056 | untrained_no_inst | 37min49s | **运行中** |\n| 661030 | trained_no_inst | 4min00s | **运行中** |\n\n### GPU 占用\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU 0 | 16,379 / 97,887 MiB | 0% |\n| GPU 1 | 16,361 / 97,887 MiB | 0% |\n\nGPU 利用率 0% 是特征提取的正常现象（瞬时采样，实际在批次间歇期）。\n\n### no_inst 特征提取进度\n\n**untrained_no_inst** (PID 658056, 已跑 ~38min)：已完成 **3/10** 个 task\n| 文件 | 大小 |\n|------|------|\n| open_the_middle_drawer_of_the_cabinet.h5 | 2.8G |\n| open_the_top_drawer_and_put_the_bowl_inside.h5 | 4.0G |\n| push_the_plate_to_the_front_of_the_stove.h5 | 2.0G (正在写入) |\n\n**trained_no_inst** (PID 661030, 已跑 ~4min)：已完成 **1/10** 个 task（正在写入中）\n| 文件 | 大小 |\n|------|------|\n| open_the_middle_drawer_of_the_cabinet.h5 | 2.0G (正在写入，1.1GB 当前) |\n\n文件大小范围 2.0G-4.0G，与 50 demos 预期的 ~2.9GB 量级吻合（不同 task 的 episode 长度不同导致差异）。\n\n### 已有 with-instruction 特征目录\n| 目录 | 文件数 | 状态 |\n|------|--------|------|\n| trained_libero_goal | 10 | **完整** |\n| untrained_libero_goal | 10 | **完整** |\n| dinov2_libero_goal | 10 | **完整**（目录名是 `dinov2_libero_goal`，不是 `dino_libero_goal`） |\n\n### 预估剩余时间\n- **untrained_no_inst**：38min 完成 3 个 task（~12.7min/task），剩余 7 个 → 预估还需 **~89min**（比之前预估慢不少）\n- **trained_no_inst**：4min 完成约 1 个 task，剩余 9 个 → 预估还需 **~36min**（与之前预估接近）\n\nuntrained 比 trained 慢可能是因为 untrained 模型的特征提取吞吐量不同，或者早期 task 的 episode 更长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-extraction-progress.md"
+}

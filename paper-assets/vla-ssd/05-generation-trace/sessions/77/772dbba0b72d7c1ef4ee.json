@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "772dbba0b72d7c1ef4ee",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fix figure fontsize",
+  "task_key": "worker_code_fix_figure_fontsize_20260517T105547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_figure_fontsize_20260517T105547.log",
+    "occurrence": 1,
+    "bytes": 706968,
+    "sha256": "f9f556885e17db677dd72fc2eab2d0ef9b8f2b5fc61098d7e3c662a66416fb84"
+  },
+  "statistics": {
+    "messages": 213,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 78,
+      "tool_result": 77,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "772dbba0b72d7c1ef4ee-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "772dbba0b72d7c1ef4ee-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "772dbba0b72d7c1ef4ee-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-figure-fontsize.md"
+}

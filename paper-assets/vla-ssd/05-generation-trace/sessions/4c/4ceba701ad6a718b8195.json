@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ceba701ad6a718b8195",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research citation audit A",
+  "task_key": "worker_research_citation-audit-A_20260529T063723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-audit-A_20260529T063723_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "74ee233999a7752f0b7a357a5c5fb2ef81afd84fdddfff1082a277f48ec60ac3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，结果写入 `artifacts/citation_audit_worker_A.md`。\n\n**14/18 正确，4 条需要修复：**\n\n| # | Key | 问题 |\n|---|-----|------|\n| 2 | `lian2026bayesianvla` | 标题过时 (\"BayesianVLA\" → \"LangForce\")；venue 需更新为 ICML 2026 |\n| 5 | `zhang2026instruction` | 标题两处错误：\"Anchor\" → \"Anchors\"，\"Mechanistic\" → \"Causal\" |\n| 9 | `zheng2024tracevla` | 年份 2024 → 2025；venue 需更新为 ICLR 2025 |\n| 13 | `brohan2023_rt2` | venue 需从 arXiv 更新为 CoRL 2023 (PMLR vol 229) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-audit-a.md"
+}

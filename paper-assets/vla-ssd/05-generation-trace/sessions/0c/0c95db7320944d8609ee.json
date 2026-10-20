@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c95db7320944d8609ee",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh p0 functional action probe",
+  "task_key": "worker_ssh_p0-functional-action-probe_20260515T232234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-functional-action-probe_20260515T232234_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "300f794f7246f3405ea4474c92c070ff8efec06a520445e5262be812ba43aafd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered. Here's the complete results summary:\n\n## Action Probe Results (LIBERO-Goal, 10 tasks, 500 demos)\n\n| Model | mean_R² | overall_R² | grip_acc |\n|-------|---------|-----------|----------|\n| **SigLIP+Projector** | **0.7063** | 0.7169 | 0.9221 |\n| VLA Trained image_mean L19 | 0.6832 | 0.6961 | 0.9182 |\n| VLA Trained image_mean L23 | 0.5736 | 0.5900 | 0.8924 |\n| **LLM (last_preaction) L19** | **0.7309** | 0.7397 | 0.9184 |\n| Untrained image_mean best (L0) | 0.7136 | 0.7234 | 0.9218 |\n\n**Gate: PASS** (projector 0.7063 ≥ 0.683 threshold)\n\n**Bootstrap CI** (projector vs LLM L19): delta = -0.0246, 95% CI = [-0.040, -0.009], p = 0.0014\n\nKey observations:\n- Projector exceeds the stated 0.683 threshold and beats image_mean at the same layer (0.7063 vs 0.6832 at L19)\n- LLM last_preaction L19 is significantly higher (0.7309), indicating the LLM adds action-relevant processing on LIBERO-Goal\n- Untrained image_mean L0 = 0.7136 is close to the projector — this is essentially the projector output after one random transformer layer, confirming the visual features already carry strong action information before LLM processing\n- Sharp dip at untrained L10-11 (R² ~ 0.03-0.05), possibly due to random weight interference at specific layers\n\nResults saved to `/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-functional-action-probe.md"
+}

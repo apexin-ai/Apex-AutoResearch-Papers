@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ad28bfdc7ef03fa931c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research dinosiglip architecture audit",
+  "task_key": "worker_research_dinosiglip-architecture-audit_20260516T023757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dinosiglip-architecture-audit_20260516T023757_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "bc20ab839aa12bcf1894e389f8f8accca696f711f581ac7922df59c34b45cdf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存到 `/root/autodl-tmp/vla-ssd/results/architecture_audit/dinosiglip_audit.md`。\n\n核心发现：\n\n**`extract_siglip_features.py` 提取的是 DINOv2+SigLIP fused backbone + projector 的输出，不是纯 SigLIP。**\n\n证据链：\n1. `config.json`: `use_fused_vision_backbone: true`, `timm_model_ids` 包含 DINOv2 ViT-L 和 SigLIP ViT-SO400M\n2. `PrismaticVisionBackbone.forward()`: 将 6-channel 输入拆分，分别过 DINOv2 和 SigLIP，然后 **`torch.cat` 沿 embed_dim 拼接** → (B, 256, 2176)\n3. `PrismaticProjector`: 接收 2176 维 fused input → 3层 MLP → 4096 维输出，DINOv2 和 SigLIP 信息完全混合\n4. `extract_siglip_features.py`: 直接调用 `model.vision_backbone(pixel_values)` + `model.projector()`，整个流程没有任何步骤分离纯 SigLIP\n\n**影响**: RSA=0.615 (\"SigLIP+Projector\") vs RSA=0.388 (standalone DINOv2) 的对比存在两个混淆：(1) \"SigLIP\"侧包含 DINOv2 信息；(2) \"SigLIP\"侧有 trained projector 而 DINOv2 侧没有。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dinosiglip-architecture-audit.md"
+}

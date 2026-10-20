@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da2b27e73c42cf4748b9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "extract spatial complete results",
+  "task_key": "worker_extract_spatial_complete_results_20260522T111238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_spatial_complete_results_20260522T111238_result.json",
+    "occurrence": 1,
+    "bytes": 2510,
+    "sha256": "59f72e6dc20ad723cb9e918cc0a9c8cdf6c5703773dd851705dbdb0b29573982"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 0 / 97887 MiB |\n| 1 | 0% | 0 / 97887 MiB |\n\n两卡完全空闲，实验进程已退出。\n\n---\n\n### 2. cuda:0 — OpenVLA Trained CF (libero_spatial)\n**已完成** — 18:40:51 结束，耗时 95.0 min\n\n脚本: `libero_spatial_full_pipeline.py --conditions trained --only-counterfactual`\nCheckpoint: `openvla-7b-finetuned-libero-spatial`\n输出: `results/libero_spatial/counterfactual_combined.json`\n\n| Condition | Cohen's d (global) | Cross-task mean d | token_div |\n|-----------|-------------------|-------------------|-----------|\n| **empty** | **1.1734** | 1.1813 | 1.000 |\n| shuffled | 0.9787 | 0.9940 | 0.998 |\n| wrong | 0.8849 | 0.9146 | 0.995 |\n| paraphrased | 0.8070 | 0.8157 | 0.941 |\n\n**Ordering: empty > shuffled > wrong > paraphrased**\n\n---\n\n### 3. cuda:1 — OpenVLA Untrained Full Pipeline (libero_spatial_untrained)\n**已完成** — 18:58:41 结束，耗时 104.1 min\n\n脚本: `libero_spatial_full_pipeline.py --conditions untrained`\nCheckpoint: `openvla-7b` (未微调)\n输出: `results/libero_spatial_untrained/`\n\n**CF 结果:**\n\n| Condition | Cohen's d (global) | Cross-task mean d | token_div |\n|-----------|-------------------|-------------------|-----------|\n| **empty** | **0.9361** | 0.9502 | 1.000 |\n| shuffled | 0.7967 | 0.8010 | 1.000 |\n| wrong | 0.7944 | 0.8005 | 1.000 |\n| paraphrased | 0.7582 | 0.7619 | 0.991 |\n\n**Ordering: empty > shuffled ≈ wrong > paraphrased** (与 trained 一致)\n\n**Trained vs Untrained 对比:**\n\n| Condition | Trained d | Untrained d | Delta |\n|-----------|-----------|-------------|-------|\n| empty | 1.1734 | 0.9361 | +0.237 |\n| shuffled | 0.9787 | 0.7967 | +0.182 |\n| wrong | 0.8849 | 0.7944 | +0.091 |\n| paraphrased | 0.8070 | 0.7582 | +0.049 |\n\nTrained 全面高于 untrained，但 untrained 也有显著效应（所有 d > 0.75）。Empty 和 shuffled 的 delta 最大；paraphrased 差异最小。\n\n**其他 phases** (untrained 全部完成): action_r2_probing.json, l1_attention_profile.json, cross_instruction_classification.json, rsa_analysis.json 均已生成。\n\n---\n\n### 4. NLP Control (Llama-2-7b-chat)\n- **下载中** — PID 612753 存活，shard 1 已下载 7.6 GB（临时目录），尚未移到最终位置\n- **wait_and_run** — PID 613202 存活，仍在等待下载完成（run.log: \"Waiting for model download to complete...\"）\n- probing 尚未启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-spatial-complete-results.md"
+}

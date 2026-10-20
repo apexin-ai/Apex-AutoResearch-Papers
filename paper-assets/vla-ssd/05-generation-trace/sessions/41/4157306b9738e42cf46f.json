@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4157306b9738e42cf46f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig1 overview",
+  "task_key": "worker_draw_fig1_overview_20260523T193324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig1_overview_20260523T193324_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "b25ccba2b457f444b752970a01d3ede6a029ad582b45cef72793c04a45786553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完毕。\n\n- PDF: `docs/paper/figures/fig_overview.pdf` (37 KB)\n- PNG: `docs/paper/figures/fig_overview.png` (230 KB)\n\n三个 panel 均正确渲染：(a) VLA 序列结构含 image/instruction/readout/action token 块及因果注意力箭头；(b) 三种分析方法（layer probes、counterfactual perturbation、L1 attention profiling）；(c) 发现分类（exit collapse → Training-associated, CF sensitivity → Action-linked, L1 instruction attention → Inherited prior）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig1-overview.md"
+}

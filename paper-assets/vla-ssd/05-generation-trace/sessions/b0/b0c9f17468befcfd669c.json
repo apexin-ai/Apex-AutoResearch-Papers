@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c9f17468befcfd669c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero spatial readiness check",
+  "task_key": "worker_code_libero_spatial_readiness_check_20260517T080757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_spatial_readiness_check_20260517T080757_result.json",
+    "occurrence": 1,
+    "bytes": 1575,
+    "sha256": "c34ca9ed7aee6345ead0f0ad62f36ae387024f407deaf2bcbce8b7e48ed1139f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LIBERO-Spatial 实验准备状态：已完成\n\n**所有实验已经跑完，无需额外准备。**\n\n### 1. 数据\n- **路径**: `/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/` (5.9G)\n- **10 个 task**，每个 task 一个 HDF5 文件（~500MB-750MB）\n- 全部为 \"pick up the black bowl [spatial description] and place it on the plate\" 变体\n\n### 2. 特征提取\n- **trained**: `/root/autodl-tmp/vla-ssd/features/trained_libero_spatial/` (24G, 10 tasks)\n- **untrained**: `/root/autodl-tmp/vla-ssd/features/untrained_libero_spatial/` (25G, 10 tasks)\n\n### 3. Action Probe 结果（已完成，5/16 14:44）\n保存于 `results/functional_validation/action_probe_libero_spatial.json`\n\n| Condition | Agg | Best Layer | R² |\n|---|---|---|---|\n| trained | image_mean | L13 | 0.6963 |\n| trained | last_preaction | L21 | 0.6748 |\n| untrained | image_mean | L0 | 0.6732 |\n| untrained | last_preaction | L1 | 0.6348 |\n\nBootstrap 对比均显著 (p < 0.001)。\n\n### 4. RSA 结果（已完成，5/16 14:33）\n保存于 `results/rsa/rsa_libero_spatial.json`\n\n| Condition | Agg | Best Layer | RSA |\n|---|---|---|---|\n| trained | image_mean | L14 | 0.6911 |\n| trained | last_preaction | L15 | 0.6945 |\n| untrained | image_mean | L0 | 0.6523 |\n| untrained | last_preaction | L1 | 0.6659 |\n\n### 5. 磁盘\n- 总量 250G，已用 192G，剩余 **59G**\n- vla-ssd 目录占 179G\n\n### 结论\nAction probe 和 RSA 分析均已完成，结果 JSON 已存在。可直接进入下游分析/画图阶段，无需额外 GPU 时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-spatial-readiness-check.md"
+}

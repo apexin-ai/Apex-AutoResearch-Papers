@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3a3394de63f8fb7033c2",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "draw fig6 appendix untrained to reference",
+  "task_key": "worker_draw_fig6_appendix_untrained_to_reference_20260523T195340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig6_appendix_untrained_to_reference_20260523T195340.log",
+    "occurrence": 1,
+    "bytes": 695479,
+    "sha256": "7cc3e480b3ebfd01a24609cdafd48db1cbe17ee9164d9f29ec8bc4603095b4d6"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "3a3394de63f8fb7033c2-part-0001.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "3a3394de63f8fb7033c2-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "3a3394de63f8fb7033c2-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/draw-fig6-appendix-untrained-to-reference.md"
+}

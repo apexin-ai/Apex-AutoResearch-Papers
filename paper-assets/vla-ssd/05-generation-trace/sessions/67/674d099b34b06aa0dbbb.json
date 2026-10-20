@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "674d099b34b06aa0dbbb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "data update 2x2 15seed final",
+  "task_key": "worker_data_update_2x2_15seed_final_20260520T115230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_update_2x2_15seed_final_20260520T115230_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "91789d348ef12dbb9fee13b454482c1ccf7734817f8b52d5714d51ad3e4f5224"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个文件已更新。以下是完整 2×2 summary 报告：\n\n| | OpenVLA Untrained | OpenVLA Trained | Phi3V Untrained | Phi3V Trained |\n|---|---|---|---|---|\n| **Peak Layer** | L0 | L9 | **L6** | L11 |\n| **Peak R²** | 0.629 ± 0.016 | 0.637 ± 0.008 | **0.578 ± 0.018** | 0.634 ± 0.009 |\n| **L0 R²** | 0.629 ± 0.016 | 0.629 ± 0.016 | -0.330 ± 0.003 | -0.330 ± 0.002 |\n| **L32 R²** | 0.584 ± 0.011 | 0.535 ± 0.015 | **0.410 ± 0.185** | 0.550 ± 0.007 |\n| **Late-layer mean (L25-L32)** | 0.193 | 0.531 | **0.392** | 0.586 |\n| **Late-layer avg std** | 0.244 | 0.037 | **0.172** | 0.011 |\n| **Seeds** | 15 | 15 | **15** | 15 |\n\nPhi3V Untrained 从 5→15 seeds 后的主要变化：\n- Peak 从 L4 移到 **L6**，R² 从 0.583 降至 **0.578**（5-seed 的 L4 高值被摊平）\n- 晚层 std 从 0.047 升至 **0.172**（新 seeds 中部分晚层 probe 出现负 R²，暴露不稳定性）\n- Δ_train (peak) 从 +0.051 升至 **+0.056**；L15-L25 avg gap 从 +0.103 升至 **+0.137**\n- 所有 4 条件现在统一 15 seeds，表格脚注已简化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-update-2x2-15seed-final.md"
+}

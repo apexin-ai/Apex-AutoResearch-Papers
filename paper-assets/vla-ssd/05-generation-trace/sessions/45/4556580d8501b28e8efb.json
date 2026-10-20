@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4556580d8501b28e8efb",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4684,
+    "sha256": "2186c654f13eb99fbd5d9c55a4bfbb13f0e7a34887deb756a3b139dd317b8c2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-21T15:51:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19183 的 cuda:0 和 cuda:1（项目分配的 GPU）\n- OpenVLA \"untrained\" baseline 实际是 openvla-7b（OXE 预训练 VLA，非 raw Llama-2）。论文中 \"0/32\" 是 random init 不是 base LLM——已记录为 M016，绝不能再错误引用\n- 三架构 untrained baseline 语义不一致：OpenVLA=OXE pretrained VLA, TraceVLA=Phi-3-Vision (纯VLM), NORA=Qwen2.5-VL (纯VLM)。跨架构 untrained 对比不可直接做\n- R² probing 必须用 Ridge（不是 MLP），所有 pipeline 已切换。MLP 仅作 supplementary\n- 所有 pipeline 脚本 argparse 用 `nargs='+'` + `choices=['trained','untrained']`（M015 教训，已全局修复）\n- submit_training_job 后 2 分钟内检查日志确认启动成功，不依赖 cron 延迟发现\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com)，磁盘 68% (82GB 可用)\n- 工作目录：/root/vla-ssd/\n- Python：需 `source /etc/network_turbo` 后再操作；NORA 用独立 conda env `/root/vla-ssd/nora_env/`\n- 模型路径：openvla-7b, openvla-7b-finetuned-libero-* 在 /root/vla-ssd/checkpoints/；NORA/TraceVLA checkpoints 同目录\n- Phi-3-Vision base: 已下载完成 (7.8GB)\n- OFT checkpoint (Long): 已下载 (14.2GB)\n- LIBERO data: /root/vla-ssd/data/libero_*/ (Goal/Spatial/Object 各 10 hdf5, Long 10 hdf5)\n- 活跃进程（待确认，handoff 前可能已完成）：\n  - cuda:0: openvla_long_pipeline_v1\n  - cuda:1: tracvla_spatial_untrained_v1\n- Pipeline 脚本：/root/vla-ssd/scripts/*_full_pipeline.py（7 个脚本已全部 Ridge + streaming attn + argparse 修复）\n- 论文目录：本地 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/\n\n### 3. 📊 当前状态\n**刚做完**：TraceVLA Object trained+untrained 完整结果已出（Exit collapse confirmed: trained L30=0.186 vs untrained 平坦 0.68）。跨架构×跨suite L1 routing 一致性确认。Untrained baseline 语义不一致问题已发现并记录（M016）。\n\n**正在跑**（需 SSH 确认是否已完成）：\n- cuda:0: openvla_long_pipeline_v1（OpenVLA × LIBERO-Long）\n- cuda:1: tracvla_spatial_untrained_v1（TraceVLA Spatial untrained 条件，ETA 已过）\n\n**3×4 矩阵进度**：\n| | Goal | Spatial | Object | Long |\n|--|------|---------|--------|------|\n| OpenVLA | ✅ | ✅ | ✅ trained (untrained CF 缺) | 🔄 running |\n| TraceVLA | ✅ trained | 🔄 untrained running | ✅ full | ⏳ |\n| NORA | ✅ full | ✅ full | ⏳ | ⏳ |\n\n**数据缺口**：TraceVLA Object untrained counterfactual、OpenVLA Object untrained counterfactual（norm_stats crash 需改 cosine distance）、TraceVLA Goal untrained 条件\n\n### 4. 📋 待办（条件触发式）\n- openvla_long_pipeline_v1 完成 → 提取结果，cuda:0 安排 TraceVLA Long 或补跑实验\n- tracvla_spatial_untrained_v1 完成 → 提取 untrained metrics，与 trained 对比，cuda:1 安排 NORA Object 或 TraceVLA Long\n- 两张 GPU 都空 → 优先级：(1) NORA Object (2) TraceVLA Long (3) OpenVLA Object untrained CF 补跑 (4) NORA Long\n- 矩阵 ≥8/12 cells 完成 → 考虑启动 Paper Agent 做论文更新（三阶段 routing 梯度叙事、Figure 1 修正）\n- Reviewer 修好后第一件事 → 审查三阶段 routing 梯度叙事 + 跨 suite 一致性 claim\n\n### 5. 🎯 战略上下文\n**核心发现**：三架构（OpenVLA/Llama-2, TraceVLA/Phi-3, NORA/Qwen2.5-VL）× 多 suite 确认 convergent routing pattern——Exit Layer Collapse（trained R²→0, untrained 平坦）+ L1 instruction-dominant heads 跨 suite 完美一致（TraceVLA 连 mixed head 编号都相同）。Claim 可升级为 \"architecture-independent phenomenon\"。\n\n**叙事重大调整**：从 \"de novo 0→24 emergence\" 改为三阶段 routing 梯度：random init (0/32) → LLM base (9/32) → VLA trained (24/32)。Figure 1 teaser 的 \"Untrained (all 0)\" 标注需改为 \"Random init\"。这个调整更强但更复杂，需要 Reviewer 审查。\n\n**易错点**：\n- 不要引用 \"OpenVLA untrained = 0/32 instruction-dominant heads\" 作为 base LLM 的数据——那是 random init\n- Reviewer 反复崩溃（PDF validation），不是未处理 RESET——本轮已 RESET 超过 15 次，是系统性问题\n- Object suite cross-instruction classification 有 ceiling effect（10 个不同 object name 太容易区分），这个 metric 对 Object suite 不 informative\n- NORA 的 GQA 架构导致 L1 attention trained≈untrained（13/16 both），这是结构性特征不是 bug\n- OpenVLA Long 需要用 OFT checkpoint 不是标准 openvla-7b-finetuned\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7.md"
+}

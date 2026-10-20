@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ee636960e762e4b11f8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code lg instruction probe",
+  "task_key": "worker_code_lg-instruction-probe_20260515T165250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lg-instruction-probe_20260515T165250_result.json",
+    "occurrence": 1,
+    "bytes": 2105,
+    "sha256": "9d248eaab925e8038c5ef9e8088b5b01be0f9b33889fa80a2f2646d9014697b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本参数解析均通过。\n\n---\n\n## 报告\n\n### LIBERO-Goal 数据结构\n\n10 个任务共享同一 kitchen scene，50 demos/task：\n\n| # | Task |\n|---|------|\n| 0 | open_the_middle_drawer_of_the_cabinet |\n| 1 | open_the_top_drawer_and_put_the_bowl_inside |\n| 2 | push_the_plate_to_the_front_of_the_stove |\n| 3 | put_the_bowl_on_the_plate |\n| 4 | put_the_bowl_on_the_stove |\n| 5 | put_the_bowl_on_top_of_the_cabinet |\n| 6 | put_the_cream_cheese_in_the_bowl |\n| 7 | put_the_wine_bottle_on_the_rack |\n| 8 | put_the_wine_bottle_on_top_of_the_cabinet |\n| 9 | turn_on_the_stove |\n\n特征格式与 LIBERO-10 相同。Chance level = 10%。\n\n特征提取进度：trained 2/10, untrained 1/10, DINO 目录尚未创建。\n\n### 代码设计决策\n\n1. **`train_goal_probe.py`** — 复用 `train_probes.py` 的 `scan_features`, `split_by_task`, `load_layer_features`, `parse_layers`, `apply_pca`, `train_goal_classification_probe`, `save_results`。不重复实现基础设施，只添加 goal-specific 逻辑：\n   - 类别平衡报告（每个 task 的 train/val trajectory 数）\n   - Chance level 计算和 Δchance 输出\n   - `--shuffle_labels` 排列检验（阴性对照）\n   - 输出兼容现有 `save_results` 格式（per-layer JSON + summary.csv + summary.json）\n\n2. **`analyze_goal_results.py`** — 独立脚本，无 torch 依赖。三级判定：\n   - **G1**: peak acc > chance + 20pp → trained 编码了 goal\n   - **G2**: Δacc(trained−untrained) > 10pp 在 ≥5 层 → 训练提升了区分度\n   - **G3**: trained peak > DINO peak → VLA > 纯视觉\n   - 阈值可通过 `--g1_margin`, `--g2_margin`, `--g2_min_layers` 调节\n   - 同时输出 markdown 和 JSON\n\n3. **与现有代码的关系**：服务器上已有 `train_instruction_probes.py`（带场景分组）和 `analyze_goal_probes.py`（简单 gate）。新脚本的区别：`train_goal_probe.py` 更轻量（不做场景分组，LIBERO-Goal 全部同场景所以不需要），`analyze_goal_results.py` 增加了 G1/G2/G3 三级判定和 per-layer delta 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lg-instruction-probe.md"
+}

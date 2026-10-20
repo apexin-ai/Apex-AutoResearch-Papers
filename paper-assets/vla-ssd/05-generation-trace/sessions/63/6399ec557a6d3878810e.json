@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6399ec557a6d3878810e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run phi3 nlp control",
+  "task_key": "worker_run_phi3_nlp_control_20260523T231450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phi3_nlp_control_20260523T231450_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "658fbe8e411fbf9296ea6dbfae40adf2b3d0b23937295e36593ad5812a073e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered. Here's the summary:\n\n## Phi-3-mini NLP Control — Results\n\n| Metric | Phi-3-mini-instruct | Llama-2-chat |\n|--------|-------------------|--------------|\n| Layers | 32 | 32 |\n| Hidden dim | 3072 | 4096 |\n| Params | 3.8B | 7B |\n| Samples | 5000 | 5000 |\n| Peak R² | 0.1555 (L0) | 0.1555 (L15) |\n| Exit R² | 0.1555 (L31) | 0.1555 (L31) |\n| **ΔR² (exit collapse)** | **0.0000** | **0.0000** |\n| Mean R² | 0.1555 | 0.1553 |\n\nR² profile is completely flat across all 32 layers (range: 0.1552–0.1555), matching the Llama-2-chat control. Both NLP controls show ΔR²=0.000, confirming exit collapse is VLA-specific — text-only LLMs that share the same backbone architectures as VLAs show no R² degradation at exit layers.\n\nJob completed in 2.7 min on westd-19183 cuda:0. Results saved at `/root/autodl-tmp/vla-ssd/results/phi3_nlp_control/summary.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phi3-nlp-control.md"
+}

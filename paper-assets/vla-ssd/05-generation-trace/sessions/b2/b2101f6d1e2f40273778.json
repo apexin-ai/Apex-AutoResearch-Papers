@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2101f6d1e2f40273778",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_9_1779391005.md",
+  "task_key": "loop_9_1779391005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1779391005.md",
+    "occurrence": 1,
+    "bytes": 4019,
+    "sha256": "68a6012c3e753355581e4af3466e80c5d969b7697996b7685856b7a3dac37ad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-21T15:51:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，**不得使用其他卡**\n- 论文 DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）\n- Closed-loop behavioral validation 已确认不可行（D087，0/30 SR，256-bin quantization 根因），标记 wont_fix，**不要再尝试**\n- Reviewer session 瘫痪中（\"PDF file was not valid\"），已 escalate 6 次无回复，Round 14/15 修改未经独立 Reviewer 审视\n- counterfactual_spatial 的 hypothesis 是我在推进状态链时补写的（基于实验脚本名推测），**Worker 分析完后必须根据实际脚本内容校正 hypothesis**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 /root/vla-ssd/\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/bin/activate`）\n- 模型：/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\n- 数据：/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\n- 结果：/root/autodl-tmp/vla-ssd/results/\n- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用，根分区 816G/879G 可用\n- 活跃进程：counterfactual_10tasks_trajectory (PID 494980) 仍在跑（reconcile_crons 确认）——注意此实验不在 vla-ssd registry 中，可能属于其他项目或是 cron 残留，需排查\n\n### 3. 📊 当前状态\n刚收到 counterfactual_spatial cron 回调（进程正常退出）。我已：\n1. 补写 hypothesis 和 parent，将状态从 PREPARING → ANALYZING（经 PENDING/QUEUED/ALLOCATED/RUNNING 全链）\n2. 派出 Worker `worker_analysis_counterfactual_spatial_20260520T213636` 去 SSH 读日志+分析结果+更新 registry\n\n**Registry 状态**：\n- ANALYZING: counterfactual_spatial（等 Worker 回调）\n- PREPARING x7: libero_finetuned_probe, behavioral_smoketest_diag, behavioral_pilot_v2, behavioral_pilot, fulllayer_action_probe, l1_head_ablation_control8, l1_head_ablation_50demos\n- DONE: 112 个（success 86, negative 16, killed 10）\n- RUNNING: 0（两块 GPU 都空闲）\n\n**等待中**：\n- Worker 回调：counterfactual_spatial 分析 Worker\n- Director 未决：behavioral_smoketest 是 negative（最近完成），推导链和下一步建议可能尚未汇报给 Director\n\n### 4. 📋 待办\n- counterfactual_spatial 分析 Worker 回调 → 根据 conclusion 分叉：success 则更新 report.md + 汇报 Director + 检查 experiment-matrix 覆盖；negative 则按 on-experiment-done negative 流程推导\n- Worker 回调后两块 GPU 空闲 → 立即从 7 个 PREPARING 实验中挑选可提交的，或向 Director 请示优先级\n- behavioral_smoketest (negative) 的后续推导是否已汇报 Director → 检查 report.md 和 Director 通信记录，如未汇报则补报\n- Reviewer session 修复 → 持续关注 Manager 回复\n- Round 15 审稿结果 → 到达后立即分析并推进\n\n### 5. 🎯 战略上下文\n- **核心发现**：VLA 微调创建 instruction routing（attention head specialization），跨架构一致（OpenVLA + Phi3V）。C1 token specialization + C2 entry-exit routing + R² inverted-U profile 双架构复现\n- **审稿天花板**（结构性，无法短期修复）：closed-loop gap（wont_fix）、scope fit（纯 representational）、LIBERO-only（1 benchmark family）。策略是最大化 open-loop 证据严谨性 + honest limitations\n- **counterfactual 实验链**：instruction → 10tasks → spatial。前两个 success，spatial 是进一步细粒度验证。如果 spatial 也 success，强化\"heads route fine-grained information\"narrative；如果 negative，说明 routing 可能是 task-level 而非 token-level\n- **易错点**：7 个 PREPARING 实验没有一个在跑，两块 GPU 空闲 = 失职状态。下一个\"我\"必须立即推动至少 1 个实验上 GPU，或向 Director 说明阻塞原因\n- **审稿历史**：Round 7 最高分 6.5-7/10，Round 14 降到 5.3，Round 15 fresh 已提交待结果。Provenance coverage 109/114\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779391005.md"
+}

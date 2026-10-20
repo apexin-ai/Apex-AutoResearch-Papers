@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48393fd01e29cd928d9a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis fetch spatial and trajectory results",
+  "task_key": "worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514_result.json",
+    "occurrence": 1,
+    "bytes": 1677,
+    "sha256": "310013f7dd7f1cad53727711439e112280cd3bd9eb0a72738bcf4b6c7a9becbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入本地。汇总：\n\n## counterfactual_spatial (libero_spatial, 10 tasks × 10 demos × 50 timesteps)\n\n| Condition | Global d | CI 95% | Token Div | KL Div |\n|-----------|----------|--------|-----------|--------|\n| **empty** | **0.942** | [0.914, 0.970] | 0.914 | 9.030 |\n| wrong | 0.851 | [0.824, 0.879] | 0.865 | 6.957 |\n| shuffled | 0.833 | [0.805, 0.861] | 0.877 | 7.759 |\n| paraphrased | 0.806 | [0.778, 0.833] | 0.799 | 5.916 |\n\nCross-task CV: wrong=0.093 (最稳定), paraphrased=0.128, shuffled=0.166, empty=0.185\n\n## counterfactual_10tasks (10 diverse tasks × 10 demos × 50 timesteps)\n\n| Condition | Global d | Token Div | KL Div | Cross-task CV |\n|-----------|----------|-----------|--------|---------------|\n| **empty** | **0.978** | 0.913 | 8.807 | 0.171 |\n| wrong | 0.924 | 0.908 | 8.383 | 0.274 |\n| shuffled | 0.763 | 0.871 | 7.331 | 0.185 |\n| paraphrased | 0.707 | 0.830 | 6.457 | 0.296 |\n\n## Trajectory-level Cohen's d (demo-level aggregation, 30 demos, bootstrap B=10000)\n\n| Condition | Token-level d | Trajectory-level d | CI 95% | Inflation |\n|-----------|--------------|-------------------|--------|-----------|\n| wrong | 0.844 | **3.798** | [3.194, 4.938] | 0.222 |\n| empty | 0.968 | **3.438** | [2.921, 4.448] | 0.282 |\n| shuffled | 0.625 | **2.595** | [2.028, 3.791] | 0.241 |\n| paraphrased | 0.697 | **2.131** | [1.740, 2.819] | 0.327 |\n\nToken-level d 仅为 trajectory-level d 的 18-33% (mean inflation factor 0.245)。\n\n文件位置：\n- `artifacts/statistical_supplements/counterfactual_spatial.json`\n- `artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fetch-spatial-and-trajectory-results.md"
+}

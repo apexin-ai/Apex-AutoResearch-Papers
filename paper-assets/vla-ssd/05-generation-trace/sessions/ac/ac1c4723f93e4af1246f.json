@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac1c4723f93e4af1246f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh rsa no inst gate",
+  "task_key": "worker_ssh_rsa-no-inst-gate_20260515T211150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsa-no-inst-gate_20260515T211150_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "f6758a72d006afa1aa73930b3f945c2fdf288f81714ddcdb55dbb15127a9df75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. The instruction ablation RSA gate is **FAIL** — no-instruction untrained peak RSA (0.4802) is virtually identical to with-instruction (0.4846), confirming the untrained VLA's action-relevant structure is visually driven, not instruction-driven."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rsa-no-inst-gate.md"
+}

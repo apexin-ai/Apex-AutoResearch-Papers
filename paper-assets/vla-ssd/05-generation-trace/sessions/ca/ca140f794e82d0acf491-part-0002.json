@@ -1,0 +1,770 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ca140f794e82d0acf491",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-17T12:07:06.077Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JwZMVdS9q5CwFLuYG1FAEY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\\\n\\\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\\\\\"9-31\\\\\\\").\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nfrom tqdm import tqdm\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Arbitrary layer range cross-instruction feature extraction\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--frames_per_demo\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--max_demos\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\", \\\\\\\"llama2base\\\\\\\"], default=\\\\\\\"trained\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Layer range, e.g. '9-31' or '9-20'\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_layer_range(layers_str):\\\\n    parts = layers_str.split(\\\\\\\"-\\\\\\\")\\\\n    if len(parts) == 2:\\\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\\\n    return [int(x) for x in layers_str.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    stem = Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return stem.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef load_model(model_path, condition, device):\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        model_path, trust_remote_code=True, local_files_only=True\\\\n    )\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        local_files_only=True,\\\\n    )\\\\n\\\\n    if condition == \\\\\\\"untrained\\\\\\\":\\\\n        print(\\\\\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        llm_cfg = model.language_model.config\\\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\\\n        model.language_model.load_state_dict(random_llm.state_dict())\\\\n        del random_llm\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone reinitialized.\\\\\\\")\\\\n\\\\n    elif condition == \\\\\\\"llama2base\\\\\\\":\\\\n        print(\\\\\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        os.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n        llama2_path = \\\\\\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\\\\\"\\\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\\\\\".\\\\\\\")]\\\\n        assert len(snap_dirs) >= 1, f\\\\\\\"No Llama-2 snapshot found in {llama2_path}\\\\\\\"\\\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\\\n        )\\\\n        base_sd = base_llm.state_dict()\\\\n        for name, param in model.language_model.named_parameters():\\\\n            if name in base_sd:\\\\n                if param.shape == base_sd[name].shape:\\\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\\\n                elif param.shape[0] > base_sd[name].shape[0]:\\\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\\\n        del base_llm, base_sd\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone replaced with Llama-2-7B base.\\\\\\\")\\\\n\\\\n    model = model.to(device).eval()\\\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\\\n    print(f\\\\\\\"Model loaded: {n_params:.1f}B p\\\\n\\\\n... [截断: 输出过长，省略 1169 字符] ...\\\\n\\\\nce(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    dry_run = getattr(args, 'dry_run', False)\\\\n    layer_indices = parse_layer_range(args.layers)\\\\n\\\\n    output_filename = f\\\\\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\\\\\"\\\\n    output_path = os.path.join(args.output_dir, output_filename)\\\\n\\\\n    print(f\\\\\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\\\\\")\\\\n    print(f\\\\\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\\\\\")\\\\n    print(f\\\\\\\"layers={layer_indices}\\\\\\\")\\\\n    print(f\\\\\\\"output={output_path}\\\\\\\")\\\\n    if dry_run:\\\\n        print(\\\\\\\"*** DRY-RUN MODE ***\\\\\\\")\\\\n\\\\n    model, processor = load_model(args.model_path, args.condition, device)\\\\n\\\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\\\\\"*.hdf5\\\\\\\")))\\\\n    print(f\\\\\\\"Found {len(hdf5_files)} task files\\\\\\\")\\\\n\\\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\\\n    print(f\\\\\\\"Instructions ({len(all_instructions)}):\\\\\\\")\\\\n    for i, inst in enumerate(all_instructions):\\\\n        print(f\\\\\\\"  [{i}] {inst}\\\\\\\")\\\\n\\\\n    if dry_run:\\\\n        hdf5_files = hdf5_files[:1]\\\\n        all_instructions_to_use = all_instructions[:2]\\\\n        max_demos = 1\\\\n    else:\\\\n        all_instructions_to_use = all_instructions\\\\n        max_demos = args.max_demos\\\\n\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    out_f = h5py.File(output_path, \\\\\\\"w\\\\\\\")\\\\n\\\\n    out_f.attrs['layers'] = layer_indices\\\\n\\\\n    meta = out_f.create_group(\\\\\\\"metadata\\\\\\\")\\\\n    meta.create_dataset(\\\\\\\"instructions\\\\\\\", data=[s.encode() for s in all_instructions])\\\\n    meta.create_dataset(\\\\\\\"layers\\\\\\\", data=layer_indices)\\\\n    meta.create_dataset(\\\\\\\"task_files\\\\\\\", data=[Path(f).name.encode() for f in hdf5_files])\\\\n\\\\n    total_forwards = 0\\\\n    t_start = time.time()\\\\n\\\\n    for task_idx, hdf5_path in enumerate(hdf5_files):\\\\n        task_name = Path(hdf5_path).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n[Task {task_idx}] {task_name}\\\\\\\")\\\\n\\\\n        f = h5py.File(hdf5_path, \\\\\\\"r\\\\\\\")\\\\n        data = f[\\\\\\\"data\\\\\\\"]\\\\n        demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1]))\\\\n        demo_keys = demo_keys[:max_demos]\\\\n\\\\n        task_grp = out_f.create_group(f\\\\\\\"task_{task_idx}\\\\\\\")\\\\n        frame_counter = 0\\\\n\\\\n        for demo_idx, dk in enumerate(tqdm(demo_keys, desc=f\\\\\\\"task_{task_idx}\\\\\\\")):\\\\n            images_ds = data[dk][\\\\\\\"obs\\\\\\\"][\\\\\\\"agentview_rgb\\\\\\\"]\\\\n            T = images_ds.shape[0]\\\\n            frame_indices = sample_frame_indices(T, args.frames_per_demo)\\\\n\\\\n            for t in frame_indices:\\\\n                img = Image.fromarray(images_ds[t])\\\\n                frame_grp = task_grp.create_group(f\\\\\\\"frame_{frame_counter}\\\\\\\")\\\\n                frame_grp.attrs[\\\\\\\"demo_key\\\\\\\"] = dk\\\\n                frame_grp.attrs[\\\\\\\"timestep\\\\\\\"] = t\\\\n                frame_grp.attrs[\\\\\\\"demo_length\\\\\\\"] = T\\\\n\\\\n                for inst_idx, instruction in enumerate(all_instructions_to_use):\\\\n                    im_mean, lp = extract_features_single(\\\\n                        model, processor, img, instruction, device, layer_indices\\\\n                    )\\\\n                    inst_grp = frame_grp.create_group(f\\\\\\\"instruction_{inst_idx}\\\\\\\")\\\\n                    inst_grp.create_dataset(\\\\\\\"image_mean\\\\\\\", data=im_mean, dtype=\\\\\\\"float16\\\\\\\")\\\\n                    inst_grp.create_dataset(\\\\\\\"last_preaction\\\\\\\", data=lp, dtype=\\\\\\\"float16\\\\\\\")\\\\n                    total_forwards += 1\\\\n\\\\n                frame_counter += 1\\\\n\\\\n        f.close()\\\\n        out_f.flush()\\\\n        elapsed = time.time() - t_start\\\\n        rate = total_forwards / elapsed if elapsed > 0 else 0\\\\n        print(f\\\\\\\"  {frame_counter} frames x {len(all_instructions_to_use)} instructions = {frame_counter * len(all_instructions_to_use)} forwards\\\\\\\")\\\\n        print(f\\\\\\\"  Total forwards so far: {total_forwards}, rate: {rate:.1f} fwd/s, elapsed: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n        gc.collect()\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    out_f.close()\\\\n    total_time = time.time() - t_start\\\\n    sz = os.path.getsize(output_path) / 1024**2\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {total_forwards} forward passes in {total_time/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"Output: {output_path} ({sz:.1f} MB)\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "24dcbbce-f6a0-489d-8de2-71274834ecc8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\\\n\\\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\\\\\"9-31\\\\\\\").\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nfrom tqdm import tqdm\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Arbitrary layer range cross-instruction feature extraction\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--frames_per_demo\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--max_demos\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\", \\\\\\\"llama2base\\\\\\\"], default=\\\\\\\"trained\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Layer range, e.g. '9-31' or '9-20'\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_layer_range(layers_str):\\\\n    parts = layers_str.split(\\\\\\\"-\\\\\\\")\\\\n    if len(parts) == 2:\\\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\\\n    return [int(x) for x in layers_str.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    stem = Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return stem.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef load_model(model_path, condition, device):\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        model_path, trust_remote_code=True, local_files_only=True\\\\n    )\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        local_files_only=True,\\\\n    )\\\\n\\\\n    if condition == \\\\\\\"untrained\\\\\\\":\\\\n        print(\\\\\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        llm_cfg = model.language_model.config\\\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\\\n        model.language_model.load_state_dict(random_llm.state_dict())\\\\n        del random_llm\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone reinitialized.\\\\\\\")\\\\n\\\\n    elif condition == \\\\\\\"llama2base\\\\\\\":\\\\n        print(\\\\\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        os.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n        llama2_path = \\\\\\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\\\\\"\\\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\\\\\".\\\\\\\")]\\\\n        assert len(snap_dirs) >= 1, f\\\\\\\"No Llama-2 snapshot found in {llama2_path}\\\\\\\"\\\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\\\n        )\\\\n        base_sd = base_llm.state_dict()\\\\n        for name, param in model.language_model.named_parameters():\\\\n            if name in base_sd:\\\\n                if param.shape == base_sd[name].shape:\\\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\\\n                elif param.shape[0] > base_sd[name].shape[0]:\\\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\\\n        del base_llm, base_sd\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone replaced with Llama-2-7B base.\\\\\\\")\\\\n\\\\n    model = model.to(device).eval()\\\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\\\n    print(f\\\\\\\"Model loaded: {n_params:.1f}B p\\\\n\\\\n... [截断: 输出过长，省略 1169 字符] ...\\\\n\\\\nce(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    dry_run = getattr(args, 'dry_run', False)\\\\n    layer_indices = parse_layer_range(args.layers)\\\\n\\\\n    output_filename = f\\\\\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\\\\\"\\\\n    output_path = os.path.join(args.output_dir, output_filename)\\\\n\\\\n    print(f\\\\\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\\\\\")\\\\n    print(f\\\\\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\\\\\")\\\\n    print(f\\\\\\\"layers={layer_indices}\\\\\\\")\\\\n    print(f\\\\\\\"output={output_path}\\\\\\\")\\\\n    if dry_run:\\\\n        print(\\\\\\\"*** DRY-RUN MODE ***\\\\\\\")\\\\n\\\\n    model, processor = load_model(args.model_path, args.condition, device)\\\\n\\\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\\\\\"*.hdf5\\\\\\\")))\\\\n    print(f\\\\\\\"Found {len(hdf5_files)} task files\\\\\\\")\\\\n\\\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\\\n    print(f\\\\\\\"Instructions ({len(all_instructions)}):\\\\\\\")\\\\n    for i, inst in enumerate(all_instructions):\\\\n        print(f\\\\\\\"  [{i}] {inst}\\\\\\\")\\\\n\\\\n    if dry_run:\\\\n        hdf5_files = hdf5_files[:1]\\\\n        all_instructions_to_use = all_instructions[:2]\\\\n        max_demos = 1\\\\n    else:\\\\n        all_instructions_to_use = all_instructions\\\\n        max_demos = args.max_demos\\\\n\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    out_f = h5py.File(output_path, \\\\\\\"w\\\\\\\")\\\\n\\\\n    out_f.attrs['layers'] = layer_indices\\\\n\\\\n    meta = out_f.create_group(\\\\\\\"metadata\\\\\\\")\\\\n    meta.create_dataset(\\\\\\\"instructions\\\\\\\", data=[s.encode() for s in all_instructions])\\\\n    meta.create_dataset(\\\\\\\"layers\\\\\\\", data=layer_indices)\\\\n    meta.create_dataset(\\\\\\\"task_files\\\\\\\", data=[Path(f).name.encode() for f in hdf5_files])\\\\n\\\\n    total_forwards = 0\\\\n    t_start = time.time()\\\\n\\\\n    for task_idx, hdf5_path in enumerate(hdf5_files):\\\\n        task_name = Path(hdf5_path).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n[Task {task_idx}] {task_name}\\\\\\\")\\\\n\\\\n        f = h5py.File(hdf5_path, \\\\\\\"r\\\\\\\")\\\\n        data = f[\\\\\\\"data\\\\\\\"]\\\\n        demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1]))\\\\n        demo_keys = demo_keys[:max_demos]\\\\n\\\\n        task_grp = out_f.create_group(f\\\\\\\"task_{task_idx}\\\\\\\")\\\\n        frame_counter = 0\\\\n\\\\n        for demo_idx, dk in enumerate(tqdm(demo_keys, desc=f\\\\\\\"task_{task_idx}\\\\\\\")):\\\\n            images_ds = data[dk][\\\\\\\"obs\\\\\\\"][\\\\\\\"agentview_rgb\\\\\\\"]\\\\n            T = images_ds.shape[0]\\\\n            frame_indices = sample_frame_indices(T, args.frames_per_demo)\\\\n\\\\n            for t in frame_indices:\\\\n                img = Image.fromarray(images_ds[t])\\\\n                frame_grp = task_grp.create_group(f\\\\\\\"frame_{frame_counter}\\\\\\\")\\\\n                frame_grp.attrs[\\\\\\\"demo_key\\\\\\\"] = dk\\\\n                frame_grp.attrs[\\\\\\\"timestep\\\\\\\"] = t\\\\n                frame_grp.attrs[\\\\\\\"demo_length\\\\\\\"] = T\\\\n\\\\n                for inst_idx, instruction in enumerate(all_instructions_to_use):\\\\n                    im_mean, lp = extract_features_single(\\\\n                        model, processor, img, instruction, device, layer_indices\\\\n                    )\\\\n                    inst_grp = frame_grp.create_group(f\\\\\\\"instruction_{inst_idx}\\\\\\\")\\\\n                    inst_grp.create_dataset(\\\\\\\"image_mean\\\\\\\", data=im_mean, dtype=\\\\\\\"float16\\\\\\\")\\\\n                    inst_grp.create_dataset(\\\\\\\"last_preaction\\\\\\\", data=lp, dtype=\\\\\\\"float16\\\\\\\")\\\\n                    total_forwards += 1\\\\n\\\\n                frame_counter += 1\\\\n\\\\n        f.close()\\\\n        out_f.flush()\\\\n        elapsed = time.time() - t_start\\\\n        rate = total_forwards / elapsed if elapsed > 0 else 0\\\\n        print(f\\\\\\\"  {frame_counter} frames x {len(all_instructions_to_use)} instructions = {frame_counter * len(all_instructions_to_use)} forwards\\\\\\\")\\\\n        print(f\\\\\\\"  Total forwards so far: {total_forwards}, rate: {rate:.1f} fwd/s, elapsed: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n        gc.collect()\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    out_f.close()\\\\n    total_time = time.time() - t_start\\\\n    sz = os.path.getsize(output_path) / 1024**2\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {total_forwards} forward passes in {total_time/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"Output: {output_path} ({sz:.1f} MB)\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\n\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\"9-31\\\").\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport os\\nimport re\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\nfrom tqdm import tqdm\\n\\nNUM_IMAGE_TOKENS = 256\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Arbitrary layer range cross-instruction feature extraction\\\"\\n    )\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--frames_per_demo\\\", type=int, default=1)\\n    p.add_argument(\\\"--max_demos\\\", type=int, default=50)\\n    p.add_argument(\\\"--condition\\\", choices=[\\\"trained\\\", \\\"untrained\\\", \\\"llama2base\\\"], default=\\\"trained\\\")\\n    p.add_argument(\\\"--layers\\\", type=str, required=True,\\n                   help=\\\"Layer range, e.g. '9-31' or '9-20'\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef parse_layer_range(layers_str):\\n    parts = layers_str.split(\\\"-\\\")\\n    if len(parts) == 2:\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\n    return [int(x) for x in layers_str.split(\\\",\\\")]\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(model_path, condition, device):\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        model_path, trust_remote_code=True, local_files_only=True\\n    )\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        model_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n        local_files_only=True,\\n    )\\n\\n    if condition == \\\"untrained\\\":\\n        print(\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\")\\n        from transformers import AutoModelForCausalLM\\n        llm_cfg = model.language_model.config\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\n        model.language_model.load_state_dict(random_llm.state_dict())\\n        del random_llm\\n        gc.collect()\\n        print(\\\"LLM backbone reinitialized.\\\")\\n\\n    elif condition == \\\"llama2base\\\":\\n        print(\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\")\\n        from transformers import AutoModelForCausalLM\\n        os.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n        llama2_path = \\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\"\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\".\\\")]\\n        assert len(snap_dirs) >= 1, f\\\"No Llama-2 snapshot found in {llama2_path}\\\"\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\n        )\\n        base_sd = base_llm.state_dict()\\n        for name, param in model.language_model.named_parameters():\\n            if name in base_sd:\\n                if param.shape == base_sd[name].shape:\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\n                elif param.shape[0] > base_sd[name].shape[0]:\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\n        del base_llm, base_sd\\n        gc.collect()\\n        print(\\\"LLM backbone replaced with Llama-2-7B base.\\\")\\n\\n    model = model.to(device).eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Model loaded: {n_params:.1f}B p\\n\\n... [截断: 输出过长，省略 1169 字符] ...\\n\\nce(f\\\"cuda:{args.gpu}\\\")\\n    dry_run = getattr(args, 'dry_run', False)\\n    layer_indices = parse_layer_range(args.layers)\\n\\n    output_filename = f\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\"\\n    output_path = os.path.join(args.output_dir, output_filename)\\n\\n    print(f\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\")\\n    print(f\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\")\\n    print(f\\\"layers={layer_indices}\\\")\\n    print(f\\\"output={output_path}\\\")\\n    if dry_run:\\n        print(\\\"*** DRY-RUN MODE ***\\\")\\n\\n    model, processor = load_model(args.model_path, args.condition, device)\\n\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\"*.hdf5\\\")))\\n    print(f\\\"Found {len(hdf5_files)} task files\\\")\\n\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\n    print(f\\\"Instructions ({len(all_instructions)}):\\\")\\n    for i, inst in enumerate(all_instructions):\\n        print(f\\\"  [{i}] {inst}\\\")\\n\\n    if dry_run:\\n        hdf5_files = hdf5_files[:1]\\n        all_instructions_to_use = all_instructions[:2]\\n        max_demos = 1\\n    else:\\n        all_instructions_to_use = all_instructions\\n        max_demos = args.max_demos\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n    out_f = h5py.File(output_path, \\\"w\\\")\\n\\n    out_f.attrs['layers'] = layer_indices\\n\\n    meta = out_f.create_group(\\\"metadata\\\")\\n    meta.create_dataset(\\\"instructions\\\", data=[s.encode() for s in all_instructions])\\n    meta.create_dataset(\\\"layers\\\", data=layer_indices)\\n    meta.create_dataset(\\\"task_files\\\", data=[Path(f).name.encode() for f in hdf5_files])\\n\\n    total_forwards = 0\\n    t_start = time.time()\\n\\n    for task_idx, hdf5_path in enumerate(hdf5_files):\\n        task_name = Path(hdf5_path).stem.replace(\\\"_demo\\\", \\\"\\\")\\n        print(f\\\"\\\\n[Task {task_idx}] {task_name}\\\")\\n\\n        f = h5py.File(hdf5_path, \\\"r\\\")\\n        data = f[\\\"data\\\"]\\n        demo_keys = sorted(data.keys(), key=lambda x: int(x.split(\\\"_\\\")[1]))\\n        demo_keys = demo_keys[:max_demos]\\n\\n        task_grp = out_f.create_group(f\\\"task_{task_idx}\\\")\\n        frame_counter = 0\\n\\n        for demo_idx, dk in enumerate(tqdm(demo_keys, desc=f\\\"task_{task_idx}\\\")):\\n            images_ds = data[dk][\\\"obs\\\"][\\\"agentview_rgb\\\"]\\n            T = images_ds.shape[0]\\n            frame_indices = sample_frame_indices(T, args.frames_per_demo)\\n\\n            for t in frame_indices:\\n                img = Image.fromarray(images_ds[t])\\n                frame_grp = task_grp.create_group(f\\\"frame_{frame_counter}\\\")\\n                frame_grp.attrs[\\\"demo_key\\\"] = dk\\n                frame_grp.attrs[\\\"timestep\\\"] = t\\n                frame_grp.attrs[\\\"demo_length\\\"] = T\\n\\n                for inst_idx, instruction in enumerate(all_instructions_to_use):\\n                    im_mean, lp = extract_features_single(\\n                        model, processor, img, instruction, device, layer_indices\\n                    )\\n                    inst_grp = frame_grp.create_group(f\\\"instruction_{inst_idx}\\\")\\n                    inst_grp.create_dataset(\\\"image_mean\\\", data=im_mean, dtype=\\\"float16\\\")\\n                    inst_grp.create_dataset(\\\"last_preaction\\\", data=lp, dtype=\\\"float16\\\")\\n                    total_forwards += 1\\n\\n                frame_counter += 1\\n\\n        f.close()\\n        out_f.flush()\\n        elapsed = time.time() - t_start\\n        rate = total_forwards / elapsed if elapsed > 0 else 0\\n        print(f\\\"  {frame_counter} frames x {len(all_instructions_to_use)} instructions = {frame_counter * len(all_instructions_to_use)} forwards\\\")\\n        print(f\\\"  Total forwards so far: {total_forwards}, rate: {rate:.1f} fwd/s, elapsed: {elapsed:.0f}s\\\")\\n\\n        gc.collect()\\n        torch.cuda.empty_cache()\\n\\n    out_f.close()\\n    total_time = time.time() - t_start\\n    sz = os.path.getsize(output_path) / 1024**2\\n    print(f\\\"\\\\nDone. {total_forwards} forward passes in {total_time/60:.1f} min\\\")\\n    print(f\\\"Output: {output_path} ({sz:.1f} MB)\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I see the truncated part. Let me read the `extract_features_single` function from this file as it's the one I need for the spatial data. Also, I notice the output for the spatial data uses `sample_frame_indices` which samples 1 frame (midpoint) per demo. Let me get the full `extract_features_single`.\n\nWait, both `cross_instruction_extract_dense.py` and `cross_instruction_extract_layers.py` have an `extract_features_single` function that was truncated. Let me get that.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "9ff5652b-7fa6-4c52-a5ad-c576b57a29b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C6YDe9h4MxU7h46XgRBsTM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3768,
+                "cache_read_input_tokens": 73138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3768
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018fCtxbp54UxpcGQMtAYaNf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "grep -n \"def extract_features_single\\|def sample_frame\" /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "7d51306d-2788-4c11-909a-0e18ca5e96f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C6YDe9h4MxU7h46XgRBsTM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3768,
+                "cache_read_input_tokens": 73138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3768
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-17T12:07:13.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018fCtxbp54UxpcGQMtAYaNf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "bb20a5b7-b8b8-4eeb-8eb1-46131c51b27e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SzAgb37Cd7aGuQrGiXjTs6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "grep -n \"def extract_features_single\" /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "88ebf991-873a-43f9-85c3-cb383fdaa852",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ti26arG1wixhkwBXynfuZp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 76906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EnPkCYZdxdXdsddc64myNx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "grep -n \"def sample_frame\" /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "74f315a0-109f-4ca2-b48f-af0861a9a083",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ti26arG1wixhkwBXynfuZp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 76906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-17T12:07:17.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SzAgb37Cd7aGuQrGiXjTs6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"115:def extract_features_single(model, processor, image, instruction, device, layer_indices):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "3e760349-82b0-484c-98e3-fd5a6371d80e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"115:def extract_features_single(model, processor, image, instruction, device, layer_indices):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"115:def extract_features_single(model, processor, image, instruction, device, layer_indices):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-17T12:07:17.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EnPkCYZdxdXdsddc64myNx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"107:def sample_frame_indices(demo_length, frames_per_demo):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "041bd937-96d7-403b-ba01-284c450e8428",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"107:def sample_frame_indices(demo_length, frames_per_demo):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"107:def sample_frame_indices(demo_length, frames_per_demo):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019SHH9b9cyAwzAg5gswT9oy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "head -155 /root/vla-ssd/scripts/cross_instruction_extract_layers.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "cc47ba3f-5a2a-41cd-b1aa-e9227f053d8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WbFDibCBoVboREcBweLH7U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 77260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 464
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-17T12:07:20.255Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019SHH9b9cyAwzAg5gswT9oy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\\\n\\\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\\\\\"9-31\\\\\\\").\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nfrom tqdm import tqdm\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Arbitrary layer range cross-instruction feature extraction\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--frames_per_demo\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--max_demos\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\", \\\\\\\"llama2base\\\\\\\"], default=\\\\\\\"trained\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Layer range, e.g. '9-31' or '9-20'\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_layer_range(layers_str):\\\\n    parts = layers_str.split(\\\\\\\"-\\\\\\\")\\\\n    if len(parts) == 2:\\\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\\\n    return [int(x) for x in layers_str.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    stem = Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return stem.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef load_model(model_path, condition, device):\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        model_path, trust_remote_code=True, local_files_only=True\\\\n    )\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        local_files_only=True,\\\\n    )\\\\n\\\\n    if condition == \\\\\\\"untrained\\\\\\\":\\\\n        print(\\\\\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        llm_cfg = model.language_model.config\\\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\\\n        model.language_model.load_state_dict(random_llm.state_dict())\\\\n        del random_llm\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone reinitialized.\\\\\\\")\\\\n\\\\n    elif condition == \\\\\\\"llama2base\\\\\\\":\\\\n        print(\\\\\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        os.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n        llama2_path = \\\\\\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\\\\\"\\\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\\\\\".\\\\\\\")]\\\\n        assert len(snap_dirs) >= 1, f\\\\\\\"No Llama-2 snapshot found in {llama2_path}\\\\\\\"\\\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\\\n        )\\\\n        base_sd = base_llm.state_dict()\\\\n        for name, param in model.language_model.named_parameters():\\\\n            if name in base_sd:\\\\n                if param.shape == base_sd[name].shape:\\\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\\\n                elif param.shape[0] > base_sd[name].shape[0]:\\\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\\\n        del base_llm, base_sd\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone replaced with Llama-2-7B base.\\\\\\\")\\\\n\\\\n    model = model.to(device).eval()\\\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\\\n    print(f\\\\\\\"Model loaded: {n_params:.1f}B params on {device}\\\\\\\")\\\\n    return model, processor\\\\n\\\\n\\\\ndef sample_frame_indices(demo_length, frames_per_demo):\\\\n    if frames_per_demo == 1:\\\\n        return [demo_length // 2]\\\\n    indices = np.linspace(0, demo_length - 1, frames_per_demo, dtype=int).tolist()\\\\n    return indices\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef extract_features_single(model, processor, image, instruction, device, layer_indices):\\\\n    prompt = f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n    inputs = processor(text=[prompt], images=[image], return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    inputs = {k: v.to(device) for k, v in inputs.items()}\\\\n\\\\n    with torch.amp.autocast(\\\\\\\"cuda\\\\\\\", dtype=torch.bfloat16):\\\\n        out = model(**inputs, output_hidden_states=True)\\\\n    hs = out.hidden_states\\\\n\\\\n    image_mean = torch.stack([hs[li][:, 1:1+NUM_IMAGE_TOKENS, :].mean(dim=1).squeeze(0) for li in layer_indices])\\\\n    last_preaction = torch.stack([hs[li][:, -1, :].squeeze(0) for li in layer_indices])\\\\n\\\\n    image_mean = image_mean.cpu().half().numpy()\\\\n    last_preaction = last_preaction.cpu().half().numpy()\\\\n\\\\n    del out, hs, inputs\\\\n    return image_mean, last_preaction\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    dry_run = getattr(args, 'dry_run', False)\\\\n    layer_indices = parse_layer_range(args.layers)\\\\n\\\\n    output_filename = f\\\\\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\\\\\"\\\\n    output_path = os.path.join(args.output_dir, output_filename)\\\\n\\\\n    print(f\\\\\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\\\\\")\\\\n    print(f\\\\\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\\\\\")\\\\n    print(f\\\\\\\"layers={layer_indices}\\\\\\\")\\\\n    print(f\\\\\\\"output={output_path}\\\\\\\")\\\\n    if dry_run:\\\\n        print(\\\\\\\"*** DRY-RUN MODE ***\\\\\\\")\\\\n\\\\n    model, processor = load_model(args.model_path, args.condition, device)\\\\n\\\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\\\\\"*.hdf5\\\\\\\")))\\\\n    print(f\\\\\\\"Found {len(hdf5_files)} task files\\\\\\\")\\\\n\\\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "0e378936-af72-4f89-a30a-37e980c8c90c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\\\n\\\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\\\\\"9-31\\\\\\\").\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport glob\\\\nimport os\\\\nimport re\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom PIL import Image\\\\nfrom tqdm import tqdm\\\\n\\\\nNUM_IMAGE_TOKENS = 256\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Arbitrary layer range cross-instruction feature extraction\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--frames_per_demo\\\\\\\", type=int, default=1)\\\\n    p.add_argument(\\\\\\\"--max_demos\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\", \\\\\\\"llama2base\\\\\\\"], default=\\\\\\\"trained\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Layer range, e.g. '9-31' or '9-20'\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_layer_range(layers_str):\\\\n    parts = layers_str.split(\\\\\\\"-\\\\\\\")\\\\n    if len(parts) == 2:\\\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\\\n    return [int(x) for x in layers_str.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n\\\\ndef task_desc_from_filename(fname):\\\\n    stem = Path(fname).stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return stem.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n\\\\n\\\\ndef load_model(model_path, condition, device):\\\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\\\n\\\\n    processor = AutoProcessor.from_pretrained(\\\\n        model_path, trust_remote_code=True, local_files_only=True\\\\n    )\\\\n    model = AutoModelForVision2Seq.from_pretrained(\\\\n        model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        low_cpu_mem_usage=True,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        local_files_only=True,\\\\n    )\\\\n\\\\n    if condition == \\\\\\\"untrained\\\\\\\":\\\\n        print(\\\\\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        llm_cfg = model.language_model.config\\\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\\\n        model.language_model.load_state_dict(random_llm.state_dict())\\\\n        del random_llm\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone reinitialized.\\\\\\\")\\\\n\\\\n    elif condition == \\\\\\\"llama2base\\\\\\\":\\\\n        print(\\\\\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\\\\\")\\\\n        from transformers import AutoModelForCausalLM\\\\n        os.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n        llama2_path = \\\\\\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\\\\\"\\\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\\\\\".\\\\\\\")]\\\\n        assert len(snap_dirs) >= 1, f\\\\\\\"No Llama-2 snapshot found in {llama2_path}\\\\\\\"\\\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\\\n        )\\\\n        base_sd = base_llm.state_dict()\\\\n        for name, param in model.language_model.named_parameters():\\\\n            if name in base_sd:\\\\n                if param.shape == base_sd[name].shape:\\\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\\\n                elif param.shape[0] > base_sd[name].shape[0]:\\\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\\\n        del base_llm, base_sd\\\\n        gc.collect()\\\\n        print(\\\\\\\"LLM backbone replaced with Llama-2-7B base.\\\\\\\")\\\\n\\\\n    model = model.to(device).eval()\\\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\\\n    print(f\\\\\\\"Model loaded: {n_params:.1f}B params on {device}\\\\\\\")\\\\n    return model, processor\\\\n\\\\n\\\\ndef sample_frame_indices(demo_length, frames_per_demo):\\\\n    if frames_per_demo == 1:\\\\n        return [demo_length // 2]\\\\n    indices = np.linspace(0, demo_length - 1, frames_per_demo, dtype=int).tolist()\\\\n    return indices\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef extract_features_single(model, processor, image, instruction, device, layer_indices):\\\\n    prompt = f\\\\\\\"In: What action should the robot take to {instruction}?\\\\\\\\nOut:\\\\\\\"\\\\n    inputs = processor(text=[prompt], images=[image], return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    inputs = {k: v.to(device) for k, v in inputs.items()}\\\\n\\\\n    with torch.amp.autocast(\\\\\\\"cuda\\\\\\\", dtype=torch.bfloat16):\\\\n        out = model(**inputs, output_hidden_states=True)\\\\n    hs = out.hidden_states\\\\n\\\\n    image_mean = torch.stack([hs[li][:, 1:1+NUM_IMAGE_TOKENS, :].mean(dim=1).squeeze(0) for li in layer_indices])\\\\n    last_preaction = torch.stack([hs[li][:, -1, :].squeeze(0) for li in layer_indices])\\\\n\\\\n    image_mean = image_mean.cpu().half().numpy()\\\\n    last_preaction = last_preaction.cpu().half().numpy()\\\\n\\\\n    del out, hs, inputs\\\\n    return image_mean, last_preaction\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    dry_run = getattr(args, 'dry_run', False)\\\\n    layer_indices = parse_layer_range(args.layers)\\\\n\\\\n    output_filename = f\\\\\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\\\\\"\\\\n    output_path = os.path.join(args.output_dir, output_filename)\\\\n\\\\n    print(f\\\\\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\\\\\")\\\\n    print(f\\\\\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\\\\\")\\\\n    print(f\\\\\\\"layers={layer_indices}\\\\\\\")\\\\n    print(f\\\\\\\"output={output_path}\\\\\\\")\\\\n    if dry_run:\\\\n        print(\\\\\\\"*** DRY-RUN MODE ***\\\\\\\")\\\\n\\\\n    model, processor = load_model(args.model_path, args.condition, device)\\\\n\\\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\\\\\"*.hdf5\\\\\\\")))\\\\n    print(f\\\\\\\"Found {len(hdf5_files)} task files\\\\\\\")\\\\n\\\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"cross_instruction_extract_layers.py — Arbitrary layer range cross-instruction feature extraction.\\n\\nBased on cross_instruction_extract_dense.py but supports --layers argument (e.g., \\\"9-31\\\").\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport os\\nimport re\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\nfrom tqdm import tqdm\\n\\nNUM_IMAGE_TOKENS = 256\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Arbitrary layer range cross-instruction feature extraction\\\"\\n    )\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--frames_per_demo\\\", type=int, default=1)\\n    p.add_argument(\\\"--max_demos\\\", type=int, default=50)\\n    p.add_argument(\\\"--condition\\\", choices=[\\\"trained\\\", \\\"untrained\\\", \\\"llama2base\\\"], default=\\\"trained\\\")\\n    p.add_argument(\\\"--layers\\\", type=str, required=True,\\n                   help=\\\"Layer range, e.g. '9-31' or '9-20'\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef parse_layer_range(layers_str):\\n    parts = layers_str.split(\\\"-\\\")\\n    if len(parts) == 2:\\n        return list(range(int(parts[0]), int(parts[1]) + 1))\\n    return [int(x) for x in layers_str.split(\\\",\\\")]\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_model(model_path, condition, device):\\n    from transformers import AutoModelForVision2Seq, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        model_path, trust_remote_code=True, local_files_only=True\\n    )\\n    model = AutoModelForVision2Seq.from_pretrained(\\n        model_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n        local_files_only=True,\\n    )\\n\\n    if condition == \\\"untrained\\\":\\n        print(\\\"Reinitializing LLM backbone (keeping vision encoder + projector)...\\\")\\n        from transformers import AutoModelForCausalLM\\n        llm_cfg = model.language_model.config\\n        random_llm = AutoModelForCausalLM.from_config(llm_cfg, torch_dtype=torch.bfloat16)\\n        model.language_model.load_state_dict(random_llm.state_dict())\\n        del random_llm\\n        gc.collect()\\n        print(\\\"LLM backbone reinitialized.\\\")\\n\\n    elif condition == \\\"llama2base\\\":\\n        print(\\\"Replacing LLM backbone with Llama-2-7B base weights...\\\")\\n        from transformers import AutoModelForCausalLM\\n        os.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n        llama2_path = \\\"/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/\\\"\\n        snap_dirs = [d for d in os.listdir(llama2_path) if not d.startswith(\\\".\\\")]\\n        assert len(snap_dirs) >= 1, f\\\"No Llama-2 snapshot found in {llama2_path}\\\"\\n        llama2_full_path = os.path.join(llama2_path, snap_dirs[0])\\n        base_llm = AutoModelForCausalLM.from_pretrained(\\n            llama2_full_path, torch_dtype=torch.bfloat16, local_files_only=True\\n        )\\n        base_sd = base_llm.state_dict()\\n        for name, param in model.language_model.named_parameters():\\n            if name in base_sd:\\n                if param.shape == base_sd[name].shape:\\n                    param.data.copy_(base_sd[name].to(param.dtype))\\n                elif param.shape[0] > base_sd[name].shape[0]:\\n                    param.data[:base_sd[name].shape[0]].copy_(base_sd[name].to(param.dtype))\\n        del base_llm, base_sd\\n        gc.collect()\\n        print(\\\"LLM backbone replaced with Llama-2-7B base.\\\")\\n\\n    model = model.to(device).eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Model loaded: {n_params:.1f}B params on {device}\\\")\\n    return model, processor\\n\\n\\ndef sample_frame_indices(demo_length, frames_per_demo):\\n    if frames_per_demo == 1:\\n        return [demo_length // 2]\\n    indices = np.linspace(0, demo_length - 1, frames_per_demo, dtype=int).tolist()\\n    return indices\\n\\n\\n@torch.no_grad()\\ndef extract_features_single(model, processor, image, instruction, device, layer_indices):\\n    prompt = f\\\"In: What action should the robot take to {instruction}?\\\\nOut:\\\"\\n    inputs = processor(text=[prompt], images=[image], return_tensors=\\\"pt\\\")\\n    inputs = {k: v.to(device) for k, v in inputs.items()}\\n\\n    with torch.amp.autocast(\\\"cuda\\\", dtype=torch.bfloat16):\\n        out = model(**inputs, output_hidden_states=True)\\n    hs = out.hidden_states\\n\\n    image_mean = torch.stack([hs[li][:, 1:1+NUM_IMAGE_TOKENS, :].mean(dim=1).squeeze(0) for li in layer_indices])\\n    last_preaction = torch.stack([hs[li][:, -1, :].squeeze(0) for li in layer_indices])\\n\\n    image_mean = image_mean.cpu().half().numpy()\\n    last_preaction = last_preaction.cpu().half().numpy()\\n\\n    del out, hs, inputs\\n    return image_mean, last_preaction\\n\\n\\ndef main():\\n    args = parse_args()\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n    dry_run = getattr(args, 'dry_run', False)\\n    layer_indices = parse_layer_range(args.layers)\\n\\n    output_filename = f\\\"{args.condition}_cross_inst_L{layer_indices[0]}-L{layer_indices[-1]}.h5\\\"\\n    output_path = os.path.join(args.output_dir, output_filename)\\n\\n    print(f\\\"=== Cross-Instruction Feature Extraction (L{layer_indices[0]}-L{layer_indices[-1]}) ===\\\")\\n    print(f\\\"condition={args.condition}, gpu={args.gpu}, frames_per_demo={args.frames_per_demo}\\\")\\n    print(f\\\"layers={layer_indices}\\\")\\n    print(f\\\"output={output_path}\\\")\\n    if dry_run:\\n        print(\\\"*** DRY-RUN MODE ***\\\")\\n\\n    model, processor = load_model(args.model_path, args.condition, device)\\n\\n    hdf5_files = sorted(glob.glob(os.path.join(args.data_dir, \\\"*.hdf5\\\")))\\n    print(f\\\"Found {len(hdf5_files)} task files\\\")\\n\\n    all_instructions = [task_desc_from_filename(f) for f in hdf5_files]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have complete understanding of the code. Let me also check the existing `action_probe_libero_spatial.py` on the server.",
+              "signature": "ErkCClkIDRgCKkARgOEcjlZNoqvrwyDk+1vvOgNpHfwWuG8UTsjXAKWL6CsRym4ZQNxni9xUvRDlTFr7ynlicOf70AIta0a6Yv99Mg9jbGF1ZGUtb3B1cy00LTY4ABIM9DnSiSVM7CV36RAJGgz3tOk5oThp891LuwAiMJ7NybppXjgcFYdhISCcDh0C0I9pAaogSPSs3M7G6zwJnnQrJH9inbjorS1jhNehZiqNAZYNN8yCAjAE8tfKTPBxNXiqKcQ4qDSVkftgHvA164PNDbG+4QAJLmLEIlvK8OSdv7wFT88z3cQGBawTvBYGNe4SnlDzMk9+cv+j9d+RZwSAaJGf1YzhR1U9jH76cc1hgU0wAQBWz0l/g/Zta0/fVFh6+GZMKtTeVNrSicmbUAw3tj59/E4Bgdq6vQlBtBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "4f146f55-c025-45cd-98a4-311ba973796b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MNwTsukivLmWZWNiuDvQNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2607,
+                "cache_read_input_tokens": 77724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the action probe script for the spatial data."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "a4096476-c4d2-4671-83d4-a5a1d2eec1b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MNwTsukivLmWZWNiuDvQNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2607,
+                "cache_read_input_tokens": 77724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PhCXLkpBirMtiedA63JjoL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "cat /root/vla-ssd/scripts/action_probe_libero_spatial.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "b1341588-51d0-460e-b517-67956249340c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MNwTsukivLmWZWNiuDvQNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2607,
+                "cache_read_input_tokens": 77724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LTMZjHhxZQFqFBp8CLdXjp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "ls /root/vla-ssd/scripts/ablations/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "fc55fa63-1da5-4247-866a-737617bdd37e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MNwTsukivLmWZWNiuDvQNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2607,
+                "cache_read_input_tokens": 77724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2607
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-17T12:07:26.515Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PhCXLkpBirMtiedA63JjoL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full-layer action probe R2 scan for LIBERO-Spatial: L0-L32 x trained/untrained x image_mean/last_preaction.\\\\n\\\\nHyperparams (matches fulllayer_action_probe.py):\\\\n  - epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42\\\\n  - target: predict a_{t+1} from feature at time t\\\\n  - normalization: z-score using train mean/std\\\\n  - split: 80/20 per-task (first 80% demos = train)\\\\n  - model: Linear(4096,256) -> ReLU -> Linear(256,7)\\\\n\\\\nInput:\\\\n  - Features: /root/autodl-tmp/vla-ssd/features/{trained,untrained}_libero_spatial/*.h5\\\\n    Format: demo_{i}/{image_mean,last_preaction} -> (T, 33, 4096)\\\\n  - Actions: /root/autodl-tmp/vla-ssd/data/libero/libero_spatial/{task}_demo.hdf5\\\\n    Format: data/demo_{i}/actions (T, 7)\\\\n\\\\nOutput:\\\\n  - /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n\\\\nDependencies: numpy, torch, h5py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nimport glob\\\\nfrom pathlib import Path\\\\nfrom multiprocessing import Process, Manager\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\nSEED = 42\\\\nBATCH_SIZE = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nHIDDEN_DIM = 256\\\\nN_LAYERS = 33\\\\nINPUT_DIM = 4096\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/\\\\\\\"\\\\nFEATURE_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/features/\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\\\\"\\\\n\\\\nCONDITIONS = {\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"dir\\\\\\\": \\\\\\\"trained_libero_spatial\\\\\\\", \\\\\\\"device\\\\\\\": \\\\\\\"cuda:0\\\\\\\"},\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"dir\\\\\\\": \\\\\\\"untrained_libero_spatial\\\\\\\", \\\\\\\"device\\\\\\\": \\\\\\\"cuda:1\\\\\\\"},\\\\n}\\\\nAGG_KEYS = [\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"]\\\\n\\\\n\\\\nclass ActionMLPProbe(nn.Module):\\\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(in_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, out_dim),\\\\n        )\\\\n\\\\n    def forward(self, x):\\\\n        return self.net(x)\\\\n\\\\n\\\\ndef load_features_and_actions(feat_dir, agg_key, layer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features at given layer and corresponding actions for all tasks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_data = {}\\\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        action_path = os.path.join(DATA_DIR, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        if not os.path.exists(action_path):\\\\n            continue\\\\n\\\\n        demos = []\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as ff, h5py.File(action_path, \\\\\\\"r\\\\\\\") as fa:\\\\n            keys = sorted(\\\\n                [k for k in ff.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]),\\\\n            )\\\\n            for k in keys:\\\\n                idx = int(k.split(\\\\\\\"_\\\\\\\")[-1])\\\\n                feat = np.asarray(ff[k][agg_key][:, layer, :], dtype=np.float32)\\\\n                act = np.asarray(fa[f\\\\\\\"data/demo_{idx}/actions\\\\\\\"], dtype=np.float32)\\\\n                demos.append((feat, act))\\\\n        task_data[task] = demos\\\\n    return task_data\\\\n\\\\n\\\\ndef build_train_val(task_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split demos 80/20 per task, build (x_t, a_{t+1}) pairs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    X_tr_list, y_tr_list = [], []\\\\n    X_val_list, y_val_list, val_tasks = [], [], []\\\\n\\\\n    for task in sorted(task_data.keys()):\\\\n        demos = task_data[task]\\\\n        n_train = int(len(demos) * 0.8)\\\\n\\\\n        for i, (feat, act) in enumerate(demos):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            x = torch.from_numpy(feat[: T - 1])\\\\n            y = torch.from_numpy(act[1:T])\\\\n\\\\n            if i < n_train:\\\\n                X_tr_list.append(x)\\\\n                y_tr_list.append(y)\\\\n            else:\\\\n                X_val_list.append(x)\\\\n                y_val_list.append(y)\\\\n                val_tasks.extend([task] * (T - 1))\\\\n\\\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\\\n\\\\n\\\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Train MLP probe and evaluate R2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    torch.manual_seed(SEED)\\\\n    np.random.seed(SEED)\\\\n\\\\n    y_mean = y_tr\\\\n\\\\n... [截断: 输出过长，省略 4519 字符] ...\\\\n\\\\nr_results):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find layer with highest mean R2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    best_layer, best_r2 = -1, -999\\\\n    for lk, metrics in layer_results.items():\\\\n        if metrics[\\\\\\\"mean_R2\\\\\\\"] > best_r2:\\\\n            best_r2 = metrics[\\\\\\\"mean_R2\\\\\\\"]\\\\n            best_layer = int(lk.split(\\\\\\\"_\\\\\\\")[1])\\\\n    return {\\\\\\\"layer\\\\\\\": best_layer, \\\\\\\"mean_R2\\\\\\\": best_r2}\\\\n\\\\n\\\\ndef main():\\\\n    for condition, cfg in CONDITIONS.items():\\\\n        feat_dir = os.path.join(FEATURE_BASE, cfg[\\\\\\\"dir\\\\\\\"])\\\\n        if not os.path.isdir(feat_dir):\\\\n            print(f\\\\\\\"ERROR: Feature directory not found: {feat_dir}\\\\\\\")\\\\n            print(\\\\\\\"Run feature extraction first.\\\\\\\")\\\\n            sys.exit(1)\\\\n    if not os.path.isdir(DATA_DIR):\\\\n        print(f\\\\\\\"ERROR: Action data directory not found: {DATA_DIR}\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Full-layer action probe R2 scan (LIBERO-Spatial)\\\\\\\")\\\\n    print(f\\\\\\\"33 layers x 2 conditions x 2 aggs = 132 probes\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    t_start = time.time()\\\\n\\\\n    manager = Manager()\\\\n    result_dict = manager.dict()\\\\n\\\\n    processes = []\\\\n    for condition, cfg in CONDITIONS.items():\\\\n        p = Process(target=run_condition, args=(condition, cfg, result_dict))\\\\n        p.start()\\\\n        processes.append(p)\\\\n        print(f\\\\\\\"Started {condition} on {cfg['device']}\\\\\\\")\\\\n\\\\n    for p in processes:\\\\n        p.join()\\\\n\\\\n    results = dict(result_dict)\\\\n\\\\n    summary = {}\\\\n    for cond in [\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"]:\\\\n        if cond not in results:\\\\n            continue\\\\n        for agg in AGG_KEYS:\\\\n            if agg not in results[cond] or not results[cond][agg]:\\\\n                continue\\\\n            peak = find_peak(results[cond][agg])\\\\n            summary[f\\\\\\\"{cond}_{agg}_peak\\\\\\\"] = peak\\\\n            print(f\\\\\\\"Peak {cond}/{agg}: L{peak['layer']} mean_R2={peak['mean_R2']:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Bootstrap Comparisons ===\\\\\\\")\\\\n    bootstrap = {}\\\\n\\\\n    for agg in AGG_KEYS:\\\\n        tr_key = f\\\\\\\"trained_{agg}_peak\\\\\\\"\\\\n        un_key = f\\\\\\\"untrained_{agg}_peak\\\\\\\"\\\\n        if tr_key not in summary or un_key not in summary:\\\\n            continue\\\\n\\\\n        tr_peak = summary[tr_key]\\\\n        un_peak = summary[un_key]\\\\n        tr_r2 = results[\\\\\\\"trained\\\\\\\"][agg][f\\\\\\\"layer_{tr_peak['layer']}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        un_r2 = results[\\\\\\\"untrained\\\\\\\"][agg][f\\\\\\\"layer_{un_peak['layer']}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\\\n        bootstrap[f\\\\\\\"trained_vs_untrained_{agg}_bestvsbest\\\\\\\"] = comp\\\\n        print(f\\\\\\\"  trained(L{tr_peak['layer']}) vs untrained(L{un_peak['layer']}) {agg} best-vs-best: \\\\\\\"\\\\n              f\\\\\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\\\\\")\\\\n\\\\n    for agg in AGG_KEYS:\\\\n        tr_key = f\\\\\\\"trained_{agg}_peak\\\\\\\"\\\\n        if tr_key not in summary:\\\\n            continue\\\\n        peak_layer = summary[tr_key][\\\\\\\"layer\\\\\\\"]\\\\n        tr_r2 = results[\\\\\\\"trained\\\\\\\"][agg][f\\\\\\\"layer_{peak_layer}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        un_r2 = results[\\\\\\\"untrained\\\\\\\"][agg][f\\\\\\\"layer_{peak_layer}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\\\n        bootstrap[f\\\\\\\"trained_vs_untrained_{agg}_samelayer\\\\\\\"] = comp\\\\n        print(f\\\\\\\"  same-layer(L{peak_layer}) {agg}: \\\\\\\"\\\\n              f\\\\\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"hyperparams\\\\\\\": {\\\\n            \\\\\\\"epochs\\\\\\\": EPOCHS, \\\\\\\"patience\\\\\\\": PATIENCE, \\\\\\\"lr\\\\\\\": LR,\\\\n            \\\\\\\"batch_size\\\\\\\": BATCH_SIZE, \\\\\\\"hidden\\\\\\\": HIDDEN_DIM, \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\", \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n            \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"Linear(4096,256)->ReLU->Linear(256,7)\\\\\\\",\\\\n        },\\\\n        \\\\\\\"trained\\\\\\\": results.get(\\\\\\\"trained\\\\\\\", {}),\\\\n        \\\\\\\"untrained\\\\\\\": results.get(\\\\\\\"untrained\\\\\\\", {}),\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n        \\\\\\\"bootstrap_comparisons\\\\\\\": bootstrap,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(time.time() - t_start, 1),\\\\n    }\\\\n\\\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\\\n    with open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\nDone in {elapsed/60:.1f} min. Saved to {OUT_PATH}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "85213719-cc0b-490f-9328-b591709e5a86",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Full-layer action probe R2 scan for LIBERO-Spatial: L0-L32 x trained/untrained x image_mean/last_preaction.\\\\n\\\\nHyperparams (matches fulllayer_action_probe.py):\\\\n  - epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42\\\\n  - target: predict a_{t+1} from feature at time t\\\\n  - normalization: z-score using train mean/std\\\\n  - split: 80/20 per-task (first 80% demos = train)\\\\n  - model: Linear(4096,256) -> ReLU -> Linear(256,7)\\\\n\\\\nInput:\\\\n  - Features: /root/autodl-tmp/vla-ssd/features/{trained,untrained}_libero_spatial/*.h5\\\\n    Format: demo_{i}/{image_mean,last_preaction} -> (T, 33, 4096)\\\\n  - Actions: /root/autodl-tmp/vla-ssd/data/libero/libero_spatial/{task}_demo.hdf5\\\\n    Format: data/demo_{i}/actions (T, 7)\\\\n\\\\nOutput:\\\\n  - /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n\\\\nDependencies: numpy, torch, h5py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nimport glob\\\\nfrom pathlib import Path\\\\nfrom multiprocessing import Process, Manager\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\nSEED = 42\\\\nBATCH_SIZE = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nHIDDEN_DIM = 256\\\\nN_LAYERS = 33\\\\nINPUT_DIM = 4096\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/\\\\\\\"\\\\nFEATURE_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/features/\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\\\\"\\\\n\\\\nCONDITIONS = {\\\\n    \\\\\\\"trained\\\\\\\": {\\\\\\\"dir\\\\\\\": \\\\\\\"trained_libero_spatial\\\\\\\", \\\\\\\"device\\\\\\\": \\\\\\\"cuda:0\\\\\\\"},\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\\\\"dir\\\\\\\": \\\\\\\"untrained_libero_spatial\\\\\\\", \\\\\\\"device\\\\\\\": \\\\\\\"cuda:1\\\\\\\"},\\\\n}\\\\nAGG_KEYS = [\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"]\\\\n\\\\n\\\\nclass ActionMLPProbe(nn.Module):\\\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(in_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, out_dim),\\\\n        )\\\\n\\\\n    def forward(self, x):\\\\n        return self.net(x)\\\\n\\\\n\\\\ndef load_features_and_actions(feat_dir, agg_key, layer):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features at given layer and corresponding actions for all tasks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_data = {}\\\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        action_path = os.path.join(DATA_DIR, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        if not os.path.exists(action_path):\\\\n            continue\\\\n\\\\n        demos = []\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as ff, h5py.File(action_path, \\\\\\\"r\\\\\\\") as fa:\\\\n            keys = sorted(\\\\n                [k for k in ff.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]),\\\\n            )\\\\n            for k in keys:\\\\n                idx = int(k.split(\\\\\\\"_\\\\\\\")[-1])\\\\n                feat = np.asarray(ff[k][agg_key][:, layer, :], dtype=np.float32)\\\\n                act = np.asarray(fa[f\\\\\\\"data/demo_{idx}/actions\\\\\\\"], dtype=np.float32)\\\\n                demos.append((feat, act))\\\\n        task_data[task] = demos\\\\n    return task_data\\\\n\\\\n\\\\ndef build_train_val(task_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split demos 80/20 per task, build (x_t, a_{t+1}) pairs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    X_tr_list, y_tr_list = [], []\\\\n    X_val_list, y_val_list, val_tasks = [], [], []\\\\n\\\\n    for task in sorted(task_data.keys()):\\\\n        demos = task_data[task]\\\\n        n_train = int(len(demos) * 0.8)\\\\n\\\\n        for i, (feat, act) in enumerate(demos):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            x = torch.from_numpy(feat[: T - 1])\\\\n            y = torch.from_numpy(act[1:T])\\\\n\\\\n            if i < n_train:\\\\n                X_tr_list.append(x)\\\\n                y_tr_list.append(y)\\\\n            else:\\\\n                X_val_list.append(x)\\\\n                y_val_list.append(y)\\\\n                val_tasks.extend([task] * (T - 1))\\\\n\\\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\\\n\\\\n\\\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Train MLP probe and evaluate R2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    torch.manual_seed(SEED)\\\\n    np.random.seed(SEED)\\\\n\\\\n    y_mean = y_tr\\\\n\\\\n... [截断: 输出过长，省略 4519 字符] ...\\\\n\\\\nr_results):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find layer with highest mean R2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    best_layer, best_r2 = -1, -999\\\\n    for lk, metrics in layer_results.items():\\\\n        if metrics[\\\\\\\"mean_R2\\\\\\\"] > best_r2:\\\\n            best_r2 = metrics[\\\\\\\"mean_R2\\\\\\\"]\\\\n            best_layer = int(lk.split(\\\\\\\"_\\\\\\\")[1])\\\\n    return {\\\\\\\"layer\\\\\\\": best_layer, \\\\\\\"mean_R2\\\\\\\": best_r2}\\\\n\\\\n\\\\ndef main():\\\\n    for condition, cfg in CONDITIONS.items():\\\\n        feat_dir = os.path.join(FEATURE_BASE, cfg[\\\\\\\"dir\\\\\\\"])\\\\n        if not os.path.isdir(feat_dir):\\\\n            print(f\\\\\\\"ERROR: Feature directory not found: {feat_dir}\\\\\\\")\\\\n            print(\\\\\\\"Run feature extraction first.\\\\\\\")\\\\n            sys.exit(1)\\\\n    if not os.path.isdir(DATA_DIR):\\\\n        print(f\\\\\\\"ERROR: Action data directory not found: {DATA_DIR}\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Full-layer action probe R2 scan (LIBERO-Spatial)\\\\\\\")\\\\n    print(f\\\\\\\"33 layers x 2 conditions x 2 aggs = 132 probes\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    t_start = time.time()\\\\n\\\\n    manager = Manager()\\\\n    result_dict = manager.dict()\\\\n\\\\n    processes = []\\\\n    for condition, cfg in CONDITIONS.items():\\\\n        p = Process(target=run_condition, args=(condition, cfg, result_dict))\\\\n        p.start()\\\\n        processes.append(p)\\\\n        print(f\\\\\\\"Started {condition} on {cfg['device']}\\\\\\\")\\\\n\\\\n    for p in processes:\\\\n        p.join()\\\\n\\\\n    results = dict(result_dict)\\\\n\\\\n    summary = {}\\\\n    for cond in [\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"]:\\\\n        if cond not in results:\\\\n            continue\\\\n        for agg in AGG_KEYS:\\\\n            if agg not in results[cond] or not results[cond][agg]:\\\\n                continue\\\\n            peak = find_peak(results[cond][agg])\\\\n            summary[f\\\\\\\"{cond}_{agg}_peak\\\\\\\"] = peak\\\\n            print(f\\\\\\\"Peak {cond}/{agg}: L{peak['layer']} mean_R2={peak['mean_R2']:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Bootstrap Comparisons ===\\\\\\\")\\\\n    bootstrap = {}\\\\n\\\\n    for agg in AGG_KEYS:\\\\n        tr_key = f\\\\\\\"trained_{agg}_peak\\\\\\\"\\\\n        un_key = f\\\\\\\"untrained_{agg}_peak\\\\\\\"\\\\n        if tr_key not in summary or un_key not in summary:\\\\n            continue\\\\n\\\\n        tr_peak = summary[tr_key]\\\\n        un_peak = summary[un_key]\\\\n        tr_r2 = results[\\\\\\\"trained\\\\\\\"][agg][f\\\\\\\"layer_{tr_peak['layer']}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        un_r2 = results[\\\\\\\"untrained\\\\\\\"][agg][f\\\\\\\"layer_{un_peak['layer']}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\\\n        bootstrap[f\\\\\\\"trained_vs_untrained_{agg}_bestvsbest\\\\\\\"] = comp\\\\n        print(f\\\\\\\"  trained(L{tr_peak['layer']}) vs untrained(L{un_peak['layer']}) {agg} best-vs-best: \\\\\\\"\\\\n              f\\\\\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\\\\\")\\\\n\\\\n    for agg in AGG_KEYS:\\\\n        tr_key = f\\\\\\\"trained_{agg}_peak\\\\\\\"\\\\n        if tr_key not in summary:\\\\n            continue\\\\n        peak_layer = summary[tr_key][\\\\\\\"layer\\\\\\\"]\\\\n        tr_r2 = results[\\\\\\\"trained\\\\\\\"][agg][f\\\\\\\"layer_{peak_layer}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        un_r2 = results[\\\\\\\"untrained\\\\\\\"][agg][f\\\\\\\"layer_{peak_layer}\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\\\n        bootstrap[f\\\\\\\"trained_vs_untrained_{agg}_samelayer\\\\\\\"] = comp\\\\n        print(f\\\\\\\"  same-layer(L{peak_layer}) {agg}: \\\\\\\"\\\\n              f\\\\\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"hyperparams\\\\\\\": {\\\\n            \\\\\\\"epochs\\\\\\\": EPOCHS, \\\\\\\"patience\\\\\\\": PATIENCE, \\\\\\\"lr\\\\\\\": LR,\\\\n            \\\\\\\"batch_size\\\\\\\": BATCH_SIZE, \\\\\\\"hidden\\\\\\\": HIDDEN_DIM, \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\", \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n            \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"Linear(4096,256)->ReLU->Linear(256,7)\\\\\\\",\\\\n        },\\\\n        \\\\\\\"trained\\\\\\\": results.get(\\\\\\\"trained\\\\\\\", {}),\\\\n        \\\\\\\"untrained\\\\\\\": results.get(\\\\\\\"untrained\\\\\\\", {}),\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n        \\\\\\\"bootstrap_comparisons\\\\\\\": bootstrap,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(time.time() - t_start, 1),\\\\n    }\\\\n\\\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\\\n    with open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\nDone in {elapsed/60:.1f} min. Saved to {OUT_PATH}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Full-layer action probe R2 scan for LIBERO-Spatial: L0-L32 x trained/untrained x image_mean/last_preaction.\\n\\nHyperparams (matches fulllayer_action_probe.py):\\n  - epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42\\n  - target: predict a_{t+1} from feature at time t\\n  - normalization: z-score using train mean/std\\n  - split: 80/20 per-task (first 80% demos = train)\\n  - model: Linear(4096,256) -> ReLU -> Linear(256,7)\\n\\nInput:\\n  - Features: /root/autodl-tmp/vla-ssd/features/{trained,untrained}_libero_spatial/*.h5\\n    Format: demo_{i}/{image_mean,last_preaction} -> (T, 33, 4096)\\n  - Actions: /root/autodl-tmp/vla-ssd/data/libero/libero_spatial/{task}_demo.hdf5\\n    Format: data/demo_{i}/actions (T, 7)\\n\\nOutput:\\n  - /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n\\nDependencies: numpy, torch, h5py\\n\\\"\\\"\\\"\\n\\nimport os\\nimport json\\nimport sys\\nimport time\\nimport glob\\nfrom pathlib import Path\\nfrom multiprocessing import Process, Manager\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nN_LAYERS = 33\\nINPUT_DIM = 4096\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/\\\"\\nFEATURE_BASE = \\\"/root/autodl-tmp/vla-ssd/features/\\\"\\nOUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\"\\n\\nCONDITIONS = {\\n    \\\"trained\\\": {\\\"dir\\\": \\\"trained_libero_spatial\\\", \\\"device\\\": \\\"cuda:0\\\"},\\n    \\\"untrained\\\": {\\\"dir\\\": \\\"untrained_libero_spatial\\\", \\\"device\\\": \\\"cuda:1\\\"},\\n}\\nAGG_KEYS = [\\\"image_mean\\\", \\\"last_preaction\\\"]\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(feat_dir, agg_key, layer):\\n    \\\"\\\"\\\"Load features at given layer and corresponding actions for all tasks.\\\"\\\"\\\"\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            keys = sorted(\\n                [k for k in ff.keys() if k.startswith(\\\"demo_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n            )\\n            for k in keys:\\n                idx = int(k.split(\\\"_\\\")[-1])\\n                feat = np.asarray(ff[k][agg_key][:, layer, :], dtype=np.float32)\\n                act = np.asarray(fa[f\\\"data/demo_{idx}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    \\\"\\\"\\\"Split demos 80/20 per task, build (x_t, a_{t+1}) pairs.\\\"\\\"\\\"\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[: T - 1])\\n            y = torch.from_numpy(act[1:T])\\n\\n            if i < n_train:\\n                X_tr_list.append(x)\\n                y_tr_list.append(y)\\n            else:\\n                X_val_list.append(x)\\n                y_val_list.append(y)\\n                val_tasks.extend([task] * (T - 1))\\n\\n    return (torch.cat(X_tr_list), torch.cat(y_tr_list),\\n            torch.cat(X_val_list), torch.cat(y_val_list), val_tasks)\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, device):\\n    \\\"\\\"\\\"Train MLP probe and evaluate R2.\\\"\\\"\\\"\\n    torch.manual_seed(SEED)\\n    np.random.seed(SEED)\\n\\n    y_mean = y_tr\\n\\n... [截断: 输出过长，省略 4519 字符] ...\\n\\nr_results):\\n    \\\"\\\"\\\"Find layer with highest mean R2.\\\"\\\"\\\"\\n    best_layer, best_r2 = -1, -999\\n    for lk, metrics in layer_results.items():\\n        if metrics[\\\"mean_R2\\\"] > best_r2:\\n            best_r2 = metrics[\\\"mean_R2\\\"]\\n            best_layer = int(lk.split(\\\"_\\\")[1])\\n    return {\\\"layer\\\": best_layer, \\\"mean_R2\\\": best_r2}\\n\\n\\ndef main():\\n    for condition, cfg in CONDITIONS.items():\\n        feat_dir = os.path.join(FEATURE_BASE, cfg[\\\"dir\\\"])\\n        if not os.path.isdir(feat_dir):\\n            print(f\\\"ERROR: Feature directory not found: {feat_dir}\\\")\\n            print(\\\"Run feature extraction first.\\\")\\n            sys.exit(1)\\n    if not os.path.isdir(DATA_DIR):\\n        print(f\\\"ERROR: Action data directory not found: {DATA_DIR}\\\")\\n        sys.exit(1)\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Full-layer action probe R2 scan (LIBERO-Spatial)\\\")\\n    print(f\\\"33 layers x 2 conditions x 2 aggs = 132 probes\\\")\\n    print(\\\"=\\\" * 60)\\n    t_start = time.time()\\n\\n    manager = Manager()\\n    result_dict = manager.dict()\\n\\n    processes = []\\n    for condition, cfg in CONDITIONS.items():\\n        p = Process(target=run_condition, args=(condition, cfg, result_dict))\\n        p.start()\\n        processes.append(p)\\n        print(f\\\"Started {condition} on {cfg['device']}\\\")\\n\\n    for p in processes:\\n        p.join()\\n\\n    results = dict(result_dict)\\n\\n    summary = {}\\n    for cond in [\\\"trained\\\", \\\"untrained\\\"]:\\n        if cond not in results:\\n            continue\\n        for agg in AGG_KEYS:\\n            if agg not in results[cond] or not results[cond][agg]:\\n                continue\\n            peak = find_peak(results[cond][agg])\\n            summary[f\\\"{cond}_{agg}_peak\\\"] = peak\\n            print(f\\\"Peak {cond}/{agg}: L{peak['layer']} mean_R2={peak['mean_R2']:.4f}\\\")\\n\\n    print(\\\"\\\\n=== Bootstrap Comparisons ===\\\")\\n    bootstrap = {}\\n\\n    for agg in AGG_KEYS:\\n        tr_key = f\\\"trained_{agg}_peak\\\"\\n        un_key = f\\\"untrained_{agg}_peak\\\"\\n        if tr_key not in summary or un_key not in summary:\\n            continue\\n\\n        tr_peak = summary[tr_key]\\n        un_peak = summary[un_key]\\n        tr_r2 = results[\\\"trained\\\"][agg][f\\\"layer_{tr_peak['layer']}\\\"][\\\"per_task_R2\\\"]\\n        un_r2 = results[\\\"untrained\\\"][agg][f\\\"layer_{un_peak['layer']}\\\"][\\\"per_task_R2\\\"]\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\n        bootstrap[f\\\"trained_vs_untrained_{agg}_bestvsbest\\\"] = comp\\n        print(f\\\"  trained(L{tr_peak['layer']}) vs untrained(L{un_peak['layer']}) {agg} best-vs-best: \\\"\\n              f\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\")\\n\\n    for agg in AGG_KEYS:\\n        tr_key = f\\\"trained_{agg}_peak\\\"\\n        if tr_key not in summary:\\n            continue\\n        peak_layer = summary[tr_key][\\\"layer\\\"]\\n        tr_r2 = results[\\\"trained\\\"][agg][f\\\"layer_{peak_layer}\\\"][\\\"per_task_R2\\\"]\\n        un_r2 = results[\\\"untrained\\\"][agg][f\\\"layer_{peak_layer}\\\"][\\\"per_task_R2\\\"]\\n        comp = bootstrap_pairwise(tr_r2, un_r2)\\n        bootstrap[f\\\"trained_vs_untrained_{agg}_samelayer\\\"] = comp\\n        print(f\\\"  same-layer(L{peak_layer}) {agg}: \\\"\\n              f\\\"delta={comp['delta']:.4f}, CI={comp['ci_95']}, p={comp['p_value']:.4f}\\\")\\n\\n    output = {\\n        \\\"hyperparams\\\": {\\n            \\\"epochs\\\": EPOCHS, \\\"patience\\\": PATIENCE, \\\"lr\\\": LR,\\n            \\\"batch_size\\\": BATCH_SIZE, \\\"hidden\\\": HIDDEN_DIM, \\\"seed\\\": SEED,\\n            \\\"target\\\": \\\"next_action_a_{t+1}\\\", \\\"normalization\\\": \\\"z-score\\\",\\n            \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n            \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\",\\n        },\\n        \\\"trained\\\": results.get(\\\"trained\\\", {}),\\n        \\\"untrained\\\": results.get(\\\"untrained\\\", {}),\\n        \\\"summary\\\": summary,\\n        \\\"bootstrap_comparisons\\\": bootstrap,\\n        \\\"elapsed_seconds\\\": round(time.time() - t_start, 1),\\n    }\\n\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\n    with open(OUT_PATH, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\nDone in {elapsed/60:.1f} min. Saved to {OUT_PATH}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-17T12:07:27.035Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LTMZjHhxZQFqFBp8CLdXjp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"demo_sensitivity.py\\\\nprobe_seed_robustness.py\\\\nrsa_cosine_action_metric.py\\\\nrsa_per_dof.py\\\\nrsa_permutation_null.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "c45edf32-a3d6-4195-90b4-6776294dab35",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"demo_sensitivity.py\\\\nprobe_seed_robustness.py\\\\nrsa_cosine_action_metric.py\\\\nrsa_per_dof.py\\\\nrsa_permutation_null.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"demo_sensitivity.py\\nprobe_seed_robustness.py\\nrsa_cosine_action_metric.py\\nrsa_per_dof.py\\nrsa_permutation_null.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive understanding. Let me also check the existing action probe results for baseline values.",
+              "signature": "Eq4CClkIDRgCKkCWRVzWiyIHPBHORQhK1TJbSNc7FbjAPAM8dZvqF3+tMsXqDv16Imkio5aBfqIZh91HSEUtPsk/m2ClhgdVlqYfMg9jbGF1ZGUtb3B1cy00LTY4ABIMwWCety6ip0ybGxuQGgyY3rdYcsX7KLEueLIiMK3ZGx7N9qjPv6FK1Wr778TtV3ldRYyP/jEfNxCeXSZF95SPR14iZTHsLoODqTkdICqCASVNj5W5pwTBusqiRDLHIrzbO3y26M6QIL8GTzt1LwE3Cg8yrSrPWjVz0zT6QYTmq3O6RlTLbj7eveelOK2cNdmAw8mHdeqJZYBYAycewAEEyZzX5lKkNkIsNMN6oWfpw/EWwFtiwYjbVEcBSWojFDSuT16+PE/1F1OI15dNNEaZQywYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "4536c344-a743-4712-bfdf-5b5cdc04cce2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1PTQVgTxWoP92d3VCzPWR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4035,
+                "cache_read_input_tokens": 80331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4035
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the existing action probe results for baseline values."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "3c78591c-0131-4315-977e-bfe399c55843",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1PTQVgTxWoP92d3VCzPWR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4035,
+                "cache_read_input_tokens": 80331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4035
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APvb1XLk4RreqCUfWfqVrT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-19183",
+                "command": "grep -n \"mean_R2\" /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "9c1dbce5-14ba-4db5-a481-64c7a279b139",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1PTQVgTxWoP92d3VCzPWR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4035,
+                "cache_read_input_tokens": 80331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4035
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-17T12:07:33.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APvb1XLk4RreqCUfWfqVrT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17:        \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737,\\\\n35:        \\\\\\\"mean_R2\\\\\\\": 0.6799452856183053,\\\\n53:        \\\\\\\"mean_R2\\\\\\\": 0.6785239607095719,\\\\n71:        \\\\\\\"mean_R2\\\\\\\": 0.6807504430413246,\\\\n89:        \\\\\\\"mean_R2\\\\\\\": 0.6694138824939728,\\\\n107:        \\\\\\\"mean_R2\\\\\\\": 0.6855554699897766,\\\\n125:        \\\\\\\"mean_R2\\\\\\\": 0.675666868686676,\\\\n143:        \\\\\\\"mean_R2\\\\\\\": 0.6818932145833969,\\\\n161:        \\\\\\\"mean_R2\\\\\\\": 0.6815353974699974,\\\\n179:        \\\\\\\"mean_R2\\\\\\\": 0.6859799608588218,\\\\n197:        \\\\\\\"mean_R2\\\\\\\": 0.690634761750698,\\\\n215:        \\\\\\\"mean_R2\\\\\\\": 0.6839834600687027,\\\\n233:        \\\\\\\"mean_R2\\\\\\\": 0.684947994351387,\\\\n251:        \\\\\\\"mean_R2\\\\\\\": 0.696312727034092,\\\\n269:        \\\\\\\"mean_R2\\\\\\\": 0.6827773362398147,\\\\n287:        \\\\\\\"mean_R2\\\\\\\": 0.6764206632971763,\\\\n305:        \\\\\\\"mean_R2\\\\\\\": 0.6725162476301193,\\\\n323:        \\\\\\\"mean_R2\\\\\\\": 0.6822305813431739,\\\\n341:        \\\\\\\"mean_R2\\\\\\\": 0.665154618024826,\\\\n359:        \\\\\\\"mean_R2\\\\\\\": 0.6573897778987885,\\\\n377:        \\\\\\\"mean_R2\\\\\\\": 0.6376473993062973,\\\\n395:        \\\\\\\"mean_R2\\\\\\\": 0.6384424090385437,\\\\n413:        \\\\\\\"mean_R2\\\\\\\": 0.6395527750253678,\\\\n431:        \\\\\\\"mean_R2\\\\\\\": 0.6462660059332848,\\\\n449:        \\\\\\\"mean_R2\\\\\\\": 0.6428452849388122,\\\\n467:        \\\\\\\"mean_R2\\\\\\\": 0.6290156126022339,\\\\n485:        \\\\\\\"mean_R2\\\\\\\": 0.6276077300310134,\\\\n503:        \\\\\\\"mean_R2\\\\\\\": 0.6441418141126632,\\\\n521:        \\\\\\\"mean_R2\\\\\\\": 0.6271242558956146,\\\\n539:        \\\\\\\"mean_R2\\\\\\\": 0.6104061156511307,\\\\n557:        \\\\\\\"mean_R2\\\\\\\": 0.5971897721290589,\\\\n575:        \\\\\\\"mean_R2\\\\\\\": 0.6185219526290894,\\\\n593:        \\\\\\\"mean_R2\\\\\\\": 0.5765485376119613,\\\\n613:        \\\\\\\"mean_R2\\\\\\\": -0.01495964527130127,\\\\n631:        \\\\\\\"mean_R2\\\\\\\": 0.5086372524499894,\\\\n649:        \\\\\\\"mean_R2\\\\\\\": 0.6015924662351608,\\\\n667:        \\\\\\\"mean_R2\\\\\\\": 0.5994151264429093,\\\\n685:        \\\\\\\"mean_R2\\\\\\\": 0.5866118222475052,\\\\n703:        \\\\\\\"mean_R2\\\\\\\": 0.6132976323366165,\\\\n721:        \\\\\\\"mean_R2\\\\\\\": 0.5829461514949799,\\\\n739:        \\\\\\\"mean_R2\\\\\\\": 0.6195938020944596,\\\\n757:        \\\\\\\"mean_R2\\\\\\\": 0.6479837000370026,\\\\n775:        \\\\\\\"mean_R2\\\\\\\": 0.6329790681600571,\\\\n793:        \\\\\\\"mean_R2\\\\\\\": 0.6407589018344879,\\\\n811:        \\\\\\\"mean_R2\\\\\\\": 0.6460919916629791,\\\\n829:        \\\\\\\"mean_R2\\\\\\\": 0.6458403378725052,\\\\n847:        \\\\\\\"mean_R2\\\\\\\": 0.6610936522483826,\\\\n865:        \\\\\\\"mean_R2\\\\\\\": 0.6708231747150422,\\\\n883:        \\\\\\\"mean_R2\\\\\\\": 0.6745690748095512,\\\\n901:        \\\\\\\"mean_R2\\\\\\\": 0.6668455630540848,\\\\n919:        \\\\\\\"mean_R2\\\\\\\": 0.654585175216198,\\\\n937:        \\\\\\\"mean_R2\\\\\\\": 0.6379691362380981,\\\\n955:        \\\\\\\"mean_R2\\\\\\\": 0.6463813588023186,\\\\n973:        \\\\\\\"mean_R2\\\\\\\": 0.6676662966609002,\\\\n991:        \\\\\\\"mean_R2\\\\\\\": 0.6748461693525314,\\\\n1009:        \\\\\\\"mean_R2\\\\\\\": 0.6515808641910553,\\\\n1027:        \\\\\\\"mean_R2\\\\\\\": 0.6701292395591736,\\\\n1045:        \\\\\\\"mean_R2\\\\\\\": 0.6669400125741959,\\\\n1063:        \\\\\\\"mean_R2\\\\\\\": 0.6500366657972336,\\\\n1081:        \\\\\\\"mean_R2\\\\\\\": 0.6452138423919678,\\\\n1099:        \\\\\\\"mean_R2\\\\\\\": 0.6347220659255981,\\\\n1117:        \\\\\\\"mean_R2\\\\\\\": 0.6456100940704346,\\\\n1135:        \\\\\\\"mean_R2\\\\\\\": 0.648406907916069,\\\\n1153:        \\\\\\\"mean_R2\\\\\\\": 0.6529989898204803,\\\\n1171:        \\\\\\\"mean_R2\\\\\\\": 0.6370566427707672,\\\\n1189:        \\\\\\\"mean_R2\\\\\\\": 0.6560572475194931,\\\\n1211:        \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737,\\\\n1229:        \\\\\\\"mean_R2\\\\\\\": 0.6197013080120086,\\\\n1247:        \\\\\\\"mean_R2\\\\\\\": 0.5080936342477799,\\\\n1265:        \\\\\\\"mean_R2\\\\\\\": 0.5057604193687439,\\\\n1283:        \\\\\\\"mean_R2\\\\\\\": 0.6128607422113419,\\\\n1301:        \\\\\\\"mean_R2\\\\\\\": 0.6197602659463882,\\\\n1319:        \\\\\\\"mean_R2\\\\\\\": 0.5911015003919602,\\\\n1337:        \\\\\\\"mean_R2\\\\\\\": 0.5544632524251938,\\\\n1355:        \\\\\\\"mean_R2\\\\\\\": 0.5916422069072723,\\\\n1373:        \\\\\\\"mean_R2\\\\\\\": 0.5942061811685562,\\\\n1391:        \\\\\\\"mean_R2\\\\\\\": 0.4399487257003784,\\\\n1409:        \\\\\\\"mean_R2\\\\\\\": 0.39833202958106995,\\\\n1427:        \\\\\\\"mean_R2\\\\\\\": 0.4940182626247406,\\\\n1445:        \\\\\\\"mean_R2\\\\\\\": -0.014971005916595458,\\\\n1463:        \\\\\\\"mean_R2\\\\\\\": 0.32070239186286925,\\\\n1481:        \\\\\\\"mean_R2\\\\\\\": -0.014964449405670165,\\\\n1499:        \\\\\\\"mean_R2\\\\\\\": 0.3352381527423859,\\\\n1517:        \\\\\\\"mean_R2\\\\\\\": 0.2030996322631836,\\\\n1535:        \\\\\\\"mean_R2\\\\\\\": -0.014950895309448242,\\\\n1553:        \\\\\\\"mean_R2\\\\\\\": -0.014947342872619628,\\\\n1571:        \\\\\\\"mean_R2\\\\\\\": 0.2074543833732605,\\\\n1589:        \\\\\\\"mean_R2\\\\\\\": 0.19989521503448487,\\\\n1607:        \\\\\\\"mean_R2\\\\\\\": 0.10638495087623596,\\\\n1625:        \\\\\\\"mean_R2\\\\\\\": -0.014945471286773681,\\\\n1643:        \\\\\\\"mean_R2\\\\\\\": -0.014945888519287109,\\\\n1661:        \\\\\\\"mean_R2\\\\\\\": -0.014953327178955079,\\\\n1679:        \\\\\\\"mean_R2\\\\\\\": 0.47551814913749696,\\\\n1697:        \\\\\\\"mean_R2\\\\\\\": -0.014974367618560792,\\\\n1715:        \\\\\\\"mean_R2\\\\\\\": -0.014955079555511475,\\\\n1733:        \\\\\\\"mean_R2\\\\\\\": 0.1554762303829193,\\\\n1751:        \\\\\\\"mean_R2\\\\\\\": -0.014966821670532227,\\\\n1769:        \\\\\\\"mean_R2\\\\\\\": 0.09451506733894348,\\\\n1787:        \\\\\\\"mean_R2\\\\\\\": 0.6169480949640274,\\\\n1807:        \\\\\\\"mean_R2\\\\\\\": -0.014961147308349609,\\\\n1825:        \\\\\\\"mean_R2\\\\\\\": 0.6348172485828399,\\\\n1843:        \\\\\\\"mean_R2\\\\\\\": 0.5963127911090851,\\\\n1861:        \\\\\\\"mean_R2\\\\\\\": 0.5911267220973968,\\\\n1879:        \\\\\\\"mean_R2\\\\\\\": 0.5264089614152908,\\\\n1897:        \\\\\\\"mean_R2\\\\\\\": -0.014979064464569092,\\\\n1915:        \\\\\\\"mean_R2\\\\\\\": 0.40414944291114807,\\\\n1933:        \\\\\\\"mean_R2\\\\\\\": 0.43058950901031495,\\\\n1951:        \\\\\\\"mean_R2\\\\\\\": -0.01497511863708496,\\\\n1969:        \\\\\\\"mean_R2\\\\\\\": 0.09610130786895751,\\\\n1987:        \\\\\\\"mean_R2\\\\\\\": -0.014973783493041992,\\\\n2005:        \\\\\\\"mean_R2\\\\\\\": -0.014971709251403809,\\\\n2023:        \\\\\\\"mean_R2\\\\\\\": 0.4495316356420517,\\\\n2041:        \\\\\\\"mean_R2\\\\\\\": 0.07965168356895447,\\\\n2059:        \\\\\\\"mean_R2\\\\\\\": -0.014961671829223634,\\\\n2077:        \\\\\\\"mean_R2\\\\\\\": -0.014970636367797852,\\\\n2095:        \\\\\\\"mean_R2\\\\\\\": 0.14400640726089478,\\\\n2113:        \\\\\\\"mean_R2\\\\\\\": 0.09593928456306458,\\\\n2131:        \\\\\\\"mean_R2\\\\\\\": 0.14626169204711914,\\\\n2149:        \\\\\\\"mean_R2\\\\\\\": -0.014964640140533447,\\\\n2167:        \\\\\\\"mean_R2\\\\\\\": -0.014967083930969238,\\\\n2185:        \\\\\\\"mean_R2\\\\\\\": 0.30487629771232605,\\\\n2203:        \\\\\\\"mean_R2\\\\\\\": -0.01496344804763794,\\\\n2221:        \\\\\\\"mean_R2\\\\\\\": -0.0149666428565979,\\\\n2239:        \\\\\\\"mean_R2\\\\\\\": -0.01496514081954956,\\\\n2257:        \\\\\\\"mean_R2\\\\\\\": -0.014965713024139404,\\\\n2275:        \\\\\\\"mean_R2\\\\\\\": -0.014969325065612793,\\\\n2293:        \\\\\\\"mean_R2\\\\\\\": 0.058525800704956055,\\\\n2311:        \\\\\\\"mean_R2\\\\\\\": -0.014969778060913087,\\\\n2329:        \\\\\\\"mean_R2\\\\\\\": -0.014972329139709473,\\\\n2347:        \\\\\\\"mean_R2\\\\\\\": -0.01496429443359375,\\\\n2365:        \\\\\\\"mean_R2\\\\\\\": -0.014957559108734132,\\\\n2383:        \\\\\\\"mean_R2\\\\\\\": 0.6206460893154144,\\\\n2405:      \\\\\\\"mean_R2\\\\\\\": 0.696312727034092\\\\n2409:      \\\\\\\"mean_R2\\\\\\\": 0.6748461693525314\\\\n2413:      \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737\\\\n2417:      \\\\\\\"mean_R2\\\\\\\": 0.6348172485828399\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "027299cc-1264-4fac-a1b3-bfc40f1ea66b",
+            "uuid": "37078fac-c3f1-45ea-86b6-566910e20d0e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17:        \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737,\\\\n35:        \\\\\\\"mean_R2\\\\\\\": 0.6799452856183053,\\\\n53:        \\\\\\\"mean_R2\\\\\\\": 0.6785239607095719,\\\\n71:        \\\\\\\"mean_R2\\\\\\\": 0.6807504430413246,\\\\n89:        \\\\\\\"mean_R2\\\\\\\": 0.6694138824939728,\\\\n107:        \\\\\\\"mean_R2\\\\\\\": 0.6855554699897766,\\\\n125:        \\\\\\\"mean_R2\\\\\\\": 0.675666868686676,\\\\n143:        \\\\\\\"mean_R2\\\\\\\": 0.6818932145833969,\\\\n161:        \\\\\\\"mean_R2\\\\\\\": 0.6815353974699974,\\\\n179:        \\\\\\\"mean_R2\\\\\\\": 0.6859799608588218,\\\\n197:        \\\\\\\"mean_R2\\\\\\\": 0.690634761750698,\\\\n215:        \\\\\\\"mean_R2\\\\\\\": 0.6839834600687027,\\\\n233:        \\\\\\\"mean_R2\\\\\\\": 0.684947994351387,\\\\n251:        \\\\\\\"mean_R2\\\\\\\": 0.696312727034092,\\\\n269:        \\\\\\\"mean_R2\\\\\\\": 0.6827773362398147,\\\\n287:        \\\\\\\"mean_R2\\\\\\\": 0.6764206632971763,\\\\n305:        \\\\\\\"mean_R2\\\\\\\": 0.6725162476301193,\\\\n323:        \\\\\\\"mean_R2\\\\\\\": 0.6822305813431739,\\\\n341:        \\\\\\\"mean_R2\\\\\\\": 0.665154618024826,\\\\n359:        \\\\\\\"mean_R2\\\\\\\": 0.6573897778987885,\\\\n377:        \\\\\\\"mean_R2\\\\\\\": 0.6376473993062973,\\\\n395:        \\\\\\\"mean_R2\\\\\\\": 0.6384424090385437,\\\\n413:        \\\\\\\"mean_R2\\\\\\\": 0.6395527750253678,\\\\n431:        \\\\\\\"mean_R2\\\\\\\": 0.6462660059332848,\\\\n449:        \\\\\\\"mean_R2\\\\\\\": 0.6428452849388122,\\\\n467:        \\\\\\\"mean_R2\\\\\\\": 0.6290156126022339,\\\\n485:        \\\\\\\"mean_R2\\\\\\\": 0.6276077300310134,\\\\n503:        \\\\\\\"mean_R2\\\\\\\": 0.6441418141126632,\\\\n521:        \\\\\\\"mean_R2\\\\\\\": 0.6271242558956146,\\\\n539:        \\\\\\\"mean_R2\\\\\\\": 0.6104061156511307,\\\\n557:        \\\\\\\"mean_R2\\\\\\\": 0.5971897721290589,\\\\n575:        \\\\\\\"mean_R2\\\\\\\": 0.6185219526290894,\\\\n593:        \\\\\\\"mean_R2\\\\\\\": 0.5765485376119613,\\\\n613:        \\\\\\\"mean_R2\\\\\\\": -0.01495964527130127,\\\\n631:        \\\\\\\"mean_R2\\\\\\\": 0.5086372524499894,\\\\n649:        \\\\\\\"mean_R2\\\\\\\": 0.6015924662351608,\\\\n667:        \\\\\\\"mean_R2\\\\\\\": 0.5994151264429093,\\\\n685:        \\\\\\\"mean_R2\\\\\\\": 0.5866118222475052,\\\\n703:        \\\\\\\"mean_R2\\\\\\\": 0.6132976323366165,\\\\n721:        \\\\\\\"mean_R2\\\\\\\": 0.5829461514949799,\\\\n739:        \\\\\\\"mean_R2\\\\\\\": 0.6195938020944596,\\\\n757:        \\\\\\\"mean_R2\\\\\\\": 0.6479837000370026,\\\\n775:        \\\\\\\"mean_R2\\\\\\\": 0.6329790681600571,\\\\n793:        \\\\\\\"mean_R2\\\\\\\": 0.6407589018344879,\\\\n811:        \\\\\\\"mean_R2\\\\\\\": 0.6460919916629791,\\\\n829:        \\\\\\\"mean_R2\\\\\\\": 0.6458403378725052,\\\\n847:        \\\\\\\"mean_R2\\\\\\\": 0.6610936522483826,\\\\n865:        \\\\\\\"mean_R2\\\\\\\": 0.6708231747150422,\\\\n883:        \\\\\\\"mean_R2\\\\\\\": 0.6745690748095512,\\\\n901:        \\\\\\\"mean_R2\\\\\\\": 0.6668455630540848,\\\\n919:        \\\\\\\"mean_R2\\\\\\\": 0.654585175216198,\\\\n937:        \\\\\\\"mean_R2\\\\\\\": 0.6379691362380981,\\\\n955:        \\\\\\\"mean_R2\\\\\\\": 0.6463813588023186,\\\\n973:        \\\\\\\"mean_R2\\\\\\\": 0.6676662966609002,\\\\n991:        \\\\\\\"mean_R2\\\\\\\": 0.6748461693525314,\\\\n1009:        \\\\\\\"mean_R2\\\\\\\": 0.6515808641910553,\\\\n1027:        \\\\\\\"mean_R2\\\\\\\": 0.6701292395591736,\\\\n1045:        \\\\\\\"mean_R2\\\\\\\": 0.6669400125741959,\\\\n1063:        \\\\\\\"mean_R2\\\\\\\": 0.6500366657972336,\\\\n1081:        \\\\\\\"mean_R2\\\\\\\": 0.6452138423919678,\\\\n1099:        \\\\\\\"mean_R2\\\\\\\": 0.6347220659255981,\\\\n1117:        \\\\\\\"mean_R2\\\\\\\": 0.6456100940704346,\\\\n1135:        \\\\\\\"mean_R2\\\\\\\": 0.648406907916069,\\\\n1153:        \\\\\\\"mean_R2\\\\\\\": 0.6529989898204803,\\\\n1171:        \\\\\\\"mean_R2\\\\\\\": 0.6370566427707672,\\\\n1189:        \\\\\\\"mean_R2\\\\\\\": 0.6560572475194931,\\\\n1211:        \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737,\\\\n1229:        \\\\\\\"mean_R2\\\\\\\": 0.6197013080120086,\\\\n1247:        \\\\\\\"mean_R2\\\\\\\": 0.5080936342477799,\\\\n1265:        \\\\\\\"mean_R2\\\\\\\": 0.5057604193687439,\\\\n1283:        \\\\\\\"mean_R2\\\\\\\": 0.6128607422113419,\\\\n1301:        \\\\\\\"mean_R2\\\\\\\": 0.6197602659463882,\\\\n1319:        \\\\\\\"mean_R2\\\\\\\": 0.5911015003919602,\\\\n1337:        \\\\\\\"mean_R2\\\\\\\": 0.5544632524251938,\\\\n1355:        \\\\\\\"mean_R2\\\\\\\": 0.5916422069072723,\\\\n1373:        \\\\\\\"mean_R2\\\\\\\": 0.5942061811685562,\\\\n1391:        \\\\\\\"mean_R2\\\\\\\": 0.4399487257003784,\\\\n1409:        \\\\\\\"mean_R2\\\\\\\": 0.39833202958106995,\\\\n1427:        \\\\\\\"mean_R2\\\\\\\": 0.4940182626247406,\\\\n1445:        \\\\\\\"mean_R2\\\\\\\": -0.014971005916595458,\\\\n1463:        \\\\\\\"mean_R2\\\\\\\": 0.32070239186286925,\\\\n1481:        \\\\\\\"mean_R2\\\\\\\": -0.014964449405670165,\\\\n1499:        \\\\\\\"mean_R2\\\\\\\": 0.3352381527423859,\\\\n1517:        \\\\\\\"mean_R2\\\\\\\": 0.2030996322631836,\\\\n1535:        \\\\\\\"mean_R2\\\\\\\": -0.014950895309448242,\\\\n1553:        \\\\\\\"mean_R2\\\\\\\": -0.014947342872619628,\\\\n1571:        \\\\\\\"mean_R2\\\\\\\": 0.2074543833732605,\\\\n1589:        \\\\\\\"mean_R2\\\\\\\": 0.19989521503448487,\\\\n1607:        \\\\\\\"mean_R2\\\\\\\": 0.10638495087623596,\\\\n1625:        \\\\\\\"mean_R2\\\\\\\": -0.014945471286773681,\\\\n1643:        \\\\\\\"mean_R2\\\\\\\": -0.014945888519287109,\\\\n1661:        \\\\\\\"mean_R2\\\\\\\": -0.014953327178955079,\\\\n1679:        \\\\\\\"mean_R2\\\\\\\": 0.47551814913749696,\\\\n1697:        \\\\\\\"mean_R2\\\\\\\": -0.014974367618560792,\\\\n1715:        \\\\\\\"mean_R2\\\\\\\": -0.014955079555511475,\\\\n1733:        \\\\\\\"mean_R2\\\\\\\": 0.1554762303829193,\\\\n1751:        \\\\\\\"mean_R2\\\\\\\": -0.014966821670532227,\\\\n1769:        \\\\\\\"mean_R2\\\\\\\": 0.09451506733894348,\\\\n1787:        \\\\\\\"mean_R2\\\\\\\": 0.6169480949640274,\\\\n1807:        \\\\\\\"mean_R2\\\\\\\": -0.014961147308349609,\\\\n1825:        \\\\\\\"mean_R2\\\\\\\": 0.6348172485828399,\\\\n1843:        \\\\\\\"mean_R2\\\\\\\": 0.5963127911090851,\\\\n1861:        \\\\\\\"mean_R2\\\\\\\": 0.5911267220973968,\\\\n1879:        \\\\\\\"mean_R2\\\\\\\": 0.5264089614152908,\\\\n1897:        \\\\\\\"mean_R2\\\\\\\": -0.014979064464569092,\\\\n1915:        \\\\\\\"mean_R2\\\\\\\": 0.40414944291114807,\\\\n1933:        \\\\\\\"mean_R2\\\\\\\": 0.43058950901031495,\\\\n1951:        \\\\\\\"mean_R2\\\\\\\": -0.01497511863708496,\\\\n1969:        \\\\\\\"mean_R2\\\\\\\": 0.09610130786895751,\\\\n1987:        \\\\\\\"mean_R2\\\\\\\": -0.014973783493041992,\\\\n2005:        \\\\\\\"mean_R2\\\\\\\": -0.014971709251403809,\\\\n2023:        \\\\\\\"mean_R2\\\\\\\": 0.4495316356420517,\\\\n2041:        \\\\\\\"mean_R2\\\\\\\": 0.07965168356895447,\\\\n2059:        \\\\\\\"mean_R2\\\\\\\": -0.014961671829223634,\\\\n2077:        \\\\\\\"mean_R2\\\\\\\": -0.014970636367797852,\\\\n2095:        \\\\\\\"mean_R2\\\\\\\": 0.14400640726089478,\\\\n2113:        \\\\\\\"mean_R2\\\\\\\": 0.09593928456306458,\\\\n2131:        \\\\\\\"mean_R2\\\\\\\": 0.14626169204711914,\\\\n2149:        \\\\\\\"mean_R2\\\\\\\": -0.014964640140533447,\\\\n2167:        \\\\\\\"mean_R2\\\\\\\": -0.014967083930969238,\\\\n2185:        \\\\\\\"mean_R2\\\\\\\": 0.30487629771232605,\\\\n2203:        \\\\\\\"mean_R2\\\\\\\": -0.01496344804763794,\\\\n2221:        \\\\\\\"mean_R2\\\\\\\": -0.0149666428565979,\\\\n2239:        \\\\\\\"mean_R2\\\\\\\": -0.01496514081954956,\\\\n2257:        \\\\\\\"mean_R2\\\\\\\": -0.014965713024139404,\\\\n2275:        \\\\\\\"mean_R2\\\\\\\": -0.014969325065612793,\\\\n2293:        \\\\\\\"mean_R2\\\\\\\": 0.058525800704956055,\\\\n2311:        \\\\\\\"mean_R2\\\\\\\": -0.014969778060913087,\\\\n2329:        \\\\\\\"mean_R2\\\\\\\": -0.014972329139709473,\\\\n2347:        \\\\\\\"mean_R2\\\\\\\": -0.01496429443359375,\\\\n2365:        \\\\\\\"mean_R2\\\\\\\": -0.014957559108734132,\\\\n2383:        \\\\\\\"mean_R2\\\\\\\": 0.6206460893154144,\\\\n2405:      \\\\\\\"mean_R2\\\\\\\": 0.696312727034092\\\\n2409:      \\\\\\\"mean_R2\\\\\\\": 0.6748461693525314\\\\n2413:      \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737\\\\n2417:      \\\\\\\"mean_R2\\\\\\\": 0.6348172485828399\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"17:        \\\"mean_R2\\\": 0.6731675192713737,\\n35:        \\\"mean_R2\\\": 0.6799452856183053,\\n53:        \\\"mean_R2\\\": 0.6785239607095719,\\n71:        \\\"mean_R2\\\": 0.6807504430413246,\\n89:        \\\"mean_R2\\\": 0.6694138824939728,\\n107:        \\\"mean_R2\\\": 0.6855554699897766,\\n125:        \\\"mean_R2\\\": 0.675666868686676,\\n143:        \\\"mean_R2\\\": 0.6818932145833969,\\n161:        \\\"mean_R2\\\": 0.6815353974699974,\\n179:        \\\"mean_R2\\\": 0.6859799608588218,\\n197:        \\\"mean_R2\\\": 0.690634761750698,\\n215:        \\\"mean_R2\\\": 0.6839834600687027,\\n233:        \\\"mean_R2\\\": 0.684947994351387,\\n251:        \\\"mean_R2\\\": 0.696312727034092,\\n269:        \\\"mean_R2\\\": 0.6827773362398147,\\n287:        \\\"mean_R2\\\": 0.6764206632971763,\\n305:        \\\"mean_R2\\\": 0.6725162476301193,\\n323:        \\\"mean_R2\\\": 0.6822305813431739,\\n341:        \\\"mean_R2\\\": 0.665154618024826,\\n359:        \\\"mean_R2\\\": 0.6573897778987885,\\n377:        \\\"mean_R2\\\": 0.6376473993062973,\\n395:        \\\"mean_R2\\\": 0.6384424090385437,\\n413:        \\\"mean_R2\\\": 0.6395527750253678,\\n431:        \\\"mean_R2\\\": 0.6462660059332848,\\n449:        \\\"mean_R2\\\": 0.6428452849388122,\\n467:        \\\"mean_R2\\\": 0.6290156126022339,\\n485:        \\\"mean_R2\\\": 0.6276077300310134,\\n503:        \\\"mean_R2\\\": 0.6441418141126632,\\n521:        \\\"mean_R2\\\": 0.6271242558956146,\\n539:        \\\"mean_R2\\\": 0.6104061156511307,\\n557:        \\\"mean_R2\\\": 0.5971897721290589,\\n575:        \\\"mean_R2\\\": 0.6185219526290894,\\n593:        \\\"mean_R2\\\": 0.5765485376119613,\\n613:        \\\"mean_R2\\\": -0.01495964527130127,\\n631:        \\\"mean_R2\\\": 0.5086372524499894,\\n649:        \\\"mean_R2\\\": 0.6015924662351608,\\n667:        \\\"mean_R2\\\": 0.5994151264429093,\\n685:        \\\"mean_R2\\\": 0.5866118222475052,\\n703:        \\\"mean_R2\\\": 0.6132976323366165,\\n721:        \\\"mean_R2\\\": 0.5829461514949799,\\n739:        \\\"mean_R2\\\": 0.6195938020944596,\\n757:        \\\"mean_R2\\\": 0.6479837000370026,\\n775:        \\\"mean_R2\\\": 0.6329790681600571,\\n793:        \\\"mean_R2\\\": 0.6407589018344879,\\n811:        \\\"mean_R2\\\": 0.6460919916629791,\\n829:        \\\"mean_R2\\\": 0.6458403378725052,\\n847:        \\\"mean_R2\\\": 0.6610936522483826,\\n865:        \\\"mean_R2\\\": 0.6708231747150422,\\n883:        \\\"mean_R2\\\": 0.6745690748095512,\\n901:        \\\"mean_R2\\\": 0.6668455630540848,\\n919:        \\\"mean_R2\\\": 0.654585175216198,\\n937:        \\\"mean_R2\\\": 0.6379691362380981,\\n955:        \\\"mean_R2\\\": 0.6463813588023186,\\n973:        \\\"mean_R2\\\": 0.6676662966609002,\\n991:        \\\"mean_R2\\\": 0.6748461693525314,\\n1009:        \\\"mean_R2\\\": 0.6515808641910553,\\n1027:        \\\"mean_R2\\\": 0.6701292395591736,\\n1045:        \\\"mean_R2\\\": 0.6669400125741959,\\n1063:        \\\"mean_R2\\\": 0.6500366657972336,\\n1081:        \\\"mean_R2\\\": 0.6452138423919678,\\n1099:        \\\"mean_R2\\\": 0.6347220659255981,\\n1117:        \\\"mean_R2\\\": 0.6456100940704346,\\n1135:        \\\"mean_R2\\\": 0.648406907916069,\\n1153:        \\\"mean_R2\\\": 0.6529989898204803,\\n1171:        \\\"mean_R2\\\": 0.6370566427707672,\\n1189:        \\\"mean_R2\\\": 0.6560572475194931,\\n1211:        \\\"mean_R2\\\": 0.6731675192713737,\\n1229:        \\\"mean_R2\\\": 0.6197013080120086,\\n1247:        \\\"mean_R2\\\": 0.5080936342477799,\\n1265:        \\\"mean_R2\\\": 0.5057604193687439,\\n1283:        \\\"mean_R2\\\": 0.6128607422113419,\\n1301:        \\\"mean_R2\\\": 0.6197602659463882,\\n1319:        \\\"mean_R2\\\": 0.5911015003919602,\\n1337:        \\\"mean_R2\\\": 0.5544632524251938,\\n1355:        \\\"mean_R2\\\": 0.5916422069072723,\\n1373:        \\\"mean_R2\\\": 0.5942061811685562,\\n1391:        \\\"mean_R2\\\": 0.4399487257003784,\\n1409:        \\\"mean_R2\\\": 0.39833202958106995,\\n1427:        \\\"mean_R2\\\": 0.4940182626247406,\\n1445:        \\\"mean_R2\\\": -0.014971005916595458,\\n1463:        \\\"mean_R2\\\": 0.32070239186286925,\\n1481:        \\\"mean_R2\\\": -0.014964449405670165,\\n1499:        \\\"mean_R2\\\": 0.3352381527423859,\\n1517:        \\\"mean_R2\\\": 0.2030996322631836,\\n1535:        \\\"mean_R2\\\": -0.014950895309448242,\\n1553:        \\\"mean_R2\\\": -0.014947342872619628,\\n1571:        \\\"mean_R2\\\": 0.2074543833732605,\\n1589:        \\\"mean_R2\\\": 0.19989521503448487,\\n1607:        \\\"mean_R2\\\": 0.10638495087623596,\\n1625:        \\\"mean_R2\\\": -0.014945471286773681,\\n1643:        \\\"mean_R2\\\": -0.014945888519287109,\\n1661:        \\\"mean_R2\\\": -0.014953327178955079,\\n1679:        \\\"mean_R2\\\": 0.47551814913749696,\\n1697:        \\\"mean_R2\\\": -0.014974367618560792,\\n1715:        \\\"mean_R2\\\": -0.014955079555511475,\\n1733:        \\\"mean_R2\\\": 0.1554762303829193,\\n1751:        \\\"mean_R2\\\": -0.014966821670532227,\\n1769:        \\\"mean_R2\\\": 0.09451506733894348,\\n1787:        \\\"mean_R2\\\": 0.6169480949640274,\\n1807:        \\\"mean_R2\\\": -0.014961147308349609,\\n1825:        \\\"mean_R2\\\": 0.6348172485828399,\\n1843:        \\\"mean_R2\\\": 0.5963127911090851,\\n1861:        \\\"mean_R2\\\": 0.5911267220973968,\\n1879:        \\\"mean_R2\\\": 0.5264089614152908,\\n1897:        \\\"mean_R2\\\": -0.014979064464569092,\\n1915:        \\\"mean_R2\\\": 0.40414944291114807,\\n1933:        \\\"mean_R2\\\": 0.43058950901031495,\\n1951:        \\\"mean_R2\\\": -0.01497511863708496,\\n1969:        \\\"mean_R2\\\": 0.09610130786895751,\\n1987:        \\\"mean_R2\\\": -0.014973783493041992,\\n2005:        \\\"mean_R2\\\": -0.014971709251403809,\\n2023:        \\\"mean_R2\\\": 0.4495316356420517,\\n2041:        \\\"mean_R2\\\": 0.07965168356895447,\\n2059:        \\\"mean_R2\\\": -0.014961671829223634,\\n2077:        \\\"mean_R2\\\": -0.014970636367797852,\\n2095:        \\\"mean_R2\\\": 0.14400640726089478,\\n2113:        \\\"mean_R2\\\": 0.09593928456306458,\\n2131:        \\\"mean_R2\\\": 0.14626169204711914,\\n2149:        \\\"mean_R2\\\": -0.014964640140533447,\\n2167:        \\\"mean_R2\\\": -0.014967083930969238,\\n2185:        \\\"mean_R2\\\": 0.30487629771232605,\\n2203:        \\\"mean_R2\\\": -0.01496344804763794,\\n2221:        \\\"mean_R2\\\": -0.0149666428565979,\\n2239:        \\\"mean_R2\\\": -0.01496514081954956,\\n2257:        \\\"mean_R2\\\": -0.014965713024139404,\\n2275:        \\\"mean_R2\\\": -0.014969325065612793,\\n2293:        \\\"mean_R2\\\": 0.058525800704956055,\\n2311:        \\\"mean_R2\\\": -0.014969778060913087,\\n2329:        \\\"mean_R2\\\": -0.014972329139709473,\\n2347:        \\\"mean_R2\\\": -0.01496429443359375,\\n2365:        \\\"mean_R2\\\": -0.014957559108734132,\\n2383:        \\\"mean_R2\\\": 0.6206460893154144,\\n2405:      \\\"mean_R2\\\": 0.696312727034092\\n2409:      \\\"mean_R2\\\": 0.6748461693525314\\n2413:      \\\"mean_R2\\\": 0.6731675192713737\\n2417:      \\\"mean_R2\\\": 0.6348172485828399\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        }
+      ]
+    }
+  ]
+}

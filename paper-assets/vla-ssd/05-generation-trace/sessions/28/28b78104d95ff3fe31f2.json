@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28b78104d95ff3fe31f2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code download libero long checkpoint",
+  "task_key": "worker_code_download_libero_long_checkpoint_20260521T004512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download_libero_long_checkpoint_20260521T004512_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "efd21f42962798b40a2ce292450e6cc507045cf00eae74ccdb62955fe90891f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件持续增长（136MB → 146MB），进程活跃。下载正在稳定进行（`du` 因为 sparse file 未刷盘显示的更新不够频繁，但 `stat` 可以确认文件大小在变）。\n\n**状态总结：**\n- PID 513449 后台下载 `moojink/openvla-7b-oft-finetuned-libero-10`\n- 当前已下载约 563MB（含 .cache 中的 incomplete 文件）\n- 下载速度 ~2MB/s，预计完成需约 2 小时\n- 不占用 GPU，可与其他训练任务并行\n- 日志文件：`/tmp/hf_download_libero10.log`\n- 轮询检查命令：`du -sh /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/` 和 `ps -p 513449 -o pid=`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-libero-long-checkpoint.md"
+}

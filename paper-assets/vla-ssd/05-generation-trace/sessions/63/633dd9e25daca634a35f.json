@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "633dd9e25daca634a35f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "debug closedloop diagnosis",
+  "task_key": "worker_debug_closedloop_diagnosis_20260519T162132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_closedloop_diagnosis_20260519T162132.log",
+    "occurrence": 1,
+    "bytes": 1385152,
+    "sha256": "b761ecea236cd732671154d38759994bc28c986e4b1fbcd34c0a8e92f7bcb093"
+  },
+  "statistics": {
+    "messages": 534,
+    "user_turns": 1,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 152,
+      "tool_call": 187,
+      "tool_result": 187,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "633dd9e25daca634a35f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "633dd9e25daca634a35f-part-0002.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "633dd9e25daca634a35f-part-0002.json",
+          "message_count": 70
+        },
+        {
+          "path": "633dd9e25daca634a35f-part-0003.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-closedloop-diagnosis.md"
+}

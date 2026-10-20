@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c0c3d24895cc5eff7bf",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v3 final 20 20",
+  "task_key": "worker_check_bootstrap_v3_final_20_20_20260523T125255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v3_final_20_20_20260523T125255_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "3973967ec0d02178ca830790658d92fbdffbf7030496ab20749cabf463cfdffc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Bootstrap v3: 20/20 完成**\n\n`tracvla_long/untrained` 结果：\n\n| 指标 | 值 |\n|------|-----|\n| peak_layer | L9 |\n| peak_r2 | 0.5729 |\n| exit_r2 | 0.4757 |\n| delta | 0.0971 |\n| CI 95% | [-0.0208, 0.1078] |\n| boot_mean | 0.0396 |\n| boot_std | 0.0319 |\n| significant | CI 包含 0 → **不显著** |\n| delta_in_CI | 0.0971 在 [-0.0208, 0.1078] 内 → **Y** |\n| substantial | |delta|=0.097 < 0.10 → **N** (边界) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v3-final-20-20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e595f4e6a0f90774fbc1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper research bib completion",
+  "task_key": "worker_paper_research_bib_completion_20260516T041312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_completion_20260516T041312_result.json",
+    "occurrence": 1,
+    "bytes": 1587,
+    "sha256": "b4039a39b3f89e70692614c505d7764e00c8081c53b705fe81e41c93f9ce938d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原来 12 条，现在 20 条，增加了 8 条新条目。\n\n**结果汇总：**\n\n| 条目 | 状态 | 论文 | arXiv |\n|------|------|------|-------|\n| swann2026 | 已添加 | Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models | 2603.19183 |\n| rizzardo2026 | 已添加 | Observing and Controlling Features in VLA Models | 2603.05487 |\n| molinari2025 | 已添加 | Emergent World Representations in OpenVLA | 2509.24559 |\n| belinkov2022 | 已添加 | Probing Classifiers: Promises, Shortcomings, and Advances | CL 48(1) |\n| lu2025 | 已添加 | Probing a VLA Model for Symbolic States... | 2502.04558 |\n| hou2026 | 已添加 | LangGap: Diagnosing and Closing the Language Gap in VLAs | 2603.00592 |\n| fei2025 | 已添加 | LIBERO-Plus: In-depth Robustness Analysis of VLAs | 2510.13626 |\n| fang2025 | 已添加 | DualVLA: Building a Generalizable Embodied Agent... | 2511.22134 |\n| haon2025 | 已验证替换 | Mechanistic Interpretability for Steering VLAs (Bear Häon et al.) | 2509.00328 |\n| grant2026 | 未找到 | 标记 [UNVERIFIED]，S2 和 web search 均无结果 | — |\n\n**需注意两个问题：**\n\n1. **rizzardo2026**：related_work.tex 写的是 \"Rizzardo et al.~(2026)\"，但实际论文作者是 Buurmeijer, Amo Alonso, Swann, Pavone——没有 Rizzardo 这个作者。tex 中的作者名需要修正。\n\n2. **grant2026**：经过多轮搜索（S2 API + 多种关键词 WebSearch）均无法找到。\\cite{grant2026} 在 tex 中出现两次（L10, L34），可能是虚构引用，建议核实或替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-completion.md"
+}

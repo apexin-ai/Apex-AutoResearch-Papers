@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e269c64fe428e684d7c2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug closedloop diagnosis",
+  "task_key": "worker_debug_closedloop_diagnosis_20260519T162132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_closedloop_diagnosis_20260519T162132_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "5593def2701dfb3e4ff94d52cf92dd3b705457817364e2d79f816eea9514fd4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/closedloop_diagnosis.md`。\n\n核心结论：\n\n1. **6 个管线 Bug 已全部定位并修复**（180°旋转、JPEG roundtrip、gripper normalize+invert、center crop、10步等待、env.seed），修复后动作输出从退化（dim0 恒定 0.236）变为合理的变化模式。\n\n2. **修复后 SR 仍为 0/9**（3 tasks × 3 eps），说明问题不仅是管线 Bug，模型本身的动作质量不足——demo 图像 L1 error 0.26–0.43，动作偏差约 30%，远超操作任务所需精度。\n\n3. **扩大到 10–20 trials 极不可能看到非零 SR**：当前 env.seed(0) + do_sample=False 导致同一任务所有 episode 完全相同，本质上只测了 1 次；即使换不同 seed，系统性偏差不会消失。\n\n4. **建议优先排查训练质量**（loss 是否收敛、checkpoint 是否为最优），或直接对比官方预训练好的 LIBERO-Goal checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-closedloop-diagnosis.md"
+}

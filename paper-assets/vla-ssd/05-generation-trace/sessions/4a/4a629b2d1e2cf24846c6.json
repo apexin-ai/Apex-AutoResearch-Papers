@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a629b2d1e2cf24846c6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v attention untrained 10tasks",
+  "task_key": "worker_code_phi3v_attention_untrained_10tasks_20260519T225529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_attention_untrained_10tasks_20260519T225529_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "1023ddfc87fb1808699f5f2afbe6770bb48fb286a17fb70da3d597cd24e89f14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 已更新为 DONE (success)。\n\n**结果摘要**（10 tasks, untrained Phi3V）：\n\n| Layer | n_dom | text | image |\n|-------|-------|------|-------|\n| L1 | 28/32 | 0.7745 | — |\n| L0-L31 | 28-32/32 | ~0.60-0.77 | ~0.25-0.40 |\n\n所有层均匀高 instruction dominance（28-32/32），无层间分化。与 5-task untrained 结果一致。\n\n输出文件：\n- `/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json`\n- `/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-attention-untrained-10tasks.md"
+}

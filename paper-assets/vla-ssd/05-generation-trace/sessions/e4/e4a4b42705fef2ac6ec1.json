@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4a4b42705fef2ac6ec1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis action trajectory cpu",
+  "task_key": "worker_analysis_action_trajectory_cpu_20260519T184457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_action_trajectory_cpu_20260519T184457_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "98811846961cfab4af3e325ab7077a0be80ccad18300333f33ccbef15c807257"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n**Temporal Coherence**\n- Instruction ablation 的 per-dim CV 显著低于 control（1.298 vs 2.744, Wilcoxon p=0.016），说明 instruction head ablation 造成的扰动更系统化/结构化\n- Demo-level lag-1 autocorrelation：instruction = -0.201, control = 0.026，但 Mann-Whitney 检验不显著（p=0.42），因为 n=5 per group 统计力不足\n- 原始逐步 action 数据未保存，无法计算真正的 step-to-step autocorrelation\n\n**Per-Head Effect Size Bootstrap (B=1000)**\n- Instruction heads: per-head d = 0.027, 95% CI [0.023, 0.030]\n- Control heads: per-head d = 0.051, 95% CI [0.040, 0.057]\n- **CI 不重叠**，差异 CI [0.017, 0.028] 排除零\n- Control heads 每头贡献 1.87x 更大的 action disruption，但 instruction heads 通过集体效应（24 vs 8 heads）实现更大总效应\n\n输出文件：`/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-action-trajectory-cpu-copy-2.md"
+}

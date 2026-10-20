@@ -1,0 +1,749 @@
+{
+  "schema_version": "1.0",
+  "id": "b2280e217c80fafb3a1c",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "research literature linkage tracvla 4suite",
+  "task_key": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_literature-linkage-tracvla-4suite_20260521T204054.jsonl",
+    "occurrence": 1,
+    "bytes": 45587,
+    "sha256": "4b6e562a8062ec90780334c52e4e3bb8fe57f7611e0ba47cf28a7fdd814e29b8"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T20:43:42.940905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea,WebSearch,WebFetch",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T20:43:42.941262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T20:43:42.941528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T20:43:42.942019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/literature_map.yaml\\\", \\\"content\\\": \\\"papers:\\\\n  # ============================================================\\\\n  # DIRECT COMPETITORS — VLA Representation Analysis / Interpretability\\\\n  # ============================================================\\\\n  - id: grant2026\\\\n    title: \\\\\\\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\\\\\\\"\\\\n    authors: \\\\\\\"Bryce Grant, Xijia Zhao, Peng Wang\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv preprint (under review)\\\\\\\"\\\\n    arxiv_id: \\\\\\\"2603.19233\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    key_findings: >\\\\n      Visual pathway dominates action generation across all 6 tested VLA architectures (80M–7B params, 394K+ rollout episodes, 4 benchmarks).\\\\n      Language sensitivity depends on task structure: when visual context uniquely specifies the task, language is IGNORED;\\\\n      when multiple goals share a scene, language becomes essential (\\\\\\\"encoded but not used\\\\\\\").\\\\n      Cross-task activation injection steers robots toward source-task positions (99.8% trajectory alignment with source in X-VLA).\\\\n      Multi-pathway architectures (pi0.5, SmolVLA, GR00T) separate motor programs (expert pathway) from goal semantics (VLM pathway).\\\\n    relevance_to_us: >\\\\n      Most direct competitor. Behavioral intervention (activation injection, SAE, probing) reveals vision dominance + language encoded but not used.\\\\n      Uses OpenVLA-OFT checkpoint; we use standard fine-tuning — must qualify this difference in Related Work.\\\\n    novelty_gap: >\\\\n      No trained vs untrained representation analysis. They compare different model architectures,\\\\n      we compare trained vs untrained representation structure within the same architecture.\\\\n      Their \\\\\\\"encoded but not used\\\\\\\" is a behavioral-level conclusion; we demonstrate at the represent\n…[truncated 29682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T20:43:42.942218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "attention head consistency across tasks universal attention patterns fine-tuning transformer 2025 2026"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T20:43:42.942362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "task-independent attention specialization VLA vision-language-action model attention routing"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T20:43:42.942484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "specific attention head indices consistent across tasks transformer interpretability \"head identity\" preservation"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T20:43:42.942640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"attention head consistency across tasks universal attention patterns fine-tuning transformer 2025 2026\"\n\nLinks: [{\"title\":\"[2510.21518] Head Pursuit: Probing Attention Specialization in Multimodal Transformers\",\"url\":\"https://arxiv.org/abs/2510.21518\"},{\"title\":\"Published as a conference paper at ICLR 2026 WHY ATTENTION PATTERNS EXIST:\",\"url\":\"https://arxiv.org/pdf/2601.21709\"},{\"title\":\"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\",\"url\":\"https://arxiv.org/pdf/2602.16740\"},{\"title\":\"2026-01-13 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398v3\"},{\"title\":\"2026-01-12 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398v2\"},{\"title\":\"2026-01-09 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398\"}]\n\nBased on the web search results, here are the key findings related to attention head consistency across tasks and universal attention patterns in transformers:\n\n## Attention Head Specialization and Consistency\n\nResearch shows consistent patterns of specialization at the head level across both unimodal and multimodal transformers. Editing as few as 1% of the heads, selected using specialized methods, can reliably suppress or enhance targeted concepts in model output.\n\n## Universal Patterns Framework\n\nComputing attention from queries, keys, and RoPE is a common design in transformer-based models, and TAPPA (a recently developed framework) both unifies diverse attention patterns and is broadly applicable across LLMs. Attention patterns are closely linked to a model's representational capacity and can guide compression.\n\n## The Universality Hypothesis\n\nA key research question in 2025-2026 involves the \"universality hypothesis,\" which asserts that models learn the same or similar representational features and circuits across different models when t\n…[truncated 600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T20:43:42.942809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"task-independent attention specialization VLA vision-language-action model attention routing\"\n\nLinks: [{\"title\":\"GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization\",\"url\":\"https://arxiv.org/html/2605.12369v1\"},{\"title\":\"[2605.12369v1] GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization\",\"url\":\"https://arxiv.org/abs/2605.12369v1\"},{\"title\":\"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/pdf/2603.28740\"},{\"title\":\"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention\",\"url\":\"https://arxiv.org/pdf/2511.18960\"},{\"title\":\"CogVLA: Cognition-Aligned Vision-Language-Action Model via Instruction-Driven Routing & Sparsification\",\"url\":\"https://arxiv.org/pdf/2508.21046\"},{\"title\":\"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention\",\"url\":\"https://arxiv.org/html/2511.18960v1\"},{\"title\":\"Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge\",\"url\":\"https://arxiv.org/html/2512.06951v1\"}]\n\nI found several relevant results about attention mechanisms in Vision-Language-Action (VLA) models. Here are the key findings:\n\n## GuidedVLA: Task-Relevant Attention Specialization\n\nGuidedVLA is a framework designed to guide action generation to focus on task-relevant factors by supervising individual attention heads with manually defined auxiliary signals to capture distinct factors, instantiating this with three specialized heads: object grounding, spatial geometry, and temporal skill logic. Across simulation and real-robot experiments, GuidedVLA improves success rates in both in-domain and out-of-domain settings compared to strong VLA baselines.\n\n## FocusVLA: Task-Aligned Attention\n\nFocusVLA uses Modality Cascaded Attention to enforce sequential modality interaction and proposes Focus Attention to suppress task-irrelevant information,\n…[truncated 926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T20:43:42.943008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"specific attention head indices consistent across tasks transformer interpretability \"head identity\" preservation\"\n\nLinks: [{\"title\":\"2026-01-09 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398\"},{\"title\":\"Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://arxiv.org/html/2601.04398v3\"},{\"title\":\"Mechanistic Interpretability of Fine-Tuned Vision Transformers on   Distorted Images: Decoding Attention Head Behavior for Transparent and   Trustworthy AI\",\"url\":\"https://arxiv.org/pdf/2503.18762\"},{\"title\":\"Head Pursuit: Probing Attention Specialization in Multimodal Transformers\",\"url\":\"https://arxiv.org/pdf/2510.21518\"},{\"title\":\"GMAR: Gradient-Driven Multi-Head Attention Rollout for Vision Transformer Interpretability\",\"url\":\"https://arxiv.org/html/2504.19414v1\"},{\"title\":\"Head Pursuit: Probing Attention Specialization in Multimodal Transformers\",\"url\":\"https://arxiv.org/html/2510.21518\"},{\"title\":\"GitHub - IAAR-Shanghai/Awesome-Attention-Heads: An awesome repository & A comprehensive survey on interpretability of LLM attention heads. · GitHub\",\"url\":\"https://github.com/IAAR-Shanghai/Awesome-Attention-Heads\"},{\"title\":\"Interpreting Context Look-ups in Transformers: Investigating Attention-MLP Interactions\",\"url\":\"https://arxiv.org/html/2402.15055v1\"},{\"title\":\"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\",\"url\":\"https://arxiv.org/pdf/2602.16740\"}]\n\nI found relevant research on attention head consistency and interpretability in transformers. Here are the key findings from my search:\n\n## Head Specialization Across Tasks\n\nConsistent patterns of specialization exist at the head level across both unimodal and multimodal transformers. Individual attention heads specialize in specific semantic or visual attributes, and research has uncovered specialized model components with consistent roles for attention heads, such as handling\n…[truncated 1328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T20:43:42.943197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2602.16740",
+              "prompt": "Extract: title, authors, year, venue, key findings about attention head stability across training runs, whether specific head indices are consistent, and any findings about \"universal\" vs \"idiosyncratic\" circuits. Also extract whether they study fine-tuned models or just pre-trained ones."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T20:43:42.943326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2510.21518",
+              "prompt": "Extract: title, authors, year, venue, key findings about attention head specialization in multimodal transformers, whether specific heads are found to have consistent roles across tasks/inputs, and any findings about head identity preservation."
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T20:43:42.943447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.21709",
+              "prompt": "Extract: title, authors, year, venue, key findings about why attention patterns exist and their relationship to representational capacity and task consistency."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T20:43:42.943642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2605.12369",
+              "prompt": "Extract: title, authors, year, key findings about attention specialization in VLA models, whether they find natural attention head specialization patterns, and whether specific heads are assigned specific roles across tasks."
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T20:43:42.943793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary\n\n**Title:** Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\n\n**Authors:** Karan Bali, Jack Stanley, Praneet Suresh, Danilo Bzdok\n\n**Year:** 2026 (submitted February 17, 2026)\n\n**Venue:** arXiv (cs.LG - Computer Science/Machine Learning)\n\n## Key Findings on Attention Head Stability\n\nThe researchers systematically examined whether transformer circuits remain consistent across independent training runs:\n\n**Stability Patterns:**\n- \"Middle-layer heads are the least stable yet the most representationally distinct\"\n- Deeper models show stronger mid-depth divergence in attention head learning\n- The residual stream exhibits comparative stability across refits\n- Weight decay optimization substantially improves stability across random initializations\n\n**Universal vs. Idiosyncratic Circuits:**\nThe paper directly addresses this distinction, noting that circuits are \"rarely acid-tested for their stability across different instances,\" raising questions about whether circuits \"emerge universally across labs or turn out to be idiosyncratic to a particular estimation instance.\"\n\n**Head Indices:**\nThe research does not specifically address whether particular attention head indices remain consistent across runs.\n\n**Model Types:**\nThe study focuses on \"independently initialized training runs\" of transformer language models, examining pre-trained instances rather than fine-tuned variants."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T20:43:42.943956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary: Head Pursuit\n\n**Title:** Head Pursuit: Probing Attention Specialization in Multimodal Transformers\n\n**Authors:** Lorenzo Basile, Valentino Maiorca, Diego Doimo, Francesco Locatello, Alberto Cazzaniga\n\n**Year:** 2025\n\n**Venue:** NeurIPS 2025 (spotlight presentation)\n\n## Key Findings on Attention Head Specialization\n\nThe research demonstrates that individual attention heads exhibit specialized behavior across both unimodal and multimodal transformers. The authors developed a signal processing-based interpretability method to analyze how heads focus on particular semantic or visual attributes.\n\n**Primary Discovery:** The study found \"consistent patterns of specialization at the head level across both unimodal and multimodal transformers.\" This indicates that heads develop consistent functional roles within the network architecture.\n\n**Practical Impact:** Remarkably, the researchers discovered that \"editing as few as 1% of the heads...can reliably suppress or enhance targeted concepts in the model output.\" This demonstrates both the importance and manipulability of specialized heads.\n\n## Head Identity and Task Consistency\n\nThe research validated its approach across diverse tasks—language-based (question answering, toxicity mitigation) and vision-language (image classification, captioning)—suggesting that head specialization patterns show stability across different task domains. The findings indicate an \"interpretable and controllable structure within attention layers,\" suggesting heads maintain identifiable functional roles across contexts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T20:43:42.944114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary\n\n**Title:** Why Attention Patterns Exist: A Unifying Temporal Perspective Analysis\n\n**Authors:** Qingyue Yang, Jie Wang, Xing Li, Yinqi Bai, Xialiang Tong, Huiling Zhen, Jianye Hao, Mingxuan Yuan, Bin Li\n\n**Year:** 2026\n\n**Venue:** ICLR 2026\n\n## Key Findings\n\nThe research introduces TAPPA (Temporal Attention Pattern Predictability Analysis), a framework that unifies understanding of diverse attention mechanisms in large language models. The authors categorize attention patterns into two groups: \"predictable patterns with clear regularities and unpredictable patterns that appear effectively random.\"\n\nA central discovery is that this distinction correlates with \"the degree of query self-similarity along the temporal dimension.\" The framework explains previously fragmented observations—such as retrieval heads, sink heads, and diagonal traces—through a mathematically coherent lens examining how queries, keys, and Rotary Positional Embeddings interact.\n\nThe research validates these theoretical insights by applying them to practical tasks including KV cache compression and LLM pruning, demonstrating that metrics derived from TAPPA consistently outperform baseline approaches in these optimization contexts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T20:43:42.944254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# GuidedVLA Paper Summary\n\n**Title:** GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization\n\n**Authors:** Xiaosong Jia, Bowen Yang, Zuhao Ge, Xian Nie, Yuchen Zhou, Cunxin Fan, Yufeng Li, Yilin Chai, Chao Jing, Zijian Liang, Qingwen Bu, Haidong Cao, Chao Wu, Qifeng Li, Zhenjie Yang, Chenhe Zhang, Hongyang Li, Zuxuan Wu, Junchi Yan, Yu-Gang Jiang\n\n**Year:** 2026 (submitted May 12, 2026)\n\n## Key Findings on Attention Specialization\n\n**Core Approach:** Rather than relying on end-to-end learning, the framework treats \"the action decoder not as a monolithic learner, but as an assembly of functional components.\" Individual attention heads receive supervision through manually defined auxiliary signals.\n\n**Assigned Head Roles:** The paper instantiates three specialized heads with explicit functions:\n- Object grounding\n- Spatial geometry  \n- Temporal skill logic\n\n**Results:** The framework demonstrates improved success rates across both in-domain and out-of-domain settings compared to baseline VLA models. The authors establish that \"the quality of these specialized factors correlates positively with task performance\" and produce \"decoupled, high-quality features.\"\n\nThe research treats attention head specialization as a deliberate design choice requiring external guidance rather than an emergent natural property."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T20:43:42.944413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"universal attention heads\" transformer fine-tuning same head indices persistent specialization 2024 2025 2026"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T20:43:42.944534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "attention head function preserved after fine-tuning transformer \"same heads\" across models architectures 2025 2026"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T20:43:42.944676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"universal attention heads\" transformer fine-tuning same head indices persistent specialization 2024 2025 2026\"\n\nLinks: [{\"title\":\"Attention Head Specialization\",\"url\":\"https://www.emergentmind.com/topics/attention-head-specialization\"},{\"title\":\"Reasoning-Focus Heads (RFHs) in Transformers\",\"url\":\"https://www.emergentmind.com/topics/reasoning-focus-heads-rfhs\"},{\"title\":\"Mechanistic Interpretability of Fine-Tuned Vision Transformers on   Distorted Images: Decoding Attention Head Behavior for Transparent and   Trustworthy AI\",\"url\":\"https://arxiv.org/pdf/2503.18762\"},{\"title\":\"Head Pursuit: Probing Attention Specialization in Multimodal Transformers\",\"url\":\"https://arxiv.org/pdf/2510.21518\"},{\"title\":\"ResiDual Transformer Alignment with Spectral Decomposition\",\"url\":\"https://arxiv.org/pdf/2411.00246\"},{\"title\":\"Multi-Head Softmax Attention Transformer\",\"url\":\"https://www.emergentmind.com/topics/multi-head-softmax-attention-transformer\"},{\"title\":\"Augmenting Self-attention with Persistent Memory\",\"url\":\"https://arxiv.org/pdf/1907.01470\"}]\n\nI found several relevant results about attention head specialization in transformers. Here's what the search revealed:\n\n## Key Findings\n\nSpecialization has been observed to emerge in attention heads in both large language models and visual branches of CLIP models. Specialization appears to be a by-product related to large-scale training, though it's unclear exactly why it emerges and whether this is a systematic property.\n\n### Recent Research (2024-2025)\n\nRecent work includes \"Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient (2024)\" and \"Mechanistic Interpretability of Fine-Tuned Vision Transformers on Distorted Images: Decoding Attention Head Behavior for Transparent and Trustworthy AI (2025)\".\n\nA 2025 study examined individual attention heads in vision transformers fine-tuned on distorted images and revealed functional specialization in ViTs, showing h\n…[truncated 775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T20:43:42.944863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"attention head function preserved after fine-tuning transformer \"same heads\" across models architectures 2025 2026\"\n\nLinks: [{\"title\":\"Frontiers | Adaptive noise-augmented attention for enhancing Transformer fine-tuning on longitudinal medical data\",\"url\":\"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1663484/full\"},{\"title\":\"2026-01-13 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398v3\"},{\"title\":\"Self-Attention Heads in Transformers\",\"url\":\"https://www.emergentmind.com/topics/self-attention-heads\"},{\"title\":\"Inside Transformers: Attention, Scaling Tricks & Emerging Alternatives in 2025\",\"url\":\"https://www.gocodeo.com/post/inside-transformers-attention-scaling-tricks-emerging-alternatives-in-2025\"},{\"title\":\"2026-01-12 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398v2\"},{\"title\":\"2026-01-09 Interpreting Transformers Through Attention Head Intervention\",\"url\":\"https://www.arxiv.org/pdf/2601.04398\"},{\"title\":\"All-or-Here Attention in Transformers\",\"url\":\"https://www.emergentmind.com/papers/2512.22562\"},{\"title\":\"The Effect of Attention Head Count on Transformer Approximation\",\"url\":\"https://arxiv.org/pdf/2510.06662\"}]\n\nBased on the web search results, I found relevant information about attention head functions and their properties in transformer models:\n\n## Key Findings on Attention Head Specialization and Function\n\nRecent work by Basile et al. (2025) introduced a method for identifying and manipulating attention heads specialized for semantic properties in both language and vision-language models using Simultaneous Orthogonal Matching Pursuit (SOMP) to discover which vocabulary directions best explain each head's outputs.\n\nIndividual heads in Mistral-7B specialize for different semantic categories, with each head's top-attended tokens clustering coherently around its semantic cat\n…[truncated 1105 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T20:43:42.945068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Olsson \"induction heads\" universal across models transformer mechanistic interpretability"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T20:43:42.945192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2503.18762",
+              "prompt": "Extract: title, authors, year, key findings about attention head specialization in fine-tuned Vision Transformers. Do specific head indices maintain their function after fine-tuning? Is there cross-task head consistency?"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T20:43:42.945312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"convergent\" attention heads across architectures \"same layer\" \"same head\" transformer universality circuit 2025 2026"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T20:43:42.945437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary\n\n**Title:** Mechanistic Interpretability of Fine-Tuned Vision Transformers on Distorted Images: Decoding Attention Head Behavior for Transparent and Trustworthy AI\n\n**Author:** Nooshin Bahador\n\n**Year:** 2025 (submitted March 24, 2025)\n\n## Key Findings on Attention Head Specialization\n\nThe research reveals functional stratification across transformer layers:\n\n- **Early layers (1-3):** Minimal task relevance with \"ablation increased MSE loss slightly\" (approximately 0.11% mean increase)\n- **Deeper layers (6+):** Substantially greater importance, causing \"threefold higher loss increase\" (~0.34% mean)\n- **Intermediate layers (6-11):** Demonstrated \"monosemantic behavior, attending exclusively to chirp regions\"\n- **Mixed early heads:** Some heads in layers 1-4 were monosemantic but task-irrelevant, functioning as \"text detectors, edge or corner detectors\"\n\n## Regarding Cross-Task Consistency\n\nThe paper does not address whether specific head indices maintain function across different tasks or whether there is cross-task consistency. The study focuses exclusively on Vision Transformers fine-tuned on distorted spectrogram images, examining behavior within a single task context rather than comparing head functionality across multiple tasks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T20:43:42.945587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Olsson \"induction heads\" universal across models transformer mechanistic interpretability\"\n\nLinks: [{\"title\":\"Induction Heads & In-Context Learning\",\"url\":\"https://www.emergentmind.com/papers/2209.11895\"},{\"title\":\"Induction Head in Transformers\",\"url\":\"https://www.emergentmind.com/topics/induction-head-ih\"},{\"title\":\"Mechanistic Interpretability: Part 7 - Induction Heads: The Mechanics of In-Context Learning | To Chin Yu\",\"url\":\"https://ytcs.github.io/machine-learning/2025/05/25/mechanistic-interpretability-part-7.html\"},{\"title\":\"Induction Heads in Transformers\",\"url\":\"https://www.emergentmind.com/topics/induction-heads-ihs\"},{\"title\":\"[2209.11895] In-context Learning and Induction Heads\",\"url\":\"https://arxiv.org/abs/2209.11895\"},{\"title\":\"SELECTIVE INDUCTION HEADS: HOW TRANSFORM\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/d7ed243b13831bdd468f35039936bcef-Paper-Conference.pdf\"},{\"title\":\"(PDF) Mechanistic Interpretability of Induction Heads in Transformer Architectures\",\"url\":\"https://www.researchgate.net/publication/392552787_Mechanistic_Interpretability_of_Induction_Heads_in_Transformer_Architectures\"},{\"title\":\"Induction Heads as an Essential Mechanism for Pattern ...\",\"url\":\"https://aclanthology.org/2025.findings-naacl.283.pdf\"}]\n\nBased on the search results, here's what I found about Olsson's work on induction heads:\n\n## Key Findings\n\nOlsson and colleagues present evidence that induction heads may be the mechanistic source of general in-context learning in transformer models of any size. \n\nInduction heads are attention heads that implement a simple algorithm to complete token sequences like [A][B] ... [A] -> [B]. They are specialized attention heads in transformer architectures that implement a match-and-copy mechanism, enabling transformers to perform in-context learning by identifying token or sequence patterns in a prompt.\n\n## Universality Across Models\n\nThe research confirms that mechanisms identified in \n…[truncated 844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T20:43:42.945759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"convergent\" attention heads across architectures \"same layer\" \"same head\" transformer universality circuit 2025 2026\"\n\nLinks: [{\"title\":\"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\",\"url\":\"https://arxiv.org/html/2602.16740\"},{\"title\":\"[2602.16740] Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\",\"url\":\"https://arxiv.org/abs/2602.16740\"},{\"title\":\"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\",\"url\":\"https://arxiv.org/pdf/2602.16740\"},{\"title\":\"Multi-Head Attention Layer in Transformers\",\"url\":\"https://www.facebook.com/groups/DeepNetGroup/posts/2397145477344987/\"},{\"title\":\"On the Universality of Transformer Architectures; How Much Attention Is Enough?\",\"url\":\"https://arxiv.org/pdf/2512.18445\"}]\n\nI found a highly relevant paper from February 2026 that directly addresses your query. Here are the key findings:\n\nRecent mechanistic interpretability work scrutinizes transformer \"circuits\"—sparse, mono or multi-layer sub-computations that may reflect human-understandable functions. However, these network circuits are rarely tested for their stability across different instances of the same deep learning architecture.\n\nThe research investigates whether models converge to the requisite representational space—alignment of the attention head's induced representation, that is, the subspace it attends to and writes into—and therefore to the same functional behavior.\n\nThe study quantifies, layer by layer, how similarly attention heads learn representations across independently initialized training runs. The rigorous experiments show that: (1) middle-layer heads are the least stable yet the most representationally distinct; (2) deeper models exhibit stronger mid-depth divergence; (3) unstable heads in deeper layers become more functionally important than their peers from the same layer; (4) applying weight decay optimization substantially improves at\n…[truncated 452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T20:43:42.945966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T20:43:42.946126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nablation_narrative_playbook.md\naction_metrics_extended\naction_probe_design.md\nanalyze_ablation_50demos.py\nattention\nattention_decomposition\nattention_decomposition_and_r2.py\nattention_normalization_entropy\nattention_normalization_entropy.py\nbehavioral_pilot_w4_diagnosis.md\nbootstrap_task_ratio.json\nbranch_split_rsa_results.md\ncitation_verification_2026.md\nclosedloop_diagnosis.md\ncontrolb_analysis\ncounterfactual_10tasks\ncounterfactual_instruction.py\ncounterfactual_spatial\ncounterfactual_spatial.py\ncounterfactual_token_overlap\ncross_inst_extract_phase2\ncross_instruction\ndefinitive_rsa_results.md\ndemo_sensitivity.py\ndemo_standardized_rsa.md\ndinov2_baseline\ndream_reports\nextract_fused_backbone.py\nfig2_cross_instruction_heatmap.pdf\nfig_cross_architecture_attention.pdf\nfig_cross_architecture_attention.png\nfig_cross_architecture_attention.py\nfig_ood_diagnostics.png\nfig_rsa_perlayer_curve.pdf\nfig_rsa_perlayer_curve.png\nfig_specificity_bootstrap_30seeds.pdf\nfig_specificity_bootstrap_30seeds.png\nfigures\nfix_dryrun.py\nfulllayer_action_probe.py\ngroundtruth_action_error\nkendall_w_cross_task.json\nl1_ablation_action_probe_50demos.py\nlayer_stability_analysis.md\nlibero_finetuned_attention\nlibero_finetuned_probe_profile.json\nlibero_goal_feasibility.md\nlibero_object_full_pipeline.py\nliterature_map.yaml\nliterature_map_probing.md\nliterature_survey_instruction_probing.md\nllama2base_action_probe.py\nmanifest.yaml\nmatched_ablation_controls.py\nmatched_ablation_controls_diagnosis.md\nmvp_controlb_trained\nmvp_probe_trained\nnora_analysis_report.md\nopenvla_libero_goal_compat.md\npaper_consistency_report.md\npatch_probes.py\npatch_rsa.py\npca_linear_probe_gc.py\npca_linear_probe_perlayer.py\npermutation_10k\npermutation_test_I2.py\nphi3v_attention_profile\nphi3v_attention_trained_10tasks\nphi3v_attention_untrained\nphi3v_probe_untrained\nphi3v_r2_action_probe\nphi3v_r2_seed_expansion\nphi3v_r2_untrained_probe\nphi3v_untrained_cross_inst_probe.py\nphi3v_untrained_seed_expansion\npipeline_audit_libero_goal.\n…[truncated 825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T20:43:42.946271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T20:43:42.946391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T20:43:42.946519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T20:43:42.946632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T20:43:42.946770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/literature_linkage_4suite_consistency.md",
+              "content": "# TracVLA 4-Suite Consistency: Literature Linkage Report\n\n**Date**: 2026-05-21\n\n---\n\n## Summary (< 200 words)\n\n**No direct competitor** reports cross-task/cross-suite attention head consistency in VLA models. The existing literature map (Grant 2026, Swann 2026, Haon 2025 等) focuses on behavioral intervention, SAE features, or activation steering — none tracks specific head indices across task suites.\n\n**h13/h22 universal mixed heads** lack direct precedent. The closest references are: (1) **Olsson et al. 2022** — induction heads as universal circuits across model scales, but these are algorithmic (pattern-matching), not routing-functional; (2) **Basile et al. 2025** (Head Pursuit, NeurIPS 2025 spotlight) — shows consistent head specialization in multimodal transformers, editing 1% of heads controls output, but does not track same-index heads across tasks; (3) **Bali et al. 2026** — finds middle-layer heads are *least* stable across independent training runs, which actually *strengthens* our claim: h13/h22 consistency is a training-induced convergent property within a model, not a trivial artifact of initialization.\n\n**3 papers recommended for literature_map.yaml** (see below). No paper discovers convergent routing with head identity preservation across task suites — this remains our unique contribution.\n\n---\n\n## Detailed Analysis\n\n### 1. Direct Competitor Check\n\nScanned all 9 direct-competitor entries in literature_map.yaml. None reports:\n- Cross-suite attention pattern consistency\n- Specific head indices with consistent function across tasks\n- Convergent routing (CF ordering, R² inverted-U, exit collapse) across suites\n\n**GuidedVLA (Jia et al., May 2026)** is the only VLA paper explicitly about attention head specialization, but they *engineer* it (supervised auxiliary signals for object/spatial/temporal heads), not *discover* it emergently. This is a useful contrast: we show VLA training naturally produces convergent routing without explicit supervision.\n\n### 2. h13/h22 Head Identity Preservation — Literature Support\n\n| Reference | Finding | Relation to h13/h22 |\n|-----------|---------|---------------------|\n| Olsson et al. 2022 | Induction heads are universal circuits across model scales | Precedent for functional universality at head level, but algorithmic (copy mechanism), not routing |\n| Basile et al. 2025 (Head Pursuit) | Consistent head specialization in multimodal transformers; 1% head editing controls output | Supports head-level functional specialization as real phenomenon; no same-index tracking across tasks |\n| Bali et al. 2026 | Middle-layer heads least stable across training runs, most representationally distinct | **Key contrast**: instability across runs ≠ instability across tasks within a run. Our h13/h22 consistency is *within-model cross-task*, a distinct (stronger) claim |\n| Bahador 2025 | ViT fine-tuning: deeper heads more important, intermediate heads monosemantic | Layer-level stratification consistent with our L1 instruction-dominant finding |\n| Yang et al. 2026 (TAPPA, ICLR 2026) | Unifies attention patterns via temporal predictability; predictable vs unpredictable patterns | Theoretical framework for *why* certain heads develop consistent patterns |\n\n**Bottom line**: Head specialization is well-established. Head identity preservation *across task suites within a fine-tuned VLA* is not. Our h13/h22 finding sits in a gap between \"heads specialize\" (known) and \"the same heads specialize the same way across diverse tasks\" (novel).\n\n### 3. Convergent Routing Pattern — Novelty Position\n\nThe full convergent routing pattern (CF ordering + R² inverted-U + exit collapse + L1 instruction dominance) across 3 architectures × 4 suites has no precedent. The closest work:\n- **Grant 2026**: Cross-architecture comparison but of *different* properties (vision dominance, language ignoring), not routing convergence\n- **Bali 2026**: Cross-run stability, not cross-task consistency\n- **Head Pursuit**: Cross-task head specialization in VLMs, not VLAs, and no routing pattern analysis\n\n---\n\n## Suggested literature_map.yaml Entries\n\n### Entry 1: bali2026\n\n```yaml\n- id: bali2026\n  title: \"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality\"\n  authors: \"Karan Bali, Jack Stanley, Praneet Suresh, Danilo Bzdok\"\n  year: 2026\n  venue: \"arXiv preprint\"\n  arxiv_id: \"2602.16740\"\n  category: method-component\n  role: context\n  key_findings: >\n    Systematically quantifies attention head stability across independently initialized training runs.\n    Middle-layer heads are least stable yet most representationally distinct. Deeper models show\n    stronger mid-depth divergence. Weight decay improves stability. Residual stream comparatively stable.\n  relevance_to_us: >\n    Key contrast paper for h13/h22 universality claim. Their finding that heads are unstable across\n    training runs strengthens our claim: h13/h22 cross-task consistency is a training-induced convergent\n    property, not a trivial initialization artifact. Cross-run instability ≠ cross-task instability.\n  novelty_gap: >\n    Studies pre-trained LLMs across random seeds, not fine-tuned VLAs across task suites.\n    No cross-task consistency analysis within a single trained model.\n```\n\n### Entry 2: basile2025_headpursuit\n\n```yaml\n- id: basile2025_headpursuit\n  title: \"Head Pursuit: Probing Attention Specialization in Multimodal Transformers\"\n  authors: \"Lorenzo Basile, Valentino Maiorca, Diego Doimo, Francesco Locatello, Alberto Cazzaniga\"\n  year: 2025\n  venue: \"NeurIPS 2025 (Spotlight)\"\n  arxiv_id: \"2510.21518\"\n  category: method-component\n  role: methodology\n  key_findings: >\n    Consistent head specialization patterns in unimodal and multimodal transformers.\n    Signal processing-based method (SOMP) identifies semantic specialization per head.\n    Editing 1% of heads reliably suppresses/enhances targeted concepts.\n    Validated across QA, toxicity, image classification, captioning.\n  relevance_to_us: >\n    Strongest methodological support for head-level specialization as real phenomenon.\n    Their cross-task validation (QA + toxicity + vision tasks) parallels our cross-suite validation.\n    However they do not track same-index heads across tasks — our h13/h22 identity preservation goes further.\n  novelty_gap: >\n    VLM focus, not VLA. No routing pattern analysis. No trained vs untrained comparison.\n    Does not track whether same head indices serve same function across tasks.\n```\n\n### Entry 3: olsson2022_induction\n\n```yaml\n- id: olsson2022_induction\n  title: \"In-context Learning and Induction Heads\"\n  authors: \"Catherine Olsson, Nelson Elhage, Neel Nanda, et al.\"\n  year: 2022\n  venue: \"arXiv preprint (Anthropic)\"\n  arxiv_id: \"2209.11895\"\n  category: method-component\n  role: context\n  key_findings: >\n    Induction heads implement match-and-copy ([A][B]...[A]→[B]) and are mechanistic source of\n    in-context learning. Emerge at same training point as ICL ability phase transition.\n    Universal across model scales — canonical example of circuit-level universality.\n  relevance_to_us: >\n    Classic precedent for \"specific heads with universal function across contexts.\"\n    Our h13/h22 mixed heads are analogous: specific heads with consistent routing function across\n    task suites. Induction heads = algorithmic universality; our finding = routing universality in VLAs.\n  novelty_gap: >\n    Purely LLM, not VLA. Induction is a copying mechanism, not multimodal routing.\n    No cross-task consistency analysis in the fine-tuning setting.\n```\n\n---\n\n## Action Items\n\n1. **Add 3 entries above to literature_map.yaml** under appropriate categories (bali2026 + basile2025 → method-component; olsson2022 → method-component)\n2. **Update categories index** to include new papers\n3. **Paper framing**: The h13/h22 finding can be positioned as \"convergent routing heads\" — extending the induction head universality concept (Olsson 2022) from algorithmic circuits to multimodal routing in VLAs, with the Bali 2026 cross-run instability result as a foil that highlights the within-model cross-task nature of our claim\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T20:43:42.947019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/literature_linkage_4suite_consistency.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T20:43:42.947189+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入 `artifacts/literature_linkage_4suite_consistency.md`。核心结论：\n\n**无直接竞品论文**报告过跨 task suite 的 attention head consistency pattern。现有 VLA 解释性文献（Grant/Swann/Haon/Rizzardo）全部聚焦行为干预或 SAE 特征，无人追踪 specific head indices 的跨任务一致性。\n\n**h13/h22 head identity preservation 无直接先例**，但有三层文献支撑：\n- **Olsson et al. 2022**（induction heads）：head 级功能普遍性的经典范例，但机制是 algorithmic copy，非 routing\n- **Basile et al. 2025**（Head Pursuit, NeurIPS spotlight）：多模态 transformer 中 head 专化一致且可操控，但未追踪 same-index cross-task\n- **Bali et al. 2026**：中间层 head 跨训练 run 最不稳定——这反而加强我们的 claim：h13/h22 的 cross-task 一致性是 training-induced convergent property，非初始化 artifact\n\n**建议添加 3 条文献到 literature_map.yaml**（bali2026, basile2025_headpursuit, olsson2022_induction），详细条目见产出文件。\n\n**GuidedVLA（Jia et al., 2026.05）**是唯一涉及 VLA attention head specialization 的论文，但它是人工监督强制的，非 emergent——可作为对照引用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_literature-linkage-tracvla-4suite_20260521T204054"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-literature-linkage-tracvla-4suite.md"
+}

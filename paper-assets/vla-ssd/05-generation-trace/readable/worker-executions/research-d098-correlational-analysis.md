@@ -1,0 +1,2683 @@
+# research d098 correlational analysis
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_research_d098_correlational_analysis_20260522T063947.log`
+- **Structured JSON:** [`f7df31ffab938c72f178.json`](../../sessions/f7/f7df31ffab938c72f178.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6d618d87-752d-4189-91ee-e591e0c3e703",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779448800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3524894f-1dcf-44cb-824b-c2c2b12d1b82",
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll collect published LIBERO success rates for the three VLA models, then run the correlation analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "2e9da16e-6763-405a-a33d-42f2d8296e56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVtejHUkwnbFyBH8Cb3AjG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12068,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12068
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PCM8yYYKTPnHkLjXrwAugB`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "2f1335b3-a19e-4fb6-8d3b-d01026926fb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVtejHUkwnbFyBH8Cb3AjG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12068,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12068
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T06:40:00.540Z_
+
+<details><summary>↩ Tool result · `toolu_01PCM8yYYKTPnHkLjXrwAugB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "0285956c-03ea-49d9-9ced-9a4f7ba2e01c",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the published LIBERO success rates for each of the three VLA models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "299ccffe-7ac4-43b7-97c2-df427aa01780",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013efHhGX4RbbLMz5oxbFnwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TiUugAcXD7LHMLSHWLHTWo`</summary>
+
+```json
+{
+  "query": "OpenVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate benchmark results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "a827af80-50a0-44c9-8ab8-5626e6ec0293",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013efHhGX4RbbLMz5oxbFnwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011L2bnruGCXjyuyFgJgUsMe`</summary>
+
+```json
+{
+  "query": "TracVLA TraceVLA LIBERO success rate benchmark results visual trace"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "314cab21-6c68-422f-b8c9-ec60adbd6cd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013efHhGX4RbbLMz5oxbFnwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JbFPCrUNhnB1RiZrDABtR7`</summary>
+
+```json
+{
+  "query": "NORA VLA arXiv 2504.19854 LIBERO success rate benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "45a53386-5bac-4bba-922d-38c8cb7b914a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013efHhGX4RbbLMz5oxbFnwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T06:40:08.883Z_
+
+<details><summary>↩ Tool result · `toolu_01TiUugAcXD7LHMLSHWLHTWo`</summary>
+
+```text
+Web search results for query: "OpenVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate benchmark results"
+
+Links: [{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"}]
+
+Based on the search results, here are the benchmark results for OpenVLA across LIBERO task suites:
+
+## OpenVLA-OFT Results (State-of-the-Art)
+
+OpenVLA-OFT achieves 97.1% average success rate across the four LIBERO task suites, outperforming previous fine-tuned OpenVLA policies (76.5%) and π0 policies (94.2%).
+
+## Original OpenVLA Results
+
+The baseline OpenVLA model achieved 76.5% average success rate across the four LIBERO task suites.
+
+## LIBERO-PRO Robustness Analysis
+
+Under the more challenging LIBERO-PRO evaluation suite with perturbations, the results vary significantly:
+
+- Pi0.5 achieves a 0.38 success rate in the LIBERO-goal task under position changes, compared to 0 for OpenVLA and Pi0
+- Despite achieving success rates above 90% on the standard LIBERO benchmark, models nearly collapse under changes to object positions or minor task modifications
+
+The search results show detailed performance across perturbation types and specific task suites (Goal, Spatial, Object, Long), though the complete breakdown for each specific suite variant you mentioned would require examining the full research papers directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "b02ad04a-2398-44fd-b5b0-0cbf12792513",
+  "tool_use_result": {
+    "query": "OpenVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate benchmark results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012gTTom35uQaLFg3WcyTVrz",
+        "content": [
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          }
+        ]
+      },
+      "Based on the search results, here are the benchmark results for OpenVLA across LIBERO task suites:\n\n## OpenVLA-OFT Results (State-of-the-Art)\n\nOpenVLA-OFT achieves 97.1% average success rate across the four LIBERO task suites, outperforming previous fine-tuned OpenVLA policies (76.5%) and π0 policies (94.2%).\n\n## Original OpenVLA Results\n\nThe baseline OpenVLA model achieved 76.5% average success rate across the four LIBERO task suites.\n\n## LIBERO-PRO Robustness Analysis\n\nUnder the more challenging LIBERO-PRO evaluation suite with perturbations, the results vary significantly:\n\n- Pi0.5 achieves a 0.38 success rate in the LIBERO-goal task under position changes, compared to 0 for OpenVLA and Pi0\n- Despite achieving success rates above 90% on the standard LIBERO benchmark, models nearly collapse under changes to object positions or minor task modifications\n\nThe search results show detailed performance across perturbation types and specific task suites (Goal, Spatial, Object, Long), though the complete breakdown for each specific suite variant you mentioned would require examining the full research papers directly."
+    ],
+    "durationSeconds": 5.464835037000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T06:40:09.860Z_
+
+<details><summary>↩ Tool result · `toolu_011L2bnruGCXjyuyFgJgUsMe`</summary>
+
+```text
+Web search results for query: "TracVLA TraceVLA LIBERO success rate benchmark results visual trace"
+
+Links: [{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Visual-Language-Action+%28VLA%29+models"},{"title":"TraceVLA: Enhancing Robotic Spatial-Temporal Skills","url":"https://www.emergentmind.com/topics/tracevla"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/html/2412.10345v1"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | Request PDF","url":"https://www.researchgate.net/publication/387078625_TraceVLA_Visual_Trace_Prompting_Enhances_Spatial-Temporal_Awareness_for_Generalist_Robotic_Policies"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/pdf/2412.10345"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | OpenReview","url":"https://openreview.net/forum?id=b1CVu9l5GO"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://tracevla.github.io/"},{"title":"Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation","url":"https://arxiv.org/pdf/2603.12717"}]
+
+Based on the search results, here's information about TraceVLA's benchmark results and performance:
+
+## Key Performance Results
+
+TraceVLA demonstrates state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks, with evaluations across 137 configurations in SimplerEnv and 4 tasks on a physical WidowX robot.
+
+## Visual Trace Prompting Innovation
+
+Visual trace prompting is a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories visually. Visual trace overlays, rather than simple frame histories or text prompts, yield the full improvement (+6.4% for visual traces vs +2.4% for text-only).
+
+## LIBERO Benchmark
+
+While the search results mention LIBERO evaluations, comprehensive experiments across LIBERO, SimplerEnv, and real robot tasks demonstrate consistent improvements: 4.0 percentage points average on LIBERO (72.4% vs 68.4% baseline).
+
+## Model Development
+
+TraceVLA was developed by finetuning OpenVLA on a collected dataset of 150K robot manipulation trajectories using visual trace prompting.
+
+The results show that visual trace prompting significantly enhances spatial-temporal awareness in vision-language-action models for robotic manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "41801481-b3bb-4884-ba06-023a68f84bc1",
+  "tool_use_result": {
+    "query": "TracVLA TraceVLA LIBERO success rate benchmark results visual trace",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R5AVeHeCkQ9GKE5Uz89ttf",
+        "content": [
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Visual-Language-Action+%28VLA%29+models"
+          },
+          {
+            "title": "TraceVLA: Enhancing Robotic Spatial-Temporal Skills",
+            "url": "https://www.emergentmind.com/topics/tracevla"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/html/2412.10345v1"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | Request PDF",
+            "url": "https://www.researchgate.net/publication/387078625_TraceVLA_Visual_Trace_Prompting_Enhances_Spatial-Temporal_Awareness_for_Generalist_Robotic_Policies"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/pdf/2412.10345"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | OpenReview",
+            "url": "https://openreview.net/forum?id=b1CVu9l5GO"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://tracevla.github.io/"
+          },
+          {
+            "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2603.12717"
+          }
+        ]
+      },
+      "Based on the search results, here's information about TraceVLA's benchmark results and performance:\n\n## Key Performance Results\n\nTraceVLA demonstrates state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks, with evaluations across 137 configurations in SimplerEnv and 4 tasks on a physical WidowX robot.\n\n## Visual Trace Prompting Innovation\n\nVisual trace prompting is a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories visually. Visual trace overlays, rather than simple frame histories or text prompts, yield the full improvement (+6.4% for visual traces vs +2.4% for text-only).\n\n## LIBERO Benchmark\n\nWhile the search results mention LIBERO evaluations, comprehensive experiments across LIBERO, SimplerEnv, and real robot tasks demonstrate consistent improvements: 4.0 percentage points average on LIBERO (72.4% vs 68.4% baseline).\n\n## Model Development\n\nTraceVLA was developed by finetuning OpenVLA on a collected dataset of 150K robot manipulation trajectories using visual trace prompting.\n\nThe results show that visual trace prompting significantly enhances spatial-temporal awareness in vision-language-action models for robotic manipulation tasks."
+    ],
+    "durationSeconds": 5.568223010999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T06:40:10.237Z_
+
+<details><summary>↩ Tool result · `toolu_01JbFPCrUNhnB1RiZrDABtR7`</summary>
+
+```text
+Web search results for query: "NORA VLA arXiv 2504.19854 LIBERO success rate benchmark"
+
+Links: [{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/abs/2504.19854"},{"title":"arXiv:2506.07530v1 [cs.RO] 9 Jun 2025","url":"https://arxiv.org/pdf/2506.07530"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"Task Reconstruction and Extrapolation for $\\pi_0$ using Text Latent","url":"https://arxiv.org/pdf/2505.03500"}]
+
+Based on the search results, here's what I found about NORA and its LIBERO benchmark performance:
+
+NORA is evaluated across various real-world tasks and the LIBERO simulation benchmark, with experimental results showing that NORA achieves significant performance improvements over existing competitive baselines.
+
+NORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance, adopting the Qwen-2.5-VL-3B multimodal model as its backbone and trained on 970k real-world robot demonstrations with the FAST+ tokenizer for efficient action sequence generation.
+
+Experimental results demonstrate that NORA outperforms existing large-scale VLA models, achieving better task performance with significantly reduced computational overhead, making it a more practical solution for real-time robotic autonomy.
+
+However, the search results do not contain the specific success rate percentages for NORA on the LIBERO benchmark. To find those exact numbers, you would need to access the full paper at arXiv:2504.19854 directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "d138ff8c-eb98-4963-87a2-5ecf55ce0e8e",
+  "tool_use_result": {
+    "query": "NORA VLA arXiv 2504.19854 LIBERO success rate benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019hYazErUTDPrQFUGX86a37",
+        "content": [
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/abs/2504.19854"
+          },
+          {
+            "title": "arXiv:2506.07530v1 [cs.RO] 9 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.07530"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "Task Reconstruction and Extrapolation for $\\pi_0$ using Text Latent",
+            "url": "https://arxiv.org/pdf/2505.03500"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about NORA and its LIBERO benchmark performance:\n\nNORA is evaluated across various real-world tasks and the LIBERO simulation benchmark, with experimental results showing that NORA achieves significant performance improvements over existing competitive baselines.\n\nNORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance, adopting the Qwen-2.5-VL-3B multimodal model as its backbone and trained on 970k real-world robot demonstrations with the FAST+ tokenizer for efficient action sequence generation.\n\nExperimental results demonstrate that NORA outperforms existing large-scale VLA models, achieving better task performance with significantly reduced computational overhead, making it a more practical solution for real-time robotic autonomy.\n\nHowever, the search results do not contain the specific success rate percentages for NORA on the LIBERO benchmark. To find those exact numbers, you would need to access the full paper at arXiv:2504.19854 directly."
+    ],
+    "durationSeconds": 5.643041901000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need more specific numbers. Let me search more specifically for the per-suite success rates. Let me look at the actual papers/tables.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "e8e54133-f101-4765-a45d-8a3ff2efcca0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuuocNkMnux6zZwESX4Akr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2508,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Need per-suite breakdowns. Let me dig into the actual papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "4118ac61-3cb9-49ae-9507-e0c65660e033",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuuocNkMnux6zZwESX4Akr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2508,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wp4GQTv6WAAQ4cdAeW6Gby`</summary>
+
+```json
+{
+  "query": "TraceVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate table results arxiv 2412.10345"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "6066a3f7-5275-4d14-a50d-d8c7e71eec04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuuocNkMnux6zZwESX4Akr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2508,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016i1UzUsMrBnkM3Zedqk83x`</summary>
+
+```json
+{
+  "query": "OpenVLA LIBERO benchmark per-suite success rate Goal Spatial Object Long table arxiv 2406.09246"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "e97ff667-cb8b-4d9a-a3bc-3e526a6bdd55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuuocNkMnux6zZwESX4Akr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2508,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UhN89Yv6V9htNujfGqCqNp`</summary>
+
+```json
+{
+  "query": "NORA VLA LIBERO benchmark success rate per suite Goal Spatial Object Long table results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "d1e55abb-6bab-447b-9250-4ed389b7058f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuuocNkMnux6zZwESX4Akr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2508,
+      "cache_read_input_tokens": 24535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T06:40:22.729Z_
+
+<details><summary>↩ Tool result · `toolu_01Wp4GQTv6WAAQ4cdAeW6Gby`</summary>
+
+```text
+Web search results for query: "TraceVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate table results arxiv 2412.10345"
+
+Links: [{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/html/2412.10345v2"},{"title":"Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness Under Real-World Physical Variations","url":"https://arxiv.org/html/2509.18953v1"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/html/2412.20451v2"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"dVLA: Diffusion Vision-Language-Action Model with Multimodal Chain-of-Thought","url":"https://arxiv.org/pdf/2509.25681"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"[2412.10345] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/abs/2412.10345"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | Request PDF","url":"https://www.researchgate.net/publication/387078625_TraceVLA_Visual_Trace_Prompting_Enhances_Spatial-Temporal_Awareness_for_Generalist_Robotic_Policies"},{"title":"Paper page - TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://huggingface.co/papers/2412.10345"}]
+
+I found the TraceVLA paper (arxiv 2412.10345). The search results confirm that Table 5 contains multitask success rates on LIBERO simulation benchmarks, and the paper evaluates the four LIBERO suites: LIBERO-long, LIBERO-Spatial, LIBERO-Object, and LIBERO-Goal, each with 10 tasks and 50 human teleoperated demonstrations per task.
+
+However, the specific numerical values from Table 5 are not visible in the search results I retrieved. To access the actual success rate numbers for each LIBERO suite (LIBERO-Goal, LIBERO-Spatial, LIBERO-Object, and LIBERO-Long), you would need to view the full paper directly at:
+
+**https://arxiv.org/html/2412.10345v2** or **https://arxiv.org/pdf/2412.10345**
+
+The HTML or PDF version of the paper will contain Table 5 with the complete success rate results for all four LIBERO task suites.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "64fecd0a-00c4-428d-8135-3282593c5f23",
+  "tool_use_result": {
+    "query": "TraceVLA LIBERO-Goal LIBERO-Spatial LIBERO-Object LIBERO-Long success rate table results arxiv 2412.10345",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FfU2nCeB9ErgidSscZKUpX",
+        "content": [
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/html/2412.10345v2"
+          },
+          {
+            "title": "Eva-VLA: Evaluating Vision-Language-Action Models’ Robustness Under Real-World Physical Variations",
+            "url": "https://arxiv.org/html/2509.18953v1"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/html/2412.20451v2"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "dVLA: Diffusion Vision-Language-Action Model with Multimodal Chain-of-Thought",
+            "url": "https://arxiv.org/pdf/2509.25681"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "[2412.10345] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/abs/2412.10345"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | Request PDF",
+            "url": "https://www.researchgate.net/publication/387078625_TraceVLA_Visual_Trace_Prompting_Enhances_Spatial-Temporal_Awareness_for_Generalist_Robotic_Policies"
+          },
+          {
+            "title": "Paper page - TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://huggingface.co/papers/2412.10345"
+          }
+        ]
+      },
+      "I found the TraceVLA paper (arxiv 2412.10345). The search results confirm that Table 5 contains multitask success rates on LIBERO simulation benchmarks, and the paper evaluates the four LIBERO suites: LIBERO-long, LIBERO-Spatial, LIBERO-Object, and LIBERO-Goal, each with 10 tasks and 50 human teleoperated demonstrations per task.\n\nHowever, the specific numerical values from Table 5 are not visible in the search results I retrieved. To access the actual success rate numbers for each LIBERO suite (LIBERO-Goal, LIBERO-Spatial, LIBERO-Object, and LIBERO-Long), you would need to view the full paper directly at:\n\n**https://arxiv.org/html/2412.10345v2** or **https://arxiv.org/pdf/2412.10345**\n\nThe HTML or PDF version of the paper will contain Table 5 with the complete success rate results for all four LIBERO task suites."
+    ],
+    "durationSeconds": 5.772395774999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T06:40:23.169Z_
+
+<details><summary>↩ Tool result · `toolu_016i1UzUsMrBnkM3Zedqk83x`</summary>
+
+```text
+Web search results for query: "OpenVLA LIBERO benchmark per-suite success rate Goal Spatial Object Long table arxiv 2406.09246"
+
+Links: [{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"arXiv:2506.07530v1 [cs.RO] 9 Jun 2025","url":"https://arxiv.org/pdf/2506.07530"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2508.19236v1"},{"title":"openvla-mini/README.md at main · Stanford-ILIAD/openvla-mini","url":"https://github.com/Stanford-ILIAD/openvla-mini/blob/main/README.md"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"openvla/openvla-7b-finetuned-libero-spatial · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b-finetuned-libero-spatial"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"}]
+
+Based on the search results, I found information about OpenVLA's performance on the LIBERO benchmark. OpenVLA was fine-tuned via LoRA (r=32) on four LIBERO task suites independently: LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-10 (also called LIBERO-Long).
+
+The paper arxiv 2406.09246 discusses these results in detail. Each success rate is the average over 3 random seeds x 500 rollouts each (10 tasks x 50 rollouts per task).
+
+While the search results reference these benchmarks and the arxiv paper 2406.09246, they don't display the specific per-suite success rate numbers in a table format within the search results. However, you can access the full paper and results directly at https://arxiv.org/abs/2406.09246 or on the official OpenVLA GitHub repository (https://github.com/openvla/openvla) which contains detailed results tables for the LIBERO benchmarks including the Spatial, Object, Goal, and Long (LIBERO-10) task suites.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "4f89293f-fa9e-4339-a9ac-a05bbbd2ccdb",
+  "tool_use_result": {
+    "query": "OpenVLA LIBERO benchmark per-suite success rate Goal Spatial Object Long table arxiv 2406.09246",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WDsQ1LwFEcjtSD5egvhwM1",
+        "content": [
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "arXiv:2506.07530v1 [cs.RO] 9 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.07530"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2508.19236v1"
+          },
+          {
+            "title": "openvla-mini/README.md at main · Stanford-ILIAD/openvla-mini",
+            "url": "https://github.com/Stanford-ILIAD/openvla-mini/blob/main/README.md"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "openvla/openvla-7b-finetuned-libero-spatial · Hugging Face",
+            "url": "https://huggingface.co/openvla/openvla-7b-finetuned-libero-spatial"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          }
+        ]
+      },
+      "Based on the search results, I found information about OpenVLA's performance on the LIBERO benchmark. OpenVLA was fine-tuned via LoRA (r=32) on four LIBERO task suites independently: LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-10 (also called LIBERO-Long).\n\nThe paper arxiv 2406.09246 discusses these results in detail. Each success rate is the average over 3 random seeds x 500 rollouts each (10 tasks x 50 rollouts per task).\n\nWhile the search results reference these benchmarks and the arxiv paper 2406.09246, they don't display the specific per-suite success rate numbers in a table format within the search results. However, you can access the full paper and results directly at https://arxiv.org/abs/2406.09246 or on the official OpenVLA GitHub repository (https://github.com/openvla/openvla) which contains detailed results tables for the LIBERO benchmarks including the Spatial, Object, Goal, and Long (LIBERO-10) task suites."
+    ],
+    "durationSeconds": 5.263230471999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T06:40:31.694Z_
+
+<details><summary>↩ Tool result · `toolu_01UhN89Yv6V9htNujfGqCqNp`</summary>
+
+```text
+Web search results for query: "NORA VLA LIBERO benchmark success rate per suite Goal Spatial Object Long table results"
+
+Links: [{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"RIPT-VLA: Reinforcement Interactive Post-Training for Vision-Language-Action Models","url":"https://ariostgx.github.io/ript_vla/"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling","url":"https://arxiv.org/html/2512.02902v1"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"Libero-Object Benchmark","url":"https://www.emergentmind.com/topics/libero-object-benchmark"}]
+
+I found search results related to NORA and LIBERO benchmarks with success rate information across different task suites. Here are the key findings:
+
+NORA-Long achieves the highest average success rate (87.9%) across all methods, demonstrating strong generalization in both short- and long-horizon scenarios.
+
+The search results reference success rates for various VLA models across the LIBERO benchmark suites (Goal, Spatial, Object, and Long). One method achieves a state-of-the-art 94.3% success rate on LIBERO-90 and 97.5% success rate across the LIBERO Suites (Goal, Spatial, Object, Long).
+
+Additionally, detailed success rates are available across seven perturbation categories for various VLA methods, with results further broken down by task suite (Spatial, Object, Goal, and Long).
+
+For more specific table results with detailed per-suite breakdowns, you would need to access the full research papers directly, particularly the NORA paper (arxiv.org/html/2504.19854v1) and the LIBERO-Plus paper which contain comprehensive tables with success rate results organized by these task suites.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "648cd5f6-c11e-4e63-81f1-bdae8e6791e3",
+  "tool_use_result": {
+    "query": "NORA VLA LIBERO benchmark success rate per suite Goal Spatial Object Long table results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019ADqJTVP6HGopFgA8roLQ8",
+        "content": [
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "RIPT-VLA: Reinforcement Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://ariostgx.github.io/ript_vla/"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling",
+            "url": "https://arxiv.org/html/2512.02902v1"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "Libero-Object Benchmark",
+            "url": "https://www.emergentmind.com/topics/libero-object-benchmark"
+          }
+        ]
+      },
+      "I found search results related to NORA and LIBERO benchmarks with success rate information across different task suites. Here are the key findings:\n\nNORA-Long achieves the highest average success rate (87.9%) across all methods, demonstrating strong generalization in both short- and long-horizon scenarios.\n\nThe search results reference success rates for various VLA models across the LIBERO benchmark suites (Goal, Spatial, Object, and Long). One method achieves a state-of-the-art 94.3% success rate on LIBERO-90 and 97.5% success rate across the LIBERO Suites (Goal, Spatial, Object, Long).\n\nAdditionally, detailed success rates are available across seven perturbation categories for various VLA methods, with results further broken down by task suite (Spatial, Object, Goal, and Long).\n\nFor more specific table results with detailed per-suite breakdowns, you would need to access the full research papers directly, particularly the NORA paper (arxiv.org/html/2504.19854v1) and the LIBERO-Plus paper which contain comprehensive tables with success rate results organized by these task suites."
+    ],
+    "durationSeconds": 13.415441590999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to fetch the actual paper HTML pages to get the specific numbers. Let me use WebFetch to get the actual tables from the papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "3b52f4e0-de95-4220-a080-43afbf8c5aef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWbFUgypaV2NnmXYE7fSjP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2643,
+      "cache_read_input_tokens": 27043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Let me fetch the actual paper pages to extract the exact numbers from tables.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "4b65f708-17b9-400a-8c75-ef9736d73985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWbFUgypaV2NnmXYE7fSjP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2643,
+      "cache_read_input_tokens": 27043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013fkbUyrQCorwCu3HMREyVb`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "1544029c-cc56-451c-b33d-86363f094b55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWbFUgypaV2NnmXYE7fSjP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2643,
+      "cache_read_input_tokens": 27043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T06:40:38.245Z_
+
+<details><summary>↩ Tool result · `toolu_013fkbUyrQCorwCu3HMREyVb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "714155c0-0544-47de-b23c-6c245085548c",
+  "tool_use_result": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PxknW6vh3rPkCC46kWwBgZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2412.10345v2",
+  "prompt": "Find the table with LIBERO benchmark results showing success rates for TraceVLA (and OpenVLA baseline) on LIBERO-Goal, LIBERO-Spatial, LIBERO-Object, and LIBERO-Long suites. Extract the exact success rate numbers for TraceVLA and OpenVLA on each suite. Look for Table 5 or any table with multitask LIBERO results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "9219177b-00b0-4a6d-9c2d-26ef7c1b4dcd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XxKiCbxuXCURfp1gSoAn3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 29686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 758
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EQXqRD8QgF5hVC2oMZcqAS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.19854v1",
+  "prompt": "Find the table with LIBERO benchmark results showing success rates for NORA on LIBERO-Goal, LIBERO-Spatial, LIBERO-Object, and LIBERO-Long suites. Extract the exact success rate numbers for NORA and any baselines (OpenVLA etc.) on each suite. Look for all tables with LIBERO results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "1674e3dc-cf76-4a9d-a674-cf3f23346d87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XxKiCbxuXCURfp1gSoAn3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 29686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 758
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T06:40:46.414Z_
+
+<details><summary>↩ Tool result · `toolu_01PxknW6vh3rPkCC46kWwBgZ`</summary>
+
+```text
+# LIBERO Benchmark Results
+
+Based on Table 5 in the document, here are the success rates for both models:
+
+**TraceVLA (finetuned):**
+- LIBERO-Spatial: 84.6% ± 0.2%
+- LIBERO-Object: 85.2% ± 0.4%
+- LIBERO-Goal: 75.1% ± 0.3%
+- LIBERO-Long: 54.1% ± 1.0%
+- Average: 74.8% ± 0.4%
+
+**OpenVLA (finetuned):**
+- LIBERO-Spatial: 82.6% ± 0.4%
+- LIBERO-Object: 83.8% ± 0.6%
+- LIBERO-Goal: 70.4% ± 0.5%
+- LIBERO-Long: 45.7% ± 0.6%
+- Average: 70.6% ± 0.4%
+
+TraceVLA demonstrates consistent improvements across all four benchmark suites, with particularly notable gains on the challenging LIBERO-Long suite (+8.4 percentage points).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "3bd47663-4fd9-4d38-b83f-16065a126ab5",
+  "tool_use_result": {
+    "bytes": 321794,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO Benchmark Results\n\nBased on Table 5 in the document, here are the success rates for both models:\n\n**TraceVLA (finetuned):**\n- LIBERO-Spatial: 84.6% ± 0.2%\n- LIBERO-Object: 85.2% ± 0.4%\n- LIBERO-Goal: 75.1% ± 0.3%\n- LIBERO-Long: 54.1% ± 1.0%\n- Average: 74.8% ± 0.4%\n\n**OpenVLA (finetuned):**\n- LIBERO-Spatial: 82.6% ± 0.4%\n- LIBERO-Object: 83.8% ± 0.6%\n- LIBERO-Goal: 70.4% ± 0.5%\n- LIBERO-Long: 45.7% ± 0.6%\n- Average: 70.6% ± 0.4%\n\nTraceVLA demonstrates consistent improvements across all four benchmark suites, with particularly notable gains on the challenging LIBERO-Long suite (+8.4 percentage points).",
+    "durationMs": 3591,
+    "url": "https://arxiv.org/html/2412.10345v2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T06:40:48.263Z_
+
+<details><summary>↩ Tool result · `toolu_01EQXqRD8QgF5hVC2oMZcqAS`</summary>
+
+```text
+# LIBERO Benchmark Results for NORA
+
+Based on Table 2 in the document, here are the success rates:
+
+## NORA Fine-tuned (without action chunking)
+- **LIBERO-Spatial:** 85.6%
+- **LIBERO-Object:** 87.8%
+- **LIBERO-Goal:** 77%
+- **LIBERO-Long:** 45%
+- **Average:** 73.9%
+
+## NORA Fine-tuned with Action Chunking (AC)
+- **LIBERO-Spatial:** 85.6%
+- **LIBERO-Object:** 89.4%
+- **LIBERO-Goal:** 80%
+- **LIBERO-Long:** 63%
+- **Average:** 79.5%
+
+## NORA-Long Fine-tuned (with action chunking)
+- **LIBERO-Spatial:** 92.2%
+- **LIBERO-Object:** 95.4%
+- **LIBERO-Goal:** 89.4%
+- **LIBERO-Long:** 74.6%
+- **Average:** 87.9%
+
+For comparison, OpenVLA fine-tuned achieved 76.5% average, while "fine-tuned NORA-Long achieves the best overall performance" at 87.9%, demonstrating significant improvements particularly on long-horizon tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "812f88e3-b833-4c40-ada7-63c1c6631dcc",
+  "tool_use_result": {
+    "bytes": 226267,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO Benchmark Results for NORA\n\nBased on Table 2 in the document, here are the success rates:\n\n## NORA Fine-tuned (without action chunking)\n- **LIBERO-Spatial:** 85.6%\n- **LIBERO-Object:** 87.8%\n- **LIBERO-Goal:** 77%\n- **LIBERO-Long:** 45%\n- **Average:** 73.9%\n\n## NORA Fine-tuned with Action Chunking (AC)\n- **LIBERO-Spatial:** 85.6%\n- **LIBERO-Object:** 89.4%\n- **LIBERO-Goal:** 80%\n- **LIBERO-Long:** 63%\n- **Average:** 79.5%\n\n## NORA-Long Fine-tuned (with action chunking)\n- **LIBERO-Spatial:** 92.2%\n- **LIBERO-Object:** 95.4%\n- **LIBERO-Goal:** 89.4%\n- **LIBERO-Long:** 74.6%\n- **Average:** 87.9%\n\nFor comparison, OpenVLA fine-tuned achieved 76.5% average, while \"fine-tuned NORA-Long achieves the best overall performance\" at 87.9%, demonstrating significant improvements particularly on long-horizon tasks.",
+    "durationMs": 4436,
+    "url": "https://arxiv.org/html/2504.19854v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the data. Let me also check whether the OpenVLA numbers from the NORA paper match the TraceVLA paper (both should report OpenVLA fine-tuned baselines). Let me also look at the OpenVLA paper itself for the original numbers.
+
+From TraceVLA paper (Table 5):
+- OpenVLA (finetuned): Spatial 82.6%, Object 83.8%, Goal 70.4%, Long 45.7%
+- TraceVLA (finetuned): Spatial 84.6%, Object 85.2%, Goal 75.1%, Long 54.1%
+
+
+From NORA paper (Table 2):
+- NORA (finetuned, no AC): Spatial 85.6%, Object 87.8%, Goal 77%, Long 45%
+- NORA (finetuned, AC): Spatial 85.6%, Object 89.4%, Goal 80%, Long 63%
+- NORA-Long (finetuned, AC): Spatial 92.2%, Object 95.4%, Goal 89.4%, Long 74.6%
+
+The NORA paper presents several variants, and I need to decide which one is most appropriate for comparison. The base NORA model is the main contribution, though NORA-Long appears to be a specialized variant.
+
+Looking at the R² Δ data I have for OpenVLA, TracVLA, and NORA across different task categories, I need to figure out which NORA variant was actually used in those experiments. Since the task mentions comparing three VLA architectures, I'm assuming these are the base versions of each model. For NORA specifically, the standard finetuned version without action chunking seems like the most direct comparison point to the other baselines. Now I'm trying to understand what the R² exit collapse metric actually measures—it's related to analyzing how the internal representations change across the model's layers.
+
+The key insight is that the R² Δ values represent the difference between peak and exit R² scores, so I need to match these with success rates from the same model variants that were actually trained and evaluated. I'm pulling the finetuned performance numbers from the TracVLA paper since they finetuned OpenVLA on LIBERO, which should give me the correct baseline numbers. Now I'm building a comparison table to align the R² Δ measurements with the published success rates for each architecture and task suite. I need to verify I'm using consistent data sources across the models—the TraceVLA paper's baseline numbers for OpenVLA should align reasonably with the original paper, and I'll stick with the published results from each respective paper for accuracy. Now I'm ready to calculate the Spearman correlation with the nine data points I've compiled. I'll go with the base NORA variant since it's the most directly comparable to the other architectures, then write out the Python script to compute the correlation analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "1a155e8a-4e1e-4910-9b28-a7059b91c396",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFM9BRbjHj5wgSj7FTp3sL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 30444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Got the numbers. Now let me run the correlation analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "2b29fbd4-ae57-4e9f-9ad3-40230eac2eb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFM9BRbjHj5wgSj7FTp3sL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 30444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RmvPa5veiaabNcPEejoFM9`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nfrom scipy.stats import spearmanr\nimport numpy as np\n\n# Data: (Arch, Suite, R2_delta, Published_SR%)\n# OpenVLA SR from TraceVLA paper Table 5 (OpenVLA finetuned baseline)\n# TraceVLA SR from TraceVLA paper Table 5\n# NORA SR from NORA paper Table 2 (base finetuned, no action chunking)\n\ndata = [\n    (\"OpenVLA\", \"Goal\",    0.016, 70.4),\n    (\"OpenVLA\", \"Object\",  0.121, 83.8),\n    (\"OpenVLA\", \"Long\",    0.004, 45.7),\n    (\"TracVLA\", \"Goal\",    0.228, 75.1),\n    (\"TracVLA\", \"Spatial\", 0.138, 84.6),\n    (\"TracVLA\", \"Object\",  0.294, 85.2),\n    (\"TracVLA\", \"Long\",    0.198, 54.1),\n    (\"NORA\",    \"Goal\",    0.691, 77.0),\n    (\"NORA\",    \"Spatial\", 0.302, 85.6),\n]\n\nr2_deltas = [d[2] for d in data]\nsuccess_rates = [d[3] for d in data]\n\nrho, p = spearmanr(r2_deltas, success_rates)\nn = len(data)\n\nprint(f\"=== Spearman Rank Correlation ===\")\nprint(f\"n = {n}\")\nprint(f\"Spearman ρ = {rho:.4f}\")\nprint(f\"p-value = {p:.4f}\")\nprint(f\"Significant (p<0.05): {p < 0.05}\")\nprint()\n\n# Cross-architecture: each arch as a group\nprint(\"=== Per-architecture summary ===\")\nfor arch in [\"OpenVLA\", \"TracVLA\", \"NORA\"]:\n    subset = [(d[2], d[3]) for d in data if d[0] == arch]\n    r2s = [s[0] for s in subset]\n    srs = [s[1] for s in subset]\n    print(f\"{arch}: n={len(subset)}, R²Δ range=[{min(r2s):.3f}, {max(r2s):.3f}], SR range=[{min(srs):.1f}, {max(srs):.1f}]\")\n    if len(subset) >= 3:\n        rho_sub, p_sub = spearmanr(r2s, srs)\n        print(f\"  Within-arch Spearman ρ = {rho_sub:.4f}, p = {p_sub:.4f}\")\n    else:\n        print(f\"  (too few points for within-arch correlation)\")\n\nprint()\n\n# Scatter plot description\nprint(\"=== Scatter Plot Data (x=R²Δ, y=SR) ===\")\nfor d in sorted(data, key=lambda x: x[2]):\n    print(f\"  ({d[2]:.3f}, {d[3]:.1f})  [{d[0]}-{d[1]}]\")\n\n# Additional: Pearson for comparison\nfrom scipy.stats import pearsonr\nr_pearson, p_pearson = pearsonr(r2_deltas, success_rates)\nprint(f\"\\n=== Pearson (for reference) ===\")\nprint(f\"Pearson r = {r_pearson:.4f}, p = {p_pearson:.4f}\")\n\nPYEOF",
+  "description": "Compute Spearman rank correlation between R² exit collapse and success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "56f1ff8f-94a0-4a1a-b704-44952c83afc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFM9BRbjHj5wgSj7FTp3sL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 30444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 987
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T06:41:38.142Z_
+
+<details><summary>↩ Tool result · `toolu_01RmvPa5veiaabNcPEejoFM9`</summary>
+
+```text
+=== Spearman Rank Correlation ===
+n = 9
+Spearman ρ = 0.5833
+p-value = 0.0992
+Significant (p<0.05): False
+
+=== Per-architecture summary ===
+OpenVLA: n=3, R²Δ range=[0.004, 0.121], SR range=[45.7, 83.8]
+  Within-arch Spearman ρ = 1.0000, p = 0.0000
+TracVLA: n=4, R²Δ range=[0.138, 0.294], SR range=[54.1, 85.2]
+  Within-arch Spearman ρ = 0.4000, p = 0.6000
+NORA: n=2, R²Δ range=[0.302, 0.691], SR range=[77.0, 85.6]
+  (too few points for within-arch correlation)
+
+=== Scatter Plot Data (x=R²Δ, y=SR) ===
+  (0.004, 45.7)  [OpenVLA-Long]
+  (0.016, 70.4)  [OpenVLA-Goal]
+  (0.121, 83.8)  [OpenVLA-Object]
+  (0.138, 84.6)  [TracVLA-Spatial]
+  (0.198, 54.1)  [TracVLA-Long]
+  (0.228, 75.1)  [TracVLA-Goal]
+  (0.294, 85.2)  [TracVLA-Object]
+  (0.302, 85.6)  [NORA-Spatial]
+  (0.691, 77.0)  [NORA-Goal]
+
+=== Pearson (for reference) ===
+Pearson r = 0.3617, p = 0.3388
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "3adc79b4-5d8f-4480-a7e7-fc55373a2a72",
+  "tool_use_result": {
+    "stdout": "=== Spearman Rank Correlation ===\nn = 9\nSpearman ρ = 0.5833\np-value = 0.0992\nSignificant (p<0.05): False\n\n=== Per-architecture summary ===\nOpenVLA: n=3, R²Δ range=[0.004, 0.121], SR range=[45.7, 83.8]\n  Within-arch Spearman ρ = 1.0000, p = 0.0000\nTracVLA: n=4, R²Δ range=[0.138, 0.294], SR range=[54.1, 85.2]\n  Within-arch Spearman ρ = 0.4000, p = 0.6000\nNORA: n=2, R²Δ range=[0.302, 0.691], SR range=[77.0, 85.6]\n  (too few points for within-arch correlation)\n\n=== Scatter Plot Data (x=R²Δ, y=SR) ===\n  (0.004, 45.7)  [OpenVLA-Long]\n  (0.016, 70.4)  [OpenVLA-Goal]\n  (0.121, 83.8)  [OpenVLA-Object]\n  (0.138, 84.6)  [TracVLA-Spatial]\n  (0.198, 54.1)  [TracVLA-Long]\n  (0.228, 75.1)  [TracVLA-Goal]\n  (0.294, 85.2)  [TracVLA-Object]\n  (0.302, 85.6)  [NORA-Spatial]\n  (0.691, 77.0)  [NORA-Goal]\n\n=== Pearson (for reference) ===\nPearson r = 0.3617, p = 0.3388",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting results. The overall Spearman ρ = 0.5833 with p = 0.0992 - not significant at p<0.05, but marginally so. Within OpenVLA, there's a perfect rank correlation (ρ=1.0) between R² Δ and SR, but only n=3. Within TracVLA, the correlation is weak (ρ=0.4). 
+
+This makes sense - the Long suite consistently has the lowest SR and often lower R² Δ, while Object/Spatial tend to have higher SR and higher R² Δ. But it's not a clean relationship.
+ 
+I'm considering whether different NORA variants might shift these results, but given the uncertainty around which variant matches the user's data, I'll proceed with what I have. The marginal positive correlation stands, though it's not statistically significant at conventional thresholds. I should note the key limitations: small sample size, architecture as a confound since different models have different capacities, and the interesting but ambiguous direction where higher R² Δ (more exit collapse) correlates with higher SR. Within OpenVLA the pattern is striking, but the sample is tiny. I'm also realizing I need to think through what higher exit collapse actually means for this interpretation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "c88ce89c-bc20-41b6-bcc7-d94aa1948451",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3Rfyo3x8PTBzneHzU7FW3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 31431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3228
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Now let me also do a sensitivity check with the NORA-Long (AC) variant and check if removing confounds changes anything.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "6da09cb6-8477-43a2-a6ff-d722ad3027e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3Rfyo3x8PTBzneHzU7FW3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 31431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3228
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018KWB4irifWKZhpEWYqFjYa`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nfrom scipy.stats import spearmanr\nimport numpy as np\n\n# Sensitivity: NORA with Action Chunking (AC) variant\ndata_nora_ac = [\n    (\"OpenVLA\", \"Goal\",    0.016, 70.4),\n    (\"OpenVLA\", \"Object\",  0.121, 83.8),\n    (\"OpenVLA\", \"Long\",    0.004, 45.7),\n    (\"TracVLA\", \"Goal\",    0.228, 75.1),\n    (\"TracVLA\", \"Spatial\", 0.138, 84.6),\n    (\"TracVLA\", \"Object\",  0.294, 85.2),\n    (\"TracVLA\", \"Long\",    0.198, 54.1),\n    (\"NORA\",    \"Goal\",    0.691, 80.0),   # NORA AC\n    (\"NORA\",    \"Spatial\", 0.302, 85.6),   # NORA AC\n]\n\nr2d = [d[2] for d in data_nora_ac]\nsr = [d[3] for d in data_nora_ac]\nrho, p = spearmanr(r2d, sr)\nprint(f\"=== Sensitivity: NORA AC variant ===\")\nprint(f\"Spearman ρ = {rho:.4f}, p = {p:.4f}\")\n\n# Sensitivity: NORA-Long variant\ndata_nora_long = [\n    (\"OpenVLA\", \"Goal\",    0.016, 70.4),\n    (\"OpenVLA\", \"Object\",  0.121, 83.8),\n    (\"OpenVLA\", \"Long\",    0.004, 45.7),\n    (\"TracVLA\", \"Goal\",    0.228, 75.1),\n    (\"TracVLA\", \"Spatial\", 0.138, 84.6),\n    (\"TracVLA\", \"Object\",  0.294, 85.2),\n    (\"TracVLA\", \"Long\",    0.198, 54.1),\n    (\"NORA\",    \"Goal\",    0.691, 89.4),   # NORA-Long AC\n    (\"NORA\",    \"Spatial\", 0.302, 92.2),   # NORA-Long AC\n]\nr2d2 = [d[2] for d in data_nora_long]\nsr2 = [d[3] for d in data_nora_long]\nrho2, p2 = spearmanr(r2d2, sr2)\nprint(f\"=== Sensitivity: NORA-Long AC variant ===\")\nprint(f\"Spearman ρ = {rho2:.4f}, p = {p2:.4f}\")\n\n# Cross-architecture partial: within-suite correlation\nprint(\"\\n=== Within-Suite (cross-architecture) ===\")\nsuites = {}\ndata_base = [\n    (\"OpenVLA\", \"Goal\",    0.016, 70.4),\n    (\"OpenVLA\", \"Object\",  0.121, 83.8),\n    (\"OpenVLA\", \"Long\",    0.004, 45.7),\n    (\"TracVLA\", \"Goal\",    0.228, 75.1),\n    (\"TracVLA\", \"Spatial\", 0.138, 84.6),\n    (\"TracVLA\", \"Object\",  0.294, 85.2),\n    (\"TracVLA\", \"Long\",    0.198, 54.1),\n    (\"NORA\",    \"Goal\",    0.691, 77.0),\n    (\"NORA\",    \"Spatial\", 0.302, 85.6),\n]\nfor d in data_base:\n    suites.setdefault(d[1], []).append(d)\nfor suite, pts in suites.items():\n    if len(pts) >= 3:\n        r2s = [p[2] for p in pts]\n        srs = [p[3] for p in pts]\n        rho_s, p_s = spearmanr(r2s, srs)\n        print(f\"  {suite}: n={len(pts)}, ρ={rho_s:.4f}, p={p_s:.4f}\")\n    else:\n        r2s = [p[2] for p in pts]\n        srs = [p[3] for p in pts]\n        print(f\"  {suite}: n={len(pts)}, R²Δ={r2s}, SR={srs} (too few)\")\n\n# Suite-level analysis: \"Long\" is always hardest\nprint(\"\\n=== Suite difficulty effect ===\")\nsuite_map = {\"Spatial\": 0, \"Object\": 1, \"Goal\": 2, \"Long\": 3}\nfor d in sorted(data_base, key=lambda x: suite_map.get(x[1], 99)):\n    print(f\"  {d[0]:10s} {d[1]:8s}  R²Δ={d[2]:.3f}  SR={d[3]:.1f}\")\n\nPYEOF",
+  "description": "Sensitivity analysis with NORA variants and within-suite correlations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "f271fec6-70d9-4648-9a76-43f6b0aaf4da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3Rfyo3x8PTBzneHzU7FW3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 31431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3228
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T06:42:08.223Z_
+
+<details><summary>↩ Tool result · `toolu_018KWB4irifWKZhpEWYqFjYa`</summary>
+
+```text
+=== Sensitivity: NORA AC variant ===
+Spearman ρ = 0.5833, p = 0.0992
+=== Sensitivity: NORA-Long AC variant ===
+Spearman ρ = 0.8000, p = 0.0096
+
+=== Within-Suite (cross-architecture) ===
+  Goal: n=3, ρ=1.0000, p=0.0000
+  Object: n=2, R²Δ=[0.121, 0.294], SR=[83.8, 85.2] (too few)
+  Long: n=2, R²Δ=[0.004, 0.198], SR=[45.7, 54.1] (too few)
+  Spatial: n=2, R²Δ=[0.138, 0.302], SR=[84.6, 85.6] (too few)
+
+=== Suite difficulty effect ===
+  TracVLA    Spatial   R²Δ=0.138  SR=84.6
+  NORA       Spatial   R²Δ=0.302  SR=85.6
+  OpenVLA    Object    R²Δ=0.121  SR=83.8
+  TracVLA    Object    R²Δ=0.294  SR=85.2
+  OpenVLA    Goal      R²Δ=0.016  SR=70.4
+  TracVLA    Goal      R²Δ=0.228  SR=75.1
+  NORA       Goal      R²Δ=0.691  SR=77.0
+  OpenVLA    Long      R²Δ=0.004  SR=45.7
+  TracVLA    Long      R²Δ=0.198  SR=54.1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "e0104f4c-da31-4f9b-b5f2-bac36fccb963",
+  "tool_use_result": {
+    "stdout": "=== Sensitivity: NORA AC variant ===\nSpearman ρ = 0.5833, p = 0.0992\n=== Sensitivity: NORA-Long AC variant ===\nSpearman ρ = 0.8000, p = 0.0096\n\n=== Within-Suite (cross-architecture) ===\n  Goal: n=3, ρ=1.0000, p=0.0000\n  Object: n=2, R²Δ=[0.121, 0.294], SR=[83.8, 85.2] (too few)\n  Long: n=2, R²Δ=[0.004, 0.198], SR=[45.7, 54.1] (too few)\n  Spatial: n=2, R²Δ=[0.138, 0.302], SR=[84.6, 85.6] (too few)\n\n=== Suite difficulty effect ===\n  TracVLA    Spatial   R²Δ=0.138  SR=84.6\n  NORA       Spatial   R²Δ=0.302  SR=85.6\n  OpenVLA    Object    R²Δ=0.121  SR=83.8\n  TracVLA    Object    R²Δ=0.294  SR=85.2\n  OpenVLA    Goal      R²Δ=0.016  SR=70.4\n  TracVLA    Goal      R²Δ=0.228  SR=75.1\n  NORA       Goal      R²Δ=0.691  SR=77.0\n  OpenVLA    Long      R²Δ=0.004  SR=45.7\n  TracVLA    Long      R²Δ=0.198  SR=54.1",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me write the report.
+
+Key findings:
+1. Overall Spearman ρ = 0.5833, p = 0.0992 — positive but NOT significant at p<0.05
+2. With NORA-Long variant, ρ = 0.80, p = 0.0096 — significant, but this is cherry-picking
+3. Within OpenVLA (n=3), perfect rank correlation
+4. Within Goal suite (n=3, cross-arch), perfect rank correlation
+
+
+5. Within TracVLA (n=4), weak correlation (ρ=0.4)
+
+The pattern is clear: higher R² Δ does correlate with higher SR, but several confounds are muddying the waters—architecture capacity differences (NORA is inherently stronger), suite difficulty effects (Long is consistently hardest while Spatial and Object are easiest), and the small sample sizes limiting what we can reliably conclude.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "8bfc684f-67d0-46de-ad34-195db0ce3c23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QAR1wANsJCKQZipm3R278",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2341,
+      "cache_read_input_tokens": 34659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2341
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Now let me write the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "573831dd-7a92-4918-867f-9114b47f8705",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QAR1wANsJCKQZipm3R278",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2341,
+      "cache_read_input_tokens": 34659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2341
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N63h19VSPYfh52M1seMAF6`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "352fb177-c67c-4ac2-a7f2-5cd6f0edc31f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QAR1wANsJCKQZipm3R278",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2341,
+      "cache_read_input_tokens": 34659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2341
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T06:42:16.801Z_
+
+<details><summary>↩ Tool result · `toolu_01N63h19VSPYfh52M1seMAF6`</summary>
+
+```text
+_project
+ablation_narrative_playbook.md
+action_metrics_extended
+action_probe_design.md
+analyze_ablation_50demos.py
+attention
+attention_decomposition
+attention_decomposition_and_r2.py
+attention_normalization_entropy
+attention_normalization_entropy.py
+behavioral_pilot_w4_diagnosis.md
+bootstrap_task_ratio.json
+branch_split_rsa_results.md
+cf_batch_missing_v1
+cf_batch_part2_v1
+cf_batch_part2_v1_analysis.md
+citation_verification_2026.md
+closedloop_diagnosis.md
+controlb_analysis
+counterfactual_10tasks
+counterfactual_instruction.py
+counterfactual_spatial
+counterfactual_spatial.py
+counterfactual_token_overlap
+cross_inst_extract_phase2
+cross_instruction
+definitive_rsa_results.md
+demo_sensitivity.py
+demo_standardized_rsa.md
+dinov2_baseline
+dream_reports
+extract_fused_backbone.py
+fig2_cross_instruction_heatmap.pdf
+fig_cross_architecture_attention.pdf
+fig_cross_architecture_attention.png
+fig_cross_architecture_attention.py
+fig_ood_diagnostics.png
+fig_rsa_perlayer_curve.pdf
+fig_rsa_perlayer_curve.png
+fig_specificity_bootstrap_30seeds.pdf
+fig_specificity_bootstrap_30seeds.png
+figures
+fix_dryrun.py
+fulllayer_action_probe.py
+groundtruth_action_error
+kendall_w_cross_task.json
+l1_ablation_action_probe_50demos.py
+layer_stability_analysis.md
+libero_finetuned_attention
+libero_finetuned_probe_profile.json
+libero_goal_feasibility.md
+libero_object_full_pipeline.py
+literature_linkage_4suite_consistency.md
+literature_map.yaml
+literature_map_probing.md
+literature_survey_instruction_probing.md
+llama2base_action_probe.py
+manifest.yaml
+matched_ablation_controls.py
+matched_ablation_controls_diagnosis.md
+matrix_summary_table.md
+mvp_controlb_trained
+mvp_probe_trained
+nora_analysis_report.md
+openvla_goal_spatial_data.md
+openvla_goal_standardized_v1
+openvla_libero_goal_compat.md
+paper_consistency_report.md
+patch_probes.py
+patch_rsa.py
+pca_linear_probe_gc.py
+pca_linear_probe_perlayer.py
+permutation_10k
+permutation_test_I2.py
+phi3v_attention_profile
+phi3v_attention_trained_10tasks
+phi3v_attention_untrained
+phi3v_probe_untrained
+phi3v_r2_action_probe
+phi3v_r2_seed_expansion
+phi3v_r2_untrained_probe
+phi3v_untrained_cross_inst_probe.py
+phi3v_untrained_seed_expansion
+pipeline_audit_libero_goal.md
+plan_010_libero_spatial
+plan_011_fulllayer_r2
+plan_012_clip_vit_control
+plot_dose_response.py
+probe_design_plan.md
+qa_probe_classification.py
+random_subset_ablation.py
+rebuttal_drafts.md
+rebuttal_material_2026_05_20.md
+redream_evidence_v2.md
+review_issues.yaml
+review_issues_updated.yaml
+review_reports
+rsa_analysis.py
+rsa_branch_split.py
+rsa_definitive.py
+rsa_method_audit_report.md
+rsa_unified_vla.py
+second_vla_survey.md
+specificity_random_seed_expansion
+statistical_supplements
+task_complexity_routing
+task_routing_loo_sensitivity
+tracvla_spatial
+tracvla_spatial_full_pipeline.py
+tracvla_spatial_trained
+unified_action_probe.py
+unified_rsa_summary.md
+untrained_last_preaction_probe.json
+vla-ssd_final_2026-05-19.pdf
+vla-ssd_round12_2026-05-19.pdf
+vla_rsa_method_audit.md
+worker_output_diagnose_object_pipeline_ridge.md
+worker_output_server_status_check.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "56c78ce9-58eb-49d7-b582-b1f5c434d758",
+  "tool_use_result": {
+    "stdout": "_project\nablation_narrative_playbook.md\naction_metrics_extended\naction_probe_design.md\nanalyze_ablation_50demos.py\nattention\nattention_decomposition\nattention_decomposition_and_r2.py\nattention_normalization_entropy\nattention_normalization_entropy.py\nbehavioral_pilot_w4_diagnosis.md\nbootstrap_task_ratio.json\nbranch_split_rsa_results.md\ncf_batch_missing_v1\ncf_batch_part2_v1\ncf_batch_part2_v1_analysis.md\ncitation_verification_2026.md\nclosedloop_diagnosis.md\ncontrolb_analysis\ncounterfactual_10tasks\ncounterfactual_instruction.py\ncounterfactual_spatial\ncounterfactual_spatial.py\ncounterfactual_token_overlap\ncross_inst_extract_phase2\ncross_instruction\ndefinitive_rsa_results.md\ndemo_sensitivity.py\ndemo_standardized_rsa.md\ndinov2_baseline\ndream_reports\nextract_fused_backbone.py\nfig2_cross_instruction_heatmap.pdf\nfig_cross_architecture_attention.pdf\nfig_cross_architecture_attention.png\nfig_cross_architecture_attention.py\nfig_ood_diagnostics.png\nfig_rsa_perlayer_curve.pdf\nfig_rsa_perlayer_curve.png\nfig_specificity_bootstrap_30seeds.pdf\nfig_specificity_bootstrap_30seeds.png\nfigures\nfix_dryrun.py\nfulllayer_action_probe.py\ngroundtruth_action_error\nkendall_w_cross_task.json\nl1_ablation_action_probe_50demos.py\nlayer_stability_analysis.md\nlibero_finetuned_attention\nlibero_finetuned_probe_profile.json\nlibero_goal_feasibility.md\nlibero_object_full_pipeline.py\nliterature_linkage_4suite_consistency.md\nliterature_map.yaml\nliterature_map_probing.md\nliterature_survey_instruction_probing.md\nllama2base_action_probe.py\nmanifest.yaml\nmatched_ablation_controls.py\nmatched_ablation_controls_diagnosis.md\nmatrix_summary_table.md\nmvp_controlb_trained\nmvp_probe_trained\nnora_analysis_report.md\nopenvla_goal_spatial_data.md\nopenvla_goal_standardized_v1\nopenvla_libero_goal_compat.md\npaper_consistency_report.md\npatch_probes.py\npatch_rsa.py\npca_linear_probe_gc.py\npca_linear_probe_perlayer.py\npermutation_10k\npermutation_test_I2.py\nphi3v_attention_profile\nphi3v_attention_trained_10tasks\nphi3v_attention_untrained\nphi3v_probe_untrained\nphi3v_r2_action_probe\nphi3v_r2_seed_expansion\nphi3v_r2_untrained_probe\nphi3v_untrained_cross_inst_probe.py\nphi3v_untrained_seed_expansion\npipeline_audit_libero_goal.md\nplan_010_libero_spatial\nplan_011_fulllayer_r2\nplan_012_clip_vit_control\nplot_dose_response.py\nprobe_design_plan.md\nqa_probe_classification.py\nrandom_subset_ablation.py\nrebuttal_drafts.md\nrebuttal_material_2026_05_20.md\nredream_evidence_v2.md\nreview_issues.yaml\nreview_issues_updated.yaml\nreview_reports\nrsa_analysis.py\nrsa_branch_split.py\nrsa_definitive.py\nrsa_method_audit_report.md\nrsa_unified_vla.py\nsecond_vla_survey.md\nspecificity_random_seed_expansion\nstatistical_supplements\ntask_complexity_routing\ntask_routing_loo_sensitivity\ntracvla_spatial\ntracvla_spatial_full_pipeline.py\ntracvla_spatial_trained\nunified_action_probe.py\nunified_rsa_summary.md\nuntrained_last_preaction_probe.json\nvla-ssd_final_2026-05-19.pdf\nvla-ssd_round12_2026-05-19.pdf\nvla_rsa_method_audit.md\nworker_output_diagnose_object_pipeline_ridge.md\nworker_output_server_status_check.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01KV3dnLCgZsGyGNDUpyqU6n`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/d098_correlational_analysis.md",
+  "content": "# D098: Correlational Analysis — R² Exit Collapse vs Published Success Rate\n\n## 1. Data Sources\n\n**R² Δ (trained)**: Peak R² − exit R² from SSD probing experiments on trained VLA models.\n\n**Published success rates**:\n- OpenVLA (finetuned): Table 5 in TraceVLA paper (Zheng et al., arXiv 2412.10345v2), reporting OpenVLA finetuned baseline on LIBERO\n- TraceVLA (finetuned): Table 5 in TraceVLA paper (Zheng et al., arXiv 2412.10345v2)\n- NORA (finetuned, no action chunking): Table 2 in NORA paper (Hung et al., arXiv 2504.19854v1)\n\n## 2. Combined Data Table\n\n| Arch | Suite | R² Δ (trained) | Published SR (%) | Source |\n|------|-------|----------------|-------------------|--------|\n| OpenVLA | Goal | 0.016 | 70.4 | TraceVLA Table 5 |\n| OpenVLA | Object | 0.121 | 83.8 | TraceVLA Table 5 |\n| OpenVLA | Long | 0.004 | 45.7 | TraceVLA Table 5 |\n| TracVLA | Goal | 0.228 | 75.1 | TraceVLA Table 5 |\n| TracVLA | Spatial | 0.138 | 84.6 | TraceVLA Table 5 |\n| TracVLA | Object | 0.294 | 85.2 | TraceVLA Table 5 |\n| TracVLA | Long | 0.198 | 54.1 | TraceVLA Table 5 |\n| NORA | Goal | 0.691 | 77.0 | NORA Table 2 |\n| NORA | Spatial | 0.302 | 85.6 | NORA Table 2 |\n\nExcluded: OpenVLA-Spatial (no exit R² data available), NORA-Object/Long (no R² data).\n\n## 3. Spearman Rank Correlation\n\n| Metric | Value |\n|--------|-------|\n| n | 9 |\n| Spearman ρ | **0.583** |\n| p-value | **0.099** |\n| Significant at α=0.05? | No |\n| Pearson r (reference) | 0.362, p=0.339 |\n\n**Result**: Positive but non-significant trend. The direction suggests models/suites with larger exit collapse tend to have higher success rates, but the evidence does not reach conventional significance.\n\n## 4. Subgroup Analyses\n\n### 4.1 Within-Architecture\n\n| Arch | n | Spearman ρ | p |\n|------|---|------------|---|\n| OpenVLA | 3 | 1.000 | <0.001 |\n| TracVLA | 4 | 0.400 | 0.600 |\n| NORA | 2 | — | (too few) |\n\nWithin OpenVLA, R² Δ and SR are perfectly rank-correlated (Long < Goal < Object for both metrics). Within TracVLA, the relationship is weak — the Long suite breaks the monotonic pattern (highest R² Δ after Object, but lowest SR).\n\n### 4.2 Within-Suite (Cross-Architecture)\n\n| Suite | Architectures | R² Δ → SR | Pattern |\n|-------|--------------|-----------|---------|\n| Goal | OpenVLA(0.016,70.4) → TracVLA(0.228,75.1) → NORA(0.691,77.0) | ρ=1.0 (n=3) | Monotonic positive |\n| Spatial | TracVLA(0.138,84.6) → NORA(0.302,85.6) | n=2 | Consistent direction |\n| Object | OpenVLA(0.121,83.8) → TracVLA(0.294,85.2) | n=2 | Consistent direction |\n| Long | OpenVLA(0.004,45.7) → TracVLA(0.198,54.1) | n=2 | Consistent direction |\n\nAll within-suite comparisons show the same direction: higher R² Δ ↔ higher SR. Goal suite (the only one with n=3) yields perfect rank correlation.\n\n### 4.3 Sensitivity to NORA Variant\n\n| NORA variant used | Spearman ρ | p |\n|-------------------|------------|---|\n| Base (no AC) | 0.583 | 0.099 |\n| With Action Chunking | 0.583 | 0.099 |\n| NORA-Long (AC) | 0.800 | 0.010 |\n\nUsing the NORA-Long variant (SR: Goal=89.4%, Spatial=92.2%) strengthens the correlation to significance, but this may reflect cherry-picking the strongest model variant.\n\n## 5. Interpretation\n\n### What the data suggests\n\nThe positive direction (ρ ≈ 0.58) is consistent across every within-suite comparison: architectures with larger R² exit collapse on a given suite also achieve higher task success rate. This pattern is suggestive of a functional connection — models that develop stronger mid-network spatial representations (producing a higher peak) and then compress them more aggressively at exit layers may be performing a more effective abstraction from perception to action.\n\n### Why it does not reach significance\n\n1. **Small n**: With only 9 data points (and 3 architectures), statistical power is limited.\n2. **Architecture confound**: NORA has both the highest R² Δ and generally high SR, but this could be driven by model capacity (3B params, better backbone) rather than representational dynamics per se.\n3. **Suite difficulty confound**: Long-horizon suites consistently have lower SR AND lower R² Δ (especially for OpenVLA), creating a spurious positive correlation driven by task difficulty rather than architecture.\n\n### Conservative conclusion\n\nThe data show a **consistent positive trend** between exit collapse magnitude and task success, but the correlation is **not statistically significant** at conventional levels (ρ=0.58, p=0.10, n=9). The within-suite direction is uniformly positive, which is more informative than the overall correlation because it controls for suite difficulty. However, with only 2–3 architectures per suite, this remains suggestive rather than conclusive.\n\n**This analysis neither confirms nor refutes a functional connection between exit collapse and task performance.** It provides directional evidence that could be strengthened with additional architectures or suites.\n\n## 6. Caveats\n\n- **Confounds**: Architecture differences (model size, backbone, training data) are not controlled. The correlation may partly reflect \"better models have both more structured representations and higher SR.\"\n- **NORA variant ambiguity**: We used base NORA (no AC) for primary analysis. The R² Δ measurements should be confirmed against the specific checkpoint analyzed.\n- **Non-independence**: Multiple suites from the same architecture are not independent observations. The effective degrees of freedom are closer to 3 (architectures) than 9 (data points).\n- **Published SR variability**: Different papers may use slightly different evaluation protocols (number of seeds, rollout count). OpenVLA numbers come from the TraceVLA paper's re-evaluation, not the original OpenVLA paper.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "27235720-5811-40fa-ab10-aebcf2d9c31a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZdi9fo5p9oF3pTrxgGDh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1457,
+      "cache_read_input_tokens": 37000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1457
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T06:42:59.361Z_
+
+<details><summary>↩ Tool result · `toolu_01KV3dnLCgZsGyGNDUpyqU6n`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/d098_correlational_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "2da9d9f5-4afd-4eee-b351-ff49103ea688",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/d098_correlational_analysis.md",
+    "content": "# D098: Correlational Analysis — R² Exit Collapse vs Published Success Rate\n\n## 1. Data Sources\n\n**R² Δ (trained)**: Peak R² − exit R² from SSD probing experiments on trained VLA models.\n\n**Published success rates**:\n- OpenVLA (finetuned): Table 5 in TraceVLA paper (Zheng et al., arXiv 2412.10345v2), reporting OpenVLA finetuned baseline on LIBERO\n- TraceVLA (finetuned): Table 5 in TraceVLA paper (Zheng et al., arXiv 2412.10345v2)\n- NORA (finetuned, no action chunking): Table 2 in NORA paper (Hung et al., arXiv 2504.19854v1)\n\n## 2. Combined Data Table\n\n| Arch | Suite | R² Δ (trained) | Published SR (%) | Source |\n|------|-------|----------------|-------------------|--------|\n| OpenVLA | Goal | 0.016 | 70.4 | TraceVLA Table 5 |\n| OpenVLA | Object | 0.121 | 83.8 | TraceVLA Table 5 |\n| OpenVLA | Long | 0.004 | 45.7 | TraceVLA Table 5 |\n| TracVLA | Goal | 0.228 | 75.1 | TraceVLA Table 5 |\n| TracVLA | Spatial | 0.138 | 84.6 | TraceVLA Table 5 |\n| TracVLA | Object | 0.294 | 85.2 | TraceVLA Table 5 |\n| TracVLA | Long | 0.198 | 54.1 | TraceVLA Table 5 |\n| NORA | Goal | 0.691 | 77.0 | NORA Table 2 |\n| NORA | Spatial | 0.302 | 85.6 | NORA Table 2 |\n\nExcluded: OpenVLA-Spatial (no exit R² data available), NORA-Object/Long (no R² data).\n\n## 3. Spearman Rank Correlation\n\n| Metric | Value |\n|--------|-------|\n| n | 9 |\n| Spearman ρ | **0.583** |\n| p-value | **0.099** |\n| Significant at α=0.05? | No |\n| Pearson r (reference) | 0.362, p=0.339 |\n\n**Result**: Positive but non-significant trend. The direction suggests models/suites with larger exit collapse tend to have higher success rates, but the evidence does not reach conventional significance.\n\n## 4. Subgroup Analyses\n\n### 4.1 Within-Architecture\n\n| Arch | n | Spearman ρ | p |\n|------|---|------------|---|\n| OpenVLA | 3 | 1.000 | <0.001 |\n| TracVLA | 4 | 0.400 | 0.600 |\n| NORA | 2 | — | (too few) |\n\nWithin OpenVLA, R² Δ and SR are perfectly rank-correlated (Long < Goal < Object for both metrics). Within TracVLA, the relationship is weak — the Long suite breaks the monotonic pattern (highest R² Δ after Object, but lowest SR).\n\n### 4.2 Within-Suite (Cross-Architecture)\n\n| Suite | Architectures | R² Δ → SR | Pattern |\n|-------|--------------|-----------|---------|\n| Goal | OpenVLA(0.016,70.4) → TracVLA(0.228,75.1) → NORA(0.691,77.0) | ρ=1.0 (n=3) | Monotonic positive |\n| Spatial | TracVLA(0.138,84.6) → NORA(0.302,85.6) | n=2 | Consistent direction |\n| Object | OpenVLA(0.121,83.8) → TracVLA(0.294,85.2) | n=2 | Consistent direction |\n| Long | OpenVLA(0.004,45.7) → TracVLA(0.198,54.1) | n=2 | Consistent direction |\n\nAll within-suite comparisons show the same direction: higher R² Δ ↔ higher SR. Goal suite (the only one with n=3) yields perfect rank correlation.\n\n### 4.3 Sensitivity to NORA Variant\n\n| NORA variant used | Spearman ρ | p |\n|-------------------|------------|---|\n| Base (no AC) | 0.583 | 0.099 |\n| With Action Chunking | 0.583 | 0.099 |\n| NORA-Long (AC) | 0.800 | 0.010 |\n\nUsing the NORA-Long variant (SR: Goal=89.4%, Spatial=92.2%) strengthens the correlation to significance, but this may reflect cherry-picking the strongest model variant.\n\n## 5. Interpretation\n\n### What the data suggests\n\nThe positive direction (ρ ≈ 0.58) is consistent across every within-suite comparison: architectures with larger R² exit collapse on a given suite also achieve higher task success rate. This pattern is suggestive of a functional connection — models that develop stronger mid-network spatial representations (producing a higher peak) and then compress them more aggressively at exit layers may be performing a more effective abstraction from perception to action.\n\n### Why it does not reach significance\n\n1. **Small n**: With only 9 data points (and 3 architectures), statistical power is limited.\n2. **Architecture confound**: NORA has both the highest R² Δ and generally high SR, but this could be driven by model capacity (3B params, better backbone) rather than representational dynamics per se.\n3. **Suite difficulty confound**: Long-horizon suites consistently have lower SR AND lower R² Δ (especially for OpenVLA), creating a spurious positive correlation driven by task difficulty rather than architecture.\n\n### Conservative conclusion\n\nThe data show a **consistent positive trend** between exit collapse magnitude and task success, but the correlation is **not statistically significant** at conventional levels (ρ=0.58, p=0.10, n=9). The within-suite direction is uniformly positive, which is more informative than the overall correlation because it controls for suite difficulty. However, with only 2–3 architectures per suite, this remains suggestive rather than conclusive.\n\n**This analysis neither confirms nor refutes a functional connection between exit collapse and task performance.** It provides directional evidence that could be strengthened with additional architectures or suites.\n\n## 6. Caveats\n\n- **Confounds**: Architecture differences (model size, backbone, training data) are not controlled. The correlation may partly reflect \"better models have both more structured representations and higher SR.\"\n- **NORA variant ambiguity**: We used base NORA (no AC) for primary analysis. The R² Δ measurements should be confirmed against the specific checkpoint analyzed.\n- **Non-independence**: Multiple suites from the same architecture are not independent observations. The effective degrees of freedom are closer to 3 (architectures) than 9 (data points).\n- **Published SR variability**: Different papers may use slightly different evaluation protocols (number of seeds, rollout count). OpenVLA numbers come from the TraceVLA paper's re-evaluation, not the original OpenVLA paper.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+结果写入 `artifacts/d098_correlational_analysis.md`。
+
+核心发现：
+
+- **Spearman ρ = 0.583, p = 0.099, n = 9** — 正向趋势但未达显著性阈值
+- 所有 within-suite 比较方向一致：R² Δ 更大的架构在同一 suite 上 SR 也更高（Goal suite n=3 完美单调）
+- Within OpenVLA (n=3) 完美 rank 相关；within TracVLA (n=4) 弱相关（ρ=0.4），Long suite 打破单调性
+- 主要 confound：架构容量差异和 suite 难度效应，有效自由度接近 3（架构数）而非 9
+
+**结论**：方向性证据支持 exit collapse 与 task performance 的关联，但不足以宣称显著的 functional connection。需要更多架构才能脱离 confound。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "uuid": "b54ae4b5-dc78-4a84-8c4d-99c9cdd05426",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y6ddmGEfG2PArKjW1QFpyc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1974,
+      "cache_read_input_tokens": 38457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1974
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+结果写入 `artifacts/d098_correlational_analysis.md`。
+
+核心发现：
+
+- **Spearman ρ = 0.583, p = 0.099, n = 9** — 正向趋势但未达显著性阈值
+- 所有 within-suite 比较方向一致：R² Δ 更大的架构在同一 suite 上 SR 也更高（Goal suite n=3 完美单调）
+- Within OpenVLA (n=3) 完美 rank 相关；within TracVLA (n=4) 弱相关（ρ=0.4），Long suite 打破单调性
+- 主要 confound：架构容量差异和 suite 难度效应，有效自由度接近 3（架构数）而非 9
+
+**结论**：方向性证据支持 exit collapse 与 task performance 的关联，但不足以宣称显著的 functional connection。需要更多架构才能脱离 confound。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 189638,
+  "duration_api_ms": 213595,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "ab58b147-e872-4483-8da8-a11f71ffbd8d",
+  "total_cost_usd": 0.726209,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 28590,
+    "cache_read_input_tokens": 289005,
+    "output_tokens": 8208,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28590,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 273,
+        "cache_read_input_tokens": 38457,
+        "cache_creation_input_tokens": 1974,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1974
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 123364,
+      "outputTokens": 2876,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 6,
+      "costUSD": 0.19774399999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 8208,
+      "cacheReadInputTokens": 289005,
+      "cacheCreationInputTokens": 28590,
+      "webSearchRequests": 0,
+      "costUSD": 0.528465,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "82af65e0-5032-4b4d-adb1-ce70b58c26ca"
+}
+```
+
+</details>
+
+---

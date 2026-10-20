@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "758a17b213f4a403fddc",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis attention decomposition and pertask r2",
+  "task_key": "worker_analysis_attention_decomposition_and_pertask_r2_20260518T171404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_attention_decomposition_and_pertask_r2_20260518T171404.log",
+    "occurrence": 1,
+    "bytes": 656965,
+    "sha256": "02b594d58647462e75d4a98414331efb5a012edb93f5bc65d67906fdfb12c196"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "758a17b213f4a403fddc-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "758a17b213f4a403fddc-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-attention-decomposition-and-pertask-r2.md"
+}

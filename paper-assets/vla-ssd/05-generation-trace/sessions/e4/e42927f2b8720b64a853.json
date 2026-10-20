@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e42927f2b8720b64a853",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation p1 write script",
+  "task_key": "worker_code_ablation_p1_write_script_20260516T091637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p1_write_script_20260516T091637_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "555ac4719902ef1968ed2b180a78134f92e24260b40b475206f0df603259e074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。脚本已写入 `/root/vla-ssd/scripts/ablations/probe_seed_robustness.py`。\n\n验证结果：seed=0, layer=0 的 R²=0.6326，train=50480 samples, val=12748 samples，逻辑正确。完整运行命令：\n\n```bash\npython /root/vla-ssd/scripts/ablations/probe_seed_robustness.py --gpu 0\n```\n\n预估耗时：~0.3min/layer × 33 layers × 5 seeds ÷ 1(层数据复用) ≈ 50min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-p1-write-script.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "0149a47e21ae0ea25155",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code control b label permutation",
+  "task_key": "worker_code_control-b-label-permutation_20260515T121501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_control-b-label-permutation_20260515T121501.log",
+    "occurrence": 1,
+    "bytes": 1297405,
+    "sha256": "b59ab3f174280a904b3d154db67ffbe36e7a064690ed9f89f1375840c2be0635"
+  },
+  "statistics": {
+    "messages": 886,
+    "user_turns": 1,
+    "tool_calls": 401,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 401,
+      "tool_result": 401,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 842,
+      "chunks": [
+        {
+          "path": "0149a47e21ae0ea25155-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0149a47e21ae0ea25155-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0149a47e21ae0ea25155-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0149a47e21ae0ea25155-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0149a47e21ae0ea25155-part-0005.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "0149a47e21ae0ea25155-part-0005.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-control-b-label-permutation.md"
+}

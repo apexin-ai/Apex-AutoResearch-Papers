@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f95b94dfefe1a27a3f9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "data 2x2 r2 table",
+  "task_key": "worker_data_2x2_r2_table_20260520T103233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_2x2_r2_table_20260520T103233_result.json",
+    "occurrence": 1,
+    "bytes": 1954,
+    "sha256": "2b2d78ce92f057459b5c02c3931e2ea61efa23c45a80f121cab5daca64defa47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 四个条件的 R² Profile\n\n| 条件 | Seeds | Peak Layer | Peak R² | Profile Shape |\n|------|-------|------------|---------|---------------|\n| OpenVLA Untrained | 15 | L0 | 0.629 | L0 最高后急剧崩塌，中后层均值降至 0.1-0.3，方差极大（std ~0.25），L32 回弹至 0.584 |\n| OpenVLA Trained | 15 | L9 | 0.637 | 全层平坦（0.61-0.64），从 L21 起缓慢下降至 0.49，L32 小幅回弹 |\n| Phi3V Untrained | 5 | L4 | 0.583 | L0 负值 → 快速爬升至 L4 peak，此后稳步下降至 ~0.45，方差适中 |\n| Phi3V Trained | 15 | L11 | 0.634 | L0 负值 → 爬升至 L11 plateau（0.63），持续到 L20，缓降至 0.55 |\n\n### 关键 Pattern\n\n**1. Training effect 远大于 architecture effect**\n- OpenVLA 中层（L15-L25）的 trained-untrained Δ 平均 **+0.313**，untrained 中层 R² 接近 0（部分 seed 为负）\n- Phi3V 同区间 Δ 为 **+0.103**，untrained 仍保持 ~0.5 的基础 R²\n- Training 在 OpenVLA 上的效应是 Phi3V 的 **3 倍**\n\n**2. Untrained baseline 的架构差异**\n- OpenVLA untrained 在 L0 即达 peak（0.629），因为 Llama-2 embedding 层直接继承了预训练的 token 表征，但中深层表征对 action 无解码能力\n- Phi3V untrained 的 peak 在 L4（0.583），表明 Phi-3 预训练表征在浅层就具备一定的 action-relevant 结构\n\n**3. Late-layer stability**\n- OpenVLA untrained late-layer std = **0.277**（极不稳定，近半数 seed 产生负 R²）\n- Phi3V untrained late-layer std = **0.047**（相对稳定）\n- Training 将 OpenVLA late-layer std 从 0.277 降至 0.040，Phi3V 从 0.047 降至 0.011\n\n**4. L32（输出层）anomaly**\n- OpenVLA untrained L32 R² = 0.584，显著高于 L31（0.069）—— 预训练 LM head 自带 action-correlated 信号\n- OpenVLA trained L32 = 0.535，反而低于 untrained L32 —— 训练后 LM head 被 repurposed，不再保留这个 shortcut"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-2x2-r2-table.md"
+}

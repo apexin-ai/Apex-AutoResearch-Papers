@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65df82ed51c460d61c93",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp official checkpoint sr test",
+  "task_key": "worker_exp_official_checkpoint_sr_test_20260519T170946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_official_checkpoint_sr_test_20260519T170946_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "be104262ca4289b57fd2114695e43f95f42e4a1799f933080ce87443d68d7c50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**OVERALL SR = 0.00 (0/15)**\n\n| Task | Name | SR |\n|------|------|----|\n| 0 | open_the_middle_drawer_of_the_cabinet | 0/5 |\n| 3 | open_the_top_drawer_and_put_the_bowl_inside | 0/5 |\n| 7 | turn_on_the_stove | 0/5 |\n\n所有 15 个 episode 全部跑满 400 步，R=0.000，没有任何一个 episode 获得部分奖励。\n\n**关键日志观察**：\n- Action 输出范围合理（[-1, 1]），gripper 在 -1/+1 间切换\n- 每个 episode ~57s（400步），说明推理速度正常\n- 不同 seed 没有产生任何差异——模型在所有初始条件下都无法完成任务\n\n**Path B 彻底死亡。** 官方 checkpoint 在我们的 LIBERO 环境中 SR=0，这意味着要么环境/管线还有我们未发现的不兼容问题，要么 OpenVLA 在这些特定 task 上本身就很弱。无论哪种情况，Path B 作为闭环评估管线已不可行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-official-checkpoint-sr-test.md"
+}

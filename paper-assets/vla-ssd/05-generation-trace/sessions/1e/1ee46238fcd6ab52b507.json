@@ -1,0 +1,1028 @@
+{
+  "schema_version": "1.0",
+  "id": "1ee46238fcd6ab52b507",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "code instruction probe impl",
+  "task_key": "worker_code_instruction-probe-impl_20260515T162204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_instruction-probe-impl_20260515T162204.jsonl",
+    "occurrence": 1,
+    "bytes": 56886,
+    "sha256": "2d0bae2a8c5795c45b6d99fc7b5b22657856f320111cdaf62627f5fa0cfd9e95"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:28:21.268851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:28:21.269209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:28:21.269377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:28:21.269704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\nfrom sklearn.decomposition import PCA as SklearnPCA\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train probes (linear/MLP) on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"action_prediction\\\\\\\", \\\\\\\"action_delta\\\\\\\"])\\\\n    p.add_ar\n…[truncated 7357 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:28:21.269953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"class\\|def train_classification\\|def train_.*probe\\|class MLP\\|class Linear\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:28:21.270106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:28:21.270243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"class\\|def train\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:28:21.270367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:28:21.270484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"class \\|def train\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:28:21.270601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:28:21.270715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n -e \"^class \" -e \"^def \" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:28:21.270841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:def parse_args():\\\\n77:def scan_features(features_dir, aggregation):\\\\n112:def split_by_task(traj_metas):\\\\n127:def load_layer_features(traj_metas, indices, layer):\\\\n150:def parse_layers(layers_str, max_layer):\\\\n159:def apply_pca(X_tr, X_val, pca_dim):\\\\n179:def sample_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n211:def build_pair_tensors(feats, pairs):\\\\n223:def build_oracle_tensors(pairs):\\\\n230:def sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n274:def build_cross_pair_tensors(feats, pairs):\\\\n290:class LinearProbe(nn.Module):\\\\n299:class MLPProbe(nn.Module):\\\\n314:class ActionMLPProbe(nn.Module):\\\\n326:class MultiLabelProbe(nn.Module):\\\\n335:def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\\\n391:def train_classification_probe(X_tr, y_tr, X_val, y_val, in_dim, n_labels, args, device):\\\\n459:def load_actions(traj_metas, indices, data_dir):\\\\n477:def run_action_prediction(args, device):\\\\n629:def run_temporal_distance(args, device):\\\\n724:def run_oracle(args, device):\\\\n741:def run_subtask_predicate(args, device):\\\\n813:def save_results(results, output_dir, probe_type):\\\\n864:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:28:21.270993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -340 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:28:21.271236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\nfrom sklearn.decomposition import PCA as SklearnPCA\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train probes (linear/MLP) on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"action_prediction\\\\\\\", \\\\\\\"action_delta\\\\\\\"])\\\\n    p.add_ar\n…[truncated 7090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:28:21.271393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -n +335 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:28:21.271654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\\\n    probe_model = getattr(args, \\\\\\\"probe_model\\\\\\\", \\\\\\\"mlp\\\\\\\")\\\\n    if probe_model == \\\\\\\"mlp\\\\\\\":\\\\n        model = MLPProbe(in_dim).to(device)\\\\n    else:\\\\n        model = LinearProbe(in_dim).to(device)\\\\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\\\\n    crit = nn.MSELoss()\\\\n\\\\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\\\\n    X_val, y_val = X_val.to(device), y_val.to(device)\\\\n\\\\n    best_loss, best_state, wait, final_ep = float(\\\\\\\"inf\\\\\\\"), None, 0, 0\\\\n\\\\n    for ep in range(args.epochs):\\\\n        model.train()\\\\n        perm = torch.randperm(len(X_tr), device=device)\\\\n        for s in range(0, len(X_tr), args.batch_size):\\\\n            idx = perm[s : s + args.batch_size]\\\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\\\n            opt.zero_grad()\\\\n            loss.backward()\\\\n            opt.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            vl = crit(model(X_val), y_val).item()\\\\n\\\\n        if vl < best_loss:\\\\n            best_loss = vl\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= args.patience:\\\\n                final_ep = ep + 1\\\\n                break\\\\n        final_ep = ep + 1\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        pred = model(X_val).cpu().numpy()\\\\n    y_np = y_val.cpu().numpy()\\\\n\\\\n    rho, pval = spearmanr(pred, y_np)\\\\n    return dict(\\\\n        spearman_rho=float(rho) if not np.isnan(rho) else 0.0,\\\\n        spearman_p=float(pval) if not np.isnan(pval) else 1.0,\\\\n        r2=float(r2_score(y_np, pred)),\\\\n        mae=float(mean_absolute_error(y_np, pred)),\\\\n        val_loss=best_loss,\\\\n        epochs_trained=final_ep,\\\\n    ), pred, y_np\\\\n\\\\n\\\\ndef train_cla\n…[truncated 7133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:28:21.271936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/features/trained/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:28:21.272099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.h5\\\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.h5\\\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove.h5\\\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.h5\\\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.h5\\\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.h5\\\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.h5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:28:21.272250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/vla-ssd/features/trained/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r'); print(list(f.keys())[:3]); d=f['demo_0']; print(list(d.keys())[:5]); l=d['layer_0']; print(list(l.keys()), l['image_mean'].shape)\""
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:28:21.272375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:28:21.272494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "python3 -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/trained/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\nprint(list(f.keys())[:3])\nd=f['demo_0']\nprint(list(d.keys())[:5])\nl=d['layer_0']\nprint(list(l.keys()), l['image_mean'].shape)\n\""
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:28:21.272618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:28:21.272735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "/root/miniconda3/bin/python -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/trained/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\nprint('demos:', list(f.keys())[:3])\nd=f['demo_0']\nprint('demo_0 keys:', list(d.keys())[:5])\nl=d['layer_0']\nprint('layer_0 keys:', list(l.keys()), 'image_mean shape:', l['image_mean'].shape)\n\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:28:21.272866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"demos: ['demo_0', 'demo_1', 'demo_10']\\\\ndemo_0 keys: ['image_mean', 'last_preaction']\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 7, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/group.py\\\\\\\", line 407, in __getitem__\\\\n    return self._get(name)\\\\n           ^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/group.py\\\\\\\", line 421, in _get\\\\n    oid = h5o.open(self.id, self._e(name), lapl=lapl)\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/h5o.pyx\\\\\\\", line 255, in h5py.h5o.open\\\\nKeyError: \\\\\\\"Unable to synchronously open object (object 'layer_0' doesn't exist)\\\\\\\"\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:28:21.273049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "/root/miniconda3/bin/python -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/trained/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\nd=f['demo_0']\nprint('keys:', list(d.keys()))\nprint('image_mean shape:', d['image_mean'].shape)\nprint('last_preaction shape:', d['last_preaction'].shape)\nprint('num demos:', len(f.keys()))\n\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:28:21.273179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"keys: ['image_mean', 'last_preaction']\\\\nimage_mean shape: (388, 33, 4096)\\\\nlast_preaction shape: (388, 33, 4096)\\\\nnum demos: 50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:28:21.273302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/features/dinov2/"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:28:21.273430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.h5\\\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.h5\\\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove.h5\\\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.h5\\\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.h5\\\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.h5\\\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.h5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:28:21.273552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "/root/miniconda3/bin/python -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/dinov2/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\nd=f['demo_0']\nprint('keys:', list(d.keys()))\nfor k in d.keys():\n    print(f'{k} shape: {d[k].shape}')\n\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:28:21.273718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 4, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/group.py\\\\\\\", line 407, in __getitem__\\\\n    return self._get(name)\\\\n           ^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/group.py\\\\\\\", line 421, in _get\\\\n    oid = h5o.open(self.id, self._e(name), lapl=lapl)\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/h5o.pyx\\\\\\\", line 255, in h5py.h5o.open\\\\nKeyError: \\\\\\\"Unable to synchronously open object (object 'demo_0' doesn't exist)\\\\\\\"\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:28:21.273844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "/root/miniconda3/bin/python -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/dinov2/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\nprint('top keys:', list(f.keys())[:5])\nfirst = list(f.keys())[0]\nprint('first key:', first)\ng=f[first]\nprint('type:', type(g))\nif hasattr(g, 'keys'):\n    print('sub keys:', list(g.keys()))\nif hasattr(g, 'shape'):\n    print('shape:', g.shape)\n\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:28:21.273991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"top keys: ['traj_0', 'traj_1', 'traj_10', 'traj_11', 'traj_12']\\\\nfirst key: traj_0\\\\ntype: <class 'h5py._hl.group.Group'>\\\\nsub keys: ['cls_token', 'patch_mean']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:28:21.274115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "/root/miniconda3/bin/python -c \"\nimport h5py\nf=h5py.File('/root/autodl-tmp/vla-ssd/features/dinov2/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5','r')\ng=f['traj_0']\nprint('cls_token shape:', g['cls_token'].shape)\nprint('patch_mean shape:', g['patch_mean'].shape)\n\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:28:21.274232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cls_token shape: (388, 1024)\\\\npatch_mean shape: (388, 1024)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:28:21.274441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat > /root/vla-ssd/scripts/train_instruction_probes.py << 'PYEOF'\n\"\"\"train_instruction_probes.py — Goal classification probes for LIBERO-Goal shared-scene analysis.\n\nTests whether VLA hidden states encode instruction/goal information by training\nN-way classifiers on tasks sharing the same visual scene.\n\nUsage:\n  python train_instruction_probes.py \\\n    --feature_dir /root/autodl-tmp/vla-ssd/features/trained \\\n    --output_dir /root/autodl-tmp/vla-ssd/results/trained/instruction_probe \\\n    --model_type trained --num_layers 33 --feature_dim 4096\n\n  python train_instruction_probes.py \\\n    --feature_dir /root/autodl-tmp/vla-ssd/features/dinov2 \\\n    --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/instruction_probe \\\n    --model_type dinov2 --feature_dim 1024\n\n  # With visual gate check:\n  python train_instruction_probes.py \\\n    --feature_dir /root/autodl-tmp/vla-ssd/features/trained \\\n    --output_dir /root/autodl-tmp/vla-ssd/results/trained/instruction_probe \\\n    --model_type trained --dino_visual_gate\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport glob\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport h5py\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom sklearn.decomposition import PCA as SklearnPCA\nfrom sklearn.metrics import confusion_matrix\n\n\n# ============================================================\n# H5 key conventions\n# ============================================================\n# VLA (trained/untrained): demo_X/image_mean  shape (T, 33, 4096)\n#                          demo_X/last_preaction  shape (T, 33, 4096)\n# DINO-V2:                 traj_X/cls_token   shape (T, 1024)\n#                          traj_X/patch_mean   shape (T, 1024)\n\nAGG_KEYS = {\n    \"image_mean\": (\"image_mean\", \"patch_mean\"),\n    \"last_preaction\": (\"last_preaction\", \"cls_token\"),\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(\n        description=\"Instruction-conditioned probing for LIBERO-Goal\")\n    p.add_argument(\"--feature_dir\", required=True,\n                   help=\"Directory with per-task HDF5 feature files\")\n    p.add_argument(\"--data_dir\",\n                   default=\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\",\n                   help=\"LIBERO raw data directory (unused, reserved)\")\n    p.add_argument(\"--output_dir\", required=True,\n                   help=\"Directory to save probe results\")\n    p.add_argument(\"--model_type\", default=\"trained\",\n                   choices=[\"trained\", \"untrained\", \"dinov2\"])\n    p.add_argument(\"--num_layers\", type=int, default=33)\n    p.add_argument(\"--feature_dim\", type=int, default=4096)\n    p.add_argument(\"--aggregation\", default=\"image_mean\",\n                   choices=[\"image_mean\", \"last_preaction\"])\n    p.add_argument(\"--pca_dim\", type=int, default=None,\n                   help=\"PCA reduce features to N dims before probe\")\n    p.add_argument(\"--dino_visual_gate\", action=\"store_true\",\n                   help=\"Run t=0 DINO cosine similarity check\")\n    p.add_argument(\"--dino_feature_dir\", default=None,\n                   help=\"DINO feature dir (default: inferred from feature_dir)\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--batch_size\", type=int, default=256)\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--epochs\", type=int, default=50)\n    p.add_argument(\"--patience\", type=int, default=5)\n    p.add_argument(\"--gpu\", type=int, default=0)\n    p.add_argument(\"--layers\", default=None,\n                   help=\"Layer range '0-32' or list '0,5,10'. Default: all\")\n    return p.parse_args()\n\n\n# ============================================================\n# Scene grouping\n# ============================================================\n\ndef extract_scene_key(task_name):\n    \"\"\"Extract scene identifier from LIBERO task name.\n\n    E.g. 'LIVING_ROOM_SCENE2_put_the_red_mug...' -> 'LIVING_ROOM_SCENE2'\n    \"\"\"\n    m = re.match(r'^(.+?_SCENE\\d+)', task_name, re.IGNORECASE)\n    if m:\n        return m.group(1).upper()\n    parts = task_name.split('_')\n    return '_'.join(parts[:3]).upper() if len(parts) >= 3 else task_name.upper()\n\n\ndef discover_scene_groups(feature_dir):\n    \"\"\"Scan H5 files and group tasks by shared scene. Only keep groups with >=2 tasks.\"\"\"\n    h5_files = sorted(glob.glob(os.path.join(feature_dir, \"*.h5\")))\n    if not h5_files:\n        raise FileNotFoundError(f\"No .h5 files in {feature_dir}\")\n\n    scene_to_tasks = defaultdict(list)\n    for path in h5_files:\n        task = Path(path).stem\n        scene = extract_scene_key(task)\n        scene_to_tasks[scene].append(task)\n\n    groups = {s: tasks for s, tasks in scene_to_tasks.items() if len(tasks) >= 2}\n    if not groups:\n        all_tasks = [Path(p).stem for p in h5_files]\n        raise ValueError(\n            f\"No shared-scene groups found (need >=2 tasks per scene). \"\n            f\"Tasks: {all_tasks}\")\n    return groups\n\n\n# ============================================================\n# Feature loading\n# ============================================================\n\ndef _detect_demo_keys(f):\n    \"\"\"Return sorted demo/traj keys from an open HDF5 file.\"\"\"\n    keys = list(f.keys())\n    return sorted(keys, key=lambda x: int(x.split(\"_\")[-1]))\n\n\ndef load_task_features(feature_dir, task, layer, aggregation, is_dino=False):\n    \"\"\"Load features for one task at one layer.\n\n    Returns list of (T, D) arrays, one per demo.\n    \"\"\"\n    h5_path = os.path.join(feature_dir, f\"{task}.h5\")\n    vla_key, dino_key = AGG_KEYS[aggregation]\n\n    demos = []\n    with h5py.File(h5_path, \"r\") as f:\n        for dk in _detect_demo_keys(f):\n            g = f[dk]\n            if is_dino:\n                key = dino_key if dino_key in g else vla_key\n                arr = g[key][:]                          # (T, D)\n            else:\n                key = vla_key if vla_key in g else dino_key\n                arr = g[key][:, layer, :]                # (T, n_layers, D) -> (T, D)\n            demos.append(arr.astype(np.float32))\n    return demos\n\n\ndef load_dino_t0_features(feature_dir, task):\n    \"\"\"Load t=0 DINO cls_token for each demo. Returns (N_demos, D).\"\"\"\n    h5_path = os.path.join(feature_dir, f\"{task}.h5\")\n    t0_feats = []\n    with h5py.File(h5_path, \"r\") as f:\n        for dk in _detect_demo_keys(f):\n            g = f[dk]\n            key = \"cls_token\" if \"cls_token\" in g else \"patch_mean\"\n            t0_feats.append(g[key][0].astype(np.float32))   # t=0, shape (D,)\n    return np.stack(t0_feats)\n\n\ndef parse_layers(layers_str, max_layer):\n    if layers_str is None:\n        return list(range(max_layer))\n    if '-' in layers_str:\n        lo, hi = layers_str.split('-')\n        return list(range(int(lo), int(hi) + 1))\n    return [int(x) for x in layers_str.split(',')]\n\n\n# ============================================================\n# Probe\n# ============================================================\n\nclass GoalClassifier(nn.Module):\n    def __init__(self, in_dim, n_classes, hidden_dim=256):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.Linear(in_dim, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, n_classes),\n        )\n\n    def forward(self, x):\n        return self.net(x)\n\n\n# ============================================================\n# Data preparation\n# ============================================================\n\ndef prepare_data(feature_dir, tasks, layer, aggregation, is_dino, seed,\n                 train_ratio=0.8):\n    \"\"\"Load features for all tasks in a scene group, per-demo 80/20 split.\n\n    Returns X_tr, y_tr, X_val, y_val as torch tensors (z-score normalized).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    train_X, train_y, val_X, val_y = [], [], [], []\n\n    for label, task in enumerate(tasks):\n        demos = load_task_features(feature_dir, task, layer, aggregation, is_dino)\n        n_demos = len(demos)\n        perm = rng.permutation(n_demos)\n        n_train = max(1, int(n_demos * train_ratio))\n\n        for i in perm[:n_train]:\n            train_X.append(demos[i])\n            train_y.append(np.full(demos[i].shape[0], label, dtype=np.int64))\n        for i in perm[n_train:]:\n            val_X.append(demos[i])\n            val_y.append(np.full(demos[i].shape[0], label, dtype=np.int64))\n\n    X_tr = np.concatenate(train_X, axis=0)\n    y_tr = np.concatenate(train_y, axis=0)\n    X_val = np.concatenate(val_X, axis=0)\n    y_val = np.concatenate(val_y, axis=0)\n\n    # Per-dim z-score normalization (fit on train)\n    mean = X_tr.mean(axis=0)\n    std = X_tr.std(axis=0) + 1e-8\n    X_tr = (X_tr - mean) / std\n    X_val = (X_val - mean) / std\n\n    return (torch.from_numpy(X_tr), torch.from_numpy(y_tr),\n            torch.from_numpy(X_val), torch.from_numpy(y_val))\n\n\ndef apply_pca(X_tr, X_val, pca_dim):\n    pca = SklearnPCA(n_components=pca_dim)\n    Xtr_np = X_tr.numpy() if isinstance(X_tr, torch.Tensor) else X_tr\n    Xv_np = X_val.numpy() if isinstance(X_val, torch.Tensor) else X_val\n    Xtr_pca = pca.fit_transform(Xtr_np)\n    Xv_pca = pca.transform(Xv_np)\n    info = {\n        \"explained_variance_ratio\": pca.explained_variance_ratio_.tolist(),\n        \"cumulative_variance_ratio\": float(pca.explained_variance_ratio_.sum()),\n    }\n    return (torch.from_numpy(Xtr_pca.astype(np.float32)),\n            torch.from_numpy(Xv_pca.astype(np.float32)), info)\n\n\n# ============================================================\n# Training\n# ============================================================\n\ndef train_goal_probe(X_tr, y_tr, X_val, y_val, in_dim, n_classes, args, device):\n    model = GoalClassifier(in_dim, n_classes).to(device)\n    opt = torch.optim.Adam(model.parameters(), lr=args.lr)\n    crit = nn.CrossEntropyLoss()\n\n    X_tr, y_tr = X_tr.to(device), y_tr.to(device)\n    X_val, y_val = X_val.to(device), y_val.to(device)\n\n    best_loss, best_state, wait, final_ep = float(\"inf\"), None, 0, 0\n\n    for ep in range(args.epochs):\n        model.train()\n        perm = torch.randperm(len(X_tr), device=device)\n        for s in range(0, len(X_tr), args.batch_size):\n            idx = perm[s:s + args.batch_size]\n            loss = crit(model(X_tr[idx]), y_tr[idx])\n            opt.zero_grad()\n            loss.backward()\n            opt.step()\n\n        model.eval()\n        with torch.no_grad():\n            vl = crit(model(X_val), y_val).item()\n\n        if vl < best_loss:\n            best_loss = vl\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\n            wait = 0\n        else:\n            wait += 1\n            if wait >= args.patience:\n                final_ep = ep + 1\n                break\n        final_ep = ep + 1\n\n    model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        logits = model(X_val)\n        preds = logits.argmax(dim=1).cpu().numpy()\n    y_np = y_val.cpu().numpy()\n\n    acc = float((preds == y_np).mean())\n    cm = confusion_matrix(y_np, preds, labels=list(range(n_classes)))\n\n    per_class_acc = {}\n    for c in range(n_classes):\n        mask = y_np == c\n        if mask.sum() > 0:\n            per_class_acc[c] = float((preds[mask] == c).mean())\n\n    return dict(\n        accuracy=acc,\n        per_class_accuracy=per_class_acc,\n        val_loss=best_loss,\n        epochs_trained=final_ep,\n        confusion_matrix=cm.tolist(),\n        n_train=int(len(X_tr)),\n        n_val=int(len(X_val)),\n    )\n\n\n# ============================================================\n# Visual gate\n# ============================================================\n\ndef compute_visual_gate(dino_feature_dir, scene_groups):\n    \"\"\"Compute t=0 DINO cosine similarity between tasks sharing a scene.\"\"\"\n    results = {}\n    for scene, tasks in scene_groups.items():\n        task_means = []\n        for task in tasks:\n            t0 = load_dino_t0_features(dino_feature_dir, task)  # (N_demos, D)\n            task_means.append(t0.mean(axis=0))                  # (D,)\n\n        sims = []\n        for i in range(len(tasks)):\n            for j in range(i + 1, len(tasks)):\n                a, b = task_means[i], task_means[j]\n                cos = float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-8))\n                sims.append(dict(\n                    task_a=tasks[i], task_b=tasks[j],\n                    cosine_similarity=cos,\n                ))\n\n        mean_sim = float(np.mean([s[\"cosine_similarity\"] for s in sims]))\n        results[scene] = dict(\n            pairs=sims,\n            mean_cosine_similarity=mean_sim,\n            pass_gate=mean_sim >= 0.95,\n            n_tasks=len(tasks),\n        )\n    return results\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    args = parse_args()\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n    is_dino = args.model_type == \"dinov2\"\n\n    if args.pca_dim is not None:\n        args.output_dir = args.output_dir.rstrip(\"/\") + f\"_pca{args.pca_dim}\"\n\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    print(f\"=== Instruction Probe | model={args.model_type} | device={device} ===\")\n\n    # Discover scene groups\n    scene_groups = discover_scene_groups(args.feature_dir)\n    print(f\"\\nScene groups: {len(scene_groups)}\")\n    for scene, tasks in scene_groups.items():\n        print(f\"  {scene}: {len(tasks)} tasks\")\n        for t in tasks:\n            print(f\"    - {t}\")\n\n    # Visual gate\n    if args.dino_visual_gate:\n        dino_dir = args.dino_feature_dir\n        if dino_dir is None:\n            dino_dir = args.feature_dir.replace(f\"/{args.model_type}/\", \"/dinov2/\")\n        print(f\"\\n--- Visual Gate (t=0 DINO cosine similarity) ---\")\n        print(f\"  DINO dir: {dino_dir}\")\n        gate_results = compute_visual_gate(dino_dir, scene_groups)\n        for scene, info in gate_results.items():\n            status = \"PASS\" if info[\"pass_gate\"] else \"FAIL\"\n            print(f\"  {scene}: mean_cos={info['mean_cosine_similarity']:.4f} [{status}]\")\n\n        gate_path = os.path.join(args.output_dir, \"visual_gate.json\")\n        with open(gate_path, \"w\") as f:\n            json.dump(gate_results, f, indent=2)\n        print(f\"  Saved: {gate_path}\")\n\n    # Layer sweep\n    if is_dino:\n        layers = [0]\n    else:\n        layers = parse_layers(args.layers, args.num_layers)\n\n    feature_dim = 1024 if is_dino else args.feature_dim\n    all_results = {}\n\n    for layer in layers:\n        layer_key = \"dino\" if is_dino else layer\n        print(f\"\\n--- Layer {layer_key} ---\")\n\n        layer_results = {}\n        for scene, tasks in scene_groups.items():\n            n_classes = len(tasks)\n            t0 = time.time()\n\n            X_tr, y_tr, X_val, y_val = prepare_data(\n                args.feature_dir, tasks, layer, args.aggregation, is_dino,\n                args.seed)\n\n            probe_dim = feature_dim\n            pca_info = None\n            if args.pca_dim is not None:\n                X_tr, X_val, pca_info = apply_pca(X_tr, X_val, args.pca_dim)\n                probe_dim = args.pca_dim\n\n            if len(X_val) == 0:\n                print(f\"  {scene}: SKIP (no val data)\")\n                continue\n\n            met = train_goal_probe(\n                X_tr, y_tr, X_val, y_val, probe_dim, n_classes, args, device)\n            met[\"scene\"] = scene\n            met[\"tasks\"] = tasks\n            met[\"n_classes\"] = n_classes\n            if pca_info:\n                met[\"pca_info\"] = pca_info\n\n            layer_results[scene] = met\n            print(f\"  {scene} ({n_classes}-way): acc={met['accuracy']:.4f}  \"\n                  f\"ep={met['epochs_trained']}  {time.time()-t0:.1f}s\")\n\n        accs = [v[\"accuracy\"] for v in layer_results.values()]\n        mean_acc = float(np.mean(accs)) if accs else 0.0\n\n        all_results[str(layer_key)] = dict(\n            per_scene=layer_results,\n            mean_accuracy=mean_acc,\n            layer=layer_key,\n        )\n        print(f\"  Mean accuracy: {mean_acc:.4f}\")\n\n    # Summary\n    print(\"\\n=== Summary ===\")\n    if all_results:\n        best_layer = max(all_results, key=lambda k: all_results[k][\"mean_accuracy\"])\n        print(f\"Best layer: {best_layer} \"\n              f\"(acc={all_results[best_layer]['mean_accuracy']:.4f})\")\n        for lk in sorted(all_results,\n                         key=lambda x: (x != \"dino\", int(x) if x != \"dino\" else -1)):\n            print(f\"  Layer {lk}: {all_results[lk]['mean_accuracy']:.4f}\")\n    else:\n        best_layer = None\n        print(\"No results.\")\n\n    # Save\n    results_out = dict(\n        model_type=args.model_type,\n        n_scene_groups=len(scene_groups),\n        scene_groups={s: t for s, t in scene_groups.items()},\n        best_layer=best_layer,\n        best_accuracy=all_results[best_layer][\"mean_accuracy\"] if best_layer else None,\n        per_layer=all_results,\n    )\n\n    results_path = os.path.join(args.output_dir, \"results.json\")\n    with open(results_path, \"w\") as f:\n        json.dump(results_out, f, indent=2)\n    print(f\"\\nSaved to {args.output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:28:21.274792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:28:21.274962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/train_instruction_probes.py --help"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:28:21.275117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: train_instruction_probes.py [-h] --feature_dir FEATURE_DIR\\\\n                                   [--data_dir DATA_DIR] --output_dir\\\\n                                   OUTPUT_DIR\\\\n                                   [--model_type {trained,untrained,dinov2}]\\\\n                                   [--num_layers NUM_LAYERS]\\\\n                                   [--feature_dim FEATURE_DIM]\\\\n                                   [--aggregation {image_mean,last_preaction}]\\\\n                                   [--pca_dim PCA_DIM] [--dino_visual_gate]\\\\n                                   [--dino_feature_dir DINO_FEATURE_DIR]\\\\n                                   [--seed SEED] [--batch_size BATCH_SIZE]\\\\n                                   [--lr LR] [--epochs EPOCHS]\\\\n                                   [--patience PATIENCE] [--gpu GPU]\\\\n                                   [--layers LAYERS]\\\\n\\\\nInstruction-conditioned probing for LIBERO-Goal\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --feature_dir FEATURE_DIR\\\\n                        Directory with per-task HDF5 feature files\\\\n  --data_dir DATA_DIR   LIBERO raw data directory (unused, reserved)\\\\n  --output_dir OUTPUT_DIR\\\\n                        Directory to save probe results\\\\n  --model_type {trained,untrained,dinov2}\\\\n  --num_layers NUM_LAYERS\\\\n  --feature_dim FEATURE_DIM\\\\n  --aggregation {image_mean,last_preaction}\\\\n  --pca_dim PCA_DIM     PCA reduce features to N dims before probe\\\\n  --dino_visual_gate    Run t=0 DINO cosine similarity check\\\\n  --dino_feature_dir DINO_FEATURE_DIR\\\\n                        DINO feature dir (default: inferred from feature_dir)\\\\n  --seed SEED\\\\n  --batch_size BATCH_SIZE\\\\n  --lr LR\\\\n  --epochs EPOCHS\\\\n  --patience PATIENCE\\\\n  --gpu GPU\\\\n  --layers LAYERS       Layer range '0-32' or list '0,5,10'. Default: all\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\n…[truncated 28 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:28:21.275275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/train_instruction_probes.py --feature_dir /root/autodl-tmp/vla-ssd/features/trained --output_dir /tmp/test_instr_probe --model_type trained --layers 0,16,32 --dino_visual_gate 2>&1"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:28:21.275410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/train_instruction_probes.py --feature_dir /root/autodl-tmp/vla-ssd/features/trained --output_dir /tmp/test_instr_probe --model_type trained --layers 0,16,32 --dino_visual_gate 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n           ^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/h5py/_hl/group.py\\\\\\\", line 421, in _get\\\\n    oid = h5o.open(self.id, self._e(name), lapl=lapl)\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 54, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/_objects.pyx\\\\\\\", line 55, in h5py._objects.with_phil.wrapper\\\\n  File \\\\\\\"h5py/h5o.pyx\\\\\\\", line 255, in h5py.h5o.open\\\\nKeyError: \\\\\\\"Unable to synchronously open object (object 'patch_mean' doesn't exist)\\\\\\\"\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:28:21.275585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "sed -i 's|dino_dir = args.feature_dir.replace(f\"/{args.model_type}/\", \"/dinov2/\")|dino_dir = os.path.join(os.path.dirname(args.feature_dir.rstrip(\"/\")), \"dinov2\")|' /root/vla-ssd/scripts/train_instruction_probes.py"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:28:21.275713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:28:21.275829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/train_instruction_probes.py --feature_dir /root/autodl-tmp/vla-ssd/features/trained --output_dir /tmp/test_instr_probe --model_type trained --layers 0,16,32 --dino_visual_gate 2>&1"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:28:21.275975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Instruction Probe | model=trained | device=cuda:0 ===\\\\n\\\\nScene groups: 1\\\\n  LIVING_ROOM_SCENE2: 2 tasks\\\\n    - LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\n    - LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\n\\\\n--- Visual Gate (t=0 DINO cosine similarity) ---\\\\n  DINO dir: /root/autodl-tmp/vla-ssd/features/dinov2\\\\n  LIVING_ROOM_SCENE2: mean_cos=0.9981 [PASS]\\\\n  Saved: /tmp/test_instr_probe/visual_gate.json\\\\n\\\\n--- Layer 0 ---\\\\n  LIVING_ROOM_SCENE2 (2-way): acc=0.9693  ep=6  7.8s\\\\n  Mean accuracy: 0.9693\\\\n\\\\n--- Layer 16 ---\\\\n  LIVING_ROOM_SCENE2 (2-way): acc=0.9707  ep=6  6.7s\\\\n  Mean accuracy: 0.9707\\\\n\\\\n--- Layer 32 ---\\\\n  LIVING_ROOM_SCENE2 (2-way): acc=0.9410  ep=6  6.4s\\\\n  Mean accuracy: 0.9410\\\\n\\\\n=== Summary ===\\\\nBest layer: 16 (acc=0.9707)\\\\n  Layer 0: 0.9693\\\\n  Layer 16: 0.9707\\\\n  Layer 32: 0.9410\\\\n\\\\nSaved to /tmp/test_instr_probe/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 24.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:28:21.276124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/vla-ssd/scripts/train_instruction_probes.py --feature_dir /root/autodl-tmp/vla-ssd/features/dinov2 --output_dir /tmp/test_instr_probe_dino --model_type dinov2 --feature_dim 1024 2>&1"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:28:21.276261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Instruction Probe | model=dinov2 | device=cuda:0 ===\\\\n\\\\nScene groups: 1\\\\n  LIVING_ROOM_SCENE2: 2 tasks\\\\n    - LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\n    - LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\n\\\\n--- Layer dino ---\\\\n  LIVING_ROOM_SCENE2 (2-way): acc=0.9659  ep=6  2.1s\\\\n  Mean accuracy: 0.9659\\\\n\\\\n=== Summary ===\\\\nBest layer: dino (acc=0.9659)\\\\n  Layer dino: 0.9659\\\\n\\\\nSaved to /tmp/test_instr_probe_dino/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:28:21.276415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /tmp/test_instr_probe/"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:28:21.276535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json\\\\nvisual_gate.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:28:21.276648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /tmp/test_instr_probe/visual_gate.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T16:28:21.276772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"LIVING_ROOM_SCENE2\\\\\\\": {\\\\n    \\\\\\\"pairs\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"task_a\\\\\\\": \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\",\\\\n        \\\\\\\"task_b\\\\\\\": \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\",\\\\n        \\\\\\\"cosine_similarity\\\\\\\": 0.998098021725114\\\\n      }\\\\n    ],\\\\n    \\\\\\\"mean_cosine_similarity\\\\\\\": 0.998098021725114,\\\\n    \\\\\\\"pass_gate\\\\\\\": true,\\\\n    \\\\\\\"n_tasks\\\\\\\": 2\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T16:28:21.276941+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码已创建并验证通过。\n\n**文件**: `/root/vla-ssd/scripts/train_instruction_probes.py`\n\n**验证结果** (用现有 LIBERO-10 特征中 LIVING_ROOM_SCENE2 的 2 个 task 测试)：\n- Scene grouping 自动发现正确 — `LIVING_ROOM_SCENE2` 包含 2 tasks\n- Visual gate: t=0 DINO cos_sim = 0.9981 [PASS]\n- Goal classification (trained VLA): Layer 0 = 96.9%, Layer 16 = 97.1%, Layer 32 = 94.1%\n- DINO baseline: 96.6% (注意：这是全轨迹数据，视觉会在执行中分化，所以 DINO 也能区分。LIBERO-Goal 中共享 scene 的 task 初始状态完全相同，才是真正的 negative control 条件)\n- 输出 `results.json` + `visual_gate.json` 格式正确"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_instruction-probe-impl_20260515T162204"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/code-instruction-probe-impl.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6cbd0d4c621fb4273b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dinov2 extract",
+  "task_key": "worker_code_dinov2-extract_20260515T065320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dinov2-extract_20260515T065320_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "2f27b1cf250bafe1e094598e0c05de135f05f9c2d218f32498415538029f606f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，结果汇总：\n\n## 产出\n\n### 1. LIBERO-10 HDF5 数据结构\n- 10 个 HDF5 文件，每个对应一个 task\n- 每个文件 50 个 demo (`data/demo_0` ~ `data/demo_49`)\n- Image key: `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n- 也有 `eye_in_hand_rgb`（腕部相机，同尺寸）\n- 每条 demo ~220-280 timesteps，总计 138,090 帧\n\n### 2. 脚本\n`/root/vla-ssd/scripts/extract_dinov2.py` — 107 行\n\n### 3. 提取结果\n- 10 个特征文件，总计 503MB，位于 `/root/autodl-tmp/vla-ssd/features/dinov2/`\n- 每个文件包含 50 条 trajectory\n- 每条 trajectory: `cls_token` (T, 1024) fp16 + `patch_mean` (T, 1024) fp16\n- 验证通过：shape、dtype 均正确\n\n### 4. 性能\n- 138,090 帧，795.8s，平均 174 fps\n- GPU 显存 ~2.5GB（DINO-V2 ViT-L）\n- batch_size=32，GPU 利用率 ~78%\n\n### 5. 注意事项\n- 需要 `HDF5_USE_FILE_LOCKING=FALSE` 环境变量（AutoDL 数据盘不支持 HDF5 file locking）\n- 已直接全量运行完成，无需再通过 `submit_training_job` 提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dinov2-extract.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c4a6ae12a7a18d9c945",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis action trajectory control",
+  "task_key": "worker_analysis_action_trajectory_control_20260518T114414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_action_trajectory_control_20260518T114414_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "76338057a781ff35c5ef976d7e04176c3b0e1e612cd2d974ae89d7ea991e26e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**Conclusion: success** — hypothesis confirmed.\n\nControl ablation (8 non-instruction heads) 产生 **零** action divergence：\n\n| 指标 | Parent (24 dominant heads) | Control (8 non-dominant) | 比值 |\n|------|---------------------------|--------------------------|------|\n| Paired MSE | 0.0416 | 0.0 | ∞ |\n| Token divergence | 72.3% | 0.0% | ∞ |\n| Gripper shift | 0.2907 | 0.0 | ∞ |\n| KL divergence | 5.079 | 0.0135 | 377× |\n\n非指令头的消融仅产生极微量的 logit 扰动（KL=0.013），但不足以翻转任何 argmax token。解码出的 action 与 baseline 完全一致。\n\n**注意事项**：control 实际只跑了 4 个 forward pass（JSON 中 n_tasks=1, n_demos=1, n_timesteps=2），远少于 parent 的 5000。但零效应结果本身是 unambiguous 的——即使 1 个 token 翻转都能被检测到。\n\n已更新 registry（metrics + conclusion=success + status=DONE）和 memory.md（含对比表格和 caveat）。GPU 预算更新至 ~23.2h used / ~2.8h remaining。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-action-trajectory-control.md"
+}

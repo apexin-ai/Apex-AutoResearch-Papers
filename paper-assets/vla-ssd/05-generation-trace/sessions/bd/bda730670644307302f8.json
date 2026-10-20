@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bda730670644307302f8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code check spatial cross inst progress",
+  "task_key": "worker_code_check_spatial_cross_inst_progress_20260517T091650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_spatial_cross_inst_progress_20260517T091650_result.json",
+    "occurrence": 1,
+    "bytes": 2276,
+    "sha256": "1e5eebd10c9e7d19b4ffc454fe62afc6ef553c05b6d31e4c3df478c31bc67535"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提取和分类全部完成。完整结果表格：\n\n### LIBERO-Spatial Cross-Instruction 10-way Classification (10 classes, chance=0.1)\n\n| Layer | trained_image_mean | trained_last_preaction | untrained_image_mean | untrained_last_preaction |\n|-------|-------------------|----------------------|---------------------|------------------------|\n| L0    | 0.100             | 0.100                | 0.100               | 0.100                  |\n| L1    | 0.100             | **0.989**            | 0.100               | **0.995**              |\n| L4    | 0.100             | **1.000**            | 0.100               | 0.862                  |\n| L8    | 0.100             | **1.000**            | 0.101               | 0.683                  |\n| L12   | 0.100             | **1.000**            | 0.099               | 0.795                  |\n| L16   | 0.100             | **1.000**            | 0.100               | 0.765                  |\n| L20   | 0.100             | **1.000**            | 0.099               | 0.689                  |\n| L24   | 0.100             | **1.000**            | 0.100               | 0.777                  |\n| L28   | 0.100             | **1.000**            | 0.100               | 0.760                  |\n| L31   | 0.101             | **1.000**            | 0.100               | 0.754                  |\n\n关键发现（数据呈现，遵守 C001 约束，trained + untrained 对照齐全）：\n\n1. **image_mean token**: trained 和 untrained 都在 chance level (~0.1)，所有层均无 goal 信息。这与 LIBERO-Object 结果一致。\n\n2. **last_preaction token**:\n   - **Trained**: L1 即达 0.989，L4 起完美 1.000 并保持到 L31\n   - **Untrained**: L1 高达 0.995（与 trained 相当），但 L4 开始显著下降至 0.862，L8 降至 0.683，中高层波动在 0.68-0.80 之间\n   - **Trained vs Untrained gap**: L4 起 gap 显著（1.000 vs 0.862），L8 gap 最大（1.000 vs 0.683）\n\n3. 模式与 LIBERO-Object 类似：训练使 last_preaction 位置的 goal classification 从不完美提升到完美，但 image_mean 始终不编码 goal 信息。\n\n注意：untrained 中高层有 ConvergenceWarning（lbfgs 2000 iter 未收敛），实际 accuracy 可能略被低估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-spatial-cross-inst-progress.md"
+}

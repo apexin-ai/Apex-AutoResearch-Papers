@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f723f30e434b112716",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action trajectory control",
+  "task_key": "worker_code_action_trajectory_control_20260518T113458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_trajectory_control_20260518T113458_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "3fb103205866866607fecb1de35ef4559c9e13c42a368f67d283421941a302c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。总结：\n\n- **脚本**: `/root/vla-ssd/scripts/action_trajectory_control.py`\n- **改动**: `CONTROL_HEADS_8 = [3, 5, 6, 9, 13, 21, 24, 28]`，ablation 描述改为 `L1_non_instruction_8_heads_zeroed`，输出文件 `action_trajectory_control.json`\n- **Dry-run**: 通过，control heads ablation 几乎不影响 action（paired_mse≈0, token_div=0），与 instruction heads 的结果形成对照\n- **任务**: `action_trajectory_control` 运行在 cuda:0，timeout 2h，日志在 `/root/autodl-tmp/vla-ssd/results/action_trajectory_control.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-trajectory-control.md"
+}

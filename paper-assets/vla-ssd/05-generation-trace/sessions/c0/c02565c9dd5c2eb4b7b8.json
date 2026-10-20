@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02565c9dd5c2eb4b7b8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "extract openvla spatial trained",
+  "task_key": "worker_extract_openvla_spatial_trained_20260522T090157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_openvla_spatial_trained_20260522T090157_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "e5e27975f9b0e190335c3afc073f437ead982d9927bac7feba1fbbdd27a8e34d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**OpenVLA Spatial Trained (standardized_v1, 4/5 phases)**:\n\n| 指标 | 值 |\n|------|-----|\n| R² peak | L14 = 0.845 |\n| R² exit (L31) | 0.735 |\n| Δ | **0.110** — exit collapse 确认 |\n| L1 attention | 24/32 instruction-dominant, 8 mixed |\n| Cross-instr classification | L1 起 100% 完美 |\n| RSA best (last_preaction) | L0 = 0.579 (无明显 mid-layer peak) |\n\n矩阵行已从旧的 `0.696 peak (L13), exit N/A` 更新为 `0.845→0.735, Δ=0.110`。L1 从缺失更新为 24/32。CF 列保留 legacy 数据并标注来源（‡‡）。\n\n报告写入 `artifacts/openvla_spatial_trained_extraction.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-openvla-spatial-trained.md"
+}

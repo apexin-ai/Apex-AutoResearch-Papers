@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc7c43cb8fe8a365d5f5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "setup nora spatial ckpt and verify v2",
+  "task_key": "worker_setup_nora_spatial_ckpt_and_verify_v2_20260521T032819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_nora_spatial_ckpt_and_verify_v2_20260521T032819_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "c4d9f94f3a82981b1a49113de716fb5ea1bb5a0ee414f2b0672b2fcea55de106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Spatial 下载进程存活（PID 527351, 101秒）。\n\n---\n\n## 产出汇总\n\n### 1. NORA Goal v2 运行状态：**ALIVE**\n\n- PID 526939，CUDA:1，`nora_goal_full_pipeline.py --conditions trained untrained`\n- 模型加载成功 (12.1s, 2 shards)\n- Phase 1 representation extraction 进行中：**Task 2/10** (push_the_plate...), sample 1400/5000\n- 预计速度：~21s/100 samples, 每 task 500 samples → 10 tasks × ~105s ≈ 17.5 分钟完成 Phase 1 trained\n- 注意：CUDA:1 同时还跑着 `tracvla_spatial_full_pipeline.py --conditions trained` (PID 521842, CPU 1587%)，可能互相抢 GPU 显存\n\n### 2. NORA Spatial checkpoint 下载：**已启动**\n\n- 模型：`declare-lab/nora-long-finetuned-libero-spatial`\n- 下载方式：`huggingface-cli download` via hf-mirror\n- 当前进度：175MB / ~7.5GB (小文件完成，两个大 safetensors 分片下载中)\n- PID 527351，后台运行\n- 日志：`/tmp/download_nora_spatial.log`\n\n### 3. NORA Goal checkpoint 完整性：**完整**\n\n- shard 1: 4,959,940,464 bytes (4.6GB) ✓\n- shard 2: 2,556,676,080 bytes (2.4GB) ✓\n- 合计 7.52GB ≈ index total_size 7,516,524,544 + headers overhead\n- Pipeline 已成功加载并正常使用\n- aria2c (PID 523735) 仍在运行但文件大小不再增长，属残留进程，可安全 kill"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-nora-spatial-ckpt-and-verify-v2.md"
+}

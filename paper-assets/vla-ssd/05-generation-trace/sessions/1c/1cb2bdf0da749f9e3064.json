@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cb2bdf0da749f9e3064",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fig llama2base attention comparison",
+  "task_key": "worker_code_fig_llama2base_attention_comparison_20260517T061138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_llama2base_attention_comparison_20260517T061138_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "9527309a108b1ce7aab7a7f872d126d01e6f58e8922a4c86da8cea72001bbb86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and saved. The three-panel stacked bar chart clearly shows the progression:\n\n- **Untrained VLA (0/32)**: All heads are image-dominant (orange), with minimal instruction attention (blue)\n- **Llama-2 Base (9/32)**: 9 heads become instruction-dominant, concentrated at heads 17, 23, 25, 27 and others in the high-index range\n- **VLA Trained (25/32)**: 25 heads are instruction-dominant, with significant BOS attention (gray) appearing as a training artifact\n\nOutput files:\n- PDF: `artifacts/attention/fig_llama2base_comparison.pdf` (29 KB)\n- PNG: `artifacts/attention/fig_llama2base_comparison.png` (31 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-llama2base-attention-comparison.md"
+}

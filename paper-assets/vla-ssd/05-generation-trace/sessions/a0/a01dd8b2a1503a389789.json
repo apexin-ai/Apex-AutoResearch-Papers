@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a01dd8b2a1503a389789",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_10_1779397652.md",
+  "task_key": "loop_10_1779397652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779397652.md",
+    "occurrence": 1,
+    "bytes": 4842,
+    "sha256": "5c5dfad501dd591baae8c31dd3653b467f8913cd8f4fc705d998e0d8a6e44e93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-21T20:27:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183:cuda:0, westd-19183:cuda:1（仅 2 张），禁止用其他 GPU\n- 当前两张 GPU 都在跑实验，不要 kill 或抢占\n- 论文已提交审稿中，禁止在无 Director 批准下修改 paper/** 文件\n- DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）\n- Path B（闭环行为验证）已被 D078/D080 正式关闭（SR 0/9），不要再尝试\n- PREPARING 中的 behavioral 实验是历史遗留（已 killed），不要主动提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/模型/结果）\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- NORA 专用 venv：`/root/autodl-tmp/vla-ssd/envs/nora/`\n- 模型：OpenVLA `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`，TracVLA-Phi3V `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/`，NORA `/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/`\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks × 50 demos），`libero_object/`，`libero_spatial/`\n- 磁盘：根分区 816G/879G 可用\n- 活跃进程：\n  - `libero_object_full_pipeline` PID 513513, tmux=libero_object_full_pipeline, cuda:0\n  - `nora_goal_pipeline_v2` PID 526939, tmux=nora_goal_pipeline_v2, cuda:1\n- Cron：`libero_object_full_pipeline` 活跃（reconcile 确认 1 个）\n\n### 3. 📊 当前状态\nSession #10 刚启动，完成了 session-start 初始化 + 向 Director 汇报。\n\n**RUNNING (2):**\n- `libero_object_full_pipeline` (cuda:0)：OpenVLA LIBERO-Object 跨 benchmark 验证，Phase 2 R² probing ~L12-13，预计还需 ~4.5h\n- `nora_goal_pipeline_v2` (cuda:1)：NORA (Qwen2.5-VL-3B, 36层) 第三架构验证，R² probing 刚启动 L0，~25min/层\n\n**PREPARING (8):** `tracvla_spatial_trained`（待修复重跑），其余 7 个为历史遗留（已 killed 或等 Director）\n\n**Worker:** `worker_diagnose_urgent_gpu_status_check_20260521T042114` 正在运行——确认两实验进程存活，发现 Phi-3-Vision 下载有困难\n\n**近期完成:** `phi3v_untrained_seed_expansion` success（2×2 矩阵 15 seeds 全对齐），`nora_goal_full_pipeline` failed → v2 重试中，`tracvla_spatial_pipeline` failed (EXIT_CODE=129，R² 有 sample_size 问题但 L1 attention 29/32 + counterfactual d=1.55-3.75 强劲)\n\n### 4. 📋 待办\n- `worker_diagnose_urgent_gpu_status_check` 回调 → 读取诊断结果，处理 Phi-3-Vision 下载问题（如果影响 NORA 实验）\n- `libero_object_full_pipeline` cron 完成回调 → spawn Worker 分析结果 → 更新 registry → 向 Director 汇报（如果 success：OpenVLA 跨 benchmark 复现确认；如果 negative/failed：诊断并汇报）\n- `nora_goal_pipeline_v2` cron 完成回调 → spawn Worker 分析 → 如果 success：第三架构验证通过，论文从\"2 架构\"升级为\"3 架构\"；如果 failed：检查是否与 v1 同样的 sample_size 问题\n- `tracvla_spatial_pipeline` failed 但有部分强结果（L1 29/32, counterfactual d>1.5）→ 等 Director 决定是否只修 R² probing 重跑（`tracvla_spatial_trained` 已 PREPARING），或直接用现有 L1+counterfactual 数据\n- 审稿反馈到达 → 读反馈 → 按 reviewer 意见规划 targeted experiments → 提交 Director 审批\n\n### 5. 🎯 战略上下文\n- **核心发现**：VLA 微调创建 instruction routing（attention head specialization），跨架构收敛\n- **三个 Core Claims**：C1 token specialization, C2 entry-exit routing, C3 R² inverted-U geometry——已双架构验证（OpenVLA Llama-2 + TracVLA Phi-3）\n- **正在拓展**：第三架构 NORA (Qwen2.5-VL-3B) + 跨 benchmark (LIBERO-Object)。如果两者均 success，证据从\"2 架构 × 1 benchmark\"升级为\"3 架构 × 2 benchmark\"，显著增强 reviewer 说服力\n- **关键数据锚点**：Peak R² 0.637 (L9, OpenVLA) vs 0.634 (L11, Phi3V), Δ=0.003; Counterfactual all d>0.8 across 20 tasks\n- **决策链**：D077→D078 闭环关闭 → D079 转 Phi3V → D080-D087 跨架构全线成功 → 论文提交审稿 → 现在跑 NORA+Object 扩展实验\n- **易错点**：\n  - NORA 用独立 venv (`envs/nora/`)，不是 conda base——submit 命令必须 `source .../envs/nora/bin/activate`\n  - `nora_goal_full_pipeline` v1 失败原因未完全明确，v2 修了 argparse（`--conditions` 改为 nargs='+'），如果 v2 也失败需深入诊断\n  - `tracvla_spatial_pipeline` 的 R² \"all_zero_sample_size_issue\" 可能是 Spatial 数据量不够或 feature extraction 有 bug，不是方法本身问题\n  - Reviewer session 仍然瘫痪（已 escalate 6 次），不要依赖自动审稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779397652.md"
+}

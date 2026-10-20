@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7eb8e35e164dc7f7cab",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dino rerun and verdict prep",
+  "task_key": "worker_code_dino-rerun-and-verdict-prep_20260515T132655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dino-rerun-and-verdict-prep_20260515T132655_result.json",
+    "occurrence": 1,
+    "bytes": 1925,
+    "sha256": "00d4d87f26f31965de6eafef96dd6abdea49eb55866d66f54cb7bfd58ef1f913"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部字段齐全。结果汇总：\n\n### DINO 重跑结果\n- `per_task_mean_rho`: **0.9008**（远高于 registry 中的 0.554 — 说明之前的 0.554 可能是旧代码/不同数据的结果）\n- `pooled_rho`: 0.9001\n- `per_task_rho`: 10 个 task 全部在 0.84–0.93 范围\n- 文件结构：`layer_0.json`, `summary.csv`, `summary.json` — 匹配 analyze_results.py 预期\n\n### Verdict 命令（已验证格式正确）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/vla-ssd\n\npython scripts/analyze_results.py \\\n  --results_dirs \"trained:/root/autodl-tmp/vla-ssd/results/trained/,untrained:/root/autodl-tmp/vla-ssd/results/untrained/,dinov2:/root/autodl-tmp/vla-ssd/results/dinov2/\" \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/analysis/ \\\n  --probe_type temporal_distance\n```\n\n`analyze_results.py` 通过 `extract_per_task_mean_rho()` 读取每层的 `per_task_rho` 字典并计算均值，`compute_judgment()` 用 DINO 的 `per_task_mean_rho` 作为 gate threshold。命令格式确认无误。\n\n### Probe 训练进度\n| Probe | 当前层 | 进度 | 备注 |\n|-------|--------|------|------|\n| mvp_probe_trained (GPU 0) | Layer 3 | 4/33 | rho=0.9539 @ Layer 2 |\n| mvp_probe_untrained (GPU 1) | Layer 4 | 5/33 | rho=0.0000（预期行为） |\n\n每层 ~30-40s，33 层预计各需 ~20min 左右完成。\n\n### 注意\nDINO `per_task_mean_rho` = 0.9008，与 CLAUDE.md 中提到的 `DINO_GATE_THRESHOLD = 0.554` 差异很大。`analyze_results.py` 中硬编码了 `DINO_GATE_THRESHOLD = 0.554`，但实际 DINO 跑出来 0.9008。如果 judgment 逻辑用这个 0.554 做 gate，VLA trained 的 rho 需要 >= 0.554 才 PASS — 这个条件应该容易满足。但 delta (VLA - DINO) 的 effect size 比较会基于实际 DINO 结果，DINO 这么高意味着 VLA 需要显著超过 0.9 才能显示 meaningful contribution。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dino-rerun-and-verdict-prep.md"
+}

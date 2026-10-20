@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa4f0646dcde5d94ab5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code linear probe last preaction",
+  "task_key": "worker_code_linear_probe_last_preaction_20260518T064617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_linear_probe_last_preaction_20260518T064617_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "1c6618b13ca12f813df5d1179f92f3904c97b927fc2c5b351cbb1eb1e4463777"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行，输出正常。trained/L0 R²=-0.32, L1 R²=0.19，符合预期的先升后降趋势。\n\n实验预计 ~28 分钟完成。已提交：\n- **脚本**: `/root/vla-ssd/scripts/linear_probe_last_preaction.py`\n- **exp_id**: `linear_probe_last_preaction`\n- **GPU**: cuda:1 on westd-19183\n- **日志**: `/root/autodl-tmp/vla-ssd/logs/linear_probe_last_preaction.log`\n- **输出 JSON**: `/root/autodl-tmp/vla-ssd/results/linear_probe_last_preaction.json`\n\n脚本变更要点：\n1. readout = `last_preaction`（非 image_mean）\n2. probe = `Linear(4096, 7)`（无 hidden layer）\n3. 顺序跑 trained → untrained 各 33 层（单 GPU）\n4. 自动加载 MLP probe 的 last_preaction 结果做对比\n5. 输出包含 inverted-U 检测、bootstrap 对比、以及 MLP vs Linear 比较"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-linear-probe-last-preaction.md"
+}

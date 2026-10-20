@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8f88bbc7a1e3d8ffe7d3",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "fix attention streaming and resubmit",
+  "task_key": "worker_fix_attention_streaming_and_resubmit_20260521T052618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_attention_streaming_and_resubmit_20260521T052618.log",
+    "occurrence": 1,
+    "bytes": 935740,
+    "sha256": "031bd61615457fb9db5042b3aac101c37876d4d054d556ad67bdb61d1486f628"
+  },
+  "statistics": {
+    "messages": 354,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 354,
+      "chunks": [
+        {
+          "path": "8f88bbc7a1e3d8ffe7d3-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "8f88bbc7a1e3d8ffe7d3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8f88bbc7a1e3d8ffe7d3-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-attention-streaming-and-resubmit.md"
+}

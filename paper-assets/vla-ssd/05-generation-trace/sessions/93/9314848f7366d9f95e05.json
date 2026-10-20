@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9314848f7366d9f95e05",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code sync attention pdfs v2",
+  "task_key": "worker_code_sync_attention_pdfs_v2_20260517T010619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_attention_pdfs_v2_20260517T010619_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "d9cbd1577f887f702259ab33e9f5b15fdd638918c75c33fe1103f23c13c859e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成。两个 PDF 文件已成功下载到本地：\n\n- `artifacts/attention/l1_attention_trained.pdf` — 112,552 bytes, 6 pages\n- `artifacts/attention/l1_attention_untrained.pdf` — 120,832 bytes, 1 page"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-attention-pdfs-v2.md"
+}

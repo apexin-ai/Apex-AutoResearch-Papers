@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cc5e6ef41ff25300adc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ops download figures",
+  "task_key": "worker_ops_download_figures_20260523T172227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_figures_20260523T172227_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "a75b973735a9ae251c07de52a38144fcb0435ae19f672e4bcd3666464bc3d30b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已启动（`worker_util_download_figures_20260523T172335`），正在从 westd-19183 下载 3 个 PDF 文件到本地。等待完成通知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-figures.md"
+}

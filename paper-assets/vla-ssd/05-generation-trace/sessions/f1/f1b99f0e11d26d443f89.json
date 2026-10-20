@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b99f0e11d26d443f89",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero spatial cross instruction probe",
+  "task_key": "worker_code_libero_spatial_cross_instruction_probe_20260517T085642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_spatial_cross_instruction_probe_20260517T085642_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "c36d8f6352b6aabe45c31739d566fd132ab7534eb7f46db3902c2e7198177b23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提取已启动，预计约 50-60 分钟完成。4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-spatial-cross-instruction-probe.md"
+}

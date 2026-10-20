@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9010161a489a2f2f804f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code openvla spatial standardized v1",
+  "task_key": "worker_code_openvla_spatial_standardized_v1_20260522T013148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openvla_spatial_standardized_v1_20260522T013148_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "b07dbee10a4516bb502c31c9fce773871dabaedbf89e48b8a947c040e2bea34c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中，正在等待 checkpoint 下载完成。\n\n**总结：**\n\n| 项目 | 值 |\n|------|------|\n| exp_id | `openvla_spatial_standardized_v1` |\n| PID | 594575 |\n| GPU | cuda:0 @ westd-19183 |\n| tmux session | `openvla_spatial_standardized_v1` |\n| log | `~/runs/vla-ssd/openvla_spatial_standardized_v1.log` |\n| 命令 | `bash /root/autodl-tmp/vla-ssd/scripts/run_spatial_pipeline.sh` |\n| conditions | trained (openvla-7b-finetuned-libero-spatial) + untrained (openvla-7b) |\n| 输出目录 | `results/libero_spatial/` + `results/libero_spatial_untrained/` |\n| 预计耗时 | ~3-4h（参考 Goal pipeline），+ 下载等待时间（~14GB，取决于网速） |\n\n当前状态：tmux 内 shell 正在 poll 等待 `openvla-7b-finetuned-libero-spatial` 的 4 个 safetensors 文件和 `modeling_prismatic.py` 下载完毕，然后自动执行 6-phase pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-openvla-spatial-standardized-v1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0923559d3eaa373eff9b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research citation audit C",
+  "task_key": "worker_research_citation-audit-C_20260529T063814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-audit-C_20260529T063814_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "86d3a7cab0934067ea2657062e092d112fa030d1b4bbe7a88c04509d689cdbb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，结果写入 `artifacts/citation_audit_worker_C.md`。\n\n18 条中 4 条需修正：\n\n| # | Key | 问题 | 修正 |\n|---|-----|------|------|\n| 11 | kumar2022finetuning | 标题 \"Can\" 应为 \"can\" | 小写 |\n| 13 | wei2022finetuned | 标题 \"Are\" 应为 \"are\" | 小写 |\n| 16 | padalkar2023_oxe | 年份 2023 应为 2024 | ICRA 2024 正式发表 |\n| 17 | black2024_pi0 | 年份 2024 应为 2025 | RSS 2025 正式发表 |\n\n其余 14 条全部验证通过，无虚构论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-audit-c.md"
+}

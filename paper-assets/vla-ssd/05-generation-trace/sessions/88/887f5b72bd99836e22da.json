@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "887f5b72bd99836e22da",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778883811.md",
+  "task_key": "loop_3_1778883811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778883811.md",
+    "occurrence": 1,
+    "bytes": 5506,
+    "sha256": "e4069524f94e297945a98cee04984ff3a0636b8c73a6248c1edf703468b623b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T21:04:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **westd-19183** 的 **cuda:0** 和 **cuda:1**（gpu_ids 白名单）\n- 服务器无外网：所有 HF 操作必须 `local_files_only=True`，AutoProcessor/model loading 不能下载\n- Untrained model 定义：`from_config()` 重新初始化 LLM（6.74B random），**保留 SigLIP vision encoder（0.80B）**——不是完全随机\n- Trained checkpoint 是 LIBERO-10 fine-tuned（LIBERO-Goal 是 OOD 测试），不要混淆\n- Instruction ablation 的 PASS/FAIL gate 是 **DINO-anchored**（D025 修订）：PASS = Δ>0.10 + CI excludes 0 + no-inst ≤ DINO+0.05；不是 D023 的绝对 ρ<0.15\n- 分析 Worker 不得覆盖 registry 的 spec 字段\n- `if args.task_instruction:` 对空字符串返回 False 的 bug 已修复，不要回滚\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183，工作目录 `/root/vla-ssd`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**: `/root/autodl-tmp/vla-ssd/` 下：`openvla-7b-trained`, `openvla-7b-untrained`\n- **数据路径**: `/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks × 50 demos）\n- **特征缓存**: `/root/autodl-tmp/vla-ssd/features/`（trained_libero_goal/, untrained_libero_goal/, dino_libero_goal/, untrained_libero_goal_no_inst/）\n- **结果目录**: `/root/autodl-tmp/vla-ssd/results/rsa/`\n- **活跃进程**: d021_instruction_ablation RUNNING — 特征提取进行中（task 2/10），PID 659993 on GPU:0。之前 GPU:1 上的冲突进程 PID 658056 已 kill\n- **Worker**: `worker_ssh_data-conflict-check_20260515T205901` 正在运行（检查双进程写入冲突后数据完整性）\n- **Cron**: reconcile 返回 0 条活跃 cron（instruction ablation 是 Worker 驱动，不是 cron 监控）\n- **W&B**: 本项目 probing 实验不上 W&B，结果直接写 JSON\n\n### 3. 📊 当前状态\n**正在做**：d021_instruction_ablation（HARD GATE 实验）正在 westd-19183 cuda:0 上提取无 instruction 的 untrained VLA 特征（10 tasks，当前 task 2/10，预估剩余 ~60min）。同时 `worker_ssh_data-conflict-check` 正在检查之前双进程写入同一目录导致的数据污染问题。\n\n**刚做完**：\n- d021_output_head_analysis = **negative**：shallow adaptation 假设 FAIL，head_vs_llm ratio=1.12x（阈值 3x），LLM 权重变化均匀分布 32 层。但 Vision+Projector **完全 identical**（cos_sim=1.0），补强 Option B framing\n- lg_rsa_analysis = **negative**：G2 FAIL (Δρ=0.003)，确认 trained ≈ untrained\n- literature-map-build Worker 完成，14 篇论文已入 map\n\n**Registry 概览**：30 实验（18 success / 6 negative / 0 failed），1 RUNNING（d021_instruction_ablation），2 QUEUED-killed（lg_instruction_ablation, lg_output_head_analysis 被 d021 版本取代）\n\n**等待中**：\n- Worker `data-conflict-check` 回调 → 确认特征文件完整性\n- d021_instruction_ablation 特征提取完成 → Worker 需跑 RSA 分析 → 判 gate\n\n### 4. 📋 待办（条件触发式）\n- `data-conflict-check` Worker 回调 → 如果数据污染：删除 `untrained_libero_goal_no_inst/` 已提取 task，从 task 1 重跑；如果完整：继续等提取完成\n- d021_instruction_ablation 特征提取 10/10 完成 → spawn Worker 跑 `rsa_analysis.py`（对比 no-inst RSA vs with-inst RSA vs DINO RSA）→ 输出 `rsa_no_instruction.json`\n- RSA 结果出来 → 判 HARD GATE：\n  - **PASS**（Δ>0.10 + CI excludes 0 + no-inst ≤ DINO+0.05）→ 锁定 Option B \"Instruction Input Pathway\"，`complete_mvp()`，转 research/writing 阶段，汇报 Director\n  - **FAIL**（no-inst RSA ≥ with-inst − 0.05）→ 回退 Option A \"Representational Redundancy\"，产 Framing 调整提案，汇报 Director 等决策\n- Framing 锁定后 → spawn paper-plan Worker → CoRL abstract May 26（11 天），paper May 29（14 天）\n\n### 5. 🎯 战略上下文\n**核心结论链**：6 轮 probing（temporal distance → action prediction → action-delta → goal classification → PCA+linear → RSA）全部显示 trained ≈ untrained >> DINO。D021 pivot 到 \"Architecture Trumps Training\" → D023 Reviewer 共识收窄为 \"Instruction Input Pathway Drives Conditioning, Not Training\"。\n\n**决策链**：D017（统一 checkpoint）→ D018（维度混淆修正）→ D019（GC 方法论失败，pivot RSA）→ D020（RSA gates 定义）→ D021（Framing pivot Option B）→ D022（6 轮一致性确认）→ D023（Reviewer 共识收窄 claim）→ D024（接受 precision 建议）→ D025（gate 改 DINO-anchored）→ D026（output head negative 但不影响 B）\n\n**最容易判断错的事**：\n1. **Instruction ablation gate 阈值不是绝对值**——D025 修订为 DINO-anchored 相对阈值，不要用 D023 的 ρ<0.15\n2. **Output head negative ≠ 项目失败**——它 FAIL 了 shallow adaptation 假设，但 Vision+Projector identical 的发现反而补强了 Option B\n3. **\"Untrained\" 不是完全随机**——保留了完整 SigLIP vision encoder，只有 LLM 是 random init。这是整个 story 的因果基础\n4. **双进程数据冲突**——之前 GPU:0 和 GPU:1 两个提取进程写同一个 `untrained_libero_goal_no_inst/` 目录，GPU:1 的已 kill，但需确认已写入的 task 数据是否被污染\n5. **时间极紧**——CoRL abstract 11 天，paper 14 天。Instruction ablation 是唯一 blocker，PASS 后立即进 writing\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778883811.md"
+}

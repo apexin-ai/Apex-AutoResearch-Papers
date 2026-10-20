@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "eb5c8c1f212cda21d199",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code nlp finetuning control v1",
+  "task_key": "worker_code_nlp_finetuning_control_v1_20260522T050328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nlp_finetuning_control_v1_20260522T050328.log",
+    "occurrence": 1,
+    "bytes": 599896,
+    "sha256": "92490a9a20ce63b79d156907d4e60f5685aa155b15ebfea1505139127387f915"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 110,
+      "tool_result": 110
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 321,
+      "chunks": [
+        {
+          "path": "eb5c8c1f212cda21d199-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb5c8c1f212cda21d199-part-0002.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-nlp-finetuning-control-v1.md"
+}

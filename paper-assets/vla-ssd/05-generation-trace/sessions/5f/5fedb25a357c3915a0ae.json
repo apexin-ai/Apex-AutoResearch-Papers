@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fedb25a357c3915a0ae",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "data r2 cross arch fetch",
+  "task_key": "worker_data_r2_cross_arch_fetch_20260520T033224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_r2_cross_arch_fetch_20260520T033224_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "ac4ebdd3944956b507cb9ccb5170198327ba55cc3ae0354985d1c237a2fee827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 报告\n\n| 模型 | 层数 | Seeds | R² Peak 层 | Peak 值 |\n|------|------|-------|-----------|---------|\n| **OpenVLA** | 33 (L0-L32) | 15 | **L9** | 0.637 ± 0.008 |\n| **TracVLA-Phi3V** | 33 (L0-L32) | 5 | **L11** | 0.634 ± 0.007 |\n\n关键差异：\n- OpenVLA 的 R² 在浅层（L0-L9）就达到 peak 后逐层下降，深层（L25+）跌至 ~0.53\n- Phi3V 从 L0 的负值（-0.329）起步，逐层上升至 L11 达到 peak，之后保持高位平台（L11-L21 约 0.62-0.63），深层衰减更温和（L32 仍有 0.554）\n\n### 文件路径\n- Phi3V JSON: `artifacts/phi3v_r2_action_probe/phi3v_r2_per_layer.json`\n- OpenVLA JSON: `artifacts/phi3v_r2_action_probe/openvla_r2_per_layer.json`\n- LaTeX 表格: `artifacts/phi3v_r2_action_probe/cross_arch_r2_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-r2-cross-arch-fetch.md"
+}

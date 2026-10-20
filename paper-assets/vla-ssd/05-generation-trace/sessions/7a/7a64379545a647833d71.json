@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a64379545a647833d71",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora cf wait complete",
+  "task_key": "worker_ssh_nora_cf_wait_complete_20260522T023025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_cf_wait_complete_20260522T023025_result.json",
+    "occurrence": 1,
+    "bytes": 47,
+    "sha256": "1cdd649d4aaca431b7f2ef36f92986dd00444f283fbd78dfa399392fa3cedbb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-cf-wait-complete.md"
+}

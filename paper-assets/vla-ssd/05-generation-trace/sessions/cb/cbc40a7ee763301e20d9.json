@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbc40a7ee763301e20d9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code clustered bootstrap probe",
+  "task_key": "worker_code_clustered_bootstrap_probe_20260522T140930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clustered_bootstrap_probe_20260522T140930_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "f3b0beb217350e934efb790f21e57ae92b60f8b0fe9ca48570e2943540a90343"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 结果汇报：\n\n**`clustered_bootstrap_probe.py` — openvla / goal / trained (dry-run)**\n\n| 参数 | 值 |\n|------|-----|\n| 样本数 | 20 (4 demos × 5 timesteps, 2 tasks) |\n| Bootstrap | 100 iterations |\n| 模式 | dry_run=true |\n\n**核心指标：**\n\n| 指标 | 值 |\n|------|-----|\n| Peak R² | **-0.7551** @ L28 |\n| Exit R² | **-0.9913** @ L31 |\n| Delta (peak - exit) | **0.2362** |\n| 95% CI | [0.0, 1.4872] |\n| Bootstrap delta mean/std | 0.1911 / 0.4205 |\n\n**Per-layer R² 趋势：** 从 L0 (-2.36) 到 L6 (-0.95) 逐层改善，L7-L15 略有回落，L16 起再次改善，L28 达到 peak (-0.76)，随后 L29-L31 回落至 exit。\n\n**解读：**\n- 所有 R² 均为负值，这在 dry-run 的极小样本下（4 demos, 3/1 train/test split）是预期行为——Ridge probe 在如此少的数据上无法学到有意义的映射\n- 关键验证点已全部通过：模型加载（含 transformers 5.x 兼容性修复）→ hidden state 提取 → demo-level 聚类分割 → 预计算 kernel 矩阵 → dual-form bootstrap → JSON 输出\n- 正式运行（10 demos × 50 timesteps × 10 tasks = 5000 samples, 10000 bootstrap）预期 R² 将为正值\n\n**脚本状态：** 已部署到 `westd-19183:/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py`，本地 artifact 已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clustered-bootstrap-probe.md"
+}

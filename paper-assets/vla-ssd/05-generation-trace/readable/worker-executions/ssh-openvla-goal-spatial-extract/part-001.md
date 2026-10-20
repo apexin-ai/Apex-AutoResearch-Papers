@@ -1,0 +1,5523 @@
+# ssh openvla goal spatial extract — Part 1 of 2
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+[Transcript overview](../ssh-openvla-goal-spatial-extract.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/51/518f6ab50d7d57d0836f.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+119 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1455c897-9b92-4c8c-90f5-1ab3838a20ab",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779426600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0c80644b-35b6-4d7d-ad90-f45c13c4e3cd",
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+I'll search the remote server for OpenVLA Goal/Spatial experiment results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "4920d2a8-faa6-4524-913e-8a1c0a45639c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDLCnmR7poxk7BNX4meEUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12112,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12112
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EBg8ceku7vu7MgkZSTJiBk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "35d699da-bd2f-4fcb-a407-134eeae1a597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDLCnmR7poxk7BNX4meEUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12112,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12112
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 6 · 2026-05-22T00:16:36.494Z_
+
+<details><summary>↩ Tool result · `toolu_01EBg8ceku7vu7MgkZSTJiBk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "89dbada3-2fbe-43af-8599-c901ca0d4dd3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by running multiple ssh_read_only commands in parallel to gather information about the directory structure and files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "3df2a643-2559-4f3a-8965-f227e3a3a63a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHngZYgqu7uMMbufCDe6m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 444,
+      "cache_read_input_tokens": 23953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 444
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012T8rigTyasTQV3X1bdcLcf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 2 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "43269fad-b214-424c-bb33-847953468f3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHngZYgqu7uMMbufCDe6m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 444,
+      "cache_read_input_tokens": 23953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 444
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9 · 2026-05-22T00:16:50.668Z_
+
+<details><summary>↩ Tool result · `toolu_012T8rigTyasTQV3X1bdcLcf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/\\n/root/autodl-tmp/vla-ssd/results/dinov2\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/dinov2/subtask_predicate\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_delta\\n/root/autodl-tmp/vla-ssd/results/oracle\\n/root/autodl-tmp/vla-ssd/results/oracle/oracle\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta\\n/root/autodl-tmp/vla-ssd/results/trained\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction\\n/root/autodl-tmp/vla-ssd/results/analysis\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/figures\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/rsa\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification\\n/root/autodl-tmp/vla-ssd/results/perlayer_rsa\\n/root/autodl-tmp/vla-ssd/results/figure_data\\n/root/autodl-tmp/vla-ssd/results/functional_validation\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures\\n/root/autodl-tmp/vla-ssd/results/cka\\n/root/autodl-tmp/vla-ssd/results/architecture_audit\\n/root/autodl-tmp/vla-ssd/results/ablations\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\n/root/autodl-tmp/vla-ssd/results/cross_instruction\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense\\n/root/autodl-tmp/vla-ssd/results/attention\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\n/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\n/root/autodl-tmp/vla-ssd/results/nora_spatial\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\n/root/autodl-tmp/vla-ssd/results/permutation_10k\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_finetuned\\n/root/autodl-tmp/vla-ssd/results/nora_goal\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_object\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\n/root/autodl-tmp/vla-ssd/results/statistical_supplements\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_object\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_long\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_long\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b3685af9-f16d-43bc-9dfc-f1bced433292",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/\\\\n/root/autodl-tmp/vla-ssd/results/dinov2\\\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/dinov2/subtask_predicate\\\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup\\\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction\\\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_delta\\\\n/root/autodl-tmp/vla-ssd/results/oracle\\\\n/root/autodl-tmp/vla-ssd/results/oracle/oracle\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/untrained\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta\\\\n/root/autodl-tmp/vla-ssd/results/trained\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction\\\\n/root/autodl-tmp/vla-ssd/results/analysis\\\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm\\\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm\\\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm/temporal_distance\\\\n/root/autodl-tmp/vla-ssd/results/figures\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/rsa\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification\\\\n/root/autodl-tmp/vla-ssd/results/perlayer_rsa\\\\n/root/autodl-tmp/vla-ssd/results/figure_data\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures\\\\n/root/autodl-tmp/vla-ssd/results/cka\\\\n/root/autodl-tmp/vla-ssd/results/architecture_audit\\\\n/root/autodl-tmp/vla-ssd/results/ablations\\\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense\\\\n/root/autodl-tmp/vla-ssd/results/attention\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\\\n/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25\\\\n/root/autodl-tmp/vla-ssd/results/action_probe\\\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\\\n/root/autodl-tmp/vla-ssd/results/permutation_10k\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_finetuned\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\\n/root/autodl-tmp/vla-ssd/results/libero_object\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion\\\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\\\n/root/autodl-tmp/vla-ssd/results/statistical_supplements\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\\\n/root/autodl-tmp/vla-ssd/results/libero_long\\\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/\\n/root/autodl-tmp/vla-ssd/results/dinov2\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/dinov2/subtask_predicate\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_delta\\n/root/autodl-tmp/vla-ssd/results/oracle\\n/root/autodl-tmp/vla-ssd/results/oracle/oracle\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta\\n/root/autodl-tmp/vla-ssd/results/trained\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction\\n/root/autodl-tmp/vla-ssd/results/analysis\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm\\n/root/autodl-tmp/vla-ssd/results/trained_label_perm/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm\\n/root/autodl-tmp/vla-ssd/results/untrained_label_perm/temporal_distance\\n/root/autodl-tmp/vla-ssd/results/figures\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_frame0/goal_classification\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024/goal_classification\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification\\n/root/autodl-tmp/vla-ssd/results/rsa\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification\\n/root/autodl-tmp/vla-ssd/results/perlayer_rsa\\n/root/autodl-tmp/vla-ssd/results/figure_data\\n/root/autodl-tmp/vla-ssd/results/functional_validation\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures\\n/root/autodl-tmp/vla-ssd/results/cka\\n/root/autodl-tmp/vla-ssd/results/architecture_audit\\n/root/autodl-tmp/vla-ssd/results/ablations\\n/root/autodl-tmp/vla-ssd/results/qa_probe\\n/root/autodl-tmp/vla-ssd/results/cross_instruction\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_dense\\n/root/autodl-tmp/vla-ssd/results/attention\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\n/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25\\n/root/autodl-tmp/vla-ssd/results/action_probe\\n/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\n/root/autodl-tmp/vla-ssd/results/nora_spatial\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\n/root/autodl-tmp/vla-ssd/results/permutation_10k\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_finetuned\\n/root/autodl-tmp/vla-ssd/results/nora_goal\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_object\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe\\n/root/autodl-tmp/vla-ssd/results/statistical_supplements\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_object\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\n/root/autodl-tmp/vla-ssd/results/libero_long\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_long\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ntb6iizvo5rVDbWpvTwSWc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*goal*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "01184856-d9cb-4d09-b169-94b2be4d694d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHngZYgqu7uMMbufCDe6m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 444,
+      "cache_read_input_tokens": 23953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 444
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012hAMuSXN5ktQQkxSf2ue5Y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.json\" -path \"*spatial*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d050717c-6edf-4626-be1e-959c7064eee6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHngZYgqu7uMMbufCDe6m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 444,
+      "cache_read_input_tokens": 23953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 444
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 12 · 2026-05-22T00:16:51.267Z_
+
+<details><summary>↩ Tool result · `toolu_01Ntb6iizvo5rVDbWpvTwSWc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/timestep_accuracy.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/timestep_accuracy.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/l\\n\\n... [截断: 输出过长，省略 16390 字符] ...\\n\\n9.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b609b343-70f1-4d35-8a8e-c08e8a55514b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/timestep_accuracy.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/timestep_accuracy.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/l\\\\n\\\\n... [截断: 输出过长，省略 16390 字符] ...\\\\n\\\\n9.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained_libero_goal/goal_classification/timestep_accuracy.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/goal_classification/timestep_accuracy.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/l\\n\\n... [截断: 输出过长，省略 16390 字符] ...\\n\\n9.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained_libero_goal_linear/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_linear/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_libero_goal_pca1024/goal_classification/summary.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 13 · 2026-05-22T00:16:51.792Z_
+
+<details><summary>↩ Tool result · `toolu_012hAMuSXN5ktQQkxSf2ue5Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/rsa/rsa_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/classification_results.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "1a301b0f-5070-4b98-b317-bc5153b3332b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/rsa/rsa_libero_spatial.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/classification_results.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/rsa/rsa_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json\\n/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/classification_results.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the directory structure. For OpenVLA (the original model), the data is in:
+- `trained/` and `untrained/` directories (these are the OpenVLA LIBERO-Spatial results - the default suite)
+- `trained_libero_goal/` and `untrained_libero_goal/` (OpenVLA LIBERO-Goal results)
+
+But these only contain goal_classification data. Let me look for:
+1. R² probing results for OpenVLA Goal and Spatial
+2. L1 attention profile results
+3. Counterfactual results
+
+For OpenVLA Spatial:
+
+
+- `cross_instruction_spatial/` has classification results
+- `counterfactual_spatial/` contains counterfactual files
+- `attention/` might have attention data
+
+For OpenVLA Goal:
+- `cross_instruction/` and `cross_instruction_dense/` could be Goal-related
+- `counterfactual_10tasks/` might contain Goal counterfactual data
+
+I need to search more systematically through the `trained/` and `untrained/` directories plus the other scattered directories to find the R² probing and attention data.
+
+Now I'm checking what tasks are in `trained/` and `untrained/` (these might be the OpenVLA Spatial defaults), looking through the `action_probe/` directory for R² probing data, examining the `attention/` directory for attention data, and searching for counterfactual data specific to OpenVLA Goal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "e5f9da20-d18f-4a2e-833b-dd7b6ac9e6fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 15_
+
+Found the directory structure. Now let me look at the specific data files for OpenVLA. The old format uses `trained/`/`untrained/` (likely Spatial) and `trained_libero_goal/`/`untrained_libero_goal/`. Let me check the actual data files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "06758a4e-2e32-4391-9666-9d93342e5391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ag3bfe1gCp1nbnEDcCDiDP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/trained -type f -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "33ae1391-55e3-40a0-ad8e-85abc3bc5b62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 17 · 2026-05-22T00:17:06.700Z_
+
+<details><summary>↩ Tool result · `toolu_01Ag3bfe1gCp1nbnEDcCDiDP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "ab964e66-bc31-4fc6-beaa-a99b5dcdeb7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/summary.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_delta/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/trained/action_prediction/summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XK7YBNXP58RrH5Ucx9JEhF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/untrained -type f -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "63496c42-5f65-471a-b304-bad7b23474f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-22T00:17:07.228Z_
+
+<details><summary>↩ Tool result · `toolu_01XK7YBNXP58RrH5Ucx9JEhF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "43b0e68f-c3a1-419e-8e6d-664994542868",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_0.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_1.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_2.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_3.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_4.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_5.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_6.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_7.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_8.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_9.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_10.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_11.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_12.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_13.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_14.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_15.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_16.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_17.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_18.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_19.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_20.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_21.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_22.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_23.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_24.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_25.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_26.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_27.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_28.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_29.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_30.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_31.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_32.json\\\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_11.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_16.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_19.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_20.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_22.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_23.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_26.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JFiYAaw3AAm1CXMGtYbRfc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/action_probe -type f -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f71fbd27-fba8-48eb-a359-6ac0788ae346",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RVWnDQzzfxXm8AwuYy9Jdx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/attention -type f -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "5de067ef-4043-4313-a625-8b85ff548070",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 22 · 2026-05-22T00:17:08.223Z_
+
+<details><summary>↩ Tool result · `toolu_01JFiYAaw3AAm1CXMGtYbRfc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "e1b150ef-cded-47e9-8225-7e05c766344b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 23 · 2026-05-22T00:17:08.751Z_
+
+<details><summary>↩ Tool result · `toolu_01RVWnDQzzfxXm8AwuYy9Jdx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/entropy_analysis.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_untrained.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/threshold_sensitivity.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_libero_finetuned.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "0946782e-ce3f-4b52-abd2-4bc60fa5c1a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/entropy_analysis.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/threshold_sensitivity.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_libero_finetuned.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/entropy_analysis.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_untrained.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/threshold_sensitivity.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_libero_finetuned.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011NJRV5yDw2c7yqeZ6hyaga`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d934223e-b13d-4c94-810a-baa7f950049c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-22T00:17:09.567Z_
+
+<details><summary>↩ Tool result · `toolu_011NJRV5yDw2c7yqeZ6hyaga`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 236\\ndrwxr-xr-x  2 root root  4096 May 21 05:44 .\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\n-rw-r--r--  1 root root 92338 May 21 03:47 counterfactual_10tasks_combined.json\\n-rw-r--r--  1 root root  6362 May 21 03:47 counterfactual_correct.json\\n-rw-r--r--  1 root root 17682 May 21 03:47 counterfactual_empty.json\\n-rw-r--r--  1 root root 18087 May 21 03:47 counterfactual_paraphrased.json\\n-rw-r--r--  1 root root 18009 May 21 03:47 counterfactual_shuffled.json\\n-rw-r--r--  1 root root 18010 May 21 03:47 counterfactual_wrong.json\\n-rw-r--r--  1 root root 28590 May 21 05:44 trajectory_level_cohens_d.json\\n-rw-r--r--  1 root root 10413 May 21 05:44 trajectory_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "11c7fe64-fcb4-404c-b9ca-9162360112fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 236\\\\ndrwxr-xr-x  2 root root  4096 May 21 05:44 .\\\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\\\n-rw-r--r--  1 root root 92338 May 21 03:47 counterfactual_10tasks_combined.json\\\\n-rw-r--r--  1 root root  6362 May 21 03:47 counterfactual_correct.json\\\\n-rw-r--r--  1 root root 17682 May 21 03:47 counterfactual_empty.json\\\\n-rw-r--r--  1 root root 18087 May 21 03:47 counterfactual_paraphrased.json\\\\n-rw-r--r--  1 root root 18009 May 21 03:47 counterfactual_shuffled.json\\\\n-rw-r--r--  1 root root 18010 May 21 03:47 counterfactual_wrong.json\\\\n-rw-r--r--  1 root root 28590 May 21 05:44 trajectory_level_cohens_d.json\\\\n-rw-r--r--  1 root root 10413 May 21 05:44 trajectory_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 236\\ndrwxr-xr-x  2 root root  4096 May 21 05:44 .\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\n-rw-r--r--  1 root root 92338 May 21 03:47 counterfactual_10tasks_combined.json\\n-rw-r--r--  1 root root  6362 May 21 03:47 counterfactual_correct.json\\n-rw-r--r--  1 root root 17682 May 21 03:47 counterfactual_empty.json\\n-rw-r--r--  1 root root 18087 May 21 03:47 counterfactual_paraphrased.json\\n-rw-r--r--  1 root root 18009 May 21 03:47 counterfactual_shuffled.json\\n-rw-r--r--  1 root root 18010 May 21 03:47 counterfactual_wrong.json\\n-rw-r--r--  1 root root 28590 May 21 05:44 trajectory_level_cohens_d.json\\n-rw-r--r--  1 root root 10413 May 21 05:44 trajectory_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CrkhcsMTWNfWwQ8aZ4m2s`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/counterfactual_spatial/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "1e4c33cd-c5b2-4f82-a746-cc25808d795b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-22T00:17:10.083Z_
+
+<details><summary>↩ Tool result · `toolu_013CrkhcsMTWNfWwQ8aZ4m2s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 200\\ndrwxr-xr-x  2 root root  4096 May 21 05:32 .\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\n-rw-r--r--  1 root root  6701 May 21 05:32 counterfactual_correct.json\\n-rw-r--r--  1 root root 18573 May 21 05:32 counterfactual_empty.json\\n-rw-r--r--  1 root root 19263 May 21 05:32 counterfactual_paraphrased.json\\n-rw-r--r--  1 root root 19230 May 21 05:32 counterfactual_shuffled.json\\n-rw-r--r--  1 root root 96953 May 21 05:32 counterfactual_spatial_combined.json\\n-rw-r--r--  1 root root 19225 May 21 05:32 counterfactual_wrong.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "85632283-c8f5-4a8c-8447-e85576cc0417",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 200\\\\ndrwxr-xr-x  2 root root  4096 May 21 05:32 .\\\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\\\n-rw-r--r--  1 root root  6701 May 21 05:32 counterfactual_correct.json\\\\n-rw-r--r--  1 root root 18573 May 21 05:32 counterfactual_empty.json\\\\n-rw-r--r--  1 root root 19263 May 21 05:32 counterfactual_paraphrased.json\\\\n-rw-r--r--  1 root root 19230 May 21 05:32 counterfactual_shuffled.json\\\\n-rw-r--r--  1 root root 96953 May 21 05:32 counterfactual_spatial_combined.json\\\\n-rw-r--r--  1 root root 19225 May 21 05:32 counterfactual_wrong.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 200\\ndrwxr-xr-x  2 root root  4096 May 21 05:32 .\\ndrwxr-xr-x 57 root root  8192 May 22 00:39 ..\\n-rw-r--r--  1 root root  6701 May 21 05:32 counterfactual_correct.json\\n-rw-r--r--  1 root root 18573 May 21 05:32 counterfactual_empty.json\\n-rw-r--r--  1 root root 19263 May 21 05:32 counterfactual_paraphrased.json\\n-rw-r--r--  1 root root 19230 May 21 05:32 counterfactual_shuffled.json\\n-rw-r--r--  1 root root 96953 May 21 05:32 counterfactual_spatial_combined.json\\n-rw-r--r--  1 root root 19225 May 21 05:32 counterfactual_wrong.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HhUb63ZeNiFhKhvW9KZcwX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "80988164-a2f8-4180-be13-b433fac97968",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 29 · 2026-05-22T00:17:10.980Z_
+
+<details><summary>↩ Tool result · `toolu_01HhUb63ZeNiFhKhvW9KZcwX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5137632\\ndrwxr-xr-x  2 root root       4096 May 17 17:08 .\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\n-rw-r--r--  1 root root       1305 May 17 17:08 classification_results.json\\n-rw-r--r--  1 root root      38860 May 17 17:04 extract_trained.log\\n-rw-r--r--  1 root root      39013 May 17 17:06 extract_untrained.log\\n-rw-r--r--  1 root root      17877 May 17 17:08 run.log\\n-rw-r--r--  1 root root 2630402616 May 17 17:04 trained_cross_inst_L0-L31.h5\\n-rw-r--r--  1 root root 2630402616 May 17 17:06 untrained_cross_inst_L0-L31.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c595c244-17b9-4dc3-9ac7-73d10ac25e0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5137632\\\\ndrwxr-xr-x  2 root root       4096 May 17 17:08 .\\\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\\\n-rw-r--r--  1 root root       1305 May 17 17:08 classification_results.json\\\\n-rw-r--r--  1 root root      38860 May 17 17:04 extract_trained.log\\\\n-rw-r--r--  1 root root      39013 May 17 17:06 extract_untrained.log\\\\n-rw-r--r--  1 root root      17877 May 17 17:08 run.log\\\\n-rw-r--r--  1 root root 2630402616 May 17 17:04 trained_cross_inst_L0-L31.h5\\\\n-rw-r--r--  1 root root 2630402616 May 17 17:06 untrained_cross_inst_L0-L31.h5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 5137632\\ndrwxr-xr-x  2 root root       4096 May 17 17:08 .\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\n-rw-r--r--  1 root root       1305 May 17 17:08 classification_results.json\\n-rw-r--r--  1 root root      38860 May 17 17:04 extract_trained.log\\n-rw-r--r--  1 root root      39013 May 17 17:06 extract_untrained.log\\n-rw-r--r--  1 root root      17877 May 17 17:08 run.log\\n-rw-r--r--  1 root root 2630402616 May 17 17:04 trained_cross_inst_L0-L31.h5\\n-rw-r--r--  1 root root 2630402616 May 17 17:06 untrained_cross_inst_L0-L31.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011EqmtxrVDpsYVcMwsivoWV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/cross_instruction/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "6fa1a196-53e4-41d9-8141-a30d5abf6594",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 31 · 2026-05-22T00:17:11.506Z_
+
+<details><summary>↩ Tool result · `toolu_011EqmtxrVDpsYVcMwsivoWV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4675204\\ndrwxr-xr-x  2 root root       4096 May 20 02:38 .\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\n-rw-r--r--  1 root root       1040 May 17 07:54 classification_results.json\\n-rw-r--r--  1 root root        740 May 17 13:02 control_probes.json\\n-rw-r--r--  1 root root      22895 May 17 12:40 fig2_cross_instruction_heatmap.pdf\\n-rw-r--r--  1 root root      70570 May 17 12:40 fig2_cross_instruction_heatmap.png\\n-rw-r--r--  1 root root       5501 May 17 08:07 loocv_results.json\\n-rw-r--r--  1 root root 1975005848 May 20 02:14 phi3v_trained_cross_inst.h5\\n-rw-r--r--  1 root root       2116 May 20 02:16 phi3v_trained_probe_results.json\\n-rw-r--r--  1 root root 1975042272 May 20 02:36 phi3v_untrained_cross_inst.h5\\n-rw-r--r--  1 root root       2117 May 20 02:38 phi3v_untrained_probe_results.json\\n-rw-r--r--  1 root root  418562272 May 17 07:46 trained_cross_inst.h5\\n-rw-r--r--  1 root root      37868 May 17 07:46 trained_extract.log\\n-rw-r--r--  1 root root  418562272 May 17 07:49 untrained_cross_inst.h5\\n-rw-r--r--  1 root root      38019 May 17 07:49 untrained_extract.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "33002b61-c79e-4ae8-876b-8a1282673e7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4675204\\\\ndrwxr-xr-x  2 root root       4096 May 20 02:38 .\\\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\\\n-rw-r--r--  1 root root       1040 May 17 07:54 classification_results.json\\\\n-rw-r--r--  1 root root        740 May 17 13:02 control_probes.json\\\\n-rw-r--r--  1 root root      22895 May 17 12:40 fig2_cross_instruction_heatmap.pdf\\\\n-rw-r--r--  1 root root      70570 May 17 12:40 fig2_cross_instruction_heatmap.png\\\\n-rw-r--r--  1 root root       5501 May 17 08:07 loocv_results.json\\\\n-rw-r--r--  1 root root 1975005848 May 20 02:14 phi3v_trained_cross_inst.h5\\\\n-rw-r--r--  1 root root       2116 May 20 02:16 phi3v_trained_probe_results.json\\\\n-rw-r--r--  1 root root 1975042272 May 20 02:36 phi3v_untrained_cross_inst.h5\\\\n-rw-r--r--  1 root root       2117 May 20 02:38 phi3v_untrained_probe_results.json\\\\n-rw-r--r--  1 root root  418562272 May 17 07:46 trained_cross_inst.h5\\\\n-rw-r--r--  1 root root      37868 May 17 07:46 trained_extract.log\\\\n-rw-r--r--  1 root root  418562272 May 17 07:49 untrained_cross_inst.h5\\\\n-rw-r--r--  1 root root      38019 May 17 07:49 untrained_extract.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4675204\\ndrwxr-xr-x  2 root root       4096 May 20 02:38 .\\ndrwxr-xr-x 57 root root       8192 May 22 00:39 ..\\n-rw-r--r--  1 root root       1040 May 17 07:54 classification_results.json\\n-rw-r--r--  1 root root        740 May 17 13:02 control_probes.json\\n-rw-r--r--  1 root root      22895 May 17 12:40 fig2_cross_instruction_heatmap.pdf\\n-rw-r--r--  1 root root      70570 May 17 12:40 fig2_cross_instruction_heatmap.png\\n-rw-r--r--  1 root root       5501 May 17 08:07 loocv_results.json\\n-rw-r--r--  1 root root 1975005848 May 20 02:14 phi3v_trained_cross_inst.h5\\n-rw-r--r--  1 root root       2116 May 20 02:16 phi3v_trained_probe_results.json\\n-rw-r--r--  1 root root 1975042272 May 20 02:36 phi3v_untrained_cross_inst.h5\\n-rw-r--r--  1 root root       2117 May 20 02:38 phi3v_untrained_probe_results.json\\n-rw-r--r--  1 root root  418562272 May 17 07:46 trained_cross_inst.h5\\n-rw-r--r--  1 root root      37868 May 17 07:46 trained_extract.log\\n-rw-r--r--  1 root root  418562272 May 17 07:49 untrained_cross_inst.h5\\n-rw-r--r--  1 root root      38019 May 17 07:49 untrained_extract.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JArkHbWmRH6fT8VgWA3TtY`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*r2*\" -o -name \"*R2*\" -o -name \"*probing*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "a646e727-b343-4e1e-be78-611c8bbd8866",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011E44Hq5ocqSPg9k6ScVVoK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*l1*\" -o -name \"*attention*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "87a67832-2e84-4c81-9cf7-34d1d12cfa51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PESHXqT12Vk5Np5YNn23w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7004,
+      "cache_read_input_tokens": 24397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7004
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 34 · 2026-05-22T00:17:12.867Z_
+
+<details><summary>↩ Tool result · `toolu_01JArkHbWmRH6fT8VgWA3TtY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.png\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.png\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.png\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.png\\n/root/autodl-tmp/vla-ssd/results/figure_data/fig_probing_summary.csv\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "aaee77a2-4e77-4d34-ac8b-f7f50ba6c2b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.png\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.png\\\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.png\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.png\\\\n/root/autodl-tmp/vla-ssd/results/figure_data/fig_probing_summary.csv\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig1_action_prediction_layer_r2.png\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig3_per_dim_r2.png\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/libero_spatial_r2_perlayer.png\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.png\\n/root/autodl-tmp/vla-ssd/results/figure_data/fig_probing_summary.csv\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/per_task_r2_distribution.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_untrained_probe/phi3v_r2_untrained_probe.json\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion\\n/root/autodl-tmp/vla-ssd/results/phi3v_r2_seed_expansion/phi3v_r2_seed_expansion.json\\n/root/autodl-tmp/vla-ssd/results/probe_r2_vs_behavioral_rank_correlation.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 35 · 2026-05-22T00:17:13.399Z_
+
+<details><summary>↩ Tool result · `toolu_011E44Hq5ocqSPg9k6ScVVoK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "0a3ed50e-a837-4af6-93be-4ccf77002aec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of where the data is. Let me map out the OpenVLA data locations:
+
+**OpenVLA Spatial (the original/default suite):**
+- R² probing: `trained/action_delta/summary.json` or `trained/action_prediction/summary.json` — but wait, these are old format. The new standardized format uses `action_r2_probing.json`. Let me check if there's a standalone `action_r2_probing.json` in the root results dir.
+- Actually, looking more carefully, the standardized pipeline puts data in `{model}_{suite}/trained/action_r2_probing.json`. 
+
+For OpenVLA specifically, the older structure uses `trained/` and `untrained/` directories without suite specification, containing temporal distance, action delta, and action prediction metrics. I'm also spotting spatial-specific analysis files like the R² per-layer PDF, functional validation probes for libero spatial, cross-instruction spatial classification results, and counterfactual spatial combined data. Let me trace through the attention metrics next. I'm mapping out where each metric lives across the two suites—R² probing, attention analysis, cross-instruction validation, and counterfactual experiments for both spatial and goal-based models. The spatial suite has clear file locations, but the goal-based metrics are scattered or missing from the standard directories, so I need to hunt through the trained_libero_goal folder and other locations to find the corresponding data. Spatial specifically in the new format, but the R² probing files don't have explicit OpenVLA Goal and Spatial variants—the old format used `trained/action_delta/summary.json` or `trained/action_prediction/summary.json` as the R² equivalent instead. I also need to figure out what `libero_finetuned_attention_profile.json` and `phi3v_attention_profile_10` are.
+
+Let me pull the key data files now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "41be445b-7fdd-40fd-8265-c35bc581e434",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 37_
+
+Now I'll read the actual data files. Let me start with the R² probing, attention, cross-instruction, and counterfactual data for OpenVLA.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "ad16d9f9-60c8-437b-9f0a-a1b3db1de17e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EPSD2mhbY8SZF1CWCmbtq5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/trained/action_prediction/summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "103ebd5f-1421-4a74-952a-d05040d816cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 39 · 2026-05-22T00:17:51.232Z_
+
+<details><summary>↩ Tool result · `toolu_01EPSD2mhbY8SZF1CWCmbtq5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "42c5c291-b436-40c5-8ee3-891574fcebca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TWXCYtHvPYH2cShCdW6HZ3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "0b5387f8-ca6a-4466-acef-fb7eb3e76e8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 41 · 2026-05-22T00:17:52.028Z_
+
+<details><summary>↩ Tool result · `toolu_01TWXCYtHvPYH2cShCdW6HZ3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "0d5f402b-ef33-441a-b39d-2b866a6ea87c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F3Mu5s5UAUuKD9LCcwQ89Z`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/trained/action_delta/summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "43069f6c-b06b-406a-9573-d3dec2fd20f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-22T00:17:52.679Z_
+
+<details><summary>↩ Tool result · `toolu_01F3Mu5s5UAUuKD9LCcwQ89Z`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "548acef6-dd77-404e-94ef-5f2edae5f4d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XcaXPEH5JgMZKn2paPcCCr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d2bba41f-1753-4080-87a7-6fdc99bec841",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-22T00:17:53.302Z_
+
+<details><summary>↩ Tool result · `toolu_01XcaXPEH5JgMZKn2paPcCCr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "9071244e-0f32-43b1-b19e-5223069cee49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014rb63Ki9gLYdCnVdRY9p97`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "53c019ad-0988-417e-9654-fbc5ee44f359",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 47 · 2026-05-22T00:17:53.710Z_
+
+<details><summary>↩ Tool result · `toolu_014rb63Ki9gLYdCnVdRY9p97`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b65746d1-03da-4f2d-99a2-c1e8aa048070",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HoNdxiV89irKBqqHYSC6GQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d5820df1-0cf5-4a44-bcb4-ff412004c980",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 49 · 2026-05-22T00:17:54.313Z_
+
+<details><summary>↩ Tool result · `toolu_01HoNdxiV89irKBqqHYSC6GQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "e9d57458-ea0f-4d80-8958-90b37b3c45a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WNxk31FbyeiCF9XeQXi33v`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/cross_instruction/classification_results.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "3254267b-194c-47c6-9d96-4703781b02e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 51 · 2026-05-22T00:17:54.439Z_
+
+<details><summary>↩ Tool result · `toolu_01WNxk31FbyeiCF9XeQXi33v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "455ecd34-935a-4d84-ac54-64488570be9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PVAMEACUwW5BUUcgAaeGv5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/classification_results.json')); print(json.dumps(d, indent=2)[:2000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f7fe32b0-8ae1-43b9-8721-5677f1277dd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 53 · 2026-05-22T00:17:54.550Z_
+
+<details><summary>↩ Tool result · `toolu_01PVAMEACUwW5BUUcgAaeGv5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f41a3f10-2531-48a6-bd30-1c9d3d1df4ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019T6NNccrDTr8Scdvjo1C98`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json')); print(json.dumps(d, indent=2)[:3000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "5f378dae-8487-465f-b025-07482e74cb9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 55 · 2026-05-22T00:17:54.635Z_
+
+<details><summary>↩ Tool result · `toolu_019T6NNccrDTr8Scdvjo1C98`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d8188c0a-c962-4356-bd18-470e3aa52223",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LVDkkRjf1X2RuFfQodqcfX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json')); print(json.dumps(d, indent=2)[:3000])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "bcd64b5a-9e69-4fc7-9ed7-330b2704376c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2qvpduvGterP3mPC82kbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13082,
+      "cache_read_input_tokens": 31401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 57 · 2026-05-22T00:17:54.683Z_
+
+<details><summary>↩ Tool result · `toolu_01LVDkkRjf1X2RuFfQodqcfX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "504bda86-831e-42dc-83d7-a2a03f4d9034",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons in the python -c commands are being blocked. I need to use `cat` to read the json files directly instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "111bfadc-5d36-4494-bfa1-3b3e8ed890a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 59_
+
+Shell metacharacters blocked. Let me use `cat` instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "94144028-e471-4957-a7e2-1879659600f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tu1p3U1Em5JpgpxayGBYE1`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/trained/action_prediction/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "467a08e4-55f3-4cc6-9176-a2496d485968",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 61 · 2026-05-22T00:18:00.731Z_
+
+<details><summary>↩ Tool result · `toolu_01Tu1p3U1Em5JpgpxayGBYE1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_prediction\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -0.0002576112747192383,\\n        \\\"dy\\\": -4.649162292480469e-06,\\n        \\\"dz\\\": -7.367134094238281e-05,\\n        \\\"drx\\\": -8.58306884765625e-06,\\n        \\\"dry\\\": -0.0003426074981689453,\\n        \\\"drz\\\": -9.298324584960938e-06,\\n        \\\"gripper\\\": -9.40561294555664e-05\\n      },\\n      \\\"overall_r2\\\": 0.0133780837059021,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.028544306755065918,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04919016361236572,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0634920597076416,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.008312821388244629,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.011336088180541992,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.006010711193084717,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.0017758607864379883,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.0015695691108703613,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": -0.016097664833068848,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": -0.07789039611816406\\n      },\\n      \\\"per_task_mean_r2\\\": 0.007624351978302002,\\n      \\\"gripper_accuracy\\\": 0.5563117453347969,\\n      \\\"raw_mse\\\": 0.19078828394412994,\\n      \\\"val_loss\\\": 1.0340303182601929,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.322130024433136,\\n        \\\"dy\\\": 0.5048792362213135,\\n        \\\"dz\\\": 0.20460820198059082,\\n        \\\"drx\\\": 0.27583253383636475,\\n        \\\"dry\\\": 0.15310221910476685,\\n        \\\"drz\\\": 0.545056939125061,\\n        \\\"gripper\\\": 0.4644131660461426\\n      },\\n      \\\"overall_r2\\\": 0.44165390729904175,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.4341731667518616,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.4871450662612915,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.5169669389724731,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.4519766569137573,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.4373766779899597,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.3547405004501343,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.2897909879684448,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.399875283241272,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.3926500082015991,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7374898195266724\\n      },\\n      \\\"per_task_mean_r2\\\": 0.4502185106277466,\\n      \\\"gripper_accuracy\\\": 0.8196853274789608,\\n      \\\"raw_mse\\\": 0.10797033458948135,\\n      \\\"val_loss\\\": 0.6686049103736877,\\n      \\\"epochs_trained\\\": 50\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.466494083404541,\\n        \\\"dy\\\": 0.6523764729499817,\\n        \\\"dz\\\": 0.3992762565612793,\\n        \\\"drx\\\": 0.364179790019989,\\n        \\\"dry\\\": 0.1956005096435547,\\n        \\\"drz\\\": 0.6284141540527344,\\n        \\\"gripper\\\": 0.560840368270874\\n      },\\n      \\\"overall_r2\\\": 0.5535522699356079,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5701959133148193,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in\\n\\n... [截断: 输出过长，省略 47974 字符] ...\\n\\n_yellow_and_white_mug_on_the_right_plate\\\": 0.6267895698547363,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5439757108688354,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8399786949157715\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6428195238113403,\\n      \\\"gripper_accuracy\\\": 0.8879985364068789,\\n      \\\"raw_mse\\\": 0.07038536667823792,\\n      \\\"val_loss\\\": 0.49695971608161926,\\n      \\\"epochs_trained\\\": 7\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5277925133705139,\\n        \\\"dy\\\": 0.7105414867401123,\\n        \\\"dz\\\": 0.5103529691696167,\\n        \\\"drx\\\": 0.4142036437988281,\\n        \\\"dry\\\": 0.20794636011123657,\\n        \\\"drz\\\": 0.6340888738632202,\\n        \\\"gripper\\\": 0.6320599317550659\\n      },\\n      \\\"overall_r2\\\": 0.6252843141555786,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6492390036582947,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6865488886833191,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6660192608833313,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.6125560998916626,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.6054757833480835,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5728342533111572,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5423337817192078,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6274086236953735,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5187588930130005,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8407847881317139\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6321959376335144,\\n      \\\"gripper_accuracy\\\": 0.8831320892791804,\\n      \\\"raw_mse\\\": 0.07246075570583344,\\n      \\\"val_loss\\\": 0.497892826795578,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5278669595718384,\\n        \\\"dy\\\": 0.7125675082206726,\\n        \\\"dz\\\": 0.4958222508430481,\\n        \\\"drx\\\": 0.40760570764541626,\\n        \\\"dry\\\": 0.21181011199951172,\\n        \\\"drz\\\": 0.6438796520233154,\\n        \\\"gripper\\\": 0.6239839792251587\\n      },\\n      \\\"overall_r2\\\": 0.6182494163513184,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.620514988899231,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6856390237808228,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6892002820968628,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5684174299240112,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5822622776031494,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5723377466201782,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5610566735267639,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6069139242172241,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5381510257720947,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8417009115219116\\n      },\\n      \\\"per_task_mean_r2\\\": 0.626619428396225,\\n      \\\"gripper_accuracy\\\": 0.8806073911452617,\\n      \\\"raw_mse\\\": 0.07382111996412277,\\n      \\\"val_loss\\\": 0.49975889921188354,\\n      \\\"epochs_trained\\\": 6\\n    }\\n  },\\n  \\\"best_layer\\\": 19,\\n  \\\"best_r2\\\": 0.6831402719020844,\\n  \\\"best_overall_r2\\\": 0.6769802570343018\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "af258618-835a-4c72-bc69-b973ce596c28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"probe_type\\\\\\\": \\\\\\\"action_prediction\\\\\\\",\\\\n  \\\\\\\"n_entries\\\\\\\": 33,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": -0.0002576112747192383,\\\\n        \\\\\\\"dy\\\\\\\": -4.649162292480469e-06,\\\\n        \\\\\\\"dz\\\\\\\": -7.367134094238281e-05,\\\\n        \\\\\\\"drx\\\\\\\": -8.58306884765625e-06,\\\\n        \\\\\\\"dry\\\\\\\": -0.0003426074981689453,\\\\n        \\\\\\\"drz\\\\\\\": -9.298324584960938e-06,\\\\n        \\\\\\\"gripper\\\\\\\": -9.40561294555664e-05\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.0133780837059021,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.028544306755065918,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.04919016361236572,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.0634920597076416,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.008312821388244629,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.011336088180541992,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.006010711193084717,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.0017758607864379883,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.0015695691108703613,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": -0.016097664833068848,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": -0.07789039611816406\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.007624351978302002,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.5563117453347969,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.19078828394412994,\\\\n      \\\\\\\"val_loss\\\\\\\": 1.0340303182601929,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 1,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.322130024433136,\\\\n        \\\\\\\"dy\\\\\\\": 0.5048792362213135,\\\\n        \\\\\\\"dz\\\\\\\": 0.20460820198059082,\\\\n        \\\\\\\"drx\\\\\\\": 0.27583253383636475,\\\\n        \\\\\\\"dry\\\\\\\": 0.15310221910476685,\\\\n        \\\\\\\"drz\\\\\\\": 0.545056939125061,\\\\n        \\\\\\\"gripper\\\\\\\": 0.4644131660461426\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.44165390729904175,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.4341731667518616,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.4871450662612915,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.5169669389724731,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.4519766569137573,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.4373766779899597,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.3547405004501343,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.2897909879684448,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.399875283241272,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.3926500082015991,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.7374898195266724\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.4502185106277466,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8196853274789608,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.10797033458948135,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.6686049103736877,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 2,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.466494083404541,\\\\n        \\\\\\\"dy\\\\\\\": 0.6523764729499817,\\\\n        \\\\\\\"dz\\\\\\\": 0.3992762565612793,\\\\n        \\\\\\\"drx\\\\\\\": 0.364179790019989,\\\\n        \\\\\\\"dry\\\\\\\": 0.1956005096435547,\\\\n        \\\\\\\"drz\\\\\\\": 0.6284141540527344,\\\\n        \\\\\\\"gripper\\\\\\\": 0.560840368270874\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.5535522699356079,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.5701959133148193,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in\\\\n\\\\n... [截断: 输出过长，省略 47974 字符] ...\\\\n\\\\n_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.6267895698547363,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.5439757108688354,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.8399786949157715\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.6428195238113403,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8879985364068789,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.07038536667823792,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.49695971608161926,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 7\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 31,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.5277925133705139,\\\\n        \\\\\\\"dy\\\\\\\": 0.7105414867401123,\\\\n        \\\\\\\"dz\\\\\\\": 0.5103529691696167,\\\\n        \\\\\\\"drx\\\\\\\": 0.4142036437988281,\\\\n        \\\\\\\"dry\\\\\\\": 0.20794636011123657,\\\\n        \\\\\\\"drz\\\\\\\": 0.6340888738632202,\\\\n        \\\\\\\"gripper\\\\\\\": 0.6320599317550659\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.6252843141555786,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.6492390036582947,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6865488886833191,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.6660192608833313,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.6125560998916626,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.6054757833480835,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.5728342533111572,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.5423337817192078,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.6274086236953735,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.5187588930130005,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.8407847881317139\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.6321959376335144,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8831320892791804,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.07246075570583344,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.497892826795578,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"32\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 32,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.5278669595718384,\\\\n        \\\\\\\"dy\\\\\\\": 0.7125675082206726,\\\\n        \\\\\\\"dz\\\\\\\": 0.4958222508430481,\\\\n        \\\\\\\"drx\\\\\\\": 0.40760570764541626,\\\\n        \\\\\\\"dry\\\\\\\": 0.21181011199951172,\\\\n        \\\\\\\"drz\\\\\\\": 0.6438796520233154,\\\\n        \\\\\\\"gripper\\\\\\\": 0.6239839792251587\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.6182494163513184,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.620514988899231,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6856390237808228,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.6892002820968628,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.5684174299240112,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.5822622776031494,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.5723377466201782,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.5610566735267639,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.6069139242172241,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.5381510257720947,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.8417009115219116\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.626619428396225,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8806073911452617,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.07382111996412277,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.49975889921188354,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 6\\\\n    }\\\\n  },\\\\n  \\\\\\\"best_layer\\\\\\\": 19,\\\\n  \\\\\\\"best_r2\\\\\\\": 0.6831402719020844,\\\\n  \\\\\\\"best_overall_r2\\\\\\\": 0.6769802570343018\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_prediction\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -0.0002576112747192383,\\n        \\\"dy\\\": -4.649162292480469e-06,\\n        \\\"dz\\\": -7.367134094238281e-05,\\n        \\\"drx\\\": -8.58306884765625e-06,\\n        \\\"dry\\\": -0.0003426074981689453,\\n        \\\"drz\\\": -9.298324584960938e-06,\\n        \\\"gripper\\\": -9.40561294555664e-05\\n      },\\n      \\\"overall_r2\\\": 0.0133780837059021,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.028544306755065918,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04919016361236572,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0634920597076416,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.008312821388244629,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.011336088180541992,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.006010711193084717,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.0017758607864379883,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.0015695691108703613,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": -0.016097664833068848,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": -0.07789039611816406\\n      },\\n      \\\"per_task_mean_r2\\\": 0.007624351978302002,\\n      \\\"gripper_accuracy\\\": 0.5563117453347969,\\n      \\\"raw_mse\\\": 0.19078828394412994,\\n      \\\"val_loss\\\": 1.0340303182601929,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.322130024433136,\\n        \\\"dy\\\": 0.5048792362213135,\\n        \\\"dz\\\": 0.20460820198059082,\\n        \\\"drx\\\": 0.27583253383636475,\\n        \\\"dry\\\": 0.15310221910476685,\\n        \\\"drz\\\": 0.545056939125061,\\n        \\\"gripper\\\": 0.4644131660461426\\n      },\\n      \\\"overall_r2\\\": 0.44165390729904175,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.4341731667518616,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.4871450662612915,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.5169669389724731,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.4519766569137573,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.4373766779899597,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.3547405004501343,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.2897909879684448,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.399875283241272,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.3926500082015991,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7374898195266724\\n      },\\n      \\\"per_task_mean_r2\\\": 0.4502185106277466,\\n      \\\"gripper_accuracy\\\": 0.8196853274789608,\\n      \\\"raw_mse\\\": 0.10797033458948135,\\n      \\\"val_loss\\\": 0.6686049103736877,\\n      \\\"epochs_trained\\\": 50\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.466494083404541,\\n        \\\"dy\\\": 0.6523764729499817,\\n        \\\"dz\\\": 0.3992762565612793,\\n        \\\"drx\\\": 0.364179790019989,\\n        \\\"dry\\\": 0.1956005096435547,\\n        \\\"drz\\\": 0.6284141540527344,\\n        \\\"gripper\\\": 0.560840368270874\\n      },\\n      \\\"overall_r2\\\": 0.5535522699356079,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5701959133148193,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in\\n\\n... [截断: 输出过长，省略 47974 字符] ...\\n\\n_yellow_and_white_mug_on_the_right_plate\\\": 0.6267895698547363,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5439757108688354,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8399786949157715\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6428195238113403,\\n      \\\"gripper_accuracy\\\": 0.8879985364068789,\\n      \\\"raw_mse\\\": 0.07038536667823792,\\n      \\\"val_loss\\\": 0.49695971608161926,\\n      \\\"epochs_trained\\\": 7\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5277925133705139,\\n        \\\"dy\\\": 0.7105414867401123,\\n        \\\"dz\\\": 0.5103529691696167,\\n        \\\"drx\\\": 0.4142036437988281,\\n        \\\"dry\\\": 0.20794636011123657,\\n        \\\"drz\\\": 0.6340888738632202,\\n        \\\"gripper\\\": 0.6320599317550659\\n      },\\n      \\\"overall_r2\\\": 0.6252843141555786,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6492390036582947,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6865488886833191,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6660192608833313,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.6125560998916626,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.6054757833480835,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5728342533111572,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5423337817192078,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6274086236953735,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5187588930130005,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8407847881317139\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6321959376335144,\\n      \\\"gripper_accuracy\\\": 0.8831320892791804,\\n      \\\"raw_mse\\\": 0.07246075570583344,\\n      \\\"val_loss\\\": 0.497892826795578,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5278669595718384,\\n        \\\"dy\\\": 0.7125675082206726,\\n        \\\"dz\\\": 0.4958222508430481,\\n        \\\"drx\\\": 0.40760570764541626,\\n        \\\"dry\\\": 0.21181011199951172,\\n        \\\"drz\\\": 0.6438796520233154,\\n        \\\"gripper\\\": 0.6239839792251587\\n      },\\n      \\\"overall_r2\\\": 0.6182494163513184,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.620514988899231,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6856390237808228,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6892002820968628,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5684174299240112,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5822622776031494,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5723377466201782,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5610566735267639,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6069139242172241,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5381510257720947,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8417009115219116\\n      },\\n      \\\"per_task_mean_r2\\\": 0.626619428396225,\\n      \\\"gripper_accuracy\\\": 0.8806073911452617,\\n      \\\"raw_mse\\\": 0.07382111996412277,\\n      \\\"val_loss\\\": 0.49975889921188354,\\n      \\\"epochs_trained\\\": 6\\n    }\\n  },\\n  \\\"best_layer\\\": 19,\\n  \\\"best_r2\\\": 0.6831402719020844,\\n  \\\"best_overall_r2\\\": 0.6769802570343018\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XYT2AQBFRhngfqBfgEEETS`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "2965dc9d-100f-415f-a827-d0b148a3f559",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FQCNhj9EtdPsdEPz4pAXsm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/trained/action_delta/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "8649923e-e3da-4a8d-b777-6a93e64aff7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 64 · 2026-05-22T00:18:01.456Z_
+
+<details><summary>↩ Tool result · `toolu_01XYT2AQBFRhngfqBfgEEETS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_prediction\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -6.020069122314453e-05,\\n        \\\"dy\\\": -5.4836273193359375e-06,\\n        \\\"dz\\\": -4.9948692321777344e-05,\\n        \\\"drx\\\": -5.841255187988281e-06,\\n        \\\"dry\\\": -0.0005192756652832031,\\n        \\\"drz\\\": -1.4185905456542969e-05,\\n        \\\"gripper\\\": -2.9921531677246094e-05\\n      },\\n      \\\"overall_r2\\\": 0.013438284397125244,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.029002368450164795,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.05043375492095947,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.06608378887176514,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.008575618267059326,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.011366724967956543,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.005867123603820801,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.001418769359588623,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.0009687542915344238,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": -0.017468929290771484,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": -0.08070862293243408\\n      },\\n      \\\"per_task_mean_r2\\\": 0.0075539350509643555,\\n      \\\"gripper_accuracy\\\": 0.5563117453347969,\\n      \\\"raw_mse\\\": 0.19077664613723755,\\n      \\\"val_loss\\\": 1.0340161323547363,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.45202332735061646,\\n        \\\"dy\\\": 0.632157564163208,\\n        \\\"dz\\\": 0.3775879740715027,\\n        \\\"drx\\\": 0.3237342834472656,\\n        \\\"dry\\\": 0.14580124616622925,\\n        \\\"drz\\\": 0.6006450653076172,\\n        \\\"gripper\\\": 0.5856375694274902\\n      },\\n      \\\"overall_r2\\\": 0.5664904117584229,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5821231603622437,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6001074910163879,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6010438203811646,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5391310453414917,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5293254852294922,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5131358504295349,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5527616739273071,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.5453718900680542,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.4967784285545349,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7715873122215271\\n      },\\n      \\\"per_task_mean_r2\\\": 0.5731366157531739,\\n      \\\"gripper_accuracy\\\": 0.875009147457007,\\n      \\\"raw_mse\\\": 0.08383004367351532,\\n      \\\"val_loss\\\": 0.5742999911308289,\\n      \\\"epochs_trained\\\": 30\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.4009355902671814,\\n        \\\"dy\\\": 0.6358261108398438,\\n        \\\"dz\\\": 0.3643299341201782,\\n        \\\"drx\\\": 0.2564396858215332,\\n        \\\"dry\\\": 0.11122262477874756,\\n        \\\"drz\\\": 0.6214016675949097,\\n        \\\"gripper\\\": 0.5358967185020447\\n      },\\n      \\\"overall_r2\\\": 0.5262775421142578,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5855050086975098,\\n        \\\"KITCHEN_SCENE4_put_the_b\\n\\n... [截断: 输出过长，省略 48217 字符] ...\\n\\nand_white_mug_on_the_right_plate\\\": 0.3677399754524231,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.4204937815666199,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7165746688842773\\n      },\\n      \\\"per_task_mean_r2\\\": 0.49325905442237855,\\n      \\\"gripper_accuracy\\\": 0.8357482619831686,\\n      \\\"raw_mse\\\": 0.0993238240480423,\\n      \\\"val_loss\\\": 0.6205778121948242,\\n      \\\"epochs_trained\\\": 24\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.28730350732803345,\\n        \\\"dy\\\": 0.5524406433105469,\\n        \\\"dz\\\": 0.26510536670684814,\\n        \\\"drx\\\": 0.22489970922470093,\\n        \\\"dry\\\": 0.08282214403152466,\\n        \\\"drz\\\": 0.5395657420158386,\\n        \\\"gripper\\\": 0.45322471857070923\\n      },\\n      \\\"overall_r2\\\": 0.4414544701576233,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.46576935052871704,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.5679398775100708,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.4790259599685669,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.46191489696502686,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.38062411546707153,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.33864909410476685,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.36727213859558105,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.39017820358276367,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.34629279375076294,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.687081515789032\\n      },\\n      \\\"per_task_mean_r2\\\": 0.44847479462623596,\\n      \\\"gripper_accuracy\\\": 0.8172703988291256,\\n      \\\"raw_mse\\\": 0.10800889134407043,\\n      \\\"val_loss\\\": 0.6787170171737671,\\n      \\\"epochs_trained\\\": 27\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5345454216003418,\\n        \\\"dy\\\": 0.706650972366333,\\n        \\\"dz\\\": 0.5102094411849976,\\n        \\\"drx\\\": 0.3657718896865845,\\n        \\\"dry\\\": 0.2036609649658203,\\n        \\\"drz\\\": 0.6361005306243896,\\n        \\\"gripper\\\": 0.6066441535949707\\n      },\\n      \\\"overall_r2\\\": 0.606706976890564,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6452785730361938,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6614464521408081,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.625702977180481,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5551042556762695,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5370035767555237,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5456632971763611,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5875552296638489,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6204399466514587,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5549901723861694,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8306796550750732\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6163864135742188,\\n      \\\"gripper_accuracy\\\": 0.8726308086351994,\\n      \\\"raw_mse\\\": 0.07605314254760742,\\n      \\\"val_loss\\\": 0.5089107751846313,\\n      \\\"epochs_trained\\\": 6\\n    }\\n  },\\n  \\\"best_layer\\\": 32,\\n  \\\"best_r2\\\": 0.6163864135742188,\\n  \\\"best_overall_r2\\\": 0.606706976890564\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "aa8f2a27-ff9b-4a68-94cb-0be2545c1cf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"probe_type\\\\\\\": \\\\\\\"action_prediction\\\\\\\",\\\\n  \\\\\\\"n_entries\\\\\\\": 33,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": -6.020069122314453e-05,\\\\n        \\\\\\\"dy\\\\\\\": -5.4836273193359375e-06,\\\\n        \\\\\\\"dz\\\\\\\": -4.9948692321777344e-05,\\\\n        \\\\\\\"drx\\\\\\\": -5.841255187988281e-06,\\\\n        \\\\\\\"dry\\\\\\\": -0.0005192756652832031,\\\\n        \\\\\\\"drz\\\\\\\": -1.4185905456542969e-05,\\\\n        \\\\\\\"gripper\\\\\\\": -2.9921531677246094e-05\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.013438284397125244,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.029002368450164795,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.05043375492095947,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.06608378887176514,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.008575618267059326,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.011366724967956543,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.005867123603820801,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.001418769359588623,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.0009687542915344238,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": -0.017468929290771484,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": -0.08070862293243408\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.0075539350509643555,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.5563117453347969,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.19077664613723755,\\\\n      \\\\\\\"val_loss\\\\\\\": 1.0340161323547363,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 1,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.45202332735061646,\\\\n        \\\\\\\"dy\\\\\\\": 0.632157564163208,\\\\n        \\\\\\\"dz\\\\\\\": 0.3775879740715027,\\\\n        \\\\\\\"drx\\\\\\\": 0.3237342834472656,\\\\n        \\\\\\\"dry\\\\\\\": 0.14580124616622925,\\\\n        \\\\\\\"drz\\\\\\\": 0.6006450653076172,\\\\n        \\\\\\\"gripper\\\\\\\": 0.5856375694274902\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.5664904117584229,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.5821231603622437,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6001074910163879,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.6010438203811646,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.5391310453414917,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.5293254852294922,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.5131358504295349,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.5527616739273071,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.5453718900680542,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.4967784285545349,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.7715873122215271\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.5731366157531739,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.875009147457007,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.08383004367351532,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.5742999911308289,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 30\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 2,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.4009355902671814,\\\\n        \\\\\\\"dy\\\\\\\": 0.6358261108398438,\\\\n        \\\\\\\"dz\\\\\\\": 0.3643299341201782,\\\\n        \\\\\\\"drx\\\\\\\": 0.2564396858215332,\\\\n        \\\\\\\"dry\\\\\\\": 0.11122262477874756,\\\\n        \\\\\\\"drz\\\\\\\": 0.6214016675949097,\\\\n        \\\\\\\"gripper\\\\\\\": 0.5358967185020447\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.5262775421142578,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.5855050086975098,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_b\\\\n\\\\n... [截断: 输出过长，省略 48217 字符] ...\\\\n\\\\nand_white_mug_on_the_right_plate\\\\\\\": 0.3677399754524231,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.4204937815666199,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.7165746688842773\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.49325905442237855,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8357482619831686,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.0993238240480423,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.6205778121948242,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 24\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 31,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.28730350732803345,\\\\n        \\\\\\\"dy\\\\\\\": 0.5524406433105469,\\\\n        \\\\\\\"dz\\\\\\\": 0.26510536670684814,\\\\n        \\\\\\\"drx\\\\\\\": 0.22489970922470093,\\\\n        \\\\\\\"dry\\\\\\\": 0.08282214403152466,\\\\n        \\\\\\\"drz\\\\\\\": 0.5395657420158386,\\\\n        \\\\\\\"gripper\\\\\\\": 0.45322471857070923\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.4414544701576233,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.46576935052871704,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.5679398775100708,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.4790259599685669,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.46191489696502686,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.38062411546707153,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.33864909410476685,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.36727213859558105,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.39017820358276367,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.34629279375076294,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.687081515789032\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.44847479462623596,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8172703988291256,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.10800889134407043,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.6787170171737671,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"32\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 32,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.5345454216003418,\\\\n        \\\\\\\"dy\\\\\\\": 0.706650972366333,\\\\n        \\\\\\\"dz\\\\\\\": 0.5102094411849976,\\\\n        \\\\\\\"drx\\\\\\\": 0.3657718896865845,\\\\n        \\\\\\\"dry\\\\\\\": 0.2036609649658203,\\\\n        \\\\\\\"drz\\\\\\\": 0.6361005306243896,\\\\n        \\\\\\\"gripper\\\\\\\": 0.6066441535949707\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.606706976890564,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.6452785730361938,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6614464521408081,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.625702977180481,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.5551042556762695,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.5370035767555237,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.5456632971763611,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.5875552296638489,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.6204399466514587,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.5549901723861694,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.8306796550750732\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.6163864135742188,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.8726308086351994,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.07605314254760742,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.5089107751846313,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 6\\\\n    }\\\\n  },\\\\n  \\\\\\\"best_layer\\\\\\\": 32,\\\\n  \\\\\\\"best_r2\\\\\\\": 0.6163864135742188,\\\\n  \\\\\\\"best_overall_r2\\\\\\\": 0.606706976890564\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_prediction\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -6.020069122314453e-05,\\n        \\\"dy\\\": -5.4836273193359375e-06,\\n        \\\"dz\\\": -4.9948692321777344e-05,\\n        \\\"drx\\\": -5.841255187988281e-06,\\n        \\\"dry\\\": -0.0005192756652832031,\\n        \\\"drz\\\": -1.4185905456542969e-05,\\n        \\\"gripper\\\": -2.9921531677246094e-05\\n      },\\n      \\\"overall_r2\\\": 0.013438284397125244,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.029002368450164795,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.05043375492095947,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.06608378887176514,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.008575618267059326,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.011366724967956543,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.005867123603820801,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.001418769359588623,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.0009687542915344238,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": -0.017468929290771484,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": -0.08070862293243408\\n      },\\n      \\\"per_task_mean_r2\\\": 0.0075539350509643555,\\n      \\\"gripper_accuracy\\\": 0.5563117453347969,\\n      \\\"raw_mse\\\": 0.19077664613723755,\\n      \\\"val_loss\\\": 1.0340161323547363,\\n      \\\"epochs_trained\\\": 6\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.45202332735061646,\\n        \\\"dy\\\": 0.632157564163208,\\n        \\\"dz\\\": 0.3775879740715027,\\n        \\\"drx\\\": 0.3237342834472656,\\n        \\\"dry\\\": 0.14580124616622925,\\n        \\\"drz\\\": 0.6006450653076172,\\n        \\\"gripper\\\": 0.5856375694274902\\n      },\\n      \\\"overall_r2\\\": 0.5664904117584229,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5821231603622437,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6001074910163879,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.6010438203811646,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5391310453414917,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5293254852294922,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5131358504295349,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5527616739273071,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.5453718900680542,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.4967784285545349,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7715873122215271\\n      },\\n      \\\"per_task_mean_r2\\\": 0.5731366157531739,\\n      \\\"gripper_accuracy\\\": 0.875009147457007,\\n      \\\"raw_mse\\\": 0.08383004367351532,\\n      \\\"val_loss\\\": 0.5742999911308289,\\n      \\\"epochs_trained\\\": 30\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.4009355902671814,\\n        \\\"dy\\\": 0.6358261108398438,\\n        \\\"dz\\\": 0.3643299341201782,\\n        \\\"drx\\\": 0.2564396858215332,\\n        \\\"dry\\\": 0.11122262477874756,\\n        \\\"drz\\\": 0.6214016675949097,\\n        \\\"gripper\\\": 0.5358967185020447\\n      },\\n      \\\"overall_r2\\\": 0.5262775421142578,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5855050086975098,\\n        \\\"KITCHEN_SCENE4_put_the_b\\n\\n... [截断: 输出过长，省略 48217 字符] ...\\n\\nand_white_mug_on_the_right_plate\\\": 0.3677399754524231,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.4204937815666199,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.7165746688842773\\n      },\\n      \\\"per_task_mean_r2\\\": 0.49325905442237855,\\n      \\\"gripper_accuracy\\\": 0.8357482619831686,\\n      \\\"raw_mse\\\": 0.0993238240480423,\\n      \\\"val_loss\\\": 0.6205778121948242,\\n      \\\"epochs_trained\\\": 24\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.28730350732803345,\\n        \\\"dy\\\": 0.5524406433105469,\\n        \\\"dz\\\": 0.26510536670684814,\\n        \\\"drx\\\": 0.22489970922470093,\\n        \\\"dry\\\": 0.08282214403152466,\\n        \\\"drz\\\": 0.5395657420158386,\\n        \\\"gripper\\\": 0.45322471857070923\\n      },\\n      \\\"overall_r2\\\": 0.4414544701576233,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.46576935052871704,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.5679398775100708,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.4790259599685669,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.46191489696502686,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.38062411546707153,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.33864909410476685,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.36727213859558105,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.39017820358276367,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.34629279375076294,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.687081515789032\\n      },\\n      \\\"per_task_mean_r2\\\": 0.44847479462623596,\\n      \\\"gripper_accuracy\\\": 0.8172703988291256,\\n      \\\"raw_mse\\\": 0.10800889134407043,\\n      \\\"val_loss\\\": 0.6787170171737671,\\n      \\\"epochs_trained\\\": 27\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.5345454216003418,\\n        \\\"dy\\\": 0.706650972366333,\\n        \\\"dz\\\": 0.5102094411849976,\\n        \\\"drx\\\": 0.3657718896865845,\\n        \\\"dry\\\": 0.2036609649658203,\\n        \\\"drz\\\": 0.6361005306243896,\\n        \\\"gripper\\\": 0.6066441535949707\\n      },\\n      \\\"overall_r2\\\": 0.606706976890564,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.6452785730361938,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.6614464521408081,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.625702977180481,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.5551042556762695,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.5370035767555237,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.5456632971763611,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.5875552296638489,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.6204399466514587,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.5549901723861694,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8306796550750732\\n      },\\n      \\\"per_task_mean_r2\\\": 0.6163864135742188,\\n      \\\"gripper_accuracy\\\": 0.8726308086351994,\\n      \\\"raw_mse\\\": 0.07605314254760742,\\n      \\\"val_loss\\\": 0.5089107751846313,\\n      \\\"epochs_trained\\\": 6\\n    }\\n  },\\n  \\\"best_layer\\\": 32,\\n  \\\"best_r2\\\": 0.6163864135742188,\\n  \\\"best_overall_r2\\\": 0.606706976890564\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017pR74fA7aoLViUQwwCcC2j`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "28f4edcf-fbb6-4caa-923c-09fd53ab2559",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 66 · 2026-05-22T00:18:02.000Z_
+
+<details><summary>↩ Tool result · `toolu_01FQCNhj9EtdPsdEPz4pAXsm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_delta\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -7.152557373046875e-07,\\n        \\\"dy\\\": -1.8715858459472656e-05,\\n        \\\"dz\\\": -6.556510925292969e-06,\\n        \\\"drx\\\": -5.960464477539062e-07,\\n        \\\"dry\\\": -9.5367431640625e-07,\\n        \\\"drz\\\": -1.239776611328125e-05,\\n        \\\"gripper\\\": -1.919269561767578e-05\\n      },\\n      \\\"overall_r2\\\": 2.8073787689208984e-05,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": -4.291534423828125e-06,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 5.048513412475586e-05,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 4.2319297790527344e-05,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": -1.049041748046875e-05,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": -8.344650268554688e-07,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": -1.8358230590820312e-05,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 2.2649765014648438e-06,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": -1.9073486328125e-05,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 5.84721565246582e-05,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.0005821585655212402\\n      },\\n      \\\"per_task_mean_r2\\\": 6.826519966125488e-05,\\n      \\\"gripper_accuracy\\\": 0.006659348701061105,\\n      \\\"raw_mse\\\": 0.007994056679308414,\\n      \\\"val_loss\\\": 0.9842908978462219,\\n      \\\"epochs_trained\\\": 11,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.08514034748077393,\\n        \\\"dy\\\": 0.12896329164505005,\\n        \\\"dz\\\": 0.24199557304382324,\\n        \\\"drx\\\": 0.016166985034942627,\\n        \\\"dry\\\": 0.015171587467193604,\\n        \\\"drz\\\": 0.06175345182418823,\\n        \\\"gripper\\\": 0.009577155113220215\\n      },\\n      \\\"overall_r2\\\": 0.024557054042816162,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.013445258140563965,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.019561767578125,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.01534581184387207,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.003780186176300049,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.035060763359069824,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.037089407444000244,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.051249682903289795,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.023739993572235107,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.011114001274108887,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.02521616220474243\\n      },\\n      \\\"per_task_mean_r2\\\": 0.023560303449630737,\\n      \\\"gripper_accuracy\\\": 0.5500914745700696,\\n      \\\"raw_mse\\\": 0.007797964848577976,\\n      \\\"val_loss\\\": 0.9059223532676697,\\n      \\\"epochs_trained\\\": 39,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.11537659168243408,\\n        \\\"dy\\\": 0.16832566261291504,\\n        \\\"dz\\\": 0.26778632402420044,\\n        \\\"drx\\\": 0.030659854412078857,\\n        \\\"dry\\\": 0.031622111797332764,\\n        \\\"drz\\\": 0.09719407558441162,\\n        \\\"gripper\\\": 0.014566540718078613\\n      },\\n      \\\"overall_r2\\\": 0.0321046113967\\n\\n... [截断: 输出过长，省略 50387 字符] ...\\n\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.07701194286346436\\n      },\\n      \\\"per_task_mean_r2\\\": 0.050131863355636595,\\n      \\\"gripper_accuracy\\\": 0.3487010611050128,\\n      \\\"raw_mse\\\": 0.007594516035169363,\\n      \\\"val_loss\\\": 0.8336647748947144,\\n      \\\"epochs_trained\\\": 8,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.16284310817718506,\\n        \\\"dy\\\": 0.2417433261871338,\\n        \\\"dz\\\": 0.33719974756240845,\\n        \\\"drx\\\": 0.07102948427200317,\\n        \\\"dry\\\": 0.0385248064994812,\\n        \\\"drz\\\": 0.16156625747680664,\\n        \\\"gripper\\\": 0.01627439260482788\\n      },\\n      \\\"overall_r2\\\": 0.03992176055908203,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.032910704612731934,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04664957523345947,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.03410828113555908,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.02474522590637207,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.04057049751281738,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.03753948211669922,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.05958998203277588,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.04761415719985962,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03960227966308594,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.025633275508880615\\n      },\\n      \\\"per_task_mean_r2\\\": 0.03889634609222412,\\n      \\\"gripper_accuracy\\\": 0.5037687522868642,\\n      \\\"raw_mse\\\": 0.007675135042518377,\\n      \\\"val_loss\\\": 0.8400381207466125,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.15757089853286743,\\n        \\\"dy\\\": 0.2495148777961731,\\n        \\\"dz\\\": 0.35214072465896606,\\n        \\\"drx\\\": 0.07419157028198242,\\n        \\\"dry\\\": 0.04132026433944702,\\n        \\\"drz\\\": 0.15305006504058838,\\n        \\\"gripper\\\": 0.02666926383972168\\n      },\\n      \\\"overall_r2\\\": 0.04993283748626709,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.043325841426849365,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04938304424285889,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.028481364250183105,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.020072996616363525,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.06242173910140991,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.058281540870666504,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.08588463068008423,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.050350069999694824,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03216761350631714,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.06921893358230591\\n      },\\n      \\\"per_task_mean_r2\\\": 0.04995877742767334,\\n      \\\"gripper_accuracy\\\": 0.37369191364800586,\\n      \\\"raw_mse\\\": 0.007595103699713945,\\n      \\\"val_loss\\\": 0.8365328311920166,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    }\\n  },\\n  \\\"best_layer\\\": 14,\\n  \\\"best_r2\\\": 0.059672385454177856,\\n  \\\"best_overall_r2\\\": 0.059403181076049805\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "98f903c6-4226-4213-9901-046adc09f2d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"probe_type\\\\\\\": \\\\\\\"action_delta\\\\\\\",\\\\n  \\\\\\\"n_entries\\\\\\\": 33,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": -7.152557373046875e-07,\\\\n        \\\\\\\"dy\\\\\\\": -1.8715858459472656e-05,\\\\n        \\\\\\\"dz\\\\\\\": -6.556510925292969e-06,\\\\n        \\\\\\\"drx\\\\\\\": -5.960464477539062e-07,\\\\n        \\\\\\\"dry\\\\\\\": -9.5367431640625e-07,\\\\n        \\\\\\\"drz\\\\\\\": -1.239776611328125e-05,\\\\n        \\\\\\\"gripper\\\\\\\": -1.919269561767578e-05\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 2.8073787689208984e-05,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": -4.291534423828125e-06,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 5.048513412475586e-05,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 4.2319297790527344e-05,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": -1.049041748046875e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": -8.344650268554688e-07,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": -1.8358230590820312e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 2.2649765014648438e-06,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": -1.9073486328125e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 5.84721565246582e-05,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.0005821585655212402\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 6.826519966125488e-05,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.006659348701061105,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007994056679308414,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.9842908978462219,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 11,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 1,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.08514034748077393,\\\\n        \\\\\\\"dy\\\\\\\": 0.12896329164505005,\\\\n        \\\\\\\"dz\\\\\\\": 0.24199557304382324,\\\\n        \\\\\\\"drx\\\\\\\": 0.016166985034942627,\\\\n        \\\\\\\"dry\\\\\\\": 0.015171587467193604,\\\\n        \\\\\\\"drz\\\\\\\": 0.06175345182418823,\\\\n        \\\\\\\"gripper\\\\\\\": 0.009577155113220215\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.024557054042816162,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.013445258140563965,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.019561767578125,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.01534581184387207,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.003780186176300049,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.035060763359069824,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.037089407444000244,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.051249682903289795,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.023739993572235107,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.011114001274108887,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.02521616220474243\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.023560303449630737,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.5500914745700696,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007797964848577976,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.9059223532676697,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 39,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 2,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.11537659168243408,\\\\n        \\\\\\\"dy\\\\\\\": 0.16832566261291504,\\\\n        \\\\\\\"dz\\\\\\\": 0.26778632402420044,\\\\n        \\\\\\\"drx\\\\\\\": 0.030659854412078857,\\\\n        \\\\\\\"dry\\\\\\\": 0.031622111797332764,\\\\n        \\\\\\\"drz\\\\\\\": 0.09719407558441162,\\\\n        \\\\\\\"gripper\\\\\\\": 0.014566540718078613\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.0321046113967\\\\n\\\\n... [截断: 输出过长，省略 50387 字符] ...\\\\n\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.07701194286346436\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.050131863355636595,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.3487010611050128,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007594516035169363,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.8336647748947144,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 8,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 31,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.16284310817718506,\\\\n        \\\\\\\"dy\\\\\\\": 0.2417433261871338,\\\\n        \\\\\\\"dz\\\\\\\": 0.33719974756240845,\\\\n        \\\\\\\"drx\\\\\\\": 0.07102948427200317,\\\\n        \\\\\\\"dry\\\\\\\": 0.0385248064994812,\\\\n        \\\\\\\"drz\\\\\\\": 0.16156625747680664,\\\\n        \\\\\\\"gripper\\\\\\\": 0.01627439260482788\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.03992176055908203,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.032910704612731934,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.04664957523345947,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.03410828113555908,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.02474522590637207,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.04057049751281738,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.03753948211669922,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.05958998203277588,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.04761415719985962,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.03960227966308594,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.025633275508880615\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.03889634609222412,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.5037687522868642,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007675135042518377,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.8400381207466125,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 7,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"32\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 32,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.15757089853286743,\\\\n        \\\\\\\"dy\\\\\\\": 0.2495148777961731,\\\\n        \\\\\\\"dz\\\\\\\": 0.35214072465896606,\\\\n        \\\\\\\"drx\\\\\\\": 0.07419157028198242,\\\\n        \\\\\\\"dry\\\\\\\": 0.04132026433944702,\\\\n        \\\\\\\"drz\\\\\\\": 0.15305006504058838,\\\\n        \\\\\\\"gripper\\\\\\\": 0.02666926383972168\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.04993283748626709,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.043325841426849365,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.04938304424285889,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.028481364250183105,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.020072996616363525,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.06242173910140991,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.058281540870666504,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.08588463068008423,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.050350069999694824,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.03216761350631714,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.06921893358230591\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.04995877742767334,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.37369191364800586,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007595103699713945,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.8365328311920166,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 7,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    }\\\\n  },\\\\n  \\\\\\\"best_layer\\\\\\\": 14,\\\\n  \\\\\\\"best_r2\\\\\\\": 0.059672385454177856,\\\\n  \\\\\\\"best_overall_r2\\\\\\\": 0.059403181076049805\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_delta\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -7.152557373046875e-07,\\n        \\\"dy\\\": -1.8715858459472656e-05,\\n        \\\"dz\\\": -6.556510925292969e-06,\\n        \\\"drx\\\": -5.960464477539062e-07,\\n        \\\"dry\\\": -9.5367431640625e-07,\\n        \\\"drz\\\": -1.239776611328125e-05,\\n        \\\"gripper\\\": -1.919269561767578e-05\\n      },\\n      \\\"overall_r2\\\": 2.8073787689208984e-05,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": -4.291534423828125e-06,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 5.048513412475586e-05,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 4.2319297790527344e-05,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": -1.049041748046875e-05,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": -8.344650268554688e-07,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": -1.8358230590820312e-05,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 2.2649765014648438e-06,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": -1.9073486328125e-05,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 5.84721565246582e-05,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.0005821585655212402\\n      },\\n      \\\"per_task_mean_r2\\\": 6.826519966125488e-05,\\n      \\\"gripper_accuracy\\\": 0.006659348701061105,\\n      \\\"raw_mse\\\": 0.007994056679308414,\\n      \\\"val_loss\\\": 0.9842908978462219,\\n      \\\"epochs_trained\\\": 11,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.08514034748077393,\\n        \\\"dy\\\": 0.12896329164505005,\\n        \\\"dz\\\": 0.24199557304382324,\\n        \\\"drx\\\": 0.016166985034942627,\\n        \\\"dry\\\": 0.015171587467193604,\\n        \\\"drz\\\": 0.06175345182418823,\\n        \\\"gripper\\\": 0.009577155113220215\\n      },\\n      \\\"overall_r2\\\": 0.024557054042816162,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.013445258140563965,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.019561767578125,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.01534581184387207,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.003780186176300049,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.035060763359069824,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.037089407444000244,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.051249682903289795,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.023739993572235107,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.011114001274108887,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.02521616220474243\\n      },\\n      \\\"per_task_mean_r2\\\": 0.023560303449630737,\\n      \\\"gripper_accuracy\\\": 0.5500914745700696,\\n      \\\"raw_mse\\\": 0.007797964848577976,\\n      \\\"val_loss\\\": 0.9059223532676697,\\n      \\\"epochs_trained\\\": 39,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.11537659168243408,\\n        \\\"dy\\\": 0.16832566261291504,\\n        \\\"dz\\\": 0.26778632402420044,\\n        \\\"drx\\\": 0.030659854412078857,\\n        \\\"dry\\\": 0.031622111797332764,\\n        \\\"drz\\\": 0.09719407558441162,\\n        \\\"gripper\\\": 0.014566540718078613\\n      },\\n      \\\"overall_r2\\\": 0.0321046113967\\n\\n... [截断: 输出过长，省略 50387 字符] ...\\n\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.07701194286346436\\n      },\\n      \\\"per_task_mean_r2\\\": 0.050131863355636595,\\n      \\\"gripper_accuracy\\\": 0.3487010611050128,\\n      \\\"raw_mse\\\": 0.007594516035169363,\\n      \\\"val_loss\\\": 0.8336647748947144,\\n      \\\"epochs_trained\\\": 8,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.16284310817718506,\\n        \\\"dy\\\": 0.2417433261871338,\\n        \\\"dz\\\": 0.33719974756240845,\\n        \\\"drx\\\": 0.07102948427200317,\\n        \\\"dry\\\": 0.0385248064994812,\\n        \\\"drz\\\": 0.16156625747680664,\\n        \\\"gripper\\\": 0.01627439260482788\\n      },\\n      \\\"overall_r2\\\": 0.03992176055908203,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.032910704612731934,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04664957523345947,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.03410828113555908,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.02474522590637207,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.04057049751281738,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.03753948211669922,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.05958998203277588,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.04761415719985962,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03960227966308594,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.025633275508880615\\n      },\\n      \\\"per_task_mean_r2\\\": 0.03889634609222412,\\n      \\\"gripper_accuracy\\\": 0.5037687522868642,\\n      \\\"raw_mse\\\": 0.007675135042518377,\\n      \\\"val_loss\\\": 0.8400381207466125,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.15757089853286743,\\n        \\\"dy\\\": 0.2495148777961731,\\n        \\\"dz\\\": 0.35214072465896606,\\n        \\\"drx\\\": 0.07419157028198242,\\n        \\\"dry\\\": 0.04132026433944702,\\n        \\\"drz\\\": 0.15305006504058838,\\n        \\\"gripper\\\": 0.02666926383972168\\n      },\\n      \\\"overall_r2\\\": 0.04993283748626709,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.043325841426849365,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.04938304424285889,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.028481364250183105,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.020072996616363525,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.06242173910140991,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.058281540870666504,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.08588463068008423,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.050350069999694824,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03216761350631714,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.06921893358230591\\n      },\\n      \\\"per_task_mean_r2\\\": 0.04995877742767334,\\n      \\\"gripper_accuracy\\\": 0.37369191364800586,\\n      \\\"raw_mse\\\": 0.007595103699713945,\\n      \\\"val_loss\\\": 0.8365328311920166,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    }\\n  },\\n  \\\"best_layer\\\": 14,\\n  \\\"best_r2\\\": 0.059672385454177856,\\n  \\\"best_overall_r2\\\": 0.059403181076049805\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 67 · 2026-05-22T00:18:02.516Z_
+
+<details><summary>↩ Tool result · `toolu_017pR74fA7aoLViUQwwCcC2j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_delta\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -7.152557373046875e-07,\\n        \\\"dy\\\": -1.8715858459472656e-05,\\n        \\\"dz\\\": -6.556510925292969e-06,\\n        \\\"drx\\\": -5.960464477539062e-07,\\n        \\\"dry\\\": -9.5367431640625e-07,\\n        \\\"drz\\\": -1.239776611328125e-05,\\n        \\\"gripper\\\": -1.919269561767578e-05\\n      },\\n      \\\"overall_r2\\\": 2.7954578399658203e-05,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": -4.5299530029296875e-06,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 5.036592483520508e-05,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 4.220008850097656e-05,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": -1.049041748046875e-05,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": -9.5367431640625e-07,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": -1.8477439880371094e-05,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 2.1457672119140625e-06,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": -1.9311904907226562e-05,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 5.84721565246582e-05,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.0005821585655212402\\n      },\\n      \\\"per_task_mean_r2\\\": 6.815791130065918e-05,\\n      \\\"gripper_accuracy\\\": 0.006659348701061105,\\n      \\\"raw_mse\\\": 0.007994057610630989,\\n      \\\"val_loss\\\": 0.9842908382415771,\\n      \\\"epochs_trained\\\": 11,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.1484839916229248,\\n        \\\"dy\\\": 0.2304587960243225,\\n        \\\"dz\\\": 0.3236311674118042,\\n        \\\"drx\\\": 0.04307425022125244,\\n        \\\"dry\\\": 0.026257812976837158,\\n        \\\"drz\\\": 0.13922762870788574,\\n        \\\"gripper\\\": 0.005478501319885254\\n      },\\n      \\\"overall_r2\\\": 0.02886563539505005,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.026072025299072266,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.024027228355407715,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0154343843460083,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.006168007850646973,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.03555130958557129,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.03377622365951538,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.05498230457305908,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.029379725456237793,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.02018958330154419,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.042525291442871094\\n      },\\n      \\\"per_task_mean_r2\\\": 0.028810608386993408,\\n      \\\"gripper_accuracy\\\": 0.5748261983168679,\\n      \\\"raw_mse\\\": 0.007763520814478397,\\n      \\\"val_loss\\\": 0.8558204770088196,\\n      \\\"epochs_trained\\\": 12,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.093197762966156,\\n        \\\"dy\\\": 0.002352893352508545,\\n        \\\"dz\\\": 0.2922526001930237,\\n        \\\"drx\\\": 0.0016952157020568848,\\n        \\\"dry\\\": 0.017593324184417725,\\n        \\\"drz\\\": 0.032412827014923096,\\n        \\\"gripper\\\": 0.0007225275039672852\\n      },\\n      \\\"overall_r2\\\": 0.01550543308258056\\n\\n... [截断: 输出过长，省略 51406 字符] ...\\n\\nE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.03243613243103027\\n      },\\n      \\\"per_task_mean_r2\\\": 0.017542409896850585,\\n      \\\"gripper_accuracy\\\": 0.6140504939626784,\\n      \\\"raw_mse\\\": 0.007858697324991226,\\n      \\\"val_loss\\\": 0.906904399394989,\\n      \\\"epochs_trained\\\": 19,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.07772910594940186,\\n        \\\"dy\\\": 0.00021255016326904297,\\n        \\\"dz\\\": 0.2483254075050354,\\n        \\\"drx\\\": 0.0005792975425720215,\\n        \\\"dry\\\": 0.012911677360534668,\\n        \\\"drz\\\": 0.02612900733947754,\\n        \\\"gripper\\\": -7.402896881103516e-05\\n      },\\n      \\\"overall_r2\\\": 0.012466967105865479,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.009310781955718994,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.013275742530822754,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0009677410125732422,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.0033090710639953613,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.01481175422668457,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.015095651149749756,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.02645975351333618,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.014316022396087646,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.0054839253425598145,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.024823129177093506\\n      },\\n      \\\"per_task_mean_r2\\\": 0.012785357236862183,\\n      \\\"gripper_accuracy\\\": 0.862019758507135,\\n      \\\"raw_mse\\\": 0.007894616574048996,\\n      \\\"val_loss\\\": 0.9325577616691589,\\n      \\\"epochs_trained\\\": 16,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.1376127004623413,\\n        \\\"dy\\\": 0.2574116587638855,\\n        \\\"dz\\\": 0.3309480547904968,\\n        \\\"drx\\\": 0.07778984308242798,\\n        \\\"dry\\\": 0.046162426471710205,\\n        \\\"drz\\\": 0.14473581314086914,\\n        \\\"gripper\\\": 0.026410460472106934\\n      },\\n      \\\"overall_r2\\\": 0.048460543155670166,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.03047889471054077,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.06373614072799683,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.02575838565826416,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.029093801975250244,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.06206303834915161,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.05391174554824829,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.08139753341674805,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.04395931959152222,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03915911912918091,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.05211281776428223\\n      },\\n      \\\"per_task_mean_r2\\\": 0.04816707968711853,\\n      \\\"gripper_accuracy\\\": 0.535675082327113,\\n      \\\"raw_mse\\\": 0.007606873754411936,\\n      \\\"val_loss\\\": 0.8413272500038147,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    }\\n  },\\n  \\\"best_layer\\\": 32,\\n  \\\"best_r2\\\": 0.04816707968711853,\\n  \\\"best_overall_r2\\\": 0.048460543155670166\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "af682a09-1f0c-43ce-a3de-00aefe882708",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"probe_type\\\\\\\": \\\\\\\"action_delta\\\\\\\",\\\\n  \\\\\\\"n_entries\\\\\\\": 33,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": -7.152557373046875e-07,\\\\n        \\\\\\\"dy\\\\\\\": -1.8715858459472656e-05,\\\\n        \\\\\\\"dz\\\\\\\": -6.556510925292969e-06,\\\\n        \\\\\\\"drx\\\\\\\": -5.960464477539062e-07,\\\\n        \\\\\\\"dry\\\\\\\": -9.5367431640625e-07,\\\\n        \\\\\\\"drz\\\\\\\": -1.239776611328125e-05,\\\\n        \\\\\\\"gripper\\\\\\\": -1.919269561767578e-05\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 2.7954578399658203e-05,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": -4.5299530029296875e-06,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 5.036592483520508e-05,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 4.220008850097656e-05,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": -1.049041748046875e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": -9.5367431640625e-07,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": -1.8477439880371094e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 2.1457672119140625e-06,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": -1.9311904907226562e-05,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 5.84721565246582e-05,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.0005821585655212402\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 6.815791130065918e-05,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.006659348701061105,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007994057610630989,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.9842908382415771,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 11,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 1,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.1484839916229248,\\\\n        \\\\\\\"dy\\\\\\\": 0.2304587960243225,\\\\n        \\\\\\\"dz\\\\\\\": 0.3236311674118042,\\\\n        \\\\\\\"drx\\\\\\\": 0.04307425022125244,\\\\n        \\\\\\\"dry\\\\\\\": 0.026257812976837158,\\\\n        \\\\\\\"drz\\\\\\\": 0.13922762870788574,\\\\n        \\\\\\\"gripper\\\\\\\": 0.005478501319885254\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.02886563539505005,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.026072025299072266,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.024027228355407715,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.0154343843460083,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.006168007850646973,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.03555130958557129,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.03377622365951538,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.05498230457305908,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.029379725456237793,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.02018958330154419,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.042525291442871094\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.028810608386993408,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.5748261983168679,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007763520814478397,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.8558204770088196,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 12,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 2,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.093197762966156,\\\\n        \\\\\\\"dy\\\\\\\": 0.002352893352508545,\\\\n        \\\\\\\"dz\\\\\\\": 0.2922526001930237,\\\\n        \\\\\\\"drx\\\\\\\": 0.0016952157020568848,\\\\n        \\\\\\\"dry\\\\\\\": 0.017593324184417725,\\\\n        \\\\\\\"drz\\\\\\\": 0.032412827014923096,\\\\n        \\\\\\\"gripper\\\\\\\": 0.0007225275039672852\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.01550543308258056\\\\n\\\\n... [截断: 输出过长，省略 51406 字符] ...\\\\n\\\\nE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.03243613243103027\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.017542409896850585,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.6140504939626784,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007858697324991226,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.906904399394989,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 19,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"31\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 31,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.07772910594940186,\\\\n        \\\\\\\"dy\\\\\\\": 0.00021255016326904297,\\\\n        \\\\\\\"dz\\\\\\\": 0.2483254075050354,\\\\n        \\\\\\\"drx\\\\\\\": 0.0005792975425720215,\\\\n        \\\\\\\"dry\\\\\\\": 0.012911677360534668,\\\\n        \\\\\\\"drz\\\\\\\": 0.02612900733947754,\\\\n        \\\\\\\"gripper\\\\\\\": -7.402896881103516e-05\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.012466967105865479,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.009310781955718994,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.013275742530822754,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.0009677410125732422,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.0033090710639953613,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.01481175422668457,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.015095651149749756,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.02645975351333618,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.014316022396087646,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.0054839253425598145,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.024823129177093506\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.012785357236862183,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.862019758507135,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007894616574048996,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.9325577616691589,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 16,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    },\\\\n    \\\\\\\"32\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 32,\\\\n      \\\\\\\"per_dim_r2\\\\\\\": {\\\\n        \\\\\\\"dx\\\\\\\": 0.1376127004623413,\\\\n        \\\\\\\"dy\\\\\\\": 0.2574116587638855,\\\\n        \\\\\\\"dz\\\\\\\": 0.3309480547904968,\\\\n        \\\\\\\"drx\\\\\\\": 0.07778984308242798,\\\\n        \\\\\\\"dry\\\\\\\": 0.046162426471710205,\\\\n        \\\\\\\"drz\\\\\\\": 0.14473581314086914,\\\\n        \\\\\\\"gripper\\\\\\\": 0.026410460472106934\\\\n      },\\\\n      \\\\\\\"overall_r2\\\\\\\": 0.048460543155670166,\\\\n      \\\\\\\"per_task_r2\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.03047889471054077,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.06373614072799683,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.02575838565826416,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.029093801975250244,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.06206303834915161,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.05391174554824829,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.08139753341674805,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.04395931959152222,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.03915911912918091,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.05211281776428223\\\\n      },\\\\n      \\\\\\\"per_task_mean_r2\\\\\\\": 0.04816707968711853,\\\\n      \\\\\\\"gripper_accuracy\\\\\\\": 0.535675082327113,\\\\n      \\\\\\\"raw_mse\\\\\\\": 0.007606873754411936,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.8413272500038147,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 7,\\\\n      \\\\\\\"gripper_delta_accuracy\\\\\\\": 0.987413099158434\\\\n    }\\\\n  },\\\\n  \\\\\\\"best_layer\\\\\\\": 32,\\\\n  \\\\\\\"best_r2\\\\\\\": 0.04816707968711853,\\\\n  \\\\\\\"best_overall_r2\\\\\\\": 0.048460543155670166\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"probe_type\\\": \\\"action_delta\\\",\\n  \\\"n_entries\\\": 33,\\n  \\\"results\\\": {\\n    \\\"0\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": -7.152557373046875e-07,\\n        \\\"dy\\\": -1.8715858459472656e-05,\\n        \\\"dz\\\": -6.556510925292969e-06,\\n        \\\"drx\\\": -5.960464477539062e-07,\\n        \\\"dry\\\": -9.5367431640625e-07,\\n        \\\"drz\\\": -1.239776611328125e-05,\\n        \\\"gripper\\\": -1.919269561767578e-05\\n      },\\n      \\\"overall_r2\\\": 2.7954578399658203e-05,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": -4.5299530029296875e-06,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 5.036592483520508e-05,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 4.220008850097656e-05,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": -1.049041748046875e-05,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": -9.5367431640625e-07,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": -1.8477439880371094e-05,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 2.1457672119140625e-06,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": -1.9311904907226562e-05,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 5.84721565246582e-05,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.0005821585655212402\\n      },\\n      \\\"per_task_mean_r2\\\": 6.815791130065918e-05,\\n      \\\"gripper_accuracy\\\": 0.006659348701061105,\\n      \\\"raw_mse\\\": 0.007994057610630989,\\n      \\\"val_loss\\\": 0.9842908382415771,\\n      \\\"epochs_trained\\\": 11,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"1\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.1484839916229248,\\n        \\\"dy\\\": 0.2304587960243225,\\n        \\\"dz\\\": 0.3236311674118042,\\n        \\\"drx\\\": 0.04307425022125244,\\n        \\\"dry\\\": 0.026257812976837158,\\n        \\\"drz\\\": 0.13922762870788574,\\n        \\\"gripper\\\": 0.005478501319885254\\n      },\\n      \\\"overall_r2\\\": 0.02886563539505005,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.026072025299072266,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.024027228355407715,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0154343843460083,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.006168007850646973,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.03555130958557129,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.03377622365951538,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.05498230457305908,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.029379725456237793,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.02018958330154419,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.042525291442871094\\n      },\\n      \\\"per_task_mean_r2\\\": 0.028810608386993408,\\n      \\\"gripper_accuracy\\\": 0.5748261983168679,\\n      \\\"raw_mse\\\": 0.007763520814478397,\\n      \\\"val_loss\\\": 0.8558204770088196,\\n      \\\"epochs_trained\\\": 12,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"2\\\": {\\n      \\\"layer\\\": 2,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.093197762966156,\\n        \\\"dy\\\": 0.002352893352508545,\\n        \\\"dz\\\": 0.2922526001930237,\\n        \\\"drx\\\": 0.0016952157020568848,\\n        \\\"dry\\\": 0.017593324184417725,\\n        \\\"drz\\\": 0.032412827014923096,\\n        \\\"gripper\\\": 0.0007225275039672852\\n      },\\n      \\\"overall_r2\\\": 0.01550543308258056\\n\\n... [截断: 输出过长，省略 51406 字符] ...\\n\\nE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.03243613243103027\\n      },\\n      \\\"per_task_mean_r2\\\": 0.017542409896850585,\\n      \\\"gripper_accuracy\\\": 0.6140504939626784,\\n      \\\"raw_mse\\\": 0.007858697324991226,\\n      \\\"val_loss\\\": 0.906904399394989,\\n      \\\"epochs_trained\\\": 19,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"31\\\": {\\n      \\\"layer\\\": 31,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.07772910594940186,\\n        \\\"dy\\\": 0.00021255016326904297,\\n        \\\"dz\\\": 0.2483254075050354,\\n        \\\"drx\\\": 0.0005792975425720215,\\n        \\\"dry\\\": 0.012911677360534668,\\n        \\\"drz\\\": 0.02612900733947754,\\n        \\\"gripper\\\": -7.402896881103516e-05\\n      },\\n      \\\"overall_r2\\\": 0.012466967105865479,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.009310781955718994,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.013275742530822754,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.0009677410125732422,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.0033090710639953613,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.01481175422668457,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.015095651149749756,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.02645975351333618,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.014316022396087646,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.0054839253425598145,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.024823129177093506\\n      },\\n      \\\"per_task_mean_r2\\\": 0.012785357236862183,\\n      \\\"gripper_accuracy\\\": 0.862019758507135,\\n      \\\"raw_mse\\\": 0.007894616574048996,\\n      \\\"val_loss\\\": 0.9325577616691589,\\n      \\\"epochs_trained\\\": 16,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    },\\n    \\\"32\\\": {\\n      \\\"layer\\\": 32,\\n      \\\"per_dim_r2\\\": {\\n        \\\"dx\\\": 0.1376127004623413,\\n        \\\"dy\\\": 0.2574116587638855,\\n        \\\"dz\\\": 0.3309480547904968,\\n        \\\"drx\\\": 0.07778984308242798,\\n        \\\"dry\\\": 0.046162426471710205,\\n        \\\"drz\\\": 0.14473581314086914,\\n        \\\"gripper\\\": 0.026410460472106934\\n      },\\n      \\\"overall_r2\\\": 0.048460543155670166,\\n      \\\"per_task_r2\\\": {\\n        \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.03047889471054077,\\n        \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": 0.06373614072799683,\\n        \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": 0.02575838565826416,\\n        \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": 0.029093801975250244,\\n        \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": 0.06206303834915161,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": 0.05391174554824829,\\n        \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": 0.08139753341674805,\\n        \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": 0.04395931959152222,\\n        \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": 0.03915911912918091,\\n        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.05211281776428223\\n      },\\n      \\\"per_task_mean_r2\\\": 0.04816707968711853,\\n      \\\"gripper_accuracy\\\": 0.535675082327113,\\n      \\\"raw_mse\\\": 0.007606873754411936,\\n      \\\"val_loss\\\": 0.8413272500038147,\\n      \\\"epochs_trained\\\": 7,\\n      \\\"gripper_delta_accuracy\\\": 0.987413099158434\\n    }\\n  },\\n  \\\"best_layer\\\": 32,\\n  \\\"best_r2\\\": 0.04816707968711853,\\n  \\\"best_overall_r2\\\": 0.048460543155670166\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FdwWyKm3fQWEeE8wSzopXw`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "048d8b78-0d7a-461c-8f3c-85e86ea22846",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 69 · 2026-05-22T00:18:03.283Z_
+
+<details><summary>↩ Tool result · `toolu_01FdwWyKm3fQWEeE8wSzopXw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"task_idx\\\": 0,\\n    \\\"instruction\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 138,\\n    \\\"seq_len\\\": 278,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        278\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.08935546875,\\n      0.154296875,\\n      0.142578125,\\n      0.3125,\\n      0.3046875,\\n      0.220703125,\\n      0.333984375,\\n      0.173828125,\\n      0.039306640625,\\n      0.2890625,\\n      0.18359375,\\n      0.1357421875,\\n      0.275390625,\\n      0.298828125,\\n      0.06982421875,\\n      0.2197265625,\\n      0.287109375,\\n      0.1484375,\\n      0.197265625,\\n      0.1923828125,\\n      0.263671875,\\n      0.326171875,\\n      0.054443359375,\\n      0.32421875,\\n      0.1494140625,\\n      0.119140625,\\n      0.255859375,\\n      0.2041015625,\\n      0.27734375,\\n      0.1787109375,\\n      0.24609375,\\n      0.26953125\\n    ],\\n    \\\"per_head_attn_to_image\\\": [\\n      0.0574946403503418,\\n      0.3106822967529297,\\n      0.17505455017089844,\\n      0.21628761291503906,\\n      0.10892319679260254,\\n      0.28108787536621094,\\n      0.27071666717529297,\\n      0.25562381744384766,\\n      0.3794422149658203,\\n      0.25929808616638184,\\n      0.10125207901000977,\\n      0.2944908142089844,\\n      0.1888284683227539,\\n      0.29132843017578125,\\n      0.2331991195678711,\\n      0.16911745071411133,\\n      0.1858682632446289,\\n      0.30002617835998535,\\n      0.2845458984375,\\n      0.16628265380859375,\\n      0.18448543548583984,\\n      0.2150888442993164,\\n      0.1400303840637207,\\n      0.10273563861846924,\\n      0.4841022491455078,\\n      0.11098432540893555,\\n      0.17672348022460938,\\n      0.14189672470092773,\\n      0.21889591217041016,\\n      0.23192405700683594,\\n      0.21780776977539062,\\n      0.17108440399169922\\n    ],\\n    \\\"per_head_attn_to_text\\\": [\\n      0.8536376953125,\\n      0.53509521484375,\\n      0.68304443359375,\\n      0.471466064453125,\\n      0.5867233276367188,\\n      0.498046875,\\n      0.394805908203125,\\n      0.569671630859375,\\n      0.58123779296875,\\n      0.452606201171875,\\n      0.7152099609375,\\n      0.5701904296875,\\n      0.5364990234375,\\n      0.41016387939453125,\\n      0.69647216796875,\\n      0.6108169555664062,\\n      0.525848388671875,\\n      0.55120849609375,\\n      0.5181121826171875,\\n      0.6407318115234375,\\n      0.5516357421875,\\n      0.458770751953125,\\n      0.8058147430419922,\\n      0.57220458984375,\\n      0.366424560546875,\\n      0.769256591796875,\\n      0.56707763671875,\\n      0.653472900390625,\\n      0.503387451171875,\\n      0.589263916015625,\\n      0.5357666015625,\\n      0.5589599609375\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.210540771484375,\\n    \\\"mean_attn_to_image\\\": 0.21641592681407928,\\n    \\\"mean_attn_to_text\\\": 0.5729257464408875,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ]\\n  },\\n  {\\n    \\\"task_idx\\\": 2,\\n    \\\"instruction\\\": \\\"push the plate to the front of the stove\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 155,\\n    \\\"seq_len\\\": 280,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        280\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.0849609375,\\n      0.1357421875,\\n      0.1455078125,\\n      0.32421875,\\n      0.30078125,\\n      0.216796875,\\n      0.330078125,\\n      0.1806640625,\\n      0.03466796875,\\n      0.302734375,\\n      0.1806640625,\\n      0.126953125,\\n      0.287109375,\\n      0.328125,\\n      0.07470703125,\\n      0.2255859375,\\n      0.28125,\\n      0.1552734375,\\n      0.1875,\\n      0.203125,\\n      0.283203125,\\n      0.333984375,\\n      0.04833984375,\\n      0.31640625,\\n      0.162109375,\\n      0.1015625,\\n      0.267578125,\\n      0.1630\\n\\n... [截断: 输出过长，省略 7568 字符] ...\\n\\n      0.71026611328125,\\n      0.6070327758789062,\\n      0.53277587890625,\\n      0.5465087890625,\\n      0.5405426025390625,\\n      0.6549072265625,\\n      0.52325439453125,\\n      0.452239990234375,\\n      0.8254013061523438,\\n      0.590728759765625,\\n      0.3663177490234375,\\n      0.781494140625,\\n      0.55816650390625,\\n      0.6743011474609375,\\n      0.498626708984375,\\n      0.611358642578125,\\n      0.542572021484375,\\n      0.547607421875\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.210205078125,\\n    \\\"mean_attn_to_image\\\": 0.21201565861701965,\\n    \\\"mean_attn_to_text\\\": 0.5778706073760986,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      5,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  },\\n  {\\n    \\\"task_idx\\\": 8,\\n    \\\"instruction\\\": \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 93,\\n    \\\"seq_len\\\": 280,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        280\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.08837890625,\\n      0.1455078125,\\n      0.14453125,\\n      0.30859375,\\n      0.302734375,\\n      0.20703125,\\n      0.322265625,\\n      0.17578125,\\n      0.03466796875,\\n      0.298828125,\\n      0.1806640625,\\n      0.1279296875,\\n      0.275390625,\\n      0.314453125,\\n      0.06884765625,\\n      0.232421875,\\n      0.29296875,\\n      0.12451171875,\\n      0.1875,\\n      0.19921875,\\n      0.28515625,\\n      0.33203125,\\n      0.0478515625,\\n      0.30859375,\\n      0.1572265625,\\n      0.10986328125,\\n      0.26171875,\\n      0.1796875,\\n      0.287109375,\\n      0.1689453125,\\n      0.2451171875,\\n      0.27734375\\n    ],\\n    \\\"per_head_attn_to_image\\\": [\\n      0.05929446220397949,\\n      0.30611419677734375,\\n      0.1483454704284668,\\n      0.21630001068115234,\\n      0.11049890518188477,\\n      0.2911515235900879,\\n      0.2647285461425781,\\n      0.2503490447998047,\\n      0.3788928985595703,\\n      0.260606050491333,\\n      0.1023411750793457,\\n      0.2935218811035156,\\n      0.18978118896484375,\\n      0.2800569534301758,\\n      0.21475505828857422,\\n      0.14548063278198242,\\n      0.16974353790283203,\\n      0.32952654361724854,\\n      0.2675027847290039,\\n      0.15465545654296875,\\n      0.18018150329589844,\\n      0.21793556213378906,\\n      0.1211397647857666,\\n      0.11479818820953369,\\n      0.4703559875488281,\\n      0.10174965858459473,\\n      0.17563915252685547,\\n      0.13356733322143555,\\n      0.21100616455078125,\\n      0.2225656509399414,\\n      0.20604658126831055,\\n      0.1700124740600586\\n    ],\\n    \\\"per_head_attn_to_text\\\": [\\n      0.852569580078125,\\n      0.54840087890625,\\n      0.7081298828125,\\n      0.475555419921875,\\n      0.5866012573242188,\\n      0.50164794921875,\\n      0.413299560546875,\\n      0.573699951171875,\\n      0.5865478515625,\\n      0.4401397705078125,\\n      0.71649169921875,\\n      0.57843017578125,\\n      0.534912109375,\\n      0.4060821533203125,\\n      0.71636962890625,\\n      0.6230087280273438,\\n      0.538482666015625,\\n      0.5455322265625,\\n      0.5452117919921875,\\n      0.646087646484375,\\n      0.53546142578125,\\n      0.45086669921875,\\n      0.8309307098388672,\\n      0.576568603515625,\\n      0.3722991943359375,\\n      0.787872314453125,\\n      0.5629119873046875,\\n      0.686920166015625,\\n      0.503082275390625,\\n      0.60833740234375,\\n      0.54925537109375,\\n      0.55242919921875\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.2091522216796875,\\n    \\\"mean_attn_to_image\\\": 0.21120764315128326,\\n    \\\"mean_attn_to_text\\\": 0.5798167586326599,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      5,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "e6f07512-1816-4921-a62d-b62f736fee90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"task_idx\\\\\\\": 0,\\\\n    \\\\\\\"instruction\\\\\\\": \\\\\\\"open the middle drawer of the cabinet\\\\\\\",\\\\n    \\\\\\\"frame\\\\\\\": 25,\\\\n    \\\\\\\"demo_length\\\\\\\": 138,\\\\n    \\\\\\\"seq_len\\\\\\\": 278,\\\\n    \\\\\\\"n_heads\\\\\\\": 32,\\\\n    \\\\\\\"token_regions\\\\\\\": {\\\\n      \\\\\\\"bos\\\\\\\": [\\\\n        0,\\\\n        1\\\\n      ],\\\\n      \\\\\\\"image\\\\\\\": [\\\\n        1,\\\\n        257\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": [\\\\n        257,\\\\n        278\\\\n      ]\\\\n    },\\\\n    \\\\\\\"per_head_attn_to_bos\\\\\\\": [\\\\n      0.08935546875,\\\\n      0.154296875,\\\\n      0.142578125,\\\\n      0.3125,\\\\n      0.3046875,\\\\n      0.220703125,\\\\n      0.333984375,\\\\n      0.173828125,\\\\n      0.039306640625,\\\\n      0.2890625,\\\\n      0.18359375,\\\\n      0.1357421875,\\\\n      0.275390625,\\\\n      0.298828125,\\\\n      0.06982421875,\\\\n      0.2197265625,\\\\n      0.287109375,\\\\n      0.1484375,\\\\n      0.197265625,\\\\n      0.1923828125,\\\\n      0.263671875,\\\\n      0.326171875,\\\\n      0.054443359375,\\\\n      0.32421875,\\\\n      0.1494140625,\\\\n      0.119140625,\\\\n      0.255859375,\\\\n      0.2041015625,\\\\n      0.27734375,\\\\n      0.1787109375,\\\\n      0.24609375,\\\\n      0.26953125\\\\n    ],\\\\n    \\\\\\\"per_head_attn_to_image\\\\\\\": [\\\\n      0.0574946403503418,\\\\n      0.3106822967529297,\\\\n      0.17505455017089844,\\\\n      0.21628761291503906,\\\\n      0.10892319679260254,\\\\n      0.28108787536621094,\\\\n      0.27071666717529297,\\\\n      0.25562381744384766,\\\\n      0.3794422149658203,\\\\n      0.25929808616638184,\\\\n      0.10125207901000977,\\\\n      0.2944908142089844,\\\\n      0.1888284683227539,\\\\n      0.29132843017578125,\\\\n      0.2331991195678711,\\\\n      0.16911745071411133,\\\\n      0.1858682632446289,\\\\n      0.30002617835998535,\\\\n      0.2845458984375,\\\\n      0.16628265380859375,\\\\n      0.18448543548583984,\\\\n      0.2150888442993164,\\\\n      0.1400303840637207,\\\\n      0.10273563861846924,\\\\n      0.4841022491455078,\\\\n      0.11098432540893555,\\\\n      0.17672348022460938,\\\\n      0.14189672470092773,\\\\n      0.21889591217041016,\\\\n      0.23192405700683594,\\\\n      0.21780776977539062,\\\\n      0.17108440399169922\\\\n    ],\\\\n    \\\\\\\"per_head_attn_to_text\\\\\\\": [\\\\n      0.8536376953125,\\\\n      0.53509521484375,\\\\n      0.68304443359375,\\\\n      0.471466064453125,\\\\n      0.5867233276367188,\\\\n      0.498046875,\\\\n      0.394805908203125,\\\\n      0.569671630859375,\\\\n      0.58123779296875,\\\\n      0.452606201171875,\\\\n      0.7152099609375,\\\\n      0.5701904296875,\\\\n      0.5364990234375,\\\\n      0.41016387939453125,\\\\n      0.69647216796875,\\\\n      0.6108169555664062,\\\\n      0.525848388671875,\\\\n      0.55120849609375,\\\\n      0.5181121826171875,\\\\n      0.6407318115234375,\\\\n      0.5516357421875,\\\\n      0.458770751953125,\\\\n      0.8058147430419922,\\\\n      0.57220458984375,\\\\n      0.366424560546875,\\\\n      0.769256591796875,\\\\n      0.56707763671875,\\\\n      0.653472900390625,\\\\n      0.503387451171875,\\\\n      0.589263916015625,\\\\n      0.5357666015625,\\\\n      0.5589599609375\\\\n    ],\\\\n    \\\\\\\"mean_attn_to_bos\\\\\\\": 0.210540771484375,\\\\n    \\\\\\\"mean_attn_to_image\\\\\\\": 0.21641592681407928,\\\\n    \\\\\\\"mean_attn_to_text\\\\\\\": 0.5729257464408875,\\\\n    \\\\\\\"instruction_attending_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"task_idx\\\\\\\": 2,\\\\n    \\\\\\\"instruction\\\\\\\": \\\\\\\"push the plate to the front of the stove\\\\\\\",\\\\n    \\\\\\\"frame\\\\\\\": 25,\\\\n    \\\\\\\"demo_length\\\\\\\": 155,\\\\n    \\\\\\\"seq_len\\\\\\\": 280,\\\\n    \\\\\\\"n_heads\\\\\\\": 32,\\\\n    \\\\\\\"token_regions\\\\\\\": {\\\\n      \\\\\\\"bos\\\\\\\": [\\\\n        0,\\\\n        1\\\\n      ],\\\\n      \\\\\\\"image\\\\\\\": [\\\\n        1,\\\\n        257\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": [\\\\n        257,\\\\n        280\\\\n      ]\\\\n    },\\\\n    \\\\\\\"per_head_attn_to_bos\\\\\\\": [\\\\n      0.0849609375,\\\\n      0.1357421875,\\\\n      0.1455078125,\\\\n      0.32421875,\\\\n      0.30078125,\\\\n      0.216796875,\\\\n      0.330078125,\\\\n      0.1806640625,\\\\n      0.03466796875,\\\\n      0.302734375,\\\\n      0.1806640625,\\\\n      0.126953125,\\\\n      0.287109375,\\\\n      0.328125,\\\\n      0.07470703125,\\\\n      0.2255859375,\\\\n      0.28125,\\\\n      0.1552734375,\\\\n      0.1875,\\\\n      0.203125,\\\\n      0.283203125,\\\\n      0.333984375,\\\\n      0.04833984375,\\\\n      0.31640625,\\\\n      0.162109375,\\\\n      0.1015625,\\\\n      0.267578125,\\\\n      0.1630\\\\n\\\\n... [截断: 输出过长，省略 7568 字符] ...\\\\n\\\\n      0.71026611328125,\\\\n      0.6070327758789062,\\\\n      0.53277587890625,\\\\n      0.5465087890625,\\\\n      0.5405426025390625,\\\\n      0.6549072265625,\\\\n      0.52325439453125,\\\\n      0.452239990234375,\\\\n      0.8254013061523438,\\\\n      0.590728759765625,\\\\n      0.3663177490234375,\\\\n      0.781494140625,\\\\n      0.55816650390625,\\\\n      0.6743011474609375,\\\\n      0.498626708984375,\\\\n      0.611358642578125,\\\\n      0.542572021484375,\\\\n      0.547607421875\\\\n    ],\\\\n    \\\\\\\"mean_attn_to_bos\\\\\\\": 0.210205078125,\\\\n    \\\\\\\"mean_attn_to_image\\\\\\\": 0.21201565861701965,\\\\n    \\\\\\\"mean_attn_to_text\\\\\\\": 0.5778706073760986,\\\\n    \\\\\\\"instruction_attending_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      5,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"task_idx\\\\\\\": 8,\\\\n    \\\\\\\"instruction\\\\\\\": \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\",\\\\n    \\\\\\\"frame\\\\\\\": 25,\\\\n    \\\\\\\"demo_length\\\\\\\": 93,\\\\n    \\\\\\\"seq_len\\\\\\\": 280,\\\\n    \\\\\\\"n_heads\\\\\\\": 32,\\\\n    \\\\\\\"token_regions\\\\\\\": {\\\\n      \\\\\\\"bos\\\\\\\": [\\\\n        0,\\\\n        1\\\\n      ],\\\\n      \\\\\\\"image\\\\\\\": [\\\\n        1,\\\\n        257\\\\n      ],\\\\n      \\\\\\\"text\\\\\\\": [\\\\n        257,\\\\n        280\\\\n      ]\\\\n    },\\\\n    \\\\\\\"per_head_attn_to_bos\\\\\\\": [\\\\n      0.08837890625,\\\\n      0.1455078125,\\\\n      0.14453125,\\\\n      0.30859375,\\\\n      0.302734375,\\\\n      0.20703125,\\\\n      0.322265625,\\\\n      0.17578125,\\\\n      0.03466796875,\\\\n      0.298828125,\\\\n      0.1806640625,\\\\n      0.1279296875,\\\\n      0.275390625,\\\\n      0.314453125,\\\\n      0.06884765625,\\\\n      0.232421875,\\\\n      0.29296875,\\\\n      0.12451171875,\\\\n      0.1875,\\\\n      0.19921875,\\\\n      0.28515625,\\\\n      0.33203125,\\\\n      0.0478515625,\\\\n      0.30859375,\\\\n      0.1572265625,\\\\n      0.10986328125,\\\\n      0.26171875,\\\\n      0.1796875,\\\\n      0.287109375,\\\\n      0.1689453125,\\\\n      0.2451171875,\\\\n      0.27734375\\\\n    ],\\\\n    \\\\\\\"per_head_attn_to_image\\\\\\\": [\\\\n      0.05929446220397949,\\\\n      0.30611419677734375,\\\\n      0.1483454704284668,\\\\n      0.21630001068115234,\\\\n      0.11049890518188477,\\\\n      0.2911515235900879,\\\\n      0.2647285461425781,\\\\n      0.2503490447998047,\\\\n      0.3788928985595703,\\\\n      0.260606050491333,\\\\n      0.1023411750793457,\\\\n      0.2935218811035156,\\\\n      0.18978118896484375,\\\\n      0.2800569534301758,\\\\n      0.21475505828857422,\\\\n      0.14548063278198242,\\\\n      0.16974353790283203,\\\\n      0.32952654361724854,\\\\n      0.2675027847290039,\\\\n      0.15465545654296875,\\\\n      0.18018150329589844,\\\\n      0.21793556213378906,\\\\n      0.1211397647857666,\\\\n      0.11479818820953369,\\\\n      0.4703559875488281,\\\\n      0.10174965858459473,\\\\n      0.17563915252685547,\\\\n      0.13356733322143555,\\\\n      0.21100616455078125,\\\\n      0.2225656509399414,\\\\n      0.20604658126831055,\\\\n      0.1700124740600586\\\\n    ],\\\\n    \\\\\\\"per_head_attn_to_text\\\\\\\": [\\\\n      0.852569580078125,\\\\n      0.54840087890625,\\\\n      0.7081298828125,\\\\n      0.475555419921875,\\\\n      0.5866012573242188,\\\\n      0.50164794921875,\\\\n      0.413299560546875,\\\\n      0.573699951171875,\\\\n      0.5865478515625,\\\\n      0.4401397705078125,\\\\n      0.71649169921875,\\\\n      0.57843017578125,\\\\n      0.534912109375,\\\\n      0.4060821533203125,\\\\n      0.71636962890625,\\\\n      0.6230087280273438,\\\\n      0.538482666015625,\\\\n      0.5455322265625,\\\\n      0.5452117919921875,\\\\n      0.646087646484375,\\\\n      0.53546142578125,\\\\n      0.45086669921875,\\\\n      0.8309307098388672,\\\\n      0.576568603515625,\\\\n      0.3722991943359375,\\\\n      0.787872314453125,\\\\n      0.5629119873046875,\\\\n      0.686920166015625,\\\\n      0.503082275390625,\\\\n      0.60833740234375,\\\\n      0.54925537109375,\\\\n      0.55242919921875\\\\n    ],\\\\n    \\\\\\\"mean_attn_to_bos\\\\\\\": 0.2091522216796875,\\\\n    \\\\\\\"mean_attn_to_image\\\\\\\": 0.21120764315128326,\\\\n    \\\\\\\"mean_attn_to_text\\\\\\\": 0.5798167586326599,\\\\n    \\\\\\\"instruction_attending_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      4,\\\\n      5,\\\\n      7,\\\\n      8,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      22,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ]\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"task_idx\\\": 0,\\n    \\\"instruction\\\": \\\"open the middle drawer of the cabinet\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 138,\\n    \\\"seq_len\\\": 278,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        278\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.08935546875,\\n      0.154296875,\\n      0.142578125,\\n      0.3125,\\n      0.3046875,\\n      0.220703125,\\n      0.333984375,\\n      0.173828125,\\n      0.039306640625,\\n      0.2890625,\\n      0.18359375,\\n      0.1357421875,\\n      0.275390625,\\n      0.298828125,\\n      0.06982421875,\\n      0.2197265625,\\n      0.287109375,\\n      0.1484375,\\n      0.197265625,\\n      0.1923828125,\\n      0.263671875,\\n      0.326171875,\\n      0.054443359375,\\n      0.32421875,\\n      0.1494140625,\\n      0.119140625,\\n      0.255859375,\\n      0.2041015625,\\n      0.27734375,\\n      0.1787109375,\\n      0.24609375,\\n      0.26953125\\n    ],\\n    \\\"per_head_attn_to_image\\\": [\\n      0.0574946403503418,\\n      0.3106822967529297,\\n      0.17505455017089844,\\n      0.21628761291503906,\\n      0.10892319679260254,\\n      0.28108787536621094,\\n      0.27071666717529297,\\n      0.25562381744384766,\\n      0.3794422149658203,\\n      0.25929808616638184,\\n      0.10125207901000977,\\n      0.2944908142089844,\\n      0.1888284683227539,\\n      0.29132843017578125,\\n      0.2331991195678711,\\n      0.16911745071411133,\\n      0.1858682632446289,\\n      0.30002617835998535,\\n      0.2845458984375,\\n      0.16628265380859375,\\n      0.18448543548583984,\\n      0.2150888442993164,\\n      0.1400303840637207,\\n      0.10273563861846924,\\n      0.4841022491455078,\\n      0.11098432540893555,\\n      0.17672348022460938,\\n      0.14189672470092773,\\n      0.21889591217041016,\\n      0.23192405700683594,\\n      0.21780776977539062,\\n      0.17108440399169922\\n    ],\\n    \\\"per_head_attn_to_text\\\": [\\n      0.8536376953125,\\n      0.53509521484375,\\n      0.68304443359375,\\n      0.471466064453125,\\n      0.5867233276367188,\\n      0.498046875,\\n      0.394805908203125,\\n      0.569671630859375,\\n      0.58123779296875,\\n      0.452606201171875,\\n      0.7152099609375,\\n      0.5701904296875,\\n      0.5364990234375,\\n      0.41016387939453125,\\n      0.69647216796875,\\n      0.6108169555664062,\\n      0.525848388671875,\\n      0.55120849609375,\\n      0.5181121826171875,\\n      0.6407318115234375,\\n      0.5516357421875,\\n      0.458770751953125,\\n      0.8058147430419922,\\n      0.57220458984375,\\n      0.366424560546875,\\n      0.769256591796875,\\n      0.56707763671875,\\n      0.653472900390625,\\n      0.503387451171875,\\n      0.589263916015625,\\n      0.5357666015625,\\n      0.5589599609375\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.210540771484375,\\n    \\\"mean_attn_to_image\\\": 0.21641592681407928,\\n    \\\"mean_attn_to_text\\\": 0.5729257464408875,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ]\\n  },\\n  {\\n    \\\"task_idx\\\": 2,\\n    \\\"instruction\\\": \\\"push the plate to the front of the stove\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 155,\\n    \\\"seq_len\\\": 280,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        280\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.0849609375,\\n      0.1357421875,\\n      0.1455078125,\\n      0.32421875,\\n      0.30078125,\\n      0.216796875,\\n      0.330078125,\\n      0.1806640625,\\n      0.03466796875,\\n      0.302734375,\\n      0.1806640625,\\n      0.126953125,\\n      0.287109375,\\n      0.328125,\\n      0.07470703125,\\n      0.2255859375,\\n      0.28125,\\n      0.1552734375,\\n      0.1875,\\n      0.203125,\\n      0.283203125,\\n      0.333984375,\\n      0.04833984375,\\n      0.31640625,\\n      0.162109375,\\n      0.1015625,\\n      0.267578125,\\n      0.1630\\n\\n... [截断: 输出过长，省略 7568 字符] ...\\n\\n      0.71026611328125,\\n      0.6070327758789062,\\n      0.53277587890625,\\n      0.5465087890625,\\n      0.5405426025390625,\\n      0.6549072265625,\\n      0.52325439453125,\\n      0.452239990234375,\\n      0.8254013061523438,\\n      0.590728759765625,\\n      0.3663177490234375,\\n      0.781494140625,\\n      0.55816650390625,\\n      0.6743011474609375,\\n      0.498626708984375,\\n      0.611358642578125,\\n      0.542572021484375,\\n      0.547607421875\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.210205078125,\\n    \\\"mean_attn_to_image\\\": 0.21201565861701965,\\n    \\\"mean_attn_to_text\\\": 0.5778706073760986,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      5,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      29,\\n      30,\\n      31\\n    ]\\n  },\\n  {\\n    \\\"task_idx\\\": 8,\\n    \\\"instruction\\\": \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"frame\\\": 25,\\n    \\\"demo_length\\\": 93,\\n    \\\"seq_len\\\": 280,\\n    \\\"n_heads\\\": 32,\\n    \\\"token_regions\\\": {\\n      \\\"bos\\\": [\\n        0,\\n        1\\n      ],\\n      \\\"image\\\": [\\n        1,\\n        257\\n      ],\\n      \\\"text\\\": [\\n        257,\\n        280\\n      ]\\n    },\\n    \\\"per_head_attn_to_bos\\\": [\\n      0.08837890625,\\n      0.1455078125,\\n      0.14453125,\\n      0.30859375,\\n      0.302734375,\\n      0.20703125,\\n      0.322265625,\\n      0.17578125,\\n      0.03466796875,\\n      0.298828125,\\n      0.1806640625,\\n      0.1279296875,\\n      0.275390625,\\n      0.314453125,\\n      0.06884765625,\\n      0.232421875,\\n      0.29296875,\\n      0.12451171875,\\n      0.1875,\\n      0.19921875,\\n      0.28515625,\\n      0.33203125,\\n      0.0478515625,\\n      0.30859375,\\n      0.1572265625,\\n      0.10986328125,\\n      0.26171875,\\n      0.1796875,\\n      0.287109375,\\n      0.1689453125,\\n      0.2451171875,\\n      0.27734375\\n    ],\\n    \\\"per_head_attn_to_image\\\": [\\n      0.05929446220397949,\\n      0.30611419677734375,\\n      0.1483454704284668,\\n      0.21630001068115234,\\n      0.11049890518188477,\\n      0.2911515235900879,\\n      0.2647285461425781,\\n      0.2503490447998047,\\n      0.3788928985595703,\\n      0.260606050491333,\\n      0.1023411750793457,\\n      0.2935218811035156,\\n      0.18978118896484375,\\n      0.2800569534301758,\\n      0.21475505828857422,\\n      0.14548063278198242,\\n      0.16974353790283203,\\n      0.32952654361724854,\\n      0.2675027847290039,\\n      0.15465545654296875,\\n      0.18018150329589844,\\n      0.21793556213378906,\\n      0.1211397647857666,\\n      0.11479818820953369,\\n      0.4703559875488281,\\n      0.10174965858459473,\\n      0.17563915252685547,\\n      0.13356733322143555,\\n      0.21100616455078125,\\n      0.2225656509399414,\\n      0.20604658126831055,\\n      0.1700124740600586\\n    ],\\n    \\\"per_head_attn_to_text\\\": [\\n      0.852569580078125,\\n      0.54840087890625,\\n      0.7081298828125,\\n      0.475555419921875,\\n      0.5866012573242188,\\n      0.50164794921875,\\n      0.413299560546875,\\n      0.573699951171875,\\n      0.5865478515625,\\n      0.4401397705078125,\\n      0.71649169921875,\\n      0.57843017578125,\\n      0.534912109375,\\n      0.4060821533203125,\\n      0.71636962890625,\\n      0.6230087280273438,\\n      0.538482666015625,\\n      0.5455322265625,\\n      0.5452117919921875,\\n      0.646087646484375,\\n      0.53546142578125,\\n      0.45086669921875,\\n      0.8309307098388672,\\n      0.576568603515625,\\n      0.3722991943359375,\\n      0.787872314453125,\\n      0.5629119873046875,\\n      0.686920166015625,\\n      0.503082275390625,\\n      0.60833740234375,\\n      0.54925537109375,\\n      0.55242919921875\\n    ],\\n    \\\"mean_attn_to_bos\\\": 0.2091522216796875,\\n    \\\"mean_attn_to_image\\\": 0.21120764315128326,\\n    \\\"mean_attn_to_text\\\": 0.5798167586326599,\\n    \\\"instruction_attending_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      4,\\n      5,\\n      7,\\n      8,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      22,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ]\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PugNGJMs172CbffFDrKYyM`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c34ec70d-3121-4bc8-ac85-a51e7a3b6e83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 71 · 2026-05-22T00:18:03.812Z_
+
+<details><summary>↩ Tool result · `toolu_01PugNGJMs172CbffFDrKYyM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"num_heads\\\": 32,\\n  \\\"num_frames\\\": 5,\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"mean_image_attn\\\": 0.7581395506858826,\\n      \\\"mean_instr_attn\\\": 0.24161453545093536,\\n      \\\"std_image_attn\\\": 0.04770994558930397,\\n      \\\"std_instr_attn\\\": 0.047728683799505234\\n    },\\n    \\\"head_1\\\": {\\n      \\\"mean_image_attn\\\": 0.872033953666687,\\n      \\\"mean_instr_attn\\\": 0.12787894904613495,\\n      \\\"std_image_attn\\\": 0.026971139013767242,\\n      \\\"std_instr_attn\\\": 0.027029933407902718\\n    },\\n    \\\"head_2\\\": {\\n      \\\"mean_image_attn\\\": 0.9607089757919312,\\n      \\\"mean_instr_attn\\\": 0.037618495523929596,\\n      \\\"std_image_attn\\\": 0.02677215076982975,\\n      \\\"std_instr_attn\\\": 0.027551637962460518\\n    },\\n    \\\"head_3\\\": {\\n      \\\"mean_image_attn\\\": 0.9051351547241211,\\n      \\\"mean_instr_attn\\\": 0.09396610409021378,\\n      \\\"std_image_attn\\\": 0.052767712622880936,\\n      \\\"std_instr_attn\\\": 0.05318431928753853\\n    },\\n    \\\"head_4\\\": {\\n      \\\"mean_image_attn\\\": 0.953342080116272,\\n      \\\"mean_instr_attn\\\": 0.04583416134119034,\\n      \\\"std_image_attn\\\": 0.025168292224407196,\\n      \\\"std_instr_attn\\\": 0.02510984055697918\\n    },\\n    \\\"head_5\\\": {\\n      \\\"mean_image_attn\\\": 0.9356164932250977,\\n      \\\"mean_instr_attn\\\": 0.06292605400085449,\\n      \\\"std_image_attn\\\": 0.036602310836315155,\\n      \\\"std_instr_attn\\\": 0.037286076694726944\\n    },\\n    \\\"head_6\\\": {\\n      \\\"mean_image_attn\\\": 0.6762827038764954,\\n      \\\"mean_instr_attn\\\": 0.31746578216552734,\\n      \\\"std_image_attn\\\": 0.10799088329076767,\\n      \\\"std_instr_attn\\\": 0.10886147618293762\\n    },\\n    \\\"head_7\\\": {\\n      \\\"mean_image_attn\\\": 0.9219636917114258,\\n      \\\"mean_instr_attn\\\": 0.07706127315759659,\\n      \\\"std_image_attn\\\": 0.021352991461753845,\\n      \\\"std_instr_attn\\\": 0.020949775353074074\\n    },\\n    \\\"head_8\\\": {\\n      \\\"mean_image_attn\\\": 0.9235334396362305,\\n      \\\"mean_instr_attn\\\": 0.07596445083618164,\\n      \\\"std_image_attn\\\": 0.031261686235666275,\\n      \\\"std_instr_attn\\\": 0.03140360489487648\\n    },\\n    \\\"head_9\\\": {\\n      \\\"mean_image_attn\\\": 0.8422257304191589,\\n      \\\"mean_instr_attn\\\": 0.15708771347999573,\\n      \\\"std_image_attn\\\": 0.005838263779878616,\\n      \\\"std_instr_attn\\\": 0.005804295185953379\\n    },\\n    \\\"head_10\\\": {\\n      \\\"mean_image_attn\\\": 0.9448118209838867,\\n      \\\"mean_instr_attn\\\": 0.05471992492675781,\\n      \\\"std_image_attn\\\": 0.02034611627459526,\\n      \\\"std_instr_attn\\\": 0.02047313004732132\\n    },\\n    \\\"head_11\\\": {\\n      \\\"mean_image_attn\\\": 0.9155687093734741,\\n      \\\"mean_instr_attn\\\": 0.08290300518274307,\\n      \\\"std_image_attn\\\": 0.02798912674188614,\\n      \\\"std_instr_attn\\\": 0.027226880192756653\\n    },\\n    \\\"head_12\\\": {\\n      \\\"mean_image_attn\\\": 0.8536079525947571,\\n      \\\"mean_instr_attn\\\": 0.14625510573387146,\\n      \\\"std_image_attn\\\": 0.0250672809779644,\\n      \\\"std_instr_attn\\\": 0.02502475492656231\\n    },\\n    \\\"head_13\\\": {\\n      \\\"mean_image_attn\\\": 0.948947548866272,\\n      \\\"mean_instr_attn\\\": 0.05091552808880806,\\n      \\\"std_image_attn\\\": 0.03806304559111595,\\n      \\\"std_instr_attn\\\": 0.03810940310359001\\n    },\\n    \\\"head_14\\\": {\\n      \\\"mean_image_attn\\\": 0.815268874168396,\\n      \\\"mean_instr_attn\\\": 0.1843077689409256,\\n      \\\"std_image_attn\\\": 0.07170537859201431,\\n      \\\"std_instr_attn\\\": 0.07163386791944504\\n    },\\n    \\\"head_15\\\": {\\n      \\\"mean_image_attn\\\": 0.8892623782157898,\\n      \\\"mean_instr_attn\\\": 0.10991553962230682,\\n      \\\"std_image_attn\\\": 0.0736190602183342,\\n      \\\"std_instr_attn\\\": 0.07329188287258148\\n    },\\n    \\\"head_16\\\": {\\n      \\\"mean_image_attn\\\": 0.5564411282539368,\\n      \\\"mean_instr_attn\\\": 0.44306182861328125,\\n      \\\"std_image_attn\\\": 0.08056257665157318,\\n      \\\"std_instr_attn\\\": 0.08063708245754242\\n    },\\n    \\\"head_17\\\": {\\n      \\\"mean_image_attn\\\": 0.921096682548523,\\n      \\\"mean_instr_attn\\\": 0.0789283737540245,\\n      \\\"std_image_attn\\\": 0.03128621354699135,\\n      \\\"std_instr_attn\\\": 0.031355518847703934\\n    },\\n    \\\"head_18\\\": {\\n      \\\"mean_image_attn\\\": 0.9402963519096375,\\n      \\\"mean_instr_attn\\\": 0.05970115587115288,\\n      \\\"std_image_attn\\\": 0.021043961867690086,\\n      \\\"std_instr_attn\\\": 0.021207524463534355\\n    },\\n    \\\"head_19\\\": {\\n      \\\"mean_image_attn\\\": 0.9550886154174805,\\n      \\\"mean_instr_attn\\\": 0.04481563717126846,\\n      \\\"std_image_attn\\\": 0.01365386787801981,\\n      \\\"std_instr_attn\\\": 0.013675612397491932\\n    },\\n    \\\"head_20\\\": {\\n      \\\"mean_image_attn\\\": 0.9104686975479126,\\n      \\\"mean_instr_attn\\\": 0.08788414299488068,\\n      \\\"std_image_attn\\\": 0.032393354922533035,\\n      \\\"std_instr_attn\\\": 0.03175962343811989\\n    },\\n    \\\"head_21\\\": {\\n      \\\"mean_image_attn\\\": 0.9179593920707703,\\n      \\\"mean_instr_attn\\\": 0.0540616512298584,\\n      \\\"std_image_attn\\\": 0.023405442014336586,\\n      \\\"std_instr_attn\\\": 0.01857481338083744\\n    },\\n    \\\"head_22\\\": {\\n      \\\"mean_image_attn\\\": 0.9019235372543335,\\n      \\\"mean_instr_attn\\\": 0.0745229721069336,\\n      \\\"std_image_attn\\\": 0.02813410572707653,\\n      \\\"std_instr_attn\\\": 0.028384987264871597\\n    },\\n    \\\"head_23\\\": {\\n      \\\"mean_image_attn\\\": 0.9174043536186218,\\n      \\\"mean_instr_attn\\\": 0.08040504157543182,\\n      \\\"std_image_attn\\\": 0.048511166125535965,\\n      \\\"std_instr_attn\\\": 0.04762323200702667\\n    },\\n    \\\"head_24\\\": {\\n      \\\"mean_image_attn\\\": 0.7596372961997986,\\n      \\\"mean_instr_attn\\\": 0.23905257880687714,\\n      \\\"std_image_attn\\\": 0.06087981536984444,\\n      \\\"std_instr_attn\\\": 0.06120273843407631\\n    },\\n    \\\"head_25\\\": {\\n      \\\"mean_image_attn\\\": 0.807194709777832,\\n      \\\"mean_instr_attn\\\": 0.18975791335105896,\\n      \\\"std_image_attn\\\": 0.05851330980658531,\\n      \\\"std_instr_attn\\\": 0.05891738086938858\\n    },\\n    \\\"head_26\\\": {\\n      \\\"mean_image_attn\\\": 0.916604220867157,\\n      \\\"mean_instr_attn\\\": 0.079145148396492,\\n      \\\"std_image_attn\\\": 0.030559740960597992,\\n      \\\"std_instr_attn\\\": 0.03284940496087074\\n    },\\n    \\\"head_27\\\": {\\n      \\\"mean_image_attn\\\": 0.9202300906181335,\\n      \\\"mean_instr_attn\\\": 0.07721290737390518,\\n      \\\"std_image_attn\\\": 0.0360790491104126,\\n      \\\"std_instr_attn\\\": 0.03674441576004028\\n    },\\n    \\\"head_28\\\": {\\n      \\\"mean_image_attn\\\": 0.9866241216659546,\\n      \\\"mean_instr_attn\\\": 0.011515850201249123,\\n      \\\"std_image_attn\\\": 0.006976252421736717,\\n      \\\"std_instr_attn\\\": 0.007102260831743479\\n    },\\n    \\\"head_29\\\": {\\n      \\\"mean_image_attn\\\": 0.8952945470809937,\\n      \\\"mean_instr_attn\\\": 0.10416159778833389,\\n      \\\"std_image_attn\\\": 0.07395515590906143,\\n      \\\"std_instr_attn\\\": 0.07423131912946701\\n    },\\n    \\\"head_30\\\": {\\n      \\\"mean_image_attn\\\": 0.8860788345336914,\\n      \\\"mean_instr_attn\\\": 0.11366014182567596,\\n      \\\"std_image_attn\\\": 0.027338935062289238,\\n      \\\"std_instr_attn\\\": 0.027599060907959938\\n    },\\n    \\\"head_31\\\": {\\n      \\\"mean_image_attn\\\": 0.7948678731918335,\\n      \\\"mean_instr_attn\\\": 0.1384410858154297,\\n      \\\"std_image_attn\\\": 0.0626702755689621,\\n      \\\"std_instr_attn\\\": 0.0535007044672966\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"mean_image_attn\\\": 0.8782394528388977,\\n    \\\"mean_instr_attn\\\": 0.11696132272481918,\\n    \\\"std_image_attn\\\": 0.10024747997522354,\\n    \\\"std_instr_attn\\\": 0.09946981072425842\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d717e5ec-0d2a-409f-9894-cd6cb9bb8e8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"untrained\\\\\\\",\\\\n  \\\\\\\"num_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_frames\\\\\\\": 5,\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.7581395506858826,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.24161453545093536,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.04770994558930397,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.047728683799505234\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.872033953666687,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.12787894904613495,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.026971139013767242,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.027029933407902718\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9607089757919312,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.037618495523929596,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.02677215076982975,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.027551637962460518\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9051351547241211,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.09396610409021378,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.052767712622880936,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.05318431928753853\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.953342080116272,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.04583416134119034,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.025168292224407196,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.02510984055697918\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9356164932250977,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.06292605400085449,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.036602310836315155,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.037286076694726944\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.6762827038764954,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.31746578216552734,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.10799088329076767,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.10886147618293762\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9219636917114258,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.07706127315759659,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.021352991461753845,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.020949775353074074\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9235334396362305,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.07596445083618164,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.031261686235666275,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.03140360489487648\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.8422257304191589,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.15708771347999573,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.005838263779878616,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.005804295185953379\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9448118209838867,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.05471992492675781,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.02034611627459526,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.02047313004732132\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9155687093734741,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.08290300518274307,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.02798912674188614,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.027226880192756653\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.8536079525947571,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.14625510573387146,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.0250672809779644,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.02502475492656231\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.948947548866272,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.05091552808880806,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.03806304559111595,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.03810940310359001\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.815268874168396,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.1843077689409256,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.07170537859201431,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.07163386791944504\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.8892623782157898,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.10991553962230682,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.0736190602183342,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.07329188287258148\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.5564411282539368,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.44306182861328125,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.08056257665157318,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.08063708245754242\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.921096682548523,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.0789283737540245,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.03128621354699135,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.031355518847703934\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9402963519096375,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.05970115587115288,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.021043961867690086,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.021207524463534355\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9550886154174805,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.04481563717126846,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.01365386787801981,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.013675612397491932\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9104686975479126,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.08788414299488068,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.032393354922533035,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.03175962343811989\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9179593920707703,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.0540616512298584,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.023405442014336586,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.01857481338083744\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9019235372543335,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.0745229721069336,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.02813410572707653,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.028384987264871597\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9174043536186218,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.08040504157543182,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.048511166125535965,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.04762323200702667\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.7596372961997986,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.23905257880687714,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.06087981536984444,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.06120273843407631\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.807194709777832,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.18975791335105896,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.05851330980658531,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.05891738086938858\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.916604220867157,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.079145148396492,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.030559740960597992,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.03284940496087074\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9202300906181335,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.07721290737390518,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.0360790491104126,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.03674441576004028\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.9866241216659546,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.011515850201249123,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.006976252421736717,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.007102260831743479\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.8952945470809937,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.10416159778833389,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.07395515590906143,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.07423131912946701\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.8860788345336914,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.11366014182567596,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.027338935062289238,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.027599060907959938\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.7948678731918335,\\\\n      \\\\\\\"mean_instr_attn\\\\\\\": 0.1384410858154297,\\\\n      \\\\\\\"std_image_attn\\\\\\\": 0.0626702755689621,\\\\n      \\\\\\\"std_instr_attn\\\\\\\": 0.0535007044672966\\\\n    }\\\\n  },\\\\n  \\\\\\\"aggregate\\\\\\\": {\\\\n    \\\\\\\"mean_image_attn\\\\\\\": 0.8782394528388977,\\\\n    \\\\\\\"mean_instr_attn\\\\\\\": 0.11696132272481918,\\\\n    \\\\\\\"std_image_attn\\\\\\\": 0.10024747997522354,\\\\n    \\\\\\\"std_instr_attn\\\\\\\": 0.09946981072425842\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"untrained\\\",\\n  \\\"num_heads\\\": 32,\\n  \\\"num_frames\\\": 5,\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"mean_image_attn\\\": 0.7581395506858826,\\n      \\\"mean_instr_attn\\\": 0.24161453545093536,\\n      \\\"std_image_attn\\\": 0.04770994558930397,\\n      \\\"std_instr_attn\\\": 0.047728683799505234\\n    },\\n    \\\"head_1\\\": {\\n      \\\"mean_image_attn\\\": 0.872033953666687,\\n      \\\"mean_instr_attn\\\": 0.12787894904613495,\\n      \\\"std_image_attn\\\": 0.026971139013767242,\\n      \\\"std_instr_attn\\\": 0.027029933407902718\\n    },\\n    \\\"head_2\\\": {\\n      \\\"mean_image_attn\\\": 0.9607089757919312,\\n      \\\"mean_instr_attn\\\": 0.037618495523929596,\\n      \\\"std_image_attn\\\": 0.02677215076982975,\\n      \\\"std_instr_attn\\\": 0.027551637962460518\\n    },\\n    \\\"head_3\\\": {\\n      \\\"mean_image_attn\\\": 0.9051351547241211,\\n      \\\"mean_instr_attn\\\": 0.09396610409021378,\\n      \\\"std_image_attn\\\": 0.052767712622880936,\\n      \\\"std_instr_attn\\\": 0.05318431928753853\\n    },\\n    \\\"head_4\\\": {\\n      \\\"mean_image_attn\\\": 0.953342080116272,\\n      \\\"mean_instr_attn\\\": 0.04583416134119034,\\n      \\\"std_image_attn\\\": 0.025168292224407196,\\n      \\\"std_instr_attn\\\": 0.02510984055697918\\n    },\\n    \\\"head_5\\\": {\\n      \\\"mean_image_attn\\\": 0.9356164932250977,\\n      \\\"mean_instr_attn\\\": 0.06292605400085449,\\n      \\\"std_image_attn\\\": 0.036602310836315155,\\n      \\\"std_instr_attn\\\": 0.037286076694726944\\n    },\\n    \\\"head_6\\\": {\\n      \\\"mean_image_attn\\\": 0.6762827038764954,\\n      \\\"mean_instr_attn\\\": 0.31746578216552734,\\n      \\\"std_image_attn\\\": 0.10799088329076767,\\n      \\\"std_instr_attn\\\": 0.10886147618293762\\n    },\\n    \\\"head_7\\\": {\\n      \\\"mean_image_attn\\\": 0.9219636917114258,\\n      \\\"mean_instr_attn\\\": 0.07706127315759659,\\n      \\\"std_image_attn\\\": 0.021352991461753845,\\n      \\\"std_instr_attn\\\": 0.020949775353074074\\n    },\\n    \\\"head_8\\\": {\\n      \\\"mean_image_attn\\\": 0.9235334396362305,\\n      \\\"mean_instr_attn\\\": 0.07596445083618164,\\n      \\\"std_image_attn\\\": 0.031261686235666275,\\n      \\\"std_instr_attn\\\": 0.03140360489487648\\n    },\\n    \\\"head_9\\\": {\\n      \\\"mean_image_attn\\\": 0.8422257304191589,\\n      \\\"mean_instr_attn\\\": 0.15708771347999573,\\n      \\\"std_image_attn\\\": 0.005838263779878616,\\n      \\\"std_instr_attn\\\": 0.005804295185953379\\n    },\\n    \\\"head_10\\\": {\\n      \\\"mean_image_attn\\\": 0.9448118209838867,\\n      \\\"mean_instr_attn\\\": 0.05471992492675781,\\n      \\\"std_image_attn\\\": 0.02034611627459526,\\n      \\\"std_instr_attn\\\": 0.02047313004732132\\n    },\\n    \\\"head_11\\\": {\\n      \\\"mean_image_attn\\\": 0.9155687093734741,\\n      \\\"mean_instr_attn\\\": 0.08290300518274307,\\n      \\\"std_image_attn\\\": 0.02798912674188614,\\n      \\\"std_instr_attn\\\": 0.027226880192756653\\n    },\\n    \\\"head_12\\\": {\\n      \\\"mean_image_attn\\\": 0.8536079525947571,\\n      \\\"mean_instr_attn\\\": 0.14625510573387146,\\n      \\\"std_image_attn\\\": 0.0250672809779644,\\n      \\\"std_instr_attn\\\": 0.02502475492656231\\n    },\\n    \\\"head_13\\\": {\\n      \\\"mean_image_attn\\\": 0.948947548866272,\\n      \\\"mean_instr_attn\\\": 0.05091552808880806,\\n      \\\"std_image_attn\\\": 0.03806304559111595,\\n      \\\"std_instr_attn\\\": 0.03810940310359001\\n    },\\n    \\\"head_14\\\": {\\n      \\\"mean_image_attn\\\": 0.815268874168396,\\n      \\\"mean_instr_attn\\\": 0.1843077689409256,\\n      \\\"std_image_attn\\\": 0.07170537859201431,\\n      \\\"std_instr_attn\\\": 0.07163386791944504\\n    },\\n    \\\"head_15\\\": {\\n      \\\"mean_image_attn\\\": 0.8892623782157898,\\n      \\\"mean_instr_attn\\\": 0.10991553962230682,\\n      \\\"std_image_attn\\\": 0.0736190602183342,\\n      \\\"std_instr_attn\\\": 0.07329188287258148\\n    },\\n    \\\"head_16\\\": {\\n      \\\"mean_image_attn\\\": 0.5564411282539368,\\n      \\\"mean_instr_attn\\\": 0.44306182861328125,\\n      \\\"std_image_attn\\\": 0.08056257665157318,\\n      \\\"std_instr_attn\\\": 0.08063708245754242\\n    },\\n    \\\"head_17\\\": {\\n      \\\"mean_image_attn\\\": 0.921096682548523,\\n      \\\"mean_instr_attn\\\": 0.0789283737540245,\\n      \\\"std_image_attn\\\": 0.03128621354699135,\\n      \\\"std_instr_attn\\\": 0.031355518847703934\\n    },\\n    \\\"head_18\\\": {\\n      \\\"mean_image_attn\\\": 0.9402963519096375,\\n      \\\"mean_instr_attn\\\": 0.05970115587115288,\\n      \\\"std_image_attn\\\": 0.021043961867690086,\\n      \\\"std_instr_attn\\\": 0.021207524463534355\\n    },\\n    \\\"head_19\\\": {\\n      \\\"mean_image_attn\\\": 0.9550886154174805,\\n      \\\"mean_instr_attn\\\": 0.04481563717126846,\\n      \\\"std_image_attn\\\": 0.01365386787801981,\\n      \\\"std_instr_attn\\\": 0.013675612397491932\\n    },\\n    \\\"head_20\\\": {\\n      \\\"mean_image_attn\\\": 0.9104686975479126,\\n      \\\"mean_instr_attn\\\": 0.08788414299488068,\\n      \\\"std_image_attn\\\": 0.032393354922533035,\\n      \\\"std_instr_attn\\\": 0.03175962343811989\\n    },\\n    \\\"head_21\\\": {\\n      \\\"mean_image_attn\\\": 0.9179593920707703,\\n      \\\"mean_instr_attn\\\": 0.0540616512298584,\\n      \\\"std_image_attn\\\": 0.023405442014336586,\\n      \\\"std_instr_attn\\\": 0.01857481338083744\\n    },\\n    \\\"head_22\\\": {\\n      \\\"mean_image_attn\\\": 0.9019235372543335,\\n      \\\"mean_instr_attn\\\": 0.0745229721069336,\\n      \\\"std_image_attn\\\": 0.02813410572707653,\\n      \\\"std_instr_attn\\\": 0.028384987264871597\\n    },\\n    \\\"head_23\\\": {\\n      \\\"mean_image_attn\\\": 0.9174043536186218,\\n      \\\"mean_instr_attn\\\": 0.08040504157543182,\\n      \\\"std_image_attn\\\": 0.048511166125535965,\\n      \\\"std_instr_attn\\\": 0.04762323200702667\\n    },\\n    \\\"head_24\\\": {\\n      \\\"mean_image_attn\\\": 0.7596372961997986,\\n      \\\"mean_instr_attn\\\": 0.23905257880687714,\\n      \\\"std_image_attn\\\": 0.06087981536984444,\\n      \\\"std_instr_attn\\\": 0.06120273843407631\\n    },\\n    \\\"head_25\\\": {\\n      \\\"mean_image_attn\\\": 0.807194709777832,\\n      \\\"mean_instr_attn\\\": 0.18975791335105896,\\n      \\\"std_image_attn\\\": 0.05851330980658531,\\n      \\\"std_instr_attn\\\": 0.05891738086938858\\n    },\\n    \\\"head_26\\\": {\\n      \\\"mean_image_attn\\\": 0.916604220867157,\\n      \\\"mean_instr_attn\\\": 0.079145148396492,\\n      \\\"std_image_attn\\\": 0.030559740960597992,\\n      \\\"std_instr_attn\\\": 0.03284940496087074\\n    },\\n    \\\"head_27\\\": {\\n      \\\"mean_image_attn\\\": 0.9202300906181335,\\n      \\\"mean_instr_attn\\\": 0.07721290737390518,\\n      \\\"std_image_attn\\\": 0.0360790491104126,\\n      \\\"std_instr_attn\\\": 0.03674441576004028\\n    },\\n    \\\"head_28\\\": {\\n      \\\"mean_image_attn\\\": 0.9866241216659546,\\n      \\\"mean_instr_attn\\\": 0.011515850201249123,\\n      \\\"std_image_attn\\\": 0.006976252421736717,\\n      \\\"std_instr_attn\\\": 0.007102260831743479\\n    },\\n    \\\"head_29\\\": {\\n      \\\"mean_image_attn\\\": 0.8952945470809937,\\n      \\\"mean_instr_attn\\\": 0.10416159778833389,\\n      \\\"std_image_attn\\\": 0.07395515590906143,\\n      \\\"std_instr_attn\\\": 0.07423131912946701\\n    },\\n    \\\"head_30\\\": {\\n      \\\"mean_image_attn\\\": 0.8860788345336914,\\n      \\\"mean_instr_attn\\\": 0.11366014182567596,\\n      \\\"std_image_attn\\\": 0.027338935062289238,\\n      \\\"std_instr_attn\\\": 0.027599060907959938\\n    },\\n    \\\"head_31\\\": {\\n      \\\"mean_image_attn\\\": 0.7948678731918335,\\n      \\\"mean_instr_attn\\\": 0.1384410858154297,\\n      \\\"std_image_attn\\\": 0.0626702755689621,\\n      \\\"std_instr_attn\\\": 0.0535007044672966\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"mean_image_attn\\\": 0.8782394528388977,\\n    \\\"mean_instr_attn\\\": 0.11696132272481918,\\n    \\\"std_image_attn\\\": 0.10024747997522354,\\n    \\\"std_instr_attn\\\": 0.09946981072425842\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WJVp915FNCYWLkBosjLKTu`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/cross_instruction/classification_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b7eba7ac-ca71-407b-bd69-0cde57b22bb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D91BNtqH3MygcqY4v7nKF4`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/cross_instruction_spatial/classification_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "4b18821f-d77e-4ea6-94f6-659df7738ed5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155EqEJb7EmMHvvvPa9EpoC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 44483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 74 · 2026-05-22T00:18:04.703Z_
+
+<details><summary>↩ Tool result · `toolu_01WJVp915FNCYWLkBosjLKTu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.1,\\n      \\\"L16\\\": 0.1,\\n      \\\"L24\\\": 0.1,\\n      \\\"L31\\\": 0.096\\n    },\\n    \\\"last_preaction\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 1.0,\\n      \\\"L16\\\": 1.0,\\n      \\\"L24\\\": 1.0,\\n      \\\"L31\\\": 1.0\\n    }\\n  },\\n  \\\"untrained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.1,\\n      \\\"L16\\\": 0.1,\\n      \\\"L24\\\": 0.1,\\n      \\\"L31\\\": 0.1\\n    },\\n    \\\"last_preaction\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.982,\\n      \\\"L16\\\": 0.923,\\n      \\\"L24\\\": 0.864,\\n      \\\"L31\\\": 0.82\\n    }\\n  },\\n  \\\"dino_baseline\\\": 0.1,\\n  \\\"chance\\\": 0.1,\\n  \\\"metadata\\\": {\\n    \\\"n_train_frames\\\": 400,\\n    \\\"n_test_frames\\\": 100,\\n    \\\"n_train_samples\\\": 4000,\\n    \\\"n_test_samples\\\": 1000,\\n    \\\"n_classes\\\": 10,\\n    \\\"layers\\\": [\\n      \\\"L0\\\",\\n      \\\"L8\\\",\\n      \\\"L16\\\",\\n      \\\"L24\\\",\\n      \\\"L31\\\"\\n    ],\\n    \\\"train_tasks\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7\\n    ],\\n    \\\"test_tasks\\\": [\\n      8,\\n      9\\n    ],\\n    \\\"pca_components\\\": 256,\\n    \\\"classifier\\\": \\\"LogisticRegression(C=1.0, max_iter=2000)\\\",\\n    \\\"seed\\\": 42\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "4496184d-f7ce-45c4-81fd-48a5c4c90d3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"trained\\\\\\\": {\\\\n    \\\\\\\"image_mean\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": 0.1,\\\\n      \\\\\\\"L8\\\\\\\": 0.1,\\\\n      \\\\\\\"L16\\\\\\\": 0.1,\\\\n      \\\\\\\"L24\\\\\\\": 0.1,\\\\n      \\\\\\\"L31\\\\\\\": 0.096\\\\n    },\\\\n    \\\\\\\"last_preaction\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": 0.1,\\\\n      \\\\\\\"L8\\\\\\\": 1.0,\\\\n      \\\\\\\"L16\\\\\\\": 1.0,\\\\n      \\\\\\\"L24\\\\\\\": 1.0,\\\\n      \\\\\\\"L31\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"untrained\\\\\\\": {\\\\n    \\\\\\\"image_mean\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": 0.1,\\\\n      \\\\\\\"L8\\\\\\\": 0.1,\\\\n      \\\\\\\"L16\\\\\\\": 0.1,\\\\n      \\\\\\\"L24\\\\\\\": 0.1,\\\\n      \\\\\\\"L31\\\\\\\": 0.1\\\\n    },\\\\n    \\\\\\\"last_preaction\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": 0.1,\\\\n      \\\\\\\"L8\\\\\\\": 0.982,\\\\n      \\\\\\\"L16\\\\\\\": 0.923,\\\\n      \\\\\\\"L24\\\\\\\": 0.864,\\\\n      \\\\\\\"L31\\\\\\\": 0.82\\\\n    }\\\\n  },\\\\n  \\\\\\\"dino_baseline\\\\\\\": 0.1,\\\\n  \\\\\\\"chance\\\\\\\": 0.1,\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_train_frames\\\\\\\": 400,\\\\n    \\\\\\\"n_test_frames\\\\\\\": 100,\\\\n    \\\\\\\"n_train_samples\\\\\\\": 4000,\\\\n    \\\\\\\"n_test_samples\\\\\\\": 1000,\\\\n    \\\\\\\"n_classes\\\\\\\": 10,\\\\n    \\\\\\\"layers\\\\\\\": [\\\\n      \\\\\\\"L0\\\\\\\",\\\\n      \\\\\\\"L8\\\\\\\",\\\\n      \\\\\\\"L16\\\\\\\",\\\\n      \\\\\\\"L24\\\\\\\",\\\\n      \\\\\\\"L31\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"train_tasks\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7\\\\n    ],\\\\n    \\\\\\\"test_tasks\\\\\\\": [\\\\n      8,\\\\n      9\\\\n    ],\\\\n    \\\\\\\"pca_components\\\\\\\": 256,\\\\n    \\\\\\\"classifier\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, max_iter=2000)\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.1,\\n      \\\"L16\\\": 0.1,\\n      \\\"L24\\\": 0.1,\\n      \\\"L31\\\": 0.096\\n    },\\n    \\\"last_preaction\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 1.0,\\n      \\\"L16\\\": 1.0,\\n      \\\"L24\\\": 1.0,\\n      \\\"L31\\\": 1.0\\n    }\\n  },\\n  \\\"untrained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.1,\\n      \\\"L16\\\": 0.1,\\n      \\\"L24\\\": 0.1,\\n      \\\"L31\\\": 0.1\\n    },\\n    \\\"last_preaction\\\": {\\n      \\\"L0\\\": 0.1,\\n      \\\"L8\\\": 0.982,\\n      \\\"L16\\\": 0.923,\\n      \\\"L24\\\": 0.864,\\n      \\\"L31\\\": 0.82\\n    }\\n  },\\n  \\\"dino_baseline\\\": 0.1,\\n  \\\"chance\\\": 0.1,\\n  \\\"metadata\\\": {\\n    \\\"n_train_frames\\\": 400,\\n    \\\"n_test_frames\\\": 100,\\n    \\\"n_train_samples\\\": 4000,\\n    \\\"n_test_samples\\\": 1000,\\n    \\\"n_classes\\\": 10,\\n    \\\"layers\\\": [\\n      \\\"L0\\\",\\n      \\\"L8\\\",\\n      \\\"L16\\\",\\n      \\\"L24\\\",\\n      \\\"L31\\\"\\n    ],\\n    \\\"train_tasks\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7\\n    ],\\n    \\\"test_tasks\\\": [\\n      8,\\n      9\\n    ],\\n    \\\"pca_components\\\": 256,\\n    \\\"classifier\\\": \\\"LogisticRegression(C=1.0, max_iter=2000)\\\",\\n    \\\"seed\\\": 42\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 75 · 2026-05-22T00:18:05.229Z_
+
+<details><summary>↩ Tool result · `toolu_01D91BNtqH3MygcqY4v7nKF4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained_image_mean\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.1,\\n    \\\"L4\\\": 0.1,\\n    \\\"L8\\\": 0.1,\\n    \\\"L12\\\": 0.1,\\n    \\\"L16\\\": 0.1,\\n    \\\"L20\\\": 0.1,\\n    \\\"L24\\\": 0.1,\\n    \\\"L28\\\": 0.102,\\n    \\\"L31\\\": 0.101\\n  },\\n  \\\"trained_last_preaction\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.989,\\n    \\\"L4\\\": 1.0,\\n    \\\"L8\\\": 1.0,\\n    \\\"L12\\\": 1.0,\\n    \\\"L16\\\": 1.0,\\n    \\\"L20\\\": 1.0,\\n    \\\"L24\\\": 1.0,\\n    \\\"L28\\\": 1.0,\\n    \\\"L31\\\": 1.0\\n  },\\n  \\\"untrained_image_mean\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.1,\\n    \\\"L4\\\": 0.1,\\n    \\\"L8\\\": 0.101,\\n    \\\"L12\\\": 0.099,\\n    \\\"L16\\\": 0.1,\\n    \\\"L20\\\": 0.099,\\n    \\\"L24\\\": 0.1,\\n    \\\"L28\\\": 0.1,\\n    \\\"L31\\\": 0.1\\n  },\\n  \\\"untrained_last_preaction\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.995,\\n    \\\"L4\\\": 0.862,\\n    \\\"L8\\\": 0.683,\\n    \\\"L12\\\": 0.795,\\n    \\\"L16\\\": 0.765,\\n    \\\"L20\\\": 0.689,\\n    \\\"L24\\\": 0.777,\\n    \\\"L28\\\": 0.76,\\n    \\\"L31\\\": 0.754\\n  },\\n  \\\"chance\\\": 0.1,\\n  \\\"metadata\\\": {\\n    \\\"n_train_samples\\\": 4000,\\n    \\\"n_test_samples\\\": 1000,\\n    \\\"n_classes\\\": 10,\\n    \\\"report_layers\\\": [\\n      \\\"L0\\\",\\n      \\\"L1\\\",\\n      \\\"L4\\\",\\n      \\\"L8\\\",\\n      \\\"L12\\\",\\n      \\\"L16\\\",\\n      \\\"L20\\\",\\n      \\\"L24\\\",\\n      \\\"L28\\\",\\n      \\\"L31\\\"\\n    ],\\n    \\\"train_tasks\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7\\n    ],\\n    \\\"test_tasks\\\": [\\n      8,\\n      9\\n    ],\\n    \\\"pca_components\\\": 256,\\n    \\\"classifier\\\": \\\"LogisticRegression(C=1.0, max_iter=2000)\\\",\\n    \\\"seed\\\": 42\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "02809b09-6fdd-4886-acf9-e5dd28fab763",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"trained_image_mean\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1,\\\\n    \\\\\\\"L1\\\\\\\": 0.1,\\\\n    \\\\\\\"L4\\\\\\\": 0.1,\\\\n    \\\\\\\"L8\\\\\\\": 0.1,\\\\n    \\\\\\\"L12\\\\\\\": 0.1,\\\\n    \\\\\\\"L16\\\\\\\": 0.1,\\\\n    \\\\\\\"L20\\\\\\\": 0.1,\\\\n    \\\\\\\"L24\\\\\\\": 0.1,\\\\n    \\\\\\\"L28\\\\\\\": 0.102,\\\\n    \\\\\\\"L31\\\\\\\": 0.101\\\\n  },\\\\n  \\\\\\\"trained_last_preaction\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1,\\\\n    \\\\\\\"L1\\\\\\\": 0.989,\\\\n    \\\\\\\"L4\\\\\\\": 1.0,\\\\n    \\\\\\\"L8\\\\\\\": 1.0,\\\\n    \\\\\\\"L12\\\\\\\": 1.0,\\\\n    \\\\\\\"L16\\\\\\\": 1.0,\\\\n    \\\\\\\"L20\\\\\\\": 1.0,\\\\n    \\\\\\\"L24\\\\\\\": 1.0,\\\\n    \\\\\\\"L28\\\\\\\": 1.0,\\\\n    \\\\\\\"L31\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"untrained_image_mean\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1,\\\\n    \\\\\\\"L1\\\\\\\": 0.1,\\\\n    \\\\\\\"L4\\\\\\\": 0.1,\\\\n    \\\\\\\"L8\\\\\\\": 0.101,\\\\n    \\\\\\\"L12\\\\\\\": 0.099,\\\\n    \\\\\\\"L16\\\\\\\": 0.1,\\\\n    \\\\\\\"L20\\\\\\\": 0.099,\\\\n    \\\\\\\"L24\\\\\\\": 0.1,\\\\n    \\\\\\\"L28\\\\\\\": 0.1,\\\\n    \\\\\\\"L31\\\\\\\": 0.1\\\\n  },\\\\n  \\\\\\\"untrained_last_preaction\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1,\\\\n    \\\\\\\"L1\\\\\\\": 0.995,\\\\n    \\\\\\\"L4\\\\\\\": 0.862,\\\\n    \\\\\\\"L8\\\\\\\": 0.683,\\\\n    \\\\\\\"L12\\\\\\\": 0.795,\\\\n    \\\\\\\"L16\\\\\\\": 0.765,\\\\n    \\\\\\\"L20\\\\\\\": 0.689,\\\\n    \\\\\\\"L24\\\\\\\": 0.777,\\\\n    \\\\\\\"L28\\\\\\\": 0.76,\\\\n    \\\\\\\"L31\\\\\\\": 0.754\\\\n  },\\\\n  \\\\\\\"chance\\\\\\\": 0.1,\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_train_samples\\\\\\\": 4000,\\\\n    \\\\\\\"n_test_samples\\\\\\\": 1000,\\\\n    \\\\\\\"n_classes\\\\\\\": 10,\\\\n    \\\\\\\"report_layers\\\\\\\": [\\\\n      \\\\\\\"L0\\\\\\\",\\\\n      \\\\\\\"L1\\\\\\\",\\\\n      \\\\\\\"L4\\\\\\\",\\\\n      \\\\\\\"L8\\\\\\\",\\\\n      \\\\\\\"L12\\\\\\\",\\\\n      \\\\\\\"L16\\\\\\\",\\\\n      \\\\\\\"L20\\\\\\\",\\\\n      \\\\\\\"L24\\\\\\\",\\\\n      \\\\\\\"L28\\\\\\\",\\\\n      \\\\\\\"L31\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"train_tasks\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7\\\\n    ],\\\\n    \\\\\\\"test_tasks\\\\\\\": [\\\\n      8,\\\\n      9\\\\n    ],\\\\n    \\\\\\\"pca_components\\\\\\\": 256,\\\\n    \\\\\\\"classifier\\\\\\\": \\\\\\\"LogisticRegression(C=1.0, max_iter=2000)\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained_image_mean\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.1,\\n    \\\"L4\\\": 0.1,\\n    \\\"L8\\\": 0.1,\\n    \\\"L12\\\": 0.1,\\n    \\\"L16\\\": 0.1,\\n    \\\"L20\\\": 0.1,\\n    \\\"L24\\\": 0.1,\\n    \\\"L28\\\": 0.102,\\n    \\\"L31\\\": 0.101\\n  },\\n  \\\"trained_last_preaction\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.989,\\n    \\\"L4\\\": 1.0,\\n    \\\"L8\\\": 1.0,\\n    \\\"L12\\\": 1.0,\\n    \\\"L16\\\": 1.0,\\n    \\\"L20\\\": 1.0,\\n    \\\"L24\\\": 1.0,\\n    \\\"L28\\\": 1.0,\\n    \\\"L31\\\": 1.0\\n  },\\n  \\\"untrained_image_mean\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.1,\\n    \\\"L4\\\": 0.1,\\n    \\\"L8\\\": 0.101,\\n    \\\"L12\\\": 0.099,\\n    \\\"L16\\\": 0.1,\\n    \\\"L20\\\": 0.099,\\n    \\\"L24\\\": 0.1,\\n    \\\"L28\\\": 0.1,\\n    \\\"L31\\\": 0.1\\n  },\\n  \\\"untrained_last_preaction\\\": {\\n    \\\"L0\\\": 0.1,\\n    \\\"L1\\\": 0.995,\\n    \\\"L4\\\": 0.862,\\n    \\\"L8\\\": 0.683,\\n    \\\"L12\\\": 0.795,\\n    \\\"L16\\\": 0.765,\\n    \\\"L20\\\": 0.689,\\n    \\\"L24\\\": 0.777,\\n    \\\"L28\\\": 0.76,\\n    \\\"L31\\\": 0.754\\n  },\\n  \\\"chance\\\": 0.1,\\n  \\\"metadata\\\": {\\n    \\\"n_train_samples\\\": 4000,\\n    \\\"n_test_samples\\\": 1000,\\n    \\\"n_classes\\\": 10,\\n    \\\"report_layers\\\": [\\n      \\\"L0\\\",\\n      \\\"L1\\\",\\n      \\\"L4\\\",\\n      \\\"L8\\\",\\n      \\\"L12\\\",\\n      \\\"L16\\\",\\n      \\\"L20\\\",\\n      \\\"L24\\\",\\n      \\\"L28\\\",\\n      \\\"L31\\\"\\n    ],\\n    \\\"train_tasks\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7\\n    ],\\n    \\\"test_tasks\\\": [\\n      8,\\n      9\\n    ],\\n    \\\"pca_components\\\": 256,\\n    \\\"classifier\\\": \\\"LogisticRegression(C=1.0, max_iter=2000)\\\",\\n    \\\"seed\\\": 42\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I'm getting data. Let me note what I have so far:
+
+**OpenVLA Spatial (trained/):**
+- action_prediction: best_layer=19, best_r2=0.6831 (per_task_mean), best_overall_r2=0.6770
+- action_delta: best_layer=14, best_r2=0.0597 (per_task_mean), best_overall_r2=0.0594
+
+**OpenVLA Spatial (untrained/):**
+- action_prediction: best_layer=32, best_r2=0.6164 (per_task_mean), best_overall_r2=0.6067
+
+
+- action_delta: best_layer=32, best_r2=0.0482 (per_task_mean), best_overall_r2=0.0485
+
+The untrained model's action_prediction R² is surprisingly high at 0.6164—that's likely coming from the pre-trained LLaMA-2 base weights which already encode useful representational structure. Now I'm looking at the attention data from the trained summary, examining the per-task per-head metrics.
+
+For the libero_spatial tasks (like opening drawers and moving objects), I see roughly 25-26 heads out of 32 are attending to instructions. The untrained attention shows a stark difference: mean image attention dominates at 0.878 while instruction attention is only 0.117. Moving to the cross-instruction classification results, the trained model achieves perfect accuracy on the last preaction layers across all positions, though image attention drops to chance levels at 0.1. The untrained model shows strong performance on early layers—0.995 at L1 and 0.982 at L8—suggesting the base model already captures cross-instruction patterns effectively.
+
+For the spatial variant, the trained model again hits 1.0 accuracy from L4 onward, while the untrained model shows more variable performance across layers, ranging from 0.862 at L4 down to 0.754 at L31. I realize now that the first classification results are for the Goal suite (10 tasks) while this spatial version is testing on the spatial instruction set—they're separate benchmarks.
+
+I need to pull the counterfactual data for both suites, locate the L1 attention files specific to the Goal benchmark, and grab the more robust R² metrics from the functional validation data to get a fuller picture of what's happening across layers.
+
+Looking at the task names more carefully, I can see these are from different LIBERO benchmarks—the stove and moka pot task suggests LIBERO-Long or LIBERO-Goal, while the bowl and drawer tasks point toward LIBERO-Goal, and the book placement task is also LIBERO-Goal based on the naming pattern.
+
+The directory structure with `trained_libero_goal/` and `cross_instruction_spatial/` indicates the original suite was likely LIBERO-Goal, and the `trained/` and `untrained/` directories contain a 10-task subset with 8 training tasks and 2 test tasks. The task names I'm seeing match LIBERO-Goal's format exactly. I need to verify which dataset each experiment actually uses. The `trained/action_prediction` probe shows R²=0.677 at layer 19, but that's for LIBERO-Goal tasks. For the Spatial results, I should check `action_probe_libero_spatial.json`. Meanwhile, the attention data in `l1_attention_trained_summary.json` contains tasks like "open the middle drawer of the cabinet" which are actually LIBERO-Spatial examples, so I need to clarify whether the attention analysis is on Spatial or Goal data. So I'm realizing the datasets are split across task types—spatial versus goal-based—and I need to track down the corresponding R² probing results for spatial tasks, check whether L1 attention data exists for goal tasks, and examine both counterfactual files to understand what's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "3d9d5f61-b680-4a86-b635-fbbfab2c2da0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 77_
+
+Good, getting data. Now let me get the counterfactual data, the spatial R² probe, and check some additional files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b9080b5f-451e-4317-ae0c-45df2c623dd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UWjf516GtSM2MRFsiPtgS3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "fbada08a-16d0-4e3c-9a89-a666535185e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-22T00:18:55.053Z_
+
+<details><summary>↩ Tool result · `toolu_01UWjf516GtSM2MRFsiPtgS3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.05804234059654507,\\n          \\\"std\\\": 0.0681637276907686,\\n          \\\"t_stat\\\": 60.20508209209877,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.8514284361718265,\\n          \\\"ci_95\\\": [\\n            0.8237036469496201,\\n            0.879153225394033\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.003244618543344386,\\n            0.008275301012782593,\\n            0.008872097807866679,\\n            0.019767173478586583,\\n            0.028556332465094796,\\n            0.031130590355659637,\\n            0.4158619607843152\\n          ],\\n          \\\"stds\\\": [\\n            0.004045600916914886,\\n            0.009143821086173945,\\n            0.008007230621683847,\\n            0.018888534609628225,\\n            0.02473742704913099,\\n            0.02902582422761773,\\n            0.4785884087017137\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.8652,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 6.957239627838135,\\n          \\\"std\\\": 4.734703063964844,\\n          \\\"per_token_position\\\": [\\n            2.2400457859039307,\\n            6.597799301147461,\\n            8.583086013793945,\\n            9.402458190917969,\\n            10.372297286987305,\\n            9.131669998168945,\\n            2.373326063156128\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06640954677950142,\\n            \\\"std\\\": 0.06956194172085231,\\n            \\\"t_stat\\\": 21.325984683665375,\\n            \\\"p_value\\\": 3.2681395376247805e-72,\\n            \\\"cohens_d\\\": 0.9537270287822055,\\n            \\\"ci_95\\\": [\\n              0.8658616592719858,\\n              1.0415923982924253\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004275309446951921,\\n              0.010643280340149108,\\n              0.01234014166315688,\\n              0.01981941048650643,\\n              0.031806516024105676,\\n              0.036603934254435935,\\n              0.4712627450980405\\n            ],\\n            \\\"stds\\\": [\\n              0.004770888219141805,\\n              0.011189085643562939,\\n              0.010645717149569951,\\n              0.01789803966114327,\\n              0.02505345655372027,\\n              0.031227392845370603,\\n              0.48740706845574255\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n\\n... [截断: 输出过长，省略 88953 字符] ...\\n\\namples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\",\\n          \\\"instruction_counterfactual\\\": \\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.9122756234925912,\\n            0.7576835622105202,\\n            0.7258257406427423,\\n            0.8057986735394016,\\n            0.8177985758234079,\\n            1.002449280455852,\\n            0.7257338619797585,\\n            0.7065013070901938,\\n            0.9194079555462267,\\n            0.7124225640763044\\n          ],\\n          \\\"mean\\\": 0.8085897144856998,\\n          \\\"std\\\": 0.10364584055319942,\\n          \\\"min\\\": 0.7065013070901938,\\n          \\\"max\\\": 1.002449280455852,\\n          \\\"cv\\\": 0.1281810029193789\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.06385328953660033,\\n            0.05071564029045017,\\n            0.04807092676771482,\\n            0.05522523003255115,\\n            0.05628277534267258,\\n            0.06969830808977795,\\n            0.046802687357092684,\\n            0.04595692643597357,\\n            0.0642192826633437,\\n            0.04632266842290686\\n          ],\\n          \\\"mean\\\": 0.054714773493908374,\\n          \\\"std\\\": 0.00863414320541845,\\n          \\\"cv\\\": 0.1578027770913083\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.798,\\n            0.8394285714285714,\\n            0.8071428571428572,\\n            0.7431428571428571,\\n            0.8154285714285714,\\n            0.8182857142857143,\\n            0.7817142857142857,\\n            0.8037142857142857,\\n            0.7922857142857143,\\n            0.7911428571428571\\n          ],\\n          \\\"mean\\\": 0.7990285714285713,\\n          \\\"std\\\": 0.02558528488645551\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.087649345397949,\\n            6.327757835388184,\\n            6.699211120605469,\\n            5.407980442047119,\\n            5.980325698852539,\\n            5.739781856536865,\\n            5.5033860206604,\\n            5.49423360824585,\\n            6.1330790519714355,\\n            5.78404426574707\\n          ],\\n          \\\"mean\\\": 5.915744924545288,\\n          \\\"std\\\": 0.4107411104376832\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b582db36-8651-49c0-8656-94c639771220",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_instruction_spatial\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"global_metrics\\\\\\\": {\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.05804234059654507,\\\\n          \\\\\\\"std\\\\\\\": 0.0681637276907686,\\\\n          \\\\\\\"t_stat\\\\\\\": 60.20508209209877,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8237036469496201,\\\\n            0.879153225394033\\\\n          ]\\\\n        },\\\\n        \\\\\\\"per_dim_shift\\\\\\\": {\\\\n          \\\\\\\"means\\\\\\\": [\\\\n            0.003244618543344386,\\\\n            0.008275301012782593,\\\\n            0.008872097807866679,\\\\n            0.019767173478586583,\\\\n            0.028556332465094796,\\\\n            0.031130590355659637,\\\\n            0.4158619607843152\\\\n          ],\\\\n          \\\\\\\"stds\\\\\\\": [\\\\n            0.004045600916914886,\\\\n            0.009143821086173945,\\\\n            0.008007230621683847,\\\\n            0.018888534609628225,\\\\n            0.02473742704913099,\\\\n            0.02902582422761773,\\\\n            0.4785884087017137\\\\n          ],\\\\n          \\\\\\\"dim_names\\\\\\\": [\\\\n            \\\\\\\"dx\\\\\\\",\\\\n            \\\\\\\"dy\\\\\\\",\\\\n            \\\\\\\"dz\\\\\\\",\\\\n            \\\\\\\"rx\\\\\\\",\\\\n            \\\\\\\"ry\\\\\\\",\\\\n            \\\\\\\"rz\\\\\\\",\\\\n            \\\\\\\"gripper\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 6.957239627838135,\\\\n          \\\\\\\"std\\\\\\\": 4.734703063964844,\\\\n          \\\\\\\"per_token_position\\\\\\\": [\\\\n            2.2400457859039307,\\\\n            6.597799301147461,\\\\n            8.583086013793945,\\\\n            9.402458190917969,\\\\n            10.372297286987305,\\\\n            9.131669998168945,\\\\n            2.373326063156128\\\\n          ]\\\\n        },\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"n_samples\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"per_task\\\\\\\": {\\\\n        \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n          \\\\\\\"paired_mse\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.06640954677950142,\\\\n            \\\\\\\"std\\\\\\\": 0.06956194172085231,\\\\n            \\\\\\\"t_stat\\\\\\\": 21.325984683665375,\\\\n            \\\\\\\"p_value\\\\\\\": 3.2681395376247805e-72,\\\\n            \\\\\\\"cohens_d\\\\\\\": 0.9537270287822055,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.8658616592719858,\\\\n              1.0415923982924253\\\\n            ]\\\\n          },\\\\n          \\\\\\\"per_dim_shift\\\\\\\": {\\\\n            \\\\\\\"means\\\\\\\": [\\\\n              0.004275309446951921,\\\\n              0.010643280340149108,\\\\n              0.01234014166315688,\\\\n              0.01981941048650643,\\\\n              0.031806516024105676,\\\\n              0.036603934254435935,\\\\n              0.4712627450980405\\\\n            ],\\\\n            \\\\\\\"stds\\\\\\\": [\\\\n              0.004770888219141805,\\\\n              0.011189085643562939,\\\\n              0.010645717149569951,\\\\n              0.01789803966114327,\\\\n              0.02505345655372027,\\\\n              0.031227392845370603,\\\\n              0.48740706845574255\\\\n            ],\\\\n            \\\\\\\"dim_names\\\\\\\": [\\\\n              \\\\\\\"dx\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 88953 字符] ...\\\\n\\\\namples\\\\\\\": 500,\\\\n          \\\\\\\"instruction_correct\\\\\\\": \\\\\\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\\\\\",\\\\n          \\\\\\\"instruction_counterfactual\\\\\\\": \\\\\\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"cross_task_variance\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.9122756234925912,\\\\n            0.7576835622105202,\\\\n            0.7258257406427423,\\\\n            0.8057986735394016,\\\\n            0.8177985758234079,\\\\n            1.002449280455852,\\\\n            0.7257338619797585,\\\\n            0.7065013070901938,\\\\n            0.9194079555462267,\\\\n            0.7124225640763044\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.8085897144856998,\\\\n          \\\\\\\"std\\\\\\\": 0.10364584055319942,\\\\n          \\\\\\\"min\\\\\\\": 0.7065013070901938,\\\\n          \\\\\\\"max\\\\\\\": 1.002449280455852,\\\\n          \\\\\\\"cv\\\\\\\": 0.1281810029193789\\\\n        },\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.06385328953660033,\\\\n            0.05071564029045017,\\\\n            0.04807092676771482,\\\\n            0.05522523003255115,\\\\n            0.05628277534267258,\\\\n            0.06969830808977795,\\\\n            0.046802687357092684,\\\\n            0.04595692643597357,\\\\n            0.0642192826633437,\\\\n            0.04632266842290686\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.054714773493908374,\\\\n          \\\\\\\"std\\\\\\\": 0.00863414320541845,\\\\n          \\\\\\\"cv\\\\\\\": 0.1578027770913083\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.798,\\\\n            0.8394285714285714,\\\\n            0.8071428571428572,\\\\n            0.7431428571428571,\\\\n            0.8154285714285714,\\\\n            0.8182857142857143,\\\\n            0.7817142857142857,\\\\n            0.8037142857142857,\\\\n            0.7922857142857143,\\\\n            0.7911428571428571\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.7990285714285713,\\\\n          \\\\\\\"std\\\\\\\": 0.02558528488645551\\\\n        },\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            6.087649345397949,\\\\n            6.327757835388184,\\\\n            6.699211120605469,\\\\n            5.407980442047119,\\\\n            5.980325698852539,\\\\n            5.739781856536865,\\\\n            5.5033860206604,\\\\n            5.49423360824585,\\\\n            6.1330790519714355,\\\\n            5.78404426574707\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 5.915744924545288,\\\\n          \\\\\\\"std\\\\\\\": 0.4107411104376832\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ranking_by_cohens_d\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9421721845441572,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.06594219543597996,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9137142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 9.029648780822754\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8514284361718265,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05804234059654507,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8652,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 6.957239627838135\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8328052384783984,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05699806222791878,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8767142857142857,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 7.758697986602783\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.8056806565790108,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.05471477349390839,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.7990285714285714,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 5.915744781494141\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cross_task_summary\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.853 +/- 0.079\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.748, 0.972]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.093\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.058042 +/- 0.006654\\\\\\\"\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.954 +/- 0.176\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.638, 1.240]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.185\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.065942 +/- 0.013179\\\\\\\"\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.839 +/- 0.139\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.615, 1.033]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.166\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.056998 +/- 0.011380\\\\\\\"\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.809 +/- 0.104\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.707, 1.002]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.128\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.054715 +/- 0.008634\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"suite\\\": \\\"libero_spatial\\\",\\n    \\\"task_names\\\": [\\n      \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\",\\n      \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\"\\n    ],\\n    \\\"note\\\": \\\"wrong instructions use other spatial tasks (same object/action, different spatial reference)\\\"\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.05804234059654507,\\n          \\\"std\\\": 0.0681637276907686,\\n          \\\"t_stat\\\": 60.20508209209877,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.8514284361718265,\\n          \\\"ci_95\\\": [\\n            0.8237036469496201,\\n            0.879153225394033\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.003244618543344386,\\n            0.008275301012782593,\\n            0.008872097807866679,\\n            0.019767173478586583,\\n            0.028556332465094796,\\n            0.031130590355659637,\\n            0.4158619607843152\\n          ],\\n          \\\"stds\\\": [\\n            0.004045600916914886,\\n            0.009143821086173945,\\n            0.008007230621683847,\\n            0.018888534609628225,\\n            0.02473742704913099,\\n            0.02902582422761773,\\n            0.4785884087017137\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.8652,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 6.957239627838135,\\n          \\\"std\\\": 4.734703063964844,\\n          \\\"per_token_position\\\": [\\n            2.2400457859039307,\\n            6.597799301147461,\\n            8.583086013793945,\\n            9.402458190917969,\\n            10.372297286987305,\\n            9.131669998168945,\\n            2.373326063156128\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06640954677950142,\\n            \\\"std\\\": 0.06956194172085231,\\n            \\\"t_stat\\\": 21.325984683665375,\\n            \\\"p_value\\\": 3.2681395376247805e-72,\\n            \\\"cohens_d\\\": 0.9537270287822055,\\n            \\\"ci_95\\\": [\\n              0.8658616592719858,\\n              1.0415923982924253\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004275309446951921,\\n              0.010643280340149108,\\n              0.01234014166315688,\\n              0.01981941048650643,\\n              0.031806516024105676,\\n              0.036603934254435935,\\n              0.4712627450980405\\n            ],\\n            \\\"stds\\\": [\\n              0.004770888219141805,\\n              0.011189085643562939,\\n              0.010645717149569951,\\n              0.01789803966114327,\\n              0.02505345655372027,\\n              0.031227392845370603,\\n              0.48740706845574255\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n\\n... [截断: 输出过长，省略 88953 字符] ...\\n\\namples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"pick up the black bowl on the wooden cabinet and place it on the plate\\\",\\n          \\\"instruction_counterfactual\\\": \\\"grab the black bowl sitting on the wooden cabinet and put it on the plate\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.9122756234925912,\\n            0.7576835622105202,\\n            0.7258257406427423,\\n            0.8057986735394016,\\n            0.8177985758234079,\\n            1.002449280455852,\\n            0.7257338619797585,\\n            0.7065013070901938,\\n            0.9194079555462267,\\n            0.7124225640763044\\n          ],\\n          \\\"mean\\\": 0.8085897144856998,\\n          \\\"std\\\": 0.10364584055319942,\\n          \\\"min\\\": 0.7065013070901938,\\n          \\\"max\\\": 1.002449280455852,\\n          \\\"cv\\\": 0.1281810029193789\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.06385328953660033,\\n            0.05071564029045017,\\n            0.04807092676771482,\\n            0.05522523003255115,\\n            0.05628277534267258,\\n            0.06969830808977795,\\n            0.046802687357092684,\\n            0.04595692643597357,\\n            0.0642192826633437,\\n            0.04632266842290686\\n          ],\\n          \\\"mean\\\": 0.054714773493908374,\\n          \\\"std\\\": 0.00863414320541845,\\n          \\\"cv\\\": 0.1578027770913083\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.798,\\n            0.8394285714285714,\\n            0.8071428571428572,\\n            0.7431428571428571,\\n            0.8154285714285714,\\n            0.8182857142857143,\\n            0.7817142857142857,\\n            0.8037142857142857,\\n            0.7922857142857143,\\n            0.7911428571428571\\n          ],\\n          \\\"mean\\\": 0.7990285714285713,\\n          \\\"std\\\": 0.02558528488645551\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.087649345397949,\\n            6.327757835388184,\\n            6.699211120605469,\\n            5.407980442047119,\\n            5.980325698852539,\\n            5.739781856536865,\\n            5.5033860206604,\\n            5.49423360824585,\\n            6.1330790519714355,\\n            5.78404426574707\\n          ],\\n          \\\"mean\\\": 5.915744924545288,\\n          \\\"std\\\": 0.4107411104376832\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9421721845441572,\\n      \\\"paired_mse_mean\\\": 0.06594219543597996,\\n      \\\"token_divergence_rate\\\": 0.9137142857142857,\\n      \\\"kl_divergence_mean\\\": 9.029648780822754\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.8514284361718265,\\n      \\\"paired_mse_mean\\\": 0.05804234059654507,\\n      \\\"token_divergence_rate\\\": 0.8652,\\n      \\\"kl_divergence_mean\\\": 6.957239627838135\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.8328052384783984,\\n      \\\"paired_mse_mean\\\": 0.05699806222791878,\\n      \\\"token_divergence_rate\\\": 0.8767142857142857,\\n      \\\"kl_divergence_mean\\\": 7.758697986602783\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.8056806565790108,\\n      \\\"paired_mse_mean\\\": 0.05471477349390839,\\n      \\\"token_divergence_rate\\\": 0.7990285714285714,\\n      \\\"kl_divergence_mean\\\": 5.915744781494141\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.853 +/- 0.079\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.748, 0.972]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.093\\\",\\n      \\\"mse_mean_std\\\": \\\"0.058042 +/- 0.006654\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.954 +/- 0.176\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.638, 1.240]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.065942 +/- 0.013179\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.839 +/- 0.139\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.615, 1.033]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.166\\\",\\n      \\\"mse_mean_std\\\": \\\"0.056998 +/- 0.011380\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.809 +/- 0.104\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.707, 1.002]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.128\\\",\\n      \\\"mse_mean_std\\\": \\\"0.054715 +/- 0.008634\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PnVgUbKiw7vmiAefunAAsf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "8feb6685-660f-4831-806b-660d07eaea28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GV4hCTLytZepzGFrCRunZK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d8ed1943-cb8e-40d5-a5f7-e5c7792b52a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 82 · 2026-05-22T00:18:56.173Z_
+
+<details><summary>↩ Tool result · `toolu_01PnVgUbKiw7vmiAefunAAsf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_10tasks\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"task_names\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"put_the_bowl_on_the_plate\\\",\\n      \\\"put_the_bowl_on_the_stove\\\",\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n      \\\"put_the_cream_cheese_in_the_bowl\\\",\\n      \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n      \\\"turn_on_the_stove\\\"\\n    ]\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.06469925227162468,\\n          \\\"std\\\": 0.07003723721073031,\\n          \\\"t_stat\\\": 65.31483348572935,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.9236912333834009,\\n          \\\"ci_95\\\": [\\n            0.8959664441611344,\\n            0.9514160226056674\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.005212683457116499,\\n            0.009701657278115717,\\n            0.010381370871684104,\\n            0.024219580160956013,\\n            0.03510734135497613,\\n            0.03954739989668392,\\n            0.4519435294117663\\n          ],\\n          \\\"stds\\\": [\\n            0.005405998172843991,\\n            0.010095792763667271,\\n            0.009512956661715331,\\n            0.022179338132531534,\\n            0.02944215516856952,\\n            0.03674687132904631,\\n            0.4920354585147579\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.9077428571428572,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 8.382783889770508,\\n          \\\"std\\\": 4.853038787841797,\\n          \\\"per_token_position\\\": [\\n            4.548716068267822,\\n            8.446861267089844,\\n            10.44683837890625,\\n            10.38597297668457,\\n            11.343461990356445,\\n            10.455062866210938,\\n            3.0525829792022705\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06594631822934968,\\n            \\\"std\\\": 0.07059699792059548,\\n            \\\"t_stat\\\": 20.866739452274786,\\n            \\\"p_value\\\": 5.536462097480026e-70,\\n            \\\"cohens_d\\\": 0.9331889576680575,\\n            \\\"ci_95\\\": [\\n              0.8453235881578286,\\n              1.0210543271782864\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004409961340174951,\\n              0.008322569946580064,\\n              0.0083980725741474,\\n              0.024785119210023455,\\n              0.03182795169473394,\\n              0.033963809009664184,\\n              0.45916862745098175\\n            ],\\n            \\\"stds\\\": [\\n              0.004963287282741524,\\n              0.008346522923817323,\\n              0.007941980726539457,\\n              0.021492511427788696,\\n              0.028325233727294657,\\n              0.02980557707542075,\\n              0.49551821822264297\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n              \\\"dy\\\",\\n              \\\"dz\\\",\\n              \\\"rx\\\",\\n              \\\"ry\\\",\\n              \\\"rz\\\",\\n              \\\"gripper\\\"\\n            ]\\n          },\\n          \\\"token_divergence_rate\\\": 0.9065714285714286,\\n          \\\"kl_divergence\\\": {\\n            \\\"mean\\\": 7.969396591186523,\\n            \\\"std\\\": 4.80673360824585,\\n            \\\"per_token_position\\\": [\\n              4.303285598754883,\\n              7.63652229309082,\\n              9.742110252380371,\\n              10.921430587768555,\\n              10.920180320739746,\\n              9.818486213684082,\\n\\n\\n... [截断: 输出过长，省略 84338 字符] ...\\n\\n          \\\"wilcoxon_p\\\": 1.2647189486921487e-83,\\n          \\\"n_samples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"turn on the stove\\\",\\n          \\\"instruction_counterfactual\\\": \\\"switch on the stove burner\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.44426928745757577,\\n            0.7130819735372003,\\n            0.9585957531074024,\\n            0.7589441845199817,\\n            0.8559420132342054,\\n            0.8674484848732507,\\n            0.9213151570896085,\\n            0.42640975571041245,\\n            0.4105605534254845,\\n            0.7783512511810732\\n          ],\\n          \\\"mean\\\": 0.7134918414136194,\\n          \\\"std\\\": 0.2108707494695406,\\n          \\\"min\\\": 0.4105605534254845,\\n          \\\"max\\\": 0.9585957531074024,\\n          \\\"cv\\\": 0.29554752728700207\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.022038930201642614,\\n            0.04702227485843084,\\n            0.06785492940403753,\\n            0.050207842000623455,\\n            0.05902087095549841,\\n            0.060360312651150015,\\n            0.06450448184122991,\\n            0.019398288641743235,\\n            0.018300965657979958,\\n            0.05337735786454713\\n          ],\\n          \\\"mean\\\": 0.04620862540768831,\\n          \\\"std\\\": 0.019199470500624677,\\n          \\\"cv\\\": 0.4154953827519553\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.8134285714285714,\\n            0.8262857142857143,\\n            0.8374285714285714,\\n            0.8325714285714285,\\n            0.8782857142857143,\\n            0.8565714285714285,\\n            0.8094285714285714,\\n            0.7765714285714286,\\n            0.8182857142857143,\\n            0.8494285714285714\\n          ],\\n          \\\"mean\\\": 0.8298285714285715,\\n          \\\"std\\\": 0.028244863880020867\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.463872909545898,\\n            7.091081619262695,\\n            7.227706432342529,\\n            6.147369384765625,\\n            6.422111511230469,\\n            6.832631587982178,\\n            5.589345932006836,\\n            5.632013320922852,\\n            6.513154983520508,\\n            6.64810037612915\\n          ],\\n          \\\"mean\\\": 6.456738805770874,\\n          \\\"std\\\": 0.5484707236309271\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9779746757308103,\\n      \\\"paired_mse_mean\\\": 0.06905612690979479,\\n      \\\"token_divergence_rate\\\": 0.9128285714285714,\\n      \\\"kl_divergence_mean\\\": 8.806951522827148\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.9236912333834009,\\n      \\\"paired_mse_mean\\\": 0.06469925227162468,\\n      \\\"token_divergence_rate\\\": 0.9077428571428572,\\n      \\\"kl_divergence_mean\\\": 8.382783889770508\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.7625041888779224,\\n      \\\"paired_mse_mean\\\": 0.051173489765499375,\\n      \\\"token_divergence_rate\\\": 0.8710857142857142,\\n      \\\"kl_divergence_mean\\\": 7.330904960632324\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.7071343050207252,\\n      \\\"paired_mse_mean\\\": 0.04620862540768831,\\n      \\\"token_divergence_rate\\\": 0.8298285714285715,\\n      \\\"kl_divergence_mean\\\": 6.456738471984863\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.949 +/- 0.260\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.536, 1.505]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.274\\\",\\n      \\\"mse_mean_std\\\": \\\"0.064699 +/- 0.018264\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.989 +/- 0.169\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.681, 1.245]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.171\\\",\\n      \\\"mse_mean_std\\\": \\\"0.069056 +/- 0.012573\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.766 +/- 0.142\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.458, 0.930]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.051173 +/- 0.012747\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.713 +/- 0.211\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.411, 0.959]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.296\\\",\\n      \\\"mse_mean_std\\\": \\\"0.046209 +/- 0.019199\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "aa526bda-00b4-40ba-aebd-28e4b0da7e6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_instruction_10tasks\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"bridge_orig\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n      \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n      \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n      \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n      \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"turn_on_the_stove\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"global_metrics\\\\\\\": {\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.06469925227162468,\\\\n          \\\\\\\"std\\\\\\\": 0.07003723721073031,\\\\n          \\\\\\\"t_stat\\\\\\\": 65.31483348572935,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.9236912333834009,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8959664441611344,\\\\n            0.9514160226056674\\\\n          ]\\\\n        },\\\\n        \\\\\\\"per_dim_shift\\\\\\\": {\\\\n          \\\\\\\"means\\\\\\\": [\\\\n            0.005212683457116499,\\\\n            0.009701657278115717,\\\\n            0.010381370871684104,\\\\n            0.024219580160956013,\\\\n            0.03510734135497613,\\\\n            0.03954739989668392,\\\\n            0.4519435294117663\\\\n          ],\\\\n          \\\\\\\"stds\\\\\\\": [\\\\n            0.005405998172843991,\\\\n            0.010095792763667271,\\\\n            0.009512956661715331,\\\\n            0.022179338132531534,\\\\n            0.02944215516856952,\\\\n            0.03674687132904631,\\\\n            0.4920354585147579\\\\n          ],\\\\n          \\\\\\\"dim_names\\\\\\\": [\\\\n            \\\\\\\"dx\\\\\\\",\\\\n            \\\\\\\"dy\\\\\\\",\\\\n            \\\\\\\"dz\\\\\\\",\\\\n            \\\\\\\"rx\\\\\\\",\\\\n            \\\\\\\"ry\\\\\\\",\\\\n            \\\\\\\"rz\\\\\\\",\\\\n            \\\\\\\"gripper\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": 0.9077428571428572,\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 8.382783889770508,\\\\n          \\\\\\\"std\\\\\\\": 4.853038787841797,\\\\n          \\\\\\\"per_token_position\\\\\\\": [\\\\n            4.548716068267822,\\\\n            8.446861267089844,\\\\n            10.44683837890625,\\\\n            10.38597297668457,\\\\n            11.343461990356445,\\\\n            10.455062866210938,\\\\n            3.0525829792022705\\\\n          ]\\\\n        },\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"n_samples\\\\\\\": 5000\\\\n      },\\\\n      \\\\\\\"per_task\\\\\\\": {\\\\n        \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n          \\\\\\\"paired_mse\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.06594631822934968,\\\\n            \\\\\\\"std\\\\\\\": 0.07059699792059548,\\\\n            \\\\\\\"t_stat\\\\\\\": 20.866739452274786,\\\\n            \\\\\\\"p_value\\\\\\\": 5.536462097480026e-70,\\\\n            \\\\\\\"cohens_d\\\\\\\": 0.9331889576680575,\\\\n            \\\\\\\"ci_95\\\\\\\": [\\\\n              0.8453235881578286,\\\\n              1.0210543271782864\\\\n            ]\\\\n          },\\\\n          \\\\\\\"per_dim_shift\\\\\\\": {\\\\n            \\\\\\\"means\\\\\\\": [\\\\n              0.004409961340174951,\\\\n              0.008322569946580064,\\\\n              0.0083980725741474,\\\\n              0.024785119210023455,\\\\n              0.03182795169473394,\\\\n              0.033963809009664184,\\\\n              0.45916862745098175\\\\n            ],\\\\n            \\\\\\\"stds\\\\\\\": [\\\\n              0.004963287282741524,\\\\n              0.008346522923817323,\\\\n              0.007941980726539457,\\\\n              0.021492511427788696,\\\\n              0.028325233727294657,\\\\n              0.02980557707542075,\\\\n              0.49551821822264297\\\\n            ],\\\\n            \\\\\\\"dim_names\\\\\\\": [\\\\n              \\\\\\\"dx\\\\\\\",\\\\n              \\\\\\\"dy\\\\\\\",\\\\n              \\\\\\\"dz\\\\\\\",\\\\n              \\\\\\\"rx\\\\\\\",\\\\n              \\\\\\\"ry\\\\\\\",\\\\n              \\\\\\\"rz\\\\\\\",\\\\n              \\\\\\\"gripper\\\\\\\"\\\\n            ]\\\\n          },\\\\n          \\\\\\\"token_divergence_rate\\\\\\\": 0.9065714285714286,\\\\n          \\\\\\\"kl_divergence\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 7.969396591186523,\\\\n            \\\\\\\"std\\\\\\\": 4.80673360824585,\\\\n            \\\\\\\"per_token_position\\\\\\\": [\\\\n              4.303285598754883,\\\\n              7.63652229309082,\\\\n              9.742110252380371,\\\\n              10.921430587768555,\\\\n              10.920180320739746,\\\\n              9.818486213684082,\\\\n\\\\n\\\\n... [截断: 输出过长，省略 84338 字符] ...\\\\n\\\\n          \\\\\\\"wilcoxon_p\\\\\\\": 1.2647189486921487e-83,\\\\n          \\\\\\\"n_samples\\\\\\\": 500,\\\\n          \\\\\\\"instruction_correct\\\\\\\": \\\\\\\"turn on the stove\\\\\\\",\\\\n          \\\\\\\"instruction_counterfactual\\\\\\\": \\\\\\\"switch on the stove burner\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"cross_task_variance\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.44426928745757577,\\\\n            0.7130819735372003,\\\\n            0.9585957531074024,\\\\n            0.7589441845199817,\\\\n            0.8559420132342054,\\\\n            0.8674484848732507,\\\\n            0.9213151570896085,\\\\n            0.42640975571041245,\\\\n            0.4105605534254845,\\\\n            0.7783512511810732\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.7134918414136194,\\\\n          \\\\\\\"std\\\\\\\": 0.2108707494695406,\\\\n          \\\\\\\"min\\\\\\\": 0.4105605534254845,\\\\n          \\\\\\\"max\\\\\\\": 0.9585957531074024,\\\\n          \\\\\\\"cv\\\\\\\": 0.29554752728700207\\\\n        },\\\\n        \\\\\\\"paired_mse\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.022038930201642614,\\\\n            0.04702227485843084,\\\\n            0.06785492940403753,\\\\n            0.050207842000623455,\\\\n            0.05902087095549841,\\\\n            0.060360312651150015,\\\\n            0.06450448184122991,\\\\n            0.019398288641743235,\\\\n            0.018300965657979958,\\\\n            0.05337735786454713\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.04620862540768831,\\\\n          \\\\\\\"std\\\\\\\": 0.019199470500624677,\\\\n          \\\\\\\"cv\\\\\\\": 0.4154953827519553\\\\n        },\\\\n        \\\\\\\"token_divergence_rate\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            0.8134285714285714,\\\\n            0.8262857142857143,\\\\n            0.8374285714285714,\\\\n            0.8325714285714285,\\\\n            0.8782857142857143,\\\\n            0.8565714285714285,\\\\n            0.8094285714285714,\\\\n            0.7765714285714286,\\\\n            0.8182857142857143,\\\\n            0.8494285714285714\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.8298285714285715,\\\\n          \\\\\\\"std\\\\\\\": 0.028244863880020867\\\\n        },\\\\n        \\\\\\\"kl_divergence\\\\\\\": {\\\\n          \\\\\\\"values\\\\\\\": [\\\\n            6.463872909545898,\\\\n            7.091081619262695,\\\\n            7.227706432342529,\\\\n            6.147369384765625,\\\\n            6.422111511230469,\\\\n            6.832631587982178,\\\\n            5.589345932006836,\\\\n            5.632013320922852,\\\\n            6.513154983520508,\\\\n            6.64810037612915\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 6.456738805770874,\\\\n          \\\\\\\"std\\\\\\\": 0.5484707236309271\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ranking_by_cohens_d\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9779746757308103,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.06905612690979479,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9128285714285714,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 8.806951522827148\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9236912333834009,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.06469925227162468,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.9077428571428572,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 8.382783889770508\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.7625041888779224,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.051173489765499375,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8710857142857142,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 7.330904960632324\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.7071343050207252,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.04620862540768831,\\\\n      \\\\\\\"token_divergence_rate\\\\\\\": 0.8298285714285715,\\\\n      \\\\\\\"kl_divergence_mean\\\\\\\": 6.456738471984863\\\\n    }\\\\n  ],\\\\n  \\\\\\\"cross_task_summary\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.949 +/- 0.260\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.536, 1.505]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.274\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.064699 +/- 0.018264\\\\\\\"\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.989 +/- 0.169\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.681, 1.245]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.171\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.069056 +/- 0.012573\\\\\\\"\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.766 +/- 0.142\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.458, 0.930]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.185\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.051173 +/- 0.012747\\\\\\\"\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"cohens_d_mean_std\\\\\\\": \\\\\\\"0.713 +/- 0.211\\\\\\\",\\\\n      \\\\\\\"cohens_d_range\\\\\\\": \\\\\\\"[0.411, 0.959]\\\\\\\",\\\\n      \\\\\\\"cohens_d_cv\\\\\\\": \\\\\\\"0.296\\\\\\\",\\\\n      \\\\\\\"mse_mean_std\\\\\\\": \\\\\\\"0.046209 +/- 0.019199\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_instruction_10tasks\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"unnorm_key\\\": \\\"bridge_orig\\\",\\n    \\\"seed\\\": 42,\\n    \\\"task_names\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"put_the_bowl_on_the_plate\\\",\\n      \\\"put_the_bowl_on_the_stove\\\",\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n      \\\"put_the_cream_cheese_in_the_bowl\\\",\\n      \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n      \\\"turn_on_the_stove\\\"\\n    ]\\n  },\\n  \\\"conditions\\\": {\\n    \\\"wrong\\\": {\\n      \\\"global_metrics\\\": {\\n        \\\"paired_mse\\\": {\\n          \\\"mean\\\": 0.06469925227162468,\\n          \\\"std\\\": 0.07003723721073031,\\n          \\\"t_stat\\\": 65.31483348572935,\\n          \\\"p_value\\\": 0.0,\\n          \\\"cohens_d\\\": 0.9236912333834009,\\n          \\\"ci_95\\\": [\\n            0.8959664441611344,\\n            0.9514160226056674\\n          ]\\n        },\\n        \\\"per_dim_shift\\\": {\\n          \\\"means\\\": [\\n            0.005212683457116499,\\n            0.009701657278115717,\\n            0.010381370871684104,\\n            0.024219580160956013,\\n            0.03510734135497613,\\n            0.03954739989668392,\\n            0.4519435294117663\\n          ],\\n          \\\"stds\\\": [\\n            0.005405998172843991,\\n            0.010095792763667271,\\n            0.009512956661715331,\\n            0.022179338132531534,\\n            0.02944215516856952,\\n            0.03674687132904631,\\n            0.4920354585147579\\n          ],\\n          \\\"dim_names\\\": [\\n            \\\"dx\\\",\\n            \\\"dy\\\",\\n            \\\"dz\\\",\\n            \\\"rx\\\",\\n            \\\"ry\\\",\\n            \\\"rz\\\",\\n            \\\"gripper\\\"\\n          ]\\n        },\\n        \\\"token_divergence_rate\\\": 0.9077428571428572,\\n        \\\"kl_divergence\\\": {\\n          \\\"mean\\\": 8.382783889770508,\\n          \\\"std\\\": 4.853038787841797,\\n          \\\"per_token_position\\\": [\\n            4.548716068267822,\\n            8.446861267089844,\\n            10.44683837890625,\\n            10.38597297668457,\\n            11.343461990356445,\\n            10.455062866210938,\\n            3.0525829792022705\\n          ]\\n        },\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"n_samples\\\": 5000\\n      },\\n      \\\"per_task\\\": {\\n        \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n          \\\"paired_mse\\\": {\\n            \\\"mean\\\": 0.06594631822934968,\\n            \\\"std\\\": 0.07059699792059548,\\n            \\\"t_stat\\\": 20.866739452274786,\\n            \\\"p_value\\\": 5.536462097480026e-70,\\n            \\\"cohens_d\\\": 0.9331889576680575,\\n            \\\"ci_95\\\": [\\n              0.8453235881578286,\\n              1.0210543271782864\\n            ]\\n          },\\n          \\\"per_dim_shift\\\": {\\n            \\\"means\\\": [\\n              0.004409961340174951,\\n              0.008322569946580064,\\n              0.0083980725741474,\\n              0.024785119210023455,\\n              0.03182795169473394,\\n              0.033963809009664184,\\n              0.45916862745098175\\n            ],\\n            \\\"stds\\\": [\\n              0.004963287282741524,\\n              0.008346522923817323,\\n              0.007941980726539457,\\n              0.021492511427788696,\\n              0.028325233727294657,\\n              0.02980557707542075,\\n              0.49551821822264297\\n            ],\\n            \\\"dim_names\\\": [\\n              \\\"dx\\\",\\n              \\\"dy\\\",\\n              \\\"dz\\\",\\n              \\\"rx\\\",\\n              \\\"ry\\\",\\n              \\\"rz\\\",\\n              \\\"gripper\\\"\\n            ]\\n          },\\n          \\\"token_divergence_rate\\\": 0.9065714285714286,\\n          \\\"kl_divergence\\\": {\\n            \\\"mean\\\": 7.969396591186523,\\n            \\\"std\\\": 4.80673360824585,\\n            \\\"per_token_position\\\": [\\n              4.303285598754883,\\n              7.63652229309082,\\n              9.742110252380371,\\n              10.921430587768555,\\n              10.920180320739746,\\n              9.818486213684082,\\n\\n\\n... [截断: 输出过长，省略 84338 字符] ...\\n\\n          \\\"wilcoxon_p\\\": 1.2647189486921487e-83,\\n          \\\"n_samples\\\": 500,\\n          \\\"instruction_correct\\\": \\\"turn on the stove\\\",\\n          \\\"instruction_counterfactual\\\": \\\"switch on the stove burner\\\"\\n        }\\n      },\\n      \\\"cross_task_variance\\\": {\\n        \\\"cohens_d\\\": {\\n          \\\"values\\\": [\\n            0.44426928745757577,\\n            0.7130819735372003,\\n            0.9585957531074024,\\n            0.7589441845199817,\\n            0.8559420132342054,\\n            0.8674484848732507,\\n            0.9213151570896085,\\n            0.42640975571041245,\\n            0.4105605534254845,\\n            0.7783512511810732\\n          ],\\n          \\\"mean\\\": 0.7134918414136194,\\n          \\\"std\\\": 0.2108707494695406,\\n          \\\"min\\\": 0.4105605534254845,\\n          \\\"max\\\": 0.9585957531074024,\\n          \\\"cv\\\": 0.29554752728700207\\n        },\\n        \\\"paired_mse\\\": {\\n          \\\"values\\\": [\\n            0.022038930201642614,\\n            0.04702227485843084,\\n            0.06785492940403753,\\n            0.050207842000623455,\\n            0.05902087095549841,\\n            0.060360312651150015,\\n            0.06450448184122991,\\n            0.019398288641743235,\\n            0.018300965657979958,\\n            0.05337735786454713\\n          ],\\n          \\\"mean\\\": 0.04620862540768831,\\n          \\\"std\\\": 0.019199470500624677,\\n          \\\"cv\\\": 0.4154953827519553\\n        },\\n        \\\"token_divergence_rate\\\": {\\n          \\\"values\\\": [\\n            0.8134285714285714,\\n            0.8262857142857143,\\n            0.8374285714285714,\\n            0.8325714285714285,\\n            0.8782857142857143,\\n            0.8565714285714285,\\n            0.8094285714285714,\\n            0.7765714285714286,\\n            0.8182857142857143,\\n            0.8494285714285714\\n          ],\\n          \\\"mean\\\": 0.8298285714285715,\\n          \\\"std\\\": 0.028244863880020867\\n        },\\n        \\\"kl_divergence\\\": {\\n          \\\"values\\\": [\\n            6.463872909545898,\\n            7.091081619262695,\\n            7.227706432342529,\\n            6.147369384765625,\\n            6.422111511230469,\\n            6.832631587982178,\\n            5.589345932006836,\\n            5.632013320922852,\\n            6.513154983520508,\\n            6.64810037612915\\n          ],\\n          \\\"mean\\\": 6.456738805770874,\\n          \\\"std\\\": 0.5484707236309271\\n        }\\n      }\\n    }\\n  },\\n  \\\"ranking_by_cohens_d\\\": [\\n    {\\n      \\\"condition\\\": \\\"empty\\\",\\n      \\\"cohens_d\\\": 0.9779746757308103,\\n      \\\"paired_mse_mean\\\": 0.06905612690979479,\\n      \\\"token_divergence_rate\\\": 0.9128285714285714,\\n      \\\"kl_divergence_mean\\\": 8.806951522827148\\n    },\\n    {\\n      \\\"condition\\\": \\\"wrong\\\",\\n      \\\"cohens_d\\\": 0.9236912333834009,\\n      \\\"paired_mse_mean\\\": 0.06469925227162468,\\n      \\\"token_divergence_rate\\\": 0.9077428571428572,\\n      \\\"kl_divergence_mean\\\": 8.382783889770508\\n    },\\n    {\\n      \\\"condition\\\": \\\"shuffled\\\",\\n      \\\"cohens_d\\\": 0.7625041888779224,\\n      \\\"paired_mse_mean\\\": 0.051173489765499375,\\n      \\\"token_divergence_rate\\\": 0.8710857142857142,\\n      \\\"kl_divergence_mean\\\": 7.330904960632324\\n    },\\n    {\\n      \\\"condition\\\": \\\"paraphrased\\\",\\n      \\\"cohens_d\\\": 0.7071343050207252,\\n      \\\"paired_mse_mean\\\": 0.04620862540768831,\\n      \\\"token_divergence_rate\\\": 0.8298285714285715,\\n      \\\"kl_divergence_mean\\\": 6.456738471984863\\n    }\\n  ],\\n  \\\"cross_task_summary\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.949 +/- 0.260\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.536, 1.505]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.274\\\",\\n      \\\"mse_mean_std\\\": \\\"0.064699 +/- 0.018264\\\"\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.989 +/- 0.169\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.681, 1.245]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.171\\\",\\n      \\\"mse_mean_std\\\": \\\"0.069056 +/- 0.012573\\\"\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.766 +/- 0.142\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.458, 0.930]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.185\\\",\\n      \\\"mse_mean_std\\\": \\\"0.051173 +/- 0.012747\\\"\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"cohens_d_mean_std\\\": \\\"0.713 +/- 0.211\\\",\\n      \\\"cohens_d_range\\\": \\\"[0.411, 0.959]\\\",\\n      \\\"cohens_d_cv\\\": \\\"0.296\\\",\\n      \\\"mse_mean_std\\\": \\\"0.046209 +/- 0.019199\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 83 · 2026-05-22T00:18:56.771Z_
+
+<details><summary>↩ Tool result · `toolu_01GV4hCTLytZepzGFrCRunZK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"layer_0\\\": {\\n        \\\"mean_R2\\\": 0.6731675192713737,\\n        \\\"overall_R2\\\": 0.6803340911865234,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6568013429641724,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6830407679080963,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7472231388092041,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.5910188853740692,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.6640605032444,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7123380899429321,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.695947915315628,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.6462279558181763,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.57365882396698,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.761357769370079\\n        },\\n        \\\"gripper_acc\\\": 0.9058871627146361,\\n        \\\"epochs_trained\\\": 19\\n      },\\n      \\\"layer_1\\\": {\\n        \\\"mean_R2\\\": 0.6799452856183053,\\n        \\\"overall_R2\\\": 0.6872810125350952,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6621033847332001,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6887402832508087,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.759875163435936,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.610526978969574,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.6546573340892792,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7090711891651154,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.702716737985611,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.649541825056076,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5883142352104187,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7739057242870331\\n        },\\n        \\\"gripper_acc\\\": 0.9083401471790679,\\n        \\\"epochs_trained\\\": 19\\n      },\\n      \\\"layer_2\\\": {\\n        \\\"mean_R2\\\": 0.6785239607095719,\\n        \\\"overall_R2\\\": 0.6853025257587433,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6736273467540741,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6974085867404938,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7476575970649719,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.5992644727230072,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.662308394908905,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7175568640232086,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.6977571249008179,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.6445474624633789,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5801268219947815,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7649849355\\n\\n... [截断: 输出过长，省略 160786 字符] ...\\n\\n_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.0012149810791015625\\n        },\\n        \\\"gripper_acc\\\": 0.5547833197056419,\\n        \\\"epochs_trained\\\": 15\\n      },\\n      \\\"layer_31\\\": {\\n        \\\"mean_R2\\\": -0.014957559108734132,\\n        \\\"overall_R2\\\": -5.53131103515625e-05,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": -0.016795039176940918,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": -0.002884387969970703,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.011164426803588867,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": -0.011838078498840332,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": -0.009903192520141602,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": -0.007145881652832031,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": -0.015271425247192383,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": -0.00989687442779541,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": -0.06334841251373291,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.0013278722763061523\\n        },\\n        \\\"gripper_acc\\\": 0.5547833197056419,\\n        \\\"epochs_trained\\\": 16\\n      },\\n      \\\"layer_32\\\": {\\n        \\\"mean_R2\\\": 0.6206460893154144,\\n        \\\"overall_R2\\\": 0.629286527633667,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.5930655896663666,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6051526367664337,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7281669676303864,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.56580850481987,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.618170291185379,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.6820594370365143,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.6735526919364929,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.544777512550354,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5034637451171875,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.6922435164451599\\n        },\\n        \\\"gripper_acc\\\": 0.8858544562551104,\\n        \\\"epochs_trained\\\": 6\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"trained_image_mean_peak\\\": {\\n      \\\"layer\\\": 13,\\n      \\\"mean_R2\\\": 0.696312727034092\\n    },\\n    \\\"trained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 21,\\n      \\\"mean_R2\\\": 0.6748461693525314\\n    },\\n    \\\"untrained_image_mean_peak\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"mean_R2\\\": 0.6731675192713737\\n    },\\n    \\\"untrained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"mean_R2\\\": 0.6348172485828399\\n    }\\n  },\\n  \\\"bootstrap_comparisons\\\": {\\n    \\\"trained_vs_untrained_image_mean_bestvsbest\\\": {\\n      \\\"delta\\\": 0.023145207762718223,\\n      \\\"ci_95\\\": [\\n        0.011854174733162016,\\n        0.03600069053471088\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_last_preaction_bestvsbest\\\": {\\n      \\\"delta\\\": 0.040028920769691445,\\n      \\\"ci_95\\\": [\\n        0.01924936883151531,\\n        0.05653867885470397\\n      ],\\n      \\\"p_value\\\": 0.0004\\n    },\\n    \\\"trained_vs_untrained_image_mean_samelayer\\\": {\\n      \\\"delta\\\": 0.7112837329506875,\\n      \\\"ci_95\\\": [\\n        0.6849597542732954,\\n        0.7398407657071948\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_last_preaction_samelayer\\\": {\\n      \\\"delta\\\": 0.36996987164020534,\\n      \\\"ci_95\\\": [\\n        0.3166631112247705,\\n        0.42715293966233736\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"elapsed_seconds\\\": 1133.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "87d1af06-c3e7-4891-a392-f9ecc6e510d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"epochs\\\\\\\": 50,\\\\n    \\\\\\\"patience\\\\\\\": 5,\\\\n    \\\\\\\"lr\\\\\\\": 0.001,\\\\n    \\\\\\\"batch_size\\\\\\\": 256,\\\\n    \\\\\\\"hidden\\\\\\\": 256,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\",\\\\n    \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Linear(4096,256)->ReLU->Linear(256,7)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"trained\\\\\\\": {\\\\n    \\\\\\\"image_mean\\\\\\\": {\\\\n      \\\\\\\"layer_0\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6803340911865234,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6568013429641724,\\\\n          \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": 0.6830407679080963,\\\\n          \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.7472231388092041,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.5910188853740692,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": 0.6640605032444,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.7123380899429321,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.695947915315628,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6462279558181763,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": 0.57365882396698,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.761357769370079\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9058871627146361,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 19\\\\n      },\\\\n      \\\\\\\"layer_1\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6799452856183053,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6872810125350952,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6621033847332001,\\\\n          \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": 0.6887402832508087,\\\\n          \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.759875163435936,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.610526978969574,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": 0.6546573340892792,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.7090711891651154,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.702716737985611,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.649541825056076,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": 0.5883142352104187,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.7739057242870331\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.9083401471790679,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 19\\\\n      },\\\\n      \\\\\\\"layer_2\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6785239607095719,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.6853025257587433,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6736273467540741,\\\\n          \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": 0.6974085867404938,\\\\n          \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.7476575970649719,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.5992644727230072,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": 0.662308394908905,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.7175568640232086,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.6977571249008179,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6445474624633789,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": 0.5801268219947815,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.7649849355\\\\n\\\\n... [截断: 输出过长，省略 160786 字符] ...\\\\n\\\\n_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": -0.0012149810791015625\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.5547833197056419,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 15\\\\n      },\\\\n      \\\\\\\"layer_31\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": -0.014957559108734132,\\\\n        \\\\\\\"overall_R2\\\\\\\": -5.53131103515625e-05,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": -0.016795039176940918,\\\\n          \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": -0.002884387969970703,\\\\n          \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": -0.011164426803588867,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": -0.011838078498840332,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": -0.009903192520141602,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": -0.007145881652832031,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": -0.015271425247192383,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": -0.00989687442779541,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": -0.06334841251373291,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": -0.0013278722763061523\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.5547833197056419,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 16\\\\n      },\\\\n      \\\\\\\"layer_32\\\\\\\": {\\\\n        \\\\\\\"mean_R2\\\\\\\": 0.6206460893154144,\\\\n        \\\\\\\"overall_R2\\\\\\\": 0.629286527633667,\\\\n        \\\\\\\"per_task_R2\\\\\\\": {\\\\n          \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.5930655896663666,\\\\n          \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": 0.6051526367664337,\\\\n          \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.7281669676303864,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.56580850481987,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": 0.618170291185379,\\\\n          \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.6820594370365143,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": 0.6735526919364929,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": 0.544777512550354,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": 0.5034637451171875,\\\\n          \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": 0.6922435164451599\\\\n        },\\\\n        \\\\\\\"gripper_acc\\\\\\\": 0.8858544562551104,\\\\n        \\\\\\\"epochs_trained\\\\\\\": 6\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"trained_image_mean_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 13,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.696312727034092\\\\n    },\\\\n    \\\\\\\"trained_last_preaction_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 21,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6748461693525314\\\\n    },\\\\n    \\\\\\\"untrained_image_mean_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6731675192713737\\\\n    },\\\\n    \\\\\\\"untrained_last_preaction_peak\\\\\\\": {\\\\n      \\\\\\\"layer\\\\\\\": 1,\\\\n      \\\\\\\"mean_R2\\\\\\\": 0.6348172485828399\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_comparisons\\\\\\\": {\\\\n    \\\\\\\"trained_vs_untrained_image_mean_bestvsbest\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.023145207762718223,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.011854174733162016,\\\\n        0.03600069053471088\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_last_preaction_bestvsbest\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.040028920769691445,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.01924936883151531,\\\\n        0.05653867885470397\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0004\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_image_mean_samelayer\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.7112837329506875,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.6849597542732954,\\\\n        0.7398407657071948\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"trained_vs_untrained_last_preaction_samelayer\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.36996987164020534,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.3166631112247705,\\\\n        0.42715293966233736\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 1133.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"batch_size\\\": 256,\\n    \\\"hidden\\\": 256,\\n    \\\"seed\\\": 42,\\n    \\\"target\\\": \\\"next_action_a_{t+1}\\\",\\n    \\\"normalization\\\": \\\"z-score\\\",\\n    \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    \\\"model\\\": \\\"Linear(4096,256)->ReLU->Linear(256,7)\\\"\\n  },\\n  \\\"trained\\\": {\\n    \\\"image_mean\\\": {\\n      \\\"layer_0\\\": {\\n        \\\"mean_R2\\\": 0.6731675192713737,\\n        \\\"overall_R2\\\": 0.6803340911865234,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6568013429641724,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6830407679080963,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7472231388092041,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.5910188853740692,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.6640605032444,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7123380899429321,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.695947915315628,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.6462279558181763,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.57365882396698,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.761357769370079\\n        },\\n        \\\"gripper_acc\\\": 0.9058871627146361,\\n        \\\"epochs_trained\\\": 19\\n      },\\n      \\\"layer_1\\\": {\\n        \\\"mean_R2\\\": 0.6799452856183053,\\n        \\\"overall_R2\\\": 0.6872810125350952,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6621033847332001,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6887402832508087,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.759875163435936,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.610526978969574,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.6546573340892792,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7090711891651154,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.702716737985611,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.649541825056076,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5883142352104187,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7739057242870331\\n        },\\n        \\\"gripper_acc\\\": 0.9083401471790679,\\n        \\\"epochs_trained\\\": 19\\n      },\\n      \\\"layer_2\\\": {\\n        \\\"mean_R2\\\": 0.6785239607095719,\\n        \\\"overall_R2\\\": 0.6853025257587433,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.6736273467540741,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6974085867404938,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7476575970649719,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.5992644727230072,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.662308394908905,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.7175568640232086,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.6977571249008179,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.6445474624633789,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5801268219947815,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7649849355\\n\\n... [截断: 输出过长，省略 160786 字符] ...\\n\\n_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.0012149810791015625\\n        },\\n        \\\"gripper_acc\\\": 0.5547833197056419,\\n        \\\"epochs_trained\\\": 15\\n      },\\n      \\\"layer_31\\\": {\\n        \\\"mean_R2\\\": -0.014957559108734132,\\n        \\\"overall_R2\\\": -5.53131103515625e-05,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": -0.016795039176940918,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": -0.002884387969970703,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.011164426803588867,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": -0.011838078498840332,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": -0.009903192520141602,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": -0.007145881652832031,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": -0.015271425247192383,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": -0.00989687442779541,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": -0.06334841251373291,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": -0.0013278722763061523\\n        },\\n        \\\"gripper_acc\\\": 0.5547833197056419,\\n        \\\"epochs_trained\\\": 16\\n      },\\n      \\\"layer_32\\\": {\\n        \\\"mean_R2\\\": 0.6206460893154144,\\n        \\\"overall_R2\\\": 0.629286527633667,\\n        \\\"per_task_R2\\\": {\\n          \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": 0.5930655896663666,\\n          \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": 0.6051526367664337,\\n          \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.7281669676303864,\\n          \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": 0.56580850481987,\\n          \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": 0.618170291185379,\\n          \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": 0.6820594370365143,\\n          \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": 0.6735526919364929,\\n          \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": 0.544777512550354,\\n          \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": 0.5034637451171875,\\n          \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": 0.6922435164451599\\n        },\\n        \\\"gripper_acc\\\": 0.8858544562551104,\\n        \\\"epochs_trained\\\": 6\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"trained_image_mean_peak\\\": {\\n      \\\"layer\\\": 13,\\n      \\\"mean_R2\\\": 0.696312727034092\\n    },\\n    \\\"trained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 21,\\n      \\\"mean_R2\\\": 0.6748461693525314\\n    },\\n    \\\"untrained_image_mean_peak\\\": {\\n      \\\"layer\\\": 0,\\n      \\\"mean_R2\\\": 0.6731675192713737\\n    },\\n    \\\"untrained_last_preaction_peak\\\": {\\n      \\\"layer\\\": 1,\\n      \\\"mean_R2\\\": 0.6348172485828399\\n    }\\n  },\\n  \\\"bootstrap_comparisons\\\": {\\n    \\\"trained_vs_untrained_image_mean_bestvsbest\\\": {\\n      \\\"delta\\\": 0.023145207762718223,\\n      \\\"ci_95\\\": [\\n        0.011854174733162016,\\n        0.03600069053471088\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_last_preaction_bestvsbest\\\": {\\n      \\\"delta\\\": 0.040028920769691445,\\n      \\\"ci_95\\\": [\\n        0.01924936883151531,\\n        0.05653867885470397\\n      ],\\n      \\\"p_value\\\": 0.0004\\n    },\\n    \\\"trained_vs_untrained_image_mean_samelayer\\\": {\\n      \\\"delta\\\": 0.7112837329506875,\\n      \\\"ci_95\\\": [\\n        0.6849597542732954,\\n        0.7398407657071948\\n      ],\\n      \\\"p_value\\\": 0.0\\n    },\\n    \\\"trained_vs_untrained_last_preaction_samelayer\\\": {\\n      \\\"delta\\\": 0.36996987164020534,\\n      \\\"ci_95\\\": [\\n        0.3166631112247705,\\n        0.42715293966233736\\n      ],\\n      \\\"p_value\\\": 0.0\\n    }\\n  },\\n  \\\"elapsed_seconds\\\": 1133.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Wo9hD73eNv1pHh3hDjGL7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "987cef07-faeb-4f5a-880e-629876b02747",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-22T00:18:57.306Z_
+
+<details><summary>↩ Tool result · `toolu_012Wo9hD73eNv1pHh3hDjGL7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4,\\n    5,\\n    6,\\n    7,\\n    8,\\n    9,\\n    10,\\n    11,\\n    12,\\n    13,\\n    14\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6456495076417923,\\n          0.5978063106536865,\\n          0.6397484868764878,\\n          0.6459006950259208,\\n          0.6133959382772446,\\n          0.5944373175501824,\\n          0.6330083817243576,\\n          0.6421630278229713,\\n          0.6296697810292244,\\n          0.6322719916701317,\\n          0.6258023172616959,\\n          0.6374978065490723,\\n          0.6194581598043442,\\n          0.6417109251022339,\\n          0.6421523675322532\\n        ],\\n        \\\"mean\\\": 0.6293782009681067,\\n        \\\"std\\\": 0.01590777587362603\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5314562350511551,\\n          0.5447357684373856,\\n          0.5727765947580338,\\n          0.5497325986623764,\\n          0.539964035153389,\\n          0.5787958920001983,\\n          0.5384945720434189,\\n          0.4973878085613251,\\n          0.5480267345905304,\\n          0.5075169891119004,\\n          0.5631389141082763,\\n          0.5331172108650207,\\n          0.5046919494867325,\\n          0.5306813806295395,\\n          0.545267254114151\\n        ],\\n        \\\"mean\\\": 0.5390522625048957,\\n        \\\"std\\\": 0.022565109247695496\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5581348389387131,\\n          0.5468221604824066,\\n          0.51600162088871,\\n          0.48725364208221433,\\n          0.5277142822742462,\\n          0.5210624992847442,\\n          0.5132066696882248,\\n          0.5256205797195435,\\n          0.5604791969060898,\\n          0.49086240530014036,\\n          0.559195926785469,\\n          0.5352099150419235,\\n          0.527821934223175,\\n          0.5184603035449982,\\n          0.3617728531360626\\n        ],\\n        \\\"mean\\\": 0.5166412552197773,\\n        \\\"std\\\": 0.04660885277974929\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.5524985909461975,\\n          0.5350410789251328,\\n          0.5510434657335281,\\n          0.5106675833463669,\\n          0.5453551322221756,\\n          0.5266274154186249,\\n          0.5147567808628082,\\n          0.48361391127109526,\\n          0.5562590420246124,\\n          0.5276565015316009,\\n          0.5447760850191117,\\n          -0.3280607104301453,\\n          0.4684071034193039,\\n          0.3266317516565323,\\n          0.41055955588817594\\n        ],\\n        \\\"mean\\\": 0.44838888585567466,\\n        \\\"std\\\": 0.21612860873795176\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.541847288608551,\\n          0.43895032107830045,\\n          0.5054023921489715,\\n          0.523080027103424,\\n          0.5377601563930512,\\n          0.535122674703598,\\n          0.5293149888515473,\\n          0.5108582466840744,\\n          0.5386962562799453,\\n          0.3286745995283127,\\n          0.5280363857746124,\\n          0.4327568233013153,\\n          0.5027350962162018,\\n          0.4577772468328476,\\n          0.5268222987651825\\n        ],\\n        \\\"mean\\\": 0.4958556534846624,\\n        \\\"std\\\": 0.05661940432833058\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5700991094112396,\\n          0.5402346640825272,\\n          0.5414407849311829,\\n          0.47659210562705995,\\n          0.506783977150917,\\n          0.40192038714885714,\\n          0.49827160835266116,\\n          0.5419180601835251,\\n          0.5319308638572693,\\n          0.5491852343082428,\\n          0.5214511275291442,\\n          0.4448683887720108,\\n          0.4901213437318802,\\n          0.3465738773345947,\\n          0.16726531386375426\\n        ],\\n        \\\"mean\\\": 0.47524378975232445,\\n        \\\"std\\\": 0.10076991062980963\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.4772081136703491,\\n          0.5202122002840042,\\n          0.5138075649738312,\\n          0.3038535207509995,\\n          0.5227883070707321,\\n          0.16356320977210997,\\n          0.18893256187438964\\n\\n... [截断: 输出过长，省略 49304 字符] ...\\n\\neds\\\": [\\n          0.5646873265504837,\\n          0.5371685743331909,\\n          0.5543272197246552,\\n          0.5785093367099762,\\n          0.5707139939069747,\\n          0.5284408748149871,\\n          0.5562624335289001,\\n          0.5317879736423492,\\n          0.5504992872476577,\\n          0.5365265250205994,\\n          0.5538615256547927,\\n          0.5377772957086563,\\n          0.5130615293979645,\\n          0.5447807639837265,\\n          0.3737155169248581\\n        ],\\n        \\\"mean\\\": 0.5354746784766514,\\n        \\\"std\\\": 0.046278761709299746\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.5657036781311036,\\n          0.5677288502454758,\\n          0.5387623757123947,\\n          0.4803360730409622,\\n          0.57254878282547,\\n          0.5032026320695877,\\n          0.5420282065868378,\\n          0.5412502765655518,\\n          0.5742572039365769,\\n          0.5538505405187607,\\n          0.5592121809720993,\\n          0.5589964479207993,\\n          0.5527420461177825,\\n          0.5850563824176789,\\n          0.5797855347394943\\n        ],\\n        \\\"mean\\\": 0.5516974141200385,\\n        \\\"std\\\": 0.027359679021464765\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.5183763563632965,\\n          0.5211188912391662,\\n          0.5533019125461578,\\n          0.5433087408542633,\\n          0.5807910799980164,\\n          0.5487001419067383,\\n          0.5333338737487793,\\n          0.5631546884775162,\\n          0.5641294807195664,\\n          0.5424844056367875,\\n          0.4422056406736374,\\n          0.5295805126428604,\\n          0.5838705778121949,\\n          0.5778589397668839,\\n          0.5578750520944595\\n        ],\\n        \\\"mean\\\": 0.5440060196320216,\\n        \\\"std\\\": 0.03369428877394615\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.521354803442955,\\n          0.5207366734743119,\\n          0.5434339612722396,\\n          0.5396472930908203,\\n          0.5701878845691681,\\n          0.5427794516086578,\\n          0.4238207548856735,\\n          0.5434453070163727,\\n          0.5706760138273239,\\n          0.5107580810785294,\\n          0.5234658479690552,\\n          0.5517539381980896,\\n          0.5172154039144516,\\n          0.5545511245727539,\\n          0.5193780541419983\\n        ],\\n        \\\"mean\\\": 0.5302136395374933,\\n        \\\"std\\\": 0.033750399780437416\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.5316682308912277,\\n          0.4700192093849182,\\n          0.5185229450464248,\\n          0.48717271983623506,\\n          0.5229840964078903,\\n          0.5156824439764023,\\n          0.4297660768032074,\\n          0.5303710371255874,\\n          0.5178130954504013,\\n          0.5153989195823669,\\n          0.5327338129281998,\\n          0.513350197672844,\\n          0.5013067930936813,\\n          0.5537206590175628,\\n          0.5256209552288056\\n        ],\\n        \\\"mean\\\": 0.5110754128297169,\\n        \\\"std\\\": 0.028921753017828702\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.4004045486450195,\\n          0.5207190990447998,\\n          0.4998741090297699,\\n          0.5369580775499344,\\n          0.4119430810213089,\\n          0.5214867800474167,\\n          0.37813751995563505,\\n          0.5048615545034408,\\n          0.5481108814477921,\\n          0.4176926285028458,\\n          0.5252994775772095,\\n          0.5169334977865219,\\n          0.49431127607822417,\\n          0.500511160492897,\\n          0.5362138211727142\\n        ],\\n        \\\"mean\\\": 0.48756383419036864,\\n        \\\"std\\\": 0.05406441184964477\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5464633464813232,\\n          0.5462169080972672,\\n          0.5433270782232285,\\n          0.53032246530056,\\n          0.5327671647071839,\\n          0.5775899827480316,\\n          0.5322568476200104,\\n          0.5231444776058197,\\n          0.531786385178566,\\n          0.5340774476528167,\\n          0.5222015351057052,\\n          0.5195572197437286,\\n          0.5390807598829269,\\n          0.513902148604393,\\n          0.5321987748146058\\n        ],\\n        \\\"mean\\\": 0.5349928361177445,\\n        \\\"std\\\": 0.0146024975004439\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "e1030087-7041-489e-8d21-ea17cfdbbd55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conditions\\\\\\\": [\\\\n    \\\\\\\"untrained\\\\\\\",\\\\n    \\\\\\\"llama2base\\\\\\\",\\\\n    \\\\\\\"trained\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    0,\\\\n    1,\\\\n    2,\\\\n    3,\\\\n    4,\\\\n    5,\\\\n    6,\\\\n    7,\\\\n    8,\\\\n    9,\\\\n    10,\\\\n    11,\\\\n    12,\\\\n    13,\\\\n    14\\\\n  ],\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"sequential_80_20_no_shuffle\\\\\\\",\\\\n  \\\\\\\"r2_space\\\\\\\": \\\\\\\"original_denormalized\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"untrained\\\\\\\": {\\\\n      \\\\\\\"L0\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.6456495076417923,\\\\n          0.5978063106536865,\\\\n          0.6397484868764878,\\\\n          0.6459006950259208,\\\\n          0.6133959382772446,\\\\n          0.5944373175501824,\\\\n          0.6330083817243576,\\\\n          0.6421630278229713,\\\\n          0.6296697810292244,\\\\n          0.6322719916701317,\\\\n          0.6258023172616959,\\\\n          0.6374978065490723,\\\\n          0.6194581598043442,\\\\n          0.6417109251022339,\\\\n          0.6421523675322532\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.6293782009681067,\\\\n        \\\\\\\"std\\\\\\\": 0.01590777587362603\\\\n      },\\\\n      \\\\\\\"L1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5314562350511551,\\\\n          0.5447357684373856,\\\\n          0.5727765947580338,\\\\n          0.5497325986623764,\\\\n          0.539964035153389,\\\\n          0.5787958920001983,\\\\n          0.5384945720434189,\\\\n          0.4973878085613251,\\\\n          0.5480267345905304,\\\\n          0.5075169891119004,\\\\n          0.5631389141082763,\\\\n          0.5331172108650207,\\\\n          0.5046919494867325,\\\\n          0.5306813806295395,\\\\n          0.545267254114151\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5390522625048957,\\\\n        \\\\\\\"std\\\\\\\": 0.022565109247695496\\\\n      },\\\\n      \\\\\\\"L2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5581348389387131,\\\\n          0.5468221604824066,\\\\n          0.51600162088871,\\\\n          0.48725364208221433,\\\\n          0.5277142822742462,\\\\n          0.5210624992847442,\\\\n          0.5132066696882248,\\\\n          0.5256205797195435,\\\\n          0.5604791969060898,\\\\n          0.49086240530014036,\\\\n          0.559195926785469,\\\\n          0.5352099150419235,\\\\n          0.527821934223175,\\\\n          0.5184603035449982,\\\\n          0.3617728531360626\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5166412552197773,\\\\n        \\\\\\\"std\\\\\\\": 0.04660885277974929\\\\n      },\\\\n      \\\\\\\"L3\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5524985909461975,\\\\n          0.5350410789251328,\\\\n          0.5510434657335281,\\\\n          0.5106675833463669,\\\\n          0.5453551322221756,\\\\n          0.5266274154186249,\\\\n          0.5147567808628082,\\\\n          0.48361391127109526,\\\\n          0.5562590420246124,\\\\n          0.5276565015316009,\\\\n          0.5447760850191117,\\\\n          -0.3280607104301453,\\\\n          0.4684071034193039,\\\\n          0.3266317516565323,\\\\n          0.41055955588817594\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.44838888585567466,\\\\n        \\\\\\\"std\\\\\\\": 0.21612860873795176\\\\n      },\\\\n      \\\\\\\"L4\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.541847288608551,\\\\n          0.43895032107830045,\\\\n          0.5054023921489715,\\\\n          0.523080027103424,\\\\n          0.5377601563930512,\\\\n          0.535122674703598,\\\\n          0.5293149888515473,\\\\n          0.5108582466840744,\\\\n          0.5386962562799453,\\\\n          0.3286745995283127,\\\\n          0.5280363857746124,\\\\n          0.4327568233013153,\\\\n          0.5027350962162018,\\\\n          0.4577772468328476,\\\\n          0.5268222987651825\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.4958556534846624,\\\\n        \\\\\\\"std\\\\\\\": 0.05661940432833058\\\\n      },\\\\n      \\\\\\\"L5\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5700991094112396,\\\\n          0.5402346640825272,\\\\n          0.5414407849311829,\\\\n          0.47659210562705995,\\\\n          0.506783977150917,\\\\n          0.40192038714885714,\\\\n          0.49827160835266116,\\\\n          0.5419180601835251,\\\\n          0.5319308638572693,\\\\n          0.5491852343082428,\\\\n          0.5214511275291442,\\\\n          0.4448683887720108,\\\\n          0.4901213437318802,\\\\n          0.3465738773345947,\\\\n          0.16726531386375426\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.47524378975232445,\\\\n        \\\\\\\"std\\\\\\\": 0.10076991062980963\\\\n      },\\\\n      \\\\\\\"L6\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4772081136703491,\\\\n          0.5202122002840042,\\\\n          0.5138075649738312,\\\\n          0.3038535207509995,\\\\n          0.5227883070707321,\\\\n          0.16356320977210997,\\\\n          0.18893256187438964\\\\n\\\\n... [截断: 输出过长，省略 49304 字符] ...\\\\n\\\\neds\\\\\\\": [\\\\n          0.5646873265504837,\\\\n          0.5371685743331909,\\\\n          0.5543272197246552,\\\\n          0.5785093367099762,\\\\n          0.5707139939069747,\\\\n          0.5284408748149871,\\\\n          0.5562624335289001,\\\\n          0.5317879736423492,\\\\n          0.5504992872476577,\\\\n          0.5365265250205994,\\\\n          0.5538615256547927,\\\\n          0.5377772957086563,\\\\n          0.5130615293979645,\\\\n          0.5447807639837265,\\\\n          0.3737155169248581\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5354746784766514,\\\\n        \\\\\\\"std\\\\\\\": 0.046278761709299746\\\\n      },\\\\n      \\\\\\\"L27\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5657036781311036,\\\\n          0.5677288502454758,\\\\n          0.5387623757123947,\\\\n          0.4803360730409622,\\\\n          0.57254878282547,\\\\n          0.5032026320695877,\\\\n          0.5420282065868378,\\\\n          0.5412502765655518,\\\\n          0.5742572039365769,\\\\n          0.5538505405187607,\\\\n          0.5592121809720993,\\\\n          0.5589964479207993,\\\\n          0.5527420461177825,\\\\n          0.5850563824176789,\\\\n          0.5797855347394943\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5516974141200385,\\\\n        \\\\\\\"std\\\\\\\": 0.027359679021464765\\\\n      },\\\\n      \\\\\\\"L28\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5183763563632965,\\\\n          0.5211188912391662,\\\\n          0.5533019125461578,\\\\n          0.5433087408542633,\\\\n          0.5807910799980164,\\\\n          0.5487001419067383,\\\\n          0.5333338737487793,\\\\n          0.5631546884775162,\\\\n          0.5641294807195664,\\\\n          0.5424844056367875,\\\\n          0.4422056406736374,\\\\n          0.5295805126428604,\\\\n          0.5838705778121949,\\\\n          0.5778589397668839,\\\\n          0.5578750520944595\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5440060196320216,\\\\n        \\\\\\\"std\\\\\\\": 0.03369428877394615\\\\n      },\\\\n      \\\\\\\"L29\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.521354803442955,\\\\n          0.5207366734743119,\\\\n          0.5434339612722396,\\\\n          0.5396472930908203,\\\\n          0.5701878845691681,\\\\n          0.5427794516086578,\\\\n          0.4238207548856735,\\\\n          0.5434453070163727,\\\\n          0.5706760138273239,\\\\n          0.5107580810785294,\\\\n          0.5234658479690552,\\\\n          0.5517539381980896,\\\\n          0.5172154039144516,\\\\n          0.5545511245727539,\\\\n          0.5193780541419983\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5302136395374933,\\\\n        \\\\\\\"std\\\\\\\": 0.033750399780437416\\\\n      },\\\\n      \\\\\\\"L30\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5316682308912277,\\\\n          0.4700192093849182,\\\\n          0.5185229450464248,\\\\n          0.48717271983623506,\\\\n          0.5229840964078903,\\\\n          0.5156824439764023,\\\\n          0.4297660768032074,\\\\n          0.5303710371255874,\\\\n          0.5178130954504013,\\\\n          0.5153989195823669,\\\\n          0.5327338129281998,\\\\n          0.513350197672844,\\\\n          0.5013067930936813,\\\\n          0.5537206590175628,\\\\n          0.5256209552288056\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5110754128297169,\\\\n        \\\\\\\"std\\\\\\\": 0.028921753017828702\\\\n      },\\\\n      \\\\\\\"L31\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.4004045486450195,\\\\n          0.5207190990447998,\\\\n          0.4998741090297699,\\\\n          0.5369580775499344,\\\\n          0.4119430810213089,\\\\n          0.5214867800474167,\\\\n          0.37813751995563505,\\\\n          0.5048615545034408,\\\\n          0.5481108814477921,\\\\n          0.4176926285028458,\\\\n          0.5252994775772095,\\\\n          0.5169334977865219,\\\\n          0.49431127607822417,\\\\n          0.500511160492897,\\\\n          0.5362138211727142\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.48756383419036864,\\\\n        \\\\\\\"std\\\\\\\": 0.05406441184964477\\\\n      },\\\\n      \\\\\\\"L32\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": [\\\\n          0.5464633464813232,\\\\n          0.5462169080972672,\\\\n          0.5433270782232285,\\\\n          0.53032246530056,\\\\n          0.5327671647071839,\\\\n          0.5775899827480316,\\\\n          0.5322568476200104,\\\\n          0.5231444776058197,\\\\n          0.531786385178566,\\\\n          0.5340774476528167,\\\\n          0.5222015351057052,\\\\n          0.5195572197437286,\\\\n          0.5390807598829269,\\\\n          0.513902148604393,\\\\n          0.5321987748146058\\\\n        ],\\\\n        \\\\\\\"mean\\\\\\\": 0.5349928361177445,\\\\n        \\\\\\\"std\\\\\\\": 0.0146024975004439\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4,\\n    5,\\n    6,\\n    7,\\n    8,\\n    9,\\n    10,\\n    11,\\n    12,\\n    13,\\n    14\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6456495076417923,\\n          0.5978063106536865,\\n          0.6397484868764878,\\n          0.6459006950259208,\\n          0.6133959382772446,\\n          0.5944373175501824,\\n          0.6330083817243576,\\n          0.6421630278229713,\\n          0.6296697810292244,\\n          0.6322719916701317,\\n          0.6258023172616959,\\n          0.6374978065490723,\\n          0.6194581598043442,\\n          0.6417109251022339,\\n          0.6421523675322532\\n        ],\\n        \\\"mean\\\": 0.6293782009681067,\\n        \\\"std\\\": 0.01590777587362603\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5314562350511551,\\n          0.5447357684373856,\\n          0.5727765947580338,\\n          0.5497325986623764,\\n          0.539964035153389,\\n          0.5787958920001983,\\n          0.5384945720434189,\\n          0.4973878085613251,\\n          0.5480267345905304,\\n          0.5075169891119004,\\n          0.5631389141082763,\\n          0.5331172108650207,\\n          0.5046919494867325,\\n          0.5306813806295395,\\n          0.545267254114151\\n        ],\\n        \\\"mean\\\": 0.5390522625048957,\\n        \\\"std\\\": 0.022565109247695496\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.5581348389387131,\\n          0.5468221604824066,\\n          0.51600162088871,\\n          0.48725364208221433,\\n          0.5277142822742462,\\n          0.5210624992847442,\\n          0.5132066696882248,\\n          0.5256205797195435,\\n          0.5604791969060898,\\n          0.49086240530014036,\\n          0.559195926785469,\\n          0.5352099150419235,\\n          0.527821934223175,\\n          0.5184603035449982,\\n          0.3617728531360626\\n        ],\\n        \\\"mean\\\": 0.5166412552197773,\\n        \\\"std\\\": 0.04660885277974929\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.5524985909461975,\\n          0.5350410789251328,\\n          0.5510434657335281,\\n          0.5106675833463669,\\n          0.5453551322221756,\\n          0.5266274154186249,\\n          0.5147567808628082,\\n          0.48361391127109526,\\n          0.5562590420246124,\\n          0.5276565015316009,\\n          0.5447760850191117,\\n          -0.3280607104301453,\\n          0.4684071034193039,\\n          0.3266317516565323,\\n          0.41055955588817594\\n        ],\\n        \\\"mean\\\": 0.44838888585567466,\\n        \\\"std\\\": 0.21612860873795176\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.541847288608551,\\n          0.43895032107830045,\\n          0.5054023921489715,\\n          0.523080027103424,\\n          0.5377601563930512,\\n          0.535122674703598,\\n          0.5293149888515473,\\n          0.5108582466840744,\\n          0.5386962562799453,\\n          0.3286745995283127,\\n          0.5280363857746124,\\n          0.4327568233013153,\\n          0.5027350962162018,\\n          0.4577772468328476,\\n          0.5268222987651825\\n        ],\\n        \\\"mean\\\": 0.4958556534846624,\\n        \\\"std\\\": 0.05661940432833058\\n      },\\n      \\\"L5\\\": {\\n        \\\"seeds\\\": [\\n          0.5700991094112396,\\n          0.5402346640825272,\\n          0.5414407849311829,\\n          0.47659210562705995,\\n          0.506783977150917,\\n          0.40192038714885714,\\n          0.49827160835266116,\\n          0.5419180601835251,\\n          0.5319308638572693,\\n          0.5491852343082428,\\n          0.5214511275291442,\\n          0.4448683887720108,\\n          0.4901213437318802,\\n          0.3465738773345947,\\n          0.16726531386375426\\n        ],\\n        \\\"mean\\\": 0.47524378975232445,\\n        \\\"std\\\": 0.10076991062980963\\n      },\\n      \\\"L6\\\": {\\n        \\\"seeds\\\": [\\n          0.4772081136703491,\\n          0.5202122002840042,\\n          0.5138075649738312,\\n          0.3038535207509995,\\n          0.5227883070707321,\\n          0.16356320977210997,\\n          0.18893256187438964\\n\\n... [截断: 输出过长，省略 49304 字符] ...\\n\\neds\\\": [\\n          0.5646873265504837,\\n          0.5371685743331909,\\n          0.5543272197246552,\\n          0.5785093367099762,\\n          0.5707139939069747,\\n          0.5284408748149871,\\n          0.5562624335289001,\\n          0.5317879736423492,\\n          0.5504992872476577,\\n          0.5365265250205994,\\n          0.5538615256547927,\\n          0.5377772957086563,\\n          0.5130615293979645,\\n          0.5447807639837265,\\n          0.3737155169248581\\n        ],\\n        \\\"mean\\\": 0.5354746784766514,\\n        \\\"std\\\": 0.046278761709299746\\n      },\\n      \\\"L27\\\": {\\n        \\\"seeds\\\": [\\n          0.5657036781311036,\\n          0.5677288502454758,\\n          0.5387623757123947,\\n          0.4803360730409622,\\n          0.57254878282547,\\n          0.5032026320695877,\\n          0.5420282065868378,\\n          0.5412502765655518,\\n          0.5742572039365769,\\n          0.5538505405187607,\\n          0.5592121809720993,\\n          0.5589964479207993,\\n          0.5527420461177825,\\n          0.5850563824176789,\\n          0.5797855347394943\\n        ],\\n        \\\"mean\\\": 0.5516974141200385,\\n        \\\"std\\\": 0.027359679021464765\\n      },\\n      \\\"L28\\\": {\\n        \\\"seeds\\\": [\\n          0.5183763563632965,\\n          0.5211188912391662,\\n          0.5533019125461578,\\n          0.5433087408542633,\\n          0.5807910799980164,\\n          0.5487001419067383,\\n          0.5333338737487793,\\n          0.5631546884775162,\\n          0.5641294807195664,\\n          0.5424844056367875,\\n          0.4422056406736374,\\n          0.5295805126428604,\\n          0.5838705778121949,\\n          0.5778589397668839,\\n          0.5578750520944595\\n        ],\\n        \\\"mean\\\": 0.5440060196320216,\\n        \\\"std\\\": 0.03369428877394615\\n      },\\n      \\\"L29\\\": {\\n        \\\"seeds\\\": [\\n          0.521354803442955,\\n          0.5207366734743119,\\n          0.5434339612722396,\\n          0.5396472930908203,\\n          0.5701878845691681,\\n          0.5427794516086578,\\n          0.4238207548856735,\\n          0.5434453070163727,\\n          0.5706760138273239,\\n          0.5107580810785294,\\n          0.5234658479690552,\\n          0.5517539381980896,\\n          0.5172154039144516,\\n          0.5545511245727539,\\n          0.5193780541419983\\n        ],\\n        \\\"mean\\\": 0.5302136395374933,\\n        \\\"std\\\": 0.033750399780437416\\n      },\\n      \\\"L30\\\": {\\n        \\\"seeds\\\": [\\n          0.5316682308912277,\\n          0.4700192093849182,\\n          0.5185229450464248,\\n          0.48717271983623506,\\n          0.5229840964078903,\\n          0.5156824439764023,\\n          0.4297660768032074,\\n          0.5303710371255874,\\n          0.5178130954504013,\\n          0.5153989195823669,\\n          0.5327338129281998,\\n          0.513350197672844,\\n          0.5013067930936813,\\n          0.5537206590175628,\\n          0.5256209552288056\\n        ],\\n        \\\"mean\\\": 0.5110754128297169,\\n        \\\"std\\\": 0.028921753017828702\\n      },\\n      \\\"L31\\\": {\\n        \\\"seeds\\\": [\\n          0.4004045486450195,\\n          0.5207190990447998,\\n          0.4998741090297699,\\n          0.5369580775499344,\\n          0.4119430810213089,\\n          0.5214867800474167,\\n          0.37813751995563505,\\n          0.5048615545034408,\\n          0.5481108814477921,\\n          0.4176926285028458,\\n          0.5252994775772095,\\n          0.5169334977865219,\\n          0.49431127607822417,\\n          0.500511160492897,\\n          0.5362138211727142\\n        ],\\n        \\\"mean\\\": 0.48756383419036864,\\n        \\\"std\\\": 0.05406441184964477\\n      },\\n      \\\"L32\\\": {\\n        \\\"seeds\\\": [\\n          0.5464633464813232,\\n          0.5462169080972672,\\n          0.5433270782232285,\\n          0.53032246530056,\\n          0.5327671647071839,\\n          0.5775899827480316,\\n          0.5322568476200104,\\n          0.5231444776058197,\\n          0.531786385178566,\\n          0.5340774476528167,\\n          0.5222015351057052,\\n          0.5195572197437286,\\n          0.5390807598829269,\\n          0.513902148604393,\\n          0.5321987748146058\\n        ],\\n        \\\"mean\\\": 0.5349928361177445,\\n        \\\"std\\\": 0.0146024975004439\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FyMTdjAvC1CqwdGVW2HNzJ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/counterfactual_combined.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "17b9136d-bb05-40de-ba7e-7491f704400b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy9ybDpXthH2tjVVfgp5eq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28354,
+      "cache_read_input_tokens": 48360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 28354
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 87 · 2026-05-22T00:18:57.900Z_
+
+<details><summary>↩ Tool result · `toolu_01FyMTdjAvC1CqwdGVW2HNzJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/counterfactual_combined.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "a556606b-f7ad-4f4d-bda1-0f3dd5b7f1f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/counterfactual_combined.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/counterfactual_combined.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 88_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me figure out what data I need. The key findings so far:
+
+**OpenVLA Spatial:**
+
+1. **R² probing** (`functional_validation/action_probe_libero_spatial.json`):
+   - Trained: peak at layer 13, mean_R²=0.696 (image_mean), layer 21 mean_R²=0.675 (last_preaction)
+   - Untrained: peak at layer 0, mean_R²=0.673 (image_mean), layer 1 mean_R²=0.635 (last_preaction)
+   - The high R² for untrained image_mean makes sense since it's pooling visual tokens from the pre-trained ViT encoder, but the trained and untrained values are surprisingly similar across both pooling strategies.
+
+   Now I'm looking at the actual data structure from the 15-seed validation set to understand how to standardize the metrics across models—I need to identify the consistent peak layers and mean R² values for the trained model across different layers. Looking at the exit layer data more carefully, I see the untrained model's last_preaction representation at layer 32 achieves R²=0.621, which is surprisingly high for an untrained model—this suggests the visual information from image_mean is being preserved through the network even without training.
+
+Now examining the attention patterns across layers, the trained model shows roughly 57% attention to text instructions at layer 1, with about 25-26 heads focusing on instruction content, while the untrained model heavily favors image attention at 87.8% versus just 11.7% for instructions. The trained and untrained summary formats differ though, so I need to carefully compare what's actually available in each dataset. Looking at the cross-instruction results, the trained model maintains near-perfect accuracy across all layers while the untrained model shows significant degradation from layer 4 onward, dropping to 75% by layer 31. The counterfactual analysis confirms these are LIBERO-Spatial tasks, with the empty condition producing the strongest effect size, followed by wrong instruction and shuffled variants.
+
+Now examining the OpenVLA results—these appear to be from the LIBERO-Goal suite based on the kitchen scene task names, where the trained model achieves an R² of 0.683 at layer 19 for action prediction. I'm seeing the rest of those task examples, and now I'm looking at the performance metrics—the trained model achieved an R² of 0.683 at layer 19, while the untrained version got 0.616 at layer 32, showing a meaningful gap in how well they capture the task structure. I'm realizing I've mixed up two different datasets—the KITCHEN_SCENE tasks in the trained summary are LIBERO-Goal tasks, while the counterfactual_10tasks directory contains LIBERO-Spatial task names like "open the middle drawer of the cabinet." Let me clarify which dataset I'm actually working with here. The remaining tasks in the list complete the LIBERO-Goal suite, all set in the same kitchen environment but with different objectives. The spatial variant uses the same action across different locations, while the trained models appear to use longer naming conventions.
+
+Looking at the task names more carefully, I notice they contain "and" which suggests multi-step objectives—like turning on the stove and placing the moka pot, or putting items in a drawer and closing it. These seem to be the LIBERO-Long tasks with compound goals.
+
+But I'm also seeing a `trained_libero_goal/` directory with goal classification data, and `cross_instruction/` has 10 task classes that match the counterfactual tasks. Let me check the actual LIBERO suite definitions to sort this out: LIBERO-Goal consists of 10 different tasks in the same scene, each with a distinct objective like opening a drawer, pushing a plate, or placing a bowl on a plate.
+
+Now looking at the other task categories, LIBERO-Spatial has 10 tasks with the same goal but different spatial setups—like picking up a bowl from different locations. LIBERO-Long contains 10 compound tasks with multiple steps, such as turning on the stove and placing a pot on it, or putting a bowl in a drawer and closing it. So the action prediction tasks in `trained/` are actually the LIBERO-Long tasks, while the counterfactual tasks correspond to LIBERO-Goal.
+
+But wait—I'm seeing a contradiction in the attention data. The tasks in `attention/l1_attention_trained_summary.json` like "open the middle drawer" and "push the plate to the front of the stove" look like LIBERO-Goal tasks, not LIBERO-Long. Yet the `trained/action_prediction/` directory appears to contain LIBERO-Long tasks. I need to reconcile what the original experiments actually used. Looking at the specific task names in the trained action_prediction folder, I'm seeing a pattern of kitchen and living room scenes with various object manipulation objectives like stove operations, drawer management, and basket organization. Now I'm checking the attention data sources—the L1 attention summaries actually contain LIBERO-Goal task names like "open the middle drawer" and "push the plate to the front," which means those files are tracking Goal task performance, not Long-horizon tasks.
+
+For the 3×4 matrix the user wants, I need to map OpenVLA Goal and OpenVLA Spatial to four analysis types: R² probing, L1 attention, cross-instruction classification, and counterfactual results. The challenge is finding the right data files for each combination—particularly the R² probing data for Goal tasks, since the action prediction files I've found so far are for LIBERO-Long rather than Goal. Maybe there's no separate R² probing for Goal? Or maybe it was never run.
+   - L1 attention: `attention/l1_attention_trained_summary.json` (Goal tasks confirmed)
+   - Cross-instruction: `cross_instruction/classification_results.json` (Goal tasks confirmed)
+   - Counterfactual: `counterfactual_10tasks/counterfactual_10tasks_combined.json` (Goal tasks confirmed)
+   
+   For OpenVLA Spatial:
+   - R² probing: `functional_validation/action_probe_libero_spatial.json` (Spatial tasks confirmed)
+   - L1 attention: Need to check if there's separate attention data for spatial tasks
+   - Cross-instruction: `cross_instruction_spatial/classification_results.json` (Spatial tasks confirmed)
+   - Counterfactual: `counterfactual_spatial/counterfactual_spatial_combined.json` (Spatial tasks confirmed)
+
+Looking at the L1 attention data more carefully, I see it only covers three tasks from LIBERO-Goal—opening the middle drawer, pushing the plate to the stove, and putting the wine bottle on the cabinet—and the experiment was only run at layer 1. I should check the full 32-layer attention summary to get a better picture of what data's actually available across the different suites.
+
+For the untrained L1 attention, the aggregate shows image attention at 0.878 and instruction attention at 0.117. When I look at individual heads, none of them have instruction attention exceeding image attention, so there are zero instruction-dominant heads in the untrained model. The trained model, by contrast, shows around 25 instruction-attending heads across the three tasks.
+
+I'm realizing the standard pipeline might use a different metric—perhaps a text attention threshold above 50%—so I need to check what the newer experiments actually report. Looking at the standardized format files in nora/tracvla, they have `l1_attention_profile.json` which should clarify this. I also need to verify whether spatial attention data exists in the full 32-layer summary and check the counterfactual status for nora_spatial/untrained. I've already confirmed that the counterfactual file doesn't exist for the untrained spatial model, so that's one gap I need to account for. I need to look more carefully at the attention directory structure to find spatial-specific L1 attention data, and also determine whether there's a separate R² probing file for LIBERO-Goal or if the experiments relied on the LIBERO-Long data in the trained directory.
+
+Looking at the counterfactual_10tasks file, I can see the actual Goal task names listed out, which should help me verify whether the R² probing was done on Goal tasks or if that analysis only covered Long tasks. Looking at the experiment names, I can see there are counterfactual and cross-instruction variants for both attention and spatial probes. Now I'm trying to figure out whether the R² probing in the trained directory is actually evaluating LIBERO-Goal tasks or something else entirely. Let me cross-reference the task names I'm seeing in the action_prediction folder with what the LIBERO benchmark paper defines—the multi-step kitchen tasks like turning on the stove and placing the moka pot suggest these might be from LIBERO-Long rather than LIBERO-Goal, which would be simpler single-goal variations in the same environment. The task is asking for a 3×4 matrix where the rows represent different models or conditions and columns represent metrics, but I'm missing the Goal and Spatial R² data for OpenVLA. Let me reconsider what the matrix structure actually is—it could be three models across different evaluation suites, or it could be OpenVLA broken down by task type (Goal, Spatial, Long) with some rows incomplete.
+
+Looking at the standardized pipeline, I can see the experiments are organized by model and task variant, each containing multiple evaluation metrics in separate JSON files. Since I don't have complete data for all cells, I'll compile what I've found and present it to the user so they can clarify the intended structure.
+
+Now I'm checking whether OpenVLA has attention data for the Spatial suite specifically. I found summary files for the Goal suite showing instruction-attending heads around 25-26, and aggregate untrained data showing strong image dominance, but I haven't located Spatial-specific attention metrics yet. The full 32-layer attention files might contain this data, though they could be quite large. I should also clarify what the "instruction_dominant_heads" metric represents by looking at a reference file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "837e59ef-9a60-466c-9be7-f5a490febdc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 89_
+
+Good progress. I need to check a few more files to clarify which suite the data corresponds to. Let me also look at the standardized format files for comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f9340f2b-3134-4e91-a23d-7bb94f276994",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VdxXBRLvb84tGPrf1PtLpR`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "ccbc95a8-7017-44ac-8fdd-5fc33c895aff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-22T00:21:25.632Z_
+
+<details><summary>↩ Tool result · `toolu_01VdxXBRLvb84tGPrf1PtLpR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained\\\": {\\n    \\\"L0\\\": {\\n      \\\"n_instruction_dominant\\\": 21,\\n      \\\"mean_text_attn\\\": 0.5482,\\n      \\\"mean_image_attn\\\": 0.4035,\\n      \\\"mean_bos_attn\\\": 0.0484,\\n      \\\"per_head_text_attn\\\": [\\n        0.8481,\\n        0.7342,\\n        0.3837,\\n        0.425,\\n        0.6113,\\n        0.5809,\\n        0.5181,\\n        0.407,\\n        0.8827,\\n        0.3979,\\n        0.6888,\\n        0.3798,\\n        0.6744,\\n        0.2499,\\n        0.6243,\\n        0.3897,\\n        0.5877,\\n        0.502,\\n        0.7758,\\n        0.6226,\\n        0.5624,\\n        0.3342,\\n        0.5885,\\n        0.5187,\\n        0.4522,\\n        0.592,\\n        0.6448,\\n        0.4817,\\n        0.5607,\\n        0.6107,\\n        0.3956,\\n        0.5163\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"n_instruction_dominant\\\": 24,\\n      \\\"mean_text_attn\\\": 0.5729,\\n      \\\"mean_image_attn\\\": 0.2173,\\n      \\\"mean_bos_attn\\\": 0.2098,\\n      \\\"per_head_text_attn\\\": [\\n        0.8589,\\n        0.5308,\\n        0.6857,\\n        0.4749,\\n        0.5781,\\n        0.4976,\\n        0.4083,\\n        0.5673,\\n        0.5797,\\n        0.43,\\n        0.7138,\\n        0.5671,\\n        0.5216,\\n        0.4147,\\n        0.704,\\n        0.6226,\\n        0.5382,\\n        0.529,\\n        0.5196,\\n        0.65,\\n        0.5185,\\n        0.4537,\\n        0.8264,\\n        0.5683,\\n        0.3657,\\n        0.7706,\\n        0.5614,\\n        0.6854,\\n        0.4949,\\n        0.5971,\\n        0.543,\\n        0.5552\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"n_instruction_dominant\\\": 0,\\n      \\\"mean_text_attn\\\": 0.4437,\\n      \\\"mean_image_attn\\\": 0.0101,\\n      \\\"mean_bos_attn\\\": 0.5461,\\n      \\\"per_head_text_attn\\\": [\\n        0.4328,\\n        0.4583,\\n        0.4431,\\n        0.4758,\\n        0.4827,\\n        0.4251,\\n        0.467,\\n        0.432,\\n        0.4252,\\n        0.4393,\\n        0.4213,\\n        0.451,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "9b8caf5b-f1ca-41a7-a072-30e3252d8c52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"trained\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"n_instruction_dominant\\\\\\\": 21,\\\\n      \\\\\\\"mean_text_attn\\\\\\\": 0.5482,\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.4035,\\\\n      \\\\\\\"mean_bos_attn\\\\\\\": 0.0484,\\\\n      \\\\\\\"per_head_text_attn\\\\\\\": [\\\\n        0.8481,\\\\n        0.7342,\\\\n        0.3837,\\\\n        0.425,\\\\n        0.6113,\\\\n        0.5809,\\\\n        0.5181,\\\\n        0.407,\\\\n        0.8827,\\\\n        0.3979,\\\\n        0.6888,\\\\n        0.3798,\\\\n        0.6744,\\\\n        0.2499,\\\\n        0.6243,\\\\n        0.3897,\\\\n        0.5877,\\\\n        0.502,\\\\n        0.7758,\\\\n        0.6226,\\\\n        0.5624,\\\\n        0.3342,\\\\n        0.5885,\\\\n        0.5187,\\\\n        0.4522,\\\\n        0.592,\\\\n        0.6448,\\\\n        0.4817,\\\\n        0.5607,\\\\n        0.6107,\\\\n        0.3956,\\\\n        0.5163\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"n_instruction_dominant\\\\\\\": 24,\\\\n      \\\\\\\"mean_text_attn\\\\\\\": 0.5729,\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.2173,\\\\n      \\\\\\\"mean_bos_attn\\\\\\\": 0.2098,\\\\n      \\\\\\\"per_head_text_attn\\\\\\\": [\\\\n        0.8589,\\\\n        0.5308,\\\\n        0.6857,\\\\n        0.4749,\\\\n        0.5781,\\\\n        0.4976,\\\\n        0.4083,\\\\n        0.5673,\\\\n        0.5797,\\\\n        0.43,\\\\n        0.7138,\\\\n        0.5671,\\\\n        0.5216,\\\\n        0.4147,\\\\n        0.704,\\\\n        0.6226,\\\\n        0.5382,\\\\n        0.529,\\\\n        0.5196,\\\\n        0.65,\\\\n        0.5185,\\\\n        0.4537,\\\\n        0.8264,\\\\n        0.5683,\\\\n        0.3657,\\\\n        0.7706,\\\\n        0.5614,\\\\n        0.6854,\\\\n        0.4949,\\\\n        0.5971,\\\\n        0.543,\\\\n        0.5552\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"n_instruction_dominant\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attn\\\\\\\": 0.4437,\\\\n      \\\\\\\"mean_image_attn\\\\\\\": 0.0101,\\\\n      \\\\\\\"mean_bos_attn\\\\\\\": 0.5461,\\\\n      \\\\\\\"per_head_text_attn\\\\\\\": [\\\\n        0.4328,\\\\n        0.4583,\\\\n        0.4431,\\\\n        0.4758,\\\\n        0.4827,\\\\n        0.4251,\\\\n        0.467,\\\\n        0.432,\\\\n        0.4252,\\\\n        0.4393,\\\\n        0.4213,\\\\n        0.451,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"trained\\\": {\\n    \\\"L0\\\": {\\n      \\\"n_instruction_dominant\\\": 21,\\n      \\\"mean_text_attn\\\": 0.5482,\\n      \\\"mean_image_attn\\\": 0.4035,\\n      \\\"mean_bos_attn\\\": 0.0484,\\n      \\\"per_head_text_attn\\\": [\\n        0.8481,\\n        0.7342,\\n        0.3837,\\n        0.425,\\n        0.6113,\\n        0.5809,\\n        0.5181,\\n        0.407,\\n        0.8827,\\n        0.3979,\\n        0.6888,\\n        0.3798,\\n        0.6744,\\n        0.2499,\\n        0.6243,\\n        0.3897,\\n        0.5877,\\n        0.502,\\n        0.7758,\\n        0.6226,\\n        0.5624,\\n        0.3342,\\n        0.5885,\\n        0.5187,\\n        0.4522,\\n        0.592,\\n        0.6448,\\n        0.4817,\\n        0.5607,\\n        0.6107,\\n        0.3956,\\n        0.5163\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"n_instruction_dominant\\\": 24,\\n      \\\"mean_text_attn\\\": 0.5729,\\n      \\\"mean_image_attn\\\": 0.2173,\\n      \\\"mean_bos_attn\\\": 0.2098,\\n      \\\"per_head_text_attn\\\": [\\n        0.8589,\\n        0.5308,\\n        0.6857,\\n        0.4749,\\n        0.5781,\\n        0.4976,\\n        0.4083,\\n        0.5673,\\n        0.5797,\\n        0.43,\\n        0.7138,\\n        0.5671,\\n        0.5216,\\n        0.4147,\\n        0.704,\\n        0.6226,\\n        0.5382,\\n        0.529,\\n        0.5196,\\n        0.65,\\n        0.5185,\\n        0.4537,\\n        0.8264,\\n        0.5683,\\n        0.3657,\\n        0.7706,\\n        0.5614,\\n        0.6854,\\n        0.4949,\\n        0.5971,\\n        0.543,\\n        0.5552\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"n_instruction_dominant\\\": 0,\\n      \\\"mean_text_attn\\\": 0.4437,\\n      \\\"mean_image_attn\\\": 0.0101,\\n      \\\"mean_bos_attn\\\": 0.5461,\\n      \\\"per_head_text_attn\\\": [\\n        0.4328,\\n        0.4583,\\n        0.4431,\\n        0.4758,\\n        0.4827,\\n        0.4251,\\n        0.467,\\n        0.432,\\n        0.4252,\\n        0.4393,\\n        0.4213,\\n        0.451,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NfGbyCdomWC8SvKMiYrtsQ`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c3783dc8-61fe-4e15-a378-6b70962365a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-22T00:21:26.638Z_
+
+<details><summary>↩ Tool result · `toolu_01NfGbyCdomWC8SvKMiYrtsQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6891,\\n      \\\"instruction_ratio_std\\\": 0.04,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9871,\\n      \\\"instruction_ratio_std\\\": 0.0079,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3416,\\n      \\\"instruction_ratio_std\\\": 0.0404,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7513,\\n      \\\"instruction_ratio_std\\\": 0.0408,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3088,\\n      \\\"instruction_ratio_std\\\": 0.0591,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9803,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5756,\\n      \\\"instruction_ratio_std\\\": 0.0416,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9682,\\n      \\\"instruction_ratio_std\\\": 0.0085,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8093,\\n      \\\"instruction_ratio_std\\\": 0.0422,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0615,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4105,\\n      \\\"instruction_ratio_std\\\": 0.0416,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6025,\\n      \\\"instruction_ratio_std\\\": 0.0481,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.677,\\n      \\\"instruction_ratio_std\\\": 0.0333,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7822,\\n      \\\"instruction_ratio_std\\\": 0.037,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3884,\\n      \\\"instruction_ratio_std\\\": 0.043,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7364,\\n      \\\"instruction_ratio_std\\\": 0.0379,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 12,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 4,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      11,\\n      12,\\n      13,\\n      15\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "3a6d9726-37ab-4b80-a90a-98c4e15fe3d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6891,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.04,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9871,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0079,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.3416,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0404,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7513,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0408,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.3088,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0591,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9803,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0081,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5756,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0416,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9682,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0085,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8093,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0422,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5586,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0615,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4105,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0416,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6025,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0481,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.677,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0333,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7822,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.037,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.3884,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.043,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7364,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0379,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 12,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 4,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      3,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      15\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6891,\\n      \\\"instruction_ratio_std\\\": 0.04,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9871,\\n      \\\"instruction_ratio_std\\\": 0.0079,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3416,\\n      \\\"instruction_ratio_std\\\": 0.0404,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7513,\\n      \\\"instruction_ratio_std\\\": 0.0408,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3088,\\n      \\\"instruction_ratio_std\\\": 0.0591,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9803,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5756,\\n      \\\"instruction_ratio_std\\\": 0.0416,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9682,\\n      \\\"instruction_ratio_std\\\": 0.0085,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8093,\\n      \\\"instruction_ratio_std\\\": 0.0422,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0615,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4105,\\n      \\\"instruction_ratio_std\\\": 0.0416,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6025,\\n      \\\"instruction_ratio_std\\\": 0.0481,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.677,\\n      \\\"instruction_ratio_std\\\": 0.0333,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7822,\\n      \\\"instruction_ratio_std\\\": 0.037,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.3884,\\n      \\\"instruction_ratio_std\\\": 0.043,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7364,\\n      \\\"instruction_ratio_std\\\": 0.0379,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 12,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 4,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      11,\\n      12,\\n      13,\\n      15\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NzGRFc7LuzrVqtGJn4AQYg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/trained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "788e33d2-05a4-40b0-a2a3-b07f1c91641f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 95 · 2026-05-22T00:21:27.574Z_
+
+<details><summary>↩ Tool result · `toolu_01NzGRFc7LuzrVqtGJn4AQYg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7106,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7106\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.671,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.671\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7117,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7117\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6863,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6863\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.7135,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7135\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.6844,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6844\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.7134,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7134\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6852,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6852\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7126,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7126\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.692,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.692\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7141,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7141\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6889,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6889\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7142,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7142\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6872,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6872\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7139,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7139\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6984,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6984\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7164,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7164\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.7034,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7034\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.7168,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7168\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6929,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6929\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7207,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7207\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.7004,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7004\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7192,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7192\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.699,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.699\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7143,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7143\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6937,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6937\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7132,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7132\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.675\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.708,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.708\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6922,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6922\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.7091,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7091\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.7074,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7074\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6956,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6956\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.7093,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7093\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6887,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6887\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7101,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7101\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6883\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.7047,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7047\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6903,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6903\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.7049,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7049\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6954,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6954\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.7004,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7004\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.7075,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7075\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.7113,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7113\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.7137,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7137\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6894,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6894\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.7195,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7195\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.7058,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7058\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6811,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6811\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.7031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7031\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6817,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6817\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.7046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7046\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6721,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6721\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6931,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6931\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6536,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6536\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6729,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6729\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6304,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6304\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6291\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.5395,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5395\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.5926,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5926\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.4894,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4894\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.5415,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5415\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.4637,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4637\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.4598,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4598\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.4022,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4022\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.5532,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5532\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.4171,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4171\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c62b75bf-7279-4878-aee8-a032948fbb4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7106,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7106\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.671,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.671\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7117,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7117\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6863,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6863\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7135,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7135\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6844,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6844\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7134,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7134\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6852,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6852\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7126,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7126\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.692,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.692\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7141,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7141\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6889,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6889\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7142,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7142\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6872,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6872\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7139,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7139\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6984,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6984\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7164,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7164\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7034,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7034\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7168,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7168\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6929,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6929\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7207,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7207\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7004,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7004\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7192,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7192\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.699,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.699\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7143,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7143\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6937,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6937\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7132,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7132\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.708,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.708\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6922,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6922\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7091,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7091\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6908,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6908\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7074,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7074\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6956,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6956\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7093,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7093\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6887,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6887\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7101,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7101\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6883,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6883\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7047,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7047\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6903,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6903\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7049,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7049\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6954,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6954\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7004,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7004\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7075,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7075\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6897,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6897\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7113,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7113\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.688,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7137,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7137\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6894,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6894\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7195,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7195\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6898,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6898\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7058,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7058\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6811,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6811\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7031,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7031\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6817,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6817\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7046,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7046\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6721,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6721\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6931,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6931\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6536,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6536\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6729,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6729\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6497,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6497\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6304,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6304\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6291,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6291\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5395,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5395\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5926,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5926\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4894,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.4894\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5415,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5415\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4637,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.4637\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4598,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.4598\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4022,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.4022\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5532,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5532\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.4171,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.4171\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7106,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7106\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.671,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.671\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7117,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7117\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6863,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6863\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.7135,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7135\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.6844,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6844\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.7134,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7134\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6852,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6852\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7126,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7126\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.692,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.692\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7141,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7141\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6889,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6889\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7142,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7142\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6872,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6872\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7139,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7139\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6984,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6984\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7164,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7164\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.7034,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7034\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.7168,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7168\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6929,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6929\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7207,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7207\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.7004,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7004\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7192,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7192\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.699,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.699\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7143,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7143\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6937,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6937\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7132,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7132\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.675\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.708,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.708\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6922,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6922\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.7091,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7091\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.7074,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7074\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6956,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6956\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.7093,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7093\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6887,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6887\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7101,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7101\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6883,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6883\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.7047,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7047\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6903,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6903\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.7049,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7049\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6954,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6954\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.7004,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7004\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.7075,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7075\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.7113,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7113\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.7137,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7137\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6894,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6894\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.7195,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7195\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.7058,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7058\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6811,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6811\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.7031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7031\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6817,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6817\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.7046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7046\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6721,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6721\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6931,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6931\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6536,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6536\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6729,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6729\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6304,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6304\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6291\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.5395,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5395\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.5926,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5926\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.4894,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4894\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.5415,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5415\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.4637,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4637\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.4598,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4598\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.4022,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4022\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.5532,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5532\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.4171,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.4171\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C6MwQWu5kvXGdtSL8VQVdP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_goal/trained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "1902f7f5-cc54-4a59-b925-a7009c9f0cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 97 · 2026-05-22T00:21:28.094Z_
+
+<details><summary>↩ Tool result · `toolu_01C6MwQWu5kvXGdtSL8VQVdP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.686,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.686\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6392,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6392\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6562,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6562\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.6878,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6878\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.6874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6874\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6587,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6587\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.6882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6882\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6667\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6498,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6498\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6867,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6867\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6847\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6875\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.6968,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6968\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6815\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.6964,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6964\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6865,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6865\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.6913,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6913\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6868,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6868\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.6895,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6895\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6879\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6715,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6715\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.673,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.673\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.662,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.662\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6601\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6798\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6787\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6567,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6567\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6766\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6772,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6772\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6458,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6458\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.67,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.67\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6471,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6471\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.651,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.651\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6455,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6455\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.64,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.64\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6234,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6234\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.5992,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5992\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "390020ea-300a-4131-bbec-0dd1a588acbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.686,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.686\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6392,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6392\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6873,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6873\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6562,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6562\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6878,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6878\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.657,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.657\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6874,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6874\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6587,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6587\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.688,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.688\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6882,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6882\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6667,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6667\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6885,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6885\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6498,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6498\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6873,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6873\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6867,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6867\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6898,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6898\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6847,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6847\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6908,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6908\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6875,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6875\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6968,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6968\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6815,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6815\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6964,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6964\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6865,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6865\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6913,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6913\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6868,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6868\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6897,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6897\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6786,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6786\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6895,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6895\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6786,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6786\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6879,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6879\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6715,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6853,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6853\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.673,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.673\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.662,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.662\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.679,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.679\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6601,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6601\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6798,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6798\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.657,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.657\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6787,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6787\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6567,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6567\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6766,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6766\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6556,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6556\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6772,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6772\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6458,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6458\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.67,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.67\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6471,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6471\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6687,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6687\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6509,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6509\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6687,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6687\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.651,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.651\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6456,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6456\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6456,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6456\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6675,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6675\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6455,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6455\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6497,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6497\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.64,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.64\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6333,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6333\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6333,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6333\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6233,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6233\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5994,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5994\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6233,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6233\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5994,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5994\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6234,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6234\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5992,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5992\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -0.0039,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      -0.0039\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -0.0039,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      -0.0039\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.686,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.686\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.6392,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6392\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.6562,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6562\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.6878,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6878\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.6874,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6874\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.6587,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6587\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.688,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.688\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.6882,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6882\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6667,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6667\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6498,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6498\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.6873,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6873\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6867,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6867\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6847\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6875,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6875\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.6968,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6968\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6815,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6815\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.6964,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6964\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6865,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6865\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.6913,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6913\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6868,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6868\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.6897,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6897\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.6895,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6895\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6786,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6786\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6879,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6879\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6715,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6715\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.673,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.673\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.662,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.662\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6601,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6601\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6798,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6798\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.657,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.657\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6787,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6787\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6567,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6567\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6766,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6766\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6772,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6772\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6458,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6458\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.67,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.67\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6471,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6471\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6687,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6687\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.651,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.651\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6456,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6456\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6675,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6675\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6455,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6455\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6497,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6497\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.64,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.64\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6333,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6333\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6233,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6233\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5994,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5994\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6234,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6234\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.5992,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5992\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": -0.0039,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      -0.0039\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CXZEbeYU6gsx2cNdpw8c1U`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "47a25e4b-541d-42ac-aba3-4980127c24a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-22T00:21:28.903Z_
+
+<details><summary>↩ Tool result · `toolu_01CXZEbeYU6gsx2cNdpw8c1U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 2 root root  130 May 21 17:59 .\\ndrwxr-xr-x 4 root root   50 May 21 17:47 ..\\n-rw-r--r-- 1 root root 7166 May 21 17:55 action_r2_probing.json\\n-rw-r--r-- 1 root root 2001 May 21 17:59 cross_instruction_classification.json\\n-rw-r--r-- 1 root root 2577 May 21 17:55 l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "57b93d1c-af54-43ba-9074-53afab9be2e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 2 root root  130 May 21 17:59 .\\\\ndrwxr-xr-x 4 root root   50 May 21 17:47 ..\\\\n-rw-r--r-- 1 root root 7166 May 21 17:55 action_r2_probing.json\\\\n-rw-r--r-- 1 root root 2001 May 21 17:59 cross_instruction_classification.json\\\\n-rw-r--r-- 1 root root 2577 May 21 17:55 l1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 2 root root  130 May 21 17:59 .\\ndrwxr-xr-x 4 root root   50 May 21 17:47 ..\\n-rw-r--r-- 1 root root 7166 May 21 17:55 action_r2_probing.json\\n-rw-r--r-- 1 root root 2001 May 21 17:59 cross_instruction_classification.json\\n-rw-r--r-- 1 root root 2577 May 21 17:55 l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GX79shBN4K5B5AXNXFAGnB`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/trajectory_level_cohens_d.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "345b1039-8309-43af-b0c5-dea985f996da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HVDjYGiq8xNEYQ8KFxoHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18774,
+      "cache_read_input_tokens": 76714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18774
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 101 · 2026-05-22T00:21:29.869Z_
+
+<details><summary>↩ Tool result · `toolu_01GX79shBN4K5B5AXNXFAGnB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Trajectory-level Cohen's d from 10-task counterfactual analysis\\\",\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"detail\\\": \\\"Each demo's MSE = mean of 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"aggregation_method\\\": \\\"mean_mse_per_demo\\\",\\n  \\\"n_tasks\\\": 10,\\n  \\\"n_demos_per_task\\\": 10,\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"global\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d\\\": 2.992,\\n      \\\"ci_95\\\": [\\n        2.6344,\\n        3.491\\n      ],\\n      \\\"p_value\\\": 2.1584552216131505e-51,\\n      \\\"n_demos\\\": 100,\\n      \\\"mean_mse\\\": 0.064699,\\n      \\\"std_mse\\\": 0.021624,\\n      \\\"token_level_d\\\": 0.9237,\\n      \\\"inflation_ratio\\\": 0.3087,\\n      \\\"demo_mses\\\": [\\n        0.071586,\\n        0.054298,\\n        0.049071,\\n        0.065906,\\n        0.086043,\\n        0.06317,\\n        0.065868,\\n        0.063097,\\n        0.07453,\\n        0.065894,\\n        0.043352,\\n        0.048864,\\n        0.063282,\\n        0.066171,\\n        0.060422,\\n        0.054932,\\n        0.037959,\\n        0.038043,\\n        0.050455,\\n        0.028953,\\n        0.06253,\\n        0.06321,\\n        0.071802,\\n        0.090908,\\n        0.04937,\\n        0.068955,\\n        0.064393,\\n        0.076652,\\n        0.090746,\\n        0.068868,\\n        0.057445,\\n        0.082308,\\n        0.04626,\\n        0.065984,\\n        0.079119,\\n        0.085071,\\n        0.069235,\\n        0.073717,\\n        0.065291,\\n        0.059046,\\n        0.091804,\\n        0.106065,\\n        0.088903,\\n        0.085411,\\n        0.098066,\\n        0.102458,\\n        0.106329,\\n        0.099963,\\n        0.103107,\\n        0.10043,\\n        0.06121,\\n        0.0674,\\n        0.073764,\\n        0.060862,\\n        0.069085,\\n        0.060626,\\n        0.044075,\\n        0.056235,\\n        0.069794,\\n        0.04991,\\n        0.06796,\\n        0.034391,\\n        0.042742,\\n        0.051195,\\n        0.036001,\\n        0.049849,\\n        0.070982,\\n        0.085132,\\n        0.034653,\\n        0.071672,\\n        0.096248,\\n        0.091809,\\n        0.105795,\\n        0.077067,\\n        0.082938,\\n        0.029495,\\n        0.096984,\\n        0.097056,\\n        0.090349,\\n        0.052381,\\n        0.020478,\\n        0.042412,\\n        0.0286,\\n        0.037435,\\n        0.036491,\\n        0.026381,\\n        0.034185,\\n        0.014873,\\n        0.014197,\\n        0.050236,\\n        0.063166,\\n        0.078382,\\n        0.071773,\\n        0.060175,\\n        0.055391,\\n        0.065604,\\n        0.060216,\\n        0.079922,\\n        0.058328,\\n        0.068673\\n      ]\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d\\\": 3.8479,\\n      \\\"ci_95\\\": [\\n        3.4093,\\n        4.4403\\n      ],\\n      \\\"p_value\\\": 2.3552357999437523e-61,\\n      \\\"n_demos\\\": 100,\\n      \\\"mean_mse\\\": 0.069056,\\n      \\\"std_mse\\\": 0.017946,\\n      \\\"token_level_d\\\": 0.978,\\n      \\\"inflation_ratio\\\": 0.2542,\\n      \\\"demo_mses\\\": [\\n        0.08843,\\n        0.079994,\\n        0.057704,\\n        0.094254,\\n        0.108615,\\n        0.085373,\\n        0.085142,\\n        0.083027,\\n        0.097097,\\n        0.082758,\\n        0.071574,\\n        0.091679,\\n        0.085989,\\n        0.085543,\\n        0.060281,\\n        0.083131,\\n        0.058846,\\n        0.07777,\\n        0.071584,\\n        0.057834,\\n        0.023308,\\n        0.051854,\\n        0.035129,\\n        0.04891,\\n        0.040491,\\n        0.048958,\\n        0.057639,\\n        0.060374,\\n        0.037451,\\n        0.04316,\\n        0.051831,\\n        0.057449,\\n        0.057508,\\n        0.063405,\\n        0.068819,\\n        0.051616,\\n        0.049183,\\n        0.05714,\\n        0.054291,\\n        0.044338,\\n        0.042072,\\n        0.061841,\\n        0.085745,\\n        0.046128,\\n        0.06907,\\n        0.034828,\\n        0.070158,\\n        0.052212,\\n        0.077395,\\n        0.054888,\\n        0.052288,\\n        0.06333,\\n        0.065929,\\n        0.085679,\\n        0.071714,\\n        0.057713,\\n        0.091852,\\n        0.070483,\\n        0.069257,\\n        0.069609,\\n        0.063341,\\n        0.079895,\\n        0.102755,\\n       \\n\\n... [截断: 输出过长，省略 20590 字符] ...\\n\\ns_d\\\": 3.7955,\\n        \\\"ci_95\\\": [\\n          2.9298,\\n          7.2193\\n        ],\\n        \\\"p_value\\\": 7.686988661382276e-07,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.05548,\\n        \\\"demo_mses\\\": [\\n          0.036678,\\n          0.051198,\\n          0.085018,\\n          0.0654,\\n          0.037315,\\n          0.04896,\\n          0.063015,\\n          0.063551,\\n          0.057278,\\n          0.046388\\n        ]\\n      },\\n      \\\"paraphrased\\\": {\\n        \\\"cohens_d\\\": 2.4245,\\n        \\\"ci_95\\\": [\\n          1.7202,\\n          5.0634\\n        ],\\n        \\\"p_value\\\": 3.1038736981017984e-05,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.018301,\\n        \\\"demo_mses\\\": [\\n          0.016842,\\n          0.015833,\\n          0.018746,\\n          0.02423,\\n          0.016423,\\n          0.024977,\\n          0.005655,\\n          0.009584,\\n          0.018817,\\n          0.031901\\n        ]\\n      }\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"wrong\\\": {\\n        \\\"cohens_d\\\": 7.881,\\n        \\\"ci_95\\\": [\\n          6.5201,\\n          14.5522\\n        ],\\n        \\\"p_value\\\": 1.294465902144034e-09,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.066163,\\n        \\\"demo_mses\\\": [\\n          0.063166,\\n          0.078382,\\n          0.071773,\\n          0.060175,\\n          0.055391,\\n          0.065604,\\n          0.060216,\\n          0.079922,\\n          0.058328,\\n          0.068673\\n        ]\\n      },\\n      \\\"empty\\\": {\\n        \\\"cohens_d\\\": 5.7518,\\n        \\\"ci_95\\\": [\\n          4.0457,\\n          11.866\\n        ],\\n        \\\"p_value\\\": 2.093721245952702e-08,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.06768,\\n        \\\"demo_mses\\\": [\\n          0.083611,\\n          0.063068,\\n          0.077177,\\n          0.068862,\\n          0.066286,\\n          0.065029,\\n          0.057661,\\n          0.08032,\\n          0.071516,\\n          0.043275\\n        ]\\n      },\\n      \\\"shuffled\\\": {\\n        \\\"cohens_d\\\": 4.121,\\n        \\\"ci_95\\\": [\\n          3.0439,\\n          8.5467\\n        ],\\n        \\\"p_value\\\": 3.8025571906173375e-07,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.061149,\\n        \\\"demo_mses\\\": [\\n          0.086337,\\n          0.066141,\\n          0.063443,\\n          0.057824,\\n          0.063333,\\n          0.043264,\\n          0.052185,\\n          0.071938,\\n          0.071785,\\n          0.035238\\n        ]\\n      },\\n      \\\"paraphrased\\\": {\\n        \\\"cohens_d\\\": 6.7026,\\n        \\\"ci_95\\\": [\\n          5.2447,\\n          11.9817\\n        ],\\n        \\\"p_value\\\": 5.437742700254084e-09,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.053377,\\n        \\\"demo_mses\\\": [\\n          0.057879,\\n          0.04073,\\n          0.048825,\\n          0.043568,\\n          0.052062,\\n          0.062913,\\n          0.05218,\\n          0.051974,\\n          0.057639,\\n          0.066003\\n        ]\\n      }\\n    }\\n  },\\n  \\\"cross_task_variance\\\": {\\n    \\\"wrong\\\": {\\n      \\\"mean\\\": 5.8737,\\n      \\\"std\\\": 3.2192,\\n      \\\"cv\\\": 0.5481,\\n      \\\"min\\\": 2.5802,\\n      \\\"max\\\": 13.6093,\\n      \\\"per_task_ds\\\": [\\n        6.4334,\\n        4.033,\\n        5.5339,\\n        5.6258,\\n        13.6093,\\n        6.5925,\\n        2.9841,\\n        3.4637,\\n        2.5802,\\n        7.881\\n      ]\\n    },\\n    \\\"empty\\\": {\\n      \\\"mean\\\": 5.3532,\\n      \\\"std\\\": 1.368,\\n      \\\"cv\\\": 0.2556,\\n      \\\"min\\\": 3.6508,\\n      \\\"max\\\": 7.9023,\\n      \\\"per_task_ds\\\": [\\n        6.5393,\\n        6.0185,\\n        4.0059,\\n        7.9023,\\n        3.6508,\\n        5.9156,\\n        5.508,\\n        3.7729,\\n        4.4664,\\n        5.7518\\n      ]\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"mean\\\": 4.5893,\\n      \\\"std\\\": 1.4176,\\n      \\\"cv\\\": 0.3089,\\n      \\\"min\\\": 1.9662,\\n      \\\"max\\\": 6.8947,\\n      \\\"per_task_ds\\\": [\\n        1.9662,\\n        6.8947,\\n        4.7723,\\n        5.9891,\\n        5.5485,\\n        5.171,\\n        4.3645,\\n        3.2704,\\n        3.7955,\\n        4.121\\n      ]\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"mean\\\": 4.8484,\\n      \\\"std\\\": 2.4977,\\n      \\\"cv\\\": 0.5152,\\n      \\\"min\\\": 1.9887,\\n      \\\"max\\\": 9.4331,\\n      \\\"per_task_ds\\\": [\\n        2.1126,\\n        5.2558,\\n        9.4331,\\n        4.0392,\\n        4.1118,\\n        4.6122,\\n        7.8035,\\n        1.9887,\\n        2.4245,\\n        6.7026\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "0082f27b-a795-4355-979a-856968f31c0a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Trajectory-level Cohen's d from 10-task counterfactual analysis\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\\\\\",\\\\n  \\\\\\\"detail\\\\\\\": \\\\\\\"Each demo's MSE = mean of 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\\\\\",\\\\n  \\\\\\\"aggregation_method\\\\\\\": \\\\\\\"mean_mse_per_demo\\\\\\\",\\\\n  \\\\\\\"n_tasks\\\\\\\": 10,\\\\n  \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n  \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n  \\\\\\\"global\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"cohens_d\\\\\\\": 2.992,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        2.6344,\\\\n        3.491\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 2.1584552216131505e-51,\\\\n      \\\\\\\"n_demos\\\\\\\": 100,\\\\n      \\\\\\\"mean_mse\\\\\\\": 0.064699,\\\\n      \\\\\\\"std_mse\\\\\\\": 0.021624,\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.9237,\\\\n      \\\\\\\"inflation_ratio\\\\\\\": 0.3087,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.071586,\\\\n        0.054298,\\\\n        0.049071,\\\\n        0.065906,\\\\n        0.086043,\\\\n        0.06317,\\\\n        0.065868,\\\\n        0.063097,\\\\n        0.07453,\\\\n        0.065894,\\\\n        0.043352,\\\\n        0.048864,\\\\n        0.063282,\\\\n        0.066171,\\\\n        0.060422,\\\\n        0.054932,\\\\n        0.037959,\\\\n        0.038043,\\\\n        0.050455,\\\\n        0.028953,\\\\n        0.06253,\\\\n        0.06321,\\\\n        0.071802,\\\\n        0.090908,\\\\n        0.04937,\\\\n        0.068955,\\\\n        0.064393,\\\\n        0.076652,\\\\n        0.090746,\\\\n        0.068868,\\\\n        0.057445,\\\\n        0.082308,\\\\n        0.04626,\\\\n        0.065984,\\\\n        0.079119,\\\\n        0.085071,\\\\n        0.069235,\\\\n        0.073717,\\\\n        0.065291,\\\\n        0.059046,\\\\n        0.091804,\\\\n        0.106065,\\\\n        0.088903,\\\\n        0.085411,\\\\n        0.098066,\\\\n        0.102458,\\\\n        0.106329,\\\\n        0.099963,\\\\n        0.103107,\\\\n        0.10043,\\\\n        0.06121,\\\\n        0.0674,\\\\n        0.073764,\\\\n        0.060862,\\\\n        0.069085,\\\\n        0.060626,\\\\n        0.044075,\\\\n        0.056235,\\\\n        0.069794,\\\\n        0.04991,\\\\n        0.06796,\\\\n        0.034391,\\\\n        0.042742,\\\\n        0.051195,\\\\n        0.036001,\\\\n        0.049849,\\\\n        0.070982,\\\\n        0.085132,\\\\n        0.034653,\\\\n        0.071672,\\\\n        0.096248,\\\\n        0.091809,\\\\n        0.105795,\\\\n        0.077067,\\\\n        0.082938,\\\\n        0.029495,\\\\n        0.096984,\\\\n        0.097056,\\\\n        0.090349,\\\\n        0.052381,\\\\n        0.020478,\\\\n        0.042412,\\\\n        0.0286,\\\\n        0.037435,\\\\n        0.036491,\\\\n        0.026381,\\\\n        0.034185,\\\\n        0.014873,\\\\n        0.014197,\\\\n        0.050236,\\\\n        0.063166,\\\\n        0.078382,\\\\n        0.071773,\\\\n        0.060175,\\\\n        0.055391,\\\\n        0.065604,\\\\n        0.060216,\\\\n        0.079922,\\\\n        0.058328,\\\\n        0.068673\\\\n      ]\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"cohens_d\\\\\\\": 3.8479,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        3.4093,\\\\n        4.4403\\\\n      ],\\\\n      \\\\\\\"p_value\\\\\\\": 2.3552357999437523e-61,\\\\n      \\\\\\\"n_demos\\\\\\\": 100,\\\\n      \\\\\\\"mean_mse\\\\\\\": 0.069056,\\\\n      \\\\\\\"std_mse\\\\\\\": 0.017946,\\\\n      \\\\\\\"token_level_d\\\\\\\": 0.978,\\\\n      \\\\\\\"inflation_ratio\\\\\\\": 0.2542,\\\\n      \\\\\\\"demo_mses\\\\\\\": [\\\\n        0.08843,\\\\n        0.079994,\\\\n        0.057704,\\\\n        0.094254,\\\\n        0.108615,\\\\n        0.085373,\\\\n        0.085142,\\\\n        0.083027,\\\\n        0.097097,\\\\n        0.082758,\\\\n        0.071574,\\\\n        0.091679,\\\\n        0.085989,\\\\n        0.085543,\\\\n        0.060281,\\\\n        0.083131,\\\\n        0.058846,\\\\n        0.07777,\\\\n        0.071584,\\\\n        0.057834,\\\\n        0.023308,\\\\n        0.051854,\\\\n        0.035129,\\\\n        0.04891,\\\\n        0.040491,\\\\n        0.048958,\\\\n        0.057639,\\\\n        0.060374,\\\\n        0.037451,\\\\n        0.04316,\\\\n        0.051831,\\\\n        0.057449,\\\\n        0.057508,\\\\n        0.063405,\\\\n        0.068819,\\\\n        0.051616,\\\\n        0.049183,\\\\n        0.05714,\\\\n        0.054291,\\\\n        0.044338,\\\\n        0.042072,\\\\n        0.061841,\\\\n        0.085745,\\\\n        0.046128,\\\\n        0.06907,\\\\n        0.034828,\\\\n        0.070158,\\\\n        0.052212,\\\\n        0.077395,\\\\n        0.054888,\\\\n        0.052288,\\\\n        0.06333,\\\\n        0.065929,\\\\n        0.085679,\\\\n        0.071714,\\\\n        0.057713,\\\\n        0.091852,\\\\n        0.070483,\\\\n        0.069257,\\\\n        0.069609,\\\\n        0.063341,\\\\n        0.079895,\\\\n        0.102755,\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 20590 字符] ...\\\\n\\\\ns_d\\\\\\\": 3.7955,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          2.9298,\\\\n          7.2193\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 7.686988661382276e-07,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.05548,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.036678,\\\\n          0.051198,\\\\n          0.085018,\\\\n          0.0654,\\\\n          0.037315,\\\\n          0.04896,\\\\n          0.063015,\\\\n          0.063551,\\\\n          0.057278,\\\\n          0.046388\\\\n        ]\\\\n      },\\\\n      \\\\\\\"paraphrased\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 2.4245,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          1.7202,\\\\n          5.0634\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 3.1038736981017984e-05,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.018301,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.016842,\\\\n          0.015833,\\\\n          0.018746,\\\\n          0.02423,\\\\n          0.016423,\\\\n          0.024977,\\\\n          0.005655,\\\\n          0.009584,\\\\n          0.018817,\\\\n          0.031901\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"wrong\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 7.881,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          6.5201,\\\\n          14.5522\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 1.294465902144034e-09,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.066163,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.063166,\\\\n          0.078382,\\\\n          0.071773,\\\\n          0.060175,\\\\n          0.055391,\\\\n          0.065604,\\\\n          0.060216,\\\\n          0.079922,\\\\n          0.058328,\\\\n          0.068673\\\\n        ]\\\\n      },\\\\n      \\\\\\\"empty\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 5.7518,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          4.0457,\\\\n          11.866\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 2.093721245952702e-08,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.06768,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.083611,\\\\n          0.063068,\\\\n          0.077177,\\\\n          0.068862,\\\\n          0.066286,\\\\n          0.065029,\\\\n          0.057661,\\\\n          0.08032,\\\\n          0.071516,\\\\n          0.043275\\\\n        ]\\\\n      },\\\\n      \\\\\\\"shuffled\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 4.121,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          3.0439,\\\\n          8.5467\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 3.8025571906173375e-07,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.061149,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.086337,\\\\n          0.066141,\\\\n          0.063443,\\\\n          0.057824,\\\\n          0.063333,\\\\n          0.043264,\\\\n          0.052185,\\\\n          0.071938,\\\\n          0.071785,\\\\n          0.035238\\\\n        ]\\\\n      },\\\\n      \\\\\\\"paraphrased\\\\\\\": {\\\\n        \\\\\\\"cohens_d\\\\\\\": 6.7026,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          5.2447,\\\\n          11.9817\\\\n        ],\\\\n        \\\\\\\"p_value\\\\\\\": 5.437742700254084e-09,\\\\n        \\\\\\\"n_demos\\\\\\\": 10,\\\\n        \\\\\\\"mean_mse\\\\\\\": 0.053377,\\\\n        \\\\\\\"demo_mses\\\\\\\": [\\\\n          0.057879,\\\\n          0.04073,\\\\n          0.048825,\\\\n          0.043568,\\\\n          0.052062,\\\\n          0.062913,\\\\n          0.05218,\\\\n          0.051974,\\\\n          0.057639,\\\\n          0.066003\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_task_variance\\\\\\\": {\\\\n    \\\\\\\"wrong\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 5.8737,\\\\n      \\\\\\\"std\\\\\\\": 3.2192,\\\\n      \\\\\\\"cv\\\\\\\": 0.5481,\\\\n      \\\\\\\"min\\\\\\\": 2.5802,\\\\n      \\\\\\\"max\\\\\\\": 13.6093,\\\\n      \\\\\\\"per_task_ds\\\\\\\": [\\\\n        6.4334,\\\\n        4.033,\\\\n        5.5339,\\\\n        5.6258,\\\\n        13.6093,\\\\n        6.5925,\\\\n        2.9841,\\\\n        3.4637,\\\\n        2.5802,\\\\n        7.881\\\\n      ]\\\\n    },\\\\n    \\\\\\\"empty\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 5.3532,\\\\n      \\\\\\\"std\\\\\\\": 1.368,\\\\n      \\\\\\\"cv\\\\\\\": 0.2556,\\\\n      \\\\\\\"min\\\\\\\": 3.6508,\\\\n      \\\\\\\"max\\\\\\\": 7.9023,\\\\n      \\\\\\\"per_task_ds\\\\\\\": [\\\\n        6.5393,\\\\n        6.0185,\\\\n        4.0059,\\\\n        7.9023,\\\\n        3.6508,\\\\n        5.9156,\\\\n        5.508,\\\\n        3.7729,\\\\n        4.4664,\\\\n        5.7518\\\\n      ]\\\\n    },\\\\n    \\\\\\\"shuffled\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 4.5893,\\\\n      \\\\\\\"std\\\\\\\": 1.4176,\\\\n      \\\\\\\"cv\\\\\\\": 0.3089,\\\\n      \\\\\\\"min\\\\\\\": 1.9662,\\\\n      \\\\\\\"max\\\\\\\": 6.8947,\\\\n      \\\\\\\"per_task_ds\\\\\\\": [\\\\n        1.9662,\\\\n        6.8947,\\\\n        4.7723,\\\\n        5.9891,\\\\n        5.5485,\\\\n        5.171,\\\\n        4.3645,\\\\n        3.2704,\\\\n        3.7955,\\\\n        4.121\\\\n      ]\\\\n    },\\\\n    \\\\\\\"paraphrased\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 4.8484,\\\\n      \\\\\\\"std\\\\\\\": 2.4977,\\\\n      \\\\\\\"cv\\\\\\\": 0.5152,\\\\n      \\\\\\\"min\\\\\\\": 1.9887,\\\\n      \\\\\\\"max\\\\\\\": 9.4331,\\\\n      \\\\\\\"per_task_ds\\\\\\\": [\\\\n        2.1126,\\\\n        5.2558,\\\\n        9.4331,\\\\n        4.0392,\\\\n        4.1118,\\\\n        4.6122,\\\\n        7.8035,\\\\n        1.9887,\\\\n        2.4245,\\\\n        6.7026\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Trajectory-level Cohen's d from 10-task counterfactual analysis\\\",\\n  \\\"method\\\": \\\"demo-level aggregation, paired Cohen's d, bootstrap CI B=10000\\\",\\n  \\\"detail\\\": \\\"Each demo's MSE = mean of 50 timestep-level MSEs. Cohen's d = mean(demo_mses) / std(demo_mses, ddof=1). Bootstrap CI: 10000 resamples of demo-level values.\\\",\\n  \\\"aggregation_method\\\": \\\"mean_mse_per_demo\\\",\\n  \\\"n_tasks\\\": 10,\\n  \\\"n_demos_per_task\\\": 10,\\n  \\\"n_timesteps_per_demo\\\": 50,\\n  \\\"global\\\": {\\n    \\\"wrong\\\": {\\n      \\\"cohens_d\\\": 2.992,\\n      \\\"ci_95\\\": [\\n        2.6344,\\n        3.491\\n      ],\\n      \\\"p_value\\\": 2.1584552216131505e-51,\\n      \\\"n_demos\\\": 100,\\n      \\\"mean_mse\\\": 0.064699,\\n      \\\"std_mse\\\": 0.021624,\\n      \\\"token_level_d\\\": 0.9237,\\n      \\\"inflation_ratio\\\": 0.3087,\\n      \\\"demo_mses\\\": [\\n        0.071586,\\n        0.054298,\\n        0.049071,\\n        0.065906,\\n        0.086043,\\n        0.06317,\\n        0.065868,\\n        0.063097,\\n        0.07453,\\n        0.065894,\\n        0.043352,\\n        0.048864,\\n        0.063282,\\n        0.066171,\\n        0.060422,\\n        0.054932,\\n        0.037959,\\n        0.038043,\\n        0.050455,\\n        0.028953,\\n        0.06253,\\n        0.06321,\\n        0.071802,\\n        0.090908,\\n        0.04937,\\n        0.068955,\\n        0.064393,\\n        0.076652,\\n        0.090746,\\n        0.068868,\\n        0.057445,\\n        0.082308,\\n        0.04626,\\n        0.065984,\\n        0.079119,\\n        0.085071,\\n        0.069235,\\n        0.073717,\\n        0.065291,\\n        0.059046,\\n        0.091804,\\n        0.106065,\\n        0.088903,\\n        0.085411,\\n        0.098066,\\n        0.102458,\\n        0.106329,\\n        0.099963,\\n        0.103107,\\n        0.10043,\\n        0.06121,\\n        0.0674,\\n        0.073764,\\n        0.060862,\\n        0.069085,\\n        0.060626,\\n        0.044075,\\n        0.056235,\\n        0.069794,\\n        0.04991,\\n        0.06796,\\n        0.034391,\\n        0.042742,\\n        0.051195,\\n        0.036001,\\n        0.049849,\\n        0.070982,\\n        0.085132,\\n        0.034653,\\n        0.071672,\\n        0.096248,\\n        0.091809,\\n        0.105795,\\n        0.077067,\\n        0.082938,\\n        0.029495,\\n        0.096984,\\n        0.097056,\\n        0.090349,\\n        0.052381,\\n        0.020478,\\n        0.042412,\\n        0.0286,\\n        0.037435,\\n        0.036491,\\n        0.026381,\\n        0.034185,\\n        0.014873,\\n        0.014197,\\n        0.050236,\\n        0.063166,\\n        0.078382,\\n        0.071773,\\n        0.060175,\\n        0.055391,\\n        0.065604,\\n        0.060216,\\n        0.079922,\\n        0.058328,\\n        0.068673\\n      ]\\n    },\\n    \\\"empty\\\": {\\n      \\\"cohens_d\\\": 3.8479,\\n      \\\"ci_95\\\": [\\n        3.4093,\\n        4.4403\\n      ],\\n      \\\"p_value\\\": 2.3552357999437523e-61,\\n      \\\"n_demos\\\": 100,\\n      \\\"mean_mse\\\": 0.069056,\\n      \\\"std_mse\\\": 0.017946,\\n      \\\"token_level_d\\\": 0.978,\\n      \\\"inflation_ratio\\\": 0.2542,\\n      \\\"demo_mses\\\": [\\n        0.08843,\\n        0.079994,\\n        0.057704,\\n        0.094254,\\n        0.108615,\\n        0.085373,\\n        0.085142,\\n        0.083027,\\n        0.097097,\\n        0.082758,\\n        0.071574,\\n        0.091679,\\n        0.085989,\\n        0.085543,\\n        0.060281,\\n        0.083131,\\n        0.058846,\\n        0.07777,\\n        0.071584,\\n        0.057834,\\n        0.023308,\\n        0.051854,\\n        0.035129,\\n        0.04891,\\n        0.040491,\\n        0.048958,\\n        0.057639,\\n        0.060374,\\n        0.037451,\\n        0.04316,\\n        0.051831,\\n        0.057449,\\n        0.057508,\\n        0.063405,\\n        0.068819,\\n        0.051616,\\n        0.049183,\\n        0.05714,\\n        0.054291,\\n        0.044338,\\n        0.042072,\\n        0.061841,\\n        0.085745,\\n        0.046128,\\n        0.06907,\\n        0.034828,\\n        0.070158,\\n        0.052212,\\n        0.077395,\\n        0.054888,\\n        0.052288,\\n        0.06333,\\n        0.065929,\\n        0.085679,\\n        0.071714,\\n        0.057713,\\n        0.091852,\\n        0.070483,\\n        0.069257,\\n        0.069609,\\n        0.063341,\\n        0.079895,\\n        0.102755,\\n       \\n\\n... [截断: 输出过长，省略 20590 字符] ...\\n\\ns_d\\\": 3.7955,\\n        \\\"ci_95\\\": [\\n          2.9298,\\n          7.2193\\n        ],\\n        \\\"p_value\\\": 7.686988661382276e-07,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.05548,\\n        \\\"demo_mses\\\": [\\n          0.036678,\\n          0.051198,\\n          0.085018,\\n          0.0654,\\n          0.037315,\\n          0.04896,\\n          0.063015,\\n          0.063551,\\n          0.057278,\\n          0.046388\\n        ]\\n      },\\n      \\\"paraphrased\\\": {\\n        \\\"cohens_d\\\": 2.4245,\\n        \\\"ci_95\\\": [\\n          1.7202,\\n          5.0634\\n        ],\\n        \\\"p_value\\\": 3.1038736981017984e-05,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.018301,\\n        \\\"demo_mses\\\": [\\n          0.016842,\\n          0.015833,\\n          0.018746,\\n          0.02423,\\n          0.016423,\\n          0.024977,\\n          0.005655,\\n          0.009584,\\n          0.018817,\\n          0.031901\\n        ]\\n      }\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"wrong\\\": {\\n        \\\"cohens_d\\\": 7.881,\\n        \\\"ci_95\\\": [\\n          6.5201,\\n          14.5522\\n        ],\\n        \\\"p_value\\\": 1.294465902144034e-09,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.066163,\\n        \\\"demo_mses\\\": [\\n          0.063166,\\n          0.078382,\\n          0.071773,\\n          0.060175,\\n          0.055391,\\n          0.065604,\\n          0.060216,\\n          0.079922,\\n          0.058328,\\n          0.068673\\n        ]\\n      },\\n      \\\"empty\\\": {\\n        \\\"cohens_d\\\": 5.7518,\\n        \\\"ci_95\\\": [\\n          4.0457,\\n          11.866\\n        ],\\n        \\\"p_value\\\": 2.093721245952702e-08,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.06768,\\n        \\\"demo_mses\\\": [\\n          0.083611,\\n          0.063068,\\n          0.077177,\\n          0.068862,\\n          0.066286,\\n          0.065029,\\n          0.057661,\\n          0.08032,\\n          0.071516,\\n          0.043275\\n        ]\\n      },\\n      \\\"shuffled\\\": {\\n        \\\"cohens_d\\\": 4.121,\\n        \\\"ci_95\\\": [\\n          3.0439,\\n          8.5467\\n        ],\\n        \\\"p_value\\\": 3.8025571906173375e-07,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.061149,\\n        \\\"demo_mses\\\": [\\n          0.086337,\\n          0.066141,\\n          0.063443,\\n          0.057824,\\n          0.063333,\\n          0.043264,\\n          0.052185,\\n          0.071938,\\n          0.071785,\\n          0.035238\\n        ]\\n      },\\n      \\\"paraphrased\\\": {\\n        \\\"cohens_d\\\": 6.7026,\\n        \\\"ci_95\\\": [\\n          5.2447,\\n          11.9817\\n        ],\\n        \\\"p_value\\\": 5.437742700254084e-09,\\n        \\\"n_demos\\\": 10,\\n        \\\"mean_mse\\\": 0.053377,\\n        \\\"demo_mses\\\": [\\n          0.057879,\\n          0.04073,\\n          0.048825,\\n          0.043568,\\n          0.052062,\\n          0.062913,\\n          0.05218,\\n          0.051974,\\n          0.057639,\\n          0.066003\\n        ]\\n      }\\n    }\\n  },\\n  \\\"cross_task_variance\\\": {\\n    \\\"wrong\\\": {\\n      \\\"mean\\\": 5.8737,\\n      \\\"std\\\": 3.2192,\\n      \\\"cv\\\": 0.5481,\\n      \\\"min\\\": 2.5802,\\n      \\\"max\\\": 13.6093,\\n      \\\"per_task_ds\\\": [\\n        6.4334,\\n        4.033,\\n        5.5339,\\n        5.6258,\\n        13.6093,\\n        6.5925,\\n        2.9841,\\n        3.4637,\\n        2.5802,\\n        7.881\\n      ]\\n    },\\n    \\\"empty\\\": {\\n      \\\"mean\\\": 5.3532,\\n      \\\"std\\\": 1.368,\\n      \\\"cv\\\": 0.2556,\\n      \\\"min\\\": 3.6508,\\n      \\\"max\\\": 7.9023,\\n      \\\"per_task_ds\\\": [\\n        6.5393,\\n        6.0185,\\n        4.0059,\\n        7.9023,\\n        3.6508,\\n        5.9156,\\n        5.508,\\n        3.7729,\\n        4.4664,\\n        5.7518\\n      ]\\n    },\\n    \\\"shuffled\\\": {\\n      \\\"mean\\\": 4.5893,\\n      \\\"std\\\": 1.4176,\\n      \\\"cv\\\": 0.3089,\\n      \\\"min\\\": 1.9662,\\n      \\\"max\\\": 6.8947,\\n      \\\"per_task_ds\\\": [\\n        1.9662,\\n        6.8947,\\n        4.7723,\\n        5.9891,\\n        5.5485,\\n        5.171,\\n        4.3645,\\n        3.2704,\\n        3.7955,\\n        4.121\\n      ]\\n    },\\n    \\\"paraphrased\\\": {\\n      \\\"mean\\\": 4.8484,\\n      \\\"std\\\": 2.4977,\\n      \\\"cv\\\": 0.5152,\\n      \\\"min\\\": 1.9887,\\n      \\\"max\\\": 9.4331,\\n      \\\"per_task_ds\\\": [\\n        2.1126,\\n        5.2558,\\n        9.4331,\\n        4.0392,\\n        4.1118,\\n        4.6122,\\n        7.8035,\\n        1.9887,\\n        2.4245,\\n        6.7026\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me compile all the data:
+
+**NORA Spatial trained R² probing** (nora_spatial/trained/action_r2_probing.json):
+- Peak image_mean: L10, R²=0.7207
+- Peak last_preaction: L24, R²=0.7195
+- Exit (L32) image_mean: R²=0.5926
+- Exit (L32) last_preaction: R²=0.4894
+- NORA has 36 layers (L0-L35)
+
+**NORA Goal trained R² probing** (nora_goal/trained/action_r2_probing.json):
+
+
+- Peak performance around L10-L11 for image_mean (R²≈0.697) and L9 or L12 for last_preaction (R²≈0.687)
+- The Goal model shows relatively flat R² values across layers compared to Spatial
+- Exit layer (L32) performance is stronger here with image_mean at R²=0.6233 and last_preaction at R²=0.5994
+
+**NORA Spatial attention** (nora_spatial/trained/l1_attention_profile.json):
+- instruction_dominant: 12, image_dominant: 0, mixed
+
+: 4
+- Note: NORA has 16 heads (not 32 like OpenVLA)
+
+Looking at the full 32-layer attention summary for OpenVLA, the trained model shows instruction dominance increasing from L0 (21 heads) through L1 (24 heads), then dropping to 0 at L2 where BOS tokens take over. This matches the Goal suite tasks, confirming the analysis is from the same training run.
+
+For NORA Spatial untrained, I have action probing, attention profiles, and cross-instruction classification data, but the counterfactual analysis is missing.
+
+Now I'm noticing something important about the attention data - the L1 attention summary I looked at earlier contains LIBERO-Goal task names like "open the middle drawer" and "push the plate to the front," which are the same tasks appearing in the counterfactual 10-task file. But the full 32-layer summary also reports 24 instruction-dominant heads at L1, so I need to reconcile whether these are actually the same trained model or different analyses.
+
+Looking at this more carefully, the OpenVLA attention data across both the per-task summaries and the full layer analysis is specifically for LIBERO-Goal, while the R² probing results come from LIBERO-Long. The spatial-specific findings are isolated to the functional validation and counterfactual spatial directories, meaning there's no dedicated L1 attention analysis for the spatial variant. I'm realizing the counterfactual experiments only use the trained OpenVLA model—they test how sensitive it is to instruction variations, not a comparison between trained and untrained versions. There's no separate untrained counterfactual data for OpenVLA, unlike NORA and TracVLA where "untrained" refers to different base models entirely.
+
+Now I need to track down the OpenVLA Goal R² probing results. I have action prediction data for LIBERO-Long and spatial probing for LIBERO-Spatial, but I'm missing the Goal-specific R² probing. Let me check whether the trained action prediction data is actually from LIBERO-Goal rather than LIBERO-Long by looking at the task names. I'm finishing that last task description, then cross-referencing the task names in the trained data against the LIBERO-Long suite to confirm they match up. This tells me that both the trained and untrained directories contain LIBERO-Long data, not Goal data, which means OpenVLA only has R² probing results for LIBERO-Long and LIBERO-Spatial benchmarks.
+
+Now I need to figure out what's actually in that 3×4 matrix the user is asking about. Let me compile what I've found across all the experiments—the R² probing data, the attention analysis results, and the cross-instruction findings—and note where there are gaps, particularly for Goal tasks. Looking at the task indices in the trained file, they're all LIBERO-Goal tasks—"open the middle drawer," "push the plate to the stove," "put the wine bottle on the cabinet." The untrained file lacks task names so I can't definitively determine which suite it came from, but since it's paired with the trained Goal data, it's likely also Goal tasks. I should check if there's any attention data specifically collected for LIBERO-Spatial in the cross_instruction_spatial directory.
+
+The cross_instruction_spatial folder only contains classification results, not attention data. For the counterfactual_spatial directory, there's no trajectory-level Cohen's d file like there is in counterfactual_10tasks—just token-level data. Before compiling the report, I need to verify the format of the nora_spatial untrained R² and attention data, and note that the NORA spatial untrained counterfactual data is missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f7b92a4a-321b-41e6-8d6d-02f9d5362652",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 103_
+
+Let me get a few more pieces to complete the picture — the OpenVLA attention data format and NORA untrained data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "08129f38-f642-496c-b313-fd989a7efbb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016iibJCZmE7GGpP26SEmQzj`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "5a1eb378-0bbf-412f-b2d1-843706f43b42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 105 · 2026-05-22T00:22:44.082Z_
+
+<details><summary>↩ Tool result · `toolu_016iibJCZmE7GGpP26SEmQzj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7193,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7193\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.5809,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5809\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7188,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7188\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.5751,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5751\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.7198,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7198\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.5756,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5756\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.722,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.722\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.5836,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5836\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7211,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7211\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6055,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6055\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7202,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7202\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6031\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7183,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7183\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6031\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7188,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7188\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6244,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6244\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7207,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7207\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6323,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6323\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.724,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.724\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6254,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6254\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7251,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7251\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6232,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6232\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7253,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7253\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6204,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6204\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7117,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7117\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6196,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6196\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7065,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7065\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6167,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6167\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.7029,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7029\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6958,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6958\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6231,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6231\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6956,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6956\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6194,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6194\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6951,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6951\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6205,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6205\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7027,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7027\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6244,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6244\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6287,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6287\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6863,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6863\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6275,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6275\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6877,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6877\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6276,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6276\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6918,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6918\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6176,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6176\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.682\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6046\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.678,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.678\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6021,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6021\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6799,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6799\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.5981,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5981\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6795,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6795\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6024,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6024\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6802,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6802\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.5999,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5999\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6041,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6041\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6682\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6087,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6087\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6778,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6778\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6071,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6071\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6854,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6854\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.6071,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6071\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6881,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6881\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.6018,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6018\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5972,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5972\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6696,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6696\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.599,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.599\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.668,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.668\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.5958,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5958\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b37612fa-b40e-49f8-ba2e-a7fbd9981c06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7193,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7193\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5809,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5809\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7188,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7188\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5751,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5751\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7198,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7198\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5756,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5756\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.722,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.722\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5836,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5836\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7211,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7211\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6055,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6055\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7202,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7202\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6031,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6031\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7183,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7183\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6031,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6031\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7188,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7188\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6244,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6244\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7207,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7207\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6323,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6323\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.724,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.724\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6254,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6254\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7251,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7251\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6232,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6232\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7253,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7253\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6204,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6204\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7117,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7117\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6196,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6196\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7065,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7065\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6167,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6167\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7029,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7029\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.618,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.618\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6958,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6958\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6231,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6231\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6956,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6956\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6194,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6194\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6951,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6951\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6205,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6205\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7027,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7027\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6244,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6244\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6885,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6885\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6287,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6287\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6863,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6863\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6275,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6275\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6877,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6877\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6276,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6276\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6918,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6918\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6176,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6176\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.682,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.682\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6046,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6046\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.678,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.678\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6021,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6021\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6799,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6799\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5981,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5981\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6795,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6795\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6024,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6024\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6802,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6802\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5999,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5999\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.679,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.679\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6041,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6041\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6682,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6682\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6087,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6087\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6778,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6778\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6071,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6071\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6854,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6854\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6071,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6071\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6881,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6881\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6018,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6018\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5972,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5972\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6696,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6696\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.599,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.599\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.668,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.668\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5958,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5958\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7193,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7193\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.5809,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5809\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7188,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7188\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.5751,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5751\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.7198,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7198\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.5756,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5756\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.722,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.722\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.5836,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5836\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7211,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7211\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6055,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6055\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7202,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7202\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.6031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6031\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7183,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7183\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.6031,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6031\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7188,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7188\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6244,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6244\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7207,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7207\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6323,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6323\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.724,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.724\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6254,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6254\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7251,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7251\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6232,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6232\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7253,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7253\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6204,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6204\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7117,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7117\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6196,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6196\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7065,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7065\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6167,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6167\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.7029,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7029\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.618,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.618\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.6958,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6958\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6231,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6231\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.6956,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6956\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6194,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6194\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.6951,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6951\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6205,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6205\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7027,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7027\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.6244,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6244\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.6885,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6885\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6287,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6287\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6863,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6863\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6275,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6275\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6877,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6877\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6276,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6276\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6918,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6918\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6176,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6176\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.682\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6046,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6046\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.678,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.678\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6021,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6021\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6799,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6799\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.5981,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5981\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6795,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6795\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6024,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6024\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6802,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6802\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.5999,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5999\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.679,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.679\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6041,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6041\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6682,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6682\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6087,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6087\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6778,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6778\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6071,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6071\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6854,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6854\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.6071,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6071\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6881,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6881\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.6018,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6018\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.5972,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5972\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6696,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6696\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.599,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.599\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.668,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.668\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.5958,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5958\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dci3VfmkP8vaK5a5DR6sNC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "164bbef0-576a-4aab-9c74-f254dd506b4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 107 · 2026-05-22T00:22:45.107Z_
+
+<details><summary>↩ Tool result · `toolu_01Dci3VfmkP8vaK5a5DR6sNC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.779,\\n      \\\"instruction_ratio_std\\\": 0.022,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9955,\\n      \\\"instruction_ratio_std\\\": 0.002,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4401,\\n      \\\"instruction_ratio_std\\\": 0.0212,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8462,\\n      \\\"instruction_ratio_std\\\": 0.0193,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4525,\\n      \\\"instruction_ratio_std\\\": 0.0284,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9882,\\n      \\\"instruction_ratio_std\\\": 0.003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6936,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9969,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.966,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6813,\\n      \\\"instruction_ratio_std\\\": 0.0195,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5216,\\n      \\\"instruction_ratio_std\\\": 0.0249,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7081,\\n      \\\"instruction_ratio_std\\\": 0.0286,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9033,\\n      \\\"instruction_ratio_std\\\": 0.0082,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8573,\\n      \\\"instruction_ratio_std\\\": 0.0209,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.576,\\n      \\\"instruction_ratio_std\\\": 0.0194,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9686,\\n      \\\"instruction_ratio_std\\\": 0.0061,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 14,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "1cc47ee5-f98d-48ab-8183-763c9286ea42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.779,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.022,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9955,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.002,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4401,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0212,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8462,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0193,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4525,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0284,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9882,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.003,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6936,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9969,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.966,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0029,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6813,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0195,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5216,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0249,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7081,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0286,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9033,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0082,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8573,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0209,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.576,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0194,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9686,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0061,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 14,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 2,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      3,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      14,\\\\n      15\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.779,\\n      \\\"instruction_ratio_std\\\": 0.022,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9955,\\n      \\\"instruction_ratio_std\\\": 0.002,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4401,\\n      \\\"instruction_ratio_std\\\": 0.0212,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8462,\\n      \\\"instruction_ratio_std\\\": 0.0193,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4525,\\n      \\\"instruction_ratio_std\\\": 0.0284,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9882,\\n      \\\"instruction_ratio_std\\\": 0.003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6936,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9969,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.966,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6813,\\n      \\\"instruction_ratio_std\\\": 0.0195,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5216,\\n      \\\"instruction_ratio_std\\\": 0.0249,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7081,\\n      \\\"instruction_ratio_std\\\": 0.0286,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9033,\\n      \\\"instruction_ratio_std\\\": 0.0082,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8573,\\n      \\\"instruction_ratio_std\\\": 0.0209,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.576,\\n      \\\"instruction_ratio_std\\\": 0.0194,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9686,\\n      \\\"instruction_ratio_std\\\": 0.0061,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 14,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013iVKRxGAcbJgzVcGQosKxW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/cross_instruction_classification.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c29a979c-9f54-490a-bac4-a5c1eae62736",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 109 · 2026-05-22T00:22:45.706Z_
+
+<details><summary>↩ Tool result · `toolu_013iVKRxGAcbJgzVcGQosKxW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"chance\\\": 0.1,\\n  \\\"L0_image_mean\\\": 0.999,\\n  \\\"L0_last_preaction\\\": 1.0,\\n  \\\"L1_image_mean\\\": 0.998,\\n  \\\"L1_last_preaction\\\": 1.0,\\n  \\\"L2_image_mean\\\": 0.998,\\n  \\\"L2_last_preaction\\\": 1.0,\\n  \\\"L3_image_mean\\\": 0.998,\\n  \\\"L3_last_preaction\\\": 1.0,\\n  \\\"L4_image_mean\\\": 0.999,\\n  \\\"L4_last_preaction\\\": 1.0,\\n  \\\"L5_image_mean\\\": 0.999,\\n  \\\"L5_last_preaction\\\": 1.0,\\n  \\\"L6_image_mean\\\": 0.999,\\n  \\\"L6_last_preaction\\\": 1.0,\\n  \\\"L7_image_mean\\\": 0.999,\\n  \\\"L7_last_preaction\\\": 1.0,\\n  \\\"L8_image_mean\\\": 0.999,\\n  \\\"L8_last_preaction\\\": 1.0,\\n  \\\"L9_image_mean\\\": 0.998,\\n  \\\"L9_last_preaction\\\": 1.0,\\n  \\\"L10_image_mean\\\": 0.998,\\n  \\\"L10_last_preaction\\\": 1.0,\\n  \\\"L11_image_mean\\\": 0.999,\\n  \\\"L11_last_preaction\\\": 1.0,\\n  \\\"L12_image_mean\\\": 0.999,\\n  \\\"L12_last_preaction\\\": 1.0,\\n  \\\"L13_image_mean\\\": 0.999,\\n  \\\"L13_last_preaction\\\": 1.0,\\n  \\\"L14_image_mean\\\": 0.999,\\n  \\\"L14_last_preaction\\\": 1.0,\\n  \\\"L15_image_mean\\\": 0.998,\\n  \\\"L15_last_preaction\\\": 1.0,\\n  \\\"L16_image_mean\\\": 0.998,\\n  \\\"L16_last_preaction\\\": 1.0,\\n  \\\"L17_image_mean\\\": 0.999,\\n  \\\"L17_last_preaction\\\": 1.0,\\n  \\\"L18_image_mean\\\": 0.999,\\n  \\\"L18_last_preaction\\\": 1.0,\\n  \\\"L19_image_mean\\\": 0.998,\\n  \\\"L19_last_preaction\\\": 1.0,\\n  \\\"L20_image_mean\\\": 0.998,\\n  \\\"L20_last_preaction\\\": 1.0,\\n  \\\"L21_image_mean\\\": 0.998,\\n  \\\"L21_last_preaction\\\": 1.0,\\n  \\\"L22_image_mean\\\": 0.998,\\n  \\\"L22_last_preaction\\\": 1.0,\\n  \\\"L23_image_mean\\\": 0.998,\\n  \\\"L23_last_preaction\\\": 1.0,\\n  \\\"L24_image_mean\\\": 0.998,\\n  \\\"L24_last_preaction\\\": 1.0,\\n  \\\"L25_image_mean\\\": 0.997,\\n  \\\"L25_last_preaction\\\": 1.0,\\n  \\\"L26_image_mean\\\": 0.999,\\n  \\\"L26_last_preaction\\\": 1.0,\\n  \\\"L27_image_mean\\\": 0.999,\\n  \\\"L27_last_preaction\\\": 1.0,\\n  \\\"L28_image_mean\\\": 0.998,\\n  \\\"L28_last_preaction\\\": 1.0,\\n  \\\"L29_image_mean\\\": 1.0,\\n  \\\"L29_last_preaction\\\": 1.0,\\n  \\\"L30_image_mean\\\": 1.0,\\n  \\\"L30_last_preaction\\\": 1.0,\\n  \\\"L31_image_mean\\\": 1.0,\\n  \\\"L31_last_preaction\\\": 1.0,\\n  \\\"L32_image_mean\\\": 1.0,\\n  \\\"L32_last_preaction\\\": 1.0,\\n  \\\"L33_image_mean\\\": 1.0,\\n  \\\"L33_last_preaction\\\": 1.0,\\n  \\\"L34_image_mean\\\": 1.0,\\n  \\\"L34_last_preaction\\\": 1.0,\\n  \\\"L35_image_mean\\\": 1.0,\\n  \\\"L35_last_preaction\\\": 1.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "161e81d2-517e-4efb-8e61-f048ee004557",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"chance\\\\\\\": 0.1,\\\\n  \\\\\\\"L0_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L1_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L2_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L3_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L4_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L5_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L6_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L7_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L8_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L9_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L10_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L11_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L12_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L13_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L14_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L15_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L16_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L17_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L18_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L19_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L20_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L21_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L22_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L23_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L24_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L25_image_mean\\\\\\\": 0.997,\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L26_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L27_image_mean\\\\\\\": 0.999,\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L28_image_mean\\\\\\\": 0.998,\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L29_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L30_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L31_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L32_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L33_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L34_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": 1.0,\\\\n  \\\\\\\"L35_image_mean\\\\\\\": 1.0,\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": 1.0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"chance\\\": 0.1,\\n  \\\"L0_image_mean\\\": 0.999,\\n  \\\"L0_last_preaction\\\": 1.0,\\n  \\\"L1_image_mean\\\": 0.998,\\n  \\\"L1_last_preaction\\\": 1.0,\\n  \\\"L2_image_mean\\\": 0.998,\\n  \\\"L2_last_preaction\\\": 1.0,\\n  \\\"L3_image_mean\\\": 0.998,\\n  \\\"L3_last_preaction\\\": 1.0,\\n  \\\"L4_image_mean\\\": 0.999,\\n  \\\"L4_last_preaction\\\": 1.0,\\n  \\\"L5_image_mean\\\": 0.999,\\n  \\\"L5_last_preaction\\\": 1.0,\\n  \\\"L6_image_mean\\\": 0.999,\\n  \\\"L6_last_preaction\\\": 1.0,\\n  \\\"L7_image_mean\\\": 0.999,\\n  \\\"L7_last_preaction\\\": 1.0,\\n  \\\"L8_image_mean\\\": 0.999,\\n  \\\"L8_last_preaction\\\": 1.0,\\n  \\\"L9_image_mean\\\": 0.998,\\n  \\\"L9_last_preaction\\\": 1.0,\\n  \\\"L10_image_mean\\\": 0.998,\\n  \\\"L10_last_preaction\\\": 1.0,\\n  \\\"L11_image_mean\\\": 0.999,\\n  \\\"L11_last_preaction\\\": 1.0,\\n  \\\"L12_image_mean\\\": 0.999,\\n  \\\"L12_last_preaction\\\": 1.0,\\n  \\\"L13_image_mean\\\": 0.999,\\n  \\\"L13_last_preaction\\\": 1.0,\\n  \\\"L14_image_mean\\\": 0.999,\\n  \\\"L14_last_preaction\\\": 1.0,\\n  \\\"L15_image_mean\\\": 0.998,\\n  \\\"L15_last_preaction\\\": 1.0,\\n  \\\"L16_image_mean\\\": 0.998,\\n  \\\"L16_last_preaction\\\": 1.0,\\n  \\\"L17_image_mean\\\": 0.999,\\n  \\\"L17_last_preaction\\\": 1.0,\\n  \\\"L18_image_mean\\\": 0.999,\\n  \\\"L18_last_preaction\\\": 1.0,\\n  \\\"L19_image_mean\\\": 0.998,\\n  \\\"L19_last_preaction\\\": 1.0,\\n  \\\"L20_image_mean\\\": 0.998,\\n  \\\"L20_last_preaction\\\": 1.0,\\n  \\\"L21_image_mean\\\": 0.998,\\n  \\\"L21_last_preaction\\\": 1.0,\\n  \\\"L22_image_mean\\\": 0.998,\\n  \\\"L22_last_preaction\\\": 1.0,\\n  \\\"L23_image_mean\\\": 0.998,\\n  \\\"L23_last_preaction\\\": 1.0,\\n  \\\"L24_image_mean\\\": 0.998,\\n  \\\"L24_last_preaction\\\": 1.0,\\n  \\\"L25_image_mean\\\": 0.997,\\n  \\\"L25_last_preaction\\\": 1.0,\\n  \\\"L26_image_mean\\\": 0.999,\\n  \\\"L26_last_preaction\\\": 1.0,\\n  \\\"L27_image_mean\\\": 0.999,\\n  \\\"L27_last_preaction\\\": 1.0,\\n  \\\"L28_image_mean\\\": 0.998,\\n  \\\"L28_last_preaction\\\": 1.0,\\n  \\\"L29_image_mean\\\": 1.0,\\n  \\\"L29_last_preaction\\\": 1.0,\\n  \\\"L30_image_mean\\\": 1.0,\\n  \\\"L30_last_preaction\\\": 1.0,\\n  \\\"L31_image_mean\\\": 1.0,\\n  \\\"L31_last_preaction\\\": 1.0,\\n  \\\"L32_image_mean\\\": 1.0,\\n  \\\"L32_last_preaction\\\": 1.0,\\n  \\\"L33_image_mean\\\": 1.0,\\n  \\\"L33_last_preaction\\\": 1.0,\\n  \\\"L34_image_mean\\\": 1.0,\\n  \\\"L34_last_preaction\\\": 1.0,\\n  \\\"L35_image_mean\\\": 1.0,\\n  \\\"L35_last_preaction\\\": 1.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019EXtKwuenKvpVP3GWtU94o`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/nora_goal/untrained/action_r2_probing.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "c61cce4d-749e-4882-8166-9d231083cff3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzpZ9b2MqSPMyPnXyXhopo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26230,
+      "cache_read_input_tokens": 95488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 111 · 2026-05-22T00:22:46.326Z_
+
+<details><summary>↩ Tool result · `toolu_019EXtKwuenKvpVP3GWtU94o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7277,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7277\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.5925,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5925\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7277,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7277\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.5847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5847\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.728,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.728\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.5892,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5892\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.7263,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7263\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.5909,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5909\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7265,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7265\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6006,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6006\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7275,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7275\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.5983,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5983\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7291\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.614,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.614\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7315,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7315\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6331,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6331\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7317,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7317\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6501,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6501\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.7346,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7346\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6496,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6496\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7289,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7289\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6441,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6441\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7282,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7282\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6512,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6512\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7176,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7176\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6574,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6574\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7124,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7124\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6523,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6523\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.714,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.714\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6453,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6453\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.7048,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7048\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6599,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6599\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.7023,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7023\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6514,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6514\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.7035,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7035\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6529,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6529\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7033,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7033\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.655,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.655\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.7007,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7007\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6531,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6531\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6483,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6483\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6636,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6636\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6857,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6857\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6568,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6568\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6464,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6464\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6767,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6767\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.6524,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6524\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6789,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6789\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6506,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6506\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6816,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6816\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6257,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6257\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6751,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6751\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6348,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6348\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6759,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6759\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6349,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6349\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6695,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6695\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6309,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6309\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6581,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6581\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.6356,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6356\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6648,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6648\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.6381,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6381\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6634,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6634\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.6342,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6342\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6588,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6588\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.6146,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6146\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.6194,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6194\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "36ad7252-5947-4d13-9a2c-0bd0c770fcc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7277,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7277\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L0_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5925,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5925\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7277,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7277\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5847,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5847\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.728,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.728\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5892,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5892\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7263,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7263\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5909,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5909\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7265,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7265\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6006,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6006\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7275,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7275\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.5983,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.5983\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7291,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7291\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.614,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.614\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7315,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7315\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6331,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6331\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7317,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7317\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6501,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6501\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7346,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7346\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6496,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6496\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7289,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7289\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6441,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6441\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7282,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7282\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6512,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6512\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7176,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7176\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6574,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6574\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7124,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7124\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6523,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6523\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.714,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.714\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6453,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6453\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7048,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7048\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L15_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6599,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6599\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7023,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7023\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L16_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6514,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6514\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7035,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7035\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L17_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6529,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6529\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7033,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7033\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L18_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.655,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.655\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.7007,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.7007\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L19_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6531,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6531\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6898,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6898\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L20_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6483,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6483\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6908,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6908\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L21_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6636,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6636\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6857,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6857\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L22_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6568,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6568\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6853,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6853\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L23_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6509,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6509\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6788,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6788\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L24_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6464,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6464\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6767,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6767\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L25_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6524,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6524\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6789,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6789\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L26_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6506,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6506\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6816,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6816\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L27_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6257,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6257\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6751,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6751\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L28_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6348,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6348\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6759,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6759\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L29_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6349,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6349\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6695,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6695\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L30_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6309,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6309\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6581,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6581\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L31_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6356,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6356\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6648,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6648\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L32_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6381,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6381\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6634,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6634\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L33_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6342,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6342\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6588,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6588\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L34_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6146,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6146\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_image_mean\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6556,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6556\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L35_last_preaction\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.6194,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.6194\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0_image_mean\\\": {\\n    \\\"mean\\\": 0.7277,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7277\\n    ]\\n  },\\n  \\\"L0_last_preaction\\\": {\\n    \\\"mean\\\": 0.5925,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5925\\n    ]\\n  },\\n  \\\"L1_image_mean\\\": {\\n    \\\"mean\\\": 0.7277,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7277\\n    ]\\n  },\\n  \\\"L1_last_preaction\\\": {\\n    \\\"mean\\\": 0.5847,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5847\\n    ]\\n  },\\n  \\\"L2_image_mean\\\": {\\n    \\\"mean\\\": 0.728,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.728\\n    ]\\n  },\\n  \\\"L2_last_preaction\\\": {\\n    \\\"mean\\\": 0.5892,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5892\\n    ]\\n  },\\n  \\\"L3_image_mean\\\": {\\n    \\\"mean\\\": 0.7263,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7263\\n    ]\\n  },\\n  \\\"L3_last_preaction\\\": {\\n    \\\"mean\\\": 0.5909,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5909\\n    ]\\n  },\\n  \\\"L4_image_mean\\\": {\\n    \\\"mean\\\": 0.7265,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7265\\n    ]\\n  },\\n  \\\"L4_last_preaction\\\": {\\n    \\\"mean\\\": 0.6006,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6006\\n    ]\\n  },\\n  \\\"L5_image_mean\\\": {\\n    \\\"mean\\\": 0.7275,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7275\\n    ]\\n  },\\n  \\\"L5_last_preaction\\\": {\\n    \\\"mean\\\": 0.5983,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.5983\\n    ]\\n  },\\n  \\\"L6_image_mean\\\": {\\n    \\\"mean\\\": 0.7291,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7291\\n    ]\\n  },\\n  \\\"L6_last_preaction\\\": {\\n    \\\"mean\\\": 0.614,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.614\\n    ]\\n  },\\n  \\\"L7_image_mean\\\": {\\n    \\\"mean\\\": 0.7315,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7315\\n    ]\\n  },\\n  \\\"L7_last_preaction\\\": {\\n    \\\"mean\\\": 0.6331,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6331\\n    ]\\n  },\\n  \\\"L8_image_mean\\\": {\\n    \\\"mean\\\": 0.7317,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7317\\n    ]\\n  },\\n  \\\"L8_last_preaction\\\": {\\n    \\\"mean\\\": 0.6501,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6501\\n    ]\\n  },\\n  \\\"L9_image_mean\\\": {\\n    \\\"mean\\\": 0.7346,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7346\\n    ]\\n  },\\n  \\\"L9_last_preaction\\\": {\\n    \\\"mean\\\": 0.6496,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6496\\n    ]\\n  },\\n  \\\"L10_image_mean\\\": {\\n    \\\"mean\\\": 0.7289,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7289\\n    ]\\n  },\\n  \\\"L10_last_preaction\\\": {\\n    \\\"mean\\\": 0.6441,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6441\\n    ]\\n  },\\n  \\\"L11_image_mean\\\": {\\n    \\\"mean\\\": 0.7282,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7282\\n    ]\\n  },\\n  \\\"L11_last_preaction\\\": {\\n    \\\"mean\\\": 0.6512,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6512\\n    ]\\n  },\\n  \\\"L12_image_mean\\\": {\\n    \\\"mean\\\": 0.7176,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7176\\n    ]\\n  },\\n  \\\"L12_last_preaction\\\": {\\n    \\\"mean\\\": 0.6574,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6574\\n    ]\\n  },\\n  \\\"L13_image_mean\\\": {\\n    \\\"mean\\\": 0.7124,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7124\\n    ]\\n  },\\n  \\\"L13_last_preaction\\\": {\\n    \\\"mean\\\": 0.6523,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6523\\n    ]\\n  },\\n  \\\"L14_image_mean\\\": {\\n    \\\"mean\\\": 0.714,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.714\\n    ]\\n  },\\n  \\\"L14_last_preaction\\\": {\\n    \\\"mean\\\": 0.6453,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6453\\n    ]\\n  },\\n  \\\"L15_image_mean\\\": {\\n    \\\"mean\\\": 0.7048,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7048\\n    ]\\n  },\\n  \\\"L15_last_preaction\\\": {\\n    \\\"mean\\\": 0.6599,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6599\\n    ]\\n  },\\n  \\\"L16_image_mean\\\": {\\n    \\\"mean\\\": 0.7023,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7023\\n    ]\\n  },\\n  \\\"L16_last_preaction\\\": {\\n    \\\"mean\\\": 0.6514,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6514\\n    ]\\n  },\\n  \\\"L17_image_mean\\\": {\\n    \\\"mean\\\": 0.7035,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7035\\n    ]\\n  },\\n  \\\"L17_last_preaction\\\": {\\n    \\\"mean\\\": 0.6529,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6529\\n    ]\\n  },\\n  \\\"L18_image_mean\\\": {\\n    \\\"mean\\\": 0.7033,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7033\\n    ]\\n  },\\n  \\\"L18_last_preaction\\\": {\\n    \\\"mean\\\": 0.655,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.655\\n    ]\\n  },\\n  \\\"L19_image_mean\\\": {\\n    \\\"mean\\\": 0.7007,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.7007\\n    ]\\n  },\\n  \\\"L19_last_preaction\\\": {\\n    \\\"mean\\\": 0.6531,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6531\\n    ]\\n  },\\n  \\\"L20_image_mean\\\": {\\n    \\\"mean\\\": 0.6898,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6898\\n    ]\\n  },\\n  \\\"L20_last_preaction\\\": {\\n    \\\"mean\\\": 0.6483,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6483\\n    ]\\n  },\\n  \\\"L21_image_mean\\\": {\\n    \\\"mean\\\": 0.6908,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6908\\n    ]\\n  },\\n  \\\"L21_last_preaction\\\": {\\n    \\\"mean\\\": 0.6636,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6636\\n    ]\\n  },\\n  \\\"L22_image_mean\\\": {\\n    \\\"mean\\\": 0.6857,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6857\\n    ]\\n  },\\n  \\\"L22_last_preaction\\\": {\\n    \\\"mean\\\": 0.6568,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6568\\n    ]\\n  },\\n  \\\"L23_image_mean\\\": {\\n    \\\"mean\\\": 0.6853,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6853\\n    ]\\n  },\\n  \\\"L23_last_preaction\\\": {\\n    \\\"mean\\\": 0.6509,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6509\\n    ]\\n  },\\n  \\\"L24_image_mean\\\": {\\n    \\\"mean\\\": 0.6788,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6788\\n    ]\\n  },\\n  \\\"L24_last_preaction\\\": {\\n    \\\"mean\\\": 0.6464,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6464\\n    ]\\n  },\\n  \\\"L25_image_mean\\\": {\\n    \\\"mean\\\": 0.6767,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6767\\n    ]\\n  },\\n  \\\"L25_last_preaction\\\": {\\n    \\\"mean\\\": 0.6524,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6524\\n    ]\\n  },\\n  \\\"L26_image_mean\\\": {\\n    \\\"mean\\\": 0.6789,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6789\\n    ]\\n  },\\n  \\\"L26_last_preaction\\\": {\\n    \\\"mean\\\": 0.6506,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6506\\n    ]\\n  },\\n  \\\"L27_image_mean\\\": {\\n    \\\"mean\\\": 0.6816,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6816\\n    ]\\n  },\\n  \\\"L27_last_preaction\\\": {\\n    \\\"mean\\\": 0.6257,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6257\\n    ]\\n  },\\n  \\\"L28_image_mean\\\": {\\n    \\\"mean\\\": 0.6751,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6751\\n    ]\\n  },\\n  \\\"L28_last_preaction\\\": {\\n    \\\"mean\\\": 0.6348,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6348\\n    ]\\n  },\\n  \\\"L29_image_mean\\\": {\\n    \\\"mean\\\": 0.6759,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6759\\n    ]\\n  },\\n  \\\"L29_last_preaction\\\": {\\n    \\\"mean\\\": 0.6349,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6349\\n    ]\\n  },\\n  \\\"L30_image_mean\\\": {\\n    \\\"mean\\\": 0.6695,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6695\\n    ]\\n  },\\n  \\\"L30_last_preaction\\\": {\\n    \\\"mean\\\": 0.6309,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6309\\n    ]\\n  },\\n  \\\"L31_image_mean\\\": {\\n    \\\"mean\\\": 0.6581,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6581\\n    ]\\n  },\\n  \\\"L31_last_preaction\\\": {\\n    \\\"mean\\\": 0.6356,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6356\\n    ]\\n  },\\n  \\\"L32_image_mean\\\": {\\n    \\\"mean\\\": 0.6648,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6648\\n    ]\\n  },\\n  \\\"L32_last_preaction\\\": {\\n    \\\"mean\\\": 0.6381,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6381\\n    ]\\n  },\\n  \\\"L33_image_mean\\\": {\\n    \\\"mean\\\": 0.6634,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6634\\n    ]\\n  },\\n  \\\"L33_last_preaction\\\": {\\n    \\\"mean\\\": 0.6342,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6342\\n    ]\\n  },\\n  \\\"L34_image_mean\\\": {\\n    \\\"mean\\\": 0.6588,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6588\\n    ]\\n  },\\n  \\\"L34_last_preaction\\\": {\\n    \\\"mean\\\": 0.6146,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6146\\n    ]\\n  },\\n  \\\"L35_image_mean\\\": {\\n    \\\"mean\\\": 0.6556,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6556\\n    ]\\n  },\\n  \\\"L35_last_preaction\\\": {\\n    \\\"mean\\\": 0.6194,\\n    \\\"std\\\": 0.0,\\n    \\\"values\\\": [\\n      0.6194\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compile the complete report. Let me also organize my understanding:
+
+**OpenVLA Goal:**
+
+R² probing:
+- **No dedicated file** for LIBERO-Goal R² probing. The `trained/action_prediction/` is LIBERO-Long, not Goal.
+- Actually wait... I'm now realizing I should double check. Looking at the LIBERO-Goal and LIBERO-10 naming...
+
+OK actually, let me re-check. The LIBERO benchmark has these suites:
+- LIBERO-Spatial: 10 tasks, same goal, different spatial configurations
+
+
+- LIBERO-Object: 10 tasks, different objects
+- LIBERO-Goal: 10 tasks, different goals in same environment
+- LIBERO-Long: 10 tasks, long-horizon multi-step
+
+The key distinction between Goal and Long is that Goal tasks are simple single-step objectives like opening a drawer or turning on the stove, while Long tasks involve compound goals requiring multiple sequential actions. Looking at the task names in the trained action prediction directory, I can see entries like "turn on the stove and put the moka pot on it" which are clearly compound goals, confirming these are Long tasks rather than Goal tasks.
+
+Checking the counterfactual and cross-instruction directories, I'm finding simple single-goal tasks like "open the middle drawer" and "put the bowl on the plate," which confirms these are Goal tasks. The attention summary data also matches up with Goal task names. This means the trained and untrained directories contain Long task R² probing data, while the counterfactual and cross-instruction directories have Goal task data, but there's no R² probing data available for OpenVLA Goal tasks.
+
+Looking at the functional validation file for Spatial, I can see it has both trained and untrained R² probing results, which follows the standardized pipeline that NORA and TracVLA use. OpenVLA's original setup was different—using the trained directory for Long and the functional validation file for Spatial—leaving Goal R² probing as a gap in the data.
+
+Now I'm compiling the results, starting with OpenVLA Spatial where the R² probing shows peak image_mean performance of 0.696 at layer 13 and peak last_preaction performance of 0.675 at layer 21. For the Goal model when untrained, I'm seeing zero instruction-dominant heads at L1 with a mean instruction attention of 0.117, but I should verify this more carefully by looking at the per-head breakdown—all heads appear to be image-dominant, though head_16 comes closest to being mixed. I need to convert the untrained attention metrics to the standardized instruction ratio format to compare properly. For OpenVLA's untrained L1 data, I'm calculating the ratio as instruction attention divided by total attention, and since the highest ratio comes out to 0.443—below the 0.5 threshold—there are no instruction-dominant heads in the untrained model. I should verify this against the full 32-layer summary, but based on what I've seen so far, all heads show stronger image attention than instruction attention.
+
+Moving to NORA Spatial untrained, the R² probing shows peak image encoding at layer 11 with 0.725 and peak action encoding at layer 19 with 0.629. The L1 attention data is striking—14 out of 16 heads are instruction-dominant, and the cross-instruction metrics show near-perfect performance with image mean at 0.999 and all action metrics at 1.0. The counterfactual analysis is missing for this model. Now I'm pulling the R² probing numbers from OpenVLA's Spatial validation data to complete the comparison, looking at the trained and untrained peaks across both image and action encoding layers. I need to verify the instruction-dominant head count for the untrained model by checking the raw attention data and applying the standard criterion of instruction_ratio > 0.5, then compile these numbers into my analysis. 0.2173 + 0.2098 ≈ 1.0, so that checks out. The untrained summary format uses mean_image_attn and mean_instr_attn, and looking at the aggregate data, those two values sum to about 0.995, meaning roughly 0.5% goes to BOS or padding tokens. So the instruction ratio for the untrained model is around 0.117 divided by the total attention.
+
+For the aggregate, that gives me about 0.118 — very image-dominant. Looking at individual heads, head_0 is 0.242 and head_16 is 0.443, neither crossing the 0.5 threshold for instruction dominance. So zero instruction-dominant heads in the untrained model, which makes sense. Now I need to reconcile how the OpenVLA data format aligns with the standardized pipeline format for instruction_ratio.
+
+Both approaches calculate instruction_ratio as instr_attn / (instr_attn + image_attn) excluding BOS tokens, and the OpenVLA untrained format appears to follow the same convention based on the attention values summing to approximately 1.0. Let me compile the final report with all the findings across the different model variants and metrics. Looking at the counterfactual results for the Goal model, the performance drops more significantly across all perturbation types compared to the Spatial variant. The trajectory-level counterfactuals show even larger gaps, particularly for shuffled and paraphrased conditions. For the untrained NORA Spatial model, I'm noticing the attention is almost entirely non-instruction-dominant, and there's a missing results directory I need to account for. The untrained model peaks at the output layer (L32) rather than intermediate layers, which tells me the visual encoder features are driving the R² and passing through largely unchanged in the untrained case. Now I'll write out the results file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "d91d7695-ab37-48fc-8047-65f80d9e07a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lso6LnprWPU5LrGMrK6ws3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17170,
+      "cache_read_input_tokens": 121718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 113_
+
+I now have all the data. Let me compile the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "f3231379-0328-4263-a637-547aeaf0e1cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lso6LnprWPU5LrGMrK6ws3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17170,
+      "cache_read_input_tokens": 121718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GhZtKGJ81oakWEsNA1ShDD`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "8e634f35-7a6f-49c1-b588-2d1ad46a13d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lso6LnprWPU5LrGMrK6ws3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17170,
+      "cache_read_input_tokens": 121718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 115 · 2026-05-22T00:24:08.825Z_
+
+<details><summary>↩ Tool result · `toolu_01GhZtKGJ81oakWEsNA1ShDD`</summary>
+
+```text
+_project
+ablation_narrative_playbook.md
+action_metrics_extended
+action_probe_design.md
+analyze_ablation_50demos.py
+attention
+attention_decomposition
+attention_decomposition_and_r2.py
+attention_normalization_entropy
+attention_normalization_entropy.py
+behavioral_pilot_w4_diagnosis.md
+bootstrap_task_ratio.json
+branch_split_rsa_results.md
+cf_batch_part2_v1
+cf_batch_part2_v1_analysis.md
+citation_verification_2026.md
+closedloop_diagnosis.md
+controlb_analysis
+counterfactual_10tasks
+counterfactual_instruction.py
+counterfactual_spatial
+counterfactual_spatial.py
+counterfactual_token_overlap
+cross_inst_extract_phase2
+cross_instruction
+definitive_rsa_results.md
+demo_sensitivity.py
+demo_standardized_rsa.md
+dinov2_baseline
+dream_reports
+extract_fused_backbone.py
+fig2_cross_instruction_heatmap.pdf
+fig_cross_architecture_attention.pdf
+fig_cross_architecture_attention.png
+fig_cross_architecture_attention.py
+fig_ood_diagnostics.png
+fig_rsa_perlayer_curve.pdf
+fig_rsa_perlayer_curve.png
+fig_specificity_bootstrap_30seeds.pdf
+fig_specificity_bootstrap_30seeds.png
+figures
+fix_dryrun.py
+fulllayer_action_probe.py
+groundtruth_action_error
+kendall_w_cross_task.json
+l1_ablation_action_probe_50demos.py
+layer_stability_analysis.md
+libero_finetuned_attention
+libero_finetuned_probe_profile.json
+libero_goal_feasibility.md
+libero_object_full_pipeline.py
+literature_linkage_4suite_consistency.md
+literature_map.yaml
+literature_map_probing.md
+literature_survey_instruction_probing.md
+llama2base_action_probe.py
+manifest.yaml
+matched_ablation_controls.py
+matched_ablation_controls_diagnosis.md
+matrix_summary_table.md
+mvp_controlb_trained
+mvp_probe_trained
+nora_analysis_report.md
+openvla_libero_goal_compat.md
+paper_consistency_report.md
+patch_probes.py
+patch_rsa.py
+pca_linear_probe_gc.py
+pca_linear_probe_perlayer.py
+permutation_10k
+permutation_test_I2.py
+phi3v_attention_profile
+phi3v_attention_trained_10tasks
+phi3v_attention_untrained
+phi3v_probe_untrained
+phi3v_r2_action_probe
+phi3v_r2_seed_expansion
+phi3v_r2_untrained_probe
+phi3v_untrained_cross_inst_probe.py
+phi3v_untrained_seed_expansion
+pipeline_audit_libero_goal.md
+plan_010_libero_spatial
+plan_011_fulllayer_r2
+plan_012_clip_vit_control
+plot_dose_response.py
+probe_design_plan.md
+qa_probe_classification.py
+random_subset_ablation.py
+rebuttal_drafts.md
+rebuttal_material_2026_05_20.md
+redream_evidence_v2.md
+review_issues.yaml
+review_issues_updated.yaml
+review_reports
+rsa_analysis.py
+rsa_branch_split.py
+rsa_definitive.py
+rsa_method_audit_report.md
+rsa_unified_vla.py
+second_vla_survey.md
+specificity_random_seed_expansion
+statistical_supplements
+task_complexity_routing
+task_routing_loo_sensitivity
+tracvla_spatial
+tracvla_spatial_full_pipeline.py
+tracvla_spatial_trained
+unified_action_probe.py
+unified_rsa_summary.md
+untrained_last_preaction_probe.json
+vla-ssd_final_2026-05-19.pdf
+vla-ssd_round12_2026-05-19.pdf
+vla_rsa_method_audit.md
+worker_output_diagnose_object_pipeline_ridge.md
+worker_output_server_status_check.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "8f785779-921a-48f6-a9d4-a900e08aa45d",
+  "tool_use_result": {
+    "stdout": "_project\nablation_narrative_playbook.md\naction_metrics_extended\naction_probe_design.md\nanalyze_ablation_50demos.py\nattention\nattention_decomposition\nattention_decomposition_and_r2.py\nattention_normalization_entropy\nattention_normalization_entropy.py\nbehavioral_pilot_w4_diagnosis.md\nbootstrap_task_ratio.json\nbranch_split_rsa_results.md\ncf_batch_part2_v1\ncf_batch_part2_v1_analysis.md\ncitation_verification_2026.md\nclosedloop_diagnosis.md\ncontrolb_analysis\ncounterfactual_10tasks\ncounterfactual_instruction.py\ncounterfactual_spatial\ncounterfactual_spatial.py\ncounterfactual_token_overlap\ncross_inst_extract_phase2\ncross_instruction\ndefinitive_rsa_results.md\ndemo_sensitivity.py\ndemo_standardized_rsa.md\ndinov2_baseline\ndream_reports\nextract_fused_backbone.py\nfig2_cross_instruction_heatmap.pdf\nfig_cross_architecture_attention.pdf\nfig_cross_architecture_attention.png\nfig_cross_architecture_attention.py\nfig_ood_diagnostics.png\nfig_rsa_perlayer_curve.pdf\nfig_rsa_perlayer_curve.png\nfig_specificity_bootstrap_30seeds.pdf\nfig_specificity_bootstrap_30seeds.png\nfigures\nfix_dryrun.py\nfulllayer_action_probe.py\ngroundtruth_action_error\nkendall_w_cross_task.json\nl1_ablation_action_probe_50demos.py\nlayer_stability_analysis.md\nlibero_finetuned_attention\nlibero_finetuned_probe_profile.json\nlibero_goal_feasibility.md\nlibero_object_full_pipeline.py\nliterature_linkage_4suite_consistency.md\nliterature_map.yaml\nliterature_map_probing.md\nliterature_survey_instruction_probing.md\nllama2base_action_probe.py\nmanifest.yaml\nmatched_ablation_controls.py\nmatched_ablation_controls_diagnosis.md\nmatrix_summary_table.md\nmvp_controlb_trained\nmvp_probe_trained\nnora_analysis_report.md\nopenvla_libero_goal_compat.md\npaper_consistency_report.md\npatch_probes.py\npatch_rsa.py\npca_linear_probe_gc.py\npca_linear_probe_perlayer.py\npermutation_10k\npermutation_test_I2.py\nphi3v_attention_profile\nphi3v_attention_trained_10tasks\nphi3v_attention_untrained\nphi3v_probe_untrained\nphi3v_r2_action_probe\nphi3v_r2_seed_expansion\nphi3v_r2_untrained_probe\nphi3v_untrained_cross_inst_probe.py\nphi3v_untrained_seed_expansion\npipeline_audit_libero_goal.md\nplan_010_libero_spatial\nplan_011_fulllayer_r2\nplan_012_clip_vit_control\nplot_dose_response.py\nprobe_design_plan.md\nqa_probe_classification.py\nrandom_subset_ablation.py\nrebuttal_drafts.md\nrebuttal_material_2026_05_20.md\nredream_evidence_v2.md\nreview_issues.yaml\nreview_issues_updated.yaml\nreview_reports\nrsa_analysis.py\nrsa_branch_split.py\nrsa_definitive.py\nrsa_method_audit_report.md\nrsa_unified_vla.py\nsecond_vla_survey.md\nspecificity_random_seed_expansion\nstatistical_supplements\ntask_complexity_routing\ntask_routing_loo_sensitivity\ntracvla_spatial\ntracvla_spatial_full_pipeline.py\ntracvla_spatial_trained\nunified_action_probe.py\nunified_rsa_summary.md\nuntrained_last_preaction_probe.json\nvla-ssd_final_2026-05-19.pdf\nvla-ssd_round12_2026-05-19.pdf\nvla_rsa_method_audit.md\nworker_output_diagnose_object_pipeline_ridge.md\nworker_output_server_status_check.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01PXtw1UA9mDsjHTWEhCFoSZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/openvla_goal_spatial_data.md",
+  "content": "# OpenVLA Goal & Spatial 实验数据汇总\n\n## 数据来源映射\n\n| 目录/文件 | 对应 Suite | 内容 |\n|-----------|-----------|------|\n| `trained/action_prediction/` | LIBERO-Long | R² probing (非 Goal/Spatial) |\n| `functional_validation/action_probe_libero_spatial.json` | LIBERO-Spatial | R² probing (trained+untrained, 33层) |\n| `attention/l1_attention_trained_summary.json` | LIBERO-Goal | L1 attention per-task |\n| `attention/l1_attention_untrained_summary.json` | LIBERO-Goal | L1 attention aggregate |\n| `attention/full_32layer_attention_summary.json` | LIBERO-Goal | 全层 attention (含 n_instruction_dominant) |\n| `cross_instruction/classification_results.json` | LIBERO-Goal | Cross-instruction classification |\n| `cross_instruction_spatial/classification_results.json` | LIBERO-Spatial | Cross-instruction classification |\n| `counterfactual_10tasks/` | LIBERO-Goal | CF (trained model only) |\n| `counterfactual_spatial/` | LIBERO-Spatial | CF (trained model only) |\n\n---\n\n## OpenVLA Spatial\n\n### R² Probing (from `action_probe_libero_spatial.json`)\n\n| Condition | Representation | Peak Layer | Peak R² | Exit (L32) R² |\n|-----------|---------------|------------|---------|---------------|\n| Trained | image_mean | L13 | 0.696 | — |\n| Trained | last_preaction | L21 | 0.675 | — |\n| Untrained | image_mean | L0 | 0.673 | 0.621 |\n| Untrained | last_preaction | L1 | 0.635 | 0.621 |\n\nBootstrap trained vs untrained (image_mean, best-vs-best): Δ=0.023, p=0.0, CI=[0.012, 0.036]\n\n### L1 Attention\n\n**无 Spatial 专用 L1 attention 数据。** `attention/` 目录下的数据是 Goal 任务。\n\n### Cross-Instruction Classification (from `cross_instruction_spatial/`)\n\n| Condition | Representation | L1 | L4 | L8 | L16 | L24 | L31 |\n|-----------|---------------|-----|-----|-----|------|------|------|\n| Trained | last_preaction | 0.989 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |\n| Trained | image_mean | 0.1 | 0.1 | 0.1 | 0.1 | 0.1 | 0.101 |\n| Untrained | last_preaction | 0.995 | 0.862 | 0.683 | 0.765 | 0.777 | 0.754 |\n| Untrained | image_mean | 0.1 | 0.1 | 0.101 | 0.1 | 0.1 | 0.1 |\n\nChance = 0.1 (10-class)\n\n### Counterfactual (from `counterfactual_spatial/`, trained model only)\n\n| Condition | Cohen's d (token-level) | Paired MSE | Token Divergence Rate |\n|-----------|------------------------|------------|----------------------|\n| empty | 0.942 | 0.0659 | 0.914 |\n| wrong | 0.851 | 0.0580 | 0.865 |\n| shuffled | 0.833 | 0.0570 | 0.877 |\n| paraphrased | 0.806 | 0.0547 | 0.799 |\n\nTop condition: **empty** (d=0.942)\n\n---\n\n## OpenVLA Goal\n\n### R² Probing\n\n**无 Goal 专用 R² probing 数据。** `trained/action_prediction/` 的数据是 LIBERO-Long (复合多步任务)，非 Goal。\n\n附 LIBERO-Long 数据供参考：\n- Trained: peak R²=0.683 (L19, per_task_mean), overall_r2=0.677\n- Untrained: peak R²=0.616 (L32, per_task_mean), overall_r2=0.607\n\n### L1 Attention (from `full_32layer_attention_summary.json` + `l1_attention_*_summary.json`)\n\n| Condition | Instruction-Dominant Heads | Total Heads | Mean Text Attn | Mean Image Attn |\n|-----------|---------------------------|-------------|---------------|----------------|\n| Trained | 24 | 32 | 0.573 | 0.217 |\n| Untrained | 0 | 32 | 0.117 | 0.878 |\n\nTrained 任务：open_the_middle_drawer, push_the_plate_to_the_front, put_the_wine_bottle_on_top 等 LIBERO-Goal 任务。\n\n### Cross-Instruction Classification (from `cross_instruction/`)\n\n| Condition | Representation | L0 | L8 | L16 | L24 | L31 |\n|-----------|---------------|-----|-----|------|------|------|\n| Trained | last_preaction | 0.1 | 1.0 | 1.0 | 1.0 | 1.0 |\n| Trained | image_mean | 0.1 | 0.1 | 0.1 | 0.1 | 0.096 |\n| Untrained | last_preaction | 0.1 | 0.982 | 0.923 | 0.864 | 0.82 |\n| Untrained | image_mean | 0.1 | 0.1 | 0.1 | 0.1 | 0.1 |\n\nChance = 0.1 (10-class)\n\n### Counterfactual (from `counterfactual_10tasks/`, trained model only)\n\n**Token-level:**\n\n| Condition | Cohen's d | Paired MSE | Token Divergence Rate |\n|-----------|----------|------------|----------------------|\n| empty | 0.978 | 0.0691 | 0.913 |\n| wrong | 0.924 | 0.0647 | 0.908 |\n| shuffled | 0.763 | 0.0512 | 0.871 |\n| paraphrased | 0.707 | 0.0462 | 0.830 |\n\n**Trajectory-level (from `trajectory_level_cohens_d.json`):**\n\n| Condition | Cohen's d | 95% CI | Mean MSE |\n|-----------|----------|--------|----------|\n| empty | 3.848 | [3.409, 4.440] | 0.0691 |\n| wrong | 2.992 | [2.634, 3.491] | 0.0647 |\n| paraphrased | 2.353 | [2.092, 2.678] | 0.0462 |\n| shuffled | 2.127 | [1.857, 2.459] | 0.0512 |\n\nTop condition: **empty** (token d=0.978, trajectory d=3.848)\n\n---\n\n## NORA Spatial Untrained CF 状态\n\n**缺失。** `/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/` 目录下仅有：\n- `action_r2_probing.json` ✓\n- `l1_attention_profile.json` ✓ (14/16 instruction-dominant heads)\n- `cross_instruction_classification.json` ✓ (all layers ≈ 1.0)\n- `counterfactual_combined.json` ✗ **不存在**\n\nNORA Spatial untrained 的 cross-instruction 数据显示所有层 image_mean ≈ 0.999, last_preaction = 1.0，说明 SigLIP 视觉编码器提供了极强的任务可分性，但 CF 需要单独运行。\n\n---\n\n## 可直接填入汇总表的数据行\n\n### OpenVLA Spatial\n\n| Metric | Trained | Untrained |\n|--------|---------|-----------|\n| R² peak (image_mean) | 0.696 (L13) | 0.673 (L0) |\n| R² peak (last_preaction) | 0.675 (L21) | 0.635 (L1) |\n| L1 instr-dominant heads | N/A (no spatial data) | N/A |\n| Cross-inst peak acc | 1.0 (L4+) | 0.995 (L1) |\n| Cross-inst exit acc (L31) | 1.0 | 0.754 |\n| CF top condition | empty | — |\n| CF top Cohen's d | 0.942 | — |\n\n### OpenVLA Goal\n\n| Metric | Trained | Untrained |\n|--------|---------|-----------|\n| R² peak (image_mean) | N/A (no goal data) | N/A |\n| L1 instr-dominant heads | 24/32 | 0/32 |\n| Cross-inst peak acc | 1.0 (L8+) | 0.995 (L1) |\n| Cross-inst exit acc (L31) | 1.0 | 0.82 |\n| CF top condition | empty | — |\n| CF top Cohen's d (token) | 0.978 | — |\n| CF top Cohen's d (traj) | 3.848 | — |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a1d35cc-96c1-45e9-a484-057e8b339347",
+  "uuid": "b6424813-fccc-4b2d-af43-4849bacd02fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015BEqyy6MJ6f2fYH4yh6suu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 138888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5152
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

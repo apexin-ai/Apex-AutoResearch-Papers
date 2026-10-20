@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6de89ee7defe6dcf694",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "util download fig r2",
+  "task_key": "worker_util_download_fig_r2_20260517T221411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_download_fig_r2_20260517T221411_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "b7a463f1b70a30ee01642b3ca754f062a50ba5ed047945040d6dbba6a7cd88b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 正在运行，已完成 4 轮交互，正在加载 SSH 工具。等它完成后会收到通知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-download-fig-r2.md"
+}

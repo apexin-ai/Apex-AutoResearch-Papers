@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e15b0e30b1a6f53fb26",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh action delta collect",
+  "task_key": "worker_ssh_action-delta-collect_20260515T151912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_action-delta-collect_20260515T151912_result.json",
+    "occurrence": 1,
+    "bytes": 4843,
+    "sha256": "561cebc02bbfd0c73af4f5c0b346aeb82b764234918436f3d1479ba91dded232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是完整报告。\n\n---\n\n## Action-Delta 实验完整报告\n\n### 一、Per-Layer R² 对比表（33层 × trained/untrained）\n\n| Layer | Trained R² | Untrained R² | Δ(T-U) |\n|------:|----------:|------------:|-------:|\n| 0 | 0.0000 | 0.0000 | 0.0000 |\n| 1 | 0.0246 | 0.0289 | **-0.0043** |\n| 2 | 0.0321 | 0.0155 | 0.0166 |\n| 3 | 0.0350 | 0.0229 | 0.0121 |\n| 4 | 0.0322 | 0.0149 | 0.0173 |\n| 5 | 0.0453 | 0.0000 | 0.0453 |\n| 6 | 0.0385 | 0.0000 | 0.0385 |\n| 7 | 0.0456 | 0.0000 | 0.0456 |\n| 8 | 0.0507 | 0.0000 | 0.0507 |\n| 9 | 0.0518 | 0.0000 | 0.0518 |\n| 10 | 0.0553 | 0.0000 | 0.0553 |\n| 11 | 0.0550 | 0.0000 | 0.0550 |\n| 12 | 0.0581 | 0.0000 | 0.0581 |\n| 13 | 0.0583 | 0.0000 | 0.0583 |\n| **14** | **0.0594** | 0.0000 | **0.0594** |\n| 15 | 0.0555 | 0.0000 | 0.0555 |\n| 16 | 0.0566 | 0.0136 | 0.0430 |\n| 17 | 0.0568 | 0.0000 | 0.0568 |\n| 18 | 0.0581 | 0.0000 | 0.0581 |\n| 19 | 0.0576 | 0.0131 | 0.0445 |\n| 20 | 0.0565 | 0.0168 | 0.0397 |\n| 21 | 0.0536 | 0.0131 | 0.0405 |\n| 22 | 0.0536 | 0.0163 | 0.0374 |\n| 23 | 0.0483 | 0.0099 | 0.0384 |\n| 24 | 0.0520 | 0.0149 | 0.0371 |\n| 25 | 0.0576 | 0.0122 | 0.0454 |\n| 26 | 0.0500 | 0.0000 | 0.0500 |\n| 27 | 0.0527 | 0.0180 | 0.0348 |\n| 28 | 0.0490 | 0.0000 | 0.0490 |\n| 29 | 0.0561 | 0.0173 | 0.0388 |\n| 30 | 0.0500 | 0.0170 | 0.0331 |\n| 31 | 0.0399 | 0.0125 | 0.0275 |\n| 32 | 0.0499 | 0.0485 | 0.0015 |\n\n**Trained peak**: Layer 14, R²=0.0594\n**Untrained peak**: Layer 32, R²=0.0485（其余中间层几乎为 0）\n\n### 二、Gate 判定\n\n#### G1-delta: Trained peak R²(action-delta) > 0.05?\n**PASS** — Layer 14 R² = 0.0594 > 0.05\n\n#### G2-delta: Δ(trained - untrained) > 0.03, 且 ≥5/10 tasks 一致?\n**PASS** — \n- Peak layer Δ = 0.0594 - 0.0000 = 0.0594 > 0.03 ✓\n- Per-task consistency: **10/10 tasks** trained > untrained at layer 14（untrained 全部 ≈ 0）✓\n\n关键发现：untrained 在 layers 5-15, 17-18, 26, 28 的 R² 几乎为零，而 trained 在这些层达到 0.04-0.06。唯一例外是 **layer 32**（untrained 0.0485 vs trained 0.0499，Δ仅0.0015），说明最后一层的 action-delta 信息并非训练产生。\n\n### 三、Best Layer (14) Per-Dim R²\n\n| Dim | Trained L14 | Untrained L14 | DINO L0 |\n|-----|----------:|-------------:|--------:|\n| dx | 0.1783 | -0.0000 | 0.1744 |\n| dy | 0.2665 | -0.0000 | 0.2588 |\n| dz | 0.3576 | -0.0000 | 0.3745 |\n| drx | 0.0942 | -0.0000 | 0.0840 |\n| dry | 0.0511 | -0.0000 | 0.0563 |\n| drz | 0.1735 | -0.0000 | 0.1765 |\n| gripper | 0.0357 | -0.0000 | 0.0365 |\n\ndz（垂直位移变化）最可预测，dy 次之。\n\n### 四、Per-Task R² at Best Layer\n\n| Task (short) | Trained L14 | Untrained L32 | DINO L0 |\n|---|----------:|-------------:|--------:|\n| KITCHEN3_stove_moka | 0.0521 | 0.0305 | 0.0482 |\n| KITCHEN4_bowl_drawer | 0.0606 | 0.0637 | 0.0595 |\n| KITCHEN6_mug_micro | 0.0398 | 0.0258 | 0.0419 |\n| KITCHEN8_two_moka | 0.0388 | 0.0291 | 0.0359 |\n| LIVING1_soup_cream | 0.0641 | 0.0621 | 0.0710 |\n| LIVING2_soup_tomato | 0.0648 | 0.0539 | 0.0667 |\n| LIVING2_cream_butter | 0.0914 | 0.0814 | 0.0926 |\n| LIVING5_two_mugs | 0.0613 | 0.0440 | 0.0666 |\n| LIVING6_mug_pudding | 0.0463 | 0.0392 | 0.0430 |\n| STUDY1_book_caddy | 0.0775 | 0.0521 | 0.0839 |\n\nPer-task consistency（trained L14 > untrained L14）: **10/10 tasks**（untrained L14 全为~0）\n\n### 五、DINO Action-Delta 结果\n\n| Metric | Value |\n|--------|------:|\n| Overall R² | **0.0604** |\n| per_task mean R² | 0.0609 |\n| gripper accuracy | 0.5700 |\n\n**DINO R²(0.0604) ≈ Trained peak R²(0.0594)**。DINO 视觉特征对 action-delta 的预测能力与训练后的 VLA 相当，说明 action-delta 信号主要来自视觉信息（场景几何），而非 VLA 训练习得的动作知识。\n\n### 六、PCA-1024 实验状态\n\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| action_prediction_pca1024 | Layer 30/33 | 运行中（PID 617024） |\n| action_delta_pca1024 | Layer 26/33 | 运行中（PID 617376） |\n\n最新 PCA 结果摘要：\n- action_prediction_pca1024 L29: R²=0.6218（对比全维度 ~0.66 衰减不大）\n- action_delta_pca1024 L25: R²=0.0538（对比全维度 ~0.058 基本一致）\n\n预计 10-15 分钟内全部完成。\n\n### 七、关键结论\n\n1. **Action-delta 信号非常弱**（peak R²≈0.06），远低于 action-prediction（R²≈0.66）\n2. **DINO ≈ Trained VLA**：DINO 单层即可匹配 VLA 33 层最优，action-delta 信号主要反映场景几何结构而非训练获得的动作规划\n3. **Untrained 中间层完全无信号**（layers 5-28 ≈ 0），但 layer 32（最后一层）有 R²=0.0485，接近 trained\n4. **PCA-1024 损失极小**：降维 75% 后 R² 几乎无衰减，说明 action-delta 信号在低维子空间中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-action-delta-collect.md"
+}

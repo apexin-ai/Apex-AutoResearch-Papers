@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7004376b23cea17e8a22",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 011 fulllayer r2",
+  "task_key": "worker_code_plan_011_fulllayer_r2_20260516T034549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_011_fulllayer_r2_20260516T034549_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "e22403166ec2c39d32391750e37b859ece3aeff828c3ffaf8610e42290243d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。132 个 probe，双卡并行预计 ~25 min。\n\n- **Job**: `fulllayer_action_probe` on westd-19183 (cuda:0 + cuda:1)\n- **Log**: `~/runs/vla-ssd/fulllayer_action_probe.log`\n- **脚本**: `/root/vla-ssd/scripts/fulllayer_action_probe.py`\n- **输出**: `/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json`\n- **Dry-run 验证**: L0 trained/image_mean mean_R²=0.6403, 23s/probe"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-011-fulllayer-r2.md"
+}

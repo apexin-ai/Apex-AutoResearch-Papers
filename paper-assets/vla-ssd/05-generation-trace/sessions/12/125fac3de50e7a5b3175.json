@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125fac3de50e7a5b3175",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis cross arch summary",
+  "task_key": "worker_analysis_cross_arch_summary_20260521T155716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_arch_summary_20260521T155716_result.json",
+    "occurrence": 1,
+    "bytes": 4521,
+    "sha256": "2f0fa0e1057f029ee724e14679a1c20c7cd0bb01eddf14951a3a652460d6125f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是跨架构实验数据汇总。\n\n---\n\n## Cross-Architecture Probing Comparison Summary\n\n### 1. R² Action Probing — Peak & Exit\n\n**标准化格式数据 (image_mean / last_preaction)**\n\n| 架构 | Suite | Cond | Layers | Peak Ly (img) | Peak R² (img) | Peak Ly (preact) | Peak R² (preact) | Exit R² (img) | Exit R² (preact) |\n|------|-------|------|--------|--------------|---------------|------------------|------------------|--------------|-----------------|\n| **OpenVLA** (Llama-2-7B) | Object | trained | 32 | L12 | 0.807 | L13 | 0.787 | 0.793 | 0.666 |\n| OpenVLA | Object | untrained | 32 | L29 | 0.791 | L19 | 0.761 | 0.781 | 0.685 |\n| **TracVLA** (Phi-3-mini) | Spatial | trained | 32 | L19 | 0.835 | L17 | 0.809 | 0.791 | 0.671 |\n| TracVLA | Object | trained | 32 | L19 | 0.774 | L9 | 0.764 | 0.748 | 0.470 |\n| TracVLA | Object | untrained | 32 | L20 | 0.753 | L23 | 0.690 | 0.736 | 0.681 |\n| **NORA** (Qwen2.5-VL-3B) | Goal | trained | 36 | L10 | 0.697 | L9 | 0.688 | **-0.004** | **-0.004** |\n| NORA | Goal | untrained | 36 | L9 | 0.735 | L15 | 0.660 | 0.656 | 0.619 |\n| NORA | Spatial | trained | 36 | L10 | 0.721 | L24 | 0.720 | 0.553 | 0.417 |\n| NORA | Spatial | untrained | 36 | L11 | 0.725 | L19 | 0.629 | 0.668 | 0.596 |\n\n**旧格式数据 (overall_r2 / last_preaction only)**\n\n| 架构 | Suite | Cond | Peak Ly | Peak R² | Exit Ly | Exit R² |\n|------|-------|------|---------|---------|---------|---------|\n| OpenVLA | Goal | trained | L19 | 0.677 | L32 | 0.618 |\n| OpenVLA | Goal | untrained | L1 | 0.566* | L32 | 0.607 |\n| TracVLA | Goal | trained | L11 | 0.634 | L32 | 0.549 |\n| TracVLA | Goal | untrained | L6 | 0.585 | L32 | 0.391 |\n\n*untrained OpenVLA Goal R² 曲线极不规则（MLP probe），L1=0.566, L4仅0.051, L16=0.535\n\n### 2. L1 Attention — Instruction-Dominant Heads\n\n| 架构 | Suite | Trained | Untrained |\n|------|-------|---------|-----------|\n| OpenVLA | Goal | **24/32** (75%) | 9/32 (28%) |\n| OpenVLA | Object | **32/32** (100%) | 24/32 (75%) |\n| TracVLA | Goal | **32/32** (100%) | 28/32 (88%) |\n| TracVLA | Spatial | **30/32** (94%) | — |\n| TracVLA | Object | **30/32** (94%) | 30/32 (94%) |\n| NORA | Goal | **13/16** (81%) | 13/16 (81%) |\n| NORA | Spatial | **12/16** (75%) | 14/16 (88%) |\n\n### 3. Counterfactual Ranking (trained only)\n\n| 架构 | Suite | Method | Ranking (高→低) | Top d/dist |\n|------|-------|--------|-----------------|-----------|\n| OpenVLA | Goal (10t) | MSE/Cohen's d | empty > wrong > shuffled > paraphrased | 0.978 |\n| OpenVLA | Spatial | MSE/Cohen's d | empty > wrong > shuffled > paraphrased | 0.942 |\n| OpenVLA | Object | MSE/Cohen's d | empty > wrong > shuffled > paraphrased | 1.212 |\n| TracVLA | Spatial | MSE/Cohen's d | empty > shuffled > paraphrased > wrong | 1.327 |\n| TracVLA | Object | MSE/Cohen's d | empty > shuffled > wrong > paraphrased | 1.212 |\n| NORA | Goal | cosine dist | **all=1.0** (FAST+ invariant) | — |\n| NORA | Spatial | cosine dist | wrong > empty > shuffled > paraphrased | 0.275 |\n\nNORA untrained Goal counterfactual: empty(0.081) > shuffled(0.033) > wrong(0.014) > paraphrased(0.004)\n\n### 4. 缺失条件\n\n| 架构 | Suite | 缺失项 |\n|------|-------|--------|\n| OpenVLA | Spatial | R² probing 无标准化数据（仅有 counterfactual） |\n| TracVLA | Spatial | untrained 目录为空，实验未跑 |\n| TracVLA | Goal | 仅有 last_preaction R²（旧格式 10-seed），无 image_mean |\n| OpenVLA | Goal | 仅有 overall_r2 MLP probe（旧格式），无 image_mean/last_preaction 分离 |\n| NORA | Object | 未测试 |\n\n### 5. 关键发现（纯数据层面）\n\n**R² 峰值位置差异**：OpenVLA/TracVLA 中层偏后（L11-L19），NORA 早层（L9-L11）后急降——NORA Goal trained exit R² 近零（FAST+ action token 架构在终层擦除表征）。\n\n**训练效应**：\n- OpenVLA Goal trained-untrained Δ=+0.111（最大增益）\n- TracVLA Goal Δ=+0.049, TracVLA Object Δ=+0.074\n- NORA Goal image_mean trained(0.697) < untrained(0.735)——训练不增加而是重分配\n\n**L1 attention 训练效应**：OpenVLA Goal 训练后从 9/32→24/32（+15 heads），OpenVLA Object 从 24→32。TracVLA/NORA 变化小。\n\n**Counterfactual 一致性**：OpenVLA 三个 suite 一致 empty > wrong 排序；TracVLA wrong 排名下降（shuffled 反超 wrong）；NORA Goal trained 因 FAST+ 完全不敏感，但 intermediate layers 有 cosine distance 梯度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-arch-summary.md"
+}

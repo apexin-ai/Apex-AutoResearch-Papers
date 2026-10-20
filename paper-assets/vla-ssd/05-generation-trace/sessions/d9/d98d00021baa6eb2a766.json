@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d98d00021baa6eb2a766",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero finetuned probe",
+  "task_key": "worker_code_libero_finetuned_probe_20260519T072300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_finetuned_probe_20260519T072300_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "6978c4c000b1b26362d933d138a80adf27947ed21055062a386a789366d88ede"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n**任务状态**：\n- **实验 ID**：`finetuned_probe_profile`，状态 RUNNING\n- **PID**：118788 on westd-19183 (cuda:0)\n- **脚本**：`/root/vla-ssd/scripts/libero_finetuned_probe_profile.py`\n- **日志**：`/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log`\n\n**Pipeline**：\n1. Phase 1 (Feature Extraction)：从 fine-tuned checkpoint 提取 32 层 hidden states，10 tasks × 50 demos × 10 instructions = 5000 forward passes，~22 fwd/s，估计 ~40 分钟\n2. Phase 2 (LOOCV Probe)：对 32 层 × 2 token positions 做 10-fold leave-one-task-out CV (PCA256 + LogReg)，估计 ~10 分钟\n\n**结果输出**：`/root/autodl-tmp/vla-ssd/results/libero_finetuned_probe_profile.json`，含 per_layer_accuracy (L0-L31)、LOOCV mean/std、4-condition comparison table。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-finetuned-probe.md"
+}

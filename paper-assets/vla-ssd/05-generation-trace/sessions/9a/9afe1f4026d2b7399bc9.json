@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9afe1f4026d2b7399bc9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug matched ablation check",
+  "task_key": "worker_debug_matched_ablation_check_20260519T040046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_matched_ablation_check_20260519T040046_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "803495536edbd73718c2cb4c86a8127c4baa204bcad20764b22ee29ac743ec8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 监控不在当前 session，无需删除。\n\n## 实验结果\n\n10,500 forward passes，3 tasks × 10 demos × 50 timesteps，模型 openvla-7b。\n\n| 消融条件 | traj_d | token_d |\n|---|---|---|\n| **Instruction-dominant 24 heads** | **0.650** | — (reference) |\n| Random 24 heads (5 seeds) | 0.601 ± 0.021 | 3.056 ± 0.305 |\n| Image-dominant 24 heads | 0.580 | 2.169 |\n\n**关键发现**：消融 instruction-dominant heads 造成的轨迹偏离（0.650）显著高于消融同等数量的 random heads（0.601）和 image-dominant heads（0.580）。instruction-dominant 与 random 的差值 ~0.049，约 2.4 个标准差（0.021），说明 instruction-dominant heads 的功能不可被其他 heads 替代。Image-dominant heads 消融影响最小，进一步支持 instruction-dominant heads 承载了独特的语言-动作 grounding 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-matched-ablation-check.md"
+}

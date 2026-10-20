@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9d53515554c596bb817",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix nora goal resubmit",
+  "task_key": "worker_fix_nora_goal_resubmit_20260521T030604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_nora_goal_resubmit_20260521T030604_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "ae0cb6dd7a832303ee6738f0e0a15b5fb24a235245d40e425a5aba2a49ff0412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 启动成功——模型加载完成，pipeline 正常进入 `trained` 条件，开始处理数据。参数解析没有报错，`EXIT_CODE=2` 的问题已修复。\n\nSSH 超时是因为 30s 内跑不完 dry-run（模型加载就用了 14.7s），但关键部分已验证通过。\n\n## 结果\n\n**1. 修复内容** — argparse 改动（`nora_goal_full_pipeline.py` line 602-606）：\n- `--conditions` 从单值字符串改为 `nargs=\"+\", choices=[\"trained\", \"untrained\"]`\n- `default` 从 `\"trained,untrained\"` 改为 `[\"trained\", \"untrained\"]`\n- 删除了 line 614 的 `.split(\",\")` 解析\n\n**2. 正确的提交命令**\n\nTrained only（优先跑这个）：\n```bash\nbash -c \"source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate && python /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py --conditions trained\"\n```\n\nTrained + Untrained（完整对照）：\n```bash\nbash -c \"source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate && python /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py --conditions trained untrained\"\n```\n\n**3. Dry-run** — 通过。模型加载成功（14.7s），pipeline 正常启动进入 Phase 1 数据提取，参数解析无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-nora-goal-resubmit.md"
+}

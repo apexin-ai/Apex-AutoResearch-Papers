@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "ff53d08ac3d94a6bf865",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh libero goal download",
+  "task_key": "worker_ssh_libero-goal-download_20260515T160047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_libero-goal-download_20260515T160047.log",
+    "occurrence": 1,
+    "bytes": 1802103,
+    "sha256": "f44cef78acc76276b92751006e354b213e908dbf2ca1ca1a99f1a9fd82ebb1e5"
+  },
+  "statistics": {
+    "messages": 823,
+    "user_turns": 1,
+    "tool_calls": 317,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 181,
+      "tool_call": 317,
+      "tool_result": 317,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 398,
+      "chunks": [
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0003.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 425,
+      "chunks": [
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0003.json",
+          "message_count": 109
+        },
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff53d08ac3d94a6bf865-part-0005.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-libero-goal-download.md"
+}

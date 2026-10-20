@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9f0bdd39d230845833",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis task complexity routing",
+  "task_key": "worker_analysis_task_complexity_routing_20260518T211156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_task_complexity_routing_20260518T211156_result.json",
+    "occurrence": 1,
+    "bytes": 1462,
+    "sha256": "057f98cc9d763cf3cb17069b17044e5a50d2d2c34776e17dfddf213b9097d40b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 分组表格（按 |ΔR²| 降序）\n\n| Task | |ΔR²| | Group |\n|------|-------|-------|\n| wine on rack | 0.2346 | complex |\n| bowl on cabinet | 0.2006 | complex |\n| bowl on stove | 0.1598 | complex |\n| cream cheese in bowl | 0.1594 | **simple** |\n| bowl on plate | 0.0986 | complex |\n| open top drawer + bowl | 0.0754 | complex |\n| wine on cabinet | 0.0740 | complex |\n| turn on stove | 0.0359 | simple |\n| open middle drawer | 0.0240 | simple |\n| push plate to stove | 0.0067 | simple |\n\n### 统计结果\n\n| Metric | Complex (n=6) | Simple (n=4) |\n|--------|--------------|--------------|\n| Mean |ΔR²| | 0.1405 | 0.0565 |\n| Median |ΔR²| | 0.1292 | 0.0299 |\n\n- **Mann-Whitney U = 21.0, p = 0.033** (单侧)\n- **Effect ratio = 2.49x**\n\n### 结论\n\nInstruction-discriminative tasks 的 L1 ablation effect 显著大于 visually unambiguous tasks (p < 0.05)，均值差 2.49 倍。\n\n注意 outlier：\"cream cheese in bowl\" 被分为 simple 但 |ΔR²| = 0.159，可能因为 bowl 作为目标容器出现在多个其他任务中，使其也隐含了 instruction dependence。排除此 outlier 后 simple 均值降至 0.022，effect ratio 升至 6.3x。\n\n### 产出文件\n\n- JSON: `/root/autodl-tmp/vla-ssd/results/task_complexity_routing.json`\n- Figure: `/root/autodl-tmp/vla-ssd/results/figures/fig_task_complexity_routing.{pdf,png}`\n- Registry: `task_complexity_routing` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-task-complexity-routing.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "07959a861157c7cc8d5b",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code phi3v checkpoint verify",
+  "task_key": "worker_code_phi3v_checkpoint_verify_20260519T164210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_checkpoint_verify_20260519T164210.log",
+    "occurrence": 1,
+    "bytes": 1306499,
+    "sha256": "9052dcdb20f653341292dffa3e9696c5179e1a41ce655f2329926a016360aba2"
+  },
+  "statistics": {
+    "messages": 746,
+    "user_turns": 1,
+    "tool_calls": 290,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 290,
+      "tool_result": 290,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 638,
+      "chunks": [
+        {
+          "path": "07959a861157c7cc8d5b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "07959a861157c7cc8d5b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "07959a861157c7cc8d5b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "07959a861157c7cc8d5b-part-0004.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "07959a861157c7cc8d5b-part-0004.json",
+          "message_count": 82
+        },
+        {
+          "path": "07959a861157c7cc8d5b-part-0005.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phi3v-checkpoint-verify.md"
+}

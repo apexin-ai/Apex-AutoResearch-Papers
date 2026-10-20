@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44086916992bbd899e48",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora cf poll v2",
+  "task_key": "worker_ssh_nora_cf_poll_v2_20260522T022857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_cf_poll_v2_20260522T022857_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "8882aa51a219880e0081497098d442ce2b712712168ce38e8a9fcfeb3eb7f8e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中，进度 1400/5000（第2个 condition）。3 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-cf-poll-v2.md"
+}

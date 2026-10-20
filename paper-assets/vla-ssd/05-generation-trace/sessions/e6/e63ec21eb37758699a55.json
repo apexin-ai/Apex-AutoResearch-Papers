@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e63ec21eb37758699a55",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research libero finetuning audit",
+  "task_key": "worker_research_libero-finetuning-audit_20260516T023809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero-finetuning-audit_20260516T023809_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "3f2db90070c7ad2b2a389628f1c5a42e4bf341e95290dbad64ef9dd1a591e7dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `/root/autodl-tmp/vla-ssd/results/architecture_audit/libero_finetuning_audit.md`。\n\n核心结论：\n\n**两个 checkpoint 都是 base OpenVLA-7B，仅在 Open-X-Embodiment 上预训练，未经任何 LIBERO fine-tuning。**\n\n关键证据：\n1. 两个 config.json 的 `norm_stats` 只有 25 个 Open-X-Embodiment 数据集，`grep -i \"libero\"` 均为空\n2. README.md 明确标注来源为 `openvla/openvla-7b`（Open-X 970K episodes）\n3. 服务器上无 fine-tuning 脚本、训练日志、trainer_state 等产物\n4. \"Trained\" vs \"Untrained\" 的区别是 LLM backbone 是否被随机重初始化，不涉及 LIBERO 训练\n\n这对论文其实是**正面的**——分析的是从未见过 LIBERO 数据的模型，发现的结构化表征来自预训练泛化能力。论文应明确写 \"without any LIBERO-specific fine-tuning\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-libero-finetuning-audit.md"
+}

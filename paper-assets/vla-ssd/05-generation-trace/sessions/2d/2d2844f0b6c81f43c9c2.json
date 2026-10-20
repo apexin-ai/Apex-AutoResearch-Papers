@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d2844f0b6c81f43c9c2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh goal probe dry run",
+  "task_key": "worker_ssh_goal-probe-dry-run_20260515T172856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_goal-probe-dry-run_20260515T172856_result.json",
+    "occurrence": 1,
+    "bytes": 2656,
+    "sha256": "4eab272a7dc27b629a78fb5fde426915585d692098afec042bd6cad236e9efd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇报如下：\n\n---\n\n## 验证结果\n\n### 1. train_probes.py goal_classification 代码完整性：✅\n\n| 组件 | 行号 | 状态 |\n|------|------|------|\n| `GoalClassificationProbe` | L335 | ✅ MLP D→256→n_classes, ReLU+Dropout(0.1) |\n| `train_goal_classification_probe()` | L469 | ✅ CrossEntropyLoss, early stopping on val **accuracy** (patience=5) |\n| `run_goal_classification()` | L895 | ✅ 复用 scan_features/split_by_task/load_layer_features |\n| 输出指标 | L525-532 | ✅ accuracy, macro_f1, per_class_accuracy, confusion_matrix, traj_accuracy (majority vote), val_preds |\n| save_results 处理 | L1029-1043 | ✅ best_layer/best_accuracy/best_macro_f1/best_traj_accuracy/accuracy_by_layer/traj_accuracy_by_layer |\n\n### 2. analyze_goal_probes.py：✅\n\n- 存在，5342 bytes，May 16 更新\n- 读取 trained/untrained/dinov2 三组 `goal_classification/summary.json`\n- 输出 per-layer accuracy 对比表（含 traj_acc）、best layer summary\n- Gate 判定：trained acc > 0.50 **AND** trained−DINO gap > 0.40pp\n\n### 3. 特征文件 H5 结构：✅\n\n**进度（比预期更好）：**\n- trained: **9/10**（缺 `turn_on_the_stove.h5`）\n- untrained: **8/10**（缺 `turn_on_the_stove.h5` + `put_the_wine_bottle_on_top_of_the_cabinet.h5`）\n- 源数据: 10 个 hdf5 文件齐全\n\n**H5 结构：**\n```\ndemo_N/\n  image_mean:      (T, 33, 4096) float16\n  last_preaction:  (T, 33, 4096) float16\n```\n- 50 demos per task, layer dim 在 axis=1（非 layer_0 分组）\n- `load_layer_features` 用 `ds[:, layer, :]` 切片，与此结构匹配\n\n### 4. DINO 提取命令：✅ 就绪\n\n- `extract_dinov2.py` 通过 `glob(data_dir/*.hdf5)` 发现数据，兼容 libero_goal\n- DINOv2-large checkpoint 已在 `/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/`（config.json + model.safetensors）\n\n就绪命令：\n```bash\ncd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython scripts/extract_dinov2.py \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/ \\\n  --model_path /root/autodl-tmp/vla-ssd/checkpoints/dinov2-large \\\n  --gpu 0\n```\n\n### 5. 注意事项\n\n- **n_classes 动态计算**：`run_goal_classification` 中 `n_classes = len(task_names)` 基于 h5 文件数。当前 trained 9 个文件 → 9-class 问题。10 个全齐后需重跑才是完整的 10-class 对比。不影响代码正确性，但结果不可直接与 10-class 版本比较。\n- **无 bug 发现**，代码路径完整，无缺失依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-goal-probe-dry-run.md"
+}

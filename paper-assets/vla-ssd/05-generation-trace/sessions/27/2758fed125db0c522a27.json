@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2758fed125db0c522a27",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run bootstrap cuda1",
+  "task_key": "worker_run_bootstrap_cuda1_20260522T150616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_bootstrap_cuda1_20260522T150616_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "7b479e1e7543b911f3cff7729252e2400b1d083616b3741406aa8aebb993a950"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡并行运行正常：\n\n| Session | GPU | 显存占用 | 当前任务 |\n|---------|-----|---------|---------|\n| `bootstrap_cuda0` | GPU 0 | 2135 MiB | OpenVLA+NORA — 正在做 bootstrap (10000 iter) |\n| `bootstrap_cuda1` | GPU 1 | 5277 MiB | TracVLA goal/trained — 模型已加载，开始提取特征 |\n\nTracVLA 批次 (3 suites × 2 conditions = 6 runs) 已在 cuda:1 上启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-bootstrap-cuda1.md"
+}

@@ -1,0 +1,1054 @@
+# research nora bib entry
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_research_nora_bib_entry_20260522T061000.log`
+- **Structured JSON:** [`ea9c4105aac847806bcb.json`](../../sessions/ea/ea9c4105aac847806bcb.json)
+
+## Before a recorded user message
+
+18 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f3b9d89f-6b68-4fab-b988-2eaf744ff21f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779444600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8a13da53-cf65-4499-bd73-30de08d797be",
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to find the BibTeX entry for NORA VLA, a Vision-Language-Action model based on Qwen2.5-VL-3B. Let me search for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "8ae94912-4ecf-4a02-b5e6-19163899163e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KX524emWhmEYPsZyHH36sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11309,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11309
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013YYkLEJY3tCU1NxEMNtZ2Z`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "d6577ccc-6cae-4910-8441-bd77f55392ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KX524emWhmEYPsZyHH36sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11309,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11309
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T06:10:13.846Z_
+
+<details><summary>↩ Tool result · `toolu_013YYkLEJY3tCU1NxEMNtZ2Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "17e38d2f-63e5-40d7-be09-62db2712dad6",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WtceK8F6DzDUWjaMXhZBzc`</summary>
+
+```json
+{
+  "query": "NORA VLA Qwen2.5-VL robot action model paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "3d21347f-ab71-4182-a787-dcc695839b01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDy8UVNhSFoA7jTxXxNco9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 23150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QpgAwfjfZLWkfrGUYnHjoN`</summary>
+
+```json
+{
+  "query": "NoRA vision language action model robotic manipulation arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "4d7e9564-f7ae-4428-abfc-8a0b56de10ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDy8UVNhSFoA7jTxXxNco9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 23150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T06:10:23.708Z_
+
+<details><summary>↩ Tool result · `toolu_01WtceK8F6DzDUWjaMXhZBzc`</summary>
+
+```text
+Web search results for query: "NORA VLA Qwen2.5-VL robot action model paper"
+
+Links: [{"title":"[Literature Review] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://www.themoonlight.io/en/review/nora-a-small-open-sourced-generalist-vision-language-action-model-for-embodied-tasks"},{"title":"Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://huggingface.co/papers/2504.19854"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854v1"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks - Paper Details","url":"https://www.chatpaper.ai/dashboard/paper/3970d274-9357-4a8c-96d4-0c0734d618f8"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for   Embodied Tasks","url":"https://arxiv.org/pdf/2504.19854"},{"title":"NORA-1.5: A Vision-Language-Action Model Trained using World Model- and Action-based Preference Rewards","url":"https://arxiv.org/html/2511.14659v1"},{"title":"[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/abs/2504.19854"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://declare-lab.github.io/nora"},{"title":"GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub","url":"https://github.com/ehaller00/NORA-VLA"},{"title":"declare-lab/nora · Hugging Face","url":"https://huggingface.co/declare-lab/nora"}]
+
+Based on the search results, here's information about the NORA VLA Qwen2.5-VL robot action model paper:
+
+## Overview
+
+NORA is a 3B-parameter Visual-Language-Action (VLA) model designed for embodied tasks, aiming to reduce computational overhead while maintaining strong task performance.
+
+## Technical Details
+
+The model is built upon the Qwen-2.5-VL-3B multimodal model and trained on 970k real-world robot demonstrations. It incorporates the FAST+ tokenizer for efficient action sequence generation.
+
+## Key Contributions
+
+NORA outperforms existing large-scale VLA models with reduced computational overhead, making it suitable for real-time robotic autonomy. The motivation behind NORA addresses a key limitation of existing VLA models: they typically suffer from high computational overhead due to their large sizes, often exceeding 7B parameters, making them impractical for real-time robotic environments.
+
+## Availability
+
+The paper is available on arXiv (2504.19854) and the code is open-sourced under an MIT License. You can find more details on the official project page and GitHub repository for the implementation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "550b4a03-c1ca-4e5a-86ad-6e6389fbc9f2",
+  "tool_use_result": {
+    "query": "NORA VLA Qwen2.5-VL robot action model paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012fBXKuXPme4SyAH5vqawgB",
+        "content": [
+          {
+            "title": "[Literature Review] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://www.themoonlight.io/en/review/nora-a-small-open-sourced-generalist-vision-language-action-model-for-embodied-tasks"
+          },
+          {
+            "title": "Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://huggingface.co/papers/2504.19854"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854v1"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks - Paper Details",
+            "url": "https://www.chatpaper.ai/dashboard/paper/3970d274-9357-4a8c-96d4-0c0734d618f8"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for   Embodied Tasks",
+            "url": "https://arxiv.org/pdf/2504.19854"
+          },
+          {
+            "title": "NORA-1.5: A Vision-Language-Action Model Trained using World Model- and Action-based Preference Rewards",
+            "url": "https://arxiv.org/html/2511.14659v1"
+          },
+          {
+            "title": "[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/abs/2504.19854"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://declare-lab.github.io/nora"
+          },
+          {
+            "title": "GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub",
+            "url": "https://github.com/ehaller00/NORA-VLA"
+          },
+          {
+            "title": "declare-lab/nora · Hugging Face",
+            "url": "https://huggingface.co/declare-lab/nora"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the NORA VLA Qwen2.5-VL robot action model paper:\n\n## Overview\n\nNORA is a 3B-parameter Visual-Language-Action (VLA) model designed for embodied tasks, aiming to reduce computational overhead while maintaining strong task performance.\n\n## Technical Details\n\nThe model is built upon the Qwen-2.5-VL-3B multimodal model and trained on 970k real-world robot demonstrations. It incorporates the FAST+ tokenizer for efficient action sequence generation.\n\n## Key Contributions\n\nNORA outperforms existing large-scale VLA models with reduced computational overhead, making it suitable for real-time robotic autonomy. The motivation behind NORA addresses a key limitation of existing VLA models: they typically suffer from high computational overhead due to their large sizes, often exceeding 7B parameters, making them impractical for real-time robotic environments.\n\n## Availability\n\nThe paper is available on arXiv (2504.19854) and the code is open-sourced under an MIT License. You can find more details on the official project page and GitHub repository for the implementation."
+    ],
+    "durationSeconds": 6.871349973
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T06:10:23.834Z_
+
+<details><summary>↩ Tool result · `toolu_01QpgAwfjfZLWkfrGUYnHjoN`</summary>
+
+```text
+Web search results for query: "NoRA vision language action model robotic manipulation arXiv"
+
+Links: [{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854v1"},{"title":"[2507.10672] Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/abs/2507.10672"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Language-Grounded Decoupled Action Representation for Robotic Manipulation","url":"https://arxiv.org/pdf/2603.12967"},{"title":"Global Prior Meets Local Consistency: Dual-Memory Augmented Vision-Language-Action Model for Efficient Robotic Manipulation","url":"https://arxiv.org/pdf/2602.20200"},{"title":"CogACT: A Foundational Vision-Language-Action Model for Synergizing   Cognition and Action in Robotic Manipulation","url":"https://arxiv.org/pdf/2411.19650"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v3"}]
+
+Based on the search results, I found information about NoRA (NORA):
+
+NORA is a 3B-parameter Visual-Language-Action (VLA) model designed to optimize robotic task execution by reducing computational overhead and improving efficiency. NORA is trained on the Open X-Embodiment dataset, which incorporates diverse robotic embodiments and tasks.
+
+NORA demonstrates significant superiority in policy generation over baseline models across three types of tasks: out-of-domain object grasping, tasks requiring spatial reasoning, and multi-object grasping. Specifically, NORA achieves impressive success rates in OOD/zero-shot object grasping tasks, such as "put the carrot in pot" and "put banana in pot" with a success rate of up to 90%.
+
+The paper appears to have been published on arXiv on April 28, 2025 (arXiv:2504.19854), and it presents NORA as a small, open-sourced generalist vision language action model for embodied robotic tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "7dd47492-ab0d-4d13-b9ed-a09e77b25522",
+  "tool_use_result": {
+    "query": "NoRA vision language action model robotic manipulation arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MVXzKdwoZCUgMY5U5KYbVk",
+        "content": [
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854v1"
+          },
+          {
+            "title": "[2507.10672] Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/abs/2507.10672"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Language-Grounded Decoupled Action Representation for Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2603.12967"
+          },
+          {
+            "title": "Global Prior Meets Local Consistency: Dual-Memory Augmented Vision-Language-Action Model for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2602.20200"
+          },
+          {
+            "title": "CogACT: A Foundational Vision-Language-Action Model for Synergizing   Cognition and Action in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2411.19650"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v3"
+          }
+        ]
+      },
+      "Based on the search results, I found information about NoRA (NORA):\n\nNORA is a 3B-parameter Visual-Language-Action (VLA) model designed to optimize robotic task execution by reducing computational overhead and improving efficiency. NORA is trained on the Open X-Embodiment dataset, which incorporates diverse robotic embodiments and tasks.\n\nNORA demonstrates significant superiority in policy generation over baseline models across three types of tasks: out-of-domain object grasping, tasks requiring spatial reasoning, and multi-object grasping. Specifically, NORA achieves impressive success rates in OOD/zero-shot object grasping tasks, such as \"put the carrot in pot\" and \"put banana in pot\" with a success rate of up to 90%.\n\nThe paper appears to have been published on arXiv on April 28, 2025 (arXiv:2504.19854), and it presents NORA as a small, open-sourced generalist vision language action model for embodied robotic tasks."
+    ],
+    "durationSeconds": 6.861949454999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NWHyjVFjLQ3UnE8BaYqqP5`</summary>
+
+```json
+{
+  "query": "arxiv 2504.19854 NORA authors list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "0e5c7efd-0754-40fd-9073-0fb5391d50b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011boxeckds8J7AZCLoBpdK4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1616,
+      "cache_read_input_tokens": 23814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1616
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T06:10:30.251Z_
+
+<details><summary>↩ Tool result · `toolu_01NWHyjVFjLQ3UnE8BaYqqP5`</summary>
+
+```text
+Web search results for query: "arxiv 2504.19854 NORA authors list"
+
+Links: [{"title":"[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/abs/2504.19854"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854"},{"title":"Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal","url":"https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"},{"title":"DNN-Aided Block Sparse Bayesian Learning for User Activity Detection and   Channel Estimation in Grant-Free Non-Orthogonal Random Access","url":"https://arxiv.org/pdf/1910.02953"},{"title":"Correction: Testing the ELSA Birth App During Pregnancy and Labor for Primiparous Women: Randomized Controlled Trial","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12551930/"},{"title":"Correction to: Risk conditions in children hospitalized with influenza in Norway, 2017–2019","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7898737/"},{"title":"No difference in risk of hospitalisation between reported cases of the SARS-CoV-2 Delta variant and Alpha variant in Norway","url":"https://www.medrxiv.org/content/10.1101/2021.09.02.21263014.full.pdf"}]
+
+Based on the search results, the authors of arXiv paper 2504.19854 (NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks) are: Chia-Yu Hung, Qi Sun, Pengfei Hong, Amir Zadeh, Chuan Li, U-Xuan Tan, Navonil Majumder, and Soujanya Poria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "bef2e1aa-b06d-4692-82e9-30935b05e6d5",
+  "tool_use_result": {
+    "query": "arxiv 2504.19854 NORA authors list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VCKAvSfk9Mbd4e6yNfS16W",
+        "content": [
+          {
+            "title": "[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/abs/2504.19854"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854"
+          },
+          {
+            "title": "Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"
+          },
+          {
+            "title": "DNN-Aided Block Sparse Bayesian Learning for User Activity Detection and   Channel Estimation in Grant-Free Non-Orthogonal Random Access",
+            "url": "https://arxiv.org/pdf/1910.02953"
+          },
+          {
+            "title": "Correction: Testing the ELSA Birth App During Pregnancy and Labor for Primiparous Women: Randomized Controlled Trial",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12551930/"
+          },
+          {
+            "title": "Correction to: Risk conditions in children hospitalized with influenza in Norway, 2017–2019",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7898737/"
+          },
+          {
+            "title": "No difference in risk of hospitalisation between reported cases of the SARS-CoV-2 Delta variant and Alpha variant in Norway",
+            "url": "https://www.medrxiv.org/content/10.1101/2021.09.02.21263014.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, the authors of arXiv paper 2504.19854 (NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks) are: Chia-Yu Hung, Qi Sun, Pengfei Hong, Amir Zadeh, Chuan Li, U-Xuan Tan, Navonil Majumder, and Soujanya Poria."
+    ],
+    "durationSeconds": 3.9618379649999986
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Hote5ijRPZuyyPobBqqgyS`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "388e7cd1-51a3-4dd5-a47c-b0a41af3628c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMaGHGciLBgVwLHTZsqUN5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 25430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 623
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T06:10:35.045Z_
+
+<details><summary>↩ Tool result · `toolu_01Hote5ijRPZuyyPobBqqgyS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "c20a46f0-d3c4-4a0e-aa42-81b12171fbab",
+  "tool_use_result": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015AhTVSuiojr4fYBJQceddd`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.19854",
+  "prompt": "Extract the exact full list of authors and the exact paper title. Also confirm the arXiv ID and submission date/year."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "658110bf-b28d-4831-ae06-c99a3a4326b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HhTEqyrE1TxCf3aGADfg1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 595,
+      "cache_read_input_tokens": 26053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 595
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T06:10:41.890Z_
+
+<details><summary>↩ Tool result · `toolu_015AhTVSuiojr4fYBJQceddd`</summary>
+
+```text
+# Paper Details
+
+**Title:** "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks"
+
+**Authors:**
+1. Chia-Yu Hung
+2. Qi Sun
+3. Pengfei Hong
+4. Amir Zadeh
+5. Chuan Li
+6. U-Xuan Tan
+7. Navonil Majumder
+8. Soujanya Poria
+
+**arXiv ID:** 2504.19854
+
+**Submission Date:** April 28, 2025
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "a1f6a226-3247-400d-b30d-86e0858d56f6",
+  "tool_use_result": {
+    "bytes": 47569,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Details\n\n**Title:** \"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks\"\n\n**Authors:**\n1. Chia-Yu Hung\n2. Qi Sun\n3. Pengfei Hong\n4. Amir Zadeh\n5. Chuan Li\n6. U-Xuan Tan\n7. Navonil Majumder\n8. Soujanya Poria\n\n**arXiv ID:** 2504.19854\n\n**Submission Date:** April 28, 2025",
+    "durationMs": 3385,
+    "url": "https://arxiv.org/abs/2504.19854"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+```bibtex
+@article{hung2025nora,
+  title={{NORA}: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks},
+  author={Hung, Chia-Yu and Sun, Qi and Hong, Pengfei and Zadeh, Amir and Li, Chuan and Tan, U-Xuan and Majumder, Navonil and Poria, Soujanya},
+  journal={arXiv preprint arXiv:2504.19854},
+  year={2025}
+}
+```
+
+arXiv ID: 2504.19854，2025年4月发表，来自 DeCLaRe Lab (Soujanya Poria 组)。基于 Qwen2.5-VL-3B，3B 参数，用 FAST+ tokenizer 在 970k 真实机器人示范上训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "uuid": "c237eff3-b1a0-4ba1-b1db-69769ee80016",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TT589AS3qWJnMDpsVy7D58",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 26648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 18_
+
+```bibtex
+@article{hung2025nora,
+  title={{NORA}: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks},
+  author={Hung, Chia-Yu and Sun, Qi and Hong, Pengfei and Zadeh, Amir and Li, Chuan and Tan, U-Xuan and Majumder, Navonil and Poria, Soujanya},
+  journal={arXiv preprint arXiv:2504.19854},
+  year={2025}
+}
+```
+
+arXiv ID: 2504.19854，2025年4月发表，来自 DeCLaRe Lab (Soujanya Poria 组)。基于 Qwen2.5-VL-3B，3B 参数，用 FAST+ tokenizer 在 970k 真实机器人示范上训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 36376,
+  "duration_api_ms": 43748,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "91b85c01-596d-44ef-8ab3-18dcbb40a2a6",
+  "total_cost_usd": 0.2512512499999999,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 15061,
+    "cache_read_input_tokens": 136936,
+    "output_tokens": 733,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15061,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 231,
+        "cache_read_input_tokens": 26648,
+        "cache_creation_input_tokens": 254,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 254
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 34932,
+      "outputTokens": 1068,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.070272,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 733,
+      "cacheReadInputTokens": 136936,
+      "cacheCreationInputTokens": 15061,
+      "webSearchRequests": 0,
+      "costUSD": 0.18097925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "463656d9-16f2-4e43-a674-36b1a7ac4fd3"
+}
+```
+
+</details>
+
+---

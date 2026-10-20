@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0894910c6ad5304c4c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify supplementary completeness",
+  "task_key": "worker_verify_supplementary_completeness_20260528T221331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_supplementary_completeness_20260528T221331_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "0428ea0d511120995088118c0a33b609aa8a78a3a1a87c176d22ab17bef3f4b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。全部 6 项均 PASS，论文提交就绪。\n\n关键数据：\n- **39 页 PDF**：8 页正文 + 4 页 References + 27 页 Appendix\n- **0 个孤儿引用**，91 个 label 全部有效\n- **0 个编译警告**（undefined ref / overfull hbox / citation）\n- **全字体嵌入**，无 Type 3\n- **Limitations** 在第 8 页正文内，符合 CoRL 2026 要求\n\n报告已写入 `artifacts/supplementary_completeness_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-supplementary-completeness.md"
+}

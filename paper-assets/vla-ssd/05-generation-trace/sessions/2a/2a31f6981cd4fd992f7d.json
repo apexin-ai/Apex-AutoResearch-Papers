@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "id": "2a31f6981cd4fd992f7d",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "paper writing related work d097",
+  "task_key": "worker_paper_writing_related_work_d097_20260522T060541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_d097_20260522T060541.jsonl",
+    "occurrence": 1,
+    "bytes": 27571,
+    "sha256": "e49b7974a94c12c73791b0074ba10268821b9ff60eef401b97286d177622664b"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:08:57.194029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:08:57.194637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T06:08:57.194843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T06:08:57.195089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Vision-language-action models.}\n4\tVLAs fine-tune large language models on robot demonstrations to produce action tokens conditioned on visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0}; recent work conditions action generation on dynamic visual reweighting~\\cite{xiao2025ava}.\n5\tA central assumption is that fine-tuning injects action-relevant knowledge into pretrained representations; unlike NLP instruction tuning, which targets behavioral compliance~\\cite{wei2022finetuned,ouyang2022training}, we test this at the representational level through per-layer, per-token-type decomposition.\n6\tFine-tuning operates in a low intrinsic dimension~\\cite{aghajanyan2021intrinsic} and can distort pretrained features~\\cite{kumar2022finetuning}; our per-layer analysis reveals where restructuring concentrates and finds VLA training primarily redistributes rather than distorts, with image geometry largely preserved ($\\Delta \\leq 1.7\\%$).\n7\t\n8\t\\paragraph{Mechanistic interpretability in transformers.}\n9\tMechanistic analyses have identified residual stream communication~\\cite{elhage2021}, induction heads for in-context learning~\\cite{olsson2022}, complete circuits for specific tasks~\\cite{wang2023_ioi,conmy2023}, causal tracing for factual recall~\\cite{meng2022_rome}, and the tuned lens for per-layer prediction~\\cite{belrose2023_tunedlens}, while feature-level methods have scaled to dictionary learning over millions of features~\\cite{bills2023language,templeton2024scaling}.\n10\tAttention probing reveals that individual heads encode syntactic relations~\\cite{clark2019}, capture depth-dependent patterns~\\cite{vig2019}, and that a small subset accounts for most performance~\\cite{voita2019}; Michel et al.~\\cite{michel2019sixteen} showed most heads can be pruned without loss.\n11\tOur L1 analysis extends this to VLAs: we use functional ablation to study attention redistri\n…[truncated 2555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T06:08:57.195265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:08:57.195439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tVision-language-action models (VLAs) fine-tune pretrained language models on robot demonstrations to produce actions from visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla}.\n5\tIn these decoder-only architectures, image tokens precede instruction tokens in the input sequence, and the causal attention mask prevents image tokens from attending to any token that follows them~\\cite{wang2025seeing,pei2025rethinking}.\n6\tInstruction information can reach action-generating positions only through later attention layers, where the readout token (the final position before action decoding) integrates context from all preceding tokens.\n7\tThe readout is thus the sole multimodal integration point by construction.\n8\tHow fine-tuning creates or reshapes the attention patterns at this position, and whether the resulting routing reflects training dynamics or inherited backbone structure, remains unknown.\n9\t\n10\tBehavioral studies provide indirect evidence that this question matters.\n11\tVLAs exhibit visual dominance, relying disproportionately on image input~\\cite{grant2026}, and language instructions appear largely unused by the action pathway~\\cite{haon2025}.\n12\tThese observations establish that VLAs underweight instructions but do not explain \\emph{how} instruction information reaches action-generating positions, \\emph{what} routing structure training creates versus what it inherits from the pretrained backbone, or \\emph{whether} observed patterns hold across architectures.\n13\tAll existing representational analyses of VLAs target a single architecture.\n14\tNo prior work tests whether instruction routing mechanisms are consistent across backbone families, and none decomposes training-induced effects from inherited base-model priors.\n15\tAbsent cross-architecture evidence, it is impossible to distinguish training dynamics that reflect the causal-decoder structure from architecture-specific artifacts o\n…[truncated 5597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:08:57.195633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:08:57.195897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe analyze three VLA architectures across four LIBERO~\\cite{liu2023_libero} task suites (Goal, Spatial, Object, Long-Horizon) in a $3 \\times 4$ cross-architecture matrix (Table~\\ref{tab:cross_arch_matrix}).\n8\tThe architectures span distinct backbone families: OpenVLA~\\cite{kim2024_openvla,karamcheti2024} (Llama-2-7B~\\cite{touvron2023_llama2}, 32 layers, 32 MHA heads), TracVLA~\\cite{zheng2024tracevla} (Phi-3-mini~\\cite{abdin2024phi3}, 32 layers, 32 heads), and NORA~\\cite{TODO_nora} (Qwen2.5-VL-3B, 36 layers, GQA with 16 query heads and 2 KV heads).\n9\tOf the 12 matrix cells, 10 are filled; NORA Object and Long-Horizon lack available checkpoints.\n10\tEach architecture is compared in trained and untrained conditions, with a critical asymmetry between untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained~\\cite{padalkar2023_oxe} VLA (already fine-tuned for action prediction on 970K episodes), while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\n11\tThree analyses are applied to each cell (\\S\\ref{sec:method}): $R^2$ action probes at all layers, L1 attention head profiling for instruction dominance, and counterfactual instruction perturbation.\n12\tFor OpenVLA LIBERO-Goal, $N = 63{,}228$ observations; other cells are at comparable scale.\n13\tFor trained models that produce action outputs, counterfactual sensitivity is measured via Cohen's $d$ on action MSE.\n14\tFor untrained VLMs (Phi-3-Vision, Qwen2.5-VL) that do not produce actions, sensitivity is measured via cosine distance on hidden representations; these metrics operate on different scales and are not directly comparable (\\S\\ref{sec:cf_sensitivity}).\n15\tOpenVLA's OXE-pretrained checkpoint produces actions, permitting same-metric (Cohen's $d$) comparison in that condition.\n16\tBonferroni correction details appear in Ap\n…[truncated 22247 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:08:57.196180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{Vision-language-action models.}\nVLAs fine-tune large language models on robot demonstrations to produce action tokens conditioned on visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,TODO_nora}; recent work conditions action generation on dynamic visual reweighting~\\cite{xiao2025ava}.\nA central assumption is that fine-tuning injects action-relevant knowledge into pretrained representations; unlike NLP instruction tuning, which targets behavioral compliance~\\cite{wei2022finetuned,ouyang2022training}, we test this at the representational level through per-layer, per-token-type decomposition.\nFine-tuning operates in a low intrinsic dimension~\\cite{aghajanyan2021intrinsic} and can distort pretrained features~\\cite{kumar2022finetuning}; however, existing representational analyses target a single architecture and cannot distinguish training dynamics from backbone-specific artifacts.\nUnlike these prior analyses, we test representational changes across three backbone families (Llama-2, Phi-3, Qwen2.5-VL) and find that VLA training creates exit collapse and counterfactual sensitivity while L1 attention structure reflects inherited base-model priors.\n\n\\paragraph{Mechanistic interpretability in transformers.}\nMechanistic analyses have identified residual stream communication~\\cite{elhage2021}, induction heads for in-context learning~\\cite{olsson2022}, complete circuits for specific tasks~\\cite{wang2023_ioi,conmy2023}, causal tracing for factual recall~\\cite{meng2022_rome}, and the tuned lens for per-layer prediction~\\cite{belrose2023_tunedlens}, while feature-level methods have scaled to dictionary learning over millions of features~\\cite{bills2023language,templeton2024scaling}.\nAttention probing reveals that individual heads encode syntactic relations~\\cite{clark2019}, capture depth-dependent patterns~\\cite{vig2019}, and that a small subset accounts for most performance~\\cite{voita2019}; Michel et al.~\\cite{michel2019sixteen} showed most heads can be pruned without loss.\nOur L1 analysis extends this to VLAs: OpenVLA shows 24/32 instruction-dominant heads after training, but cross-architecture comparison reveals this count reflects base-model priors rather than fine-tuning (Phi-3-Vision allocates 32/32 instruction-dominant heads before any action training).\nProgressive ablation of instruction-dominant heads yields monotonic rather than threshold-like degradation.\n\n\\paragraph{Behavioral and mechanistic analysis of VLAs.}\nBehavioral evaluations reveal that current VLAs rely disproportionately on visual input~\\cite{grant2026,hou2026,fei2025}.\nMechanistic studies have identified sparse semantic directions linked to action selection~\\cite{haon2025}, interpretable features and memorized sequences~\\cite{swann2026,buurmeijer2026}, symbolic state representations~\\cite{lu2025,molinari2025}, and fine-tuning erosion of VLM reasoning~\\cite{fang2025}.\nThe closest works, Grant et al.~\\cite{grant2026} (visual dominance) and H\\\"aon et al.~\\cite{haon2025} (sparse directions), address \\emph{what} information VLAs encode; our analysis is complementary, addressing \\emph{where} instruction information is redistributed across layers and token positions, with trained-vs-untrained controls that isolate fine-tuning effects.\nPrior work in this area targets single architectures; our cross-architecture matrix (3 architectures $\\times$ 4 task suites) tests whether identified mechanisms replicate across backbone families, and distinguishes training-induced effects (exit collapse, counterfactual sensitivity) from inherited structure (L1 attention).\n\n\\paragraph{Token-level functional specialization in transformers.}\nIn Vision Transformers, the CLS token aggregates global information~\\cite{dosovitskiy2021} and certain patch positions serve as registers~\\cite{darcet2024}; in language models, feed-forward layers store factual associations in position-specific patterns~\\cite{geva2021}, probing reveals increasingly abstract features across depth~\\cite{tenney2019}, the logit lens~\\cite{nostalgebraist2020} tracks prediction evolution, and Neo et al.~\\cite{neo2025} identified task-specific neurons in multi-task LLMs.\nIn VLMs, recent work has characterized visual token sparsity and redundancy~\\cite{fan2026visual}, progressive visual-textual alignment across layers~\\cite{neo2025interpreting,long2026understanding}, and phase-structured feed-forward dynamics~\\cite{wei2024phase}.\nWe extend this to VLAs: image tokens remain instruction-blind while the readout token serves as the primary multimodal hub.\nBoth properties hold across all three architectures as structural consequences of the causal attention mask.\n\n\\paragraph{Representation similarity and probing methodology.}\nRSA~\\cite{kriegeskorte2008}, SVCCA~\\cite{raghu2017}, CCA~\\cite{morcos2018}, and Centered Kernel Alignment (CKA)~\\cite{kornblith2019} compare geometric structure between representation spaces; Raghu et al.~\\cite{raghu2021} applied these tools to compare ViT and CNN representations.\nLinear probes~\\cite{alain2017,hewitt2019,hewitt2019control,belinkov2022} complement geometric methods with functional evaluation.\nWe adopt RSA and MLP probes, with CKA in the appendix; RSA and CKA can produce divergent orderings on the same data (Appendix~\\ref{sec:cka_appendix}), and Cohen's $d$ and cosine distance are not comparable across trained and untrained conditions.\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:08:57.196367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:08:57.196494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T06:08:57.196650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Vision-language-action models.}\n4\tVLAs fine-tune large language models on robot demonstrations to produce action tokens conditioned on visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,TODO_nora}; recent work conditions action generation on dynamic visual reweighting~\\cite{xiao2025ava}.\n5\tA central assumption is that fine-tuning injects action-relevant knowledge into pretrained representations; unlike NLP instruction tuning, which targets behavioral compliance~\\cite{wei2022finetuned,ouyang2022training}, we test this at the representational level through per-layer, per-token-type decomposition across three distinct backbone families.\n6\tFine-tuning operates in a low intrinsic dimension~\\cite{aghajanyan2021intrinsic} and can distort pretrained features~\\cite{kumar2022finetuning}; our cross-architecture analysis reveals that VLA training creates exit-layer reorganization and instruction sensitivity while preserving inherited early-layer attention structure and image geometry ($\\Delta \\leq 1.7\\%$ on OpenVLA).\n7\t\n8\t\\paragraph{Mechanistic interpretability in transformers.}\n9\tMechanistic analyses have identified residual stream communication~\\cite{elhage2021}, induction heads for in-context learning~\\cite{olsson2022}, complete circuits for specific tasks~\\cite{wang2023_ioi,conmy2023}, causal tracing for factual recall~\\cite{meng2022_rome}, and the tuned lens for per-layer prediction~\\cite{belrose2023_tunedlens}, while feature-level methods have scaled to dictionary learning over millions of features~\\cite{bills2023language,templeton2024scaling}.\n10\tAttention probing reveals that individual heads encode syntactic relations~\\cite{clark2019}, capture depth-dependent patterns~\\cite{vig2019}, and that a small subset accounts for most performance~\\cite{voita2019}; Michel et al.~\\cite{michel2019sixteen} showed most heads can be pruned wit\n…[truncated 3191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:08:57.196852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+              "old_string": "our cross-architecture analysis reveals that VLA training creates exit-layer reorganization and instruction sensitivity while preserving inherited early-layer attention structure and image geometry ($\\Delta \\leq 1.7\\%$ on OpenVLA).",
+              "new_string": "however, existing representational analyses target a single architecture and cannot distinguish training dynamics from backbone-specific artifacts.\nUnlike these prior analyses, we test representational changes across three backbone families (Llama-2, Phi-3, Qwen2.5-VL) and find that VLA training creates exit collapse and counterfactual sensitivity while L1 attention structure reflects inherited base-model priors."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:08:57.197047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T06:08:57.197179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+              "old_string": "tests whether identified mechanisms replicate across backbone families and distinguishes training-induced effects from inherited base-model priors.",
+              "new_string": "tests whether identified mechanisms replicate across backbone families, and distinguishes training-induced effects (exit collapse, counterfactual sensitivity) from inherited structure (L1 attention)."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:08:57.197332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:08:57.197456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+              "old_string": "We adopt RSA and MLP probes, with CKA in the appendix; the divergence between RSA and CKA on our data (\\S\\ref{sec:routing_synthesis}) illustrates metric sensitivity in representational analysis.",
+              "new_string": "We adopt RSA and MLP probes, with CKA in the appendix; RSA and CKA can produce divergent orderings on the same data (Appendix~\\ref{sec:cka_appendix}), and Cohen's $d$ and cosine distance are not comparable across trained and untrained conditions (\\S\\ref{sec:cf_sensitivity})."
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T06:08:57.197610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T06:08:57.197742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T06:08:57.197890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Vision-language-action models.}\n4\tVLAs fine-tune large language models on robot demonstrations to produce action tokens conditioned on visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,TODO_nora}; recent work conditions action generation on dynamic visual reweighting~\\cite{xiao2025ava}.\n5\tA central assumption is that fine-tuning injects action-relevant knowledge into pretrained representations; unlike NLP instruction tuning, which targets behavioral compliance~\\cite{wei2022finetuned,ouyang2022training}, we test this at the representational level through per-layer, per-token-type decomposition across three distinct backbone families.\n6\tFine-tuning operates in a low intrinsic dimension~\\cite{aghajanyan2021intrinsic} and can distort pretrained features~\\cite{kumar2022finetuning}; however, existing representational analyses target a single architecture and cannot distinguish training dynamics from backbone-specific artifacts.\n7\tUnlike these prior analyses, we test representational changes across three backbone families (Llama-2, Phi-3, Qwen2.5-VL) and find that VLA training creates exit collapse and counterfactual sensitivity while L1 attention structure reflects inherited base-model priors.\n8\t\n9\t\\paragraph{Mechanistic interpretability in transformers.}\n10\tMechanistic analyses have identified residual stream communication~\\cite{elhage2021}, induction heads for in-context learning~\\cite{olsson2022}, complete circuits for specific tasks~\\cite{wang2023_ioi,conmy2023}, causal tracing for factual recall~\\cite{meng2022_rome}, and the tuned lens for per-layer prediction~\\cite{belrose2023_tunedlens}, while feature-level methods have scaled to dictionary learning over millions of features~\\cite{bills2023language,templeton2024scaling}.\n11\tAttention probing reveals that individual heads encode syntactic relations~\\cite{clark2019}, capture\n…[truncated 3512 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T06:08:57.198104+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D097 compliance check:\n- \"architecture-independent\": absent\n- \"7-10×\": absent\n- L1 attention = base-model prior (line 12: \"reflects base-model language priors rather than VLA training, since Phi-3-Vision saturates at 32/32 before any action training\")\n- \"significantly\" without stats: absent\n- NORA `\\cite{TODO_nora}`, TracVLA `\\cite{zheng2024tracevla}`: correct (line 4)\n- No em-dashes: confirmed\n- No -ing phrase endings: confirmed\n\nAll 5 paragraphs updated:\n1. **VLA models**: added TracVLA/NORA, cross-architecture positioning, replaced \"redistributes rather than distorts\" with \"exit collapse and counterfactual sensitivity while L1 attention reflects inherited base-model priors\"\n2. **Mechanistic interp**: D097-corrected L1 claim (24/32 is base-model prior, not training effect)\n3. **Behavioral/mechanistic VLA**: cross-architecture matrix positioning, explicit training-induced vs inherited decomposition\n4. **Token-level**: cross-architecture confirmation of instruction-blindness and readout integration\n5. **RSA/probing**: added metric limitations (RSA/CKA divergence + Cohen's d/cosine incomparability)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_d097_20260522T060541"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work-d097.md"
+}

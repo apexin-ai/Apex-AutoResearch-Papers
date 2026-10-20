@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "823e0bf226362728a581",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz fig counterfactual bar v3",
+  "task_key": "worker_viz_fig_counterfactual_bar_v3_20260524T050506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_counterfactual_bar_v3_20260524T050506_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "4b8bec6ca0dce435e9bbf32473fd7b098505ea0a7391f4c920b89a342e353fe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完毕。验证结果：\n\n1. **数据正确** — Panel A 的 8 组 Cohen's d 值与服务器数据一致，Panel B 的 NORA cosine distance 同样正确\n2. **颜色清晰** — 四种条件颜色区分度好\n3. **NORA Goal 饱和值** — 截断到 0.34 高度，内部标注 \"1.0 (sat.)\"\n4. **数值标注不重叠** — 各 bar 顶部标注清晰可读\n5. **OpenVLA/TracVLA 分组** — 有虚线分隔和间距\n6. **d=0.8 参考线** + \"large effect\" 标注 ✓\n7. **星号** 标记每组最大值 ✓\n\n输出文件：\n- `docs/paper/figures/fig_counterfactual_bar.pdf` + `.png`\n- `artifacts/figures/paper/fig_counterfactual_bar.pdf` + `.png`（硬链接，同文件）\n- 脚本：`scripts/plot_counterfactual_bar.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-counterfactual-bar-v3.md"
+}

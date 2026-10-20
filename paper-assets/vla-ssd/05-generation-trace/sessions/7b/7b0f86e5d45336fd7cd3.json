@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "7b0f86e5d45336fd7cd3",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code behavioral pilot w4",
+  "task_key": "worker_code_behavioral_pilot_w4_20260518T093458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_behavioral_pilot_w4_20260518T093458.log",
+    "occurrence": 1,
+    "bytes": 1583470,
+    "sha256": "30f40d7bb85b9695968869a01f60168d0ce0ed553787b2e6390e5e89527c7832"
+  },
+  "statistics": {
+    "messages": 558,
+    "user_turns": 1,
+    "tool_calls": 183,
+    "roles": {
+      "system": 4,
+      "record": 1,
+      "assistant": 185,
+      "tool_call": 183,
+      "tool_result": 183,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 396,
+      "chunks": [
+        {
+          "path": "7b0f86e5d45336fd7cd3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b0f86e5d45336fd7cd3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b0f86e5d45336fd7cd3-part-0003.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "7b0f86e5d45336fd7cd3-part-0003.json",
+          "message_count": 128
+        },
+        {
+          "path": "7b0f86e5d45336fd7cd3-part-0004.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-behavioral-pilot-w4.md"
+}

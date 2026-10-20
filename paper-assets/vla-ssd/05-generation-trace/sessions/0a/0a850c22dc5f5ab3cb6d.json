@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a850c22dc5f5ab3cb6d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code instruction probe impl",
+  "task_key": "worker_code_instruction-probe-impl_20260515T162204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_instruction-probe-impl_20260515T162204_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "3ff08715799fafec8fe7a3ee0eac4d336a14b860c166b50872e38507387bd500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码已创建并验证通过。\n\n**文件**: `/root/vla-ssd/scripts/train_instruction_probes.py`\n\n**验证结果** (用现有 LIBERO-10 特征中 LIVING_ROOM_SCENE2 的 2 个 task 测试)：\n- Scene grouping 自动发现正确 — `LIVING_ROOM_SCENE2` 包含 2 tasks\n- Visual gate: t=0 DINO cos_sim = 0.9981 [PASS]\n- Goal classification (trained VLA): Layer 0 = 96.9%, Layer 16 = 97.1%, Layer 32 = 94.1%\n- DINO baseline: 96.6% (注意：这是全轨迹数据，视觉会在执行中分化，所以 DINO 也能区分。LIBERO-Goal 中共享 scene 的 task 初始状态完全相同，才是真正的 negative control 条件)\n- 输出 `results.json` + `visual_gate.json` 格式正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-instruction-probe-impl.md"
+}

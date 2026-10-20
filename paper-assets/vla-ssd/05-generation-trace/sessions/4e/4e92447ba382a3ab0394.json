@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e92447ba382a3ab0394",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero goal pipeline audit",
+  "task_key": "worker_code_libero-goal-pipeline-audit_20260515T161435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero-goal-pipeline-audit_20260515T161435_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "0e8d68b4d6ff5f63da78c7a5d88117c8f7bae1eea3673b92aaa7f5b035cf52aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/pipeline_audit_libero_goal.md`。\n\n核心发现：\n\n1. **数据层面零适配** — HDF5 结构完全一致，`extract_features.py` 和 `extract_dinov2.py` 改 `--data_dir` 参数即可运行。`task_desc_from_filename()` 的 fallback 路径正确处理无 SCENE 前缀的文件名。\n\n2. **LIBERO-Goal 下载未完成** — 10 个任务中仅 1 个 HDF5 完整，这是当前最大阻塞项。\n\n3. **需新增 goal_classification probe** — 现有 5 种 probe 不能测试 instruction conditioning。核心新实验：从 hidden state 分类 10 个 goal（共享 scene），预期 OpenVLA trained 70-90% accuracy vs DINO-V2 ~10%（随机），直接证明 VLA 表征编码了 instruction。\n\n4. **Scene 不重叠** — LIBERO-Goal 的 `Libero_Tabletop_Manipulation` 与 LIBERO-10 的 9 个 scene 完全不同。OpenVLA 未在此 scene 上 fine-tune，但对 probing 影响不大（测编码能力，不测 policy 准确性）。\n\n5. **总工作量 ~13h**，其中约一半是 GPU 等待时间。建议先完成数据下载，再实现方案 A（goal classification）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-goal-pipeline-audit.md"
+}

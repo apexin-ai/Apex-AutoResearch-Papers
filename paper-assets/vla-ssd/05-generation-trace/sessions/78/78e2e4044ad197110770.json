@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78e2e4044ad197110770",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code llama2 base probe execution",
+  "task_key": "worker_code_llama2_base_probe_execution_20260517T050705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2_base_probe_execution_20260517T050705_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "8af8bbf33df0c1c6b7396339a09b0bd53d0689ab14ccc52cfae2f879e5250bf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download in progress — will check again in ~3 minutes and launch experiments once the model is fully downloaded."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama2-base-probe-execution.md"
+}

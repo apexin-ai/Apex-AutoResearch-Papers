@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7259dd9536f67af9e38",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh urgent status check v2",
+  "task_key": "worker_ssh_urgent_status_check_v2_20260521T202603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_check_v2_20260521T202603_result.json",
+    "occurrence": 1,
+    "bytes": 3868,
+    "sha256": "93731284c1ab070b26adb822f73d144cc906456d4e637dd408c15f0a84333a27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有已完成的结果已提取。下面是完整状态报告。\n\n---\n\n## 实验状态\n\n| 实验 | Trained | Untrained Phase 1-2 (R², L1) | Untrained Phase 4 (Classification) | Untrained Phase 5 (Counterfactual) |\n|------|---------|------|------|------|\n| **tracvla_long_v1** | **完成** | **完成** | 运行中 (L24/31) | 未开始 |\n| **tracvla_goal_v1** | **完成** | **完成** | 运行中 (L22/31) | 未开始 |\n\n**预计剩余时间：~2.5h**（Phase 4 剩 ~10-30min，Phase 5 各 ~2h）\n\n---\n\n## 完整 Metrics\n\n### 1. tracvla_long_v1\n\n#### R² Probing (image_mean / last_preaction)\n\n| Layer | **Trained** img | **Trained** last_pre | **Untrained** img | **Untrained** last_pre |\n|-------|-------|----------|----------|----------|\n| L0 | 0.795 | **0.616** | 0.768 | **0.564** |\n| L4 | 0.803 | 0.773 | 0.779 | 0.685 |\n| L8 | 0.810 | 0.792 | 0.791 | 0.700 |\n| L11 | 0.816 | **0.817** | 0.779 | **0.716** |\n| L16 | **0.826** | 0.808 | 0.790 | 0.746 |\n| L20 | 0.824 | 0.798 | 0.801 | 0.723 |\n| L24 | 0.818 | 0.750 | 0.788 | 0.722 |\n| L28 | 0.812 | 0.614 | 0.779 | 0.717 |\n| L29 | 0.805 | **0.545** | 0.776 | 0.713 |\n| L30 | 0.799 | **0.434** | 0.775 | 0.707 |\n| L31 | 0.790 | **0.619** | 0.759 | 0.717 |\n\n**关键差异**：Trained last_preaction 有 strong inverted-U（peak L11=0.817 → collapse L30=0.434）。Untrained last_preaction 平坦（0.564→0.746 缓升后 plateau ~0.71-0.72，无 collapse）。\n\n#### L1 Attention Profile\n\n| | Trained | Untrained |\n|---|---------|-----------|\n| Instruction dominant | 30 | **32** |\n| Mixed | 2 (heads 13, 22) | **0** |\n| Image dominant | 0 | 0 |\n\n#### Cross-instruction Classification (Trained only)\n所有层 img_mean=1.0, last_preaction=1.0（L0_last_pre=0.983）。\n\n#### Counterfactual Sensitivity (Trained only)\n\n| Condition | Cohen's d | MSE |\n|-----------|-----------|-----|\n| empty | **1.473** | 0.161 |\n| wrong | 1.418 | 0.157 |\n| shuffled | 1.391 | 0.147 |\n| paraphrased | 1.161 | 0.125 |\n\n---\n\n### 2. tracvla_goal_v1\n\n#### R² Probing\n\n| Layer | **Trained** img | **Trained** last_pre | **Untrained** img | **Untrained** last_pre |\n|-------|-------|----------|----------|----------|\n| L0 | 0.803 | **0.612** | 0.788 | **0.537** |\n| L4 | 0.810 | 0.795 | 0.797 | 0.654 |\n| L8 | 0.829 | 0.783 | 0.808 | 0.688 |\n| L11 | 0.824 | 0.786 | 0.803 | 0.694 |\n| L16 | 0.827 | 0.788 | 0.784 | **0.705** |\n| L20 | **0.839** | 0.784 | 0.790 | 0.682 |\n| L24 | 0.839 | 0.741 | 0.781 | 0.681 |\n| L28 | 0.817 | **0.605** | 0.762 | 0.680 |\n| L29 | 0.821 | **0.502** | 0.759 | 0.665 |\n| L30 | 0.812 | **0.307** | 0.756 | 0.655 |\n| L31 | 0.805 | **0.574** | 0.729 | 0.671 |\n\n**关键差异**：与 long 一致。Trained last_preaction 有 dramatic collapse（L30=0.307，甚至比 long 更极端）。Untrained 平坦 plateau ~0.65-0.70。\n\n#### L1 Attention Profile\n\n| | Trained | Untrained |\n|---|---------|-----------|\n| Instruction dominant | 27 | **32** |\n| Mixed | **5** (heads 2,6,13,22,24) | **0** |\n| Image dominant | 0 | 0 |\n\nGoal 实验 trained 比 long 多 3 个 mixed heads（5 vs 2）。\n\n#### Cross-instruction Classification (Trained only)\n所有层≈1.0。L0: img=0.996, last_pre=0.915。\n\n#### Counterfactual Sensitivity (Trained only)\n\n| Condition | Cohen's d | MSE |\n|-----------|-----------|-----|\n| empty | **1.524** | 0.140 |\n| wrong | 1.405 | 0.137 |\n| shuffled | 1.336 | 0.135 |\n| paraphrased | 1.213 | 0.125 |\n\n---\n\n## Untrained 已有数据小结（仅记数字，不下结论，遵守 C001）\n\n已完成的 untrained phases：\n- **R²**：两个实验均为 flat profile（无 inverted-U collapse）\n- **L1**：两个实验均 32/32 instruction dominant（0 mixed）\n\n待完成：untrained cross-instruction classification + counterfactual（~2.5h 后出结果）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-v2.md"
+}

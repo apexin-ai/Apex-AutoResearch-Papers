@@ -1,0 +1,1687 @@
+{
+  "schema_version": "1.0",
+  "id": "126a71d25fee1beea2e1",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "research concurrent work fang buurmeijer",
+  "task_key": "worker_research_concurrent_work_fang_buurmeijer_20260522T140447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_concurrent_work_fang_buurmeijer_20260522T140447.log",
+    "occurrence": 1,
+    "bytes": 148020,
+    "sha256": "e533d81d5da8edf8dd3f10438a44bcba1a1182f3dd15e76002172ad81c05be31"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+                "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0a0d06f7-7cf7-4264-94bb-31b3d83bb26e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779463200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f6b0e228-dd93-477d-8c45-ef8f6b830a6a",
+                "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll fetch both papers in parallel — one via arXiv directly, the other via web search."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "41c1f030-b70a-4422-a465-b58d11886499",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HohwAJ1PSnsXJhESF53G9T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11722,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11722
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M2uPYSufLs1Q2gNSZrBPFC",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "40c67e29-1d71-45aa-b487-bbe3a1c582d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HohwAJ1PSnsXJhESF53G9T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11722,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11722
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:04:59.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01M2uPYSufLs1Q2gNSZrBPFC",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "0ba2cabc-a5a9-4e80-87b0-faa380b9f9ae",
+            "tool_use_result": {
+              "matches": [
+                "WebFetch",
+                "WebSearch"
+              ],
+              "query": "select:WebFetch,WebSearch",
+              "total_deferred_tools": 19
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I'll fetch the arXiv page for paper 1 and search for paper 2 in parallel.",
+              "signature": "EpICCmMIDRgCKkAVVybEcn6u/xn9ksBUgDTzXT0WvHj+g+QNAIk/0m4dH36PdxXPDNY5IZQbFhKORAJpXXdPYXAY773OAM/JDpJ2Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJkxwMKgQ+I3z4mOoRoMUTWnudzGUp5CYQhIIjBZAglghYuBueSCuvRVM81EMAcw10tpdgtp0vwS2cZRcXgQoFfkFJ1Bb4i68gb9ShEqXQJVpJMeM46HOZd7BQu0oUfZYNhV2HoR7Fiq9RCaoc0dY0FHMRWzSr+xsUyhW234zXB9mTAaGoqTggrxfJj/lEe2LKoP8MFYhHE6EcjvhdwIvISbYWl8OTTH2pDMWBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "07fc41ae-3073-462a-94f0-05f930ade6e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MaSofnxzRqYwHZxAsDEqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1122,
+                "cache_read_input_tokens": 23563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1122
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fetching paper 1 from arXiv and searching for paper 2 simultaneously."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "cc66c4c9-6921-4483-8148-5d03375ce5c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MaSofnxzRqYwHZxAsDEqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1122,
+                "cache_read_input_tokens": 23563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1122
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdYAHnPDjrwZ8uDxKFEmmD",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.17659",
+                "prompt": "Extract the full abstract, author list, title, submission date, and any key details about the paper's methodology and contributions. I need: 1) The complete abstract text, 2) All author names, 3) Key methods mentioned (especially anything about LIBERO-CF benchmark, counterfactual failures, VLAs), 4) Any mentioned results or findings."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "c097e5df-28ac-4901-a1fb-df7b8686c6e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MaSofnxzRqYwHZxAsDEqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1122,
+                "cache_read_input_tokens": 23563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1122
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BvcZorCqFPjkBUd4yYHvvj",
+              "name": "WebSearch",
+              "input": {
+                "query": "Buurmeijer VLA vision language action intervention 2026 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "dd63ae2f-a725-4778-8a60-207ece471132",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MaSofnxzRqYwHZxAsDEqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1122,
+                "cache_read_input_tokens": 23563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1122
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7iakD2xu1KKhE4e4n1uxn",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2602.17659 \"When Vision Overrides Language\" Fang counterfactual VLA LIBERO-CF 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "fb4442cf-5a79-4589-9577-46c7c325ab1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MaSofnxzRqYwHZxAsDEqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1122,
+                "cache_read_input_tokens": 23563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1122
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:05:12.629Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7iakD2xu1KKhE4e4n1uxn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2602.17659 \"When Vision Overrides Language\" Fang counterfactual VLA LIBERO-CF 2026\"\n\nLinks: [{\"title\":\"[2602.17659] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\",\"url\":\"https://arxiv.org/abs/2602.17659\"},{\"title\":\"[2602.17659v1] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\",\"url\":\"https://arxiv.org/abs/2602.17659v1\"},{\"title\":\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\",\"url\":\"https://arxiv.org/html/2602.17659v1\"},{\"title\":\"Yu Fang on X: \\\"Do Vision-Language-Action Models truly follow your language instructions? We present When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs. They promise to ground language instructions in robot control, yet in practice, often fail to follow https://t.co/UOhXgQRVw1\\\" / X\",\"url\":\"https://x.com/yuffishh/status/2031128815032791522\"},{\"title\":\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\",\"url\":\"https://arxiv.org/pdf/2602.17659\"}]\n\nI found the paper! Here's what the search reveals:\n\n\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\" by Yu Fang and colleagues addresses how Vision-Language-Action models (VLAs) often fail to faithfully follow language instructions, suffering from counterfactual failures where they act based on vision shortcuts induced by dataset biases instead of following language intent.\n\n**Key contributions:**\n\n1. **LIBERO-CF Benchmark**: The paper introduces LIBERO-CF, the first counterfactual benchmark for VLAs that evaluates language following capability by assigning alternative instructions under visually plausible LIBERO layouts.\n\n2. **Findings**: The evaluation reveals that counterfactual failures are prevalent yet underexplored across state-of-the-art VLAs.\n\n3. **Proposed Solution**: The authors propose Counterfactual Action Guidance (CAG), a simple yet effective dual-branch inference scheme that explicitly regularizes language conditioning in VLAs.\n\nCAG combines a standard VLA policy with a language-unconditioned Vision-Action module, enabling counterfactual comparison during action selection, which reduces reliance on visual shortcuts and improves robustness on under-observed tasks without requiring additional demonstrations or modifications to existing architectures.\n\nThe paper was submitted on February 19, 2026 by researchers from the University of North Carolina at Chapel Hill.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "11188445-d4d9-4c76-a47b-a9abed48e8e7",
+            "tool_use_result": {
+              "query": "arXiv 2602.17659 \"When Vision Overrides Language\" Fang counterfactual VLA LIBERO-CF 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019argKVB6f3izhKzGCJ7UD3",
+                  "content": [
+                    {
+                      "title": "[2602.17659] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+                      "url": "https://arxiv.org/abs/2602.17659"
+                    },
+                    {
+                      "title": "[2602.17659v1] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+                      "url": "https://arxiv.org/abs/2602.17659v1"
+                    },
+                    {
+                      "title": "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+                      "url": "https://arxiv.org/html/2602.17659v1"
+                    },
+                    {
+                      "title": "Yu Fang on X: \"Do Vision-Language-Action Models truly follow your language instructions? We present When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs. They promise to ground language instructions in robot control, yet in practice, often fail to follow https://t.co/UOhXgQRVw1\" / X",
+                      "url": "https://x.com/yuffishh/status/2031128815032791522"
+                    },
+                    {
+                      "title": "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+                      "url": "https://arxiv.org/pdf/2602.17659"
+                    }
+                  ]
+                },
+                "I found the paper! Here's what the search reveals:\n\n\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\" by Yu Fang and colleagues addresses how Vision-Language-Action models (VLAs) often fail to faithfully follow language instructions, suffering from counterfactual failures where they act based on vision shortcuts induced by dataset biases instead of following language intent.\n\n**Key contributions:**\n\n1. **LIBERO-CF Benchmark**: The paper introduces LIBERO-CF, the first counterfactual benchmark for VLAs that evaluates language following capability by assigning alternative instructions under visually plausible LIBERO layouts.\n\n2. **Findings**: The evaluation reveals that counterfactual failures are prevalent yet underexplored across state-of-the-art VLAs.\n\n3. **Proposed Solution**: The authors propose Counterfactual Action Guidance (CAG), a simple yet effective dual-branch inference scheme that explicitly regularizes language conditioning in VLAs.\n\nCAG combines a standard VLA policy with a language-unconditioned Vision-Action module, enabling counterfactual comparison during action selection, which reduces reliance on visual shortcuts and improves robustness on under-observed tasks without requiring additional demonstrations or modifications to existing architectures.\n\nThe paper was submitted on February 19, 2026 by researchers from the University of North Carolina at Chapel Hill."
+              ],
+              "durationSeconds": 5.505056362000003
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:05:13.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdYAHnPDjrwZ8uDxKFEmmD",
+              "type": "tool_result",
+              "content": "# Paper Summary: Vision Overrides Language in VLAs\n\n**Title:** \"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"\n\n**Submission Date:** February 19, 2026\n\n**Authors:** Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding\n\n## Abstract\nThe paper addresses a critical problem where vision-language-action models fail to properly follow language instructions. The authors note that \"VLAs suffer from counterfactual failures: they act based on vision shortcuts induced by dataset biases\" rather than adhering to the provided language guidance.\n\n## Key Methodology\n\n**LIBERO-CF Benchmark:** The researchers introduced the first counterfactual evaluation benchmark, which tests language-following capability by providing alternative instructions within visually similar scenarios.\n\n**Counterfactual Action Guidance (CAG):** Their proposed solution employs a \"dual-branch inference scheme that explicitly regularizes language conditioning in VLAs,\" combining a standard policy with an unconditioned vision-action module to enable comparative action selection.\n\n## Main Findings\n\n- Counterfactual failures are prevalent across state-of-the-art VLAs\n- CAG improved language-following accuracy by 9.7% on under-observed tasks (training-free)\n- With additional vision-action models, improvements reached 15.5% in accuracy and 8.5% in task success\n- Real-world testing showed 17.2% average improvement in task success and 9.4% reduction in counterfactual failures"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "ad1bb55a-8fdd-4fee-aea5-5d5316e9f089",
+            "tool_use_result": {
+              "bytes": 48767,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Paper Summary: Vision Overrides Language in VLAs\n\n**Title:** \"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"\n\n**Submission Date:** February 19, 2026\n\n**Authors:** Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding\n\n## Abstract\nThe paper addresses a critical problem where vision-language-action models fail to properly follow language instructions. The authors note that \"VLAs suffer from counterfactual failures: they act based on vision shortcuts induced by dataset biases\" rather than adhering to the provided language guidance.\n\n## Key Methodology\n\n**LIBERO-CF Benchmark:** The researchers introduced the first counterfactual evaluation benchmark, which tests language-following capability by providing alternative instructions within visually similar scenarios.\n\n**Counterfactual Action Guidance (CAG):** Their proposed solution employs a \"dual-branch inference scheme that explicitly regularizes language conditioning in VLAs,\" combining a standard policy with an unconditioned vision-action module to enable comparative action selection.\n\n## Main Findings\n\n- Counterfactual failures are prevalent across state-of-the-art VLAs\n- CAG improved language-following accuracy by 9.7% on under-observed tasks (training-free)\n- With additional vision-action models, improvements reached 15.5% in accuracy and 8.5% in task success\n- Real-world testing showed 17.2% average improvement in task success and 9.4% reduction in counterfactual failures",
+              "durationMs": 7146,
+              "url": "https://arxiv.org/abs/2602.17659"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:05:14.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BvcZorCqFPjkBUd4yYHvvj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Buurmeijer VLA vision language action intervention 2026 arXiv\"\n\nLinks: [{\"title\":\"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2603.05487\"},{\"title\":\"Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy\",\"url\":\"https://arxiv.org/pdf/2512.11218\"},{\"title\":\"[2505.04769] Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges\",\"url\":\"https://arxiv.org/abs/2505.04769\"},{\"title\":\"Improving Pre-Trained Vision-Language-Action Policies with Model-Based Search\",\"url\":\"https://arxiv.org/pdf/2508.12211\"},{\"title\":\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/pdf/2603.19233\"},{\"title\":\"UAOR: Uncertainty-aware Observation Reinjection for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/pdf/2602.18020\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"Observing and Controlling Features in Vision-Language-Action Models\"** by Hugo Buurmeijer and colleagues is available on arXiv as paper **2603.05487**.\n\nThe paper addresses mechanistic interpretability in Vision-Language-Action models. It introduces and analyzes two main concepts: feature-observability and feature-controllability, studying features that are linearly encoded in representation space, and using minimal linear intervention grounded in optimal control to steer the VLA's output towards a desired region.\n\nThe work demonstrates findings on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "2300c178-5186-4d0c-828a-844fba6a7770",
+            "tool_use_result": {
+              "query": "Buurmeijer VLA vision language action intervention 2026 arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013qBv81rQnbozMKEki5Y3qE",
+                  "content": [
+                    {
+                      "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+                      "url": "https://arxiv.org/abs/2603.05487"
+                    },
+                    {
+                      "title": "Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy",
+                      "url": "https://arxiv.org/pdf/2512.11218"
+                    },
+                    {
+                      "title": "[2505.04769] Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+                      "url": "https://arxiv.org/abs/2505.04769"
+                    },
+                    {
+                      "title": "Improving Pre-Trained Vision-Language-Action Policies with Model-Based Search",
+                      "url": "https://arxiv.org/pdf/2508.12211"
+                    },
+                    {
+                      "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+                      "url": "https://arxiv.org/pdf/2603.19233"
+                    },
+                    {
+                      "title": "UAOR: Uncertainty-aware Observation Reinjection for Vision-Language-Action Models",
+                      "url": "https://arxiv.org/pdf/2602.18020"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\n**\"Observing and Controlling Features in Vision-Language-Action Models\"** by Hugo Buurmeijer and colleagues is available on arXiv as paper **2603.05487**.\n\nThe paper addresses mechanistic interpretability in Vision-Language-Action models. It introduces and analyzes two main concepts: feature-observability and feature-controllability, studying features that are linearly encoded in representation space, and using minimal linear intervention grounded in optimal control to steer the VLA's output towards a desired region.\n\nThe work demonstrates findings on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments."
+              ],
+              "durationSeconds": 8.355187254
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have paper 1 details. Now let me fetch more details on paper 2 (Buurmeijer et al. 2603.05487) and also try to get the HTML version of paper 1 for more method details.",
+              "signature": "EvQCCmMIDRgCKkDv/4+Pt1Sfr2ZetSG5QmrBbr3e9+mXqms5Rrf2FzsKO3F6Wa5f0scuP55KCKL8EavS/0NJUU4CKhwbvdvUZoi/Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDBx1LiD/cgIXkyZzlhoM/SEGmfi9WStibGTsIjD0E2RHdqDhEMCd0A879POtmvlJN+Yn0Z3N7pafjPLAekA6Bn4Cu/AJPlYReol6vLMqvgGkm9qc0Fpd439D90yOZImusfXzYLVNljXeG3+PljS8O3yEGBfDB/tvjdl8BPf2TakLI++4wMwYq27ljQuOnY01O1oeqfuGn+QlpxbxaVjboqUT8o/XmsvD2zcDBpu/wjJkQ8Z/dKshBwxFDOSBjWZDKEY9HoveVToz9QYJavFNtJfphGM9AMPnHikX7Bo9nij59MYMPlh03gQvjx2puCZfBUFmNaMWBLmrJgr1Afv9I3FXvJixgvsYVOCKa5eHGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "9b638d2e-7377-4891-a6a8-9c3c2a9820a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FCbtkaqjR3T2mjMPvp4EAL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 741,
+                "cache_creation_input_tokens": 1246,
+                "cache_read_input_tokens": 24685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1246
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found both papers. Now fetching detailed content for each."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "0bd1e54e-e820-4462-91b3-5dd96053976b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FCbtkaqjR3T2mjMPvp4EAL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 741,
+                "cache_creation_input_tokens": 1246,
+                "cache_read_input_tokens": 24685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1246
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SEDVzgBun1fPZ6dS44WNcT",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.05487",
+                "prompt": "Extract the complete abstract, all author names, submission date, and detailed methodology. I need: 1) Full abstract text, 2) All authors and affiliations, 3) Key methods (feature-observability, feature-controllability, linear intervention, optimal control), 4) Which VLA architectures they test on, 5) What tasks/benchmarks they use, 6) Main results and findings, 7) Any mention of probing, representation analysis, or internal features of VLAs."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "66bf9987-5aa7-4dd1-85c7-6497a2fe1de0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FCbtkaqjR3T2mjMPvp4EAL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 741,
+                "cache_creation_input_tokens": 1246,
+                "cache_read_input_tokens": 24685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1246
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxS5Giofo3CjXbmrLyXM1V",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.17659v1",
+                "prompt": "Extract detailed methodology information: 1) How exactly is LIBERO-CF benchmark constructed? What types of counterfactual instructions are used? 2) How does CAG (Counterfactual Action Guidance) work in detail? 3) What VLA models are evaluated? 4) What LIBERO suites/tasks are used? 5) Any details about representation analysis or internal model features? 6) Key quantitative results. 7) How do they define \"counterfactual failure\"? 8) Any comparison to probing or representation-level analysis methods?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "d47567e7-d9aa-4263-bd78-c44356fb465a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FCbtkaqjR3T2mjMPvp4EAL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 741,
+                "cache_creation_input_tokens": 1246,
+                "cache_read_input_tokens": 24685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1246
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T14:05:29.344Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SEDVzgBun1fPZ6dS44WNcT",
+              "type": "tool_result",
+              "content": "# Paper Analysis: Observing and Controlling Features in Vision-Language-Action Models\n\n## 1. Complete Abstract\n\"Vision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. While their architecture partially resembles that of Large Language Models (LLMs), VLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads. This is part of the reason why insights from mechanistic interpretability in LLMs, which explain how the internal model representations relate to their output behavior, do not trivially transfer to VLA counterparts. In this work, we propose to close this gap by introducing and analyzing two main concepts: feature-observability and feature-controllability. In particular, we first study features that are linearly encoded in representation space, and show how they can be observed by means of a linear classifier. Then, we use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region. Our results show that targeted, lightweight interventions can reliably steer a robot's behavior while preserving closed-loop capabilities. We demonstrate on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments that VLAs possess interpretable internal structure amenable to online adaptation without fine-tuning, enabling real-time alignment with user preferences and task requirements.\"\n\n## 2. Authors\n- Hugo Buurmeijer\n- Carmen Amo Alonso\n- Aiden Swann\n- Marco Pavone\n\n**Note:** Author affiliations are not provided in this arXiv page content.\n\n## 3. Key Methods\nThe paper introduces two primary concepts:\n- **Feature-observability:** Using linear classifiers to detect features encoded in representation space\n- **Feature-controllability:** Employing minimal linear interventions grounded in optimal control to manipulate internal representations and guide output\n\n## 4. VLA Architectures Tested\n- π₀.₅\n- OpenVLA\n\n## 5. Tasks/Benchmarks\nThe content specifies \"simulation experiments\" but does not detail specific task names or benchmarks.\n\n## 6. Main Results\nThe authors demonstrate that \"targeted, lightweight interventions can reliably steer a robot's behavior\" while maintaining closed-loop functionality and enabling \"online adaptation without fine-tuning.\"\n\n## 7. Representation Analysis\nThe paper directly addresses mechanistic interpretability by studying how \"internal model representations relate to their output behavior\" and reveals that VLAs possess \"interpretable internal structure.\"\n\n**Submission Date:** March 5, 2026"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "ea2393b3-a009-41c6-89e4-3f839647d0ea",
+            "tool_use_result": {
+              "bytes": 46533,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Paper Analysis: Observing and Controlling Features in Vision-Language-Action Models\n\n## 1. Complete Abstract\n\"Vision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. While their architecture partially resembles that of Large Language Models (LLMs), VLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads. This is part of the reason why insights from mechanistic interpretability in LLMs, which explain how the internal model representations relate to their output behavior, do not trivially transfer to VLA counterparts. In this work, we propose to close this gap by introducing and analyzing two main concepts: feature-observability and feature-controllability. In particular, we first study features that are linearly encoded in representation space, and show how they can be observed by means of a linear classifier. Then, we use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region. Our results show that targeted, lightweight interventions can reliably steer a robot's behavior while preserving closed-loop capabilities. We demonstrate on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments that VLAs possess interpretable internal structure amenable to online adaptation without fine-tuning, enabling real-time alignment with user preferences and task requirements.\"\n\n## 2. Authors\n- Hugo Buurmeijer\n- Carmen Amo Alonso\n- Aiden Swann\n- Marco Pavone\n\n**Note:** Author affiliations are not provided in this arXiv page content.\n\n## 3. Key Methods\nThe paper introduces two primary concepts:\n- **Feature-observability:** Using linear classifiers to detect features encoded in representation space\n- **Feature-controllability:** Employing minimal linear interventions grounded in optimal control to manipulate internal representations and guide output\n\n## 4. VLA Architectures Tested\n- π₀.₅\n- OpenVLA\n\n## 5. Tasks/Benchmarks\nThe content specifies \"simulation experiments\" but does not detail specific task names or benchmarks.\n\n## 6. Main Results\nThe authors demonstrate that \"targeted, lightweight interventions can reliably steer a robot's behavior\" while maintaining closed-loop functionality and enabling \"online adaptation without fine-tuning.\"\n\n## 7. Representation Analysis\nThe paper directly addresses mechanistic interpretability by studying how \"internal model representations relate to their output behavior\" and reveals that VLAs possess \"interpretable internal structure.\"\n\n**Submission Date:** March 5, 2026",
+              "durationMs": 8123,
+              "url": "https://arxiv.org/abs/2603.05487"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:05:35.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxS5Giofo3CjXbmrLyXM1V",
+              "type": "tool_result",
+              "content": "# Detailed Methodology Summary\n\n## 1. LIBERO-CF Benchmark Construction\n\nThe benchmark assigns alternative feasible language instructions under LIBERO scene layouts. It comprises four evaluation suites:\n\n- **CF-Spatial** (15 tasks): \"targets the objects that originally served only as background objects\"\n- **CF-Object** (10 tasks): evaluates alternative object-centric instructions\n- **CF-Long** (10 tasks): multi-step instructions with new targets\n- **CF-OOD** (15 tasks): \"entirely unseen objects\" during finetuning\n\nTwo metrics assess performance: \"grounding rate\" (gripper contact with target object) and \"success rate\" (task completion).\n\n## 2. CAG Mechanism\n\nCAG is a dual-branch inference scheme combining a conditional VLA policy with an unconditional vision-only policy:\n\nπCAG(a|o,l) = πuncond(a|o,∅) + ω·(πcond(a|o,l) − πuncond(a|o,∅))\n\nThe guidance scale ω controls language conditioning strength. Mathematically, this \"sharpens the language likelihood P(l|a,o) with temperature ω\" while preserving the underlying visual prior.\n\nTwo implementation strategies exist:\n- **Training-Free (TF)**: drops language input at inference time\n- **Vision-Action (VA)**: trains separate vision-only model explicitly\n\n## 3. Evaluated VLA Models\n\n- OpenVLA-OFT (7B, continuous actions)\n- π₀ (3B, diffusion-based)\n- π₀.₅ (improved variant with hybrid pretraining)\n- X-VLA (0.9B, cross-embodiment)\n\n## 4. LIBERO Task Suites\n\nEvaluations use: Spatial, Object, Goal, and Long-horizon variants from LIBERO, with counterfactual instruction assignments creating under-observed tasks.\n\n## 5. Representation Analysis\n\nThe paper lacks internal feature analysis. Instead, it provides behavioral evidence through grasp position heatmaps (Figure 2a) showing \"distribution spreads not only around the instructed object but also around the training-task object\" under counterfactual instructions.\n\n## 6. Key Quantitative Results\n\nOn LIBERO-CF with π₀.₅:\n- Baseline grounding: 30.8% (counterfactual), 65.6% (biased)\n- CAG (VA variant): 46.3% (counterfactual), 52.2% (biased)\n- Real-world: 9.4% reduction in counterfactual failures, 17.2% success improvement\n\n## 7. Counterfactual Failure Definition\n\nA model exhibits counterfactual failure when \"presented with instructions that lack strong scene-specific supervision\" it \"disregard[s] the given instructions and default[s] to executing well-learned tasks in the scene.\"\n\n## 8. Comparison to Other Methods\n\nThe paper doesn't compare against probing-based methods. Related work mentions \"counterfactual data augmentation\" and \"modality reweighting\" approaches from VQA/MLLM literature, but positions CAG as a \"universal dual-branch inference scheme\" requiring no architectural modifications."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "9f421735-ef0f-4691-ae25-bd35cf180d2b",
+            "tool_use_result": {
+              "bytes": 571240,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Detailed Methodology Summary\n\n## 1. LIBERO-CF Benchmark Construction\n\nThe benchmark assigns alternative feasible language instructions under LIBERO scene layouts. It comprises four evaluation suites:\n\n- **CF-Spatial** (15 tasks): \"targets the objects that originally served only as background objects\"\n- **CF-Object** (10 tasks): evaluates alternative object-centric instructions\n- **CF-Long** (10 tasks): multi-step instructions with new targets\n- **CF-OOD** (15 tasks): \"entirely unseen objects\" during finetuning\n\nTwo metrics assess performance: \"grounding rate\" (gripper contact with target object) and \"success rate\" (task completion).\n\n## 2. CAG Mechanism\n\nCAG is a dual-branch inference scheme combining a conditional VLA policy with an unconditional vision-only policy:\n\nπCAG(a|o,l) = πuncond(a|o,∅) + ω·(πcond(a|o,l) − πuncond(a|o,∅))\n\nThe guidance scale ω controls language conditioning strength. Mathematically, this \"sharpens the language likelihood P(l|a,o) with temperature ω\" while preserving the underlying visual prior.\n\nTwo implementation strategies exist:\n- **Training-Free (TF)**: drops language input at inference time\n- **Vision-Action (VA)**: trains separate vision-only model explicitly\n\n## 3. Evaluated VLA Models\n\n- OpenVLA-OFT (7B, continuous actions)\n- π₀ (3B, diffusion-based)\n- π₀.₅ (improved variant with hybrid pretraining)\n- X-VLA (0.9B, cross-embodiment)\n\n## 4. LIBERO Task Suites\n\nEvaluations use: Spatial, Object, Goal, and Long-horizon variants from LIBERO, with counterfactual instruction assignments creating under-observed tasks.\n\n## 5. Representation Analysis\n\nThe paper lacks internal feature analysis. Instead, it provides behavioral evidence through grasp position heatmaps (Figure 2a) showing \"distribution spreads not only around the instructed object but also around the training-task object\" under counterfactual instructions.\n\n## 6. Key Quantitative Results\n\nOn LIBERO-CF with π₀.₅:\n- Baseline grounding: 30.8% (counterfactual), 65.6% (biased)\n- CAG (VA variant): 46.3% (counterfactual), 52.2% (biased)\n- Real-world: 9.4% reduction in counterfactual failures, 17.2% success improvement\n\n## 7. Counterfactual Failure Definition\n\nA model exhibits counterfactual failure when \"presented with instructions that lack strong scene-specific supervision\" it \"disregard[s] the given instructions and default[s] to executing well-learned tasks in the scene.\"\n\n## 8. Comparison to Other Methods\n\nThe paper doesn't compare against probing-based methods. Related work mentions \"counterfactual data augmentation\" and \"modality reweighting\" approaches from VQA/MLLM literature, but positions CAG as a \"universal dual-branch inference scheme\" requiring no architectural modifications.",
+              "durationMs": 10876,
+              "url": "https://arxiv.org/html/2602.17659v1"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have detailed information on both papers. Let me also try to get more details on the Buurmeijer paper — specifically what benchmarks/tasks they use, and what their results look like in more detail.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "34e2c9b7-37bf-4bf5-babd-bf3f44194a27",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012yrFYZisDXv3iDzCvsPyAi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2599,
+                "cache_read_input_tokens": 25931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2599
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more details on the Buurmeijer paper's methods and check for its HTML version."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "d6e1a876-84c6-4387-b2c8-40117f517435",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012yrFYZisDXv3iDzCvsPyAi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2599,
+                "cache_read_input_tokens": 25931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2599
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VVXyzXEma2DPF9LgGnohSf",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.05487v1",
+                "prompt": "Extract detailed methodology: 1) How do they define feature-observability and feature-controllability formally? 2) What linear probes/classifiers do they use? 3) What features do they observe/control (e.g., object identity, spatial position, task type)? 4) How does the optimal control intervention work? 5) What simulation benchmarks/tasks do they test on? 6) Do they use LIBERO? 7) Key quantitative results with numbers. 8) What layers of the VLA do they probe? 9) Any comparison to standard linear probing methods? 10) Do they analyze how fine-tuning changes representations?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "cbde6e97-1284-4461-a28d-e948eb64b874",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012yrFYZisDXv3iDzCvsPyAi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2599,
+                "cache_read_input_tokens": 25931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2599
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:05:53.341Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VVXyzXEma2DPF9LgGnohSf",
+              "type": "tool_result",
+              "content": "# Detailed Methodology Analysis\n\n## 1) Formal Definitions of Feature-Observability and Feature-Controllability\n\n**Feature-Observability (Definition 1):** A feature ζ ∈ ℝⁿ is observable at layer ℓ if there exists a mapping fℓ: ℝᵈ → ℝⁿ such that \"fℓ(xℓ) = ζ\" where xℓ is the activation at that layer.\n\n**Feature-Controllability (Definition 2):** A feature is controllable at layer ℓ if there exists a controller mapping gℓ: ℝᵈ → ℝᵈ that modifies representations so propagated through downstream layers yields the desired feature values in set 𝒟.\n\n## 2) Linear Probes/Classifiers\n\nThe authors employ linear observers with structure: \"fℓ(x) := Wℓx + bℓ\" where Wℓ ∈ ℝᵈˣⁿ and bℓ ∈ ℝⁿ are learned parameters. Parameters are trained via \"cross-entropy loss over the dataset\" using regression for continuous values and binary classification for gripper states.\n\n## 3) Observed/Controlled Features\n\nThe study focuses explicitly on **robot states and actions only**. Robot state includes position (x,y,z), orientation (roll, pitch, yaw), and \"normalized gripper aperture\" g ∈ [0,1]. They deliberately defer \"more abstract semantic features such as object affordances, relational predicates, and task-level goals to future work.\"\n\n## 4) Optimal Control Intervention\n\nThe controller minimizes \"‖u‖₂²\" subject to the constraint \"fℓ(xℓ + u) ∈ 𝒟\" where u is the additive perturbation. With linear observers and bounds on features, they derive a closed-form solution: \"uℓ = (ζmax − ζℓ) Wℓ / ‖Wℓ‖₂²\" when outside bounds, otherwise zero intervention.\n\n## 5) Simulation Benchmarks/Tasks\n\nThe paper tests on \"ten tasks from the spatial task suite\" within the Libero simulator with \"ten rollouts per task for each method.\" Tasks involve robotic manipulation with constraints on gripper state, end-effector height, and speed.\n\n## 6) LIBERO Usage\n\nYes, extensively. The authors state they \"test π0.5 on the Libero dataset\" and conduct \"closed-loop Libero task success rate\" evaluations measuring both constraint satisfaction and task performance.\n\n## 7) Key Quantitative Results\n\n- **Gripper control:** \"near perfect constraint satisfaction\" with \"above 90%\" task success rate\n- **Height control:** Achieves \"near perfect constraint satisfaction\" with modest success rate reduction when constrained\n- **Speed control:** Successfully slows robots but \"less accurately cause the robot to speed up\"\n- Inference adds \"negligible increase in runtime\"\n\n## 8) Probed Layers\n\nProbes are trained \"at every layer ℓ ∈ [1,...,T]\" of transformer architectures. Results display \"only results for the best performant layer\" in figures, though specific layer numbers mentioned include \"layer 9\" for some experiments.\n\n## 9) Comparison to Standard Linear Probing\n\nThe paper doesn't explicitly compare against alternative linear probing baselines. It references related work using \"linear classifiers\" for feature extraction in LLMs but doesn't benchmark competing probe approaches within their framework.\n\n## 10) Fine-Tuning Analysis\n\nThe methodology explicitly **avoids** fine-tuning. The approach operates entirely \"at inference time\" using \"learned parameters\" from pre-collected data, without requiring retraining. The authors emphasize this enables \"real-time alignment\" and \"online adaptation without fine-tuning.\""
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "0df47768-a5d9-49e5-89ad-1d888ace27a8",
+            "tool_use_result": {
+              "bytes": 215175,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Detailed Methodology Analysis\n\n## 1) Formal Definitions of Feature-Observability and Feature-Controllability\n\n**Feature-Observability (Definition 1):** A feature ζ ∈ ℝⁿ is observable at layer ℓ if there exists a mapping fℓ: ℝᵈ → ℝⁿ such that \"fℓ(xℓ) = ζ\" where xℓ is the activation at that layer.\n\n**Feature-Controllability (Definition 2):** A feature is controllable at layer ℓ if there exists a controller mapping gℓ: ℝᵈ → ℝᵈ that modifies representations so propagated through downstream layers yields the desired feature values in set 𝒟.\n\n## 2) Linear Probes/Classifiers\n\nThe authors employ linear observers with structure: \"fℓ(x) := Wℓx + bℓ\" where Wℓ ∈ ℝᵈˣⁿ and bℓ ∈ ℝⁿ are learned parameters. Parameters are trained via \"cross-entropy loss over the dataset\" using regression for continuous values and binary classification for gripper states.\n\n## 3) Observed/Controlled Features\n\nThe study focuses explicitly on **robot states and actions only**. Robot state includes position (x,y,z), orientation (roll, pitch, yaw), and \"normalized gripper aperture\" g ∈ [0,1]. They deliberately defer \"more abstract semantic features such as object affordances, relational predicates, and task-level goals to future work.\"\n\n## 4) Optimal Control Intervention\n\nThe controller minimizes \"‖u‖₂²\" subject to the constraint \"fℓ(xℓ + u) ∈ 𝒟\" where u is the additive perturbation. With linear observers and bounds on features, they derive a closed-form solution: \"uℓ = (ζmax − ζℓ) Wℓ / ‖Wℓ‖₂²\" when outside bounds, otherwise zero intervention.\n\n## 5) Simulation Benchmarks/Tasks\n\nThe paper tests on \"ten tasks from the spatial task suite\" within the Libero simulator with \"ten rollouts per task for each method.\" Tasks involve robotic manipulation with constraints on gripper state, end-effector height, and speed.\n\n## 6) LIBERO Usage\n\nYes, extensively. The authors state they \"test π0.5 on the Libero dataset\" and conduct \"closed-loop Libero task success rate\" evaluations measuring both constraint satisfaction and task performance.\n\n## 7) Key Quantitative Results\n\n- **Gripper control:** \"near perfect constraint satisfaction\" with \"above 90%\" task success rate\n- **Height control:** Achieves \"near perfect constraint satisfaction\" with modest success rate reduction when constrained\n- **Speed control:** Successfully slows robots but \"less accurately cause the robot to speed up\"\n- Inference adds \"negligible increase in runtime\"\n\n## 8) Probed Layers\n\nProbes are trained \"at every layer ℓ ∈ [1,...,T]\" of transformer architectures. Results display \"only results for the best performant layer\" in figures, though specific layer numbers mentioned include \"layer 9\" for some experiments.\n\n## 9) Comparison to Standard Linear Probing\n\nThe paper doesn't explicitly compare against alternative linear probing baselines. It references related work using \"linear classifiers\" for feature extraction in LLMs but doesn't benchmark competing probe approaches within their framework.\n\n## 10) Fine-Tuning Analysis\n\nThe methodology explicitly **avoids** fine-tuning. The approach operates entirely \"at inference time\" using \"learned parameters\" from pre-collected data, without requiring retraining. The authors emphasize this enables \"real-time alignment\" and \"online adaptation without fine-tuning.\"",
+              "durationMs": 11273,
+              "url": "https://arxiv.org/html/2603.05487v1"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me also read the project's memory and any relevant files to understand our VLA-SSD paper better before writing the analysis.",
+              "signature": "Eu0CCmMIDRgCKkBoI+nOzK/DPai0NPQqwOgrpZuHNbIOBEJ3g4X+uDXa9BcqnSXFAMn038+6xBHOnyE/5quH8a3zmqj1MwORtIbCMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDIuMIYDzP4SxLpmm+RoMvHn1C3CqtnV1d67RIjAZGfEZZTrcO7h16abS6CE+cGL8fdu+lMc7D529LnaO4COsuRdrqxFX1OjVo3TBCDcqtwF4k/rL22oWuO0Pr3XHacHPTke7A7MTnkES9XstzmTPkKT4B7X4QNj7uXFvoDpjDTpsjBGnHZpTRvRMVvVgMPF41parPwt2m6a1Op30KVb9fG6x9EKafF2nLMj7o+eDectH7pYLMC4F97g8ndKWVtUHojzAx+u2XJJBX1jXa07z9oKbnzRKKH5UGjbbHNa1fN9lOghxxdF+JbsTexAm76ouMRZiOUNywHxqsMpFgQ/t53O+QpPbpAEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "73b26e01-8660-4d40-b87e-0f240de35d98",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG8RmRC7nz3nDXvDy8MF4Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1351,
+                "cache_read_input_tokens": 28530,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all the details. Let me check our project context to ensure the analysis is well-grounded."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "611131b4-cdd2-4877-b2ef-fbcaef5a0379",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG8RmRC7nz3nDXvDy8MF4Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1351,
+                "cache_read_input_tokens": 28530,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HEihRyRQdHgzyaNgrs8D1x",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "0a7246ef-8453-46db-9512-810b3bbff32c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG8RmRC7nz3nDXvDy8MF4Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1351,
+                "cache_read_input_tokens": 28530,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T14:05:58.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HEihRyRQdHgzyaNgrs8D1x",
+              "type": "tool_result",
+              "content": "artifacts/probe_design_plan.md\ntask_context/history/director/loop_1.md\ntask_context/history/reviewer/loop_1.md\ntask_context/history/agent/loop_1.md\nartifacts/mvp_probe_trained/report/mvp_probe_analysis.md\nartifacts/_project/report/action_probe_design.md\nartifacts/action_probe_design.md\nartifacts/_project/report/literature_map_probing.md\nartifacts/literature_map_probing.md\ntask_context/history/reviewer/loop_2.md\ntask_context/history/director/loop_2.md\nartifacts/_project/report/controlb_report.md\nartifacts/_project/report/controlb_analysis.md\nartifacts/mvp_controlb_trained/report/controlb_analysis.md\nartifacts/controlb_analysis/controlb_analysis.md\ntask_context/history/agent/loop_2.md\nartifacts/_project/report/libero_goal_feasibility.md\nartifacts/libero_goal_feasibility.md\nartifacts/_project/report/layer_stability_analysis.md\nartifacts/layer_stability_analysis.md\ntask_context/history/agent/loop_2_1778863795.md\nartifacts/openvla_libero_goal_compat.md\nartifacts/pipeline_audit_libero_goal.md\ntask_context/history/agent/loop_2_1778863799.md\ntask_context/history/agent/loop_2_1778865132.md\ntask_context/history/agent/loop_2_1778866326.md\nartifacts/_project/report/literature_survey_instruction_probing.md\nartifacts/literature_survey_instruction_probing.md\ntask_context/history/agent/loop_2_1778867412.md\ntask_context/history/agent/loop_2_1778871769.md\ntask_context/history/reviewer/loop_3.md\ntask_context/history/agent/loop_3.md\ntask_context/history/agent/loop_3_1778875978.md\ntask_context/history/agent/loop_3_1778875986.md\ntask_context/history/agent/loop_3_1778876332.md\ntask_context/history/agent/loop_3_1778877858.md\ntask_context/history/agent/loop_3_1778878475.md\ntask_context/history/agent/loop_3_1778878478.md\ntask_context/history/agent/loop_3_1778879069.md\ntask_context/history/agent/loop_3_1778879078.md\ntask_context/history/agent/loop_3_1778883811.md\ntask_context/history/agent/loop_4.md\ndocs/IDEA_BRIEF.md\ntask_context/history/agent/loop_4_1778886984.md\nartifacts/dream_reports/dream_20260515T222933/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/median/paper_framing.md\nartifacts/_project/report/rsa_image_mean_validation.md\nartifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/best/review_report.md\nartifacts/dream_reports/dream_20260515T222933/median/review_report.md\nartifacts/dream_reports/dream_20260515T222933/worst/review_report.md\ntask_context/history/agent/loop_4_1778887379.md\ntask_context/history/agent/loop_4_1778887654.md\ntask_context/history/agent/loop_4_1778889107.md\ntask_context/history/reviewer/loop_4.md\ntask_context/history/agent/loop_4_1778889532.md\ntask_context/history/agent/loop_3_1778889603.md\ntask_context/history/agent/loop_3_1778889604.md\ntask_context/history/agent/loop_4_1778889810.md\ntask_context/history/agent/loop_4_1778890560.md\ntask_context/history/agent/loop_4_1778891217.md\nartifacts/_project/report/redream_evidence_v2.md\nartifacts/redream_evidence_v2.md\ntask_context/history/agent/loop_4_1778895396.md\nartifacts/dream_reports/dream_20260516T011810/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/worst/paper_framing.md\ntask_context/history/agent/loop_5.md\ntask_context/history/agent/loop_5_1778898221.md\nartifacts/dream_reports/dream_20260516T011810/best/review_report.md\nartifacts/dream_reports/dream_20260516T011810/median/review_report.md\nartifacts/dream_reports/dream_20260516T011810/worst/review_report.md\ntask_context/history/agent/loop_5_1778898533.md\n.claude/sessions/agent_3dde598c/CLAUDE.md\n.claude/sessions/agent_3dde598c/AGENTS.md\ntask_context/history/agent/loop_5_1778898761.md\n.claude/sessions/agent_89bf97d0/CLAUDE.md\n.claude/sessions/agent_89bf97d0/AGENTS.md\ntask_context/history/agent/loop_5_1778900363.md\n.claude/sessions/agent_17452cf3/CLAUDE.md\n.claude/sessions/agent_17452cf3/AGENTS.md\nartifacts/rsa_method_audit_report.md\nartifacts/vla_rsa_method_audit.md\ntask_context/history/agent/loop_5_1778900990.md\n.claude/sessions/agent_724b413b/CLAUDE.md\n.claude/sessions/agent_724b413b/AGENTS.md\nartifacts/demo_standardized_rsa.md\nartifacts/branch_split_rsa_results.md\ntask_context/history/agent/loop_5_1778901011.md\n.claude/sessions/agent_9a721eb1/CLAUDE.md\n.claude/sessions/agent_9a721eb1/AGENTS.md\ntask_context/history/agent/loop_5_1778902485.md\n.claude/sessions/agent_7bc02293/CLAUDE.md\n.claude/sessions/agent_7bc02293/AGENTS.md\nartifacts/unified_rsa_summary.md\nartifacts/_project/report/d041_final_report.md\ntask_context/history/agent/loop_5_1778903286.md\n.claude/sessions/agent_3425744c/CLAUDE.md\n.claude/sessions/agent_3425744c/AGENTS.md\ntask_context/history/agent/loop_5_1778906572.md\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "5d998b4b-b5d0-4251-9769-11193ef17730",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/probe_design_plan.md",
+                "task_context/history/director/loop_1.md",
+                "task_context/history/reviewer/loop_1.md",
+                "task_context/history/agent/loop_1.md",
+                "artifacts/mvp_probe_trained/report/mvp_probe_analysis.md",
+                "artifacts/_project/report/action_probe_design.md",
+                "artifacts/action_probe_design.md",
+                "artifacts/_project/report/literature_map_probing.md",
+                "artifacts/literature_map_probing.md",
+                "task_context/history/reviewer/loop_2.md",
+                "task_context/history/director/loop_2.md",
+                "artifacts/_project/report/controlb_report.md",
+                "artifacts/_project/report/controlb_analysis.md",
+                "artifacts/mvp_controlb_trained/report/controlb_analysis.md",
+                "artifacts/controlb_analysis/controlb_analysis.md",
+                "task_context/history/agent/loop_2.md",
+                "artifacts/_project/report/libero_goal_feasibility.md",
+                "artifacts/libero_goal_feasibility.md",
+                "artifacts/_project/report/layer_stability_analysis.md",
+                "artifacts/layer_stability_analysis.md",
+                "task_context/history/agent/loop_2_1778863795.md",
+                "artifacts/openvla_libero_goal_compat.md",
+                "artifacts/pipeline_audit_libero_goal.md",
+                "task_context/history/agent/loop_2_1778863799.md",
+                "task_context/history/agent/loop_2_1778865132.md",
+                "task_context/history/agent/loop_2_1778866326.md",
+                "artifacts/_project/report/literature_survey_instruction_probing.md",
+                "artifacts/literature_survey_instruction_probing.md",
+                "task_context/history/agent/loop_2_1778867412.md",
+                "task_context/history/agent/loop_2_1778871769.md",
+                "task_context/history/reviewer/loop_3.md",
+                "task_context/history/agent/loop_3.md",
+                "task_context/history/agent/loop_3_1778875978.md",
+                "task_context/history/agent/loop_3_1778875986.md",
+                "task_context/history/agent/loop_3_1778876332.md",
+                "task_context/history/agent/loop_3_1778877858.md",
+                "task_context/history/agent/loop_3_1778878475.md",
+                "task_context/history/agent/loop_3_1778878478.md",
+                "task_context/history/agent/loop_3_1778879069.md",
+                "task_context/history/agent/loop_3_1778879078.md",
+                "task_context/history/agent/loop_3_1778883811.md",
+                "task_context/history/agent/loop_4.md",
+                "docs/IDEA_BRIEF.md",
+                "task_context/history/agent/loop_4_1778886984.md",
+                "artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T222933/median/paper_framing.md",
+                "artifacts/_project/report/rsa_image_mean_validation.md",
+                "artifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T222933/best/review_report.md",
+                "artifacts/dream_reports/dream_20260515T222933/median/review_report.md",
+                "artifacts/dream_reports/dream_20260515T222933/worst/review_report.md",
+                "task_context/history/agent/loop_4_1778887379.md",
+                "task_context/history/agent/loop_4_1778887654.md",
+                "task_context/history/agent/loop_4_1778889107.md",
+                "task_context/history/reviewer/loop_4.md",
+                "task_context/history/agent/loop_4_1778889532.md",
+                "task_context/history/agent/loop_3_1778889603.md",
+                "task_context/history/agent/loop_3_1778889604.md",
+                "task_context/history/agent/loop_4_1778889810.md",
+                "task_context/history/agent/loop_4_1778890560.md",
+                "task_context/history/agent/loop_4_1778891217.md",
+                "artifacts/_project/report/redream_evidence_v2.md",
+                "artifacts/redream_evidence_v2.md",
+                "task_context/history/agent/loop_4_1778895396.md",
+                "artifacts/dream_reports/dream_20260516T011810/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260516T011810/median/paper_framing.md",
+                "artifacts/dream_reports/dream_20260516T011810/worst/paper_framing.md",
+                "task_context/history/agent/loop_5.md",
+                "task_context/history/agent/loop_5_1778898221.md",
+                "artifacts/dream_reports/dream_20260516T011810/best/review_report.md",
+                "artifacts/dream_reports/dream_20260516T011810/median/review_report.md",
+                "artifacts/dream_reports/dream_20260516T011810/worst/review_report.md",
+                "task_context/history/agent/loop_5_1778898533.md",
+                ".claude/sessions/agent_3dde598c/CLAUDE.md",
+                ".claude/sessions/agent_3dde598c/AGENTS.md",
+                "task_context/history/agent/loop_5_1778898761.md",
+                ".claude/sessions/agent_89bf97d0/CLAUDE.md",
+                ".claude/sessions/agent_89bf97d0/AGENTS.md",
+                "task_context/history/agent/loop_5_1778900363.md",
+                ".claude/sessions/agent_17452cf3/CLAUDE.md",
+                ".claude/sessions/agent_17452cf3/AGENTS.md",
+                "artifacts/rsa_method_audit_report.md",
+                "artifacts/vla_rsa_method_audit.md",
+                "task_context/history/agent/loop_5_1778900990.md",
+                ".claude/sessions/agent_724b413b/CLAUDE.md",
+                ".claude/sessions/agent_724b413b/AGENTS.md",
+                "artifacts/demo_standardized_rsa.md",
+                "artifacts/branch_split_rsa_results.md",
+                "task_context/history/agent/loop_5_1778901011.md",
+                ".claude/sessions/agent_9a721eb1/CLAUDE.md",
+                ".claude/sessions/agent_9a721eb1/AGENTS.md",
+                "task_context/history/agent/loop_5_1778902485.md",
+                ".claude/sessions/agent_7bc02293/CLAUDE.md",
+                ".claude/sessions/agent_7bc02293/AGENTS.md",
+                "artifacts/unified_rsa_summary.md",
+                "artifacts/_project/report/d041_final_report.md",
+                "task_context/history/agent/loop_5_1778903286.md",
+                ".claude/sessions/agent_3425744c/CLAUDE.md",
+                ".claude/sessions/agent_3425744c/AGENTS.md",
+                "task_context/history/agent/loop_5_1778906572.md"
+              ],
+              "durationMs": 18,
+              "numFiles": 100,
+              "truncated": true
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013YYeAbhpC83H9ZVTxiPYbT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/IDEA_BRIEF.md",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "76d4a836-318d-4b32-9223-0c90b8b15ffc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BqXui1bRb86UzBpBBHvNzt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1925,
+                "cache_read_input_tokens": 29881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1925
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T14:06:01.753Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013YYeAbhpC83H9ZVTxiPYbT",
+              "type": "tool_result",
+              "content": "1\t# Idea Brief: VLA-SSD: Do VLAs Know Which Demonstrations Are Good? Self-Referential Quality Scoring from Pretrained Representations\n2\t\n3\t\n4\t- **Idea ID**: `idea_004`\n5\t- **Created**: 2026-05-15\n6\t- **Approved**: 2026-05-15\n7\t- **Source**: foreign:be-idea-gen-0509-14\n8\t- **Level**: top-tier\n9\t- **Target Venues**: CoRL 2026 (abstract deadline May 26, full paper May 29, 2026), ICRA 2027 (~September 2026 deadline, backup if additional real-world validation needed), ICLR 2027 (~October 2026)\n10\t\n11\t## Seed Topic\n12\t\n13\t按照以下方向，生成1-2个优质idea，保质不求量：Seed 2: Reinforcement-Informed Demonstration Distillation for Noise-Robust VLA Training\n14\tTarget: CoRL 2026 (Austin, Nov 9–12, 2026). Abstract deadline 2026-05-26 (12 days from today 2026-05-14); paper deadline 2026-05-29 (15 days).\n15\tDirection: RL-inspired experience scoring and filtering for VLA training data — methods that leverage data-intrinsic signals to identify and down-weight noisy, redundant, or suboptimal actions in real-world demonstration datasets before or during VLA fine-tuning. Real-world teleoperation data inevitably contains noise: hesitation pauses, corrective motions, grip fumbles, suboptimal trajectories, and redundant repeated actions. Standard behavioral cloning treats all timesteps equally, forcing the VLA to memorize noise as if it were signal — this is a fundamental source of brittleness. By borrowing the experience replay and advantage estimation machinery from offline RL, we can score each (state, action) pair by its contribution to task completion and filter or re-weight the training distribution accordingly. Unlike full offline RL (which replaces BC entirely), this approach retains the simplicity and stability of VLA fine-tuning while using RL-derived scores as a data curation signal. The key theoretical insight is that demonstration noise creates multi-modal action distributions at identical states, inflating the entropy of the learned policy; scoring and filtering collapses these modes to the high-performing subset, yielding a sharper, more robust policy.\n16\tRecent landscape (do not duplicate): Behavior Cloning, OpenVLA: An Open-Source Vision-Language-Action Model, FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models, PLD: Probe, Learn, Distill – Self-Improving Vision-Language-Action Models with Data Generation via Residual RL, REDI: Refined Policy Distillation: From VLA Generalists to RL Experts, GOLD: Guided Offline Learning from Demonstrations, SHS: An Offline Reinforcement Learning Algorithm Based on Selection of High-Quality Samples, PER: Prioritized Experience Replay, PRGS: Peak Reward Guided Trajectory Segmentation, What Can RL Bring to VLA Generalization? An Empirical Study, πRL: πRL: Manifold Policy Reinforcement Learning for Vision-Language-Action Models\n17\tContribution type: METHOD ONLY. A two-stage demonstration distillation pipeline: (1) Temporal Advantage Scoring — train a lightweight value function on the demonstration data itself (using hindsight relabeling: final task success as sparse reward, or dense reward from state-goal distance) to compute per-timestep advantage estimates; actions with negative advantage (worse than the trajectory's average) are flagged as noisy; (2) Curriculum-Weighted Fine-Tuning — use the advantage scores as per-sample weights during VLA fine-tuning, with a curriculum that starts permissive (all data) and progressively sharpens to high-advantage subsets; (3) Consistency Regularization — for state-action pairs with high variance across similar states, add a consistency loss that encourages the VLA to commit to the high-scoring mode. No real robot required — the scoring is derived entirely from the existing dataset's structure.\n18\tEVAL PROTOCOL — IMPORTANT:\n19\tTRAIN on standard LIBERO suites (Object/Spatial/Goal/Long/90), with synthetic noise injection to simulate real-world demonstration noise (action jitter, redundant sub-trajectories, random pauses).\n20\tEVALUATE on existing LIBERO-PLUS / LIBERO-PRO style perturbation benchmarks (and similar community-released robustness benchmark series). DO NOT spend time constructing your own robustness benchmark — use existing perturbation suites and route the budget into the method.\n21\tReport robustness gap (Δ between nominal LIBERO success and perturbed-suite success) AND nominal preservation (must not regress on base LIBERO).\n22\tAdditionally report: performance under varying noise injection ratios (10%/30%/50% noisy demonstrations), ablation of scoring function choices (MC return, TD advantage, trajectory ranking), and data efficiency curves (how much noisy data can be tolerated).\n23\tExperiments can be extended to other benchmarks with noisy demonstration collection (e.g., RLBench with injected perturbations).\n24\tSIM-ONLY MITIGATION: Using sim demonstrations with controlled noise injection is methodologically clean and well-accepted at CoRL. The scoring method is agnostic to sim/real — it operates on (state, action) pairs.\n25\tHARD CONSTRAINTS:\n26\tCompute: ≤200 H100-hours total. Fine-tune from open VLA checkpoints (OpenVLA, SmolVLA, OpenPi, π0) — no pretraining. Value function is lightweight (small MLP head). Show the math.\n27\tTime: ≤20 days. Build on OpenVLA, OpenPi and other proper codebases, LeRobot, HF Transformers.\n28\tEval datasets: LIBERO base (training/nominal eval) + LIBERO-PLUS / LIBERO-PRO and similar existing perturbation suites (perturbed eval). No custom benchmark construction.\n29\tLook for: temporal advantage estimation from demonstration data without environment interaction, hindsight relabeling strategies for sparse-reward scoring, curriculum learning schedules that progressively filter noisy samples, connections between action distribution entropy and robustness, offline RL value estimation adapted to VLA's representation space. Avoid: requiring environment interaction or online rollouts (must be purely offline), full offline RL replacing BC (too unstable for VLA scale), simple trajectory-level success filtering (too coarse — need timestep-level scoring), just-add-noise training without filtering mechanism.\n30\tTag: direction=robust_vla, contribution_type=method, sub_direction=demonstration_distillation, target_venues=[\"CoRL 2026\"].\n31\t\n32\t## Generation Journey\n33\t\n34\t1. **Start** — 开始生成，seed: 'Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\\nDirection：Meta-Brain VLA（无真机）\\n*让LLM在不同场景下进行角色切换，辅助VLA应对多个场景，本质上还是利用潜在能力对视觉部分表征进行优化。\\nMotivation：希望利用大模型已具备知识辅助VLA决策，达到类似Agentic元大脑框架的效果\\nidea创新性：\\n（1）使用现有性能比较强的大模型辅助VLA决策，回传时选择更新Skill库或者尝试优化Prompt\\n（2）根据不同的场景信息选择角色，能够有效解决泛化\\n（3）尝试用一种统一的表征来表达不同的信息\\n\\n元大脑角色切换：\\nLLM作为元大脑，根据当前任务场景动态路由切换以下三种模式：\\n（1）感知增强模式 ：环境光照暗、物体遮挡严重或遇到罕见物体，LLM专注输出空间关系描述或视觉线索引导，辅助 VLA 重新对齐特征\\n（2）逻辑拆解模式：用户指令模糊，LLM 此时退回 Long-term Planning 角色，将任务分解为一系列 Skill 序列。\\n（3）异常干预模式：VLA 预测的 Action 概率分布不确定性高，或者物理碰撞检测报错，LLM 介入进行反思，对比当前状态与目标状态，指导VLA改出。\\n\\n动态 Skill 库的进化逻辑：\\n         LLM 具备写Skill能力，无法解决时有自我更新能力，并将其持久化到库中。\\n\\n技术难点：\\n（1）无论 LLM 扮演什么角色，它最终产出一组同类型但不同功能的优化形式\\n1）混合语义 Token (Hybrid Semantic Tokens)\\n输出固定维度的嵌入向量，根据不同角色重塑原始视觉token\\n2）功能前缀 (Function Prefix)\\n在 LLM 输出的表征最前面，加入 Role Embedding，标识当前LLM的指导意见，能够使得VLA接收后，注意力机制或某些层面上发生相应变化。\\n3）注意力热力图 (Attention Masking)\\n让 LLM 生成注意力引导，始终返回给VLA的是一个权重矩阵\\n压缩功能=将无效区域的权重降为 0。\\n3D 引入功能 = 给具备空间深度的特征点赋予更高的初始权重。\\n技能调用功能 = 强化与该技能相关的物体特征。\\n\\n（2）哪些部分要训练，如何训练？\\n1）如何让LLM切换角色，可以划分关键帧前后两阶段训练\\n2）Adapter的训练范式，需要元学习，构造功能性数据集学习不同任务需要的输出。\\n3）信息穿透性，训练出的表征需要能对VLA有明显影响'\n35\t2. **Problem Discovery** (675s) — 发现 5 个研究方向\n36\t   - Role-Conditioned Meta-Brain for Adaptive VLA Enhancement\n37\t   - Unified Functional Token Interface for LLM-to-VLA Communication\n38\t   - Uncertainty-Triggered LLM Intervention with Representation-Level Correction\n39\t   - Scene-Adaptive Skill Routing via Meta-Brain Role Switching\n40\t   - LLM-Guided Attention Reweighting for VLA Robustness Under Perturbation\n41\t3. **Method Synthesis** (788s) — 完成: \"Role-Conditioned Meta-Brain for Adaptive VLA Enhancement\" [top-tier] → CoRL 2026 (abstract: May 26, paper: May 29, 2026) — top-tier robotics-learning venue, most natural fit for VLA representation-level intervention, AAAI 2027 (abstract: Jul 25, paper: Aug 1, 2026) — broad top-tier AI venue accepting embodied AI and robotics, ICLR 2027 (abstract: Sep 19, paper: Sep 24, 2026) — top-tier ML venue, strong fit for architectural innovation in VLA representation learning\n42\t3. **Method Synthesis** (515s) — 完成: \"Unified Functional Token Interface for LLM-to-VLA Communication\" [top-tier] → CoRL 2026 (abstract May 26, paper May 29 — top-tier robotics venue, ideal fit for VLA interface design contribution), ICLR 2027 (expected deadline ~Sep-Oct 2026 — highest-tier ML venue for architectural contributions), AAAI 2027 (expected deadline ~Jul-Aug 2026 — strong AI venue, confirmed Feb 16-23 2027 in Montréal)\n43\t3. **Method Synthesis** (631s) — 完成: \"Uncertainty-Triggered LLM Intervention with Representation-Level Correction\" [top-tier] → CoRL 2026 (abstract: May 26, paper: May 29 — confirmed open, premier robot learning venue), ICLR 2027 (expected deadline: ~Sep-Oct 2026 — highest-tier ML venue, strong fit for representation-learning contribution), AAAI 2027 (expected deadline: ~Jul-Aug 2026 — top AI venue), ICRA 2027 (expected deadline: ~Sep 2026 — top robotics venue)\n44\t3. **Method Synthesis** (619s) — 完成: \"Scene-Adaptive Skill Routing via Meta-Brain Role Switching\" [solid] → CoRL 2026 (paper deadline May 28-29, 2026 — top-tier robot learning venue, ideal topical fit for skill evolution in robot manipulation), ICLR 2027 (expected deadline ~October 2026 — top-tier ML venue, meta-learning contribution fits core audience), AAAI 2027 (expected deadline ~August 2026 — top-tier AI venue, fallback if CoRL reviews suggest broader framing needed)\n45\t3. **Method Synthesis** (676s) — 完成: \"LLM-Guided Attention Reweighting for VLA Robustness Under Perturbation\" [solid] → CoRL 2026 (abstract: May 25, paper: May 28 — top venue for robot learning, directly relevant to VLA robustness), ICLR 2027 (projected abstract: Sep 19, paper: Sep 24 — highest-tier ML venue, contribution level supports it), AAAI 2027 (projected abstract: Jul 26, paper: Aug 2 — top-tier AI venue, broad audience for LLM+robotics), ICRA 2027 (projected deadline: Sep 2026 — flagship robotics venue, strong fit for manipulation robustness evaluation)\n46\t\n47\t## Core Problem\n48\t\n49\tOffline VLA fine-tuning on heterogeneous demonstration datasets is bottlenecked by the absence of reliable, annotation-free quality signals. Existing approaches each impose substantial external dependencies: GVL (ICLR 2025 Spotlight) achieves zero-shot value estimation across 300+ tasks but requires per-frame inference from Gemini-scale VLMs; TOPReward (Feb 2026) achieves 0.947 VOC zero-shot but requires a separate 4-8B VLM at scoring time; SCIZOR (ICRA 2026) uses external DINO-V2 features not adapted to the action domain and applies hard binary filtering that discards gradient signal; RINSE (ICML 2025) provides architecture-agnostic trajectory smoothness scoring via SAL/TED metrics without any learned features; influence-function methods (CUPID, CoRL 2025; QoQ, arXiv 2603.09056) require evaluation rollouts or curated validation datasets; PROGRESSOR (ICCV 2025) requires external pretraining on EPIC-KITCHENS video; and ProgressVLA (Microsoft, March 2026) trains a separate progress estimator on large-scale video-text datasets. Online methods (SRPO, VLAC) require environment interaction entirely. Notably, a survey of ICLR 2026 VLA submissions reveals that data curation remains a critically underrepresented problem despite being widely acknowledged as a bottleneck. A fundamental question remains: do VLA models, through large-scale pretraining on action-prediction tasks, already encode sufficient task-progress information in their own internal representations to score demonstration quality — enabling a fully self-referential pipeline with zero external models, zero additional inference cost, and zero annotation requirements?\n50\t\n51\t## Opportunity / Why Now\n52\t\n53\tRecent mechanistic interpretability work provides moderate but encouraging evidence that VLA representations encode task-relevant information. The Emergent World Representations study (arXiv 2509.24559) demonstrates that linear probes on OpenVLA hidden states achieve R²=0.667 for state transition vector prediction (K=30 setting), confirming meaningful task-dynamic information is accessible in VLA feature space — though this falls well short of perfect prediction and concerns continuous state transitions rather than discrete progress. Complementarily, Probing OpenVLA for Symbolic States (arXiv 2502.04558) shows >90% accuracy for discrete symbolic state classification (binary properties like is_grasped, is_on_table) on LIBERO-Spatial, demonstrating that VLA representations linearly encode task-relevant binary predicates. Most directly, the mechanistic study 'Not All Features Are Created Equal' (arXiv 2603.19233) reports that π0.5 expert pathway features achieve R²=0.45 for continuous state prediction and AUC=0.93 for success prediction, with expert pathways consistently outperforming VLM pathways for motor-relevant information — directly demonstrating discriminative capacity in VLA features for quality-related judgments. SAE analyses (arXiv 2603.19183) reveal that 97-99% of individual sparse dictionary features are memorized on LIBERO-tuned models, but DROID-pretrained models show only 89.19% memorization, and critically, aggregate hidden-state vectors remain discriminative for state-level properties despite individual-feature memorization. The OpenGVL benchmark (arXiv 2509.17321) further reveals that open-source VLMs achieve only ~70% of closed-source VLM performance on temporal progress estimation, suggesting that VLA-internal features — which are natively adapted to the action domain — may offer competitive or superior signal without requiring external VLM inference. This creates a testable opportunity: if VLA features can support temporal distance estimation (frame-pair relative progress) beyond what positional embeddings alone provide, and if this signal outperforms both generic visual features (DINO-V2) and simple trajectory geometry (RINSE), then the same model being fine-tuned can score its own training data at zero marginal cost.\n54\t\n55\t## Landscape (SOTA & Limitations)\n56\t\n57\tThe demonstration curation space for VLA fine-tuning has rapidly expanded across seven complementary approaches: (1) **Zero-shot VLM value estimation**: GVL (ICLR 2025 Spotlight, arXiv 2411.04549) poses value estimation as temporal ordering of shuffled video frames using Gemini-1.5-Pro, achieving zero-shot value prediction across 300+ tasks with Value-Order Correlation (VOC) as the metric. Applied to dataset filtering and advantage-weighted regression (AWR) on real ALOHA tasks. Limitation: requires per-frame API calls to a Gemini-scale VLM, with no reported compute cost analysis. OpenGVL (arXiv 2509.17321) benchmarks open-source VLMs on this task, finding they achieve ~70% of closed-source performance. TOPReward (Feb 2026, arXiv 2602.19313) extracts zero-shot progress from VLM token probabilities (0.947 VOC on Qwen3-VL), applied to advantage-weighted fine-tuning of pi0. Both require a separate large VLM at scoring time. (2) **Self-supervised visual curation**: SCIZOR (ICRA 2026, arXiv 2505.22626) trains a temporal distance classifier on frozen DINO-V2 features to estimate progress, then hard-filters low-quality timesteps and removes redundant data via joint state-action deduplication. Achieves 5.4% improvement on RoboMimic, 8.1% on OXE-Magic-Soup, and 32.9% on Sirius-Fleet real-robot tasks. Limitations: external visual features without action-domain adaptation; hard binary filtering discards gradient signal; tested primarily on Octo, not modern VLAs. VLA-SSD directly extends SCIZOR's temporal distance classification framework to VLA-internal representations, testing whether action-domain adaptation through VLA pretraining provides superior progress signals, and replaces hard filtering with soft reward weighting grounded in iw-SFT theory. (3) **Trajectory geometry heuristics**: RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL, frequency-domain smoothness) and Trajectory-Envelope Distance (TED, spatial contact-aware geometry) for architecture-agnostic demo scoring. Achieves 16% higher success with 1/6 data on RoboMimic, 20% improvement with 1/2 data in real-world tasks, and 5.6% mean success improvement on LIBERO-10 via STRAP integration. Requires zero model access or learned features. This is the critical lower bound: if learned features cannot beat pure trajectory geometry, feature-based scoring is unjustified. (4) **External progress estimators**: PROGRESSOR (ICCV 2025, arXiv 2411.17764) learns a task-agnostic reward function pretrained on EPIC-KITCHENS for goal-conditioned RL. ProgressVLA (Microsoft, March 2026, arXiv 2603.27670) pre-trains a dedicated progress estimator on large-scale unsupervised video-text robotic datasets (0.07 prediction residual, zero-shot real-world transfer), integrated into a diffusion VLA with inverse dynamics guidance. Both require external pretraining data/models. (5) **Influence-function curation**: CUPID (CoRL 2025) and QoQ (arXiv 2603.09056) use REINFORCE-style influence estimation for trajectory-level filtering. QoQ achieves 23.2%/30.0% improvements on GR00T N1 VLA. Both require evaluation rollouts or curated validation sets and provide only trajectory-level granularity. (6) **External reward models**: Robometer (RSS 2026, arXiv 2603.02115) trains Qwen3-VL-4B on 1M+ trajectories for dense per-frame progress with strong zero-shot transfer (Kendall tau=0.66 OOD). Requires a separate 4-8B VLM at scoring time. (7) **Online self-improvement**: SRPO (arXiv 2511.15605) uses the model's own successful rollouts for self-referential optimization (48.9→99.2% on LIBERO). PLD (ICLR 2026, arXiv 2511.00091) uses residual RL to probe VLA failure regions, collect recovery data, and distill back via SFT (99% on LIBERO, 50%+ gains on SimplerEnv). VLAC (arXiv 2509.15937) integrates a dense progress critic into an online RL loop. All require environment interaction. (8) **Weighted BC frameworks**: VACO (ICLR 2025) uses a meta-scoring network for bi-level weighted BC on D4RL. iw-SFT (arXiv 2507.12856) proves that SFT on curated data maximizes a lower bound on the RL objective, tightened by importance weighting — providing theoretical justification for quality-weighted BC as a principled approach. **Gap**: No work has investigated whether VLA-internal features — uniquely adapted to the action domain through pretraining and already computed during the forward pass — can serve as a self-referential progress estimator that (a) beats trajectory geometry heuristics (RINSE), justifying learned features, (b) matches or exceeds external VLM scoring (GVL/TOPReward) on task-specific data, and (c) does so at zero marginal cost since features are a byproduct of the fine-tuning forward pass.\n58\t\n59\t## Proposed Approach\n60\t\n61\tVLA-SSD is a three-stage offline pipeline that tests a mechanistic hypothesis — VLA pretrained representations encode task-progress information sufficient for self-referential demonstration scoring — and operationalizes positive findings into a theoretically-grounded curriculum-weighted fine-tuning method. The theoretical foundation comes from iw-SFT (arXiv 2507.12856), which proves that SFT on quality-scored data maximizes a lower bound on the RL objective, tightened by importance weighting; VLA-SSD's quality scores serve as the importance weights, making the pipeline provably principled rather than heuristic.\n62\t\n63\t**Stage 1 — Temporal Distance Probing with Positional Embedding Controls**: Extract frozen hidden-state representations h_l(t) from every transformer layer l of the pretrained VLA (OpenVLA 7B as primary, π0.5 as validation) for each demonstration timestep. Train lightweight probes at each layer using TWO complementary targets designed to be robust against positional embedding shortcuts:\n64\t\n65\t(a) **Temporal distance classification** (primary target): Given a pair of frames (t_i, t_j) from the same trajectory, predict relative progress Δp = |t_j - t_i|/T from feature differences h_l(t_j) - h_l(t_i). This forces the probe to compare semantic content between two frames rather than recovering absolute temporal position from a single frame, directly mitigating the positional embedding shortcut. This explicitly extends SCIZOR's temporal distance classification framework — which uses frozen DINO-V2 features — to the VLA's own internal representations, testing whether action-domain adaptation through VLA pretraining provides superior progress signals.\n66\t\n67\t(b) **Sub-task predicate classification** (secondary target, LIBERO only): LIBERO provides BDDL goal predicates (e.g., is_grasped, is_on_table, is_in_drawer) checkable at every simulator timestep. Train binary classifiers on VLA features to predict sub-task completion milestones. These are discrete semantic properties that cannot be predicted from positional embeddings, providing the strongest evidence for genuine task understanding.\n68\t\n69\t(c) **Positional embedding control experiment** (probe-level only, not full pipeline): Train identical probes on positional embeddings alone (extracted from the same transformer layers but with content features zeroed out / using only the position component). If VLA content features significantly outperform positional-embedding-only probes, this confirms the signal comes from task-semantic representations, not temporal position recovery.\n70\t\n71\tProbe architecture: single linear layer + sigmoid for classification, ~50K params each. 80/20 train/validation split within the demonstration set. Rank layers by validation performance (Spearman ρ for temporal distance, AUC for sub-task predicates); select best layer l* automatically. Based on arXiv 2603.19233, expert pathway features (PG5, PG11 equivalent) are hypothesized most informative, but selection is fully data-driven.\n72\t\n73\t**Critical controlled ablations** (run in parallel):\n74\t- **DINO-V2 (ViT-L/14) baseline**: Extract DINO-V2 features from the same observations, train identical probes — isolates the effect of action-domain adaptation.\n75\t- **RINSE baseline**: Compute SAL and TED scores on the same trajectories — tests whether learned features beat trajectory geometry heuristics. If RINSE matches or exceeds our probes, the 'VLA features encode progress' narrative is undermined.\n76\t- **DINO-V2 Fallback**: If no VLA layer achieves Spearman ρ > 0.3 on temporal distance AND no layer achieves AUC > 0.7 on sub-task predicates, switch to DINO-V2 features for subsequent stages and report this as a negative mechanistic finding.\n77\t\n78\t**Stage 2 — Hierarchical Quality Scoring**: Use the temporal distance probe from l* to compute per-timestep progress estimates by anchoring relative to the first frame: q_t = probe_{l*}(h_{l*}(t) - h_{l*}(0)). Derive trajectory-level quality Q(τ) = α * q_T + β * mono(τ) + γ * mean(q_t), combining terminal progress (endpoint quality), progress monotonicity (fraction of consecutive timesteps with increasing estimated progress), and average progress. Default weights: α=0.5, β=0.3, γ=0.2. Compute timestep-level reward weights w_t = q_t * Q(τ). Apply temperature-controlled normalization for the trajectory component. On LIBERO, additionally compute sub-task milestone coverage as a trajectory quality signal.\n79\t\n80\t**Stage 3 — Curriculum-Weighted LoRA Fine-Tuning**: Fine-tune the VLA with LoRA (rank 16-64) using weighted BC loss with a curriculum temperature schedule that starts permissive and progressively sharpens quality weighting over training. Specifically, define a temperature parameter τ(epoch) that decreases linearly from τ_max to τ_min over training: w_t^(epoch) = softmax(q_t / τ(epoch)), where τ_max = 2.0 (near-uniform early training, allowing the model to learn from all demonstrations) and τ_min = 0.5 (sharp quality weighting in later epochs, focusing gradient signal on high-quality timesteps). The curriculum rationale: early uniform training establishes broad behavioral coverage, while progressive sharpening concentrates fine-tuning on the most informative demonstrations — analogous to curriculum learning in knowledge distillation (Curriculum Temperature, arXiv 2211.16231) and grounded by iw-SFT's theoretical result that tighter importance weighting progressively tightens the RL objective lower bound. The loss at each epoch: L = Σ_t w_t^(epoch) * ||a_t - π_θ(o_t, l)||². Unlike SCIZOR's hard filtering, soft reward weighting preserves gradient signal from all timesteps proportional to quality. Unlike GVL+AWR, no external VLM is needed — features come from the model being fine-tuned. Probes are trained once on pretrained features and frozen; all quality scores are computed before fine-tuning begins, ensuring no circular dependency."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "1966625f-6aa8-4e30-882b-d24a41a8ba1d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/IDEA_BRIEF.md",
+                "content": "# Idea Brief: VLA-SSD: Do VLAs Know Which Demonstrations Are Good? Self-Referential Quality Scoring from Pretrained Representations\n\n\n- **Idea ID**: `idea_004`\n- **Created**: 2026-05-15\n- **Approved**: 2026-05-15\n- **Source**: foreign:be-idea-gen-0509-14\n- **Level**: top-tier\n- **Target Venues**: CoRL 2026 (abstract deadline May 26, full paper May 29, 2026), ICRA 2027 (~September 2026 deadline, backup if additional real-world validation needed), ICLR 2027 (~October 2026)\n\n## Seed Topic\n\n按照以下方向，生成1-2个优质idea，保质不求量：Seed 2: Reinforcement-Informed Demonstration Distillation for Noise-Robust VLA Training\nTarget: CoRL 2026 (Austin, Nov 9–12, 2026). Abstract deadline 2026-05-26 (12 days from today 2026-05-14); paper deadline 2026-05-29 (15 days).\nDirection: RL-inspired experience scoring and filtering for VLA training data — methods that leverage data-intrinsic signals to identify and down-weight noisy, redundant, or suboptimal actions in real-world demonstration datasets before or during VLA fine-tuning. Real-world teleoperation data inevitably contains noise: hesitation pauses, corrective motions, grip fumbles, suboptimal trajectories, and redundant repeated actions. Standard behavioral cloning treats all timesteps equally, forcing the VLA to memorize noise as if it were signal — this is a fundamental source of brittleness. By borrowing the experience replay and advantage estimation machinery from offline RL, we can score each (state, action) pair by its contribution to task completion and filter or re-weight the training distribution accordingly. Unlike full offline RL (which replaces BC entirely), this approach retains the simplicity and stability of VLA fine-tuning while using RL-derived scores as a data curation signal. The key theoretical insight is that demonstration noise creates multi-modal action distributions at identical states, inflating the entropy of the learned policy; scoring and filtering collapses these modes to the high-performing subset, yielding a sharper, more robust policy.\nRecent landscape (do not duplicate): Behavior Cloning, OpenVLA: An Open-Source Vision-Language-Action Model, FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models, PLD: Probe, Learn, Distill – Self-Improving Vision-Language-Action Models with Data Generation via Residual RL, REDI: Refined Policy Distillation: From VLA Generalists to RL Experts, GOLD: Guided Offline Learning from Demonstrations, SHS: An Offline Reinforcement Learning Algorithm Based on Selection of High-Quality Samples, PER: Prioritized Experience Replay, PRGS: Peak Reward Guided Trajectory Segmentation, What Can RL Bring to VLA Generalization? An Empirical Study, πRL: πRL: Manifold Policy Reinforcement Learning for Vision-Language-Action Models\nContribution type: METHOD ONLY. A two-stage demonstration distillation pipeline: (1) Temporal Advantage Scoring — train a lightweight value function on the demonstration data itself (using hindsight relabeling: final task success as sparse reward, or dense reward from state-goal distance) to compute per-timestep advantage estimates; actions with negative advantage (worse than the trajectory's average) are flagged as noisy; (2) Curriculum-Weighted Fine-Tuning — use the advantage scores as per-sample weights during VLA fine-tuning, with a curriculum that starts permissive (all data) and progressively sharpens to high-advantage subsets; (3) Consistency Regularization — for state-action pairs with high variance across similar states, add a consistency loss that encourages the VLA to commit to the high-scoring mode. No real robot required — the scoring is derived entirely from the existing dataset's structure.\nEVAL PROTOCOL — IMPORTANT:\nTRAIN on standard LIBERO suites (Object/Spatial/Goal/Long/90), with synthetic noise injection to simulate real-world demonstration noise (action jitter, redundant sub-trajectories, random pauses).\nEVALUATE on existing LIBERO-PLUS / LIBERO-PRO style perturbation benchmarks (and similar community-released robustness benchmark series). DO NOT spend time constructing your own robustness benchmark — use existing perturbation suites and route the budget into the method.\nReport robustness gap (Δ between nominal LIBERO success and perturbed-suite success) AND nominal preservation (must not regress on base LIBERO).\nAdditionally report: performance under varying noise injection ratios (10%/30%/50% noisy demonstrations), ablation of scoring function choices (MC return, TD advantage, trajectory ranking), and data efficiency curves (how much noisy data can be tolerated).\nExperiments can be extended to other benchmarks with noisy demonstration collection (e.g., RLBench with injected perturbations).\nSIM-ONLY MITIGATION: Using sim demonstrations with controlled noise injection is methodologically clean and well-accepted at CoRL. The scoring method is agnostic to sim/real — it operates on (state, action) pairs.\nHARD CONSTRAINTS:\nCompute: ≤200 H100-hours total. Fine-tune from open VLA checkpoints (OpenVLA, SmolVLA, OpenPi, π0) — no pretraining. Value function is lightweight (small MLP head). Show the math.\nTime: ≤20 days. Build on OpenVLA, OpenPi and other proper codebases, LeRobot, HF Transformers.\nEval datasets: LIBERO base (training/nominal eval) + LIBERO-PLUS / LIBERO-PRO and similar existing perturbation suites (perturbed eval). No custom benchmark construction.\nLook for: temporal advantage estimation from demonstration data without environment interaction, hindsight relabeling strategies for sparse-reward scoring, curriculum learning schedules that progressively filter noisy samples, connections between action distribution entropy and robustness, offline RL value estimation adapted to VLA's representation space. Avoid: requiring environment interaction or online rollouts (must be purely offline), full offline RL replacing BC (too unstable for VLA scale), simple trajectory-level success filtering (too coarse — need timestep-level scoring), just-add-noise training without filtering mechanism.\nTag: direction=robust_vla, contribution_type=method, sub_direction=demonstration_distillation, target_venues=[\"CoRL 2026\"].\n\n## Generation Journey\n\n1. **Start** — 开始生成，seed: 'Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\\nDirection：Meta-Brain VLA（无真机）\\n*让LLM在不同场景下进行角色切换，辅助VLA应对多个场景，本质上还是利用潜在能力对视觉部分表征进行优化。\\nMotivation：希望利用大模型已具备知识辅助VLA决策，达到类似Agentic元大脑框架的效果\\nidea创新性：\\n（1）使用现有性能比较强的大模型辅助VLA决策，回传时选择更新Skill库或者尝试优化Prompt\\n（2）根据不同的场景信息选择角色，能够有效解决泛化\\n（3）尝试用一种统一的表征来表达不同的信息\\n\\n元大脑角色切换：\\nLLM作为元大脑，根据当前任务场景动态路由切换以下三种模式：\\n（1）感知增强模式 ：环境光照暗、物体遮挡严重或遇到罕见物体，LLM专注输出空间关系描述或视觉线索引导，辅助 VLA 重新对齐特征\\n（2）逻辑拆解模式：用户指令模糊，LLM 此时退回 Long-term Planning 角色，将任务分解为一系列 Skill 序列。\\n（3）异常干预模式：VLA 预测的 Action 概率分布不确定性高，或者物理碰撞检测报错，LLM 介入进行反思，对比当前状态与目标状态，指导VLA改出。\\n\\n动态 Skill 库的进化逻辑：\\n         LLM 具备写Skill能力，无法解决时有自我更新能力，并将其持久化到库中。\\n\\n技术难点：\\n（1）无论 LLM 扮演什么角色，它最终产出一组同类型但不同功能的优化形式\\n1）混合语义 Token (Hybrid Semantic Tokens)\\n输出固定维度的嵌入向量，根据不同角色重塑原始视觉token\\n2）功能前缀 (Function Prefix)\\n在 LLM 输出的表征最前面，加入 Role Embedding，标识当前LLM的指导意见，能够使得VLA接收后，注意力机制或某些层面上发生相应变化。\\n3）注意力热力图 (Attention Masking)\\n让 LLM 生成注意力引导，始终返回给VLA的是一个权重矩阵\\n压缩功能=将无效区域的权重降为 0。\\n3D 引入功能 = 给具备空间深度的特征点赋予更高的初始权重。\\n技能调用功能 = 强化与该技能相关的物体特征。\\n\\n（2）哪些部分要训练，如何训练？\\n1）如何让LLM切换角色，可以划分关键帧前后两阶段训练\\n2）Adapter的训练范式，需要元学习，构造功能性数据集学习不同任务需要的输出。\\n3）信息穿透性，训练出的表征需要能对VLA有明显影响'\n2. **Problem Discovery** (675s) — 发现 5 个研究方向\n   - Role-Conditioned Meta-Brain for Adaptive VLA Enhancement\n   - Unified Functional Token Interface for LLM-to-VLA Communication\n   - Uncertainty-Triggered LLM Intervention with Representation-Level Correction\n   - Scene-Adaptive Skill Routing via Meta-Brain Role Switching\n   - LLM-Guided Attention Reweighting for VLA Robustness Under Perturbation\n3. **Method Synthesis** (788s) — 完成: \"Role-Conditioned Meta-Brain for Adaptive VLA Enhancement\" [top-tier] → CoRL 2026 (abstract: May 26, paper: May 29, 2026) — top-tier robotics-learning venue, most natural fit for VLA representation-level intervention, AAAI 2027 (abstract: Jul 25, paper: Aug 1, 2026) — broad top-tier AI venue accepting embodied AI and robotics, ICLR 2027 (abstract: Sep 19, paper: Sep 24, 2026) — top-tier ML venue, strong fit for architectural innovation in VLA representation learning\n3. **Method Synthesis** (515s) — 完成: \"Unified Functional Token Interface for LLM-to-VLA Communication\" [top-tier] → CoRL 2026 (abstract May 26, paper May 29 — top-tier robotics venue, ideal fit for VLA interface design contribution), ICLR 2027 (expected deadline ~Sep-Oct 2026 — highest-tier ML venue for architectural contributions), AAAI 2027 (expected deadline ~Jul-Aug 2026 — strong AI venue, confirmed Feb 16-23 2027 in Montréal)\n3. **Method Synthesis** (631s) — 完成: \"Uncertainty-Triggered LLM Intervention with Representation-Level Correction\" [top-tier] → CoRL 2026 (abstract: May 26, paper: May 29 — confirmed open, premier robot learning venue), ICLR 2027 (expected deadline: ~Sep-Oct 2026 — highest-tier ML venue, strong fit for representation-learning contribution), AAAI 2027 (expected deadline: ~Jul-Aug 2026 — top AI venue), ICRA 2027 (expected deadline: ~Sep 2026 — top robotics venue)\n3. **Method Synthesis** (619s) — 完成: \"Scene-Adaptive Skill Routing via Meta-Brain Role Switching\" [solid] → CoRL 2026 (paper deadline May 28-29, 2026 — top-tier robot learning venue, ideal topical fit for skill evolution in robot manipulation), ICLR 2027 (expected deadline ~October 2026 — top-tier ML venue, meta-learning contribution fits core audience), AAAI 2027 (expected deadline ~August 2026 — top-tier AI venue, fallback if CoRL reviews suggest broader framing needed)\n3. **Method Synthesis** (676s) — 完成: \"LLM-Guided Attention Reweighting for VLA Robustness Under Perturbation\" [solid] → CoRL 2026 (abstract: May 25, paper: May 28 — top venue for robot learning, directly relevant to VLA robustness), ICLR 2027 (projected abstract: Sep 19, paper: Sep 24 — highest-tier ML venue, contribution level supports it), AAAI 2027 (projected abstract: Jul 26, paper: Aug 2 — top-tier AI venue, broad audience for LLM+robotics), ICRA 2027 (projected deadline: Sep 2026 — flagship robotics venue, strong fit for manipulation robustness evaluation)\n\n## Core Problem\n\nOffline VLA fine-tuning on heterogeneous demonstration datasets is bottlenecked by the absence of reliable, annotation-free quality signals. Existing approaches each impose substantial external dependencies: GVL (ICLR 2025 Spotlight) achieves zero-shot value estimation across 300+ tasks but requires per-frame inference from Gemini-scale VLMs; TOPReward (Feb 2026) achieves 0.947 VOC zero-shot but requires a separate 4-8B VLM at scoring time; SCIZOR (ICRA 2026) uses external DINO-V2 features not adapted to the action domain and applies hard binary filtering that discards gradient signal; RINSE (ICML 2025) provides architecture-agnostic trajectory smoothness scoring via SAL/TED metrics without any learned features; influence-function methods (CUPID, CoRL 2025; QoQ, arXiv 2603.09056) require evaluation rollouts or curated validation datasets; PROGRESSOR (ICCV 2025) requires external pretraining on EPIC-KITCHENS video; and ProgressVLA (Microsoft, March 2026) trains a separate progress estimator on large-scale video-text datasets. Online methods (SRPO, VLAC) require environment interaction entirely. Notably, a survey of ICLR 2026 VLA submissions reveals that data curation remains a critically underrepresented problem despite being widely acknowledged as a bottleneck. A fundamental question remains: do VLA models, through large-scale pretraining on action-prediction tasks, already encode sufficient task-progress information in their own internal representations to score demonstration quality — enabling a fully self-referential pipeline with zero external models, zero additional inference cost, and zero annotation requirements?\n\n## Opportunity / Why Now\n\nRecent mechanistic interpretability work provides moderate but encouraging evidence that VLA representations encode task-relevant information. The Emergent World Representations study (arXiv 2509.24559) demonstrates that linear probes on OpenVLA hidden states achieve R²=0.667 for state transition vector prediction (K=30 setting), confirming meaningful task-dynamic information is accessible in VLA feature space — though this falls well short of perfect prediction and concerns continuous state transitions rather than discrete progress. Complementarily, Probing OpenVLA for Symbolic States (arXiv 2502.04558) shows >90% accuracy for discrete symbolic state classification (binary properties like is_grasped, is_on_table) on LIBERO-Spatial, demonstrating that VLA representations linearly encode task-relevant binary predicates. Most directly, the mechanistic study 'Not All Features Are Created Equal' (arXiv 2603.19233) reports that π0.5 expert pathway features achieve R²=0.45 for continuous state prediction and AUC=0.93 for success prediction, with expert pathways consistently outperforming VLM pathways for motor-relevant information — directly demonstrating discriminative capacity in VLA features for quality-related judgments. SAE analyses (arXiv 2603.19183) reveal that 97-99% of individual sparse dictionary features are memorized on LIBERO-tuned models, but DROID-pretrained models show only 89.19% memorization, and critically, aggregate hidden-state vectors remain discriminative for state-level properties despite individual-feature memorization. The OpenGVL benchmark (arXiv 2509.17321) further reveals that open-source VLMs achieve only ~70% of closed-source VLM performance on temporal progress estimation, suggesting that VLA-internal features — which are natively adapted to the action domain — may offer competitive or superior signal without requiring external VLM inference. This creates a testable opportunity: if VLA features can support temporal distance estimation (frame-pair relative progress) beyond what positional embeddings alone provide, and if this signal outperforms both generic visual features (DINO-V2) and simple trajectory geometry (RINSE), then the same model being fine-tuned can score its own training data at zero marginal cost.\n\n## Landscape (SOTA & Limitations)\n\nThe demonstration curation space for VLA fine-tuning has rapidly expanded across seven complementary approaches: (1) **Zero-shot VLM value estimation**: GVL (ICLR 2025 Spotlight, arXiv 2411.04549) poses value estimation as temporal ordering of shuffled video frames using Gemini-1.5-Pro, achieving zero-shot value prediction across 300+ tasks with Value-Order Correlation (VOC) as the metric. Applied to dataset filtering and advantage-weighted regression (AWR) on real ALOHA tasks. Limitation: requires per-frame API calls to a Gemini-scale VLM, with no reported compute cost analysis. OpenGVL (arXiv 2509.17321) benchmarks open-source VLMs on this task, finding they achieve ~70% of closed-source performance. TOPReward (Feb 2026, arXiv 2602.19313) extracts zero-shot progress from VLM token probabilities (0.947 VOC on Qwen3-VL), applied to advantage-weighted fine-tuning of pi0. Both require a separate large VLM at scoring time. (2) **Self-supervised visual curation**: SCIZOR (ICRA 2026, arXiv 2505.22626) trains a temporal distance classifier on frozen DINO-V2 features to estimate progress, then hard-filters low-quality timesteps and removes redundant data via joint state-action deduplication. Achieves 5.4% improvement on RoboMimic, 8.1% on OXE-Magic-Soup, and 32.9% on Sirius-Fleet real-robot tasks. Limitations: external visual features without action-domain adaptation; hard binary filtering discards gradient signal; tested primarily on Octo, not modern VLAs. VLA-SSD directly extends SCIZOR's temporal distance classification framework to VLA-internal representations, testing whether action-domain adaptation through VLA pretraining provides superior progress signals, and replaces hard filtering with soft reward weighting grounded in iw-SFT theory. (3) **Trajectory geometry heuristics**: RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL, frequency-domain smoothness) and Trajectory-Envelope Distance (TED, spatial contact-aware geometry) for architecture-agnostic demo scoring. Achieves 16% higher success with 1/6 data on RoboMimic, 20% improvement with 1/2 data in real-world tasks, and 5.6% mean success improvement on LIBERO-10 via STRAP integration. Requires zero model access or learned features. This is the critical lower bound: if learned features cannot beat pure trajectory geometry, feature-based scoring is unjustified. (4) **External progress estimators**: PROGRESSOR (ICCV 2025, arXiv 2411.17764) learns a task-agnostic reward function pretrained on EPIC-KITCHENS for goal-conditioned RL. ProgressVLA (Microsoft, March 2026, arXiv 2603.27670) pre-trains a dedicated progress estimator on large-scale unsupervised video-text robotic datasets (0.07 prediction residual, zero-shot real-world transfer), integrated into a diffusion VLA with inverse dynamics guidance. Both require external pretraining data/models. (5) **Influence-function curation**: CUPID (CoRL 2025) and QoQ (arXiv 2603.09056) use REINFORCE-style influence estimation for trajectory-level filtering. QoQ achieves 23.2%/30.0% improvements on GR00T N1 VLA. Both require evaluation rollouts or curated validation sets and provide only trajectory-level granularity. (6) **External reward models**: Robometer (RSS 2026, arXiv 2603.02115) trains Qwen3-VL-4B on 1M+ trajectories for dense per-frame progress with strong zero-shot transfer (Kendall tau=0.66 OOD). Requires a separate 4-8B VLM at scoring time. (7) **Online self-improvement**: SRPO (arXiv 2511.15605) uses the model's own successful rollouts for self-referential optimization (48.9→99.2% on LIBERO). PLD (ICLR 2026, arXiv 2511.00091) uses residual RL to probe VLA failure regions, collect recovery data, and distill back via SFT (99% on LIBERO, 50%+ gains on SimplerEnv). VLAC (arXiv 2509.15937) integrates a dense progress critic into an online RL loop. All require environment interaction. (8) **Weighted BC frameworks**: VACO (ICLR 2025) uses a meta-scoring network for bi-level weighted BC on D4RL. iw-SFT (arXiv 2507.12856) proves that SFT on curated data maximizes a lower bound on the RL objective, tightened by importance weighting — providing theoretical justification for quality-weighted BC as a principled approach. **Gap**: No work has investigated whether VLA-internal features — uniquely adapted to the action domain through pretraining and already computed during the forward pass — can serve as a self-referential progress estimator that (a) beats trajectory geometry heuristics (RINSE), justifying learned features, (b) matches or exceeds external VLM scoring (GVL/TOPReward) on task-specific data, and (c) does so at zero marginal cost since features are a byproduct of the fine-tuning forward pass.\n\n## Proposed Approach\n\nVLA-SSD is a three-stage offline pipeline that tests a mechanistic hypothesis — VLA pretrained representations encode task-progress information sufficient for self-referential demonstration scoring — and operationalizes positive findings into a theoretically-grounded curriculum-weighted fine-tuning method. The theoretical foundation comes from iw-SFT (arXiv 2507.12856), which proves that SFT on quality-scored data maximizes a lower bound on the RL objective, tightened by importance weighting; VLA-SSD's quality scores serve as the importance weights, making the pipeline provably principled rather than heuristic.\n\n**Stage 1 — Temporal Distance Probing with Positional Embedding Controls**: Extract frozen hidden-state representations h_l(t) from every transformer layer l of the pretrained VLA (OpenVLA 7B as primary, π0.5 as validation) for each demonstration timestep. Train lightweight probes at each layer using TWO complementary targets designed to be robust against positional embedding shortcuts:\n\n(a) **Temporal distance classification** (primary target): Given a pair of frames (t_i, t_j) from the same trajectory, predict relative progress Δp = |t_j - t_i|/T from feature differences h_l(t_j) - h_l(t_i). This forces the probe to compare semantic content between two frames rather than recovering absolute temporal position from a single frame, directly mitigating the positional embedding shortcut. This explicitly extends SCIZOR's temporal distance classification framework — which uses frozen DINO-V2 features — to the VLA's own internal representations, testing whether action-domain adaptation through VLA pretraining provides superior progress signals.\n\n(b) **Sub-task predicate classification** (secondary target, LIBERO only): LIBERO provides BDDL goal predicates (e.g., is_grasped, is_on_table, is_in_drawer) checkable at every simulator timestep. Train binary classifiers on VLA features to predict sub-task completion milestones. These are discrete semantic properties that cannot be predicted from positional embeddings, providing the strongest evidence for genuine task understanding.\n\n(c) **Positional embedding control experiment** (probe-level only, not full pipeline): Train identical probes on positional embeddings alone (extracted from the same transformer layers but with content features zeroed out / using only the position component). If VLA content features significantly outperform positional-embedding-only probes, this confirms the signal comes from task-semantic representations, not temporal position recovery.\n\nProbe architecture: single linear layer + sigmoid for classification, ~50K params each. 80/20 train/validation split within the demonstration set. Rank layers by validation performance (Spearman ρ for temporal distance, AUC for sub-task predicates); select best layer l* automatically. Based on arXiv 2603.19233, expert pathway features (PG5, PG11 equivalent) are hypothesized most informative, but selection is fully data-driven.\n\n**Critical controlled ablations** (run in parallel):\n- **DINO-V2 (ViT-L/14) baseline**: Extract DINO-V2 features from the same observations, train identical probes — isolates the effect of action-domain adaptation.\n- **RINSE baseline**: Compute SAL and TED scores on the same trajectories — tests whether learned features beat trajectory geometry heuristics. If RINSE matches or exceeds our probes, the 'VLA features encode progress' narrative is undermined.\n- **DINO-V2 Fallback**: If no VLA layer achieves Spearman ρ > 0.3 on temporal distance AND no layer achieves AUC > 0.7 on sub-task predicates, switch to DINO-V2 features for subsequent stages and report this as a negative mechanistic finding.\n\n**Stage 2 — Hierarchical Quality Scoring**: Use the temporal distance probe from l* to compute per-timestep progress estimates by anchoring relative to the first frame: q_t = probe_{l*}(h_{l*}(t) - h_{l*}(0)). Derive trajectory-level quality Q(τ) = α * q_T + β * mono(τ) + γ * mean(q_t), combining terminal progress (endpoint quality), progress monotonicity (fraction of consecutive timesteps with increasing estimated progress), and average progress. Default weights: α=0.5, β=0.3, γ=0.2. Compute timestep-level reward weights w_t = q_t * Q(τ). Apply temperature-controlled normalization for the trajectory component. On LIBERO, additionally compute sub-task milestone coverage as a trajectory quality signal.\n\n**Stage 3 — Curriculum-Weighted LoRA Fine-Tuning**: Fine-tune the VLA with LoRA (rank 16-64) using weighted BC loss with a curriculum temperature schedule that starts permissive and progressively sharpens quality weighting over training. Specifically, define a temperature parameter τ(epoch) that decreases linearly from τ_max to τ_min over training: w_t^(epoch) = softmax(q_t / τ(epoch)), where τ_max = 2.0 (near-uniform early training, allowing the model to learn from all demonstrations) and τ_min = 0.5 (sharp quality weighting in later epochs, focusing gradient signal on high-quality timesteps). The curriculum rationale: early uniform training establishes broad behavioral coverage, while progressive sharpening concentrates fine-tuning on the most informative demonstrations — analogous to curriculum learning in knowledge distillation (Curriculum Temperature, arXiv 2211.16231) and grounded by iw-SFT's theoretical result that tighter importance weighting progressively tightens the RL objective lower bound. The loss at each epoch: L = Σ_t w_t^(epoch) * ||a_t - π_θ(o_t, l)||². Unlike SCIZOR's hard filtering, soft reward weighting preserves gradient signal from all timesteps proportional to quality. Unlike GVL+AWR, no external VLM is needed — features come from the model being fine-tuned. Probes are trained once on pretrained features and frozen; all quality scores are computed before fine-tuning begins, ensuring no circular dependency.",
+                "numLines": 80,
+                "startLine": 1,
+                "totalLines": 178
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have a good understanding of the VLA-SSD project now. However, I notice the IDEA_BRIEF describes a different project focus than what the user described in their message. The user mentioned:\n- Section 3.3: Counterfactual Sensitivity Analysis\n- Section 4.3: Counterfactual results\n- 3 architectures (OpenVLA/TracVLA/NORA)\n\nThis seems like the paper has evolved or there's a different framing. Let me look for more specific information about the counterfactual sensitivity analysis work.\n\nActually, looking more carefully at the user's request, they describe \"our VLA-SSD project\" as studying \"how VLA fine-tuning reorganizes internal representations\" with counterfactual sensitivity analysis. \n\nThe user's description is likely the most current framing of the work, so I'll treat that as the authoritative version of what the paper contains. Now I'm ready to write the analysis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "74e8f066-0bc7-4e49-99d4-9999726c283c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxiLzwK78Mz5xpbvxtpwQY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 31806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough information from both papers and our project. Writing the analysis report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "e2bdfc2a-1b93-4a0f-a3e4-ac3bf97f58db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxiLzwK78Mz5xpbvxtpwQY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 31806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YSEhWJJrmMF7BBkCB9EZHu",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/concurrent_work_analysis.md",
+                "content": "# Concurrent Work Analysis\n\n## 1. Fang et al. 2026 — \"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"\n\n**arXiv:** 2602.17659 (February 19, 2026)\n**Authors:** Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding (UNC Chapel Hill)\n\n### Summary\n\nThis paper identifies and addresses **counterfactual failures** in VLAs — models act based on vision shortcuts induced by dataset biases rather than faithfully following language instructions. Key contributions:\n\n1. **LIBERO-CF Benchmark**: A counterfactual evaluation benchmark with 4 suites:\n   - CF-Spatial (15 tasks): targets background objects as new manipulation targets\n   - CF-Object (10 tasks): alternative object-centric instructions\n   - CF-Long (10 tasks): multi-step instructions with new targets\n   - CF-OOD (15 tasks): entirely unseen objects during finetuning\n   - Metrics: grounding rate (gripper contact with target) + success rate (task completion)\n\n2. **Counterfactual Action Guidance (CAG)**: A dual-branch inference scheme:\n   - π_CAG(a|o,l) = π_uncond(a|o,∅) + ω·(π_cond(a|o,l) − π_uncond(a|o,∅))\n   - Guidance scale ω controls language conditioning strength\n   - Two variants: Training-Free (drop language at inference) and Vision-Action (train separate vision-only model)\n\n3. **Evaluated VLAs**: OpenVLA-OFT (7B), π₀ (3B), π₀.₅, X-VLA (0.9B)\n\n4. **Results**: CAG improves language-following by 9.7% (training-free) to 15.5% (with VA model); real-world: +17.2% success, −9.4% counterfactual failures.\n\n### Overlap with Our Work\n\n| Dimension | Fang et al. | Our VLA-SSD |\n|-----------|------------|-------------|\n| **Dataset** | LIBERO (Spatial, Object, Goal, Long) | LIBERO (same 4 suites) |\n| **Core concept** | Counterfactual instruction perturbation | Counterfactual instruction perturbation |\n| **Perturbation types** | Alternative feasible instructions (CF-Spatial/Object/Long/OOD) | 4 systematic conditions: empty/shuffled/wrong/paraphrased |\n| **VLA architectures** | OpenVLA-OFT, π₀, π₀.₅, X-VLA | OpenVLA, TracVLA, NORA |\n| **Analysis level** | Behavioral (success rate, grounding rate) | Representational (Cohen's d on internal features) |\n| **Goal** | Mitigate failures via inference-time intervention | Understand how fine-tuning reorganizes representations |\n\n**Specific overlaps:**\n- Both use LIBERO as the primary evaluation platform\n- Both study what happens when VLAs receive instructions that don't match the training distribution\n- Both demonstrate that VLAs are biased toward vision-driven shortcuts over language grounding\n- OpenVLA is a shared architecture across both studies\n\n### Key Differentiation\n\n1. **Behavioral vs. Representational**: Fang et al. measure whether the robot executes the correct task (behavioral output). We measure how internal representations change (Cohen's d) when instructions are perturbed — a fundamentally different analysis level.\n\n2. **Perturbation design philosophy**: Their LIBERO-CF uses semantically valid alternative instructions that are feasible in the scene (e.g., \"pick up the bowl\" instead of \"pick up the cup\" when both are present). Our 4 conditions are systematic ablations of instruction content (empty = no language, shuffled = disrupted syntax, wrong = incorrect task, paraphrased = semantic preservation) — designed to probe which aspects of language the representations encode, not to test behavioral correctness.\n\n3. **Mitigation vs. Understanding**: They propose CAG to fix counterfactual failures at inference time. We characterize how fine-tuning changes the representational sensitivity to language — our goal is mechanistic understanding, not a fix.\n\n4. **Trained vs. untrained comparison**: Our core analysis compares trained vs. untrained VLAs under the same perturbations to reveal what fine-tuning changes. Fang et al. only evaluate fine-tuned models.\n\n5. **Cross-architecture validation**: We test 3 architecturally distinct VLAs (autoregressive OpenVLA, TracVLA, diffusion-based NORA) to show generality of representational phenomena. They test 4 VLAs but focus on behavioral patterns.\n\n### Suggested Citation Approach\n\nCite as complementary concurrent work. Our paper provides the representational explanation for *why* counterfactual failures occur (fine-tuning creates vision-dominant representations that are insufficiently sensitive to language). Their paper demonstrates the behavioral consequences and proposes a practical fix. Suggested framing:\n\n> \"Concurrent work by Fang et al. (2026) independently identifies counterfactual failures in VLAs on LIBERO and proposes an inference-time mitigation (CAG). Our analysis complements this finding by revealing the representational mechanism: fine-tuned VLAs show asymmetric sensitivity to instruction perturbations (Section 4.3), with empty and wrong instructions producing the largest representational shifts (high Cohen's d) while paraphrased instructions produce minimal shifts — suggesting that fine-tuning develops coarse language-presence detection rather than fine-grained instruction grounding, which explains the vision-override failures they observe behaviorally.\"\n\n### BibTeX\n\n```bibtex\n@article{fang2026vision,\n  title={When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in {VLA}s},\n  author={Fang, Yu and Feng, Yuchun and Jing, Dong and Liu, Jiaqi and Yang, Yue and Wei, Zhenyu and Szafir, Daniel and Ding, Mingyu},\n  journal={arXiv preprint arXiv:2602.17659},\n  year={2026}\n}\n```\n\n---\n\n## 2. Buurmeijer et al. 2026 — \"Observing and Controlling Features in Vision-Language-Action Models\"\n\n**arXiv:** 2603.05487 (March 5, 2026)\n**Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone (Stanford)\n\n### Summary\n\nThis paper applies mechanistic interpretability to VLAs, introducing two formal concepts:\n\n1. **Feature-observability**: A feature ζ is observable at layer ℓ if a linear mapping f_ℓ(x_ℓ) = ζ can recover it from activations. They train linear probes (W_ℓx + b_ℓ) at every layer to classify/regress robot state features (position x/y/z, orientation, gripper aperture).\n\n2. **Feature-controllability**: A feature is controllable if a minimal perturbation u to the activations can steer the output. They derive a closed-form optimal control solution: u_ℓ = (ζ_max − ζ_ℓ)W_ℓ / ‖W_ℓ‖² when the feature is out of desired bounds.\n\n3. **Tested on**: π₀.₅ and OpenVLA, using 10 tasks from LIBERO Spatial suite (10 rollouts per task).\n\n4. **Results**: Gripper control achieves near-perfect constraint satisfaction with >90% task success. Height and speed constraints also controllable. Negligible inference overhead.\n\n5. **Scope limitation**: Only probes robot state/action features. Explicitly defers \"more abstract semantic features such as object affordances, relational predicates, and task-level goals to future work.\"\n\n### Overlap with Our Work\n\n| Dimension | Buurmeijer et al. | Our VLA-SSD |\n|-----------|-------------------|-------------|\n| **Core method** | Linear probes on VLA hidden states | Linear probes on VLA hidden states |\n| **Dataset** | LIBERO Spatial | LIBERO (4 suites) |\n| **VLA architectures** | π₀.₅, OpenVLA | OpenVLA, TracVLA, NORA |\n| **Layer analysis** | Probe every layer, select best | Probe across layers, analyze layer-wise patterns |\n| **What is probed** | Robot state (position, orientation, gripper) | Task-relevant features, counterfactual sensitivity |\n| **Goal** | Inference-time behavioral control | Understanding fine-tuning's representational effects |\n\n**Specific overlaps:**\n- Both use linear probing as the primary analytical tool on VLA internal representations\n- Both test on LIBERO with OpenVLA\n- Both demonstrate that VLA representations contain linearly decodable task-relevant information\n- Both analyze multiple layers to find optimal probe placement\n\n### Key Differentiation\n\n1. **State features vs. task semantics**: They probe low-level robot state (x/y/z, gripper). We probe higher-level task semantics — how representations encode language instructions and respond to counterfactual perturbations.\n\n2. **Control vs. Understanding**: Their goal is to steer VLA behavior at inference time via representation intervention. Our goal is to understand how fine-tuning reorganizes representations (trained vs. untrained comparison).\n\n3. **Static vs. dynamic analysis**: They analyze a single model checkpoint (pretrained or fine-tuned). We compare trained vs. untrained models under matched conditions to reveal what fine-tuning changes.\n\n4. **Scope of features**: They explicitly limit to motor features and defer semantic features. Our counterfactual analysis directly probes semantic/linguistic features — what they leave as future work, we address.\n\n5. **Architecture breadth**: They test 2 architectures (π₀.₅, OpenVLA). We test 3 architecturally diverse VLAs (autoregressive, tracking-augmented, diffusion-based) for cross-architecture generalization.\n\n6. **Formal framework**: They introduce a formal observability/controllability framework from control theory. We use established psychometric tools (Cohen's d, RSA) from cognitive neuroscience adapted to VLA analysis.\n\n### Suggested Citation Approach\n\nCite as concurrent work on VLA mechanistic interpretability with complementary scope. Their work establishes that low-level motor features are linearly observable/controllable; our work extends to higher-level semantic features and studies how these representations change through fine-tuning.\n\n> \"Buurmeijer et al. (2026) concurrently demonstrate that VLA representations linearly encode robot state features and can be steered via minimal interventions. Our work is complementary: while they probe motor-level features (position, gripper state), we probe semantic-level features — specifically, how fine-tuning reshapes representational sensitivity to language instructions (Section 3.3). Together, these studies establish that VLA internal representations are interpretable across multiple levels of abstraction.\"\n\n### BibTeX\n\n```bibtex\n@article{buurmeijer2026observing,\n  title={Observing and Controlling Features in Vision-Language-Action Models},\n  author={Buurmeijer, Hugo and Amo Alonso, Carmen and Swann, Aiden and Pavone, Marco},\n  journal={arXiv preprint arXiv:2603.05487},\n  year={2026}\n}\n```\n\n---\n\n## Summary: Positioning Our Work\n\n| Aspect | Fang et al. | Buurmeijer et al. | **Ours (VLA-SSD)** |\n|--------|-------------|--------------------|--------------------|\n| Analysis level | Behavioral | Representational (motor) | **Representational (semantic)** |\n| Counterfactual? | Yes (behavioral) | No | **Yes (representational)** |\n| Probing? | No | Yes (state features) | **Yes (task/language features)** |\n| Trained vs. untrained? | No | No | **Yes** |\n| Cross-architecture? | 4 VLAs | 2 VLAs | **3 VLAs** |\n| LIBERO? | Yes | Yes (Spatial only) | **Yes (4 suites)** |\n| Goal | Mitigate failures | Control behavior | **Understand fine-tuning** |\n\nOur work occupies a unique position: we combine the counterfactual perturbation approach (shared with Fang et al.) with the linear probing methodology (shared with Buurmeijer et al.) to answer a question neither addresses — how does VLA fine-tuning reorganize internal representations' sensitivity to language? This positions our contribution as providing the mechanistic explanation that bridges behavioral observations (Fang) and representational tools (Buurmeijer).\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "674aaa9d-7142-43f6-b5bb-b2ec9c26d56d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxiLzwK78Mz5xpbvxtpwQY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 31806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T14:07:21.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YSEhWJJrmMF7BBkCB9EZHu",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/concurrent_work_analysis.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "a3d6322c-814d-4055-9d31-26d0d237cf06",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/concurrent_work_analysis.md",
+              "content": "# Concurrent Work Analysis\n\n## 1. Fang et al. 2026 — \"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"\n\n**arXiv:** 2602.17659 (February 19, 2026)\n**Authors:** Yu Fang, Yuchun Feng, Dong Jing, Jiaqi Liu, Yue Yang, Zhenyu Wei, Daniel Szafir, Mingyu Ding (UNC Chapel Hill)\n\n### Summary\n\nThis paper identifies and addresses **counterfactual failures** in VLAs — models act based on vision shortcuts induced by dataset biases rather than faithfully following language instructions. Key contributions:\n\n1. **LIBERO-CF Benchmark**: A counterfactual evaluation benchmark with 4 suites:\n   - CF-Spatial (15 tasks): targets background objects as new manipulation targets\n   - CF-Object (10 tasks): alternative object-centric instructions\n   - CF-Long (10 tasks): multi-step instructions with new targets\n   - CF-OOD (15 tasks): entirely unseen objects during finetuning\n   - Metrics: grounding rate (gripper contact with target) + success rate (task completion)\n\n2. **Counterfactual Action Guidance (CAG)**: A dual-branch inference scheme:\n   - π_CAG(a|o,l) = π_uncond(a|o,∅) + ω·(π_cond(a|o,l) − π_uncond(a|o,∅))\n   - Guidance scale ω controls language conditioning strength\n   - Two variants: Training-Free (drop language at inference) and Vision-Action (train separate vision-only model)\n\n3. **Evaluated VLAs**: OpenVLA-OFT (7B), π₀ (3B), π₀.₅, X-VLA (0.9B)\n\n4. **Results**: CAG improves language-following by 9.7% (training-free) to 15.5% (with VA model); real-world: +17.2% success, −9.4% counterfactual failures.\n\n### Overlap with Our Work\n\n| Dimension | Fang et al. | Our VLA-SSD |\n|-----------|------------|-------------|\n| **Dataset** | LIBERO (Spatial, Object, Goal, Long) | LIBERO (same 4 suites) |\n| **Core concept** | Counterfactual instruction perturbation | Counterfactual instruction perturbation |\n| **Perturbation types** | Alternative feasible instructions (CF-Spatial/Object/Long/OOD) | 4 systematic conditions: empty/shuffled/wrong/paraphrased |\n| **VLA architectures** | OpenVLA-OFT, π₀, π₀.₅, X-VLA | OpenVLA, TracVLA, NORA |\n| **Analysis level** | Behavioral (success rate, grounding rate) | Representational (Cohen's d on internal features) |\n| **Goal** | Mitigate failures via inference-time intervention | Understand how fine-tuning reorganizes representations |\n\n**Specific overlaps:**\n- Both use LIBERO as the primary evaluation platform\n- Both study what happens when VLAs receive instructions that don't match the training distribution\n- Both demonstrate that VLAs are biased toward vision-driven shortcuts over language grounding\n- OpenVLA is a shared architecture across both studies\n\n### Key Differentiation\n\n1. **Behavioral vs. Representational**: Fang et al. measure whether the robot executes the correct task (behavioral output). We measure how internal representations change (Cohen's d) when instructions are perturbed — a fundamentally different analysis level.\n\n2. **Perturbation design philosophy**: Their LIBERO-CF uses semantically valid alternative instructions that are feasible in the scene (e.g., \"pick up the bowl\" instead of \"pick up the cup\" when both are present). Our 4 conditions are systematic ablations of instruction content (empty = no language, shuffled = disrupted syntax, wrong = incorrect task, paraphrased = semantic preservation) — designed to probe which aspects of language the representations encode, not to test behavioral correctness.\n\n3. **Mitigation vs. Understanding**: They propose CAG to fix counterfactual failures at inference time. We characterize how fine-tuning changes the representational sensitivity to language — our goal is mechanistic understanding, not a fix.\n\n4. **Trained vs. untrained comparison**: Our core analysis compares trained vs. untrained VLAs under the same perturbations to reveal what fine-tuning changes. Fang et al. only evaluate fine-tuned models.\n\n5. **Cross-architecture validation**: We test 3 architecturally distinct VLAs (autoregressive OpenVLA, TracVLA, diffusion-based NORA) to show generality of representational phenomena. They test 4 VLAs but focus on behavioral patterns.\n\n### Suggested Citation Approach\n\nCite as complementary concurrent work. Our paper provides the representational explanation for *why* counterfactual failures occur (fine-tuning creates vision-dominant representations that are insufficiently sensitive to language). Their paper demonstrates the behavioral consequences and proposes a practical fix. Suggested framing:\n\n> \"Concurrent work by Fang et al. (2026) independently identifies counterfactual failures in VLAs on LIBERO and proposes an inference-time mitigation (CAG). Our analysis complements this finding by revealing the representational mechanism: fine-tuned VLAs show asymmetric sensitivity to instruction perturbations (Section 4.3), with empty and wrong instructions producing the largest representational shifts (high Cohen's d) while paraphrased instructions produce minimal shifts — suggesting that fine-tuning develops coarse language-presence detection rather than fine-grained instruction grounding, which explains the vision-override failures they observe behaviorally.\"\n\n### BibTeX\n\n```bibtex\n@article{fang2026vision,\n  title={When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in {VLA}s},\n  author={Fang, Yu and Feng, Yuchun and Jing, Dong and Liu, Jiaqi and Yang, Yue and Wei, Zhenyu and Szafir, Daniel and Ding, Mingyu},\n  journal={arXiv preprint arXiv:2602.17659},\n  year={2026}\n}\n```\n\n---\n\n## 2. Buurmeijer et al. 2026 — \"Observing and Controlling Features in Vision-Language-Action Models\"\n\n**arXiv:** 2603.05487 (March 5, 2026)\n**Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone (Stanford)\n\n### Summary\n\nThis paper applies mechanistic interpretability to VLAs, introducing two formal concepts:\n\n1. **Feature-observability**: A feature ζ is observable at layer ℓ if a linear mapping f_ℓ(x_ℓ) = ζ can recover it from activations. They train linear probes (W_ℓx + b_ℓ) at every layer to classify/regress robot state features (position x/y/z, orientation, gripper aperture).\n\n2. **Feature-controllability**: A feature is controllable if a minimal perturbation u to the activations can steer the output. They derive a closed-form optimal control solution: u_ℓ = (ζ_max − ζ_ℓ)W_ℓ / ‖W_ℓ‖² when the feature is out of desired bounds.\n\n3. **Tested on**: π₀.₅ and OpenVLA, using 10 tasks from LIBERO Spatial suite (10 rollouts per task).\n\n4. **Results**: Gripper control achieves near-perfect constraint satisfaction with >90% task success. Height and speed constraints also controllable. Negligible inference overhead.\n\n5. **Scope limitation**: Only probes robot state/action features. Explicitly defers \"more abstract semantic features such as object affordances, relational predicates, and task-level goals to future work.\"\n\n### Overlap with Our Work\n\n| Dimension | Buurmeijer et al. | Our VLA-SSD |\n|-----------|-------------------|-------------|\n| **Core method** | Linear probes on VLA hidden states | Linear probes on VLA hidden states |\n| **Dataset** | LIBERO Spatial | LIBERO (4 suites) |\n| **VLA architectures** | π₀.₅, OpenVLA | OpenVLA, TracVLA, NORA |\n| **Layer analysis** | Probe every layer, select best | Probe across layers, analyze layer-wise patterns |\n| **What is probed** | Robot state (position, orientation, gripper) | Task-relevant features, counterfactual sensitivity |\n| **Goal** | Inference-time behavioral control | Understanding fine-tuning's representational effects |\n\n**Specific overlaps:**\n- Both use linear probing as the primary analytical tool on VLA internal representations\n- Both test on LIBERO with OpenVLA\n- Both demonstrate that VLA representations contain linearly decodable task-relevant information\n- Both analyze multiple layers to find optimal probe placement\n\n### Key Differentiation\n\n1. **State features vs. task semantics**: They probe low-level robot state (x/y/z, gripper). We probe higher-level task semantics — how representations encode language instructions and respond to counterfactual perturbations.\n\n2. **Control vs. Understanding**: Their goal is to steer VLA behavior at inference time via representation intervention. Our goal is to understand how fine-tuning reorganizes representations (trained vs. untrained comparison).\n\n3. **Static vs. dynamic analysis**: They analyze a single model checkpoint (pretrained or fine-tuned). We compare trained vs. untrained models under matched conditions to reveal what fine-tuning changes.\n\n4. **Scope of features**: They explicitly limit to motor features and defer semantic features. Our counterfactual analysis directly probes semantic/linguistic features — what they leave as future work, we address.\n\n5. **Architecture breadth**: They test 2 architectures (π₀.₅, OpenVLA). We test 3 architecturally diverse VLAs (autoregressive, tracking-augmented, diffusion-based) for cross-architecture generalization.\n\n6. **Formal framework**: They introduce a formal observability/controllability framework from control theory. We use established psychometric tools (Cohen's d, RSA) from cognitive neuroscience adapted to VLA analysis.\n\n### Suggested Citation Approach\n\nCite as concurrent work on VLA mechanistic interpretability with complementary scope. Their work establishes that low-level motor features are linearly observable/controllable; our work extends to higher-level semantic features and studies how these representations change through fine-tuning.\n\n> \"Buurmeijer et al. (2026) concurrently demonstrate that VLA representations linearly encode robot state features and can be steered via minimal interventions. Our work is complementary: while they probe motor-level features (position, gripper state), we probe semantic-level features — specifically, how fine-tuning reshapes representational sensitivity to language instructions (Section 3.3). Together, these studies establish that VLA internal representations are interpretable across multiple levels of abstraction.\"\n\n### BibTeX\n\n```bibtex\n@article{buurmeijer2026observing,\n  title={Observing and Controlling Features in Vision-Language-Action Models},\n  author={Buurmeijer, Hugo and Amo Alonso, Carmen and Swann, Aiden and Pavone, Marco},\n  journal={arXiv preprint arXiv:2603.05487},\n  year={2026}\n}\n```\n\n---\n\n## Summary: Positioning Our Work\n\n| Aspect | Fang et al. | Buurmeijer et al. | **Ours (VLA-SSD)** |\n|--------|-------------|--------------------|--------------------|\n| Analysis level | Behavioral | Representational (motor) | **Representational (semantic)** |\n| Counterfactual? | Yes (behavioral) | No | **Yes (representational)** |\n| Probing? | No | Yes (state features) | **Yes (task/language features)** |\n| Trained vs. untrained? | No | No | **Yes** |\n| Cross-architecture? | 4 VLAs | 2 VLAs | **3 VLAs** |\n| LIBERO? | Yes | Yes (Spatial only) | **Yes (4 suites)** |\n| Goal | Mitigate failures | Control behavior | **Understand fine-tuning** |\n\nOur work occupies a unique position: we combine the counterfactual perturbation approach (shared with Fang et al.) with the linear probing methodology (shared with Buurmeijer et al.) to answer a question neither addresses — how does VLA fine-tuning reorganize internal representations' sensitivity to language? This positions our contribution as providing the mechanistic explanation that bridges behavioral observations (Fang) and representational tools (Buurmeijer).\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/concurrent_work_analysis.md`。\n\n核心发现：\n\n**Fang et al. (arXiv:2602.17659)** — 最直接的 concurrent work。与我们共享 LIBERO 平台和 counterfactual perturbation 思路，但分析层面完全不同：他们做 behavioral failure 评估 + 推理时 CAG 修复，我们做 representational dynamics 分析（Cohen's d, trained vs untrained）。两者互补：我们提供了他们观察到的 vision-override 现象的表征层解释。\n\n**Buurmeijer et al. (arXiv:2603.05487)** — 方法层面的 concurrent work。与我们共享 linear probing on VLA hidden states 的方法论，但他们只 probe 低层 motor features（位置/抓手），我们 probe 高层 semantic features（language sensitivity）。他们的 observability/controllability 框架与我们的 counterfactual sensitivity 框架形成多层次互补。\n\n两篇论文都不做 trained vs. untrained 对比，也都不做 cross-architecture 的 semantic-level probing — 这正是我们的独特贡献点。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "uuid": "0f3d74a5-82f8-4204-890e-c8f537811908",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019xWreANihYs78ADpj6E5YX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3549,
+                "cache_read_input_tokens": 39383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3549
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/concurrent_work_analysis.md`。\n\n核心发现：\n\n**Fang et al. (arXiv:2602.17659)** — 最直接的 concurrent work。与我们共享 LIBERO 平台和 counterfactual perturbation 思路，但分析层面完全不同：他们做 behavioral failure 评估 + 推理时 CAG 修复，我们做 representational dynamics 分析（Cohen's d, trained vs untrained）。两者互补：我们提供了他们观察到的 vision-override 现象的表征层解释。\n\n**Buurmeijer et al. (arXiv:2603.05487)** — 方法层面的 concurrent work。与我们共享 linear probing on VLA hidden states 的方法论，但他们只 probe 低层 motor features（位置/抓手），我们 probe 高层 semantic features（language sensitivity）。他们的 observability/controllability 框架与我们的 counterfactual sensitivity 框架形成多层次互补。\n\n两篇论文都不做 trained vs. untrained 对比，也都不做 cross-architecture 的 semantic-level probing — 这正是我们的独特贡献点。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 156108,
+            "duration_api_ms": 178108,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "cd21ee77-3045-45b0-838e-3e4e1fd0fd2d",
+            "total_cost_usd": 0.5585567499999999,
+            "usage": {
+              "input_tokens": 752,
+              "cache_creation_input_tokens": 31091,
+              "cache_read_input_tokens": 215620,
+              "output_tokens": 5334,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31091,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 337,
+                  "cache_read_input_tokens": 39383,
+                  "cache_creation_input_tokens": 3549,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3549
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 82318,
+                "outputTokens": 3400,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 2,
+                "costUSD": 0.119318,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 752,
+                "outputTokens": 5334,
+                "cacheReadInputTokens": 215620,
+                "cacheCreationInputTokens": 31091,
+                "webSearchRequests": 0,
+                "costUSD": 0.43923875000000007,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e21d5681-44ac-45c7-a7db-29f21877010b"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-concurrent-work-fang-buurmeijer.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "467079947f6cfa58187b",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_2_1778863799.md",
+  "task_key": "loop_2_1778863799",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778863799.md",
+    "occurrence": 1,
+    "bytes": 4561,
+    "sha256": "27781f625dbc6945e0fec6543fa122c6e367be40753a9acfd8ee132e60f7de43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T16:49:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 上 cuda:0 和 cuda:1（对应 2×RTX PRO 6000）。gpu_ids 以 load_project_config 为准，不要用其他卡\n- DINO-V2 baseline per-task mean ρ = **0.901**（D005/D006 更新后的值），旧值 0.554 已作废。所有 gate 判定、对比分析必须用 0.901\n- 坍塌层定义：untrained per-task mean ρ < 0.1 的层。这些层的 Δρ 不可信，必须排除后再算 Gate 2\n- P0 修复（analyze_results.py 坍塌层排除 + DINO 阈值 0.554→0.901）正在进行中，Worker `code:p0-analyze-results-fix` 还没回调——**不要在修复完成前跑 analyze_results.py 出 verdict**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，2×RTX PRO 6000\n- 工作目录：`/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/模型/结果）\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`（trained），`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/`（untrained），`/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/`\n- Features：`/root/autodl-tmp/vla-ssd/features/{trained,untrained,dinov2}/`（各 10 tasks × 50 demos，trained/untrained 33层×4096dim，dinov2 1层×1024dim）\n- 结果：`/root/autodl-tmp/vla-ssd/results/{trained,untrained,dinov2}/`\n- 活跃 Worker：`code:p0-analyze-results-fix`（running），`analysis:mvp-probe-results`（running）\n- 无活跃 tmux/cron（两个 probe 进程已退出）\n\n### 3. 📊 当前状态\n收到 `mvp_probe_untrained` 完成回调（`mvp_probe_trained` 也同时完成）。执行了 session-start（read_registry + reconcile_crons + report.md + ROADMAP）。\n\nRegistry 状态：\n- `mvp_001`：RUNNING — 父实验（umbrella），无实际进程\n- `mvp_probe_trained`：ANALYZING — probe 训练完成，等 Worker 提取指标\n- `mvp_probe_untrained`：ANALYZING — probe 训练完成，等 Worker 提取指标\n- `openvla-trained-extract`：DONE (success)\n- `openvla-untrained-extract`：DONE (success)\n- `dinov2_baseline`：DONE (success)\n\n等待中：\n- Worker `analysis:mvp-probe-results` → 读取两个 probe 的结果文件，提取指标，更新 registry（conclusion + metrics），做 trained vs untrained Δρ 对比\n- Worker `code:p0-analyze-results-fix` → 修复 analyze_results.py（坍塌层排除逻辑 + DINO 阈值更新）\n- 两个 Worker 都完成后 → 跑修复后的 analyze_results.py 出 MVP verdict → 汇报 Director\n\n### 4. 📋 待办\n- `analysis:mvp-probe-results` Worker 回调 → 检查提取的指标是否完整，更新 registry 到 DONE，刷新 report.md\n- `code:p0-analyze-results-fix` Worker 回调 → 确认修复内容正确（坍塌层排除 + 阈值 0.901）\n- 两个 Worker 都完成 → 派 Worker 跑 `python scripts/analyze_results.py`（修复版），产出 MVP verdict\n- Verdict = PASS → 推进 Phase 4（quality scoring），向 Director 汇报 + 准备下一批实验\n- Verdict = FAIL（Gate 2 Δρ ≤ 0.1，ROADMAP 预判大概率如此）→ 产出 Framing 调整提案（3 种 narrative 备选），向 Director 汇报，**不默默跑下一个实验**\n- Verdict = CONDITIONAL → 向 Director 汇报具体数字，请求决策\n- Control B（label permutation）脚本已就绪，排队等 GPU——verdict 出来后如果不需要 pivot，可以提交\n\n### 5. 🎯 战略上下文\n- 核心发现已经基本明确：**temporal distance 信号主要来自 vision encoder（SigLIP），VLA 训练（LLM 部分）贡献甚微**。Trained ρ ≈ 0.95 vs Untrained ρ ≈ 0.91-0.93，Δρ ≈ 0.04，远低于 Gate 2 阈值 0.1\n- 这意味着 MVP 大概率 **Gate 2 FAIL**，原始 hypothesis（\"VLA 训练带来独特的 task-progress 编码\"）不成立\n- **但这不是死胡同**——ROADMAP 已列出 3 个 pivot 候选：① mechanistic analysis（vision feature 本身是发现）②换 probe 目标（subtask boundary/action-conditional）③实用 pipeline（vision ρ=0.90 已足够做 self-scoring）\n- 目标会议 CoRL 2026（abstract May 26, paper May 29），时间紧张\n- 决策链：D001（判定标准校准）→ D002（切换 per-task mean ρ）→ D003（移除 subtask AUC gate）→ D004/D005/D006（DINO 阈值从 0.833→0.554→0.901）\n- 易错点：**不要用 pooled ρ 做判定**（跨 task 方差膨胀），一律用 per-task mean ρ。不要用旧 DINO 阈值 0.554\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778863799.md"
+}

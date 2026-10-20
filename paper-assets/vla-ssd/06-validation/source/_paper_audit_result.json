@@ -1,0 +1,548 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:extended_practical_implications} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:citations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:counterfactual_goal} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:result} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:claim_evidence_appendix} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:label_permutation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:use_of_ai} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1004"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 13 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 4,
+          "num_cites": 0
+        },
+        {
+          "file": "corl_example.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 2
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 6,
+          "num_cites": 2
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 97,
+          "num_cites": 0
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 8,
+          "num_cites": 12
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 12
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 42
+        }
+      ],
+      "critical": [
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{Gauss1857} used in corl_example but no matching entry in references.bib.",
+          "location": "corl_example"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{Lagrange1788} used in corl_example but no matching entry in references.bib.",
+          "location": "corl_example"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hewitt2019control' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lakens2017equivalence' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'nili2014toolbox' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhai2023_siglip' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\Delta"
+            ],
+            "discussion": [
+              "\\Delta"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\approx",
+              "\\leq",
+              "\\pm",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\times"
+            ],
+            "method": [
+              "\\Delta",
+              "\\rho",
+              "\\times"
+            ],
+            "related_work": [
+              "\\Delta",
+              "\\times",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 2,
+        "warning": 4,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/_audit_compile_75ywn5q8",
+        "main_tex": "main.tex",
+        "log_tail": "[]\\T1/txr/m/n/7 Counterfactual per-\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n[]\\T1/txr/m/n/7 Attention head\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n\\T1/txr/m/n/7 ab-la-tion (Ap-\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n[]\\T1/txr/m/n/7 Whether iden-ti-fied struc-\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n\\T1/txr/m/n/7 tures carry func-tional\n []\n\n\nUnderfull \\hbox (badness 1297) in paragraph at lines 1274--1274\n[]\\T1/txr/m/n/7 Dose-response: mono-tonic di-\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n[]\\T1/txr/m/n/7 Interventional\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 1274--1274\n\\T1/txr/m/n/7 (causal con-tri-bu-\n []\n\n\nUnderfull \\hbox (badness 3058) in paragraph at lines 1274--1275\n[]\\T1/txr/m/n/7 Single ar-chi-tec-ture (Open-\n []\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n) [37 <./figures/fig_claim_evidence.pdf>] [38] [39] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: AC5C1C9974FEF726681EAAEE75B3D6BD;12033.\n ) \nHere is how much of TeX's memory you used:\n 15411 strings out of 469438\n 240806 string characters out of 5468411\n 709098 words of memory out of 5000000\n 43541 multiletter control sequences out of 15000+600000\n 696745 words of font info for 149 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,13n,93p,1001b,675s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtcxr.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/txfonts/rtxb.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/txfonts/rtxi.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfont\ns/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (39 pages, 8438850 bytes).\nPDF statistics:\n 1234 PDF objects out of 1440 (max. 8388607)\n 1010 compressed objects within 11 object streams\n 270 named destinations out of 1000 (max. 500000)\n 17465 words of extra memory for PDF output out of 20736 (max. 10000000)\n",
+        "error": "",
+        "pages": 39,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 39,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 1342) in paragraph at lines 61--63",
+        "Underfull \\hbox (badness 1383) in paragraph at lines 5--9",
+        "Underfull \\hbox (badness 1968) in paragraph at lines 5--9",
+        "Underfull \\hbox (badness 1859) in paragraph at lines 32--33",
+        "Underfull \\hbox (badness 3701) in paragraph at lines 495--496",
+        "Underfull \\hbox (badness 1365) in paragraph at lines 722--722",
+        "Underfull \\vbox (badness 3646) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 1205) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1215) in paragraph at lines 1270--1270",
+        "Underfull \\hbox (badness 4217) in paragraph at lines 1272--1272",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 1297) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1274--1274",
+        "Underfull \\hbox (badness 3058) in paragraph at lines 1274--1275"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract/Intro/Method/Experiments/Conclusion 全链一致：问题（哪些变化来自训练 vs 继承）→ 方法（三种分析 × 3×4 矩阵）→ 发现（exit collapse + counterfactual sensitivity = 训练相关；L1 attention = 继承）→ 结论（decomposition）。无叙事漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "定量 claim 跨章节一致：Abstract/Conclusion 的 ΔR²=0.16–0.46 和 d=0.45–1.52 均可溯源至 Table 3 和 Figure 5 的实际数据范围（TraceVLA 0.156–0.362 + NORA 0.308–0.455 → 0.16–0.46；OpenVLA Long 0.45 至 TraceVLA Goal 1.52）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Intro 三条 Contribution 均有对应正文 section/table：C1→§4+Table 2, C2→§5.3+Table 3, C3→§5.5–5.6。无孤儿章节。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 四问题全覆盖（问题/方法/结果/意义），~100 words，简洁有效。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 采用 5 段式结构（背景+问题→gap→本文方法→发现预览→贡献列表），逻辑清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题分组（VLA models / Mechanistic analysis / Concurrent work / Probing methodology），非堆砌式。Table 1 提供结构化对比。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Title 声称 \"Cross-Architecture Analysis\"，正文覆盖 3 architectures × 4 suites（10/12 cells），范围匹配。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim 强度",
+      "message": "全文使用 \"associated with\" 而非 \"caused by\"，\"suggests\" 而非 \"confirms\"，与观察性（非干预性）研究设计匹配。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim 强度",
+      "message": "discussion.tex:7 \"These findings enable practical diagnostics: ΔR² > 0.10 flags under-utilized exit-layer representations\" — 将未经实证验证的应用推测表述为已确立的结论。建议改为 \"may enable\" 或 \"could serve as\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim 强度",
+      "message": "discussion.tex:8 \"suggests these are general properties of autoregressive VLA fine-tuning\" — \"general properties\" 基于 N=2 VLM-to-VLA transitions 推断。虽用 \"suggests\" 缓冲，但 \"general\" 一词偏强。建议改为 \"shared properties across the tested architectures\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果表 Table 3 含 95% CI；Figure 3 有 3-seed mean±std；Appendix 含 15-seed replication、permutation test (p=0.008)、Bonferroni correction (40/45 survive)。统计严谨度高。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Baseline 选择合理：3 个 NLP finetuning controls 针对同 backbone family，排除了 generic finetuning 假说。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Ablation 覆盖：dose-response、specificity control（matched-size）、random-subset、threshold sensitivity、seed sensitivity、demo-subsample，与 Method 中的分析组件充分对应。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "GPU 型号（2×RTX PRO 6000 Blackwell 96GB）、random seed (42)、数据规模（10 tasks × 50 demos）、模型 checkpoint ID 均已披露。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "Probe 超参（MLP 隐藏维度、学习率、训练 epoch、optimizer）仅描述为 \"Two-layer MLP probes\" 和 \"details in Appendix\"，但 Appendix 中也未完整列出这些训练超参。对复现关键。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "ΔR²、Cohen's d、instruction-dominant、readout、image_mean 全文定义一致、使用统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "\"exit collapse\" vs \"exit-layer collapse\" vs \"R² exit collapse\" 存在微小变体但含义一致，不构成混淆。"
+    },
+    {
+      "severity": "info",
+      "dimension": "逻辑流",
+      "message": "实验 §5.6 Synthesis 段有效桥接了 Results → Conclusion，提供跨分析的整合解读。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "逻辑流",
+      "message": "Conclusion (discussion.tex:1-8) 较短（~100 words），主要复述发现 + 简短实际意义。缺乏高层解读：为什么 exit collapse 会发生？对 VLA 设计的 broader implications 是什么？这些解读存在于 Appendix D.17 但正文缺失。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "discussion.tex:11-16 Limitations 段仅 ~40 words（远低于 150 words 建议阈值），仅列 2 个 limitation（小 N + correlational/open-loop）。CoRL 2026 明确要求 \"explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments, and how these might be addressed in the future\"。当前版本未描述 failure modes（如 NORA Goal 的 exit-layer instability、closed-loop SR=0/3 失败），且 \"how to address\" 仅一句话引用 appendix。大量实质性 limitations 内容（single checkpoint per arch、three-tier gradient n=1、metric constraints）被推到 Appendix D.17 而非正文。建议将 appendix 关键 limitations 提升至正文，扩充至 150+ words。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:8 LaTeX em-dash (---): \"instruction routing---the internal mechanisms...representations---is consistent\" — 用括号或逗号替代"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "method.tex:21 LaTeX em-dash (---): \"instruction demands---Goal requires...sub-tasks---enabling\" — 用冒号/句号拆分"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:44 LaTeX em-dash (---): \"suites---TraceVLA ranges...Object)---suggesting\" — 用括号或拆分"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:32 LaTeX em-dash (---): caption 中 \"sensitivity---Cohen's\" — 用逗号替代"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "discussion.tex:6 LaTeX em-dash (---): \"effects---exit collapse...fine-tuning---and\" — 用逗号/分号替代"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "主体正文共 7 处 em-dash (---), appendix 另有 3 处。虽然 Unicode em-dash (—) 未出现，但 LaTeX --- 渲染效果相同，属 AI 写作标志。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "\"additionally\" 在 method.tex 中出现 3 次（L17, L30, L61），均为 \"OpenVLA additionally provides...\"。虽非 filler，但重复模式可考虑改写。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "少量 -ing 分词句尾：experiments.tex:103 \"indicating encoding beyond...\"、experiments.tex:105 \"indicating sensitivity to...\"、experiments.tex:133 \"suggesting a shared representational...\"。数量不多但属 AI 写作特征。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未检测到内部实验编号、服务器名、IP 地址、内部工具引用或隐含内部流程表述。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "CoRL 2026 要求 Limitations section \"counted toward the 8-page limit, explicitly describing limiting assumptions, failure modes, and other limitations\"。当前 Limitations 段过于简略，failure modes 未在正文描述（如 closed-loop evaluation 的 SR=0/3 failure、NORA Goal 的 CI unreliability），大量内容仅在 Appendix。违反 venue 硬性要求。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "Figure 3（cross-architecture analysis matrix）：3×4 子图网格内 axis label、tick label、legend 文字极小。单栏论文全宽排列时每个子图约 1.6×1.5 英寸，内部文字预估 <6pt，低于舒适阅读阈值。作为论文核心结果图，建议放大子图或精简为 2×4 / 3×2 布局以提升可读性"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Limitations 节仅 ~3 句话。CoRL 2026 要求 explicitly 描述 limiting assumptions、failure modes 和 limitations。当前文本涵盖了 scope 限制（单一 benchmark、特定架构）和未来方向（closed-loop），但未显式讨论 failure modes（方法/发现在什么条件下会失效）。Appendix A.37 有扩展讨论但主文未充分引用"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 2",
+      "message": "Figure 1（analysis framework）作为全文第一个 display item 和视觉锚点，(b) \"Three analysis methods\" 和 (c) \"Finding classification\" 面板内的小字标签在打印尺寸下偏小（预估 ~7pt）。建议适当放大关键标注文字或简化面板内文字量"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 的 caption 较好地描述了矩阵结构和关键发现，满足 self-contained 要求。但建议在 caption 中加一句指导阅读的话（如\"颜色越深表示...\"或\"越高越好\"）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 和 Figure 5 同页排列，页面较密。Figure 5 legend 字号偏小但仍可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6-7",
+      "message": "Figures 4-7 使用的颜色方案在不同图之间基本一致（相同架构用相同颜色），语义一致性良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 3 使用 booktabs 风格，最优值加粗，格式规范。全文表格风格一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "References 最后一页仅填充约 1/3，其余空白。属正常现象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页仅 Title + Abstract + Introduction 开头，无 display item。Figure 1 在第 2 页出现，在前 3 页内，符合视觉锚点位置要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主体 8 页共 10 个 display items（7 figures + 3 tables），密度 1.25/页，对分析型论文而言密度充足，节奏良好——无连续 2 页纯文本，无连续 2 页纯图表"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 33-35",
+      "message": "附录 A.31–A.37 连续 3 页密集纯文本无 display item。对附录可接受，但可考虑添加总结表或可视化辅助阅读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 37",
+      "message": "Figure 23（Claims-evidence-scope summary）是优秀的全局总结图，清晰展示 finding-evidence-limitation 映射关系。可考虑将简化版本放入主文以帮助审稿人快速把握贡献结构"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 38",
+      "message": "Table 30（per-layer R² across architectures）数据密集但格式规范，peak 值加粗，booktabs 风格一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[page 8] CoRL 2026 Limitations section 存在且位于 8 页限制内（Section 6, page 8），基本合规。但内容偏薄——建议补充 1-2 句关于 failure modes 的显式描述（如\"本文发现在 X 情况下可能不成立\"），并在主文中显式引用 Appendix A.37 的扩展讨论"
+    }
+  ],
+  "counts": {
+    "critical": 4,
+    "warning": 81,
+    "info": 30
+  },
+  "error": "",
+  "timestamp": "2026-05-29T10:25:43.291236+00:00"
+}

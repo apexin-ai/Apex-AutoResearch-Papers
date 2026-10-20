@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7c5c2bfff4f44c5ee7d2",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code branch split rsa",
+  "task_key": "worker_code_branch_split_rsa_20260516T024941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_branch_split_rsa_20260516T024941.log",
+    "occurrence": 1,
+    "bytes": 663437,
+    "sha256": "ae87a5336848777d0c1478b1a98b79a8246beb110210f7a7f3353a4d25d264b8"
+  },
+  "statistics": {
+    "messages": 393,
+    "user_turns": 0,
+    "tool_calls": 158,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 158,
+      "tool_result": 158,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "7c5c2bfff4f44c5ee7d2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c5c2bfff4f44c5ee7d2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c5c2bfff4f44c5ee7d2-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-branch-split-rsa.md"
+}

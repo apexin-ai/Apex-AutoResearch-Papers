@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "680b94c318c51b2e77bc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix openvla spatial pipeline v2",
+  "task_key": "worker_fix_openvla_spatial_pipeline_v2_20260522T072013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_openvla_spatial_pipeline_v2_20260522T072013_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "bd7e2ae48b59acd4a30e62d95b93087ae7df453abb0ee73cf97d9a8ca1773467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 运行正常：\n- GPU 0: 15564MiB 显存占用，73% GPU 利用率，360W 功耗\n- GPU 1: 未使用（符合要求）\n\n## 修复总结\n\n**根因**：`run_spatial_pipeline.sh` 等待 `modeling_prismatic.py` 文件存在，但 HF finetuned repo 不包含此文件，导致无限等待。\n\n**修复了以下问题**：\n\n1. **缺失文件**：从 base model (`openvla-7b`) 复制 `modeling_prismatic.py`、`configuration_prismatic.py`、`processing_prismatic.py` 到 finetuned checkpoint 目录\n\n2. **transformers 5.x 兼容性**（3处）：\n   - `AutoModelForVision2Seq` → `AutoModelForImageTextToText`（config.json auto_map + 脚本 import）\n   - `tie_weights(self)` → `tie_weights(self, **kwargs)`（modeling_prismatic.py）\n   - `from transformers.tokenization_utils import PaddingStrategy` → `from transformers.tokenization_utils_base import ...`（processing_prismatic.py）\n\n3. **远程路径引用**：所有 JSON 配置文件中的 `openvla/openvla-7b--` 前缀去掉，改为本地相对路径\n\n4. **网络隔离**：启动时设置 `TRANSFORMERS_OFFLINE=1` 和 `HF_HUB_OFFLINE=1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-openvla-spatial-pipeline-v2.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8115ad72945e2bf5e3eb",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "fix nora untrained counterfactual",
+  "task_key": "worker_fix_nora_untrained_counterfactual_20260521T071138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_nora_untrained_counterfactual_20260521T071138.log",
+    "occurrence": 1,
+    "bytes": 650415,
+    "sha256": "818e43fe2f7b0d7ddaa97614aa97971efa553af81f68b13675ff59648bd0ec82"
+  },
+  "statistics": {
+    "messages": 458,
+    "user_turns": 0,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 205,
+      "tool_result": 205,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 458,
+      "chunks": [
+        {
+          "path": "8115ad72945e2bf5e3eb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8115ad72945e2bf5e3eb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8115ad72945e2bf5e3eb-part-0003.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-nora-untrained-counterfactual.md"
+}

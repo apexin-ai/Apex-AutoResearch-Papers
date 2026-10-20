@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "515d4db0657f20a44374",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research d098 correlational analysis",
+  "task_key": "worker_research_d098_correlational_analysis_20260522T063947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d098_correlational_analysis_20260522T063947_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "de5e31a9810a377b4d7d0a1aa8de0e02c008df94e9d8c03b4a54ee2976e25364"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果写入 `artifacts/d098_correlational_analysis.md`。\n\n核心发现：\n\n- **Spearman ρ = 0.583, p = 0.099, n = 9** — 正向趋势但未达显著性阈值\n- 所有 within-suite 比较方向一致：R² Δ 更大的架构在同一 suite 上 SR 也更高（Goal suite n=3 完美单调）\n- Within OpenVLA (n=3) 完美 rank 相关；within TracVLA (n=4) 弱相关（ρ=0.4），Long suite 打破单调性\n- 主要 confound：架构容量差异和 suite 难度效应，有效自由度接近 3（架构数）而非 9\n\n**结论**：方向性证据支持 exit collapse 与 task performance 的关联，但不足以宣称显著的 functional connection。需要更多架构才能脱离 confound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d098-correlational-analysis.md"
+}

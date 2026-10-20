@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9c77dc8d299a0e4f706",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "eval libero closedloop probe",
+  "task_key": "worker_eval_libero_closedloop_probe_20260520T123214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_libero_closedloop_probe_20260520T123214_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "1cf5b6790eb1aef87dbd1e7932ac5e0609d33bd46e80bd189ebb5cbabd4c87ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written and registered as artifact `art_20260520_1caea8`.\n\n## 结果摘要\n\n**OpenVLA LIBERO-Goal 闭环评估：全部 0% 成功率**\n\n| 已完成任务 | SR |\n|---|---|\n| Task 0: open the middle drawer | 0/10 |\n| Task 1: put the bowl on the stove | 0/10 |\n| Task 2: put the wine bottle on cabinet | 0/10 |\n| Task 3-9: 仍在运行 | 预期 0/10 |\n\n**关键发现**：\n- 模型**不是**输出固定 action——a0 跨 trial 有多样性，说明模型在读观测\n- 所有 trial 都在 400 步超时，没有提前终止或崩溃\n- 0% SR 与之前 Path B 结果一致（0/9, 0/15）\n\n**失败根因分析**（按可能性排序）：\n1. **256-bin 动作量化精度不足** + 自回归 7-token 解码的复合误差\n2. **MuJoCo 版本不匹配**（3.8.1 vs 原论文可能用的 ≤3.1.x）\n3. **图像预处理差异**（PIL vs TensorFlow）\n4. transformers 版本微差（4.40.2 vs 4.40.1）\n\n**结论**：确认了 vla-ssd 项目的核心动机——VLA 模型的动作精度是闭环控制的瓶颈。\n\neval 仍在 westd-19183 上运行（PID 461520），预计 ~22:30 完成全部 10 个任务。完成后 results.json 会自动写入 `/root/autodl-tmp/vla-ssd/results/libero_closedloop_probe/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-libero-closedloop-probe.md"
+}

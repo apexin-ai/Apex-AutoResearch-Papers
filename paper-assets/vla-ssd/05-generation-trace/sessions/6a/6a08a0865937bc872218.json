@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a08a0865937bc872218",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh cf batch progress check",
+  "task_key": "worker_ssh_cf_batch_progress_check_20260522T000314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cf_batch_progress_check_20260522T000314_result.json",
+    "occurrence": 1,
+    "bytes": 1942,
+    "sha256": "f67dda478d22b2d7db7e868f9d7255cab50247131a804d77db1052f7fa64eb9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CF Batch 实验进度报告\n\n### cf_batch_part2_v1 (PID 585447, cuda:1) — ✅ 已完成\n\n- 进程已退出，`EXIT_CODE=0`\n- 两个任务全部完成：\n  - **tracvla goal untrained** → 已保存\n  - **tracvla long untrained** → 已保存 (`counterfactual_combined.json`)\n- 总耗时 29.1 min\n- GPU 1 已释放（0% 利用率，0 MiB 显存）\n\n### cf_batch_missing_v1 (PID 584349, cuda:0) — 🔄 运行中\n\n运行时间 01:19:37，GPU 0 利用率 54%，显存 9.5/96 GB\n\n| # | 任务 | 状态 | 耗时 |\n|---|------|------|------|\n| 1 | openvla object untrained | ✅ 完成 | 27.6 min |\n| 2 | tracvla spatial untrained | ✅ 完成 | 29.9 min |\n| 3 | tracvla object untrained | 🔄 运行中 (4/5 conditions done, **paraphrased** 进行中) | ~35 min |\n| 4 | tracvla goal untrained | ⏳ 排队 | ~29 min |\n| 5 | tracvla long untrained | ⏳ 排队 | ~29 min |\n\n**当前状态**：任务 3（tracvla object untrained）正在处理最后一个 condition（paraphrased），预计 ~7 分钟内完成本任务。\n\n**注意**：PID 584349 的命令包含了 5 个任务（含 goal 和 long），与 part2 重叠。任务 4、5 的结果已由 part2 生成，missing batch 会再跑一遍覆盖。\n\n**预估剩余时间**：\n- 仅新结果（task 3 完成）：~7 分钟\n- 全部跑完（含重复的 task 4+5）：~7 + 29 + 29 ≈ **65 分钟**\n\n### 已生成的 CF 结果文件\n\n新增关键结果（本次 batch 产出）：\n- `/root/autodl-tmp/vla-ssd/results/libero_object_untrained/counterfactual_combined.json`\n- `/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json`\n- `/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json`\n- `/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/counterfactual_combined.json`\n\n待生成：\n- `tracvla_object/untrained/counterfactual_combined.json`（~7 分钟后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cf-batch-progress-check-copy-2.md"
+}

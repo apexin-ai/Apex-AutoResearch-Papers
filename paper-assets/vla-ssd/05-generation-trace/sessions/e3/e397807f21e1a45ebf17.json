@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e397807f21e1a45ebf17",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "figure r2 collapse and l1",
+  "task_key": "worker_figure_r2_collapse_and_l1_20260522T063259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_r2_collapse_and_l1_20260522T063259_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "4e1d437493c5b650b3f8d274fa4574fc147fae42475b5a189b9ad27f5fe07637"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n| 文件 | 大小 |\n|------|------|\n| `fig_r2_collapse.pdf` | 27 KB |\n| `fig_cross_arch_l1.pdf` | 17 KB |\n| `nora_goal_r2_trained.json` | 596 B |\n| `nora_goal_r2_untrained.json` | 602 B |\n\n**数据来源**:\n- OpenVLA trained: `results/libero_goal/action_r2_probing.json` (32 层, last_preaction)\n- OpenVLA untrained: 硬编码稀疏数据 + 线性插值 (16 个点 → 32 层)\n- TracVLA trained/untrained: `results/tracvla_goal/{trained,untrained}/action_r2_probing.json` (32 层)\n- NORA trained/untrained: `results/nora_goal/{trained,untrained}/action_r2_probing.json` (36 层)\n\n**fig_r2_collapse**: NORA L35 trained R²=-0.0039（极端 collapse），TracVLA L30 降到 0.31，OpenVLA exit 层几乎无衰减（Δ≈0.02）。每个 subplot 标注了 peak 值和 peak-to-exit Δ。\n\n**fig_cross_arch_l1**: 归一化分数 + 原始计数标注。所有模型 trained/untrained 的 instruction-dominant head 比例都很高（0.72–1.0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-r2-collapse-and-l1.md"
+}

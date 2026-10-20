@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b96586ebd0d8697ff54d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v3 cron exit",
+  "task_key": "worker_check_bootstrap_v3_cron_exit_20260523T070749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v3_cron_exit_20260523T070749_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "13b62e3c5cef2865cbfc7558b4be337d136dacdfd5bd0013d51dd3a044d7cc25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. 进程状态：两个 GPU 都还在跑\n\nCron 报告的 PID 724283 是启动器进程（非实际 batch 脚本），子进程仍在活跃运行。\n\n| GPU | 当前任务 | 阶段 | 实时进度 |\n|-----|---------|------|---------|\n| cuda:0 | `openvla / goal / untrained` | 特征提取 | 1750/5000 samples |\n| cuda:1 | `tracvla / goal / trained` | Bootstrap | 1000 iterations (100 workers)，已跑 ~6 min |\n\n### 2. 完成进度：1/20\n\n**cuda:0** 负责 12 条件：openvla×4suites×2cond (8) + nora×2suites×2cond (4)\n**cuda:1** 负责 8 条件：tracvla×4suites×2cond (8)\n\n已完成并保存 JSON 的仅 1 个：`openvla_goal/trained.json`\n\n### 3. 已完成结果\n\n**openvla_goal / trained**:\n| 指标 | 值 |\n|------|-----|\n| peak_layer | L1 |\n| peak_r2 | 0.4177 |\n| exit_r2 (L31) | 0.3313 |\n| delta | 0.0864 |\n| CI_95 | [-0.056, 0.1064] |\n| boot_mean | 0.0173 |\n| delta 在 CI 内？ | **是** ✅ |\n\n### 4. 无错误\n\n两个 GPU 日志均无错误或异常，正常推进中。按目前速度（每条件 ~20 min），全部 20 条件预计还需约 6-7 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v3-cron-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa1200ad3d689b5c7e2b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 010 figures",
+  "task_key": "worker_code_plan_010_figures_20260516T073019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_figures_20260516T073019_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "12488d42befa20f7ed0a1f5bd82bd98b95b837848a4b7e74786455c3227a3142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件全部生成：\n\n| 文件 | 大小 |\n|------|------|\n| `libero_spatial_rsa_perlayer.pdf` / `.png` | 25K / 282K |\n| `libero_spatial_r2_perlayer.pdf` / `.png` | 23K / 261K |\n| `cross_benchmark_comparison.pdf` / `.png` | 28K / 776K |\n\n路径：`/root/autodl-tmp/vla-ssd/results/figures/`\n\n脚本：`/root/vla-ssd/scripts/plot_spatial_results.py`\n\n图表说明：\n- **Figure A**: Spatial 4 条 RSA 曲线 + 95% CI shading + peak 标注\n- **Figure B**: Spatial 4 条 R² 曲线 + peak 标注\n- **Figure C**: 1×2 cross-benchmark 对比，Goal（细线/半透明）vs Spatial（粗线），左=RSA 右=R²，颜色区分 trained/untrained，线型区分 image_mean/last_preaction"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-figures.md"
+}

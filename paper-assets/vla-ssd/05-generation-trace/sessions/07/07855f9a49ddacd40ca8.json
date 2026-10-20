@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07855f9a49ddacd40ca8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "sync permutation 10k results",
+  "task_key": "worker_sync_permutation_10k_results_20260520T191452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_permutation_10k_results_20260520T191452_result.json",
+    "occurrence": 1,
+    "bytes": 97,
+    "sha256": "7899f2c386033add809f542bf8da7e8460cda76f924e06b7981f8c5fd6d3750d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。1 次 SSH，文件已写入本地。5 层全部 p < 0.001 显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-permutation-10k-results.md"
+}

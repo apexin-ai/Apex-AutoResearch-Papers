@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "881d68494087c975d750",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "sync specificity bootstrap figure",
+  "task_key": "worker_sync_specificity_bootstrap_figure_20260520T002810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_specificity_bootstrap_figure_20260520T002810_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "a698c860a891207442ad822bf9207ecffc131b9221a29b0ac44a88c00492a504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 files synced successfully:\n\n- `artifacts/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\n- `artifacts/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\n\nMD5 verified against remote (`81a1d1df36ba681a446dfa920c719b62`). Transfer completed via direct SCP using decrypted credentials from the MCP config."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-specificity-bootstrap-figure.md"
+}

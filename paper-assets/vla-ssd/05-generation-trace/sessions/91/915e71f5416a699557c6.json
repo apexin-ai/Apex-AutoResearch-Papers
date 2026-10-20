@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "915e71f5416a699557c6",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code nora setup and dryrun",
+  "task_key": "worker_code_nora_setup_and_dryrun_20260521T002441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nora_setup_and_dryrun_20260521T002441.log",
+    "occurrence": 1,
+    "bytes": 1615035,
+    "sha256": "796fd8f639f3886f38729de32f8c5e4d6ebd944431b2f2af26f38cd17c80eb22"
+  },
+  "statistics": {
+    "messages": 1111,
+    "user_turns": 1,
+    "tool_calls": 454,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 195,
+      "tool_call": 454,
+      "tool_result": 454,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 751,
+      "chunks": [
+        {
+          "path": "915e71f5416a699557c6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0005.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 360,
+      "chunks": [
+        {
+          "path": "915e71f5416a699557c6-part-0005.json",
+          "message_count": 149
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "915e71f5416a699557c6-part-0007.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-nora-setup-and-dryrun.md"
+}

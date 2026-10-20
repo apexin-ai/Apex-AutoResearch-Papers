@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a714aa43267dbbdb1c8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh d027 trained no inst rsa",
+  "task_key": "worker_ssh_d027-trained-no-inst-rsa_20260515T221225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d027-trained-no-inst-rsa_20260515T221225_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "4f2b03f17ce58eb3908ad0208eaea9bd319ed7ca82744a689527430bd2a6b6d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `/root/autodl-tmp/vla-ssd/results/rsa/rsa_trained_no_inst.json`。\n\n## 2×2 RSA Matrix (peak RSA across layers)\n\n|           | with-inst | no-inst |\n|-----------|-----------|---------|\n| **trained**   | 0.4876    | **0.489** |\n| **untrained** | 0.4846    | 0.4802  |\n| **DINO**      | 0.388     | —       |\n\n## Effect sizes\n\n| Effect | Delta |\n|--------|-------|\n| Training effect (with-inst) | +0.003 |\n| Training effect (no-inst) | +0.0088 |\n| Instruction effect (trained) | **-0.0014** |\n| Instruction effect (untrained) | +0.0044 |\n\n## 关键发现\n\n- Trained no-inst peak RSA = **0.489**（layer 30），略高于 trained with-inst 的 0.4876\n- 所有 4 个条件的 peak RSA 都在 **0.48–0.49** 的窄带内，差异 < 0.01\n- Bootstrap delta CI [-0.058, 0.072] 包含 0，trained vs untrained 无显著差异\n- G1 和 G2 gates 均 FAIL：training 对 action-aligned representation 无显著影响\n- Instruction 对 trained model 的效果为 **-0.0014**（几乎为零，甚至略负）\n\n遵循 C001 约束，这里不做因果结论，仅报告数字。4 格数据现在齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d027-trained-no-inst-rsa.md"
+}

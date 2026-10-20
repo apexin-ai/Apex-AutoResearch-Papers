@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c07bea392732e153f1df",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research citation verification 2026",
+  "task_key": "worker_research_citation_verification_2026_20260516T044432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_verification_2026_20260516T044432_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "27c6fe750bacd93ac294aa660d2c9f0f17ca4d2fb8db1ea6d8d525c8f37f1906"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification complete. Report saved to `artifacts/citation_verification_2026.md`. Both `references.bib` files updated.\n\n**Results:**\n\n| Citation | Status | Action |\n|---|---|---|\n| `grant2026` | **TRUE** — \"Not All Features Are Created Equal\", Grant/Zhao/Wang, arXiv:2603.19233 | Fixed `[UNVERIFIED]` tag in docs/paper bib |\n| `swann2026` | **TRUE** — \"Sparse Autoencoders Reveal...VLA Models\", Swann et al. (Stanford), arXiv:2603.19183 | Already in docs bib; added to artifacts bib |\n| `rizzardo2026` | **FALSE** — author name is hallucinated | Real paper is Buurmeijer, Amo Alonso, Swann, Pavone (arXiv:2603.05487). Bib key kept as `rizzardo2026` with NOTE, but **paper_framing.md text must change \"Rizzardo et al.\" → \"Buurmeijer et al.\"** |\n| `hou2026` | **TRUE** — \"LangGap\", Hou & Zhao, arXiv:2603.00592 | Already in docs bib; added to artifacts bib |\n| `black2024_pi0` | **TRUE** — \"π₀\", Black et al. (Physical Intelligence), arXiv:2410.24164 | Added to both bib files |\n\n**Critical action item**: All references to \"Rizzardo et al.\" in paper text need to be changed to \"Buurmeijer et al.\" and the bib key should ideally be renamed from `rizzardo2026` to `buurmeijer2026` for consistency."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification-2026.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e797616803cccbd9bd3e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug ablation 50demos main check",
+  "task_key": "worker_debug_ablation_50demos_main_check_20260517T214805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_ablation_50demos_main_check_20260517T214805_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "ab32523b44b616c28ed8bca60cf2a375263804d8cd346521ab63beafb90eee30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Experiment Status ===\nStatus: SUCCESS\nOutput file: exists (15209 bytes, created May 18 05:46)\n\n=== Analysis Results ===\n\nLayer  | baseline   | control8   | all24      | all32     \n------------------------------------------------------------\nL1     | 0.5567     | 0.5732     | 0.6153     | 0.5823    \nL8     | 0.6199     | 0.6311     | 0.6377     | 0.6311    \nL13    | 0.6763     | 0.6787     | 0.6762     | 0.6636    \n\n=== Bootstrap Δ vs baseline (95% CI) ===\nall24 L1:  Δ=+0.0585 [0.0420, 0.0752] p=0.0000\nall24 L8:  Δ=+0.0177 [0.0085, 0.0277] p=0.0000\nall24 L13: Δ=-0.0002 [-0.0087, 0.0088] p=0.9556\nall32 L1:  Δ=+0.0256 [0.0153, 0.0370] p=0.0000\nall32 L8:  Δ=+0.0112 [-0.0075, 0.0289] p=0.2394\nall32 L13: Δ=-0.0127 [-0.0261, -0.0020] p=0.0138\ncontrol8 L1:  Δ=+0.0165 [0.0046, 0.0269] p=0.0084\ncontrol8 L8:  Δ=+0.0111 [0.0018, 0.0224] p=0.0166\ncontrol8 L13: Δ=+0.0023 [-0.0078, 0.0113] p=0.6308\n\n=== Specificity Check (all24 vs control8) ===\nL1:  Δ=+0.0421 [0.0286, 0.0563] p=0.0000\nL8:  Δ=+0.0066 [-0.0043, 0.0187] p=0.2516\nL13: Δ=-0.0025 [-0.0169, 0.0130] p=0.7354\n\nSaved figures:\n- fig_ablation_4condition_bar.pdf\n- fig_ablation_3layer_grouped.pdf\nSaved combined JSON: ablation_50demos_combined.json\n```\n\n关键发现：ablate_all24 在 L1 层的 action probe R² 提升最大（+0.0585, p<0.001），且显著超过 control8 随机头（+0.0421, p<0.001），证明效果具有 specificity。效果集中在早期层（L1），中间层（L8）效果减弱，最后层（L13）无显著差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-ablation-50demos-main-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04becc346f71b862e64b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh lg gc trained results",
+  "task_key": "worker_ssh_lg_gc_trained-results_20260515T175347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_lg_gc_trained-results_20260515T175347_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "fe9f5df1f08bdf93fc4117a030868ba4364620f33cb7c5ccbd76404888cc68c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。总结：\n\n**lg_gc_trained 实验结果**\n- **n_classes=10**，10个 LIBERO-Goal task 全部包含 ✓\n- **Layer 0**: 15.8% accuracy（退化到只预测 class 1，接近随机）\n- **Layer 1-32**: **100% accuracy**，完美分类，所有 task 的 per-class accuracy 均为 1.0\n- Layer 1 需 13 epochs 收敛，Layer 2+ 仅需 6 epochs\n- **Gate G1-GC: PASS**（100% >> 40% 阈值）\n\nTrained VLA 从第 1 层起就把 goal identity 编码得极其清晰，probe 轻松达到 ceiling。与 dry-run 的 9-class 结果一致，10-class 同样完美。唯一的分辨力在 Layer 0（raw embedding）vs Layer 1+。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-lg-gc-trained-results.md"
+}

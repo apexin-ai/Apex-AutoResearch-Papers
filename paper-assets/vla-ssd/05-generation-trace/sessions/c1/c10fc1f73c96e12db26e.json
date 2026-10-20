@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c10fc1f73c96e12db26e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "urgent gpu status and results",
+  "task_key": "worker_urgent_gpu_status_and_results_20260521T103534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_gpu_status_and_results_20260521T103534_result.json",
+    "occurrence": 1,
+    "bytes": 4611,
+    "sha256": "626e05769d247ca9ae2bdd5024d59257c12e34340c2414ac1bf90e3f95a9f21e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "phi3v-base 已就绪（7.8G, 2 safetensors, config.json 存在）。全部数据收集完毕，汇总如下：\n\n---\n\n## GPU 状态\n\n| GPU | 型号 | 显存 | 状态 |\n|-----|------|------|------|\n| 0 | RTX PRO 6000 Blackwell | 96GB | **空闲** (0MiB, 0%) |\n| 1 | RTX PRO 6000 Blackwell | 96GB | **空闲** (0MiB, 0%) |\n\n无 tmux session，无 pipeline 进程。\n\n---\n\n## 实验 1: object_untrained_pipeline_v1 (cuda:0)\n\n**状态**: Phase 1-5 完成，Phase 6 (counterfactual) 崩溃  \n**错误**: `AssertionError: unnorm_key not in norm_stats` — untrained OpenVLA 没有 LIBERO 的 norm stats\n\n### R² Action Probing (32 layers)\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.7455 | 0.6084 |\n| L4 | 0.7586 | 0.7304 |\n| L8 | 0.7612 | 0.7413 |\n| L10 | **0.7769** | 0.7491 |\n| L16 | 0.7708 | 0.7552 |\n| L19 | 0.7747 | **0.7608** |\n| L24 | 0.7789 | 0.7442 |\n| L27 | **0.7898** | 0.7153 |\n| L29 | 0.7908 | 0.7051 |\n| L31 | 0.7810 | 0.6850 |\n\n**Peak**: img_mean = 0.7908 @ L29; last_preaction = 0.7608 @ L19\n\n### L1 Attention Profile\n\n- **Instruction-dominant**: 24/32 heads\n- **Mixed**: 8/32 heads  \n- **Image-dominant**: 0/32 heads\n- Strongest instruction heads: h22 (0.773), h0 (0.869), h25 (0.768), h10 (0.710)\n\n### Cross-Instruction Classification\n\n- **All layers, both positions**: 1.000 (perfect classification)\n- Chance = 0.1\n\n### RSA Analysis (9 layers sampled)\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.5934 | 0.5020 |\n| L4 | 0.5952 | 0.4783 |\n| L8 | 0.5668 | 0.5831 |\n| L12 | 0.5644 | **0.6040** |\n| L16 | **0.5982** | 0.5917 |\n| L24 | 0.5787 | **0.6092** |\n| L28 | 0.5815 | 0.5998 |\n| L31 | 0.5901 | 0.5779 |\n\n**Best RSA**: L24_last_preaction = 0.6092 (CI: [0.550, 0.662])\n\n### Counterfactual: **MISSING** (crash)\n\n---\n\n## 实验 2: nora_spatial_pipeline_v2 (cuda:1)\n\n**状态**: 完成 (EXIT_CODE=0, 55.5 min)\n\n### R² Action Probing — TRAINED (36 layers, Phi-3-Vision)\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.7106 | 0.6710 |\n| L8 | 0.7164 | 0.7034 |\n| L10 | **0.7207** | 0.7004 |\n| L16 | 0.7074 | 0.6956 |\n| L22 | 0.6897 | **0.7113** |\n| L24 | 0.6894 | **0.7195** |\n| L31 | 0.6291 | 0.5395 |\n| L35 | 0.5532 | 0.4171 |\n\n**Peak**: img_mean = 0.7207 @ L10; last_preaction = 0.7195 @ L24 — 后层急剧下降\n\n### R² Action Probing — UNTRAINED\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.7193 | 0.5809 |\n| L8 | 0.7207 | 0.6323 |\n| L11 | **0.7253** | 0.6204 |\n| L16 | 0.6956 | 0.6194 |\n| L24 | 0.6780 | 0.6021 |\n| L32 | 0.6881 | 0.6018 |\n| L35 | 0.6680 | 0.5958 |\n\n**Peak**: img_mean = 0.7253 @ L11; last_preaction = 0.6323 @ L8\n\n### L1 Attention — TRAINED\n\n- **Instruction-dominant**: 12/16 heads\n- **Mixed**: 4/16 (h2, h4, h10, h14)\n- Strongest: h1 (0.987), h5 (0.980), h7 (0.968), h8 (0.809)\n\n### L1 Attention — UNTRAINED\n\n- **Instruction-dominant**: 14/16 heads\n- **Mixed**: 2/16 (h2, h4)\n- Strongest: h7 (0.997), h1 (0.996), h5 (0.988), h8 (0.966)\n\n### Cross-Instruction Classification — TRAINED\n\n- All layers: 0.993–1.000 (img: 0.993–0.999; last_pre: 1.000)\n- Chance = 0.1\n\n### Cross-Instruction Classification — UNTRAINED\n\n- All layers: 0.997–1.000 (img: 0.997–1.000; last_pre: 0.997–1.000)\n- Chance = 0.1\n\n### Counterfactual — TRAINED (4 conditions, last layer = L35)\n\n| Condition | cos_dist (L35) | Cohen's d |\n|-----------|---------------|-----------|\n| wrong | 0.2748 | 2.158 |\n| empty | 0.2381 | — |\n| shuffled | 0.1141 | — |\n| paraphrased | 0.0233 | — |\n\nCosine distance 随 layer 递增（L0=0.002 → L35=0.275 for wrong）。\nPer-task Cohen's d 均值 = 2.547 (std=0.249, CV=0.098) — 非常一致。\n\n---\n\n## 下一批实验就绪状态\n\n| 资源 | 状态 |\n|------|------|\n| OFT checkpoint | 15G, 就绪 |\n| Phi-3-Vision base (untrained) | 7.8G, 就绪 |\n| TracVLA pipeline scripts | `tracvla_object_full_pipeline.py`, `tracvla_spatial_full_pipeline.py` 就绪 |\n| 磁盘 | 82G 可用 (68% used) |\n| GPU | 两张均空闲，可立即启动 |\n\n---\n\n## 待修复\n\n**object_untrained counterfactual 崩溃**：untrained OpenVLA 没有 LIBERO 的 action norm stats。counterfactual 分析需要 `generate_action()` 做 unnormalization，但 untrained 模型只有预训练时的 dataset keys。需要绕过 unnormalization 或用 representation-based 方法（像 nora_spatial 那样用 cosine distance）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-gpu-status-and-results.md"
+}

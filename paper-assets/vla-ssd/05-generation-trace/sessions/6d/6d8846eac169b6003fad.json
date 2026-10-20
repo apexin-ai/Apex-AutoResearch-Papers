@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d8846eac169b6003fad",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code kill duplicate pid",
+  "task_key": "worker_code_kill_duplicate_pid_20260516T231319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_duplicate_pid_20260516T231319_result.json",
+    "occurrence": 1,
+    "bytes": 258,
+    "sha256": "2fc5dc939257836d84e7892dc5025bbcef689bc97bd007db94074a56fac478cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 749287 已不存在（可能已自行退出）。PID 749462 仍在运行：\n\n```\nroot 749462  0.0% mem  6.2G  Rl+  07:10  39:31\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/instruction_conditional_probe.py --condition all\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-duplicate-pid.md"
+}

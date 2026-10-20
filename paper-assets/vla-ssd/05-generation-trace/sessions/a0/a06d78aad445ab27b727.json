@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a06d78aad445ab27b727",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan009 cka verification",
+  "task_key": "worker_ssh_plan009-cka-verification_20260515T234351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan009-cka-verification_20260515T234351_result.json",
+    "occurrence": 1,
+    "bytes": 2000,
+    "sha256": "4f19a03e47a534775241aa0cb7fac9748862f47df6fa3ca8845c7d58fd4edb7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA verification 完成。结果总结：\n\n## 结果\n\n### Linear CKA (frame-level, features vs 7-DoF actions)\n| Source | CKA |\n|--------|-----|\n| untrained image_mean L23 | **0.0894** |\n| trained image_mean L23 | 0.0834 |\n| projector | 0.0809 |\n| DINO | 0.0664 |\n| trained last_preaction L32 | **0.1270** |\n\n### RDM CKA (demo-level kernel CKA)\n| Source | CKA |\n|--------|-----|\n| trained image_mean L23 | **0.2599** |\n| projector | 0.2568 |\n| untrained image_mean L23 | 0.2464 |\n| DINO | 0.2408 |\n| trained last_preaction L32 | **0.2898** |\n\n### 与 RSA 对比\n| | RSA | Linear CKA | RDM CKA |\n|--|-----|------------|---------|\n| #1 | projector (0.615) | untrained (0.089) | trained (0.260) |\n| #2 | trained (0.501) | trained (0.083) | projector (0.257) |\n| #3 | untrained (0.485) | projector (0.081) | untrained (0.246) |\n| #4 | DINO (0.388) | DINO (0.066) | DINO (0.241) |\n\n### 分析\n\n**一致的发现：**\n- DINO 在所有三种指标中都是最低 → robust\n- trained last_preaction (L32) 的 CKA 远高于 image_mean → 与 RSA 一致，last token 比 image tokens 更 action-aligned\n- Per-layer CKA 趋势：later layers > earlier layers → 与 RSA per-layer curve 方向一致\n\n**不一致之处：**\n- **Linear CKA** 的 ranking (untrained > trained > projector) 与 RSA 相反。原因：linear CKA 直接比较 4096-D features vs 7-D actions，维度严重不匹配导致 CKA 值极低 (0.06-0.13)，条件间差异在噪声量级内\n- **RDM CKA** 中 trained (0.2599) 和 projector (0.2568) 近乎打平（差 0.003），而 RSA 中 projector 明显领先 (0.615 vs 0.501)。这说明 projector 的优势在 CKA 度量下被压缩了\n\n**结论**: CKA 部分验证了 RSA 发现——DINO 最弱和 per-layer 趋势都 robust。但 projector vs trained 的排序在指标间不完全一致：RSA 强调 projector 优势，RDM CKA 显示二者接近。Linear CKA 因维度不匹配不适合直接比较，不作为主要证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan009-cka-verification.md"
+}

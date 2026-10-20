@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50a911443a5eefe25da4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head decoding untrained",
+  "task_key": "worker_code_action_head_decoding_untrained_20260526T191707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_decoding_untrained_20260526T191707_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "efc83123ecb053591b3a45915314ce28d8f62b8587a7d749b535e5e1ad6d1d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果已注册。\n\n**结果摘要：**\n\nUntrained OpenVLA (OXE-pretrained) 在 LIBERO-Goal 上的 action-head decoding 结果：\n\n| 层 | R² | MSE |\n|---|---|---|\n| 0 | -3.34 | 0.67 |\n| 8 | -4.17 | 0.87 |\n| 15 | -4.61 | 1.04 |\n| 24 | -3.38 | 0.88 |\n| 31 (exit) | -1.39 | 0.52 |\n\n所有 32 层的 R² 均为负值（范围 -4.62 ~ -1.39），符合预期：untrained model 的 LM head 未针对 LIBERO action 格式特化，因此 action-head decoding 完全无效。中间层 R² 最差（~Layer 14-15），exit layer 略好但仍然严重为负。\n\n**产出文件（服务器端）：**\n- JSON: `/root/autodl-tmp/vla-ssd/results/action_head_decoding/openvla_goal_untrained_action_head_r2.json`\n- 图: `/root/autodl-tmp/vla-ssd/results/action_head_decoding/fig_action_head_trained_vs_untrained.pdf/.png`（目前只有 untrained 曲线，trained 结果完成后可合并绘图）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-decoding-untrained.md"
+}

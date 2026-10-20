@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44ff3b9bba8e00d37735",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code specificity random seed expansion run",
+  "task_key": "worker_code_specificity_random_seed_expansion_run_20260519T204408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_specificity_random_seed_expansion_run_20260519T204408_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "8519a2ea4c7df77fa9b0102a8f070f2b27edfea2dded893001cc2ca8ce00228a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交，状态汇总：\n\n- **实验**: `specificity_random_seed_expansion` → **RUNNING**\n- **PID**: 169052 on westd-19183\n- **Phase 1** (GPU cache generation): 模型已加载，正在跑 forward pass\n- **Phase 2** (CPU bootstrap 30 seeds): 将在 Phase 1 完成后自动启动\n- **日志**: `/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log`\n- **预计总时长**: ~1.5-2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-specificity-random-seed-expansion-run.md"
+}

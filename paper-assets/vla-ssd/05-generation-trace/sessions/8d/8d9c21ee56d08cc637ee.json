@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9c21ee56d08cc637ee",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check extraction progress",
+  "task_key": "worker_ssh_check-extraction-progress_20260515T173426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-extraction-progress_20260515T173426_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "769947391e68fc3cf3dd23eb59cfdf8b31ba5ad27e99b5e31ee477042e7aa7cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LIBERO-Goal 特征提取进度\n\n### 进程状态\n两个进程均在运行，已运行约 49 分钟：\n\n| 进程 | PID | RSS | CPU |\n|------|-----|-----|-----|\n| lg_extract_trained | 627256 | 2.4 GB | 997% |\n| lg_extract_untrained | 627335 | 2.4 GB | 991% |\n\n### 完成进度\n\n**trained** — **9/10 完成**，第 10 个任务 `turn_on_the_stove` 进行中（309/4460, ~7%）\n- 已产出 10 个 h5 文件（含正在写入的），总计 25 GB\n- 预计剩余 ~3 分钟\n\n**untrained** — **8/10 完成**，第 9 个任务 `put_the_wine_bottle_on_top_of_the_cabinet` 进行中（2633/5394, ~49%）\n- 已产出 9 个 h5 文件（含正在写入的），总计 23 GB\n- 当前任务剩余 ~1.5 分钟，之后还有 1 个任务（~5-7 分钟）\n- 预计总剩余 ~7-9 分钟\n\n### 无错误\n两个日志均无报错，正常推进中。trained 即将完成，untrained 预计再跑约 10 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-extraction-progress-copy-2.md"
+}

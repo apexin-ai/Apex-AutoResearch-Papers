@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f0423b611f161456792",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan012 clip download v2",
+  "task_key": "worker_ssh_plan012-clip-download-v2_20260516T011834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan012-clip-download-v2_20260516T011834_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "fc4e3cd052521be994bea48f32025ebef46d43143607f076900f809e35b3e495"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- 权重路径：`/root/vla-ssd/checkpoints/clip-vit-large-patch14/`\n- 下载方式：ModelScope（HuggingFace 直连 xet 超时，代理无法解决）\n- 验证通过：`CLIPModel` 加载成功，427.6M params，vision hidden size 1024\n- 提取脚本用法：`python scripts/extract_features_clip.py --model_path /root/vla-ssd/checkpoints/clip-vit-large-patch14`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan012-clip-download-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "043c759d1fff8eeac765",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 010 analysis scripts",
+  "task_key": "worker_code_plan_010_analysis_scripts_20260516T045507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_analysis_scripts_20260516T045507_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "3eae7f46daa56c3e75cc1fba98a1452b3a33bf105f4fbcb2b20cb51f7584c7ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写入并通过语法检查。\n\n| 脚本 | 路径 | 输出 |\n|------|------|------|\n| RSA | `/root/vla-ssd/scripts/rsa_libero_spatial.py` (278行) | `results/rsa/rsa_libero_spatial.json` |\n| Action Probe | `/root/vla-ssd/scripts/action_probe_libero_spatial.py` (368行) | `results/functional_validation/action_probe_libero_spatial.json` |\n\n关键设计：\n- 两个脚本均从特征目录自动发现 task（`glob(\"*.h5\")`），不硬编码 task 列表\n- 启动时检查特征目录和 action 数据目录是否存在，不存在则 `sys.exit(1)` 并提示\n- RSA：Method B 全参数对齐 `rsa_unified_vla.py`（cosine rep + euclidean act + N_SAMPLE=20 + Spearman + bootstrap CI 1000）\n- Action Probe：全参数对齐 `fulllayer_action_probe.py`（50ep/patience5/lr1e-3/hidden256/seed42），trained/untrained 双进程并行跑两张 GPU\n- Bootstrap pairwise 对比：best-vs-best + same-layer，两种 aggregation 都做"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-analysis-scripts.md"
+}

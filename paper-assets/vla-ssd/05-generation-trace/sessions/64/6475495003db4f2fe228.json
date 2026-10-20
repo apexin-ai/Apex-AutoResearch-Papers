@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6475495003db4f2fe228",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "audit figures data",
+  "task_key": "worker_audit_figures_data_20260529T050826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figures_data_20260529T050826_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "7aa5c1b006747dd48bf49af707c8cce62d80ffbfaa727c4634a11de1f082a77b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/audit_figures.md`。\n\n**结果：14 图审计，~750 数据点，发现 2 个问题：**\n\n1. **⚠️ P1** `plot_multi_layer_attention.py` L31 trained = **19**，论文和 teaser 均为 **18**。差 1 head，不影响结论。\n2. **⚠️ P2** 附录段落引用 TraceVLA trained = 27/32 和 NORA ref = 13/16，但 `plot_l1_attention.py` 实际绘制 29/32 和 14/16。experiments.tex 使用范围值覆盖了这些差异。\n\n**已排除的已知关注：**\n- TraceVLA Spatial/Object wrong↔shuffled 交换 → ✅ 通过源数据报告验证，映射正确\n- OpenVLA L1 24 vs 23 → ✅ 已知方法差异（dedicated vs bulk extraction）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-figures-data.md"
+}

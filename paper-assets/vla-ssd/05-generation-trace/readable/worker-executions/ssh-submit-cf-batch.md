@@ -1,0 +1,1653 @@
+# ssh submit cf batch
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_ssh_submit_cf_batch_20260521T210957.log`
+- **Structured JSON:** [`a00744e1d1506a723695.json`](../../sessions/a0/a00744e1d1506a723695.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ce0b03c9-d7bc-4b5c-ac2b-bcc771cdd713",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779412200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "60dbb160-287e-41a9-9905-1ad45c8564f6",
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the counterfactual_batch.py script usage and prepare submission commands on server westd-19183. Let me execute the read-only commands to gather information.
+
+Let me load the SSH tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "cafe2786-4ec7-44b4-9996-7040267bbf24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YFkoDZfWUiiTYz2MMouZ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11587,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11587
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y8DRBALAgjPMUVVH483aP6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "32542951-dda2-411b-89ad-a1ea5d328292",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YFkoDZfWUiiTYz2MMouZ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11587,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11587
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T21:10:12.735Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8DRBALAgjPMUVVH483aP6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "724f1c46-1565-498e-a59e-c305df5f8c28",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BRrhgg5CUaqoTNo3fL5hNm`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -100 /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "b5530658-e3a2-4836-9020-bb38d1cf1336",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWBXCvw3nBL9srXSufXmfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 23428,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HErHCkU5LWwmtwWxHSwdUG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*counterfactual*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "1f3b28d3-a424-4e8d-85a0-8e367e61a4bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWBXCvw3nBL9srXSufXmfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 23428,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T21:10:23.519Z_
+
+<details><summary>↩ Tool result · `toolu_01BRrhgg5CUaqoTNo3fL5hNm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nCounterfactual-only batch runner for VLA-SSD experiments.\\n\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\nand all untrained models. Override with --method.\\n\\nUsage:\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n# ============================================================\\n# Architecture configs\\n# ============================================================\\nARCH_CFG = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"n_heads\\\": 16, \\\"hidden\\\": 2048},\\n}\\n\\n# ============================================================\\n# Checkpoint registry\\n# ============================================================\\nCKPT_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n}\\n\\n# ============================================================\\n# Data directories\\n# ============================================================\\nDATA_MAP = {\\n    \\\"goal\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\",\\n    \\\"spatial\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\",\\n    \\\"object\\\":  \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\",\\n    \\\"long\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\",\\n}\\n\\n# ============================================================\\n# Results directories\\n# ============================================================\\nRESULTS_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/libero_long/trained\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_long/untrained\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/libero_goal/trained\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_goal/untrained\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\\",\\n}\\n\\n# ============================================================\\n# Unnorm keys (only for action_mse on OpenVLA)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "dcd724be-8fa8-46a5-af66-2f46b0a8f727",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCounterfactual-only batch runner for VLA-SSD experiments.\\\\n\\\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\\\nand all untrained models. Override with --method.\\\\n\\\\nUsage:\\\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\n\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n# ============================================================\\\\n# Architecture configs\\\\n# ============================================================\\\\nARCH_CFG = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"n_heads\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 4096},\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"n_heads\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 3072},\\\\n    \\\\\\\"nora\\\\\\\":    {\\\\\\\"n_layers\\\\\\\": 36, \\\\\\\"n_heads\\\\\\\": 16, \\\\\\\"hidden\\\\\\\": 2048},\\\\n}\\\\n\\\\n# ============================================================\\\\n# Checkpoint registry\\\\n# ============================================================\\\\nCKPT_MAP = {\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):  \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):        \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):      \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\",\\\\n}\\\\n\\\\n# ============================================================\\\\n# Data directories\\\\n# ============================================================\\\\nDATA_MAP = {\\\\n    \\\\\\\"goal\\\\\\\":    \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\",\\\\n    \\\\\\\"spatial\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\\\\\",\\\\n    \\\\\\\"object\\\\\\\":  \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\\\\\",\\\\n    \\\\\\\"long\\\\\\\":    \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\",\\\\n}\\\\n\\\\n# ============================================================\\\\n# Results directories\\\\n# ============================================================\\\\nRESULTS_MAP = {\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_long/trained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_long/untrained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_goal/trained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_goal/untrained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):  \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):\\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):        \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):      \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\\\\\\",\\\\n}\\\\n\\\\n# ============================================================\\\\n# Unnorm keys (only for action_mse on OpenVLA)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nCounterfactual-only batch runner for VLA-SSD experiments.\\n\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\nand all untrained models. Override with --method.\\n\\nUsage:\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n# ============================================================\\n# Architecture configs\\n# ============================================================\\nARCH_CFG = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"n_heads\\\": 16, \\\"hidden\\\": 2048},\\n}\\n\\n# ============================================================\\n# Checkpoint registry\\n# ============================================================\\nCKPT_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n}\\n\\n# ============================================================\\n# Data directories\\n# ============================================================\\nDATA_MAP = {\\n    \\\"goal\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\",\\n    \\\"spatial\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\",\\n    \\\"object\\\":  \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\",\\n    \\\"long\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\",\\n}\\n\\n# ============================================================\\n# Results directories\\n# ============================================================\\nRESULTS_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/results/libero_object_untrained\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/libero_long/trained\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_long/untrained\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/libero_goal/trained\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_goal/untrained\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/trained\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/trained\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/trained\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/results/nora_goal/untrained\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained\\\",\\n}\\n\\n# ============================================================\\n# Unnorm keys (only for action_mse on OpenVLA)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012mwnSF7K2fXVpnKbhMf7CW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*cf_*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "860a0908-a76e-4880-90b0-76feb4aa7c8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWBXCvw3nBL9srXSufXmfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 23428,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T21:10:24.044Z_
+
+<details><summary>↩ Tool result · `toolu_01HErHCkU5LWwmtwWxHSwdUG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log\\n/root/autodl-tmp/vla-ssd/results/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks.log\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "32439836-40e7-47c2-bcf6-b2de80e53e6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks.log\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log\\n/root/autodl-tmp/vla-ssd/results/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks.log\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_wrong.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_empty.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_shuffled.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_paraphrased.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_correct.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/counterfactual_spatial_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T21:10:24.563Z_
+
+<details><summary>↩ Tool result · `toolu_012mwnSF7K2fXVpnKbhMf7CW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "82c4658c-309a-4a50-8b58-9a1408f47b1b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the results:
+
+**Script parameters** (from header):
+- `--arch`: openvla/tracvla/nora
+- `--suite`: goal/spatial/object/long
+- `--condition`: trained/untrained
+- `--method`: action_mse or cosine_dist (auto-selected: action_mse for trained openvla/tracvla, cosine_dist for nora and all untrained)
+
+**Existing counterfactual results:**
+Looking at `counterfactual_combined.json` files in the new batch format:
+
+
+- `nora_spatial/trained/counterfactual_combined.json` ✓
+- `nora_goal/trained/counterfactual_combined.json` ✓
+- `nora_goal/untrained/counterfactual_combined.json` ✓
+- `tracvla_spatial/trained/counterfactual_combined.json` ✓
+- `tracvla_object/trained/counterfactual_combined.json` ✓
+- `tracvla_long/trained/counterfactual_combined.json` ✓
+- `tracvla_goal/trained/counterfactual_combined.json` ✓
+
+I also see there are older format results still present in the directory.
+
+Now I'm checking what's actually missing against what the user needs. Looking at the directory structure, I can see that `tracvla_spatial/untrained/` and `tracvla_object/untrained/` don't have the counterfactual_combined.json files, and for openvla_object untrained, the results map shows `libero_object_untrained` as the directory but it's also missing the counterfactual file.
+
+I should examine the argparse configuration more carefully to see if there's a device argument, and I need to look at what other openvla results exist beyond just the object variant the user mentioned. Looking at the old format files, they seem to cover the trained cases for openvla, so the missing ones are likely the untrained variants. The user only mentioned openvla_object untrained as missing, so maybe the others weren't needed or were already generated. Let me check if there's a device argument in the script to understand how to run these experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "96cd48d9-54c4-4a23-9a62-c71f5a23deb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpd7973xtAhpfrsDsCHBi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4409,
+      "cache_read_input_tokens": 24120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+再看 argparse 定义和是否有 `--device` 参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "aee10b53-6747-4108-bbae-319219422447",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpd7973xtAhpfrsDsCHBi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4409,
+      "cache_read_input_tokens": 24120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F6VQAWHS3HevX8nYGkHJ6T`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"add_argument\\|DEVICE\\|def main\" /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "19dc199f-ecfa-464f-ac18-5aced3ad111d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpd7973xtAhpfrsDsCHBi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4409,
+      "cache_read_input_tokens": 24120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:10:57.448Z_
+
+<details><summary>↩ Tool result · `toolu_01F6VQAWHS3HevX8nYGkHJ6T`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "0e996ae7-cfb3-4634-a8f7-751d1f5f182c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ToMY5nJ8X6kVfmDfwgYt7w`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls /root/autodl-tmp/vla-ssd/results/libero_object_untrained/ /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/ /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/ /root/autodl-tmp/vla-ssd/results/libero_goal/untrained/ /root/autodl-tmp/vla-ssd/results/libero_long/untrained/ /root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "143bf6a9-f242-40eb-8a8d-4b7cdefe0147",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpd7973xtAhpfrsDsCHBi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4409,
+      "cache_read_input_tokens": 24120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T21:10:59.333Z_
+
+<details><summary>↩ Tool result · `toolu_01ToMY5nJ8X6kVfmDfwgYt7w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "77213e5c-5d38-495e-99b1-64a5ef9b977a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>&1` is blocked. Let me use find and grep separately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "a5e18ae4-5dd4-436f-930e-a4a121aea12f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EdAnpooBZGhU1gkNc9JsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1658,
+      "cache_read_input_tokens": 28529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MUchwhKRkaYX8x5KxBVVfn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"add_argument\" /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "bbfdc91e-70b1-4fe1-bba3-51d48be88f97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EdAnpooBZGhU1gkNc9JsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1658,
+      "cache_read_input_tokens": 28529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T21:11:03.494Z_
+
+<details><summary>↩ Tool result · `toolu_01MUchwhKRkaYX8x5KxBVVfn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"807:    p.add_argument(\\\"--arch\\\", required=True,\\n809:    p.add_argument(\\\"--suite\\\", required=True,\\n811:    p.add_argument(\\\"--condition\\\", required=True,\\n813:    p.add_argument(\\\"--method\\\", default=\\\"auto\\\",\\n815:    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n816:    p.add_argument(\\\"--n-demos\\\", type=int, default=10)\\n817:    p.add_argument(\\\"--n-timesteps\\\", type=int, default=50)\\n818:    p.add_argument(\\\"--results-dir\\\", default=None,\\n820:    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "f75f4cdc-5211-4633-9f1b-4797e445f836",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"807:    p.add_argument(\\\\\\\"--arch\\\\\\\", required=True,\\\\n809:    p.add_argument(\\\\\\\"--suite\\\\\\\", required=True,\\\\n811:    p.add_argument(\\\\\\\"--condition\\\\\\\", required=True,\\\\n813:    p.add_argument(\\\\\\\"--method\\\\\\\", default=\\\\\\\"auto\\\\\\\",\\\\n815:    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n816:    p.add_argument(\\\\\\\"--n-demos\\\\\\\", type=int, default=10)\\\\n817:    p.add_argument(\\\\\\\"--n-timesteps\\\\\\\", type=int, default=50)\\\\n818:    p.add_argument(\\\\\\\"--results-dir\\\\\\\", default=None,\\\\n820:    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"807:    p.add_argument(\\\"--arch\\\", required=True,\\n809:    p.add_argument(\\\"--suite\\\", required=True,\\n811:    p.add_argument(\\\"--condition\\\", required=True,\\n813:    p.add_argument(\\\"--method\\\", default=\\\"auto\\\",\\n815:    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n816:    p.add_argument(\\\"--n-demos\\\", type=int, default=10)\\n817:    p.add_argument(\\\"--n-timesteps\\\", type=int, default=50)\\n818:    p.add_argument(\\\"--results-dir\\\", default=None,\\n820:    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Af8AjTFDELf4Q2BTrJqQnc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"DEVICE\" /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "1837b5f2-d687-48fc-bf3b-6ec4683c38e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EdAnpooBZGhU1gkNc9JsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1658,
+      "cache_read_input_tokens": 28529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T21:11:04.183Z_
+
+<details><summary>↩ Tool result · `toolu_01Af8AjTFDELf4Q2BTrJqQnc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:DEVICE = \\\"cuda:0\\\"\\n312:    ).to(DEVICE).eval()\\n345:    ).to(DEVICE).eval()\\n358:        low_cpu_mem_usage=True, local_files_only=True, device_map=DEVICE\\n374:    inputs = processor(prompt, image).to(DEVICE)\\n384:    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n399:    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n416:             torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)),\\n421:                 torch.ones(1, 1, device=DEVICE,\\n803:    global DEVICE\\n824:    DEVICE = f\\\"cuda:{args.gpu}\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "b209838f-ed9a-402f-9fd9-14e96650b748",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27:DEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n312:    ).to(DEVICE).eval()\\\\n345:    ).to(DEVICE).eval()\\\\n358:        low_cpu_mem_usage=True, local_files_only=True, device_map=DEVICE\\\\n374:    inputs = processor(prompt, image).to(DEVICE)\\\\n384:    inputs = processor(prompt, [image], return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n399:    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\\\n416:             torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)),\\\\n421:                 torch.ones(1, 1, device=DEVICE,\\\\n803:    global DEVICE\\\\n824:    DEVICE = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"27:DEVICE = \\\"cuda:0\\\"\\n312:    ).to(DEVICE).eval()\\n345:    ).to(DEVICE).eval()\\n358:        low_cpu_mem_usage=True, local_files_only=True, device_map=DEVICE\\n374:    inputs = processor(prompt, image).to(DEVICE)\\n384:    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n399:    return {k: v.to(DEVICE) if isinstance(v, torch.Tensor) else v\\n416:             torch.tensor([[29871]], device=DEVICE, dtype=input_ids.dtype)),\\n421:                 torch.ones(1, 1, device=DEVICE,\\n803:    global DEVICE\\n824:    DEVICE = f\\\"cuda:{args.gpu}\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SeDq5LhvSP8D45aT9AX1Dz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"counterfactual_combined.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "794919b5-fa36-4e08-ba14-077c4a6fe8c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EdAnpooBZGhU1gkNc9JsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1658,
+      "cache_read_input_tokens": 28529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T21:11:04.778Z_
+
+<details><summary>↩ Tool result · `toolu_01SeDq5LhvSP8D45aT9AX1Dz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "ab248dd5-3740-4236-b351-a8b8bbb785d6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the argparse section more carefully to see help strings and the full args.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "2ad6020e-586c-4492-abba-bc5eaa435c2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNnVcD6YDomPHwjW7r5eN8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 30187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+看 argparse 的 help 和 method auto-select 逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "fee55205-ab2f-4c21-a3b6-fb932b532ac8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNnVcD6YDomPHwjW7r5eN8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 30187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CDijHKdqCR4R9sVxTJ9MTG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -830 /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "fbd81c91-d489-439f-90be-89cdb5e98962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNnVcD6YDomPHwjW7r5eN8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1492,
+      "cache_read_input_tokens": 30187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T21:11:09.908Z_
+
+<details><summary>↩ Tool result · `toolu_01CDijHKdqCR4R9sVxTJ9MTG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nCounterfactual-only batch runner for VLA-SSD experiments.\\n\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\nand all untrained models. Override with --method.\\n\\nUsage:\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n# ============================================================\\n# Architecture configs\\n# ============================================================\\nARCH_CFG = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"n_heads\\\": 16, \\\"hidden\\\": 2048},\\n}\\n\\n# ============================================================\\n# Checkpoint registry\\n# ============================================================\\nCKPT_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n}\\n\\n# ============================================================\\n# Data directories\\n# ============================================================\\nDATA_MAP = {\\n    \\\"goal\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\",\\n    \\\"spatial\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\",\\n    \\\"object\\\":  \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\",\\n    \\\"long\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\",\\n}\\n\\n# ============================================================\\n# Results directories\\n# ============================================================\\nRESULTS_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/au\\n\\n... [截断: 输出过长，省略 28981 字符] ...\\n\\nry\\\"] = {\\n            \\\"layer\\\": last_l,\\n            \\\"mean\\\": round(float(last_arr.mean()), 6),\\n            \\\"std\\\": round(float(last_arr.std()), 6),\\n            \\\"cohens_d\\\": round(global_d, 4),\\n            \\\"n_samples\\\": len(last_arr),\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_dists[ti])\\n            td = (float(tm.mean() / tm.std(ddof=1))\\n                  if tm.std(ddof=1) > 0 else 0.0)\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_dists[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = (float(da.mean() / da.std(ddof=1))\\n                  if da.std(ddof=1) > 0 else 0.0)\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_cosine_distance\\\": round(float(tm.mean()), 6),\\n                \\\"demo_distances\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": instructions[ti],\\n                \\\"instruction_counterfactual\\\": cf_instruction(\\n                    ti, cond, instructions, paraphrases),\\n            }\\n            cond_res[\\\"per_task\\\"][tasks[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (round(float(np.std(per_task_ds) /\\n                                   np.mean(per_task_ds)), 4)\\n                       if np.mean(per_task_ds) > 0 else 0.0),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\"\\n            f\\\"cross-task d={np.mean(per_task_ds):.4f}\\\")\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"last_layer_summary\\\"][\\\"mean\\\"],\\n        reverse=True)\\n    all_res[\\\"ranking_by_cosine_distance\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"mean_cosine_distance\\\": all_res[c][\\\"global_metrics\\\"][\\n             \\\"last_layer_summary\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n# ============================================================\\n# Method selection\\n# ============================================================\\n\\ndef resolve_method(arch, condition, method):\\n    if method != \\\"auto\\\":\\n        return method\\n    if arch == \\\"nora\\\":\\n        return \\\"cosine_dist\\\"\\n    if condition == \\\"untrained\\\":\\n        return \\\"cosine_dist\\\"\\n    return \\\"action_mse\\\"\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    global DEVICE\\n\\n    p = argparse.ArgumentParser(\\n        description=\\\"Counterfactual-only batch runner for VLA-SSD\\\")\\n    p.add_argument(\\\"--arch\\\", required=True,\\n                   choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True,\\n                   choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True,\\n                   choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--method\\\", default=\\\"auto\\\",\\n                   choices=[\\\"auto\\\", \\\"action_mse\\\", \\\"cosine_dist\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n-demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n-timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--results-dir\\\", default=None,\\n                   help=\\\"Override output directory\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                   help=\\\"Run with 2 tasks, 1 demo, 2 timesteps\\\")\\n    args = p.parse_args()\\n\\n    DEVICE = f\\\"cuda:{args.gpu}\\\"\\n    key = (args.arch, args.suite, args.condition)\\n\\n    if key not in CKPT_MAP:\\n        print(f\\\"ERROR: Unsupported combination: {key}\\\")\\n        print(f\\\"Available: {sorted(CKPT_MAP.keys())}\\\")\\n        sys.exit(1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "0e1cbb94-641d-48d0-b902-60b656f35c87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCounterfactual-only batch runner for VLA-SSD experiments.\\\\n\\\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\\\nand all untrained models. Override with --method.\\\\n\\\\nUsage:\\\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom PIL import Image\\\\n\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n# ============================================================\\\\n# Architecture configs\\\\n# ============================================================\\\\nARCH_CFG = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"n_heads\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 4096},\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\\\\"n_layers\\\\\\\": 32, \\\\\\\"n_heads\\\\\\\": 32, \\\\\\\"hidden\\\\\\\": 3072},\\\\n    \\\\\\\"nora\\\\\\\":    {\\\\\\\"n_layers\\\\\\\": 36, \\\\\\\"n_heads\\\\\\\": 16, \\\\\\\"hidden\\\\\\\": 2048},\\\\n}\\\\n\\\\n# ============================================================\\\\n# Checkpoint registry\\\\n# ============================================================\\\\nCKPT_MAP = {\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):  \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):\\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\",\\\\n    (\\\\\\\"tracvla\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"trained\\\\\\\"):        \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"untrained\\\\\\\"):      \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"trained\\\\\\\"):     \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\\\\\",\\\\n    (\\\\\\\"nora\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"untrained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\\\\\",\\\\n}\\\\n\\\\n# ============================================================\\\\n# Data directories\\\\n# ============================================================\\\\nDATA_MAP = {\\\\n    \\\\\\\"goal\\\\\\\":    \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\",\\\\n    \\\\\\\"spatial\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\\\\\",\\\\n    \\\\\\\"object\\\\\\\":  \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\\\\\",\\\\n    \\\\\\\"long\\\\\\\":    \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\\\\\",\\\\n}\\\\n\\\\n# ============================================================\\\\n# Results directories\\\\n# ============================================================\\\\nRESULTS_MAP = {\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"trained\\\\\\\"):   \\\\\\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\\\\\",\\\\n    (\\\\\\\"openvla\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"untrained\\\\\\\"): \\\\\\\"/root/au\\\\n\\\\n... [截断: 输出过长，省略 28981 字符] ...\\\\n\\\\nry\\\\\\\"] = {\\\\n            \\\\\\\"layer\\\\\\\": last_l,\\\\n            \\\\\\\"mean\\\\\\\": round(float(last_arr.mean()), 6),\\\\n            \\\\\\\"std\\\\\\\": round(float(last_arr.std()), 6),\\\\n            \\\\\\\"cohens_d\\\\\\\": round(global_d, 4),\\\\n            \\\\\\\"n_samples\\\\\\\": len(last_arr),\\\\n        }\\\\n\\\\n        per_task_ds = []\\\\n        for ti in range(n_tasks):\\\\n            tm = np.array(per_task_dists[ti])\\\\n            td = (float(tm.mean() / tm.std(ddof=1))\\\\n                  if tm.std(ddof=1) > 0 else 0.0)\\\\n            per_task_ds.append(td)\\\\n\\\\n            demo_means = [float(np.mean(per_task_demo_dists[ti][di]))\\\\n                          for di in range(n_demos)]\\\\n            da = np.array(demo_means)\\\\n            dd = (float(da.mean() / da.std(ddof=1))\\\\n                  if da.std(ddof=1) > 0 else 0.0)\\\\n\\\\n            entry = {\\\\n                \\\\\\\"cohens_d\\\\\\\": round(td, 4),\\\\n                \\\\\\\"demo_level_cohens_d\\\\\\\": round(dd, 4),\\\\n                \\\\\\\"n_samples\\\\\\\": len(tm),\\\\n                \\\\\\\"mean_cosine_distance\\\\\\\": round(float(tm.mean()), 6),\\\\n                \\\\\\\"demo_distances\\\\\\\": [round(v, 6) for v in demo_means],\\\\n                \\\\\\\"instruction_correct\\\\\\\": instructions[ti],\\\\n                \\\\\\\"instruction_counterfactual\\\\\\\": cf_instruction(\\\\n                    ti, cond, instructions, paraphrases),\\\\n            }\\\\n            cond_res[\\\\\\\"per_task\\\\\\\"][tasks[ti]] = entry\\\\n\\\\n        cond_res[\\\\\\\"cross_task_variance\\\\\\\"] = {\\\\n            \\\\\\\"cohens_d\\\\\\\": {\\\\n                \\\\\\\"values\\\\\\\": [round(v, 4) for v in per_task_ds],\\\\n                \\\\\\\"mean\\\\\\\": round(float(np.mean(per_task_ds)), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(np.std(per_task_ds)), 4),\\\\n                \\\\\\\"cv\\\\\\\": (round(float(np.std(per_task_ds) /\\\\n                                   np.mean(per_task_ds)), 4)\\\\n                       if np.mean(per_task_ds) > 0 else 0.0),\\\\n            }\\\\n        }\\\\n        all_res[cond] = cond_res\\\\n        log(f\\\\\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\\\\\"\\\\n            f\\\\\\\"cross-task d={np.mean(per_task_ds):.4f}\\\\\\\")\\\\n\\\\n    ranking = sorted(\\\\n        conditions,\\\\n        key=lambda c: all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\\\\"last_layer_summary\\\\\\\"][\\\\\\\"mean\\\\\\\"],\\\\n        reverse=True)\\\\n    all_res[\\\\\\\"ranking_by_cosine_distance\\\\\\\"] = [\\\\n        {\\\\\\\"condition\\\\\\\": c,\\\\n         \\\\\\\"mean_cosine_distance\\\\\\\": all_res[c][\\\\\\\"global_metrics\\\\\\\"][\\\\n             \\\\\\\"last_layer_summary\\\\\\\"][\\\\\\\"mean\\\\\\\"]}\\\\n        for c in ranking\\\\n    ]\\\\n    return all_res\\\\n\\\\n\\\\n# ============================================================\\\\n# Method selection\\\\n# ============================================================\\\\n\\\\ndef resolve_method(arch, condition, method):\\\\n    if method != \\\\\\\"auto\\\\\\\":\\\\n        return method\\\\n    if arch == \\\\\\\"nora\\\\\\\":\\\\n        return \\\\\\\"cosine_dist\\\\\\\"\\\\n    if condition == \\\\\\\"untrained\\\\\\\":\\\\n        return \\\\\\\"cosine_dist\\\\\\\"\\\\n    return \\\\\\\"action_mse\\\\\\\"\\\\n\\\\n\\\\n# ============================================================\\\\n# Main\\\\n# ============================================================\\\\n\\\\ndef main():\\\\n    global DEVICE\\\\n\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Counterfactual-only batch runner for VLA-SSD\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--arch\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"openvla\\\\\\\", \\\\\\\"tracvla\\\\\\\", \\\\\\\"nora\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"goal\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"object\\\\\\\", \\\\\\\"long\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--condition\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--method\\\\\\\", default=\\\\\\\"auto\\\\\\\",\\\\n                   choices=[\\\\\\\"auto\\\\\\\", \\\\\\\"action_mse\\\\\\\", \\\\\\\"cosine_dist\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--n-demos\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--n-timesteps\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--results-dir\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Override output directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Run with 2 tasks, 1 demo, 2 timesteps\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    DEVICE = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n    key = (args.arch, args.suite, args.condition)\\\\n\\\\n    if key not in CKPT_MAP:\\\\n        print(f\\\\\\\"ERROR: Unsupported combination: {key}\\\\\\\")\\\\n        print(f\\\\\\\"Available: {sorted(CKPT_MAP.keys())}\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nCounterfactual-only batch runner for VLA-SSD experiments.\\n\\nSupports openvla/tracvla/nora architectures across goal/spatial/object/long suites.\\nAuto-selects method: action_mse for trained openvla/tracvla, cosine_dist for nora\\nand all untrained models. Override with --method.\\n\\nUsage:\\n  python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\n  python counterfactual_batch.py --arch openvla --suite long --condition trained\\n  python counterfactual_batch.py --arch openvla --suite object --condition untrained\\n  python counterfactual_batch.py --arch nora --suite goal --condition untrained\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n# ============================================================\\n# Architecture configs\\n# ============================================================\\nARCH_CFG = {\\n    \\\"openvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 4096},\\n    \\\"tracvla\\\": {\\\"n_layers\\\": 32, \\\"n_heads\\\": 32, \\\"hidden\\\": 3072},\\n    \\\"nora\\\":    {\\\"n_layers\\\": 36, \\\"n_heads\\\": 16, \\\"hidden\\\": 2048},\\n}\\n\\n# ============================================================\\n# Checkpoint registry\\n# ============================================================\\nCKPT_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\",\\n    (\\\"openvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\",\\n    (\\\"openvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"trained\\\"):  \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"spatial\\\", \\\"untrained\\\"):\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"goal\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n    (\\\"tracvla\\\", \\\"long\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"trained\\\"):        \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-goal/\\\",\\n    (\\\"nora\\\", \\\"goal\\\", \\\"untrained\\\"):      \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"trained\\\"):     \\\"/root/autodl-tmp/vla-ssd/checkpoints/nora-libero-spatial/\\\",\\n    (\\\"nora\\\", \\\"spatial\\\", \\\"untrained\\\"):   \\\"/root/autodl-tmp/vla-ssd/checkpoints/qwen25-vl-3b-base/\\\",\\n}\\n\\n# ============================================================\\n# Data directories\\n# ============================================================\\nDATA_MAP = {\\n    \\\"goal\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\",\\n    \\\"spatial\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_spatial\\\",\\n    \\\"object\\\":  \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_object\\\",\\n    \\\"long\\\":    \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10\\\",\\n}\\n\\n# ============================================================\\n# Results directories\\n# ============================================================\\nRESULTS_MAP = {\\n    (\\\"openvla\\\", \\\"object\\\", \\\"trained\\\"):   \\\"/root/autodl-tmp/vla-ssd/results/libero_object/trained\\\",\\n    (\\\"openvla\\\", \\\"object\\\", \\\"untrained\\\"): \\\"/root/au\\n\\n... [截断: 输出过长，省略 28981 字符] ...\\n\\nry\\\"] = {\\n            \\\"layer\\\": last_l,\\n            \\\"mean\\\": round(float(last_arr.mean()), 6),\\n            \\\"std\\\": round(float(last_arr.std()), 6),\\n            \\\"cohens_d\\\": round(global_d, 4),\\n            \\\"n_samples\\\": len(last_arr),\\n        }\\n\\n        per_task_ds = []\\n        for ti in range(n_tasks):\\n            tm = np.array(per_task_dists[ti])\\n            td = (float(tm.mean() / tm.std(ddof=1))\\n                  if tm.std(ddof=1) > 0 else 0.0)\\n            per_task_ds.append(td)\\n\\n            demo_means = [float(np.mean(per_task_demo_dists[ti][di]))\\n                          for di in range(n_demos)]\\n            da = np.array(demo_means)\\n            dd = (float(da.mean() / da.std(ddof=1))\\n                  if da.std(ddof=1) > 0 else 0.0)\\n\\n            entry = {\\n                \\\"cohens_d\\\": round(td, 4),\\n                \\\"demo_level_cohens_d\\\": round(dd, 4),\\n                \\\"n_samples\\\": len(tm),\\n                \\\"mean_cosine_distance\\\": round(float(tm.mean()), 6),\\n                \\\"demo_distances\\\": [round(v, 6) for v in demo_means],\\n                \\\"instruction_correct\\\": instructions[ti],\\n                \\\"instruction_counterfactual\\\": cf_instruction(\\n                    ti, cond, instructions, paraphrases),\\n            }\\n            cond_res[\\\"per_task\\\"][tasks[ti]] = entry\\n\\n        cond_res[\\\"cross_task_variance\\\"] = {\\n            \\\"cohens_d\\\": {\\n                \\\"values\\\": [round(v, 4) for v in per_task_ds],\\n                \\\"mean\\\": round(float(np.mean(per_task_ds)), 4),\\n                \\\"std\\\": round(float(np.std(per_task_ds)), 4),\\n                \\\"cv\\\": (round(float(np.std(per_task_ds) /\\n                                   np.mean(per_task_ds)), 4)\\n                       if np.mean(per_task_ds) > 0 else 0.0),\\n            }\\n        }\\n        all_res[cond] = cond_res\\n        log(f\\\"  {cond}: last-layer cos_dist={last_arr.mean():.4f}  \\\"\\n            f\\\"cross-task d={np.mean(per_task_ds):.4f}\\\")\\n\\n    ranking = sorted(\\n        conditions,\\n        key=lambda c: all_res[c][\\\"global_metrics\\\"][\\\"last_layer_summary\\\"][\\\"mean\\\"],\\n        reverse=True)\\n    all_res[\\\"ranking_by_cosine_distance\\\"] = [\\n        {\\\"condition\\\": c,\\n         \\\"mean_cosine_distance\\\": all_res[c][\\\"global_metrics\\\"][\\n             \\\"last_layer_summary\\\"][\\\"mean\\\"]}\\n        for c in ranking\\n    ]\\n    return all_res\\n\\n\\n# ============================================================\\n# Method selection\\n# ============================================================\\n\\ndef resolve_method(arch, condition, method):\\n    if method != \\\"auto\\\":\\n        return method\\n    if arch == \\\"nora\\\":\\n        return \\\"cosine_dist\\\"\\n    if condition == \\\"untrained\\\":\\n        return \\\"cosine_dist\\\"\\n    return \\\"action_mse\\\"\\n\\n\\n# ============================================================\\n# Main\\n# ============================================================\\n\\ndef main():\\n    global DEVICE\\n\\n    p = argparse.ArgumentParser(\\n        description=\\\"Counterfactual-only batch runner for VLA-SSD\\\")\\n    p.add_argument(\\\"--arch\\\", required=True,\\n                   choices=[\\\"openvla\\\", \\\"tracvla\\\", \\\"nora\\\"])\\n    p.add_argument(\\\"--suite\\\", required=True,\\n                   choices=[\\\"goal\\\", \\\"spatial\\\", \\\"object\\\", \\\"long\\\"])\\n    p.add_argument(\\\"--condition\\\", required=True,\\n                   choices=[\\\"trained\\\", \\\"untrained\\\"])\\n    p.add_argument(\\\"--method\\\", default=\\\"auto\\\",\\n                   choices=[\\\"auto\\\", \\\"action_mse\\\", \\\"cosine_dist\\\"])\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--n-demos\\\", type=int, default=10)\\n    p.add_argument(\\\"--n-timesteps\\\", type=int, default=50)\\n    p.add_argument(\\\"--results-dir\\\", default=None,\\n                   help=\\\"Override output directory\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                   help=\\\"Run with 2 tasks, 1 demo, 2 timesteps\\\")\\n    args = p.parse_args()\\n\\n    DEVICE = f\\\"cuda:{args.gpu}\\\"\\n    key = (args.arch, args.suite, args.condition)\\n\\n    if key not in CKPT_MAP:\\n        print(f\\\"ERROR: Unsupported combination: {key}\\\")\\n        print(f\\\"Available: {sorted(CKPT_MAP.keys())}\\\")\\n        sys.exit(1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also check if the nora_spatial/untrained exists - the find results don't show it.
+
+Let me also check if there are openvla goal/long untrained results. Looking at the counterfactual_combined.json files found:
+
+Existing (new batch format):
+1. nora_spatial/trained ✓
+2. nora_goal/trained ✓
+3. nora_goal/untrained ✓
+4. tracvla_spatial/trained ✓
+5. tracvla_object/trained ✓
+
+
+6. tracvla_long/trained ✓
+7. tracvla_goal/trained ✓
+
+Old format (different paths):
+8. libero_object/counterfactual_combined.json - likely openvla object trained
+9. counterfactual_combined.json (root) - likely openvla goal trained
+10. counterfactual_spatial/*.json - openvla spatial trained
+11. counterfactual_10tasks/*.json - openvla long trained
+
+So comparing what I have against the CKPT_MAP entries, I'm missing the openvla object untrained and openvla long untrained results - those directories don't appear to have the counterfactual_combined.json files I'm looking for.
+
+Looking at the user's specific list though, they're saying only three are missing: openvla_object untrained, tracvla_spatial untrained, and tracvla_object untrained. Let me focus on those three and figure out the submission command - they want all three running on cuda:1 sequentially in a single command, and the script takes a `--gpu` flag to specify the CUDA device.
+
+Since both tracvla and openvla use untrained conditions, the method will auto-select cosine_dist, which operates on hidden states rather than action outputs. This should work fine even though tracvla untrained uses phi3v-base without action heads. Now I'm constructing a tmux command that chains all three model evaluations together...
+
+Writing the batch submission command...
+
+For runtime, I'm estimating each run takes roughly 2-3 hours depending on model size, so the full pipeline should complete in around 4-7 hours total. Let me check if there are any other missing results I should account for.
+
+I'm going through the CKPT_MAP to see which of the 20 supported combinations actually have results available. Looking at openvla across different suites and conditions, I can see some results exist from older runs while others are completely missing.
+
+Now checking tracvla and nora configurations to identify which ones have checkpoints and which ones are gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "a81576c9-da02-4941-89d0-5e32f2eb0f59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RK1WCeeyPjcrangN3xvyhU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3807,
+      "cache_read_input_tokens": 31679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3807
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+## 汇报
+
+### 1. counterfactual_batch.py 参数说明
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--arch` | ✓ | `openvla` / `tracvla` / `nora` |
+| `--suite` | ✓ | `goal` / `spatial` / `object` / `long` |
+| `--condition` | ✓ | `trained` / `untrained` |
+| `--method` | | `auto`(默认) / `action_mse` / `cosine_dist`。auto 逻辑：nora 或 untrained → `cosine_dist`，其余 → `action_mse` |
+| `--gpu` | | GPU 编号，默认 0 |
+| `--n-demos` | | 每任务 demo 数，默认 10 |
+| `--n-timesteps` | | 每 demo 时间步数，默认 50 |
+| `--results-dir` | | 覆盖输出目录 |
+| `--dry-run` | | 快速测试：2 tasks, 1 demo, 2 timesteps |
+
+### 2. 缺失确认
+
+已有 `counterfactual_combined.json` 的组合：
+
+| 组合 | 状态 |
+|------|------|
+| nora_goal trained/untrained | ✓ |
+| nora_spatial trained | ✓ |
+| tracvla_{spatial,object,long,goal} trained | ✓ |
+| openvla_{goal,spatial,long,object} trained | ✓ (旧格式) |
+
+**确认缺失的 3 个：**
+- `openvla object untrained` — checkpoint: `openvla-7b`，auto → cosine_dist ✓
+- `tracvla spatial untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓
+- `tracvla object untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓
+
+TracVLA untrained 用 phi3v-base（纯 VLM），cosine_dist 只需隐藏层表示，不需要动作头，可以正常运行。
+
+> 额外注意：`nora_spatial untrained`、`openvla_{goal,long} untrained`、`tracvla_{goal,long} untrained` 也没有 counterfactual 结果，但不在本次任务范围。
+
+### 3. 提交命令
+
+```bash
+tmux new-session -d -s cf_untrained 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/counterfactual_batch.py --arch openvla --suite object --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite spatial --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite object --condition untrained --gpu 1"'
+```
+
+### 4. 预计运行时间
+
+- openvla untrained（7B 模型，10 tasks × 10 demos × 50 timesteps × 5 conditions）：约 2-3 小时
+- tracvla untrained（phi3v ~4B，同样规模）：每个约 1-2 小时
+- **总计：约 4-7 小时**，取决于 GPU 型号和推理速度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "uuid": "0ab554de-0a03-41a0-b1f1-102ddb1a08da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RK1WCeeyPjcrangN3xvyhU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3807,
+      "cache_read_input_tokens": 31679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3807
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+## 汇报
+
+### 1. counterfactual_batch.py 参数说明
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--arch` | ✓ | `openvla` / `tracvla` / `nora` |
+| `--suite` | ✓ | `goal` / `spatial` / `object` / `long` |
+| `--condition` | ✓ | `trained` / `untrained` |
+| `--method` | | `auto`(默认) / `action_mse` / `cosine_dist`。auto 逻辑：nora 或 untrained → `cosine_dist`，其余 → `action_mse` |
+| `--gpu` | | GPU 编号，默认 0 |
+| `--n-demos` | | 每任务 demo 数，默认 10 |
+| `--n-timesteps` | | 每 demo 时间步数，默认 50 |
+| `--results-dir` | | 覆盖输出目录 |
+| `--dry-run` | | 快速测试：2 tasks, 1 demo, 2 timesteps |
+
+### 2. 缺失确认
+
+已有 `counterfactual_combined.json` 的组合：
+
+| 组合 | 状态 |
+|------|------|
+| nora_goal trained/untrained | ✓ |
+| nora_spatial trained | ✓ |
+| tracvla_{spatial,object,long,goal} trained | ✓ |
+| openvla_{goal,spatial,long,object} trained | ✓ (旧格式) |
+
+**确认缺失的 3 个：**
+- `openvla object untrained` — checkpoint: `openvla-7b`，auto → cosine_dist ✓
+- `tracvla spatial untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓
+- `tracvla object untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓
+
+TracVLA untrained 用 phi3v-base（纯 VLM），cosine_dist 只需隐藏层表示，不需要动作头，可以正常运行。
+
+> 额外注意：`nora_spatial untrained`、`openvla_{goal,long} untrained`、`tracvla_{goal,long} untrained` 也没有 counterfactual 结果，但不在本次任务范围。
+
+### 3. 提交命令
+
+```bash
+tmux new-session -d -s cf_untrained 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/counterfactual_batch.py --arch openvla --suite object --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite spatial --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite object --condition untrained --gpu 1"'
+```
+
+### 4. 预计运行时间
+
+- openvla untrained（7B 模型，10 tasks × 10 demos × 50 timesteps × 5 conditions）：约 2-3 小时
+- tracvla untrained（phi3v ~4B，同样规模）：每个约 1-2 小时
+- **总计：约 4-7 小时**，取决于 GPU 型号和推理速度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 111343,
+  "duration_api_ms": 110616,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "7be5b8fa-1a3b-45bd-a204-640b41d53b37",
+  "total_cost_usd": 0.34582424999999994,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 23645,
+    "cache_read_input_tokens": 149784,
+    "output_tokens": 4866,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23645,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2470,
+        "cache_read_input_tokens": 31679,
+        "cache_creation_input_tokens": 3807,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3807
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1346,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001451,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 4866,
+      "cacheReadInputTokens": 149784,
+      "cacheCreationInputTokens": 23645,
+      "webSearchRequests": 0,
+      "costUSD": 0.34437324999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e192b0f7-6e82-4e0d-bfa5-8cd81493383c"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "11a6acb80519924e81a8",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code tracvla spatial pipeline",
+  "task_key": "worker_code_tracvla_spatial_pipeline_20260521T014051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tracvla_spatial_pipeline_20260521T014051.log",
+    "occurrence": 1,
+    "bytes": 1622058,
+    "sha256": "1b96810bfe8904284eacb26bfe0b0946604b721e5b626254a665e9a0925e7c51"
+  },
+  "statistics": {
+    "messages": 526,
+    "user_turns": 1,
+    "tool_calls": 195,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 195,
+      "tool_result": 195,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "11a6acb80519924e81a8-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "11a6acb80519924e81a8-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "11a6acb80519924e81a8-part-0002.json",
+          "message_count": 107
+        },
+        {
+          "path": "11a6acb80519924e81a8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "11a6acb80519924e81a8-part-0004.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-tracvla-spatial-pipeline.md"
+}

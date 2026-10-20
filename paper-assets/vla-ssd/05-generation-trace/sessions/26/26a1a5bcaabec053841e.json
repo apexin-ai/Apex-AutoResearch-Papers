@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26a1a5bcaabec053841e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research verify untrained extract",
+  "task_key": "worker_research_verify_untrained_extract_20260516T235245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_untrained_extract_20260516T235245_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "53144cbdadf3ad2dd8d45631661650c92e6cd8e4a503ec71531945905f581bfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**文件验证通过。** 总结：\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件大小 | 418,562,272 bytes (~399 MB) ✓ |\n| Tasks | 10 (task_0 ~ task_9) ✓ |\n| Frames per task | 50 ✓ |\n| Instructions per frame | 10 ✓ |\n| Keys per instruction | `image_mean` (5, 4096), `last_preaction` (5, 4096) ✓ |\n| 日志确认 | \"Done. 5000 forward passes in 4.1 min\" ✓ |\n\n完整的 10 tasks × 50 frames × 10 instructions = 5000 forward passes，与 trained 版本结构一致。Untrained cross-instruction extraction 成功完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-untrained-extract.md"
+}

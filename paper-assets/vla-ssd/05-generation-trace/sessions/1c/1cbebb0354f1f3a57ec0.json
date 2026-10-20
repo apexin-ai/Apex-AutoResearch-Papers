@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cbebb0354f1f3a57ec0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag openvla long checkpoint verify",
+  "task_key": "worker_diag_openvla_long_checkpoint_verify_20260521T164207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_openvla_long_checkpoint_verify_20260521T164207_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "1f6d8badf1e812af59b486eee7f882e2d6a760cb5d2af7a154feb8374d8b02ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：Checkpoint 正确\n\n日志第 4 行明确记录：\n\n```\n[23:37:59] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\n```\n\n**脚本配置和实际加载都是 OFT checkpoint (`openvla-7b-oft-finetuned-libero-10`)，没有用错。**\n\n对比三个 suite 的 trained checkpoint：\n\n| Suite | TRAINED_CKPT |\n|-------|-------------|\n| Long | `openvla-7b-oft-finetuned-libero-10` (OFT) |\n| Object | `openvla-7b-finetuned-libero-object` |\n| Goal | （脚本不存在，可能命名不同） |\n\nLong suite 的 L1 attention 只有 14/32 instruction-dominant 不是 checkpoint 错误导致的，需要从其他角度解释（如 long-horizon 任务本身的特性）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-openvla-long-checkpoint-verify.md"
+}

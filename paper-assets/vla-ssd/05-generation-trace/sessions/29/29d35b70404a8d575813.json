@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d35b70404a8d575813",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose openvla spatial standardized v1",
+  "task_key": "worker_diagnose_openvla_spatial_standardized_v1_20260522T072334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_openvla_spatial_standardized_v1_20260522T072334_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "90e984990fc4eb48741793932cc3bb12aa4f8d314c262c638dbbf3e8fe0fe4ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：transformers 今天被升级到 5.9.0，该版本移除了 `AutoModelForVision2Seq`（替代类为 `AutoModelForImageTextToText`）。脚本在 import 阶段立即崩溃，0 个 phase 完成。5.74 小时全部消耗在等待 checkpoint 下载上。\n\n**现状**：`libero_spatial_full_pipeline.py` 已有人修复了 import，但未重跑。另外 6 个脚本（`libero_object/long/goal_full_pipeline.py` 等）仍使用旧 import，需要一并修复。\n\n**修复**：推荐批量 sed 替换所有脚本中的 `AutoModelForVision2Seq` → `AutoModelForImageTextToText`，然后重跑实验。checkpoint 已下载完成，重跑不会再等。\n\n报告已写入 `artifacts/openvla_spatial_standardized_v1/diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-openvla-spatial-standardized-v1.md"
+}

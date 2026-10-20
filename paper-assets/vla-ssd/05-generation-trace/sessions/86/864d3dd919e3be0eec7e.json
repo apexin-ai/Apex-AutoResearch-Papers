@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "864d3dd919e3be0eec7e",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fix extraction restart",
+  "task_key": "worker_code_fix-extraction-restart_20260515T125118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-extraction-restart_20260515T125118.log",
+    "occurrence": 1,
+    "bytes": 827353,
+    "sha256": "1b47672b6a82d6d447287e6e1c6a6551f9307fe33a836658fe3b5c55f0c8b27d"
+  },
+  "statistics": {
+    "messages": 554,
+    "user_turns": 0,
+    "tool_calls": 235,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 235,
+      "tool_result": 235,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 554,
+      "chunks": [
+        {
+          "path": "864d3dd919e3be0eec7e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "864d3dd919e3be0eec7e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "864d3dd919e3be0eec7e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "864d3dd919e3be0eec7e-part-0004.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-extraction-restart.md"
+}

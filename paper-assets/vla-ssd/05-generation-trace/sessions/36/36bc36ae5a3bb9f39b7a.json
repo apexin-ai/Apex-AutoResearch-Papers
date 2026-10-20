@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36bc36ae5a3bb9f39b7a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research literature gc pertimestep",
+  "task_key": "worker_research_literature-gc-pertimestep_20260515T190611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-gc-pertimestep_20260515T190611_result.json",
+    "occurrence": 1,
+    "bytes": 2462,
+    "sha256": "01e3a5f745f9a836aa43cdd4c4564cf8b55129209ccbe2f0a18872bded83b9bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/literature_map.yaml`。汇总如下：\n\n## 搜索结果概览\n\n**共收录 17 篇论文，分三个类别：**\n\n### 1. Probe Methodology (7 篇)\n- **Hewitt & Liang 2019** — control task + selectivity，直接解释 random projection 也 100% 的现象\n- **Voita & Titov 2020** — MDL probing，用描述长度替代 accuracy，能区分 pretrained vs random\n- **Pimentel et al. 2020** — Pareto probing，accuracy-complexity tradeoff\n- **Belinkov 2022** — 综述，统一参考\n- **Gorban & Tyukin 2018** + **Grechuk et al. 2021** — stochastic separation theorems，数学解释 4096-dim 10-class 为什么 trivially separable\n- **Prabhu et al. 2024 (RanDumb, NeurIPS)** — random projection 在 continual learning 超过学到的表征\n\n### 2. VLA Representation Probing & Temporal Analysis (5 篇)\n- **Grant et al. 2026** (arXiv:2603.19233) — 最接近的竞争者，task structure determines language sensitivity，但用 injection+SAE 而非 per-timestep probe\n- **Lu et al. 2025** (arXiv:2502.04558) — OpenVLA 在 LIBERO 上的 layer-wise symbolic state probing，无 temporal 分析\n- **Buurmeijer et al. 2026** (arXiv:2603.05487) — VLA feature observability/controllability，linear intervention\n- **Luo et al. 2026** (arXiv:2603.15618) — 深层 visual token sensitivity 衰减\n- **Jiang et al. 2025** (ICLR) — manipulation-centric representation probing\n\n### 3. Instruction Encoding & Language Sensitivity (5 篇)\n- **LIBERO-Plus** (2025) — VLA 完全忽略 language instruction\n- **VLM4VLA** (2026) — vision module 是瓶颈，非 language\n- **Fang et al. 2026** — counterfactual failure，LIBERO-CF benchmark\n- **Zhan et al. 2026** — modality collapse，visual prior 压倒 language\n- **Zhang et al. 2026** — linguistic blindness + IGAR attention recalibration\n\n## Novelty 评估\n\n**Per-timestep goal classification 作为 trained/untrained discriminator 是全新的。** 具体空白：\n\n1. **没有人做过 per-timestep goal classification** — Lu 2025 只做 layer-wise，Grant 2026 做 injection，Buurmeijer 2026 做 observability\n2. **VLA 领域没有 trained vs random-projection probe 对比** — Hewitt/Voita 的框架仅在 NLP 中应用\n3. **Task structure 作为 moderator 未被量化** — Grant 2026 定性提及，我们用 LIBERO-10 vs LIBERO-Goal 量化\n4. **t=0 instruction encoding 信号（+56.7pp gap）是全新发现**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-gc-pertimestep.md"
+}

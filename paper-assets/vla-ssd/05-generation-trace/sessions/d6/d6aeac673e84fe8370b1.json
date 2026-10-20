@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6aeac673e84fe8370b1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis multi threshold robustness",
+  "task_key": "worker_analysis_multi_threshold_robustness_20260523T164043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multi_threshold_robustness_20260523T164043_result.json",
+    "occurrence": 1,
+    "bytes": 2568,
+    "sha256": "a3664c14de9a406b9935ee347b96f242142bd686659b6f23a0b03427cdab7890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Multi-threshold robustness 分析结果\n\n### Threshold 扫描表\n\n| Threshold | VLM→VLA trained (N/6) | OpenVLA trained (N/4) | Untrained (N/10) | Clean separation? |\n|-----------|------------------------|------------------------|-------------------|-------------------|\n| 0.05      | 6/6                    | 1/4                    | 6/10             | NO               |\n| 0.08      | 6/6                    | 1/4                    | 3/10             | NO               |\n| **0.10**  | **6/6**                | **0/4**                | **0/10**         | **YES**          |\n| **0.15**  | **6/6**                | **0/4**                | **0/10**         | **YES**          |\n| 0.20      | 5/6                    | 0/4                    | 0/10             | NO               |\n\n### Individual Δ values\n\n**VLM→VLA trained:**\n| Condition | Δ | 95% CI |\n|---|---|---|\n| tracvla_goal/trained | 0.3334 | [0.2069, 0.4508] |\n| tracvla_spatial/trained | 0.1557 | [0.0906, 0.2244] |\n| tracvla_object/trained | 0.3623 | [0.2834, 0.5038] |\n| tracvla_long/trained | 0.3579 | [0.1714, 0.5333] |\n| nora_goal/trained | 0.4551 | [0.9099, 1.6077] |\n| nora_spatial/trained | 0.3080 | [0.3011, 0.5119] |\n\n**OpenVLA trained:**\n| Condition | Δ | 95% CI |\n|---|---|---|\n| openvla_goal/trained | 0.0864 | [-0.056, 0.1064] |\n| openvla_spatial/trained | 0.0371 | [0.0087, 0.102] |\n| openvla_object/trained | 0.0370 | [-0.0038, 0.0854] |\n| openvla_long/trained | 0.0325 | [0.0037, 0.103] |\n\n**Untrained:**\n| Condition | Δ | 95% CI |\n|---|---|---|\n| nora_goal/untrained | 0.0806 | [-0.0147, 0.1102] |\n| nora_spatial/untrained | 0.0885 | [-0.0128, 0.0931] |\n| openvla_goal/untrained | 0.0558 | [0.0113, 0.0773] |\n| openvla_long/untrained | 0.0349 | [0.0261, 0.1047] |\n| openvla_object/untrained | 0.0513 | [-0.0044, 0.0905] |\n| openvla_spatial/untrained | 0.0437 | [0.0295, 0.1113] |\n| tracvla_goal/untrained | 0.0645 | [-0.1084, 0.051] |\n| tracvla_long/untrained | 0.0971 | [-0.0208, 0.1078] |\n| tracvla_object/untrained | 0.0090 | [-0.0669, 0.0169] |\n| tracvla_spatial/untrained | 0.0477 | [-0.6067, -0.4606] |\n\n### Separation analysis\n\n- VLM→VLA trained min Δ: **0.1557** (tracvla_spatial/trained)\n- OpenVLA trained max Δ: **0.0864** (openvla_goal/trained)\n- Untrained max Δ: **0.0971** (tracvla_long/untrained)\n- **Gap: 0.1557 − 0.0971 = 0.0586**\n- Clean separation 存在于阈值区间 **(0.0971, 0.1557)**，即 threshold = 0.10 和 0.15 均可完美分离 VLM→VLA trained 组 vs 其他所有组。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-threshold-robustness.md"
+}

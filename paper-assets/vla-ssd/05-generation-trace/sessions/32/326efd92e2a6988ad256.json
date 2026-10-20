@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "326efd92e2a6988ad256",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check cuda1 preparing experiments",
+  "task_key": "worker_check_cuda1_preparing_experiments_20260523T153732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cuda1_preparing_experiments_20260523T153732_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "68e98ad6c4a23835c22f121d91d380b4bf83f68b1781b3b6d96b0d9eb384cc7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### PREPARING 实验状态\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| tracvla_spatial_full_v2 / tracvla_spatial_trained | ✅ 已完成 | trained + untrained 各4个JSON齐全 |\n| behavioral_smoketest_diag | ❌ 已取消 | — |\n| libero_finetuned_probe | ✅ 已完成 | `libero_finetuned_probe_profile.json` 含32层完整结果 |\n| fulllayer_action_probe | ❌ 已废弃 | notes 标注 superseded |\n\n**Registry 中所有 PREPARING 实验要么已完成要么已取消，没有可直接启动的。**\n\n### 发现的数据缺口\n\n`nora_spatial/untrained/` **缺少 `counterfactual_combined.json`**（仅3个文件，其他所有目录均为4个）：\n- ✅ action_r2_probing.json\n- ✅ cross_instruction_classification.json\n- ✅ l1_attention_profile.json\n- ❌ counterfactual_combined.json ← **缺失**\n\n已有 `nora_goal_untrained_counterfactual_only.py`（针对 goal），可改写为 spatial 版本立即跑。脚本默认 `DEVICE = \"cuda:0\"`，改为 `cuda:1` 即可。\n\n### 建议\n\ncuda:1 最快能启动的工作：**补跑 nora_spatial untrained counterfactual**。需要将 `nora_goal_untrained_counterfactual_only.py` 复制一份，改 DATA 路径为 `libero_spatial`、RESULTS_DIR 为 `nora_spatial/untrained`、DEVICE 为 `cuda:1`，以及更新 TASKS/INSTRUCTIONS 列表。GPU 当前空闲，可立即执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cuda1-preparing-experiments.md"
+}

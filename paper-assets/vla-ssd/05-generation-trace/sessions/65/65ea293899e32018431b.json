@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65ea293899e32018431b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing method d097",
+  "task_key": "worker_paper_writing_method_d097_20260522T051809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_d097_20260522T051809_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "e7064e21390d916427eb1a61236bf42374d6e472a62222ce6c712980bc4fcb27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。结构：\n\n- **§3.1 Architectures and Data**: 三架构描述 + Table 1 (arch_overview) + trained/untrained 不对称性说明 + LIBERO 3×4 矩阵 (10/12 cells)\n- **§3.2 Representation Extraction**: readout + image_mean 双位点提取，层标记泛化 (L0-L32/L36)，2×2 factorial 扩展到全部 10 cells，OpenVLA 额外表征源指向 §4.2\n- **§3.3 Cross-Architecture Analyses**: R² probes、L1 attention profiling (k/N notation, N=32 or 16)、counterfactual perturbation + metric constraint (Cohen's d vs cosine distance 不可比)\n- **§3.4 OpenVLA-Specific Analyses**: cross-instruction probes、RSA + Why RSA over CKA、DINOv2/CLIP external baselines\n\nD097 约束全部遵守：无 \"architecture-independent\"、无 cross-metric ratio 暗示、NORA 用 `\\cite{TODO_nora}`、TracVLA 用 `\\cite{zheng2024tracevla}`、无 \"significantly\"/\"state-of-the-art\"。无 em-dash、无 -ing 短语结尾、无 AI 腔调用词。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-d097.md"
+}

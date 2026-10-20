@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e45348922324a3123a4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug behavioral smoketest check",
+  "task_key": "worker_debug_behavioral_smoketest_check_20260519T040135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_behavioral_smoketest_check_20260519T040135_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "89786b6662f3123d97107463544eec0833168db1b939f8b6b4ef4808a90a5fb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## behavioral_smoketest 结果\n\n**结论：negative** — Baseline 完全无法完成任务。\n\n关键数据：\n- 模型：`openvla-7b-finetuned-libero-goal`\n- 任务：task 0 (`open_the_middle_drawer_of_the_cabinet`)\n- 3 个 episode 全部失败，SR=0%，reward=0.0，全部跑满 400 步\n- 因 baseline SR=0，脚本自动跳过 ablation 阶段\n\n脚本本身执行无报错（return_code=0），问题在于 checkpoint 在此任务上完全不工作。可能原因：checkpoint 不匹配、unnorm_key 配置问题、或模型本身在该任务上微调不充分。\n\nRegistry 已更新为 DONE/negative，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-behavioral-smoketest-check-copy-2.md"
+}

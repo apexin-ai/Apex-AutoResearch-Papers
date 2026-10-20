@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c42f1a31da964560955",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug delete untrained checkpoint",
+  "task_key": "worker_debug_delete_untrained_checkpoint_20260519T050939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_delete_untrained_checkpoint_20260519T050939_result.json",
+    "occurrence": 1,
+    "bytes": 141,
+    "sha256": "8642d3ac49c6fdd4df2c31722938292fd763ca0c9370a9c49bb6763af33539c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除 15GB untrained checkpoint。\n\n`/root/autodl-tmp` 当前状态：250G 总量，206G 已用，45G 可用（83%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-delete-untrained-checkpoint.md"
+}

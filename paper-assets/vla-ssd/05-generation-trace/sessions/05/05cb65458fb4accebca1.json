@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05cb65458fb4accebca1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug l1 head count verify",
+  "task_key": "worker_debug_l1_head_count_verify_20260517T215604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_l1_head_count_verify_20260517T215604_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "56ad9bcaf20ace593d4fdbeef278a1ea50c19d0f7c40cbab960cf12e53bdc0bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all the data. Here's the complete analysis:\n\n```\n=== L1 Per-Head Instruction Attention ===\nHead  0: 0.8589 [dominant]\nHead  1: 0.5308 [dominant]\nHead  2: 0.6857 [dominant]\nHead  3: 0.4749 [not]\nHead  4: 0.5781 [dominant]\nHead  5: 0.4976 [not]\nHead  6: 0.4083 [not]\nHead  7: 0.5673 [dominant]\nHead  8: 0.5797 [dominant]\nHead  9: 0.4300 [not]\nHead 10: 0.7138 [dominant]\nHead 11: 0.5671 [dominant]\nHead 12: 0.5216 [dominant]\nHead 13: 0.4147 [not]\nHead 14: 0.7040 [dominant]\nHead 15: 0.6226 [dominant]\nHead 16: 0.5382 [dominant]\nHead 17: 0.5290 [dominant]\nHead 18: 0.5196 [dominant]\nHead 19: 0.6500 [dominant]\nHead 20: 0.5185 [dominant]\nHead 21: 0.4537 [not]\nHead 22: 0.8264 [dominant]\nHead 23: 0.5683 [dominant]\nHead 24: 0.3657 [not]\nHead 25: 0.7706 [dominant]\nHead 26: 0.5614 [dominant]\nHead 27: 0.6854 [dominant]\nHead 28: 0.4949 [not]\nHead 29: 0.5971 [dominant]\nHead 30: 0.5430 [dominant]\nHead 31: 0.5552 [dominant]\n\nTotal >50%: 24/32\nHead indices: [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 29, 30, 31]\n\n=== Ablation Code Used ===\nINSTRUCTION_HEADS_24 = [0, 1, 2, 4, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 29, 30, 31]\nMatch with data: ✓ YES — exact match, both are the same 24 heads\n```\n\n**结论：**\n\n| 来源 | 数量 |\n|------|------|\n| 原始数据 (`full_32layer_trained.json` L1 `n_instruction_dominant`) | **24** |\n| Per-head 手动验证 (>50% threshold) | **24** |\n| 消融脚本 (`INSTRUCTION_HEADS_24`) | **24** |\n\n论文不一致处：\n- Abstract \"21-25 heads\" — 这描述的是 L0 (21) 到 L1 (24) 的范围，不是 L1 单层\n- Table 2 \"25/32\" — **错误**，应为 24/32\n- 消融代码 24 个 — **正确**\n\nTable 2 需要修正为 **24/32**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-l1-head-count-verify.md"
+}

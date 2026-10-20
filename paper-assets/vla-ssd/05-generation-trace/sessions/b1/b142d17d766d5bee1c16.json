@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b142d17d766d5bee1c16",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh kill nora cf",
+  "task_key": "worker_ssh_kill_nora_cf_20260522T024442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_nora_cf_20260522T024442_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "2b2c97b6f4cf6e48b0cf1cd08549cf85efb8452382a872370cc3b03a106584ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待脚本已清理。剩余的 579759 是 `openvla_long_cf_trained` 的 tmux session（在 GPU 0 上运行，但当前 GPU 0 显存 0 MiB，说明它内部的实际计算进程可能已结束或尚未启动）。这不是 NORA Spatial untrained CF 进程。\n\n**结果：**\n- NORA Spatial untrained CF 主进程及所有等待脚本已全部杀掉\n- GPU 0: **0 MiB 显存，0% 利用率** — 已完全释放\n- GPU 1: 15291 MiB, 82%（`openvla_long_cf_trained` 在运行，不受影响）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-nora-cf.md"
+}

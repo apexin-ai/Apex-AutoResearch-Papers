@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "645c6bb2445cd2f570e2",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fix type3 fonts",
+  "task_key": "worker_code_fix_type3_fonts_20260526T085234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_type3_fonts_20260526T085234.log",
+    "occurrence": 1,
+    "bytes": 2934866,
+    "sha256": "cb53ccaca8616bb3d94f9a427253d84df4bcab8915124ffae5c8920cd1cd7455"
+  },
+  "statistics": {
+    "messages": 1612,
+    "user_turns": 1,
+    "tool_calls": 557,
+    "roles": {
+      "log": 1,
+      "system": 420,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 557,
+      "tool_result": 556,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "645c6bb2445cd2f570e2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1249,
+      "chunks": [
+        {
+          "path": "645c6bb2445cd2f570e2-part-0003.json",
+          "message_count": 177
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "645c6bb2445cd2f570e2-part-0009.json",
+          "message_count": 172
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-type3-fonts.md"
+}

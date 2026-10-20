@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a16e4888a10c0c8365",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp wait and extract",
+  "task_key": "worker_exp_wait-and-extract_20260515T082411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_wait-and-extract_20260515T082411_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "6f8c1f9d1b80311d8307db0254a07f78bbb29868aedaf29120c62d7330b9cd82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询 #1 完成。当前状态：\n- **shard 1**: 5.7GB / ~6.5GB（~88%）\n- **aria2c**: 仍在运行（.aria2 控制文件存在）\n- 下次轮询：~4.5 分钟后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-wait-and-extract.md"
+}

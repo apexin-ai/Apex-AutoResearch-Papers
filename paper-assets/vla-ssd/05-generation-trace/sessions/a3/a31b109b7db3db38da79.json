@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a31b109b7db3db38da79",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code clustered bootstrap probe",
+  "task_key": "worker_code_clustered_bootstrap_probe_20260522T140930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clustered_bootstrap_probe_20260522T140930.log",
+    "occurrence": 1,
+    "bytes": 1097527,
+    "sha256": "28f722cf73105601ce38660d21ef0942740c0a75b31c5e0c3f79779d2b7836ef"
+  },
+  "statistics": {
+    "messages": 315,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 110,
+      "tool_result": 110,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "a31b109b7db3db38da79-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "a31b109b7db3db38da79-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "a31b109b7db3db38da79-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-clustered-bootstrap-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "586bd65893b3fd53824a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v checkpoint verify",
+  "task_key": "worker_code_phi3v_checkpoint_verify_20260519T164210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_checkpoint_verify_20260519T164210_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "8284dd5b1a5cc5adb186c12422f6ab1d35aeb0d2775a6356d51e665f07591ac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果汇总\n\n**TracVLA-Phi3V checkpoint 全部 5 步验证通过。**\n\n### Step 1: 下载 ✅\n两个 shards 完整下载到 `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/` (7.9GB)\n\n### Step 2: 架构参数 ✅\n- 32 layers, 32 heads, hidden=3072, vocab=32064\n- 与 OpenVLA-7B 同为 full MHA (非 GQA), 同 vocab_size\n- 关键差异: 融合 `qkv_proj` 而非分离 q/k/v proj; 用 CLIP 而非 DINOSigLIP\n\n### Step 3: 推理验证 ✅\n- 模型加载到 cuda:1, bf16, ~7.8GB 显存\n- 生成 7 个 action token → 256-bin 离散化解码正确\n- token ids `[31835, 31918, ...]` → discretized `[228, 145, 145, 254, 233, 159, 191]`\n\n### Step 4: Attention 提取 ✅\n- `output_attentions=True` + `eager` attention → 32 层 attention 矩阵 `(1, 32, seq, seq)`\n- Attention row sum = 1.0000\n- `generate()` 也能返回逐步 attention (用于 routing 分析)\n\n### Step 5: Blockers\n- 使用 `tracevla-phi3v` (非 gated) 替代 `openvla_phi3v` (gated), 架构完全一致\n- 环境依赖: **transformers 4.48.3** (不能用 5.x), tokenizers ≥0.21\n- 注意融合 QKV: 做 routing 分析提取单独的 Q/K/V 时需要 split `qkv_proj` 输出 (dim 按 `3 * hidden_size` 切分)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-checkpoint-verify.md"
+}

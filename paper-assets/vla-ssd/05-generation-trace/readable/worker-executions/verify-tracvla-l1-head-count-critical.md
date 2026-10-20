@@ -1,0 +1,5020 @@
+# verify tracvla l1 head count critical
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 0
+- **Tool calls:** 42
+- **Original source:** `logs/workers/worker_verify_tracvla_l1_head_count_critical_20260523T203254.log`
+- **Structured JSON:** [`680b90aae89955771c5f.json`](../../sessions/68/680b90aae89955771c5f.json)
+
+## Before a recorded user message
+
+107 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "749b7677-7e94-42f0-9312-dcffa0f9494d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779579600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ef129a82-a0a6-47ba-a57b-ee0d76908d13",
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来核查 TracVLA L1 instruction-dominant head count 的原始数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "7ee1366d-ff37-430c-9192-a5f77ffba7d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrtFpjk93YmvwwAiaLnHtf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12094,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12094
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017Jyw2NeA2sYnSgxsej8uSg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "b8ad0adf-92ed-4d2f-8d47-3009fe0dc2fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrtFpjk93YmvwwAiaLnHtf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12094,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12094
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T20:33:07.514Z_
+
+<details><summary>↩ Tool result · `toolu_017Jyw2NeA2sYnSgxsej8uSg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c2283d84-1be1-47e3-803f-0d5f1015c77a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by searching for the attention analysis files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "06fd25ee-a547-402e-ba58-28dd6f2e54d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPh4e5giBrT1aQPqRWWsDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 451,
+      "cache_read_input_tokens": 23935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 451
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X4bC795VDbV979WqFZkR8g`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*tracvla*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c6446400-28f5-47b8-8700-78ce86bb0667",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPh4e5giBrT1aQPqRWWsDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 451,
+      "cache_read_input_tokens": 23935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 451
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T20:33:11.636Z_
+
+<details><summary>↩ Tool result · `toolu_01X4bC795VDbV979WqFZkR8g`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "f62ae79c-663f-43b8-b2c3-d61dbd765a6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YMrTUDoro4QVPNZMjh28sg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*attention*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "dfb81982-19a5-4096-9d51-18292105b94a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPh4e5giBrT1aQPqRWWsDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 451,
+      "cache_read_input_tokens": 23935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 451
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T20:33:12.662Z_
+
+<details><summary>↩ Tool result · `toolu_01YMrTUDoro4QVPNZMjh28sg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "4d36ee88-49c2-4bc7-8e3b-2b3a15b10f6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VgsT4F7Cd9ab9zMLV9dZwd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*l1*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "2a807ed9-07a0-4ae7-b6d7-0d35e437aa7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPh4e5giBrT1aQPqRWWsDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 451,
+      "cache_read_input_tokens": 23935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 451
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T20:33:13.613Z_
+
+<details><summary>↩ Tool result · `toolu_01VgsT4F7Cd9ab9zMLV9dZwd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "2a74d1e9-f0d1-48ef-821c-9b906b38deec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JQ7FetxY2vdg2yCYMrbiFq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/artifacts/ -name \"*attention*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "de142cc0-4e85-468b-a54c-c64a4e20dc56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPh4e5giBrT1aQPqRWWsDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 451,
+      "cache_read_input_tokens": 23935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 451
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T20:33:13.909Z_
+
+<details><summary>↩ Tool result · `toolu_01JQ7FetxY2vdg2yCYMrbiFq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "186dc0c7-a367-4a15-ac8f-89a9edfb2d38",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` contains `>` which is blocked. Let me remove that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "585b6671-602f-4891-b269-53a15e594f3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+`2>/dev/null` 被阻止了，去掉重定向再试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "6abff83f-3bc2-4b16-80d5-66e4cd27a959",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MRBnB172GfLo953MPi5Vkr`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*tracvla*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "616bd0ec-0f37-4af9-a1a5-2d3530b8dbcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DtwHQJXGBzZ2y2PquAauHU`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*attention*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "2a69e30c-52a2-47af-b46f-69896599b651",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T20:33:22.129Z_
+
+<details><summary>↩ Tool result · `toolu_01MRBnB172GfLo953MPi5Vkr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3_dryrun/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "136fc4b7-cd65-4ac3-8cf9-308e19dda3c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_long/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3_dryrun/tracvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/untrained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/trained.json\\\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/untrained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/action_r2_probing.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/cross_instruction_classification.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_r2/tracvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3_dryrun/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012WqyHmSNentbWaEQuWw7ZT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/artifacts/ -name \"*attention*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "5134eb58-fece-4fee-9e3d-91035151938f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T20:33:22.672Z_
+
+<details><summary>↩ Tool result · `toolu_01DtwHQJXGBzZ2y2PquAauHU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_spatial/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_spatial_untrained/l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "fde5dcc1-cb0c-41f4-97b9-df0df05a9446",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_goal/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_goal_untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_spatial/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/libero_spatial_untrained/l1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_trained.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/l1_attention_llama2base.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.png\\n/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_multi_layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/full_32layer_attention_summary.json\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/attention/fig_full_32layer_attention.png\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\n/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/attention_decomposition.json\\n/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_object_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_long_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal_untrained/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_spatial/l1_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/libero_spatial_untrained/l1_attention_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QMcJF8GeBaMbXgR3rhCU47`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*attention*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "5a4362d3-6fe4-436b-ace5-e0a336527896",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VRoMBQjyuHtXhpdYVtU5oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 24386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T20:33:23.206Z_
+
+<details><summary>↩ Tool result · `toolu_012WqyHmSNentbWaEQuWw7ZT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/vla-ssd/artifacts/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "dd4db40a-2183-4ddc-88b3-17bb29ca9514",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/vla-ssd/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/vla-ssd/artifacts/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T20:33:23.745Z_
+
+<details><summary>↩ Tool result · `toolu_01QMcJF8GeBaMbXgR3rhCU47`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "e85c81d0-f574-486e-9f58-b4f52a64735b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the L1 attention profile files for all 4 TracVLA suites. Let me read all 8 files (trained + untrained for each suite) to get the instruction-dominant head counts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "e1087dff-fb7a-4433-ae35-017438cdeda0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+找到所有 8 个 TracVLA L1 attention profile 文件。现在读取每个 suite 的 trained 和 untrained 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c487d825-45df-4a75-a866-08699cfbd177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016CyynLX6rYA9Vesvv8fdWx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "70f2fd2f-7f32-4a77-b984-2b0bd4ba727e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T20:33:29.602Z_
+
+<details><summary>↩ Tool result · `toolu_016CyynLX6rYA9Vesvv8fdWx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6951,\\n      \\\"instruction_ratio_std\\\": 0.0203,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.842,\\n      \\\"instruction_ratio_std\\\": 0.0117,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.45,\\n      \\\"instruction_ratio_std\\\": 0.0272,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5057,\\n      \\\"instruction_ratio_std\\\": 0.0172,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.712,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5048,\\n      \\\"instruction_ratio_std\\\": 0.0156,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4879,\\n      \\\"instruction_ratio_std\\\": 0.017,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5809,\\n      \\\"instruction_ratio_std\\\": 0.0151,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9431,\\n      \\\"instruction_ratio_std\\\": 0.006,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7663,\\n      \\\"instruction_ratio_std\\\": 0.0106,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5953,\\n      \\\"instruction_ratio_std\\\": 0.0122,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6391,\\n      \\\"instruction_ratio_std\\\": 0.015,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6456,\\n      \\\"instruction_ratio_std\\\": 0.03,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4173,\\n      \\\"instruction_ratio_std\\\": 0.0178,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6942,\\n      \\\"instruction_ratio_std\\\": 0.0183,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5547,\\n      \\\"instruction_ratio_std\\\": 0.0194,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6765,\\n      \\\"instruction_ratio_std\\\": 0.0109,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.598,\\n      \\\"instruction_ratio_std\\\": 0.0136,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5422,\\n      \\\"instruction_ratio_std\\\": 0.0171,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8968,\\n      \\\"instruction_ratio_std\\\": 0.0089,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8517,\\n      \\\"instruction_ratio_std\\\": 0.0077,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6489,\\n      \\\"instruction_ratio_std\\\": 0.0152,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4167,\\n      \\\"instruction_ratio_std\\\": 0.0134,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7626,\\n      \\\"instruction_ratio_std\\\": 0.0072,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4796,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5413,\\n      \\\"instruction_ratio_std\\\": 0.0157,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6835,\\n      \\\"instruction_ratio_std\\\": 0.028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7577,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8113,\\n      \\\"instruction_ratio_std\\\": 0.0107,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5637,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5655,\\n      \\\"instruction_ratio_std\\\": 0.014,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 27,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 5,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      4,\\n      5,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "57419476-0bb9-4a96-8acf-dc515e541893",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6951,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0203,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.842,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0117,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.45,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0272,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5057,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0172,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.712,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0133,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5048,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0156,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4879,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.017,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5809,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0151,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9431,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.006,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7663,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0106,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5953,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0122,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6391,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.015,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6456,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.03,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4173,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0178,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6942,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0183,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5547,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0194,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6765,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0109,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.598,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0136,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5422,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0171,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8968,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0089,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8517,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0077,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6489,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0152,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4167,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0134,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7626,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0072,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4796,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0158,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5413,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0157,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0095,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6835,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.028,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7577,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8113,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0107,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5637,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0125,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5655,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.014,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 27,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 5,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      23,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6951,\\n      \\\"instruction_ratio_std\\\": 0.0203,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.842,\\n      \\\"instruction_ratio_std\\\": 0.0117,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.45,\\n      \\\"instruction_ratio_std\\\": 0.0272,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5057,\\n      \\\"instruction_ratio_std\\\": 0.0172,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.712,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5048,\\n      \\\"instruction_ratio_std\\\": 0.0156,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4879,\\n      \\\"instruction_ratio_std\\\": 0.017,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5809,\\n      \\\"instruction_ratio_std\\\": 0.0151,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9431,\\n      \\\"instruction_ratio_std\\\": 0.006,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7663,\\n      \\\"instruction_ratio_std\\\": 0.0106,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5953,\\n      \\\"instruction_ratio_std\\\": 0.0122,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6391,\\n      \\\"instruction_ratio_std\\\": 0.015,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6456,\\n      \\\"instruction_ratio_std\\\": 0.03,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4173,\\n      \\\"instruction_ratio_std\\\": 0.0178,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6942,\\n      \\\"instruction_ratio_std\\\": 0.0183,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5547,\\n      \\\"instruction_ratio_std\\\": 0.0194,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6765,\\n      \\\"instruction_ratio_std\\\": 0.0109,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.598,\\n      \\\"instruction_ratio_std\\\": 0.0136,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5422,\\n      \\\"instruction_ratio_std\\\": 0.0171,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8968,\\n      \\\"instruction_ratio_std\\\": 0.0089,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8517,\\n      \\\"instruction_ratio_std\\\": 0.0077,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6489,\\n      \\\"instruction_ratio_std\\\": 0.0152,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4167,\\n      \\\"instruction_ratio_std\\\": 0.0134,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7626,\\n      \\\"instruction_ratio_std\\\": 0.0072,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4796,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5413,\\n      \\\"instruction_ratio_std\\\": 0.0157,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6835,\\n      \\\"instruction_ratio_std\\\": 0.028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7577,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8113,\\n      \\\"instruction_ratio_std\\\": 0.0107,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5637,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5655,\\n      \\\"instruction_ratio_std\\\": 0.014,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 27,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 5,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      3,\\n      4,\\n      5,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FPYLWYxG3w2ASR2fMhdJ7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "1f02a819-e478-47d9-9229-bdeb56222614",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T20:33:30.569Z_
+
+<details><summary>↩ Tool result · `toolu_017FPYLWYxG3w2ASR2fMhdJ7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9484,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9648,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7993,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6978,\\n      \\\"instruction_ratio_std\\\": 0.0086,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6106,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6842,\\n      \\\"instruction_ratio_std\\\": 0.01,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7907,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9962,\\n      \\\"instruction_ratio_std\\\": 0.0003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8978,\\n      \\\"instruction_ratio_std\\\": 0.0032,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8381,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8072,\\n      \\\"instruction_ratio_std\\\": 0.0096,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8441,\\n      \\\"instruction_ratio_std\\\": 0.0061,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6857,\\n      \\\"instruction_ratio_std\\\": 0.0096,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8211,\\n      \\\"instruction_ratio_std\\\": 0.0068,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7833,\\n      \\\"instruction_ratio_std\\\": 0.0056,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8836,\\n      \\\"instruction_ratio_std\\\": 0.0039,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8254,\\n      \\\"instruction_ratio_std\\\": 0.0075,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7622,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9829,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9261,\\n      \\\"instruction_ratio_std\\\": 0.005,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9333,\\n      \\\"instruction_ratio_std\\\": 0.0032,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7047,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8482,\\n      \\\"instruction_ratio_std\\\": 0.0068,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5789,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6859,\\n      \\\"instruction_ratio_std\\\": 0.0159,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9814,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8812,\\n      \\\"instruction_ratio_std\\\": 0.0307,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9495,\\n      \\\"instruction_ratio_std\\\": 0.0037,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9696,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7357,\\n      \\\"instruction_ratio_std\\\": 0.0067,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8157,\\n      \\\"instruction_ratio_std\\\": 0.0055,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "9f8d98df-3920-43b2-8c97-41a5b6b5cbed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9484,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9648,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0024,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5586,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0095,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7993,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6978,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0086,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6106,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0101,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6842,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.01,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7907,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9962,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0003,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8978,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0032,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8381,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8072,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0096,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8441,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0061,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6857,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0096,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8211,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0068,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7833,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8836,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0039,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8254,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0075,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7622,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9829,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0024,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9261,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.005,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9333,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0032,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7047,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0095,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8482,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0068,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5789,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0081,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6859,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0159,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9814,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8812,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0307,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9495,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0037,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9696,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7357,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0067,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8157,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0055,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 0,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      22,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9484,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9648,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7993,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6978,\\n      \\\"instruction_ratio_std\\\": 0.0086,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6106,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6842,\\n      \\\"instruction_ratio_std\\\": 0.01,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7907,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9962,\\n      \\\"instruction_ratio_std\\\": 0.0003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8978,\\n      \\\"instruction_ratio_std\\\": 0.0032,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8381,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8072,\\n      \\\"instruction_ratio_std\\\": 0.0096,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8441,\\n      \\\"instruction_ratio_std\\\": 0.0061,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6857,\\n      \\\"instruction_ratio_std\\\": 0.0096,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8211,\\n      \\\"instruction_ratio_std\\\": 0.0068,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7833,\\n      \\\"instruction_ratio_std\\\": 0.0056,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8836,\\n      \\\"instruction_ratio_std\\\": 0.0039,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8254,\\n      \\\"instruction_ratio_std\\\": 0.0075,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7622,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9829,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9261,\\n      \\\"instruction_ratio_std\\\": 0.005,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9333,\\n      \\\"instruction_ratio_std\\\": 0.0032,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7047,\\n      \\\"instruction_ratio_std\\\": 0.0095,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8482,\\n      \\\"instruction_ratio_std\\\": 0.0068,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5789,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6859,\\n      \\\"instruction_ratio_std\\\": 0.0159,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9814,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8812,\\n      \\\"instruction_ratio_std\\\": 0.0307,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9495,\\n      \\\"instruction_ratio_std\\\": 0.0037,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9696,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7357,\\n      \\\"instruction_ratio_std\\\": 0.0067,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8157,\\n      \\\"instruction_ratio_std\\\": 0.0055,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014fL8ziBJtgSvHY5P4TRuGq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "6009e09b-e6ff-49eb-8c0b-eec53263a095",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T20:33:31.119Z_
+
+<details><summary>↩ Tool result · `toolu_014fL8ziBJtgSvHY5P4TRuGq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7358,\\n      \\\"instruction_ratio_std\\\": 0.0169,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8394,\\n      \\\"instruction_ratio_std\\\": 0.0111,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5141,\\n      \\\"instruction_ratio_std\\\": 0.0301,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5214,\\n      \\\"instruction_ratio_std\\\": 0.011,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7419,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5683,\\n      \\\"instruction_ratio_std\\\": 0.0152,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5244,\\n      \\\"instruction_ratio_std\\\": 0.0288,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5983,\\n      \\\"instruction_ratio_std\\\": 0.0159,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9451,\\n      \\\"instruction_ratio_std\\\": 0.0044,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7804,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6205,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6934,\\n      \\\"instruction_ratio_std\\\": 0.0161,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6912,\\n      \\\"instruction_ratio_std\\\": 0.0347,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4496,\\n      \\\"instruction_ratio_std\\\": 0.0192,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7389,\\n      \\\"instruction_ratio_std\\\": 0.0166,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6026,\\n      \\\"instruction_ratio_std\\\": 0.0143,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6994,\\n      \\\"instruction_ratio_std\\\": 0.0123,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6419,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5516,\\n      \\\"instruction_ratio_std\\\": 0.0192,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.903,\\n      \\\"instruction_ratio_std\\\": 0.0098,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8588,\\n      \\\"instruction_ratio_std\\\": 0.0059,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6739,\\n      \\\"instruction_ratio_std\\\": 0.0143,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4736,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7897,\\n      \\\"instruction_ratio_std\\\": 0.0088,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5143,\\n      \\\"instruction_ratio_std\\\": 0.0185,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5704,\\n      \\\"instruction_ratio_std\\\": 0.0131,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9134,\\n      \\\"instruction_ratio_std\\\": 0.008,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6826,\\n      \\\"instruction_ratio_std\\\": 0.0257,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7939,\\n      \\\"instruction_ratio_std\\\": 0.0114,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8357,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5956,\\n      \\\"instruction_ratio_std\\\": 0.0193,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6069,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "586a8b8e-362c-4835-a1c2-cb54e0f6a9ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7358,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0169,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8394,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0111,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5141,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0301,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5214,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.011,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7419,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5683,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0152,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5244,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0288,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5983,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0159,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9451,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0044,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7804,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.009,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6205,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0144,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6934,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0161,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6912,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0347,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4496,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0192,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7389,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0166,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6026,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0143,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6994,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0123,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6419,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0144,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5516,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0192,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.903,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0098,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8588,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0059,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6739,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0143,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4736,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0144,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7897,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0088,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5143,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0185,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5704,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0131,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9134,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.008,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6826,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0257,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7939,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0114,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8357,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.009,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5956,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0193,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6069,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0163,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 30,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 2,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7358,\\n      \\\"instruction_ratio_std\\\": 0.0169,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8394,\\n      \\\"instruction_ratio_std\\\": 0.0111,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5141,\\n      \\\"instruction_ratio_std\\\": 0.0301,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5214,\\n      \\\"instruction_ratio_std\\\": 0.011,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7419,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5683,\\n      \\\"instruction_ratio_std\\\": 0.0152,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5244,\\n      \\\"instruction_ratio_std\\\": 0.0288,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5983,\\n      \\\"instruction_ratio_std\\\": 0.0159,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9451,\\n      \\\"instruction_ratio_std\\\": 0.0044,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7804,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6205,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6934,\\n      \\\"instruction_ratio_std\\\": 0.0161,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6912,\\n      \\\"instruction_ratio_std\\\": 0.0347,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4496,\\n      \\\"instruction_ratio_std\\\": 0.0192,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7389,\\n      \\\"instruction_ratio_std\\\": 0.0166,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6026,\\n      \\\"instruction_ratio_std\\\": 0.0143,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6994,\\n      \\\"instruction_ratio_std\\\": 0.0123,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6419,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5516,\\n      \\\"instruction_ratio_std\\\": 0.0192,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.903,\\n      \\\"instruction_ratio_std\\\": 0.0098,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8588,\\n      \\\"instruction_ratio_std\\\": 0.0059,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6739,\\n      \\\"instruction_ratio_std\\\": 0.0143,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4736,\\n      \\\"instruction_ratio_std\\\": 0.0144,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7897,\\n      \\\"instruction_ratio_std\\\": 0.0088,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5143,\\n      \\\"instruction_ratio_std\\\": 0.0185,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5704,\\n      \\\"instruction_ratio_std\\\": 0.0131,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9134,\\n      \\\"instruction_ratio_std\\\": 0.008,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6826,\\n      \\\"instruction_ratio_std\\\": 0.0257,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7939,\\n      \\\"instruction_ratio_std\\\": 0.0114,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8357,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5956,\\n      \\\"instruction_ratio_std\\\": 0.0193,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6069,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013wNwkmRf9WSNo5g8TrU1QK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "9269ff12-6f37-4847-946f-a0f7957bafab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FBJ6GmKRHJTGT27yNQeniC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "539cc5c7-f80d-41f4-ab28-10193e019ae4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T20:33:32.149Z_
+
+<details><summary>↩ Tool result · `toolu_013wNwkmRf9WSNo5g8TrU1QK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9532,\\n      \\\"instruction_ratio_std\\\": 0.0028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9592,\\n      \\\"instruction_ratio_std\\\": 0.0038,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.569,\\n      \\\"instruction_ratio_std\\\": 0.0111,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7949,\\n      \\\"instruction_ratio_std\\\": 0.0128,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7255,\\n      \\\"instruction_ratio_std\\\": 0.0106,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6261,\\n      \\\"instruction_ratio_std\\\": 0.0288,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7003,\\n      \\\"instruction_ratio_std\\\": 0.0164,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7976,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9961,\\n      \\\"instruction_ratio_std\\\": 0.0004,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.912,\\n      \\\"instruction_ratio_std\\\": 0.0042,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8347,\\n      \\\"instruction_ratio_std\\\": 0.0149,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.836,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8645,\\n      \\\"instruction_ratio_std\\\": 0.0073,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6966,\\n      \\\"instruction_ratio_std\\\": 0.0157,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8381,\\n      \\\"instruction_ratio_std\\\": 0.0065,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8151,\\n      \\\"instruction_ratio_std\\\": 0.0041,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8848,\\n      \\\"instruction_ratio_std\\\": 0.0097,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8464,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7548,\\n      \\\"instruction_ratio_std\\\": 0.0129,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.983,\\n      \\\"instruction_ratio_std\\\": 0.0026,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9425,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9382,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7237,\\n      \\\"instruction_ratio_std\\\": 0.0088,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8576,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6017,\\n      \\\"instruction_ratio_std\\\": 0.0164,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.69,\\n      \\\"instruction_ratio_std\\\": 0.0099,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9838,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.887,\\n      \\\"instruction_ratio_std\\\": 0.0327,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9549,\\n      \\\"instruction_ratio_std\\\": 0.0034,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9716,\\n      \\\"instruction_ratio_std\\\": 0.0025,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7404,\\n      \\\"instruction_ratio_std\\\": 0.017,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8255,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "7cb6ea86-35b9-414c-b607-bf7d3974ff0a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9532,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0028,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9592,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0038,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.569,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0111,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7949,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0128,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7255,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0106,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6261,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0288,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7003,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0164,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7976,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.009,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9961,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0004,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.912,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0042,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8347,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0149,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.836,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8645,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0073,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6966,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0157,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8381,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0065,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8151,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0041,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8848,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0097,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8464,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7548,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0129,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.983,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0026,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9425,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9382,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0029,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7237,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0088,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8576,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0049,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6017,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0164,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.69,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0099,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9838,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.887,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0327,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9549,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0034,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9716,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0025,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7404,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.017,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8255,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0078,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 0,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      22,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9532,\\n      \\\"instruction_ratio_std\\\": 0.0028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9592,\\n      \\\"instruction_ratio_std\\\": 0.0038,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.569,\\n      \\\"instruction_ratio_std\\\": 0.0111,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7949,\\n      \\\"instruction_ratio_std\\\": 0.0128,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7255,\\n      \\\"instruction_ratio_std\\\": 0.0106,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6261,\\n      \\\"instruction_ratio_std\\\": 0.0288,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7003,\\n      \\\"instruction_ratio_std\\\": 0.0164,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7976,\\n      \\\"instruction_ratio_std\\\": 0.009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9961,\\n      \\\"instruction_ratio_std\\\": 0.0004,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.912,\\n      \\\"instruction_ratio_std\\\": 0.0042,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8347,\\n      \\\"instruction_ratio_std\\\": 0.0149,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.836,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8645,\\n      \\\"instruction_ratio_std\\\": 0.0073,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6966,\\n      \\\"instruction_ratio_std\\\": 0.0157,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8381,\\n      \\\"instruction_ratio_std\\\": 0.0065,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8151,\\n      \\\"instruction_ratio_std\\\": 0.0041,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8848,\\n      \\\"instruction_ratio_std\\\": 0.0097,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8464,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7548,\\n      \\\"instruction_ratio_std\\\": 0.0129,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.983,\\n      \\\"instruction_ratio_std\\\": 0.0026,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9425,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9382,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7237,\\n      \\\"instruction_ratio_std\\\": 0.0088,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8576,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6017,\\n      \\\"instruction_ratio_std\\\": 0.0164,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.69,\\n      \\\"instruction_ratio_std\\\": 0.0099,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9838,\\n      \\\"instruction_ratio_std\\\": 0.0016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.887,\\n      \\\"instruction_ratio_std\\\": 0.0327,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9549,\\n      \\\"instruction_ratio_std\\\": 0.0034,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9716,\\n      \\\"instruction_ratio_std\\\": 0.0025,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7404,\\n      \\\"instruction_ratio_std\\\": 0.017,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8255,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T20:33:32.687Z_
+
+<details><summary>↩ Tool result · `toolu_01FBJ6GmKRHJTGT27yNQeniC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6963,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8512,\\n      \\\"instruction_ratio_std\\\": 0.0065,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5678,\\n      \\\"instruction_ratio_std\\\": 0.0223,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5224,\\n      \\\"instruction_ratio_std\\\": 0.0121,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7588,\\n      \\\"instruction_ratio_std\\\": 0.0169,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5553,\\n      \\\"instruction_ratio_std\\\": 0.0119,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0209,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.613,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.939,\\n      \\\"instruction_ratio_std\\\": 0.0045,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7817,\\n      \\\"instruction_ratio_std\\\": 0.0093,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6154,\\n      \\\"instruction_ratio_std\\\": 0.0112,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6858,\\n      \\\"instruction_ratio_std\\\": 0.02,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7589,\\n      \\\"instruction_ratio_std\\\": 0.0301,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4718,\\n      \\\"instruction_ratio_std\\\": 0.0204,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7618,\\n      \\\"instruction_ratio_std\\\": 0.0167,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.628,\\n      \\\"instruction_ratio_std\\\": 0.0203,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7033,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6233,\\n      \\\"instruction_ratio_std\\\": 0.0109,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5833,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9012,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8673,\\n      \\\"instruction_ratio_std\\\": 0.0072,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6899,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4719,\\n      \\\"instruction_ratio_std\\\": 0.0134,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8001,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5494,\\n      \\\"instruction_ratio_std\\\": 0.0186,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5772,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9197,\\n      \\\"instruction_ratio_std\\\": 0.0075,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6623,\\n      \\\"instruction_ratio_std\\\": 0.0202,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8161,\\n      \\\"instruction_ratio_std\\\": 0.0071,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8159,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6211,\\n      \\\"instruction_ratio_std\\\": 0.01,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6229,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "764716d5-475a-4e14-b834-56b4534d971f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6963,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0158,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8512,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0065,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5678,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0223,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5224,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0121,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7588,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0169,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5553,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0119,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5586,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0209,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.613,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0133,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.939,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7817,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0093,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6154,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0112,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6858,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.02,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7589,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0301,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4718,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0204,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7618,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0167,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.628,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0203,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7033,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0081,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6233,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0109,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5833,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0163,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9012,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0101,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8673,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0072,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6899,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4719,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0134,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8001,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5494,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0186,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5772,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0163,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9197,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0075,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6623,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0202,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8161,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0071,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8159,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6211,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.01,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6229,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0125,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 30,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 2,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6963,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8512,\\n      \\\"instruction_ratio_std\\\": 0.0065,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5678,\\n      \\\"instruction_ratio_std\\\": 0.0223,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5224,\\n      \\\"instruction_ratio_std\\\": 0.0121,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7588,\\n      \\\"instruction_ratio_std\\\": 0.0169,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5553,\\n      \\\"instruction_ratio_std\\\": 0.0119,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5586,\\n      \\\"instruction_ratio_std\\\": 0.0209,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.613,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.939,\\n      \\\"instruction_ratio_std\\\": 0.0045,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7817,\\n      \\\"instruction_ratio_std\\\": 0.0093,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6154,\\n      \\\"instruction_ratio_std\\\": 0.0112,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6858,\\n      \\\"instruction_ratio_std\\\": 0.02,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7589,\\n      \\\"instruction_ratio_std\\\": 0.0301,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4718,\\n      \\\"instruction_ratio_std\\\": 0.0204,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7618,\\n      \\\"instruction_ratio_std\\\": 0.0167,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.628,\\n      \\\"instruction_ratio_std\\\": 0.0203,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7033,\\n      \\\"instruction_ratio_std\\\": 0.0081,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6233,\\n      \\\"instruction_ratio_std\\\": 0.0109,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5833,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9012,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8673,\\n      \\\"instruction_ratio_std\\\": 0.0072,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6899,\\n      \\\"instruction_ratio_std\\\": 0.0104,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4719,\\n      \\\"instruction_ratio_std\\\": 0.0134,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8001,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5494,\\n      \\\"instruction_ratio_std\\\": 0.0186,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5772,\\n      \\\"instruction_ratio_std\\\": 0.0163,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9197,\\n      \\\"instruction_ratio_std\\\": 0.0075,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6623,\\n      \\\"instruction_ratio_std\\\": 0.0202,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8161,\\n      \\\"instruction_ratio_std\\\": 0.0071,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8159,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6211,\\n      \\\"instruction_ratio_std\\\": 0.01,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6229,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016F5MBXEX9KFHB4NMr9Q24S`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "b31a6673-0136-47ed-b5bd-f1f405d01efa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T20:33:33.425Z_
+
+<details><summary>↩ Tool result · `toolu_016F5MBXEX9KFHB4NMr9Q24S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9515,\\n      \\\"instruction_ratio_std\\\": 0.0025,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9637,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5842,\\n      \\\"instruction_ratio_std\\\": 0.0082,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7795,\\n      \\\"instruction_ratio_std\\\": 0.0108,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6963,\\n      \\\"instruction_ratio_std\\\": 0.0084,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6349,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7095,\\n      \\\"instruction_ratio_std\\\": 0.0077,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8002,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9965,\\n      \\\"instruction_ratio_std\\\": 0.0002,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9071,\\n      \\\"instruction_ratio_std\\\": 0.003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8535,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7976,\\n      \\\"instruction_ratio_std\\\": 0.0108,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8661,\\n      \\\"instruction_ratio_std\\\": 0.0053,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7036,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8315,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.801,\\n      \\\"instruction_ratio_std\\\": 0.0071,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8937,\\n      \\\"instruction_ratio_std\\\": 0.0058,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8325,\\n      \\\"instruction_ratio_std\\\": 0.006,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7698,\\n      \\\"instruction_ratio_std\\\": 0.0055,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.981,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9407,\\n      \\\"instruction_ratio_std\\\": 0.0021,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9388,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7222,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8548,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6033,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6761,\\n      \\\"instruction_ratio_std\\\": 0.0107,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9844,\\n      \\\"instruction_ratio_std\\\": 0.0011,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8591,\\n      \\\"instruction_ratio_std\\\": 0.0415,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9553,\\n      \\\"instruction_ratio_std\\\": 0.0033,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9726,\\n      \\\"instruction_ratio_std\\\": 0.0009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7501,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8323,\\n      \\\"instruction_ratio_std\\\": 0.0045,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "4c3862df-8ec9-4f5a-af28-e711aad6df62",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9515,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0025,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9637,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0029,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5842,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0082,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7795,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0108,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6963,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0084,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6349,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7095,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0077,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8002,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0083,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9965,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0002,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9071,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.003,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8535,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0083,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7976,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0108,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8661,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7036,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0078,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8315,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.801,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0071,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8937,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0058,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8325,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.006,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7698,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0055,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.981,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9407,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0021,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9388,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0036,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7222,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0049,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8548,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0049,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6033,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0125,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6761,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0107,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9844,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0011,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8591,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0415,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9553,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0033,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9726,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0009,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7501,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0078,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8323,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 0,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      22,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9515,\\n      \\\"instruction_ratio_std\\\": 0.0025,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9637,\\n      \\\"instruction_ratio_std\\\": 0.0029,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5842,\\n      \\\"instruction_ratio_std\\\": 0.0082,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7795,\\n      \\\"instruction_ratio_std\\\": 0.0108,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6963,\\n      \\\"instruction_ratio_std\\\": 0.0084,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6349,\\n      \\\"instruction_ratio_std\\\": 0.0076,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7095,\\n      \\\"instruction_ratio_std\\\": 0.0077,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8002,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9965,\\n      \\\"instruction_ratio_std\\\": 0.0002,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9071,\\n      \\\"instruction_ratio_std\\\": 0.003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8535,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7976,\\n      \\\"instruction_ratio_std\\\": 0.0108,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8661,\\n      \\\"instruction_ratio_std\\\": 0.0053,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7036,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8315,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.801,\\n      \\\"instruction_ratio_std\\\": 0.0071,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8937,\\n      \\\"instruction_ratio_std\\\": 0.0058,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8325,\\n      \\\"instruction_ratio_std\\\": 0.006,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7698,\\n      \\\"instruction_ratio_std\\\": 0.0055,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.981,\\n      \\\"instruction_ratio_std\\\": 0.0051,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9407,\\n      \\\"instruction_ratio_std\\\": 0.0021,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9388,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7222,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8548,\\n      \\\"instruction_ratio_std\\\": 0.0049,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6033,\\n      \\\"instruction_ratio_std\\\": 0.0125,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6761,\\n      \\\"instruction_ratio_std\\\": 0.0107,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9844,\\n      \\\"instruction_ratio_std\\\": 0.0011,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8591,\\n      \\\"instruction_ratio_std\\\": 0.0415,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9553,\\n      \\\"instruction_ratio_std\\\": 0.0033,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9726,\\n      \\\"instruction_ratio_std\\\": 0.0009,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7501,\\n      \\\"instruction_ratio_std\\\": 0.0078,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8323,\\n      \\\"instruction_ratio_std\\\": 0.0045,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NCbvXu9w8GjjpzqpPweHxs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "4149d82c-da72-47a6-bb50-39482339afe8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KUzfBDmyCpVzJgu8Hsy6pP`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c9e9e28f-01d9-47e5-b3e8-3aadfd5d67f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaffoeuYYmTqqu5EHy9ieo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 25310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T20:33:34.357Z_
+
+<details><summary>↩ Tool result · `toolu_01NCbvXu9w8GjjpzqpPweHxs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7406,\\n      \\\"instruction_ratio_std\\\": 0.0292,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8525,\\n      \\\"instruction_ratio_std\\\": 0.0123,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5217,\\n      \\\"instruction_ratio_std\\\": 0.0411,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5064,\\n      \\\"instruction_ratio_std\\\": 0.0311,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7054,\\n      \\\"instruction_ratio_std\\\": 0.0284,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5468,\\n      \\\"instruction_ratio_std\\\": 0.0289,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5078,\\n      \\\"instruction_ratio_std\\\": 0.0313,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6002,\\n      \\\"instruction_ratio_std\\\": 0.028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9489,\\n      \\\"instruction_ratio_std\\\": 0.0053,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7701,\\n      \\\"instruction_ratio_std\\\": 0.0153,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6219,\\n      \\\"instruction_ratio_std\\\": 0.0252,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6771,\\n      \\\"instruction_ratio_std\\\": 0.0331,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6898,\\n      \\\"instruction_ratio_std\\\": 0.0339,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4303,\\n      \\\"instruction_ratio_std\\\": 0.0261,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7306,\\n      \\\"instruction_ratio_std\\\": 0.0325,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6,\\n      \\\"instruction_ratio_std\\\": 0.0292,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7089,\\n      \\\"instruction_ratio_std\\\": 0.0208,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6212,\\n      \\\"instruction_ratio_std\\\": 0.0315,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5446,\\n      \\\"instruction_ratio_std\\\": 0.0295,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8734,\\n      \\\"instruction_ratio_std\\\": 0.0166,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8538,\\n      \\\"instruction_ratio_std\\\": 0.0165,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6582,\\n      \\\"instruction_ratio_std\\\": 0.0259,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4637,\\n      \\\"instruction_ratio_std\\\": 0.0336,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7838,\\n      \\\"instruction_ratio_std\\\": 0.0178,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5056,\\n      \\\"instruction_ratio_std\\\": 0.0318,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5363,\\n      \\\"instruction_ratio_std\\\": 0.0222,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8855,\\n      \\\"instruction_ratio_std\\\": 0.0156,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6492,\\n      \\\"instruction_ratio_std\\\": 0.0334,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7933,\\n      \\\"instruction_ratio_std\\\": 0.019,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8315,\\n      \\\"instruction_ratio_std\\\": 0.0127,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5865,\\n      \\\"instruction_ratio_std\\\": 0.0232,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6004,\\n      \\\"instruction_ratio_std\\\": 0.0278,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "07d5a506-f0fe-4e16-a4cb-533a6c29f2bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7406,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0292,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8525,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0123,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5217,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0411,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5064,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0311,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7054,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0284,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5468,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0289,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5078,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0313,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6002,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.028,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9489,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7701,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0153,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6219,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0252,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6771,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0331,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6898,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0339,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4303,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0261,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7306,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0325,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0292,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7089,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0208,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6212,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0315,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5446,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0295,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8734,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0166,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8538,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0165,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6582,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0259,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.4637,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0336,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7838,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0178,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5056,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0318,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5363,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0222,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8855,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0156,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6492,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0334,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7933,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.019,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8315,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0127,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5865,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0232,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6004,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0278,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 30,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 2,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7406,\\n      \\\"instruction_ratio_std\\\": 0.0292,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8525,\\n      \\\"instruction_ratio_std\\\": 0.0123,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5217,\\n      \\\"instruction_ratio_std\\\": 0.0411,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5064,\\n      \\\"instruction_ratio_std\\\": 0.0311,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7054,\\n      \\\"instruction_ratio_std\\\": 0.0284,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5468,\\n      \\\"instruction_ratio_std\\\": 0.0289,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5078,\\n      \\\"instruction_ratio_std\\\": 0.0313,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6002,\\n      \\\"instruction_ratio_std\\\": 0.028,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9489,\\n      \\\"instruction_ratio_std\\\": 0.0053,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7701,\\n      \\\"instruction_ratio_std\\\": 0.0153,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6219,\\n      \\\"instruction_ratio_std\\\": 0.0252,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6771,\\n      \\\"instruction_ratio_std\\\": 0.0331,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6898,\\n      \\\"instruction_ratio_std\\\": 0.0339,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4303,\\n      \\\"instruction_ratio_std\\\": 0.0261,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7306,\\n      \\\"instruction_ratio_std\\\": 0.0325,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6,\\n      \\\"instruction_ratio_std\\\": 0.0292,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7089,\\n      \\\"instruction_ratio_std\\\": 0.0208,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6212,\\n      \\\"instruction_ratio_std\\\": 0.0315,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5446,\\n      \\\"instruction_ratio_std\\\": 0.0295,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8734,\\n      \\\"instruction_ratio_std\\\": 0.0166,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8538,\\n      \\\"instruction_ratio_std\\\": 0.0165,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6582,\\n      \\\"instruction_ratio_std\\\": 0.0259,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.4637,\\n      \\\"instruction_ratio_std\\\": 0.0336,\\n      \\\"category\\\": \\\"mixed\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7838,\\n      \\\"instruction_ratio_std\\\": 0.0178,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5056,\\n      \\\"instruction_ratio_std\\\": 0.0318,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5363,\\n      \\\"instruction_ratio_std\\\": 0.0222,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8855,\\n      \\\"instruction_ratio_std\\\": 0.0156,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6492,\\n      \\\"instruction_ratio_std\\\": 0.0334,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7933,\\n      \\\"instruction_ratio_std\\\": 0.019,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8315,\\n      \\\"instruction_ratio_std\\\": 0.0127,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.5865,\\n      \\\"instruction_ratio_std\\\": 0.0232,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6004,\\n      \\\"instruction_ratio_std\\\": 0.0278,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 30,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 2,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T20:33:34.893Z_
+
+<details><summary>↩ Tool result · `toolu_01KUzfBDmyCpVzJgu8Hsy6pP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9559,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9605,\\n      \\\"instruction_ratio_std\\\": 0.004,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.584,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8002,\\n      \\\"instruction_ratio_std\\\": 0.014,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7187,\\n      \\\"instruction_ratio_std\\\": 0.0189,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6385,\\n      \\\"instruction_ratio_std\\\": 0.0326,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7066,\\n      \\\"instruction_ratio_std\\\": 0.0189,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8097,\\n      \\\"instruction_ratio_std\\\": 0.0154,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9961,\\n      \\\"instruction_ratio_std\\\": 0.0003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9154,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8484,\\n      \\\"instruction_ratio_std\\\": 0.0138,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8286,\\n      \\\"instruction_ratio_std\\\": 0.0181,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8737,\\n      \\\"instruction_ratio_std\\\": 0.012,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7069,\\n      \\\"instruction_ratio_std\\\": 0.0197,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8412,\\n      \\\"instruction_ratio_std\\\": 0.0115,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8142,\\n      \\\"instruction_ratio_std\\\": 0.0153,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8966,\\n      \\\"instruction_ratio_std\\\": 0.0099,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8401,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7677,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9811,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9434,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9406,\\n      \\\"instruction_ratio_std\\\": 0.005,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7313,\\n      \\\"instruction_ratio_std\\\": 0.0161,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8587,\\n      \\\"instruction_ratio_std\\\": 0.0086,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6123,\\n      \\\"instruction_ratio_std\\\": 0.0255,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6913,\\n      \\\"instruction_ratio_std\\\": 0.0191,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9852,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8537,\\n      \\\"instruction_ratio_std\\\": 0.0378,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9552,\\n      \\\"instruction_ratio_std\\\": 0.0044,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9725,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7445,\\n      \\\"instruction_ratio_std\\\": 0.0126,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8355,\\n      \\\"instruction_ratio_std\\\": 0.0137,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "6bd15293-5925-41ca-9e53-6d8a95be8b5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9559,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9605,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.004,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.584,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0158,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8002,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.014,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7187,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0189,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6385,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0326,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_6\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7066,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0189,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_7\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8097,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0154,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_8\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9961,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0003,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_9\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9154,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0101,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_10\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8484,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0138,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_11\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8286,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0181,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_12\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8737,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.012,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_13\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7069,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0197,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_14\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8412,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0115,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_15\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8142,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0153,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_16\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8966,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0099,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_17\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8401,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0133,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_18\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7677,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.016,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_19\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9811,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0036,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_20\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9434,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0083,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_21\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9406,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.005,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_22\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7313,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0161,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_23\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8587,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0086,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_24\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6123,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0255,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_25\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6913,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0191,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_26\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9852,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0024,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_27\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8537,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0378,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_28\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9552,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0044,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_29\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9725,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0036,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_30\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7445,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0126,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_31\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.8355,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0137,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"image_dominant\\\\\\\": 0,\\\\n    \\\\\\\"mixed\\\\\\\": 0,\\\\n    \\\\\\\"instruction_dominant_heads\\\\\\\": [\\\\n      0,\\\\n      1,\\\\n      2,\\\\n      3,\\\\n      4,\\\\n      5,\\\\n      6,\\\\n      7,\\\\n      8,\\\\n      9,\\\\n      10,\\\\n      11,\\\\n      12,\\\\n      13,\\\\n      14,\\\\n      15,\\\\n      16,\\\\n      17,\\\\n      18,\\\\n      19,\\\\n      20,\\\\n      21,\\\\n      22,\\\\n      23,\\\\n      24,\\\\n      25,\\\\n      26,\\\\n      27,\\\\n      28,\\\\n      29,\\\\n      30,\\\\n      31\\\\n    ],\\\\n    \\\\\\\"image_dominant_heads\\\\\\\": []\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_head\\\": {\\n    \\\"head_0\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9559,\\n      \\\"instruction_ratio_std\\\": 0.0054,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_1\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9605,\\n      \\\"instruction_ratio_std\\\": 0.004,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_2\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.584,\\n      \\\"instruction_ratio_std\\\": 0.0158,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_3\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8002,\\n      \\\"instruction_ratio_std\\\": 0.014,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_4\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7187,\\n      \\\"instruction_ratio_std\\\": 0.0189,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_5\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6385,\\n      \\\"instruction_ratio_std\\\": 0.0326,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_6\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7066,\\n      \\\"instruction_ratio_std\\\": 0.0189,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_7\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8097,\\n      \\\"instruction_ratio_std\\\": 0.0154,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_8\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9961,\\n      \\\"instruction_ratio_std\\\": 0.0003,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_9\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9154,\\n      \\\"instruction_ratio_std\\\": 0.0101,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_10\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8484,\\n      \\\"instruction_ratio_std\\\": 0.0138,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_11\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8286,\\n      \\\"instruction_ratio_std\\\": 0.0181,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_12\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8737,\\n      \\\"instruction_ratio_std\\\": 0.012,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_13\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7069,\\n      \\\"instruction_ratio_std\\\": 0.0197,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_14\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8412,\\n      \\\"instruction_ratio_std\\\": 0.0115,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_15\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8142,\\n      \\\"instruction_ratio_std\\\": 0.0153,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_16\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8966,\\n      \\\"instruction_ratio_std\\\": 0.0099,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_17\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8401,\\n      \\\"instruction_ratio_std\\\": 0.0133,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_18\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7677,\\n      \\\"instruction_ratio_std\\\": 0.016,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_19\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9811,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_20\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9434,\\n      \\\"instruction_ratio_std\\\": 0.0083,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_21\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9406,\\n      \\\"instruction_ratio_std\\\": 0.005,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_22\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7313,\\n      \\\"instruction_ratio_std\\\": 0.0161,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_23\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8587,\\n      \\\"instruction_ratio_std\\\": 0.0086,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_24\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6123,\\n      \\\"instruction_ratio_std\\\": 0.0255,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_25\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.6913,\\n      \\\"instruction_ratio_std\\\": 0.0191,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_26\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9852,\\n      \\\"instruction_ratio_std\\\": 0.0024,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_27\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8537,\\n      \\\"instruction_ratio_std\\\": 0.0378,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_28\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9552,\\n      \\\"instruction_ratio_std\\\": 0.0044,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_29\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.9725,\\n      \\\"instruction_ratio_std\\\": 0.0036,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_30\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.7445,\\n      \\\"instruction_ratio_std\\\": 0.0126,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    },\\n    \\\"head_31\\\": {\\n      \\\"instruction_ratio_mean\\\": 0.8355,\\n      \\\"instruction_ratio_std\\\": 0.0137,\\n      \\\"category\\\": \\\"instruction_dominant\\\"\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"instruction_dominant\\\": 32,\\n    \\\"image_dominant\\\": 0,\\n    \\\"mixed\\\": 0,\\n    \\\"instruction_dominant_heads\\\": [\\n      0,\\n      1,\\n      2,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      10,\\n      11,\\n      12,\\n      13,\\n      14,\\n      15,\\n      16,\\n      17,\\n      18,\\n      19,\\n      20,\\n      21,\\n      22,\\n      23,\\n      24,\\n      25,\\n      26,\\n      27,\\n      28,\\n      29,\\n      30,\\n      31\\n    ],\\n    \\\"image_dominant_heads\\\": []\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 8 files. Let me compile the data:
+
+**TracVLA Goal:**
+- trained: instruction_dominant = 27, mixed = 5 → **27/32**
+- untrained: instruction_dominant = 32, mixed = 0 → **32/32**
+
+**TracVLA Spatial:**
+- trained: instruction_dominant = 30, mixed = 2 → **30/32**
+
+
+- untrained: instruction_dominant = 32, mixed = 0 → **32/32**
+
+**TracVLA Object:**
+- trained: instruction_dominant = 30, mixed = 2 → **30/32**
+- untrained: instruction_dominant = 32, mixed = 0 → **32/32**
+
+**TracVLA Long:**
+- trained: instruction_dominant = 30, mixed = 2 → **30/32**
+- untrained: instruction_dominant = 32, mixed = 0 → **32/32**
+
+Now I need to verify the reference model identity and check the scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "44801f76-6311-44e3-8df2-a22ba9fdb1d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+所有 8 个文件已读取完毕。接下来查 reference 模型身份和脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c9e90c8e-0741-4780-8625-0f463fd06f85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NSzbREEVJhuUMdtrFYoPie`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -r \"phi3\\|phi-3\\|Phi-3\\|phi_3\" /root/autodl-tmp/vla-ssd/scripts/ --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "cd5c89a4-6e94-4d10-8b22-eb2ad8bd0f9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T20:33:44.412Z_
+
+<details><summary>↩ Tool result · `toolu_01NSzbREEVJhuUMdtrFYoPie`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "807df84d-cb2b-49e6-b55e-a2124dfc8b7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015YH3fBRyfZ5purpWzQKUwx`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -r \"untrained\\|reference\\|base_model\" /root/autodl-tmp/vla-ssd/scripts/ --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "80c87920-0e45-4e0e-a65e-08d0897e0fd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T20:33:45.387Z_
+
+<details><summary>↩ Tool result · `toolu_015YH3fBRyfZ5purpWzQKUwx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "d6edb182-afc8-47f2-9826-5913b713f0c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0193xSeyS3ZJMTdHRMGza7QV`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/ -name \"*cross_arch*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "96ce0f0e-ce42-4d61-9280-ca9a5be2a062",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T20:33:46.815Z_
+
+<details><summary>↩ Tool result · `toolu_0193xSeyS3ZJMTdHRMGza7QV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/figures/fig_cross_arch_l1.pdf\\n/root/autodl-tmp/vla-ssd/docs/paper/figures/fig_cross_arch_l1.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "7f376871-16ca-451d-83fb-9e9b3d7778d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\\\n/root/autodl-tmp/vla-ssd/figures/fig_cross_arch_l1.pdf\\\\n/root/autodl-tmp/vla-ssd/docs/paper/figures/fig_cross_arch_l1.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n/root/autodl-tmp/vla-ssd/figures/fig_cross_arch_l1.pdf\\n/root/autodl-tmp/vla-ssd/docs/paper/figures/fig_cross_arch_l1.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K7hjoVEeuVyWwYLNcXFT5U`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*tracvla*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c32f1957-b249-4d22-860f-928f5c078d37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uy7e3LRKC9r2Qv9FkKBrXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22959,
+      "cache_read_input_tokens": 29370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22959
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T20:33:47.444Z_
+
+<details><summary>↩ Tool result · `toolu_01K7hjoVEeuVyWwYLNcXFT5U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "a1518945-3dce-4d93-a545-d31d7c5b9c13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` is blocked. I need to use `-e` flags with grep. Let me try with `-e` for multiple patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "3ba1e303-6ab9-45ae-a0ed-f82d30f2de30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XSbXdrTQuFMcKjkYNBctW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1515,
+      "cache_read_input_tokens": 52329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1515
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NNe76mvPjbuRe3G794QK4r`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rn \"phi3\\|Phi-3\\|phi_3\\|phi-3\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "d248b69a-6917-46b6-aa0d-6fb87e6c3d53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XSbXdrTQuFMcKjkYNBctW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1515,
+      "cache_read_input_tokens": 52329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1515
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T20:33:51.719Z_
+
+<details><summary>↩ Tool result · `toolu_01NNe76mvPjbuRe3G794QK4r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "23fd8a42-cb8e-4d41-ae79-d90c3924acc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XCseHCgKi7ud7hL5642Nsd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rn \"untrained\\|reference\\|base_model\\|checkpoint\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "523d56fa-0039-40a6-b87d-bf1f00600961",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XSbXdrTQuFMcKjkYNBctW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1515,
+      "cache_read_input_tokens": 52329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1515
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T20:33:52.740Z_
+
+<details><summary>↩ Tool result · `toolu_01XCseHCgKi7ud7hL5642Nsd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "bbbdb615-27ef-480e-9f83-dabc78e23aad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015RfMrs46ynsStxBEQMbRAX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rn \"phi3\\|Phi-3\\|phi_3\\|phi-3\" /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "e4fa532f-9743-4177-a5bb-977c44982f96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XSbXdrTQuFMcKjkYNBctW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1515,
+      "cache_read_input_tokens": 52329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1515
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T20:33:54.045Z_
+
+<details><summary>↩ Tool result · `toolu_015RfMrs46ynsStxBEQMbRAX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "2af8cc4a-61a8-4948-b544-b1e884b8a19d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JJ3eV8Gd1VzWeXh94ieRt9`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -30 /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "bb6b3408-e3f9-4553-aace-274033fc2cfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XSbXdrTQuFMcKjkYNBctW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1515,
+      "cache_read_input_tokens": 52329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1515
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T20:33:54.824Z_
+
+<details><summary>↩ Tool result · `toolu_01JJ3eV8Gd1VzWeXh94ieRt9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c0660ef2-d44c-4ea3-a9b9-31176aebb160",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see:
+- The docstring says: "Runs both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially."
+- TRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/"
+- UNTRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/"
+
+So the reference/untrained model is **Phi-3-Vision** (not Phi-3-Instruct, not Phi-3-mini). The checkpoint path confirms: `phi3v-base`.
+
+
+I should also look at the `phi3v_attention_profile.json` file to see what specific analysis was done on Phi-3-Vision, and then check the cross-architecture data to understand what models were compared in the appendix table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "33cff919-f2fc-4992-be1d-b4e238c72930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Reference 模型确认了：`Phi-3-Vision` (base)，不是 Phi-3-Instruct。现在检查 appendix 的 cross-architecture 数据源和独立的 phi3v attention profile。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "29d4441d-52e6-4e2f-bec7-846ad9e279bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011YUsohfDPonUyGRXstm8am`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "7599cc76-1a05-4158-adde-a4a027fcba0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N4ppzeYxQ7nK43AhKPhm5o`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "a606dadb-eaac-4278-8d73-c12f0e873012",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-23T20:34:04.241Z_
+
+<details><summary>↩ Tool result · `toolu_011YUsohfDPonUyGRXstm8am`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2249,\\n      \\\"per_head_text_attention\\\": [\\n        0.1229,\\n        0.1374,\\n        0.2831,\\n        0.1449,\\n        0.0907,\\n        0.1195,\\n        0.5798,\\n        0.1885,\\n        0.1737,\\n        0.147,\\n        0.2087,\\n        0.2087,\\n        0.2272,\\n        0.0758,\\n        0.1339,\\n        0.07,\\n        0.1821,\\n        0.1323,\\n        0.0865,\\n        0.3336,\\n        0.3165,\\n        0.1471,\\n        0.2822,\\n        0.3228,\\n        0.0939,\\n        0.1051,\\n        0.226,\\n        0.7681,\\n        0.6732,\\n        0.1768,\\n        0.1298,\\n        0.3087\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7348,\\n      \\\"per_head_text_attention\\\": [\\n        0.7447,\\n        0.9206,\\n        0.6545,\\n        0.5974,\\n        0.765,\\n        0.6783,\\n        0.6492,\\n        0.6648,\\n        0.9573,\\n        0.7901,\\n        0.7297,\\n        0.7013,\\n        0.6334,\\n        0.6164,\\n        0.7531,\\n        0.7017,\\n        0.796,\\n        0.7264,\\n        0.6387,\\n        0.8844,\\n        0.8475,\\n        0.6821,\\n        0.5973,\\n        0.8059,\\n        0.7111,\\n        0.5997,\\n        0.8885,\\n        0.6573,\\n        0.8089,\\n        0.8624,\\n        0.7408,\\n        0.7078\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7807,\\n      \\\"per_head_text_attention\\\": [\\n        0.7243,\\n        0.865,\\n        0.6872,\\n        0.6697,\\n        0.8581,\\n        0.7887,\\n        0.8916,\\n        0.8637,\\n        0.894,\\n        0.6582,\\n        0.7538,\\n        0.7199,\\n        0.7318,\\n        0.7807,\\n        0.8399,\\n        0.7764,\\n        0.6906,\\n        0.7309,\\n        0.8901,\\n        0.8101,\\n        0.8896,\\n        0.8975,\\n        0.8711,\\n        0.7062,\\n        0.6689,\\n        0.8151,\\n        0.7047,\\n        0.7277,\\n        0.8954,\\n        0.6826,\\n        0.722,\\n        0.7758\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2873,\\n      \\\"per_head_text_attention\\\": [\\n        0.2581,\\n        0.271,\\n        0.2813,\\n        0.2707,\\n        0.2829,\\n        0.2714,\\n        0.2813,\\n        0.2692,\\n        0.316,\\n        0.2708,\\n        0.4246,\\n        0.2536,\\n        0.2721,\\n        0.291,\\n        0.2872,\\n        0.2615,\\n        0.2746,\\n        0.3211,\\n        0.3131,\\n        0.2737,\\n        0.261,\\n        0.3085,\\n        0.2846,\\n        0.2982,\\n        0.2598,\\n        0.3088,\\n        0.3127,\\n        0.276,\\n        0.3204,\\n        0.2944,\\n        0.2342,\\n        0.2892\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2724,\\n      \\\"per_head_text_attention\\\": [\\n        0.2977,\\n        0.2581,\\n        0.2787,\\n        0.2671,\\n        0.3223,\\n        0.2467,\\n        0.2585,\\n        0.2695,\\n        0.2475,\\n        0.2621,\\n        0.262,\\n        0.2838,\\n        0.3196,\\n        0.3045,\\n        0.2843,\\n        0.2809,\\n        0.2775,\\n        0.2933,\\n        0.2669,\\n        0.1868,\\n        0.2616,\\n        0.267,\\n        0.2807,\\n        0.2711,\\n        0.2709,\\n        0.1129,\\n        0.3345,\\n        0.2731,\\n        0.2552,\\n        0.3111,\\n        0.3071,\\n        0.3037\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2948,\\n      \\\"per_head_text_attention\\\": [\\n        0.4112,\\n        0.2934,\\n        0.2773,\\n        0.2628,\\n        0.2712,\\n        0.2948,\\n        0.3051,\\n        0.2657,\\n        0.2591,\\n        0.2734,\\n        0.3406,\\n        0.2759,\\n        0.2852,\\n        0.3071,\\n        0.2715,\\n        0.2854,\\n        0.2622,\\n        0.2561,\\n        0.2728,\\n        0.3408,\\n        0.2933,\\n        0.3065,\\n        0.292,\\n        0.323,\\n        0.3353,\\n        0.3187,\\n        0.2939,\\n        0.2998,\\n        0.3269,\\n        0.2807,\\n        0.2764,\\n        0.277\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_head\\n\\n... [截断: 输出过长，省略 12848 字符] ...\\n\\n0.45\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4885,\\n      \\\"per_head_text_attention\\\": [\\n        0.3462,\\n        0.4196,\\n        0.3221,\\n        0.5876,\\n        0.4081,\\n        0.9625,\\n        0.4428,\\n        0.6091,\\n        0.7802,\\n        0.3809,\\n        0.2947,\\n        0.6706,\\n        0.5087,\\n        0.3602,\\n        0.9737,\\n        0.4324,\\n        0.4524,\\n        0.3173,\\n        0.3474,\\n        0.8349,\\n        0.3093,\\n        0.3816,\\n        0.8442,\\n        0.3735,\\n        0.3523,\\n        0.3789,\\n        0.3425,\\n        0.3073,\\n        0.3861,\\n        0.3612,\\n        0.6985,\\n        0.4457\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 12,\\n      \\\"mean_text_attention\\\": 0.4838,\\n      \\\"per_head_text_attention\\\": [\\n        0.3963,\\n        0.3322,\\n        0.3279,\\n        0.4817,\\n        0.3327,\\n        0.4205,\\n        0.3299,\\n        0.2027,\\n        0.3286,\\n        0.3726,\\n        0.2928,\\n        0.256,\\n        0.9574,\\n        0.4067,\\n        0.6336,\\n        0.7719,\\n        0.5018,\\n        0.6288,\\n        0.7561,\\n        0.4072,\\n        0.5205,\\n        0.5696,\\n        0.3291,\\n        0.5813,\\n        0.8052,\\n        0.8512,\\n        0.3385,\\n        0.3294,\\n        0.3586,\\n        0.4315,\\n        0.3463,\\n        0.8832\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 8,\\n      \\\"mean_text_attention\\\": 0.4739,\\n      \\\"per_head_text_attention\\\": [\\n        0.8526,\\n        0.8238,\\n        0.3469,\\n        0.563,\\n        0.4536,\\n        0.32,\\n        0.3578,\\n        0.3562,\\n        0.3622,\\n        0.3489,\\n        0.3313,\\n        0.4484,\\n        0.3677,\\n        0.4207,\\n        0.3534,\\n        0.4699,\\n        0.4853,\\n        0.468,\\n        0.8017,\\n        0.3578,\\n        0.3798,\\n        0.8512,\\n        0.3458,\\n        0.5156,\\n        0.4195,\\n        0.3614,\\n        0.3616,\\n        0.9022,\\n        0.4075,\\n        0.548,\\n        0.3686,\\n        0.4134\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5315,\\n      \\\"per_head_text_attention\\\": [\\n        0.4529,\\n        0.5223,\\n        0.2926,\\n        0.3783,\\n        0.6583,\\n        0.984,\\n        0.4114,\\n        0.6447,\\n        0.3337,\\n        0.8788,\\n        0.5004,\\n        0.3216,\\n        0.6714,\\n        0.5971,\\n        0.5576,\\n        0.833,\\n        0.7837,\\n        0.0509,\\n        0.4699,\\n        0.3324,\\n        0.4129,\\n        0.4183,\\n        0.3179,\\n        0.7618,\\n        0.3745,\\n        0.5399,\\n        0.9868,\\n        0.5401,\\n        0.5056,\\n        0.9846,\\n        0.3569,\\n        0.1341\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.521,\\n      \\\"per_head_text_attention\\\": [\\n        0.6233,\\n        0.3924,\\n        0.0173,\\n        0.2119,\\n        0.5946,\\n        0.6422,\\n        0.5144,\\n        0.9298,\\n        0.3236,\\n        0.3108,\\n        0.896,\\n        0.9768,\\n        0.4967,\\n        0.5487,\\n        0.3702,\\n        0.0141,\\n        0.9816,\\n        0.189,\\n        0.2426,\\n        0.9757,\\n        0.5842,\\n        0.3062,\\n        0.8331,\\n        0.3371,\\n        0.3054,\\n        0.6229,\\n        0.4658,\\n        0.0293,\\n        0.7983,\\n        0.8757,\\n        0.521,\\n        0.7413\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.6478,\\n      \\\"per_head_text_attention\\\": [\\n        0.9997,\\n        0.9973,\\n        0.6204,\\n        0.5549,\\n        0.4367,\\n        0.2835,\\n        0.9996,\\n        0.1184,\\n        0.998,\\n        0.9998,\\n        0.3805,\\n        0.2827,\\n        1.0002,\\n        0.404,\\n        0.989,\\n        0.4172,\\n        0.9866,\\n        0.4007,\\n        0.9935,\\n        0.2431,\\n        0.9995,\\n        0.6123,\\n        0.4495,\\n        0.3374,\\n        0.8088,\\n        0.5524,\\n        0.301,\\n        0.7309,\\n        0.4681,\\n        0.9932,\\n        0.3705,\\n        0.9998\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 32,\\n    \\\"L1_mean_text_attn\\\": 0.7348\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "06887e27-0d8d-477b-81e4-455f8b00b46d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"tracevla-phi3v\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": 32,\\\\n  \\\\\\\"heads\\\\\\\": 32,\\\\n  \\\\\\\"per_layer\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 3,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2249,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.1229,\\\\n        0.1374,\\\\n        0.2831,\\\\n        0.1449,\\\\n        0.0907,\\\\n        0.1195,\\\\n        0.5798,\\\\n        0.1885,\\\\n        0.1737,\\\\n        0.147,\\\\n        0.2087,\\\\n        0.2087,\\\\n        0.2272,\\\\n        0.0758,\\\\n        0.1339,\\\\n        0.07,\\\\n        0.1821,\\\\n        0.1323,\\\\n        0.0865,\\\\n        0.3336,\\\\n        0.3165,\\\\n        0.1471,\\\\n        0.2822,\\\\n        0.3228,\\\\n        0.0939,\\\\n        0.1051,\\\\n        0.226,\\\\n        0.7681,\\\\n        0.6732,\\\\n        0.1768,\\\\n        0.1298,\\\\n        0.3087\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7348,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7447,\\\\n        0.9206,\\\\n        0.6545,\\\\n        0.5974,\\\\n        0.765,\\\\n        0.6783,\\\\n        0.6492,\\\\n        0.6648,\\\\n        0.9573,\\\\n        0.7901,\\\\n        0.7297,\\\\n        0.7013,\\\\n        0.6334,\\\\n        0.6164,\\\\n        0.7531,\\\\n        0.7017,\\\\n        0.796,\\\\n        0.7264,\\\\n        0.6387,\\\\n        0.8844,\\\\n        0.8475,\\\\n        0.6821,\\\\n        0.5973,\\\\n        0.8059,\\\\n        0.7111,\\\\n        0.5997,\\\\n        0.8885,\\\\n        0.6573,\\\\n        0.8089,\\\\n        0.8624,\\\\n        0.7408,\\\\n        0.7078\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7807,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7243,\\\\n        0.865,\\\\n        0.6872,\\\\n        0.6697,\\\\n        0.8581,\\\\n        0.7887,\\\\n        0.8916,\\\\n        0.8637,\\\\n        0.894,\\\\n        0.6582,\\\\n        0.7538,\\\\n        0.7199,\\\\n        0.7318,\\\\n        0.7807,\\\\n        0.8399,\\\\n        0.7764,\\\\n        0.6906,\\\\n        0.7309,\\\\n        0.8901,\\\\n        0.8101,\\\\n        0.8896,\\\\n        0.8975,\\\\n        0.8711,\\\\n        0.7062,\\\\n        0.6689,\\\\n        0.8151,\\\\n        0.7047,\\\\n        0.7277,\\\\n        0.8954,\\\\n        0.6826,\\\\n        0.722,\\\\n        0.7758\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2873,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.2581,\\\\n        0.271,\\\\n        0.2813,\\\\n        0.2707,\\\\n        0.2829,\\\\n        0.2714,\\\\n        0.2813,\\\\n        0.2692,\\\\n        0.316,\\\\n        0.2708,\\\\n        0.4246,\\\\n        0.2536,\\\\n        0.2721,\\\\n        0.291,\\\\n        0.2872,\\\\n        0.2615,\\\\n        0.2746,\\\\n        0.3211,\\\\n        0.3131,\\\\n        0.2737,\\\\n        0.261,\\\\n        0.3085,\\\\n        0.2846,\\\\n        0.2982,\\\\n        0.2598,\\\\n        0.3088,\\\\n        0.3127,\\\\n        0.276,\\\\n        0.3204,\\\\n        0.2944,\\\\n        0.2342,\\\\n        0.2892\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2724,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.2977,\\\\n        0.2581,\\\\n        0.2787,\\\\n        0.2671,\\\\n        0.3223,\\\\n        0.2467,\\\\n        0.2585,\\\\n        0.2695,\\\\n        0.2475,\\\\n        0.2621,\\\\n        0.262,\\\\n        0.2838,\\\\n        0.3196,\\\\n        0.3045,\\\\n        0.2843,\\\\n        0.2809,\\\\n        0.2775,\\\\n        0.2933,\\\\n        0.2669,\\\\n        0.1868,\\\\n        0.2616,\\\\n        0.267,\\\\n        0.2807,\\\\n        0.2711,\\\\n        0.2709,\\\\n        0.1129,\\\\n        0.3345,\\\\n        0.2731,\\\\n        0.2552,\\\\n        0.3111,\\\\n        0.3071,\\\\n        0.3037\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2948,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4112,\\\\n        0.2934,\\\\n        0.2773,\\\\n        0.2628,\\\\n        0.2712,\\\\n        0.2948,\\\\n        0.3051,\\\\n        0.2657,\\\\n        0.2591,\\\\n        0.2734,\\\\n        0.3406,\\\\n        0.2759,\\\\n        0.2852,\\\\n        0.3071,\\\\n        0.2715,\\\\n        0.2854,\\\\n        0.2622,\\\\n        0.2561,\\\\n        0.2728,\\\\n        0.3408,\\\\n        0.2933,\\\\n        0.3065,\\\\n        0.292,\\\\n        0.323,\\\\n        0.3353,\\\\n        0.3187,\\\\n        0.2939,\\\\n        0.2998,\\\\n        0.3269,\\\\n        0.2807,\\\\n        0.2764,\\\\n        0.277\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_head\\\\n\\\\n... [截断: 输出过长，省略 12848 字符] ...\\\\n\\\\n0.45\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4885,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.3462,\\\\n        0.4196,\\\\n        0.3221,\\\\n        0.5876,\\\\n        0.4081,\\\\n        0.9625,\\\\n        0.4428,\\\\n        0.6091,\\\\n        0.7802,\\\\n        0.3809,\\\\n        0.2947,\\\\n        0.6706,\\\\n        0.5087,\\\\n        0.3602,\\\\n        0.9737,\\\\n        0.4324,\\\\n        0.4524,\\\\n        0.3173,\\\\n        0.3474,\\\\n        0.8349,\\\\n        0.3093,\\\\n        0.3816,\\\\n        0.8442,\\\\n        0.3735,\\\\n        0.3523,\\\\n        0.3789,\\\\n        0.3425,\\\\n        0.3073,\\\\n        0.3861,\\\\n        0.3612,\\\\n        0.6985,\\\\n        0.4457\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 12,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4838,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.3963,\\\\n        0.3322,\\\\n        0.3279,\\\\n        0.4817,\\\\n        0.3327,\\\\n        0.4205,\\\\n        0.3299,\\\\n        0.2027,\\\\n        0.3286,\\\\n        0.3726,\\\\n        0.2928,\\\\n        0.256,\\\\n        0.9574,\\\\n        0.4067,\\\\n        0.6336,\\\\n        0.7719,\\\\n        0.5018,\\\\n        0.6288,\\\\n        0.7561,\\\\n        0.4072,\\\\n        0.5205,\\\\n        0.5696,\\\\n        0.3291,\\\\n        0.5813,\\\\n        0.8052,\\\\n        0.8512,\\\\n        0.3385,\\\\n        0.3294,\\\\n        0.3586,\\\\n        0.4315,\\\\n        0.3463,\\\\n        0.8832\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 8,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4739,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.8526,\\\\n        0.8238,\\\\n        0.3469,\\\\n        0.563,\\\\n        0.4536,\\\\n        0.32,\\\\n        0.3578,\\\\n        0.3562,\\\\n        0.3622,\\\\n        0.3489,\\\\n        0.3313,\\\\n        0.4484,\\\\n        0.3677,\\\\n        0.4207,\\\\n        0.3534,\\\\n        0.4699,\\\\n        0.4853,\\\\n        0.468,\\\\n        0.8017,\\\\n        0.3578,\\\\n        0.3798,\\\\n        0.8512,\\\\n        0.3458,\\\\n        0.5156,\\\\n        0.4195,\\\\n        0.3614,\\\\n        0.3616,\\\\n        0.9022,\\\\n        0.4075,\\\\n        0.548,\\\\n        0.3686,\\\\n        0.4134\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 17,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5315,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4529,\\\\n        0.5223,\\\\n        0.2926,\\\\n        0.3783,\\\\n        0.6583,\\\\n        0.984,\\\\n        0.4114,\\\\n        0.6447,\\\\n        0.3337,\\\\n        0.8788,\\\\n        0.5004,\\\\n        0.3216,\\\\n        0.6714,\\\\n        0.5971,\\\\n        0.5576,\\\\n        0.833,\\\\n        0.7837,\\\\n        0.0509,\\\\n        0.4699,\\\\n        0.3324,\\\\n        0.4129,\\\\n        0.4183,\\\\n        0.3179,\\\\n        0.7618,\\\\n        0.3745,\\\\n        0.5399,\\\\n        0.9868,\\\\n        0.5401,\\\\n        0.5056,\\\\n        0.9846,\\\\n        0.3569,\\\\n        0.1341\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 17,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.521,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.6233,\\\\n        0.3924,\\\\n        0.0173,\\\\n        0.2119,\\\\n        0.5946,\\\\n        0.6422,\\\\n        0.5144,\\\\n        0.9298,\\\\n        0.3236,\\\\n        0.3108,\\\\n        0.896,\\\\n        0.9768,\\\\n        0.4967,\\\\n        0.5487,\\\\n        0.3702,\\\\n        0.0141,\\\\n        0.9816,\\\\n        0.189,\\\\n        0.2426,\\\\n        0.9757,\\\\n        0.5842,\\\\n        0.3062,\\\\n        0.8331,\\\\n        0.3371,\\\\n        0.3054,\\\\n        0.6229,\\\\n        0.4658,\\\\n        0.0293,\\\\n        0.7983,\\\\n        0.8757,\\\\n        0.521,\\\\n        0.7413\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 18,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6478,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9997,\\\\n        0.9973,\\\\n        0.6204,\\\\n        0.5549,\\\\n        0.4367,\\\\n        0.2835,\\\\n        0.9996,\\\\n        0.1184,\\\\n        0.998,\\\\n        0.9998,\\\\n        0.3805,\\\\n        0.2827,\\\\n        1.0002,\\\\n        0.404,\\\\n        0.989,\\\\n        0.4172,\\\\n        0.9866,\\\\n        0.4007,\\\\n        0.9935,\\\\n        0.2431,\\\\n        0.9995,\\\\n        0.6123,\\\\n        0.4495,\\\\n        0.3374,\\\\n        0.8088,\\\\n        0.5524,\\\\n        0.301,\\\\n        0.7309,\\\\n        0.4681,\\\\n        0.9932,\\\\n        0.3705,\\\\n        0.9998\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"L1_instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"L1_mean_text_attn\\\\\\\": 0.7348\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2249,\\n      \\\"per_head_text_attention\\\": [\\n        0.1229,\\n        0.1374,\\n        0.2831,\\n        0.1449,\\n        0.0907,\\n        0.1195,\\n        0.5798,\\n        0.1885,\\n        0.1737,\\n        0.147,\\n        0.2087,\\n        0.2087,\\n        0.2272,\\n        0.0758,\\n        0.1339,\\n        0.07,\\n        0.1821,\\n        0.1323,\\n        0.0865,\\n        0.3336,\\n        0.3165,\\n        0.1471,\\n        0.2822,\\n        0.3228,\\n        0.0939,\\n        0.1051,\\n        0.226,\\n        0.7681,\\n        0.6732,\\n        0.1768,\\n        0.1298,\\n        0.3087\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7348,\\n      \\\"per_head_text_attention\\\": [\\n        0.7447,\\n        0.9206,\\n        0.6545,\\n        0.5974,\\n        0.765,\\n        0.6783,\\n        0.6492,\\n        0.6648,\\n        0.9573,\\n        0.7901,\\n        0.7297,\\n        0.7013,\\n        0.6334,\\n        0.6164,\\n        0.7531,\\n        0.7017,\\n        0.796,\\n        0.7264,\\n        0.6387,\\n        0.8844,\\n        0.8475,\\n        0.6821,\\n        0.5973,\\n        0.8059,\\n        0.7111,\\n        0.5997,\\n        0.8885,\\n        0.6573,\\n        0.8089,\\n        0.8624,\\n        0.7408,\\n        0.7078\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7807,\\n      \\\"per_head_text_attention\\\": [\\n        0.7243,\\n        0.865,\\n        0.6872,\\n        0.6697,\\n        0.8581,\\n        0.7887,\\n        0.8916,\\n        0.8637,\\n        0.894,\\n        0.6582,\\n        0.7538,\\n        0.7199,\\n        0.7318,\\n        0.7807,\\n        0.8399,\\n        0.7764,\\n        0.6906,\\n        0.7309,\\n        0.8901,\\n        0.8101,\\n        0.8896,\\n        0.8975,\\n        0.8711,\\n        0.7062,\\n        0.6689,\\n        0.8151,\\n        0.7047,\\n        0.7277,\\n        0.8954,\\n        0.6826,\\n        0.722,\\n        0.7758\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2873,\\n      \\\"per_head_text_attention\\\": [\\n        0.2581,\\n        0.271,\\n        0.2813,\\n        0.2707,\\n        0.2829,\\n        0.2714,\\n        0.2813,\\n        0.2692,\\n        0.316,\\n        0.2708,\\n        0.4246,\\n        0.2536,\\n        0.2721,\\n        0.291,\\n        0.2872,\\n        0.2615,\\n        0.2746,\\n        0.3211,\\n        0.3131,\\n        0.2737,\\n        0.261,\\n        0.3085,\\n        0.2846,\\n        0.2982,\\n        0.2598,\\n        0.3088,\\n        0.3127,\\n        0.276,\\n        0.3204,\\n        0.2944,\\n        0.2342,\\n        0.2892\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2724,\\n      \\\"per_head_text_attention\\\": [\\n        0.2977,\\n        0.2581,\\n        0.2787,\\n        0.2671,\\n        0.3223,\\n        0.2467,\\n        0.2585,\\n        0.2695,\\n        0.2475,\\n        0.2621,\\n        0.262,\\n        0.2838,\\n        0.3196,\\n        0.3045,\\n        0.2843,\\n        0.2809,\\n        0.2775,\\n        0.2933,\\n        0.2669,\\n        0.1868,\\n        0.2616,\\n        0.267,\\n        0.2807,\\n        0.2711,\\n        0.2709,\\n        0.1129,\\n        0.3345,\\n        0.2731,\\n        0.2552,\\n        0.3111,\\n        0.3071,\\n        0.3037\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2948,\\n      \\\"per_head_text_attention\\\": [\\n        0.4112,\\n        0.2934,\\n        0.2773,\\n        0.2628,\\n        0.2712,\\n        0.2948,\\n        0.3051,\\n        0.2657,\\n        0.2591,\\n        0.2734,\\n        0.3406,\\n        0.2759,\\n        0.2852,\\n        0.3071,\\n        0.2715,\\n        0.2854,\\n        0.2622,\\n        0.2561,\\n        0.2728,\\n        0.3408,\\n        0.2933,\\n        0.3065,\\n        0.292,\\n        0.323,\\n        0.3353,\\n        0.3187,\\n        0.2939,\\n        0.2998,\\n        0.3269,\\n        0.2807,\\n        0.2764,\\n        0.277\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_head\\n\\n... [截断: 输出过长，省略 12848 字符] ...\\n\\n0.45\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4885,\\n      \\\"per_head_text_attention\\\": [\\n        0.3462,\\n        0.4196,\\n        0.3221,\\n        0.5876,\\n        0.4081,\\n        0.9625,\\n        0.4428,\\n        0.6091,\\n        0.7802,\\n        0.3809,\\n        0.2947,\\n        0.6706,\\n        0.5087,\\n        0.3602,\\n        0.9737,\\n        0.4324,\\n        0.4524,\\n        0.3173,\\n        0.3474,\\n        0.8349,\\n        0.3093,\\n        0.3816,\\n        0.8442,\\n        0.3735,\\n        0.3523,\\n        0.3789,\\n        0.3425,\\n        0.3073,\\n        0.3861,\\n        0.3612,\\n        0.6985,\\n        0.4457\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 12,\\n      \\\"mean_text_attention\\\": 0.4838,\\n      \\\"per_head_text_attention\\\": [\\n        0.3963,\\n        0.3322,\\n        0.3279,\\n        0.4817,\\n        0.3327,\\n        0.4205,\\n        0.3299,\\n        0.2027,\\n        0.3286,\\n        0.3726,\\n        0.2928,\\n        0.256,\\n        0.9574,\\n        0.4067,\\n        0.6336,\\n        0.7719,\\n        0.5018,\\n        0.6288,\\n        0.7561,\\n        0.4072,\\n        0.5205,\\n        0.5696,\\n        0.3291,\\n        0.5813,\\n        0.8052,\\n        0.8512,\\n        0.3385,\\n        0.3294,\\n        0.3586,\\n        0.4315,\\n        0.3463,\\n        0.8832\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 8,\\n      \\\"mean_text_attention\\\": 0.4739,\\n      \\\"per_head_text_attention\\\": [\\n        0.8526,\\n        0.8238,\\n        0.3469,\\n        0.563,\\n        0.4536,\\n        0.32,\\n        0.3578,\\n        0.3562,\\n        0.3622,\\n        0.3489,\\n        0.3313,\\n        0.4484,\\n        0.3677,\\n        0.4207,\\n        0.3534,\\n        0.4699,\\n        0.4853,\\n        0.468,\\n        0.8017,\\n        0.3578,\\n        0.3798,\\n        0.8512,\\n        0.3458,\\n        0.5156,\\n        0.4195,\\n        0.3614,\\n        0.3616,\\n        0.9022,\\n        0.4075,\\n        0.548,\\n        0.3686,\\n        0.4134\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5315,\\n      \\\"per_head_text_attention\\\": [\\n        0.4529,\\n        0.5223,\\n        0.2926,\\n        0.3783,\\n        0.6583,\\n        0.984,\\n        0.4114,\\n        0.6447,\\n        0.3337,\\n        0.8788,\\n        0.5004,\\n        0.3216,\\n        0.6714,\\n        0.5971,\\n        0.5576,\\n        0.833,\\n        0.7837,\\n        0.0509,\\n        0.4699,\\n        0.3324,\\n        0.4129,\\n        0.4183,\\n        0.3179,\\n        0.7618,\\n        0.3745,\\n        0.5399,\\n        0.9868,\\n        0.5401,\\n        0.5056,\\n        0.9846,\\n        0.3569,\\n        0.1341\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.521,\\n      \\\"per_head_text_attention\\\": [\\n        0.6233,\\n        0.3924,\\n        0.0173,\\n        0.2119,\\n        0.5946,\\n        0.6422,\\n        0.5144,\\n        0.9298,\\n        0.3236,\\n        0.3108,\\n        0.896,\\n        0.9768,\\n        0.4967,\\n        0.5487,\\n        0.3702,\\n        0.0141,\\n        0.9816,\\n        0.189,\\n        0.2426,\\n        0.9757,\\n        0.5842,\\n        0.3062,\\n        0.8331,\\n        0.3371,\\n        0.3054,\\n        0.6229,\\n        0.4658,\\n        0.0293,\\n        0.7983,\\n        0.8757,\\n        0.521,\\n        0.7413\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.6478,\\n      \\\"per_head_text_attention\\\": [\\n        0.9997,\\n        0.9973,\\n        0.6204,\\n        0.5549,\\n        0.4367,\\n        0.2835,\\n        0.9996,\\n        0.1184,\\n        0.998,\\n        0.9998,\\n        0.3805,\\n        0.2827,\\n        1.0002,\\n        0.404,\\n        0.989,\\n        0.4172,\\n        0.9866,\\n        0.4007,\\n        0.9935,\\n        0.2431,\\n        0.9995,\\n        0.6123,\\n        0.4495,\\n        0.3374,\\n        0.8088,\\n        0.5524,\\n        0.301,\\n        0.7309,\\n        0.4681,\\n        0.9932,\\n        0.3705,\\n        0.9998\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 32,\\n    \\\"L1_mean_text_attn\\\": 0.7348\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q2Cbk9iWWKhJZvHRDnRc4y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "ba5cf773-efd1-4d24-af77-319a2579b048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T20:34:04.795Z_
+
+<details><summary>↩ Tool result · `toolu_01N4ppzeYxQ7nK43AhKPhm5o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n        0.2227,\\n        0.9732,\\n        0.9086,\\n        0.757,\\n        0.7404,\\n        0.7981,\\n        0.578,\\n        0.9559,\\n        0.9831,\\n        0.7333,\\n        0.9315,\\n        0.949,\\n        0.4976,\\n        0.455,\\n        0.7502,\\n        0.8056,\\n        0.9846,\\n        0.7093,\\n        0.8146\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5283,\\n      \\\"per_head_text_attention\\\": [\\n        0.5087,\\n        0.8195,\\n        0.5676,\\n        0.1915,\\n        0.7469,\\n        0.7293,\\n        0.8642,\\n        0.9241,\\n        0.727,\\n        0.5142,\\n        0.401,\\n        0.5275,\\n        0.6633,\\n        0.1653,\\n        0.4998,\\n        0.7243,\\n        0.6181,\\n        0.3917,\\n        0.3312,\\n        0.4098,\\n        0.4263,\\n        0.399,\\n        0.2341,\\n        0.2614,\\n        0.4927,\\n        0.3254,\\n        0.6261,\\n        0.8345,\\n        0.7146,\\n        0.5102,\\n        0.384,\\n        0.371\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.5217,\\n      \\\"per_head_text_attention\\\": [\\n        0.5052,\\n        0.529,\\n        0.5009,\\n        0.4982,\\n        0.4628,\\n        0.6622,\\n        0.6309,\\n        0.4711,\\n        0.3901,\\n        0.494,\\n        0.699,\\n        0.47,\\n        0.3694,\\n        0.5837,\\n        0.4801,\\n        0.4926,\\n        0.5456,\\n        0.6236,\\n        0.6177,\\n        0.5305,\\n        0.5022,\\n        0.2673,\\n        0.6589,\\n        0.5407,\\n        0.4734,\\n        0.5622,\\n        0.4865,\\n        0.5703,\\n        0.803,\\n        0.7009,\\n        0.4167,\\n        0.1553\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.5658,\\n      \\\"per_head_text_attention\\\": [\\n        0.5591,\\n        0.5741,\\n        0.5678,\\n        0.5521,\\n        0.5452,\\n        0.5643,\\n        0.5702,\\n        0.5959,\\n        0.5281,\\n        0.5814,\\n        0.5752,\\n        0.5574,\\n        0.5736,\\n        0.5735,\\n        0.5863,\\n        0.5697,\\n        0.5709,\\n        0.5523,\\n        0.5606,\\n        0.5628,\\n        0.5525,\\n        0.5618,\\n        0.5783,\\n        0.5742,\\n        0.5837,\\n        0.5937,\\n        0.5883,\\n        0.5672,\\n        0.5713,\\n        0.5421,\\n        0.49,\\n        0.5825\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4925,\\n      \\\"per_head_text_attention\\\": [\\n        0.4659,\\n        0.4504,\\n        0.5137,\\n        0.4935,\\n        0.4565,\\n        0.4741,\\n        0.5358,\\n        0.4834,\\n        0.4781,\\n        0.4948,\\n        0.4913,\\n        0.4765,\\n        0.4996,\\n        0.4514,\\n        0.4998,\\n        0.5326,\\n        0.5713,\\n        0.5453,\\n        0.5333,\\n        0.5222,\\n        0.5159,\\n        0.4572,\\n        0.5161,\\n        0.4877,\\n        0.441,\\n        0.4831,\\n        0.4934,\\n        0.4772,\\n        0.4516,\\n        0.4921,\\n        0.5121,\\n        0.4644\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_h\\n\\n... [截断: 输出过长，省略 12879 字符] ...\\n\\n0.5432\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"mean_text_attention\\\": 0.6494,\\n      \\\"per_head_text_attention\\\": [\\n        0.5908,\\n        0.6081,\\n        0.7041,\\n        0.5693,\\n        0.6419,\\n        0.621,\\n        0.6893,\\n        0.8794,\\n        0.622,\\n        0.5393,\\n        0.5236,\\n        0.8538,\\n        0.5669,\\n        0.6731,\\n        0.7793,\\n        0.6234,\\n        0.5502,\\n        0.6231,\\n        0.8777,\\n        0.6548,\\n        0.5668,\\n        0.7432,\\n        0.9842,\\n        0.7536,\\n        0.5587,\\n        0.6266,\\n        0.4505,\\n        0.4936,\\n        0.262,\\n        0.9668,\\n        0.6246,\\n        0.5602\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.6311,\\n      \\\"per_head_text_attention\\\": [\\n        0.848,\\n        0.541,\\n        0.6049,\\n        0.5853,\\n        0.6081,\\n        0.5692,\\n        0.6271,\\n        0.6358,\\n        0.5401,\\n        0.6396,\\n        0.5852,\\n        0.5156,\\n        0.7149,\\n        0.5937,\\n        0.5631,\\n        0.575,\\n        0.5868,\\n        0.8092,\\n        0.7015,\\n        0.6749,\\n        0.5688,\\n        0.9067,\\n        0.5834,\\n        0.5635,\\n        0.5956,\\n        0.5568,\\n        0.624,\\n        0.6073,\\n        0.5554,\\n        0.6822,\\n        0.8162,\\n        0.615\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7017,\\n      \\\"per_head_text_attention\\\": [\\n        0.9795,\\n        0.9471,\\n        0.9356,\\n        0.6472,\\n        0.5672,\\n        0.7844,\\n        0.6944,\\n        0.808,\\n        0.7093,\\n        0.5262,\\n        0.7981,\\n        0.5647,\\n        0.7374,\\n        0.9077,\\n        0.6128,\\n        0.6482,\\n        0.6121,\\n        0.665,\\n        0.5809,\\n        0.6365,\\n        0.5578,\\n        0.7762,\\n        0.5162,\\n        0.5509,\\n        0.5565,\\n        0.9109,\\n        0.8144,\\n        0.7229,\\n        0.7242,\\n        0.5774,\\n        0.7385,\\n        0.6465\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.6655,\\n      \\\"per_head_text_attention\\\": [\\n        0.6988,\\n        0.4513,\\n        0.8372,\\n        0.7631,\\n        0.5642,\\n        0.5497,\\n        0.4731,\\n        0.9048,\\n        0.8407,\\n        0.605,\\n        0.6871,\\n        0.8394,\\n        0.5622,\\n        0.5731,\\n        0.5765,\\n        0.7874,\\n        0.5849,\\n        0.8981,\\n        0.5357,\\n        0.4929,\\n        0.6968,\\n        0.4324,\\n        0.8281,\\n        0.9687,\\n        0.7097,\\n        0.614,\\n        0.6197,\\n        0.5898,\\n        0.6513,\\n        0.5932,\\n        0.6743,\\n        0.6917\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"mean_text_attention\\\": 0.7008,\\n      \\\"per_head_text_attention\\\": [\\n        0.7192,\\n        0.4506,\\n        0.7139,\\n        0.9214,\\n        0.6188,\\n        0.6978,\\n        0.695,\\n        0.7557,\\n        0.6206,\\n        0.7129,\\n        0.9847,\\n        0.9063,\\n        0.6532,\\n        0.7888,\\n        0.6652,\\n        0.6345,\\n        0.7225,\\n        0.5842,\\n        0.338,\\n        0.6933,\\n        0.6768,\\n        0.6681,\\n        0.6298,\\n        0.6309,\\n        0.7505,\\n        0.9599,\\n        0.7602,\\n        0.5897,\\n        0.8984,\\n        0.7437,\\n        0.6585,\\n        0.5814\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.7477,\\n      \\\"per_head_text_attention\\\": [\\n        0.7919,\\n        0.9851,\\n        0.5539,\\n        0.6479,\\n        0.9024,\\n        0.6561,\\n        0.6719,\\n        0.6717,\\n        0.8151,\\n        0.6865,\\n        0.6581,\\n        0.6642,\\n        0.9452,\\n        0.7645,\\n        0.9779,\\n        0.6545,\\n        0.6555,\\n        0.7975,\\n        0.9399,\\n        0.4866,\\n        0.9539,\\n        0.6494,\\n        0.951,\\n        0.672,\\n        0.7979,\\n        0.6686,\\n        0.9195,\\n        0.6468,\\n        0.6441,\\n        0.61,\\n        0.638,\\n        0.8478\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 28,\\n    \\\"L1_mean_text_attn\\\": 0.7745\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "f1af0e10-4e98-40ea-8a4a-34bc81047fe4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"phi3v-untrained-base\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": 32,\\\\n  \\\\\\\"heads\\\\\\\": 32,\\\\n  \\\\\\\"per_layer\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 3,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2159,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.0907,\\\\n        0.1143,\\\\n        0.1562,\\\\n        0.1886,\\\\n        0.087,\\\\n        0.0918,\\\\n        0.1977,\\\\n        0.106,\\\\n        0.1201,\\\\n        0.0995,\\\\n        0.151,\\\\n        0.2847,\\\\n        0.4628,\\\\n        0.0691,\\\\n        0.1069,\\\\n        0.064,\\\\n        0.2661,\\\\n        0.1384,\\\\n        0.0601,\\\\n        0.2037,\\\\n        0.2124,\\\\n        0.2906,\\\\n        0.2562,\\\\n        0.666,\\\\n        0.0843,\\\\n        0.0774,\\\\n        0.1853,\\\\n        0.8462,\\\\n        0.7466,\\\\n        0.2086,\\\\n        0.0648,\\\\n        0.2131\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 28,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7745,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9848,\\\\n        0.9681,\\\\n        0.913,\\\\n        0.7025,\\\\n        0.9506,\\\\n        0.5527,\\\\n        0.586,\\\\n        0.4476,\\\\n        0.9989,\\\\n        0.8197,\\\\n        0.7166,\\\\n        0.7736,\\\\n        0.8217,\\\\n        0.2227,\\\\n        0.9732,\\\\n        0.9086,\\\\n        0.757,\\\\n        0.7404,\\\\n        0.7981,\\\\n        0.578,\\\\n        0.9559,\\\\n        0.9831,\\\\n        0.7333,\\\\n        0.9315,\\\\n        0.949,\\\\n        0.4976,\\\\n        0.455,\\\\n        0.7502,\\\\n        0.8056,\\\\n        0.9846,\\\\n        0.7093,\\\\n        0.8146\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 17,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5283,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5087,\\\\n        0.8195,\\\\n        0.5676,\\\\n        0.1915,\\\\n        0.7469,\\\\n        0.7293,\\\\n        0.8642,\\\\n        0.9241,\\\\n        0.727,\\\\n        0.5142,\\\\n        0.401,\\\\n        0.5275,\\\\n        0.6633,\\\\n        0.1653,\\\\n        0.4998,\\\\n        0.7243,\\\\n        0.6181,\\\\n        0.3917,\\\\n        0.3312,\\\\n        0.4098,\\\\n        0.4263,\\\\n        0.399,\\\\n        0.2341,\\\\n        0.2614,\\\\n        0.4927,\\\\n        0.3254,\\\\n        0.6261,\\\\n        0.8345,\\\\n        0.7146,\\\\n        0.5102,\\\\n        0.384,\\\\n        0.371\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 18,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5217,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5052,\\\\n        0.529,\\\\n        0.5009,\\\\n        0.4982,\\\\n        0.4628,\\\\n        0.6622,\\\\n        0.6309,\\\\n        0.4711,\\\\n        0.3901,\\\\n        0.494,\\\\n        0.699,\\\\n        0.47,\\\\n        0.3694,\\\\n        0.5837,\\\\n        0.4801,\\\\n        0.4926,\\\\n        0.5456,\\\\n        0.6236,\\\\n        0.6177,\\\\n        0.5305,\\\\n        0.5022,\\\\n        0.2673,\\\\n        0.6589,\\\\n        0.5407,\\\\n        0.4734,\\\\n        0.5622,\\\\n        0.4865,\\\\n        0.5703,\\\\n        0.803,\\\\n        0.7009,\\\\n        0.4167,\\\\n        0.1553\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 31,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5658,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5591,\\\\n        0.5741,\\\\n        0.5678,\\\\n        0.5521,\\\\n        0.5452,\\\\n        0.5643,\\\\n        0.5702,\\\\n        0.5959,\\\\n        0.5281,\\\\n        0.5814,\\\\n        0.5752,\\\\n        0.5574,\\\\n        0.5736,\\\\n        0.5735,\\\\n        0.5863,\\\\n        0.5697,\\\\n        0.5709,\\\\n        0.5523,\\\\n        0.5606,\\\\n        0.5628,\\\\n        0.5525,\\\\n        0.5618,\\\\n        0.5783,\\\\n        0.5742,\\\\n        0.5837,\\\\n        0.5937,\\\\n        0.5883,\\\\n        0.5672,\\\\n        0.5713,\\\\n        0.5421,\\\\n        0.49,\\\\n        0.5825\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4925,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4659,\\\\n        0.4504,\\\\n        0.5137,\\\\n        0.4935,\\\\n        0.4565,\\\\n        0.4741,\\\\n        0.5358,\\\\n        0.4834,\\\\n        0.4781,\\\\n        0.4948,\\\\n        0.4913,\\\\n        0.4765,\\\\n        0.4996,\\\\n        0.4514,\\\\n        0.4998,\\\\n        0.5326,\\\\n        0.5713,\\\\n        0.5453,\\\\n        0.5333,\\\\n        0.5222,\\\\n        0.5159,\\\\n        0.4572,\\\\n        0.5161,\\\\n        0.4877,\\\\n        0.441,\\\\n        0.4831,\\\\n        0.4934,\\\\n        0.4772,\\\\n        0.4516,\\\\n        0.4921,\\\\n        0.5121,\\\\n        0.4644\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_h\\\\n\\\\n... [截断: 输出过长，省略 12879 字符] ...\\\\n\\\\n0.5432\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 29,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6494,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5908,\\\\n        0.6081,\\\\n        0.7041,\\\\n        0.5693,\\\\n        0.6419,\\\\n        0.621,\\\\n        0.6893,\\\\n        0.8794,\\\\n        0.622,\\\\n        0.5393,\\\\n        0.5236,\\\\n        0.8538,\\\\n        0.5669,\\\\n        0.6731,\\\\n        0.7793,\\\\n        0.6234,\\\\n        0.5502,\\\\n        0.6231,\\\\n        0.8777,\\\\n        0.6548,\\\\n        0.5668,\\\\n        0.7432,\\\\n        0.9842,\\\\n        0.7536,\\\\n        0.5587,\\\\n        0.6266,\\\\n        0.4505,\\\\n        0.4936,\\\\n        0.262,\\\\n        0.9668,\\\\n        0.6246,\\\\n        0.5602\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6311,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.848,\\\\n        0.541,\\\\n        0.6049,\\\\n        0.5853,\\\\n        0.6081,\\\\n        0.5692,\\\\n        0.6271,\\\\n        0.6358,\\\\n        0.5401,\\\\n        0.6396,\\\\n        0.5852,\\\\n        0.5156,\\\\n        0.7149,\\\\n        0.5937,\\\\n        0.5631,\\\\n        0.575,\\\\n        0.5868,\\\\n        0.8092,\\\\n        0.7015,\\\\n        0.6749,\\\\n        0.5688,\\\\n        0.9067,\\\\n        0.5834,\\\\n        0.5635,\\\\n        0.5956,\\\\n        0.5568,\\\\n        0.624,\\\\n        0.6073,\\\\n        0.5554,\\\\n        0.6822,\\\\n        0.8162,\\\\n        0.615\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7017,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9795,\\\\n        0.9471,\\\\n        0.9356,\\\\n        0.6472,\\\\n        0.5672,\\\\n        0.7844,\\\\n        0.6944,\\\\n        0.808,\\\\n        0.7093,\\\\n        0.5262,\\\\n        0.7981,\\\\n        0.5647,\\\\n        0.7374,\\\\n        0.9077,\\\\n        0.6128,\\\\n        0.6482,\\\\n        0.6121,\\\\n        0.665,\\\\n        0.5809,\\\\n        0.6365,\\\\n        0.5578,\\\\n        0.7762,\\\\n        0.5162,\\\\n        0.5509,\\\\n        0.5565,\\\\n        0.9109,\\\\n        0.8144,\\\\n        0.7229,\\\\n        0.7242,\\\\n        0.5774,\\\\n        0.7385,\\\\n        0.6465\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 28,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6655,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.6988,\\\\n        0.4513,\\\\n        0.8372,\\\\n        0.7631,\\\\n        0.5642,\\\\n        0.5497,\\\\n        0.4731,\\\\n        0.9048,\\\\n        0.8407,\\\\n        0.605,\\\\n        0.6871,\\\\n        0.8394,\\\\n        0.5622,\\\\n        0.5731,\\\\n        0.5765,\\\\n        0.7874,\\\\n        0.5849,\\\\n        0.8981,\\\\n        0.5357,\\\\n        0.4929,\\\\n        0.6968,\\\\n        0.4324,\\\\n        0.8281,\\\\n        0.9687,\\\\n        0.7097,\\\\n        0.614,\\\\n        0.6197,\\\\n        0.5898,\\\\n        0.6513,\\\\n        0.5932,\\\\n        0.6743,\\\\n        0.6917\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 30,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7008,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7192,\\\\n        0.4506,\\\\n        0.7139,\\\\n        0.9214,\\\\n        0.6188,\\\\n        0.6978,\\\\n        0.695,\\\\n        0.7557,\\\\n        0.6206,\\\\n        0.7129,\\\\n        0.9847,\\\\n        0.9063,\\\\n        0.6532,\\\\n        0.7888,\\\\n        0.6652,\\\\n        0.6345,\\\\n        0.7225,\\\\n        0.5842,\\\\n        0.338,\\\\n        0.6933,\\\\n        0.6768,\\\\n        0.6681,\\\\n        0.6298,\\\\n        0.6309,\\\\n        0.7505,\\\\n        0.9599,\\\\n        0.7602,\\\\n        0.5897,\\\\n        0.8984,\\\\n        0.7437,\\\\n        0.6585,\\\\n        0.5814\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 31,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7477,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7919,\\\\n        0.9851,\\\\n        0.5539,\\\\n        0.6479,\\\\n        0.9024,\\\\n        0.6561,\\\\n        0.6719,\\\\n        0.6717,\\\\n        0.8151,\\\\n        0.6865,\\\\n        0.6581,\\\\n        0.6642,\\\\n        0.9452,\\\\n        0.7645,\\\\n        0.9779,\\\\n        0.6545,\\\\n        0.6555,\\\\n        0.7975,\\\\n        0.9399,\\\\n        0.4866,\\\\n        0.9539,\\\\n        0.6494,\\\\n        0.951,\\\\n        0.672,\\\\n        0.7979,\\\\n        0.6686,\\\\n        0.9195,\\\\n        0.6468,\\\\n        0.6441,\\\\n        0.61,\\\\n        0.638,\\\\n        0.8478\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"L1_instruction_dominant\\\\\\\": 28,\\\\n    \\\\\\\"L1_mean_text_attn\\\\\\\": 0.7745\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n        0.2227,\\n        0.9732,\\n        0.9086,\\n        0.757,\\n        0.7404,\\n        0.7981,\\n        0.578,\\n        0.9559,\\n        0.9831,\\n        0.7333,\\n        0.9315,\\n        0.949,\\n        0.4976,\\n        0.455,\\n        0.7502,\\n        0.8056,\\n        0.9846,\\n        0.7093,\\n        0.8146\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5283,\\n      \\\"per_head_text_attention\\\": [\\n        0.5087,\\n        0.8195,\\n        0.5676,\\n        0.1915,\\n        0.7469,\\n        0.7293,\\n        0.8642,\\n        0.9241,\\n        0.727,\\n        0.5142,\\n        0.401,\\n        0.5275,\\n        0.6633,\\n        0.1653,\\n        0.4998,\\n        0.7243,\\n        0.6181,\\n        0.3917,\\n        0.3312,\\n        0.4098,\\n        0.4263,\\n        0.399,\\n        0.2341,\\n        0.2614,\\n        0.4927,\\n        0.3254,\\n        0.6261,\\n        0.8345,\\n        0.7146,\\n        0.5102,\\n        0.384,\\n        0.371\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.5217,\\n      \\\"per_head_text_attention\\\": [\\n        0.5052,\\n        0.529,\\n        0.5009,\\n        0.4982,\\n        0.4628,\\n        0.6622,\\n        0.6309,\\n        0.4711,\\n        0.3901,\\n        0.494,\\n        0.699,\\n        0.47,\\n        0.3694,\\n        0.5837,\\n        0.4801,\\n        0.4926,\\n        0.5456,\\n        0.6236,\\n        0.6177,\\n        0.5305,\\n        0.5022,\\n        0.2673,\\n        0.6589,\\n        0.5407,\\n        0.4734,\\n        0.5622,\\n        0.4865,\\n        0.5703,\\n        0.803,\\n        0.7009,\\n        0.4167,\\n        0.1553\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.5658,\\n      \\\"per_head_text_attention\\\": [\\n        0.5591,\\n        0.5741,\\n        0.5678,\\n        0.5521,\\n        0.5452,\\n        0.5643,\\n        0.5702,\\n        0.5959,\\n        0.5281,\\n        0.5814,\\n        0.5752,\\n        0.5574,\\n        0.5736,\\n        0.5735,\\n        0.5863,\\n        0.5697,\\n        0.5709,\\n        0.5523,\\n        0.5606,\\n        0.5628,\\n        0.5525,\\n        0.5618,\\n        0.5783,\\n        0.5742,\\n        0.5837,\\n        0.5937,\\n        0.5883,\\n        0.5672,\\n        0.5713,\\n        0.5421,\\n        0.49,\\n        0.5825\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4925,\\n      \\\"per_head_text_attention\\\": [\\n        0.4659,\\n        0.4504,\\n        0.5137,\\n        0.4935,\\n        0.4565,\\n        0.4741,\\n        0.5358,\\n        0.4834,\\n        0.4781,\\n        0.4948,\\n        0.4913,\\n        0.4765,\\n        0.4996,\\n        0.4514,\\n        0.4998,\\n        0.5326,\\n        0.5713,\\n        0.5453,\\n        0.5333,\\n        0.5222,\\n        0.5159,\\n        0.4572,\\n        0.5161,\\n        0.4877,\\n        0.441,\\n        0.4831,\\n        0.4934,\\n        0.4772,\\n        0.4516,\\n        0.4921,\\n        0.5121,\\n        0.4644\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_h\\n\\n... [截断: 输出过长，省略 12879 字符] ...\\n\\n0.5432\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"mean_text_attention\\\": 0.6494,\\n      \\\"per_head_text_attention\\\": [\\n        0.5908,\\n        0.6081,\\n        0.7041,\\n        0.5693,\\n        0.6419,\\n        0.621,\\n        0.6893,\\n        0.8794,\\n        0.622,\\n        0.5393,\\n        0.5236,\\n        0.8538,\\n        0.5669,\\n        0.6731,\\n        0.7793,\\n        0.6234,\\n        0.5502,\\n        0.6231,\\n        0.8777,\\n        0.6548,\\n        0.5668,\\n        0.7432,\\n        0.9842,\\n        0.7536,\\n        0.5587,\\n        0.6266,\\n        0.4505,\\n        0.4936,\\n        0.262,\\n        0.9668,\\n        0.6246,\\n        0.5602\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.6311,\\n      \\\"per_head_text_attention\\\": [\\n        0.848,\\n        0.541,\\n        0.6049,\\n        0.5853,\\n        0.6081,\\n        0.5692,\\n        0.6271,\\n        0.6358,\\n        0.5401,\\n        0.6396,\\n        0.5852,\\n        0.5156,\\n        0.7149,\\n        0.5937,\\n        0.5631,\\n        0.575,\\n        0.5868,\\n        0.8092,\\n        0.7015,\\n        0.6749,\\n        0.5688,\\n        0.9067,\\n        0.5834,\\n        0.5635,\\n        0.5956,\\n        0.5568,\\n        0.624,\\n        0.6073,\\n        0.5554,\\n        0.6822,\\n        0.8162,\\n        0.615\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7017,\\n      \\\"per_head_text_attention\\\": [\\n        0.9795,\\n        0.9471,\\n        0.9356,\\n        0.6472,\\n        0.5672,\\n        0.7844,\\n        0.6944,\\n        0.808,\\n        0.7093,\\n        0.5262,\\n        0.7981,\\n        0.5647,\\n        0.7374,\\n        0.9077,\\n        0.6128,\\n        0.6482,\\n        0.6121,\\n        0.665,\\n        0.5809,\\n        0.6365,\\n        0.5578,\\n        0.7762,\\n        0.5162,\\n        0.5509,\\n        0.5565,\\n        0.9109,\\n        0.8144,\\n        0.7229,\\n        0.7242,\\n        0.5774,\\n        0.7385,\\n        0.6465\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.6655,\\n      \\\"per_head_text_attention\\\": [\\n        0.6988,\\n        0.4513,\\n        0.8372,\\n        0.7631,\\n        0.5642,\\n        0.5497,\\n        0.4731,\\n        0.9048,\\n        0.8407,\\n        0.605,\\n        0.6871,\\n        0.8394,\\n        0.5622,\\n        0.5731,\\n        0.5765,\\n        0.7874,\\n        0.5849,\\n        0.8981,\\n        0.5357,\\n        0.4929,\\n        0.6968,\\n        0.4324,\\n        0.8281,\\n        0.9687,\\n        0.7097,\\n        0.614,\\n        0.6197,\\n        0.5898,\\n        0.6513,\\n        0.5932,\\n        0.6743,\\n        0.6917\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"mean_text_attention\\\": 0.7008,\\n      \\\"per_head_text_attention\\\": [\\n        0.7192,\\n        0.4506,\\n        0.7139,\\n        0.9214,\\n        0.6188,\\n        0.6978,\\n        0.695,\\n        0.7557,\\n        0.6206,\\n        0.7129,\\n        0.9847,\\n        0.9063,\\n        0.6532,\\n        0.7888,\\n        0.6652,\\n        0.6345,\\n        0.7225,\\n        0.5842,\\n        0.338,\\n        0.6933,\\n        0.6768,\\n        0.6681,\\n        0.6298,\\n        0.6309,\\n        0.7505,\\n        0.9599,\\n        0.7602,\\n        0.5897,\\n        0.8984,\\n        0.7437,\\n        0.6585,\\n        0.5814\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.7477,\\n      \\\"per_head_text_attention\\\": [\\n        0.7919,\\n        0.9851,\\n        0.5539,\\n        0.6479,\\n        0.9024,\\n        0.6561,\\n        0.6719,\\n        0.6717,\\n        0.8151,\\n        0.6865,\\n        0.6581,\\n        0.6642,\\n        0.9452,\\n        0.7645,\\n        0.9779,\\n        0.6545,\\n        0.6555,\\n        0.7975,\\n        0.9399,\\n        0.4866,\\n        0.9539,\\n        0.6494,\\n        0.951,\\n        0.672,\\n        0.7979,\\n        0.6686,\\n        0.9195,\\n        0.6468,\\n        0.6441,\\n        0.61,\\n        0.638,\\n        0.8478\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 28,\\n    \\\"L1_mean_text_attn\\\": 0.7745\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013U6aDQYsFoBvxdjwkPT7Vt`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "66134b99-0acf-4ad0-8914-2ba8d001ee02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrmMbLDTbYsLNybXALqbUq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 53844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-23T20:34:05.333Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2Cbk9iWWKhJZvHRDnRc4y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2245,\\n      \\\"per_head_text_attention\\\": [\\n        0.1226,\\n        0.1369,\\n        0.2817,\\n        0.146,\\n        0.0908,\\n        0.12,\\n        0.5752,\\n        0.1897,\\n        0.1729,\\n        0.1469,\\n        0.208,\\n        0.2094,\\n        0.226,\\n        0.0762,\\n        0.1342,\\n        0.0701,\\n        0.1825,\\n        0.1324,\\n        0.0867,\\n        0.3328,\\n        0.3157,\\n        0.1469,\\n        0.2809,\\n        0.3246,\\n        0.0937,\\n        0.1048,\\n        0.2244,\\n        0.7634,\\n        0.6733,\\n        0.1769,\\n        0.1303,\\n        0.3069\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.735,\\n      \\\"per_head_text_attention\\\": [\\n        0.7418,\\n        0.9198,\\n        0.6593,\\n        0.5966,\\n        0.7618,\\n        0.6785,\\n        0.652,\\n        0.6624,\\n        0.957,\\n        0.7897,\\n        0.7307,\\n        0.6999,\\n        0.6352,\\n        0.61,\\n        0.7518,\\n        0.7021,\\n        0.793,\\n        0.7256,\\n        0.6355,\\n        0.8885,\\n        0.8472,\\n        0.6848,\\n        0.5987,\\n        0.8052,\\n        0.7121,\\n        0.6027,\\n        0.8905,\\n        0.6693,\\n        0.8087,\\n        0.8602,\\n        0.7402,\\n        0.7092\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7846,\\n      \\\"per_head_text_attention\\\": [\\n        0.7299,\\n        0.8703,\\n        0.6917,\\n        0.6784,\\n        0.8604,\\n        0.7945,\\n        0.8945,\\n        0.8644,\\n        0.8976,\\n        0.6658,\\n        0.7555,\\n        0.7245,\\n        0.7363,\\n        0.7839,\\n        0.8418,\\n        0.7796,\\n        0.6977,\\n        0.7368,\\n        0.8902,\\n        0.8077,\\n        0.889,\\n        0.8984,\\n        0.8729,\\n        0.7133,\\n        0.6759,\\n        0.8205,\\n        0.7127,\\n        0.7316,\\n        0.8963,\\n        0.6899,\\n        0.7287,\\n        0.7761\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2916,\\n      \\\"per_head_text_attention\\\": [\\n        0.2619,\\n        0.2745,\\n        0.2833,\\n        0.2757,\\n        0.2855,\\n        0.2757,\\n        0.2863,\\n        0.2729,\\n        0.3222,\\n        0.2734,\\n        0.4444,\\n        0.2575,\\n        0.2755,\\n        0.2962,\\n        0.2912,\\n        0.2644,\\n        0.2803,\\n        0.3257,\\n        0.3148,\\n        0.2787,\\n        0.2628,\\n        0.3115,\\n        0.2873,\\n        0.3023,\\n        0.2631,\\n        0.3136,\\n        0.3139,\\n        0.2791,\\n        0.3256,\\n        0.2982,\\n        0.2411,\\n        0.2928\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2736,\\n      \\\"per_head_text_attention\\\": [\\n        0.2975,\\n        0.2585,\\n        0.275,\\n        0.2686,\\n        0.3231,\\n        0.2485,\\n        0.2608,\\n        0.2705,\\n        0.2532,\\n        0.2639,\\n        0.2632,\\n        0.2845,\\n        0.3172,\\n        0.3042,\\n        0.2864,\\n        0.2811,\\n        0.2794,\\n        0.2935,\\n        0.2673,\\n        0.1907,\\n        0.2628,\\n        0.2702,\\n        0.2826,\\n        0.2723,\\n        0.2737,\\n        0.1122,\\n        0.3391,\\n        0.2757,\\n        0.2561,\\n        0.31,\\n        0.3092,\\n        0.3054\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2943,\\n      \\\"per_head_text_attention\\\": [\\n        0.4165,\\n        0.2936,\\n        0.2759,\\n        0.2639,\\n        0.2712,\\n        0.2946,\\n        0.3075,\\n        0.2662,\\n        0.2594,\\n        0.273,\\n        0.3427,\\n        0.276,\\n        0.2816,\\n        0.3072,\\n        0.272,\\n        0.2832,\\n        0.2621,\\n        0.2639,\\n        0.2716,\\n        0.336,\\n        0.2892,\\n        0.3083,\\n        0.2884,\\n        0.3145,\\n        0.335,\\n        0.3184,\\n        0.2898,\\n        0.2945,\\n        0.3253,\\n        0.2803,\\n        0.2772,\\n        0.2778\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_heads\\n\\n... [截断: 输出过长，省略 12856 字符] ...\\n\\n.4709\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4905,\\n      \\\"per_head_text_attention\\\": [\\n        0.3444,\\n        0.4524,\\n        0.3416,\\n        0.5893,\\n        0.4008,\\n        0.9649,\\n        0.4568,\\n        0.5834,\\n        0.7657,\\n        0.3803,\\n        0.2522,\\n        0.6495,\\n        0.5229,\\n        0.361,\\n        0.981,\\n        0.4643,\\n        0.4728,\\n        0.3127,\\n        0.3387,\\n        0.8574,\\n        0.3069,\\n        0.3867,\\n        0.7818,\\n        0.4136,\\n        0.3555,\\n        0.3754,\\n        0.3461,\\n        0.3389,\\n        0.3558,\\n        0.3581,\\n        0.7381,\\n        0.4462\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.495,\\n      \\\"per_head_text_attention\\\": [\\n        0.4429,\\n        0.3277,\\n        0.3242,\\n        0.4267,\\n        0.335,\\n        0.4701,\\n        0.3341,\\n        0.2036,\\n        0.3831,\\n        0.3581,\\n        0.3071,\\n        0.2733,\\n        0.9669,\\n        0.4076,\\n        0.7019,\\n        0.7721,\\n        0.4645,\\n        0.6688,\\n        0.7777,\\n        0.4373,\\n        0.4706,\\n        0.6671,\\n        0.4327,\\n        0.5535,\\n        0.8261,\\n        0.8005,\\n        0.3379,\\n        0.3268,\\n        0.4042,\\n        0.4204,\\n        0.3395,\\n        0.8768\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4814,\\n      \\\"per_head_text_attention\\\": [\\n        0.8454,\\n        0.8282,\\n        0.3629,\\n        0.5545,\\n        0.5812,\\n        0.3172,\\n        0.3511,\\n        0.3554,\\n        0.3584,\\n        0.3493,\\n        0.3367,\\n        0.4637,\\n        0.3495,\\n        0.4153,\\n        0.3504,\\n        0.5108,\\n        0.4824,\\n        0.4693,\\n        0.7772,\\n        0.3843,\\n        0.3718,\\n        0.8464,\\n        0.3585,\\n        0.5368,\\n        0.4358,\\n        0.3552,\\n        0.3691,\\n        0.9067,\\n        0.4191,\\n        0.5126,\\n        0.3976,\\n        0.4529\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5237,\\n      \\\"per_head_text_attention\\\": [\\n        0.3983,\\n        0.4033,\\n        0.3337,\\n        0.3658,\\n        0.6801,\\n        0.8827,\\n        0.3865,\\n        0.6306,\\n        0.3367,\\n        0.7666,\\n        0.5136,\\n        0.3213,\\n        0.5898,\\n        0.5768,\\n        0.5319,\\n        0.7246,\\n        0.7607,\\n        0.0388,\\n        0.4402,\\n        0.5168,\\n        0.4553,\\n        0.4802,\\n        0.3692,\\n        0.7192,\\n        0.3921,\\n        0.6237,\\n        0.9894,\\n        0.5155,\\n        0.5141,\\n        0.9817,\\n        0.3671,\\n        0.1528\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 16,\\n      \\\"mean_text_attention\\\": 0.529,\\n      \\\"per_head_text_attention\\\": [\\n        0.6974,\\n        0.3734,\\n        0.0562,\\n        0.2879,\\n        0.6599,\\n        0.6755,\\n        0.4677,\\n        0.9069,\\n        0.3736,\\n        0.3328,\\n        0.8063,\\n        0.9867,\\n        0.5572,\\n        0.6218,\\n        0.4001,\\n        0.0218,\\n        0.9797,\\n        0.2014,\\n        0.3057,\\n        0.971,\\n        0.4726,\\n        0.3196,\\n        0.8006,\\n        0.3164,\\n        0.3,\\n        0.688,\\n        0.4714,\\n        0.0623,\\n        0.7512,\\n        0.8203,\\n        0.5835,\\n        0.6595\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.6523,\\n      \\\"per_head_text_attention\\\": [\\n        0.9999,\\n        0.9978,\\n        0.5932,\\n        0.6035,\\n        0.444,\\n        0.2385,\\n        0.9996,\\n        0.1856,\\n        0.9983,\\n        0.9997,\\n        0.4094,\\n        0.301,\\n        0.9982,\\n        0.3857,\\n        0.9946,\\n        0.4441,\\n        0.9915,\\n        0.4174,\\n        0.9953,\\n        0.2624,\\n        0.9998,\\n        0.6398,\\n        0.3994,\\n        0.348,\\n        0.8574,\\n        0.6057,\\n        0.2835,\\n        0.672,\\n        0.4745,\\n        0.9958,\\n        0.3393,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 32,\\n    \\\"L1_mean_text_attn\\\": 0.735\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "ac8ab879-4332-4aca-9abd-0aebb5b9edb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"tracevla-phi3v\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": 32,\\\\n  \\\\\\\"heads\\\\\\\": 32,\\\\n  \\\\\\\"per_layer\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 3,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2245,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.1226,\\\\n        0.1369,\\\\n        0.2817,\\\\n        0.146,\\\\n        0.0908,\\\\n        0.12,\\\\n        0.5752,\\\\n        0.1897,\\\\n        0.1729,\\\\n        0.1469,\\\\n        0.208,\\\\n        0.2094,\\\\n        0.226,\\\\n        0.0762,\\\\n        0.1342,\\\\n        0.0701,\\\\n        0.1825,\\\\n        0.1324,\\\\n        0.0867,\\\\n        0.3328,\\\\n        0.3157,\\\\n        0.1469,\\\\n        0.2809,\\\\n        0.3246,\\\\n        0.0937,\\\\n        0.1048,\\\\n        0.2244,\\\\n        0.7634,\\\\n        0.6733,\\\\n        0.1769,\\\\n        0.1303,\\\\n        0.3069\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.735,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7418,\\\\n        0.9198,\\\\n        0.6593,\\\\n        0.5966,\\\\n        0.7618,\\\\n        0.6785,\\\\n        0.652,\\\\n        0.6624,\\\\n        0.957,\\\\n        0.7897,\\\\n        0.7307,\\\\n        0.6999,\\\\n        0.6352,\\\\n        0.61,\\\\n        0.7518,\\\\n        0.7021,\\\\n        0.793,\\\\n        0.7256,\\\\n        0.6355,\\\\n        0.8885,\\\\n        0.8472,\\\\n        0.6848,\\\\n        0.5987,\\\\n        0.8052,\\\\n        0.7121,\\\\n        0.6027,\\\\n        0.8905,\\\\n        0.6693,\\\\n        0.8087,\\\\n        0.8602,\\\\n        0.7402,\\\\n        0.7092\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7846,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7299,\\\\n        0.8703,\\\\n        0.6917,\\\\n        0.6784,\\\\n        0.8604,\\\\n        0.7945,\\\\n        0.8945,\\\\n        0.8644,\\\\n        0.8976,\\\\n        0.6658,\\\\n        0.7555,\\\\n        0.7245,\\\\n        0.7363,\\\\n        0.7839,\\\\n        0.8418,\\\\n        0.7796,\\\\n        0.6977,\\\\n        0.7368,\\\\n        0.8902,\\\\n        0.8077,\\\\n        0.889,\\\\n        0.8984,\\\\n        0.8729,\\\\n        0.7133,\\\\n        0.6759,\\\\n        0.8205,\\\\n        0.7127,\\\\n        0.7316,\\\\n        0.8963,\\\\n        0.6899,\\\\n        0.7287,\\\\n        0.7761\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2916,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.2619,\\\\n        0.2745,\\\\n        0.2833,\\\\n        0.2757,\\\\n        0.2855,\\\\n        0.2757,\\\\n        0.2863,\\\\n        0.2729,\\\\n        0.3222,\\\\n        0.2734,\\\\n        0.4444,\\\\n        0.2575,\\\\n        0.2755,\\\\n        0.2962,\\\\n        0.2912,\\\\n        0.2644,\\\\n        0.2803,\\\\n        0.3257,\\\\n        0.3148,\\\\n        0.2787,\\\\n        0.2628,\\\\n        0.3115,\\\\n        0.2873,\\\\n        0.3023,\\\\n        0.2631,\\\\n        0.3136,\\\\n        0.3139,\\\\n        0.2791,\\\\n        0.3256,\\\\n        0.2982,\\\\n        0.2411,\\\\n        0.2928\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2736,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.2975,\\\\n        0.2585,\\\\n        0.275,\\\\n        0.2686,\\\\n        0.3231,\\\\n        0.2485,\\\\n        0.2608,\\\\n        0.2705,\\\\n        0.2532,\\\\n        0.2639,\\\\n        0.2632,\\\\n        0.2845,\\\\n        0.3172,\\\\n        0.3042,\\\\n        0.2864,\\\\n        0.2811,\\\\n        0.2794,\\\\n        0.2935,\\\\n        0.2673,\\\\n        0.1907,\\\\n        0.2628,\\\\n        0.2702,\\\\n        0.2826,\\\\n        0.2723,\\\\n        0.2737,\\\\n        0.1122,\\\\n        0.3391,\\\\n        0.2757,\\\\n        0.2561,\\\\n        0.31,\\\\n        0.3092,\\\\n        0.3054\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 0,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2943,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4165,\\\\n        0.2936,\\\\n        0.2759,\\\\n        0.2639,\\\\n        0.2712,\\\\n        0.2946,\\\\n        0.3075,\\\\n        0.2662,\\\\n        0.2594,\\\\n        0.273,\\\\n        0.3427,\\\\n        0.276,\\\\n        0.2816,\\\\n        0.3072,\\\\n        0.272,\\\\n        0.2832,\\\\n        0.2621,\\\\n        0.2639,\\\\n        0.2716,\\\\n        0.336,\\\\n        0.2892,\\\\n        0.3083,\\\\n        0.2884,\\\\n        0.3145,\\\\n        0.335,\\\\n        0.3184,\\\\n        0.2898,\\\\n        0.2945,\\\\n        0.3253,\\\\n        0.2803,\\\\n        0.2772,\\\\n        0.2778\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\n\\\\n... [截断: 输出过长，省略 12856 字符] ...\\\\n\\\\n.4709\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4905,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.3444,\\\\n        0.4524,\\\\n        0.3416,\\\\n        0.5893,\\\\n        0.4008,\\\\n        0.9649,\\\\n        0.4568,\\\\n        0.5834,\\\\n        0.7657,\\\\n        0.3803,\\\\n        0.2522,\\\\n        0.6495,\\\\n        0.5229,\\\\n        0.361,\\\\n        0.981,\\\\n        0.4643,\\\\n        0.4728,\\\\n        0.3127,\\\\n        0.3387,\\\\n        0.8574,\\\\n        0.3069,\\\\n        0.3867,\\\\n        0.7818,\\\\n        0.4136,\\\\n        0.3555,\\\\n        0.3754,\\\\n        0.3461,\\\\n        0.3389,\\\\n        0.3558,\\\\n        0.3581,\\\\n        0.7381,\\\\n        0.4462\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.495,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4429,\\\\n        0.3277,\\\\n        0.3242,\\\\n        0.4267,\\\\n        0.335,\\\\n        0.4701,\\\\n        0.3341,\\\\n        0.2036,\\\\n        0.3831,\\\\n        0.3581,\\\\n        0.3071,\\\\n        0.2733,\\\\n        0.9669,\\\\n        0.4076,\\\\n        0.7019,\\\\n        0.7721,\\\\n        0.4645,\\\\n        0.6688,\\\\n        0.7777,\\\\n        0.4373,\\\\n        0.4706,\\\\n        0.6671,\\\\n        0.4327,\\\\n        0.5535,\\\\n        0.8261,\\\\n        0.8005,\\\\n        0.3379,\\\\n        0.3268,\\\\n        0.4042,\\\\n        0.4204,\\\\n        0.3395,\\\\n        0.8768\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4814,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.8454,\\\\n        0.8282,\\\\n        0.3629,\\\\n        0.5545,\\\\n        0.5812,\\\\n        0.3172,\\\\n        0.3511,\\\\n        0.3554,\\\\n        0.3584,\\\\n        0.3493,\\\\n        0.3367,\\\\n        0.4637,\\\\n        0.3495,\\\\n        0.4153,\\\\n        0.3504,\\\\n        0.5108,\\\\n        0.4824,\\\\n        0.4693,\\\\n        0.7772,\\\\n        0.3843,\\\\n        0.3718,\\\\n        0.8464,\\\\n        0.3585,\\\\n        0.5368,\\\\n        0.4358,\\\\n        0.3552,\\\\n        0.3691,\\\\n        0.9067,\\\\n        0.4191,\\\\n        0.5126,\\\\n        0.3976,\\\\n        0.4529\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 17,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5237,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.3983,\\\\n        0.4033,\\\\n        0.3337,\\\\n        0.3658,\\\\n        0.6801,\\\\n        0.8827,\\\\n        0.3865,\\\\n        0.6306,\\\\n        0.3367,\\\\n        0.7666,\\\\n        0.5136,\\\\n        0.3213,\\\\n        0.5898,\\\\n        0.5768,\\\\n        0.5319,\\\\n        0.7246,\\\\n        0.7607,\\\\n        0.0388,\\\\n        0.4402,\\\\n        0.5168,\\\\n        0.4553,\\\\n        0.4802,\\\\n        0.3692,\\\\n        0.7192,\\\\n        0.3921,\\\\n        0.6237,\\\\n        0.9894,\\\\n        0.5155,\\\\n        0.5141,\\\\n        0.9817,\\\\n        0.3671,\\\\n        0.1528\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 16,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.529,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.6974,\\\\n        0.3734,\\\\n        0.0562,\\\\n        0.2879,\\\\n        0.6599,\\\\n        0.6755,\\\\n        0.4677,\\\\n        0.9069,\\\\n        0.3736,\\\\n        0.3328,\\\\n        0.8063,\\\\n        0.9867,\\\\n        0.5572,\\\\n        0.6218,\\\\n        0.4001,\\\\n        0.0218,\\\\n        0.9797,\\\\n        0.2014,\\\\n        0.3057,\\\\n        0.971,\\\\n        0.4726,\\\\n        0.3196,\\\\n        0.8006,\\\\n        0.3164,\\\\n        0.3,\\\\n        0.688,\\\\n        0.4714,\\\\n        0.0623,\\\\n        0.7512,\\\\n        0.8203,\\\\n        0.5835,\\\\n        0.6595\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 18,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6523,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9999,\\\\n        0.9978,\\\\n        0.5932,\\\\n        0.6035,\\\\n        0.444,\\\\n        0.2385,\\\\n        0.9996,\\\\n        0.1856,\\\\n        0.9983,\\\\n        0.9997,\\\\n        0.4094,\\\\n        0.301,\\\\n        0.9982,\\\\n        0.3857,\\\\n        0.9946,\\\\n        0.4441,\\\\n        0.9915,\\\\n        0.4174,\\\\n        0.9953,\\\\n        0.2624,\\\\n        0.9998,\\\\n        0.6398,\\\\n        0.3994,\\\\n        0.348,\\\\n        0.8574,\\\\n        0.6057,\\\\n        0.2835,\\\\n        0.672,\\\\n        0.4745,\\\\n        0.9958,\\\\n        0.3393,\\\\n        1.0\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"L1_instruction_dominant\\\\\\\": 32,\\\\n    \\\\\\\"L1_mean_text_attn\\\\\\\": 0.735\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2245,\\n      \\\"per_head_text_attention\\\": [\\n        0.1226,\\n        0.1369,\\n        0.2817,\\n        0.146,\\n        0.0908,\\n        0.12,\\n        0.5752,\\n        0.1897,\\n        0.1729,\\n        0.1469,\\n        0.208,\\n        0.2094,\\n        0.226,\\n        0.0762,\\n        0.1342,\\n        0.0701,\\n        0.1825,\\n        0.1324,\\n        0.0867,\\n        0.3328,\\n        0.3157,\\n        0.1469,\\n        0.2809,\\n        0.3246,\\n        0.0937,\\n        0.1048,\\n        0.2244,\\n        0.7634,\\n        0.6733,\\n        0.1769,\\n        0.1303,\\n        0.3069\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.735,\\n      \\\"per_head_text_attention\\\": [\\n        0.7418,\\n        0.9198,\\n        0.6593,\\n        0.5966,\\n        0.7618,\\n        0.6785,\\n        0.652,\\n        0.6624,\\n        0.957,\\n        0.7897,\\n        0.7307,\\n        0.6999,\\n        0.6352,\\n        0.61,\\n        0.7518,\\n        0.7021,\\n        0.793,\\n        0.7256,\\n        0.6355,\\n        0.8885,\\n        0.8472,\\n        0.6848,\\n        0.5987,\\n        0.8052,\\n        0.7121,\\n        0.6027,\\n        0.8905,\\n        0.6693,\\n        0.8087,\\n        0.8602,\\n        0.7402,\\n        0.7092\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7846,\\n      \\\"per_head_text_attention\\\": [\\n        0.7299,\\n        0.8703,\\n        0.6917,\\n        0.6784,\\n        0.8604,\\n        0.7945,\\n        0.8945,\\n        0.8644,\\n        0.8976,\\n        0.6658,\\n        0.7555,\\n        0.7245,\\n        0.7363,\\n        0.7839,\\n        0.8418,\\n        0.7796,\\n        0.6977,\\n        0.7368,\\n        0.8902,\\n        0.8077,\\n        0.889,\\n        0.8984,\\n        0.8729,\\n        0.7133,\\n        0.6759,\\n        0.8205,\\n        0.7127,\\n        0.7316,\\n        0.8963,\\n        0.6899,\\n        0.7287,\\n        0.7761\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2916,\\n      \\\"per_head_text_attention\\\": [\\n        0.2619,\\n        0.2745,\\n        0.2833,\\n        0.2757,\\n        0.2855,\\n        0.2757,\\n        0.2863,\\n        0.2729,\\n        0.3222,\\n        0.2734,\\n        0.4444,\\n        0.2575,\\n        0.2755,\\n        0.2962,\\n        0.2912,\\n        0.2644,\\n        0.2803,\\n        0.3257,\\n        0.3148,\\n        0.2787,\\n        0.2628,\\n        0.3115,\\n        0.2873,\\n        0.3023,\\n        0.2631,\\n        0.3136,\\n        0.3139,\\n        0.2791,\\n        0.3256,\\n        0.2982,\\n        0.2411,\\n        0.2928\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2736,\\n      \\\"per_head_text_attention\\\": [\\n        0.2975,\\n        0.2585,\\n        0.275,\\n        0.2686,\\n        0.3231,\\n        0.2485,\\n        0.2608,\\n        0.2705,\\n        0.2532,\\n        0.2639,\\n        0.2632,\\n        0.2845,\\n        0.3172,\\n        0.3042,\\n        0.2864,\\n        0.2811,\\n        0.2794,\\n        0.2935,\\n        0.2673,\\n        0.1907,\\n        0.2628,\\n        0.2702,\\n        0.2826,\\n        0.2723,\\n        0.2737,\\n        0.1122,\\n        0.3391,\\n        0.2757,\\n        0.2561,\\n        0.31,\\n        0.3092,\\n        0.3054\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 0,\\n      \\\"mean_text_attention\\\": 0.2943,\\n      \\\"per_head_text_attention\\\": [\\n        0.4165,\\n        0.2936,\\n        0.2759,\\n        0.2639,\\n        0.2712,\\n        0.2946,\\n        0.3075,\\n        0.2662,\\n        0.2594,\\n        0.273,\\n        0.3427,\\n        0.276,\\n        0.2816,\\n        0.3072,\\n        0.272,\\n        0.2832,\\n        0.2621,\\n        0.2639,\\n        0.2716,\\n        0.336,\\n        0.2892,\\n        0.3083,\\n        0.2884,\\n        0.3145,\\n        0.335,\\n        0.3184,\\n        0.2898,\\n        0.2945,\\n        0.3253,\\n        0.2803,\\n        0.2772,\\n        0.2778\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_heads\\n\\n... [截断: 输出过长，省略 12856 字符] ...\\n\\n.4709\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4905,\\n      \\\"per_head_text_attention\\\": [\\n        0.3444,\\n        0.4524,\\n        0.3416,\\n        0.5893,\\n        0.4008,\\n        0.9649,\\n        0.4568,\\n        0.5834,\\n        0.7657,\\n        0.3803,\\n        0.2522,\\n        0.6495,\\n        0.5229,\\n        0.361,\\n        0.981,\\n        0.4643,\\n        0.4728,\\n        0.3127,\\n        0.3387,\\n        0.8574,\\n        0.3069,\\n        0.3867,\\n        0.7818,\\n        0.4136,\\n        0.3555,\\n        0.3754,\\n        0.3461,\\n        0.3389,\\n        0.3558,\\n        0.3581,\\n        0.7381,\\n        0.4462\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.495,\\n      \\\"per_head_text_attention\\\": [\\n        0.4429,\\n        0.3277,\\n        0.3242,\\n        0.4267,\\n        0.335,\\n        0.4701,\\n        0.3341,\\n        0.2036,\\n        0.3831,\\n        0.3581,\\n        0.3071,\\n        0.2733,\\n        0.9669,\\n        0.4076,\\n        0.7019,\\n        0.7721,\\n        0.4645,\\n        0.6688,\\n        0.7777,\\n        0.4373,\\n        0.4706,\\n        0.6671,\\n        0.4327,\\n        0.5535,\\n        0.8261,\\n        0.8005,\\n        0.3379,\\n        0.3268,\\n        0.4042,\\n        0.4204,\\n        0.3395,\\n        0.8768\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4814,\\n      \\\"per_head_text_attention\\\": [\\n        0.8454,\\n        0.8282,\\n        0.3629,\\n        0.5545,\\n        0.5812,\\n        0.3172,\\n        0.3511,\\n        0.3554,\\n        0.3584,\\n        0.3493,\\n        0.3367,\\n        0.4637,\\n        0.3495,\\n        0.4153,\\n        0.3504,\\n        0.5108,\\n        0.4824,\\n        0.4693,\\n        0.7772,\\n        0.3843,\\n        0.3718,\\n        0.8464,\\n        0.3585,\\n        0.5368,\\n        0.4358,\\n        0.3552,\\n        0.3691,\\n        0.9067,\\n        0.4191,\\n        0.5126,\\n        0.3976,\\n        0.4529\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5237,\\n      \\\"per_head_text_attention\\\": [\\n        0.3983,\\n        0.4033,\\n        0.3337,\\n        0.3658,\\n        0.6801,\\n        0.8827,\\n        0.3865,\\n        0.6306,\\n        0.3367,\\n        0.7666,\\n        0.5136,\\n        0.3213,\\n        0.5898,\\n        0.5768,\\n        0.5319,\\n        0.7246,\\n        0.7607,\\n        0.0388,\\n        0.4402,\\n        0.5168,\\n        0.4553,\\n        0.4802,\\n        0.3692,\\n        0.7192,\\n        0.3921,\\n        0.6237,\\n        0.9894,\\n        0.5155,\\n        0.5141,\\n        0.9817,\\n        0.3671,\\n        0.1528\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 16,\\n      \\\"mean_text_attention\\\": 0.529,\\n      \\\"per_head_text_attention\\\": [\\n        0.6974,\\n        0.3734,\\n        0.0562,\\n        0.2879,\\n        0.6599,\\n        0.6755,\\n        0.4677,\\n        0.9069,\\n        0.3736,\\n        0.3328,\\n        0.8063,\\n        0.9867,\\n        0.5572,\\n        0.6218,\\n        0.4001,\\n        0.0218,\\n        0.9797,\\n        0.2014,\\n        0.3057,\\n        0.971,\\n        0.4726,\\n        0.3196,\\n        0.8006,\\n        0.3164,\\n        0.3,\\n        0.688,\\n        0.4714,\\n        0.0623,\\n        0.7512,\\n        0.8203,\\n        0.5835,\\n        0.6595\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.6523,\\n      \\\"per_head_text_attention\\\": [\\n        0.9999,\\n        0.9978,\\n        0.5932,\\n        0.6035,\\n        0.444,\\n        0.2385,\\n        0.9996,\\n        0.1856,\\n        0.9983,\\n        0.9997,\\n        0.4094,\\n        0.301,\\n        0.9982,\\n        0.3857,\\n        0.9946,\\n        0.4441,\\n        0.9915,\\n        0.4174,\\n        0.9953,\\n        0.2624,\\n        0.9998,\\n        0.6398,\\n        0.3994,\\n        0.348,\\n        0.8574,\\n        0.6057,\\n        0.2835,\\n        0.672,\\n        0.4745,\\n        0.9958,\\n        0.3393,\\n        1.0\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 32,\\n    \\\"L1_mean_text_attn\\\": 0.735\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T20:34:05.873Z_
+
+<details><summary>↩ Tool result · `toolu_013U6aDQYsFoBvxdjwkPT7Vt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n        0.2227,\\n        0.9732,\\n        0.9086,\\n        0.757,\\n        0.7404,\\n        0.7981,\\n        0.578,\\n        0.9559,\\n        0.9831,\\n        0.7333,\\n        0.9315,\\n        0.949,\\n        0.4976,\\n        0.455,\\n        0.7502,\\n        0.8056,\\n        0.9846,\\n        0.7093,\\n        0.8146\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5283,\\n      \\\"per_head_text_attention\\\": [\\n        0.5087,\\n        0.8195,\\n        0.5676,\\n        0.1915,\\n        0.7469,\\n        0.7293,\\n        0.8642,\\n        0.9241,\\n        0.727,\\n        0.5142,\\n        0.401,\\n        0.5275,\\n        0.6633,\\n        0.1653,\\n        0.4998,\\n        0.7243,\\n        0.6181,\\n        0.3917,\\n        0.3312,\\n        0.4098,\\n        0.4263,\\n        0.399,\\n        0.2341,\\n        0.2614,\\n        0.4927,\\n        0.3254,\\n        0.6261,\\n        0.8345,\\n        0.7146,\\n        0.5102,\\n        0.384,\\n        0.371\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.5217,\\n      \\\"per_head_text_attention\\\": [\\n        0.5052,\\n        0.529,\\n        0.5009,\\n        0.4982,\\n        0.4628,\\n        0.6622,\\n        0.6309,\\n        0.4711,\\n        0.3901,\\n        0.494,\\n        0.699,\\n        0.47,\\n        0.3694,\\n        0.5837,\\n        0.4801,\\n        0.4926,\\n        0.5456,\\n        0.6236,\\n        0.6177,\\n        0.5305,\\n        0.5022,\\n        0.2673,\\n        0.6589,\\n        0.5407,\\n        0.4734,\\n        0.5622,\\n        0.4865,\\n        0.5703,\\n        0.803,\\n        0.7009,\\n        0.4167,\\n        0.1553\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.5658,\\n      \\\"per_head_text_attention\\\": [\\n        0.5591,\\n        0.5741,\\n        0.5678,\\n        0.5521,\\n        0.5452,\\n        0.5643,\\n        0.5702,\\n        0.5959,\\n        0.5281,\\n        0.5814,\\n        0.5752,\\n        0.5574,\\n        0.5736,\\n        0.5735,\\n        0.5863,\\n        0.5697,\\n        0.5709,\\n        0.5523,\\n        0.5606,\\n        0.5628,\\n        0.5525,\\n        0.5618,\\n        0.5783,\\n        0.5742,\\n        0.5837,\\n        0.5937,\\n        0.5883,\\n        0.5672,\\n        0.5713,\\n        0.5421,\\n        0.49,\\n        0.5825\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4925,\\n      \\\"per_head_text_attention\\\": [\\n        0.4659,\\n        0.4504,\\n        0.5137,\\n        0.4935,\\n        0.4565,\\n        0.4741,\\n        0.5358,\\n        0.4834,\\n        0.4781,\\n        0.4948,\\n        0.4913,\\n        0.4765,\\n        0.4996,\\n        0.4514,\\n        0.4998,\\n        0.5326,\\n        0.5713,\\n        0.5453,\\n        0.5333,\\n        0.5222,\\n        0.5159,\\n        0.4572,\\n        0.5161,\\n        0.4877,\\n        0.441,\\n        0.4831,\\n        0.4934,\\n        0.4772,\\n        0.4516,\\n        0.4921,\\n        0.5121,\\n        0.4644\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_h\\n\\n... [截断: 输出过长，省略 12879 字符] ...\\n\\n0.5432\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"mean_text_attention\\\": 0.6494,\\n      \\\"per_head_text_attention\\\": [\\n        0.5908,\\n        0.6081,\\n        0.7041,\\n        0.5693,\\n        0.6419,\\n        0.621,\\n        0.6893,\\n        0.8794,\\n        0.622,\\n        0.5393,\\n        0.5236,\\n        0.8538,\\n        0.5669,\\n        0.6731,\\n        0.7793,\\n        0.6234,\\n        0.5502,\\n        0.6231,\\n        0.8777,\\n        0.6548,\\n        0.5668,\\n        0.7432,\\n        0.9842,\\n        0.7536,\\n        0.5587,\\n        0.6266,\\n        0.4505,\\n        0.4936,\\n        0.262,\\n        0.9668,\\n        0.6246,\\n        0.5602\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.6311,\\n      \\\"per_head_text_attention\\\": [\\n        0.848,\\n        0.541,\\n        0.6049,\\n        0.5853,\\n        0.6081,\\n        0.5692,\\n        0.6271,\\n        0.6358,\\n        0.5401,\\n        0.6396,\\n        0.5852,\\n        0.5156,\\n        0.7149,\\n        0.5937,\\n        0.5631,\\n        0.575,\\n        0.5868,\\n        0.8092,\\n        0.7015,\\n        0.6749,\\n        0.5688,\\n        0.9067,\\n        0.5834,\\n        0.5635,\\n        0.5956,\\n        0.5568,\\n        0.624,\\n        0.6073,\\n        0.5554,\\n        0.6822,\\n        0.8162,\\n        0.615\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7017,\\n      \\\"per_head_text_attention\\\": [\\n        0.9795,\\n        0.9471,\\n        0.9356,\\n        0.6472,\\n        0.5672,\\n        0.7844,\\n        0.6944,\\n        0.808,\\n        0.7093,\\n        0.5262,\\n        0.7981,\\n        0.5647,\\n        0.7374,\\n        0.9077,\\n        0.6128,\\n        0.6482,\\n        0.6121,\\n        0.665,\\n        0.5809,\\n        0.6365,\\n        0.5578,\\n        0.7762,\\n        0.5162,\\n        0.5509,\\n        0.5565,\\n        0.9109,\\n        0.8144,\\n        0.7229,\\n        0.7242,\\n        0.5774,\\n        0.7385,\\n        0.6465\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.6655,\\n      \\\"per_head_text_attention\\\": [\\n        0.6988,\\n        0.4513,\\n        0.8372,\\n        0.7631,\\n        0.5642,\\n        0.5497,\\n        0.4731,\\n        0.9048,\\n        0.8407,\\n        0.605,\\n        0.6871,\\n        0.8394,\\n        0.5622,\\n        0.5731,\\n        0.5765,\\n        0.7874,\\n        0.5849,\\n        0.8981,\\n        0.5357,\\n        0.4929,\\n        0.6968,\\n        0.4324,\\n        0.8281,\\n        0.9687,\\n        0.7097,\\n        0.614,\\n        0.6197,\\n        0.5898,\\n        0.6513,\\n        0.5932,\\n        0.6743,\\n        0.6917\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"mean_text_attention\\\": 0.7008,\\n      \\\"per_head_text_attention\\\": [\\n        0.7192,\\n        0.4506,\\n        0.7139,\\n        0.9214,\\n        0.6188,\\n        0.6978,\\n        0.695,\\n        0.7557,\\n        0.6206,\\n        0.7129,\\n        0.9847,\\n        0.9063,\\n        0.6532,\\n        0.7888,\\n        0.6652,\\n        0.6345,\\n        0.7225,\\n        0.5842,\\n        0.338,\\n        0.6933,\\n        0.6768,\\n        0.6681,\\n        0.6298,\\n        0.6309,\\n        0.7505,\\n        0.9599,\\n        0.7602,\\n        0.5897,\\n        0.8984,\\n        0.7437,\\n        0.6585,\\n        0.5814\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.7477,\\n      \\\"per_head_text_attention\\\": [\\n        0.7919,\\n        0.9851,\\n        0.5539,\\n        0.6479,\\n        0.9024,\\n        0.6561,\\n        0.6719,\\n        0.6717,\\n        0.8151,\\n        0.6865,\\n        0.6581,\\n        0.6642,\\n        0.9452,\\n        0.7645,\\n        0.9779,\\n        0.6545,\\n        0.6555,\\n        0.7975,\\n        0.9399,\\n        0.4866,\\n        0.9539,\\n        0.6494,\\n        0.951,\\n        0.672,\\n        0.7979,\\n        0.6686,\\n        0.9195,\\n        0.6468,\\n        0.6441,\\n        0.61,\\n        0.638,\\n        0.8478\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 28,\\n    \\\"L1_mean_text_attn\\\": 0.7745\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "da136ad8-a1d8-4837-a89a-19663fb1a288",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"phi3v-untrained-base\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": 32,\\\\n  \\\\\\\"heads\\\\\\\": 32,\\\\n  \\\\\\\"per_layer\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 3,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.2159,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.0907,\\\\n        0.1143,\\\\n        0.1562,\\\\n        0.1886,\\\\n        0.087,\\\\n        0.0918,\\\\n        0.1977,\\\\n        0.106,\\\\n        0.1201,\\\\n        0.0995,\\\\n        0.151,\\\\n        0.2847,\\\\n        0.4628,\\\\n        0.0691,\\\\n        0.1069,\\\\n        0.064,\\\\n        0.2661,\\\\n        0.1384,\\\\n        0.0601,\\\\n        0.2037,\\\\n        0.2124,\\\\n        0.2906,\\\\n        0.2562,\\\\n        0.666,\\\\n        0.0843,\\\\n        0.0774,\\\\n        0.1853,\\\\n        0.8462,\\\\n        0.7466,\\\\n        0.2086,\\\\n        0.0648,\\\\n        0.2131\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 28,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7745,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9848,\\\\n        0.9681,\\\\n        0.913,\\\\n        0.7025,\\\\n        0.9506,\\\\n        0.5527,\\\\n        0.586,\\\\n        0.4476,\\\\n        0.9989,\\\\n        0.8197,\\\\n        0.7166,\\\\n        0.7736,\\\\n        0.8217,\\\\n        0.2227,\\\\n        0.9732,\\\\n        0.9086,\\\\n        0.757,\\\\n        0.7404,\\\\n        0.7981,\\\\n        0.578,\\\\n        0.9559,\\\\n        0.9831,\\\\n        0.7333,\\\\n        0.9315,\\\\n        0.949,\\\\n        0.4976,\\\\n        0.455,\\\\n        0.7502,\\\\n        0.8056,\\\\n        0.9846,\\\\n        0.7093,\\\\n        0.8146\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 17,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5283,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5087,\\\\n        0.8195,\\\\n        0.5676,\\\\n        0.1915,\\\\n        0.7469,\\\\n        0.7293,\\\\n        0.8642,\\\\n        0.9241,\\\\n        0.727,\\\\n        0.5142,\\\\n        0.401,\\\\n        0.5275,\\\\n        0.6633,\\\\n        0.1653,\\\\n        0.4998,\\\\n        0.7243,\\\\n        0.6181,\\\\n        0.3917,\\\\n        0.3312,\\\\n        0.4098,\\\\n        0.4263,\\\\n        0.399,\\\\n        0.2341,\\\\n        0.2614,\\\\n        0.4927,\\\\n        0.3254,\\\\n        0.6261,\\\\n        0.8345,\\\\n        0.7146,\\\\n        0.5102,\\\\n        0.384,\\\\n        0.371\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 18,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5217,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5052,\\\\n        0.529,\\\\n        0.5009,\\\\n        0.4982,\\\\n        0.4628,\\\\n        0.6622,\\\\n        0.6309,\\\\n        0.4711,\\\\n        0.3901,\\\\n        0.494,\\\\n        0.699,\\\\n        0.47,\\\\n        0.3694,\\\\n        0.5837,\\\\n        0.4801,\\\\n        0.4926,\\\\n        0.5456,\\\\n        0.6236,\\\\n        0.6177,\\\\n        0.5305,\\\\n        0.5022,\\\\n        0.2673,\\\\n        0.6589,\\\\n        0.5407,\\\\n        0.4734,\\\\n        0.5622,\\\\n        0.4865,\\\\n        0.5703,\\\\n        0.803,\\\\n        0.7009,\\\\n        0.4167,\\\\n        0.1553\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 31,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.5658,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5591,\\\\n        0.5741,\\\\n        0.5678,\\\\n        0.5521,\\\\n        0.5452,\\\\n        0.5643,\\\\n        0.5702,\\\\n        0.5959,\\\\n        0.5281,\\\\n        0.5814,\\\\n        0.5752,\\\\n        0.5574,\\\\n        0.5736,\\\\n        0.5735,\\\\n        0.5863,\\\\n        0.5697,\\\\n        0.5709,\\\\n        0.5523,\\\\n        0.5606,\\\\n        0.5628,\\\\n        0.5525,\\\\n        0.5618,\\\\n        0.5783,\\\\n        0.5742,\\\\n        0.5837,\\\\n        0.5937,\\\\n        0.5883,\\\\n        0.5672,\\\\n        0.5713,\\\\n        0.5421,\\\\n        0.49,\\\\n        0.5825\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 10,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.4925,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.4659,\\\\n        0.4504,\\\\n        0.5137,\\\\n        0.4935,\\\\n        0.4565,\\\\n        0.4741,\\\\n        0.5358,\\\\n        0.4834,\\\\n        0.4781,\\\\n        0.4948,\\\\n        0.4913,\\\\n        0.4765,\\\\n        0.4996,\\\\n        0.4514,\\\\n        0.4998,\\\\n        0.5326,\\\\n        0.5713,\\\\n        0.5453,\\\\n        0.5333,\\\\n        0.5222,\\\\n        0.5159,\\\\n        0.4572,\\\\n        0.5161,\\\\n        0.4877,\\\\n        0.441,\\\\n        0.4831,\\\\n        0.4934,\\\\n        0.4772,\\\\n        0.4516,\\\\n        0.4921,\\\\n        0.5121,\\\\n        0.4644\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_h\\\\n\\\\n... [截断: 输出过长，省略 12879 字符] ...\\\\n\\\\n0.5432\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 29,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6494,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.5908,\\\\n        0.6081,\\\\n        0.7041,\\\\n        0.5693,\\\\n        0.6419,\\\\n        0.621,\\\\n        0.6893,\\\\n        0.8794,\\\\n        0.622,\\\\n        0.5393,\\\\n        0.5236,\\\\n        0.8538,\\\\n        0.5669,\\\\n        0.6731,\\\\n        0.7793,\\\\n        0.6234,\\\\n        0.5502,\\\\n        0.6231,\\\\n        0.8777,\\\\n        0.6548,\\\\n        0.5668,\\\\n        0.7432,\\\\n        0.9842,\\\\n        0.7536,\\\\n        0.5587,\\\\n        0.6266,\\\\n        0.4505,\\\\n        0.4936,\\\\n        0.262,\\\\n        0.9668,\\\\n        0.6246,\\\\n        0.5602\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6311,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.848,\\\\n        0.541,\\\\n        0.6049,\\\\n        0.5853,\\\\n        0.6081,\\\\n        0.5692,\\\\n        0.6271,\\\\n        0.6358,\\\\n        0.5401,\\\\n        0.6396,\\\\n        0.5852,\\\\n        0.5156,\\\\n        0.7149,\\\\n        0.5937,\\\\n        0.5631,\\\\n        0.575,\\\\n        0.5868,\\\\n        0.8092,\\\\n        0.7015,\\\\n        0.6749,\\\\n        0.5688,\\\\n        0.9067,\\\\n        0.5834,\\\\n        0.5635,\\\\n        0.5956,\\\\n        0.5568,\\\\n        0.624,\\\\n        0.6073,\\\\n        0.5554,\\\\n        0.6822,\\\\n        0.8162,\\\\n        0.615\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 32,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7017,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.9795,\\\\n        0.9471,\\\\n        0.9356,\\\\n        0.6472,\\\\n        0.5672,\\\\n        0.7844,\\\\n        0.6944,\\\\n        0.808,\\\\n        0.7093,\\\\n        0.5262,\\\\n        0.7981,\\\\n        0.5647,\\\\n        0.7374,\\\\n        0.9077,\\\\n        0.6128,\\\\n        0.6482,\\\\n        0.6121,\\\\n        0.665,\\\\n        0.5809,\\\\n        0.6365,\\\\n        0.5578,\\\\n        0.7762,\\\\n        0.5162,\\\\n        0.5509,\\\\n        0.5565,\\\\n        0.9109,\\\\n        0.8144,\\\\n        0.7229,\\\\n        0.7242,\\\\n        0.5774,\\\\n        0.7385,\\\\n        0.6465\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 28,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.6655,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.6988,\\\\n        0.4513,\\\\n        0.8372,\\\\n        0.7631,\\\\n        0.5642,\\\\n        0.5497,\\\\n        0.4731,\\\\n        0.9048,\\\\n        0.8407,\\\\n        0.605,\\\\n        0.6871,\\\\n        0.8394,\\\\n        0.5622,\\\\n        0.5731,\\\\n        0.5765,\\\\n        0.7874,\\\\n        0.5849,\\\\n        0.8981,\\\\n        0.5357,\\\\n        0.4929,\\\\n        0.6968,\\\\n        0.4324,\\\\n        0.8281,\\\\n        0.9687,\\\\n        0.7097,\\\\n        0.614,\\\\n        0.6197,\\\\n        0.5898,\\\\n        0.6513,\\\\n        0.5932,\\\\n        0.6743,\\\\n        0.6917\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 30,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7008,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7192,\\\\n        0.4506,\\\\n        0.7139,\\\\n        0.9214,\\\\n        0.6188,\\\\n        0.6978,\\\\n        0.695,\\\\n        0.7557,\\\\n        0.6206,\\\\n        0.7129,\\\\n        0.9847,\\\\n        0.9063,\\\\n        0.6532,\\\\n        0.7888,\\\\n        0.6652,\\\\n        0.6345,\\\\n        0.7225,\\\\n        0.5842,\\\\n        0.338,\\\\n        0.6933,\\\\n        0.6768,\\\\n        0.6681,\\\\n        0.6298,\\\\n        0.6309,\\\\n        0.7505,\\\\n        0.9599,\\\\n        0.7602,\\\\n        0.5897,\\\\n        0.8984,\\\\n        0.7437,\\\\n        0.6585,\\\\n        0.5814\\\\n      ]\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"instruction_dominant_heads\\\\\\\": 31,\\\\n      \\\\\\\"mean_text_attention\\\\\\\": 0.7477,\\\\n      \\\\\\\"per_head_text_attention\\\\\\\": [\\\\n        0.7919,\\\\n        0.9851,\\\\n        0.5539,\\\\n        0.6479,\\\\n        0.9024,\\\\n        0.6561,\\\\n        0.6719,\\\\n        0.6717,\\\\n        0.8151,\\\\n        0.6865,\\\\n        0.6581,\\\\n        0.6642,\\\\n        0.9452,\\\\n        0.7645,\\\\n        0.9779,\\\\n        0.6545,\\\\n        0.6555,\\\\n        0.7975,\\\\n        0.9399,\\\\n        0.4866,\\\\n        0.9539,\\\\n        0.6494,\\\\n        0.951,\\\\n        0.672,\\\\n        0.7979,\\\\n        0.6686,\\\\n        0.9195,\\\\n        0.6468,\\\\n        0.6441,\\\\n        0.61,\\\\n        0.638,\\\\n        0.8478\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"L1_instruction_dominant\\\\\\\": 28,\\\\n    \\\\\\\"L1_mean_text_attn\\\\\\\": 0.7745\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n        0.2227,\\n        0.9732,\\n        0.9086,\\n        0.757,\\n        0.7404,\\n        0.7981,\\n        0.578,\\n        0.9559,\\n        0.9831,\\n        0.7333,\\n        0.9315,\\n        0.949,\\n        0.4976,\\n        0.455,\\n        0.7502,\\n        0.8056,\\n        0.9846,\\n        0.7093,\\n        0.8146\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5283,\\n      \\\"per_head_text_attention\\\": [\\n        0.5087,\\n        0.8195,\\n        0.5676,\\n        0.1915,\\n        0.7469,\\n        0.7293,\\n        0.8642,\\n        0.9241,\\n        0.727,\\n        0.5142,\\n        0.401,\\n        0.5275,\\n        0.6633,\\n        0.1653,\\n        0.4998,\\n        0.7243,\\n        0.6181,\\n        0.3917,\\n        0.3312,\\n        0.4098,\\n        0.4263,\\n        0.399,\\n        0.2341,\\n        0.2614,\\n        0.4927,\\n        0.3254,\\n        0.6261,\\n        0.8345,\\n        0.7146,\\n        0.5102,\\n        0.384,\\n        0.371\\n      ]\\n    },\\n    \\\"L3\\\": {\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"mean_text_attention\\\": 0.5217,\\n      \\\"per_head_text_attention\\\": [\\n        0.5052,\\n        0.529,\\n        0.5009,\\n        0.4982,\\n        0.4628,\\n        0.6622,\\n        0.6309,\\n        0.4711,\\n        0.3901,\\n        0.494,\\n        0.699,\\n        0.47,\\n        0.3694,\\n        0.5837,\\n        0.4801,\\n        0.4926,\\n        0.5456,\\n        0.6236,\\n        0.6177,\\n        0.5305,\\n        0.5022,\\n        0.2673,\\n        0.6589,\\n        0.5407,\\n        0.4734,\\n        0.5622,\\n        0.4865,\\n        0.5703,\\n        0.803,\\n        0.7009,\\n        0.4167,\\n        0.1553\\n      ]\\n    },\\n    \\\"L4\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.5658,\\n      \\\"per_head_text_attention\\\": [\\n        0.5591,\\n        0.5741,\\n        0.5678,\\n        0.5521,\\n        0.5452,\\n        0.5643,\\n        0.5702,\\n        0.5959,\\n        0.5281,\\n        0.5814,\\n        0.5752,\\n        0.5574,\\n        0.5736,\\n        0.5735,\\n        0.5863,\\n        0.5697,\\n        0.5709,\\n        0.5523,\\n        0.5606,\\n        0.5628,\\n        0.5525,\\n        0.5618,\\n        0.5783,\\n        0.5742,\\n        0.5837,\\n        0.5937,\\n        0.5883,\\n        0.5672,\\n        0.5713,\\n        0.5421,\\n        0.49,\\n        0.5825\\n      ]\\n    },\\n    \\\"L5\\\": {\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"mean_text_attention\\\": 0.4925,\\n      \\\"per_head_text_attention\\\": [\\n        0.4659,\\n        0.4504,\\n        0.5137,\\n        0.4935,\\n        0.4565,\\n        0.4741,\\n        0.5358,\\n        0.4834,\\n        0.4781,\\n        0.4948,\\n        0.4913,\\n        0.4765,\\n        0.4996,\\n        0.4514,\\n        0.4998,\\n        0.5326,\\n        0.5713,\\n        0.5453,\\n        0.5333,\\n        0.5222,\\n        0.5159,\\n        0.4572,\\n        0.5161,\\n        0.4877,\\n        0.441,\\n        0.4831,\\n        0.4934,\\n        0.4772,\\n        0.4516,\\n        0.4921,\\n        0.5121,\\n        0.4644\\n      ]\\n    },\\n    \\\"L6\\\": {\\n      \\\"instruction_dominant_h\\n\\n... [截断: 输出过长，省略 12879 字符] ...\\n\\n0.5432\\n      ]\\n    },\\n    \\\"L26\\\": {\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"mean_text_attention\\\": 0.6494,\\n      \\\"per_head_text_attention\\\": [\\n        0.5908,\\n        0.6081,\\n        0.7041,\\n        0.5693,\\n        0.6419,\\n        0.621,\\n        0.6893,\\n        0.8794,\\n        0.622,\\n        0.5393,\\n        0.5236,\\n        0.8538,\\n        0.5669,\\n        0.6731,\\n        0.7793,\\n        0.6234,\\n        0.5502,\\n        0.6231,\\n        0.8777,\\n        0.6548,\\n        0.5668,\\n        0.7432,\\n        0.9842,\\n        0.7536,\\n        0.5587,\\n        0.6266,\\n        0.4505,\\n        0.4936,\\n        0.262,\\n        0.9668,\\n        0.6246,\\n        0.5602\\n      ]\\n    },\\n    \\\"L27\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.6311,\\n      \\\"per_head_text_attention\\\": [\\n        0.848,\\n        0.541,\\n        0.6049,\\n        0.5853,\\n        0.6081,\\n        0.5692,\\n        0.6271,\\n        0.6358,\\n        0.5401,\\n        0.6396,\\n        0.5852,\\n        0.5156,\\n        0.7149,\\n        0.5937,\\n        0.5631,\\n        0.575,\\n        0.5868,\\n        0.8092,\\n        0.7015,\\n        0.6749,\\n        0.5688,\\n        0.9067,\\n        0.5834,\\n        0.5635,\\n        0.5956,\\n        0.5568,\\n        0.624,\\n        0.6073,\\n        0.5554,\\n        0.6822,\\n        0.8162,\\n        0.615\\n      ]\\n    },\\n    \\\"L28\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7017,\\n      \\\"per_head_text_attention\\\": [\\n        0.9795,\\n        0.9471,\\n        0.9356,\\n        0.6472,\\n        0.5672,\\n        0.7844,\\n        0.6944,\\n        0.808,\\n        0.7093,\\n        0.5262,\\n        0.7981,\\n        0.5647,\\n        0.7374,\\n        0.9077,\\n        0.6128,\\n        0.6482,\\n        0.6121,\\n        0.665,\\n        0.5809,\\n        0.6365,\\n        0.5578,\\n        0.7762,\\n        0.5162,\\n        0.5509,\\n        0.5565,\\n        0.9109,\\n        0.8144,\\n        0.7229,\\n        0.7242,\\n        0.5774,\\n        0.7385,\\n        0.6465\\n      ]\\n    },\\n    \\\"L29\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.6655,\\n      \\\"per_head_text_attention\\\": [\\n        0.6988,\\n        0.4513,\\n        0.8372,\\n        0.7631,\\n        0.5642,\\n        0.5497,\\n        0.4731,\\n        0.9048,\\n        0.8407,\\n        0.605,\\n        0.6871,\\n        0.8394,\\n        0.5622,\\n        0.5731,\\n        0.5765,\\n        0.7874,\\n        0.5849,\\n        0.8981,\\n        0.5357,\\n        0.4929,\\n        0.6968,\\n        0.4324,\\n        0.8281,\\n        0.9687,\\n        0.7097,\\n        0.614,\\n        0.6197,\\n        0.5898,\\n        0.6513,\\n        0.5932,\\n        0.6743,\\n        0.6917\\n      ]\\n    },\\n    \\\"L30\\\": {\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"mean_text_attention\\\": 0.7008,\\n      \\\"per_head_text_attention\\\": [\\n        0.7192,\\n        0.4506,\\n        0.7139,\\n        0.9214,\\n        0.6188,\\n        0.6978,\\n        0.695,\\n        0.7557,\\n        0.6206,\\n        0.7129,\\n        0.9847,\\n        0.9063,\\n        0.6532,\\n        0.7888,\\n        0.6652,\\n        0.6345,\\n        0.7225,\\n        0.5842,\\n        0.338,\\n        0.6933,\\n        0.6768,\\n        0.6681,\\n        0.6298,\\n        0.6309,\\n        0.7505,\\n        0.9599,\\n        0.7602,\\n        0.5897,\\n        0.8984,\\n        0.7437,\\n        0.6585,\\n        0.5814\\n      ]\\n    },\\n    \\\"L31\\\": {\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"mean_text_attention\\\": 0.7477,\\n      \\\"per_head_text_attention\\\": [\\n        0.7919,\\n        0.9851,\\n        0.5539,\\n        0.6479,\\n        0.9024,\\n        0.6561,\\n        0.6719,\\n        0.6717,\\n        0.8151,\\n        0.6865,\\n        0.6581,\\n        0.6642,\\n        0.9452,\\n        0.7645,\\n        0.9779,\\n        0.6545,\\n        0.6555,\\n        0.7975,\\n        0.9399,\\n        0.4866,\\n        0.9539,\\n        0.6494,\\n        0.951,\\n        0.672,\\n        0.7979,\\n        0.6686,\\n        0.9195,\\n        0.6468,\\n        0.6441,\\n        0.61,\\n        0.638,\\n        0.8478\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 28,\\n    \\\"L1_mean_text_attn\\\": 0.7745\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture. Let me also check if there are separate older attention analysis files and verify the per-suite data files vs the "phi3v" all-layer profiles.
+
+Key findings so far:
+
+**Per-suite L1 attention profile JSONs (with instruction/image/mixed classification):**
+
+| Suite | Trained | Untrained |
+|-------|---------|-----------|
+| Goal | 27/32 | 32/32 |
+| Spatial | 30/32 | 32/32 |
+| Object | 30/32 | 32/32 |
+
+
+| Long | 30/32 | 32/32 |
+
+**Full-layer attention profiles (`phi3v_*` files):**
+
+Looking at the full-layer profiles across different model checkpoints and task configurations, I'm seeing consistent patterns where the trained model shows 32/32 instruction-dominant attention at L1, while the untrained baseline hovers around 28/32. The 10-task variants maintain these same ratios across both trained and untrained versions.
+
+Now I'm checking the model identity more carefully—the script references the untrained checkpoint as Phi-3-Vision base, not Phi-3-Instruct, which is important for understanding the baseline behavior. When I look at the per-suite analysis files, they're using a different classification scheme with a 0.5 threshold, and I'm noticing the trained models show a reduction from the untrained baseline, dropping to around 27-30/32 instruction-dominant cases.
+
+But the all-layer analysis tells a different story—the untrained model shows 28/32 instruction-dominant heads while the trained version jumps to 32/32, which is the opposite direction. This contradiction suggests the two analyses are using different methodologies or thresholds for classifying heads, so I need to dig into what's causing this discrepancy. I'm noticing a critical discrepancy — the all-layer profile shows 4 heads with attention ratios below 0.5, but those same heads in the per-suite data all have instruction_ratio_mean values above 0.5, suggesting these two analyses are using fundamentally different metrics or datasets. The per-suite calculation appears to be computed differently than the raw text attention ratios in the all-layer profile, possibly due to variations in task selection, sample size, or how attention is being aggregated.
+
+Looking at the file structure and naming conventions, the per-suite files seem to be more recent and task-specific, while the all-layer profiles might represent an earlier, broader analysis. The real question is which dataset actually supports the paper's claims about how training affects attention patterns. Let me check which analysis aligns with the user's original reference point about the 32/32 heads and how training reduces that count.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "4d0eb653-4b13-4599-9305-1e2d4832892b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+找到了关键数据。两套分析体系使用了不同方法。让我检查时间戳和分析脚本确认细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "9f862e73-9afb-4390-9ded-f71ec74179be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EKeeUmt7Gke9oLS7HnLV9g`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "stat /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "e77c180a-36a0-4055-a6db-489f3b31f09b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L9ZcitPTjCGzd7UfModKKX`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "stat /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "921ecf91-cef6-41e3-8d08-9882aefbc8ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-23T20:34:42.935Z_
+
+<details><summary>↩ Tool result · `toolu_01EKeeUmt7Gke9oLS7HnLV9g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n  Size: 4958      \\tBlocks: 16         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 27923636061  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\nModify: 2026-05-22 00:53:29.352051171 +0800\\nChange: 2026-05-22 00:53:29.352051171 +0800\\n Birth: 2026-05-22 00:53:29.352051171 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "52fe875a-2dd2-4c41-98d5-83dc9f78c280",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n  Size: 4958      \\\\tBlocks: 16         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 27923636061  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\\\nModify: 2026-05-22 00:53:29.352051171 +0800\\\\nChange: 2026-05-22 00:53:29.352051171 +0800\\\\n Birth: 2026-05-22 00:53:29.352051171 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\n  Size: 4958      \\tBlocks: 16         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 27923636061  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\nModify: 2026-05-22 00:53:29.352051171 +0800\\nChange: 2026-05-22 00:53:29.352051171 +0800\\n Birth: 2026-05-22 00:53:29.352051171 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T20:34:43.477Z_
+
+<details><summary>↩ Tool result · `toolu_01L9ZcitPTjCGzd7UfModKKX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n  Size: 20848     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 22580405915  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\nModify: 2026-05-20 01:50:52.790025478 +0800\\nChange: 2026-05-20 01:50:52.790025478 +0800\\n Birth: 2026-05-20 01:50:52.790025478 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c7168333-5e21-4fdc-a4cb-377a176c63b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\\\n  Size: 20848     \\\\tBlocks: 48         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 22580405915  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\\\nModify: 2026-05-20 01:50:52.790025478 +0800\\\\nChange: 2026-05-20 01:50:52.790025478 +0800\\\\n Birth: 2026-05-20 01:50:52.790025478 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\\n  Size: 20848     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 22580405915  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\nModify: 2026-05-20 01:50:52.790025478 +0800\\nChange: 2026-05-20 01:50:52.790025478 +0800\\n Birth: 2026-05-20 01:50:52.790025478 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D3sCmMb7fvqWz2WWdD7FB4`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "stat /root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "0e773534-8e86-478a-9df7-91c910f32754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Md1pkPXw4dp9HiAs4dMFPi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "stat /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "cd09c970-d2a7-4c07-a810-34a5980ad57d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpHtT3TVDcksET6vPnPAwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17504,
+      "cache_read_input_tokens": 55218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17504
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-23T20:34:44.345Z_
+
+<details><summary>↩ Tool result · `toolu_01D3sCmMb7fvqWz2WWdD7FB4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n  Size: 20879     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 22580411359  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\nModify: 2026-05-20 01:59:20.692244984 +0800\\nChange: 2026-05-20 01:59:20.692244984 +0800\\n Birth: 2026-05-20 01:59:20.692244984 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "79736260-5d1d-42a5-8644-32cf98e03c97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\\n  Size: 20879     \\\\tBlocks: 48         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 22580411359  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\\\nModify: 2026-05-20 01:59:20.692244984 +0800\\\\nChange: 2026-05-20 01:59:20.692244984 +0800\\\\n Birth: 2026-05-20 01:59:20.692244984 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\n  Size: 20879     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 22580411359  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.700320741 +0800\\nModify: 2026-05-20 01:59:20.692244984 +0800\\nChange: 2026-05-20 01:59:20.692244984 +0800\\n Birth: 2026-05-20 01:59:20.692244984 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T20:34:44.895Z_
+
+<details><summary>↩ Tool result · `toolu_01Md1pkPXw4dp9HiAs4dMFPi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n  Size: 5093      \\tBlocks: 16         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 21477762384  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\nModify: 2026-05-22 03:53:00.160344174 +0800\\nChange: 2026-05-22 03:53:00.160344174 +0800\\n Birth: 2026-05-22 03:53:00.160344174 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c29e8c90-d406-4fd7-b1b2-404074c67578",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n  Size: 5093      \\\\tBlocks: 16         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 21477762384  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\\\nModify: 2026-05-22 03:53:00.160344174 +0800\\\\nChange: 2026-05-22 03:53:00.160344174 +0800\\\\n Birth: 2026-05-22 03:53:00.160344174 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\n  Size: 5093      \\tBlocks: 16         IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 21477762384  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 02:05:42.728320738 +0800\\nModify: 2026-05-22 03:53:00.160344174 +0800\\nChange: 2026-05-22 03:53:00.160344174 +0800\\n Birth: 2026-05-22 03:53:00.160344174 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Timestamps:
+- `phi3v_attention_profile.json` (all-layer, trained): 2026-05-20
+- `phi3v_untrained_attention_profile.json` (all-layer, untrained): 2026-05-20
+- `tracvla_goal/trained/l1_attention_profile.json` (per-suite): 2026-05-22
+- `tracvla_goal/untrained/l1_attention_profile.json` (per-suite): 2026-05-22
+
+So the per-suite analysis is NEWER (May 22) than the all-layer analysis (May 20). 
+
+Now I need to check how each analysis method classifies attention patterns, starting with the per-suite script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "859be2c9-1b6e-4bba-abfb-38282fb9374a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VufzwBgvnNajAMgazDc3vB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3422,
+      "cache_read_input_tokens": 72722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+per-suite 文件是 5月22日，all-layer 文件是 5月20日。查看分析方法差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "0ecd2c7d-3f16-4951-b8ba-af0200a974da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VufzwBgvnNajAMgazDc3vB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3422,
+      "cache_read_input_tokens": 72722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011pXfrHcochHAghYyqynB9P`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"instruction_dominant\\|instruction_ratio\\|threshold\\|classify\\|category\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "7ba5ded8-508d-4e93-8eef-f9684fc69cfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VufzwBgvnNajAMgazDc3vB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3422,
+      "cache_read_input_tokens": 72722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T20:34:52.829Z_
+
+<details><summary>↩ Tool result · `toolu_011pXfrHcochHAghYyqynB9P`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "c41c7350-1262-44b3-8b9c-fdcc27ecbf62",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HYf3Y1Ts3iVW4FtvE84gqN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*attention*profile*\" -o -name \"*phi3v*attention*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "864987e5-9294-4abd-a388-7b11050c7202",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VufzwBgvnNajAMgazDc3vB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3422,
+      "cache_read_input_tokens": 72722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-23T20:34:54.124Z_
+
+<details><summary>↩ Tool result · `toolu_01HYf3Y1Ts3iVW4FtvE84gqN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "957514ed-0f87-49b3-a2e5-858f84c0fbef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GQ9ca19nrSDTFU7w9heYK2`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"instruction_dominant\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "70ec5a58-7af6-4d55-9507-d148eaa0170b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MftqwbPQAvN6QBRZDS42p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 76144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 696
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Th43NoXgtmPic5qY9G1dry`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"instruction_ratio\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "4df7ab32-99e9-4312-a474-054f59cfc6e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MftqwbPQAvN6QBRZDS42p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 76144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 696
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-23T20:34:57.579Z_
+
+<details><summary>↩ Tool result · `toolu_01GQ9ca19nrSDTFU7w9heYK2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"264:        cat = \\\"instruction_dominant\\\" if m > 0.5 else (\\\"image_dominant\\\" if m < 0.2 else \\\"mixed\\\")\\n273:        \\\"instruction_dominant\\\": cats.count(\\\"instruction_dominant\\\"),\\n276:        \\\"instruction_dominant_heads\\\": [h for h in range(N_HEADS)\\n277:                                       if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"instruction_dominant\\\"],\\n281:    log(f\\\"  {summary['instruction_dominant']} instr-dom, \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "126cff22-2f5c-4530-9343-868b5f889c3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"264:        cat = \\\\\\\"instruction_dominant\\\\\\\" if m > 0.5 else (\\\\\\\"image_dominant\\\\\\\" if m < 0.2 else \\\\\\\"mixed\\\\\\\")\\\\n273:        \\\\\\\"instruction_dominant\\\\\\\": cats.count(\\\\\\\"instruction_dominant\\\\\\\"),\\\\n276:        \\\\\\\"instruction_dominant_heads\\\\\\\": [h for h in range(N_HEADS)\\\\n277:                                       if profiles[f\\\\\\\"head_{h}\\\\\\\"][\\\\\\\"category\\\\\\\"] == \\\\\\\"instruction_dominant\\\\\\\"],\\\\n281:    log(f\\\\\\\"  {summary['instruction_dominant']} instr-dom, \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"264:        cat = \\\"instruction_dominant\\\" if m > 0.5 else (\\\"image_dominant\\\" if m < 0.2 else \\\"mixed\\\")\\n273:        \\\"instruction_dominant\\\": cats.count(\\\"instruction_dominant\\\"),\\n276:        \\\"instruction_dominant_heads\\\": [h for h in range(N_HEADS)\\n277:                                       if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"instruction_dominant\\\"],\\n281:    log(f\\\"  {summary['instruction_dominant']} instr-dom, \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YH9D2MDpkLnqwwtjuzVwqs`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"threshold\" /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "a7124d4c-393b-4798-9802-7f744a9752db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MftqwbPQAvN6QBRZDS42p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 76144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 696
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-23T20:34:58.120Z_
+
+<details><summary>↩ Tool result · `toolu_01Th43NoXgtmPic5qY9G1dry`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"266:            \\\"instruction_ratio_mean\\\": round(float(m), 4),\\n267:            \\\"instruction_ratio_std\\\": round(s, 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "83a53fee-a32d-48eb-bffd-f01521554dd5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"266:            \\\\\\\"instruction_ratio_mean\\\\\\\": round(float(m), 4),\\\\n267:            \\\\\\\"instruction_ratio_std\\\\\\\": round(s, 4),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"266:            \\\"instruction_ratio_mean\\\": round(float(m), 4),\\n267:            \\\"instruction_ratio_std\\\": round(s, 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-23T20:34:58.655Z_
+
+<details><summary>↩ Tool result · `toolu_01YH9D2MDpkLnqwwtjuzVwqs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "35146794-95bc-406d-b485-578be052d546",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the classification logic in the per-suite script:
+- `instruction_dominant` if m > 0.5
+- `image_dominant` if m < 0.2
+- `mixed` otherwise (0.2 ≤ m ≤ 0.5)
+
+Now let me look at lines around 250-285 to understand the full L1 attention analysis method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "71082c7d-f88f-4d13-a7df-25071926f3cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qaj8tV3LkcU891buKUFgnT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 76840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PL6qiNghjRBBsQ5nyxHC3Y`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -290 /root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "1d7c3a85-f0df-4324-92d4-3777105d820a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qaj8tV3LkcU891buKUFgnT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 76840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 842
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-23T20:35:03.666Z_
+
+<details><summary>↩ Tool result · `toolu_01PL6qiNghjRBBsQ5nyxHC3Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\ndef find_token_regions(input_ids, img_token_id):\\n    ids = input_ids[0].cpu().numpy()\\n    img_mask = ids < 0\\n    img_positions = np.where(img_mask)[0]\\n\\n    if len(img_positions) > 0:\\n        img_s = int(img_positions[0])\\n        img_e = int(img_positions[-1]) + 1\\n    else:\\n        img_s = img_e = 1\\n\\n    txt_s = img_e\\n    txt_e = len(ids)\\n\\n    return {\\\"bos\\\": (0, img_s), \\\"image\\\": (img_s, img_e), \\\"text\\\": (txt_s, txt_e)}\\n\\n\\ndef generate_action_phi3v(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            input_ids=inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            image_sizes=inputs.get(\\\"image_sizes\\\"),\\n            max_new_tokens=7,\\n            do_sample=False,\\n        )\\n\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n    vocab_s\\n\\n... [截断: 输出过长，省略 2450 字符] ...\\n\\n)\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _is, _ie = tr[\\\"image\\\"]\\n                    _ts, _te = tr[\\\"text\\\"]\\n                    _bs, _be = tr[\\\"bos\\\"]\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\n                    attn_count += 1\\n                    del l1\\n\\n                    actions_arr[idx] = act\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n                    del out, inputs\\n                    if idx % 100 == 0:\\n                        torch.cuda.empty_cache()\\n                        log(f\\\"    {idx}/{total}\\\")\\n\\n    log(f\\\"Phase 1 done: {idx} samples\\\")\\n    return reps, actions_arr[:idx], task_labels[:idx], head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count\\n\\n\\ndef run_probing(reps, actions, n_seeds):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n    for l in range(N_LAYERS):\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            X, y = reps[l][pos], actions\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n            probe.fit(Xtr, ytr)\\n            pred = probe.predict(Xv)\\n            ss_res = np.sum((yv - pred) ** 2)\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n            results[f\\\"L{l}_{pos}\\\"] = {\\n                \\\"mean\\\": round(r2, 4),\\n                \\\"std\\\": 0.0,\\n                \\\"values\\\": [round(r2, 4)],\\n            }\\n        if l % 8 == 0:\\n            log(\\n                f\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\"\\n                f\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\"\\n            )\\n    return results\\n\\n\\ndef analyze_attention(head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count):\\n    log(\\\"Phase 3: L1 attention profile\\\")\\n    profiles = {}\\n    for h in range(N_HEADS):\\n        m = head_instr_ratio_sum[h] / attn_count\\n        var = head_instr_ratio_sq_sum[h] / attn_count - m ** 2\\n        s = float(np.sqrt(max(var, 0.0)))\\n        cat = \\\"instruction_dominant\\\" if m > 0.5 else (\\\"image_dominant\\\" if m < 0.2 else \\\"mixed\\\")\\n        profiles[f\\\"head_{h}\\\"] = {\\n            \\\"instruction_ratio_mean\\\": round(float(m), 4),\\n            \\\"instruction_ratio_std\\\": round(s, 4),\\n            \\\"category\\\": cat,\\n        }\\n\\n    cats = [v[\\\"category\\\"] for v in profiles.values()]\\n    summary = {\\n        \\\"instruction_dominant\\\": cats.count(\\\"instruction_dominant\\\"),\\n        \\\"image_dominant\\\": cats.count(\\\"image_dominant\\\"),\\n        \\\"mixed\\\": cats.count(\\\"mixed\\\"),\\n        \\\"instruction_dominant_heads\\\": [h for h in range(N_HEADS)\\n                                       if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"instruction_dominant\\\"],\\n        \\\"image_dominant_heads\\\": [h for h in range(N_HEADS)\\n                                  if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"image_dominant\\\"],\\n    }\\n    log(f\\\"  {summary['instruction_dominant']} instr-dom, \\\"\\n        f\\\"{summary['image_dominant']} img-dom, {summary['mixed']} mixed\\\")\\n    return {\\\"per_head\\\": profiles, \\\"summary\\\": summary}\\n\\ndef run_classification(reps, labels, layers=None):\\n    log(\\\"Phase 4: cross-instruction classification\\\")\\n    if layers is None:\\n        layers = list(range(N_LAYERS))\\n    n_cls = int(labels.max()) + 1\\n    if n_cls < 2:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "f07c2ee4-41a2-457a-9293-a7d5857ab884",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\\\n\\\\nPhases:\\\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\\\n  2. Action R2 probing: per-layer Ridge probe\\\\n  3. L1 attention profile: per-head instruction/image attention classification\\\\n  4. Cross-instruction classification: 10-way per-layer\\\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\\\n\\\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\\\nNo intermediate features saved to disk.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, random, sys, time\\\\nfrom collections import defaultdict\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.linear_model import RidgeCV\\\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\\\n\\\\n# --- Checkpoints ---\\\\nTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\\\\\"\\\\nUNTRAINED_CKPT = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\nUNTRAINED_CACHE = \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\\\\\"\\\\n\\\\n# --- Data ---\\\\nDATA = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nRESULTS_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\\\n\\\\n# --- Architecture ---\\\\nN_LAYERS = 32\\\\nN_HEADS = 32\\\\nHIDDEN = 3072\\\\nN_IMG_TOKENS = 0  # auto-detected\\\\nIMG_TOKEN_ID = -1  # auto-detected\\\\n\\\\n# --- Data config ---\\\\nN_DEMOS = 10\\\\nN_TIMESTEPS = 50\\\\nN_PROBE_SEEDS = 15\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\nINSTRUCTIONS = [t.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\") for t in TASKS]\\\\nPARAPHRASES = [\\\\n    \\\\\\\"open the cabinet's middle drawer\\\\\\\",\\\\n    \\\\\\\"open the top drawer and place the bowl in it\\\\\\\",\\\\n    \\\\\\\"slide the plate to the stove's front\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the plate\\\\\\\",\\\\n    \\\\\\\"place the bowl onto the stove\\\\\\\",\\\\n    \\\\\\\"place the bowl on the cabinet top\\\\\\\",\\\\n    \\\\\\\"put cream cheese into the bowl\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the rack\\\\\\\",\\\\n    \\\\\\\"place the wine bottle on the cabinet top\\\\\\\",\\\\n    \\\\\\\"switch on the stove\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef make_prompt(instruction):\\\\n    return (\\\\n        f\\\\\\\"<|user|>\\\\\\\\n<|image_1|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"What action should the robot take to {instruction}?<|end|>\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"<|assistant|>\\\\\\\\n\\\\\\\"\\\\n    )\\\\n\\\\n\\\\ndef prepare_inputs(processor, instruction, image):\\\\n    prompt = make_prompt(instruction)\\\\n    inputs = processor(prompt, [image], return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n    if \\\\\\\"pixel_values\\\\\\\" in inputs:\\\\n        inputs[\\\\\\\"pixel_values\\\\\\\"] = inputs[\\\\\\\"pixel_values\\\\\\\"].to(torch.bfloat16)\\\\n    return inputs\\\\n\\\\n\\\\ndef detect_image_token_id(processor):\\\\n    return -1\\\\n\\\\n\\\\ndef find_token_regions(input_ids, img_token_id):\\\\n    ids = input_ids[0].cpu().numpy()\\\\n    img_mask = ids < 0\\\\n    img_positions = np.where(img_mask)[0]\\\\n\\\\n    if len(img_positions) > 0:\\\\n        img_s = int(img_positions[0])\\\\n        img_e = int(img_positions[-1]) + 1\\\\n    else:\\\\n        img_s = img_e = 1\\\\n\\\\n    txt_s = img_e\\\\n    txt_e = len(ids)\\\\n\\\\n    return {\\\\\\\"bos\\\\\\\": (0, img_s), \\\\\\\"image\\\\\\\": (img_s, img_e), \\\\\\\"text\\\\\\\": (txt_s, txt_e)}\\\\n\\\\n\\\\ndef generate_action_phi3v(model, processor, instruction, image):\\\\n    inputs = prepare_inputs(processor, instruction, image)\\\\n\\\\n    with torch.no_grad():\\\\n        gen_ids = model.generate(\\\\n            input_ids=inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n            attention_mask=inputs.get(\\\\\\\"attention_mask\\\\\\\"),\\\\n            pixel_values=inputs.get(\\\\\\\"pixel_values\\\\\\\"),\\\\n            image_sizes=inputs.get(\\\\\\\"image_sizes\\\\\\\"),\\\\n            max_new_tokens=7,\\\\n            do_sample=False,\\\\n        )\\\\n\\\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\\\n    vocab_s\\\\n\\\\n... [截断: 输出过长，省略 2450 字符] ...\\\\n\\\\n)\\\\n\\\\n                    l1 = out.attentions[1][0].float()\\\\n                    last_pos = l1.shape[1] - 1\\\\n                    action_attn = l1[:, last_pos, :]\\\\n                    _is, _ie = tr[\\\\\\\"image\\\\\\\"]\\\\n                    _ts, _te = tr[\\\\\\\"text\\\\\\\"]\\\\n                    _bs, _be = tr[\\\\\\\"bos\\\\\\\"]\\\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\\\n                    _total = _img_a + _txt_a + _bos_a\\\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\\\n                    _ratio_np = _ratio.cpu().numpy()\\\\n                    head_instr_ratio_sum += _ratio_np\\\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\\\n                    attn_count += 1\\\\n                    del l1\\\\n\\\\n                    actions_arr[idx] = act\\\\n                    task_labels[idx] = ti\\\\n                    idx += 1\\\\n\\\\n                    del out, inputs\\\\n                    if idx % 100 == 0:\\\\n                        torch.cuda.empty_cache()\\\\n                        log(f\\\\\\\"    {idx}/{total}\\\\\\\")\\\\n\\\\n    log(f\\\\\\\"Phase 1 done: {idx} samples\\\\\\\")\\\\n    return reps, actions_arr[:idx], task_labels[:idx], head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count\\\\n\\\\n\\\\ndef run_probing(reps, actions, n_seeds):\\\\n    log(\\\\\\\"Phase 2: action R2 probing (Ridge)\\\\\\\")\\\\n    results = {}\\\\n    n = len(actions)\\\\n    nt = int(n * 0.8)\\\\n    perm = np.random.RandomState(42).permutation(n)\\\\n    for l in range(N_LAYERS):\\\\n        for pos in (\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"):\\\\n            X, y = reps[l][pos], actions\\\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\\\n\\\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\\\n            probe.fit(Xtr, ytr)\\\\n            pred = probe.predict(Xv)\\\\n            ss_res = np.sum((yv - pred) ** 2)\\\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\\\n\\\\n            results[f\\\\\\\"L{l}_{pos}\\\\\\\"] = {\\\\n                \\\\\\\"mean\\\\\\\": round(r2, 4),\\\\n                \\\\\\\"std\\\\\\\": 0.0,\\\\n                \\\\\\\"values\\\\\\\": [round(r2, 4)],\\\\n            }\\\\n        if l % 8 == 0:\\\\n            log(\\\\n                f\\\\\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\\\\\"\\\\n                f\\\\\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\\\\\"\\\\n            )\\\\n    return results\\\\n\\\\n\\\\ndef analyze_attention(head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count):\\\\n    log(\\\\\\\"Phase 3: L1 attention profile\\\\\\\")\\\\n    profiles = {}\\\\n    for h in range(N_HEADS):\\\\n        m = head_instr_ratio_sum[h] / attn_count\\\\n        var = head_instr_ratio_sq_sum[h] / attn_count - m ** 2\\\\n        s = float(np.sqrt(max(var, 0.0)))\\\\n        cat = \\\\\\\"instruction_dominant\\\\\\\" if m > 0.5 else (\\\\\\\"image_dominant\\\\\\\" if m < 0.2 else \\\\\\\"mixed\\\\\\\")\\\\n        profiles[f\\\\\\\"head_{h}\\\\\\\"] = {\\\\n            \\\\\\\"instruction_ratio_mean\\\\\\\": round(float(m), 4),\\\\n            \\\\\\\"instruction_ratio_std\\\\\\\": round(s, 4),\\\\n            \\\\\\\"category\\\\\\\": cat,\\\\n        }\\\\n\\\\n    cats = [v[\\\\\\\"category\\\\\\\"] for v in profiles.values()]\\\\n    summary = {\\\\n        \\\\\\\"instruction_dominant\\\\\\\": cats.count(\\\\\\\"instruction_dominant\\\\\\\"),\\\\n        \\\\\\\"image_dominant\\\\\\\": cats.count(\\\\\\\"image_dominant\\\\\\\"),\\\\n        \\\\\\\"mixed\\\\\\\": cats.count(\\\\\\\"mixed\\\\\\\"),\\\\n        \\\\\\\"instruction_dominant_heads\\\\\\\": [h for h in range(N_HEADS)\\\\n                                       if profiles[f\\\\\\\"head_{h}\\\\\\\"][\\\\\\\"category\\\\\\\"] == \\\\\\\"instruction_dominant\\\\\\\"],\\\\n        \\\\\\\"image_dominant_heads\\\\\\\": [h for h in range(N_HEADS)\\\\n                                  if profiles[f\\\\\\\"head_{h}\\\\\\\"][\\\\\\\"category\\\\\\\"] == \\\\\\\"image_dominant\\\\\\\"],\\\\n    }\\\\n    log(f\\\\\\\"  {summary['instruction_dominant']} instr-dom, \\\\\\\"\\\\n        f\\\\\\\"{summary['image_dominant']} img-dom, {summary['mixed']} mixed\\\\\\\")\\\\n    return {\\\\\\\"per_head\\\\\\\": profiles, \\\\\\\"summary\\\\\\\": summary}\\\\n\\\\ndef run_classification(reps, labels, layers=None):\\\\n    log(\\\\\\\"Phase 4: cross-instruction classification\\\\\\\")\\\\n    if layers is None:\\\\n        layers = list(range(N_LAYERS))\\\\n    n_cls = int(labels.max()) + 1\\\\n    if n_cls < 2:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLIBERO-Goal Full Analysis Pipeline for TracVLA-Phi3V\\n\\nPhases:\\n  1. Representation extraction: forward passes -> hidden states + L1 attention\\n  2. Action R2 probing: per-layer Ridge probe\\n  3. L1 attention profile: per-head instruction/image attention classification\\n  4. Cross-instruction classification: 10-way per-layer\\n  5. Counterfactual: 4 conditions (wrong/empty/shuffled/paraphrased), paired Cohen's d\\n\\nRuns both trained (TracVLA-Phi3V) and untrained (base Phi-3-Vision) sequentially.\\nAll results -> RESULTS_DIR/{trained,untrained}/*.json\\nNo intermediate features saved to disk.\\n\\\"\\\"\\\"\\n\\nimport argparse, json, os, random, sys, time\\nfrom collections import defaultdict\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.linear_model import RidgeCV\\nfrom transformers import AutoModelForCausalLM, AutoProcessor\\n\\n# --- Checkpoints ---\\nTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nUNTRAINED_CKPT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\nUNTRAINED_CACHE = \\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/\\\"\\n\\n# --- Data ---\\nDATA = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nRESULTS_BASE = \\\"/root/autodl-tmp/vla-ssd/results/tracvla_goal\\\"\\nDEVICE = \\\"cuda:0\\\"  # submit_training_job sets CUDA_VISIBLE_DEVICES\\n\\n# --- Architecture ---\\nN_LAYERS = 32\\nN_HEADS = 32\\nHIDDEN = 3072\\nN_IMG_TOKENS = 0  # auto-detected\\nIMG_TOKEN_ID = -1  # auto-detected\\n\\n# --- Data config ---\\nN_DEMOS = 10\\nN_TIMESTEPS = 50\\nN_PROBE_SEEDS = 15\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\nINSTRUCTIONS = [t.replace(\\\"_\\\", \\\" \\\") for t in TASKS]\\nPARAPHRASES = [\\n    \\\"open the cabinet's middle drawer\\\",\\n    \\\"open the top drawer and place the bowl in it\\\",\\n    \\\"slide the plate to the stove's front\\\",\\n    \\\"place the bowl onto the plate\\\",\\n    \\\"place the bowl onto the stove\\\",\\n    \\\"place the bowl on the cabinet top\\\",\\n    \\\"put cream cheese into the bowl\\\",\\n    \\\"place the wine bottle on the rack\\\",\\n    \\\"place the wine bottle on the cabinet top\\\",\\n    \\\"switch on the stove\\\",\\n]\\n\\n\\ndef log(msg):\\n    print(f\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\", flush=True)\\n\\n\\ndef make_prompt(instruction):\\n    return (\\n        f\\\"<|user|>\\\\n<|image_1|>\\\\n\\\"\\n        f\\\"What action should the robot take to {instruction}?<|end|>\\\\n\\\"\\n        f\\\"<|assistant|>\\\\n\\\"\\n    )\\n\\n\\ndef prepare_inputs(processor, instruction, image):\\n    prompt = make_prompt(instruction)\\n    inputs = processor(prompt, [image], return_tensors=\\\"pt\\\").to(DEVICE)\\n    if \\\"pixel_values\\\" in inputs:\\n        inputs[\\\"pixel_values\\\"] = inputs[\\\"pixel_values\\\"].to(torch.bfloat16)\\n    return inputs\\n\\n\\ndef detect_image_token_id(processor):\\n    return -1\\n\\n\\ndef find_token_regions(input_ids, img_token_id):\\n    ids = input_ids[0].cpu().numpy()\\n    img_mask = ids < 0\\n    img_positions = np.where(img_mask)[0]\\n\\n    if len(img_positions) > 0:\\n        img_s = int(img_positions[0])\\n        img_e = int(img_positions[-1]) + 1\\n    else:\\n        img_s = img_e = 1\\n\\n    txt_s = img_e\\n    txt_e = len(ids)\\n\\n    return {\\\"bos\\\": (0, img_s), \\\"image\\\": (img_s, img_e), \\\"text\\\": (txt_s, txt_e)}\\n\\n\\ndef generate_action_phi3v(model, processor, instruction, image):\\n    inputs = prepare_inputs(processor, instruction, image)\\n\\n    with torch.no_grad():\\n        gen_ids = model.generate(\\n            input_ids=inputs[\\\"input_ids\\\"],\\n            attention_mask=inputs.get(\\\"attention_mask\\\"),\\n            pixel_values=inputs.get(\\\"pixel_values\\\"),\\n            image_sizes=inputs.get(\\\"image_sizes\\\"),\\n            max_new_tokens=7,\\n            do_sample=False,\\n        )\\n\\n    token_ids = gen_ids[0, -7:].cpu().numpy()\\n    vocab_s\\n\\n... [截断: 输出过长，省略 2450 字符] ...\\n\\n)\\n\\n                    l1 = out.attentions[1][0].float()\\n                    last_pos = l1.shape[1] - 1\\n                    action_attn = l1[:, last_pos, :]\\n                    _is, _ie = tr[\\\"image\\\"]\\n                    _ts, _te = tr[\\\"text\\\"]\\n                    _bs, _be = tr[\\\"bos\\\"]\\n                    _img_a = action_attn[:, _is:_ie].sum(dim=-1)\\n                    _txt_a = action_attn[:, _ts:_te].sum(dim=-1)\\n                    _bos_a = action_attn[:, _bs:_be].sum(dim=-1)\\n                    _total = _img_a + _txt_a + _bos_a\\n                    _ratio = torch.where(_total > 1e-10, _txt_a / _total, torch.zeros_like(_txt_a))\\n                    _ratio_np = _ratio.cpu().numpy()\\n                    head_instr_ratio_sum += _ratio_np\\n                    head_instr_ratio_sq_sum += _ratio_np ** 2\\n                    attn_count += 1\\n                    del l1\\n\\n                    actions_arr[idx] = act\\n                    task_labels[idx] = ti\\n                    idx += 1\\n\\n                    del out, inputs\\n                    if idx % 100 == 0:\\n                        torch.cuda.empty_cache()\\n                        log(f\\\"    {idx}/{total}\\\")\\n\\n    log(f\\\"Phase 1 done: {idx} samples\\\")\\n    return reps, actions_arr[:idx], task_labels[:idx], head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count\\n\\n\\ndef run_probing(reps, actions, n_seeds):\\n    log(\\\"Phase 2: action R2 probing (Ridge)\\\")\\n    results = {}\\n    n = len(actions)\\n    nt = int(n * 0.8)\\n    perm = np.random.RandomState(42).permutation(n)\\n    for l in range(N_LAYERS):\\n        for pos in (\\\"image_mean\\\", \\\"last_preaction\\\"):\\n            X, y = reps[l][pos], actions\\n            Xtr, ytr = X[perm[:nt]], y[perm[:nt]]\\n            Xv, yv = X[perm[nt:]], y[perm[nt:]]\\n\\n            probe = RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\\n            probe.fit(Xtr, ytr)\\n            pred = probe.predict(Xv)\\n            ss_res = np.sum((yv - pred) ** 2)\\n            ss_tot = np.sum((yv - yv.mean(0)) ** 2)\\n            r2 = float(1 - ss_res / ss_tot) if ss_tot > 1e-10 else 0.0\\n\\n            results[f\\\"L{l}_{pos}\\\"] = {\\n                \\\"mean\\\": round(r2, 4),\\n                \\\"std\\\": 0.0,\\n                \\\"values\\\": [round(r2, 4)],\\n            }\\n        if l % 8 == 0:\\n            log(\\n                f\\\"  L{l}: img_mean R2={results[f'L{l}_image_mean']['mean']:.4f}  \\\"\\n                f\\\"last_pre R2={results[f'L{l}_last_preaction']['mean']:.4f}\\\"\\n            )\\n    return results\\n\\n\\ndef analyze_attention(head_instr_ratio_sum, head_instr_ratio_sq_sum, attn_count):\\n    log(\\\"Phase 3: L1 attention profile\\\")\\n    profiles = {}\\n    for h in range(N_HEADS):\\n        m = head_instr_ratio_sum[h] / attn_count\\n        var = head_instr_ratio_sq_sum[h] / attn_count - m ** 2\\n        s = float(np.sqrt(max(var, 0.0)))\\n        cat = \\\"instruction_dominant\\\" if m > 0.5 else (\\\"image_dominant\\\" if m < 0.2 else \\\"mixed\\\")\\n        profiles[f\\\"head_{h}\\\"] = {\\n            \\\"instruction_ratio_mean\\\": round(float(m), 4),\\n            \\\"instruction_ratio_std\\\": round(s, 4),\\n            \\\"category\\\": cat,\\n        }\\n\\n    cats = [v[\\\"category\\\"] for v in profiles.values()]\\n    summary = {\\n        \\\"instruction_dominant\\\": cats.count(\\\"instruction_dominant\\\"),\\n        \\\"image_dominant\\\": cats.count(\\\"image_dominant\\\"),\\n        \\\"mixed\\\": cats.count(\\\"mixed\\\"),\\n        \\\"instruction_dominant_heads\\\": [h for h in range(N_HEADS)\\n                                       if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"instruction_dominant\\\"],\\n        \\\"image_dominant_heads\\\": [h for h in range(N_HEADS)\\n                                  if profiles[f\\\"head_{h}\\\"][\\\"category\\\"] == \\\"image_dominant\\\"],\\n    }\\n    log(f\\\"  {summary['instruction_dominant']} instr-dom, \\\"\\n        f\\\"{summary['image_dominant']} img-dom, {summary['mixed']} mixed\\\")\\n    return {\\\"per_head\\\": profiles, \\\"summary\\\": summary}\\n\\ndef run_classification(reps, labels, layers=None):\\n    log(\\\"Phase 4: cross-instruction classification\\\")\\n    if layers is None:\\n        layers = list(range(N_LAYERS))\\n    n_cls = int(labels.max()) + 1\\n    if n_cls < 2:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see the per-suite L1 attention analysis method:
+
+The `instruction_ratio` is computed as:
+```
+_txt_a / (_img_a + _txt_a + _bos_a)
+```
+Where `_txt_a` is sum of attention on text tokens, `_img_a` on image tokens, `_bos_a` on BOS tokens.
+Classification: `instruction_dominant` if ratio > 0.5, `image_dominant` if < 0.2, `mixed` otherwise.
+
+Now let me find the script that generated the all-layer `phi3v_*` files to compare methods.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "10903186-09ee-47c4-a189-bb664cddcd33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LabwPeBkQeAuL6g6pu83Pm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3737,
+      "cache_read_input_tokens": 77682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WSs1pvh5oiPhr4GMTfHxS6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*phi3v*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "d5620d01-3071-4b9e-bbe4-2d62146fe9fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LabwPeBkQeAuL6g6pu83Pm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3737,
+      "cache_read_input_tokens": 77682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-23T20:35:12.115Z_
+
+<details><summary>↩ Tool result · `toolu_01WSs1pvh5oiPhr4GMTfHxS6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "63673311-e6a3-4e59-84fd-3c128f943fe7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0141GiHM2fSXwargP5vJmqiC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*full_layer*\" -o -name \"*all_layer*\" -o -name \"*profile*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "a6642361-3fe9-4516-bfcd-27bddc0a1ef9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LabwPeBkQeAuL6g6pu83Pm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3737,
+      "cache_read_input_tokens": 77682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-23T20:35:13.250Z_
+
+<details><summary>↩ Tool result · `toolu_0141GiHM2fSXwargP5vJmqiC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "a9b886a0-b206-49fa-92ff-26bf988c3197",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Moe88yYLHi1zDm71eSqTdc`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/autodl-tmp/vla-ssd/scripts/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "d613d3ae-0407-4636-8611-c2f9ed09cd7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DxwyH8Jr7QQuMmXCvkPXjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 594,
+      "cache_read_input_tokens": 81419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 594
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-23T20:35:17.002Z_
+
+<details><summary>↩ Tool result · `toolu_01Moe88yYLHi1zDm71eSqTdc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\n/root/autodl-tmp/vla-ssd/scripts/action_diagnostic.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_untrained_counterfactual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "3e78c2c9-b893-4acc-8822-01f204ea6cca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\\\n/root/autodl-tmp/vla-ssd/scripts/action_diagnostic.py\\\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_untrained_counterfactual.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/scripts/attention_normalization_entropy.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_probing_only.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_goal_untrained_counterfactual_only.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_object_untrained_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_long_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/tracvla_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/libero_spatial_full_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_resume_pipeline.py\\n/root/autodl-tmp/vla-ssd/scripts/spatial_untrained_only.py\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\n/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe_v3.py\\n/root/autodl-tmp/vla-ssd/scripts/action_diagnostic.py\\n/root/autodl-tmp/vla-ssd/scripts/nora_spatial_untrained_counterfactual.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The all-layer attention profiles (`phi3v_attention_profile.json`, `phi3v_untrained_attention_profile.json`) don't have a corresponding script in the scripts directory. They may have been generated by an ad-hoc script or a Jupyter notebook. Let me check if there's a notebook or if the generating code is elsewhere.
+
+Actually, looking at the data more carefully, the all-layer profiles use `per_head_text_attention` which appears to be a simple ratio of text attention weight vs total. The threshold for "instruction_dominant" is 0.5 (>0.5 = instruction dominant). 
+
+
+The per-suite analysis uses the same 0.5 threshold for classification, but computes `instruction_ratio` by dividing text attention by total attention when the total exceeds a small epsilon value. Both approaches calculate similar ratios, so the difference must be in what data they're analyzing—the all-layer profiles likely focus on a single task or different task set, while the per-suite analysis aggregates across all 10 tasks in the suite over many timesteps.
+
+Now I'm comparing the actual values between these two approaches. The all-layer untrained model shows heads like head_7 at 0.4476 and head_13 at 0.2227, both below the 0.5 threshold, yet the per-suite Goal untrained data shows the same heads at 0.7907 and 0.6857 respectively—substantially higher and crossing the instruction dominance threshold. This discrepancy suggests the two datasets are measuring attention patterns under very different conditions or task distributions.
+
+I'm wondering if the all-layer profile might be aggregating across multiple token positions rather than focusing on the final token, or perhaps using a different prompt template or image set entirely. Let me look at how the per-suite code actually extracts the attention values...
+
+Extracting attention from the last token position...
+
+So the per-suite approach specifically measures where the final generated token attends, while the all-layer profile might be using a different reference point. The real question is which numbers ended up in the paper — the main text references match the per-suite data (untrained 32/32 → trained 27-30/32), while the appendix matches the all-layer data, suggesting they might be measuring different things or using different model configurations.
+
+Looking at this more carefully, both analyses are internally consistent but they're using different methodologies. The appendix has a couple of issues: it's pulling from an older analysis with a different approach that actually produces opposite conclusions, and it mislabels the base model as "Phi-3-Instruct" when it's actually "Phi-3-Vision (base)." The main text's per-suite data appears to be the more recent and rigorous approach.
+
+I can verify this by checking the all-layer data directly—the trained model shows 32 instruction-dominant heads at L1 while the untrained shows 28, suggesting training increases these heads. But the per-suite analysis shows the opposite pattern, with trained models having fewer instruction-dominant heads than untrained. These contradictory conclusions from the same model pair point to fundamental differences in how the data was processed or analyzed.
+
+Now I'm ready to compile the report with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "e740280a-df37-4388-96f2-6538f7e3f2ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUh4LLLw9mqb9vvgpV4WN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 908,
+      "cache_read_input_tokens": 82013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 908
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+数据收集完毕。以下是完整分析结果。
+
+---
+
+## 1. 原始 L1 Instruction-Dominant Head Count
+
+### Per-Suite 分析（较新，2026-05-22）
+
+| Suite | Trained | Untrained |
+|-------|---------|-----------|
+| Goal | **27**/32 | **32**/32 |
+| Spatial | **30**/32 | **32**/32 |
+| Object | **30**/32 | **32**/32 |
+| Long | **30**/32 | **32**/32 |
+
+分类阈值：`instruction_ratio > 0.5` = instruction_dominant，`< 0.2` = image_dominant，中间 = mixed。
+数据来源：`/root/autodl-tmp/vla-ssd/results/tracvla_{suite}/{trained,untrained}/l1_attention_profile.json`
+
+### All-Layer 分析（较旧，2026-05-20）
+
+| Condition | L1 Heads |
+|-----------|----------|
+| tracevla-phi3v (trained) | **32**/32 |
+| phi3v-untrained-base | **28**/32 |
+
+数据来源：`/root/autodl-tmp/vla-ssd/results/attention/phi3v_{,untrained_}attention_profile.json`
+
+---
+
+## 2. Reference 模型身份
+
+脚本明确定义：
+```python
+TRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/"
+UNTRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/"
+```
+docstring：*"Runs both trained (TracVLA-Phi3V) and untrained (**base Phi-3-Vision**) sequentially."*
+JSON model field：`"phi3v-untrained-base"`
+
+**Reference 模型是 Phi-3-Vision (base)，不是 Phi-3-Instruct。**
+
+---
+
+## 3. 矛盾根因
+
+存在**两套独立分析**，方法不同，结论相反：
+
+| | Per-Suite (新) | All-Layer (旧) |
+|---|---|---|
+| 日期 | 5月22日 | 5月20日 |
+| untrained L1 | 32/32 | 28/32 |
+| trained L1 | 27-30/32 | 32/32 |
+| 结论方向 | 训练**减少**instruction heads | 训练**增加**instruction heads |
+
+同一模型、同一 L1 层，同一个 head_13 在 untrained 上两套分析给出的 instruction_ratio 分别是 **0.6857**（per-suite）和 **0.2227**（all-layer），数值完全不同。原因是两套分析使用了**不同的数据样本集和/或不同的注意力聚合方法**。
+
+---
+
+## 4. 结论：主文和 Appendix 哪个对？
+
+- **主文**说 "reference 32/32 → trained 27-30/32" —— 与 **per-suite 分析一致**（更新更严谨的分析，每个 suite 10个任务 × 50 timesteps × 10 demos）
+- **Appendix** 说 "Phi-3-Instruct 28/32 → VLA trained 32/32" —— 与 **all-layer 分析一致**，但有**两个错误**：
+  1. **模型名错误**：写了 "Phi-3-Instruct"，实际是 "Phi-3-Vision (base)"
+  2. **使用了旧的、已被取代的分析数据**，结论方向与主文矛盾
+
+**主文正确。Appendix 表格需要用 per-suite 数据重写，并修正模型名称。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "uuid": "63974cd2-3723-4678-a82c-c8dbac5e1aa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUh4LLLw9mqb9vvgpV4WN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 908,
+      "cache_read_input_tokens": 82013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 908
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 107_
+
+数据收集完毕。以下是完整分析结果。
+
+---
+
+## 1. 原始 L1 Instruction-Dominant Head Count
+
+### Per-Suite 分析（较新，2026-05-22）
+
+| Suite | Trained | Untrained |
+|-------|---------|-----------|
+| Goal | **27**/32 | **32**/32 |
+| Spatial | **30**/32 | **32**/32 |
+| Object | **30**/32 | **32**/32 |
+| Long | **30**/32 | **32**/32 |
+
+分类阈值：`instruction_ratio > 0.5` = instruction_dominant，`< 0.2` = image_dominant，中间 = mixed。
+数据来源：`/root/autodl-tmp/vla-ssd/results/tracvla_{suite}/{trained,untrained}/l1_attention_profile.json`
+
+### All-Layer 分析（较旧，2026-05-20）
+
+| Condition | L1 Heads |
+|-----------|----------|
+| tracevla-phi3v (trained) | **32**/32 |
+| phi3v-untrained-base | **28**/32 |
+
+数据来源：`/root/autodl-tmp/vla-ssd/results/attention/phi3v_{,untrained_}attention_profile.json`
+
+---
+
+## 2. Reference 模型身份
+
+脚本明确定义：
+```python
+TRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/"
+UNTRAINED_CKPT = "/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/"
+```
+docstring：*"Runs both trained (TracVLA-Phi3V) and untrained (**base Phi-3-Vision**) sequentially."*
+JSON model field：`"phi3v-untrained-base"`
+
+**Reference 模型是 Phi-3-Vision (base)，不是 Phi-3-Instruct。**
+
+---
+
+## 3. 矛盾根因
+
+存在**两套独立分析**，方法不同，结论相反：
+
+| | Per-Suite (新) | All-Layer (旧) |
+|---|---|---|
+| 日期 | 5月22日 | 5月20日 |
+| untrained L1 | 32/32 | 28/32 |
+| trained L1 | 27-30/32 | 32/32 |
+| 结论方向 | 训练**减少**instruction heads | 训练**增加**instruction heads |
+
+同一模型、同一 L1 层，同一个 head_13 在 untrained 上两套分析给出的 instruction_ratio 分别是 **0.6857**（per-suite）和 **0.2227**（all-layer），数值完全不同。原因是两套分析使用了**不同的数据样本集和/或不同的注意力聚合方法**。
+
+---
+
+## 4. 结论：主文和 Appendix 哪个对？
+
+- **主文**说 "reference 32/32 → trained 27-30/32" —— 与 **per-suite 分析一致**（更新更严谨的分析，每个 suite 10个任务 × 50 timesteps × 10 demos）
+- **Appendix** 说 "Phi-3-Instruct 28/32 → VLA trained 32/32" —— 与 **all-layer 分析一致**，但有**两个错误**：
+  1. **模型名错误**：写了 "Phi-3-Instruct"，实际是 "Phi-3-Vision (base)"
+  2. **使用了旧的、已被取代的分析数据**，结论方向与主文矛盾
+
+**主文正确。Appendix 表格需要用 per-suite 数据重写，并修正模型名称。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 190403,
+  "duration_api_ms": 185478,
+  "num_turns": 43,
+  "stop_reason": "end_turn",
+  "session_id": "a2d7bf72-6f57-463d-a9b2-d715db72ccd6",
+  "total_cost_usd": 1.0629195,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 71080,
+    "cache_read_input_tokens": 743053,
+    "output_tokens": 9804,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 71080,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2452,
+        "cache_read_input_tokens": 82013,
+        "cache_creation_input_tokens": 908,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 908
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1853,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001953,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 9804,
+      "cacheReadInputTokens": 743053,
+      "cacheCreationInputTokens": 71080,
+      "webSearchRequests": 0,
+      "costUSD": 1.0609665000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b906b29e-2f78-4d30-894d-36ad3e8fbfe6"
+}
+```
+
+</details>
+
+---

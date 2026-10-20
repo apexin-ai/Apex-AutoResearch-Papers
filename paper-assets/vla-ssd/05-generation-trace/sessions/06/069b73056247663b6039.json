@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "069b73056247663b6039",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh d019 verify and hdf5 check",
+  "task_key": "worker_ssh_d019-verify-and-hdf5-check_20260515T171326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d019-verify-and-hdf5-check_20260515T171326_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "23c97d80c0e4f49aa573f224b6a1d477883e280337a82277b7a6f9f813d75d02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. D019 脚本去重：✅ 已删除**\n- `train_instruction_probes.py` — 不存在\n- `train_goal_probe.py` — 不存在\n- `analyze_goal_results.py` — 不存在\n\n**2. HDF5 完整性：10/10 OK**\n- 10 个文件全部可读，每个 50 demos，obs 含 `agentview_rgb/ee_ori/ee_pos`\n- 文件大小 427MB–971MB，无异常\n\n**3. 特征提取进度：**\n- **trained: 6/10**（正在提取第 7 个 `put_the_bowl_on_top_of_the_cabinet`，~5%）\n- **untrained: 5/10**（正在提取第 6 个 `put_the_bowl_on_the_stove`，~40%）\n- 两个提取任务均在正常运行中，速度约 ~40 step/s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d019-verify-and-hdf5-check.md"
+}

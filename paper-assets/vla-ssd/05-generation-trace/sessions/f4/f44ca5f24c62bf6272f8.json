@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f44ca5f24c62bf6272f8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis bootstrap ci extraction",
+  "task_key": "worker_analysis_bootstrap_ci_extraction_20260518T025815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_extraction_20260518T025815_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "a61b722012f06c32a6fd93015c24335287a1e2cdf21e2b4fdb3546d9b58c94e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `/root/autodl-tmp/vla-ssd/results/bootstrap_ci_values.json`。\n\n## 汇总（复制到论文用）\n\n| Comparison | Δ | 95% CI | p |\n|---|---|---|---|\n| Ablation all24 vs baseline (L1) | +0.059 | [0.042, 0.075] | <0.001 |\n| Ablation all24 vs control8 (L1, specificity) | +0.042 | [0.029, 0.056] | <0.001 |\n| RSA trained vs untrained image_mean (L12) | +0.079 | [0.060, 0.098] | <0.001 |\n| RSA trained vs untrained last_preaction (L12) | +0.047 | [0.023, 0.070] | <0.001 |\n| Action R² trained vs untrained imgmean peak | +0.015 | [0.004, 0.025] | 0.006 |\n| Action R² trained vs untrained lastpre peak | +0.069 | [0.047, 0.090] | <0.001 |\n| Action R² trained L19 vs untrained L32 lastpre | +0.045 | [0.032, 0.058] | <0.001 |\n| Llama2base vs untrained (L1 imgmean) | +0.082 | [0.062, 0.103] | <0.001 |\n| Trained vs llama2base (L1 imgmean) | −0.004 | [−0.013, 0.005] | 0.78 (ns) |\n| Trained vs untrained (L1 imgmean) | +0.079 | [0.061, 0.098] | <0.001 |\n\n关键发现：\n- llama2base 在 L1 显著高于 untrained（Δ=+0.082），但 trained 与 llama2base 无显著差异（Δ=−0.004, ns）→ L1 action encoding 主要由语言预训练建立\n- 所有 ablation 和 RSA 对比的 CI 均不包含 0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-extraction.md"
+}

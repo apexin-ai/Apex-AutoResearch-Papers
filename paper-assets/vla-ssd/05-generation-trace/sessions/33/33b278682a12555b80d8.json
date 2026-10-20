@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b278682a12555b80d8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research training effect size table",
+  "task_key": "worker_research_training_effect_size_table_20260517T033754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_training_effect_size_table_20260517T033754_result.json",
+    "occurrence": 1,
+    "bytes": 2291,
+    "sha256": "9e08386765c48afd855fbec5624f0e601782b46c189a87bae1925d7e1ecfcf4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete training effect size table compiled from the exact JSON values:\n\n```\n| Metric                       | Trained            | Untrained          | Δ          | Source File                                           |\n|------------------------------|--------------------|--------------------|------------|-------------------------------------------------------|\n| RSA peak (image_mean)        | 0.6282 (L12)       | 0.6117 (L0)        | +0.0165    | results/rsa/unified_rsa_results.json                  |\n| RSA peak (last_preaction)    | 0.6425 (L12)       | 0.6262 (L1)        | +0.0163    | results/rsa/unified_rsa_results.json                  |\n| R² peak (image_mean)         | 0.6553 (L8)        | 0.6403 (L0)        | +0.0150    | results/functional_validation/fulllayer_action_probe.json |\n| R² peak (last_preaction)     | 0.6779 (L13)       | 0.6093 (L32)       | +0.0686    | results/functional_validation/fulllayer_action_probe.json |\n| Inst. routing L31            | 100.0%             | 82.0%              | +18.0pp    | results/cross_instruction/classification_results.json |\n| Inst. attention L1           | 57.69%             | 11.70%             | +45.99pp   | results/attention/l1_attention_{trained,untrained}_summary.json |\n| Progress classification      | 86.32% (L20)       | 85.32% (L4)        | +1.00pp    | results/qa_probe/classification_results.json          |\n| Subtask classification       | 93.67% (L16)       | 93.06% (L12)       | +0.61pp    | results/qa_probe/classification_results.json          |\n```\n\nNotes on computation:\n- **Inst. attention L1 (trained)**: averaged `mean_attn_to_text` across 3 tasks = (0.5729 + 0.5779 + 0.5798) / 3 = 0.5769\n- **Inst. attention L1 (untrained)**: from `aggregate.mean_instr_attn` = 0.1170\n- **R² last_preaction untrained**: the fulllayer file shows peak at L32 = 0.6093; a separate dedicated file (`untrained_last_preaction_probe.json`) reports 0.6858 at L32 with different training epochs (9 vs potentially different). The fulllayer file uses the same methodology for both conditions, so I used it for consistency.\n- **Inst. routing**: trained last_preaction achieves perfect 100% classification at L8/L16/L24/L31; untrained declines from 98.2% (L8) to 82.0% (L31)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-training-effect-size-table.md"
+}

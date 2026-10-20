@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f68e9ef975d7f597a86",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan008 random s0",
+  "task_key": "worker_ssh_plan008-random-s0_20260515T235737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan008-random-s0_20260515T235737_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "d34b2830f0083ba59c77e9f2c63d37dc2a1de98deec105598b62f9943e610f6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "特征提取已启动（PID 678333），正在处理 task 1/10。随机 instruction 为 `\"civoq tixe mef wugi di wapon\"`。预计 ~48 分钟完成后自动跑 RSA 分析。4.5 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan008-random-s0.md"
+}

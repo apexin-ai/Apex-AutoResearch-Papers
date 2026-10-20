@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fbb8e83a614a677ca46",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify nora spatial v2 startup",
+  "task_key": "worker_verify_nora_spatial_v2_startup_20260521T092245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_nora_spatial_v2_startup_20260521T092245_result.json",
+    "occurrence": 1,
+    "bytes": 214,
+    "sha256": "49e8a5b6f1a3ed45db9c9d9be516903414adf2ede273eb65ffea7156836c11aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。PID 547498 已运行 18m47s，模型加载正常（4.5s），当前在 trained 条件 Phase 1 表征提取中（Task 0, 进度 3200/5000），GPU:1 占用 8.5GB/98GB、利用率 39%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-nora-spatial-v2-startup.md"
+}

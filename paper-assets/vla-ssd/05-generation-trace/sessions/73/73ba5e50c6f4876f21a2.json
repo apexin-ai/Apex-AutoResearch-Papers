@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73ba5e50c6f4876f21a2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose ridge startup verify",
+  "task_key": "worker_diagnose_ridge_startup_verify_20260521T052500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ridge_startup_verify_20260521T052500_result.json",
+    "occurrence": 1,
+    "bytes": 3139,
+    "sha256": "5c628f2876c6058a773496aec70ed125784f5669a6e414cc6db47da653b14c5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Raw output：\n\n```\n=== PROCESSES ===\n   PID %CPU %MEM     ELAPSED COMMAND\nEXIT=1\n=== TMUX ===\n=== CUDA:0 LOG ===\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/processing_utils.py\", line 974, in from_pretrained\n    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/processing_utils.py\", line 1020, in _get_arguments_from_pretrained\n    args.append(attribute_class.from_pretrained(pretrained_model_name_or_path, **kwargs))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/image_processing_auto.py\", line 539, in from_pretrained\n    image_processor_class = get_class_from_dynamic_module(class_ref, pretrained_model_name_or_path, **kwargs)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/dynamic_module_utils.py\", line 541, in get_class_from_dynamic_module\n    final_module = get_cached_module_file(\n                   ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/dynamic_module_utils.py\", line 345, in get_cached_module_file\n    resolved_module_file = cached_file(\n                           ^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\", line 446, in cached_file\n    raise EnvironmentError(\nOSError: We couldn't connect to 'https://huggingface.co' to load this file, couldn't find it in the cached files and it looks like openvla/openvla-7b is not the path to a directory containing a file named processing_prismatic.py.\nCheckout your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.\nEXIT_CODE=1\n=== CUDA:1 LOG ===\n[13:24:19]     1100/5000\n[13:24:24]     1200/5000\n[13:24:29]     1300/5000\n[13:24:34]     1400/5000\n[13:24:40]     1500/5000\n[13:24:40]   Task 3/10: put_the_bowl_on_the_plate\n[13:24:45]     1600/5000\n[13:24:50]     1700/5000\n[13:24:55]     1800/5000\n[13:25:01]     1900/5000\n[13:25:06]     2000/5000\n[13:25:06]   Task 4/10: put_the_bowl_on_the_stove\n[13:25:11]     2100/5000\n[13:25:16]     2200/5000\n[13:25:22]     2300/5000\n[13:25:27]     2400/5000\n[13:25:32]     2500/5000\n[13:25:32]   Task 5/10: put_the_bowl_on_top_of_the_cabinet\n[13:25:38]     2600/5000\n[13:25:43]     2700/5000\n=== NVIDIA-SMI ===\n533679, 8522 MiB\n```\n\n**状态：**\n- **CUDA:0 (object_pipeline_ridge)** — 已崩溃。进程 533530 不存在。报错：无法连接 HuggingFace 下载 `processing_prismatic.py`，`openvla/openvla-7b` 本地缓存也没找到该文件。\n- **CUDA:1 (nora_goal_pipeline_v3)** — 正常运行中，PID 533679 占用 8522 MiB，正在跑 Task 5/10 (2700/5000)。\n- **tmux** — 无活跃 session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ridge-startup-verify.md"
+}

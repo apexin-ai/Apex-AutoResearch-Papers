@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c52d2ddceda70972f7ce",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code pca linear probe",
+  "task_key": "worker_code_pca_linear_probe_20260515T192049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pca_linear_probe_20260515T192049.log",
+    "occurrence": 1,
+    "bytes": 783006,
+    "sha256": "36b0d8c1dd173b699330dbacd41410e3abd9362f185b0096ee336a515141cfe0"
+  },
+  "statistics": {
+    "messages": 232,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 232,
+      "chunks": [
+        {
+          "path": "c52d2ddceda70972f7ce-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "c52d2ddceda70972f7ce-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-pca-linear-probe.md"
+}

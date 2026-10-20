@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "99c7590b2a643d0b52a8",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis groundtruth action error",
+  "task_key": "worker_analysis_groundtruth_action_error_20260519T015959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_groundtruth_action_error_20260519T015959.log",
+    "occurrence": 1,
+    "bytes": 1398601,
+    "sha256": "63659aab138e7f2975134559512b94cb40c42d37aeb3db2c6ebba03617b0c462"
+  },
+  "statistics": {
+    "messages": 763,
+    "user_turns": 1,
+    "tool_calls": 324,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 324,
+      "tool_result": 324,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 530,
+      "chunks": [
+        {
+          "path": "99c7590b2a643d0b52a8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "99c7590b2a643d0b52a8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "99c7590b2a643d0b52a8-part-0003.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "99c7590b2a643d0b52a8-part-0003.json",
+          "message_count": 10
+        },
+        {
+          "path": "99c7590b2a643d0b52a8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "99c7590b2a643d0b52a8-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-groundtruth-action-error.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45691fa277fa2cf10459",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action analysis prep",
+  "task_key": "worker_code_action-analysis-prep_20260515T142500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action-analysis-prep_20260515T142500_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "a74257163e45e786a1f7021f9bde5af5108f3e50ead8965c83464d0567fd7463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都已写好并 dry-run 通过：\n\n**`/root/vla-ssd/scripts/analyze_action_probes.py`**\n- 读取 trained/untrained/dinov2 的 `action_prediction` 和 `action_delta` 结果\n- 输出 per-layer R² 对比表、per-dim R² (7维)、per-task R² (10 tasks)、per-task consistency\n- G1/G1-delta/G2-delta/G3 四个 gate 判定\n- 保存 JSON 摘要到 analysis 目录\n- 支持部分结果（缺失模型/层会标 SKIP/N/A）\n\n**`/root/vla-ssd/scripts/plot_action_probes.py`**\n- Fig 1: per-layer R²(action) 曲线 + DINO 水平线 + copy_baseline(0.97)\n- Fig 2: per-layer R²(action-delta) 曲线 + copy_baseline(0)\n- Fig 3: per-dim R² 分组柱状图 (best layer)\n- Fig 4: per-task R² heatmap (trained/untrained 并排)\n- PDF + PNG 输出到 `results/figures/`\n\n当前只有 DINO 的 1 层数据，dry-run 生成了 Fig 1 和 Fig 3。trained/untrained 实验完成后直接跑即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-analysis-prep.md"
+}

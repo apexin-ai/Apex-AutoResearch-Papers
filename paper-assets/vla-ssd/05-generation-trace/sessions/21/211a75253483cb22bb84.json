@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "211a75253483cb22bb84",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis cross arch summary",
+  "task_key": "worker_analysis_cross_arch_summary_20260521T155716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_arch_summary_20260521T155716.log",
+    "occurrence": 1,
+    "bytes": 980258,
+    "sha256": "67e853ad87859f11697972c87948f468d570a3a03ddaf387e359895fb51955f1"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "211a75253483cb22bb84-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "211a75253483cb22bb84-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cross-arch-summary.md"
+}

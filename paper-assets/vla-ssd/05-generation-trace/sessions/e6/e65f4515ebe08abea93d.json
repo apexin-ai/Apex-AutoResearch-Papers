@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e65f4515ebe08abea93d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan003 perlayer degradation",
+  "task_key": "worker_ssh_plan003-perlayer-degradation_20260515T223128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan003-perlayer-degradation_20260515T223128_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "5ad23aa43e77e09b746638d8f9588856d4f617423d713b8de8accf6a8884a79c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。结果保存在 `/root/autodl-tmp/vla-ssd/results/rsa/perlayer_degradation_curve.json`。\n\n关键发现：\n\n| 条件 | Peak LLM RSA | Peak Layer | Proj→L1 Drop | L1后模式 |\n|------|-------------|------------|--------------|---------|\n| with-inst trained | 0.4876 | L9 | 0.2036 | non_monotonic |\n| with-inst untrained | 0.4846 | L12 | 0.1512 | non_monotonic |\n| no-inst trained | 0.489 | L30 | 0.2526 | predominantly_increasing |\n| no-inst untrained | 0.4802 | L6 | 0.1374 | non_monotonic |\n\n核心结论：\n- **SigLIP+projector RSA (0.6153) → LLM Layer 1 是最大 drop**，所有条件都损失 0.13–0.25（~20–40%）\n- Layer 0 (embedding) 是异常值（trained 模型 RSA=0.0），实际结构从 L1 开始恢复\n- **总降解幅度在 0.126–0.135 之间**，即 LLM 最好层仍比 projector 输出低 ~0.13\n- No-inst trained 是唯一呈\"持续上升\"模式的条件（L1→L30 递增），其余三个都是 non-monotonic\n- 所有条件的 LLM 层 RSA 都远高于 DINO (0.388)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan003-perlayer-degradation.md"
+}

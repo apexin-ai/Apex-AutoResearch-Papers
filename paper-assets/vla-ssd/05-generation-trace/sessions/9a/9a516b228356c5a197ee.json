@@ -1,0 +1,1967 @@
+{
+  "schema_version": "1.0",
+  "id": "9a516b228356c5a197ee",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "code control b verify",
+  "task_key": "worker_code_control-b-verify_20260515T115703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_control-b-verify_20260515T115703.jsonl",
+    "occurrence": 1,
+    "bytes": 62214,
+    "sha256": "3d10cc4004a0bef9b0a75d7f67bef26e31feae2c3e551f40e54d5631fa6f2363"
+  },
+  "statistics": {
+    "messages": 99,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "tool_call": 49,
+      "tool_result": 49,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T12:04:10.433092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T12:04:10.433431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T12:04:10.433605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T12:04:10.433884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: \n…[truncated 7175 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T12:04:10.434151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"shuffle\\|run_temporal_distance\\|def sample_pairs\\|def build_pairs\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T12:04:10.434329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:04:10.434499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "wc -l /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T12:04:10.434633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"603 /root/vla-ssd/scripts/train_probes.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:04:10.434757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"shuffle\\|run_temporal_distance\\|sample_pairs\\|build_pairs\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T12:04:10.434880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:04:10.435070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"shuffle\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T12:04:10.435211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"58:    p.add_argument(\\\\\\\"--shuffle_cross_trajectory\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n405:    cross = getattr(args, \\\\\\\"shuffle_cross_trajectory\\\\\\\", False)\\\\n407:        print(\\\\\\\"MODE: cross-trajectory shuffle (Control B)\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T12:04:10.435335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"run_temporal_distance\\|sample_pairs\\|build_pairs\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:04:10.435455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T12:04:10.435574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"run_temporal_distance\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T12:04:10.435698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"397:def run_temporal_distance(args, device):\\\\n594:        temporal_distance=run_temporal_distance,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T12:04:10.435844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -500 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T12:04:10.436103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: \n…[truncated 7008 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T12:04:10.436295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def sample_cross_trajectory_pairs\\|def build_cross_pair_tensors\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T12:04:10.436429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T12:04:10.436551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/features/dinov2/"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T12:04:10.436689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.h5\\\\nKITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.h5\\\\nKITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.h5\\\\nKITCHEN_SCENE8_put_both_moka_pots_on_the_stove.h5\\\\nLIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.h5\\\\nLIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.h5\\\\nLIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.h5\\\\nLIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.h5\\\\nSTUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.h5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T12:04:10.436816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def sample_cross\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T12:04:10.436956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"204:def sample_cross_trajectory_pairs(traj_metas, indices, n_bins, pairs_per_bin, seed):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T12:04:10.437085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def build_cross\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T12:04:10.437209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"248:def build_cross_pair_tensors(feats, pairs):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T12:04:10.437345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=\"\" python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T12:04:10.437479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=\\\\\\\"\\\\\\\" python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1'\\\\n\\\\nStdout:\\\\n\\\\n=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T12:04:10.437659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=\"\" python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1' > /tmp/dinov2_shuffle.log 2>&1 & echo $!"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T12:04:10.437808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=\\\\\\\"\\\\\\\" python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1\\\\\\\\' > /tmp/dinov2_shuffle.log 2>&1 & echo $!'\\\\n\\\\nStdout:\\\\n\\\\n93173\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T12:04:10.437968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T12:04:10.438103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T12:04:10.438240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T12:04:10.438365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T12:04:10.438491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root -name \"python\" -path \"*/93173*\" -maxdepth 3"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T12:04:10.438612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T12:04:10.438728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /proc/93173/status"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T12:04:10.438845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 15 19:59 /proc/93173/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T12:04:10.438997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T12:04:10.439123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T12:04:10.439261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"train_probes\" /proc/93173/cmdline"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T12:04:10.439381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T12:04:10.439496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /proc -maxdepth 2 -name cmdline -exec grep -l \"train_probes\" {} ;"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T12:04:10.439612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T12:04:10.439731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T12:04:10.439851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T12:04:10.440017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T12:04:10.440144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T12:04:10.440277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "stat /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T12:04:10.440401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /tmp/dinov2_shuffle.log\\\\n  Size: 214       \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 39h/57d\\\\tInode: 7547919356  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 19:59:16.255773601 +0800\\\\nModify: 2026-05-15 19:58:53.771869866 +0800\\\\nChange: 2026-05-15 19:58:53.771869866 +0800\\\\n Birth: 2026-05-15 19:58:41.763919282 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T12:04:10.440548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /proc/93173/status"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T12:04:10.440695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tbash\\\\nUmask:\\\\t0022\\\\nState:\\\\tS (sleeping)\\\\nTgid:\\\\t93173\\\\nNgid:\\\\t0\\\\nPid:\\\\t93173\\\\nPPid:\\\\t1\\\\nTracerPid:\\\\t0\\\\nUid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nGid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nFDSize:\\\\t64\\\\nGroups:\\\\t0 \\\\nNStgid:\\\\t93173\\\\nNSpid:\\\\t93173\\\\nNSpgid:\\\\t93172\\\\nNSsid:\\\\t93172\\\\nVmPeak:\\\\t    4364 kB\\\\nVmSize:\\\\t    4364 kB\\\\nVmLck:\\\\t       0 kB\\\\nVmPin:\\\\t       0 kB\\\\nVmHWM:\\\\t    1988 kB\\\\nVmRSS:\\\\t    1988 kB\\\\nRssAnon:\\\\t     296 kB\\\\nRssFile:\\\\t    1692 kB\\\\nRssShmem:\\\\t       0 kB\\\\nVmData:\\\\t     304 kB\\\\nVmStk:\\\\t     132 kB\\\\nVmExe:\\\\t     892 kB\\\\nVmLib:\\\\t    1864 kB\\\\nVmPTE:\\\\t      52 kB\\\\nVmSwap:\\\\t       0 kB\\\\nHugetlbPages:\\\\t       0 kB\\\\nCoreDumping:\\\\t0\\\\nTHP_enabled:\\\\t1\\\\nThreads:\\\\t1\\\\nSigQ:\\\\t24/4126267\\\\nSigPnd:\\\\t0000000000000000\\\\nShdPnd:\\\\t0000000000000000\\\\nSigBlk:\\\\t0000000000010000\\\\nSigIgn:\\\\t0000000000000006\\\\nSigCgt:\\\\t0000000000010000\\\\nCapInh:\\\\t0000000000000000\\\\nCapPrm:\\\\t00000000a80425fb\\\\nCapEff:\\\\t00000000a80425fb\\\\nCapBnd:\\\\t00000000a80425fb\\\\nCapAmb:\\\\t0000000000000000\\\\nNoNewPrivs:\\\\t0\\\\nSeccomp:\\\\t2\\\\nSeccomp_filters:\\\\t1\\\\nSpeculation_Store_Bypass:\\\\tthread vulnerable\\\\nSpeculationIndirectBranch:\\\\tconditional enabled\\\\nCpus_allowed:\\\\tffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff\\\\nCpus_allowed_list:\\\\t0-207\\\\nMems_allowed:\\\\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003\\\\nMems_allowed_list:\\\\t0-1\\\\nvoluntary_ctxt_switches:\\\\t5\\\\nnonvoluntary_ctxt_switches:\\\\t0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T12:04:10.440847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps aux | grep train_probes | grep -v grep",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T12:04:10.441002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      83048 1787  0.1 18446616 2042288 ?    Rsl  19:58  39:55 python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1\\\\nroot      93173  0.0  0.0   4364  1988 ?        S    19:58   0:00 bash -c cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=\\\\\\\"\\\\\\\" python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1' > /tmp/dinov2_shuffle.log 2>&1 & echo $!\\\\nroot      93254  996  0.1 18545580 2042936 ?    Rl   19:58  16:16 python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T12:04:10.441173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "kill 83048 && echo \"killed 83048\""
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T12:04:10.441299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed 83048\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T12:04:10.441424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T12:04:10.441549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T12:04:10.441732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /proc/93254/status"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T12:04:10.441862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 15 19:58 /proc/93254/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T12:04:10.442019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def train_regression_probe\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T12:04:10.442143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"282:def train_regression_probe(X_tr, y_tr, X_val, y_val, in_dim, args, device):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T12:04:10.442261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -400 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T12:04:10.442481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: \n…[truncated 6943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T12:04:10.442673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -5 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T12:04:10.442801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "stat /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T12:04:10.442944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Split: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T12:04:10.443081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /tmp/dinov2_shuffle.log\\\\n  Size: 214       \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 39h/57d\\\\tInode: 7547919356  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 19:59:16.255773601 +0800\\\\nModify: 2026-05-15 19:58:53.771869866 +0800\\\\nChange: 2026-05-15 19:58:53.771869866 +0800\\\\n Birth: 2026-05-15 19:58:41.763919282 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T12:04:10.443286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /proc/93254/status"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T12:04:10.443472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 15 19:58 /proc/93254/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T12:04:10.443608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T12:04:10.443737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T12:04:10.443872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T12:04:10.444054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T12:04:10.444209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T12:04:10.444340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T12:04:10.444519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps -p 93254 -o pid,state,cputime,rss --no-headers",
+              "warn": "True"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T12:04:10.444655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 93254 R 00:59:17 2043240\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T12:04:10.444814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -280 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T12:04:10.445090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: \n…[truncated 7020 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T12:04:10.445313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def load_layer\" /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T12:04:10.445463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"117:def load_layer_features(traj_metas, indices, layer):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T12:04:10.445611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -155 /root/vla-ssd/scripts/train_probes.py"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T12:04:10.445838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train linear probes on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import r2_score, mean_absolute_error, roc_auc_score\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train linear probes on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: \n…[truncated 4671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T12:04:10.446051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps -p 93254 -o pid,state,cputime,rss --no-headers 2>/dev/null || echo \"DONE\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T12:04:10.446186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -30 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T12:04:10.446314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 93254 S 01:20:21 2043512\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T12:04:10.446438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T12:04:10.446593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "kill 93254 93173 2>/dev/null; sleep 1; echo \"killed\""
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T12:04:10.446720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T12:04:10.446845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=\"\" PYTHONUNBUFFERED=1; python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu -1' > /tmp/dinov2_shuffle.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T12:04:10.446994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=242358\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T12:04:10.447114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/dinov2_shuffle.log"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T12:04:10.447239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Probe Training: temporal_distance | device=cpu ===\\\\nFeatures: 500 trajs, 1 layers, dim=1024\\\\nSplit: 400 train / 100 val\\\\nMODE: cross-trajectory shuffle (Control B)\\\\nPairs: 190112 train / 47520 val\\\\n\\\\n[Layer 0] (1/1)\\\\n  rho=0.6502  R2=0.4318  MAE=0.1700  ep=11  11.0s\\\\n\\\\nSaved to /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T12:04:10.447404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance/summary.json"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T12:04:10.447526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance/layer_0.json"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T12:04:10.447683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"probe_type\\\\\\\": \\\\\\\"temporal_distance\\\\\\\",\\\\n  \\\\\\\"n_entries\\\\\\\": 1,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6502004239724123,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n      \\\\\\\"r2\\\\\\\": 0.4318028688430786,\\\\n      \\\\\\\"mae\\\\\\\": 0.16998440027236938,\\\\n      \\\\\\\"val_loss\\\\\\\": 0.04272983968257904,\\\\n      \\\\\\\"epochs_trained\\\\\\\": 11,\\\\n      \\\\\\\"layer\\\\\\\": 0,\\\\n      \\\\\\\"cross_trajectory\\\\\\\": true,\\\\n      \\\\\\\"per_task_rho\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.6370998366951816,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6661340076862412,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.609816803064256,\\\\n        \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.5943011193974717,\\\\n        \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.6604409950573247,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.6324891989159231,\\\\n        \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.6278233242392949,\\\\n        \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.7215118137279488,\\\\n        \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.6858654042300615,\\\\n        \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.6638580426991424\\\\n      },\\\\n      \\\\\\\"per_task_n_pairs\\\\\\\": {\\\\n        \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 4724,\\\\n        \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 4790,\\\\n        \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_\n…[truncated 1009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T12:04:10.447864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"spearman_rho\\\\\\\": 0.6502004239724123,\\\\n  \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n  \\\\\\\"r2\\\\\\\": 0.4318028688430786,\\\\n  \\\\\\\"mae\\\\\\\": 0.16998440027236938,\\\\n  \\\\\\\"val_loss\\\\\\\": 0.04272983968257904,\\\\n  \\\\\\\"epochs_trained\\\\\\\": 11,\\\\n  \\\\\\\"layer\\\\\\\": 0,\\\\n  \\\\\\\"cross_trajectory\\\\\\\": true,\\\\n  \\\\\\\"per_task_rho\\\\\\\": {\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 0.6370998366951816,\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 0.6661340076862412,\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 0.609816803064256,\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 0.5943011193974717,\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": 0.6604409950573247,\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": 0.6324891989159231,\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": 0.6278233242392949,\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": 0.7215118137279488,\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": 0.6858654042300615,\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": 0.6638580426991424\\\\n  },\\\\n  \\\\\\\"per_task_n_pairs\\\\\\\": {\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": 4724,\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": 4790,\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": 4714,\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": 4783,\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\n…[truncated 679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T12:04:10.448083+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\nControl B (Cross-Trajectory Shuffle) on DINO-V2:\n\n| 指标 | 值 |\n|------|-----|\n| **Global ρ** | **0.6502** |\n| R² | 0.4318 |\n| MAE | 0.1700 |\n| Epochs | 11 (early stopped) |\n\n**Per-task ρ:**\n\n| Task | ρ |\n|------|---|\n| KITCHEN_SCENE3 (stove + moka pot) | 0.637 |\n| KITCHEN_SCENE4 (bowl in drawer) | 0.666 |\n| KITCHEN_SCENE6 (mug in microwave) | 0.610 |\n| KITCHEN_SCENE8 (both moka pots) | 0.594 |\n| LIVING_ROOM_SCENE1 (soup + cheese → basket) | 0.660 |\n| LIVING_ROOM_SCENE2 (soup + sauce → basket) | 0.632 |\n| LIVING_ROOM_SCENE2 (cheese + butter → basket) | 0.628 |\n| LIVING_ROOM_SCENE5 (two mugs on plates) | **0.722** |\n| LIVING_ROOM_SCENE6 (mug + pudding) | 0.686 |\n| STUDY_SCENE1 (book in caddy) | 0.664 |\n\n**ρ ≈ 0.65，远非预期的 ≈ 0。** 这说明 cross-trajectory shuffle 并没有摧毁 temporal distance 信号。\n\n原因：`sample_cross_trajectory_pairs` 的 target 用的是 `|t_b/T_b - t_a/T_a|`（normalized position difference）。即使 frame 来自不同 trajectory，DINO-V2 特征本身编码了视觉进度（开头场景 vs 结束场景），这种 visual progress 在 trajectory 间是共享的（同一 task 的不同 demo 视觉演变相似，甚至跨 task 的 \"早期=物体未动、后期=物体已移动\" 模式也通用）。所以 probe 可以通过 visual difference magnitude 预测 temporal distance，即使是跨 trajectory pairs。\n\n这实际上意味着 **Control B 的设计需要重新审视** —— 它没有真正打断 temporal signal，因为 normalized position 本身就和 visual features 相关。要做有效的 negative control，需要在保留 pair 结构的同时 **随机打乱 distance labels**（而不是打乱 trajectory 归属）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_control-b-verify_20260515T115703"
+          },
+          "id": "event-000099"
+        }
+      ],
+      "message_count": 99
+    }
+  ],
+  "readable_path": "readable/conversations/code-control-b-verify.md"
+}

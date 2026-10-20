@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c5c97b97edb1b6057e57",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "file pull figures",
+  "task_key": "worker_file_pull_figures_20260522T063752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_file_pull_figures_20260522T063752.log",
+    "occurrence": 1,
+    "bytes": 827598,
+    "sha256": "ddc2af29a0a167f239896386e217e156344aee2228320ca326dbc4e5ccb95f1e"
+  },
+  "statistics": {
+    "messages": 224,
+    "user_turns": 2,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "c5c97b97edb1b6057e57-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "c5c97b97edb1b6057e57-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "c5c97b97edb1b6057e57-part-0002.json",
+          "message_count": 87
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "c5c97b97edb1b6057e57-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/file-pull-figures.md"
+}

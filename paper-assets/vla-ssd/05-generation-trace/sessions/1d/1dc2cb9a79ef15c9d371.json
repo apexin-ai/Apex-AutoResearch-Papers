@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc2cb9a79ef15c9d371",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug counterfactual find pid",
+  "task_key": "worker_debug_counterfactual_find_pid_20260518T171606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_counterfactual_find_pid_20260518T171606_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "7e9f4807acd7862f7b371a59679c27c5949d53ae6a08effa0a906d0f24f93edb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**进程状态：正在运行**\n\n| 角色 | PID | 命令 |\n|------|-----|------|\n| 主进程 | **66746** | `python -u scripts/counterfactual_instruction.py` |\n| resource tracker | 66878 | multiprocessing resource tracker |\n| GPU worker 0 | 66879 | multiprocessing spawn (cuda:0) |\n| GPU worker 1 | 66880 | multiprocessing spawn (cuda:1) |\n\n**GPU 使用：**\n- GPU 0: 15474MiB / 97887MiB, 81% util, 340W\n- GPU 1: 15474MiB / 97887MiB, 82% util, 336W\n\n**结果文件：**\n- 6 个预期输出文件（`counterfactual_{correct,wrong,empty,shuffled,paraphrased,combined}.json`）**均不存在**\n- 日志文件 `counterfactual_instruction.log` 存在（910 bytes），最后修改时间 `2026-05-19 01:06:42`（约 10 分钟前）\n- 日志内容显示两个 GPU worker 刚完成模型加载（checkpoint shards 3/3），推理尚未开始写入结果\n\n**结论：** 实验刚启动不久，模型加载完成，正在推理阶段。结果文件可能在所有条件评估完毕后一次性写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-counterfactual-find-pid.md"
+}

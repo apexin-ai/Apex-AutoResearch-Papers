@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca5d1b7847fbd432cc8a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh d027 siglip only rsa",
+  "task_key": "worker_ssh_d027-siglip-only-rsa_20260515T221202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d027-siglip-only-rsa_20260515T221202_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "d4ea93a3b9db47d245582a29d825a1eb6db038aa96f8ac5856c3b5f19589833f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### SigLIP+Projector RSA = **0.6153** [0.5257, 0.6954]\n\n| 模型 | RSA |\n|------|-----|\n| **SigLIP+Projector (no LLM)** | **0.6153** |\n| Trained VLA (full, with inst) | 0.4876 |\n| Untrained VLA (with inst) | 0.4846 |\n| Untrained VLA (no inst) | 0.4802 |\n| DINO standalone | 0.388 |\n\n**关键发现**：SigLIP+projector 的 RSA 不仅 ≥ 0.48（LLM full model），反而显著更高（0.615 vs 0.488）。这说明：\n\n1. Vision encoder + projector 本身已经编码了强 action-relevant 结构\n2. LLM 不仅没有增强 action alignment，反而在某种程度上**降低**了它（从 0.615 降到 0.488）\n3. Trained 和 untrained LLM 的 RSA 几乎一致（0.488 vs 0.485），说明 LLM 训练对 action alignment 几乎无贡献——action-relevant 信息完全来自 vision encoder\n\nGate: **PASS** — vision encoder+projector 是 action-relevant 表征的来源，LLM 是 near-passthrough（甚至有信息损失）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d027-siglip-only-rsa.md"
+}

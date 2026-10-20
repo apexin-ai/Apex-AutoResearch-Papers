@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "246dcbd2e61f3f8e732d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analyze lg extract untrained",
+  "task_key": "worker_analyze_lg_extract_untrained_20260515T174225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_lg_extract_untrained_20260515T174225_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "59692f92a41a18c815dc733f9396b8e0636c46497d5102f8330f1dda52d1fdad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。10/10 tasks 成功保存，无 ERROR，结构完全符合预期。\n\n```json\n{\n  \"tasks_completed\": \"10/10\",\n  \"extraction_time_min\": 53.1,\n  \"feature_dim\": 4096,\n  \"num_layers\": 33,\n  \"dtype\": \"float16\",\n  \"demos_per_task\": 50,\n  \"exit_code\": 0,\n  \"feature_keys\": [\"image_mean\", \"last_preaction\"],\n  \"note\": \"untrained OpenVLA-7B on LIBERO-Goal, retry #1 (fixed local_files_only). Per-demo shape=(T, 33, 4096). Total output ~25GB.\"\n}\n```\n\n与 `lg_extract_trained` 完全对齐：相同的 10 个 task、50 demos/task、4096 dim、33 layers、float16，耗时几乎一致（53.1 vs 53.4 min）。日志开头有 HuggingFace 连接失败的 traceback（retry #0 的残留），但最终运行成功，无实际 ERROR。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "tasks_completed": "10/10",
+              "extraction_time_min": 53.1,
+              "feature_dim": 4096,
+              "num_layers": 33,
+              "dtype": "float16",
+              "demos_per_task": 50,
+              "exit_code": 0,
+              "feature_keys": [
+                "image_mean",
+                "last_preaction"
+              ],
+              "note": "untrained OpenVLA-7B on LIBERO-Goal, retry #1 (fixed local_files_only). Per-demo shape=(T, 33, 4096). Total output ~25GB."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-lg-extract-untrained.md"
+}

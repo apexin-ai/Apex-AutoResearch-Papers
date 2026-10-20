@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "897db267de81db9c13c1",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh rsa method audit",
+  "task_key": "worker_ssh_rsa-method-audit_20260516T023619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsa-method-audit_20260516T023619.log",
+    "occurrence": 1,
+    "bytes": 779033,
+    "sha256": "224daa08c1b4adbecb78cbaf141bdefbddf432384f3491640575769167111e11"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 119,
+      "tool_result": 119,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "897db267de81db9c13c1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "897db267de81db9c13c1-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-rsa-method-audit.md"
+}

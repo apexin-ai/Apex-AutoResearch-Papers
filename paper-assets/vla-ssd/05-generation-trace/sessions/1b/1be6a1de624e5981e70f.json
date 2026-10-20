@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1be6a1de624e5981e70f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code nlp finetuning control v1",
+  "task_key": "worker_code_nlp_finetuning_control_v1_20260522T052432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nlp_finetuning_control_v1_20260522T052432_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "a3ae0f2a200d70894a04c377967839c354fa275e09bbf3d8b48fcd29bb6297c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已部署完成。状态总结：\n\n**nlp_finetuning_control_v1** — RUNNING\n\n| 项 | 状态 |\n|---|---|\n| 脚本 | `/root/autodl-tmp/vla-ssd/scripts/nlp_control_r2_probing.py` ✓ 语法通过 |\n| 数据 | 10 tasks × 50 demos × 7-DoF actions ✓ |\n| 模型下载 | PID 612748，ModelScope CDN，~400KB/s×2 streams |\n| 实验进程 | PID 613202，自动等待下载完成后运行 |\n| GPU | cuda:1 |\n| 预计完成 | 下载 ~6h（瓶颈 shard1 9.29GB），probing ~15min |\n| 输出 | `/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe/` |\n\n下载是瓶颈（AutoDL 出站带宽限制，ModelScope CDN 也只有 ~400KB/s）。`wait_and_run.sh` 每 60s 轮询模型文件大小，到齐后自动在 cuda:1 上启动 R² probing。无需人工干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nlp-finetuning-control-v1.md"
+}

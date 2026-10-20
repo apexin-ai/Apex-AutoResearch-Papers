@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10e1ead6bff5666e39ef",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fig multi layer attention lineplot",
+  "task_key": "worker_code_fig_multi_layer_attention_lineplot_20260517T064750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_multi_layer_attention_lineplot_20260517T064750_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "eedadfa20c39d9a3f2d6f1a2626a80235396d4090ae03caf905ea3a6e7f1fa9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，保存在：\n\n- PDF: `artifacts/attention/fig_multi_layer_attention.pdf`\n- PNG: `artifacts/attention/fig_multi_layer_attention.png`\n\n两个 panel 均按要求绘制：(a) instruction-dominant heads 数量折线，(b) mean instruction attention fraction 折线。三条件用蓝实线/绿虚线/红点线区分，50% 参考线已标注。Untrained VLA 在所有层均为 0 heads、~8-12% attention，与 Trained VLA 和 Llama-2 Base 形成鲜明对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-multi-layer-attention-lineplot.md"
+}

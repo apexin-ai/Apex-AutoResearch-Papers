@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0ae15652db9225b4c6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v attention trained 10tasks",
+  "task_key": "worker_code_phi3v_attention_trained_10tasks_20260519T202827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_attention_trained_10tasks_20260519T202827_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "0023498656f74b14abbc23194a6335361dd860b9037c37c128f731cb65642362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n| Layer | Text-dominant heads | Mean text attn | Mean image attn |\n|-------|-------------------|----------------|-----------------|\n| L0 | 3/32 | 0.225 | 0.776 |\n| L1 | **32/32** | **0.735** | 0.265 |\n| L2 | **32/32** | **0.785** | 0.215 |\n| L3-L8 | 0-4/32 | 0.27-0.35 | 0.65-0.73 |\n| L9-L24 | 3-10/32 | 0.34-0.43 | 0.57-0.66 |\n| L25-L28 | 10-12/32 | 0.48-0.50 | 0.50-0.52 |\n| L29 | 17/32 | 0.524 | 0.476 |\n| L30 | 16/32 | 0.529 | 0.471 |\n| L31 | **18/32** | **0.652** | 0.348 |\n\n- 脚本：`/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py`\n- 结果：`/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json`\n- Registry: `phi3v_attention_trained_10tasks` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-attention-trained-10tasks.md"
+}

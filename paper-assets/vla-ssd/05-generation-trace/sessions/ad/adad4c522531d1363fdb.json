@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adad4c522531d1363fdb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v attention untrained",
+  "task_key": "worker_code_phi3v_attention_untrained_20260519T174812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_attention_untrained_20260519T174812_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "64a698e85c3457045cbdbf4eca88307ca21143bd1a4931a97b314796ed2a64be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n**Phi3V Untrained Attention Profile — 假设被否定**\n\n| | Untrained (base Phi-3-instruct) | Trained (TracVLA-Phi3V) |\n|---|---|---|\n| L1 dominant heads | **28/32** | 32/32 |\n| L1 mean_text_attn | **0.7745** | 0.7348 |\n\nVLA 训练仅增加 4 个 dominant heads (28→32)，mean_text_attn 反而略降。与 OpenVLA 的 0→24 形成鲜明对比。\n\n原因：Phi-3-mini-4k-**instruct** 已经过 instruction tuning，L1 的 instruction-dominant routing 大部分是从 instruction tuning 继承的，不是 VLA 训练学到的。OpenVLA 用的是 Llama-2 **base**（未经 instruction tuning），所以 untrained=0。\n\n脚本：`westd-19183:/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py`\n结果：`westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json`\nRegistry: `phi3v_attention_untrained` → DONE (negative)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-attention-untrained.md"
+}

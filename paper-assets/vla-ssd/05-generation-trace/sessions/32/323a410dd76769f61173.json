@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "323a410dd76769f61173",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action prediction probe impl",
+  "task_key": "worker_code_action-prediction-probe-impl_20260515T141150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action-prediction-probe-impl_20260515T141150_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "0e66dbe5bb4005cc50e7db69a597981b2e41f0ff9db7ffe9c6b219ad29af10ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。实现完成，结果如下：\n\n**Layer 4 (trained) 测试结果：**\n- Overall R² = 0.536, Per-task mean R² = 0.543\n- Gripper accuracy = 85.5%\n- Per-dim R²: dx=0.47, dy=0.61, dz=0.35, drx=0.37, dry=0.18, drz=0.63, gripper=0.55\n- Raw MSE = 0.090\n\n**代码修改（`/root/vla-ssd/scripts/train_probes.py`）：**\n1. `ActionMLPProbe` class — 7-dim 输出的 MLP\n2. `load_actions()` — 从 LIBERO HDF5 加载 action，自动处理 `demo_X`/`traj_X` key 映射\n3. `run_action_prediction()` — 完整 runner：shifted pairs (h_t→a_{t+1})、per-dim z-score standardization、训练+early stopping、per-dim R²/overall R²/per-task R²/gripper accuracy/raw MSE\n4. `parse_args` 加了 `action_prediction` choice 和 `--data_dir` 参数\n5. `save_results` 加了 action_prediction 的 CSV fields 和 summary best_layer 选择\n6. `main` runners dict 加了 `action_prediction`\n\n备份在 `train_probes.py.bak3`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-prediction-probe-impl.md"
+}

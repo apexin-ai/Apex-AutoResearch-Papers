@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20aa0a8c041854615039",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation analysis script",
+  "task_key": "worker_code_ablation_analysis_script_20260517T200820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_analysis_script_20260517T200820_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "f95c36064cbb39cf487ceab780995034d0d1bf34ab3b77bbafdb5a725ca344f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署到 `/root/vla-ssd/scripts/analyze_ablation_50demos.py` 并通过 dry-run 验证。\n\nmain 文件不存在时优雅退出，打印 \"waiting for main experiment\"。一旦 `action_probe_50demos.json` 就绪，执行：\n\n```bash\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/analyze_ablation_50demos.py\n```\n\n即可输出完整 4-condition 分析（summary table + bootstrap CI + specificity check + 两张 PDF figure + combined JSON）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-analysis-script.md"
+}

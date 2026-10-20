@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaae1a55b618492210ad",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code cross layer L13 ablation",
+  "task_key": "worker_code_cross_layer_L13_ablation_20260518T133712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_layer_L13_ablation_20260518T133712_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "5e001260d132b688397b5a5c530fcf9e1cca208297242a210aa72ef50d945852"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并运行中：\n\n- **脚本**: `/root/vla-ssd/scripts/action_trajectory_L13_ablation.py`\n- **tmux session**: `cross_layer_L13_ablation`\n- **Registry**: `cross_layer_L13_ablation` → RUNNING\n- **配置**: L13 全 32 heads ablation (zero attn output), 5 tasks × 10 demos × 50 timesteps = 5000 forward passes\n- **模型**: openvla-7b (base), 与 L1/L8 ablation 保持跨层可比性\n- **速率**: ~6.6 pass/s, 预计 ETA ~12 分钟\n- **日志**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.log`\n- **结果**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_L13_ablation.json`\n\n注意：任务说用 finetuned 模型，但 finetuned 模型的 norm_stats 只有 `libero_goal` key（无 `bridge_orig`），会导致 `get_action_stats` 报错。为与 L1/L8 跨层对比一致，沿用了 base model + `bridge_orig`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-layer-l13-ablation.md"
+}

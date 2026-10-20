@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27543090db9900cb0950",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "urgent gpu recovery and next batch",
+  "task_key": "worker_urgent_gpu_recovery_and_next_batch_20260521T155303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_gpu_recovery_and_next_batch_20260521T155303_result.json",
+    "occurrence": 1,
+    "bytes": 2000,
+    "sha256": "04814db1693fb0f36606091b63d548aa4275af47c32d643b92c8a94f98b6f4c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. GPU 状态 — 两卡均被占用\n\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| cuda:0 | 0% (CPU-bound Phase 2) | 15.2 / 97.9 GB | `openvla_long_pipeline_v1` |\n| cuda:1 | 0% (CPU-bound Phase 2) | 8.6 / 97.9 GB | `tracvla_spatial_untrained_v1` |\n\n两个实验都在运行，处于 Phase 2（Ridge probing），此阶段 CPU 密集，GPU 利用率显示 0% 是正常的。\n\n### 2. 上一轮实验进度\n\n**openvla_long_pipeline_v1 (cuda:0)** — 正在跑 trained 条件的 Phase 2\n- Phase 1 完成: 5000 samples / 524.5s\n- Phase 2 部分结果 (trained):\n  - L0: img_mean=0.8762, last_pre=0.6539\n  - L8: img_mean=0.8849, last_pre=0.8549\n  - L16: img_mean=0.8815, last_pre=0.8627\n  - L24: img_mean=0.8743, last_pre=0.8683\n- 还需完成剩余层 + untrained 全条件，预计 1.5-2h\n\n**tracvla_spatial_untrained_v1 (cuda:1)** — 正在跑 Phase 2\n- Phase 1 完成: 5000 samples / 310.4s\n- Phase 2 部分结果:\n  - L0: img_mean=0.7761, last_pre=0.5911\n  - L8: img_mean=0.7892, last_pre=0.6942\n- 还需完成剩余层 + Phase 3-5，预计 1-1.5h\n\n### 3. 新实验脚本就绪情况 — 两个都不存在\n\n| 脚本 | 状态 | 可用模板 | Checkpoint |\n|------|------|----------|------------|\n| `nora_object_full_pipeline.py` | ❌ 不存在 | `nora_spatial_full_pipeline.py` | ❌ 无 `nora-libero-object` checkpoint |\n| `tracvla_long_full_pipeline.py` | ❌ 不存在 | `tracvla_spatial_full_pipeline.py` + `libero_long_full_pipeline.py` | ✅ `tracevla-phi3v` 可用 |\n\n### 4. 结论\n\n**无需恢复实验——两个实验都在正常运行中。** GPU 并非空闲，只是处于 CPU 密集的 probing 阶段。\n\n下一轮实验需要 Agent 决策：\n1. **NORA Object**: 缺脚本 + 缺 checkpoint（checkpoints 目录无 `nora-libero-object`）\n2. **TraceVLA Long**: 缺脚本（可从模板创建），checkpoint 可能可用\n\n建议等当前两个实验完成后再提交新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-gpu-recovery-and-next-batch.md"
+}

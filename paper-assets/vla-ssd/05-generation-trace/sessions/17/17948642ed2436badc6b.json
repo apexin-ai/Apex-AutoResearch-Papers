@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17948642ed2436badc6b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "audit maintext numbers",
+  "task_key": "worker_audit_maintext_numbers_20260529T044822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_maintext_numbers_20260529T044822_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "7b137126867d6fc7d77ebcbfb13b48b67d428d1ec5cc1ec33cad11c1fe046cc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/audit_maintext.md`。\n\n**结果：78个数字审计，74个完全匹配，4个需注意项（均为LOW/INFO级）。**\n\n核心发现：\n- **Table 1 全部20个cell** 的 ΔR² 和 CI 均与 bootstrap_v3 JSON 逐位比对匹配（CI采用四舍五入到0.01再显示3dp的一致规则）\n- **跨文件一致性**：所有在 abstract/intro/experiments/conclusion 中重复出现的数字完全一致\n- **所有 d 值、R²、p值、排名统计** 均可追溯到 plot 脚本或服务器 JSON\n\n4个注意项：\n1. **L31 head count**：论文写18，plot脚本hardcode 19（差1个head）\n2. **OpenVLA L1 trained**：§4.2写24/32，cross-arch bar chart用23/32（不同测量来源）\n3. **NORA \"unchanged\"**：Spatial suite从14→12，措辞不完全精确\n4. **ρ=0.583, p=0.10**：需从Appendix数据验证（maintext数据中未定位到）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-maintext-numbers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fb31beedaf5ca22115e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research check qa probe complete",
+  "task_key": "worker_research_check_qa_probe_complete_20260516T230242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_qa_probe_complete_20260516T230242_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "6adb0460fb32b060b26c274bab7da37fa53fd6a8424914e58aa59649dd63a280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **tmux session** | `STILL_RUNNING` |\n| **Python 进程** | PID 744978, CPU 3689%, 已运行 2240 分钟 (~37 小时), 占用 ~2.1GB RAM |\n| **GPU** | 无 GPU 显存占用（纯 CPU sklearn 任务） |\n| **结果文件** | 1548 bytes, 最后修改 May 17 06:01 |\n| **已完成层** | 2/18 (L0 trained + L0 untrained) |\n| **当前状态** | 仍在跑，log 充满 sklearn ConvergenceWarning（lbfgs 1000 iter 未收敛） |\n\n**结果数据** (目前只有 L0):\n\n```\n=== PROGRESS 4-CLASS ===\ndino_cls:   acc=0.9545, f1=0.9544\nprojector:  acc=0.9474, f1=0.9476\ntrained L0: acc=0.9474, f1=0.9476\nuntrained L0: acc=0.9474, f1=0.9476\n\n=== SUBTASK BINARY ===\ndino_cls:   acc=0.9836, f1=0.9836\nprojector:  acc=0.9829, f1=0.9829\ntrained L0: acc=0.9829, f1=0.9829\nuntrained L0: acc=0.9829, f1=0.9829\n```\n\n**问题**: 进程跑了 37 小时但只完成了 L0。大量 ConvergenceWarning 表明后续层的 LogisticRegression 在 1000 iter 内不收敛，导致每个 cross-validation fold 耗时极长。可能卡在 L1 或之后的某层上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-qa-probe-complete.md"
+}

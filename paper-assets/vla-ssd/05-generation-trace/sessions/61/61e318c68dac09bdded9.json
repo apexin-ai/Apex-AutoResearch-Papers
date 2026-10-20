@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61e318c68dac09bdded9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix type3 fonts",
+  "task_key": "worker_code_fix_type3_fonts_20260526T215833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_type3_fonts_20260526T215833_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "8a33ef59dab195809de17b74bb771791d335c232549be950d509611be8e7b83e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**21 个 Type 3 PDF 全部修复，当前 figures/ 目录下零 Type 3 字体。**\n\n| 方法 | 数量 | 效果 |\n|------|------|------|\n| **REGEN**（脚本重跑 + `pdf.fonttype=42`） | 14 | TrueType 嵌入，多数文件比原文件更小 |\n| **GS**（ghostscript 轮廓转换） | 7 | 字体转为矢量路径，视觉无变化 |\n\n论文中使用的 11 个 Type 3 文件全部修复。其中 9 个用 REGEN 方法（零膨胀），2 个用 GS 方法（`fig5.pdf` 1.83x, `fig6.pdf` 2.39x，绝对大小 <79KB）。\n\n原始文件备份在 `/tmp/type3_backup/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-type3-fonts.md"
+}

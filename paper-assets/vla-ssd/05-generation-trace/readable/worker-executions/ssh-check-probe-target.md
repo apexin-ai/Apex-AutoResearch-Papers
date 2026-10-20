@@ -1,0 +1,3238 @@
+# ssh check probe target
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/workers/worker_ssh_check-probe-target_20260516T021626.log`
+- **Structured JSON:** [`abf34ac1dce737bd6ff0.json`](../../sessions/ab/abf34ac1dce737bd6ff0.json)
+
+## Before a recorded user message
+
+68 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "df3f9b57-98e0-43ca-8fb4-b3ea3d516613",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778904000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "69e5a538-e1d4-44ec-a47f-e2c4bfb56d1a",
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来查找并对比原始 probe 和统一 probe 的 target 对齐方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "3b8f1abf-0e69-4016-aa1e-ced516e16560",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JAAtmdifuLFRc4mJUNTKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11969,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11969
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TwtMRQLyFZDUrtDjora12a`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "eb7b7c87-394b-4c3c-8011-b0bbdd3b364f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JAAtmdifuLFRc4mJUNTKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11969,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11969
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:16:37.591Z_
+
+<details><summary>↩ Tool result · `toolu_01TwtMRQLyFZDUrtDjora12a`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "71349dfc-c3b8-492e-87bb-8ba339d6045b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding all probe-related scripts on the server, then read the relevant sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "0beb9e8a-d351-4b05-8326-0b07f20ccdda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1u6k5JbkoDydjLHpHwLbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 23810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AePYuy6d6meURhsvscYP8X`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts /root/autodl-tmp/vla-ssd/scripts -name \"*probe*\" -o -name \"*action*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "bfcfa5fe-db8d-45b2-b84c-76d0a14280ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1u6k5JbkoDydjLHpHwLbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 23810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T02:16:41.712Z_
+
+<details><summary>↩ Tool result · `toolu_01AePYuy6d6meURhsvscYP8X`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "5bda6037-7f32-41e5-aee4-8b15329f0452",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q8ZrnUSnvWXmc2YEoz6UbL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/scripts /root/autodl-tmp/vla-ssd/scripts -name \"*probe*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "dbf18047-ac10-4f8c-ac37-d9b3e02f7f97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016QoQ2MxVjzwMyn8XqvVEpt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 259,
+      "cache_read_input_tokens": 24266,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 259
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T02:16:46.032Z_
+
+<details><summary>↩ Tool result · `toolu_01Q8ZrnUSnvWXmc2YEoz6UbL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/__pycache__/train_probes.cpython-312.pyc\\n/root/vla-ssd/scripts/train_probes.py.bak2\\n/root/vla-ssd/scripts/train_probes.py.bak3\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n\", \"stderr\": \"find: '/root/autodl-tmp/vla-ssd/scripts': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "a4c349a8-93b6-4a98-8222-a6682a3fc447",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/train_probes.py\\\\n/root/vla-ssd/scripts/__pycache__/train_probes.cpython-312.pyc\\\\n/root/vla-ssd/scripts/train_probes.py.bak2\\\\n/root/vla-ssd/scripts/train_probes.py.bak3\\\\n/root/vla-ssd/scripts/analyze_action_probes.py\\\\n/root/vla-ssd/scripts/plot_action_probes.py\\\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\\\n/root/vla-ssd/scripts/action_probe_projector.py\\\\n/root/vla-ssd/scripts/dino_action_probe.py\\\\n/root/vla-ssd/scripts/action_probe_v2.py\\\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\\\n/root/vla-ssd/scripts/unified_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\\\n\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/vla-ssd/scripts': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/train_probes.py\\n/root/vla-ssd/scripts/__pycache__/train_probes.cpython-312.pyc\\n/root/vla-ssd/scripts/train_probes.py.bak2\\n/root/vla-ssd/scripts/train_probes.py.bak3\\n/root/vla-ssd/scripts/analyze_action_probes.py\\n/root/vla-ssd/scripts/plot_action_probes.py\\n/root/vla-ssd/scripts/analyze_goal_probes.py\\n/root/vla-ssd/scripts/pca_linear_probe_pertimestep.py\\n/root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\n/root/vla-ssd/scripts/action_probe_projector.py\\n/root/vla-ssd/scripts/dino_action_probe.py\\n/root/vla-ssd/scripts/action_probe_v2.py\\n/root/vla-ssd/scripts/untrained_last_preaction_probe.py\\n/root/vla-ssd/scripts/unified_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe.py\\n/root/vla-ssd/scripts/run_clip_action_probe_final.py\\n\", \"stderr\": \"find: '/root/autodl-tmp/vla-ssd/scripts': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found several probe scripts. The key ones to check:
+1. `action_probe_projector.py` - likely the p0_functional_action_probe
+2. `action_probe_v2.py` - likely the p0_functional_probe_v2
+3. `unified_action_probe.py` - the unified probe
+
+Let me read the relevant parts of each.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "6e1f6add-b663-4b8d-afaf-54141d44e0b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfHQEdFPo84tTkQWwxaDZ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 24525,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+找到了多个 probe 脚本。重点看 `action_probe_projector.py`、`action_probe_v2.py` 和 `unified_action_probe.py` 的 data loading 部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "548d3d59-db77-4092-b875-cab178a73bd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfHQEdFPo84tTkQWwxaDZ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 24525,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N86xvsYAn5N6tmMhrUpFhe`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"feat\\|act\\|x_train\\|y_train\\|x=\\|y=\\|target\\|T-1\\|\\[1:\\|\\[:-1\\]\" /root/vla-ssd/scripts/action_probe_projector.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "e6dd2c50-0523-4f42-bc0b-8acb813abc7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfHQEdFPo84tTkQWwxaDZ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 24525,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 581
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T02:16:51.992Z_
+
+<details><summary>↩ Tool result · `toolu_01N86xvsYAn5N6tmMhrUpFhe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "95377bc7-479b-4e58-ae4d-e4ca3ff43c19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KSKQ3o7NmWpwGU3cQrNiZC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_probe_projector.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "6acc8099-3b28-4acb-b808-1e2247ca9b6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMt63XN5ttEUneLtiRsZUH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 25106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:16:55.239Z_
+
+<details><summary>↩ Tool result · `toolu_01KSKQ3o7NmWpwGU3cQrNiZC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Action prediction probe on SigLIP+projector, VLA image_mean, and VLA last_preaction features.\\n\\nReplicates exact same pipeline from train_probes.py:\\n- ActionMLPProbe: Linear(in, 256) -> ReLU -> Linear(256, 7)\\n- 80/20 split per task (first 80% train, rest val)\\n- Adam lr=1e-3, batch_size=256, epochs=50, patience=5\\n- Normalize targets: y_mean, y_std from train\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import r2_score\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nSIGLIP_DIR = \\\"/root/autodl-tmp/vla-ssd/features/siglip_only_libero_goal/\\\"\\nTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/trained_libero_goal/\\\"\\nUNTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\"\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=256):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(features_dir, feat_key, layer=None):\\n    \\\"\\\"\\\"Load features and actions for all tasks.\\n\\n    Returns dict: task -> list of (feat_array, action_array) per demo.\\n    feat_key: 'last_preaction' or 'image_mean'\\n    layer: int or None (None for 2D features like projector)\\n    \\\"\\\"\\\"\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            print(f\\\"  WARNING: no action file for {task}, skipping\\\")\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            demo_keys = sorted(\\n                [k for k in ff.keys() if k.startswith(\\\"demo_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1])\\n            )\\n            for dk in demo_keys:\\n                ds = ff[dk][feat_key]\\n                if layer is not None and len(ds.shape) == 3:\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n                else:\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\n                demo_idx = int(dk.split(\\\"_\\\")[-1])\\n                act = np.asarray(fa[f\\\"data/{dk}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    \\\"\\\"\\\"80/20 split per task. Returns X_tr, y_tr, X_val, y_val, val_task_ids.\\\"\\\"\\\"\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[:T-1])\\n            y = torch.from_numpy(act[1:T])\\n\\n            if i < n_train:\\n                X_tr_list.append(x)\\n                y_tr_list.append(y)\\n            else:\\n                X_val_list.append(x)\\n                y_val_list.append(y)\\n                val_tasks.extend([task] * (T - 1))\\n\\n    X_tr = torch.cat(X_tr_list)\\n    y_tr = torch.cat(y_tr_list)\\n    X_val = torch.cat(X_val_list)\\n    y_val = torch.cat(y_val_list)\\n    return X_tr, y_tr, X_val, y_val, val_tasks\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, tag=\\\"\\\"):\\n    \\\"\\\"\\\"Train ActionMLPProbe and evaluate. Returns metrics dict.\\\"\\\"\\\"\\n    torch.manual_seed(SEED)\\n    np.random.seed(SEED)\\n\\n    in_dim = X_tr.shape[1]\\n\\n    # Normalize targets\\n    y_mean = y_tr_raw.mean(dim=0)\\n    y_s\\n\\n... [截断: 输出过长，省略 4820 字符] ...\\n\\nain / {len(X_val)} val\\\")\\n        results[f\\\"image_mean_trained_L{layer}\\\"] = train_and_eval(\\n            X_tr, y_tr, X_val, y_val, val_tasks, f\\\"im_trained_L{layer}\\\")\\n        print(f\\\"  Time: {time.time()-t0:.1f}s\\\")\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    # ==========================================\\n    # 3. VLA Trained last_preaction L19 (LLM baseline on same dataset)\\n    # ==========================================\\n    print(f\\\"\\\\n=== VLA Trained last_preaction L19 (LLM baseline) ===\\\")\\n    t0 = time.time()\\n    task_data = load_features_and_actions(TRAINED_DIR, \\\"last_preaction\\\", layer=19)\\n    X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n    print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n    results[\\\"llm_trained_L19\\\"] = train_and_eval(\\n        X_tr, y_tr, X_val, y_val, val_tasks, \\\"llm_L19\\\")\\n    print(f\\\"  Time: {time.time()-t0:.1f}s\\\")\\n    del task_data, X_tr, y_tr, X_val, y_val\\n\\n    # ==========================================\\n    # 4. VLA Untrained image_mean — all 33 layers\\n    # ==========================================\\n    print(f\\\"\\\\n=== VLA Untrained image_mean (scanning all layers) ===\\\")\\n    best_untrained_layer = None\\n    best_untrained_r2 = -999\\n    untrained_by_layer = {}\\n\\n    for layer in range(33):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(UNTRAINED_DIR, \\\"image_mean\\\", layer=layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n        m = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, f\\\"untrained_im_L{layer}\\\")\\n        untrained_by_layer[layer] = m\\n        if m[\\\"mean_R2\\\"] > best_untrained_r2:\\n            best_untrained_r2 = m[\\\"mean_R2\\\"]\\n            best_untrained_layer = layer\\n        del task_data, X_tr, y_tr, X_val, y_val\\n        print(f\\\"    L{layer} time: {time.time()-t0:.1f}s\\\")\\n\\n    print(f\\\"\\\\n  Best untrained image_mean layer: L{best_untrained_layer} \\\"\\n          f\\\"mean_R²={best_untrained_r2:.4f}\\\")\\n    results[\\\"image_mean_untrained_best\\\"] = untrained_by_layer[best_untrained_layer]\\n    results[\\\"image_mean_untrained_best\\\"][\\\"best_layer\\\"] = best_untrained_layer\\n    results[\\\"image_mean_untrained_all_layers\\\"] = {\\n        str(l): {\\\"mean_R2\\\": m[\\\"mean_R2\\\"], \\\"overall_R2\\\": m[\\\"overall_R2\\\"]}\\n        for l, m in untrained_by_layer.items()\\n    }\\n\\n    # ==========================================\\n    # 5. Bootstrap CI: projector vs LLM L19\\n    # ==========================================\\n    print(\\\"\\\\n=== Bootstrap CI: projector vs LLM L19 ===\\\")\\n    proj_r2 = results[\\\"projector\\\"][\\\"per_task_R2\\\"]\\n    llm_r2 = results[\\\"llm_trained_L19\\\"][\\\"per_task_R2\\\"]\\n    ci = bootstrap_ci(proj_r2, llm_r2, n_boot=10000)\\n    results[\\\"bootstrap_ci_proj_vs_llm\\\"] = ci\\n    print(f\\\"  Delta: {ci['delta']:.4f}, 95% CI: [{ci['ci_95'][0]:.4f}, {ci['ci_95'][1]:.4f}], \\\"\\n          f\\\"p={ci['p_value']:.4f}\\\")\\n\\n    # ==========================================\\n    # 6. Gate judgment\\n    # ==========================================\\n    proj_mean_r2 = results[\\\"projector\\\"][\\\"mean_R2\\\"]\\n    if proj_mean_r2 >= 0.683:\\n        gate = \\\"PASS\\\"\\n    elif proj_mean_r2 > 0.676:\\n        gate = \\\"PARTIAL\\\"\\n    else:\\n        gate = \\\"FAIL\\\"\\n    results[\\\"gate_judgment\\\"] = gate\\n    print(f\\\"\\\\n=== GATE: {gate} (projector mean_R²={proj_mean_r2:.4f}) ===\\\")\\n\\n    # ==========================================\\n    # Summary table\\n    # ==========================================\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for k in [\\\"projector\\\", \\\"image_mean_trained_L19\\\", \\\"image_mean_trained_L23\\\",\\n              \\\"llm_trained_L19\\\", \\\"image_mean_untrained_best\\\"]:\\n        m = results[k]\\n        extra = f\\\" (best_layer=L{m['best_layer']})\\\" if \\\"best_layer\\\" in m else \\\"\\\"\\n        print(f\\\"  {k:35s} mean_R²={m['mean_R2']:.4f}  overall_R²={m['overall_R2']:.4f}{extra}\\\")\\n\\n    # Save\\n    out_path = os.path.join(OUT_DIR, \\\"action_probe_projector.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "78cffa6f-f85d-4e4c-9c18-a320d77f53a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Action prediction probe on SigLIP+projector, VLA image_mean, and VLA last_preaction features.\\\\n\\\\nReplicates exact same pipeline from train_probes.py:\\\\n- ActionMLPProbe: Linear(in, 256) -> ReLU -> Linear(256, 7)\\\\n- 80/20 split per task (first 80% train, rest val)\\\\n- Adam lr=1e-3, batch_size=256, epochs=50, patience=5\\\\n- Normalize targets: y_mean, y_std from train\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, json, time, glob\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom sklearn.metrics import r2_score\\\\n\\\\nSEED = 42\\\\nBATCH_SIZE = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\"\\\\nSIGLIP_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/siglip_only_libero_goal/\\\\\\\"\\\\nTRAINED_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/trained_libero_goal/\\\\\\\"\\\\nUNTRAINED_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\\\\\"\\\\n\\\\n\\\\nclass ActionMLPProbe(nn.Module):\\\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=256):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(in_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, out_dim),\\\\n        )\\\\n    def forward(self, x):\\\\n        return self.net(x)\\\\n\\\\n\\\\ndef load_features_and_actions(features_dir, feat_key, layer=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features and actions for all tasks.\\\\n\\\\n    Returns dict: task -> list of (feat_array, action_array) per demo.\\\\n    feat_key: 'last_preaction' or 'image_mean'\\\\n    layer: int or None (None for 2D features like projector)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_data = {}\\\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        action_path = os.path.join(DATA_DIR, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        if not os.path.exists(action_path):\\\\n            print(f\\\\\\\"  WARNING: no action file for {task}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        demos = []\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as ff, h5py.File(action_path, \\\\\\\"r\\\\\\\") as fa:\\\\n            demo_keys = sorted(\\\\n                [k for k in ff.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1])\\\\n            )\\\\n            for dk in demo_keys:\\\\n                ds = ff[dk][feat_key]\\\\n                if layer is not None and len(ds.shape) == 3:\\\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\\\n                else:\\\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\\\n                demo_idx = int(dk.split(\\\\\\\"_\\\\\\\")[-1])\\\\n                act = np.asarray(fa[f\\\\\\\"data/{dk}/actions\\\\\\\"], dtype=np.float32)\\\\n                demos.append((feat, act))\\\\n        task_data[task] = demos\\\\n    return task_data\\\\n\\\\n\\\\ndef build_train_val(task_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"80/20 split per task. Returns X_tr, y_tr, X_val, y_val, val_task_ids.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    X_tr_list, y_tr_list = [], []\\\\n    X_val_list, y_val_list, val_tasks = [], [], []\\\\n\\\\n    for task in sorted(task_data.keys()):\\\\n        demos = task_data[task]\\\\n        n_train = int(len(demos) * 0.8)\\\\n\\\\n        for i, (feat, act) in enumerate(demos):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            x = torch.from_numpy(feat[:T-1])\\\\n            y = torch.from_numpy(act[1:T])\\\\n\\\\n            if i < n_train:\\\\n                X_tr_list.append(x)\\\\n                y_tr_list.append(y)\\\\n            else:\\\\n                X_val_list.append(x)\\\\n                y_val_list.append(y)\\\\n                val_tasks.extend([task] * (T - 1))\\\\n\\\\n    X_tr = torch.cat(X_tr_list)\\\\n    y_tr = torch.cat(y_tr_list)\\\\n    X_val = torch.cat(X_val_list)\\\\n    y_val = torch.cat(y_val_list)\\\\n    return X_tr, y_tr, X_val, y_val, val_tasks\\\\n\\\\n\\\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, tag=\\\\\\\"\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Train ActionMLPProbe and evaluate. Returns metrics dict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    torch.manual_seed(SEED)\\\\n    np.random.seed(SEED)\\\\n\\\\n    in_dim = X_tr.shape[1]\\\\n\\\\n    # Normalize targets\\\\n    y_mean = y_tr_raw.mean(dim=0)\\\\n    y_s\\\\n\\\\n... [截断: 输出过长，省略 4820 字符] ...\\\\n\\\\nain / {len(X_val)} val\\\\\\\")\\\\n        results[f\\\\\\\"image_mean_trained_L{layer}\\\\\\\"] = train_and_eval(\\\\n            X_tr, y_tr, X_val, y_val, val_tasks, f\\\\\\\"im_trained_L{layer}\\\\\\\")\\\\n        print(f\\\\\\\"  Time: {time.time()-t0:.1f}s\\\\\\\")\\\\n        del task_data, X_tr, y_tr, X_val, y_val\\\\n\\\\n    # ==========================================\\\\n    # 3. VLA Trained last_preaction L19 (LLM baseline on same dataset)\\\\n    # ==========================================\\\\n    print(f\\\\\\\"\\\\\\\\n=== VLA Trained last_preaction L19 (LLM baseline) ===\\\\\\\")\\\\n    t0 = time.time()\\\\n    task_data = load_features_and_actions(TRAINED_DIR, \\\\\\\"last_preaction\\\\\\\", layer=19)\\\\n    X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\\\n    print(f\\\\\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\\\\\")\\\\n    results[\\\\\\\"llm_trained_L19\\\\\\\"] = train_and_eval(\\\\n        X_tr, y_tr, X_val, y_val, val_tasks, \\\\\\\"llm_L19\\\\\\\")\\\\n    print(f\\\\\\\"  Time: {time.time()-t0:.1f}s\\\\\\\")\\\\n    del task_data, X_tr, y_tr, X_val, y_val\\\\n\\\\n    # ==========================================\\\\n    # 4. VLA Untrained image_mean — all 33 layers\\\\n    # ==========================================\\\\n    print(f\\\\\\\"\\\\\\\\n=== VLA Untrained image_mean (scanning all layers) ===\\\\\\\")\\\\n    best_untrained_layer = None\\\\n    best_untrained_r2 = -999\\\\n    untrained_by_layer = {}\\\\n\\\\n    for layer in range(33):\\\\n        t0 = time.time()\\\\n        task_data = load_features_and_actions(UNTRAINED_DIR, \\\\\\\"image_mean\\\\\\\", layer=layer)\\\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\\\n        m = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, f\\\\\\\"untrained_im_L{layer}\\\\\\\")\\\\n        untrained_by_layer[layer] = m\\\\n        if m[\\\\\\\"mean_R2\\\\\\\"] > best_untrained_r2:\\\\n            best_untrained_r2 = m[\\\\\\\"mean_R2\\\\\\\"]\\\\n            best_untrained_layer = layer\\\\n        del task_data, X_tr, y_tr, X_val, y_val\\\\n        print(f\\\\\\\"    L{layer} time: {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  Best untrained image_mean layer: L{best_untrained_layer} \\\\\\\"\\\\n          f\\\\\\\"mean_R²={best_untrained_r2:.4f}\\\\\\\")\\\\n    results[\\\\\\\"image_mean_untrained_best\\\\\\\"] = untrained_by_layer[best_untrained_layer]\\\\n    results[\\\\\\\"image_mean_untrained_best\\\\\\\"][\\\\\\\"best_layer\\\\\\\"] = best_untrained_layer\\\\n    results[\\\\\\\"image_mean_untrained_all_layers\\\\\\\"] = {\\\\n        str(l): {\\\\\\\"mean_R2\\\\\\\": m[\\\\\\\"mean_R2\\\\\\\"], \\\\\\\"overall_R2\\\\\\\": m[\\\\\\\"overall_R2\\\\\\\"]}\\\\n        for l, m in untrained_by_layer.items()\\\\n    }\\\\n\\\\n    # ==========================================\\\\n    # 5. Bootstrap CI: projector vs LLM L19\\\\n    # ==========================================\\\\n    print(\\\\\\\"\\\\\\\\n=== Bootstrap CI: projector vs LLM L19 ===\\\\\\\")\\\\n    proj_r2 = results[\\\\\\\"projector\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n    llm_r2 = results[\\\\\\\"llm_trained_L19\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"]\\\\n    ci = bootstrap_ci(proj_r2, llm_r2, n_boot=10000)\\\\n    results[\\\\\\\"bootstrap_ci_proj_vs_llm\\\\\\\"] = ci\\\\n    print(f\\\\\\\"  Delta: {ci['delta']:.4f}, 95% CI: [{ci['ci_95'][0]:.4f}, {ci['ci_95'][1]:.4f}], \\\\\\\"\\\\n          f\\\\\\\"p={ci['p_value']:.4f}\\\\\\\")\\\\n\\\\n    # ==========================================\\\\n    # 6. Gate judgment\\\\n    # ==========================================\\\\n    proj_mean_r2 = results[\\\\\\\"projector\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]\\\\n    if proj_mean_r2 >= 0.683:\\\\n        gate = \\\\\\\"PASS\\\\\\\"\\\\n    elif proj_mean_r2 > 0.676:\\\\n        gate = \\\\\\\"PARTIAL\\\\\\\"\\\\n    else:\\\\n        gate = \\\\\\\"FAIL\\\\\\\"\\\\n    results[\\\\\\\"gate_judgment\\\\\\\"] = gate\\\\n    print(f\\\\\\\"\\\\\\\\n=== GATE: {gate} (projector mean_R²={proj_mean_r2:.4f}) ===\\\\\\\")\\\\n\\\\n    # ==========================================\\\\n    # Summary table\\\\n    # ==========================================\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    for k in [\\\\\\\"projector\\\\\\\", \\\\\\\"image_mean_trained_L19\\\\\\\", \\\\\\\"image_mean_trained_L23\\\\\\\",\\\\n              \\\\\\\"llm_trained_L19\\\\\\\", \\\\\\\"image_mean_untrained_best\\\\\\\"]:\\\\n        m = results[k]\\\\n        extra = f\\\\\\\" (best_layer=L{m['best_layer']})\\\\\\\" if \\\\\\\"best_layer\\\\\\\" in m else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {k:35s} mean_R²={m['mean_R2']:.4f}  overall_R²={m['overall_R2']:.4f}{extra}\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_path = os.path.join(OUT_DIR, \\\\\\\"action_probe_projector.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Action prediction probe on SigLIP+projector, VLA image_mean, and VLA last_preaction features.\\n\\nReplicates exact same pipeline from train_probes.py:\\n- ActionMLPProbe: Linear(in, 256) -> ReLU -> Linear(256, 7)\\n- 80/20 split per task (first 80% train, rest val)\\n- Adam lr=1e-3, batch_size=256, epochs=50, patience=5\\n- Normalize targets: y_mean, y_std from train\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import r2_score\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nSIGLIP_DIR = \\\"/root/autodl-tmp/vla-ssd/features/siglip_only_libero_goal/\\\"\\nTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/trained_libero_goal/\\\"\\nUNTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\"\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=256):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(features_dir, feat_key, layer=None):\\n    \\\"\\\"\\\"Load features and actions for all tasks.\\n\\n    Returns dict: task -> list of (feat_array, action_array) per demo.\\n    feat_key: 'last_preaction' or 'image_mean'\\n    layer: int or None (None for 2D features like projector)\\n    \\\"\\\"\\\"\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(features_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            print(f\\\"  WARNING: no action file for {task}, skipping\\\")\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            demo_keys = sorted(\\n                [k for k in ff.keys() if k.startswith(\\\"demo_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1])\\n            )\\n            for dk in demo_keys:\\n                ds = ff[dk][feat_key]\\n                if layer is not None and len(ds.shape) == 3:\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n                else:\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\n                demo_idx = int(dk.split(\\\"_\\\")[-1])\\n                act = np.asarray(fa[f\\\"data/{dk}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    \\\"\\\"\\\"80/20 split per task. Returns X_tr, y_tr, X_val, y_val, val_task_ids.\\\"\\\"\\\"\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[:T-1])\\n            y = torch.from_numpy(act[1:T])\\n\\n            if i < n_train:\\n                X_tr_list.append(x)\\n                y_tr_list.append(y)\\n            else:\\n                X_val_list.append(x)\\n                y_val_list.append(y)\\n                val_tasks.extend([task] * (T - 1))\\n\\n    X_tr = torch.cat(X_tr_list)\\n    y_tr = torch.cat(y_tr_list)\\n    X_val = torch.cat(X_val_list)\\n    y_val = torch.cat(y_val_list)\\n    return X_tr, y_tr, X_val, y_val, val_tasks\\n\\n\\ndef train_and_eval(X_tr, y_tr_raw, X_val, y_val_raw, val_tasks, tag=\\\"\\\"):\\n    \\\"\\\"\\\"Train ActionMLPProbe and evaluate. Returns metrics dict.\\\"\\\"\\\"\\n    torch.manual_seed(SEED)\\n    np.random.seed(SEED)\\n\\n    in_dim = X_tr.shape[1]\\n\\n    # Normalize targets\\n    y_mean = y_tr_raw.mean(dim=0)\\n    y_s\\n\\n... [截断: 输出过长，省略 4820 字符] ...\\n\\nain / {len(X_val)} val\\\")\\n        results[f\\\"image_mean_trained_L{layer}\\\"] = train_and_eval(\\n            X_tr, y_tr, X_val, y_val, val_tasks, f\\\"im_trained_L{layer}\\\")\\n        print(f\\\"  Time: {time.time()-t0:.1f}s\\\")\\n        del task_data, X_tr, y_tr, X_val, y_val\\n\\n    # ==========================================\\n    # 3. VLA Trained last_preaction L19 (LLM baseline on same dataset)\\n    # ==========================================\\n    print(f\\\"\\\\n=== VLA Trained last_preaction L19 (LLM baseline) ===\\\")\\n    t0 = time.time()\\n    task_data = load_features_and_actions(TRAINED_DIR, \\\"last_preaction\\\", layer=19)\\n    X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n    print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val\\\")\\n    results[\\\"llm_trained_L19\\\"] = train_and_eval(\\n        X_tr, y_tr, X_val, y_val, val_tasks, \\\"llm_L19\\\")\\n    print(f\\\"  Time: {time.time()-t0:.1f}s\\\")\\n    del task_data, X_tr, y_tr, X_val, y_val\\n\\n    # ==========================================\\n    # 4. VLA Untrained image_mean — all 33 layers\\n    # ==========================================\\n    print(f\\\"\\\\n=== VLA Untrained image_mean (scanning all layers) ===\\\")\\n    best_untrained_layer = None\\n    best_untrained_r2 = -999\\n    untrained_by_layer = {}\\n\\n    for layer in range(33):\\n        t0 = time.time()\\n        task_data = load_features_and_actions(UNTRAINED_DIR, \\\"image_mean\\\", layer=layer)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n        m = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, f\\\"untrained_im_L{layer}\\\")\\n        untrained_by_layer[layer] = m\\n        if m[\\\"mean_R2\\\"] > best_untrained_r2:\\n            best_untrained_r2 = m[\\\"mean_R2\\\"]\\n            best_untrained_layer = layer\\n        del task_data, X_tr, y_tr, X_val, y_val\\n        print(f\\\"    L{layer} time: {time.time()-t0:.1f}s\\\")\\n\\n    print(f\\\"\\\\n  Best untrained image_mean layer: L{best_untrained_layer} \\\"\\n          f\\\"mean_R²={best_untrained_r2:.4f}\\\")\\n    results[\\\"image_mean_untrained_best\\\"] = untrained_by_layer[best_untrained_layer]\\n    results[\\\"image_mean_untrained_best\\\"][\\\"best_layer\\\"] = best_untrained_layer\\n    results[\\\"image_mean_untrained_all_layers\\\"] = {\\n        str(l): {\\\"mean_R2\\\": m[\\\"mean_R2\\\"], \\\"overall_R2\\\": m[\\\"overall_R2\\\"]}\\n        for l, m in untrained_by_layer.items()\\n    }\\n\\n    # ==========================================\\n    # 5. Bootstrap CI: projector vs LLM L19\\n    # ==========================================\\n    print(\\\"\\\\n=== Bootstrap CI: projector vs LLM L19 ===\\\")\\n    proj_r2 = results[\\\"projector\\\"][\\\"per_task_R2\\\"]\\n    llm_r2 = results[\\\"llm_trained_L19\\\"][\\\"per_task_R2\\\"]\\n    ci = bootstrap_ci(proj_r2, llm_r2, n_boot=10000)\\n    results[\\\"bootstrap_ci_proj_vs_llm\\\"] = ci\\n    print(f\\\"  Delta: {ci['delta']:.4f}, 95% CI: [{ci['ci_95'][0]:.4f}, {ci['ci_95'][1]:.4f}], \\\"\\n          f\\\"p={ci['p_value']:.4f}\\\")\\n\\n    # ==========================================\\n    # 6. Gate judgment\\n    # ==========================================\\n    proj_mean_r2 = results[\\\"projector\\\"][\\\"mean_R2\\\"]\\n    if proj_mean_r2 >= 0.683:\\n        gate = \\\"PASS\\\"\\n    elif proj_mean_r2 > 0.676:\\n        gate = \\\"PARTIAL\\\"\\n    else:\\n        gate = \\\"FAIL\\\"\\n    results[\\\"gate_judgment\\\"] = gate\\n    print(f\\\"\\\\n=== GATE: {gate} (projector mean_R²={proj_mean_r2:.4f}) ===\\\")\\n\\n    # ==========================================\\n    # Summary table\\n    # ==========================================\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for k in [\\\"projector\\\", \\\"image_mean_trained_L19\\\", \\\"image_mean_trained_L23\\\",\\n              \\\"llm_trained_L19\\\", \\\"image_mean_untrained_best\\\"]:\\n        m = results[k]\\n        extra = f\\\" (best_layer=L{m['best_layer']})\\\" if \\\"best_layer\\\" in m else \\\"\\\"\\n        print(f\\\"  {k:35s} mean_R²={m['mean_R2']:.4f}  overall_R²={m['overall_R2']:.4f}{extra}\\\")\\n\\n    # Save\\n    out_path = os.path.join(OUT_DIR, \\\"action_probe_projector.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016ccUyfFwmcv8PwNDcqtZM6`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/action_probe_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "34a0ec31-b8a8-4732-8cdd-54fcbab31b89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMt63XN5ttEUneLtiRsZUH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 25106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FTTsvBsxCam73DYgpYtcF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/vla-ssd/scripts/unified_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "909d0522-a322-4f84-821a-2ba597ac94e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMt63XN5ttEUneLtiRsZUH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 25106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T02:16:56.115Z_
+
+<details><summary>↩ Tool result · `toolu_016ccUyfFwmcv8PwNDcqtZM6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Functional Probe V2: bootstrap CI + untrained L10/L11 diagnosis + assemble results.\\\"\\\"\\\"\\nimport json, os, glob\\nimport numpy as np\\nimport h5py\\nfrom pathlib import Path\\n\\nnp.random.seed(42)\\n\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\"\\nUNTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\"\\n\\n# ============================================================\\n# 1. Bootstrap CI: projector vs image_mean_trained_L19\\n# ============================================================\\nwith open(os.path.join(OUT_DIR, \\\"action_probe_projector.json\\\")) as f:\\n    v1 = json.load(f)\\n\\ntasks = list(v1[\\\"projector\\\"][\\\"per_task_R2\\\"].keys())\\nproj_r2 = np.array([v1[\\\"projector\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\nimg_l19_r2 = np.array([v1[\\\"image_mean_trained_L19\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\n\\nobserved_delta = proj_r2.mean() - img_l19_r2.mean()\\n\\nn_boot = 10000\\nboot_deltas = np.empty(n_boot)\\nn_tasks = len(tasks)\\nfor i in range(n_boot):\\n    idx = np.random.randint(0, n_tasks, n_tasks)\\n    boot_deltas[i] = proj_r2[idx].mean() - img_l19_r2[idx].mean()\\n\\nci_lower = np.percentile(boot_deltas, 2.5)\\nci_upper = np.percentile(boot_deltas, 97.5)\\np_value = (boot_deltas <= 0).sum() / n_boot\\n\\nbootstrap_proj_vs_img_l19 = {\\n    \\\"proj_per_task_R2\\\": {t: float(proj_r2[i]) for i, t in enumerate(tasks)},\\n    \\\"image_mean_L19_per_task_R2\\\": {t: float(img_l19_r2[i]) for i, t in enumerate(tasks)},\\n    \\\"proj_mean_R2\\\": float(proj_r2.mean()),\\n    \\\"image_mean_L19_mean_R2\\\": float(img_l19_r2.mean()),\\n    \\\"delta\\\": float(observed_delta),\\n    \\\"ci_95\\\": [float(ci_lower), float(ci_upper)],\\n    \\\"p_value\\\": float(p_value),\\n    \\\"gate\\\": \\\"PASS\\\" if ci_lower > 0 else \\\"FAIL\\\"\\n}\\n\\nprint(\\\"=== Bootstrap: projector vs image_mean_trained_L19 ===\\\")\\nprint(f\\\"  Proj mean R²:     {proj_r2.mean():.4f}\\\")\\nprint(f\\\"  ImgMean L19 R²:   {img_l19_r2.mean():.4f}\\\")\\nprint(f\\\"  Delta:            {observed_delta:.4f}\\\")\\nprint(f\\\"  95% CI:           [{ci_lower:.4f}, {ci_upper:.4f}]\\\")\\nprint(f\\\"  p-value:          {p_value:.4f}\\\")\\nprint(f\\\"  GATE:             {bootstrap_proj_vs_img_l19['gate']}\\\")\\n\\n# ============================================================\\n# 2. Untrained L10/L11 diagnosis\\n# ============================================================\\nprint(\\\"\\\\n=== Untrained L10/L11 Diagnosis ===\\\")\\nh5_files = sorted(glob.glob(os.path.join(UNTRAINED_DIR, \\\"*.h5\\\")))\\nfirst_h5 = h5_files[0]\\ntask_name = Path(first_h5).stem\\nprint(f\\\"Using: {task_name}\\\")\\n\\nlayer_stats = {}\\nwith h5py.File(first_h5, \\\"r\\\") as f:\\n    demo_keys = sorted([k for k in f.keys() if k.startswith(\\\"demo_\\\")])\\n    dk = demo_keys[0]\\n    ds = f[dk][\\\"image_mean\\\"]\\n    print(f\\\"  image_mean shape: {ds.shape}\\\")\\n    \\n    for layer in range(ds.shape[1] if len(ds.shape) == 3 else 1):\\n        if len(ds.shape) == 3:\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n        else:\\n            feat = np.asarray(ds[:], dtype=np.float32)\\n        \\n        stats = {\\n            \\\"shape\\\": list(feat.shape),\\n            \\\"mean\\\": float(np.mean(feat)),\\n            \\\"std\\\": float(np.std(feat)),\\n            \\\"min\\\": float(np.min(feat)),\\n            \\\"max\\\": float(np.max(feat)),\\n            \\\"has_nan\\\": bool(np.any(np.isnan(feat))),\\n            \\\"has_inf\\\": bool(np.any(np.isinf(feat))),\\n            \\\"pct_zero\\\": float((feat == 0).sum() / feat.size * 100),\\n        }\\n        layer_stats[f\\\"layer_{layer}\\\"] = stats\\n        \\n        if layer in [9, 10, 11, 12]:\\n            print(f\\\"  L{layer}: mean={stats['mean']:.4f}, std={stats['std']:.4f}, \\\"\\n                  f\\\"min={stats['min']:.4f}, max={stats['max']:.4f}, \\\"\\n                  f\\\"nan={stats['has_nan']}, zero%={stats['pct_zero']:.1f}%\\\")\\n\\n# Check across multiple tasks for L10/L11\\ncross_task_l10_l11 = {}\\nfor h5_path in h5_files[:3]:\\n    t = Path(h5_path).stem\\n    with h5py.File(h5_path, \\\"r\\\") as f:\\n        dk = sorted([k for k in f.keys() if k.startswith(\\\"demo_\\\")])[0]\\n        ds = f[dk][\\\"image_mean\\\"]\\n        for layer in [9, 10, 11, 12]:\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n            key =\\n\\n... [截断: 输出过长，省略 1018 字符] ...\\n\\nres have extreme scale (L10 std={l10_std:.2f} vs L9 std={l9_std:.2f}), random init LLM produces pathological activations at these layers\\\"\\n    else:\\n        verdict = \\\"pathological_random_init\\\"\\n        detail = f\\\"Feature stats look normal (L10 std={l10_std:.4f}, L9 std={l9_std:.4f}), but probe R² collapses — random init LLM internal representations at L10/L11 are not linearly decodable for action prediction\\\"\\n\\nprint(f\\\"\\\\n  Verdict: {verdict}\\\")\\nprint(f\\\"  Detail: {detail}\\\")\\n\\nuntrained_diagnosis = {\\n    \\\"stats\\\": {\\n        \\\"layer_9\\\": layer_stats.get(\\\"layer_9\\\", {}),\\n        \\\"layer_10\\\": layer_stats.get(\\\"layer_10\\\", {}),\\n        \\\"layer_11\\\": layer_stats.get(\\\"layer_11\\\", {}),\\n        \\\"layer_12\\\": layer_stats.get(\\\"layer_12\\\", {}),\\n    },\\n    \\\"cross_task_check\\\": cross_task_l10_l11,\\n    \\\"verdict\\\": verdict,\\n    \\\"detail\\\": detail,\\n}\\n\\n# ============================================================\\n# 3. Load DINO results\\n# ============================================================\\nwith open(os.path.join(OUT_DIR, \\\"dino_action_probe.json\\\")) as f:\\n    dino = json.load(f)\\n\\nwith open(os.path.join(OUT_DIR, \\\"action_delta_probe_projector.json\\\")) as f:\\n    delta_v1 = json.load(f)\\n\\n# ============================================================\\n# 4. Assemble V2 JSON\\n# ============================================================\\ndino_r2 = np.array([dino[\\\"dino_action\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\nprint(f\\\"\\\\n=== Three-way Summary ===\\\")\\nprint(f\\\"  Projector:      {proj_r2.mean():.4f}\\\")\\nprint(f\\\"  DINO:           {dino_r2.mean():.4f}\\\")\\nprint(f\\\"  LLM img_mean:   {img_l19_r2.mean():.4f}\\\")\\n\\nsources = {\\\"projector\\\": proj_r2.mean(), \\\"dino\\\": dino_r2.mean(), \\\"llm_image_mean_L19\\\": img_l19_r2.mean()}\\nordering = \\\" > \\\".join(sorted(sources.keys(), key=lambda k: sources[k], reverse=True))\\nprint(f\\\"  Ordering:       {ordering}\\\")\\n\\nv2_result = {\\n    \\\"v1_results\\\": {\\n        \\\"projector_mean_R2\\\": float(v1[\\\"projector\\\"][\\\"mean_R2\\\"]),\\n        \\\"projector_overall_R2\\\": float(v1[\\\"projector\\\"][\\\"overall_R2\\\"]),\\n        \\\"image_mean_trained_L19_mean_R2\\\": float(v1[\\\"image_mean_trained_L19\\\"][\\\"mean_R2\\\"]),\\n        \\\"llm_trained_L19_mean_R2\\\": float(v1[\\\"llm_trained_L19\\\"][\\\"mean_R2\\\"]),\\n        \\\"image_mean_untrained_L0_mean_R2\\\": float(v1[\\\"image_mean_untrained_best\\\"][\\\"mean_R2\\\"]),\\n        \\\"bootstrap_proj_vs_llm\\\": v1[\\\"bootstrap_ci_proj_vs_llm\\\"],\\n    },\\n    \\\"bootstrap_proj_vs_image_mean_L19\\\": bootstrap_proj_vs_img_l19,\\n    \\\"dino_action\\\": {\\n        \\\"per_task_R2\\\": dino[\\\"dino_action\\\"][\\\"per_task_R2\\\"],\\n        \\\"mean_R2\\\": dino[\\\"dino_action\\\"][\\\"mean_R2\\\"],\\n        \\\"overall_R2\\\": dino[\\\"dino_action\\\"][\\\"overall_R2\\\"],\\n        \\\"per_dim_R2\\\": dino[\\\"dino_action\\\"][\\\"per_dim_R2\\\"],\\n        \\\"gripper_acc\\\": dino[\\\"dino_action\\\"][\\\"gripper_acc\\\"],\\n        \\\"epochs_trained\\\": dino[\\\"dino_action\\\"][\\\"epochs_trained\\\"],\\n    },\\n    \\\"dino_action_delta\\\": {\\n        \\\"per_task_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"per_task_R2\\\"],\\n        \\\"mean_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"mean_R2\\\"],\\n        \\\"overall_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"overall_R2\\\"],\\n        \\\"per_dim_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"per_dim_R2\\\"],\\n        \\\"epochs_trained\\\": dino[\\\"dino_action_delta\\\"][\\\"epochs_trained\\\"],\\n    },\\n    \\\"bootstrap_dino_vs_proj\\\": dino[\\\"bootstrap_dino_vs_proj\\\"],\\n    \\\"three_way_summary\\\": {\\n        \\\"projector\\\": float(proj_r2.mean()),\\n        \\\"llm_image_mean_L19\\\": float(img_l19_r2.mean()),\\n        \\\"dino\\\": float(dino_r2.mean()),\\n        \\\"ordering\\\": ordering,\\n        \\\"note\\\": \\\"DINO ≈ projector (p=0.22, not significant); both > LLM image_mean\\\"\\n    },\\n    \\\"untrained_L10_L11_diagnosis\\\": untrained_diagnosis,\\n    \\\"action_delta_summary\\\": {\\n        \\\"projector_delta_mean_R2\\\": float(delta_v1[\\\"projector\\\"][\\\"mean_R2\\\"]),\\n        \\\"dino_delta_mean_R2\\\": float(dino[\\\"dino_action_delta\\\"][\\\"mean_R2\\\"]),\\n        \\\"image_mean_trained_L14_delta_mean_R2\\\": float(delta_v1[\\\"image_mean_trained_L14\\\"][\\\"mean_R2\\\"]),\\n    },\\n}\\n\\nos.makedirs(OUT_DIR, exist_ok=True)\\nout_path = os.path.join(OUT_DIR, \\\"action_probe_v2.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(v2_result, f, indent=2)\\n\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "ff78269e-1551-4b76-8d81-9db27d244206",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Functional Probe V2: bootstrap CI + untrained L10/L11 diagnosis + assemble results.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, glob\\\\nimport numpy as np\\\\nimport h5py\\\\nfrom pathlib import Path\\\\n\\\\nnp.random.seed(42)\\\\n\\\\nOUT_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\\\\\"\\\\nUNTRAINED_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# 1. Bootstrap CI: projector vs image_mean_trained_L19\\\\n# ============================================================\\\\nwith open(os.path.join(OUT_DIR, \\\\\\\"action_probe_projector.json\\\\\\\")) as f:\\\\n    v1 = json.load(f)\\\\n\\\\ntasks = list(v1[\\\\\\\"projector\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"].keys())\\\\nproj_r2 = np.array([v1[\\\\\\\"projector\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"][t] for t in tasks])\\\\nimg_l19_r2 = np.array([v1[\\\\\\\"image_mean_trained_L19\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"][t] for t in tasks])\\\\n\\\\nobserved_delta = proj_r2.mean() - img_l19_r2.mean()\\\\n\\\\nn_boot = 10000\\\\nboot_deltas = np.empty(n_boot)\\\\nn_tasks = len(tasks)\\\\nfor i in range(n_boot):\\\\n    idx = np.random.randint(0, n_tasks, n_tasks)\\\\n    boot_deltas[i] = proj_r2[idx].mean() - img_l19_r2[idx].mean()\\\\n\\\\nci_lower = np.percentile(boot_deltas, 2.5)\\\\nci_upper = np.percentile(boot_deltas, 97.5)\\\\np_value = (boot_deltas <= 0).sum() / n_boot\\\\n\\\\nbootstrap_proj_vs_img_l19 = {\\\\n    \\\\\\\"proj_per_task_R2\\\\\\\": {t: float(proj_r2[i]) for i, t in enumerate(tasks)},\\\\n    \\\\\\\"image_mean_L19_per_task_R2\\\\\\\": {t: float(img_l19_r2[i]) for i, t in enumerate(tasks)},\\\\n    \\\\\\\"proj_mean_R2\\\\\\\": float(proj_r2.mean()),\\\\n    \\\\\\\"image_mean_L19_mean_R2\\\\\\\": float(img_l19_r2.mean()),\\\\n    \\\\\\\"delta\\\\\\\": float(observed_delta),\\\\n    \\\\\\\"ci_95\\\\\\\": [float(ci_lower), float(ci_upper)],\\\\n    \\\\\\\"p_value\\\\\\\": float(p_value),\\\\n    \\\\\\\"gate\\\\\\\": \\\\\\\"PASS\\\\\\\" if ci_lower > 0 else \\\\\\\"FAIL\\\\\\\"\\\\n}\\\\n\\\\nprint(\\\\\\\"=== Bootstrap: projector vs image_mean_trained_L19 ===\\\\\\\")\\\\nprint(f\\\\\\\"  Proj mean R²:     {proj_r2.mean():.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  ImgMean L19 R²:   {img_l19_r2.mean():.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  Delta:            {observed_delta:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  95% CI:           [{ci_lower:.4f}, {ci_upper:.4f}]\\\\\\\")\\\\nprint(f\\\\\\\"  p-value:          {p_value:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  GATE:             {bootstrap_proj_vs_img_l19['gate']}\\\\\\\")\\\\n\\\\n# ============================================================\\\\n# 2. Untrained L10/L11 diagnosis\\\\n# ============================================================\\\\nprint(\\\\\\\"\\\\\\\\n=== Untrained L10/L11 Diagnosis ===\\\\\\\")\\\\nh5_files = sorted(glob.glob(os.path.join(UNTRAINED_DIR, \\\\\\\"*.h5\\\\\\\")))\\\\nfirst_h5 = h5_files[0]\\\\ntask_name = Path(first_h5).stem\\\\nprint(f\\\\\\\"Using: {task_name}\\\\\\\")\\\\n\\\\nlayer_stats = {}\\\\nwith h5py.File(first_h5, \\\\\\\"r\\\\\\\") as f:\\\\n    demo_keys = sorted([k for k in f.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")])\\\\n    dk = demo_keys[0]\\\\n    ds = f[dk][\\\\\\\"image_mean\\\\\\\"]\\\\n    print(f\\\\\\\"  image_mean shape: {ds.shape}\\\\\\\")\\\\n    \\\\n    for layer in range(ds.shape[1] if len(ds.shape) == 3 else 1):\\\\n        if len(ds.shape) == 3:\\\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\\\n        else:\\\\n            feat = np.asarray(ds[:], dtype=np.float32)\\\\n        \\\\n        stats = {\\\\n            \\\\\\\"shape\\\\\\\": list(feat.shape),\\\\n            \\\\\\\"mean\\\\\\\": float(np.mean(feat)),\\\\n            \\\\\\\"std\\\\\\\": float(np.std(feat)),\\\\n            \\\\\\\"min\\\\\\\": float(np.min(feat)),\\\\n            \\\\\\\"max\\\\\\\": float(np.max(feat)),\\\\n            \\\\\\\"has_nan\\\\\\\": bool(np.any(np.isnan(feat))),\\\\n            \\\\\\\"has_inf\\\\\\\": bool(np.any(np.isinf(feat))),\\\\n            \\\\\\\"pct_zero\\\\\\\": float((feat == 0).sum() / feat.size * 100),\\\\n        }\\\\n        layer_stats[f\\\\\\\"layer_{layer}\\\\\\\"] = stats\\\\n        \\\\n        if layer in [9, 10, 11, 12]:\\\\n            print(f\\\\\\\"  L{layer}: mean={stats['mean']:.4f}, std={stats['std']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"min={stats['min']:.4f}, max={stats['max']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"nan={stats['has_nan']}, zero%={stats['pct_zero']:.1f}%\\\\\\\")\\\\n\\\\n# Check across multiple tasks for L10/L11\\\\ncross_task_l10_l11 = {}\\\\nfor h5_path in h5_files[:3]:\\\\n    t = Path(h5_path).stem\\\\n    with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as f:\\\\n        dk = sorted([k for k in f.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")])[0]\\\\n        ds = f[dk][\\\\\\\"image_mean\\\\\\\"]\\\\n        for layer in [9, 10, 11, 12]:\\\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\\\n            key =\\\\n\\\\n... [截断: 输出过长，省略 1018 字符] ...\\\\n\\\\nres have extreme scale (L10 std={l10_std:.2f} vs L9 std={l9_std:.2f}), random init LLM produces pathological activations at these layers\\\\\\\"\\\\n    else:\\\\n        verdict = \\\\\\\"pathological_random_init\\\\\\\"\\\\n        detail = f\\\\\\\"Feature stats look normal (L10 std={l10_std:.4f}, L9 std={l9_std:.4f}), but probe R² collapses — random init LLM internal representations at L10/L11 are not linearly decodable for action prediction\\\\\\\"\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n  Verdict: {verdict}\\\\\\\")\\\\nprint(f\\\\\\\"  Detail: {detail}\\\\\\\")\\\\n\\\\nuntrained_diagnosis = {\\\\n    \\\\\\\"stats\\\\\\\": {\\\\n        \\\\\\\"layer_9\\\\\\\": layer_stats.get(\\\\\\\"layer_9\\\\\\\", {}),\\\\n        \\\\\\\"layer_10\\\\\\\": layer_stats.get(\\\\\\\"layer_10\\\\\\\", {}),\\\\n        \\\\\\\"layer_11\\\\\\\": layer_stats.get(\\\\\\\"layer_11\\\\\\\", {}),\\\\n        \\\\\\\"layer_12\\\\\\\": layer_stats.get(\\\\\\\"layer_12\\\\\\\", {}),\\\\n    },\\\\n    \\\\\\\"cross_task_check\\\\\\\": cross_task_l10_l11,\\\\n    \\\\\\\"verdict\\\\\\\": verdict,\\\\n    \\\\\\\"detail\\\\\\\": detail,\\\\n}\\\\n\\\\n# ============================================================\\\\n# 3. Load DINO results\\\\n# ============================================================\\\\nwith open(os.path.join(OUT_DIR, \\\\\\\"dino_action_probe.json\\\\\\\")) as f:\\\\n    dino = json.load(f)\\\\n\\\\nwith open(os.path.join(OUT_DIR, \\\\\\\"action_delta_probe_projector.json\\\\\\\")) as f:\\\\n    delta_v1 = json.load(f)\\\\n\\\\n# ============================================================\\\\n# 4. Assemble V2 JSON\\\\n# ============================================================\\\\ndino_r2 = np.array([dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"][t] for t in tasks])\\\\nprint(f\\\\\\\"\\\\\\\\n=== Three-way Summary ===\\\\\\\")\\\\nprint(f\\\\\\\"  Projector:      {proj_r2.mean():.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  DINO:           {dino_r2.mean():.4f}\\\\\\\")\\\\nprint(f\\\\\\\"  LLM img_mean:   {img_l19_r2.mean():.4f}\\\\\\\")\\\\n\\\\nsources = {\\\\\\\"projector\\\\\\\": proj_r2.mean(), \\\\\\\"dino\\\\\\\": dino_r2.mean(), \\\\\\\"llm_image_mean_L19\\\\\\\": img_l19_r2.mean()}\\\\nordering = \\\\\\\" > \\\\\\\".join(sorted(sources.keys(), key=lambda k: sources[k], reverse=True))\\\\nprint(f\\\\\\\"  Ordering:       {ordering}\\\\\\\")\\\\n\\\\nv2_result = {\\\\n    \\\\\\\"v1_results\\\\\\\": {\\\\n        \\\\\\\"projector_mean_R2\\\\\\\": float(v1[\\\\\\\"projector\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"projector_overall_R2\\\\\\\": float(v1[\\\\\\\"projector\\\\\\\"][\\\\\\\"overall_R2\\\\\\\"]),\\\\n        \\\\\\\"image_mean_trained_L19_mean_R2\\\\\\\": float(v1[\\\\\\\"image_mean_trained_L19\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"llm_trained_L19_mean_R2\\\\\\\": float(v1[\\\\\\\"llm_trained_L19\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"image_mean_untrained_L0_mean_R2\\\\\\\": float(v1[\\\\\\\"image_mean_untrained_best\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"bootstrap_proj_vs_llm\\\\\\\": v1[\\\\\\\"bootstrap_ci_proj_vs_llm\\\\\\\"],\\\\n    },\\\\n    \\\\\\\"bootstrap_proj_vs_image_mean_L19\\\\\\\": bootstrap_proj_vs_img_l19,\\\\n    \\\\\\\"dino_action\\\\\\\": {\\\\n        \\\\\\\"per_task_R2\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"],\\\\n        \\\\\\\"mean_R2\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"],\\\\n        \\\\\\\"overall_R2\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"overall_R2\\\\\\\"],\\\\n        \\\\\\\"per_dim_R2\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"per_dim_R2\\\\\\\"],\\\\n        \\\\\\\"gripper_acc\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"gripper_acc\\\\\\\"],\\\\n        \\\\\\\"epochs_trained\\\\\\\": dino[\\\\\\\"dino_action\\\\\\\"][\\\\\\\"epochs_trained\\\\\\\"],\\\\n    },\\\\n    \\\\\\\"dino_action_delta\\\\\\\": {\\\\n        \\\\\\\"per_task_R2\\\\\\\": dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"per_task_R2\\\\\\\"],\\\\n        \\\\\\\"mean_R2\\\\\\\": dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"],\\\\n        \\\\\\\"overall_R2\\\\\\\": dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"overall_R2\\\\\\\"],\\\\n        \\\\\\\"per_dim_R2\\\\\\\": dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"per_dim_R2\\\\\\\"],\\\\n        \\\\\\\"epochs_trained\\\\\\\": dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"epochs_trained\\\\\\\"],\\\\n    },\\\\n    \\\\\\\"bootstrap_dino_vs_proj\\\\\\\": dino[\\\\\\\"bootstrap_dino_vs_proj\\\\\\\"],\\\\n    \\\\\\\"three_way_summary\\\\\\\": {\\\\n        \\\\\\\"projector\\\\\\\": float(proj_r2.mean()),\\\\n        \\\\\\\"llm_image_mean_L19\\\\\\\": float(img_l19_r2.mean()),\\\\n        \\\\\\\"dino\\\\\\\": float(dino_r2.mean()),\\\\n        \\\\\\\"ordering\\\\\\\": ordering,\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"DINO ≈ projector (p=0.22, not significant); both > LLM image_mean\\\\\\\"\\\\n    },\\\\n    \\\\\\\"untrained_L10_L11_diagnosis\\\\\\\": untrained_diagnosis,\\\\n    \\\\\\\"action_delta_summary\\\\\\\": {\\\\n        \\\\\\\"projector_delta_mean_R2\\\\\\\": float(delta_v1[\\\\\\\"projector\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"dino_delta_mean_R2\\\\\\\": float(dino[\\\\\\\"dino_action_delta\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n        \\\\\\\"image_mean_trained_L14_delta_mean_R2\\\\\\\": float(delta_v1[\\\\\\\"image_mean_trained_L14\\\\\\\"][\\\\\\\"mean_R2\\\\\\\"]),\\\\n    },\\\\n}\\\\n\\\\nos.makedirs(OUT_DIR, exist_ok=True)\\\\nout_path = os.path.join(OUT_DIR, \\\\\\\"action_probe_v2.json\\\\\\\")\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(v2_result, f, indent=2)\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Functional Probe V2: bootstrap CI + untrained L10/L11 diagnosis + assemble results.\\\"\\\"\\\"\\nimport json, os, glob\\nimport numpy as np\\nimport h5py\\nfrom pathlib import Path\\n\\nnp.random.seed(42)\\n\\nOUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/\\\"\\nUNTRAINED_DIR = \\\"/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/\\\"\\n\\n# ============================================================\\n# 1. Bootstrap CI: projector vs image_mean_trained_L19\\n# ============================================================\\nwith open(os.path.join(OUT_DIR, \\\"action_probe_projector.json\\\")) as f:\\n    v1 = json.load(f)\\n\\ntasks = list(v1[\\\"projector\\\"][\\\"per_task_R2\\\"].keys())\\nproj_r2 = np.array([v1[\\\"projector\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\nimg_l19_r2 = np.array([v1[\\\"image_mean_trained_L19\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\n\\nobserved_delta = proj_r2.mean() - img_l19_r2.mean()\\n\\nn_boot = 10000\\nboot_deltas = np.empty(n_boot)\\nn_tasks = len(tasks)\\nfor i in range(n_boot):\\n    idx = np.random.randint(0, n_tasks, n_tasks)\\n    boot_deltas[i] = proj_r2[idx].mean() - img_l19_r2[idx].mean()\\n\\nci_lower = np.percentile(boot_deltas, 2.5)\\nci_upper = np.percentile(boot_deltas, 97.5)\\np_value = (boot_deltas <= 0).sum() / n_boot\\n\\nbootstrap_proj_vs_img_l19 = {\\n    \\\"proj_per_task_R2\\\": {t: float(proj_r2[i]) for i, t in enumerate(tasks)},\\n    \\\"image_mean_L19_per_task_R2\\\": {t: float(img_l19_r2[i]) for i, t in enumerate(tasks)},\\n    \\\"proj_mean_R2\\\": float(proj_r2.mean()),\\n    \\\"image_mean_L19_mean_R2\\\": float(img_l19_r2.mean()),\\n    \\\"delta\\\": float(observed_delta),\\n    \\\"ci_95\\\": [float(ci_lower), float(ci_upper)],\\n    \\\"p_value\\\": float(p_value),\\n    \\\"gate\\\": \\\"PASS\\\" if ci_lower > 0 else \\\"FAIL\\\"\\n}\\n\\nprint(\\\"=== Bootstrap: projector vs image_mean_trained_L19 ===\\\")\\nprint(f\\\"  Proj mean R²:     {proj_r2.mean():.4f}\\\")\\nprint(f\\\"  ImgMean L19 R²:   {img_l19_r2.mean():.4f}\\\")\\nprint(f\\\"  Delta:            {observed_delta:.4f}\\\")\\nprint(f\\\"  95% CI:           [{ci_lower:.4f}, {ci_upper:.4f}]\\\")\\nprint(f\\\"  p-value:          {p_value:.4f}\\\")\\nprint(f\\\"  GATE:             {bootstrap_proj_vs_img_l19['gate']}\\\")\\n\\n# ============================================================\\n# 2. Untrained L10/L11 diagnosis\\n# ============================================================\\nprint(\\\"\\\\n=== Untrained L10/L11 Diagnosis ===\\\")\\nh5_files = sorted(glob.glob(os.path.join(UNTRAINED_DIR, \\\"*.h5\\\")))\\nfirst_h5 = h5_files[0]\\ntask_name = Path(first_h5).stem\\nprint(f\\\"Using: {task_name}\\\")\\n\\nlayer_stats = {}\\nwith h5py.File(first_h5, \\\"r\\\") as f:\\n    demo_keys = sorted([k for k in f.keys() if k.startswith(\\\"demo_\\\")])\\n    dk = demo_keys[0]\\n    ds = f[dk][\\\"image_mean\\\"]\\n    print(f\\\"  image_mean shape: {ds.shape}\\\")\\n    \\n    for layer in range(ds.shape[1] if len(ds.shape) == 3 else 1):\\n        if len(ds.shape) == 3:\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n        else:\\n            feat = np.asarray(ds[:], dtype=np.float32)\\n        \\n        stats = {\\n            \\\"shape\\\": list(feat.shape),\\n            \\\"mean\\\": float(np.mean(feat)),\\n            \\\"std\\\": float(np.std(feat)),\\n            \\\"min\\\": float(np.min(feat)),\\n            \\\"max\\\": float(np.max(feat)),\\n            \\\"has_nan\\\": bool(np.any(np.isnan(feat))),\\n            \\\"has_inf\\\": bool(np.any(np.isinf(feat))),\\n            \\\"pct_zero\\\": float((feat == 0).sum() / feat.size * 100),\\n        }\\n        layer_stats[f\\\"layer_{layer}\\\"] = stats\\n        \\n        if layer in [9, 10, 11, 12]:\\n            print(f\\\"  L{layer}: mean={stats['mean']:.4f}, std={stats['std']:.4f}, \\\"\\n                  f\\\"min={stats['min']:.4f}, max={stats['max']:.4f}, \\\"\\n                  f\\\"nan={stats['has_nan']}, zero%={stats['pct_zero']:.1f}%\\\")\\n\\n# Check across multiple tasks for L10/L11\\ncross_task_l10_l11 = {}\\nfor h5_path in h5_files[:3]:\\n    t = Path(h5_path).stem\\n    with h5py.File(h5_path, \\\"r\\\") as f:\\n        dk = sorted([k for k in f.keys() if k.startswith(\\\"demo_\\\")])[0]\\n        ds = f[dk][\\\"image_mean\\\"]\\n        for layer in [9, 10, 11, 12]:\\n            feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n            key =\\n\\n... [截断: 输出过长，省略 1018 字符] ...\\n\\nres have extreme scale (L10 std={l10_std:.2f} vs L9 std={l9_std:.2f}), random init LLM produces pathological activations at these layers\\\"\\n    else:\\n        verdict = \\\"pathological_random_init\\\"\\n        detail = f\\\"Feature stats look normal (L10 std={l10_std:.4f}, L9 std={l9_std:.4f}), but probe R² collapses — random init LLM internal representations at L10/L11 are not linearly decodable for action prediction\\\"\\n\\nprint(f\\\"\\\\n  Verdict: {verdict}\\\")\\nprint(f\\\"  Detail: {detail}\\\")\\n\\nuntrained_diagnosis = {\\n    \\\"stats\\\": {\\n        \\\"layer_9\\\": layer_stats.get(\\\"layer_9\\\", {}),\\n        \\\"layer_10\\\": layer_stats.get(\\\"layer_10\\\", {}),\\n        \\\"layer_11\\\": layer_stats.get(\\\"layer_11\\\", {}),\\n        \\\"layer_12\\\": layer_stats.get(\\\"layer_12\\\", {}),\\n    },\\n    \\\"cross_task_check\\\": cross_task_l10_l11,\\n    \\\"verdict\\\": verdict,\\n    \\\"detail\\\": detail,\\n}\\n\\n# ============================================================\\n# 3. Load DINO results\\n# ============================================================\\nwith open(os.path.join(OUT_DIR, \\\"dino_action_probe.json\\\")) as f:\\n    dino = json.load(f)\\n\\nwith open(os.path.join(OUT_DIR, \\\"action_delta_probe_projector.json\\\")) as f:\\n    delta_v1 = json.load(f)\\n\\n# ============================================================\\n# 4. Assemble V2 JSON\\n# ============================================================\\ndino_r2 = np.array([dino[\\\"dino_action\\\"][\\\"per_task_R2\\\"][t] for t in tasks])\\nprint(f\\\"\\\\n=== Three-way Summary ===\\\")\\nprint(f\\\"  Projector:      {proj_r2.mean():.4f}\\\")\\nprint(f\\\"  DINO:           {dino_r2.mean():.4f}\\\")\\nprint(f\\\"  LLM img_mean:   {img_l19_r2.mean():.4f}\\\")\\n\\nsources = {\\\"projector\\\": proj_r2.mean(), \\\"dino\\\": dino_r2.mean(), \\\"llm_image_mean_L19\\\": img_l19_r2.mean()}\\nordering = \\\" > \\\".join(sorted(sources.keys(), key=lambda k: sources[k], reverse=True))\\nprint(f\\\"  Ordering:       {ordering}\\\")\\n\\nv2_result = {\\n    \\\"v1_results\\\": {\\n        \\\"projector_mean_R2\\\": float(v1[\\\"projector\\\"][\\\"mean_R2\\\"]),\\n        \\\"projector_overall_R2\\\": float(v1[\\\"projector\\\"][\\\"overall_R2\\\"]),\\n        \\\"image_mean_trained_L19_mean_R2\\\": float(v1[\\\"image_mean_trained_L19\\\"][\\\"mean_R2\\\"]),\\n        \\\"llm_trained_L19_mean_R2\\\": float(v1[\\\"llm_trained_L19\\\"][\\\"mean_R2\\\"]),\\n        \\\"image_mean_untrained_L0_mean_R2\\\": float(v1[\\\"image_mean_untrained_best\\\"][\\\"mean_R2\\\"]),\\n        \\\"bootstrap_proj_vs_llm\\\": v1[\\\"bootstrap_ci_proj_vs_llm\\\"],\\n    },\\n    \\\"bootstrap_proj_vs_image_mean_L19\\\": bootstrap_proj_vs_img_l19,\\n    \\\"dino_action\\\": {\\n        \\\"per_task_R2\\\": dino[\\\"dino_action\\\"][\\\"per_task_R2\\\"],\\n        \\\"mean_R2\\\": dino[\\\"dino_action\\\"][\\\"mean_R2\\\"],\\n        \\\"overall_R2\\\": dino[\\\"dino_action\\\"][\\\"overall_R2\\\"],\\n        \\\"per_dim_R2\\\": dino[\\\"dino_action\\\"][\\\"per_dim_R2\\\"],\\n        \\\"gripper_acc\\\": dino[\\\"dino_action\\\"][\\\"gripper_acc\\\"],\\n        \\\"epochs_trained\\\": dino[\\\"dino_action\\\"][\\\"epochs_trained\\\"],\\n    },\\n    \\\"dino_action_delta\\\": {\\n        \\\"per_task_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"per_task_R2\\\"],\\n        \\\"mean_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"mean_R2\\\"],\\n        \\\"overall_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"overall_R2\\\"],\\n        \\\"per_dim_R2\\\": dino[\\\"dino_action_delta\\\"][\\\"per_dim_R2\\\"],\\n        \\\"epochs_trained\\\": dino[\\\"dino_action_delta\\\"][\\\"epochs_trained\\\"],\\n    },\\n    \\\"bootstrap_dino_vs_proj\\\": dino[\\\"bootstrap_dino_vs_proj\\\"],\\n    \\\"three_way_summary\\\": {\\n        \\\"projector\\\": float(proj_r2.mean()),\\n        \\\"llm_image_mean_L19\\\": float(img_l19_r2.mean()),\\n        \\\"dino\\\": float(dino_r2.mean()),\\n        \\\"ordering\\\": ordering,\\n        \\\"note\\\": \\\"DINO ≈ projector (p=0.22, not significant); both > LLM image_mean\\\"\\n    },\\n    \\\"untrained_L10_L11_diagnosis\\\": untrained_diagnosis,\\n    \\\"action_delta_summary\\\": {\\n        \\\"projector_delta_mean_R2\\\": float(delta_v1[\\\"projector\\\"][\\\"mean_R2\\\"]),\\n        \\\"dino_delta_mean_R2\\\": float(dino[\\\"dino_action_delta\\\"][\\\"mean_R2\\\"]),\\n        \\\"image_mean_trained_L14_delta_mean_R2\\\": float(delta_v1[\\\"image_mean_trained_L14\\\"][\\\"mean_R2\\\"]),\\n    },\\n}\\n\\nos.makedirs(OUT_DIR, exist_ok=True)\\nout_path = os.path.join(OUT_DIR, \\\"action_probe_v2.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(v2_result, f, indent=2)\\n\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T02:16:56.640Z_
+
+<details><summary>↩ Tool result · `toolu_017FTTsvBsxCam73DYgpYtcF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified action probe: identical hyperparams across all vision encoders.\\n\\nModels: SigLIP projector, DINOv2 cls_token, CLIP cls_token,\\n        VLA trained image_mean L19, VLA trained last_preaction L19.\\n\\nHyperparams (fixed): epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42.\\nTarget: predict next action a_{t+1} from feature at time t.\\nSplit: 80/20 per-task (first 80% demos = train).\\nTarget normalization: z-score using train mean/std.\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import r2_score\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_BASE = \\\"/root/autodl-tmp/vla-ssd/features/\\\"\\nOUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\"\\n\\nFEATURE_CONFIGS = {\\n    \\\"projector\\\": {\\n        \\\"dir\\\": \\\"siglip_only_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"last_preaction\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 4096,\\n    },\\n    \\\"dino_cls\\\": {\\n        \\\"dir\\\": \\\"dinov2_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"traj\\\",\\n        \\\"feat_key\\\": \\\"cls_token\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 1024,\\n    },\\n    \\\"clip_cls\\\": {\\n        \\\"dir\\\": \\\"clip_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"traj\\\",\\n        \\\"feat_key\\\": \\\"cls_token\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 1024,\\n    },\\n    \\\"vla_image_mean_L19\\\": {\\n        \\\"dir\\\": \\\"trained_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"image_mean\\\",\\n        \\\"layer\\\": 19,\\n        \\\"input_dim\\\": 4096,\\n    },\\n    \\\"vla_last_preaction_L19\\\": {\\n        \\\"dir\\\": \\\"trained_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"last_preaction\\\",\\n        \\\"layer\\\": 19,\\n        \\\"input_dim\\\": 4096,\\n    },\\n}\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(cfg):\\n    feat_dir = os.path.join(FEATURE_BASE, cfg[\\\"dir\\\"])\\n    prefix = cfg[\\\"key_prefix\\\"]\\n    feat_key = cfg[\\\"feat_key\\\"]\\n    layer = cfg[\\\"layer\\\"]\\n\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            print(f\\\"  WARNING: no action file for {task}, skipping\\\")\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            keys = sorted(\\n                [k for k in ff.keys() if k.startswith(f\\\"{prefix}_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n            )\\n            for k in keys:\\n                idx = int(k.split(\\\"_\\\")[-1])\\n                ds = ff[k][feat_key]\\n                if layer is not None and len(ds.shape) == 3:\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n                else:\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\n                act = np.asarray(fa[f\\\"data/demo_{idx}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[: T - 1])\\n            y = torch.from_numpy(act[1:T])\\n\\n            if i < n_train:\\n                X_tr_list\\n\\n... [截断: 输出过长，省略 2008 字符] ...\\n\\nred_np = pred.numpy()\\n\\n    ss_res = np.sum((y_true - pred_np) ** 2)\\n    ss_tot = np.sum((y_true - y_true.mean(axis=0)) ** 2)\\n    overall_r2 = float(1 - ss_res / ss_tot)\\n\\n    dim_names = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"drx\\\", \\\"dry\\\", \\\"drz\\\", \\\"gripper\\\"]\\n    per_dim_r2 = {}\\n    for j, name in enumerate(dim_names):\\n        ss_r = np.sum((y_true[:, j] - pred_np[:, j]) ** 2)\\n        ss_t = np.sum((y_true[:, j] - y_true[:, j].mean()) ** 2)\\n        per_dim_r2[name] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    gripper_acc = float(np.mean((pred_np[:, 6] >= 0) == (y_true[:, 6] >= 0)))\\n\\n    tasks_arr = np.array(val_tasks)\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = tasks_arr == t\\n        yt = y_true[mask]\\n        yp = pred_np[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    mean_r2 = float(np.mean(list(per_task_r2.values())))\\n\\n    print(f\\\"  [{tag}] mean_R2={mean_r2:.4f}  overall_R2={overall_r2:.4f}  \\\"\\n          f\\\"gripper_acc={gripper_acc:.4f}  epochs={epochs_trained}\\\")\\n\\n    return {\\n        \\\"mean_R2\\\": mean_r2,\\n        \\\"overall_R2\\\": overall_r2,\\n        \\\"per_task_R2\\\": per_task_r2,\\n        \\\"per_dim_R2\\\": per_dim_r2,\\n        \\\"gripper_acc\\\": gripper_acc,\\n        \\\"epochs_trained\\\": epochs_trained,\\n        \\\"val_loss\\\": float(best_val_loss),\\n    }\\n\\n\\ndef bootstrap_pairwise(r2_a, r2_b, n_boot=10000):\\n    np.random.seed(SEED)\\n    tasks = sorted(r2_a.keys())\\n    a = np.array([r2_a[t] for t in tasks])\\n    b = np.array([r2_b[t] for t in tasks])\\n    observed = float(a.mean() - b.mean())\\n\\n    n = len(tasks)\\n    deltas = np.empty(n_boot)\\n    for i in range(n_boot):\\n        idx = np.random.randint(0, n, n)\\n        deltas[i] = a[idx].mean() - b[idx].mean()\\n\\n    ci_lo = float(np.percentile(deltas, 2.5))\\n    ci_hi = float(np.percentile(deltas, 97.5))\\n    p_one = float(np.mean(deltas <= 0)) if observed > 0 else float(np.mean(deltas >= 0))\\n    p_value = float(min(p_one * 2, 1.0))\\n\\n    return {\\\"delta\\\": observed, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"p_value\\\": p_value}\\n\\n\\ndef main():\\n    results = {}\\n    results[\\\"hyperparams\\\"] = {\\n        \\\"epochs\\\": EPOCHS, \\\"patience\\\": PATIENCE, \\\"lr\\\": LR,\\n        \\\"batch_size\\\": BATCH_SIZE, \\\"hidden\\\": HIDDEN_DIM, \\\"seed\\\": SEED,\\n        \\\"target\\\": \\\"next_action_a_{t+1}\\\", \\\"normalization\\\": \\\"z-score\\\",\\n        \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    }\\n\\n    for name, cfg in FEATURE_CONFIGS.items():\\n        print(f\\\"\\\\n=== {name} ===\\\")\\n        t0 = time.time()\\n        task_data = load_features_and_actions(cfg)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val, dim={X_tr.shape[1]}\\\")\\n        metrics = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, cfg[\\\"input_dim\\\"], name)\\n        results[name] = metrics\\n        print(f\\\"  Time: {time.time() - t0:.1f}s\\\")\\n        del task_data, X_tr, y_tr, X_val, y_val\\n        torch.cuda.empty_cache()\\n\\n    print(\\\"\\\\n=== Bootstrap Pairwise Comparisons ===\\\")\\n    pairs = [\\n        (\\\"projector\\\", \\\"dino_cls\\\"),\\n        (\\\"projector\\\", \\\"clip_cls\\\"),\\n        (\\\"clip_cls\\\", \\\"dino_cls\\\"),\\n        (\\\"projector\\\", \\\"vla_image_mean_L19\\\"),\\n        (\\\"projector\\\", \\\"vla_last_preaction_L19\\\"),\\n    ]\\n    bootstrap = {}\\n    for a, b in pairs:\\n        key = f\\\"{a}_vs_{b}\\\"\\n        ci = bootstrap_pairwise(results[a][\\\"per_task_R2\\\"], results[b][\\\"per_task_R2\\\"])\\n        bootstrap[key] = ci\\n        print(f\\\"  {key}: delta={ci['delta']:.4f}, CI={ci['ci_95']}, p={ci['p_value']:.4f}\\\")\\n    results[\\\"bootstrap_pairwise\\\"] = bootstrap\\n\\n    print(\\\"\\\\n=== Summary ===\\\")\\n    for name in FEATURE_CONFIGS:\\n        m = results[name]\\n        print(f\\\"  {name:30s} mean_R2={m['mean_R2']:.4f}  overall_R2={m['overall_R2']:.4f}\\\")\\n\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\n    with open(OUT_PATH, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved to {OUT_PATH}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "4afcfd82-0e52-449a-bad0-490d1197035a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified action probe: identical hyperparams across all vision encoders.\\\\n\\\\nModels: SigLIP projector, DINOv2 cls_token, CLIP cls_token,\\\\n        VLA trained image_mean L19, VLA trained last_preaction L19.\\\\n\\\\nHyperparams (fixed): epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42.\\\\nTarget: predict next action a_{t+1} from feature at time t.\\\\nSplit: 80/20 per-task (first 80% demos = train).\\\\nTarget normalization: z-score using train mean/std.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, json, time, glob\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom sklearn.metrics import r2_score\\\\n\\\\nSEED = 42\\\\nBATCH_SIZE = 256\\\\nLR = 1e-3\\\\nEPOCHS = 50\\\\nPATIENCE = 5\\\\nHIDDEN_DIM = 256\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\\\\\"\\\\nFEATURE_BASE = \\\\\\\"/root/autodl-tmp/vla-ssd/features/\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\\\\\"\\\\n\\\\nFEATURE_CONFIGS = {\\\\n    \\\\\\\"projector\\\\\\\": {\\\\n        \\\\\\\"dir\\\\\\\": \\\\\\\"siglip_only_libero_goal\\\\\\\",\\\\n        \\\\\\\"key_prefix\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n        \\\\\\\"feat_key\\\\\\\": \\\\\\\"last_preaction\\\\\\\",\\\\n        \\\\\\\"layer\\\\\\\": None,\\\\n        \\\\\\\"input_dim\\\\\\\": 4096,\\\\n    },\\\\n    \\\\\\\"dino_cls\\\\\\\": {\\\\n        \\\\\\\"dir\\\\\\\": \\\\\\\"dinov2_libero_goal\\\\\\\",\\\\n        \\\\\\\"key_prefix\\\\\\\": \\\\\\\"traj\\\\\\\",\\\\n        \\\\\\\"feat_key\\\\\\\": \\\\\\\"cls_token\\\\\\\",\\\\n        \\\\\\\"layer\\\\\\\": None,\\\\n        \\\\\\\"input_dim\\\\\\\": 1024,\\\\n    },\\\\n    \\\\\\\"clip_cls\\\\\\\": {\\\\n        \\\\\\\"dir\\\\\\\": \\\\\\\"clip_libero_goal\\\\\\\",\\\\n        \\\\\\\"key_prefix\\\\\\\": \\\\\\\"traj\\\\\\\",\\\\n        \\\\\\\"feat_key\\\\\\\": \\\\\\\"cls_token\\\\\\\",\\\\n        \\\\\\\"layer\\\\\\\": None,\\\\n        \\\\\\\"input_dim\\\\\\\": 1024,\\\\n    },\\\\n    \\\\\\\"vla_image_mean_L19\\\\\\\": {\\\\n        \\\\\\\"dir\\\\\\\": \\\\\\\"trained_libero_goal\\\\\\\",\\\\n        \\\\\\\"key_prefix\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n        \\\\\\\"feat_key\\\\\\\": \\\\\\\"image_mean\\\\\\\",\\\\n        \\\\\\\"layer\\\\\\\": 19,\\\\n        \\\\\\\"input_dim\\\\\\\": 4096,\\\\n    },\\\\n    \\\\\\\"vla_last_preaction_L19\\\\\\\": {\\\\n        \\\\\\\"dir\\\\\\\": \\\\\\\"trained_libero_goal\\\\\\\",\\\\n        \\\\\\\"key_prefix\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n        \\\\\\\"feat_key\\\\\\\": \\\\\\\"last_preaction\\\\\\\",\\\\n        \\\\\\\"layer\\\\\\\": 19,\\\\n        \\\\\\\"input_dim\\\\\\\": 4096,\\\\n    },\\\\n}\\\\n\\\\n\\\\nclass ActionMLPProbe(nn.Module):\\\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(in_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, out_dim),\\\\n        )\\\\n\\\\n    def forward(self, x):\\\\n        return self.net(x)\\\\n\\\\n\\\\ndef load_features_and_actions(cfg):\\\\n    feat_dir = os.path.join(FEATURE_BASE, cfg[\\\\\\\"dir\\\\\\\"])\\\\n    prefix = cfg[\\\\\\\"key_prefix\\\\\\\"]\\\\n    feat_key = cfg[\\\\\\\"feat_key\\\\\\\"]\\\\n    layer = cfg[\\\\\\\"layer\\\\\\\"]\\\\n\\\\n    task_data = {}\\\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\\\\\"*.h5\\\\\\\"))):\\\\n        task = Path(h5_path).stem\\\\n        action_path = os.path.join(DATA_DIR, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        if not os.path.exists(action_path):\\\\n            print(f\\\\\\\"  WARNING: no action file for {task}, skipping\\\\\\\")\\\\n            continue\\\\n\\\\n        demos = []\\\\n        with h5py.File(h5_path, \\\\\\\"r\\\\\\\") as ff, h5py.File(action_path, \\\\\\\"r\\\\\\\") as fa:\\\\n            keys = sorted(\\\\n                [k for k in ff.keys() if k.startswith(f\\\\\\\"{prefix}_\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[-1]),\\\\n            )\\\\n            for k in keys:\\\\n                idx = int(k.split(\\\\\\\"_\\\\\\\")[-1])\\\\n                ds = ff[k][feat_key]\\\\n                if layer is not None and len(ds.shape) == 3:\\\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\\\n                else:\\\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\\\n                act = np.asarray(fa[f\\\\\\\"data/demo_{idx}/actions\\\\\\\"], dtype=np.float32)\\\\n                demos.append((feat, act))\\\\n        task_data[task] = demos\\\\n    return task_data\\\\n\\\\n\\\\ndef build_train_val(task_data):\\\\n    X_tr_list, y_tr_list = [], []\\\\n    X_val_list, y_val_list, val_tasks = [], [], []\\\\n\\\\n    for task in sorted(task_data.keys()):\\\\n        demos = task_data[task]\\\\n        n_train = int(len(demos) * 0.8)\\\\n\\\\n        for i, (feat, act) in enumerate(demos):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            x = torch.from_numpy(feat[: T - 1])\\\\n            y = torch.from_numpy(act[1:T])\\\\n\\\\n            if i < n_train:\\\\n                X_tr_list\\\\n\\\\n... [截断: 输出过长，省略 2008 字符] ...\\\\n\\\\nred_np = pred.numpy()\\\\n\\\\n    ss_res = np.sum((y_true - pred_np) ** 2)\\\\n    ss_tot = np.sum((y_true - y_true.mean(axis=0)) ** 2)\\\\n    overall_r2 = float(1 - ss_res / ss_tot)\\\\n\\\\n    dim_names = [\\\\\\\"dx\\\\\\\", \\\\\\\"dy\\\\\\\", \\\\\\\"dz\\\\\\\", \\\\\\\"drx\\\\\\\", \\\\\\\"dry\\\\\\\", \\\\\\\"drz\\\\\\\", \\\\\\\"gripper\\\\\\\"]\\\\n    per_dim_r2 = {}\\\\n    for j, name in enumerate(dim_names):\\\\n        ss_r = np.sum((y_true[:, j] - pred_np[:, j]) ** 2)\\\\n        ss_t = np.sum((y_true[:, j] - y_true[:, j].mean()) ** 2)\\\\n        per_dim_r2[name] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\\\n\\\\n    gripper_acc = float(np.mean((pred_np[:, 6] >= 0) == (y_true[:, 6] >= 0)))\\\\n\\\\n    tasks_arr = np.array(val_tasks)\\\\n    unique_tasks = sorted(set(val_tasks))\\\\n    per_task_r2 = {}\\\\n    for t in unique_tasks:\\\\n        mask = tasks_arr == t\\\\n        yt = y_true[mask]\\\\n        yp = pred_np[mask]\\\\n        ss_r = np.sum((yt - yp) ** 2)\\\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\\\n\\\\n    mean_r2 = float(np.mean(list(per_task_r2.values())))\\\\n\\\\n    print(f\\\\\\\"  [{tag}] mean_R2={mean_r2:.4f}  overall_R2={overall_r2:.4f}  \\\\\\\"\\\\n          f\\\\\\\"gripper_acc={gripper_acc:.4f}  epochs={epochs_trained}\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"mean_R2\\\\\\\": mean_r2,\\\\n        \\\\\\\"overall_R2\\\\\\\": overall_r2,\\\\n        \\\\\\\"per_task_R2\\\\\\\": per_task_r2,\\\\n        \\\\\\\"per_dim_R2\\\\\\\": per_dim_r2,\\\\n        \\\\\\\"gripper_acc\\\\\\\": gripper_acc,\\\\n        \\\\\\\"epochs_trained\\\\\\\": epochs_trained,\\\\n        \\\\\\\"val_loss\\\\\\\": float(best_val_loss),\\\\n    }\\\\n\\\\n\\\\ndef bootstrap_pairwise(r2_a, r2_b, n_boot=10000):\\\\n    np.random.seed(SEED)\\\\n    tasks = sorted(r2_a.keys())\\\\n    a = np.array([r2_a[t] for t in tasks])\\\\n    b = np.array([r2_b[t] for t in tasks])\\\\n    observed = float(a.mean() - b.mean())\\\\n\\\\n    n = len(tasks)\\\\n    deltas = np.empty(n_boot)\\\\n    for i in range(n_boot):\\\\n        idx = np.random.randint(0, n, n)\\\\n        deltas[i] = a[idx].mean() - b[idx].mean()\\\\n\\\\n    ci_lo = float(np.percentile(deltas, 2.5))\\\\n    ci_hi = float(np.percentile(deltas, 97.5))\\\\n    p_one = float(np.mean(deltas <= 0)) if observed > 0 else float(np.mean(deltas >= 0))\\\\n    p_value = float(min(p_one * 2, 1.0))\\\\n\\\\n    return {\\\\\\\"delta\\\\\\\": observed, \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi], \\\\\\\"p_value\\\\\\\": p_value}\\\\n\\\\n\\\\ndef main():\\\\n    results = {}\\\\n    results[\\\\\\\"hyperparams\\\\\\\"] = {\\\\n        \\\\\\\"epochs\\\\\\\": EPOCHS, \\\\\\\"patience\\\\\\\": PATIENCE, \\\\\\\"lr\\\\\\\": LR,\\\\n        \\\\\\\"batch_size\\\\\\\": BATCH_SIZE, \\\\\\\"hidden\\\\\\\": HIDDEN_DIM, \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"target\\\\\\\": \\\\\\\"next_action_a_{t+1}\\\\\\\", \\\\\\\"normalization\\\\\\\": \\\\\\\"z-score\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": \\\\\\\"80/20_per_task_by_demo_index\\\\\\\",\\\\n    }\\\\n\\\\n    for name, cfg in FEATURE_CONFIGS.items():\\\\n        print(f\\\\\\\"\\\\\\\\n=== {name} ===\\\\\\\")\\\\n        t0 = time.time()\\\\n        task_data = load_features_and_actions(cfg)\\\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\\\n        print(f\\\\\\\"  Samples: {len(X_tr)} train / {len(X_val)} val, dim={X_tr.shape[1]}\\\\\\\")\\\\n        metrics = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, cfg[\\\\\\\"input_dim\\\\\\\"], name)\\\\n        results[name] = metrics\\\\n        print(f\\\\\\\"  Time: {time.time() - t0:.1f}s\\\\\\\")\\\\n        del task_data, X_tr, y_tr, X_val, y_val\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Bootstrap Pairwise Comparisons ===\\\\\\\")\\\\n    pairs = [\\\\n        (\\\\\\\"projector\\\\\\\", \\\\\\\"dino_cls\\\\\\\"),\\\\n        (\\\\\\\"projector\\\\\\\", \\\\\\\"clip_cls\\\\\\\"),\\\\n        (\\\\\\\"clip_cls\\\\\\\", \\\\\\\"dino_cls\\\\\\\"),\\\\n        (\\\\\\\"projector\\\\\\\", \\\\\\\"vla_image_mean_L19\\\\\\\"),\\\\n        (\\\\\\\"projector\\\\\\\", \\\\\\\"vla_last_preaction_L19\\\\\\\"),\\\\n    ]\\\\n    bootstrap = {}\\\\n    for a, b in pairs:\\\\n        key = f\\\\\\\"{a}_vs_{b}\\\\\\\"\\\\n        ci = bootstrap_pairwise(results[a][\\\\\\\"per_task_R2\\\\\\\"], results[b][\\\\\\\"per_task_R2\\\\\\\"])\\\\n        bootstrap[key] = ci\\\\n        print(f\\\\\\\"  {key}: delta={ci['delta']:.4f}, CI={ci['ci_95']}, p={ci['p_value']:.4f}\\\\\\\")\\\\n    results[\\\\\\\"bootstrap_pairwise\\\\\\\"] = bootstrap\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Summary ===\\\\\\\")\\\\n    for name in FEATURE_CONFIGS:\\\\n        m = results[name]\\\\n        print(f\\\\\\\"  {name:30s} mean_R2={m['mean_R2']:.4f}  overall_R2={m['overall_R2']:.4f}\\\\\\\")\\\\n\\\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\\\n    with open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUT_PATH}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified action probe: identical hyperparams across all vision encoders.\\n\\nModels: SigLIP projector, DINOv2 cls_token, CLIP cls_token,\\n        VLA trained image_mean L19, VLA trained last_preaction L19.\\n\\nHyperparams (fixed): epochs=50, patience=5, lr=1e-3, batch=256, hidden=256, seed=42.\\nTarget: predict next action a_{t+1} from feature at time t.\\nSplit: 80/20 per-task (first 80% demos = train).\\nTarget normalization: z-score using train mean/std.\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import r2_score\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_BASE = \\\"/root/autodl-tmp/vla-ssd/features/\\\"\\nOUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/unified_action_probe.json\\\"\\n\\nFEATURE_CONFIGS = {\\n    \\\"projector\\\": {\\n        \\\"dir\\\": \\\"siglip_only_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"last_preaction\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 4096,\\n    },\\n    \\\"dino_cls\\\": {\\n        \\\"dir\\\": \\\"dinov2_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"traj\\\",\\n        \\\"feat_key\\\": \\\"cls_token\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 1024,\\n    },\\n    \\\"clip_cls\\\": {\\n        \\\"dir\\\": \\\"clip_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"traj\\\",\\n        \\\"feat_key\\\": \\\"cls_token\\\",\\n        \\\"layer\\\": None,\\n        \\\"input_dim\\\": 1024,\\n    },\\n    \\\"vla_image_mean_L19\\\": {\\n        \\\"dir\\\": \\\"trained_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"image_mean\\\",\\n        \\\"layer\\\": 19,\\n        \\\"input_dim\\\": 4096,\\n    },\\n    \\\"vla_last_preaction_L19\\\": {\\n        \\\"dir\\\": \\\"trained_libero_goal\\\",\\n        \\\"key_prefix\\\": \\\"demo\\\",\\n        \\\"feat_key\\\": \\\"last_preaction\\\",\\n        \\\"layer\\\": 19,\\n        \\\"input_dim\\\": 4096,\\n    },\\n}\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim, out_dim=7, hidden_dim=HIDDEN_DIM):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(cfg):\\n    feat_dir = os.path.join(FEATURE_BASE, cfg[\\\"dir\\\"])\\n    prefix = cfg[\\\"key_prefix\\\"]\\n    feat_key = cfg[\\\"feat_key\\\"]\\n    layer = cfg[\\\"layer\\\"]\\n\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            print(f\\\"  WARNING: no action file for {task}, skipping\\\")\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_path, \\\"r\\\") as fa:\\n            keys = sorted(\\n                [k for k in ff.keys() if k.startswith(f\\\"{prefix}_\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[-1]),\\n            )\\n            for k in keys:\\n                idx = int(k.split(\\\"_\\\")[-1])\\n                ds = ff[k][feat_key]\\n                if layer is not None and len(ds.shape) == 3:\\n                    feat = np.asarray(ds[:, layer, :], dtype=np.float32)\\n                else:\\n                    feat = np.asarray(ds[:], dtype=np.float32)\\n                act = np.asarray(fa[f\\\"data/demo_{idx}/actions\\\"], dtype=np.float32)\\n                demos.append((feat, act))\\n        task_data[task] = demos\\n    return task_data\\n\\n\\ndef build_train_val(task_data):\\n    X_tr_list, y_tr_list = [], []\\n    X_val_list, y_val_list, val_tasks = [], [], []\\n\\n    for task in sorted(task_data.keys()):\\n        demos = task_data[task]\\n        n_train = int(len(demos) * 0.8)\\n\\n        for i, (feat, act) in enumerate(demos):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            x = torch.from_numpy(feat[: T - 1])\\n            y = torch.from_numpy(act[1:T])\\n\\n            if i < n_train:\\n                X_tr_list\\n\\n... [截断: 输出过长，省略 2008 字符] ...\\n\\nred_np = pred.numpy()\\n\\n    ss_res = np.sum((y_true - pred_np) ** 2)\\n    ss_tot = np.sum((y_true - y_true.mean(axis=0)) ** 2)\\n    overall_r2 = float(1 - ss_res / ss_tot)\\n\\n    dim_names = [\\\"dx\\\", \\\"dy\\\", \\\"dz\\\", \\\"drx\\\", \\\"dry\\\", \\\"drz\\\", \\\"gripper\\\"]\\n    per_dim_r2 = {}\\n    for j, name in enumerate(dim_names):\\n        ss_r = np.sum((y_true[:, j] - pred_np[:, j]) ** 2)\\n        ss_t = np.sum((y_true[:, j] - y_true[:, j].mean()) ** 2)\\n        per_dim_r2[name] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    gripper_acc = float(np.mean((pred_np[:, 6] >= 0) == (y_true[:, 6] >= 0)))\\n\\n    tasks_arr = np.array(val_tasks)\\n    unique_tasks = sorted(set(val_tasks))\\n    per_task_r2 = {}\\n    for t in unique_tasks:\\n        mask = tasks_arr == t\\n        yt = y_true[mask]\\n        yp = pred_np[mask]\\n        ss_r = np.sum((yt - yp) ** 2)\\n        ss_t = np.sum((yt - yt.mean(axis=0)) ** 2)\\n        per_task_r2[t] = float(1 - ss_r / ss_t) if ss_t > 0 else 0.0\\n\\n    mean_r2 = float(np.mean(list(per_task_r2.values())))\\n\\n    print(f\\\"  [{tag}] mean_R2={mean_r2:.4f}  overall_R2={overall_r2:.4f}  \\\"\\n          f\\\"gripper_acc={gripper_acc:.4f}  epochs={epochs_trained}\\\")\\n\\n    return {\\n        \\\"mean_R2\\\": mean_r2,\\n        \\\"overall_R2\\\": overall_r2,\\n        \\\"per_task_R2\\\": per_task_r2,\\n        \\\"per_dim_R2\\\": per_dim_r2,\\n        \\\"gripper_acc\\\": gripper_acc,\\n        \\\"epochs_trained\\\": epochs_trained,\\n        \\\"val_loss\\\": float(best_val_loss),\\n    }\\n\\n\\ndef bootstrap_pairwise(r2_a, r2_b, n_boot=10000):\\n    np.random.seed(SEED)\\n    tasks = sorted(r2_a.keys())\\n    a = np.array([r2_a[t] for t in tasks])\\n    b = np.array([r2_b[t] for t in tasks])\\n    observed = float(a.mean() - b.mean())\\n\\n    n = len(tasks)\\n    deltas = np.empty(n_boot)\\n    for i in range(n_boot):\\n        idx = np.random.randint(0, n, n)\\n        deltas[i] = a[idx].mean() - b[idx].mean()\\n\\n    ci_lo = float(np.percentile(deltas, 2.5))\\n    ci_hi = float(np.percentile(deltas, 97.5))\\n    p_one = float(np.mean(deltas <= 0)) if observed > 0 else float(np.mean(deltas >= 0))\\n    p_value = float(min(p_one * 2, 1.0))\\n\\n    return {\\\"delta\\\": observed, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"p_value\\\": p_value}\\n\\n\\ndef main():\\n    results = {}\\n    results[\\\"hyperparams\\\"] = {\\n        \\\"epochs\\\": EPOCHS, \\\"patience\\\": PATIENCE, \\\"lr\\\": LR,\\n        \\\"batch_size\\\": BATCH_SIZE, \\\"hidden\\\": HIDDEN_DIM, \\\"seed\\\": SEED,\\n        \\\"target\\\": \\\"next_action_a_{t+1}\\\", \\\"normalization\\\": \\\"z-score\\\",\\n        \\\"split\\\": \\\"80/20_per_task_by_demo_index\\\",\\n    }\\n\\n    for name, cfg in FEATURE_CONFIGS.items():\\n        print(f\\\"\\\\n=== {name} ===\\\")\\n        t0 = time.time()\\n        task_data = load_features_and_actions(cfg)\\n        X_tr, y_tr, X_val, y_val, val_tasks = build_train_val(task_data)\\n        print(f\\\"  Samples: {len(X_tr)} train / {len(X_val)} val, dim={X_tr.shape[1]}\\\")\\n        metrics = train_and_eval(X_tr, y_tr, X_val, y_val, val_tasks, cfg[\\\"input_dim\\\"], name)\\n        results[name] = metrics\\n        print(f\\\"  Time: {time.time() - t0:.1f}s\\\")\\n        del task_data, X_tr, y_tr, X_val, y_val\\n        torch.cuda.empty_cache()\\n\\n    print(\\\"\\\\n=== Bootstrap Pairwise Comparisons ===\\\")\\n    pairs = [\\n        (\\\"projector\\\", \\\"dino_cls\\\"),\\n        (\\\"projector\\\", \\\"clip_cls\\\"),\\n        (\\\"clip_cls\\\", \\\"dino_cls\\\"),\\n        (\\\"projector\\\", \\\"vla_image_mean_L19\\\"),\\n        (\\\"projector\\\", \\\"vla_last_preaction_L19\\\"),\\n    ]\\n    bootstrap = {}\\n    for a, b in pairs:\\n        key = f\\\"{a}_vs_{b}\\\"\\n        ci = bootstrap_pairwise(results[a][\\\"per_task_R2\\\"], results[b][\\\"per_task_R2\\\"])\\n        bootstrap[key] = ci\\n        print(f\\\"  {key}: delta={ci['delta']:.4f}, CI={ci['ci_95']}, p={ci['p_value']:.4f}\\\")\\n    results[\\\"bootstrap_pairwise\\\"] = bootstrap\\n\\n    print(\\\"\\\\n=== Summary ===\\\")\\n    for name in FEATURE_CONFIGS:\\n        m = results[name]\\n        print(f\\\"  {name:30s} mean_R2={m['mean_R2']:.4f}  overall_R2={m['overall_R2']:.4f}\\\")\\n\\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\\n    with open(OUT_PATH, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved to {OUT_PATH}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have all three scripts. Let me analyze the key data alignment code in each:
+
+**1. `action_probe_projector.py` (original p0_functional_action_probe) — `build_train_val` function:**
+```python
+T = min(feat.shape[0], act.shape[0])
+if T < 2:
+    continue
+x = torch.from_numpy(feat[:T-1])
+y = torch.from_numpy(act[1:T])
+```
+This uses `feat[:T-1]` (time 0 to T-2) to predict `act[1:T]` (time 1 to T-1). 
+
+So it's predicting the next action from the current features.
+
+**2. `action_probe_v2.py` (p0_functional_probe_v2):**
+This script doesn't do its own probe training. It loads results from `action_probe_projector.json` (the output of script 1) and `dino_action_probe.json`, then assembles them into a v2 results file. So its target alignment is inherited from whatever those scripts used.
+
+Let me check `dino_action_probe.py` to see if it has different alignment.
+
+**3. `unified_action_probe.py` — `build_train_val` function:**
+Examining the data alignment...
+
+Both the original and the unified probe use the same alignment: features at time t predict action at time t+1.
+
+But wait, the task description says the original probes might be predicting a_t instead. Let me look more carefully at what the task actually says...
+
+The task claims the original probes use time t features to predict time t actions, but when I check the actual code in `action_probe_projector.py`, it's clearly using `feat[:T-1]` paired with `act[1:T]`, which is the same a_{t+1} target as the unified probe. Let me also verify this by checking `dino_action_probe.py` to be sure.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "f102417c-d660-402d-8e78-2f6889c1e352",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pedPXozhnmEVEjEM9Fx22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+再看一下 `dino_action_probe.py` 的对齐方式，确保全面覆盖。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "057204cb-e05a-4227-b216-e31e49664b74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pedPXozhnmEVEjEM9Fx22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ShWnUHgbiaS3X5JKBf3N3S`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"feat\\[:T\\|act\\[1:\\|feat\\[:\" /root/vla-ssd/scripts/dino_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "9acbf463-63fb-454d-bdd4-a4e532c2ee19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pedPXozhnmEVEjEM9Fx22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T02:17:12.091Z_
+
+<details><summary>↩ Tool result · `toolu_01ShWnUHgbiaS3X5JKBf3N3S`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "85503087-3a6d-4994-8a0c-6ce2b61c4266",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CgEFjn7TAbQw3Xcrta3sRA`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"feat\\[:T\\|act\\[1:\\|feat\\[:\" /root/vla-ssd/scripts/run_clip_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "fcd2740b-7f10-4836-a737-8cbb2ad2c196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pedPXozhnmEVEjEM9Fx22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T02:17:12.986Z_
+
+<details><summary>↩ Tool result · `toolu_01CgEFjn7TAbQw3Xcrta3sRA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "e537fdc7-cecf-4c92-aefb-6627626a599c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jr15FpLVryfWXARgfiXdMF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"feat\\[:T\\|act\\[1:\\|feat\\[:\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "c69dab43-a31c-471c-bd0b-90ee5ff6569a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pedPXozhnmEVEjEM9Fx22",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T02:17:13.694Z_
+
+<details><summary>↩ Tool result · `toolu_01Jr15FpLVryfWXARgfiXdMF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "edcb4ce5-55c9-4b44-8b41-b4452a3f0ef1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012QoqT5V39mMah6PWHhx1Bn`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"T-1\\|1:T\\|feat\\[:\\|act\\[\" /root/vla-ssd/scripts/dino_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "4be976fd-9fc3-4edb-a4dd-883d31185297",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MVcqcnAvgLoxuZfu59t6jK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1465,
+      "cache_read_input_tokens": 37332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1465
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T02:17:17.073Z_
+
+<details><summary>↩ Tool result · `toolu_012QoqT5V39mMah6PWHhx1Bn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "2696c506-9cd7-4670-a9bc-2538dbd32e77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GQJQRFsV5w9koyHo9o4j2r`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"T-1\\|1:T\\|feat\\[:\\|act\\[\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "6aae450f-eaee-4387-81c9-0b3913a5a95d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MVcqcnAvgLoxuZfu59t6jK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1465,
+      "cache_read_input_tokens": 37332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1465
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T02:17:17.584Z_
+
+<details><summary>↩ Tool result · `toolu_01GQJQRFsV5w9koyHo9o4j2r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "3e071a16-4d0a-4f06-a958-eb049a359cbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` pipe character is blocked. Let me use grep without pipes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "5c057c69-d501-49e6-8423-6019662c23a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GMf6SBepeKuYZfoeJS9Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 38797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SECU36ySySLN5UjjutM8BW`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"T-1\" /root/vla-ssd/scripts/dino_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "77326678-da68-4af1-a253-f22b88b6e3df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GMf6SBepeKuYZfoeJS9Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 38797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T02:17:21.462Z_
+
+<details><summary>↩ Tool result · `toolu_01SECU36ySySLN5UjjutM8BW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"73:            x = torch.from_numpy(feat[:T-1])\\n75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "3b25af63-96da-451a-88e0-49c778d879be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"73:            x = torch.from_numpy(feat[:T-1])\\\\n75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"73:            x = torch.from_numpy(feat[:T-1])\\n75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YCftaiqpPc9eEik7aH2hzz`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"1:T\" /root/vla-ssd/scripts/dino_action_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "8582d7c3-8053-4716-84ce-025b55c50819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GMf6SBepeKuYZfoeJS9Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 38797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T02:17:22.422Z_
+
+<details><summary>↩ Tool result · `toolu_01YCftaiqpPc9eEik7aH2hzz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\n77:                y = torch.from_numpy(act[1:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "e7c1c9f7-ee5c-4a60-8fe4-cd5eba1e1a50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\\\n77:                y = torch.from_numpy(act[1:T])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"75:                y = torch.from_numpy(act[1:T] - act[:T-1])\\n77:                y = torch.from_numpy(act[1:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dphh9gzinfUFXwquoT5U62`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"T-1\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "41cdf680-092e-417a-9205-6472472a3b1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GMf6SBepeKuYZfoeJS9Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 38797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XqDEM9iaymFZJHoBBQJWYU`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"1:T\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "2f643a77-3b80-4e8f-b000-466a33169a45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GMf6SBepeKuYZfoeJS9Qe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 38797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T02:17:23.418Z_
+
+<details><summary>↩ Tool result · `toolu_01Dphh9gzinfUFXwquoT5U62`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "4d8c7c13-22f3-4e1d-a22c-8f31dd9b7267",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T02:17:23.943Z_
+
+<details><summary>↩ Tool result · `toolu_01XqDEM9iaymFZJHoBBQJWYU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "da127dc3-db4e-40e8-baa5-cd420c6afd7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+看看 `run_clip_action_probe_final.py` 的对齐方式，以及 `train_probes.py`（最早的 probe 脚本）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "963a5d45-dd8b-45aa-a5d8-3c4049a2aa01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmRKaGts3qJo1kjCtnrE8s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 39282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NCBa67qQ2EbDAwGwakPvk3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"feat\\[\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "f196c9d2-29b2-44e8-9842-3a0cbdd81ac7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmRKaGts3qJo1kjCtnrE8s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 39282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T02:17:28.743Z_
+
+<details><summary>↩ Tool result · `toolu_01NCBa67qQ2EbDAwGwakPvk3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "85c2ed7f-87b4-436b-a12a-6a0df7d73fc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GGjtmN4Eo38DYbNx7SsTuL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"act\\[\" /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "246d8869-7f8c-41af-af73-958a2745b4cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmRKaGts3qJo1kjCtnrE8s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 39282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T02:17:29.269Z_
+
+<details><summary>↩ Tool result · `toolu_01GGjtmN4Eo38DYbNx7SsTuL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "93ea814b-fc95-4026-bbaa-b9f14ddf7b0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"34:        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MVrVJjfUDitWAbLjb3452K`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"T-1\" /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "48bb6c4c-bfff-49a5-9d18-a2eed7cda7a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmRKaGts3qJo1kjCtnrE8s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 39282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T02:18:37.829Z_
+
+<details><summary>↩ Tool result · `toolu_01MVrVJjfUDitWAbLjb3452K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "52834f28-033d-4f86-b163-c550fbe00fe8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019qborN7yoMBcWt3KUyPYrb`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"1:T\" /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "d061786d-259f-4551-94b9-207345f385c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmRKaGts3qJo1kjCtnrE8s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 39282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 931
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T02:18:38.635Z_
+
+<details><summary>↩ Tool result · `toolu_019qborN7yoMBcWt3KUyPYrb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n591:                Ys.append(torch.from_numpy(act[1:T]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "8ad26896-adeb-4a74-99ba-5f543cece091",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\\\n591:                Ys.append(torch.from_numpy(act[1:T]))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"589:                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n591:                Ys.append(torch.from_numpy(act[1:T]))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! Let me check `run_clip_action_probe_final.py` more closely - it uses `feat[:T]` and `act[:T]`, which is the **same time** alignment (a_t, not a_{t+1}).
+
+And `train_probes.py` uses `act[1:T]` (next action) and `act[1:T] - act[:T-1]` (action delta).
+
+Let me check the full context around line 34 of `run_clip_action_probe_final.py` and the x/y alignment in `train_probes.py`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "eead2a41-a556-40fd-b109-7e217e3ce609",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAznBpgd2PLM3bZeMNqNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 40213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+`run_clip_action_probe_final.py` 用的是 `feat[:T], act[:T]`——这是同时刻对齐（a_t）！让我看完整上下文确认。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "858b2dc8-8086-493c-81b1-0f3b8edfdbbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAznBpgd2PLM3bZeMNqNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 40213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0124mFtFioPmei5fikYZTqcC`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -50 /root/vla-ssd/scripts/run_clip_action_probe_final.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "5f81b32d-4159-40f5-bd7f-b1ae75e583b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAznBpgd2PLM3bZeMNqNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 40213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T02:18:45.459Z_
+
+<details><summary>↩ Tool result · `toolu_0124mFtFioPmei5fikYZTqcC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCLIP action probe with fair DINO comparison (same code, same hyperparams).\\n\\\"\\\"\\\"\\nimport os, json, glob, numpy as np, h5py, torch, torch.nn as nn\\nfrom torch.utils.data import DataLoader, TensorDataset\\n\\nCLIP_DIR = \\\"/root/autodl-tmp/vla-ssd/features/clip_libero_goal\\\"\\nDINO_DIR = \\\"/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal\\\"\\nACTION_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nOUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\"\\nDEVICE = \\\"cuda:0\\\"\\nSEED = 42\\nN_BOOTSTRAP = 10000\\n\\ntorch.manual_seed(SEED)\\nnp.random.seed(SEED)\\n\\nclass ActionProbe(nn.Module):\\n    def __init__(self, input_dim=1024, hidden_dim=256, output_dim=7):\\n        super().__init__()\\n        self.net = nn.Sequential(nn.Linear(input_dim, hidden_dim), nn.ReLU(), nn.Linear(hidden_dim, output_dim))\\n    def forward(self, x): return self.net(x)\\n\\ndef load_task_data(feat_dir, task_name, feature_key):\\n    fc = h5py.File(f'{feat_dir}/{task_name}.h5', 'r')\\n    fa_files = glob.glob(f'{ACTION_DIR}/{task_name}*demo.hdf5')\\n    fa = h5py.File(fa_files[0], 'r')\\n    feats_list, acts_list = [], []\\n    for traj_key in sorted(fc.keys()):\\n        idx = int(traj_key.split('_')[1])\\n        feat = np.array(fc[traj_key][feature_key], dtype=np.float32)\\n        act = np.array(fa['data'][f'demo_{idx}']['actions'], dtype=np.float32)\\n        T = min(len(feat), len(act))\\n        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n    fc.close(); fa.close()\\n    return np.concatenate(feats_list), np.concatenate(acts_list)\\n\\ndef train_and_eval(feats, acts, seed=SEED):\\n    n = len(feats); n_train = int(n * 0.8)\\n    rng = np.random.RandomState(seed)\\n    idx = rng.permutation(n)\\n    X_train, y_train = feats[idx[:n_train]], acts[idx[:n_train]]\\n    X_val, y_val = feats[idx[n_train:]], acts[idx[n_train:]]\\n\\n    model = ActionProbe(input_dim=feats.shape[1]).to(DEVICE)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)\\n    criterion = nn.MSELoss()\\n    train_ds = TensorDataset(torch.tensor(X_train).to(DEVICE), torch.tensor(y_train).to(DEVICE))\\n    val_X = torch.tensor(X_val).to(DEVICE); val_y = torch.tensor(y_val).to(DEVICE)\\n    loader = DataLoader(train_ds, batch_size=512, shuffle=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "b94e37cc-3a52-4137-80c0-de71e89ec908",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCLIP action probe with fair DINO comparison (same code, same hyperparams).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, json, glob, numpy as np, h5py, torch, torch.nn as nn\\\\nfrom torch.utils.data import DataLoader, TensorDataset\\\\n\\\\nCLIP_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/clip_libero_goal\\\\\\\"\\\\nDINO_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal\\\\\\\"\\\\nACTION_DIR = \\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nSEED = 42\\\\nN_BOOTSTRAP = 10000\\\\n\\\\ntorch.manual_seed(SEED)\\\\nnp.random.seed(SEED)\\\\n\\\\nclass ActionProbe(nn.Module):\\\\n    def __init__(self, input_dim=1024, hidden_dim=256, output_dim=7):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(nn.Linear(input_dim, hidden_dim), nn.ReLU(), nn.Linear(hidden_dim, output_dim))\\\\n    def forward(self, x): return self.net(x)\\\\n\\\\ndef load_task_data(feat_dir, task_name, feature_key):\\\\n    fc = h5py.File(f'{feat_dir}/{task_name}.h5', 'r')\\\\n    fa_files = glob.glob(f'{ACTION_DIR}/{task_name}*demo.hdf5')\\\\n    fa = h5py.File(fa_files[0], 'r')\\\\n    feats_list, acts_list = [], []\\\\n    for traj_key in sorted(fc.keys()):\\\\n        idx = int(traj_key.split('_')[1])\\\\n        feat = np.array(fc[traj_key][feature_key], dtype=np.float32)\\\\n        act = np.array(fa['data'][f'demo_{idx}']['actions'], dtype=np.float32)\\\\n        T = min(len(feat), len(act))\\\\n        feats_list.append(feat[:T]); acts_list.append(act[:T])\\\\n    fc.close(); fa.close()\\\\n    return np.concatenate(feats_list), np.concatenate(acts_list)\\\\n\\\\ndef train_and_eval(feats, acts, seed=SEED):\\\\n    n = len(feats); n_train = int(n * 0.8)\\\\n    rng = np.random.RandomState(seed)\\\\n    idx = rng.permutation(n)\\\\n    X_train, y_train = feats[idx[:n_train]], acts[idx[:n_train]]\\\\n    X_val, y_val = feats[idx[n_train:]], acts[idx[n_train:]]\\\\n\\\\n    model = ActionProbe(input_dim=feats.shape[1]).to(DEVICE)\\\\n    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)\\\\n    criterion = nn.MSELoss()\\\\n    train_ds = TensorDataset(torch.tensor(X_train).to(DEVICE), torch.tensor(y_train).to(DEVICE))\\\\n    val_X = torch.tensor(X_val).to(DEVICE); val_y = torch.tensor(y_val).to(DEVICE)\\\\n    loader = DataLoader(train_ds, batch_size=512, shuffle=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCLIP action probe with fair DINO comparison (same code, same hyperparams).\\n\\\"\\\"\\\"\\nimport os, json, glob, numpy as np, h5py, torch, torch.nn as nn\\nfrom torch.utils.data import DataLoader, TensorDataset\\n\\nCLIP_DIR = \\\"/root/autodl-tmp/vla-ssd/features/clip_libero_goal\\\"\\nDINO_DIR = \\\"/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal\\\"\\nACTION_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\"\\nOUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_clip.json\\\"\\nDEVICE = \\\"cuda:0\\\"\\nSEED = 42\\nN_BOOTSTRAP = 10000\\n\\ntorch.manual_seed(SEED)\\nnp.random.seed(SEED)\\n\\nclass ActionProbe(nn.Module):\\n    def __init__(self, input_dim=1024, hidden_dim=256, output_dim=7):\\n        super().__init__()\\n        self.net = nn.Sequential(nn.Linear(input_dim, hidden_dim), nn.ReLU(), nn.Linear(hidden_dim, output_dim))\\n    def forward(self, x): return self.net(x)\\n\\ndef load_task_data(feat_dir, task_name, feature_key):\\n    fc = h5py.File(f'{feat_dir}/{task_name}.h5', 'r')\\n    fa_files = glob.glob(f'{ACTION_DIR}/{task_name}*demo.hdf5')\\n    fa = h5py.File(fa_files[0], 'r')\\n    feats_list, acts_list = [], []\\n    for traj_key in sorted(fc.keys()):\\n        idx = int(traj_key.split('_')[1])\\n        feat = np.array(fc[traj_key][feature_key], dtype=np.float32)\\n        act = np.array(fa['data'][f'demo_{idx}']['actions'], dtype=np.float32)\\n        T = min(len(feat), len(act))\\n        feats_list.append(feat[:T]); acts_list.append(act[:T])\\n    fc.close(); fa.close()\\n    return np.concatenate(feats_list), np.concatenate(acts_list)\\n\\ndef train_and_eval(feats, acts, seed=SEED):\\n    n = len(feats); n_train = int(n * 0.8)\\n    rng = np.random.RandomState(seed)\\n    idx = rng.permutation(n)\\n    X_train, y_train = feats[idx[:n_train]], acts[idx[:n_train]]\\n    X_val, y_val = feats[idx[n_train:]], acts[idx[n_train:]]\\n\\n    model = ActionProbe(input_dim=feats.shape[1]).to(DEVICE)\\n    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)\\n    criterion = nn.MSELoss()\\n    train_ds = TensorDataset(torch.tensor(X_train).to(DEVICE), torch.tensor(y_train).to(DEVICE))\\n    val_X = torch.tensor(X_val).to(DEVICE); val_y = torch.tensor(y_val).to(DEVICE)\\n    loader = DataLoader(train_ds, batch_size=512, shuffle=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UvAh1gaf5rQiEP92SxHoMG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -20 /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "f12df7ba-79dd-4f0c-b39e-7b3dd77e02cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAznBpgd2PLM3bZeMNqNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 40213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XyVM7WzirhK67ij3cguDz5`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"Xs.append\\|x =\" /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "548073f2-b739-4e18-a122-ec24fe100f15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuAznBpgd2PLM3bZeMNqNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 40213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1084
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T02:18:46.548Z_
+
+<details><summary>↩ Tool result · `toolu_01UvAh1gaf5rQiEP92SxHoMG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "53fc7bd4-235c-4591-b4a7-6fd5ccf5f5f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T02:18:46.558Z_
+
+<details><summary>↩ Tool result · `toolu_01XyVM7WzirhK67ij3cguDz5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "5fe6b562-d1a8-48bd-83a1-5b1f00319769",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SJmyKufxokcx5pfTEVUyuK`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n \"Xs.append\" /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "eb34f952-fd82-489f-83f7-f8de2324c334",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013T3nwjZcRgFsTvzXkM6pCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2043,
+      "cache_read_input_tokens": 41297,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2043
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T02:18:49.522Z_
+
+<details><summary>↩ Tool result · `toolu_01SJmyKufxokcx5pfTEVUyuK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"587:            Xs.append(torch.from_numpy(feat[:T - 1]))\\n863:                Xs.append(torch.from_numpy(feats[pos][:T]))\\n943:                Xs.append(torch.from_numpy(feat))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "adf08513-8493-4ca0-8f08-a3322ddffc32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"587:            Xs.append(torch.from_numpy(feat[:T - 1]))\\\\n863:                Xs.append(torch.from_numpy(feats[pos][:T]))\\\\n943:                Xs.append(torch.from_numpy(feat))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"587:            Xs.append(torch.from_numpy(feat[:T - 1]))\\n863:                Xs.append(torch.from_numpy(feats[pos][:T]))\\n943:                Xs.append(torch.from_numpy(feat))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at line 587-591 of train_probes.py to see the full context of action probing:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "898bfbfe-cd29-4de6-9e80-8e8d28e104ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014X6UHcq7ejLRLSR3QLUJtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 43340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+`train_probes.py` L587 也是 `feat[:T-1]`，配合 L589/591 的 `act[1:T]`。让我看完整上下文确认这是 action probe 部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "fb7d7d46-a9fe-4f60-b5e3-050141f9b234",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014X6UHcq7ejLRLSR3QLUJtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 43340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185aiZ5DaqFE5uDUhDdN3qo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -600 /root/vla-ssd/scripts/train_probes.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "0ae57649-14dd-4df4-a1e8-259c1b39f70b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014X6UHcq7ejLRLSR3QLUJtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 43340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T02:18:54.194Z_
+
+<details><summary>↩ Tool result · `toolu_0185aiZ5DaqFE5uDUhDdN3qo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import (r2_score, mean_absolute_error, roc_auc_score,\\n                             accuracy_score, f1_score, confusion_matrix)\\nfrom sklearn.decomposition import PCA as SklearnPCA\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train probes (linear/MLP) on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\", \\\"action_prediction\\\", \\\"action_delta\\\", \\\"goal_classification\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10/\\\",\\n                   help=\\\"LIBERO raw data directory (for action_prediction)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--probe_model\\\", default=\\\"mlp\\\",\\n                   choices=[\\\"linear\\\", \\\"mlp\\\"],\\n                   help=\\\"Probe architecture: linear or mlp (default: mlp)\\\")\\n    p.add_argument(\\\"--shuffle_cross_trajectory\\\", action=\\\"store_true\\\",\\n                   help=\\\"Control B: pair frames from different trajectories\\\")\\n    p.add_argument(\\\"--pca_dim\\\", type=int, default=None,\\n                   help=\\\"PCA reduce features to N dims before probe (fit on train only)\\\")\\n    p.add_argument(\\\"--shuffle_labels\\\", action=\\\"store_true\\\",\\n                   help=\\\"Negative control: permute distance labels (permutation test null)\\\")\\n    p.add_argument(\\\"--max_frames\\\", type=int, default=None,\\n                   help=\\\"Use only first N frames per trajectory (early-frame analysis)\\\")\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glo\\n\\n... [截断: 输出过长，省略 13028 字符] ...\\n\\nen(X_tr), args.batch_size):\\n            idx = perm[s : s + args.batch_size]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            logits = model(X_val)\\n            preds = logits.argmax(dim=1)\\n            acc = (preds == y_val).float().mean().item()\\n\\n        if acc > best_acc:\\n            best_acc = acc\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        logits = model(X_val).cpu()\\n        preds = logits.argmax(dim=1).numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    acc = float(accuracy_score(y_np, preds))\\n    macro_f1 = float(f1_score(y_np, preds, average=\\\"macro\\\"))\\n    cm = confusion_matrix(y_np, preds, labels=list(range(n_classes)))\\n    per_class_acc = {}\\n    for c in range(n_classes):\\n        mask = y_np == c\\n        if mask.sum() > 0:\\n            per_class_acc[c] = float((preds[mask] == c).mean())\\n        else:\\n            per_class_acc[c] = float(\\\"nan\\\")\\n\\n    return dict(\\n        accuracy=acc,\\n        macro_f1=macro_f1,\\n        per_class_accuracy={str(k): v for k, v in per_class_acc.items()},\\n        confusion_matrix=cm.tolist(),\\n        epochs_trained=final_ep,\\n        probe_model=probe_model,\\n        val_preds=preds,\\n    )\\n\\n\\n# ============================================================\\n# Runners\\n# ============================================================\\n\\n\\n# ============================================================\\n# Action prediction\\n# ============================================================\\n\\ndef load_actions(traj_metas, indices, data_dir):\\n    \\\"\\\"\\\"Load action arrays from LIBERO HDF5 for given trajectory indices.\\\"\\\"\\\"\\n    actions = [None] * len(indices)\\n    by_task = defaultdict(list)\\n    for pos, idx in enumerate(indices):\\n        by_task[traj_metas[idx][\\\"task\\\"]].append((pos, idx))\\n\\n    for task, entries in by_task.items():\\n        libero_path = os.path.join(data_dir, f\\\"{task}_demo.hdf5\\\")\\n        with h5py.File(libero_path, \\\"r\\\") as f:\\n            for pos, idx in entries:\\n                m = traj_metas[idx]\\n                demo_idx = int(m[\\\"h5_key\\\"].split(\\\"_\\\")[-1])\\n                demo_key = f\\\"data/demo_{demo_idx}/actions\\\"\\n                actions[pos] = np.asarray(f[demo_key], dtype=np.float32)\\n    return actions\\n\\n\\ndef run_action_prediction(args, device):\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\n\\n    predict_delta = args.probe_type == \\\"action_delta\\\"\\n    train_actions = load_actions(traj_metas, train_ids, args.data_dir)\\n    val_actions = load_actions(traj_metas, val_ids, args.data_dir)\\n\\n    def build_shifted(feats, acts, ids_list):\\n        Xs, Ys, task_ids = [], [], []\\n        for i, (feat, act) in enumerate(zip(feats, acts)):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            Xs.append(torch.from_numpy(feat[:T - 1]))\\n            if predict_delta:\\n                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n            else:\\n                Ys.append(torch.from_numpy(act[1:T]))\\n            task_ids.extend([traj_metas[ids_list[i]][\\\"task\\\"]] * (T - 1))\\n        return torch.cat(Xs), torch.cat(Ys), task_ids\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "c61fdc06-76dd-4c2a-bdd9-e74ae276f967",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\\\n\\\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\\\n\\\\nUsage:\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import (r2_score, mean_absolute_error, roc_auc_score,\\\\n                             accuracy_score, f1_score, confusion_matrix)\\\\nfrom sklearn.decomposition import PCA as SklearnPCA\\\\n\\\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\\\nAGG_MAP = {\\\\n    \\\\\\\"last_preaction\\\\\\\": (\\\\\\\"last_preaction\\\\\\\", \\\\\\\"cls_token\\\\\\\"),\\\\n    \\\\\\\"image_mean\\\\\\\": (\\\\\\\"image_mean\\\\\\\", \\\\\\\"patch_mean\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train probes (linear/MLP) on VLA/DINO-V2 features\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--features_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory with per-task HDF5 feature files\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Directory to save probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", required=True,\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"action_prediction\\\\\\\", \\\\\\\"action_delta\\\\\\\", \\\\\\\"goal_classification\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--layers\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--aggregation\\\\\\\", default=\\\\\\\"last_preaction\\\\\\\",\\\\n                   choices=[\\\\\\\"last_preaction\\\\\\\", \\\\\\\"image_mean\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--label_file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"Predicate labels JSON (required for subtask_predicate)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10/\\\\\\\",\\\\n                   help=\\\\\\\"LIBERO raw data directory (for action_prediction)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--patience\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--pairs_per_bin\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--n_bins\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--probe_model\\\\\\\", default=\\\\\\\"mlp\\\\\\\",\\\\n                   choices=[\\\\\\\"linear\\\\\\\", \\\\\\\"mlp\\\\\\\"],\\\\n                   help=\\\\\\\"Probe architecture: linear or mlp (default: mlp)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--shuffle_cross_trajectory\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Control B: pair frames from different trajectories\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pca_dim\\\\\\\", type=int, default=None,\\\\n                   help=\\\\\\\"PCA reduce features to N dims before probe (fit on train only)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--shuffle_labels\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Negative control: permute distance labels (permutation test null)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_frames\\\\\\\", type=int, default=None,\\\\n                   help=\\\\\\\"Use only first N frames per trajectory (early-frame analysis)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ============================================================\\\\n# Feature scanning & loading\\\\n# ============================================================\\\\n\\\\ndef scan_features(features_dir, aggregation):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    primary, fallback = AGG_MAP[aggregation]\\\\n    traj_metas = []\\\\n    n_layers = hidden_dim = None\\\\n\\\\n    for h5_path in sorted(glo\\\\n\\\\n... [截断: 输出过长，省略 13028 字符] ...\\\\n\\\\nen(X_tr), args.batch_size):\\\\n            idx = perm[s : s + args.batch_size]\\\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\\\n            opt.zero_grad()\\\\n            loss.backward()\\\\n            opt.step()\\\\n\\\\n        model.eval()\\\\n        with torch.no_grad():\\\\n            logits = model(X_val)\\\\n            preds = logits.argmax(dim=1)\\\\n            acc = (preds == y_val).float().mean().item()\\\\n\\\\n        if acc > best_acc:\\\\n            best_acc = acc\\\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\\\n            wait = 0\\\\n        else:\\\\n            wait += 1\\\\n            if wait >= args.patience:\\\\n                final_ep = ep + 1\\\\n                break\\\\n        final_ep = ep + 1\\\\n\\\\n    model.load_state_dict(best_state)\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        logits = model(X_val).cpu()\\\\n        preds = logits.argmax(dim=1).numpy()\\\\n    y_np = y_val.cpu().numpy()\\\\n\\\\n    acc = float(accuracy_score(y_np, preds))\\\\n    macro_f1 = float(f1_score(y_np, preds, average=\\\\\\\"macro\\\\\\\"))\\\\n    cm = confusion_matrix(y_np, preds, labels=list(range(n_classes)))\\\\n    per_class_acc = {}\\\\n    for c in range(n_classes):\\\\n        mask = y_np == c\\\\n        if mask.sum() > 0:\\\\n            per_class_acc[c] = float((preds[mask] == c).mean())\\\\n        else:\\\\n            per_class_acc[c] = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    return dict(\\\\n        accuracy=acc,\\\\n        macro_f1=macro_f1,\\\\n        per_class_accuracy={str(k): v for k, v in per_class_acc.items()},\\\\n        confusion_matrix=cm.tolist(),\\\\n        epochs_trained=final_ep,\\\\n        probe_model=probe_model,\\\\n        val_preds=preds,\\\\n    )\\\\n\\\\n\\\\n# ============================================================\\\\n# Runners\\\\n# ============================================================\\\\n\\\\n\\\\n# ============================================================\\\\n# Action prediction\\\\n# ============================================================\\\\n\\\\ndef load_actions(traj_metas, indices, data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load action arrays from LIBERO HDF5 for given trajectory indices.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    actions = [None] * len(indices)\\\\n    by_task = defaultdict(list)\\\\n    for pos, idx in enumerate(indices):\\\\n        by_task[traj_metas[idx][\\\\\\\"task\\\\\\\"]].append((pos, idx))\\\\n\\\\n    for task, entries in by_task.items():\\\\n        libero_path = os.path.join(data_dir, f\\\\\\\"{task}_demo.hdf5\\\\\\\")\\\\n        with h5py.File(libero_path, \\\\\\\"r\\\\\\\") as f:\\\\n            for pos, idx in entries:\\\\n                m = traj_metas[idx]\\\\n                demo_idx = int(m[\\\\\\\"h5_key\\\\\\\"].split(\\\\\\\"_\\\\\\\")[-1])\\\\n                demo_key = f\\\\\\\"data/demo_{demo_idx}/actions\\\\\\\"\\\\n                actions[pos] = np.asarray(f[demo_key], dtype=np.float32)\\\\n    return actions\\\\n\\\\n\\\\ndef run_action_prediction(args, device):\\\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\\\n    layers = parse_layers(args.layers, n_layers - 1)\\\\n    train_ids, val_ids = split_by_task(traj_metas)\\\\n\\\\n    print(f\\\\\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\\\\\")\\\\n    print(f\\\\\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\\\\\")\\\\n\\\\n    predict_delta = args.probe_type == \\\\\\\"action_delta\\\\\\\"\\\\n    train_actions = load_actions(traj_metas, train_ids, args.data_dir)\\\\n    val_actions = load_actions(traj_metas, val_ids, args.data_dir)\\\\n\\\\n    def build_shifted(feats, acts, ids_list):\\\\n        Xs, Ys, task_ids = [], [], []\\\\n        for i, (feat, act) in enumerate(zip(feats, acts)):\\\\n            T = min(feat.shape[0], act.shape[0])\\\\n            if T < 2:\\\\n                continue\\\\n            Xs.append(torch.from_numpy(feat[:T - 1]))\\\\n            if predict_delta:\\\\n                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\\\n            else:\\\\n                Ys.append(torch.from_numpy(act[1:T]))\\\\n            task_ids.extend([traj_metas[ids_list[i]][\\\\\\\"task\\\\\\\"]] * (T - 1))\\\\n        return torch.cat(Xs), torch.cat(Ys), task_ids\\\\n\\\\n    results = {}\\\\n    for li, layer in enumerate(layers):\\\\n        print(f\\\\\\\"\\\\\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n\\\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"train_probes.py — Train probes (linear/MLP) on VLA/DINO-V2 hidden states.\\n\\nInput:  features/{mode}/{task}.h5 — per-task HDF5 with per-trajectory hidden states\\nOutput: results/{mode}/{probe_type}/ — per-layer JSON + summary CSV\\n\\nUsage:\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type temporal_distance\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type oracle\\n  python train_probes.py --features_dir features/trained/ --output_dir results/trained/ --probe_type subtask_predicate --label_file labels.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport glob\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import (r2_score, mean_absolute_error, roc_auc_score,\\n                             accuracy_score, f1_score, confusion_matrix)\\nfrom sklearn.decomposition import PCA as SklearnPCA\\n\\n# OpenVLA: last_preaction / image_mean  shape (T, 33, 4096)\\n# DINO-V2: cls_token / patch_mean       shape (T, 1024)\\nAGG_MAP = {\\n    \\\"last_preaction\\\": (\\\"last_preaction\\\", \\\"cls_token\\\"),\\n    \\\"image_mean\\\": (\\\"image_mean\\\", \\\"patch_mean\\\"),\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train probes (linear/MLP) on VLA/DINO-V2 features\\\")\\n    p.add_argument(\\\"--features_dir\\\", required=True,\\n                   help=\\\"Directory with per-task HDF5 feature files\\\")\\n    p.add_argument(\\\"--output_dir\\\", required=True,\\n                   help=\\\"Directory to save probe results\\\")\\n    p.add_argument(\\\"--probe_type\\\", required=True,\\n                   choices=[\\\"temporal_distance\\\", \\\"subtask_predicate\\\", \\\"oracle\\\", \\\"action_prediction\\\", \\\"action_delta\\\", \\\"goal_classification\\\"])\\n    p.add_argument(\\\"--layers\\\", default=None,\\n                   help=\\\"Layer range '0-32' or list '0,5,10'. Default: all\\\")\\n    p.add_argument(\\\"--aggregation\\\", default=\\\"last_preaction\\\",\\n                   choices=[\\\"last_preaction\\\", \\\"image_mean\\\"])\\n    p.add_argument(\\\"--label_file\\\", default=None,\\n                   help=\\\"Predicate labels JSON (required for subtask_predicate)\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10/\\\",\\n                   help=\\\"LIBERO raw data directory (for action_prediction)\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=256)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--patience\\\", type=int, default=5)\\n    p.add_argument(\\\"--pairs_per_bin\\\", type=int, default=50)\\n    p.add_argument(\\\"--n_bins\\\", type=int, default=10)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--probe_model\\\", default=\\\"mlp\\\",\\n                   choices=[\\\"linear\\\", \\\"mlp\\\"],\\n                   help=\\\"Probe architecture: linear or mlp (default: mlp)\\\")\\n    p.add_argument(\\\"--shuffle_cross_trajectory\\\", action=\\\"store_true\\\",\\n                   help=\\\"Control B: pair frames from different trajectories\\\")\\n    p.add_argument(\\\"--pca_dim\\\", type=int, default=None,\\n                   help=\\\"PCA reduce features to N dims before probe (fit on train only)\\\")\\n    p.add_argument(\\\"--shuffle_labels\\\", action=\\\"store_true\\\",\\n                   help=\\\"Negative control: permute distance labels (permutation test null)\\\")\\n    p.add_argument(\\\"--max_frames\\\", type=int, default=None,\\n                   help=\\\"Use only first N frames per trajectory (early-frame analysis)\\\")\\n    return p.parse_args()\\n\\n\\n# ============================================================\\n# Feature scanning & loading\\n# ============================================================\\n\\ndef scan_features(features_dir, aggregation):\\n    \\\"\\\"\\\"Scan HDF5 files — return per-traj metadata, n_layers, hidden_dim.\\\"\\\"\\\"\\n    primary, fallback = AGG_MAP[aggregation]\\n    traj_metas = []\\n    n_layers = hidden_dim = None\\n\\n    for h5_path in sorted(glo\\n\\n... [截断: 输出过长，省略 13028 字符] ...\\n\\nen(X_tr), args.batch_size):\\n            idx = perm[s : s + args.batch_size]\\n            loss = crit(model(X_tr[idx]), y_tr[idx])\\n            opt.zero_grad()\\n            loss.backward()\\n            opt.step()\\n\\n        model.eval()\\n        with torch.no_grad():\\n            logits = model(X_val)\\n            preds = logits.argmax(dim=1)\\n            acc = (preds == y_val).float().mean().item()\\n\\n        if acc > best_acc:\\n            best_acc = acc\\n            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}\\n            wait = 0\\n        else:\\n            wait += 1\\n            if wait >= args.patience:\\n                final_ep = ep + 1\\n                break\\n        final_ep = ep + 1\\n\\n    model.load_state_dict(best_state)\\n    model.eval()\\n    with torch.no_grad():\\n        logits = model(X_val).cpu()\\n        preds = logits.argmax(dim=1).numpy()\\n    y_np = y_val.cpu().numpy()\\n\\n    acc = float(accuracy_score(y_np, preds))\\n    macro_f1 = float(f1_score(y_np, preds, average=\\\"macro\\\"))\\n    cm = confusion_matrix(y_np, preds, labels=list(range(n_classes)))\\n    per_class_acc = {}\\n    for c in range(n_classes):\\n        mask = y_np == c\\n        if mask.sum() > 0:\\n            per_class_acc[c] = float((preds[mask] == c).mean())\\n        else:\\n            per_class_acc[c] = float(\\\"nan\\\")\\n\\n    return dict(\\n        accuracy=acc,\\n        macro_f1=macro_f1,\\n        per_class_accuracy={str(k): v for k, v in per_class_acc.items()},\\n        confusion_matrix=cm.tolist(),\\n        epochs_trained=final_ep,\\n        probe_model=probe_model,\\n        val_preds=preds,\\n    )\\n\\n\\n# ============================================================\\n# Runners\\n# ============================================================\\n\\n\\n# ============================================================\\n# Action prediction\\n# ============================================================\\n\\ndef load_actions(traj_metas, indices, data_dir):\\n    \\\"\\\"\\\"Load action arrays from LIBERO HDF5 for given trajectory indices.\\\"\\\"\\\"\\n    actions = [None] * len(indices)\\n    by_task = defaultdict(list)\\n    for pos, idx in enumerate(indices):\\n        by_task[traj_metas[idx][\\\"task\\\"]].append((pos, idx))\\n\\n    for task, entries in by_task.items():\\n        libero_path = os.path.join(data_dir, f\\\"{task}_demo.hdf5\\\")\\n        with h5py.File(libero_path, \\\"r\\\") as f:\\n            for pos, idx in entries:\\n                m = traj_metas[idx]\\n                demo_idx = int(m[\\\"h5_key\\\"].split(\\\"_\\\")[-1])\\n                demo_key = f\\\"data/demo_{demo_idx}/actions\\\"\\n                actions[pos] = np.asarray(f[demo_key], dtype=np.float32)\\n    return actions\\n\\n\\ndef run_action_prediction(args, device):\\n    traj_metas, n_layers, hidden_dim = scan_features(args.features_dir, args.aggregation)\\n    layers = parse_layers(args.layers, n_layers - 1)\\n    train_ids, val_ids = split_by_task(traj_metas)\\n\\n    print(f\\\"Features: {len(traj_metas)} trajs, {n_layers} layers, dim={hidden_dim}\\\")\\n    print(f\\\"Split: {len(train_ids)} train / {len(val_ids)} val\\\")\\n\\n    predict_delta = args.probe_type == \\\"action_delta\\\"\\n    train_actions = load_actions(traj_metas, train_ids, args.data_dir)\\n    val_actions = load_actions(traj_metas, val_ids, args.data_dir)\\n\\n    def build_shifted(feats, acts, ids_list):\\n        Xs, Ys, task_ids = [], [], []\\n        for i, (feat, act) in enumerate(zip(feats, acts)):\\n            T = min(feat.shape[0], act.shape[0])\\n            if T < 2:\\n                continue\\n            Xs.append(torch.from_numpy(feat[:T - 1]))\\n            if predict_delta:\\n                Ys.append(torch.from_numpy(act[1:T] - act[:T-1]))\\n            else:\\n                Ys.append(torch.from_numpy(act[1:T]))\\n            task_ids.extend([traj_metas[ids_list[i]][\\\"task\\\"]] * (T - 1))\\n        return torch.cat(Xs), torch.cat(Ys), task_ids\\n\\n    results = {}\\n    for li, layer in enumerate(layers):\\n        print(f\\\"\\\\n[Layer {layer}] ({li+1}/{len(layers)})\\\", flush=True)\\n        t0 = time.time()\\n\\n        train_feats = load_layer_features(traj_metas, train_ids, layer)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have all the information. Let me summarize:
+
+**All scripts consistently use the same alignment: `feat[:T-1]` → `act[1:T]` (predict a_{t+1})**
+
+1. **`action_probe_projector.py`** (p0_functional_action_probe) — L82-83:
+   ```python
+   x = torch.from_numpy(feat[:T-1])
+   y = torch.from_numpy(act[1:T])
+   ```
+   → Predicts **a_{t+1}**
+
+
+2. **`action_probe_v2.py`** loads pre-trained results from `action_probe_projector.json`, so it inherits the same a_{t+1} alignment without retraining. **`unified_action_probe.py`** and **`dino_action_probe.py`** both follow the identical pattern, aligning features at time t with actions at time t+1.
+
+5. **`train_probes.py`** uses the same shifted alignment in its `build_shifted` function, pairing features from frames 0 to T-1 with actions from frames 1 to T, predicting a_{t+1}.
+
+6. Checking `run_clip`...
+
+Actually, I'm noticing `run_clip_action_probe_final.py` is the outlier—it aligns features and actions at the same time step, so it's predicting a_t instead. Every other probe predicts a_{t+1}.
+
+This raises a key question about what's actually correct for a VLA. In the standard VLA setup, the model sees observation_t and instruction, then outputs action_t, so features at time t should naturally correspond to action_t. That would make predicting a_t the semantically correct choice for testing whether features encode action information. But there's a nuance in how LIBERO data is structured that might complicate this.
+
+In the demonstrations, at time t the human observes state_t and executes action_t, which transitions to state_{t+1}. The observation at time t is captured before action_t is applied, so feat_t should correspond to action_t. Yet the naming convention `build_shifted` and the explicit comment about predicting a_{t+1} suggest this was a deliberate design decision rather than an oversight. I need to think through whether the standard VLA training objective actually supports predicting a_{t+1} from feat_t, or if that's a mismatch.
+
+In typical policy learning, observation_t maps to action_t, and the model trained on obs_t should output action_t. If features are extracted from obs_t, they naturally contain information about action_t, making feat_t → act_t the straightforward choice for testing whether visual features can decode the intended action. Using feat_{t-1} → act_t instead asks a different question: whether features from the previous timestep can predict the current action, which tests temporal predictiveness and is a harder task.
+
+The `build_shifted` design choice appears intentional, suggesting the probe is meant to evaluate whether features contain predictive information about future actions rather than just decoding the current action. function name suggests the developers intentionally chose to shift, but the question is whether this is the RIGHT thing for the hypothesis they're testing.
+
+For the original hypothesis "If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation" — the question is whether projector features carry action-relevant information. For this, predicting a_t would be more direct and appropriate, because:
+1. VLA at time t maps obs_t → action_t
+2. Projector features at time t are part of the obs_t processing pipeline
+3. So testing feat_t → action_t directly tests whether the projector encodes the current action
+
+Using a_{t+1} is a valid but different question. It tests temporal prediction, which is harder and would give lower R². This could explain the R² numbers being lower than expected.
+
+But actually — ALL the probes use a_{t+1}, so the comparison across methods is still fair. The R² values are comparable within the study. The real question is just about semantic interpretation. The only outlier is `run_clip_action_probe_final.py`, which predicts a_t instead. So the key probes are consistent with each other, both using a_{t+1}, and the reviewer's concern about a discrepancy appears unfounded. Whether a_t or a_{t+1} is the "correct" choice is ultimately a design decision.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "6d886c2b-065f-45cb-8c6a-32e0c1716c8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AtsgD8AppqwLBZsmvwSz4S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3331,
+      "cache_read_input_tokens": 43588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+全部数据收齐。结论如下：
+
+---
+
+## 结果
+
+### 1. 原始 probe → 预测 **a_{t+1}**
+
+**`action_probe_projector.py`** (p0_functional_action_probe) L82-83:
+```python
+x = torch.from_numpy(feat[:T-1])
+y = torch.from_numpy(act[1:T])
+```
+
+**`action_probe_v2.py`** (p0_functional_probe_v2) 不做自己的训练，直接读取 `action_probe_projector.json` 的结果，继承相同的 a_{t+1} 对齐。
+
+**`dino_action_probe.py`** L73/77:
+```python
+x = torch.from_numpy(feat[:T-1])
+y = torch.from_numpy(act[1:T])  # action mode
+```
+
+**`train_probes.py`** L587-591 (`build_shifted` 函数):
+```python
+Xs.append(torch.from_numpy(feat[:T - 1]))
+Ys.append(torch.from_numpy(act[1:T]))
+```
+
+### 2. 统一 probe → 预测 **a_{t+1}**
+
+**`unified_action_probe.py`** L148-149:
+```python
+x = torch.from_numpy(feat[: T - 1])
+y = torch.from_numpy(act[1:T])
+```
+
+### 3. 结论：两者一致，都是 a_{t+1}
+
+**原始 probe 和统一 probe 用的是完全相同的 target 对齐方式：`feat[t] → act[t+1]`。不存在差异。**
+
+唯一例外是 `run_clip_action_probe_final.py` L34 用 `feat[:T], act[:T]`（预测 a_t），但这个脚本是独立的 CLIP 对比实验，不属于 p0_functional_action_probe 系列。
+
+### 4. 是否需要修复？
+
+**不需要。** 跨方法比较中所有 probe（projector / DINO / CLIP / VLA image_mean / VLA last_preaction）都使用同一 target，对比是公平的。
+
+关于 a_t vs a_{t+1} 的语义问题：VLA 在 time t 看到 obs_t 后输出 action_t，所以 `feat[t] → a_t` 测的是"特征是否编码当前 action"，语义更直接。但所有 probe 统一用 a_{t+1} 后，差异只影响 R² 绝对值（a_{t+1} 更难预测，R² 偏低），不影响方法间的排序和结论。如果想回答"projector 是否编码了 VLA 应该输出的 action"，可以考虑加一组 a_t 对照实验，但不是 blocker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "uuid": "9761afd8-1968-4ebe-b1a7-c2482d05117a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AtsgD8AppqwLBZsmvwSz4S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3331,
+      "cache_read_input_tokens": 43588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 68_
+
+全部数据收齐。结论如下：
+
+---
+
+## 结果
+
+### 1. 原始 probe → 预测 **a_{t+1}**
+
+**`action_probe_projector.py`** (p0_functional_action_probe) L82-83:
+```python
+x = torch.from_numpy(feat[:T-1])
+y = torch.from_numpy(act[1:T])
+```
+
+**`action_probe_v2.py`** (p0_functional_probe_v2) 不做自己的训练，直接读取 `action_probe_projector.json` 的结果，继承相同的 a_{t+1} 对齐。
+
+**`dino_action_probe.py`** L73/77:
+```python
+x = torch.from_numpy(feat[:T-1])
+y = torch.from_numpy(act[1:T])  # action mode
+```
+
+**`train_probes.py`** L587-591 (`build_shifted` 函数):
+```python
+Xs.append(torch.from_numpy(feat[:T - 1]))
+Ys.append(torch.from_numpy(act[1:T]))
+```
+
+### 2. 统一 probe → 预测 **a_{t+1}**
+
+**`unified_action_probe.py`** L148-149:
+```python
+x = torch.from_numpy(feat[: T - 1])
+y = torch.from_numpy(act[1:T])
+```
+
+### 3. 结论：两者一致，都是 a_{t+1}
+
+**原始 probe 和统一 probe 用的是完全相同的 target 对齐方式：`feat[t] → act[t+1]`。不存在差异。**
+
+唯一例外是 `run_clip_action_probe_final.py` L34 用 `feat[:T], act[:T]`（预测 a_t），但这个脚本是独立的 CLIP 对比实验，不属于 p0_functional_action_probe 系列。
+
+### 4. 是否需要修复？
+
+**不需要。** 跨方法比较中所有 probe（projector / DINO / CLIP / VLA image_mean / VLA last_preaction）都使用同一 target，对比是公平的。
+
+关于 a_t vs a_{t+1} 的语义问题：VLA 在 time t 看到 obs_t 后输出 action_t，所以 `feat[t] → a_t` 测的是"特征是否编码当前 action"，语义更直接。但所有 probe 统一用 a_{t+1} 后，差异只影响 R² 绝对值（a_{t+1} 更难预测，R² 偏低），不影响方法间的排序和结论。如果想回答"projector 是否编码了 VLA 应该输出的 action"，可以考虑加一组 a_t 对照实验，但不是 blocker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 186952,
+  "duration_api_ms": 184370,
+  "num_turns": 26,
+  "stop_reason": "end_turn",
+  "session_id": "7efff1e0-7680-48d9-8855-2180d383bdb3",
+  "total_cost_usd": 0.588608,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 35078,
+    "cache_read_input_tokens": 418905,
+    "output_tokens": 6315,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35078,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2395,
+        "cache_read_input_tokens": 43588,
+        "cache_creation_input_tokens": 3331,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3331
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1833,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001958,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 6315,
+      "cacheReadInputTokens": 418905,
+      "cacheCreationInputTokens": 35078,
+      "webSearchRequests": 0,
+      "costUSD": 0.58665,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "21ad05ca-b8a3-4c51-a053-b1eaf3b78fd5"
+}
+```
+
+</details>
+
+---

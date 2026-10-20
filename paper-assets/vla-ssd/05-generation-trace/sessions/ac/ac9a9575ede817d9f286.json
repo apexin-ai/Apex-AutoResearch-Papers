@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac9a9575ede817d9f286",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh prep rsa no inst",
+  "task_key": "worker_ssh_prep-rsa-no-inst_20260515T210801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-rsa-no-inst_20260515T210801_result.json",
+    "occurrence": 1,
+    "bytes": 4134,
+    "sha256": "837d42d6a779d57dd64372adf42f642f098b6b727d81c89f169b5baf87b8ce29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已读完全部代码。以下是预检结果。\n\n---\n\n## 预检结果\n\n### 1. h5 格式兼容性 ✅\n\n`run_no_inst_extraction.sh` 调用同一个 `scripts/extract_features.py`，仅 `--task_instruction \"\"` 不同。输出结构完全一致：`demo_X/last_preaction`，shape `(T, 33, 4096)`。RSA 脚本无需适配数据格式。\n\n### 2. RSA 脚本问题 ❌ — 路径硬编码不支持 no-inst\n\n`load_vla_features()` 第 59 行：\n```python\ndef load_vla_features(model_type, task, demo_ids, layer):\n    path = FEAT_ROOT / f\"{model_type}_libero_goal\" / f\"{task}.h5\"\n```\n\n`model_type` 只接受 `\"trained\"` / `\"untrained\"`，路径拼为 `trained_libero_goal/`。无法指向 `trained_libero_goal_no_inst/`。\n\n### 3. 已有 RSA 结果可复用 ✅\n\n`rsa_results.json` 包含 with-inst 全部数据：\n- trained peak RSA = **0.4876** (layer 14)\n- untrained peak RSA = **0.4846**\n- DINO RSA = **0.388**\n- G1 delta = 0.003 (FAIL), G2 = 4/33 (FAIL)\n\nwith-inst 和 DINO 结果无需重跑。\n\n### 4. 缺失功能：bootstrap CI\n\nD025 gate 要求 \"bootstrap CI excludes 0\"，当前脚本**没有 bootstrap**。\n\n### 5. 提取进度\n\n- `trained_libero_goal_no_inst/`: 1/10 tasks 完成\n- `untrained_libero_goal_no_inst/`: 3/10 tasks 完成\n\n---\n\n## 修改方案（4 处改动 + 1 个新命令）\n\n### 改动 1：`load_vla_features` 加 suffix 参数（第 59 行）\n\n```python\n# 原：\ndef load_vla_features(model_type, task, demo_ids, layer):\n    path = FEAT_ROOT / f\"{model_type}_libero_goal\" / f\"{task}.h5\"\n\n# 改为：\ndef load_vla_features(model_type, task, demo_ids, layer, suffix=\"\"):\n    path = FEAT_ROOT / f\"{model_type}_libero_goal{suffix}\" / f\"{task}.h5\"\n```\n\n### 改动 2：argparse 加 `--feat_suffix`（约第 186 行，`--skip_cka` 后面）\n\n```python\nparser.add_argument(\"--feat_suffix\", type=str, default=\"\",\n                    help=\"Suffix for feature dirs (e.g. '_no_inst')\")\n```\n\n### 改动 3：调用处传 suffix（约第 253-254 行）\n\n```python\n# 原：\ntf = load_vla_features(\"trained\", task, demo_ids, layer)\nuf = load_vla_features(\"untrained\", task, demo_ids, layer)\n\n# 改为：\ntf = load_vla_features(\"trained\", task, demo_ids, layer, suffix=args.feat_suffix)\nuf = load_vla_features(\"untrained\", task, demo_ids, layer, suffix=args.feat_suffix)\n```\n\n### 改动 4：输出路径含 suffix（约第 346 行）\n\n```python\n# 原：\nout_path = OUT_DIR / \"rsa_results.json\"\n\n# 改为：\nout_path = OUT_DIR / f\"rsa_results{args.feat_suffix}.json\"\n```\n\n---\n\n## 提取完成后的执行命令\n\n```bash\n# Step 1: 跑 no-inst RSA（CKA 可跳过，省时间）\ncd /root/vla-ssd\npython rsa_analysis.py --feat_suffix _no_inst --skip_cka\n# → 输出 /root/autodl-tmp/vla-ssd/results/rsa/rsa_results_no_inst.json\n\n# Step 2: D025 gate 判定（python one-liner）\npython -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_results.json') as f:\n    wi = json.load(f)\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_results_no_inst.json') as f:\n    ni = json.load(f)\n\nwi_peak = max(v['trained_rsa'] for v in wi['per_layer'].values())\nni_peak = max(v['trained_rsa'] for v in ni['per_layer'].values())\ndino_rsa = wi['per_layer']['layer_0']['dino_rsa']\ndelta = wi_peak - ni_peak\n\nprint(f'with-inst RSA (trained peak): {wi_peak:.4f}')\nprint(f'no-inst RSA (trained peak):   {ni_peak:.4f}')\nprint(f'DINO RSA:                     {dino_rsa:.4f}')\nprint(f'Delta (with - no):            {delta:+.4f}')\nprint(f'Delta > 0.10:                 {delta > 0.10}')\nprint(f'no-inst ≤ DINO + 0.05:        {ni_peak <= dino_rsa + 0.05}')\nprint(f'FAIL check (no-inst ≥ with-inst - 0.05): {ni_peak >= wi_peak - 0.05}')\n\"\n```\n\n### Bootstrap CI（需额外实现）\n\n当前脚本无 bootstrap。建议在 Step 2 中加入，对 no-inst 的 per-task RSA 做 1000 次 bootstrap resample，计算 delta 的 95% CI。这可以写成独立的 D025 gate 脚本，而不是塞进 `rsa_analysis.py`。是否需要我现在写出 bootstrap 的具体代码？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-rsa-no-inst.md"
+}

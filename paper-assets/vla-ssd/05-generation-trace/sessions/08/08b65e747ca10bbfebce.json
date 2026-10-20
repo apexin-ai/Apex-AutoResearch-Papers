@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08b65e747ca10bbfebce",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code bugfix reviewer",
+  "task_key": "worker_code_bugfix-reviewer_20260515T071633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bugfix-reviewer_20260515T071633_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "7785568b20c7e906920ff1d5697a547d45b89263285b684291379e83b28025c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Bug 1 (init_untrained.py)**: `reinit_llm_backbone` 改用 `AutoModelForCausalLM.from_config(llm_config)` 创建新 LLM 权重并 copy 到模型中，删除了 `xavier_normal_` 逻辑。现在与 `extract_features.py --mode untrained` 使用相同的 LLaMA 默认初始化。\n\n**Bug 2 (analyze_results.py)**: `compute_judgment` 新增 CONDITIONAL 分支——当 `delta_pass=True` 但 `third_criterion=False` 时返回 CONDITIONAL。三个判例的 unit test 通过。\n\n**Control B (train_probes.py)**: 添加 `--shuffle_cross_trajectory` 参数，新增 `sample_cross_trajectory_pairs`（向量化跨 trajectory 配对采样）和 `build_cross_pair_tensors` 函数，`run_temporal_distance` 根据 flag 自动选择采样/配对策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bugfix-reviewer.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e94d5f791cccb70c1128",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code check h5 key compat",
+  "task_key": "worker_code_check-h5-key-compat_20260515T175420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-h5-key-compat_20260515T175420_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "2b7d91920150ae12c66777707c4ae5651734e9fcaaf53ef238b7aca601983108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**兼容，无需修改。**\n\n`scan_features` (第 78 行) 的关键逻辑在第 87 行：\n\n```python\nkeys = sorted(f.keys(), key=lambda x: int(x.split(\"_\")[-1]))\n```\n\n它遍历 h5 文件的**所有顶层 key**，不依赖任何固定前缀。排序用 `split(\"_\")[-1]` 提取末尾数字，对 `demo_0` 和 `traj_0` 都有效（分别提取出 `0`）。\n\n每个 trajectory key 存入 `traj_metas` 时记录的是实际的 `h5_key` 值（第 98 行 `h5_key=hk`），后续 `load_layer_features`（第 128 行）通过 `f[m[\"h5_key\"]][m[\"feat_key\"]]` 访问数据，完全按存储的实际 key 加载，不做任何前缀假设。\n\n实际验证：\n- VLA h5 key: `demo_0, demo_1, ...`\n- DINO h5 key: `traj_0, traj_1, ...`\n\n两种格式都能被 `scan_features` 正确枚举和加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-h5-key-compat.md"
+}

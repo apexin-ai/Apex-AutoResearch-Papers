@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e84fdf01a5d9976539c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check nlp control urgent",
+  "task_key": "worker_check_nlp_control_urgent_20260522T115218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_nlp_control_urgent_20260522T115218_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "1cd5f4decbdfd160a098857ee747f9168c4c9d362a684c594ae802bba87d992c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 项目 | 状态 |\n|------|------|\n| **模型下载** | **进行中 ~90%** — shard 2/2 已完成 (3.3G)，shard 1/2 正在下载 8.34G/9.29G，速度 ~340 KB/s |\n| **预计完成** | 剩余 ~0.95 GB，按当前速度约 **45-50 分钟**（~20:10 左右） |\n| **wait_and_run** | 已启动（PID 613207），正在 sleep 60 循环等待下载完成 |\n| **Probing** | **未启动** — results 目录只有初始 run.log（仅一行 \"Waiting for model download\"） |\n| **GPU** | 2× GPU 完全空闲（0% util, 0 MiB used, 各 ~96 GB — 应为 H800/A800） |\n| **R² 数据** | 不存在，probing 尚未执行 |\n\n**结论**：下载被 HuggingFace 代理限速（~340 KB/s），已跑了 6.5 小时。shard 1 完成后 wait_and_run 会自动触发 probing。预计还需约 50 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-nlp-control-urgent.md"
+}

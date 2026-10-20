@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c43359597afeeec6739b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code analysis pipeline",
+  "task_key": "worker_code_analysis-pipeline_20260515T120937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis-pipeline_20260515T120937_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "e74c1e6becd8dee9b02cd612412e809ca6594cc22f5fc5609a092a2671432c0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本 `/root/vla-ssd/scripts/analyze_mvp.py` 已就绪，dry-run 验证通过。\n\n**输出文件**（全部正常生成）：\n- `layer_rho_profile.pdf/png` — 三条线（trained/untrained/DINO），标注 best layer\n- `per_task_analysis.pdf/png` — per-task ρ 对比柱状图\n- `verdict.json` — 完整 summary（best_layer, best_rho, delta_rho, CI, 各判定条件, verdict）\n- Console 打印三分支判定表\n\n**Probe 训练完成后运行**：\n```bash\npython scripts/analyze_mvp.py \\\n  --trained_dir results/trained/temporal_distance/ \\\n  --untrained_dir results/untrained/temporal_distance/ \\\n  --output_dir results/mvp_analysis/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0eae8a76f4a2b2e6043",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code openvla goal standardized v1",
+  "task_key": "worker_code_openvla_goal_standardized_v1_20260522T002914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openvla_goal_standardized_v1_20260522T002914_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "e77772b0edf8cd4410c5d6c59572d7d520da5bea988d512c37932397db4af7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正常运行。\n\n**总结：**\n- **exp_id**: `openvla_goal_standardized_v1`\n- **PID**: 591230\n- **GPU**: cuda:1（RTX PRO 6000 Blackwell, 98GB）\n- **脚本**: `/root/autodl-tmp/vla-ssd/scripts/libero_goal_full_pipeline.py`（基于 Long pipeline 模板创建）\n- **条件**: trained (`openvla-7b-finetuned-libero-goal`) + untrained (`openvla-7b`)\n- **UNNORM keys**: trained=`libero_goal`, untrained=`bridge_orig`\n- **5 phases**: R² probing → L1 attention → cross-instruction → RSA → counterfactual\n- **预计耗时**: ~3-4 小时（参考 Long untrained 用了 ~1.8h，两个条件合计约 3.5h）\n- **日志**: `~/runs/vla-ssd/openvla_goal_standardized_v1.log`\n\n当前已进入 Phase 1 trained condition，正在提取表征（~5s/100 samples）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-openvla-goal-standardized-v1.md"
+}

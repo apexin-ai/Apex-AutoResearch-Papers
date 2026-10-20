@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d74b871ea739cc1f74",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose nora untrained cf exit",
+  "task_key": "worker_diagnose_nora_untrained_cf_exit_20260521T074711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_nora_untrained_cf_exit_20260521T074711_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "ac7df2fdaba7c834f265609cddeb616e58bc29b96597a8790603839c1950d862"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无活跃任务，无需清除。\n\n---\n\n**实验 nora_goal_untrained_cf — 成功完成**\n\n4 个 condition 全部跑完，耗时 31.2 min。Last-layer (L35) metrics：\n\n| Condition | cos_dist | Cohen's d |\n|-----------|----------|-----------|\n| empty | 0.0814 | 19.01 |\n| shuffled | 0.0332 | 7.43 |\n| wrong | 0.0143 | 7.71 |\n| paraphrased | 0.0041 | 7.11 |\n\n**排序**: empty > shuffled > wrong > paraphrased\n\n输出文件: `/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json`\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-nora-untrained-cf-exit.md"
+}

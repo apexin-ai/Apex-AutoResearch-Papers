@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9192e24998faf4450634",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "investigate nora goal ci anomaly",
+  "task_key": "worker_investigate_nora_goal_ci_anomaly_20260523T004432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_nora_goal_ci_anomaly_20260523T004432_result.json",
+    "occurrence": 1,
+    "bytes": 3107,
+    "sha256": "fe0dec27496887e467eacae612f60594032afbf772ceccdc9e8039c2f968f8e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有完整代码和数据。以下是分析结果。\n\n---\n\n## Per-layer R² Profile 对比\n\n| Layer | goal/trained | goal/untrained | spatial/trained |\n|-------|-------------|---------------|----------------|\n| L0 | 0.368 | 0.386 | 0.482 |\n| L5 | 0.356 | **0.420** ← peak | 0.519 |\n| L8 | **0.449** ← peak | 0.260 | 0.548 |\n| L14 | 0.446 | 0.347 | 0.557 |\n| L20 | 0.353 | 0.398 | **0.576** ← peak |\n| L30 | 0.289 | 0.371 | 0.440 |\n| L35 | **-0.006** ← exit | 0.340 | 0.268 |\n\n## Bootstrap Delta 统计对比\n\n| | goal/trained | goal/untrained | spatial/trained |\n|---|---|---|---|\n| Canonical Δ | 0.455 | 0.081 | 0.308 |\n| Bootstrap mean Δ | **1.378** | 0.052 | 0.266 |\n| Bootstrap median Δ | **1.348** | 0.048 | 0.257 |\n| Bootstrap std Δ | 0.211 | 0.048 | 0.096 |\n| CI 95% | **[1.025, 1.887]** | [0.005, 0.108] | [0.110, 0.472] |\n| Ratio mean/canonical | **3.03x** | 0.64x | 0.86x |\n\n## 根因\n\n**两个因素叠加导致 bootstrap Δ 被系统性放大 3 倍**：\n\n### 因素 1：Exit R² ≈ 0 → bootstrap 下极端负值\n\nL35 canonical R² = -0.006。当 R² 接近零，说明模型对该层无预测能力。Bootstrap 重采样时 test set 只有 ~20 个 demo 的时间步，SS_res 很容易远大于 SS_tot，导致 R² 暴跌到 -1 或 -2。对比 goal/untrained (L35=0.340) 和 spatial/trained (L35=0.268) 的 exit R² 都是正值，bootstrap 下波动有限。\n\n### 因素 2：`np.max(boot_r2, axis=1)` 选择偏差（Winner's Curse）\n\n代码 `_bootstrap_single` 计算出 36 层的 R²，然后取 `np.max` 作为 peak。每次 bootstrap 迭代选择「恰好被高估最多」的层作为 peak，系统性地膨胀 peak R²。NORA goal/trained 有多个层在 0.35-0.45 范围，给了 max 更多机会选到被噪声抬高的层。\n\n**合力**：膨胀的 peak + 暴跌的 exit → bootstrap Δ ≈ (0.45+偏差) - (负值) ≈ 1.0-1.9，与 CI [1.025, 1.887] 完全吻合。\n\n## 代码定位\n\n`clustered_bootstrap_probe.py` 第 363-365 行：\n\n```python\npeak_r2_boot = np.max(boot_r2, axis=1)   # ← 选择偏差来源\nexit_r2_boot = boot_r2[:, exit_l]\ndeltas = peak_r2_boot - exit_r2_boot\n```\n\n## 建议处理方案\n\n**推荐方案 A：固定 canonical peak layer 计算 bootstrap CI**\n\n```python\ncanon_peak_l = max(canon_r2, key=canon_r2.get)\npeak_r2_boot = boot_r2[:, canon_peak_l]  # 用 canonical peak 层，不再 per-iteration 取 max\nexit_r2_boot = boot_r2[:, exit_l]\ndeltas = peak_r2_boot - exit_r2_boot\n```\n\n这消除了 winner's curse，CI 只反映「在已知 peak 层上的采样不确定性」，而非「哪层最好的不确定性」。其他两个正常的条件结果几乎不变（因为它们的 peak 更突出，max 和固定层差距小）。\n\n**可选叠加方案 B：Clip exit R² ≥ 0**\n\n```python\nr2[l] = max(0.0, 1.0 - ss_res / ss_tot)\n```\n\n截断无预测能力层的负 R² 噪声。但这只治标——如果 peak 选择偏差不修，仍会有系统性膨胀。\n\n**推荐 A，可叠加 B。** 是否现在修改脚本并重跑 NORA goal/trained？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-nora-goal-ci-anomaly.md"
+}

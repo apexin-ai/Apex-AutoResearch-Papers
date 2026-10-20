@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "317fd44415968fa32713",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4355,
+    "sha256": "6cc06f7e48ea837d5b38f126d7a13e635e0f9f39c86b1759aef4a8a120d007ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-23T23:52:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19183 的 cuda:0 和 cuda:1（`execution.gpu_ids`）\n- 远程代码路径 `/root/vla-ssd`，模型/数据在 `/root/autodl-tmp/`\n- 论文 LaTeX 真源在**本地** `projects/vla-ssd/docs/paper/`，不是远程\n- TracVLA reference 是 **Phi-3-Vision**（不是 Phi-3-Instruct），全文已统一，不要改回去\n- 图表中 \"Random Init\" 和 \"Reference\" 是两个不同概念——Random Init = 随机初始化(0/32 heads)，Reference = OXE-pretrained 或 base VLM。M020 教训：禁止 blanket 术语替换\n- CoRL 2026 DDL: Abstract 5/26, Paper 5/29, 正文 8 页限制\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com), user=root\n- 远程工作目录：`/root/vla-ssd`\n- GPU：2× (cuda:0, cuda:1)，磁盘 816G/879G 可用\n- 模型 checkpoint：`/root/autodl-tmp/vla-ssd/checkpoints/`（OpenVLA/TracVLA/NORA，全是最终权重，无中间 checkpoint）\n- 实验结果：`/root/autodl-tmp/vla-ssd/results/`\n- 本地论文目录：`projects/vla-ssd/docs/paper/`（main.tex + figures/）\n- 本地产出：`projects/vla-ssd/artifacts/`\n- 无 conda env，无 wandb，无 git config\n- 活跃进程：1 个 Worker `worker_run_phi3_nlp_control_20260523T231450` 在 cuda:0 运行 Phi-3-mini-instruct NLP control 实验（下载模型中，预计还需 1-2h）\n\n### 3. 📊 当前状态\n**刚完成**：PI 第二轮 14 项结构性改版（图表重排序、Abstract 替换、多章节重写、全局 Untrained→Reference 清理）+ 3 个 CRITICAL 修复（TracVLA L1 方向矛盾、Random Init 误标、CF bar 空白）+ final polish（em-dash、Table 2 歧义、label 统一）+ Significance 提升写作（Diagnostic Implications 段 + Conclusion actionable takeaway）\n\n**正在运行**：\n- `phi3_nlp_control` PREPARING — Phi-3-mini-instruct per-layer action probe（第二个 NLP control，加强 VLA-specificity 证据）\n- cuda:1 空闲 — 中间 checkpoint 检查已完成，结论是全部模型只有最终权重，training dynamics 分析不可行\n\n**等待中**：\n- phi3_nlp_control Worker 完成回调\n- 用户审批 fresh review（`apr_20260523T212915_qx6t` pending）—— 内部 Reviewer 已完成 fresh review（Overall 6/10），外部审稿团队等用户点审批卡\n- Reviewer 的 Significance 提升方向评估回复（可能已回但未注入我的 session）\n\n**论文当前状态**：编译通过，0 critical warnings，正文 8 页，最新 PDF 已上传用户（`vla-ssd_final_polished_2026-05-23.pdf`）\n\n### 4. 📋 待办\n- phi3_nlp_control 完成 → 如果 ΔR²≈0 确认 VLA-specificity → 派 Paper Agent 加入 appendix 作为第二 NLP control 证据 + 更新 experiments.tex 提及 \"two NLP controls\"\n- phi3_nlp_control 完成 → ΔR² 显著 > 0 → CRITICAL 发现，需要重新评估 VLA-specificity claim\n- 用户审批 fresh review → review 启动 → 收到审稿报告后按 review-report-action skill 处理\n- Reviewer Significance 评估回复到达 → 消化建议，决定是否有额外可执行项\n- 用户新反馈 → 按指令执行修改\n- Abstract DDL 5/26 临近 → 提醒用户准备 abstract 提交\n\n### 5. 🎯 战略上下文\n- 论文核心：R² exit collapse 在 VLM→VLA 转换时出现（6/6, Δ=0.156-0.455），VLA→VLA 不出现（0/4, Δ=0.033-0.086）。CF sensitivity d≥0.45。L1 attention 是 backbone inherited，不是训练创造的。\n- Significance 2/4 是最大短板。已加 Diagnostic Implications 段。Phi-3 NLP control 加强 Soundness。如果 Reviewer 有更好建议要认真考虑。\n- 易错点：paper_framing.md 中 RC3 已标注 \"NO LONGER APPLICABLE\"（旧 RSA 阶段的 5-demo concern），不要重新启动相关实验\n- 易错点：CF 数据有复杂历史——M019 错误数据文件教训。正确数据源是 `libero_{suite}/counterfactual_combined.json`（finetuned model），不是 `counterfactual_10tasks/`（base model）\n- 易错点：论文图文件名已全部更新（fig_overview, fig_r2_collapse, fig_counterfactual_bar, fig_l1_attention, fig_claim_evidence），旧文件（fig_teaser, fig_cross_arch_l1）仍在 figures/ 目录但未引用，提交前需清理\n- 运维审计已回复：westd-19183 归类 B（保留），预计 5/29 后可释放\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

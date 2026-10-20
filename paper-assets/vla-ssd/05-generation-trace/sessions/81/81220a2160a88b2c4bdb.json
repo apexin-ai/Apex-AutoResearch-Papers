@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81220a2160a88b2c4bdb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz dose response final figure",
+  "task_key": "worker_viz_dose_response_final_figure_20260518T163318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_dose_response_final_figure_20260518T163318_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "db8c4fbac131258642e8bc02dc1b37de71023610c4c471564210e6224f53c0d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**总结：**\n\n1. **数据读取** — 8 个条件（top-4 到 top-32）的完整结果已全部提取\n\n2. **Figure 生成** — PDF + PNG 已保存到：\n   - 服务器：`/root/autodl-tmp/vla-ssd/results/fig_dose_response_curve.{pdf,png}`\n   - 本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/fig_dose_response_curve.{pdf,png}`\n\n3. **合并 JSON** — `/root/autodl-tmp/vla-ssd/results/dose_response_curve_combined.json` 包含所有 8 个条件的完整数据（paired_mse, per_dim_shift, token_divergence_rate, kl_divergence, per_task breakdown, heads_ablated 等）\n\n4. **绘图脚本更新** — 服务器 `/root/vla-ssd/scripts/plot_dose_response.py` 和本地副本均已更新为实际数据\n\n**Dose-response curve 关键发现：**\n- 4→12 heads: steep rise (d: 0.48 → 0.56), 前 12 个最高选择性 head 贡献了大部分效应\n- 16→20 heads: plateau (d: 0.59 → 0.59), 新增 head 几乎无额外影响\n- 20→32 heads: slow rise (d: 0.59 → 0.64), 边际递减\n- 所有条件的 d 均显著高于 control (8 random heads, d=0.41)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-dose-response-final-figure.md"
+}

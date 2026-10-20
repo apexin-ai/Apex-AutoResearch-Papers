@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "976f3e5e1042adb0353b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "audit appendix tables",
+  "task_key": "worker_audit_appendix_tables_20260529T052825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix_tables_20260529T052825_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "4c06d0912560411ef94c485bdae6341f71362fd6417ff38c60e83735826449ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The audit is complete. The report is at `artifacts/audit_appendix.md` — 29/29 tables audited, ~580 numerical values checked, 6 issues documented:\n\n| ID | Severity | Issue |\n|----|----------|-------|\n| P1 | Medium | `fig_multi_layer_attn` plot script has L31=19 trained heads; table/text/server all say 18 |\n| P2 | Medium | `tab:2x2_r2_summary` Δ_train(L15–L25 avg) not reproducible from per-layer data |\n| P3 | Medium | TraceVLA Reference late-layer std reported as 0.068, computed as 0.170 |\n| P4 | Low | Appendix prose says \"L32: 0.551\" — should be L31: 0.557; std range also off |\n| P5 | Low | `tab:seed_sensitivity` R² std=0.002 vs 0.001 from displayed values |\n| P6 | Info | Unnamed counterfactual Goal table (L271) missing `\\label` |\n\nNone of these affect the paper's main conclusions. P1 is the most actionable — a single hardcoded value in the plot script."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-appendix-tables.md"
+}

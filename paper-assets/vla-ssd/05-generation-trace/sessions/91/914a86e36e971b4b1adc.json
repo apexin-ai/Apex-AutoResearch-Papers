@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "914a86e36e971b4b1adc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code llama2base action probe",
+  "task_key": "worker_code_llama2base_action_probe_20260517T204531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2base_action_probe_20260517T204531_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "fbf655ec1f4e7ae279cf8958d9bc7e92f02f973de52533b88e9a75707aa04136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4/10 done. Continuing at ~5 min/task. ~30 min left for remaining 6 tasks + probe training. Job is running well on its own, within the time budget.\n\nThe job is submitted via `submit_training_job` with tmux session `llama2base_action_probe` on westd-19183, cuda:1.\n\n**Status summary:**\n- Script: `/root/vla-ssd/scripts/llama2base_action_probe.py`\n- Phase 1 (feature extraction): 4/10 tasks completed, ~30 min remaining\n- Phase 2 (probe training): will run automatically after extraction, ~5 min for 33 layers\n- Output: `/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json`\n- Log: `~/runs/vla-ssd/llama2base_action_probe.log`\n- ETA: ~35-40 min total remaining (~1h total runtime)\n\nThe script will:\n1. Extract features to H5 files (image_mean + last_preaction at all 33 layers)\n2. Train MLP(4096->256->7) probes per layer with image_mean readout\n3. Save results with per-task R², comparison with trained/untrained from existing data\n4. Print full 33-layer comparison table at the end"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama2base-action-probe.md"
+}

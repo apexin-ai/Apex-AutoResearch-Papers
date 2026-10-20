@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ee1939581963de4a7e1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code multi layer attention extraction",
+  "task_key": "worker_code_multi_layer_attention_extraction_20260517T063232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi_layer_attention_extraction_20260517T063232_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "ccdda2f025229965fc16873bd86fcabf8c1fc86ebbd362f993e8bc2e616691c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。结果摘要：\n\n## 多层 Attention Distribution 结果\n\n| Condition | Layer | n_text_dominant | n_image_dominant | n_bos_dominant | mean_text | mean_image | mean_bos |\n|-----------|-------|-----------------|------------------|----------------|-----------|------------|----------|\n| **trained** | L8 | 4/32 | 0/32 | 21/32 | 0.4678 | 0.0315 | 0.5009 |\n| **trained** | L16 | 10/32 | 1/32 | 12/32 | 0.4840 | 0.1053 | 0.4107 |\n| **trained** | L31 | **19/32** | 1/32 | 3/32 | **0.5628** | 0.1333 | 0.3039 |\n| **untrained** | L8 | 0/32 | **32/32** | 0/32 | 0.0790 | **0.9138** | 0.0072 |\n| **untrained** | L16 | 0/32 | **32/32** | 0/32 | 0.0918 | **0.9015** | 0.0067 |\n| **untrained** | L31 | 0/32 | **32/32** | 0/32 | 0.0757 | **0.9183** | 0.0059 |\n| **llama2base** | L8 | 8/32 | 0/32 | 10/32 | 0.4878 | 0.0344 | 0.4779 |\n| **llama2base** | L16 | **25/32** | 0/32 | 7/32 | **0.6017** | 0.0335 | 0.3648 |\n| **llama2base** | L31 | 8/32 | 0/32 | 20/32 | 0.3485 | 0.0716 | 0.5800 |\n\n关键发现：\n\n1. **Trained model**: instruction attention 随层深递增（L8→L16→L31: 4→10→19 heads dominant），最终层 L31 有 19/32 heads 以 instruction 为主导，mean_text=0.56\n2. **Untrained (random)**: 所有层所有 32 heads 都是 image-dominant（~91% attention to image），text 几乎为零——无任何 language grounding\n3. **Llama2base**: L16 表现出最强 text attention（25/32 heads, mean=0.60），但 L31 反而回退到 BOS dominant（20/32 heads）——说明 Llama-2 base 有一定的 text processing 能力但 pattern 不同于 trained model\n\n结果已保存至 `/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-layer-attention-extraction.md"
+}

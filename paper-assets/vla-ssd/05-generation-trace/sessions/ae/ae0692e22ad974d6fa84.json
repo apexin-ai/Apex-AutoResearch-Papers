@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ae0692e22ad974d6fa84",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code probe seed robustness",
+  "task_key": "worker_code_probe_seed_robustness_20260524T180211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe_seed_robustness_20260524T180211.log",
+    "occurrence": 1,
+    "bytes": 1233897,
+    "sha256": "f9a61c28880675a891e1f9411d81549cd3cbb6dbb62ceca4578d8c39be0cbd9f"
+  },
+  "statistics": {
+    "messages": 644,
+    "user_turns": 1,
+    "tool_calls": 221,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 2,
+      "assistant": 149,
+      "tool_call": 221,
+      "tool_result": 221,
+      "user": 1,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 362,
+      "chunks": [
+        {
+          "path": "ae0692e22ad974d6fa84-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae0692e22ad974d6fa84-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae0692e22ad974d6fa84-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "ae0692e22ad974d6fa84-part-0003.json",
+          "message_count": 178
+        },
+        {
+          "path": "ae0692e22ad974d6fa84-part-0004.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-probe-seed-robustness.md"
+}

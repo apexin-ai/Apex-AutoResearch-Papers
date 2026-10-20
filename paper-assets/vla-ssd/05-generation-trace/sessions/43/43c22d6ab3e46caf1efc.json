@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c22d6ab3e46caf1efc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh shuffled tokens control",
+  "task_key": "worker_ssh_shuffled-tokens-control_20260515T191032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_shuffled-tokens-control_20260515T191032_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "07da8238ce253b64d92644772c6ffd511fd04751b08d052d87657abd031564e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果如下：\n\n**核心数据**\n| 条件 | Accuracy |\n|------|----------|\n| Original（正常 instruction） | **100%**（10/10 task 全对） |\n| Shuffled（5次平均） | **20.6% ± 7.1%**（chance = 10%） |\n| 单次 shuffle | 17%, 20%, 34%, 13%, 19% |\n\n**Per-task 分析揭示了关键模式**：\n\n- `open_the_top_drawer_and_put_the_bowl_inside`：shuffle 后仍有 ~86% accuracy — 因为 \"top\", \"drawer\", \"inside\" 是 unique tokens，即使打乱也能通过 bag-of-tokens 区分\n- `turn_on_the_stove`：shuffle 后 ~70% — \"turn\", \"on\" 独有\n- 所有 `put_the_bowl_on_the_X` 任务：shuffle 后 **0%** — 因为这些 task 的 token 集合高度重叠（都含 \"put\", \"the\", \"bowl\", \"on\", \"the\"），打乱后无法区分\n\n**结论**：Token ORDER 是 untrained VLA 创造 separable representations 的**主要因素**（accuracy 从 100% 降至 ~20%），但**不同的 token set 提供了微弱残余信号**（~2× chance）。残余信号完全由 unique vocabulary 的 task 驱动，而 vocabulary 重叠的 task（put_the_bowl_on_{plate,stove,cabinet}）在 shuffle 后完全不可区分。\n\n这意味着 untrained LLM 不只是充当 \"high-dim random projector 让 probe overfit\"——它确实在利用 token 的**序列结构**产生系统性不同的表征。结果保存在 `/root/autodl-tmp/vla-ssd/results/shuffled_token_control.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-shuffled-tokens-control.md"
+}

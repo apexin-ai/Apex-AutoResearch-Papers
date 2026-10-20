@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1e91081e7a1c50cf7d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra check extract progress",
+  "task_key": "worker_infra_check-extract-progress_20260515T114800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-extract-progress_20260515T114800_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "d60c07e051070dad9b90c4b9000e2cf33a715210add472858183ea96ceb83bc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 特征提取进度\n\n| | trained | untrained |\n|---|---|---|\n| **已完成** | **7/10** tasks | **7/10** tasks |\n| **当前状态** | task 7 刚跑完，等待 task 8 启动 | task 7 刚跑完（文件仍在写入，1.7G/~4.3G） |\n| **已生成文件** | 43G (7 个 .h5) | 37G (7 个 .h5，第 7 个未写完) |\n| **速度** | ~37 step/s | ~38 step/s |\n\n**剩余 3 个 task**，每个 ~12-13 min，预计 **~40 min** 两个任务都跑完。\n\n**磁盘**: `/root/autodl-tmp/` 250G 已用 129G，剩余 **122G (48%)**。预计还需 ~33G，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-extract-progress.md"
+}

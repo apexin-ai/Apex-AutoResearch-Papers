@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a328dd4a473d026b6d59",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis phi3v r2 seed expansion",
+  "task_key": "worker_analysis_phi3v_r2_seed_expansion_20260520T093900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phi3v_r2_seed_expansion_20260520T093900_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "922a63fa000de1fb88fc0bf21084e1cb2cce0ff66768b00f01a221e8b71e15ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n**状态**: SUCCESS — 实验正常完成，无错误。\n\n### 核心数据（15-seed 合并）\n\n| 指标 | 数值 |\n|------|------|\n| Peak layer | **L11** |\n| Peak R² | **0.634 ± 0.009** (95% CI: [0.629, 0.639]) |\n| Plateau (L10-L17) | 0.631 ± 0.003 |\n| L0 (baseline) | -0.330 |\n| L32 (exit) | 0.551 |\n| CI 收窄 | **47.5%**（±0.010 → ±0.005） |\n\n### 跨架构对比（15-seed vs 15-seed）\n\n| | OpenVLA (Llama-2) | Phi3V (Phi-3-mini) |\n|--|---|---|\n| Peak layer | L9 | L11 |\n| Peak R² | 0.637 | 0.634 |\n| **Δ** | **0.003** | |\n| Inverted-U | ✓ | ✓ |\n\n两个架构 peak R² 几乎一致（Δ=0.003），都在中间层 peak，都呈 inverted-U shape。\n\n### 判断\n\n- Inverted-U 确认 ✓\n- CI 收窄 48% ✓（额外 positive 证据）\n- 跨架构 peak 收敛 ✓\n\nRegistry 已更新为 DONE/success，分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phi3v-r2-seed-expansion.md"
+}

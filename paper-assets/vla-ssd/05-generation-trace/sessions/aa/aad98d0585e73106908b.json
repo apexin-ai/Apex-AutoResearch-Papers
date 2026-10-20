@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aad98d0585e73106908b",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code action head decoding untrained v2",
+  "task_key": "worker_code_action_head_decoding_untrained_v2_20260526T193447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_decoding_untrained_v2_20260526T193447.log",
+    "occurrence": 1,
+    "bytes": 587571,
+    "sha256": "8e7b31e95ac9a2b2bdb9841658d5af97b50b3257480559ac6e45840a7b5497cd"
+  },
+  "statistics": {
+    "messages": 307,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "aad98d0585e73106908b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aad98d0585e73106908b-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-action-head-decoding-untrained-v2.md"
+}

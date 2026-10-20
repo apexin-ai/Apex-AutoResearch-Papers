@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4f7580c61c4b19f2a3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh verify cf batch part2",
+  "task_key": "worker_ssh_verify_cf_batch_part2_20260521T230306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_cf_batch_part2_20260521T230306_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "a41d847ec425179578c69647b1829ff5a4ff3117955760d0d3da97540ae8c3a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都在正常运行，无 error。\n\n**GPU 状态：**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 79% | 15593 MiB |\n| 1 | 44% | 9443 MiB |\n\n**cf_batch_part2_v1** (cuda:1)：已启动成功。当前在跑 `tracvla / goal / untrained`，condition=wrong，进度 200/5000。\n\n**cf_batch_missing_v1** (cuda:0)：当前在跑 `tracvla / goal / untrained`，condition=shuffled，进度 4600/5000，即将完成这个 batch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-cf-batch-part2.md"
+}

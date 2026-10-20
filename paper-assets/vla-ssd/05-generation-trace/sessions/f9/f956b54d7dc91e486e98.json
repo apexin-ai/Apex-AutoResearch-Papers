@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f956b54d7dc91e486e98",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify d004 no hardcoded 0833",
+  "task_key": "worker_verify_d004-no-hardcoded-0833_20260515T124800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d004-no-hardcoded-0833_20260515T124800_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "97e3caa1e45560920ce7788e5adc64238a4a5c8aecf31d0e59390f95cd997dd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n**1. 0.833 硬编码搜索**\n\n仅 `analyze_mvp.py` 存在 3 处 0.833，全部是 CLI 参数默认值和帮助文档，属于 MVP 脚本的遗留。`train_probes.py` 和 `analyze_results.py` 均无 0.833 硬编码。\n\n**2. `train_probes.py` best_layer 选择逻辑** — 正确\n\n- 第 606 行：`best = max(results, key=lambda k: results[k].get(\"per_task_mean_rho\", results[k][\"spearman_rho\"]))` — 优先用 `per_task_mean_rho`，fallback 到 `spearman_rho`\n- 第 607-609 行：`summary[\"best_layer\"]`、`summary[\"best_rho\"]`、`summary[\"best_pooled_rho\"]` 均从实际计算结果取值\n\n**3. `analyze_results.py` DINO 比较逻辑** — 正确，无硬编码\n\n- 第 241-243 行：从 `all_data[\"dinov2\"]` 提取实际 `spearman_rho`，取 `rho_dino.max()`\n- 第 366-379 行：`compute_judgment` 中 DINO 基线值全部从数据动态提取（`dino_mean_rho`、`rho_dino_pooled`），比较逻辑 `vla_ge_dino = vla_mean_rho >= dino_mean_rho` 用变量而非硬编码\n\n**结论**：`train_probes.py` 和 `analyze_results.py` 无 0.833 残留，逻辑正确。`analyze_mvp.py` 的 0.833 是旧 MVP 脚本的 CLI 默认值，不影响当前流水线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d004-no-hardcoded-0833.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ffaf767b2836c229d0e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code instruction conditional probe",
+  "task_key": "worker_code_instruction_conditional_probe_20260516T225829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_instruction_conditional_probe_20260516T225829_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "615bf70bbf8f0c4da6267e7fb9d3ac46883134d4232993af82b181df9d12cc77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本写好，dry-run 通过。\n\n**脚本**: `/root/vla-ssd/scripts/instruction_conditional_probe.py`\n**结果**: `/root/autodl-tmp/vla-ssd/results/qa_probe/instruction_conditional_results.json`\n\n**Dry-run 结果（2 tasks, L0, trained only）**:\n| 条件 | acc | f1 |\n|---|---|---|\n| trained_image_mean L0 | 0.9951 | 0.9949 |\n| trained_last_preaction L0 | 0.5924 | 0.3720 |\n| dino_cls | 0.9974 | 0.9973 |\n\n**初步观察**: L0 层 image_mean 远高于 last_preaction（0.995 vs 0.592）。这说明在 L0 层，image_mean 已经包含足够的视觉差异来区分 2 个 tasks（不同场景），而 last_preaction token 在 L0 还没有充分编码视觉信息。DINOv2 也接近 1.0，进一步佐证这两个 task 的视觉场景差异很大。\n\n完整实验（10 tasks × 9 layers × 2 条件 × 2 聚合 + DINOv2）等 Director 确认后再跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-instruction-conditional-probe.md"
+}

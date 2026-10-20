@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c11f0f2255ec310450af",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_11_1779580358.md",
+  "task_key": "loop_11_1779580358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779580358.md",
+    "occurrence": 1,
+    "bytes": 4626,
+    "sha256": "2117b406cd341f4072ab9b0ea064253edec30c7996fc764dc0c78b796a5654b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-23T01:25:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，不可用其他卡\n- OpenVLA \"untrained\" = openvla-7b（OXE 预训练 VLA，已见 970K 轨迹），不是 Llama-2 base，不是 random init。标注/汇报时不可写成\"无 routing\"\n- NORA 只有 Goal + Spatial checkpoint，Object/Long 已放弃（D089），不要尝试跑\n- R² exit collapse claim 已降级为\"VLM→VLA transition effect\"（D096），不可再 claim 为\"collapse\"\n- CF 7-10× 效应量已从论文删除（D097），不要引用\n- 三层级分析已压缩到 Discussion（D097），不要在主体 claim 中展开\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/autodl-tmp/vla-ssd/`\n- Python：`/root/miniconda3/bin/python3`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/vla-ssd/checkpoints/`（openvla-7b, openvla-7b-finetuned-libero-spatial, tracevla-phi3v 等）\n- 数据路径：`/root/autodl-tmp/vla-ssd/data/libero/libero_spatial`（5000 样本）\n- 结果路径：`/root/autodl-tmp/vla-ssd/results/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：nlp_finetuning_control_v1（cuda:1，PID 未知，log: `/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe/run.log`，cron 监控中）\n- AutoDL 注意：pip/git 前 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`；大模型优先 ModelScope\n\n### 3. 📊 当前状态\n**刚做完**：收到 openvla_spatial_standardized_v1 第 2 次失败回调（Phase 6 counterfactual wrong condition 在 3000/5000 中断，无 Traceback），已派诊断 Worker `worker_diagnose_openvla_spatial_standardized_v1_20260522T092002` 去 SSH 查日志/dmesg/磁盘/脚本。\n\n**Registry 状态**：\n- RUNNING：nlp_finetuning_control_v1（cuda:1，Llama-2-7b-chat text-only SFT R² probing，验证 exit collapse 是否 VLA-specific）\n- ALLOCATED：tracvla_spatial_full_v2（等待提交，TraceVLA Phi-3-mini on LIBERO-Spatial cross-suite 验证）\n- PREPARING（8 个）：behavioral_smoketest_diag, behavioral_pilot_v2, behavioral_pilot, tracvla_spatial_trained, libero_finetuned_probe, fulllayer_action_probe, l1_head_ablation_control8, l1_head_ablation_50demos\n- DONE(failed)：openvla_spatial_standardized_v1（第 2 次失败，诊断中）\n\n**等待中**：\n- 诊断 Worker 回调 → 根据 root_cause 决定修复/重试\n- nlp_finetuning_control_v1 cron 回调 → 关键实验，判断 exit collapse 是否 VLA-specific\n- cuda:0 空闲 ⚠️（spatial 失败后释放，需尽快填上）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 若 can_auto_fix=true 且 error_type=infrastructure/resource → 派 Worker 修复后重提交 spatial 到 cuda:0；若不可自修 → 汇报 Director 决策\n- 诊断 Worker 回调 → 检查 partial_results（Phase 1-5 trained + untrained 可能已完成，只差 CF），若部分结果可用则改为只跑缺失 phase\n- nlp_finetuning_control_v1 完成 → 按 on-experiment-done 分析；若 NLP 无 collapse → 确认 VLA-specific claim；若有 collapse → 重大负向结果，需 framing 调整提案\n- cuda:0 持续空闲 > 30min → 从 PREPARING 队列挑一个能立即跑的实验提交（tracvla_spatial_full_v2 已 ALLOCATED 优先）\n- Paper Agent 写作进度：Method → Intro → Discussion → Related Work → Conclusion（DDL: Abstract 05-26, Paper 05-29）\n\n### 5. 🎯 战略上下文\n- **核心 story**：VLA 微调重组 instruction routing，跨 3 架构 × 4 LIBERO suites 一致。关键 claims：R² exit collapse（training-induced）、L1 attention routing、counterfactual sensitivity\n- **D096 转折**：OpenVLA Goal R² exit Δ=0.016 无 collapse，claim 降级。但 Spatial 的 D099 确认 Δ=0.110 有 collapse → 架构+suite 交互效应\n- **D097 危机**：Dream 审稿三档全 Weak Reject，8 个结构性问题。已执行修正：删 CF 7-10×、压缩三层级、启动 NLP control\n- **3×4 矩阵**：OpenVLA Spatial 是最后一个关键空格，这次失败直接影响矩阵完整度\n- **易错点**：\n  - OpenVLA untrained 的 L1 routing 已经很强（24/32），不要 claim 训练\"创建\"了 routing——训练是 reshaping\n  - TracVLA/NORA untrained 是纯 VLM（无 action data），与 OpenVLA untrained 语义不同\n  - OFT checkpoint 不更新 config.json 的 norm_stats，需合并 dataset_statistics.json\n  - spatial_resume_pipeline.py 可能有 stderr 未捕获的问题（诊断 Worker 正在查）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779580358.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e7933099e5d4682fbd6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh urgent status check",
+  "task_key": "worker_ssh_urgent_status_check_20260522T021156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_check_20260522T021156_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "fc3fcc7ca208d7a6e0fd2eaf5b01c1e28b7a99c6e3e5702c890415cfcdd8dbc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 服务器: westd-19183 — 在线\n\n| 资源 | 状态 |\n|------|------|\n| **GPU 0** | 空闲 (0%, 0 MiB / 97887 MiB, 30°C) |\n| **GPU 1** | 占用 (84%, 15293 MiB / 97887 MiB, 57°C) |\n\n---\n\n### 实验状态\n\n**openvla_goal_standardized_v1** (PID 591230, GPU 1) — **运行中**\n- 运行时间: 1h39m\n- 当前: TRAINED → Phase 6 (counterfactual analysis) → `paraphrased` 条件 2400/5000\n- 已完成 Phase 1-5 (trained)，Phase 6 已完成 wrong / empty / shuffled，正在跑 paraphrased\n- 已产出文件 (trained): `action_r2_probing.json`, `l1_attention_profile.json`, `cross_instruction_classification.json`, `rsa_analysis.json`\n- **还剩**: paraphrased 剩余 ~20min → 然后跑整个 UNTRAINED 管线 (~110min)\n- **预估总剩余: ~2h**\n\n**openvla_spatial_standardized_v1** (PID 594575, GPU 0) — **运行中（下载模型中）**\n- 运行时间: 35min\n- 当前: 下载 checkpoint，已下载 ~5.6GB，速度波动\n- GPU 0 空闲因为还没开始计算\n- **预估**: 下载还需 30-60min，之后完整管线 ~2h\n\n**cf_batch_missing_v1** (PID 584349) — **已完成 ✓**\n- 退出码: 0，耗时 44.9min\n- 产出: `/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/counterfactual_combined.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check.md"
+}

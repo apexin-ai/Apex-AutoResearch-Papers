@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0958eba7d0ffa5373a8d",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code phi3v probe untrained",
+  "task_key": "worker_code_phi3v_probe_untrained_20260519T182430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_probe_untrained_20260519T182430.log",
+    "occurrence": 1,
+    "bytes": 621360,
+    "sha256": "9fdbdf8d2df31c24092a948e7b77d00e01ad03536a78cf1d59a3627da1fe9fe5"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "0958eba7d0ffa5373a8d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0958eba7d0ffa5373a8d-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phi3v-probe-untrained.md"
+}

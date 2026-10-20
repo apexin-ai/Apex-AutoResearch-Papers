@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2270de92ea42c0f7b80",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check gpu health",
+  "task_key": "worker_check_gpu_health_20260522T133333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_health_20260522T133333_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "d1861734a7f0a040ae7133bfe59f62f956c7f2f0e85b777668d12b04e36a9580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 指标 | GPU 0 | GPU 1 |\n|------|-------|-------|\n| 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 同左 |\n| 显存 | 0 / 97887 MiB | 0 / 97887 MiB |\n| 温度 | 28°C | 28°C |\n| 利用率 | 0% | 0% |\n| 功耗 | 34.65W / 600W | 35.51W / 600W |\n| ECC | Off | Off |\n| 运行进程 | 无 | 无 |\n\nDriver 580.82.09, CUDA 13.0。两张卡完全空闲，温度正常，无 ECC 错误，健康可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-health.md"
+}

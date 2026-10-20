@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06ecb9b2ec915e5c46c6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh p0 functional action delta probe",
+  "task_key": "worker_ssh_p0-functional-action-delta-probe_20260515T232553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-functional-action-delta-probe_20260515T232553_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "478ceaac5ef75d542745352897e086b98229d4678415e6fc39fdf35b034ea6f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All complete. Results summary:\n\n| Source | mean_R² | overall_R² |\n|---|---|---|\n| **SigLIP+Projector** | 0.1181 | 0.1053 |\n| **Trained image_mean L14** | 0.1215 | 0.1091 |\n| **Untrained best (L0)** | 0.1174 | 0.1070 |\n\n**Bootstrap CI** (projector - trained L14): delta=-0.0034, 95% CI=[-0.0066, +0.0005], p=0.04\n\n**Key observations:**\n- All three are very close (~0.117–0.122), with projector slightly below trained L14\n- Untrained best layer is **L0** (0.1174), virtually identical to projector (0.1181) — expected since L0 image_mean in untrained model is essentially the projector output\n- The difference between projector and trained L14 is marginally significant (p=0.04) but tiny (Δ=0.003)\n- Per-dim R²: position deltas (dz=0.46, dx=0.29, dy=0.25) are most predictable; rotation/gripper are low\n- **Gate**: projector (0.1181) < LLM best (0.1215), but the gap is small\n\n**Note**: These image_mean R² values (~0.12) are substantially higher than the last_preaction baselines from MVP-2 (~0.06), because image_mean averages over all visual tokens rather than using a single pre-action token.\n\nResults saved at `/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json`. Artifact registered as `art_20260515_393354`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-functional-action-delta-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32ac47da94cd2b87d08",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose server status check",
+  "task_key": "worker_diagnose_server_status_check_20260521T232339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server_status_check_20260521T232339_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "f7c12ccfef2139ad9aef0e7b1ab8cdc1d571cac25bc8293fd2e9db4d53699508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/worker_output_server_status_check.md`。\n\n**摘要：**\n- **PID 584349 (cf_batch_missing_v1)** — 运行中，GPU 0。Task 1 (openvla/object/untrained) 已完成，Task 2 (tracvla/spatial/untrained) 进行中 (condition 2/4)。队列共 5 个任务，预估还需 ~100 min。\n- **PID 585447 (cf_batch_part2_v1)** — 运行中，GPU 1。Task 1 (tracvla/goal/untrained) 进行中 (condition 3/4)。队列共 2 个任务，预估还需 ~37 min。\n- **PID 541379 (object_pipeline_ridge v2)** — 已结束，96.3 min 完成。`results/libero_object/` 下 6 个结果文件齐全。\n- **GPU:** 双卡各 ~47% 利用率，VRAM 各用 ~9.4 GiB / 97.9 GiB\n- **磁盘:** /root/autodl-tmp 68% (169G/250G)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-status-check.md"
+}

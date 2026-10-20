@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c10d58f17f2c0e89a0ef",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code run dense l1 l8 extraction",
+  "task_key": "worker_code_run_dense_l1_l8_extraction_20260517T000956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_run_dense_l1_l8_extraction_20260517T000956_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "a7b13d0a69e352f4eae2032bf3a62cdadb1dae5f598969ed757dc6ed0a5c2bab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results:\n\n```\nLayer  Trained    Untrained  Delta\n------------------------------------\nL0     0.1000     0.1000     +0.0000\nL1     0.9960     1.0000     -0.0040\nL2     1.0000     1.0000     +0.0000\nL3     1.0000     1.0000     +0.0000\nL4     1.0000     0.9980     +0.0020\nL5     1.0000     0.9990     +0.0010\nL6     1.0000     0.9960     +0.0040\nL7     1.0000     0.9960     +0.0040\nL8     1.0000     0.9860     +0.0140\nChance 0.1000\n```\n\nKey finding: instruction encoding jumps from chance (10%) at L0 to near-perfect (99.6-100%) at L1 for **both** trained and untrained models. The transition is essentially a single-layer step function between L0 and L1. Training provides no meaningful advantage - the untrained model already achieves perfect instruction classification by L1, with only a slight degradation in deeper layers (L8: 98.6% vs 100%).\n\nResults saved to `/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/classification_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-run-dense-l1-l8-extraction.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "383088bfad73245a19c5",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "run qwen nlp control",
+  "task_key": "worker_run_qwen_nlp_control_20260524T025445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_qwen_nlp_control_20260524T025445.log",
+    "occurrence": 1,
+    "bytes": 932470,
+    "sha256": "c32a00fc7fadea7a49778f96406cb5b106b4d3491693ee2552044da4e5d1805a"
+  },
+  "statistics": {
+    "messages": 676,
+    "user_turns": 0,
+    "tool_calls": 285,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 285,
+      "tool_result": 285,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 676,
+      "chunks": [
+        {
+          "path": "383088bfad73245a19c5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "383088bfad73245a19c5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "383088bfad73245a19c5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "383088bfad73245a19c5-part-0004.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-qwen-nlp-control.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "851fbfee4e80ee9b5da2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu-status-check_20260515T171110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-status-check_20260515T171110_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "49a330c70a83a431dcc911e34f93c48a70242be6d59d0c545e805942af4b97bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | 温度 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Black (96GB) | 16,375 / 97,887 MiB | 95% | 69°C |\n| 1 | RTX PRO 6000 Black (96GB) | 16,373 / 97,887 MiB | 0% | 65°C |\n\n## tmux\n\n`tmux ls` 被 read-only 模式拦截，无法执行。\n\n## 进程状态\n\nPID 627256 和 627335 均存活，运行时间 ~26 分钟。\n\n```\nPID     PPID  CMD                              ELAPSED\n627256  627255  python /root/vla-ssd/script       26:15\n627335  627334  python /root/vla-ssd/script       26:13\n```\n\n## 特征提取进度\n\n**trained_libero_goal** — 5/10 完成，第 5 个正在提取：\n\n| # | 任务 | 大小 | 状态 |\n|---|------|------|------|\n| 1 | open_the_middle_drawer_of_the_cabinet | 2.90 GB | 完成 |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | 4.21 GB | 完成 |\n| 3 | push_the_plate_to_the_front_of_the_stove | 3.15 GB | 完成 |\n| 4 | put_the_bowl_on_the_plate | 1.93 GB | 完成 |\n| 5 | put_the_bowl_on_the_stove | 0.93 GB (写入中) | **进行中** ~46% (2357/5081) |\n\n**untrained_libero_goal** — 4/10 完成，第 4 个正在提取：\n\n| # | 任务 | 大小 | 状态 |\n|---|------|------|------|\n| 1 | open_the_middle_drawer_of_the_cabinet | 2.91 GB | 完成 |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | 4.22 GB | 完成 |\n| 3 | push_the_plate_to_the_front_of_the_stove | 3.16 GB | 完成 |\n| 4 | put_the_bowl_on_the_plate | 1.50 GB (写入中) | **进行中** ~79% (3711/4669) |\n\n## 日志尾部\n\n**trained** (GPU 0): 正在提取 `put_the_bowl_on_the_stove`，进度 ~46%，速度 ~40 step/s\n\n**untrained** (GPU 1): 正在提取 `put_the_bowl_on_the_plate`，进度 ~79%，速度 ~38 step/s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-check.md"
+}

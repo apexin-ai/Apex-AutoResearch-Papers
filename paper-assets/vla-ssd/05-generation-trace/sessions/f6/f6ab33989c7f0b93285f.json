@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ab33989c7f0b93285f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phase3 probe prep",
+  "task_key": "worker_code_phase3-probe-prep_20260515T131841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase3-probe-prep_20260515T131841_result.json",
+    "occurrence": 1,
+    "bytes": 5063,
+    "sha256": "2507727d56b6ae3413fbee6df7167ddbed7a52e806aa0e4e11c119062fb8ddee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成。以下是完整报告和执行计划。\n\n---\n\n## 1. D003/D004 代码对齐验证 ✅\n\n### train_probes.py\n- **best_layer 选择**: line 607 — `max(results, key=lambda k: results[k][\"per_task_mean_rho\"])` ✅ D002\n- **per_task_mean_rho 计算**: line 491 — `np.mean(valid_rhos)` per task ✅\n- **输出格式**: `per_task_rho`, `per_task_mean_rho`, `per_task_n_pairs` 全部输出 ✅ (dry-run 验证)\n\n### analyze_results.py\n- **DINO_GATE_THRESHOLD** = 0.554 (line 268) ✅\n- **PASS**: `rho_pass` (per-task mean ρ > 0.5) AND `delta_pass` (Δρ > 0.1, bootstrap CI excludes 0, permutation p < 0.05) AND VLA per-task mean ρ ≥ 0.554 ✅\n- **CONDITIONAL**: `rho_pass` AND `delta_pass` but VLA < 0.554 ✅\n- **FAIL**: !rho_pass OR !delta_pass ✅\n- **subtask AUC**: 补充分析，不参与 gate (line 378 注释) ✅\n- **bootstrap_delta_rho**: 1000 bootstrap + 10000 permutation test (lines 268-304) ✅\n\n## 2. Features 数据就绪 ✅\n\n| 目录 | 文件数 | Demos/task | Shape | dtype | 大小 |\n|------|--------|------------|-------|-------|------|\n| trained/ | 10/10 | 50 | (T, 33, 4096) | float16 | 53G |\n| untrained/ | 10/10 | 50 | (T, 33, 4096) | float16 | 54G |\n| dinov2/ | 10/10 | 50 | (T, 1024) | float16 | 503M |\n\n磁盘: 95GB 可用 ✅\n\n## 3. 已有结果\n\n| 结果 | 状态 | 备注 |\n|------|------|------|\n| dinov2/temporal_distance | ⚠️ 旧代码 | 缺 per_task_rho，需重跑 |\n| dinov2_shuffle (Control B) | ✅ | 有 per_task_rho，rho=0.650 |\n| dinov2/subtask_predicate | ✅ | macro_AUC=0.972 |\n| oracle | ✅ | rho=1.0 |\n\n## 4. 发现的问题\n\n**DINO temporal_distance 需重跑** — 旧代码生成，无 `per_task_rho`。DINO gate 本身是固定阈值 0.554 不受影响，但 `delta_vla_dino` contribution warning 需要真实 DINO per_task_mean_rho。重跑仅 1 层，~10s。\n\n## 5. Phase 3 完整执行计划\n\n### 时间估算基准\n- dry-run: 1 layer × 5 epochs = 30s → ~6s/epoch\n- 预计每层 10-20 epochs (early stopping) → 60-120s/layer\n- 33 layers → **~35-65 min/model**\n\n---\n\n### Step 0: 重跑 DINO temporal_distance (~10s)\n```bash\ncd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\npython3 scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ \\\n  --probe_type temporal_distance \\\n  --gpu 0 --seed 42\n```\n\n### Step 1+2: Trained + Untrained probes (并行, ~35-65 min)\n```bash\n# GPU 0: Trained probes (33 layers)\nnohup python3 scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained/ \\\n  --probe_type temporal_distance \\\n  --gpu 0 --seed 42 \\\n  > /tmp/train_trained.log 2>&1 &\necho \"TRAINED_PID=$!\"\n\n# GPU 1: Untrained probes (33 layers)\nnohup python3 scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/untrained/ \\\n  --probe_type temporal_distance \\\n  --gpu 1 --seed 42 \\\n  > /tmp/train_untrained.log 2>&1 &\necho \"UNTRAINED_PID=$!\"\n```\n\n### Step 3: Control B — cross-trajectory shuffle (等 Step 1+2 完成后, ~35-65 min)\n```bash\n# GPU 0: Trained Control B\nnohup python3 scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained_shuffle/ \\\n  --probe_type temporal_distance \\\n  --shuffle_cross_trajectory \\\n  --gpu 0 --seed 42 \\\n  > /tmp/train_trained_shuffle.log 2>&1 &\n\n# GPU 1: Untrained Control B\nnohup python3 scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/untrained_shuffle/ \\\n  --probe_type temporal_distance \\\n  --shuffle_cross_trajectory \\\n  --gpu 1 --seed 42 \\\n  > /tmp/train_untrained_shuffle.log 2>&1 &\n```\n\n### Step 4: Verdict 分析 (等全部完成, ~1 min)\n```bash\npython3 scripts/analyze_results.py \\\n  --results_dirs \"trained:/root/autodl-tmp/vla-ssd/results/trained/,untrained:/root/autodl-tmp/vla-ssd/results/untrained/,dinov2:/root/autodl-tmp/vla-ssd/results/dinov2/\" \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/analysis/ \\\n  --probe_type temporal_distance\n```\n\n### 总耗时估算\n| 步骤 | 时间 | GPU |\n|------|------|-----|\n| Step 0: DINO 重跑 | ~10s | 0 |\n| Step 1+2: trained + untrained (并行) | ~35-65 min | 0+1 |\n| Step 3: Control B trained + untrained (并行) | ~35-65 min | 0+1 |\n| Step 4: analyze_results | ~1 min | CPU |\n| **总计** | **~70-130 min** | |\n\n### 注意事项\n- `--shuffle_cross_trajectory` 和 `--shuffle_labels` 已内置在 `train_probes.py` 中，无需独立脚本 ✅\n- Control B output 存到独立目录 (`*_shuffle/`)，不覆盖正常结果\n- `--seed 42` 是默认值，显式指定确保可复现\n- Step 1+2 可立即开跑，数据和代码全部就绪"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase3-probe-prep.md"
+}

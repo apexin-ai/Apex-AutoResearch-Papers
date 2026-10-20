@@ -1,0 +1,640 @@
+{
+  "schema_version": "1.0",
+  "session_id": "88c7122589a093eef6ed",
+  "rounds": [
+    {
+      "number": 40,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-17T16:04:05.272233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一轮审查过该 worker 的结果（bootstrap CI action probe），并已通过 `reviewer_post_to_director` 发送了完整的五问评估报告。结论为 PASS，无需重复审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000541"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "messages": [
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-17T16:04:05.727869+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：D058 ablation results integrated, capacity trade-off finding, Paper Agent dispatched for §4.3 integration），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-17T16:04:12.077551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-17T16:04:12.128251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 16:01 UTC | 更新原因: D058 ablation results integrated, capacity trade-off finding, Paper Agent dispatched for §4.3 integration\\\\n\\\\n## 核心方向\\\\nToken-level functional specialization in VLA: image tokens instruction-blind, readout token as multimodal hub, VLA fine-tuning front-loads instruction routing, non-monotonic vision encoder refinement. 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**Paper Polish Phase — Ablation 整合中**\\\\n\\\\n- 全部 11 项 Round 1-2 审稿问题已修复\\\\n- Story-level 审读完成（Discussion 扩展、CKA caveat、consistency fixes）\\\\n- **D058 L1 Ablation 关键发现**：\\\\n  - Classification 全 1.0（instruction identity 通过 residual stream 保留）\\\\n  - Action R² L1: +0.119 (p<0.0001, 10/10 tasks)——capacity trade-off 证明 functional specialization\\\\n  - 深层 L8/L13 不受影响（ns）——网络通过更深层补偿\\\\n  - Paper Agent 正在整合进 §4.3（新段落 + 小表 + Discussion 更新）\\\\n- Threshold sensitivity: three-condition gradient 在 30%-70% 稳健（Appendix）\\\\n- Limitations 扩展：C1 architecture-general（causal mask）vs C2 potentially architecture-specific\\\\n- 50 个成功实验 + 7 个 negative + 2 benchmarks + 5 项 robustness + 1 causal intervention\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent 完成 ablation 整合（§4.3 + Table + Discussion）\\\\n- [ ] 确认正文 ≤ 8 页\\\\n- [ ] 提交 Round 3 审稿\\\\n- [ ] Round 3 修复（如需要）\\\\n- [ ] Abstract DDL: May 26 / Paper DDL: May 29\\\\n\\\\n## GPU 预算\\\\nwestd-19183: cuda:0 + cuda:1（2× GPU）\\\\n已用 ~20 GPU·h（含 ablation ~2h），剩余 ~4 GPU·h 保留给 Round 3\\\\n\\\\n## 投稿信息\\\\n- 目标: CoRL 2026\\\\n- Abstract DDL: 2026-05-26\\\\n- Paper DDL: 2026-05-29\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D058 | 2026-05-17 | L1 ablation 发现 capacity trade-off：instruction head | l1_head_ablation |\\\\n| D057 | 2026-05-17 | 启动 L1 attention head ablation 实验，将 C2 从 correlatio | plan_011_fulllayer_r2, cross_inst_spatial_trained |\\\\n| D056 | 2026-05-17 | Reserve ~6 GPU·h for Round\n…[truncated 860 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-17T16:04:32.968465+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 更新合理，D058 决策与实验数据一致。\n\n一个小的事实性细节：ROADMAP 写 \"L1: +0.119 (p<0.0001, 10/10 tasks)\" — Δ=+0.119 对应的是 ablate_all32，该条件下 per-task 方向是 9/10（非 10/10，\"open middle drawer\" Δ=-0.055）。10/10 全正对应的是 ablate_all24 (Δ=+0.107)。不影响结论，但如果这些数字进论文需要核对。\n\n计划合理，等待 Paper Agent 整合完成后审查论文更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000545"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "messages": [
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-17T16:58:17.169695+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n论文压缩后完整性审查 + ablation 整合质量检查\n\nPaper Agent 刚完成大量修改：ablation 段落整合、Discussion 压缩（含 Conclusion 合并）、Experiments 各段精简。请做以下检查：\n\n1. **压缩损失检查**：Discussion 从 ~25 行压缩，Conclusion 合并入 Discussion 末尾。检查是否丢失了关键信息（CKA caveat、DINOv2 aggregation、pruning implications）。\n\n2. **Ablation 段落质量**：§4.3 新增的 ablation 段落是否准确呈现了实验结果？\"attention redistribution\" 措辞是否一致？MLP probe（不是 linear probe）是否正确标注？5 demos/task 是否在正文中说明？\n\n3. **Per-task 9/10 细节**：ablate_all32 的 per-task 方向是 9/10（\"open middle drawer\" 略降 -0.055）。论文中是否需要提及这个例外？还是 bootstrap CI 已经充分覆盖了这个变异？\n\n4. **全文一致性**：Abstract 中的数字是否与 experiments 一致（特别是在多轮修改后）？Table 编号和引用是否正确？\n\n5. **8 页边界**：正文是否确实在第 8 页底部结束？References 是否从第 9 页开始？\n\n论文文件在本地 docs/paper/ 目录。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "system"
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-17T16:58:25.311491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-17T16:58:25.562866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Synthesis.}\n5\tOur experiments reveal strict functional specialization: image tokens remain instruction-blind across all 32 layers, while the readout token serves as the sole multimodal convergence point.\n6\tVLA fine-tuning shifts instruction routing from mid-depth (L9--L16) to an entry-exit pattern (L0--L1, L31), with training effects concentrated at the readout token ($R^2$ $+0.069$) rather than image representations ($\\Delta \\leq 1.7\\%$).\n7\t\n8\t\\paragraph{Mechanism-behavior connection.}\n9\tThe instruction-blindness of image tokens provides a mechanistic explanation for the visual dominance reported by Grant et al.~\\cite{grant2026}: with no instruction-specific information in image representations ($|\\Delta| < 0.006$), the action pathway relies on the readout token for task conditioning.\n10\tThis clarifies a dissociation between geometric and functional alignment: DINOv2 achieves the highest RSA ($\\rho = 0.692$), yet VLA readout surpasses it in decodability ($R^2 = 0.678$ vs.\\ $0.634$), indicating that the LLM routes and integrates instruction-conditioned information rather than enhancing visual geometry.\n11\t\n12\t\\paragraph{Architectural implications.}\n13\tFirst, vision encoder quality may matter more than LLM scale: the external encoder ceiling ($\\rho = 0.692$) exceeds all internal representations, and training yields only modest geometric gains ($\\Delta = 0.017$, $3\\%$).\n14\tSecond, attention ablation at L1 confirms functional specialization: removing instruction attention does not disrupt classification (maintained via the residual stream) but redistributes attention to image tokens, recovering action encoding ($R^2$ $+46\\%$, $p < 0.0001$), with deep layers unaffected ($|\\Delta R^2| < 0.01$).\n15\tThis dissociation confirms genuine functional specialization of attention heads, while cautioning against interpreting attention as a causal bottleneck.\n16\t\n17\t\\paragraph{Limitations.}\n18\tWe study OpenVLA-7B on LIB\n…[truncated 475 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-17T16:58:29.829424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-17T16:58:29.880359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe evaluate OpenVLA-7B~\\cite{kim2024_openvla,karamcheti2024} on LIBERO-Goal~\\cite{liu2023_libero} (10 tasks, 50 demonstrations each).\n8\tRepresentations are extracted from six sources spanning the VLA pipeline (\\S\\ref{sec:repr_extraction}): DinoSigLIP+Projector, LLM image\\_mean and readout tokens at each of 32 layers, DINOv2~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}), CLIP~\\cite{radford2021_clip} (\\texttt{patch\\_mean}), and branch-split (DINOv2 1{,}024-D / SigLIP 1{,}152-D before fusion).\n9\tThree LLM conditions are compared: VLA-trained, pretrained Llama-2 base (no VLA fine-tuning), and untrained (6.74B parameters reinitialized to random weights), crossed with instruction presence (\\S\\ref{sec:model_data}).\n10\tRSA computes Spearman $\\rho$ between cosine-distance representation RDMs and Euclidean-distance action RDMs, with 10{,}000 bootstrap CIs (\\S\\ref{sec:rsa}).\n11\tMLP probes (input $\\to$ 256 $\\to$ 7; Adam, lr${}=10^{-3}$, 50 epochs, early stopping) report mean $R^2$ (\\S\\ref{sec:probes}).\n12\t\n13\t%------------------------------------------------------------------\n14\t\\subsection{Token-Level Functional Specialization}\n15\t\\label{sec:token_specialization}\n16\t\n17\tWe test whether image tokens and readout tokens encode different types of information by training cross-instruction probes (\\S\\ref{sec:cross_instruction_probes}): given the same visual frame paired with each of 10 task instructions, we classify which instruction was present from per-layer activations.\n18\t\n19\t\\paragraph{Image tokens are instruction-blind.}\n20\tAt the image\\_mean position, instruction classification remains at chance ($10\\%$) across all 32 layers, in both trained and untrained models (Table~\\ref{tab:dense_routing_main}).\n21\tBoth linear and MLP probes confirm chance-level performance ($10\\%$), as does standalone DINOv2 \\texttt{cls\\_token} ($10\\%$), ruling out probe ca\n…[truncated 10063 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-17T16:58:30.382632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-17T16:58:30.433653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tVision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but how they internally process multimodal information at the token level remains unknown.\n2\tWe perform a systematic token-level representational decomposition of a VLA (OpenVLA-7B on LIBERO) with factorial trained-vs-untrained control, combining cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers.\n3\tThree findings emerge.\n4\tFirst, the VLA exhibits strict token-level functional specialization: image tokens are instruction-blind (instruction classification at chance, $10\\%$, across all layers), while the readout token serves as a multimodal convergence point ($100\\%$ instruction classification from L1, cross-validated).\n5\tSecond, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth (L9--L16, 15--22 heads), while VLA training shifts this to entry-layer routing (L0--L1: 21--24 heads) with exit-layer re-engagement (L31: 18 heads), enabling immediate instruction access ($99.6\\%$ at L1 vs.\\ pretrained $80.2\\%$); untrained instruction attention remains below $12\\%$ at every layer.\n6\tThird, the LLM applies a non-monotonic refinement of vision encoder geometry: RSA peaks at L12, probe $R^2$ peaks at L8--L13, with self-supervised DINOv2 providing the highest geometric foundation ($\\rho = 0.692$, exceeding all internal representations).\n7\tThese results reveal that VLAs maintain a strict division of labor between visual and multimodal tokens, with training primarily reshaping readout-token information integration (probe accuracy $+18$pp at L31, instruction attention $+46$pp at L1) rather than visual representations ($\\Delta\\rho \\leq 0.017$).\n8\tThese findings suggest that routing efficiency to the readout position may be a key design consideration; vision encoder quality emerges as a key lever for action-relevant representation qu\n…[truncated 9 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-17T16:58:30.685409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-17T16:58:30.736336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tVision-language-action models (VLAs) process visual observations and language instructions through a large language model to produce robot actions~\\cite{brohan2023_rt2,kim2024_openvla}.\n5\tA central but untested assumption is that all token types within the LLM contribute uniformly to action prediction.\n6\tUnderstanding the token-level division of labor is essential for characterizing how VLAs process multimodal information: if image tokens and readout tokens serve fundamentally different roles, design choices (attention patterns, layer selection, action head placement) should reflect this specialization.\n7\t\n8\tRecent behavioral studies reveal that VLAs rely disproportionately on visual input~\\cite{grant2026}, with language instructions largely ignored by the action pathway~\\cite{haon2025}.\n9\tThese findings hint at internal specialization but do not explain \\emph{how} information is routed within the LLM, \\emph{where} instruction identity is encoded, or \\emph{what} training changes at the representational level.\n10\tExisting analyses have not yet combined systematic multi-metric probing with factorial trained/untrained controls in VLAs, leaving open whether image tokens carry instruction information, whether the readout token functions as a multimodal hub, and whether training creates new representational structure or reconfigures inherited geometry.\n11\t\n12\tWe address this gap by decomposing OpenVLA-7B~\\cite{kim2024_openvla,karamcheti2024}, a VLA chaining a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2}, an MLP projector, and Llama-2 7B.\n13\tWe extract representations from each of 32 LLM layers at both image-token and readout-token positions, and from external baselines (DINOv2~\\cite{oquab2024_dinov2}, CLIP~\\cite{radford2021_clip}).\n14\tWe compare three LLM conditions (VLA-trained, pretrained Llama-2 base, and randomly initialized) crossed with instruction presence, and apply four compleme\n…[truncated 2409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-17T16:58:36.465081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-17T16:58:36.716543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe investigate how action-relevant structure is distributed across a VLA by combining four complementary analyses: cross-instruction probes, attention pattern analysis, RSA, and functional probes.\n5\t\n6\t%------------------------------------------------------------------\n7\t\\subsection{Model and Data}\n8\t\\label{sec:model_data}\n9\t\n10\tWe study OpenVLA-7B~\\cite{kim2024_openvla,karamcheti2024}, a generalist robot policy chaining three components: a frozen DinoSigLIP fused vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), a Multi-Layer Perceptron (MLP) projector (2{,}176-D $\\to$ 4{,}096-D), and a Llama-2 7B language backbone (6.74B parameters) that autoregressively decodes 7-dimensional actions.\n11\tWe use the base checkpoint pretrained on Open X-Embodiment (no task-specific fine-tuning) and evaluate on LIBERO-Goal~\\cite{liu2023_libero} (10 tabletop tasks, 50 demonstrations each).\n12\tTo disentangle the contributions of language pretraining and VLA fine-tuning, we compare three LLM conditions: (1)~VLA-trained (the released checkpoint), (2)~Llama-2 base (the pretrained LLM backbone without VLA fine-tuning), and (3)~untrained (all 6.74B LLM parameters reinitialized via \\texttt{from\\_config()}).\n13\tAll three conditions share the same frozen vision encoder and projector architecture.\n14\t\n15\t%------------------------------------------------------------------\n16\t\\subsection{Representation Extraction}\n17\t\\label{sec:repr_extraction}\n18\t\n19\tWe extract representations from six sources spanning the VLA pipeline:\n20\t(a)~\\textbf{DinoSigLIP+Projector}, the projector output (4{,}096-D), immediately before LLM processing;\n21\t(b)~\\textbf{LLM image\\_mean}, the mean image-token activation at each of 32 layers;\n22\t(c)~\\textbf{LLM readout}, the activation at the final pre-action token position at each layer;\n23\t(d)~\\textbf{DINOv2 ViT-L/14}~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}), a self\n…[truncated 4027 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-17T16:58:36.767140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-17T16:58:36.817736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026}\n4\t\n5\t\\usepackage[utf8]{inputenc}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage{url}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{amsfonts}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{nicefrac}\n12\t\\usepackage[expansion=false]{microtype}\n13\t\\usepackage{graphicx}\n14\t\\usepackage{enumitem}\n15\t\n16\t\\title{Vision Encodes, Language Routes:\\\\ Token-Level Functional Specialization in a Vision-Language-Action Model}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\n22\t\\maketitle\n23\t\n24\t\\begin{abstract}\n25\t\\input{abstract}\n26\t\\end{abstract}\n27\t\n28\t\\input{introduction}\n29\t\\input{related_work}\n30\t\\input{method}\n31\t\\input{experiments}\n32\t\\input{discussion}\n33\t\n34\t\\bibliography{references}\n35\t\n36\t\\input{appendix}\n37\t\n38\t\\end{document}\n39\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-17T17:00:28.481211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-17T17:00:28.481710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-17T17:00:28.532321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Vision-language-action models.}\n4\tVLAs fine-tune large language models on robot demonstrations to produce action tokens conditioned on visual observations and language instructions~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0}.\n5\tThis architecture family inherits the transformer backbone and its multi-modal fusion mechanisms from vision-language models, but repurposes them for continuous control.\n6\tA central assumption is that fine-tuning injects action-relevant knowledge into pretrained representations.\n7\tWe test this assumption at the representational level through per-layer, per-token-type decomposition.\n8\t\n9\t\\paragraph{Mechanistic interpretability in transformers.}\n10\tA growing body of work analyzes transformer internals at the level of individual attention heads and circuits.\n11\tElhage et al.~\\cite{elhage2021} introduced the residual stream framework, in which each layer reads from and writes to a shared communication channel.\n12\tBuilding on this, Olsson et al.~\\cite{olsson2022} identified induction heads as a mechanistic basis for in-context learning; these specialized attention heads implement token-copying algorithms.\n13\tCircuit-level analyses have since traced complete computational subgraphs for tasks such as indirect object identification~\\cite{wang2023_ioi} and greater-than comparison~\\cite{conmy2023}.\n14\tIn parallel, attention probing studies have shown that individual heads encode syntactic relations~\\cite{clark2019}, capture positional and structural patterns at different depths~\\cite{vig2019}, and that a small subset of specialized heads accounts for most model performance~\\cite{voita2019}.\n15\tOur Layer-1 attention head analysis extends this tradition to the VLA domain, where we find that 25 of 32 heads become instruction-dominant after fine-tuning.\n16\t\n17\t\\paragraph{Behavioral and mechanistic analysis of VLAs.}\n18\tBehavioral evaluations reveal that current VLAs rel\n…[truncated 2687 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-17T17:00:28.532819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Supplementary Material}\n4\t\\label{sec:appendix}\n5\t\n6\t\\subsection{CKA Analysis Method}\n7\t\\label{sec:cka_appendix}\n8\t\n9\tWe employ Centered Kernel Alignment (CKA)~\\cite{kornblith2019} alongside RSA as a complementary perspective.\n10\tWhile RSA captures local geometric alignment via rank-order preservation, CKA measures global representational similarity through kernel-based comparisons.\n11\t\n12\tWe compute both \\emph{linear CKA}, which uses a linear kernel and is sensitive to second-order statistics, and \\emph{RDM kernel CKA}, which operates on the same distance matrices as RSA but aggregates them differently.\n13\tUsing both variants tests whether conclusions about representation structure are robust to the choice of similarity metric.\n14\t\n15\tLinear CKA between high-dimensional representations (4{,}096-D for LLM layers) and the 7-D action space is subject to a known dimension mismatch: the linear kernel in the low-dimensional space may not capture the same structure as in the high-dimensional space.\n16\tRDM kernel CKA avoids this issue by operating on distance matrices of equal size regardless of the original feature dimensionality.\n17\t\n18\t\\subsection{Metric Sensitivity: RSA versus CKA}\n19\t\\label{sec:metric_sensitivity_appendix}\n20\t\n21\tLinear CKA~\\cite{kornblith2019} reverses the RSA ordering: untrained LLM ($\\text{CKA} = 0.089$) $>$ trained LLM ($0.083$) $>$ DinoSigLIP+Projector ($0.081$) $>$ DINOv2 ($0.066$), partially inverting the self-supervised advantage (Figure~\\ref{fig:metric_comparison}).\n22\tRDM kernel CKA partially resolves this discrepancy: trained ($0.260$) $\\approx$ Projector ($0.257$) $>$ untrained ($0.246$) $>$ DINOv2 ($0.241$).\n23\tThis divergence reflects the known sensitivity of representation similarity metrics to different geometric properties.\n24\t\n25\tAt the per-layer level, linear CKA between image\\_mean and the action space rises monotonically from L0 ($0.081$) to L32 ($0.098$), showing no inverted-U pattern.\n26\tRSA captures ran\n…[truncated 322 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-17T17:00:33.201665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.pdf",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper"
+            }
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-17T17:00:33.653647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 451
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-17T17:00:33.904884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/vla-ssd/docs/paper/main.pdf"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-17T17:00:35.059645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/vla-ssd/docs/paper/main.pdf': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1154
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-17T17:00:37.972128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
+              "pages": "1-8"
+            }
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-17T17:00:38.374065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF pages extracted: 8 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (424KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-17T17:03:06.180132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 论文压缩后完整性审查 + ablation 整合质量检查\n\n## 1. 压缩损失检查 — PASS\n\nDiscussion 从 ~25 行压到 20 行（含合并 Conclusion），关键内容全部保留：\n- **CKA caveat**: Method §3.6 \"Why RSA over CKA\" 段落完整保留 + Discussion L274 引用 \"Appendix A.2\" ✓\n- **DINOv2 aggregation**: Discussion \"Mechanism-behavior connection\" 段完整（\"DINOv2 achieves the highest RSA (ρ=0.692), yet VLA readout surpasses it in decodability (R²=0.678 vs 0.634)\"）✓\n- **Pruning implications**: 已移除——这是推测性内容，移除反而避免了超出实验证据的 claim ✓\n- **合并 Conclusion**: L274-275 一句话总结三个 finding + code release。简洁但完整 ✓\n\n无关键信息丢失。\n\n## 2. Ablation 段落质量 — WARNING (一处缺失)\n\nPDF 第 6 页 L219-227，数据全部准确：\n- ✓ \"action MLP probe R²\"（正确标注 MLP，非 linear）\n- ✓ 0.256 → 0.375, Δ=+0.119, CI [0.065, 0.167], p<0.0001（与 bootstrap JSON 一致）\n- ✓ ablate_all24 R²=0.363\n- ✓ |ΔR²| < 0.01 at L8/L13, CIs spanning zero, p>0.1\n- ✓ \"attention redistribution\" 措辞一致（L225-226 + Discussion L267）\n- ✓ 最后一句排除 probe artifact\n\n**[severity: warning] 5 demos/task 未标注。** §4.1 Setup（PDF L174）明确写 \"10 tasks, 50 demonstrations each\"。但 ablation 实验使用 5 demos/task（n_train=5312 vs 主实验的 ~40,000）。ablation 段落没有任何说明。审稿人看到 L1 baseline R²=0.256 会困惑——主实验的 R² 远高于此。\n\n建议修复：在 ablation 段落加一个括号说明，如 \"(using a 5-demonstration subset for computational efficiency; absolute R² values should be compared within ablation conditions)\" 或在 footnote 中注明。\n\n## 3. Per-task 9/10 — PASS\n\n无需在正文提及。Bootstrap CI [0.065, 0.167] 不含零，已充分覆盖单任务变异（\"open middle drawer\" Δ=-0.055 被其他 9 个任务的正向 Δ 抵消）。这是统计推断的标准做法。\n\n## 4. 全文一致性 — WARNING (一处数字不一致)\n\n**Abstract 数字核对**（大部分 PASS）：\n- ✓ 10% image chance → Table 1 一致\n- ✓ 100% readout from L1 → Table 1 一致\n- ✓ 99.6% vs 80.2% → Table 2 一致\n- ✓ ρ=0.692 → Table 3 一致\n- ✓ +18pp at L31 → Table 1 (100%-82%) 一致\n- ✓ +46pp instruction attention → Table 2 (57.7%-11.7%) 一致\n- ✓ Δρ ≤ 0.017 → §4.4 L245 一致\n\n**[severity: warning] Abstract \"L0–L1: 21–24 heads\" 与 Table 2 \"25/32\" 不一致。** Table 2 明确写 L1 = 25/32 heads。如果 L0=21, L1=25，Abstract 的范围应为 \"21–25 heads\"，不是 \"21–24\"。Figure 1 的可视化在 L1 约 24 处，可能是阈值边界上一个 head 的差异（ablation 代码列出 24 个 instruction heads，但 attention 分析报告 25 个）。\n\n建议修复：统一为 \"21–25 heads\" 或确认 L1 到底是 24 还是 25 并全文统一。\n\n**Table 编号与引用**：Table 1/2/3、Figure 1/2 在 PDF 中编号正确，所有交叉引用一致 ✓\n**99.6% vs 100.0%**：Table 2 caption 已解释 \"task-level vs. LOOCV splits\" ✓\n\n## 5. 8 页边界 — PASS\n\nPDF 确认：\n- 第 1-7 页：正文 + 图表\n- 第 8 页上半：Figure 2 + Discussion（含 Limitations + 合并 Conclusion）\n- 第 8 页下半：References 开始（L276 \"References\" heading）\n- 主文本内容未超过第 8 页 ✓\n\n排版紧凑但不拥挤。Figure 2 在第 8 页顶部，Discussion 文字在中间，References 在底部。CoRL 标准格式（正文 ≤8 页，references 不计入页数限制，可从第 8 页底开始）。\n\n---\n\n**总结**：两个 warning，零 critical。\n\n| 项目 | 结论 |\n|------|------|\n| 压缩损失 | PASS — 无关键信息丢失 |\n| Ablation 段落 | WARNING — 5 demos/task 未标注 |\n| Per-task 9/10 | PASS — CI 已充分覆盖 |\n| 全文一致性 | WARNING — Abstract \"21-24\" vs Table 2 \"25\" |\n| 8 页边界 | PASS — 正文在第 8 页内结束 |",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-17T17:03:09.793514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-17T17:03:14.384691+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。两个 warning：(1) ablation 段落缺少 5 demos/task 说明，(2) Abstract \"21-24 heads\" 与 Table 2 \"25/32\" 不一致。无 critical。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000571"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "messages": [
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-17T17:03:54.627516+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-17T17:04:40.096043+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（westd-19183）。越界立即 CRITICAL。\n- Reviewer 只读：不执行实验、不修改文件、不直接回 Paper Agent。唯一输出渠道 `reviewer_post_to_director`。\n- 论文本地路径 `projects/vla-ssd/docs/paper/`，训练代码/结果在远程 `/root/vla-ssd/` 和 `/root/autodl-tmp/vla-ssd/`。断言\"未修改\"前必须两边都读。\n- Abstract 说 \"21–24 heads\" 但 Table 2 写 25/32 —— 已报 warning，等 Agent 修复。不要在下次审查中漏掉这个。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，2× NVIDIA RTX PRO 6000 Black (98GB each)\n- 远程代码：`/root/vla-ssd/`，结果：`/root/autodl-tmp/vla-ssd/results/`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/`\n- 论文：`docs/paper/main.tex`（已编译 PDF 存在于同目录）\n- Python：`/root/miniconda3/bin/python3.12`\n- 活跃进程：**无**。两块 GPU 均空闲（0% util, 0 MiB）。无 tmux session 运行中。\n- Registry 中 `l1_head_ablation` 仍标 RUNNING 但实际已完成，需 Agent 改为 DONE。\n\n### 3. 📊 当前状态\n**刚完成**：论文压缩后全文完整性审查（5 维度），发现 2 个 warning：\n1. Ablation 段落缺 5 demos/task 标注（审稿人会困惑为什么 L1 R²=0.256 远低于主实验）\n2. Abstract \"21–24 heads\" vs Table 2 \"25/32\" 数字不一致\n\n**Ablation 实验链已全部审完**（v1 label bug CRITICAL → v2 fix → v3 all-32 → diagnostic → action probe → bootstrap CI），所有报告已通过 `reviewer_post_to_director` 发送。\n\n**等待中**：\n- Paper Agent 修复上述 2 个 warning\n- Round 3 内审提交（需用户审批）\n- Round 3 审稿结果（预计 May 18-20 返回）\n\n### 4. 📋 待办\n- Paper Agent 提交修改后的论文 → 检查 \"21–25\" 是否统一、5 demos 是否标注\n- Director 触发 Round 3 审查请求 → 执行 §5 章节对抗审查（评分模板 + checklist）\n- Round 3 审稿结果返回 → 评估是否达到 accept 阈值，标注剩余 gap\n- 任何新 worker_done 通知 → 按 audit checklist 审查（数据一致性、GPU 合规、结论可靠性）\n- 如果有新实验启动 → 必查 CUDA_VISIBLE_DEVICES 是否在 {0,1} 内\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- C1（token-level specialization）：image tokens instruction-blind (10%), readout = multimodal hub (100% from L1)。LIBERO-Goal + Spatial 双 benchmark 验证。最强 claim。\n- C2（front-loaded routing）：0→9→25 heads 三级梯度 + entry-exit pattern。Ablation 升级为 partially causal：classification 1.0（residual stream）+ action R² +46%（attention redistribution）。Bootstrap CI 确认 p<0.0001。\n- C3（non-monotonic refinement）：inverted-U RSA + DINOv2 ceiling。**最弱 claim**——CKA 反转 RSA ordering 未完全解决，目前靠 method §3.6 + appendix A.2 防守。\n\n**易错点**：\n- L1 probe 10% ≠ \"无信息\"，= \"线性不可分\"。L0 residual 携带非线性 instruction info，L1 MLP 使其线性可分。ablate_all32 classification 仍 1.0 就是因为这个机制。不要再犯\"L0=10% 所以 residual 没信息\"的推理错误。\n- \"+18pp at L31\" 是 trained vs **untrained**（随机初始化），不是 trained vs Llama-2 base。VLA fine-tuning 在 L31 的边际效果实际是 0pp（两者都 100%）。Abstract 的 framing 技术上正确（\"training\" 含预训练+微调）但可被审稿人攻击。\n- 99.6% vs 100.0%：前者是 task-level split，后者是 LOOCV。Table 2 caption 已解释。不是 bug。\n- CoRL 2026 DDL：Abstract May 26, Paper May 29。距今 9-12 天。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000573"
+        }
+      ]
+    }
+  ]
+}

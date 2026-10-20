@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba17cadbd02d531774d0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code probe pipeline verify",
+  "task_key": "worker_code_probe-pipeline-verify_20260515T120918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe-pipeline-verify_20260515T120918_result.json",
+    "occurrence": 1,
+    "bytes": 2450,
+    "sha256": "290db3d66ec4eb0e479fdda54805767a32db933eed99c5e876475596b7530371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### 各功能状态\n\n| 功能 | 状态 | 代码路径 |\n|------|------|----------|\n| 多层特征支持 (33层) | **已有** | `train_probes.py` — `scan_features()` 自动检测 3D `(T,33,4096)` vs 2D `(T,1024)`，`load_layer_features()` 按层切片 |\n| MLP Probe | **新写** | `train_probes.py:MLPProbe` — `1024→256→1` (ReLU)，`--probe_model mlp` 默认 |\n| Adam + Early Stopping | **已有** | `train_probes.py:train_regression_probe()` — Adam lr=1e-3, patience=5 |\n| Control B (cross-traj shuffle) | **已有** | `train_probes.py` — `--shuffle_cross_trajectory` flag → `sample_cross_trajectory_pairs()` + `build_cross_pair_tensors()` |\n| Per-task ρ 评估 | **已有** | `train_probes.py:run_temporal_distance()` L448-460 — 每层计算 `per_task_rho` |\n| Per-task mean ρ 主指标 (D002) | **新写** | `train_probes.py` — 新增 `per_task_mean_rho` 字段 + CSV 列 |\n| Bootstrap CI | **已有** | `analyze_results.py:bootstrap_delta_rho()` L249 — 1000 bootstrap + 10000 permutation test，95% CI |\n| 可视化 & Judgment | **已有** | `analyze_results.py` — `layer_rho.png`, `delta_rho.png`, PASS/FAIL 判定 |\n\n### 修改内容\n\n`train_probes.py` 新增/修改：\n1. `MLPProbe` 类 (in_dim → 256 → 1, ReLU)\n2. `--probe_model` 参数 (默认 `mlp`，可选 `linear`)\n3. `per_task_mean_rho` 作为每层的聚合指标\n4. CSV summary 增加 `per_task_mean_rho` 列\n\n### Dry-run 结果 (DINO-V2)\n- Pooled ρ = 0.609, **per_task mean ρ = 0.619**\n- 10 tasks 全部有评估结果，rho 范围 [0.39, 0.78]\n\n### 提取进度\n- trained: **8/10** tasks 完成\n- untrained: **8/10** tasks 完成\n- 剩余: LIVING_ROOM_SCENE6, STUDY_SCENE1\n\n### 下一步\n提取完成后直接跑：\n```bash\n# Trained (33 layers)\npython scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/trained/ --output_dir /root/autodl-tmp/vla-ssd/results/trained/ --probe_type temporal_distance --gpu 0\n\n# Untrained (33 layers)  \npython scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ --output_dir /root/autodl-tmp/vla-ssd/results/untrained/ --probe_type temporal_distance --gpu 1\n\n# Control B\npython scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/trained/ --output_dir /root/autodl-tmp/vla-ssd/results/trained_controlB/ --probe_type temporal_distance --shuffle_cross_trajectory --gpu 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-pipeline-verify.md"
+}

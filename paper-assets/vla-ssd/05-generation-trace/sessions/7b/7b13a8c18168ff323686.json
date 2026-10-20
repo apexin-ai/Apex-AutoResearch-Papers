@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b13a8c18168ff323686",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan012 clip download",
+  "task_key": "worker_ssh_plan012-clip-download_20260516T003227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan012-clip-download_20260516T003227_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "c6e8f6854235c3f76365e261c8ab578b7025d94ca782944bd5af3b2477ee5b57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**失败。** 服务器 westd-19183 无法访问外网（huggingface.co）。\n\n错误信息：`Network is unreachable` — 连接 huggingface.co:443 失败，`Errno 101`，不是超时而是网络完全不可达。SeetaCloud 该实例没有外网出口，无法下载 CLIP 权重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan012-clip-download.md"
+}

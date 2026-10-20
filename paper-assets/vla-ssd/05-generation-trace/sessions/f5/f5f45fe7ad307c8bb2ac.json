@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f45fe7ad307c8bb2ac",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "sync specificity pdf transfer",
+  "task_key": "worker_sync_specificity_pdf_transfer_20260520T050649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_specificity_pdf_transfer_20260520T050649_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "8da23a6f3b1fd12b97c7a244680189a40db0962b6ce690381232f7337c65b219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成。\n\n**结果：**\n- PDF + PNG 已写入 `artifacts/figures/paper/` 和 `docs/paper/figures/`（硬链接，同一文件）\n- **p 值已移除** — 标题显示 `z=-3.11, percentile=0%`，无 `p=` 字样\n- 文件大小与服务器一致：PDF 16980 bytes, PNG 47769 bytes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-specificity-pdf-transfer.md"
+}

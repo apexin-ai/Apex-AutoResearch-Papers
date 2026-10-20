@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "981d9a6573c9421aff47",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_10_1779490726.md",
+  "task_key": "loop_10_1779490726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779490726.md",
+    "occurrence": 1,
+    "bytes": 3624,
+    "sha256": "a39060f3e06d17b5498fd4c8346e2a510d839ace3eb5fda44ff13ed3e66b3c9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-22T01:03:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19183 的 cuda:0 和 cuda:1（gpu_ids=[0,1]）\n- AutoDL 实例重启后 SSH 端口会变，连接失败不要重试，提示用户查新端口\n- `object_pipeline_ridge` 系列两次失败都与网络有关（urllib3 Network unreachable），重试前必须先确认网络通（ping api.wandb.ai / huggingface.co）\n- 该项目处于审稿迭代阶段（DDL: Abstract 5/26, Paper 5/29），实验价值需与审稿反馈对齐，不要盲目重跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 /root/autodl-tmp/vla-ssd/\n- Python：conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：openvla-7b-finetuned-libero-object（具体路径需 SSH 确认，可能在 /root/autodl-tmp/vla-ssd/checkpoints/）\n- 数据路径：/root/autodl-tmp/vla-ssd/data/libero/libero_object/（5000 条）、libero_goal/、libero_spatial/\n- NORA 用独立 venv：/root/autodl-tmp/vla-ssd/envs/nora/\n- 脚本目录：/root/autodl-tmp/vla-ssd/scripts/\n- 结果目录：/root/autodl-tmp/vla-ssd/results/\n- 日志目录：~/runs/vla-ssd/\n- 磁盘：/autodl-pub 5.3T/7.3T 可用，系统盘 816G/879G 可用\n- 活跃进程：无（两块 GPU 空闲）\n- 活跃 Cron：reconcile 返回 0 个活跃\n\n### 3. 📊 当前状态\n刚收到 `object_pipeline_ridge_v2` 失败回调（process dead 5× with no sentinel/W&B）。已派诊断 Worker（worker_diagnose_object_pipeline_ridge_v2_20260521T090006）SSH 查日志，**Worker 回调尚未返回**。\n\nRegistry 关键状态：\n- **ALLOCATED**（未提交）：`nora_spatial_pipeline_v1`（NORA 跨 LIBERO-Spatial 泛化验证，cuda:? 未知）\n- **PREPARING**（8个）：nora_spatial 相关、tracvla_spatial_trained、behavioral 系列、fulllayer_action_probe 等\n- **RUNNING**：无\n- 两块 GPU 全部空闲 = 资源浪费中\n\n131 个实验总计：90 success / 16 negative / 4 failed / 12 killed\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读诊断结果，判断 object_pipeline_ridge_v2 失败根因：\n  - 若网络问题 → 先修网络（source /etc/network_turbo？设 WANDB_MODE=offline？），再决定是否 v3 重试\n  - 若代码/OOM → 修代码后重试\n  - 更新 registry failure_reason 为具体原因\n- `nora_spatial_pipeline_v1` 已 ALLOCATED → 诊断完网络后，确认网络通畅则提交（需确认分配的 GPU 编号）\n- 两块 GPU 空闲 → 汇报 Director 请求指示：是否重试 object pipeline + 提交 nora_spatial\n- Round 15 审稿结果待返回 → 结果到达后根据 reviewer 反馈决定下一步实验\n\n### 5. 🎯 战略上下文\n- 核心发现：VLA 微调产生 convergent entry-exit routing architecture（inverted-U R² profile + L1 instruction-dominant heads + counterfactual sensitivity），已跨 3 架构验证（OpenVLA/Llama-2, TracVLA/Phi3V, NORA/Qwen2.5-VL）\n- 跨 benchmark：已覆盖 LIBERO-Goal + LIBERO-Spatial（counterfactual 20 tasks）\n- LIBERO-Object 是剩余的跨 benchmark 验证维度——`object_pipeline_ridge` 连续两次失败（v1 网络不可达，v2 进程反复死亡），可能是同一网络根因\n- 结构性天花板已知：closed-loop gap（0/30 SR, wont_fix）、scope fit（纯 representational）、LIBERO-only\n- Reviewer session 持续瘫痪（已 escalate 6 次），Round 15 fresh 审稿结果待返回\n- 易错点：不要假设 .venv 存在——conda base 是主环境，NORA 用独立 venv；AutoDL 网络问题需要 `source /etc/network_turbo` 启用代理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779490726.md"
+}

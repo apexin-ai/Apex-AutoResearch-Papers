@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3bafeae8916a305ea49",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 008 prep",
+  "task_key": "worker_code_plan_008_prep_20260515T231944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_008_prep_20260515T231944_result.json",
+    "occurrence": 1,
+    "bytes": 2373,
+    "sha256": "98b117011922d60e78e16af5109b5c66d5a593668240ec957dab4671596d0740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Everything verified. Here's the summary:\n\n---\n\n## 产出\n\n### 脚本路径\n- **Feature extraction**: `/root/vla-ssd/scripts/extract_features_rand_inst.py`\n- **RSA comparison**: `/root/vla-ssd/scripts/rsa_instruction_control.py`\n\n### Dry-run 验证\n全部 3 种模式通过:\n- `random` (seed=0): 生成 \"civoq tixe mef wugi di wapon\"，所有 task 用同一字符串\n- `shuffled`: 每个 task 独立 word-level shuffle（如 \"open the middle drawer...\" → \"of middle the open the drawer cabinet\"）\n- `wrong_task`: cyclic shift（task i 用 task i+1 的 instruction）\n\nOutput shape 正确: `(T, 33, 4096)` for both `last_preaction` and `image_mean`.\n\nRSA 脚本验证: normal=0.4888 vs empty=0.4723 at layer 16，与已有结果一致。\n\n### GPU 时间预估\n单次 extraction (10 tasks × 50 demos): **~48 min** (基于已有 trained_libero_goal 的文件时间戳)\n\n| 模式 | 运行次数 | 单次时间 |\n|------|---------|---------|\n| random (3 seeds) | 3 | 48 min × 3 = 144 min |\n| shuffled | 1 | 48 min |\n| wrong_task | 1 | 48 min |\n| **合计** | **5** | **~240 min (4h)** |\n\n利用 2 GPU 并行可缩短至 **~2.5h**:\n- Batch 1 (gpu0 + gpu1): random_s0 + random_s1\n- Batch 2 (gpu0 + gpu1): random_s2 + shuffled\n- Batch 3 (gpu0): wrong_task\n\nRSA 计算 (CPU-only): ~30s/layer × 33 layers × 7 conditions ≈ **~10 min**\n\n### 推荐执行命令\n\n```bash\ncd /root/vla-ssd\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# Batch 1: 两GPU并行\nnohup python scripts/extract_features_rand_inst.py --instruction_mode random --seed 0 --gpu 0 > /tmp/rand_s0.log 2>&1 &\nnohup python scripts/extract_features_rand_inst.py --instruction_mode random --seed 1 --gpu 1 > /tmp/rand_s1.log 2>&1 &\n\n# Batch 2: 等 Batch 1 完成后\nnohup python scripts/extract_features_rand_inst.py --instruction_mode random --seed 2 --gpu 0 > /tmp/rand_s2.log 2>&1 &\nnohup python scripts/extract_features_rand_inst.py --instruction_mode shuffled --gpu 1 > /tmp/shuffled.log 2>&1 &\n\n# Batch 3: 等 Batch 2 完成后\nnohup python scripts/extract_features_rand_inst.py --instruction_mode wrong_task --gpu 0 > /tmp/wrong_task.log 2>&1 &\n\n# RSA 分析（全部 extraction 完成后）\npython scripts/rsa_instruction_control.py\npython scripts/rsa_instruction_control.py --token_type image_mean\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-prep.md"
+}

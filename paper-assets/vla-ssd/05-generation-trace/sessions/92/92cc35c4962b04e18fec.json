@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92cc35c4962b04e18fec",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run bootstrap cuda1 retry and long",
+  "task_key": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_bootstrap_cuda1_retry_and_long_20260522T152609_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "2d7831beacf64ba31e05ea11edc9b9383b1ca58f216e5276aff2c21ace9ff8bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**cuda:1 retry** — 已启动，DynamicCache 修复生效。TracVLA goal trained 正在 extraction（300/5000 samples）。因为之前 trained 和 untrained 全部失败，脚本会跑全部 8 个 run（goal/spatial/object 各 trained+untrained + long trained+untrained）。\n\n**cuda:0** — 两个 session 都活跃。cuda:0 正在 OpenVLA goal trained 的 bootstrap 10000 迭代阶段（CPU 密集，日志不更新是正常的）。GPU 占用 2126 MiB。\n\n**注意**：原计划只重跑 3 个 untrained + 2 个 long，但实际 TracVLA 完全没有结果（trained 也全部失败在同一个 DynamicCache bug），所以脚本改为跑全部 8 个 TracVLA conditions。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-bootstrap-cuda1-retry-and-long.md"
+}

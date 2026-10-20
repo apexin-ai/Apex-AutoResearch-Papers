@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "899fa0a0c7d738163062",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research libero goal feasibility",
+  "task_key": "worker_research_libero-goal-feasibility_20260515T160020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero-goal-feasibility_20260515T160020_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "86c149856f1ecbcae925f8e3dcf37fd1526958d00df77b9644d2702195390eae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新并注册。核心发现总结：\n\n**Grant et al. 2026 精读结果**:\n- LIBERO-Goal 10 tasks 共享同一 kitchen scene，仅 goal 不同\n- OFT/X-VLA/GR00T 在 wrong prompt 下 collapse 到 0-10%（LIBERO-Object 不受影响）\n- **关键 paradox**: π0.5 Layer 17 上 99.3% prompt classification accuracy，但行为不受 prompt 影响 → \"encoded but not used\"\n\n**Novelty gap 明确**:\n- Grant: behavioral intervention (6 models)，**没有 trained vs untrained 对比**\n- Swann/Buurmeijer: SAE interpretability，**没有 language features 分析**\n- LIBERO-CF: counterfactual behavioral benchmark，**没有 representation analysis**\n- 我们的空间: **trained vs untrained × layer × timestep granularity 的 instruction probing** — 无人做过\n\n**建议 Conditional GO**:\n1. 先过 t=0 visual similarity gate（DINO cosine sim ≥ 0.95）\n2. 方案 B（8 关键层）~6h 端到端\n3. 与 temporal distance + action probe 组成 \"when does VLA training matter?\" 的三段式 story"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-libero-goal-feasibility.md"
+}

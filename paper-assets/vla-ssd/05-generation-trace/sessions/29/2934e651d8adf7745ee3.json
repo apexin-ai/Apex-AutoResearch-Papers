@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2934e651d8adf7745ee3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis matrix summary table",
+  "task_key": "worker_analysis_matrix_summary_table_20260522T000858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matrix_summary_table_20260522T000858_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "6f6d9d1eb80714eb8a3522554fed0bde676891065031afef18ad81b8f3b54ca7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已写入 `artifacts/matrix_summary_table.md` 并注册。\n\n关键发现：\n\n**缺失数据**：OpenVLA Goal 和 Spatial 不存在标准化 pipeline 目录（`libero_goal_trained/` 等均不存在，只有旧格式 `trained_libero_goal/goal_classification/`）。NORA Spatial untrained 缺 CF 文件。\n\n**跨架构一致 pattern**：\n- **R² 坍缩是训练引起的**：trained Δ 显著大于 untrained（所有架构一致）。NORA 最极端（Goal Δ=0.691，exit R²=-0.004），TracVLA 中等（Δ=0.138–0.294），OpenVLA Long 几乎无坍缩（Δ=0.004）\n- **CF 敏感性**：trained 模型中 \"empty\" 在 5/6 setting 中排第一；untrained 中 \"empty\" 全部排第一，且 cosine distance 量级远小于 trained 的 Cohen's d\n- **L1 注意力**：TracVLA untrained 全部 32/32 instruction-dominant（Phi-3 预训练已带有指令偏置），fine-tuning 反而轻微降低\n\n**异常点**：NORA Goal trained CF exit 层 cosine distance 全部饱和为 1.0；OpenVLA Long untrained 使用了 Cohen's d 而非 cosine distance 方法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-matrix-summary-table.md"
+}

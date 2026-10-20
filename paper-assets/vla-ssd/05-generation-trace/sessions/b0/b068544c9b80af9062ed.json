@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b068544c9b80af9062ed",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head sanity check",
+  "task_key": "worker_code_action_head_sanity_check_20260526T195505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_sanity_check_20260526T195505_result.json",
+    "occurrence": 1,
+    "bytes": 2518,
+    "sha256": "6053678b3522259be6ad3ff5ec1eee61a3dda98fb9eee6a3f0497b5c871b707c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 项检查全部完成。以下是完整诊断结果。\n\n---\n\n## 完整诊断结果\n\n### CHECK 3: Double-norm bug — **确认存在，但非主因**\n\n```\nhidden_states[32] IS POST-norm (已经过 RMSNorm)\n  lm_head(hs) vs model logits:       max=0.0625  ← 几乎一致 (bfloat16 精度)\n  lm_head(norm(hs)) vs model logits: max=1.3125  ← 显著偏差\n\nL2 norms:\n  hs[ 0]: raw=1.1,   after_norm=118.7\n  hs[31]: raw=193.3,  after_norm=114.9\n  hs[32]: raw=114.8,  after_norm=120.1  ← 已经是 post-norm，再 norm 变化不大\n```\n\n**结论**: `hidden_states[32]` 确实是 post-norm 的（HuggingFace LlamaModel 在返回 `all_hidden_states` 最后一个元素前已经过 `model.norm`）。原始脚本对所有层统一做 `lm_head(norm(hs))`，exit layer 被 double-norm。**但在当前情况下，double-norm 并不改变 argmax token（两种方法都输出 31935）**。\n\n### CHECK 1 & 2: Exit layer 预测 — **模型输出完全退化**\n\n**所有 10 个样本、所有 7 个 action 维度，无论 teacher-forcing 还是 autoregressive，model 都只输出 token 31935（=-0.4941）。**\n\n```\nSample 0:  GT=[31844 31881 31872 31908 31810 31923 31999]\n           Pred=[31935 31935 31935 31935 31935 31935 31935]  (all methods)\nSample 1:  GT=[31819 31884 31872 31919 31856 31931 31999]\n           Pred=[31935 31935 31935 31935 31935 31935 31935]\n...\nSample 9:  GT=[31836 31863 31872 31891 31825 31964 31999]\n           Pred=[31935 31935 31935 31935 31935 31935 31935]\n\nExact match:  0.0000 (ALL methods)\nTop-5 match:  0.0143\nR²:           -11.6231 (ALL methods — correct/buggy/autoregressive 都一样)\n```\n\n### CHECK 4: Bin→continuous 反量化 — **无 bug**\n\n```\nRoundtrip max error: 0.003922 (仅 bin 量化误差)\nDe-tokenization 与 model.predict_action 一致: True\n```\n\n---\n\n## 根因分析\n\n**Double-norm 不是主因。** 主因是 **transformers 版本不兼容**：\n\n```\nExpected: transformers==4.40.1, tokenizers==0.19.1\nGot:      transformers==5.9.0,  tokenizers==0.22.2\n```\n\n模型在所有输入下都坍缩到同一个 token（31935 = -0.4941），包括自回归生成也是如此。这说明模型权重在 transformers 5.9.0 下没有被正确加载或推理行为已改变。LlamaModel 在 4.x → 5.x 之间有显著架构变化。\n\n**建议下一步**: 降级 transformers 到 4.40.1 后重新运行验证，或者在正确版本环境中跑 `model.predict_action()` 确认模型本身推理正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-sanity-check.md"
+}

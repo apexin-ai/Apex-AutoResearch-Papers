@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d9182c7d98a2bc79ebb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code l1 ablation all32",
+  "task_key": "worker_code_l1_ablation_all32_20260517T143127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_ablation_all32_20260517T143127_result.json",
+    "occurrence": 1,
+    "bytes": 300,
+    "sha256": "293e5b6cdcfc6ec51e5d879fc7486dfd32d0fcc148dbab8d905df64ebf2f348d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n- 脚本改动：添加了 `--condition` 参数 + `ablate_all32: list(range(32))` 条件，向后兼容\n- 任务：tmux session `l1_head_ablation`，日志在 `~/runs/vla-ssd/l1_head_ablation.log`\n- 预计 ~10 分钟完成，输出写入 `results_v3_all32.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l1-ablation-all32.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "670221f92e04e8e045ad",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_5_1778903286.md",
+  "task_key": "loop_5_1778903286",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778903286.md",
+    "occurrence": 1,
+    "bytes": 5263,
+    "sha256": "d6a033f291eb5077b38801d59edc5f9a17bea8c5f590a70cc19e50163f10cda5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-16T03:34:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** on westd-19183，不得使用其他 GPU\n- westd 是 **SeetaCloud**（非 AutoDL），不适用 network_turbo/ModelScope\n- **服务器无外网**：所有 HF 操作必须 `local_files_only=True`\n- 统一 action probe 超参已锁定：**50ep/patience5/lr1e-3/hidden256/seed42, MLP input→256→7, predict a_{t+1}**——不得改动，否则与已完成的 31 个 success 实验不可比\n- DinoSigLIP fused backbone = DINOv2 ViT-L + SigLIP-SO400M → torch.cat → Projector MLP。\"SigLIP+Projector\" RSA=0.615 包含 DINOv2 信息，论文必须注明这一点\n- DINO RSA 旧值 0.388 **已废弃**（方法论错误），正确值 0.631（统一 inter-demo pairwise 方法）。任何引用旧值的地方必须更正\n- 存储：根分区 ~30GB，大文件在 `/root/autodl-tmp/vla-ssd/`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183，2× GPU（当前全部空闲）\n- **工作目录**: `/root/vla-ssd`\n- **Python**: 通过 conda — `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（aml-train 镜像，不用 venv）\n- **模型/数据**: `/root/autodl-tmp/vla-ssd/`（checkpoint、features、HF cache 均在此）\n- **活跃进程**: 无。所有 46 个实验已 DONE，0 个 cron 活跃\n- **活跃 Worker**: `worker_code_definitive_rsa_recalc_20260516T030716`（status=running，做统一方法 RSA 重算脚本），尚未回调\n- **W&B**: 项目已有 wandb 集成（具体 project name 需 Worker 确认）\n\n### 3. 📊 当前状态\n**刚做完**: D037-D041 系列决策——发现并修正 DINO RSA 方法论错误（phase-split vs inter-demo pairwise），确认 Geometric-Functional Dissociation 失效，Claim 1 从 \"VL pretraining dominance\" pivot 到 \"Self-supervised > VL-pretrained\"。同时完成了统一方法 B 全层 VLA RSA 扫描（D041），发现 LLM 变换非单调（L12 增强 peak）。\n\n**Registry**: 46 实验全部 DONE（31 success / 7 negative / 7 killed / 1 其他）。无 RUNNING/PREPARING/PENDING/QUEUED。\n\n**等待中**:\n- Worker `worker_code_definitive_rsa_recalc` 回调（统一 RSA 方法重算脚本，已跑 ~30min）\n- **无 Director 待决策项**——D038 后 paper_framing.md 已清理，但 P0 branch-split 实验和 paper reframe 尚未启动\n\n**GPU 状态**: 2× GPU 全部空闲。剩余预算 ~7 GPU·h。**这是失职状态——GPU 空着没跑。**\n\n### 4. 📋 待办（条件触发式）\n- `worker_code_definitive_rsa_recalc` 回调 → 检查统一方法 RSA 数值是否与 D037/D041 一致 → 更新 registry + paper_framing.md 中的数值表\n- RSA method audit 确认完成（D039 已确认 VLA per-layer 用方法 A）→ 派 Worker 执行 **branch-split 实验**：分离 DINOv2 branch (1088d) vs SigLIP branch (1088d) vs fused+projector (4096d) 的 RSA，回答 C2 reviewer concern\n- Branch-split 结果出来 → 更新 Claim 1 数值 → 启动 **Paper Agent comprehensive reframe**（D037/D038 后全面重写 Claim 1 相关章节）\n- 如果 branch-split 显示 SigLIP branch RSA << DINO branch → 强化 \"VL pretraining 拉低 DINOv2 geometry\" 的 narrative\n- 如果 branch-split 显示 SigLIP ≈ DINO → 需要调整 Claim 1 为 \"所有 pretrained encoders 相当\"\n- Paper reframe 完成 → plan_010 LIBERO-Spatial 跨 benchmark 验证（P2，时间允许再做）\n- **5/26 CoRL abstract DDL** → abstract 必须在 branch-split + reframe 后定稿\n- **5/29 CoRL paper DDL** → full paper\n\n### 5. 🎯 战略上下文\n**核心 story（D038 后）**: VLA 中 action-relevant 表征来自 frozen vision encoder，self-supervised DINOv2 在 geometric alignment (RSA 0.631) 和 predictive capacity (R² 0.634) 两维度均最强或并列。VL pretraining 不增加 action-relevant structure。LLM 降解分布式表征但通过训练依赖的 attention 将信号 concentrate 到 readout token。Training 教会 routing 而非 creating。\n\n**决策链关键节点**: D031(redistribution) → D032(Option A: LLM routes) → D033-D034(DINO R²≈Proj) → D036(统一超参修正) → **D037(DINO RSA 方法错误, 0.388→0.631)** → D038(dissociation 失效) → D039(VLA RSA 也用方法 A 确认) → D040(training effect token-dependent) → D041(方法 B 全层扫描)\n\n**最容易判断错的事**:\n1. **不要用旧 DINO RSA=0.388**——这是方法论错误值，正确值 0.631。memory.md 里\"Geometric-Functional Dissociation\"段落的表格还保留旧值作历史记录，但结论已标注失效\n2. **DinoSigLIP Projector RSA=0.615 不等于 \"SigLIP 的贡献\"**——它是 DINOv2+SigLIP fused backbone 的输出，必须做 branch-split 才能分离两者\n3. **RSA 方法不一致问题（D039）**: standalone encoder 用方法 B（inter-demo pairwise），VLA per-layer 用方法 A（phase-split within-demo）。统一方法后数值会变，branch-split 必须用方法 B\n4. **GPU 预算仅 ~7 GPU·h**——branch-split 是纯 CPU RSA 计算（features 已提取），不消耗 GPU 时间。GPU 时间留给 plan_010 LIBERO-Spatial（如果做）\n5. **CoRL DDL 紧迫**：abstract 5/26（10 天），paper 5/29（13 天）。Branch-split + reframe 是 critical path，不能拖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778903286.md"
+}

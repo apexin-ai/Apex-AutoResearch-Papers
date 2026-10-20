@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d291db46ed78e0c208",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v3 cron exit 2",
+  "task_key": "worker_check_bootstrap_v3_cron_exit_2_20260523T071751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v3_cron_exit_2_20260523T071751_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "4cd032cb54a169709da6d81d5317b26a57bb2cca73745889064406cd7c43842b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇报：**\n\n**进程正常运行中**，Cron 报告是误报。两个 GPU 各自在跑：\n\n- **cuda:0** — 完成 `openvla/goal/trained`，当前正在跑 `openvla/goal/untrained`（extraction 完成，RidgeCV fitting 中）\n- **cuda:1** — 完成 `tracvla/goal/trained`，当前正在跑 `tracvla/goal/untrained`（extraction 850/5000）\n\n**完成进度：2/20 JSON**（每条件含 extraction + 1000 次 bootstrap，每个约 20-30 分钟）\n\n**已完成结果：**\n\n| 条件 | peak_layer | peak_R² | exit_R² | delta | 95% CI | boot_mean |\n|------|-----------|---------|---------|-------|--------|-----------|\n| openvla/goal/trained | L1 | 0.418 | 0.331 | 0.086 | [-0.056, 0.106] | 0.017 |\n| tracvla/goal/trained | L13 | 0.540 | 0.207 | 0.333 | [0.207, 0.451] | 0.316 |\n\n注意点：\n- **TracVLA trained** delta=0.333 显著（CI 不含 0），晚期层大幅衰减（L28-L30 甚至为负）\n- **OpenVLA trained** delta=0.086 不显著（CI 含 0），各层 R² 相对平坦\n\n按当前速度，预计全部 20 个条件还需 **~9-10 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v3-cron-exit-2.md"
+}

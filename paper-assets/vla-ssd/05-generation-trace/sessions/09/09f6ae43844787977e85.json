@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09f6ae43844787977e85",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose object pipeline ridge v2",
+  "task_key": "worker_diagnose_object_pipeline_ridge_v2_20260521T090006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_object_pipeline_ridge_v2_20260521T090006_result.json",
+    "occurrence": 1,
+    "bytes": 1750,
+    "sha256": "ebf88b171ec7646dacd6aba83744143a37b1e0c21fd162f3bb526fc881e62e98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. object_pipeline_ridge_v2 实际上**成功完成了**\n\n日志仅 238 行，从 15:13:55 开始到 16:50:12 结束，一次性完成全部 6 个 Phase，耗时 96.3 分钟。所有结果文件已生成：\n\n| 文件 | 时间 |\n|------|------|\n| action_r2_probing.json | 15:23 |\n| l1_attention_profile.json | 15:23 |\n| cross_instruction_classification.json | 15:26 |\n| rsa_analysis.json | 15:26 |\n| counterfactual_combined.json | 16:50 |\n\n**cron 标记为 \"failed (5次)\" 是误报**——日志中没有任何错误或重启痕迹。可能是 cron 监控逻辑把 v1 的失败次数累计到了 v2 上，或者进程退出码检测有 bug。\n\n### 2. object_pipeline_ridge (v1) 的失败原因\n\n**根因：网络不可达**。`transformers` 加载 processor 时，即使 checkpoint 在本地 (`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object`)，`trust_remote_code=True` 仍尝试从 HuggingFace Hub 下载 `processing_prismatic.py`。当时网络不通，导致：\n\n```\nOSError: Network is unreachable -> huggingface.co/openvla/openvla-7b/resolve/main/processing_prismatic.py\n```\n\n### 3. 两次失败是否同一原因\n\n不是。**v1 失败（网络问题），v2 成功（无错误）**。v2 被误标为 failed。\n\n### 4. 建议操作\n\n1. **将 v2 状态更正为 succeeded**——结果数据完整可用。\n2. **防止 v1 类问题复发**：在脚本中加 `TRANSFORMERS_OFFLINE=1` 环境变量或 `local_files_only=True` 参数，避免依赖网络下载 dynamic module。确保 `processing_prismatic.py` 已存在于本地 checkpoint 目录中。\n3. **排查 cron 监控逻辑**——为什么把一个成功完成的实验标记为 failed 5 次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-object-pipeline-ridge-v2.md"
+}

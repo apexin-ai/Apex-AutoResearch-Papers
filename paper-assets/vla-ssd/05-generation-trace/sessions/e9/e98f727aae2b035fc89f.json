@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e98f727aae2b035fc89f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora cf blocking wait",
+  "task_key": "worker_ssh_nora_cf_blocking_wait_20260522T023128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_cf_blocking_wait_20260522T023128_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "aea8a16af1ebedadfc3c212c647759f78572513aad398071db7c48477157b765"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行，进度 2400/5000（约 48%）。3 分钟后自动回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-cf-blocking-wait.md"
+}

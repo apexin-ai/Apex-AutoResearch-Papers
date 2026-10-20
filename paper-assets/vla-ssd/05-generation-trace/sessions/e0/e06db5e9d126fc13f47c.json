@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e06db5e9d126fc13f47c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix attention streaming and resubmit",
+  "task_key": "worker_fix_attention_streaming_and_resubmit_20260521T052618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_attention_streaming_and_resubmit_20260521T052618_result.json",
+    "occurrence": 1,
+    "bytes": 1683,
+    "sha256": "94c5987f10ef636a15c764771c49b6b141ed7b56dfef598261c1f9e322872c29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都启动成功：\n- **libero_object**: 模型 shards 加载完毕（6.25 it/s），正在加载 processor\n- **nora_goal**: 已进入 Phase 1 提取，100/5000 samples 已处理\n\n## 完成总结\n\n### 修改内容\n6 个 pipeline 脚本全部修改（`tracvla_spatial_probing_only.py` 不涉及 attention，未改）：\n\n| 文件 | 修改点 |\n|------|--------|\n| `libero_object_full_pipeline.py` | 7 处 |\n| `libero_long_full_pipeline.py` | 7 处 |\n| `nora_goal_full_pipeline.py` | 7 处 |\n| `nora_spatial_full_pipeline.py` | 7 处 |\n| `tracvla_object_full_pipeline.py` | 7 处 |\n| `tracvla_spatial_full_pipeline.py` | 7 处 |\n\n每个文件的 7 处修改：\n1. **init**: `l1_attns=[]` → `head_instr_ratio_sum/sq_sum` 累加器\n2. **attn_block**: `.append(l1)` → 在 GPU 上 streaming 计算 per-head instruction ratio 并累加\n3. **return**: 返回统计量而非原始矩阵\n4. **analyze_fn**: `analyze_attention` 改为从累加统计量计算 mean/std\n5. **unpack**: 调用侧解包变量名更新\n6. **analyze_call**: Phase 3 调用参数更新\n7. **del**: 清理变量名更新\n\n### 额外修复\n- `openvla-7b-finetuned-libero-object/preprocessor_config.json` 的 `auto_map` 指向 HF repo 导致离线时加载失败，改为本地路径\n\n### 内存节省\n- 旧方案: 5000 × attention_matrix (每个 ~10MB for OpenVLA) ≈ **50GB RAM**\n- 新方案: 仅 2 个 float64 数组 (N_HEADS,) + 1 个计数器 ≈ **< 1KB**\n\n### 实验状态\n- cuda:0 `libero_object_full_pipeline.py` — PID 536977, 正在加载\n- cuda:1 `nora_goal_full_pipeline.py --conditions trained untrained` — PID 537115, Phase 1 进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-attention-streaming-and-resubmit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68dc170978f62afec398",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix qa probe performance",
+  "task_key": "worker_code_fix_qa_probe_performance_20260516T230439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_qa_probe_performance_20260516T230439_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "b445f20b561e5abae3b2ea83254d0c1ed1f806230ff3c92c809399539765a8d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。以下是完整结果：\n\n---\n\n## Progress 4-class Probe\n\n| Layer | Trained | Untrained |\n|-------|---------|-----------|\n| L0 | 0.8508 | 0.8508 |\n| L4 | 0.8559 | 0.8532 |\n| L8 | 0.8560 | 0.8517 |\n| L12 | **0.8622** | 0.8487 |\n| L16 | 0.8618 | 0.8443 |\n| L20 | **0.8632** | 0.8458 |\n| L24 | 0.8565 | 0.8443 |\n| L28 | 0.8535 | 0.8441 |\n| L32 | 0.8454 | 0.8443 |\n| **DINOv2** | — | **0.8272** |\n| **Projector** | — | **0.8508** |\n\n## Subtask Binary Probe\n\n| Layer | Trained | Untrained |\n|-------|---------|-----------|\n| L0 | 0.9298 | 0.9298 |\n| L4 | 0.9301 | 0.9281 |\n| L8 | 0.9347 | 0.9293 |\n| L12 | 0.9343 | 0.9306 |\n| L16 | **0.9367** | 0.9286 |\n| L20 | **0.9367** | 0.9294 |\n| L24 | 0.9346 | 0.9292 |\n| L28 | 0.9329 | 0.9278 |\n| L32 | 0.9254 | 0.9279 |\n| **DINOv2** | — | **0.9209** |\n| **Projector** | — | **0.9298** |\n\n---\n\n## 关键对比\n\n| 指标 | Best Trained | Best Untrained | DINOv2 |\n|------|-------------|---------------|--------|\n| Progress best | L20: 0.8632 | L4: 0.8532 | 0.8272 |\n| Subtask best | L16/L20: 0.9367 | L12: 0.9306 | 0.9209 |\n\n**观察**（仅记录数字，不下结论，遵守 C001 约束）：\n- Trained 在两个任务上 mid-layer (L12-L20) 有一个 inverted-U 峰\n- Untrained 在 progress 上从 L0 开始缓慢下降，subtask 上基本平坦\n- Trained L0 == Untrained L0 == Projector（符合预期：L0 就是 projector 输出）\n- Trained best vs Untrained best 差异：progress +1.0%, subtask +0.6%\n- 所有 VLA 条件 >> DINOv2（progress +2-3.6%, subtask +0.7-1.6%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-qa-probe-performance.md"
+}

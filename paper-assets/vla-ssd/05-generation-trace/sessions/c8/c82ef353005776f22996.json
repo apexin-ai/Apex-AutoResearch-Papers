@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c82ef353005776f22996",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh p0 functional action delta probe",
+  "task_key": "worker_ssh_p0-functional-action-delta-probe_20260515T232553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-functional-action-delta-probe_20260515T232553.log",
+    "occurrence": 1,
+    "bytes": 783400,
+    "sha256": "a8df86ab287849e0b0c223d79ffcbc25a1ef1648139fb6f058e4ff2339b1dca4"
+  },
+  "statistics": {
+    "messages": 467,
+    "user_turns": 0,
+    "tool_calls": 194,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 194,
+      "tool_result": 194,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 467,
+      "chunks": [
+        {
+          "path": "c82ef353005776f22996-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c82ef353005776f22996-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c82ef353005776f22996-part-0003.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-p0-functional-action-delta-probe.md"
+}

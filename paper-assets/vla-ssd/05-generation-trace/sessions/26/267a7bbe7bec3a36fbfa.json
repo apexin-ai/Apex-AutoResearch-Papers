@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267a7bbe7bec3a36fbfa",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code rollback transformers",
+  "task_key": "worker_code_rollback_transformers_20260520T235826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rollback_transformers_20260520T235826_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "9ac32d139601485307b71bc234ee2d03747d828e3e5ce37701f407a9bf00651c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "回滚完成。\n\n- **transformers**: 5.9.0 → 4.48.3 ✓\n- **AutoModelForVision2Seq / AutoProcessor 导入**: OK ✓\n- **依赖冲突**（不影响 OpenVLA，仅记录）:\n  - `trl 1.1.0` 要求 transformers>=4.56.2\n  - `vllm 0.18.1` 要求 transformers>=4.56.0\n  - `huggingface-hub` 被连带降级 1.15.0 → 0.36.2，`tokenizers` 0.22.2 → 0.21.4"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rollback-transformers.md"
+}

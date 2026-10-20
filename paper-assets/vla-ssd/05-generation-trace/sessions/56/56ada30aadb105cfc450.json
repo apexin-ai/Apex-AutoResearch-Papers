@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ada30aadb105cfc450",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code sync figures local",
+  "task_key": "worker_code_sync_figures_local_20260516T075403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_figures_local_20260516T075403_result.json",
+    "occurrence": 1,
+    "bytes": 230,
+    "sha256": "bdde23b0b97e1f6f0fc51d32461096dd707413a4b6792a51f7c003fcfbb83675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 PDF 已下载到本地，文件大小与服务器端一致：\n- `libero_spatial_rsa_perlayer.pdf`: 24627 bytes\n- `libero_spatial_r2_perlayer.pdf`: 22995 bytes\n- `cross_benchmark_comparison.pdf`: 28225 bytes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-figures-local.md"
+}

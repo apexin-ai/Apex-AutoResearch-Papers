@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "id": "016159329b625d6a2cbc",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "check phi3 full r2 profile",
+  "task_key": "worker_check_phi3_full_r2_profile_20260523T235913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_phi3_full_r2_profile_20260523T235913.jsonl",
+    "occurrence": 1,
+    "bytes": 16168,
+    "sha256": "8b1364ea73fca92b22ff9c5af07b16f5788637c985b99b3e008f508ea98e6dd6"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T00:00:16.005991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T00:00:16.006474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T00:00:16.006802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/phi3_nlp_control/summary.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T00:00:16.007058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/phi3_nlp_control/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T00:00:16.007258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Phi-3-mini-4k-instruct\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Phi-3-mini-4k-instruct\\\\\\\",\\\\n  \\\\\\\"readout\\\\\\\": \\\\\\\"last_token\\\\\\\",\\\\n  \\\\\\\"n_layers\\\\\\\": 32,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 3072,\\\\n  \\\\\\\"n_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_unique_hidden_states\\\\\\\": 10,\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"text-only NLP control: hidden states constant per task, actions vary across timesteps\\\\\\\",\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1555,\\\\n    \\\\\\\"L1\\\\\\\": 0.1552,\\\\n    \\\\\\\"L2\\\\\\\": 0.1555,\\\\n    \\\\\\\"L3\\\\\\\": 0.1553,\\\\n    \\\\\\\"L4\\\\\\\": 0.1554,\\\\n    \\\\\\\"L5\\\\\\\": 0.1555,\\\\n    \\\\\\\"L6\\\\\\\": 0.1554,\\\\n    \\\\\\\"L7\\\\\\\": 0.1554,\\\\n    \\\\\\\"L8\\\\\\\": 0.1555,\\\\n    \\\\\\\"L9\\\\\\\": 0.1555,\\\\n    \\\\\\\"L10\\\\\\\": 0.1552,\\\\n    \\\\\\\"L11\\\\\\\": 0.1552,\\\\n    \\\\\\\"L12\\\\\\\": 0.1554,\\\\n    \\\\\\\"L13\\\\\\\": 0.1555,\\\\n    \\\\\\\"L14\\\\\\\": 0.1555,\\\\n    \\\\\\\"L15\\\\\\\": 0.1555,\\\\n    \\\\\\\"L16\\\\\\\": 0.1555,\\\\n    \\\\\\\"L17\\\\\\\": 0.1555,\\\\n    \\\\\\\"L18\\\\\\\": 0.1555,\\\\n    \\\\\\\"L19\\\\\\\": 0.1555,\\\\n    \\\\\\\"L20\\\\\\\": 0.1555,\\\\n    \\\\\\\"L21\\\\\\\": 0.1555,\\\\n    \\\\\\\"L22\\\\\\\": 0.1555,\\\\n    \\\\\\\"L23\\\\\\\": 0.1555,\\\\n    \\\\\\\"L24\\\\\\\": 0.1555,\\\\n    \\\\\\\"L25\\\\\\\": 0.1555,\\\\n    \\\\\\\"L26\\\\\\\": 0.1555,\\\\n    \\\\\\\"L27\\\\\\\": 0.1555,\\\\n    \\\\\\\"L28\\\\\\\": 0.1555,\\\\n    \\\\\\\"L29\\\\\\\": 0.1555,\\\\n    \\\\\\\"L30\\\\\\\": 0.1555,\\\\n    \\\\\\\"L31\\\\\\\": 0.1555\\\\n  },\\\\n  \\\\\\\"peak_layer\\\\\\\": 0,\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.1555,\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.1555,\\\\n  \\\\\\\"exit_collapse\\\\\\\": 0.0,\\\\n  \\\\\\\"mean_r2\\\\\\\": 0.1555\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T00:00:16.007409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/results/nlp_control/"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T00:00:16.007610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root   87 May 24 07:56 .\\\\ndrwxr-xr-x 66 root root 8192 May 24 07:29 ..\\\\n-rw-r--r--  1 root root 3128 May 24 07:56 action_r2_probing.json\\\\n-rw-r--r--  1 root root 2484 May 24 07:56 run.log\\\\n-rw-r--r--  1 root root 1052 May 24 07:56 summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T00:00:16.007773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/vla-ssd/results/nlp_control/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T00:00:16.007943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 1 -type d -name \"*llama*\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T00:00:16.008104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/llama2base_action_probe\\\\n/root/autodl-tmp/vla-ssd/results/llama2chat_action_probe\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T00:00:16.008232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/ -maxdepth 1 -type d -name \"*nlp*\""
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T00:00:16.008358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/phi3_nlp_control\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T00:00:16.008498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/llama2chat_action_probe/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T00:00:16.008629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x  2 root root   87 May 22 20:48 .\\\\ndrwxr-xr-x 66 root root 8192 May 24 07:29 ..\\\\n-rw-r--r--  1 root root 3128 May 22 20:48 action_r2_probing.json\\\\n-rw-r--r--  1 root root 4401 May 22 20:48 run.log\\\\n-rw-r--r--  1 root root  999 May 22 20:48 summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T00:00:16.008752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/phi3_nlp_control/action_r2_probing.json"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T00:00:16.009091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"L0_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L1_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1552,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1552\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L2_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L3_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1553,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1553\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L4_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1554,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1554\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L5_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L6_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1554,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1554\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L7_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1554,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1554\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L8_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L9_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L10_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1552,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1552\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L11_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1552,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1552\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L12_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1554,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1554\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L13_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1555,\\\\n    \\\\\\\"std\\\\\\\": 0.0,\\\\n    \\\\\\\"values\\\\\\\": [\\\\n      0.1555\\\\n    ]\\\\n  },\\\\n  \\\\\\\"L14_last_token\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\"\n…[truncated 2506 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T00:00:16.009368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/llama2chat_action_probe/summary.json"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T00:00:16.009638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Llama-2-7b-chat-hf\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Llama-2-7b-chat-hf\\\\\\\",\\\\n  \\\\\\\"readout\\\\\\\": \\\\\\\"last_token\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 5000,\\\\n  \\\\\\\"n_unique_hidden_states\\\\\\\": 10,\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"text-only model: hidden states constant per task, actions vary across timesteps\\\\\\\",\\\\n  \\\\\\\"per_layer_r2\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": 0.1553,\\\\n    \\\\\\\"L1\\\\\\\": 0.1554,\\\\n    \\\\\\\"L2\\\\\\\": 0.1551,\\\\n    \\\\\\\"L3\\\\\\\": 0.1554,\\\\n    \\\\\\\"L4\\\\\\\": 0.1552,\\\\n    \\\\\\\"L5\\\\\\\": 0.1554,\\\\n    \\\\\\\"L6\\\\\\\": 0.1547,\\\\n    \\\\\\\"L7\\\\\\\": 0.1551,\\\\n    \\\\\\\"L8\\\\\\\": 0.1552,\\\\n    \\\\\\\"L9\\\\\\\": 0.1553,\\\\n    \\\\\\\"L10\\\\\\\": 0.1553,\\\\n    \\\\\\\"L11\\\\\\\": 0.1553,\\\\n    \\\\\\\"L12\\\\\\\": 0.1554,\\\\n    \\\\\\\"L13\\\\\\\": 0.1554,\\\\n    \\\\\\\"L14\\\\\\\": 0.1554,\\\\n    \\\\\\\"L15\\\\\\\": 0.1555,\\\\n    \\\\\\\"L16\\\\\\\": 0.1551,\\\\n    \\\\\\\"L17\\\\\\\": 0.1552,\\\\n    \\\\\\\"L18\\\\\\\": 0.1553,\\\\n    \\\\\\\"L19\\\\\\\": 0.1553,\\\\n    \\\\\\\"L20\\\\\\\": 0.1554,\\\\n    \\\\\\\"L21\\\\\\\": 0.1555,\\\\n    \\\\\\\"L22\\\\\\\": 0.1555,\\\\n    \\\\\\\"L23\\\\\\\": 0.1555,\\\\n    \\\\\\\"L24\\\\\\\": 0.1555,\\\\n    \\\\\\\"L25\\\\\\\": 0.1555,\\\\n    \\\\\\\"L26\\\\\\\": 0.1555,\\\\n    \\\\\\\"L27\\\\\\\": 0.1555,\\\\n    \\\\\\\"L28\\\\\\\": 0.1555,\\\\n    \\\\\\\"L29\\\\\\\": 0.1555,\\\\n    \\\\\\\"L30\\\\\\\": 0.1555,\\\\n    \\\\\\\"L31\\\\\\\": 0.1555\\\\n  },\\\\n  \\\\\\\"peak_layer\\\\\\\": 15,\\\\n  \\\\\\\"peak_r2\\\\\\\": 0.1555,\\\\n  \\\\\\\"exit_r2\\\\\\\": 0.1555,\\\\n  \\\\\\\"exit_collapse\\\\\\\": 0.0,\\\\n  \\\\\\\"mean_r2\\\\\\\": 0.1553\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T00:00:16.009988+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama-2-chat 也有 NLP control 数据（在 `llama2chat_action_probe/` 目录下，note 同样标注 \"text-only model\"）。\n\n## Phi-3-mini-instruct (L0–L31)\n\n| Layer | R² |\n|-------|------|\n| L0 | 0.1555 |\n| L1 | 0.1552 |\n| L2 | 0.1555 |\n| L3 | 0.1553 |\n| L4 | 0.1554 |\n| L5 | 0.1555 |\n| L6 | 0.1554 |\n| L7 | 0.1554 |\n| L8 | 0.1555 |\n| L9 | 0.1555 |\n| L10 | 0.1552 |\n| L11 | 0.1552 |\n| L12 | 0.1554 |\n| L13 | 0.1555 |\n| L14 | 0.1555 |\n| L15 | 0.1555 |\n| L16 | 0.1555 |\n| L17 | 0.1555 |\n| L18 | 0.1555 |\n| L19 | 0.1555 |\n| L20 | 0.1555 |\n| L21 | 0.1555 |\n| L22 | 0.1555 |\n| L23 | 0.1555 |\n| L24 | 0.1555 |\n| L25 | 0.1555 |\n| L26 | 0.1555 |\n| L27 | 0.1555 |\n| L28 | 0.1555 |\n| L29 | 0.1555 |\n| L30 | 0.1555 |\n| L31 | 0.1555 |\n\n- **Peak**: L0 (R²=0.1555) — 多层并列\n- **Exit**: L31 (R²=0.1555)\n- **ΔR² (peak–exit)**: 0.0000\n- **ΔR² (max–min)**: 0.0003 (0.1555 − 0.1552)\n- **Mean R²**: 0.1555\n\n## Llama-2-7b-chat (L0–L31)\n\n| Layer | R² |\n|-------|------|\n| L0 | 0.1553 |\n| L1 | 0.1554 |\n| L2 | 0.1551 |\n| L3 | 0.1554 |\n| L4 | 0.1552 |\n| L5 | 0.1554 |\n| L6 | 0.1547 |\n| L7 | 0.1551 |\n| L8 | 0.1552 |\n| L9 | 0.1553 |\n| L10 | 0.1553 |\n| L11 | 0.1553 |\n| L12 | 0.1554 |\n| L13 | 0.1554 |\n| L14 | 0.1554 |\n| L15 | 0.1555 |\n| L16 | 0.1551 |\n| L17 | 0.1552 |\n| L18 | 0.1553 |\n| L19 | 0.1553 |\n| L20 | 0.1554 |\n| L21–L31 | 0.1555 |\n\n- **Peak**: L15 (R²=0.1555) — L21+ 并列\n- **Exit**: L31 (R²=0.1555)\n- **ΔR² (peak–exit)**: 0.0000\n- **ΔR² (max–min)**: 0.0008 (0.1555 − 0.1547)\n- **Mean R²**: 0.1553\n\n## 对比\n\n两个 backbone 的 NLP control R² profile 完全一致：\n\n1. **所有层 R² ≈ 0.1555**，波动在 ±0.0003（Phi-3）和 ±0.0008（Llama-2）范围内，本质上是噪声。\n2. **无 layer-wise 变化趋势**：没有 peak、没有 exit collapse、没有单调递增/递减。R² 完全 flat。\n3. **std = 0.0**（action_r2_probing.json），说明单次 seed 运行，数值波动来自 Ridge 回归的数值精度而非实质性差异。\n4. **n_unique_hidden_states = 10**：text-only model 对同一 task instruction 每个 timestep 产生相同 hidden state，hidden state 只有 10 个唯一值（对应 10 个 task），线性 probe 无法从中预测 action → R² ≈ baseline 水平，符合预期。\n\n结论：NLP control 验证通过——纯文本 LLM 的 hidden states 不包含 action-predictive 信息，R² 在所有层均为 chance level (~0.155)，跨两个 backbone 结果一致。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_phi3_full_r2_profile_20260523T235913"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/check-phi3-full-r2-profile.md"
+}

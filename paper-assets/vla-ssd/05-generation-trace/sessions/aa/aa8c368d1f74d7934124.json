@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa8c368d1f74d7934124",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research attention entropy",
+  "task_key": "worker_research_attention_entropy_20260517T033742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_attention_entropy_20260517T033742_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "e502b52ee32bab92500b224343d826e0f94b794b2a85f76c01ffe83b45cc0402"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n## Attention Entropy Analysis (Layer 1)\n\n### 2-category comparison (image vs text/instruction) — fair comparison\n\n| Metric | Trained | Untrained |\n|--------|---------|-----------|\n| **Mean entropy** | 0.4909 | 0.3301 |\n| **Std entropy** | 0.1075 | 0.1393 |\n| **Normalized (H/ln2)** | 0.7082 | 0.4763 |\n| Max possible | 0.6931 (ln2) | 0.6931 (ln2) |\n\n### 3-category (trained only: bos, image, text)\n\n| Metric | Value |\n|--------|-------|\n| Mean entropy | 0.9240 |\n| Std entropy | 0.1394 |\n| Normalized (H/ln3) | 0.8410 |\n| Max possible | 1.0986 (ln3) |\n\n### Key finding\n\n**Trained model has significantly higher entropy** (0.491 vs 0.330, +49% relative increase).\n\n- **Untrained**: heads are highly specialized, attending predominantly to image tokens (low entropy, normalized 0.48)\n- **Trained**: attention redistributes toward a more balanced image+text split (normalized 0.71)\n- Training increases entropy in 28/32 heads; only heads 0, 6, 16, 25 show decreased entropy (they were already relatively balanced or became more text-specialized)\n\nSaved to `/root/autodl-tmp/vla-ssd/results/attention/entropy_analysis.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-attention-entropy.md"
+}

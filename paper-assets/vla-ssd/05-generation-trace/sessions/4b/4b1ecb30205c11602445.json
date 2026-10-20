@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1ecb30205c11602445",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify object untrained model loading",
+  "task_key": "worker_verify_object_untrained_model_loading_20260521T105953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_object_untrained_model_loading_20260521T105953_result.json",
+    "occurrence": 1,
+    "bytes": 2117,
+    "sha256": "a89e5f8f141ae4527d635820ddc517f3f50b5c380e079bd98871213aa269352d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**(A) 脚本加载了正确的 untrained model，openvla-7b 本身已有 VLA 预训练 routing。**\n\n### 证据\n\n**1. 脚本路径正确**\n- Line 28: `TRAINED_CKPT = \".../openvla-7b-finetuned-libero-object\"`\n- Line 29: `UNTRAINED_CKPT = \".../openvla-7b\"`\n- Line 529: `untrained` 条件走 `UNTRAINED_CKPT`，无误。\n\n**2. 日志确认加载了 openvla-7b（非 finetuned）**\n- 日志第一行：`Output: /root/autodl-tmp/vla-ssd/results/libero_object_untrained`\n- 加载了 **3 个 shard**（`Loading checkpoint shards: 0/3 → 3/3`）\n- `openvla-7b/` 目录有 **3 个** safetensors 文件（~14.9GB）\n- `openvla-7b-finetuned-libero-object/` 有 **4 个** safetensors 文件（~15.1GB）\n- shard 数量匹配 → 加载的确实是 base model。\n\n**3. openvla-7b 不是 raw Llama-2-7B，是 OXE 预训练过的 VLA**\n- `config.json` 关键字段：\n  - `\"model_type\": \"openvla\"`\n  - `\"architectures\": [\"OpenVLAForActionPrediction\"]`\n  - `\"hf_llm_id\": \"meta-llama/Llama-2-7b-hf\"`（骨干，但已封装为 VLA）\n  - `\"n_action_bins\": 256`（action tokenization）\n  - `\"vision_backbone_id\": \"dinosiglip-vit-so-224px\"`（双 vision encoder）\n  - `\"norm_stats\"` 包含几十个 OXE 数据集的统计量（austin_buds, austin_sailor, viola 等）\n\n### 解释 L1=24/32 与 Goal untrained 0/32 的矛盾\n\n**不矛盾。** 两个 \"untrained\" 的含义不同：\n\n- **Object untrained (openvla-7b)**：在 970K+ OXE 机器人轨迹上预训练过的 VLA base model。已经学会了 instruction-conditioned action routing。L1=24/32 instruction-dominant 是 OXE 预训练建立的 routing pattern，合理。\n- **Goal untrained (0/32)**：如果那个实验用的是真正的 random init 或纯语言模型，0/32 也合理——没见过 action data，不会有 instruction-action routing。\n\n**不是 bug，是两个实验的 \"untrained baseline\" 定义不同。** 需要确认 Goal untrained 用的是哪个 checkpoint——如果也是 `openvla-7b`，那 0/32 反而可疑；如果是 raw Llama-2，那两边结果都合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-object-untrained-model-loading.md"
+}

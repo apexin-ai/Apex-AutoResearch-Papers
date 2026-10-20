@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c1a4ff5af5753b5aefc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check phi3v r2 and figure fix",
+  "task_key": "worker_check_phi3v_r2_and_figure_fix_20260520T022821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phi3v_r2_and_figure_fix_20260520T022821_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "9f69a952534f91c3c66256067034e1ccdf0a758bdbca246e9499ed6bd1d79149"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. phi3v_r2_action_probe — 进行中（Feature Extraction 阶段）\n\n- **Phase 1 Feature Extraction**：正在提取第 10/10 个 task (`turn_on_the_stove`)\n- 已完成 9 个 task 的 feature 文件（共 ~8.5GB），第 10 个正在写入（`.h5.tmp` 当前 ~476MB）\n- 结果文件尚未生成，Phase 2（probe 训练）还没开始\n- GPU 0 占用 8705 MiB，利用率 55%\n- **预计剩余时间**：最后一个 task 的 feature 文件大约还需 1-2 分钟写完。之后进入 Phase 2 probe 训练（33 layers × 5 seeds），预计还需 10-20 分钟。**总计约 15-25 分钟完成。**\n\n### 2. specificity 图表修复 — 已完成\n\n- 图表已于 **09:55** 生成：\n  - `results/figures/fig_specificity_bootstrap_30seeds.pdf` (17KB)\n  - `results/figures/fig_specificity_bootstrap_30seeds.png` (48KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phi3v-r2-and-figure-fix.md"
+}

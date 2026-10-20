@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7e15d5df40628115bc6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis per task mse breakdown",
+  "task_key": "worker_analysis_per_task_mse_breakdown_20260519T061435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_task_mse_breakdown_20260519T061435_result.json",
+    "occurrence": 1,
+    "bytes": 1440,
+    "sha256": "9d7f96ba0de60b452268e9e3925f3cf32f3fac9dc1340c4a9c3abaa4b110552c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已写入 `/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json`。\n\n---\n\n## Per-Task MSE Breakdown\n\n| Task | n | Original MSE | Top-24 Ablated MSE | ΔMSE (%) | p | Bottom-24 Ablated MSE | ΔMSE (%) | p |\n|---|---|---|---|---|---|---|---|---|\n| open_middle_drawer | 500 | 0.5621 | 0.5474 | -0.0147 (-2.6%) | 0.351 | 0.5600 | -0.0021 (-0.4%) | 0.770 |\n| open_drawer_put_bowl | 500 | 0.5484 | 0.5581 | +0.0097 (+1.8%) | 0.274 | 0.5577 | +0.0094 (+1.7%) | 0.887 |\n| push_plate_to_stove | 500 | 0.3834 | 0.3851 | +0.0018 (+0.5%) | 0.447 | 0.4006 | +0.0173 (+4.5%) | **0.029** |\n| **Overall** | **1500** | **0.4980** | **0.4969** | **-0.0011** | **0.519** | **0.5061** | **+0.0082** | — |\n\n## Cancellation 判断\n\n**Top-24 ablation**: 存在弱符号混合（drawer -2.6%, bowl +1.8%, plate +0.5%），但**所有 per-task ΔMSE 均不显著**（p > 0.27）。最大变化幅度仅 2.6% of baseline MSE。这不是有意义的 cancellation，而是各任务效果都极小。\n\n**Bottom-24 ablation**: 无 cancellation。方向一致（drawer ~0, bowl +1.7%, plate +4.5%）。plate 任务是唯一显著增加的（p=0.029），符合预期：ablating non-instruction heads 对需要精细空间定位的 push 任务影响略大。\n\n**结论**: 整体 ΔMSE 接近零反映的是**各任务效果本身就小**，而非大的正负效果互相抵消。审稿人的 cancellation 假设不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-task-mse-breakdown.md"
+}

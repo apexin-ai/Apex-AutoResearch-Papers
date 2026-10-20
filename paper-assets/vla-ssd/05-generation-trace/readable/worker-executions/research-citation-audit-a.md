@@ -1,0 +1,5794 @@
+# research citation audit A
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_research_citation-audit-A_20260529T063723.log`
+- **Structured JSON:** [`52c6fe0aa15fa066e0b8.json`](../../sessions/52/52c6fe0aa15fa066e0b8.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "87aa49fd-3f55-46db-a591-f01c15740c2d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1780054200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f35b221b-249c-490a-a1c9-bd79afb9967d",
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll verify all 18 bibliography entries via web search. Let me start by searching for them in parallel batches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7233b07d-3e56-48b7-a3ca-b59dbef23b86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqEJooxCALSC27G6GUx5NA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12445,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12445
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ex8a2YJ1M89fBkXF8a1FFZ`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "dc623e68-201e-4846-a3a2-09453cf586f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqEJooxCALSC27G6GUx5NA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12445,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12445
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-29T06:37:35.686Z_
+
+<details><summary>↩ Tool result · `toolu_01Ex8a2YJ1M89fBkXF8a1FFZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "68b812a8-8d7b-4c8c-9ca7-d5e475060967",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for all 18 entries. I'll do them in parallel batches to be efficient.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4ab5c56a-4b7f-4f14-a393-96642d3e19df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting citation verification. Searching for all 18 entries in parallel batches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "966a9dd4-4afe-48cc-ae75-55f3b9445831",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CSgHJk8f9rxFstA6pLmF3h`</summary>
+
+```json
+{
+  "query": "Actions as Language Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting Hancock 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "eff753d2-6e99-45b3-9896-4a701ea5b6cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015KPQ1qYPNkjPHxrZAYor4c`</summary>
+
+```json
+{
+  "query": "BayesianVLA Bayesian Decomposition Vision Language Action Models Latent Action Queries Lian 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "cbb015a7-c851-402e-ba09-136b9f9d8095",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FDJ1UNZiMbw4VSV6vJ7fFk`</summary>
+
+```json
+{
+  "query": "Don't Blind Your VLA Aligning Visual Representations OOD Generalization Kachaev 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "6dacc647-ef5c-4373-829d-690aa04c414b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NzPmcswQzA5wLEzgiDRXBe`</summary>
+
+```json
+{
+  "query": "Mechanistic Finetuning Vision-Language-Action Models Few-Shot Demonstrations Mitra 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "cfea9b6b-37f7-4430-887b-d1ebb6cc8177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ao2xnaBkSgGVZFVAYhabXh`</summary>
+
+```json
+{
+  "query": "Instruction Anchor Dissecting Mechanistic Dynamics Modality Arbitration Zhang 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "a0298fa3-2d84-4b63-b239-114be5fba578",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rk2CpQ5uPM7ebUn1ELVWJg`</summary>
+
+```json
+{
+  "query": "Pretrained Vision-Language-Action Models Surprisingly Resistant Forgetting Continual Learning Liu 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7c7097fc-63fe-406c-8fb4-606f29dba48c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSdyCfRFBtR1JNLR8uzmvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 24290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 629
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T06:37:45.981Z_
+
+<details><summary>↩ Tool result · `toolu_01CSgHJk8f9rxFstA6pLmF3h`</summary>
+
+```text
+Web search results for query: "Actions as Language Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting Hancock 2025 arXiv"
+
+Links: [{"title":"[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/abs/2509.22195"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.22195"},{"title":"(PDF) Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://www.researchgate.net/publication/395944766_Actions_as_Language_Fine-Tuning_VLMs_into_VLAs_Without_Catastrophic_Forgetting"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://vlm2vla.github.io/"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview","url":"https://openreview.net/forum?id=sFO9d6XSlf"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250922195H/abstract"}]
+
+I found the paper! Here are the key details about this arXiv submission:
+
+## Paper Information
+
+**Title:** Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting
+
+**Authors:** Asher J Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, and Anirudha Majumdar
+
+**arXiv ID:** arXiv:2509.22195
+
+**Date:** September 26, 2025
+
+## Main Contributions
+
+Fine-tuning vision-language models (VLMs) on robot teleoperation data to create vision-language-action (VLA) models is a promising paradigm for training generalist policies, but it suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.
+
+The authors introduce VLM2VLA: a VLA training paradigm that first resolves this mismatch at the data level by representing low-level actions with natural language. This alignment makes it possible to train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting.
+
+## Results
+
+Through extensive Visual Question Answering (VQA) studies and over 800 real-world robotics experiments, they demonstrate that VLM2VLA preserves the VLM's core capabilities, enabling zero-shot generalization to novel tasks that require open-world semantic reasoning and multilingual instruction following.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "e64df90a-68d0-45f9-b4fa-73f0e78d725b",
+  "tool_use_result": {
+    "query": "Actions as Language Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting Hancock 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016kwp2Ei1FyCBJNigzr6dQB",
+        "content": [
+          {
+            "title": "[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/abs/2509.22195"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.22195"
+          },
+          {
+            "title": "(PDF) Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://www.researchgate.net/publication/395944766_Actions_as_Language_Fine-Tuning_VLMs_into_VLAs_Without_Catastrophic_Forgetting"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://vlm2vla.github.io/"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview",
+            "url": "https://openreview.net/forum?id=sFO9d6XSlf"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250922195H/abstract"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about this arXiv submission:\n\n## Paper Information\n\n**Title:** Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\n\n**Authors:** Asher J Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, and Anirudha Majumdar\n\n**arXiv ID:** arXiv:2509.22195\n\n**Date:** September 26, 2025\n\n## Main Contributions\n\nFine-tuning vision-language models (VLMs) on robot teleoperation data to create vision-language-action (VLA) models is a promising paradigm for training generalist policies, but it suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.\n\nThe authors introduce VLM2VLA: a VLA training paradigm that first resolves this mismatch at the data level by representing low-level actions with natural language. This alignment makes it possible to train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting.\n\n## Results\n\nThrough extensive Visual Question Answering (VQA) studies and over 800 real-world robotics experiments, they demonstrate that VLM2VLA preserves the VLM's core capabilities, enabling zero-shot generalization to novel tasks that require open-world semantic reasoning and multilingual instruction following."
+    ],
+    "durationSeconds": 6.770705356999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-29T06:37:46.935Z_
+
+<details><summary>↩ Tool result · `toolu_01NzPmcswQzA5wLEzgiDRXBe`</summary>
+
+```text
+Web search results for query: "Mechanistic Finetuning Vision-Language-Action Models Few-Shot Demonstrations Mitra 2025 arXiv"
+
+Links: [{"title":"[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/abs/2511.22697"},{"title":"Computer Vision and Pattern Recognition 2025","url":"https://www.arxiv.org/list/cs.CV/2025?skip=34175&show=100"},{"title":"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/pdf/2511.22697"},{"title":"Robotic Steering: Mechanistic Finetuning for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=ieyECYl1i2"},{"title":"Enhancing Few-Shot Vision-Language Classification with Large Multimodal Model Features","url":"https://arxiv.org/html/2412.00142v3"}]
+
+I found the paper you're looking for! Here's what I found:
+
+The paper introduces Robotic Steering, a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.
+
+The paper is authored by Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, and Roei Herzig.
+
+Through comprehensive on-robot evaluations with a Franka Emika robot arm, the paper demonstrates that Robotic Steering outperforms LoRA while achieving superior robustness under task variation, reduced computational cost, and enhanced interpretability for adapting VLAs to diverse robotic tasks.
+
+The paper is available on arXiv at: https://arxiv.org/abs/2511.22697
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "584333c5-8de0-4244-9f36-69ae230405f8",
+  "tool_use_result": {
+    "query": "Mechanistic Finetuning Vision-Language-Action Models Few-Shot Demonstrations Mitra 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014FXW6nQnCz3KNzjeJFfkUV",
+        "content": [
+          {
+            "title": "[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/abs/2511.22697"
+          },
+          {
+            "title": "Computer Vision and Pattern Recognition 2025",
+            "url": "https://www.arxiv.org/list/cs.CV/2025?skip=34175&show=100"
+          },
+          {
+            "title": "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/pdf/2511.22697"
+          },
+          {
+            "title": "Robotic Steering: Mechanistic Finetuning for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=ieyECYl1i2"
+          },
+          {
+            "title": "Enhancing Few-Shot Vision-Language Classification with Large Multimodal Model Features",
+            "url": "https://arxiv.org/html/2412.00142v3"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\nThe paper introduces Robotic Steering, a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.\n\nThe paper is authored by Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, and Roei Herzig.\n\nThrough comprehensive on-robot evaluations with a Franka Emika robot arm, the paper demonstrates that Robotic Steering outperforms LoRA while achieving superior robustness under task variation, reduced computational cost, and enhanced interpretability for adapting VLAs to diverse robotic tasks.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2511.22697"
+    ],
+    "durationSeconds": 5.769717974000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-29T06:37:46.960Z_
+
+<details><summary>↩ Tool result · `toolu_015KPQ1qYPNkjPHxrZAYor4c`</summary>
+
+```text
+Web search results for query: "BayesianVLA Bayesian Decomposition Vision Language Action Models Latent Action Queries Lian 2026 arXiv"
+
+Links: [{"title":"[Quick Review] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://liner.com/review/bayesianvla-bayesian-decomposition-vision-language-action-models-via-latent-action"},{"title":"[2601.15197v1] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/abs/2601.15197v1"},{"title":"Paper page - BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://huggingface.co/papers/2601.15197"},{"title":"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197v3"},{"title":"GitHub - ZGC-EmbodyAI/BayesianVLA","url":"https://github.com/ZGC-EmbodyAI/BayesianVLA"},{"title":"[2601.15197] LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/abs/2601.15197"},{"title":"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries | Request PDF","url":"https://www.researchgate.net/publication/399985510_BayesianVLA_Bayesian_Decomposition_of_Vision_Language_Action_Models_via_Latent_Action_Queries"},{"title":"GitHub - ZGC-EmbodyAI/LangForce: [ICML 2026] This repo is the official implementation of \"LangForce : Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" · GitHub","url":"https://github.com/ZGC-EmbodyAI/LangForce"}]
+
+Based on the search results, here's what I found about this paper:
+
+BayesianVLA is a novel framework that enforces instruction following via Bayesian decomposition by introducing learnable Latent Action Queries to construct a dual-branch architecture that estimates both a vision-only prior and a language-conditioned posterior.
+
+**The Problem Being Addressed:**
+
+The paper identifies a critical pathology in current training paradigms where goal-driven data collection creates a dataset bias where language instructions are highly predictable from visual observations alone, causing the conditional mutual information between instructions and actions to vanish (termed "Information Collapse"), which causes models to degenerate into vision-only policies that ignore language constraints and fail in out-of-distribution settings.
+
+**The Solution:**
+
+The framework optimizes the policy to maximize the conditional Pointwise Mutual Information (PMI) between actions and instructions, which effectively penalizes the vision shortcut and rewards actions that explicitly explain the language command.
+
+**Results:**
+
+Experiments across SimplerEnv and RoboCasa demonstrate substantial gains, including an 11.3% improvement on the challenging out-of-distribution SimplerEnv benchmark.
+
+**Note:** The paper is also referred to as "LangForce" and was accepted to ICML 2026. The arxiv identifier is 2601.15197.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "03debbbb-ab57-4a7b-87ec-b5e0aa859764",
+  "tool_use_result": {
+    "query": "BayesianVLA Bayesian Decomposition Vision Language Action Models Latent Action Queries Lian 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HqRxa7pZKVxEqjEcBdaH91",
+        "content": [
+          {
+            "title": "[Quick Review] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://liner.com/review/bayesianvla-bayesian-decomposition-vision-language-action-models-via-latent-action"
+          },
+          {
+            "title": "[2601.15197v1] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/abs/2601.15197v1"
+          },
+          {
+            "title": "Paper page - BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://huggingface.co/papers/2601.15197"
+          },
+          {
+            "title": "BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/html/2601.15197v3"
+          },
+          {
+            "title": "GitHub - ZGC-EmbodyAI/BayesianVLA",
+            "url": "https://github.com/ZGC-EmbodyAI/BayesianVLA"
+          },
+          {
+            "title": "[2601.15197] LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/abs/2601.15197"
+          },
+          {
+            "title": "BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries | Request PDF",
+            "url": "https://www.researchgate.net/publication/399985510_BayesianVLA_Bayesian_Decomposition_of_Vision_Language_Action_Models_via_Latent_Action_Queries"
+          },
+          {
+            "title": "GitHub - ZGC-EmbodyAI/LangForce: [ICML 2026] This repo is the official implementation of \"LangForce : Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" · GitHub",
+            "url": "https://github.com/ZGC-EmbodyAI/LangForce"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this paper:\n\nBayesianVLA is a novel framework that enforces instruction following via Bayesian decomposition by introducing learnable Latent Action Queries to construct a dual-branch architecture that estimates both a vision-only prior and a language-conditioned posterior.\n\n**The Problem Being Addressed:**\n\nThe paper identifies a critical pathology in current training paradigms where goal-driven data collection creates a dataset bias where language instructions are highly predictable from visual observations alone, causing the conditional mutual information between instructions and actions to vanish (termed \"Information Collapse\"), which causes models to degenerate into vision-only policies that ignore language constraints and fail in out-of-distribution settings.\n\n**The Solution:**\n\nThe framework optimizes the policy to maximize the conditional Pointwise Mutual Information (PMI) between actions and instructions, which effectively penalizes the vision shortcut and rewards actions that explicitly explain the language command.\n\n**Results:**\n\nExperiments across SimplerEnv and RoboCasa demonstrate substantial gains, including an 11.3% improvement on the challenging out-of-distribution SimplerEnv benchmark.\n\n**Note:** The paper is also referred to as \"LangForce\" and was accepted to ICML 2026. The arxiv identifier is 2601.15197."
+    ],
+    "durationSeconds": 6.777095447
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-29T06:37:47.588Z_
+
+<details><summary>↩ Tool result · `toolu_01Rk2CpQ5uPM7ebUn1ELVWJg`</summary>
+
+```text
+Web search results for query: "Pretrained Vision-Language-Action Models Surprisingly Resistant Forgetting Continual Learning Liu 2026 arXiv"
+
+Links: [{"title":"[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/abs/2603.03818"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.03818"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/html/2603.03818v2"},{"title":"Continual Pre-Training Mitigates Forgetting in Language and Vision","url":"https://arxiv.org/pdf/2205.09357"},{"title":"Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning","url":"https://arxiv.org/pdf/2603.11653"},{"title":"Continual Learning with Vision-Language Models via Semantic-Geometry Preservation","url":"https://arxiv.org/pdf/2603.12055"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly","url":"https://arxiv.org/pdf/2603.03818"},{"title":"[2603.11653] Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning","url":"https://arxiv.org/abs/2603.11653"}]
+
+I found the paper you're looking for! Here's the information:
+
+**Title:** Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning
+
+**arXiv ID:** 2603.03818
+
+**Key Findings:**
+
+Pretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch. Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.
+
+The analysis reveals that pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.
+
+VLAs can retain relevant knowledge from prior tasks despite performance degradation during learning new tasks. This knowledge retention enables rapid recovery of seemingly forgotten skills through finetuning.
+
+The paper was published on March 17, 2026, and is available at https://arxiv.org/abs/2603.03818.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "a839f2c3-fb12-4a30-9574-410cdcb12b5a",
+  "tool_use_result": {
+    "query": "Pretrained Vision-Language-Action Models Surprisingly Resistant Forgetting Continual Learning Liu 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wqog5qevSowZCJdVXrRXBc",
+        "content": [
+          {
+            "title": "[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/abs/2603.03818"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.03818"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/html/2603.03818v2"
+          },
+          {
+            "title": "Continual Pre-Training Mitigates Forgetting in Language and Vision",
+            "url": "https://arxiv.org/pdf/2205.09357"
+          },
+          {
+            "title": "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2603.11653"
+          },
+          {
+            "title": "Continual Learning with Vision-Language Models via Semantic-Geometry Preservation",
+            "url": "https://arxiv.org/pdf/2603.12055"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly",
+            "url": "https://arxiv.org/pdf/2603.03818"
+          },
+          {
+            "title": "[2603.11653] Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2603.11653"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information:\n\n**Title:** Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\n\n**arXiv ID:** 2603.03818\n\n**Key Findings:**\n\nPretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch. Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.\n\nThe analysis reveals that pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.\n\nVLAs can retain relevant knowledge from prior tasks despite performance degradation during learning new tasks. This knowledge retention enables rapid recovery of seemingly forgotten skills through finetuning.\n\nThe paper was published on March 17, 2026, and is available at https://arxiv.org/abs/2603.03818."
+    ],
+    "durationSeconds": 5.870875804
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-29T06:37:47.623Z_
+
+<details><summary>↩ Tool result · `toolu_01FDJ1UNZiMbw4VSV6vJ7fFk`</summary>
+
+```text
+Web search results for query: "Don't Blind Your VLA Aligning Visual Representations OOD Generalization Kachaev 2025 arXiv"
+
+Links: [{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://blind-vla-paper.github.io/"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization [Quick Review]","url":"https://liner.com/review/dont-blind-your-vla-aligning-visual-representations-for-ood-generalization"},{"title":"Paper page - Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://huggingface.co/papers/2510.25616"},{"title":"[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616"},{"title":"[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616v1"},{"title":"GitHub - CognitiveAISystems/BlindVLA: Official implementation of Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization. https://blind-vla-paper.github.io","url":"https://github.com/CognitiveAISystems/BlindVLA"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Information:**
+The paper is titled "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization" by authors Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, and Aleksandr I. Panov. It was published in 2025 with arXiv identifier 2510.25616.
+
+**Overview:**
+The paper addresses how Vision-Language-Action (VLA) models built on pretrained Vision-Language Models (VLMs) can preserve transferable world knowledge and vision-language grounding, but it remains unclear to what extent their original VL representations and knowledge are preserved when VLMs are adapted to the action modality.
+
+**Main Findings:**
+The work shows that naive action fine-tuning leads to degradation of visual representations. However, the authors introduce a simple yet effective method that mitigates degradation and yields improved generalization to out-of-distribution (OOD) scenarios.
+
+**Resources:**
+Code is publicly available at https://blind-vla-paper.github.io, and the full paper is available on arXiv at https://arxiv.org/abs/2510.25616.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "f1fb4b7e-5ec8-4684-9e1b-35236fd04423",
+  "tool_use_result": {
+    "query": "Don't Blind Your VLA Aligning Visual Representations OOD Generalization Kachaev 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019VgnJygbuaD8CufgLnZBAE",
+        "content": [
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://blind-vla-paper.github.io/"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization [Quick Review]",
+            "url": "https://liner.com/review/dont-blind-your-vla-aligning-visual-representations-for-ood-generalization"
+          },
+          {
+            "title": "Paper page - Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://huggingface.co/papers/2510.25616"
+          },
+          {
+            "title": "[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616"
+          },
+          {
+            "title": "[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616v1"
+          },
+          {
+            "title": "GitHub - CognitiveAISystems/BlindVLA: Official implementation of Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization. https://blind-vla-paper.github.io",
+            "url": "https://github.com/CognitiveAISystems/BlindVLA"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Information:**\nThe paper is titled \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\" by authors Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, and Aleksandr I. Panov. It was published in 2025 with arXiv identifier 2510.25616.\n\n**Overview:**\nThe paper addresses how Vision-Language-Action (VLA) models built on pretrained Vision-Language Models (VLMs) can preserve transferable world knowledge and vision-language grounding, but it remains unclear to what extent their original VL representations and knowledge are preserved when VLMs are adapted to the action modality.\n\n**Main Findings:**\nThe work shows that naive action fine-tuning leads to degradation of visual representations. However, the authors introduce a simple yet effective method that mitigates degradation and yields improved generalization to out-of-distribution (OOD) scenarios.\n\n**Resources:**\nCode is publicly available at https://blind-vla-paper.github.io, and the full paper is available on arXiv at https://arxiv.org/abs/2510.25616."
+    ],
+    "durationSeconds": 6.964893019000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-29T06:37:48.065Z_
+
+<details><summary>↩ Tool result · `toolu_01Ao2xnaBkSgGVZFVAYhabXh`</summary>
+
+```text
+Web search results for query: "Instruction Anchor Dissecting Mechanistic Dynamics Modality Arbitration Zhang 2026 arXiv"
+
+Links: [{"title":"[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/abs/2602.03677"},{"title":"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/pdf/2602.03677"},{"title":"Contribution of amygdala to dynamic model arbitration under uncertainty","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12753643/"},{"title":"ICLR 2026 Workshop: Principled Design for Trustworthy AI","url":"https://arxiv.org/pdf/2603.06508"},{"title":"[2601.20796] Dissecting Multimodal In-Context Learning: Modality Asymmetries and Circuit Dynamics in modern Transformers","url":"https://arxiv.org/abs/2601.20796"},{"title":"Dissecting Multimodal In-Context Learning: Modality ...","url":"https://arxiv.org/pdf/2601.20796"}]
+
+I found the paper you're looking for! Here are the key details:
+
+The paper is titled "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" by Yu Zhang and 6 other authors, published on arXiv on February 3, 2026 (arXiv:2602.03677).
+
+**Main Findings:**
+
+The research reveals that instruction tokens function as structural anchors for modality arbitration: shallow attention layers perform non-selective information transfer, routing multimodal cues to these anchors as a latent buffer; modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force. The authors also identify a sparse set of specialized attention heads that drive this arbitration.
+
+**Research Focus:**
+
+The paper examines modality following, which serves as the capacity of multimodal large language models (MLLMs) to selectively utilize multimodal contexts based on user instructions, studying the underlying mechanisms through an information flow lens.
+
+The paper is available at https://arxiv.org/abs/2602.03677.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "ff362002-c643-4d56-8ff5-5c251cd0ee05",
+  "tool_use_result": {
+    "query": "Instruction Anchor Dissecting Mechanistic Dynamics Modality Arbitration Zhang 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WdG4U3SQAgmAEgxALPXC5r",
+        "content": [
+          {
+            "title": "[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/abs/2602.03677"
+          },
+          {
+            "title": "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/pdf/2602.03677"
+          },
+          {
+            "title": "Contribution of amygdala to dynamic model arbitration under uncertainty",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12753643/"
+          },
+          {
+            "title": "ICLR 2026 Workshop: Principled Design for Trustworthy AI",
+            "url": "https://arxiv.org/pdf/2603.06508"
+          },
+          {
+            "title": "[2601.20796] Dissecting Multimodal In-Context Learning: Modality Asymmetries and Circuit Dynamics in modern Transformers",
+            "url": "https://arxiv.org/abs/2601.20796"
+          },
+          {
+            "title": "Dissecting Multimodal In-Context Learning: Modality ...",
+            "url": "https://arxiv.org/pdf/2601.20796"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\nThe paper is titled \"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration\" by Yu Zhang and 6 other authors, published on arXiv on February 3, 2026 (arXiv:2602.03677).\n\n**Main Findings:**\n\nThe research reveals that instruction tokens function as structural anchors for modality arbitration: shallow attention layers perform non-selective information transfer, routing multimodal cues to these anchors as a latent buffer; modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force. The authors also identify a sparse set of specialized attention heads that drive this arbitration.\n\n**Research Focus:**\n\nThe paper examines modality following, which serves as the capacity of multimodal large language models (MLLMs) to selectively utilize multimodal contexts based on user instructions, studying the underlying mechanisms through an information flow lens.\n\nThe paper is available at https://arxiv.org/abs/2602.03677."
+    ],
+    "durationSeconds": 6.360419294
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, got results for entries 1-6. Let me now search for entries 7-12.
+
+For entry 2 (BayesianVLA), I noticed the paper was originally titled "LangForce" on arXiv (2601.15197) and was accepted to ICML 2026. The bib entry says "BayesianVLA" as the title but on arXiv it seems to have been renamed. Let me note this.
+
+For entry 5 (zhang2026instruction), the actual title is "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" — the bib says "Instruction Anchor: Dissecting the Mechanistic Dynamics of Modality Arbitration". The title is wrong in multiple ways: "Anchor" vs "Anchors", "Mechanistic" vs "Causal".
+
+
+Now moving on to search for the remaining entries 7-12.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "5997a35c-4953-433e-b4cd-9100c50a99ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LX4qA9aM2hMtBXebA342px`</summary>
+
+```json
+{
+  "query": "Enhancing Generalization Vision-Language-Action Models Preserving Pretrained Representations Grover 2025 arXiv 2509.11417"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "ae6266c3-24f9-4afd-a1bb-536e19d4cdc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013DP1SGAzsNa4iGKWEuL5SB`</summary>
+
+```json
+{
+  "query": "NORA Small Open-Sourced Generalist Vision Language Action Model Embodied Tasks Hung 2025 arXiv 2504.19854"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "9ac4fe0f-c598-4ac8-bb85-228d089f0125",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014csj6YbAjquyAr6tYmoeXA`</summary>
+
+```json
+{
+  "query": "TraceVLA Visual Trace Prompting Enhances Spatial-Temporal Awareness Generalist Robotic Policies Zheng 2024 arXiv 2412.10345"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3d6d9a1f-ba82-4d03-b68d-12c025add95f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0115GPk7wQ5F2wnF4Vt2MWWh`</summary>
+
+```json
+{
+  "query": "Phi-3 Technical Report Highly Capable Language Model Locally Phone Abdin 2024 arXiv 2404.14219"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "6cc7786f-c5d1-4fca-98b7-8fa26085a0c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011HGLE4pjeydTjoA7mjYpjg`</summary>
+
+```json
+{
+  "query": "OpenVLA Open-Source Vision-Language-Action Model Kim 2024 CoRL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "eb9c6754-492a-4741-9f1d-d87a2c055d23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HjJoDbYy3Q45xVaLido8vM`</summary>
+
+```json
+{
+  "query": "Prismatic VLMs Investigating Design Space Visually-Conditioned Language Models Karamcheti ICML 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "6bda5750-96a0-4fe5-9d2e-7bee58a69faf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TR9jsgKD8h6BVc2GmeNHzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 669,
+      "cache_creation_input_tokens": 4178,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4178
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-29T06:38:07.035Z_
+
+<details><summary>↩ Tool result · `toolu_01LX4qA9aM2hMtBXebA342px`</summary>
+
+```text
+Web search results for query: "Enhancing Generalization Vision-Language-Action Models Preserving Pretrained Representations Grover 2025 arXiv 2509.11417"
+
+Links: [{"title":"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/abs/2509.11417"},{"title":"Enhancing Generalization in Vision-Language-Action Models","url":"https://gen-vla.github.io/"},{"title":"[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"},{"title":"Enhancing Generalization in Vision-Language-Action ...","url":"https://arxiv.org/pdf/2509.11417"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=3050&show=2000"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"}]
+
+I found the paper you're looking for. Here's the information about it:
+
+**Paper Title:** Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations
+
+**Authors:** Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li
+
+**arXiv ID:** 2509.11417 (Submitted September 14, 2025)
+
+**Overview:**
+Vision-language-action (VLA) models, finetuned from powerful pretrained vision-language models (VLMs), promise to create generalist robots. However, this finetuning process often degrades the very representations that make them powerful, limiting generalization.
+
+**Proposed Solution:**
+The method introduces a dual-encoder design to retain features, a string-based action tokenizer to align actions with language, and a co-training strategy to balance robot and vision-language data. More specifically, the approach uses two encoders—one frozen to preserve robust, pretrained VLM features and one trainable to adapt to the specific robot task, and represents continuous robot actions as strings, unifying them with the text-based pretraining of the language model.
+
+**Results:** Evaluations in simulation and on real robots show that the proposed framework improves robustness to visual perturbations, generalization to novel instructions and environments, and overall task success compared to baselines.
+
+You can access the paper directly at https://arxiv.org/abs/2509.11417.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3d60f32b-64e3-4a93-8e76-68b1456f67ad",
+  "tool_use_result": {
+    "query": "Enhancing Generalization Vision-Language-Action Models Preserving Pretrained Representations Grover 2025 arXiv 2509.11417",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014jUGvyKo7fUNKPkxb7Emqk",
+        "content": [
+          {
+            "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/abs/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision-Language-Action Models",
+            "url": "https://gen-vla.github.io/"
+          },
+          {
+            "title": "[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"
+          },
+          {
+            "title": "Enhancing Generalization in Vision-Language-Action ...",
+            "url": "https://arxiv.org/pdf/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          },
+          {
+            "title": "Machine Learning Sep 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-09?skip=3050&show=2000"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information about it:\n\n**Paper Title:** Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\n\n**Authors:** Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li\n\n**arXiv ID:** 2509.11417 (Submitted September 14, 2025)\n\n**Overview:**\nVision-language-action (VLA) models, finetuned from powerful pretrained vision-language models (VLMs), promise to create generalist robots. However, this finetuning process often degrades the very representations that make them powerful, limiting generalization.\n\n**Proposed Solution:**\nThe method introduces a dual-encoder design to retain features, a string-based action tokenizer to align actions with language, and a co-training strategy to balance robot and vision-language data. More specifically, the approach uses two encoders—one frozen to preserve robust, pretrained VLM features and one trainable to adapt to the specific robot task, and represents continuous robot actions as strings, unifying them with the text-based pretraining of the language model.\n\n**Results:** Evaluations in simulation and on real robots show that the proposed framework improves robustness to visual perturbations, generalization to novel instructions and environments, and overall task success compared to baselines.\n\nYou can access the paper directly at https://arxiv.org/abs/2509.11417."
+    ],
+    "durationSeconds": 7.674665015999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-29T06:38:07.880Z_
+
+<details><summary>↩ Tool result · `toolu_013DP1SGAzsNa4iGKWEuL5SB`</summary>
+
+```text
+Web search results for query: "NORA Small Open-Sourced Generalist Vision Language Action Model Embodied Tasks Hung 2025 arXiv 2504.19854"
+
+Links: [{"title":"[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/abs/2504.19854"},{"title":"GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub","url":"https://github.com/ehaller00/NORA-VLA"},{"title":"GitHub - declare-lab/nora: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub","url":"https://github.com/declare-lab/nora"},{"title":"[PDF] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/NORA:-A-Small-Open-Sourced-Generalist-Vision-Action-Hung-Sun/0801ed93c26dcb72e2bddf756f971e10357942a2"},{"title":"(PDF) NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://www.researchgate.net/publication/391247234_NORA_A_Small_Open-Sourced_Generalist_Vision_Language_Action_Model_for_Embodied_Tasks"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/nora-small-open-sourced-generalist-vision-language"},{"title":"Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://huggingface.co/papers/2504.19854"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for   Embodied Tasks","url":"https://arxiv.org/pdf/2504.19854"}]
+
+Based on the search results, here's what I found about NORA:
+
+## Overview
+
+NORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance. It's a Visual-Language-Action (VLA) model trained on the Open X-Embodiment dataset.
+
+## Key Features
+
+NORA adopts the Qwen-2.5-VL-3B multimodal model as its backbone, leveraging its superior visual-semantic understanding to enhance visual reasoning and action grounding. 
+
+What makes NORA special is its small size and accessibility - it's open-source and runs on modest hardware.
+
+## Problem It Addresses
+
+Existing Visual-Language-Action models typically suffer from high computational overhead due to their large sizes, often exceeding 7B parameters, which makes them impractical for real-time robotic environments.
+
+## Performance
+
+Experimental results demonstrate that NORA outperforms existing large-scale VLA models, achieving better task performance with significantly reduced computational overhead, making it a more practical solution for real-time robotic autonomy.
+
+The paper was submitted to arXiv on April 28, 2025, with the identifier 2504.19854, authored by Chia-Yu Hung, Qi Sun, Pengfei Hong, and others.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4c21c58b-3fcc-45cb-86a4-3f6bcf6bddcf",
+  "tool_use_result": {
+    "query": "NORA Small Open-Sourced Generalist Vision Language Action Model Embodied Tasks Hung 2025 arXiv 2504.19854",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FqEd51nPJN5jQj4CFuJBqH",
+        "content": [
+          {
+            "title": "[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/abs/2504.19854"
+          },
+          {
+            "title": "GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub",
+            "url": "https://github.com/ehaller00/NORA-VLA"
+          },
+          {
+            "title": "GitHub - declare-lab/nora: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub",
+            "url": "https://github.com/declare-lab/nora"
+          },
+          {
+            "title": "[PDF] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/NORA:-A-Small-Open-Sourced-Generalist-Vision-Action-Hung-Sun/0801ed93c26dcb72e2bddf756f971e10357942a2"
+          },
+          {
+            "title": "(PDF) NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://www.researchgate.net/publication/391247234_NORA_A_Small_Open-Sourced_Generalist_Vision_Language_Action_Model_for_Embodied_Tasks"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/nora-small-open-sourced-generalist-vision-language"
+          },
+          {
+            "title": "Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://huggingface.co/papers/2504.19854"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for   Embodied Tasks",
+            "url": "https://arxiv.org/pdf/2504.19854"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about NORA:\n\n## Overview\n\nNORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance. It's a Visual-Language-Action (VLA) model trained on the Open X-Embodiment dataset.\n\n## Key Features\n\nNORA adopts the Qwen-2.5-VL-3B multimodal model as its backbone, leveraging its superior visual-semantic understanding to enhance visual reasoning and action grounding. \n\nWhat makes NORA special is its small size and accessibility - it's open-source and runs on modest hardware.\n\n## Problem It Addresses\n\nExisting Visual-Language-Action models typically suffer from high computational overhead due to their large sizes, often exceeding 7B parameters, which makes them impractical for real-time robotic environments.\n\n## Performance\n\nExperimental results demonstrate that NORA outperforms existing large-scale VLA models, achieving better task performance with significantly reduced computational overhead, making it a more practical solution for real-time robotic autonomy.\n\nThe paper was submitted to arXiv on April 28, 2025, with the identifier 2504.19854, authored by Chia-Yu Hung, Qi Sun, Pengfei Hong, and others."
+    ],
+    "durationSeconds": 7.002531245999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-29T06:38:09.856Z_
+
+<details><summary>↩ Tool result · `toolu_014csj6YbAjquyAr6tYmoeXA`</summary>
+
+```text
+Web search results for query: "TraceVLA Visual Trace Prompting Enhances Spatial-Temporal Awareness Generalist Robotic Policies Zheng 2024 arXiv 2412.10345"
+
+Links: [{"title":"TraceVLA: Enhancing Robotic Spatial-Temporal Skills","url":"https://www.emergentmind.com/topics/tracevla"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://tracevla.github.io/"},{"title":"[2412.10345] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/abs/2412.10345"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | alphaXiv","url":"https://www.alphaxiv.org/overview/2412.10345"},{"title":"[Literature Review] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://www.themoonlight.io/en/review/tracevla-visual-trace-prompting-enhances-spatial-temporal-awareness-for-generalist-robotic-policies"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/pdf/2412.10345"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/html/2412.10345v1"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=TraceVLA:+Visual+Trace+Prompting+Enhances+Spatial-Temporal+Awareness+for+Generalist+Robotic+Policies."}]
+
+I found detailed information about the TraceVLA paper you searched for. Here's what I found:
+
+## TraceVLA: Visual Trace Prompting for Robotic Policies
+
+**Paper Details:**
+The paper is published on arXiv as preprint arXiv:2412.10345 (2024) by Ruijie Zheng and colleagues from University of Maryland and Microsoft Research.
+
+**Problem Addressed:**
+Although large vision-language-action (VLA) models pretrained on extensive robot datasets offer promising generalist policies for robotic learning, they still struggle with spatial-temporal dynamics in interactive robotics, making them less effective in handling complex tasks, such as manipulation.
+
+**Core Methodology:**
+The paper introduces visual trace prompting, a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories visually. This augments the input with "visual traces" that represent historical state-action trajectories of the robot's movements.
+
+**Approach & Results:**
+The authors developed a new TraceVLA model by finetuning OpenVLA on their own collected dataset of 150K robot manipulation trajectories using visual trace prompting. Evaluations across 137 configurations in SimplerEnv and 4 tasks on a physical WidowX robot demonstrate state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks.
+
+The paper's official project page is available at [tracevla.github.io](https://tracevla.github.io/), and the full paper is accessible on [arXiv](https://arxiv.org/abs/2412.10345).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "02910ce9-3ab5-4cc1-b4a5-8fd3c10b914a",
+  "tool_use_result": {
+    "query": "TraceVLA Visual Trace Prompting Enhances Spatial-Temporal Awareness Generalist Robotic Policies Zheng 2024 arXiv 2412.10345",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016buyfcCPjwEbddhNZvewuG",
+        "content": [
+          {
+            "title": "TraceVLA: Enhancing Robotic Spatial-Temporal Skills",
+            "url": "https://www.emergentmind.com/topics/tracevla"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://tracevla.github.io/"
+          },
+          {
+            "title": "[2412.10345] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/abs/2412.10345"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2412.10345"
+          },
+          {
+            "title": "[Literature Review] TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://www.themoonlight.io/en/review/tracevla-visual-trace-prompting-enhances-spatial-temporal-awareness-for-generalist-robotic-policies"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/pdf/2412.10345"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/html/2412.10345v1"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar?q=TraceVLA:+Visual+Trace+Prompting+Enhances+Spatial-Temporal+Awareness+for+Generalist+Robotic+Policies."
+          }
+        ]
+      },
+      "I found detailed information about the TraceVLA paper you searched for. Here's what I found:\n\n## TraceVLA: Visual Trace Prompting for Robotic Policies\n\n**Paper Details:**\nThe paper is published on arXiv as preprint arXiv:2412.10345 (2024) by Ruijie Zheng and colleagues from University of Maryland and Microsoft Research.\n\n**Problem Addressed:**\nAlthough large vision-language-action (VLA) models pretrained on extensive robot datasets offer promising generalist policies for robotic learning, they still struggle with spatial-temporal dynamics in interactive robotics, making them less effective in handling complex tasks, such as manipulation.\n\n**Core Methodology:**\nThe paper introduces visual trace prompting, a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories visually. This augments the input with \"visual traces\" that represent historical state-action trajectories of the robot's movements.\n\n**Approach & Results:**\nThe authors developed a new TraceVLA model by finetuning OpenVLA on their own collected dataset of 150K robot manipulation trajectories using visual trace prompting. Evaluations across 137 configurations in SimplerEnv and 4 tasks on a physical WidowX robot demonstrate state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks.\n\nThe paper's official project page is available at [tracevla.github.io](https://tracevla.github.io/), and the full paper is accessible on [arXiv](https://arxiv.org/abs/2412.10345)."
+    ],
+    "durationSeconds": 7.701416768000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-29T06:38:10.458Z_
+
+<details><summary>↩ Tool result · `toolu_0115GPk7wQ5F2wnF4Vt2MWWh`</summary>
+
+```text
+Web search results for query: "Phi-3 Technical Report Highly Capable Language Model Locally Phone Abdin 2024 arXiv 2404.14219"
+
+Links: [{"title":"[2404.14219] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://arxiv.org/abs/2404.14219"},{"title":"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://www.linkedin.com/pulse/phi-3-technical-report-highly-capable-language-model-locally-bogolin-6qele"},{"title":"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240414219A/abstract"},{"title":"[PDF] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Phi-3-Technical-Report:-A-Highly-Capable-Language-Abdin-Jacobs/abdceff7d7983cdede9a5aabe6a476d4c72e41a3"},{"title":"Paper page - Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://huggingface.co/papers/2404.14219"},{"title":"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone, Marah Abdin+, N/A, arXiv'24 · Issue #1293 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1293"},{"title":"(PDF) Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone Microsoft","url":"https://www.researchgate.net/publication/385653886_Phi-3_Technical_Report_A_Highly_Capable_Language_Model_Locally_on_Your_Phone_Microsoft"},{"title":"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your   Phone","url":"https://arxiv.org/pdf/2404.14219"},{"title":"Phi-3 Safety Post-Training: Aligning Language Models with a \"Break-Fix\"   Cycle","url":"https://arxiv.org/pdf/2407.13833"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone
+
+**Authors:** Marah Abdin and 128 other authors
+
+**arXiv ID:** 2404.14219
+
+**Main Contribution:** The paper introduces phi-3-mini, a 3.8 billion parameter language model trained on 3.3 trillion tokens, whose overall performance rivals that of models such as Mixtral 8x7B and GPT-3.5 (achieving 69% on MMLU and 8.38 on MT-bench), despite being small enough to be deployed on a phone.
+
+**Training Data:** The training dataset is a scaled-up version of the one used for phi-2, composed of heavily filtered publicly available web data and synthetic data.
+
+**Additional Models:** The paper also provides parameter-scaling results with 7B and 14B models trained for 4.8T tokens, called phi-3-small and phi-3-medium, both significantly more capable than phi-3-mini (respectively 75%, 78% on MMLU, and 8.7, 8.9 on MT-bench).
+
+The full paper is available on arXiv at https://arxiv.org/abs/2404.14219.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "975a4c56-66ea-48ac-b099-0fcb8e08ed50",
+  "tool_use_result": {
+    "query": "Phi-3 Technical Report Highly Capable Language Model Locally Phone Abdin 2024 arXiv 2404.14219",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LmpiJ4wmMqAYBatNGeFJ4a",
+        "content": [
+          {
+            "title": "[2404.14219] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://arxiv.org/abs/2404.14219"
+          },
+          {
+            "title": "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://www.linkedin.com/pulse/phi-3-technical-report-highly-capable-language-model-locally-bogolin-6qele"
+          },
+          {
+            "title": "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240414219A/abstract"
+          },
+          {
+            "title": "[PDF] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Phi-3-Technical-Report:-A-Highly-Capable-Language-Abdin-Jacobs/abdceff7d7983cdede9a5aabe6a476d4c72e41a3"
+          },
+          {
+            "title": "Paper page - Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://huggingface.co/papers/2404.14219"
+          },
+          {
+            "title": "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone, Marah Abdin+, N/A, arXiv'24 · Issue #1293 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/1293"
+          },
+          {
+            "title": "(PDF) Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone Microsoft",
+            "url": "https://www.researchgate.net/publication/385653886_Phi-3_Technical_Report_A_Highly_Capable_Language_Model_Locally_on_Your_Phone_Microsoft"
+          },
+          {
+            "title": "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your   Phone",
+            "url": "https://arxiv.org/pdf/2404.14219"
+          },
+          {
+            "title": "Phi-3 Safety Post-Training: Aligning Language Models with a \"Break-Fix\"   Cycle",
+            "url": "https://arxiv.org/pdf/2407.13833"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Title:** Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone\n\n**Authors:** Marah Abdin and 128 other authors\n\n**arXiv ID:** 2404.14219\n\n**Main Contribution:** The paper introduces phi-3-mini, a 3.8 billion parameter language model trained on 3.3 trillion tokens, whose overall performance rivals that of models such as Mixtral 8x7B and GPT-3.5 (achieving 69% on MMLU and 8.38 on MT-bench), despite being small enough to be deployed on a phone.\n\n**Training Data:** The training dataset is a scaled-up version of the one used for phi-2, composed of heavily filtered publicly available web data and synthetic data.\n\n**Additional Models:** The paper also provides parameter-scaling results with 7B and 14B models trained for 4.8T tokens, called phi-3-small and phi-3-medium, both significantly more capable than phi-3-mini (respectively 75%, 78% on MMLU, and 8.7, 8.9 on MT-bench).\n\nThe full paper is available on arXiv at https://arxiv.org/abs/2404.14219."
+    ],
+    "durationSeconds": 6.868735794
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-29T06:38:11.790Z_
+
+<details><summary>↩ Tool result · `toolu_01HjJoDbYy3Q45xVaLido8vM`</summary>
+
+```text
+Web search results for query: "Prismatic VLMs Investigating Design Space Visually-Conditioned Language Models Karamcheti ICML 2024"
+
+Links: [{"title":"[Quick Review] Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models","url":"https://liner.com/review/prismatic-vlms-investigating-design-space-visuallyconditioned-language-models"},{"title":"GitHub - TRI-ML/prismatic-vlms: A flexible and efficient codebase for training visually-conditioned language models (VLMs)","url":"https://github.com/TRI-ML/prismatic-vlms"},{"title":"Prismatic VLMs: Investigating the Design Space of Visually ...","url":"https://www.siddkaramcheti.com/assets/papers/icml24.pdf"},{"title":"dblp: Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models.","url":"https://dblp.org/rec/conf/icml/Karamcheti0BLKS24.html"},{"title":"[2402.07865] Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models","url":"https://arxiv.org/abs/2402.07865"},{"title":"Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models","url":"https://proceedings.mlr.press/v235/karamcheti24a.html"},{"title":"Siddharth Karamcheti on X: \"Models: A surprising result – fine-tuning a VLM on just 20 demos alone yields decent performance! Why? How do we build better VLMs? What limitations still exist – especially for robotics? Our Prismatic work was one step to answering these questions – but miles to go! (6/8)\" / X","url":"https://x.com/siddkaramcheti/status/1803078147312878072"},{"title":"Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240207865K/abstract"},{"title":"ICML Poster Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models","url":"https://icml.cc/virtual/2024/poster/34932"},{"title":"Prismatic VLMs: Investigating the Design Space of Visually-Conditioned   Language Models","url":"https://arxiv.org/pdf/2402.07865"}]
+
+I found comprehensive information about the paper. Here's what I discovered:
+
+## Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models
+
+**Paper Details:**
+The paper was authored by Siddharth Karamcheti, Suraj Nair, Ashwin Balakrishna, Percy Liang, Thomas Kollar, and Dorsa Sadigh, and was published at ICML 2024.
+
+**Main Contribution:**
+Visually-conditioned language models (VLMs) have seen growing adoption in applications such as visual dialogue, scene understanding, and robotic task planning. Despite the volume of new releases, key design decisions around image preprocessing, architecture, and optimization are under-explored, making it challenging to understand what factors account for model performance.
+
+**Methodology and Results:**
+The authors compile a suite of standardized evaluations spanning visual question answering, object localization, and challenge sets that probe properties such as hallucination. They rigorously investigate VLMs along key design axes, including pretrained visual representations and training from base vs. instruct-tuned language models.
+
+When controlling for data and scale, their models outperform the state-of-the-art LLaVa v1.5 across 12 diverse tasks, while saving more than 30% the training compute.
+
+**Resource Contributions:**
+The work includes three resource contributions: (1) a unified framework for evaluating VLMs, (2) optimized, flexible training code, and (3) checkpoints for all models, including a family of VLMs at the 7-13B scale that strictly outperform InstructBLIP and LLaVa v1.5.
+
+The code and models are available at: https://github.com/TRI-ML/prismatic-vlms
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "e787b649-a380-4619-9862-c6e3b6786f3e",
+  "tool_use_result": {
+    "query": "Prismatic VLMs Investigating Design Space Visually-Conditioned Language Models Karamcheti ICML 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DamHmL4x8Ze7qR3r7CPTf8",
+        "content": [
+          {
+            "title": "[Quick Review] Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models",
+            "url": "https://liner.com/review/prismatic-vlms-investigating-design-space-visuallyconditioned-language-models"
+          },
+          {
+            "title": "GitHub - TRI-ML/prismatic-vlms: A flexible and efficient codebase for training visually-conditioned language models (VLMs)",
+            "url": "https://github.com/TRI-ML/prismatic-vlms"
+          },
+          {
+            "title": "Prismatic VLMs: Investigating the Design Space of Visually ...",
+            "url": "https://www.siddkaramcheti.com/assets/papers/icml24.pdf"
+          },
+          {
+            "title": "dblp: Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models.",
+            "url": "https://dblp.org/rec/conf/icml/Karamcheti0BLKS24.html"
+          },
+          {
+            "title": "[2402.07865] Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models",
+            "url": "https://arxiv.org/abs/2402.07865"
+          },
+          {
+            "title": "Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models",
+            "url": "https://proceedings.mlr.press/v235/karamcheti24a.html"
+          },
+          {
+            "title": "Siddharth Karamcheti on X: \"Models: A surprising result – fine-tuning a VLM on just 20 demos alone yields decent performance! Why? How do we build better VLMs? What limitations still exist – especially for robotics? Our Prismatic work was one step to answering these questions – but miles to go! (6/8)\" / X",
+            "url": "https://x.com/siddkaramcheti/status/1803078147312878072"
+          },
+          {
+            "title": "Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240207865K/abstract"
+          },
+          {
+            "title": "ICML Poster Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models",
+            "url": "https://icml.cc/virtual/2024/poster/34932"
+          },
+          {
+            "title": "Prismatic VLMs: Investigating the Design Space of Visually-Conditioned   Language Models",
+            "url": "https://arxiv.org/pdf/2402.07865"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper. Here's what I discovered:\n\n## Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models\n\n**Paper Details:**\nThe paper was authored by Siddharth Karamcheti, Suraj Nair, Ashwin Balakrishna, Percy Liang, Thomas Kollar, and Dorsa Sadigh, and was published at ICML 2024.\n\n**Main Contribution:**\nVisually-conditioned language models (VLMs) have seen growing adoption in applications such as visual dialogue, scene understanding, and robotic task planning. Despite the volume of new releases, key design decisions around image preprocessing, architecture, and optimization are under-explored, making it challenging to understand what factors account for model performance.\n\n**Methodology and Results:**\nThe authors compile a suite of standardized evaluations spanning visual question answering, object localization, and challenge sets that probe properties such as hallucination. They rigorously investigate VLMs along key design axes, including pretrained visual representations and training from base vs. instruct-tuned language models.\n\nWhen controlling for data and scale, their models outperform the state-of-the-art LLaVa v1.5 across 12 diverse tasks, while saving more than 30% the training compute.\n\n**Resource Contributions:**\nThe work includes three resource contributions: (1) a unified framework for evaluating VLMs, (2) optimized, flexible training code, and (3) checkpoints for all models, including a family of VLMs at the 7-13B scale that strictly outperform InstructBLIP and LLaVa v1.5.\n\nThe code and models are available at: https://github.com/TRI-ML/prismatic-vlms"
+    ],
+    "durationSeconds": 6.765412987000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-29T06:38:13.720Z_
+
+<details><summary>↩ Tool result · `toolu_011HGLE4pjeydTjoA7mjYpjg`</summary>
+
+```text
+Web search results for query: "OpenVLA Open-Source Vision-Language-Action Model Kim 2024 CoRL"
+
+Links: [{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"GitHub - reazon-research/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/reazon-research/openvla"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model | OpenReview","url":"https://openreview.net/forum?id=ZMnD6QZAE6"},{"title":"[PDF] OpenVLA: An Open-Source Vision-Language-Action Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OpenVLA:-An-Open-Source-Vision-Language-Action-Kim-Pertsch/8f9ceb5ffad8e7a066dfc9d9aaa5153b714740ee"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/pdf/2406.09246"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model Moo Jin Kim∗,1","url":"https://groups.csail.mit.edu/robotics-center/public_papers/Kim24.pdf"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://proceedings.mlr.press/v270/kim25c.html"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/html/2406.09246v3"}]
+
+Based on the search results, here's information about OpenVLA:
+
+## Overview
+
+OpenVLA is a state-of-the-art, open-source 7B-parameter VLA model that obtains strong performance for cross-embodiment robot control out-of-the-box and can be easily adapted to new robot setups via parameter-efficient fine-tuning. The model was trained on a diverse collection of 970k real-world robot demonstrations.
+
+## Architecture
+
+OpenVLA builds on a Llama 2 language model combined with a visual encoder that fuses pretrained features from DINOv2 and SigLIP.
+
+## Performance
+
+OpenVLA demonstrates strong results for generalist manipulation, outperforming closed models such as RT-2-X (55B) by 16.5% in absolute task success rate across 29 tasks and multiple robot embodiments, with 7x fewer parameters.
+
+## Fine-tuning and Efficiency
+
+OpenVLA can be effectively fine-tuned for new settings, with especially strong generalization results in multi-task environments involving multiple objects and strong language grounding abilities, outperforming methods such as Diffusion Policy by 20.4%. OpenVLA can be fine-tuned on consumer GPUs via modern low-rank adaptation methods and served efficiently via quantization without a hit to downstream success rate.
+
+## Release
+
+The paper was published as an arXiv preprint (arXiv:2406.09246) in 2024, and was presented at CoRL 2024. The researchers released model checkpoints, fine-tuning notebooks, and their PyTorch codebase with built-in support for training VLAs at scale on Open X-Embodiment datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "29960599-7efe-4211-9fcb-08ba3c7e3e46",
+  "tool_use_result": {
+    "query": "OpenVLA Open-Source Vision-Language-Action Model Kim 2024 CoRL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YPHpV69za64tNePmpYXFA7",
+        "content": [
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://openvla.github.io/"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "GitHub - reazon-research/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/reazon-research/openvla"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model | OpenReview",
+            "url": "https://openreview.net/forum?id=ZMnD6QZAE6"
+          },
+          {
+            "title": "[PDF] OpenVLA: An Open-Source Vision-Language-Action Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/OpenVLA:-An-Open-Source-Vision-Language-Action-Kim-Pertsch/8f9ceb5ffad8e7a066dfc9d9aaa5153b714740ee"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/pdf/2406.09246"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model Moo Jin Kim∗,1",
+            "url": "https://groups.csail.mit.edu/robotics-center/public_papers/Kim24.pdf"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://proceedings.mlr.press/v270/kim25c.html"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2406.09246v3"
+          }
+        ]
+      },
+      "Based on the search results, here's information about OpenVLA:\n\n## Overview\n\nOpenVLA is a state-of-the-art, open-source 7B-parameter VLA model that obtains strong performance for cross-embodiment robot control out-of-the-box and can be easily adapted to new robot setups via parameter-efficient fine-tuning. The model was trained on a diverse collection of 970k real-world robot demonstrations.\n\n## Architecture\n\nOpenVLA builds on a Llama 2 language model combined with a visual encoder that fuses pretrained features from DINOv2 and SigLIP.\n\n## Performance\n\nOpenVLA demonstrates strong results for generalist manipulation, outperforming closed models such as RT-2-X (55B) by 16.5% in absolute task success rate across 29 tasks and multiple robot embodiments, with 7x fewer parameters.\n\n## Fine-tuning and Efficiency\n\nOpenVLA can be effectively fine-tuned for new settings, with especially strong generalization results in multi-task environments involving multiple objects and strong language grounding abilities, outperforming methods such as Diffusion Policy by 20.4%. OpenVLA can be fine-tuned on consumer GPUs via modern low-rank adaptation methods and served efficiently via quantization without a hit to downstream success rate.\n\n## Release\n\nThe paper was published as an arXiv preprint (arXiv:2406.09246) in 2024, and was presented at CoRL 2024. The researchers released model checkpoints, fine-tuning notebooks, and their PyTorch codebase with built-in support for training VLAs at scale on Open X-Embodiment datasets."
+    ],
+    "durationSeconds": 9.667471365999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got results for entries 7-12. Let me now check entries 13-18.
+
+Let me note the key findings so far:
+
+1. hancock2025actions — ✓ Title correct, arXiv ID 2509.22195 correct, authors include Asher J Hancock et al. Year 2025 correct.
+
+2. lian2026bayesianvla — The paper on arXiv 2601.15197 is originally titled "LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries" on arXiv, but there's also a version called "BayesianVLA". 
+
+The GitHub repo lists it as "[ICML 2026]" so I need to verify the author attribution more carefully since the bibliography just says "Lian et al."
+
+3. kachaev2025dont — ✓ Title correct, arXiv ID 2510.25616 correct. Authors: Nikita Kachaev et al. Year 2025 correct.
+
+4. mitra2025mechanistic — ✓ Title correct, arXiv ID 2511.22697 correct. Authors: Chancharik Mitra et al. Year 2025 correct.
+
+5. zhang2026instruction — ✗ Title has two errors: "Anchors" not "Anchor" and "Causal" not "Mechanistic" in the actual title "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration". The arXiv ID 2602.03677 is correct.
+
+6. liu2026forgetting — ✓ Title correct, arXiv ID 2603.03818 correct. Year 2026 correct.
+
+7. grover2025preserving — ✓ Title correct, arXiv ID 2509.11417 correct. Year 2025 correct.
+
+8. hung2025nora — ✓ Title correct, arXiv ID 2504.19854 correct. Year 2025 correct.
+
+9. zheng2024tracevla — ✓ Title correct, arXiv ID 2412.10345 correct. Year 2024 correct.
+
+10. abdin2024phi3 — ✓ Title correct, arXiv ID 2404.14219 correct. Year 2024 correct.
+
+11. kim2024_openvla — ✓ Title correct, CoRL 2024 PMLR vol 270. The proceedings link shows `proceedings.mlr.press/v270/kim25c.html`, so I need to verify the pages and author details.
+
+12. karamcheti2024 — ✓ Title correct, ICML 2024 PMLR vol 235. Pages 23123-23144 match the bib entry and the proceedings link `proceedings.mlr.press/v235/karamcheti24a.html`.
+
+Now I'm moving on to verify entries 13-18.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3bd07e4b-45ac-4380-90df-a11e4553eac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011VCTMZvk51BgrJdo247P7T`</summary>
+
+```json
+{
+  "query": "RT-2 Vision-Language-Action Models Transfer Web Knowledge Robotic Control Brohan 2023 arXiv 2307.15818"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "37521192-6c95-4bc1-afd9-a63cee33e659",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0164Le1XqLDDBYxiwAcY97u6`</summary>
+
+```json
+{
+  "query": "LIBERO Benchmarking Knowledge Transfer Lifelong Robot Learning Liu NeurIPS 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "0aeb01c0-68d2-4ef4-b8c5-3e4f30c1d196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0152WN1D3TyXUXVQwzziv5nv`</summary>
+
+```json
+{
+  "query": "\"Not All Features Are Created Equal\" Mechanistic Study Vision-Language-Action Models Grant 2026 arXiv 2603.19233"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4195c321-9277-43ba-b81d-dcb223abe251",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018Rvn18MEYmMFtiL4KVcm47`</summary>
+
+```json
+{
+  "query": "Mechanistic Interpretability Steering Vision-Language-Action Models Haon CoRL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "b4fffeec-7a33-4890-9e07-79727d433019",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015awkyeKqnyNKCVM5ozBNZa`</summary>
+
+```json
+{
+  "query": "LangGap Diagnosing Closing Language Gap Vision-Language-Action Models Hou Zhao 2026 arXiv 2603.00592"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7c15b3f3-7c84-4d24-8366-23ce67110fc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011hSd33XPfczHt1GYjrc5aP`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus In-depth Robustness Analysis Vision-Language-Action Models Fei 2025 arXiv 2510.13626"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "b1f8e1ae-d8db-4b01-a971-9e9a1d5d5b62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyjCfntAsASnZbR8E5mAR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1097,
+      "cache_creation_input_tokens": 5935,
+      "cache_read_input_tokens": 29097,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-29T06:38:40.849Z_
+
+<details><summary>↩ Tool result · `toolu_0164Le1XqLDDBYxiwAcY97u6`</summary>
+
+```text
+Web search results for query: "LIBERO Benchmarking Knowledge Transfer Lifelong Robot Learning Liu NeurIPS 2023"
+
+Links: [{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning [Quick Review]","url":"https://liner.com/review/libero-benchmarking-knowledge-transfer-for-lifelong-robot-learning"},{"title":"LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/2023/12/10/liu-neurips23-libero/"},{"title":"Peter Stone: LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-liu_zhu_NeurIPS2023.html"},{"title":"NeurIPS Poster LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://neurips.cc/virtual/2023/poster/73415"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview","url":"https://openreview.net/forum?id=xzEtNSuDJk"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning – Sony AI","url":"https://ai.sony/publications/LIBERO-Benchmarking-Knowledge-Transfer-for-Lifelong-Robot-Learning/"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://arxiv.org/pdf/2306.03310"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"},{"title":"[2306.03310] LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://arxiv.org/abs/2306.03310"}]
+
+I found comprehensive information about the LIBERO benchmark. Here's what the search revealed:
+
+## Overview
+
+LIBERO is a novel benchmark of lifelong learning for robot manipulation. The paper was authored by Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, and Peter Stone, presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023) Track on Datasets and Benchmarks in December 2023.
+
+## Motivation
+
+Unlike traditional lifelong learning problems in image and text domains, which primarily involve the transfer of declarative knowledge of entities and concepts, lifelong learning in decision-making (LLDM) also necessitates the transfer of procedural knowledge, such as actions and behaviors.
+
+## Key Research Topics
+
+LIBERO highlights five key research topics in LLDM: 1) how to efficiently transfer declarative knowledge, procedural knowledge, or the mixture of both; 2) how to design effective policy architectures and 3) effective algorithms for LLDM; 4) the robustness of a lifelong learner with respect to task ordering.
+
+## Benchmark Components
+
+LIBERO provides a procedural generation pipeline that could in principle generate an infinite number of manipulation tasks, and includes 130 tasks grouped into four task suites: LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-100.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "5e0b4840-00d4-464a-bab6-f45ad181eb65",
+  "tool_use_result": {
+    "query": "LIBERO Benchmarking Knowledge Transfer Lifelong Robot Learning Liu NeurIPS 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TNWujNxYTRumi8VKEqFusL",
+        "content": [
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning [Quick Review]",
+            "url": "https://liner.com/review/libero-benchmarking-knowledge-transfer-for-lifelong-robot-learning"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/2023/12/10/liu-neurips23-libero/"
+          },
+          {
+            "title": "Peter Stone: LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-liu_zhu_NeurIPS2023.html"
+          },
+          {
+            "title": "NeurIPS Poster LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://neurips.cc/virtual/2023/poster/73415"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=xzEtNSuDJk"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning – Sony AI",
+            "url": "https://ai.sony/publications/LIBERO-Benchmarking-Knowledge-Transfer-for-Lifelong-Robot-Learning/"
+          },
+          {
+            "title": "GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub",
+            "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://arxiv.org/pdf/2306.03310"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"
+          },
+          {
+            "title": "[2306.03310] LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://arxiv.org/abs/2306.03310"
+          }
+        ]
+      },
+      "I found comprehensive information about the LIBERO benchmark. Here's what the search revealed:\n\n## Overview\n\nLIBERO is a novel benchmark of lifelong learning for robot manipulation. The paper was authored by Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, and Peter Stone, presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023) Track on Datasets and Benchmarks in December 2023.\n\n## Motivation\n\nUnlike traditional lifelong learning problems in image and text domains, which primarily involve the transfer of declarative knowledge of entities and concepts, lifelong learning in decision-making (LLDM) also necessitates the transfer of procedural knowledge, such as actions and behaviors.\n\n## Key Research Topics\n\nLIBERO highlights five key research topics in LLDM: 1) how to efficiently transfer declarative knowledge, procedural knowledge, or the mixture of both; 2) how to design effective policy architectures and 3) effective algorithms for LLDM; 4) the robustness of a lifelong learner with respect to task ordering.\n\n## Benchmark Components\n\nLIBERO provides a procedural generation pipeline that could in principle generate an infinite number of manipulation tasks, and includes 130 tasks grouped into four task suites: LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-100."
+    ],
+    "durationSeconds": 5.665794549999991
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-29T06:38:41.443Z_
+
+<details><summary>↩ Tool result · `toolu_011VCTMZvk51BgrJdo247P7T`</summary>
+
+```text
+Web search results for query: "RT-2 Vision-Language-Action Models Transfer Web Knowledge Robotic Control Brohan 2023 arXiv 2307.15818"
+
+Links: [{"title":"[2307.15818] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://arxiv.org/abs/2307.15818"},{"title":"[2307.15818v1] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://arxiv.org/abs/2307.15818v1"},{"title":"(PDF) RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://www.researchgate.net/publication/372784419_RT-2_Vision-Language-Action_Models_Transfer_Web_Knowledge_to_Robotic_Control"},{"title":"dblp: RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.","url":"https://dblp.org/rec/journals/corr/abs-2307-15818.html"},{"title":"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://proceedings.mlr.press/v229/zitkovich23a.html"},{"title":"Paper page - RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://huggingface.co/papers/2307.15818"},{"title":"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230715818B/abstract"}]
+
+I found the paper you were looking for! Here are the key details:
+
+**Title:** RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control
+
+**Authors:** Anthony Brohan, Noah Brown, Justice Carbajal, Yevgen Chebotar, Xi Chen, Krzysztof Choromanski, Tianli Ding, Danny Driess, Avinava Dubey, Chelsea Finn, Pete Florence, and 43 other authors
+
+**Publication Date:** Submitted on 28 Jul 2023
+
+**arXiv ID:** 2307.15818
+
+**Research Overview:**
+
+The paper studies how vision-language models trained on Internet-scale data can be incorporated directly into end-to-end robotic control to boost generalization and enable emergent semantic reasoning. 
+
+**Key Approach:** The authors propose to co-fine-tune state-of-the-art vision-language models on both robotic trajectory data and Internet-scale vision-language tasks, such as visual question answering. They express the actions as text tokens and incorporate them directly into the training set of the model in the same way as natural language tokens.
+
+The paper was later published in Proceedings of The 7th Conference on Robot Learning, 2023.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3b0bd330-9cd8-4723-8bb3-8b96cefe02ca",
+  "tool_use_result": {
+    "query": "RT-2 Vision-Language-Action Models Transfer Web Knowledge Robotic Control Brohan 2023 arXiv 2307.15818",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014GV33soS9UbC4wXEvSGdQj",
+        "content": [
+          {
+            "title": "[2307.15818] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://arxiv.org/abs/2307.15818"
+          },
+          {
+            "title": "[2307.15818v1] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://arxiv.org/abs/2307.15818v1"
+          },
+          {
+            "title": "(PDF) RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://www.researchgate.net/publication/372784419_RT-2_Vision-Language-Action_Models_Transfer_Web_Knowledge_to_Robotic_Control"
+          },
+          {
+            "title": "dblp: RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2307-15818.html"
+          },
+          {
+            "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://proceedings.mlr.press/v229/zitkovich23a.html"
+          },
+          {
+            "title": "Paper page - RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://huggingface.co/papers/2307.15818"
+          },
+          {
+            "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230715818B/abstract"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key details:\n\n**Title:** RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\n\n**Authors:** Anthony Brohan, Noah Brown, Justice Carbajal, Yevgen Chebotar, Xi Chen, Krzysztof Choromanski, Tianli Ding, Danny Driess, Avinava Dubey, Chelsea Finn, Pete Florence, and 43 other authors\n\n**Publication Date:** Submitted on 28 Jul 2023\n\n**arXiv ID:** 2307.15818\n\n**Research Overview:**\n\nThe paper studies how vision-language models trained on Internet-scale data can be incorporated directly into end-to-end robotic control to boost generalization and enable emergent semantic reasoning. \n\n**Key Approach:** The authors propose to co-fine-tune state-of-the-art vision-language models on both robotic trajectory data and Internet-scale vision-language tasks, such as visual question answering. They express the actions as text tokens and incorporate them directly into the training set of the model in the same way as natural language tokens.\n\nThe paper was later published in Proceedings of The 7th Conference on Robot Learning, 2023."
+    ],
+    "durationSeconds": 6.266265172999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-29T06:38:41.987Z_
+
+<details><summary>↩ Tool result · `toolu_0152WN1D3TyXUXVQwzziv5nv`</summary>
+
+```text
+Web search results for query: ""Not All Features Are Created Equal" Mechanistic Study Vision-Language-Action Models Grant 2026 arXiv 2603.19233"
+
+Links: [{"title":"[2603.19233] Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.19233"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.19233"},{"title":"Robotics Research arXiv on X: \"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models Bryce Grant, Xijia Zhao, Peng Wang https://t.co/Mr1IyrLxt9 [𝚌𝚜.𝚁𝙾] https://t.co/9LLIgjodQp\" / X","url":"https://x.com/OWW/status/2034850674173788594"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=w8Mw9zJt1y"},{"title":"GitHub - CWRU-AISM/action-atlas: Mechanistic Interpretability toolkit for Vision-Language-Action models · GitHub","url":"https://github.com/CWRU-AISM/action-atlas"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233v1"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2603.19233"},{"title":"Not All Features Are Created Equal: A Mechani... | arXiv Physical AI Research Summary","url":"https://www.teahose.com/paper/arXiv%20Physical%20AI/Not%20All%20Features%20Are%20Created%20Equal_%20A%20Mechanistic%20Study%20of%20Vision-Language-Action%20Models"}]
+
+I found the paper! Here's what I discovered about this research:
+
+## Paper Overview
+
+"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models" examines how Vision-Language-Action (VLA) models combine perception, language, and motor control in a single architecture and how they translate multimodal inputs into actions.
+
+## Methodology
+
+The study applies activation injection, sparse autoencoders (SAEs), and linear probes to six models spanning 80M–7B parameters across 394,000+ rollout episodes on four benchmarks.
+
+## Key Findings
+
+**Visual Dominance:** The visual pathway dominates action generation across all architectures: injecting baseline activations into null-prompt episodes recovers near-identical behavior, while cross-task injection steers robots toward source-task positions (99.8% of X-VLA episodes align with the source trajectory), exposing spatially bound motor programs tied to scene coordinates rather than abstract task representations.
+
+**Language Dependency:** Language sensitivity depends on task structure, not model design: when visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential.
+
+## Author Information
+
+The paper was authored by Bryce Grant, Xijia Zhao, and Peng Wang. The paper was posted on arXiv on March 19, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "92a443f7-823c-4f5d-8dbd-8290a754d1a0",
+  "tool_use_result": {
+    "query": "\"Not All Features Are Created Equal\" Mechanistic Study Vision-Language-Action Models Grant 2026 arXiv 2603.19233",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NefXmvHPxiQz7EpWs9J6pW",
+        "content": [
+          {
+            "title": "[2603.19233] Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.19233"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.19233"
+          },
+          {
+            "title": "Robotics Research arXiv on X: \"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models Bryce Grant, Xijia Zhao, Peng Wang https://t.co/Mr1IyrLxt9 [𝚌𝚜.𝚁𝙾] https://t.co/9LLIgjodQp\" / X",
+            "url": "https://x.com/OWW/status/2034850674173788594"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=w8Mw9zJt1y"
+          },
+          {
+            "title": "GitHub - CWRU-AISM/action-atlas: Mechanistic Interpretability toolkit for Vision-Language-Action models · GitHub",
+            "url": "https://github.com/CWRU-AISM/action-atlas"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233v1"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2603.19233"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechani... | arXiv Physical AI Research Summary",
+            "url": "https://www.teahose.com/paper/arXiv%20Physical%20AI/Not%20All%20Features%20Are%20Created%20Equal_%20A%20Mechanistic%20Study%20of%20Vision-Language-Action%20Models"
+          }
+        ]
+      },
+      "I found the paper! Here's what I discovered about this research:\n\n## Paper Overview\n\n\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\" examines how Vision-Language-Action (VLA) models combine perception, language, and motor control in a single architecture and how they translate multimodal inputs into actions.\n\n## Methodology\n\nThe study applies activation injection, sparse autoencoders (SAEs), and linear probes to six models spanning 80M–7B parameters across 394,000+ rollout episodes on four benchmarks.\n\n## Key Findings\n\n**Visual Dominance:** The visual pathway dominates action generation across all architectures: injecting baseline activations into null-prompt episodes recovers near-identical behavior, while cross-task injection steers robots toward source-task positions (99.8% of X-VLA episodes align with the source trajectory), exposing spatially bound motor programs tied to scene coordinates rather than abstract task representations.\n\n**Language Dependency:** Language sensitivity depends on task structure, not model design: when visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential.\n\n## Author Information\n\nThe paper was authored by Bryce Grant, Xijia Zhao, and Peng Wang. The paper was posted on arXiv on March 19, 2026."
+    ],
+    "durationSeconds": 6.335680999000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-29T06:38:43.348Z_
+
+<details><summary>↩ Tool result · `toolu_015awkyeKqnyNKCVM5ozBNZa`</summary>
+
+```text
+Web search results for query: "LangGap Diagnosing Closing Language Gap Vision-Language-Action Models Hou Zhao 2026 arXiv 2603.00592"
+
+Links: [{"title":"[2603.00592] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.00592"},{"title":"[2603.00592v1] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.00592v1"},{"title":"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action ModelsCode and benchmark will be available at: https://github.com/YC11Hou/langgap","url":"https://arxiv.org/html/2603.00592"},{"title":"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.00592"},{"title":"LangGap: Diagnosing and Closing the Language Gap in ...","url":"https://arxiv.org/pdf/2603.00592v1"}]
+
+I found the paper! Here's what I found about "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models":
+
+**Authors and Details:**
+The paper is by Yuchen Hou and Lin Zhao from the Department of Electrical and Computer Engineering at the National University of Singapore, submitted on February 28, 2026 with arXiv identifier 2603.00592.
+
+**Main Findings:**
+Vision-Language-Action (VLA) models achieve over 95% success on standard benchmarks, but through systematic experiments, the researchers find that current state-of-the-art VLA models largely ignore language instructions.
+
+**Key Contributions:**
+Prior work lacks (1) systematic semantic perturbation diagnostics, (2) a benchmark that forces language understanding by design, and (3) linguistically diverse training data. The paper constructs the LangGap benchmark, based on a four-dimensional semantic perturbation method—varying instruction semantics while keeping the tabletop layout fixed.
+
+**Benchmark Design:**
+Existing benchmarks like LIBERO assign only one task per layout, underutilizing available objects and target locations; LangGap fully diversifies pick-and-place tasks under identical layouts, forcing models to truly understand language.
+
+**Results:**
+Experiments show that targeted data augmentation can partially close the language gap—success rate improves from 0% to 90% with single-task training, and 0% to 28% with multitask training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "03651069-79d4-474c-930f-2d1f55cafa22",
+  "tool_use_result": {
+    "query": "LangGap Diagnosing Closing Language Gap Vision-Language-Action Models Hou Zhao 2026 arXiv 2603.00592",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BXsRocEponxp8AKkUve9fg",
+        "content": [
+          {
+            "title": "[2603.00592] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.00592"
+          },
+          {
+            "title": "[2603.00592v1] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.00592v1"
+          },
+          {
+            "title": "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action ModelsCode and benchmark will be available at: https://github.com/YC11Hou/langgap",
+            "url": "https://arxiv.org/html/2603.00592"
+          },
+          {
+            "title": "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.00592"
+          },
+          {
+            "title": "LangGap: Diagnosing and Closing the Language Gap in ...",
+            "url": "https://arxiv.org/pdf/2603.00592v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about \"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models\":\n\n**Authors and Details:**\nThe paper is by Yuchen Hou and Lin Zhao from the Department of Electrical and Computer Engineering at the National University of Singapore, submitted on February 28, 2026 with arXiv identifier 2603.00592.\n\n**Main Findings:**\nVision-Language-Action (VLA) models achieve over 95% success on standard benchmarks, but through systematic experiments, the researchers find that current state-of-the-art VLA models largely ignore language instructions.\n\n**Key Contributions:**\nPrior work lacks (1) systematic semantic perturbation diagnostics, (2) a benchmark that forces language understanding by design, and (3) linguistically diverse training data. The paper constructs the LangGap benchmark, based on a four-dimensional semantic perturbation method—varying instruction semantics while keeping the tabletop layout fixed.\n\n**Benchmark Design:**\nExisting benchmarks like LIBERO assign only one task per layout, underutilizing available objects and target locations; LangGap fully diversifies pick-and-place tasks under identical layouts, forcing models to truly understand language.\n\n**Results:**\nExperiments show that targeted data augmentation can partially close the language gap—success rate improves from 0% to 90% with single-task training, and 0% to 28% with multitask training."
+    ],
+    "durationSeconds": 5.846922063000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-29T06:38:43.863Z_
+
+<details><summary>↩ Tool result · `toolu_018Rvn18MEYmMFtiL4KVcm47`</summary>
+
+```text
+Web search results for query: "Mechanistic Interpretability Steering Vision-Language-Action Models Haon CoRL 2025"
+
+Links: [{"title":"Mechanistic Interpretability for Steering Vision Language Action Models","url":"https://vla-mech-interp.github.io/"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://openreview.net/pdf/b39be62fae34fd96c66ab4b8ff09b8eb21a1acf4.pdf"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://proceedings.mlr.press/v305/haon25a.html"},{"title":"(PDF) Mechanistic interpretability for steering vision-language-action models","url":"https://www.researchgate.net/publication/395212013_Mechanistic_interpretability_for_steering_vision-language-action_models"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=YvsUD8C9QS"},{"title":"Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/pdf/2509.00328"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233v1"},{"title":"[2509.00328] Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/abs/2509.00328"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://arxiv.org/html/2509.00328v1"}]
+
+I found the research paper you were looking for. Here are the key details:
+
+## Mechanistic Interpretability for Steering Vision-Language-Action Models
+
+This paper was authored by Bear Häon, Kaylene Caswell Stocking, Ian Chuang, and Claire Tomlin and was published at the 9th Annual Conference on Robot Learning (CoRL 2025).
+
+### Main Contribution
+
+The researchers introduce the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time. The framework enables real-time, zero-shot behavioral control without fine-tuning.
+
+### Key Technical Approach
+
+The method projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection.
+
+### Application
+
+The experiments demonstrate interpretable zero-shot control in both simulation (OPENVLA in LIBERO) and on a physical robot (π₀ on a UR5).
+
+You can access the paper through several sources including OpenReview, arXiv (2509.00328), and the project website at https://vla-mech-interp.github.io/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7165448f-e7c0-4784-a72a-b59bb7ef2cfb",
+  "tool_use_result": {
+    "query": "Mechanistic Interpretability Steering Vision-Language-Action Models Haon CoRL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N2qm7bTuubTAh3GC38M1PD",
+        "content": [
+          {
+            "title": "Mechanistic Interpretability for Steering Vision Language Action Models",
+            "url": "https://vla-mech-interp.github.io/"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://openreview.net/pdf/b39be62fae34fd96c66ab4b8ff09b8eb21a1acf4.pdf"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://proceedings.mlr.press/v305/haon25a.html"
+          },
+          {
+            "title": "(PDF) Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://www.researchgate.net/publication/395212013_Mechanistic_interpretability_for_steering_vision-language-action_models"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=YvsUD8C9QS"
+          },
+          {
+            "title": "Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/pdf/2509.00328"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233v1"
+          },
+          {
+            "title": "[2509.00328] Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/abs/2509.00328"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2509.00328v1"
+          }
+        ]
+      },
+      "I found the research paper you were looking for. Here are the key details:\n\n## Mechanistic Interpretability for Steering Vision-Language-Action Models\n\nThis paper was authored by Bear Häon, Kaylene Caswell Stocking, Ian Chuang, and Claire Tomlin and was published at the 9th Annual Conference on Robot Learning (CoRL 2025).\n\n### Main Contribution\n\nThe researchers introduce the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time. The framework enables real-time, zero-shot behavioral control without fine-tuning.\n\n### Key Technical Approach\n\nThe method projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection.\n\n### Application\n\nThe experiments demonstrate interpretable zero-shot control in both simulation (OPENVLA in LIBERO) and on a physical robot (π₀ on a UR5).\n\nYou can access the paper through several sources including OpenReview, arXiv (2509.00328), and the project website at https://vla-mech-interp.github.io/."
+    ],
+    "durationSeconds": 7.369788761000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-29T06:38:45.824Z_
+
+<details><summary>↩ Tool result · `toolu_011hSd33XPfczHt1GYjrc5aP`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus In-depth Robustness Analysis Vision-Language-Action Models Fei 2025 arXiv 2510.13626"
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.13626v1"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626v1"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"[Literature Review] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://www.themoonlight.io/en/review/libero-plus-in-depth-robustness-analysis-of-vision-language-action-models"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-plus/index.html at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/index.html"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"}]
+
+I found the paper you're looking for! Here's information about **LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models**:
+
+## Overview
+Visual-Language-Action (VLA) models report impressive success rates on robotic manipulation benchmarks, yet these results may mask fundamental weaknesses in robustness. The paper is authored by Senyu Fei and collaborators and was published on arXiv in 2025 as preprint 2510.13626.
+
+## Methodology
+The research performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+## Key Findings
+The analysis exposes critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. 
+
+Surprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+## Resources
+The authors provide an official repository containing the implementation and benchmark for the paper. The paper is available on arXiv at https://arxiv.org/abs/2510.13626, and the code is available at https://github.com/sylvestf/LIBERO-plus.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "be831bcb-9e3f-4ccd-a725-3bb58904c97a",
+  "tool_use_result": {
+    "query": "LIBERO-Plus In-depth Robustness Analysis Vision-Language-Action Models Fei 2025 arXiv 2510.13626",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lc782jPXB8TQgS2iZieK85",
+        "content": [
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.13626v1"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "[Literature Review] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://www.themoonlight.io/en/review/libero-plus-in-depth-robustness-analysis-of-vision-language-action-models"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-plus/index.html at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/index.html"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about **LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models**:\n\n## Overview\nVisual-Language-Action (VLA) models report impressive success rates on robotic manipulation benchmarks, yet these results may mask fundamental weaknesses in robustness. The paper is authored by Senyu Fei and collaborators and was published on arXiv in 2025 as preprint 2510.13626.\n\n## Methodology\nThe research performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n## Key Findings\nThe analysis exposes critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. \n\nSurprisingly, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\n## Resources\nThe authors provide an official repository containing the implementation and benchmark for the paper. The paper is available on arXiv at https://arxiv.org/abs/2510.13626, and the code is available at https://github.com/sylvestf/LIBERO-plus."
+    ],
+    "durationSeconds": 6.945049733000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 18 entries searched. Let me do some additional verification on specific details I need to confirm:
+
+1. Entry 2 (lian2026bayesianvla) - The arXiv title seems to have changed. Originally "LangForce" on arXiv, now "BayesianVLA" in the paper. Need to check if title in bib is correct. Also need to verify authors - the bib says "Lian et al." Let me check the actual author list.
+
+2. Entry 5 (zhang2026instruction) - Title is wrong: "Instruction Anchor" → "Instruction Anchors", "Mechanistic" → "Causal". Need to verify the full author name.
+
+
+3. Entry 11 (kim2024_openvla) - Need to verify PMLR pages.
+4. Entry 13 (brohan2023_rt2) - The PMLR proceedings show the author as "Zitkovich" not "Brohan". Let me check.
+5. Entry 14 (liu2023_libero) - The title discrepancy needs resolving: bib says "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning" but UT Austin page says "Benchmarking Knowledge Transfer in Lifelong Robot Learning".
+6. Entry 16 (haon2025) - PMLR vol 305 pp 2743
+
+-2762, with Bear Häon as the author. Running additional searches to confirm these details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "9752c2b2-9b3e-44c1-b43e-acecff29d561",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+Now let me verify some specific details that need closer checking.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7b46a8d1-35c2-492e-bda6-2d1ebe26e2e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N461sBCpCL2bpPyjFJBZY1`</summary>
+
+```json
+{
+  "query": "arXiv 2601.15197 BayesianVLA LangForce authors list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "c031da23-be01-4742-bd78-d7ab849c96a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KXesKfujN9XymrsLHCFykQ`</summary>
+
+```json
+{
+  "query": "arXiv 2602.03677 \"Instruction Anchors\" authors Yu Zhang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4be3e262-daac-421d-ace0-9c76c5bf895d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011iAFuiB4FhL38FY1Tse5N3`</summary>
+
+```json
+{
+  "query": "OpenVLA Kim CoRL 2024 PMLR volume 270 pages proceedings.mlr.press"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "982f61c9-d1ff-460b-8688-db93860296c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T7BrC8oTr4hjKUTjMMan2n`</summary>
+
+```json
+{
+  "query": "RT-2 Brohan 2023 CoRL proceedings PMLR volume 229"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3431b8aa-ffbb-4cef-920a-fe97c7cdb5bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014ysb7JPs86dTndcyGYuNf6`</summary>
+
+```json
+{
+  "query": "site:proceedings.mlr.press \"Mechanistic Interpretability\" \"Steering Vision-Language-Action\" Haon volume 305"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "c7253b6c-7633-44ea-9882-332c243fcc1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rp94WGAgtnEw2vv3qDuVmX`</summary>
+
+```json
+{
+  "query": "LIBERO Benchmarking Knowledge Transfer NeurIPS 2023 Liu authors full list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "7e41c3bc-2a03-433d-935e-dbe46831b8f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcespGNa9FYnAPc2WqcPvN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7206,
+      "cache_read_input_tokens": 35032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7206
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-29T06:39:03.410Z_
+
+<details><summary>↩ Tool result · `toolu_01N461sBCpCL2bpPyjFJBZY1`</summary>
+
+```text
+Web search results for query: "arXiv 2601.15197 BayesianVLA LangForce authors list"
+
+Links: [{"title":"GitHub - ZGC-EmbodyAI/BayesianVLA","url":"https://github.com/ZGC-EmbodyAI/BayesianVLA"},{"title":"[2601.15197] LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/abs/2601.15197"},{"title":"Paper page - BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://huggingface.co/papers/2601.15197"},{"title":"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197v5"},{"title":"Add LangForce (BayesianVLA) · Issue #14 · keon/awesome-physical-ai","url":"https://github.com/keon/awesome-physical-ai/issues/14"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries | alphaXiv","url":"https://www.alphaxiv.org/overview/2601.15197"},{"title":"GitHub - ZGC-EmbodyAI/LangForce: [ICML 2026] This repo is the official implementation of \"LangForce : Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" · GitHub","url":"https://github.com/ZGC-EmbodyAI/LangForce"},{"title":"[2601.15197v1] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/abs/2601.15197v1"}]
+
+Based on the search results, here is the authors list for arXiv paper 2601.15197 (LangForce/BayesianVLA):
+
+The authors are: Shijie Lian, Bin Yu, Xiaopeng Lin, Laurence T. Yang, Zhaolong Shen, Changti Wu, Yuzhuo Miao, Cong Huang, and Kai Chen.
+
+The paper was submitted to arXiv in January 2026 and has since been accepted to ICML 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "8d7a21c5-4718-4bfe-9cf2-c3558a591b10",
+  "tool_use_result": {
+    "query": "arXiv 2601.15197 BayesianVLA LangForce authors list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AafMP1SRL2xwAAPDeT4KeS",
+        "content": [
+          {
+            "title": "GitHub - ZGC-EmbodyAI/BayesianVLA",
+            "url": "https://github.com/ZGC-EmbodyAI/BayesianVLA"
+          },
+          {
+            "title": "[2601.15197] LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/abs/2601.15197"
+          },
+          {
+            "title": "Paper page - BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://huggingface.co/papers/2601.15197"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/html/2601.15197v5"
+          },
+          {
+            "title": "Add LangForce (BayesianVLA) · Issue #14 · keon/awesome-physical-ai",
+            "url": "https://github.com/keon/awesome-physical-ai/issues/14"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2601.15197"
+          },
+          {
+            "title": "GitHub - ZGC-EmbodyAI/LangForce: [ICML 2026] This repo is the official implementation of \"LangForce : Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" · GitHub",
+            "url": "https://github.com/ZGC-EmbodyAI/LangForce"
+          },
+          {
+            "title": "[2601.15197v1] BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/abs/2601.15197v1"
+          }
+        ]
+      },
+      "Based on the search results, here is the authors list for arXiv paper 2601.15197 (LangForce/BayesianVLA):\n\nThe authors are: Shijie Lian, Bin Yu, Xiaopeng Lin, Laurence T. Yang, Zhaolong Shen, Changti Wu, Yuzhuo Miao, Cong Huang, and Kai Chen.\n\nThe paper was submitted to arXiv in January 2026 and has since been accepted to ICML 2026."
+    ],
+    "durationSeconds": 3.9594483820000024
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-29T06:39:04.189Z_
+
+<details><summary>↩ Tool result · `toolu_011iAFuiB4FhL38FY1Tse5N3`</summary>
+
+```text
+Web search results for query: "OpenVLA Kim CoRL 2024 PMLR volume 270 pages proceedings.mlr.press"
+
+Links: [{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://proceedings.mlr.press/v270/kim25c.html"},{"title":"GitHub - mlresearch/v270: Proceedings of CoRL 2024","url":"https://github.com/mlresearch/v270"},{"title":"CoRL.2024 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/CoRL.2024"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"CoRL 2024 - Awards","url":"https://2024.corl.org/program/awards"},{"title":"[PDF] OpenVLA: An Open-Source Vision-Language-Action Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OpenVLA:-An-Open-Source-Vision-Language-Action-Kim-Pertsch/8f9ceb5ffad8e7a066dfc9d9aaa5153b714740ee"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/pdf/2406.09246"}]
+
+I found the paper you were looking for! The OpenVLA paper by Kim et al. was published in the Proceedings of The 8th Conference on Robot Learning (CoRL 2024), PMLR Volume 270, pages 2679-2713, in 2025. 
+
+OpenVLA is a 7B-parameter open-source vision-language-action model trained on a diverse collection of 970k real-world robot demonstrations. OpenVLA builds on a Llama 2 language model combined with a visual encoder that fuses pretrained features from DINOv2 and SigLIP.
+
+The full paper is available at: https://proceedings.mlr.press/v270/kim25c.html
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "055d5698-93c9-488e-86d3-db62196bf844",
+  "tool_use_result": {
+    "query": "OpenVLA Kim CoRL 2024 PMLR volume 270 pages proceedings.mlr.press",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qui4b3umrw6qxhv7tzSABk",
+        "content": [
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://proceedings.mlr.press/v270/kim25c.html"
+          },
+          {
+            "title": "GitHub - mlresearch/v270: Proceedings of CoRL 2024",
+            "url": "https://github.com/mlresearch/v270"
+          },
+          {
+            "title": "CoRL.2024 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/CoRL.2024"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "CoRL 2024 - Awards",
+            "url": "https://2024.corl.org/program/awards"
+          },
+          {
+            "title": "[PDF] OpenVLA: An Open-Source Vision-Language-Action Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/OpenVLA:-An-Open-Source-Vision-Language-Action-Kim-Pertsch/8f9ceb5ffad8e7a066dfc9d9aaa5153b714740ee"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/pdf/2406.09246"
+          }
+        ]
+      },
+      "I found the paper you were looking for! The OpenVLA paper by Kim et al. was published in the Proceedings of The 8th Conference on Robot Learning (CoRL 2024), PMLR Volume 270, pages 2679-2713, in 2025. \n\nOpenVLA is a 7B-parameter open-source vision-language-action model trained on a diverse collection of 970k real-world robot demonstrations. OpenVLA builds on a Llama 2 language model combined with a visual encoder that fuses pretrained features from DINOv2 and SigLIP.\n\nThe full paper is available at: https://proceedings.mlr.press/v270/kim25c.html"
+    ],
+    "durationSeconds": 4.231276174999992
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-29T06:39:04.799Z_
+
+<details><summary>↩ Tool result · `toolu_01T7BrC8oTr4hjKUTjMMan2n`</summary>
+
+```text
+Web search results for query: "RT-2 Brohan 2023 CoRL proceedings PMLR volume 229"
+
+Links: [{"title":"Co-evolving embodied intelligence with design for artificial intelligence architecture | Nature Reviews Electrical Engineering","url":"https://www.nature.com/articles/s44287-025-00146-w"},{"title":"A robot operating system framework for using large language models in embodied AI | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-026-01186-z"},{"title":"Papers — CoRL 2023","url":"https://www.corl2023.org/papers"},{"title":"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://proceedings.mlr.press/v229/zitkovich23a.html"},{"title":"[PDF] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control | Semantic Scholar","url":"https://www.semanticscholar.org/paper/RT-2:-Vision-Language-Action-Models-Transfer-Web-to-Brohan-Brown/38939304bb760473141c2aca0305e44fbe04e6e8"},{"title":"(PDF) RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://www.researchgate.net/publication/372784419_RT-2_Vision-Language-Action_Models_Transfer_Web_Knowledge_to_Robotic_Control"},{"title":"[2307.15818] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control","url":"https://arxiv.org/abs/2307.15818"},{"title":"Proceedings of Machine Learning Research | Proceedings of The 7th Conference on Robot Learning Held in Atlanta, USA on 06-09 November 2023 Published as Volume 229 by the Proceedings of Machine Learning Research on 02 December 2023. Volume Edited by: Jie Tan Marc Toussaint Kourosh Darvish Series Editors: Neil D. Lawrence","url":"https://proceedings.mlr.press/v229/"},{"title":"7th CoRL 2023: Atlanta, GA, USA","url":"https://dblp.org/db/conf/corl/corl2023.html"},{"title":"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic   Control","url":"https://arxiv.org/pdf/2307.15818"}]
+
+I found the information you're looking for! The RT-2 paper by Brohan et al. was published in the Proceedings of the 7th Conference on Robot Learning (CoRL, 2023) Volume 229, pages 2165–2183 (PMLR, 2023).
+
+The paper is titled "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control" and presents RT-2, a family of models derived from fine-tuning large vision-language models trained on web-scale data to directly act as generalizable and semantically aware robotic policies.
+
+You can access the PMLR proceedings directly at: https://proceedings.mlr.press/v229/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "2768e797-03c7-4552-8e59-0f604a87e00b",
+  "tool_use_result": {
+    "query": "RT-2 Brohan 2023 CoRL proceedings PMLR volume 229",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SJAFzpAHoW1A1D6KMYznBK",
+        "content": [
+          {
+            "title": "Co-evolving embodied intelligence with design for artificial intelligence architecture | Nature Reviews Electrical Engineering",
+            "url": "https://www.nature.com/articles/s44287-025-00146-w"
+          },
+          {
+            "title": "A robot operating system framework for using large language models in embodied AI | Nature Machine Intelligence",
+            "url": "https://www.nature.com/articles/s42256-026-01186-z"
+          },
+          {
+            "title": "Papers — CoRL 2023",
+            "url": "https://www.corl2023.org/papers"
+          },
+          {
+            "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://proceedings.mlr.press/v229/zitkovich23a.html"
+          },
+          {
+            "title": "[PDF] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/RT-2:-Vision-Language-Action-Models-Transfer-Web-to-Brohan-Brown/38939304bb760473141c2aca0305e44fbe04e6e8"
+          },
+          {
+            "title": "(PDF) RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://www.researchgate.net/publication/372784419_RT-2_Vision-Language-Action_Models_Transfer_Web_Knowledge_to_Robotic_Control"
+          },
+          {
+            "title": "[2307.15818] RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+            "url": "https://arxiv.org/abs/2307.15818"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research | Proceedings of The 7th Conference on Robot Learning Held in Atlanta, USA on 06-09 November 2023 Published as Volume 229 by the Proceedings of Machine Learning Research on 02 December 2023. Volume Edited by: Jie Tan Marc Toussaint Kourosh Darvish Series Editors: Neil D. Lawrence",
+            "url": "https://proceedings.mlr.press/v229/"
+          },
+          {
+            "title": "7th CoRL 2023: Atlanta, GA, USA",
+            "url": "https://dblp.org/db/conf/corl/corl2023.html"
+          },
+          {
+            "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic   Control",
+            "url": "https://arxiv.org/pdf/2307.15818"
+          }
+        ]
+      },
+      "I found the information you're looking for! The RT-2 paper by Brohan et al. was published in the Proceedings of the 7th Conference on Robot Learning (CoRL, 2023) Volume 229, pages 2165–2183 (PMLR, 2023).\n\nThe paper is titled \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\" and presents RT-2, a family of models derived from fine-tuning large vision-language models trained on web-scale data to directly act as generalizable and semantically aware robotic policies.\n\nYou can access the PMLR proceedings directly at: https://proceedings.mlr.press/v229/"
+    ],
+    "durationSeconds": 4.252471572999988
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-29T06:39:06.256Z_
+
+<details><summary>↩ Tool result · `toolu_01KXesKfujN9XymrsLHCFykQ`</summary>
+
+```text
+Web search results for query: "arXiv 2602.03677 "Instruction Anchors" authors Yu Zhang"
+
+Links: [{"title":"[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/abs/2602.03677"},{"title":"NicheAgent: LLM-Guided Zero-Shot Niche Identification for Spatial Transcriptomics","url":"https://www.biorxiv.org/content/10.64898/2025.12.09.693287.full.pdf"},{"title":"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/pdf/2602.03677"},{"title":"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/html/2602.03677"},{"title":"REInstruct: Building Instruction Data from Unlabeled Corpus","url":"https://arxiv.org/pdf/2408.10663"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Title:** Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration
+
+**Authors:** Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai Chen, Pengfei Zhang, Yang Xiang, and Min Zhang
+
+**Main Contribution:** The paper reveals that instruction tokens function as structural anchors for modality arbitration: shallow attention layers perform nonselective information transfer, routing multimodal cues to these anchors as a latent buffer; modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force. The researchers identify a sparse set of specialized attention heads that drive this arbitration.
+
+**Submission Date:** February 4, 2026
+
+The paper investigates how multimodal large language models (MLLMs) selectively utilize multimodal contexts based on user instructions through an information flow lens.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "0f2013d9-4fc2-42fd-8096-4b1183621b7a",
+  "tool_use_result": {
+    "query": "arXiv 2602.03677 \"Instruction Anchors\" authors Yu Zhang",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GT4NwXoccHMXp9kYn4d4KT",
+        "content": [
+          {
+            "title": "[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/abs/2602.03677"
+          },
+          {
+            "title": "NicheAgent: LLM-Guided Zero-Shot Niche Identification for Spatial Transcriptomics",
+            "url": "https://www.biorxiv.org/content/10.64898/2025.12.09.693287.full.pdf"
+          },
+          {
+            "title": "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/pdf/2602.03677"
+          },
+          {
+            "title": "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/html/2602.03677"
+          },
+          {
+            "title": "REInstruct: Building Instruction Data from Unlabeled Corpus",
+            "url": "https://arxiv.org/pdf/2408.10663"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Title:** Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration\n\n**Authors:** Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai Chen, Pengfei Zhang, Yang Xiang, and Min Zhang\n\n**Main Contribution:** The paper reveals that instruction tokens function as structural anchors for modality arbitration: shallow attention layers perform nonselective information transfer, routing multimodal cues to these anchors as a latent buffer; modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force. The researchers identify a sparse set of specialized attention heads that drive this arbitration.\n\n**Submission Date:** February 4, 2026\n\nThe paper investigates how multimodal large language models (MLLMs) selectively utilize multimodal contexts based on user instructions through an information flow lens."
+    ],
+    "durationSeconds": 6.802691089999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-29T06:39:06.792Z_
+
+<details><summary>↩ Tool result · `toolu_01Rp94WGAgtnEw2vv3qDuVmX`</summary>
+
+```text
+Web search results for query: "LIBERO Benchmarking Knowledge Transfer NeurIPS 2023 Liu authors full list"
+
+Links: [{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning – Sony AI","url":"https://ai.sony/publications/LIBERO-Benchmarking-Knowledge-Transfer-for-Lifelong-Robot-Learning/"},{"title":"Peter Stone: LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-liu_zhu_NeurIPS2023.html"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/8c3c666820ea055a77726d66fc7d447f-Abstract-Datasets_and_Benchmarks.html"},{"title":"LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/2023/12/10/liu-neurips23-libero/"},{"title":"NeurIPS Poster LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://neurips.cc/virtual/2023/poster/73415"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning [Quick Review]","url":"https://liner.com/review/libero-benchmarking-knowledge-transfer-for-lifelong-robot-learning"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"[2306.03310] LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://arxiv.org/abs/2306.03310"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"},{"title":"LIBERO: Benchmarking Knowledge Transfer in Lifelong ...","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.poster.pdf"}]
+
+Based on the search results, here is the full list of authors for the LIBERO paper presented at NeurIPS 2023:
+
+Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, and Peter Stone.
+
+The paper was presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023) Track on Datasets and Benchmarks in December 2023.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "e5dd3229-e932-47ea-824d-d9c2c4b715f0",
+  "tool_use_result": {
+    "query": "LIBERO Benchmarking Knowledge Transfer NeurIPS 2023 Liu authors full list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UaWg44Scmc4bWeCvdMhYoG",
+        "content": [
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning – Sony AI",
+            "url": "https://ai.sony/publications/LIBERO-Benchmarking-Knowledge-Transfer-for-Lifelong-Robot-Learning/"
+          },
+          {
+            "title": "Peter Stone: LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-liu_zhu_NeurIPS2023.html"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/8c3c666820ea055a77726d66fc7d447f-Abstract-Datasets_and_Benchmarks.html"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/2023/12/10/liu-neurips23-libero/"
+          },
+          {
+            "title": "NeurIPS Poster LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://neurips.cc/virtual/2023/poster/73415"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning [Quick Review]",
+            "url": "https://liner.com/review/libero-benchmarking-knowledge-transfer-for-lifelong-robot-learning"
+          },
+          {
+            "title": "GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub",
+            "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+          },
+          {
+            "title": "[2306.03310] LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://arxiv.org/abs/2306.03310"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer in Lifelong ...",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.poster.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here is the full list of authors for the LIBERO paper presented at NeurIPS 2023:\n\nBo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, and Peter Stone.\n\nThe paper was presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023) Track on Datasets and Benchmarks in December 2023."
+    ],
+    "durationSeconds": 4.867896638999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-29T06:39:07.842Z_
+
+<details><summary>↩ Tool result · `toolu_014ysb7JPs86dTndcyGYuNf6`</summary>
+
+```text
+Web search results for query: "site:proceedings.mlr.press "Mechanistic Interpretability" "Steering Vision-Language-Action" Haon volume 305"
+
+Links: [{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://proceedings.mlr.press/v305/haon25a.html"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233v1"},{"title":"Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/pdf/2509.00328"},{"title":"Mechanistic Interpretability for Steering Vision Language Action Models","url":"https://vla-mech-interp.github.io/"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://arxiv.org/html/2509.00328v1"},{"title":"[2509.00328] Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/abs/2509.00328"},{"title":"Paper page - Mechanistic interpretability for steering vision-language-action models","url":"https://huggingface.co/papers/2509.00328"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://openreview.net/pdf/b39be62fae34fd96c66ab4b8ff09b8eb21a1acf4.pdf"},{"title":"Mechanistic interpretability for steering vision-language-action models - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2509.00328"}]
+
+I found the paper you were looking for! Here are the results:
+
+## Paper: "Mechanistic Interpretability for Steering Vision-Language-Action Models"
+
+**Authors:** Bear Häon, K.C. Stocking, Ian Chuang, and Claire Tomlin
+
+**Publication:** Proceedings of The 9th Conference on Robot Learning, PMLR 305:2743-2762, 2025
+
+**Main Contribution:** The paper introduces the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.
+
+**Key Technical Approach:** The authors project feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection.
+
+**Official Link:** https://proceedings.mlr.press/v305/haon25a.html
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "71b816af-76d5-4da6-90c5-34df5d763801",
+  "tool_use_result": {
+    "query": "site:proceedings.mlr.press \"Mechanistic Interpretability\" \"Steering Vision-Language-Action\" Haon volume 305",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018xabKz1YbcU7gAtxhg4i3o",
+        "content": [
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://proceedings.mlr.press/v305/haon25a.html"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233v1"
+          },
+          {
+            "title": "Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/pdf/2509.00328"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision Language Action Models",
+            "url": "https://vla-mech-interp.github.io/"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2509.00328v1"
+          },
+          {
+            "title": "[2509.00328] Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/abs/2509.00328"
+          },
+          {
+            "title": "Paper page - Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://huggingface.co/papers/2509.00328"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://openreview.net/pdf/b39be62fae34fd96c66ab4b8ff09b8eb21a1acf4.pdf"
+          },
+          {
+            "title": "Mechanistic interpretability for steering vision-language-action models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2509.00328"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the results:\n\n## Paper: \"Mechanistic Interpretability for Steering Vision-Language-Action Models\"\n\n**Authors:** Bear Häon, K.C. Stocking, Ian Chuang, and Claire Tomlin\n\n**Publication:** Proceedings of The 9th Conference on Robot Learning, PMLR 305:2743-2762, 2025\n\n**Main Contribution:** The paper introduces the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.\n\n**Key Technical Approach:** The authors project feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection.\n\n**Official Link:** https://proceedings.mlr.press/v305/haon25a.html"
+    ],
+    "durationSeconds": 6.284535067000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me verify a few more details:
+
+1. For entry 2 (BayesianVLA): The arXiv paper 2601.15197 was originally submitted as "BayesianVLA" (v1), then renamed to "LangForce" in later versions. Since it was accepted to ICML 2026, the venue should be updated from arXiv to ICML 2026. The bib entry title says "BayesianVLA: Bayesian Decomposition..." which matches v1, but the current arXiv title is "LangForce: Bayesian Decomposition...". Need to flag this.
+
+
+2. Entry 5 (zhang2026instruction) has title issues—"Anchor" needs to be plural and "Mechanistic" should read "Causal" instead. 3. Entry 11 (kim2024_openvla) checks out with CoRL 2024, PMLR vol 270, pages 2679-2713 matching the bib format. 4. Entry 13 (brohan2023_rt2) appears to have an authorship discrepancy—the PMLR proceedings list it under "Zitkovich et al." rather than "Brohan et al.", which might indicate the first author attribution needs correction.
+
+For entry 13, I'm realizing the proceedings URL uses a different naming convention, but since the arXiv version clearly lists Brohan as first author, the bib entry should keep "Brohan et al." as correct. The real issue is the venue needs updating from arXiv to CoRL 2023 with PMLR vol 229.
+
+5. Entry 14 (liu2023_libero) has a title mismatch—arXiv shows "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning" while UT Austin lists "Benchmarking Knowledge Transfer in Lifelong Robot Learning", and I need to check what the NeurIPS proceedings page shows.
+
+6. For entry 16 (haon2025), PMLR vol 305, pp 2743-2762 checks out, and the author "Häon" matches the search result for Bear Häon, so that's correct.
+
+Now I'm checking entry 8 (hung2025nora) to verify the first author listed as "Hung et al."
+
+—the search shows Chia-Yu Hung among the authors, so I need to confirm if Hung is actually first. I also need to verify entry 9 (zheng2024tracevla) for its publication venue, and entry 15 (grant2026) looks correct with Grant, Zhao, and Wang as authors.
+
+For RT-2 (entry 13), the bib lists it as arXiv:2307.15818, but it was actually published at CoRL 2023 with a PMLR volume, so that needs updating. I'm also checking entry 4 (mitra2025mechanistic) to see if it has a published venue beyond the OpenReview submission.
+
+Now I'm looking into TraceVLA's venue information as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "bed902bf-e4e7-43c1-9883-b7de60e0ef9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fuif7TZ1eiqSegTRQEP1rM`</summary>
+
+```json
+{
+  "query": "TraceVLA Zheng 2024 CoRL 2025 conference acceptance published venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "3ab6a897-a5a1-4a36-a40b-7b6ab39628c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013ABTRqBURPZwYWc9YfHYgr`</summary>
+
+```json
+{
+  "query": "arXiv 2511.22697 \"Mechanistic Finetuning\" Mitra CoRL 2025 acceptance venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "eec90011-9684-45d9-a1c4-94478cd215a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NdonpFpJYU8tSAi6FtMUWs`</summary>
+
+```json
+{
+  "query": "\"Actions as Language\" Hancock 2025 CoRL venue acceptance published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "07950089-20d3-4972-89fc-da6226edd99c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JekDR8gSMTh4otKSVjzopG`</summary>
+
+```json
+{
+  "query": "arXiv 2509.11417 Grover \"Enhancing Generalization\" VLA venue CoRL acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "1778a3f8-0a76-4511-8d21-4563028071e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RdCmzqTvXCjTZqWhLzCDom`</summary>
+
+```json
+{
+  "query": "NORA VLA Hung 2025 arXiv 2504.19854 first author venue acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "2703edc7-a275-497d-b800-7b25b6cb2a94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KXULxU9S4zUbnqvBYXx8tx`</summary>
+
+```json
+{
+  "query": "\"Don't Blind Your VLA\" Kachaev 2025 CoRL venue acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "1d880d62-a65c-4ff2-9ca9-251c6a7b4cbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018y3kyjQQ2YXgGAv9kxpUQm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 778,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 42238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4097
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-29T06:39:37.125Z_
+
+<details><summary>↩ Tool result · `toolu_013ABTRqBURPZwYWc9YfHYgr`</summary>
+
+```text
+Web search results for query: "arXiv 2511.22697 "Mechanistic Finetuning" Mitra CoRL 2025 acceptance venue"
+
+Links: [{"title":"[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/abs/2511.22697"},{"title":"Computer Vision and Pattern Recognition 2025","url":"https://arxiv.org/list/cs.CV/2025?skip=34550&show=50"},{"title":"A Simple \"Motivation\" Can Enhance Reinforcement Finetuning of Large Reasoning Models","url":"https://arxiv.org/pdf/2506.18485"},{"title":"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/pdf/2511.22697"},{"title":"Mechanistically analyzing the effects of fine-tuning on procedurally   defined tasks","url":"https://arxiv.org/pdf/2311.12786"}]
+
+Based on the search results, I found information about arXiv paper 2511.22697:
+
+The paper is titled "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations" by Chancharik Mitra and 9 other authors, and was submitted on November 27, 2025.
+
+The paper introduces "Robotic Steering," a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.
+
+However, the search results do not contain information about the paper's acceptance to CoRL 2025 or its final venue status. The arXiv listing shows the paper was submitted on November 27, 2025, but does not indicate whether it has been accepted to any conference. You may want to check the CoRL 2025 program directly or search for more recent updates about the paper's acceptance status.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "c96b5a54-08c4-4713-b368-f72901688c06",
+  "tool_use_result": {
+    "query": "arXiv 2511.22697 \"Mechanistic Finetuning\" Mitra CoRL 2025 acceptance venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LgcfiJbSPdS1Lbq34MmUBK",
+        "content": [
+          {
+            "title": "[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/abs/2511.22697"
+          },
+          {
+            "title": "Computer Vision and Pattern Recognition 2025",
+            "url": "https://arxiv.org/list/cs.CV/2025?skip=34550&show=50"
+          },
+          {
+            "title": "A Simple \"Motivation\" Can Enhance Reinforcement Finetuning of Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2506.18485"
+          },
+          {
+            "title": "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/pdf/2511.22697"
+          },
+          {
+            "title": "Mechanistically analyzing the effects of fine-tuning on procedurally   defined tasks",
+            "url": "https://arxiv.org/pdf/2311.12786"
+          }
+        ]
+      },
+      "Based on the search results, I found information about arXiv paper 2511.22697:\n\nThe paper is titled \"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations\" by Chancharik Mitra and 9 other authors, and was submitted on November 27, 2025.\n\nThe paper introduces \"Robotic Steering,\" a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.\n\nHowever, the search results do not contain information about the paper's acceptance to CoRL 2025 or its final venue status. The arXiv listing shows the paper was submitted on November 27, 2025, but does not indicate whether it has been accepted to any conference. You may want to check the CoRL 2025 program directly or search for more recent updates about the paper's acceptance status."
+    ],
+    "durationSeconds": 4.616092316000009
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-29T06:39:37.446Z_
+
+<details><summary>↩ Tool result · `toolu_01NdonpFpJYU8tSAi6FtMUWs`</summary>
+
+```text
+Web search results for query: ""Actions as Language" Hancock 2025 CoRL venue acceptance published"
+
+Links: [{"title":"CoRL.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/CoRL.2025"},{"title":"CoRL 2025 - Venue Information","url":"https://www.corl.org/attending/venue-information"},{"title":"CoRL.2025 - Oral | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/CoRL.2025?group=Oral"},{"title":"CoRL 2025","url":"https://2025.corl.org/"},{"title":"CoRL 2025 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FConference"},{"title":"The Natural Language of Actions","url":"https://arxiv.org/pdf/1902.01119"},{"title":"RT-H: Action Hierarchies Using Language","url":"https://arxiv.org/pdf/2403.01823"},{"title":"Language-based Decisions","url":"https://arxiv.org/pdf/2106.11494"},{"title":"Processing Natural Language About Ongoing Actions","url":"https://arxiv.org/pdf/1607.06875"}]
+
+Based on the search results, I found references to CoRL 2025 accepting papers, but the specific paper "Actions as Language" by Hancock doesn't appear in these search results. The results show that CoRL 2025 has concluded, and there are references to accepted papers at the venue, but I wasn't able to locate specific information about a paper titled "Actions as Language" by Hancock at CoRL 2025.
+
+The search results include other papers with related titles about actions and language (such as "The Natural Language of Actions" and "Action Hierarchies Using Language"), but these don't match the specific paper you're looking for.
+
+To find more detailed information about this specific paper, you might want to:
+- Check the OpenReview page directly at openreview.net/group?id=robot-learning.org/CoRL/2025/Conference
+- Search arXiv or Google Scholar for "Actions as Language Hancock"
+- Visit papers.cool for the complete CoRL 2025 accepted papers list
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "f3001635-84c4-43d7-b482-0bc724dd66a4",
+  "tool_use_result": {
+    "query": "\"Actions as Language\" Hancock 2025 CoRL venue acceptance published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DPYQh5kbXdLs6DgEgSXaD2",
+        "content": [
+          {
+            "title": "CoRL.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/CoRL.2025"
+          },
+          {
+            "title": "CoRL 2025 - Venue Information",
+            "url": "https://www.corl.org/attending/venue-information"
+          },
+          {
+            "title": "CoRL.2025 - Oral | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/CoRL.2025?group=Oral"
+          },
+          {
+            "title": "CoRL 2025",
+            "url": "https://2025.corl.org/"
+          },
+          {
+            "title": "CoRL 2025 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FConference"
+          },
+          {
+            "title": "The Natural Language of Actions",
+            "url": "https://arxiv.org/pdf/1902.01119"
+          },
+          {
+            "title": "RT-H: Action Hierarchies Using Language",
+            "url": "https://arxiv.org/pdf/2403.01823"
+          },
+          {
+            "title": "Language-based Decisions",
+            "url": "https://arxiv.org/pdf/2106.11494"
+          },
+          {
+            "title": "Processing Natural Language About Ongoing Actions",
+            "url": "https://arxiv.org/pdf/1607.06875"
+          }
+        ]
+      },
+      "Based on the search results, I found references to CoRL 2025 accepting papers, but the specific paper \"Actions as Language\" by Hancock doesn't appear in these search results. The results show that CoRL 2025 has concluded, and there are references to accepted papers at the venue, but I wasn't able to locate specific information about a paper titled \"Actions as Language\" by Hancock at CoRL 2025.\n\nThe search results include other papers with related titles about actions and language (such as \"The Natural Language of Actions\" and \"Action Hierarchies Using Language\"), but these don't match the specific paper you're looking for.\n\nTo find more detailed information about this specific paper, you might want to:\n- Check the OpenReview page directly at openreview.net/group?id=robot-learning.org/CoRL/2025/Conference\n- Search arXiv or Google Scholar for \"Actions as Language Hancock\"\n- Visit papers.cool for the complete CoRL 2025 accepted papers list"
+    ],
+    "durationSeconds": 4.936864440999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-29T06:39:38.869Z_
+
+<details><summary>↩ Tool result · `toolu_01Fuif7TZ1eiqSegTRQEP1rM`</summary>
+
+```text
+Web search results for query: "TraceVLA Zheng 2024 CoRL 2025 conference acceptance published venue"
+
+Links: [{"title":"Don't Overthink It: Inter-Rollout Action Agreement as a Free Adaptive-Compute Signal for LLM Agents","url":"https://arxiv.org/pdf/2604.08369"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/pdf/2412.10345"},{"title":"tracevla: visual trace prompting enhances spatial-temporal ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/pdf/2509.25718"},{"title":"CoRL 2024","url":"https://2024.corl.org/"}]
+
+Based on the search results, I found information about TraceVLA by Zheng and colleagues:
+
+TraceVLA is a visual trace prompting approach for generalist robotic policies, authored by Ruijie Zheng and colleagues from University of Maryland, College Park and Microsoft Research. 
+
+The paper introduces visual trace prompting to enhance VLA models' spatial-temporal awareness for action prediction, with a new TraceVLA model developed by finetuning OpenVLA on a dataset of 150K robot manipulation trajectories.
+
+Regarding the publication venue: The paper appears to have been published at ICLR 2025, as evidenced by the PDF from the ICLR proceedings. The work was also made available on arXiv (arxiv.org/pdf/2412.10345).
+
+Note: While the search results reference CoRL 2024 as a robotics conference, the TraceVLA paper itself appears to have been accepted at ICLR 2025 based on the proceedings document found in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "09af3f61-7428-42ce-af5d-aa763fedf159",
+  "tool_use_result": {
+    "query": "TraceVLA Zheng 2024 CoRL 2025 conference acceptance published venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AUFfDFSHLNhfGZzGtb1LLu",
+        "content": [
+          {
+            "title": "Don't Overthink It: Inter-Rollout Action Agreement as a Free Adaptive-Compute Signal for LLM Agents",
+            "url": "https://arxiv.org/pdf/2604.08369"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/pdf/2412.10345"
+          },
+          {
+            "title": "tracevla: visual trace prompting enhances spatial-temporal ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"
+          },
+          {
+            "title": "VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/pdf/2509.25718"
+          },
+          {
+            "title": "CoRL 2024",
+            "url": "https://2024.corl.org/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about TraceVLA by Zheng and colleagues:\n\nTraceVLA is a visual trace prompting approach for generalist robotic policies, authored by Ruijie Zheng and colleagues from University of Maryland, College Park and Microsoft Research. \n\nThe paper introduces visual trace prompting to enhance VLA models' spatial-temporal awareness for action prediction, with a new TraceVLA model developed by finetuning OpenVLA on a dataset of 150K robot manipulation trajectories.\n\nRegarding the publication venue: The paper appears to have been published at ICLR 2025, as evidenced by the PDF from the ICLR proceedings. The work was also made available on arXiv (arxiv.org/pdf/2412.10345).\n\nNote: While the search results reference CoRL 2024 as a robotics conference, the TraceVLA paper itself appears to have been accepted at ICLR 2025 based on the proceedings document found in the search results."
+    ],
+    "durationSeconds": 6.369544536000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-29T06:39:39.480Z_
+
+<details><summary>↩ Tool result · `toolu_01RdCmzqTvXCjTZqWhLzCDom`</summary>
+
+```text
+Web search results for query: "NORA VLA Hung 2025 arXiv 2504.19854 first author venue acceptance"
+
+Links: [{"title":"[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/abs/2504.19854"},{"title":"[PDF] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/NORA:-A-Small-Open-Sourced-Generalist-Vision-Action-Hung-Sun/0801ed93c26dcb72e2bddf756f971e10357942a2"},{"title":"GitHub - declare-lab/nora: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub","url":"https://github.com/declare-lab/nora"},{"title":"(PDF) NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://www.researchgate.net/publication/391247234_NORA_A_Small_Open-Sourced_Generalist_Vision_Language_Action_Model_for_Embodied_Tasks"},{"title":"GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub","url":"https://github.com/ehaller00/NORA-VLA"},{"title":"Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://huggingface.co/papers/2504.19854"},{"title":"declare-lab/nora · Hugging Face","url":"https://huggingface.co/declare-lab/nora"},{"title":"Computer Science Apr 2025","url":"https://arxiv.org/list/cs/2025-04?skip=9350&show=2000"},{"title":"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks","url":"https://arxiv.org/html/2504.19854v1"}]
+
+Based on the search results, here's what I found about the paper:
+
+**Paper Details:**
+- Title: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks
+- First Author: Chia-Yu Hung
+- Submitted on 28 Apr 2025
+- Subject Areas: Robotics (cs.RO); Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)
+
+**About the Paper:**
+NORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance, adopting the Qwen-2.5-VL-3B multimodal model as its backbone.
+
+**Regarding Venue Acceptance:**
+The search results indicate this is currently a preprint on arXiv (submitted April 28, 2025). There is no information in the search results about acceptance to a conference or journal venue. arXiv preprints are not peer-reviewed publications, so the paper has not yet been formally accepted for publication at a traditional venue based on the available information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4dec058b-df59-4691-9e68-433517c1b4a2",
+  "tool_use_result": {
+    "query": "NORA VLA Hung 2025 arXiv 2504.19854 first author venue acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FC9ySBBb97NQwAKYXFXqxN",
+        "content": [
+          {
+            "title": "[2504.19854] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/abs/2504.19854"
+          },
+          {
+            "title": "[PDF] NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/NORA:-A-Small-Open-Sourced-Generalist-Vision-Action-Hung-Sun/0801ed93c26dcb72e2bddf756f971e10357942a2"
+          },
+          {
+            "title": "GitHub - declare-lab/nora: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub",
+            "url": "https://github.com/declare-lab/nora"
+          },
+          {
+            "title": "(PDF) NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://www.researchgate.net/publication/391247234_NORA_A_Small_Open-Sourced_Generalist_Vision_Language_Action_Model_for_Embodied_Tasks"
+          },
+          {
+            "title": "GitHub - ehaller00/NORA-VLA: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks · GitHub",
+            "url": "https://github.com/ehaller00/NORA-VLA"
+          },
+          {
+            "title": "Paper page - NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://huggingface.co/papers/2504.19854"
+          },
+          {
+            "title": "declare-lab/nora · Hugging Face",
+            "url": "https://huggingface.co/declare-lab/nora"
+          },
+          {
+            "title": "Computer Science Apr 2025",
+            "url": "https://arxiv.org/list/cs/2025-04?skip=9350&show=2000"
+          },
+          {
+            "title": "NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks",
+            "url": "https://arxiv.org/html/2504.19854v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n**Paper Details:**\n- Title: NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks\n- First Author: Chia-Yu Hung\n- Submitted on 28 Apr 2025\n- Subject Areas: Robotics (cs.RO); Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV)\n\n**About the Paper:**\nNORA is a 3B-parameter model designed to reduce computational overhead while maintaining strong task performance, adopting the Qwen-2.5-VL-3B multimodal model as its backbone.\n\n**Regarding Venue Acceptance:**\nThe search results indicate this is currently a preprint on arXiv (submitted April 28, 2025). There is no information in the search results about acceptance to a conference or journal venue. arXiv preprints are not peer-reviewed publications, so the paper has not yet been formally accepted for publication at a traditional venue based on the available information."
+    ],
+    "durationSeconds": 5.2988722279999925
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-29T06:39:39.822Z_
+
+<details><summary>↩ Tool result · `toolu_01KXULxU9S4zUbnqvBYXx8tx`</summary>
+
+```text
+Web search results for query: ""Don't Blind Your VLA" Kachaev 2025 CoRL venue acceptance"
+
+Links: [{"title":"GitHub - CognitiveAISystems/BlindVLA: Official implementation of Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization. https://blind-vla-paper.github.io","url":"https://github.com/CognitiveAISystems/BlindVLA"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://blind-vla-paper.github.io/"},{"title":"[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616v1"},{"title":"[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"}]
+
+Based on the search results, I found information about "Don't Blind Your VLA" by Kachaev and colleagues. The paper is titled "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization" by Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, and Aleksandr I. Panov, published in 2025 with arXiv ID 2510.25616.
+
+However, the search results do not contain specific information about CoRL venue acceptance. The paper appears to be available on arXiv, but the results don't indicate whether it has been accepted to CoRL (Conference on Robot Learning) or provide details about its acceptance status. To get information about CoRL acceptance, you may want to check the CoRL conference website directly or look for more recent announcements from the authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "248b4cfc-4b45-439b-8271-bb4778caaba1",
+  "tool_use_result": {
+    "query": "\"Don't Blind Your VLA\" Kachaev 2025 CoRL venue acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DU75AurjqEVNFHpXU8a2S1",
+        "content": [
+          {
+            "title": "GitHub - CognitiveAISystems/BlindVLA: Official implementation of Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization. https://blind-vla-paper.github.io",
+            "url": "https://github.com/CognitiveAISystems/BlindVLA"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://blind-vla-paper.github.io/"
+          },
+          {
+            "title": "[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616v1"
+          },
+          {
+            "title": "[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          }
+        ]
+      },
+      "Based on the search results, I found information about \"Don't Blind Your VLA\" by Kachaev and colleagues. The paper is titled \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\" by Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, and Aleksandr I. Panov, published in 2025 with arXiv ID 2510.25616.\n\nHowever, the search results do not contain specific information about CoRL venue acceptance. The paper appears to be available on arXiv, but the results don't indicate whether it has been accepted to CoRL (Conference on Robot Learning) or provide details about its acceptance status. To get information about CoRL acceptance, you may want to check the CoRL conference website directly or look for more recent announcements from the authors."
+    ],
+    "durationSeconds": 4.810307228000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-29T06:39:40.142Z_
+
+<details><summary>↩ Tool result · `toolu_01JekDR8gSMTh4otKSVjzopG`</summary>
+
+```text
+Web search results for query: "arXiv 2509.11417 Grover "Enhancing Generalization" VLA venue CoRL acceptance"
+
+Links: [{"title":"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/abs/2509.11417"},{"title":"Enhancing Generalization in Vision-Language-Action Models","url":"https://gen-vla.github.io/"},{"title":"Enhancing Generalization in Vision–Language–Action Models by","url":"https://arxiv.org/pdf/2509.11417"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417"},{"title":"[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/html/2603.16044"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/pdf/2603.16044"},{"title":"ℰ₀: Enhancing Generalization and Fine-Grained Control in VLA Models via Tweedie Discrete Diffusion","url":"https://arxiv.org/html/2511.21542"}]
+
+Based on the search results, I found information about the arXiv paper 2509.11417:
+
+The paper is titled "Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations" by authors including Shresth Grover and submitted on September 14, 2025.
+
+The authors are from UC San Diego and Hillbot. The paper addresses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage rich pretrained representations to build generalist robots across diverse tasks and environments.
+
+The paper notes that direct fine-tuning on robot data often disrupts representations and limits generalization, and presents a framework that better preserves pretrained features while adapting them for robot manipulation.
+
+However, the search results do not contain information about whether this paper was accepted to CoRL (Conference on Robot Learning) or details about its venue status.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "a8fc1b23-d0ff-41be-a209-6ffaf624eebb",
+  "tool_use_result": {
+    "query": "arXiv 2509.11417 Grover \"Enhancing Generalization\" VLA venue CoRL acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017TmoERrAQqcb21KkDeG2MF",
+        "content": [
+          {
+            "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/abs/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision-Language-Action Models",
+            "url": "https://gen-vla.github.io/"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by",
+            "url": "https://arxiv.org/pdf/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417"
+          },
+          {
+            "title": "[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"
+          },
+          {
+            "title": "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/html/2603.16044"
+          },
+          {
+            "title": "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/pdf/2603.16044"
+          },
+          {
+            "title": "ℰ₀: Enhancing Generalization and Fine-Grained Control in VLA Models via Tweedie Discrete Diffusion",
+            "url": "https://arxiv.org/html/2511.21542"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the arXiv paper 2509.11417:\n\nThe paper is titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" by authors including Shresth Grover and submitted on September 14, 2025.\n\nThe authors are from UC San Diego and Hillbot. The paper addresses how vision-language-action (VLA) models finetuned from vision-language models (VLMs) can leverage rich pretrained representations to build generalist robots across diverse tasks and environments.\n\nThe paper notes that direct fine-tuning on robot data often disrupts representations and limits generalization, and presents a framework that better preserves pretrained features while adapting them for robot manipulation.\n\nHowever, the search results do not contain information about whether this paper was accepted to CoRL (Conference on Robot Learning) or details about its venue status."
+    ],
+    "durationSeconds": 6.855496230000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check a few more details:
+
+1. For TraceVLA (entry 9): It was published at ICLR 2025, not just arXiv 2024. The bib entry lists it as "Zheng et al. 2024" with arXiv. Need to flag venue update.
+
+2. For RT-2 (entry 13): Published at CoRL 2023 (PMLR vol 229). The bib lists it as arXiv. Need to flag venue update.
+
+3. 
+
+For BayesianVLA (entry 2): Published at ICML 2026, and the paper was renamed from "BayesianVLA" to "LangForce" on arXiv, so the bib may need updating. For Phi-3 (entry 10), I should verify whether it has a venue publication. Let me do a final pass on the remaining entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "87d949e0-da83-43d0-92a7-cc6db2cba85f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016spaRNutgoCqKhWpDYBWBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1393,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 46335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NEfYvQVebE6Ykj6g8c1tX7`</summary>
+
+```json
+{
+  "query": "Phi-3 technical report Abdin 2024 published venue journal conference acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "4711bb5f-b3bb-42f2-8cb1-0be8e6f09c40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016spaRNutgoCqKhWpDYBWBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1393,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 46335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PWzm66bpV4Bxqvb3Bym5qT`</summary>
+
+```json
+{
+  "query": "TraceVLA ICLR 2025 Zheng acceptance proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "579c4277-d0d7-41bb-9615-67cbb4ec4072",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016spaRNutgoCqKhWpDYBWBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1393,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 46335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xof7rbePwU8Kj4okUGm7RC`</summary>
+
+```json
+{
+  "query": "\"Actions as Language\" Hancock VLM2VLA OpenReview CoRL 2025 acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "0a1dd565-8642-473f-872f-99d524f94d3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016spaRNutgoCqKhWpDYBWBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1393,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 46335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-29T06:39:54.746Z_
+
+<details><summary>↩ Tool result · `toolu_01NEfYvQVebE6Ykj6g8c1tX7`</summary>
+
+```text
+Web search results for query: "Phi-3 technical report Abdin 2024 published venue journal conference acceptance"
+
+Links: [{"title":"[2404.14219v3] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://arxiv.org/abs/2404.14219v3"},{"title":"[2404.14219] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://arxiv.org/abs/2404.14219"},{"title":"dblp: Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone.","url":"https://dblp.org/rec/journals/corr/abs-2404-14219.html"},{"title":"[PDF] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Phi-3-Technical-Report:-A-Highly-Capable-Language-Abdin-Jacobs/abdceff7d7983cdede9a5aabe6a476d4c72e41a3"},{"title":"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone.","url":"https://bibbase.org/network/publication/abdin-jacobs-awan-aneja-awadallah-awadalla-bach-bahree-etal-phi3technicalreportahighlycapablelanguagemodellocallyonyourphone-2024"},{"title":"Paper page - Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone","url":"https://huggingface.co/papers/2404.14219"},{"title":"(PDF) Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone Microsoft","url":"https://www.researchgate.net/publication/385653886_Phi-3_Technical_Report_A_Highly_Capable_Language_Model_Locally_on_Your_Phone_Microsoft"}]
+
+Based on the search results, the Phi-3 Technical Report by Abdin et al. was published as a preprint in CoRR (Cornell University's computing research archive) in 2024. Specifically, the paper was first submitted on April 22, 2024.
+
+The paper is not published in a traditional peer-reviewed journal or accepted at a conference—it remains a preprint on arXiv. The preprint is available through CoRR with the identifier arXiv.2404.14219. The paper describes phi-3-mini and other models in the Phi-3 series developed by Microsoft and has become widely cited in the research community, but it has not undergone formal journal or conference peer review and acceptance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "ebf01787-02e2-47a6-8869-08a4ffa4441d",
+  "tool_use_result": {
+    "query": "Phi-3 technical report Abdin 2024 published venue journal conference acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RFb1TYUoKF4m4zRrkxn5Lj",
+        "content": [
+          {
+            "title": "[2404.14219v3] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://arxiv.org/abs/2404.14219v3"
+          },
+          {
+            "title": "[2404.14219] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://arxiv.org/abs/2404.14219"
+          },
+          {
+            "title": "dblp: Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2404-14219.html"
+          },
+          {
+            "title": "[PDF] Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Phi-3-Technical-Report:-A-Highly-Capable-Language-Abdin-Jacobs/abdceff7d7983cdede9a5aabe6a476d4c72e41a3"
+          },
+          {
+            "title": "Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone.",
+            "url": "https://bibbase.org/network/publication/abdin-jacobs-awan-aneja-awadallah-awadalla-bach-bahree-etal-phi3technicalreportahighlycapablelanguagemodellocallyonyourphone-2024"
+          },
+          {
+            "title": "Paper page - Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone",
+            "url": "https://huggingface.co/papers/2404.14219"
+          },
+          {
+            "title": "(PDF) Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone Microsoft",
+            "url": "https://www.researchgate.net/publication/385653886_Phi-3_Technical_Report_A_Highly_Capable_Language_Model_Locally_on_Your_Phone_Microsoft"
+          }
+        ]
+      },
+      "Based on the search results, the Phi-3 Technical Report by Abdin et al. was published as a preprint in CoRR (Cornell University's computing research archive) in 2024. Specifically, the paper was first submitted on April 22, 2024.\n\nThe paper is not published in a traditional peer-reviewed journal or accepted at a conference—it remains a preprint on arXiv. The preprint is available through CoRR with the identifier arXiv.2404.14219. The paper describes phi-3-mini and other models in the Phi-3 series developed by Microsoft and has become widely cited in the research community, but it has not undergone formal journal or conference peer review and acceptance."
+    ],
+    "durationSeconds": 6.078755567999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-29T06:39:54.990Z_
+
+<details><summary>↩ Tool result · `toolu_01Xof7rbePwU8Kj4okUGm7RC`</summary>
+
+```text
+Web search results for query: ""Actions as Language" Hancock VLM2VLA OpenReview CoRL 2025 acceptance"
+
+Links: [{"title":"[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/abs/2509.22195"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.22195"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250922195H/abstract"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview","url":"https://openreview.net/forum?id=sFO9d6XSlf"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://vlm2vla.github.io/"},{"title":"ACTIONS AS LANGUAGE: FINE-TUNING VLMS INTO VLAS ...","url":"https://openreview.net/pdf?id=sFO9d6XSlf"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"[PDF] ChatVLA-2: Vision-Language-Action Model with Open-World Embodied Reasoning from Pretrained Knowledge | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ChatVLA-2:-Vision-Language-Action-Model-with-from-Zhou-Zhu/2865fbe7713a32717d264c65234bf3ec904c76a7"}]
+
+I found the paper! "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting" is available on OpenReview and presents VLM2VLA, a framework that fine-tunes Vision-Language Models into Vision-Language-Action models while preserving the VLM's core capabilities through extensive VQA studies and over 800 real-world robotics experiments.
+
+The paper is authored by Asher J. Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, and Anirudha Majumdar from Princeton University. The core innovation is representing low-level actions with natural language to resolve the distribution mismatch between VLM pretraining and robotics fine-tuning data.
+
+The paper is hosted on OpenReview at: https://openreview.net/forum?id=sFO9d6XSlf
+
+However, I should note that while the paper appears on OpenReview, I didn't find specific confirmation of a CoRL 2025 conference acceptance in these search results. The paper was posted to arXiv on September 26, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "6f129e18-50ad-421b-ae89-dc2eaad81125",
+  "tool_use_result": {
+    "query": "\"Actions as Language\" Hancock VLM2VLA OpenReview CoRL 2025 acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bmnx5cFDPsibdbkVG2wWww",
+        "content": [
+          {
+            "title": "[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/abs/2509.22195"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.22195"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250922195H/abstract"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview",
+            "url": "https://openreview.net/forum?id=sFO9d6XSlf"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://vlm2vla.github.io/"
+          },
+          {
+            "title": "ACTIONS AS LANGUAGE: FINE-TUNING VLMS INTO VLAS ...",
+            "url": "https://openreview.net/pdf?id=sFO9d6XSlf"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "[PDF] ChatVLA-2: Vision-Language-Action Model with Open-World Embodied Reasoning from Pretrained Knowledge | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ChatVLA-2:-Vision-Language-Action-Model-with-from-Zhou-Zhu/2865fbe7713a32717d264c65234bf3ec904c76a7"
+          }
+        ]
+      },
+      "I found the paper! \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\" is available on OpenReview and presents VLM2VLA, a framework that fine-tunes Vision-Language Models into Vision-Language-Action models while preserving the VLM's core capabilities through extensive VQA studies and over 800 real-world robotics experiments.\n\nThe paper is authored by Asher J. Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, and Anirudha Majumdar from Princeton University. The core innovation is representing low-level actions with natural language to resolve the distribution mismatch between VLM pretraining and robotics fine-tuning data.\n\nThe paper is hosted on OpenReview at: https://openreview.net/forum?id=sFO9d6XSlf\n\nHowever, I should note that while the paper appears on OpenReview, I didn't find specific confirmation of a CoRL 2025 conference acceptance in these search results. The paper was posted to arXiv on September 26, 2025."
+    ],
+    "durationSeconds": 5.748265882000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-29T06:39:56.977Z_
+
+<details><summary>↩ Tool result · `toolu_01PWzm66bpV4Bxqvb3Bym5qT`</summary>
+
+```text
+Web search results for query: "TraceVLA ICLR 2025 Zheng acceptance proceedings"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"},{"title":"ICLR TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://iclr.cc/virtual/2025/32378"},{"title":"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies","url":"https://arxiv.org/pdf/2412.10345"},{"title":"Publication Type: Conference proceedings","url":"https://furong-huang.com/pub-type/proceedings/"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"ICLR 2025 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2025%2FConference"}]
+
+Great! I found the paper. Here are the results for your search:
+
+TraceVLA has been published as a conference paper at ICLR 2025. The paper is authored by Ruijie Zheng, Yongyuan Liang, Shuaiyi Huang, Jianfeng Gao, Hal Daumé III, Andrey Kolobov, Furong Huang, and Jianwei Yang from the University of Maryland, College Park and Microsoft Research.
+
+The paper introduces visual trace prompting, a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories. The TraceVLA model was developed by finetuning OpenVLA on a collected dataset of 150K robot manipulation trajectories, and evaluations demonstrate state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks.
+
+The paper is available in the ICLR 2025 proceedings at: https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "a9d7a9f6-563d-4e2d-9bce-9e2e2c06cf4e",
+  "tool_use_result": {
+    "query": "TraceVLA ICLR 2025 Zheng acceptance proceedings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TwDVRHZyUpa4YCjJjQ86wk",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://iclr.cc/virtual/2025/32378"
+          },
+          {
+            "title": "TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies",
+            "url": "https://arxiv.org/pdf/2412.10345"
+          },
+          {
+            "title": "Publication Type: Conference proceedings",
+            "url": "https://furong-huang.com/pub-type/proceedings/"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "ICLR 2025 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2025%2FConference"
+          }
+        ]
+      },
+      "Great! I found the paper. Here are the results for your search:\n\nTraceVLA has been published as a conference paper at ICLR 2025. The paper is authored by Ruijie Zheng, Yongyuan Liang, Shuaiyi Huang, Jianfeng Gao, Hal Daumé III, Andrey Kolobov, Furong Huang, and Jianwei Yang from the University of Maryland, College Park and Microsoft Research.\n\nThe paper introduces visual trace prompting, a simple yet effective approach to facilitate VLA models' spatial-temporal awareness for action prediction by encoding state-action trajectories. The TraceVLA model was developed by finetuning OpenVLA on a collected dataset of 150K robot manipulation trajectories, and evaluations demonstrate state-of-the-art performance, outperforming OpenVLA by 10% on SimplerEnv and 3.5x on real-robot tasks.\n\nThe paper is available in the ICLR 2025 proceedings at: https://proceedings.iclr.cc/paper_files/paper/2025/file/8667f264f88c7938a73a53ab01eb1327-Paper-Conference.pdf"
+    ],
+    "durationSeconds": 8.147889291
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile the audit. Let me also verify a few remaining details about the LIBERO authors and also check the Phi-3 arXiv entry type.
+
+Let me compile all the findings now.
+
+For entry 2 (BayesianVLA): 
+- The paper was renamed from "BayesianVLA" (v1) to "LangForce" in later versions. 
+- The current arXiv title is "LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries"
+- The paper was accepted to ICML 2026
+
+
+- Authors are Shijie Lian et al., so the citation format is correct
+- The bibliography entry uses the original v1 title "BayesianVLA" but needs updating to reflect the final published title "LangForce" and the venue should change from arXiv to ICML 2026
+
+For entry 5 (zhang2026instruction), I'm finding discrepancies between the actual paper title "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" and the bibliography entry which has "Instruction Anchor" (singular) and uses "Mechanistic" instead of "Causal" in the subtitle.
+
+Entry 9 (zheng2024tracevla) was published at ICLR 2025, so the venue needs updating from arXiv, though the 2024 year in the bib reflects the original submission date rather than publication year.
+
+For entry 13 (brohan2023_rt2), this was published at CoRL 2023 through PMLR volume 229, requiring a venue update from arXiv to the proper conference proceedings.
+
+Entry 14 (liu2023_libero) appeared at NeurIPS 2023 with authors Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, and Peter Stone.
+
+Now I'm double-checking entry 16 (haon2025) — the PMLR details confirm it's CoRL 2025 volume 305, pages 2743-2762, with authors Bear Häon, K.C. Stocking, Ian Chuang, and Claire Tomlin, and the title is about mechanistic interpretability for steering vision-language models.
+
+Time to compile the full audit report, starting with entry 1.
+
+Entry 1 checks out: Hancock et al.'s paper on fine-tuning vision-language models into vision-language-action models is from September 2025 on arXiv with ID 2509.22195. Entry 2 has a discrepancy though — the bibliography lists "BayesianVLA" as the title, but the current arXiv version is titled "LangForce," suggesting the title changed between versions. Continuing with entry 4, the title completes as "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations" by Chancharik Mitra and colleagues from 2025, posted to arXiv with ID 2511.22697 but no confirmed conference acceptance. Entry 5 has title errors—"Anchor" needs to be plural and "Mechanistic" should be "Causal"—so the correct version reads "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" by Yu Zhang et al., also from 2026 as an arXiv preprint.
+
+Now checking entries 6 and 7: Liu et al.'s 2026 work on vision-language-action models' resistance to forgetting in continual learning checks out with arXiv ID 2603.03818, and Shresth Grover's 2025 paper on enhancing generalization by preserving pretrained representations is verified with arXiv ID 2509.11.
+
+Moving to entries 8 and 9: Chia-Yu Hung's 2025 NORA model for embodied tasks has arXiv ID 2504.19854, and Ruijie Zheng's TraceVLA paper on visual trace prompting for robotic policies was posted to arXiv in 2024 but officially published at ICLR 2025.
+
+Now I need to update the venue information for TraceVLA and continue with entries 10 and 11. The Phi-3 technical report by Marah Abdin is a 2024 arXiv preprint with ID 2404.14219, and OpenVLA by Moo Jin Kim and colleagues appeared at CoRL 2024 in PMLR volume 270.
+
+For Prismatic VLMs, all the metadata checks out—it's the 2024 ICML paper by Siddharth Karamcheti in PMLR volume 235. I'm now looking at RT-2 by Anthony Brohan from 2023, but the venue information appears to be incomplete. Continuing through the bibliography entries—Entry 16 has the mechanistic interpretability paper by Häon et al. from CoRL 2025, Entry 17 is the LangGap paper by Hou and Zhao from 2026, and Entry 18 appears to be starting with the LIBERO-Plus paper from 2025.
+
+For Entry 18, I'm verifying the author details—the bibliography lists "Fei et al." and I can see Senyu Fei mentioned in the search results, which matches up. The title, year, and arXiv ID all check out. Now I'm ready to compile the complete bibliography.
+
+For Entry 2, there's a discrepancy with the title—the original bibliography says "BayesianVLA" but the current arXiv version and the ICML 2026 camera-ready version use "LangForce" as the title. Since it's been accepted to ICML 2026 under that name, I should update the bibliography to reflect "LangForce" instead. Entry 9 also needs its year updated.
+
+Entry 13 needs the venue changed from arXiv to CoRL 2023 with the PMLR volume number. Now I'll compile the full report with these corrections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "c064547a-c606-494e-97a0-3888c51daf77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4daN5JFanyqGkCFcqPiKC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 797,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 50807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+All 18 entries verified. Now compiling the audit report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "0a710b55-880f-473b-b748-97a657c74dbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4daN5JFanyqGkCFcqPiKC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 797,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 50807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01WxCCJ4Lyrp3nY4TnmqoZmv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/citation_audit_worker_A.md",
+  "content": "# Citation Audit — Group A (18 entries)\n\nAudited: 2026-05-29\n\n---\n\n## [1] hancock2025actions — ✓\n\n- **Title:** correct — \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\"\n- **Authors:** correct — Asher J. Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, Anirudha Majumdar\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (OpenReview submission found but no confirmed conference acceptance)\n- **ArXiv ID:** correct — 2509.22195\n- **Notes:** none\n\n---\n\n## [2] lian2026bayesianvla — ✗ TITLE OUTDATED + VENUE NEEDS UPDATE\n\n- **Title:** wrong — bib says \"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" but the paper was **renamed** to **\"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\"** (arXiv v3+, camera-ready). Update title from \"BayesianVLA\" to \"LangForce\".\n- **Authors:** correct — Shijie Lian, Bin Yu, Xiaopeng Lin, Laurence T. Yang, Zhaolong Shen, Changti Wu, Yuzhuo Miao, Cong Huang, Kai Chen\n- **Year:** correct — 2026\n- **Venue:** needs update — accepted to **ICML 2026**. Change entry type from `article` (arXiv) to `inproceedings` (ICML 2026).\n- **ArXiv ID:** correct — 2601.15197\n- **Notes:** GitHub repo confirms ICML 2026 acceptance: https://github.com/ZGC-EmbodyAI/LangForce\n\n---\n\n## [3] kachaev2025dont — ✓\n\n- **Title:** correct — \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\"\n- **Authors:** correct — Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, Aleksandr I. Panov\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (no confirmed conference acceptance found)\n- **ArXiv ID:** correct — 2510.25616\n- **Notes:** none\n\n---\n\n## [4] mitra2025mechanistic — ✓\n\n- **Title:** correct — \"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations\"\n- **Authors:** correct — Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, Roei Herzig\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (OpenReview submission found, no confirmed acceptance)\n- **ArXiv ID:** correct — 2511.22697\n- **Notes:** Also known as \"Robotic Steering\"\n\n---\n\n## [5] zhang2026instruction — ✗ TITLE HAS TWO ERRORS\n\n- **Title:** wrong — bib says \"Instruction Anchor: Dissecting the Mechanistic Dynamics of Modality Arbitration\" but the correct title is **\"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration\"**. Two errors: (1) \"Anchor\" → \"Anchors\" (plural), (2) \"Mechanistic\" → \"Causal\".\n- **Authors:** correct — Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai Chen, Pengfei Zhang, Yang Xiang, Min Zhang\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2602.03677\n- **Notes:** Must fix title — two word-level errors\n\n---\n\n## [6] liu2026forgetting — ✓\n\n- **Title:** correct — \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\"\n- **Authors:** correct — Liu et al.\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.03818\n- **Notes:** none\n\n---\n\n## [7] grover2025preserving — ✓\n\n- **Title:** correct — \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\"\n- **Authors:** correct — Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, Xuanlin Li\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2509.11417\n- **Notes:** none\n\n---\n\n## [8] hung2025nora — ✓\n\n- **Title:** correct — \"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks\"\n- **Authors:** correct — Chia-Yu Hung, Qi Sun, Pengfei Hong, et al.\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2504.19854\n- **Notes:** none\n\n---\n\n## [9] zheng2024tracevla — ✗ VENUE NEEDS UPDATE\n\n- **Title:** correct — \"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies\"\n- **Authors:** correct — Ruijie Zheng, Yongyuan Liang, Shuaiyi Huang, Jianfeng Gao, Hal Daume III, Andrey Kolobov, Furong Huang, Jianwei Yang\n- **Year:** needs update — bib says 2024 (arXiv date), but the paper was **published at ICLR 2025**. Update year to 2025.\n- **Venue:** needs update — **published at ICLR 2025** (confirmed in ICLR 2025 proceedings). Change entry type to `inproceedings`.\n- **ArXiv ID:** correct — 2412.10345\n- **Notes:** Must update venue from arXiv to ICLR 2025 and year from 2024 to 2025.\n\n---\n\n## [10] abdin2024phi3 — ✓\n\n- **Title:** correct — \"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone\"\n- **Authors:** correct — Marah Abdin et al.\n- **Year:** correct — 2024\n- **Venue:** arXiv preprint / technical report (no formal venue publication found)\n- **ArXiv ID:** correct — 2404.14219\n- **Notes:** none\n\n---\n\n## [11] kim2024_openvla — ✓\n\n- **Title:** correct — \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n- **Authors:** correct — Moo Jin Kim et al.\n- **Year:** correct — 2024\n- **Venue:** correct — CoRL 2024, PMLR vol 270, pp 2679–2713\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [12] karamcheti2024 — ✓\n\n- **Title:** correct — \"Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models\"\n- **Authors:** correct — Siddharth Karamcheti, Suraj Nair, Ashwin Balakrishna, Percy Liang, Thomas Kollar, Dorsa Sadigh\n- **Year:** correct — 2024\n- **Venue:** correct — ICML 2024, PMLR vol 235, pp 23123–23144\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [13] brohan2023_rt2 — ✗ VENUE NEEDS UPDATE\n\n- **Title:** correct — \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n- **Authors:** correct — Anthony Brohan et al.\n- **Year:** correct — 2023\n- **Venue:** needs update — bib lists as arXiv:2307.15818, but the paper was **published at CoRL 2023 (PMLR vol 229)**. Should be changed to `inproceedings` with CoRL 2023 venue. PMLR proceedings page: proceedings.mlr.press/v229/zitkovich23a.html\n- **ArXiv ID:** correct — 2307.15818\n- **Notes:** Must update venue from arXiv to CoRL 2023 (PMLR vol 229).\n\n---\n\n## [14] liu2023_libero — ✓\n\n- **Title:** correct — \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n- **Authors:** correct — Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone\n- **Year:** correct — 2023\n- **Venue:** correct — NeurIPS 2023\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [15] grant2026 — ✓\n\n- **Title:** correct — \"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"\n- **Authors:** correct — Bryce Grant, Xijia Zhao, Peng Wang\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.19233\n- **Notes:** none\n\n---\n\n## [16] haon2025 — ✓\n\n- **Title:** correct — \"Mechanistic Interpretability for Steering Vision-Language-Action Models\"\n- **Authors:** correct — Bear Haon, K.C. Stocking, Ian Chuang, Claire Tomlin\n- **Year:** correct — 2025\n- **Venue:** correct — CoRL 2025, PMLR vol 305, pp 2743–2762\n- **ArXiv ID:** N/A (venue entry; arXiv: 2509.00328)\n- **Notes:** none\n\n---\n\n## [17] hou2026 — ✓\n\n- **Title:** correct — \"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models\"\n- **Authors:** correct — Yuchen Hou, Lin Zhao\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.00592\n- **Notes:** none\n\n---\n\n## [18] fei2025 — ✓\n\n- **Title:** correct — \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n- **Authors:** correct — Senyu Fei et al.\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2510.13626\n- **Notes:** none\n\n---\n\n## Summary\n\n| # | Key | Verdict | Issues |\n|---|-----|---------|--------|\n| 1 | hancock2025actions | ✓ | — |\n| 2 | lian2026bayesianvla | ✗ | Title outdated (\"BayesianVLA\" → \"LangForce\"); venue needs update to ICML 2026 |\n| 3 | kachaev2025dont | ✓ | — |\n| 4 | mitra2025mechanistic | ✓ | — |\n| 5 | zhang2026instruction | ✗ | Title wrong: \"Anchor\" → \"Anchors\", \"Mechanistic\" → \"Causal\" |\n| 6 | liu2026forgetting | ✓ | — |\n| 7 | grover2025preserving | ✓ | — |\n| 8 | hung2025nora | ✓ | — |\n| 9 | zheng2024tracevla | ✗ | Year 2024 → 2025; venue needs update to ICLR 2025 |\n| 10 | abdin2024phi3 | ✓ | — |\n| 11 | kim2024_openvla | ✓ | — |\n| 12 | karamcheti2024 | ✓ | — |\n| 13 | brohan2023_rt2 | ✗ | Venue needs update from arXiv to CoRL 2023 (PMLR vol 229) |\n| 14 | liu2023_libero | ✓ | — |\n| 15 | grant2026 | ✓ | — |\n| 16 | haon2025 | ✓ | — |\n| 17 | hou2026 | ✓ | — |\n| 18 | fei2025 | ✓ | — |\n\n**14/18 correct, 4 need fixes.**\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "2283eaa1-3e47-4f20-8490-e14fba4fb819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4daN5JFanyqGkCFcqPiKC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 797,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 50807,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-29T06:41:32.710Z_
+
+<details><summary>↩ Tool result · `toolu_01WxCCJ4Lyrp3nY4TnmqoZmv`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/citation_audit_worker_A.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "acf29526-1c90-44cd-bf30-a79d758ef7a2",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/citation_audit_worker_A.md",
+    "content": "# Citation Audit — Group A (18 entries)\n\nAudited: 2026-05-29\n\n---\n\n## [1] hancock2025actions — ✓\n\n- **Title:** correct — \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\"\n- **Authors:** correct — Asher J. Hancock, Xindi Wu, Lihan Zha, Olga Russakovsky, Anirudha Majumdar\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (OpenReview submission found but no confirmed conference acceptance)\n- **ArXiv ID:** correct — 2509.22195\n- **Notes:** none\n\n---\n\n## [2] lian2026bayesianvla — ✗ TITLE OUTDATED + VENUE NEEDS UPDATE\n\n- **Title:** wrong — bib says \"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\" but the paper was **renamed** to **\"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries\"** (arXiv v3+, camera-ready). Update title from \"BayesianVLA\" to \"LangForce\".\n- **Authors:** correct — Shijie Lian, Bin Yu, Xiaopeng Lin, Laurence T. Yang, Zhaolong Shen, Changti Wu, Yuzhuo Miao, Cong Huang, Kai Chen\n- **Year:** correct — 2026\n- **Venue:** needs update — accepted to **ICML 2026**. Change entry type from `article` (arXiv) to `inproceedings` (ICML 2026).\n- **ArXiv ID:** correct — 2601.15197\n- **Notes:** GitHub repo confirms ICML 2026 acceptance: https://github.com/ZGC-EmbodyAI/LangForce\n\n---\n\n## [3] kachaev2025dont — ✓\n\n- **Title:** correct — \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\"\n- **Authors:** correct — Nikita Kachaev, Mikhail Kolosov, Daniil Zelezetsky, Alexey K. Kovalev, Aleksandr I. Panov\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (no confirmed conference acceptance found)\n- **ArXiv ID:** correct — 2510.25616\n- **Notes:** none\n\n---\n\n## [4] mitra2025mechanistic — ✓\n\n- **Title:** correct — \"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations\"\n- **Authors:** correct — Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, Roei Herzig\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint (OpenReview submission found, no confirmed acceptance)\n- **ArXiv ID:** correct — 2511.22697\n- **Notes:** Also known as \"Robotic Steering\"\n\n---\n\n## [5] zhang2026instruction — ✗ TITLE HAS TWO ERRORS\n\n- **Title:** wrong — bib says \"Instruction Anchor: Dissecting the Mechanistic Dynamics of Modality Arbitration\" but the correct title is **\"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration\"**. Two errors: (1) \"Anchor\" → \"Anchors\" (plural), (2) \"Mechanistic\" → \"Causal\".\n- **Authors:** correct — Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai Chen, Pengfei Zhang, Yang Xiang, Min Zhang\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2602.03677\n- **Notes:** Must fix title — two word-level errors\n\n---\n\n## [6] liu2026forgetting — ✓\n\n- **Title:** correct — \"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\"\n- **Authors:** correct — Liu et al.\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.03818\n- **Notes:** none\n\n---\n\n## [7] grover2025preserving — ✓\n\n- **Title:** correct — \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\"\n- **Authors:** correct — Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, Xuanlin Li\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2509.11417\n- **Notes:** none\n\n---\n\n## [8] hung2025nora — ✓\n\n- **Title:** correct — \"NORA: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks\"\n- **Authors:** correct — Chia-Yu Hung, Qi Sun, Pengfei Hong, et al.\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2504.19854\n- **Notes:** none\n\n---\n\n## [9] zheng2024tracevla — ✗ VENUE NEEDS UPDATE\n\n- **Title:** correct — \"TraceVLA: Visual Trace Prompting Enhances Spatial-Temporal Awareness for Generalist Robotic Policies\"\n- **Authors:** correct — Ruijie Zheng, Yongyuan Liang, Shuaiyi Huang, Jianfeng Gao, Hal Daume III, Andrey Kolobov, Furong Huang, Jianwei Yang\n- **Year:** needs update — bib says 2024 (arXiv date), but the paper was **published at ICLR 2025**. Update year to 2025.\n- **Venue:** needs update — **published at ICLR 2025** (confirmed in ICLR 2025 proceedings). Change entry type to `inproceedings`.\n- **ArXiv ID:** correct — 2412.10345\n- **Notes:** Must update venue from arXiv to ICLR 2025 and year from 2024 to 2025.\n\n---\n\n## [10] abdin2024phi3 — ✓\n\n- **Title:** correct — \"Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone\"\n- **Authors:** correct — Marah Abdin et al.\n- **Year:** correct — 2024\n- **Venue:** arXiv preprint / technical report (no formal venue publication found)\n- **ArXiv ID:** correct — 2404.14219\n- **Notes:** none\n\n---\n\n## [11] kim2024_openvla — ✓\n\n- **Title:** correct — \"OpenVLA: An Open-Source Vision-Language-Action Model\"\n- **Authors:** correct — Moo Jin Kim et al.\n- **Year:** correct — 2024\n- **Venue:** correct — CoRL 2024, PMLR vol 270, pp 2679–2713\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [12] karamcheti2024 — ✓\n\n- **Title:** correct — \"Prismatic VLMs: Investigating the Design Space of Visually-Conditioned Language Models\"\n- **Authors:** correct — Siddharth Karamcheti, Suraj Nair, Ashwin Balakrishna, Percy Liang, Thomas Kollar, Dorsa Sadigh\n- **Year:** correct — 2024\n- **Venue:** correct — ICML 2024, PMLR vol 235, pp 23123–23144\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [13] brohan2023_rt2 — ✗ VENUE NEEDS UPDATE\n\n- **Title:** correct — \"RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control\"\n- **Authors:** correct — Anthony Brohan et al.\n- **Year:** correct — 2023\n- **Venue:** needs update — bib lists as arXiv:2307.15818, but the paper was **published at CoRL 2023 (PMLR vol 229)**. Should be changed to `inproceedings` with CoRL 2023 venue. PMLR proceedings page: proceedings.mlr.press/v229/zitkovich23a.html\n- **ArXiv ID:** correct — 2307.15818\n- **Notes:** Must update venue from arXiv to CoRL 2023 (PMLR vol 229).\n\n---\n\n## [14] liu2023_libero — ✓\n\n- **Title:** correct — \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning\"\n- **Authors:** correct — Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu, Yuke Zhu, Peter Stone\n- **Year:** correct — 2023\n- **Venue:** correct — NeurIPS 2023\n- **ArXiv ID:** N/A (venue entry)\n- **Notes:** none\n\n---\n\n## [15] grant2026 — ✓\n\n- **Title:** correct — \"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"\n- **Authors:** correct — Bryce Grant, Xijia Zhao, Peng Wang\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.19233\n- **Notes:** none\n\n---\n\n## [16] haon2025 — ✓\n\n- **Title:** correct — \"Mechanistic Interpretability for Steering Vision-Language-Action Models\"\n- **Authors:** correct — Bear Haon, K.C. Stocking, Ian Chuang, Claire Tomlin\n- **Year:** correct — 2025\n- **Venue:** correct — CoRL 2025, PMLR vol 305, pp 2743–2762\n- **ArXiv ID:** N/A (venue entry; arXiv: 2509.00328)\n- **Notes:** none\n\n---\n\n## [17] hou2026 — ✓\n\n- **Title:** correct — \"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models\"\n- **Authors:** correct — Yuchen Hou, Lin Zhao\n- **Year:** correct — 2026\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2603.00592\n- **Notes:** none\n\n---\n\n## [18] fei2025 — ✓\n\n- **Title:** correct — \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n- **Authors:** correct — Senyu Fei et al.\n- **Year:** correct — 2025\n- **Venue:** arXiv preprint\n- **ArXiv ID:** correct — 2510.13626\n- **Notes:** none\n\n---\n\n## Summary\n\n| # | Key | Verdict | Issues |\n|---|-----|---------|--------|\n| 1 | hancock2025actions | ✓ | — |\n| 2 | lian2026bayesianvla | ✗ | Title outdated (\"BayesianVLA\" → \"LangForce\"); venue needs update to ICML 2026 |\n| 3 | kachaev2025dont | ✓ | — |\n| 4 | mitra2025mechanistic | ✓ | — |\n| 5 | zhang2026instruction | ✗ | Title wrong: \"Anchor\" → \"Anchors\", \"Mechanistic\" → \"Causal\" |\n| 6 | liu2026forgetting | ✓ | — |\n| 7 | grover2025preserving | ✓ | — |\n| 8 | hung2025nora | ✓ | — |\n| 9 | zheng2024tracevla | ✗ | Year 2024 → 2025; venue needs update to ICLR 2025 |\n| 10 | abdin2024phi3 | ✓ | — |\n| 11 | kim2024_openvla | ✓ | — |\n| 12 | karamcheti2024 | ✓ | — |\n| 13 | brohan2023_rt2 | ✗ | Venue needs update from arXiv to CoRL 2023 (PMLR vol 229) |\n| 14 | liu2023_libero | ✓ | — |\n| 15 | grant2026 | ✓ | — |\n| 16 | haon2025 | ✓ | — |\n| 17 | hou2026 | ✓ | — |\n| 18 | fei2025 | ✓ | — |\n\n**14/18 correct, 4 need fixes.**\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+审计完成，结果写入 `artifacts/citation_audit_worker_A.md`。
+
+**14/18 正确，4 条需要修复：**
+
+| # | Key | 问题 |
+|---|-----|------|
+| 2 | `lian2026bayesianvla` | 标题过时 ("BayesianVLA" → "LangForce")；venue 需更新为 ICML 2026 |
+| 5 | `zhang2026instruction` | 标题两处错误："Anchor" → "Anchors"，"Mechanistic" → "Causal" |
+| 9 | `zheng2024tracevla` | 年份 2024 → 2025；venue 需更新为 ICLR 2025 |
+| 13 | `brohan2023_rt2` | venue 需从 arXiv 更新为 CoRL 2023 (PMLR vol 229) |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "uuid": "df390adf-2220-4112-ae77-388832c19bb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GSnz8Rou2BLa7byjTugG5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7835,
+      "cache_read_input_tokens": 53964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7835
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+审计完成，结果写入 `artifacts/citation_audit_worker_A.md`。
+
+**14/18 正确，4 条需要修复：**
+
+| # | Key | 问题 |
+|---|-----|------|
+| 2 | `lian2026bayesianvla` | 标题过时 ("BayesianVLA" → "LangForce")；venue 需更新为 ICML 2026 |
+| 5 | `zhang2026instruction` | 标题两处错误："Anchor" → "Anchors"，"Mechanistic" → "Causal" |
+| 9 | `zheng2024tracevla` | 年份 2024 → 2025；venue 需更新为 ICLR 2025 |
+| 13 | `brohan2023_rt2` | venue 需从 arXiv 更新为 CoRL 2023 (PMLR vol 229) |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 245271,
+  "duration_api_ms": 412386,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "5699309e-4a94-4d51-8df1-934e666f2fe1",
+  "total_cost_usd": 1.519347,
+  "usage": {
+    "input_tokens": 4741,
+    "cache_creation_input_tokens": 49954,
+    "cache_read_input_tokens": 318527,
+    "output_tokens": 11979,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 49954,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 250,
+        "cache_read_input_tokens": 53964,
+        "cache_creation_input_tokens": 7835,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7835
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 329921,
+      "outputTokens": 12954,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 33,
+      "costUSD": 0.7246909999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4741,
+      "outputTokens": 11979,
+      "cacheReadInputTokens": 318527,
+      "cacheCreationInputTokens": 49954,
+      "webSearchRequests": 0,
+      "costUSD": 0.7946559999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9b9b425c-eb00-4936-93fa-121ed5dde604"
+}
+```
+
+</details>
+
+---

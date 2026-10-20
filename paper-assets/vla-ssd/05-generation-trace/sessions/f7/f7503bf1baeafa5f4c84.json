@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7503bf1baeafa5f4c84",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code tracvla spatial pipeline",
+  "task_key": "worker_code_tracvla_spatial_pipeline_20260521T014051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tracvla_spatial_pipeline_20260521T014051_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "4bf5ff9aabf3a2542829849e87d2a7f43b1ab156dd7b782171b16113302f5523"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100/5000 at 10:12:35 (~55 seconds for 100 samples). Slightly slower than before due to GPU sharing with the download process. The pipeline is running correctly. \n\n**Status summary:**\n- **Trained pipeline** (`tracvla_spatial_trained`): Running on westd-19183 cuda:1, Phase 1 extraction in progress. ETA ~1 hour for all 5 phases.\n- **Untrained model download**: ModelScope downloading shard 2/2 (3.12GB), ~50 min remaining.\n- **Next step**: Once the download completes, submit `tracvla_spatial_untrained` job with `--conditions untrained` using the local checkpoint path."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tracvla-spatial-pipeline.md"
+}

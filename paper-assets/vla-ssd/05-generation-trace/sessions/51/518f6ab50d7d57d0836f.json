@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "518f6ab50d7d57d0836f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh openvla goal spatial extract",
+  "task_key": "worker_ssh_openvla_goal_spatial_extract_20260522T001622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_openvla_goal_spatial_extract_20260522T001622.log",
+    "occurrence": 1,
+    "bytes": 815435,
+    "sha256": "90ff41ece1668cdfe83bffe6ba1893affc81c7402df8474c294405a45d8b93ec"
+  },
+  "statistics": {
+    "messages": 119,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "518f6ab50d7d57d0836f-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "518f6ab50d7d57d0836f-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-openvla-goal-spatial-extract.md"
+}

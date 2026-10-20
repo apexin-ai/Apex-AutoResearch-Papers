@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d6a095907a6d850c523",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug specificity control check result",
+  "task_key": "worker_debug_specificity_control_check_result_20260518T184329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_specificity_control_check_result_20260518T184329_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "40eb5cd4dbea9df352754e484dea5fe9a8f9996ff9b4ff5e60f3d6bfb4a80a40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果报告：\n\n## specificity_control_action 结果 — **Negative**\n\n**总体：Bottom-24 d=0.565 vs Top-24 d=0.65，ratio=1.15**\n\nSpecificity 假设未通过：ablate 非 instruction heads（bottom-24）造成的 action shift 与 instruction heads（top-24）几乎相当，差异仅 13%。\n\n### Per-task breakdown\n\n| Task | Bottom-24 d | 对比 Top-24 d=0.65 |\n|------|------------|-------------------|\n| open_middle_drawer (cabinet) | **0.405** | 明显低，specificity 成立 |\n| open_top_drawer_put_bowl | **0.628** | 接近，specificity 不成立 |\n| push_plate_to_stove | **0.659** | 几乎相等，specificity 不成立 |\n\n### 关键数字\n\n- Paired MSE: 0.034 (p=1.86e-92)\n- Token divergence: 0.598\n- KL divergence: 4.166\n- Control-8 heads (参考): d=0.41\n\n### 解读\n\n只有最简单的 cabinet 任务显示 specificity gap（d=0.405 vs 0.65）。更复杂的两个任务中，ablate 任意 24 heads 都造成相似幅度的 action disruption，说明 action shift 的大部分来源是通用的 capacity loss，而非 instruction-specific 通路被切断。\n\nRegistry 已更新为 DONE/negative，cron 已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-specificity-control-check-result.md"
+}

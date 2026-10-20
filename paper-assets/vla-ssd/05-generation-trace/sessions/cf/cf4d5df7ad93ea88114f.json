@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cf4d5df7ad93ea88114f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fix qa probe performance",
+  "task_key": "worker_code_fix_qa_probe_performance_20260516T230439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_qa_probe_performance_20260516T230439.log",
+    "occurrence": 1,
+    "bytes": 940438,
+    "sha256": "c836d55f4beb913677ca588382cb717d31795ef2b1cfca62a273438aa39bd373"
+  },
+  "statistics": {
+    "messages": 896,
+    "user_turns": 0,
+    "tool_calls": 404,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 404,
+      "tool_result": 404,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 896,
+      "chunks": [
+        {
+          "path": "cf4d5df7ad93ea88114f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4d5df7ad93ea88114f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4d5df7ad93ea88114f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4d5df7ad93ea88114f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf4d5df7ad93ea88114f-part-0005.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-qa-probe-performance.md"
+}

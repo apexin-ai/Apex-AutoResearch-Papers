@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92e5943a3234418bc1d9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research literature linkage tracvla 4suite",
+  "task_key": "worker_research_literature-linkage-tracvla-4suite_20260521T204054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-linkage-tracvla-4suite_20260521T204054_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "f70cf91ccd0b6819654c08806706e9f69a59f86caf611c2613a4200594c5a8ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入 `artifacts/literature_linkage_4suite_consistency.md`。核心结论：\n\n**无直接竞品论文**报告过跨 task suite 的 attention head consistency pattern。现有 VLA 解释性文献（Grant/Swann/Haon/Rizzardo）全部聚焦行为干预或 SAE 特征，无人追踪 specific head indices 的跨任务一致性。\n\n**h13/h22 head identity preservation 无直接先例**，但有三层文献支撑：\n- **Olsson et al. 2022**（induction heads）：head 级功能普遍性的经典范例，但机制是 algorithmic copy，非 routing\n- **Basile et al. 2025**（Head Pursuit, NeurIPS spotlight）：多模态 transformer 中 head 专化一致且可操控，但未追踪 same-index cross-task\n- **Bali et al. 2026**：中间层 head 跨训练 run 最不稳定——这反而加强我们的 claim：h13/h22 的 cross-task 一致性是 training-induced convergent property，非初始化 artifact\n\n**建议添加 3 条文献到 literature_map.yaml**（bali2026, basile2025_headpursuit, olsson2022_induction），详细条目见产出文件。\n\n**GuidedVLA（Jia et al., 2026.05）**是唯一涉及 VLA attention head specialization 的论文，但它是人工监督强制的，非 emergent——可作为对照引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-linkage-tracvla-4suite.md"
+}

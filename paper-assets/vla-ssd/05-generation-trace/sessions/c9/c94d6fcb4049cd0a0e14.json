@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "c94d6fcb4049cd0a0e14",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose lg extract failed",
+  "task_key": "worker_diagnose_lg_extract_failed_20260515T165835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_lg_extract_failed_20260515T165835_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "b8c1562b297e61c2fbc0c21b89cf2e6c2381ca86dc409a026575751498dfd664"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10 个任务文件完整，每个实验已完成 2/10。脚本有 skip 逻辑（已存在的 .h5 跳过），所以重跑时只会处理剩余 8 个。\n\n```json\n{\"root_cause\":\"extract_features.py:80 AutoProcessor.from_pretrained(model_path, trust_remote_code=True) 尝试连接 huggingface.co 获取 config.json → OSError: [Errno 101] Network is unreachable\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"在 AutoProcessor.from_pretrained() 添加 local_files_only=True（line 80）\",\"在 AutoModelForVision2Seq.from_pretrained() 添加 local_files_only=True（line 87）\"],\"can_auto_fix\":true,\"partial_output\":{\"trained_files\":2,\"untrained_files\":2},\"network_status\":\"unreachable\"}\n```\n\n已修复。两处 `from_pretrained` 调用都加了 `local_files_only=True`。checkpoint 目录已有全部 processor/tokenizer JSON 文件，无需网络。脚本内置 skip 已完成文件的逻辑，重跑会从第 3/10 个任务继续。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "extract_features.py:80 AutoProcessor.from_pretrained(model_path, trust_remote_code=True) 尝试连接 huggingface.co 获取 config.json → OSError: [Errno 101] Network is unreachable",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "在 AutoProcessor.from_pretrained() 添加 local_files_only=True（line 80）",
+                "在 AutoModelForVision2Seq.from_pretrained() 添加 local_files_only=True（line 87）"
+              ],
+              "can_auto_fix": true,
+              "partial_output": {
+                "trained_files": 2,
+                "untrained_files": 2
+              },
+              "network_status": "unreachable"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-lg-extract-failed.md"
+}

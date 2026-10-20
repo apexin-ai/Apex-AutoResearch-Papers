@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeea7f0c97fc325c9134",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code gen attention figure",
+  "task_key": "worker_code_gen_attention_figure_20260517T020717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gen_attention_figure_20260517T020717_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "8efa50432d854f824d4ac20f935bf5b716b71640e97f37856b8868fec6a26e4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated. 25/32 trained heads instruction-dominant, 0/32 untrained, matching the expected split.\n\nOutput:\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/fig8_attention_final.pdf` (21 KB)\n- **PNG**: `fig8_attention_final.png` (100 KB)\n\nKey details:\n- Heads sorted by trained instruction fraction (descending), same order in both panels\n- Trained panel shows clear transition across the 0.5 dashed line at position 25\n- Untrained panel: all 32 heads image-dominant (blue bars uniformly low)\n- The \"instruction fraction\" uses raw attention-to-text as a proportion of total attention (including BOS sink), which gives the 25/32 count consistent with the original analysis"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gen-attention-figure.md"
+}

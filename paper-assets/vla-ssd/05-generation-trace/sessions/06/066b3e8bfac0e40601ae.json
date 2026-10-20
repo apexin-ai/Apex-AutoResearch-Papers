@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "066b3e8bfac0e40601ae",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh lg feature extraction",
+  "task_key": "worker_ssh_lg-feature-extraction_20260515T164416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_lg-feature-extraction_20260515T164416_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "a33aade16dad43597a668153f7f4a56f04b05ec375ac9a74dcbbb248dc49813f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 job 已提交成功：\n\n| Job | exp_id | GPU | PID | Log |\n|-----|--------|-----|-----|-----|\n| Trained VLA on LIBERO-Goal | `lg_extract_trained` | cuda:0 | 627251 | `~/runs/vla-ssd/lg_extract_trained.log` |\n| Untrained VLA on LIBERO-Goal | `lg_extract_untrained` | cuda:1 | 627330 | `~/runs/vla-ssd/lg_extract_untrained.log` |\n\n- Trained: `openvla-7b` checkpoint → `features/trained_libero_goal/`\n- Untrained: `openvla-7b-untrained` checkpoint → `features/untrained_libero_goal/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-lg-feature-extraction.md"
+}

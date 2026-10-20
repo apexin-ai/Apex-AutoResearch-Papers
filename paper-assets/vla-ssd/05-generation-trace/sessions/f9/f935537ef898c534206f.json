@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f935537ef898c534206f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis phi3v r2 untrained probe",
+  "task_key": "worker_analysis_phi3v_r2_untrained_probe_20260520T102858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phi3v_r2_untrained_probe_20260520T102858_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "2f77c69166f2ebfae08dbe0a71a75d25662490b082cf7215aa7ca3475ec6f75b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## phi3v_r2_untrained_probe — SUCCESS\n\n**核心发现**：Inverted-U mid-layer peak 确认是 VLA 训练产物。\n\n| | Untrained | Trained | Delta |\n|---|---|---|---|\n| Peak R² | 0.583 (L4) | 0.634 (L11) | +0.051 |\n| Profile | 早期达峰 + 单调下降 | Inverted-U mid-layer peak | 形状不同 |\n| Late-layer std | 高达 0.12 | < 0.02 | 训练稳定化 |\n\n**三个关键点**：\n1. **Profile 形状不同** — 未训练模型 L4 达峰后缓降，训练后峰值右移 7 层到 L11 形成 inverted-U。Hypothesis 确认。\n2. **未训练基线意外地高** — 峰值 0.583 达到 trained 的 92%，说明预训练 LLM 的浅层表征已含大量可解码为 action 的信息。\n3. **训练的主要效果是重分配而非创造** — VLA training 将 action-predictive 信息从浅层集中到中深层，同时稳定深层表征（降低 variance）。\n\nRegistry 已更新为 DONE/success，分析报告已注册 (`art_20260520_e54cf7`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phi3v-r2-untrained-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac7fe6590e10dd27164e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "extract spatial untrained phases",
+  "task_key": "worker_extract_spatial_untrained_phases_20260522T111532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_spatial_untrained_phases_20260522T111532_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "46d98d19bd70a4dbcd46ce81d3d97b8709f16a98351e02b1555b8cdacfe7cb83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## OpenVLA Spatial Untrained — 全 Phase 数据汇总\n\n### 1. R² Probing\n\n| 位置 | Peak R² | Peak Layer | Exit R² (L31) | Δ (peak−exit) |\n|------|---------|------------|---------------|----------------|\n| image_mean | **0.8431** | L11 | 0.8089 | 0.0342 |\n| last_preaction | **0.8261** | L20 | 0.7768 | 0.0493 |\n\n逐层 R²（image_mean）：L0=0.823 → L11=0.843（peak）→ L31=0.809，整体变化幅度很小（~0.02 range in mid layers）。\n\n### 2. L1 Attention Profile\n\n| 类别 | Head 数 | 占比 |\n|------|---------|------|\n| instruction_dominant | **25**/32 | 78.1% |\n| image_dominant | 0/32 | 0% |\n| mixed | 7/32 | 21.9% |\n\n### 3. Cross-instruction Classification\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **~1.000**（所有层、两种位置均为 0.999–1.0）|\n| Chance level | 0.10 |\n\n所有 32 层的分类准确率均接近 1.0（L0-L9 image_mean 为 0.999，L10+ 为 1.0）。\n\n### 4. RSA Analysis\n\n| 位置 | Best Layer | Correlation | 95% CI |\n|------|-----------|-------------|--------|\n| image_mean | **L4** | **0.6051** | [0.497, 0.699] |\n| last_preaction | L4 | 0.5671 | [0.466, 0.672] |\n\n逐层 RSA（image_mean）：L0=0.552 → L4=0.605（peak）→ L16=0.576 → L31=0.465，从中层开始逐步下降。\n\n### 汇总\n\n| Phase | 关键指标 | 值 |\n|-------|---------|-----|\n| R² Probing | peak R² / layer | 0.843 / L11 |\n| R² Probing | exit R² / Δ | 0.809 / 0.034 |\n| L1 Attention | instr-dominant heads | 25/32 |\n| Cross-instruction | accuracy | ~1.000 |\n| RSA | peak correlation / layer | 0.605 / L4 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-spatial-untrained-phases.md"
+}

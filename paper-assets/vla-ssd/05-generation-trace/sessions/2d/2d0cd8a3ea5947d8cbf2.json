@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d0cd8a3ea5947d8cbf2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check shuffled control",
+  "task_key": "worker_ssh_check-shuffled-control_20260515T194205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-shuffled-control_20260515T194205_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "9bcb33a975aa526897784e82f3f6cde776136f5488f65d6777623ea4876ced78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### lg_shuffled_token_control\n**未启动。** 无相关进程，结果目录不存在，日志文件为空。\n\n### 当前运行的实验（3 个）\n\n| 实验 | PID | GPU | 启动时间 | 状态 |\n|------|-----|-----|---------|------|\n| PCA-1024 goal_classification (untrained) | 650060 | GPU 0 | 03:41 | 运行中，untrained 阶段（trained 已完成，acc=1.0000） |\n| Linear probe goal_classification (untrained) | 648231 | GPU 1 | 03:33 | 运行中，untrained 阶段，Layer 19/33 |\n| **Exp-1 pca_linear_probe_perlayer** | 649515 | — | 03:38 | 运行中，trained_vla Layer 0 完成（acc=0.1582），刚开始 |\n\n### GPU 使用率\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU 0 | 561 MiB | 2% |\n| GPU 1 | 1713 MiB | 0% |\n\n利用率低说明当前主要在做 CPU 端工作（PCA 降维、数据加载）。\n\n### 注意\n- perlayer sweep 的 layer 0 出现 `RuntimeWarning: invalid value encountered in divide`（PCA variance ratio 为 NaN），acc 仅 0.1582 — layer 0 特征可能全零或接近常数。\n- tmux 无 session（进程通过 nohup 后台运行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-shuffled-control.md"
+}

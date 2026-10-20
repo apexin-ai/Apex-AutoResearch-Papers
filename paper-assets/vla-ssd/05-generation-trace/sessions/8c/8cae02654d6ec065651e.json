@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cae02654d6ec065651e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis control b results",
+  "task_key": "worker_analysis_control-b-results_20260515T141104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_control-b-results_20260515T141104_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "5a11b43a572123f95e6ba335515160e991fc29e30ba42d7b6fc1f997b7504662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已更新为 DONE。\n\n**Control B 结果总结：**\n\n| | trained + shuffled | untrained + shuffled |\n|---|---|---|\n| best layer | 8 | 1 |\n| per_task_mean_ρ | 0.0125 | 0.0093 |\n| pooled_ρ | 0.0123 | 0.0085 |\n| R² | -0.0014 | -0.0031 |\n| 所有层 max \\|ρ\\| | 0.0125 | 0.0093 |\n\n**结论：Control B 通过。** 两个实验的 ρ 均 ≈ 0（远低于 0.1 红旗线），R² 为负，probe 在 shuffled labels 上完全无法学到有意义的 temporal distance 信息。这验证了原始 probe 实验中观测到的 ρ 确实来自 label-feature 对应关系，而非数据中的伪信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-control-b-results.md"
+}

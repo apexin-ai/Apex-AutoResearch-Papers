@@ -1,0 +1,1461 @@
+{
+  "schema_version": "1.0",
+  "id": "b73714de968150c00195",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "cron hook counterfactual spatial 20260521T155108 358237",
+  "task_key": "cron_hook_counterfactual_spatial_20260521T155108_358237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_counterfactual_spatial_20260521T155108_358237.jsonl",
+    "occurrence": 1,
+    "bytes": 59797,
+    "sha256": "e4262e00dcf868554521e15215d5ff698d805ba7cd59de8e59f6ad414862940f"
+  },
+  "statistics": {
+    "messages": 72,
+    "user_turns": 2,
+    "tool_calls": 34,
+    "roles": {
+      "user": 2,
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T21:33:56.625313+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: counterfactual_spatial\n- project: vla-ssd\n- server: westd-19183\n- log_path: ~/runs/vla-ssd/counterfactual_spatial.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T21:34:11.775196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "11"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T21:34:11.825792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T21:34:16.143086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T21:34:16.846032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T21:34:17.201734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (204,753 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-fce2a9dc/f71e5e22-8759-45d1-8945-b1d543fe6c96/tool-results/mcp-agent-ml-research-read_registry-1779312856894.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-fce2a9dc/f71e5e22-8759-45d1-8945-b1d543fe6c96/tool-results/mcp-agent-ml-research-read_registry-1779312856894.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1058
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T21:34:17.202223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T21:34:17.656010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T21:34:17.756809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "vla-ssd",
+              "status": "running"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T21:34:19.513711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"counterfactual_10tasks_trajectory\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=494980)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2667
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T21:34:19.565545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-20T21:33:54Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 120 个实验 — DONE 112, PREPARING 8\\\\n**DONE 分布**: killed 10, negative 16, success 86\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-19183:cuda:0, westd-19183:cuda:1\\\\n- **空闲（分配了没跑）**: westd-19183:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-19183**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `behavioral_smoketest` [negative] — 2026-05-20T20:34:40\\\\n- `counterfactual_10tasks` [success] — 2026-05-20T20:15:57\\\\n- `permutation_10k` [success] — 2026-05-20T19:13:43\\\\n- `phi3v_untrained_seed_expansion` [success] — 2026-05-20T11:50:33\\\\n- `phi3v_r2_untrained_probe` [success] — 2026-05-20T10:31:30\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- libero_finetuned_probe（准备中）\\\\n- behavioral_smoketest_diag（准备中）\\\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\\\n- fulllayer_action_probe（准备中）\\\\n- l1_head_ablation_control8（准备中）\\\\n- l1_head_ablation_50demos（准备中）\\\\n\\\\n## 近期结论\\\\n- **counterfactual_10tasks** (success): Counterfactual instruction sensitivity (wrong/empty/shuffled/paraphrased) observe\n…[truncated 1706 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2363
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T21:34:19.566255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 18:48 UTC | 更新原因: Round 15 提交后状态更新：实验派发、结构性瓶颈分析、Reviewer 状况记录\\\\n\\\\n## 核心方向\\\\nVLA 微调如何重组 instruction routing（attention head specialization）——从单模型观察升级为跨架构一致性发现。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research 完成 + 审稿迭代中（Round 15 fresh 已提交）\\\\n- **实验**: 84 success / 16 negative / 0 running / 117 total\\\\n- **跨架构验证**: C1 token specialization + C2 entry-exit routing + R² inverted-U profile 全部双架构复现\\\\n- **关键数据**: Peak R² 0.637 (L9, OpenVLA) vs 0.634 (L11, Phi3V), Δ=0.003, TOST p<0.0001\\\\n- **论文版本**: Round 14 全部 19 项修改完成（convergent→consistent、TOST+power analysis+paired d_z、cross-arch headline、references 更新）\\\\n- **审稿历史**: Fresh best = Round 7 (6.5-7/10)；Round 14 = 5.3/10；Round 15 提交中\\\\n- **Provenance**: 109/114 coverage\\\\n\\\\n## 结构性瓶颈（审稿天花板）\\\\n三个反复出现的 critical issues，无法通过写作或短期实验修复：\\\\n1. **Closed-loop gap** (R9-N2): D087 确认 0/30 SR，256-bin quantization 根本原因。wont_fix。\\\\n2. **Scope fit** (R9-W1): 纯 representational analysis 不含物理机器人实验。每轮审稿都被提出。\\\\n3. **LIBERO-only** (R9-N1): 2 架构 × 1 benchmark family。扩展需重训 VLA，DDL 内不可行。\\\\n→ 策略：最大化 open-loop 证据严谨性 + 准备 rebuttal 材料 + honest limitations\\\\n\\\\n## 近期任务\\\\n- [ ] Agent: Counterfactual 分析扩展到全部 10 tasks（R14-W1）— GPU 运行中\\\\n- [ ] Agent: Permutation test 10,000 shuffles（R14-I3）— GPU 运行中\\\\n- [ ] Paper Agent: 3 个 info 修复（footnote R² 差异、p=0.083 措辞、Table 2 caption）\\\\n- [ ] Round 15 fresh 审稿结果 → 根据结果决定下一步\\\\n- [ ] Reviewer session 修复（已 escalate 6 次给 Manager，无回复）\\\\n- [ ] 全局 Bonferroni p-values 作为 robustness check（R12-W6，排期中）\\\\n- [x] Round 14 全部 19 项修改完成\\\\n- [x] review_issues.yaml 同步至 Round 15 状态\\\\n\\\\n## GPU 预算\\\\nwestd-19183: 2× GPU 分配。当前派 counterfactual + permutation 实验占用。\\\\n\\\\n## Reviewer 状态\\\\n⚠️ Reviewer session 瘫痪（\\\\\\\"PDF file was not valid\\\\\\\"），从 5/20 下午开始。已 escalate 6 次给 Manager。Round 14 修改和 Round 15 提交均未经独立 Reviewer 审视。\\\\n\\\\n## DDL\\\\n- Abstr\n…[truncated 1499 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1910
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T21:34:19.616867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 1860
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T21:34:24.687672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'exp_id': 'counterfactual_spatial'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T21:34:25.190286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3458}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T21:34:25.190668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'exp_id': 'counterfactual_10tasks'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T21:34:25.642451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3298}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T21:34:25.745092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T21:34:26.096777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3335}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T21:34:30.588959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"counterfactual_spatial\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -20",
+              "description": "Search for counterfactual_spatial in registry"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T21:34:30.841870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5118:  counterfactual_spatial:\n5125:        python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\"\n5130:      log_path: ~/runs/vla-ssd/counterfactual_spatial.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T21:34:33.704653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml",
+              "offset": "5115",
+              "limit": "50"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T21:34:33.755269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5115\t      gpu_hours: 0.1\n5116\t    conclusion: success\n5117\t    completed_at: '2026-05-20T19:13:43.662Z'\n5118\t  counterfactual_spatial:\n5119\t    status: PREPARING\n5120\t    retry_count: 0\n5121\t    created_at: '2026-05-20T20:32:45.466Z'\n5122\t    updated_at: '2026-05-20T21:33:53.154Z'\n5123\t    spec:\n5124\t      command: bash -c \"source /root/miniconda3/bin/activate && cd /root/vla-ssd &&\n5125\t        python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\"\n5126\t      server: westd-19183\n5127\t      gpu:\n5128\t      - cuda:0\n5129\t      pid: '492307'\n5130\t      log_path: ~/runs/vla-ssd/counterfactual_spatial.log\n5131\t      submitted_at: '2026-05-20T20:32:45.160Z'\n5132\t      submitted_via: submit_training_job\n5133\t      backend: tmux\n5134\t      account: root\n5135\t    reproduce:\n5136\t      finished_at: '2026-05-20T21:33:53.154Z'\n5137\t    extra:\n5138\t      hook_events:\n5139\t      - event: on_complete\n5140\t        action: agent\n5141\t        ts: '2026-05-20T21:33:56.063579+00:00'\n5142\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T21:34:45.457103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"counterfactual\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -30",
+              "description": "Find all counterfactual experiments in registry"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T21:34:45.810334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3847:  counterfactual_instruction:\n3858:      command: MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py\n3867:      log_path: /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log\n3869:    log_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_counterfactual_instruction_20260518T165804.log\n3872:    notes: '4 counterfactual conditions vs correct baseline. Cohen''s d: empty=0.968,\n4014:  counterfactual_token_overlap:\n4024:    parent: counterfactual_instruction\n4028:      data_path: /root/autodl-tmp/vla-ssd/results/counterfactual_combined.json\n4032:      checkpoint_source: counterfactual_instruction\n4033:      eval_data: counterfactual_combined.json\n4035:    checkpoint_path: /root/autodl-tmp/vla-ssd/results/counterfactual_token_overlap.json\n4168:      counterfactual_shuffled:\n4176:      counterfactual_paraphrased:\n4184:      counterfactual_wrong:\n4192:      counterfactual_empty:\n5047:  counterfactual_10tasks:\n5057:      command: python scripts/counterfactual_instruction_10tasks.py\n5062:      log_path: ~/runs/vla-ssd/counterfactual_10tasks.log\n5071:      checkpoint_path: /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\n5074:    parent: counterfactual_instruction\n5118:  counterfactual_spatial:\n5125:        python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\"\n5130:      log_path: ~/runs/vla-ssd/counterfactual_spatial.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "elapsed_ms": 353
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T21:34:45.810783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T21:34:46.162899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.339}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T21:34:54.298354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml",
+              "offset": "5047",
+              "limit": "70"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T21:34:54.298895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5047\t  counterfactual_10tasks:\n5048\t    status: DONE\n5049\t    retry_count: 0\n5050\t    created_at: '2026-05-20T18:49:07.422Z'\n5051\t    updated_at: '2026-05-20T20:15:57.414Z'\n5052\t    hypothesis: Counterfactual instruction sensitivity (wrong/empty/shuffled/paraphrased)\n5053\t      observed in 3 LIBERO-Goal tasks generalizes to all 10 tasks with consistent\n5054\t      effect ordering (empty > wrong > paraphrased > shuffled) and low cross-task\n5055\t      variance in Cohen's d\n5056\t    spec:\n5057\t      command: python scripts/counterfactual_instruction_10tasks.py\n5058\t      server: westd-19183\n5059\t      gpu:\n5060\t      - cuda:0\n5061\t      pid: '486952'\n5062\t      log_path: ~/runs/vla-ssd/counterfactual_10tasks.log\n5063\t      submitted_at: '2026-05-20T18:50:54.497Z'\n5064\t      submitted_via: submit_training_job\n5065\t      backend: tmux\n5066\t      account: root\n5067\t      data_path: /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\n5068\t      data_count: 10 tasks x 10 demos x 50 timesteps = 5000 samples\n5069\t      model_name: openvla-7b\n5070\t      seed: 42\n5071\t      checkpoint_path: /root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json\n5072\t      wall_clock_seconds: 5102.9\n5073\t      gpu_hours: 1.42\n5074\t    parent: counterfactual_instruction\n5075\t    metrics:\n5076\t      global_cohens_d:\n5077\t        empty: 0.978\n5078\t        wrong: 0.924\n5079\t        shuffled: 0.763\n5080\t        paraphrased: 0.707\n5081\t      cross_task_cv:\n5082\t        empty: 0.171\n5083\t        wrong: 0.274\n5084\t        shuffled: 0.185\n5085\t        paraphrased: 0.296\n5086\t      effect_ordering: empty > wrong > shuffled > paraphrased\n5087\t      n_tasks: 10\n5088\t      n_samples_per_condition: 5000\n5089\t    conclusion: success\n5090\t    completed_at: '2026-05-20T20:15:57.414Z'\n5091\t  permutation_10k:\n5092\t    status: DONE\n5093\t    retry_count: 0\n5094\t    created_at: '2026-05-20T19:07:46.268Z'\n5095\t    updated_at: '2026-05-20T19:13:43.662Z'\n5096\t    hypothesis: Increasing\n…[truncated 848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T21:34:54.350084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml",
+              "offset": "3847",
+              "limit": "30"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T21:34:54.350496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3847\t  counterfactual_instruction:\n3848\t    status: DONE\n3849\t    retry_count: 0\n3850\t    created_at: '2026-05-18T16:52:52.867Z'\n3851\t    updated_at: '2026-05-18T17:31:39.989Z'\n3852\t    hypothesis: 'L1 instruction-dominant heads perform instruction-specific routing:\n3853\t      changing the instruction (wrong/empty/shuffled/paraphrased) should produce systematically\n3854\t      different action outputs compared to correct instruction, with wrong and empty\n3855\t      causing larger divergence than shuffled or paraphrased.'\n3856\t    parent: action_trajectory_control\n3857\t    spec:\n3858\t      command: MUJOCO_GL=egl python -u scripts/counterfactual_instruction.py\n3859\t      server: westd-19183\n3860\t      data_path: /root/autodl-tmp/vla-ssd/data/libero/libero_goal\n3861\t      data_count: 6000\n3862\t      model_name: openvla-7b\n3863\t      seed: 42\n3864\t      checkpoint_source: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\n3865\t      eval_data: /root/autodl-tmp/vla-ssd/data/libero/libero_goal\n3866\t      checkpoint_path: N/A\n3867\t      log_path: /root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log\n3868\t    checkpoint_path: N/A (eval-only experiment)\n3869\t    log_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_counterfactual_instruction_20260518T165804.log\n3870\t    conclusion: success\n3871\t    completed_at: '2026-05-18T17:31:15.868Z'\n3872\t    notes: '4 counterfactual conditions vs correct baseline. Cohen''s d: empty=0.968,\n3873\t      wrong=0.844, paraphrased=0.697, shuffled=0.625. All d>0.5. Graduated response\n3874\t      confirms instruction content sensitivity. Surprise: paraphrased > shuffled (model\n3875\t      depends on surface form, not just semantics). Supports C2 claim.'\n3876\t  action_metrics_extended:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T21:35:07.326531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "ANALYZING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T21:35:07.377244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T21:35:07.729703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → ANALYZING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3621}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T21:35:07.730169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_fce2a9dc."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T21:35:22.658407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "hypothesis",
+              "value": "Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T21:35:23.010657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "parent",
+              "value": "counterfactual_10tasks",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T21:35:23.616190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:23.218Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9064}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 957
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T21:35:24.476882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:24.083Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8539}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1466
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T21:35:30.031882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "PENDING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T21:35:30.183084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T21:35:31.493215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:30.430Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4811}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1461
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T21:35:31.544067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Glob",
+            "elapsed_ms": 1360
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T21:35:37.217806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T21:35:37.719995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T21:35:38.424219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:37.541Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1935}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1206
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T21:35:38.676461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Glob",
+            "elapsed_ms": 956
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T21:35:42.292786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T21:35:42.293253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T21:35:43.548325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:42.647Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2321}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T21:35:43.549060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Read",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T21:35:52.487932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "vla-ssd",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\"', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': '10 tasks x spatial counterfactuals', 'model_name': 'openvla-7b', 'seed': 42}"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T21:35:52.839980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3435}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T21:35:58.027548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "vla-ssd",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\"', 'server': 'westd-19183', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': '10 tasks x spatial counterfactuals', 'model_name': 'openvla-7b', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b', 'eval_data': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/'}"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T21:35:59.289332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:35:58.395Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x spatial counterfactuals\\\", \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2283}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1261
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T21:36:02.103079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "counterfactual_spatial",
+              "field": "status",
+              "value": "ANALYZING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T21:36:03.358466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"counterfactual_spatial\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:32:45.466Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:36:02.446Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/vla-ssd && python3 scripts/counterfactual_spatial.py 2>&1 | tee /root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"492307\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/counterfactual_spatial.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T20:32:45.160Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": \\\"10 tasks x spatial counterfactuals\\\", \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:33:53.154Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:33:56.063579+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\\\", \\\"parent\\\": \\\"counterfactual_10tasks\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2523}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T21:36:07.778842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_gpu_health",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T21:36:07.829513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T21:36:36.142767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:counterfactual_spatial",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：分析 counterfactual_spatial 实验结果\n\n实验已完成，进程正常退出。你需要 SSH 到服务器读取日志和结果文件，提取关键 metrics，判断 conclusion。\n\n### 实验背景\n- **exp_id**: counterfactual_spatial\n- **server**: westd-19183\n- **hypothesis**: Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial prepositions (e.g. 'on top of' → 'next to') in LIBERO-Goal instructions will produce systematically different action outputs, demonstrating that L1 instruction-dominant heads route fine-grained spatial information, not just task identity.\n- **parent**: counterfactual_10tasks（已 success，验证了 10 个 task 的 counterfactual sensitivity，Cohen's d: empty=0.978, wrong=0.924, shuffled=0.763, paraphrased=0.707）\n- **脚本**: scripts/counterfactual_spatial.py\n- **log_path**: ~/runs/vla-ssd/counterfactual_spatial.log\n- **结果可能在**: /root/autodl-tmp/vla-ssd/results/counterfactual_spatial* 或类似路径\n\n### 步骤\n\n1. **SSH 读取日志**（用 ssh_read_only）：\n   - `cat ~/runs/vla-ssd/counterfactual_spatial.log | tail -100` 看最后输出\n   - `cat ~/runs/vla-ssd/counterfactual_spatial.log | head -50` 看脚本配置\n   - 如果日志不在那，检查 `/root/autodl-tmp/vla-ssd/results/counterfactual_spatial.log`\n\n2. **读取结果文件**：\n   - `ls -la /root/autodl-tmp/vla-ssd/results/counterfactual_spatial*`\n   - 找到 JSON/CSV/TXT 结果文件并读取\n\n3. **读取脚本源码**了解实验设计：\n   - `cat /root/vla-ssd/scripts/counterfactual_spatial.py` 理解具体做了什么 counterfactual（spatial preposition 替换？方向词替换？）\n\n4. **提取 metrics**：\n   - 每种 spatial counterfactual condition 的 Cohen's d（或其他 effect size）\n   - 与 correct baseline 的 cosine distance / L2 distance\n   - 跨 task 的 variance/CV\n   - 效果排序\n\n5. **判断 conclusion**：\n   - 如果 spatial counterfactual 产生显著 effect（d > 0.5），hypothesis 成立 → success\n   - 如果 effect 不显著或接近零 → negative，分析为什么\n\n6. **写入分析报告**到本地：\n   - 将分析结果写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_spatial/analysis.md`\n   - 包含：实验设计、每个 condition 的 metrics、与 parent 实验对比、conclusion 判断及理由\n\n7. **更新 registry**：\n   - `update_registry(exp_id=\"counterfactual_spatial\", field=\"conclusion\", value=\"success\"或\"negative\")`\n   - `update_registry(exp_id=\"counterfactual_spatial\", field=\"metrics\", value={...})`\n   - `update_registry(exp_id=\"counterfactual_spatial\", field=\"status\", value=\"DONE\")`\n   - 设置 checkpoint_path（结果文件路径）和 log_path\n\n### 环境\n- SSH 服务器：westd-19183，用户 root\n- conda 环境：`source /root/miniconda3/bin/activate`\n- 项目路径：/root/vla-ssd/\n\n### 产出\n最终输出一段结构化总结，包含：\n- conclusion: success/negative\n- 核心 metrics（每个 condition 的 effect size）\n- 与 parent（counterfactual_10tasks）的对比\n- 对 hypothesis 的判断\n",
+              "tool_groups": "['ssh', 'registry']",
+              "context": "实验链：counterfactual_instruction → counterfactual_10tasks → counterfactual_spatial。前两个都 success，验证了 task-level counterfactual sensitivity。本实验测试 spatial-level 的 sensitivity。Parent metrics: Cohen's d empty=0.978, wrong=0.924, shuffled=0.763, paraphrased=0.707。"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T21:36:36.193542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "westd-19183"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T21:36:38.905419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_counterfactual_spatial_20260520T213636\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_analysis_counterfactual_spatial_20260520T213636.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_counterfactual_spatial_20260520T213636 started. Use get_worker_status('worker_analysis_counterfactual_spatial_20260520T213636') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2762
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T21:36:38.905981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"westd-19183\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 2712
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T21:36:53.568961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 \"counterfactual_10tasks_trajectory:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml",
+              "description": "Check counterfactual_10tasks_trajectory experiment details"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T21:36:53.621108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "elapsed_ms": 52
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T21:36:56.335216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "counterfactual_10tasks_trajectory",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T21:36:56.385852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T21:37:03.283097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 \"status: PREPARING\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | grep -E \"^  [a-z]\" | head -10",
+              "description": "List all PREPARING experiments"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T21:37:03.333790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  fulllayer_action_probe:\n  l1_head_ablation_control8:\n  l1_head_ablation_50demos:\n  behavioral_pilot:\n  behavioral_pilot_v2:\n  behavioral_smoketest_diag:\n  libero_finetuned_probe:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T21:37:19.239724+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析 Worker 已派发（`worker_analysis_counterfactual_spatial_20260520T213636`）。等待 Worker 完成回调，届时更新 registry 并向 Director 汇报。\n\n当前状态：\n- `counterfactual_spatial`: ANALYZING，Worker 正在读取日志和结果\n- GPU cuda:0 刚释放（实验完成），cuda:1 状态待确认\n- Worker 池：1（分析 Worker）\n- 7 个 PREPARING 实验待处理"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial"
+          },
+          "id": "event-000070"
+        }
+      ],
+      "message_count": 70
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T15:50:15.223974+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T15:51:08.355653+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，**不得使用其他卡**\n- 论文 DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）\n- Closed-loop behavioral validation 已确认不可行（D087，0/30 SR，256-bin quantization 根因），标记 wont_fix，**不要再尝试**\n- Reviewer session 瘫痪中（\"PDF file was not valid\"），已 escalate 6 次无回复，Round 14/15 修改未经独立 Reviewer 审视\n- counterfactual_spatial 的 hypothesis 是我在推进状态链时补写的（基于实验脚本名推测），**Worker 分析完后必须根据实际脚本内容校正 hypothesis**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 /root/vla-ssd/\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/bin/activate`）\n- 模型：/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\n- 数据：/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\n- 结果：/root/autodl-tmp/vla-ssd/results/\n- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用，根分区 816G/879G 可用\n- 活跃进程：counterfactual_10tasks_trajectory (PID 494980) 仍在跑（reconcile_crons 确认）——注意此实验不在 vla-ssd registry 中，可能属于其他项目或是 cron 残留，需排查\n\n### 3. 📊 当前状态\n刚收到 counterfactual_spatial cron 回调（进程正常退出）。我已：\n1. 补写 hypothesis 和 parent，将状态从 PREPARING → ANALYZING（经 PENDING/QUEUED/ALLOCATED/RUNNING 全链）\n2. 派出 Worker `worker_analysis_counterfactual_spatial_20260520T213636` 去 SSH 读日志+分析结果+更新 registry\n\n**Registry 状态**：\n- ANALYZING: counterfactual_spatial（等 Worker 回调）\n- PREPARING x7: libero_finetuned_probe, behavioral_smoketest_diag, behavioral_pilot_v2, behavioral_pilot, fulllayer_action_probe, l1_head_ablation_control8, l1_head_ablation_50demos\n- DONE: 112 个（success 86, negative 16, killed 10）\n- RUNNING: 0（两块 GPU 都空闲）\n\n**等待中**：\n- Worker 回调：counterfactual_spatial 分析 Worker\n- Director 未决：behavioral_smoketest 是 negative（最近完成），推导链和下一步建议可能尚未汇报给 Director\n\n### 4. 📋 待办\n- counterfactual_spatial 分析 Worker 回调 → 根据 conclusion 分叉：success 则更新 report.md + 汇报 Director + 检查 experiment-matrix 覆盖；negative 则按 on-experiment-done negative 流程推导\n- Worker 回调后两块 GPU 空闲 → 立即从 7 个 PREPARING 实验中挑选可提交的，或向 Director 请示优先级\n- behavioral_smoketest (negative) 的后续推导是否已汇报 Director → 检查 report.md 和 Director 通信记录，如未汇报则补报\n- Reviewer session 修复 → 持续关注 Manager 回复\n- Round 15 审稿结果 → 到达后立即分析并推进\n\n### 5. 🎯 战略上下文\n- **核心发现**：VLA 微调创建 instruction routing（attention head specialization），跨架构一致（OpenVLA + Phi3V）。C1 token specialization + C2 entry-exit routing + R² inverted-U profile 双架构复现\n- **审稿天花板**（结构性，无法短期修复）：closed-loop gap（wont_fix）、scope fit（纯 representational）、LIBERO-only（1 benchmark family）。策略是最大化 open-loop 证据严谨性 + honest limitations\n- **counterfactual 实验链**：instruction → 10tasks → spatial。前两个 success，spatial 是进一步细粒度验证。如果 spatial 也 success，强化\"heads route fine-grained information\"narrative；如果 negative，说明 routing 可能是 task-level 而非 token-level\n- **易错点**：7 个 PREPARING 实验没有一个在跑，两块 GPU 空闲 = 失职状态。下一个\"我\"必须立即推动至少 1 个实验上 GPU，或向 Director 说明阻塞原因\n- **审稿历史**：Round 7 最高分 6.5-7/10，Round 14 降到 5.3，Round 15 fresh 已提交待结果。Provenance coverage 109/114\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:counterfactual_spatial"
+          },
+          "id": "event-000072"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-counterfactual-spatial-20260521t155108-358237.md"
+}

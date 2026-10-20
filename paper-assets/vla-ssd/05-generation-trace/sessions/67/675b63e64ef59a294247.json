@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "675b63e64ef59a294247",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_9_1779378668.md",
+  "task_key": "loop_9_1779378668",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1779378668.md",
+    "occurrence": 1,
+    "bytes": 4143,
+    "sha256": "decca6bae7a16e6cbd3696ead5e1f32810c602e9f989dee6576ff8bf0c383cfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-21T04:21:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-19183:cuda:0, westd-19183:cuda:1（仅 2 张）\n- 当前 GPU 状态：全部空闲，保留给审稿反馈后 targeted experiments——不要自作主张跑新实验，等 Director 指令\n- DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）——论文已提交 Group C 审稿中\n- 论文已进入审稿阶段，禁止在无 Director 批准下修改 paper/** 文件\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd/`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（**不是 venv**）\n- 模型路径：\n  - OpenVLA: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`\n  - TracVLA-Phi3V: `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/`\n  - Phi-3-mini base: `/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct`\n- 数据集：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks × 50 demos）\n- Features 缓存：`/root/autodl-tmp/vla-ssd/features/`（多个子目录，已提取的 hidden states）\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/`\n- 磁盘：根分区 816G/879G 可用（3%），autodl-pub 5.3T/7.3T 可用\n- 活跃进程：无（所有实验已完成）\n- 活跃 Cron：无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**：收到 `phi3v_untrained_seed_expansion` 的 cron 完成回调（进程正常退出，ANALYZING 状态）。已 spawn Worker `worker_analysis_phi3v_untrained_seed_expansion_20260520T114811` 去服务器分析结果——**Worker 尚未回调，是本 session 最重要的待处理事项**。\n\n**Registry 概况**：117 个实验，109 DONE（83 success / 16 negative / 10 killed），1 ANALYZING，7 PREPARING。\n\n**ANALYZING**：\n- `phi3v_untrained_seed_expansion`：Phi3V untrained R² probe 从 5→15 seeds 扩展。Worker 正在分析合并 15 seeds 的 R² profile，对比 parent 5-seed CI 是否收紧。\n\n**PREPARING**（7个，全部待 Director 决策或审稿后触发）：\n- `libero_finetuned_probe`, `behavioral_smoketest_diag`, `behavioral_pilot_v2`, `behavioral_pilot`, `fulllayer_action_probe`, `l1_head_ablation_control8`, `l1_head_ablation_50demos`\n\n### 4. 📋 待办\n- Worker `worker_analysis_phi3v_untrained_seed_expansion_20260520T114811` 回调 → 读取分析结果 → 确认 registry 已更新为 DONE → 刷新 report.md → 向 Director 汇报（这是 2×2 矩阵最后一块拼图，Phi3V untrained 15-seed 完成意味着四个条件全部 15 seeds 对齐）\n- 如果 Worker 分析显示 success → 汇报 Director：\"2×2 矩阵全部完成，reviewer concern（asymmetric seed count）已消除\"\n- 如果 Worker 分析显示 negative（CI 未收紧/profile 变化）→ 汇报 Director 异常并附诊断\n- 审稿反馈到达 → 读反馈 → 按 reviewer 意见规划 targeted experiments → 提交 Director 审批\n\n### 5. 🎯 战略上下文\n- **核心发现**：VLA 微调创建 instruction routing（attention head specialization），这是跨架构收敛性质（OpenVLA + TracVLA-Phi3V 均复现）\n- **三个 Core Claims**：C1 token specialization, C2 entry-exit routing, C3 R² inverted-U geometry——全部双架构验证\n- **关键数据锚点**：Peak R² 0.637 (L9, OpenVLA) vs 0.634 (L11, Phi3V), Δ=0.003——近乎完美收敛\n- **决策链**：D077→D078 闭环路径关闭 → D079 转 TracVLA-Phi3V 分析路径 → D080-D086 跨架构验证全线成功 → 论文 R² cross-arch patch 完成 → 提交审稿\n- **易错点**：\n  - Path B（闭环行为验证）已被 D078/D080 正式关闭（SR 0/9），不要再尝试\n  - PREPARING 中的 behavioral 实验是历史遗留，不要主动提交——等 Director 指令\n  - Phi3V untrained profile 是 early_peak_monotonic_decline（peak L4），与 trained 的 inverted-U（peak L11）形态不同——这正是实验要证明的（差异来自训练而非架构）\n  - Provenance coverage 91/96，还差 5 个——审稿前可能需要补全\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779378668.md"
+}

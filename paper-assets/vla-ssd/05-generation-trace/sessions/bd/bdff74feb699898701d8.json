@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdff74feb699898701d8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose nlp download check",
+  "task_key": "worker_diagnose_nlp_download_check_20260522T095455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_nlp_download_check_20260522T095455_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "d69c6f28cee7ba55959847c012b9f4c55cbf8a9b531d599577f24127470a1520"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**下载路径**: `/root/autodl-tmp/models/Llama-2-7b-chat-hf/`\n\n**文件状态**:\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| `model-00002-of-00002.safetensors` | 3.50 GB / 3.50 GB | 已完成 |\n| `model-00001-of-00002.safetensors` | 5.99 GB / 9.29 GB (64%) | 下载中（在 `._____temp/` 内） |\n| config/tokenizer 等元数据 | — | 已完成 |\n\n**下载进程**: PID 612753，已运行 4h23m，当前速度 ~350 KB/s，预计剩余 **~2h50m**。\n\n**wait_and_run**: PID 613207 在等下载完成，日志仍显示 \"Waiting for model download to complete...\"。\n\n**其他缓存副本**: `hf_cache/modelscope/shakechen/` 和 `.modelscope_cache/shakechen/` 只有元数据，无权重文件（看起来是之前失败/不完整的尝试）。\n\n**结论**: 下载正常进行中，速度偏慢（AutoDL 代理限速），预计还需约 3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-nlp-download-check.md"
+}

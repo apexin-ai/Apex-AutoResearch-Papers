@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1e285ce023da487ccca7",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis statistical supplements",
+  "task_key": "worker_analysis_statistical_supplements_20260520T174541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_statistical_supplements_20260520T174541.log",
+    "occurrence": 1,
+    "bytes": 661034,
+    "sha256": "d3765ea6b2121bf56aea7dd31fcb7ffdef94e5936055abd223adfb286608a586"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "1e285ce023da487ccca7-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "1e285ce023da487ccca7-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-statistical-supplements.md"
+}

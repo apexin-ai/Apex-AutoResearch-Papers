@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c21f1c87c530cca4409",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code extract l1 attention data",
+  "task_key": "worker_code_extract_l1_attention_data_20260517T081258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extract_l1_attention_data_20260517T081258_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "4f6b475ed2887a1dd06fee7b0a35d87d0408c6d6bf57d3d51de3570074345d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## L1 精确数值\n\n### trained L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 24 |\n| mean_text_attn | 0.5729 |\n| mean_image_attn | 0.2173 |\n| mean_bos_attn | 0.2098 |\n| per_head_text_attn | [0.8589, 0.5308, 0.6857, 0.4749, 0.5781, 0.4976, 0.4083, 0.5673, 0.5797, 0.43, 0.7138, 0.5671, 0.5216, 0.4147, 0.704, 0.6226, 0.5382, 0.529, 0.5196, 0.65, 0.5185, 0.4537, 0.8264, 0.5683, 0.3657, 0.7706, 0.5614, 0.6854, 0.4949, 0.5971, 0.543, 0.5552] |\n\n### llama2base L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 9 |\n| mean_text_attn | 0.3627 |\n| mean_image_attn | 0.6106 |\n| mean_bos_attn | 0.0267 |\n| per_head_text_attn | [0.5806, 0.2172, 0.3154, 0.2547, 0.2543, 0.1904, 0.2234, 0.2305, 0.2378, 0.1894, 0.3154, 0.2526, 0.2098, 0.4152, 0.339, 0.6021, 0.5381, 0.7711, 0.5301, 0.2532, 0.2266, 0.1911, 0.1412, 0.5898, 0.2522, 0.8287, 0.5397, 0.8955, 0.2846, 0.2525, 0.2778, 0.2049] |\n\n### untrained L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 0 |\n| mean_text_attn | 0.0778 |\n| mean_image_attn | 0.9187 |\n| mean_bos_attn | 0.0036 |\n| per_head_text_attn | [0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778] |\n\n注意：untrained 的 32 个 head 的 text_attn 全部相同（0.0778），说明 untrained 模型在 L1 没有任何 head 级别的分化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-extract-l1-attention-data.md"
+}

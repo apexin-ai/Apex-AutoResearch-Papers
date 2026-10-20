@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cf198d7881d1ff6435b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code probe docstring fix",
+  "task_key": "worker_code_probe-docstring-fix_20260515T122705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe-docstring-fix_20260515T122705_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "66a135d22ed5cd9f1bbbcdce9f85a940f4a1950d0024bdbc35a88466f776cd70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两处 \"Train linear probes\" 已改为 \"Train probes (linear/MLP)\"：\n- 第1行模块 docstring\n- 第37行 argparse description\n\n默认值和逻辑未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-docstring-fix.md"
+}

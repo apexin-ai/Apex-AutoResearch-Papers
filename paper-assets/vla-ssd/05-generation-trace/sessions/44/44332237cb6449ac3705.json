@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "44332237cb6449ac3705",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code action head v2 untrained",
+  "task_key": "worker_code_action_head_v2_untrained_20260526T204306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_v2_untrained_20260526T204306.log",
+    "occurrence": 1,
+    "bytes": 522342,
+    "sha256": "963a3cc35420292bc663ff7ca794be5b0ba0de1c3ac973bd6d3e92ea1c4b2cfa"
+  },
+  "statistics": {
+    "messages": 306,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 306,
+      "chunks": [
+        {
+          "path": "44332237cb6449ac3705-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "44332237cb6449ac3705-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-action-head-v2-untrained.md"
+}

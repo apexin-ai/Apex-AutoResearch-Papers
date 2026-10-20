@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98832f1d6be76af95eb7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code openvla extract script",
+  "task_key": "worker_code_openvla-extract-script_20260515T071417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_openvla-extract-script_20260515T071417_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "030b40bcad80ca2799699e7f3301e607ae60c13e371b3c98034a7f5eeb04ded3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，argparse 正常。Checkpoint 还在下载（缺 shard 2，shard 1 大小异常），无法 dry-run。\n\n脚本已更新到 `/root/vla-ssd/scripts/extract_features.py`，相比原版改动：\n\n| 新增/改动 | 说明 |\n|-----------|------|\n| `HDF5_USE_FILE_LOCKING=FALSE` | 顶部设置，避免 HDF5 锁问题 |\n| `--layers` | 支持 `0-32` 或 `0,5,10` 选择性提取，默认全 33 层 |\n| `--task_instruction` | 覆盖自动推断的 task description |\n| `--max_demos` 默认 50 | 原来是 None（全部） |\n| `torch.amp.autocast` | forward pass 加 autocast 节省显存 |\n| `f.attrs[\"layers\"]` | HDF5 元数据记录提取了哪些层 |\n| `--data_dir` 默认路径 | 改为 `/root/autodl-tmp/vla-ssd/data/libero/libero_10/` |\n| docstring | 补充了输入/输出/依赖说明 |\n\n输出格式与 `train_probes.py` 兼容（HDF5，每个 demo 组含 `last_preaction` (T, 33, 4096) 和 `image_mean` (T, 33, 4096)，fp16 + gzip）。等 checkpoint 下载完成后可用 `--max_demos 1` dry-run 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-openvla-extract-script.md"
+}

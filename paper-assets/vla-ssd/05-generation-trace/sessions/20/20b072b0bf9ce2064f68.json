@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20b072b0bf9ce2064f68",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research plan 010 live check",
+  "task_key": "worker_research_plan_010_live_check_20260516T053036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_010_live_check_20260516T053036_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "8dbd2a0deb406a0d44c25f790b7769a311e7ab071e3889d683c831cb97ac9b87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan_010 LIBERO-Spatial Extraction 状态\n\n### GPU\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 84% | 16.5 / 95.6 GB |\n| 1 | RTX PRO 6000 Blackwell | 83% | 16.5 / 95.6 GB |\n\n两块 GPU 都在正常工作。\n\n### 提取进度\n\n| 条件 | 已完成 h5 | 当前任务 | 当前进度 | 速度 | 磁盘 |\n|------|-----------|----------|----------|------|------|\n| **Trained** (GPU 0) | 2 done + 1 in progress | [3/10] pick_up_black_bowl_in_top_drawer | 3282/7479 (44%) | ~40 step/s | 6.3G |\n| **Untrained** (GPU 1) | 2 done + 1 in progress | [3/10] pick_up_black_bowl_in_top_drawer | 3454/7479 (46%) | ~39 step/s | 6.3G |\n\n### 预估剩余时间\n- 当前 task 3 剩余：~1.7 min\n- 剩余 7 个 task，每个 ~2.6 min（按平均 ~6000 steps、~38 step/s 估算）\n- **总预估剩余：~20 min**（两条件并行，同时完成）\n\n### 错误\n无。两个进程都在正常运行，无报错。只有 transformers 版本不匹配的 warning（不影响提取）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-010-live-check.md"
+}

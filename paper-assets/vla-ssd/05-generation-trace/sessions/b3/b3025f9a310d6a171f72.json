@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b3025f9a310d6a171f72",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis factual verification 3q",
+  "task_key": "worker_analysis_factual_verification_3q_20260518T194526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_factual_verification_3q_20260518T194526.log",
+    "occurrence": 1,
+    "bytes": 806512,
+    "sha256": "41a5f40e75b50fb7fc235cc1444a4ddbb60b9e4f14ddefbac53128c8c33c2a5e"
+  },
+  "statistics": {
+    "messages": 166,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 34,
+      "tool_call": 64,
+      "tool_result": 64,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "b3025f9a310d6a171f72-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "b3025f9a310d6a171f72-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-factual-verification-3q.md"
+}

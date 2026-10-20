@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8de4158fd458d0f94f5f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh libero goal download",
+  "task_key": "worker_ssh_libero-goal-download_20260515T160047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_libero-goal-download_20260515T160047_result.json",
+    "occurrence": 1,
+    "bytes": 1924,
+    "sha256": "75dad2dcd01a5942ff94fda8bf3904b598798171745e0c279b66f77f997798f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告：LIBERO-Goal 数据集下载与验证\n\n### 下载结果\n10/10 HDF5 文件下载成功，存放于 `/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`，总计 **5.94 GB**。\n\n关键发现：AutoDL proxy (`network_turbo`) 会严重干扰 HuggingFace XET bridge 下载。**绕过 proxy 直接连接**后，下载速度从 35KB/s 提升至 ~30MB/s。\n\n### 数据格式\n与 libero_10 **完全一致**：\n- `agentview_rgb`: (T, 128, 128, 3) uint8\n- `eye_in_hand_rgb`: (T, 128, 128, 3) uint8\n- `actions`: (T, 7) float64\n- obs keys: `agentview_rgb, ee_ori, ee_pos, ee_states, eye_in_hand_rgb, gripper_states, joint_states`\n- 每个文件 50 个 demo，共 500 个 demo\n- `language_instruction` 存储在 `problem_info` attrs 中\n\n### 10 个任务\n| 任务 | 平均 episode 长度 |\n|------|-------------------|\n| open the middle drawer of the cabinet | 141 |\n| open the top drawer and put the bowl inside | 204 |\n| push the plate to the front of the stove | 153 |\n| put the bowl on the plate | 93 |\n| put the bowl on the stove | 102 |\n| put the bowl on top of the cabinet | 102 |\n| put the cream cheese in the bowl | 107 |\n| put the wine bottle on the rack | 176 |\n| put the wine bottle on top of the cabinet | 108 |\n| turn on the stove | 89 |\n\nEpisode 长度范围：75-347，均值 127.5\n\n### 场景共享\nLIBERO-Goal 所有 10 个任务共享同一个厨房初始场景，仅目标指令不同。\n\n### Pipeline 兼容性\n`extract_features.py` **完全兼容**：\n- `task_desc_from_filename()` 的 fallback 分支正确处理无 SCENE 前缀的文件名，10/10 映射结果与 `language_instruction` 属性一致\n- 数据结构（obs keys、image shape、action dim）与 libero_10 完全匹配\n- 使用方式：`--data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/`\n\n### 磁盘使用\n- libero_goal: 6.0 GB\n- 数据盘剩余: 83 GB (68% 使用)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-libero-goal-download.md"
+}

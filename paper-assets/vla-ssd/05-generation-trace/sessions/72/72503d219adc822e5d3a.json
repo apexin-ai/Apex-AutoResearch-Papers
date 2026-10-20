@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72503d219adc822e5d3a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp permutation 10k",
+  "task_key": "worker_exp_permutation_10k_20260520T190553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_permutation_10k_20260520T190553_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "5ed6c3993f7ea3bb9ec7e41f43b78ee894715698a034ef615e68237a97e018dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 哪些分析用了 permutation test\n\n| 分析 | 脚本 | 原 shuffle 数 | 是否需要更新 |\n|------|------|-------------|------------|\n| **RSA significance** | `rsa_permutation_null.py` | 1,000 | **已更新到 10,000** |\n| CV/I² exact paired | `permutation_test_I2.py` | 2^6=64, 2^5=32 (穷举) | 不需要 |\n| CV/I² MC unpaired | `permutation_test_I2.py` | 10,000 | 已经 10k |\n| Head ablation bootstrap | `bootstrap_action_probe.py` | 10,000 | 已经 10k |\n| Delta-rho permutation | `analyze_results.py` | 10,000 | 已经 10k |\n\n### 旧 (1k) vs 新 (10k) p-values 对比\n\n| Layer | Observed RSA | Old null_max | New null_max | Old p | New p | 结论变化 |\n|-------|-------------|-------------|-------------|-------|-------|---------|\n| 0 | 0.6117 | 0.0808 | 0.1031 | 0.0 | 0.0 | 不变 |\n| 8 | 0.6187 | 0.0919 | 0.1200 | 0.0 | 0.0 | 不变 |\n| 12 | 0.6282 | 0.0982 | 0.1186 | 0.0 | 0.0 | 不变 |\n| 24 | 0.5459 | 0.0951 | 0.1327 | 0.0 | 0.0 | 不变 |\n| 32 | 0.4223 | 0.1038 | 0.1172 | 0.0 | 0.0 | 不变 |\n\n10k shuffles 下 null distribution 的 tail 略有扩展（null_max 从 ~0.08-0.10 升至 ~0.10-0.13），但观测值（0.42-0.63）远超 null 最大值（0.13），所有 p=0.0（即 p < 1/10000 = 0.0001）。**所有结论不变。**\n\n### 结果路径\n- JSON: `/root/autodl-tmp/vla-ssd/results/permutation_10k/rsa_permutation_null_10k.json`\n- Log: `/root/autodl-tmp/vla-ssd/results/permutation_10k/run.log`\n- Script: `/root/vla-ssd/scripts/ablations/rsa_permutation_null_10k.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-permutation-10k.md"
+}

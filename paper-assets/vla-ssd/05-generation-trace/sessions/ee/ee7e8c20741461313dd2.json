@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee7e8c20741461313dd2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code update writing plan",
+  "task_key": "worker_code_update_writing_plan_20260516T035057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_writing_plan_20260516T035057_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "111beeef9739b94e9f0457ac483497e0f68cc4ef078fea490e26a3579f846423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "writing_plan.yaml 已全面更新，对齐 D042 paper_framing.md。主要变更：\n\n**Narrative 翻转**:\n- Claim 1: \"VL pretraining is the source\" → \"Self-supervised geometry is king\" (DINO cls 0.692 > Proj 0.615 > CLIP 0.557)\n- Claim 2: \"LLM degrades\" → \"LLM non-monotonic inverted-U\" (L0=0.612→L12=0.628→L32=0.422)\n- Claim 3: \"Training invariance Δ=0.021\" → \"Peak shift L0→L12, best-vs-best Δ=+0.017 n.s., same-layer Δ=+0.079 p<0.0001\"\n\n**数值全换 Method B**: 清除所有 Method A 数值 (DINO 0.388, VLA ~0.50, R² 0.706/0.731 等)，替换为 unified_action_probe R² (0.634/0.630/0.587/0.671) 和 D041 RSA。\n\n**其他修正**:\n- Method 2.1: 修正 \"LIBERO-10 fine-tuned\" → \"OXE-pretrained, NOT fine-tuned on LIBERO\"\n- Method 2.2: 加入 standalone encoders、branch-split (10 个 extraction source)\n- Discussion: 删除 geometric-functional dissociation（已证伪），加入 branch-split insight 和 self-supervised dominance\n- Figures: fig2 改为 cross-encoder 排序，fig3 改为 inverted-U 双线，fig5 改为 peak shift 可视化\n- Tables: tab1 完整 10-row cross-encoder RSA 表，tab2/tab3 全换 Method B 数值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-writing-plan.md"
+}

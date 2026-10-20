@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cd4ba230f1a4510e797",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh untrained last preaction probe",
+  "task_key": "worker_ssh_untrained-last-preaction-probe_20260515T234931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_untrained-last-preaction-probe_20260515T234931_result.json",
+    "occurrence": 1,
+    "bytes": 277,
+    "sha256": "8ac310b479f0c3a172d63c5a41e13e71eca6d9280d43e6dc5f6213af24e9b4f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册完成：`art_20260516_581c74`。\n\nC001 控制实验全部完成。核心结论：untrained last_preaction L19 mean R²=0.325，远低于 trained L19 (0.731) 和 projector (0.706)，确认高 action R² 是训练产物而非架构固有属性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-untrained-last-preaction-probe.md"
+}

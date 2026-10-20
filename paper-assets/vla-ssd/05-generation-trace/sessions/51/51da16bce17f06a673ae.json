@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51da16bce17f06a673ae",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check behavioral pilot v2 readiness",
+  "task_key": "worker_check_behavioral_pilot_v2_readiness_20260523T153207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_behavioral_pilot_v2_readiness_20260523T153207_result.json",
+    "occurrence": 1,
+    "bytes": 1691,
+    "sha256": "3b7ecdb75b40cd140a6c86902b7fe4dc7d032d35ad8e7bb5e863ad8c3e72b1fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 代码就绪状态：✅ 就绪\n- `behavioral_pilot_v2.py` 存在，完整脚本（3 tasks × 10 eps × 2 conditions）\n- 辅助脚本也在：`behavioral_pilot.py`, `behavioral_smoketest.py`, `behavioral_sr_validation.py`\n\n### 2. 环境就绪状态：✅ 就绪\n| 包 | 版本 | 状态 |\n|---|---|---|\n| libero | installed (`/root/autodl-tmp/LIBERO/`, sys.path 加载) | ✅ |\n| mujoco | 3.8.1 | ✅ EGL 渲染已验证 |\n| robosuite | 1.4.1 | ✅ |\n| torch | 2.10.0+cu128 | ✅ CUDA 可用 |\n| transformers | 5.9.0 | ✅ |\n| accelerate | 1.13.0 | ✅ |\n\n### 3. Checkpoint：✅ 可用\n`openvla-7b-finetuned-libero-goal` — 4 个 safetensor shard，完整。\n\n### 4. GPU：⚠️ RTX PRO 6000 **Blackwell** Server Edition × 2（96GB each）\n**这仍然是 Blackwell GPU**，不是普通 RTX PRO 6000。\n\n### 5. 之前的阻塞问题\n\n| 问题 | 当前状态 |\n|------|---------|\n| mujoco 版本不匹配 | ✅ 已解决，3.8.1 + EGL 正常 |\n| Blackwell segfault 需 device_map | ✅ 代码已有 `device_map=\"cuda:0\"` 绕过 |\n| SR=0/3 baseline 全失败 | ❌ **未解决** — `sr_corrected_3ep.json` 显示 3 个 episode 全部 reward=0.0, steps=400 |\n| action[0] 锁定在 0.236 | ❓ **未验证** — 这是 SR=0 的根因，当前环境未重新测试 |\n\n### 6. 结论：**不能立即提交**\n\n环境和代码都就绪，但 **SR=0 的根因（action 输出异常）从未被解决**。直接跑完整实验大概率还是全 0。\n\n建议先跑 `behavioral_smoketest.py` 或一个 1-episode 快速验证，确认 baseline 条件下模型能产生有效 action 且 SR>0，然后再提交完整的 v2 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-behavioral-pilot-v2-readiness.md"
+}

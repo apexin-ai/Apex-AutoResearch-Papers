@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cdaaec938d3e84a153d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis mvp probe results",
+  "task_key": "worker_analysis_mvp-probe-results_20260515T134750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp-probe-results_20260515T134750_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "7fb6e4f54f6981182addbd9bae06b39093b76f81093fb5bacaca5a98ea02c7c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 已更新。以下是完整分析报告：\n\n---\n\n## MVP Probe 结果分析\n\n### Gate 评估\n\n| Gate | 指标 | 实测值 | 阈值 | 结果 |\n|------|------|--------|------|------|\n| G1 | best_layer ρ > 0.5 | **0.9562** (L3) | 0.5 | **PASS** |\n| G2 | max Δρ > 0.1 (非坍塌层) | **0.0427** (L4) | 0.1 | **FAIL** |\n| G3 | VLA ρ ≥ DINO-V2 | **0.9562** vs 0.901 | 0.901 | **PASS** |\n\n### **Overall: FAIL** (Gate 2 未通过)\n\n### 关键数据\n\n**Trained Top-5**: L3=0.956, L4=0.955, L2=0.955, L5=0.950, L6=0.950\n**Untrained Top-5**: L1=0.933, L13=0.932, L5=0.931, L8=0.928, L2=0.928\n\n**Δρ Top-5** (17 个两端都未坍塌的层):\n- L4: +0.043, L7: +0.040, L11: +0.037, L19: +0.035, L29: +0.035\n- Mean Δρ = +0.019, 16/17 正向（仅 L13 为 -0.029）\n\n**Layer Collapse**: 33 层中 16 层在至少一端坍塌（ρ=0.0），其中训练导致 7 层额外坍塌。\n\n### 核心结论\n\n1. **LLM 训练贡献可忽略**: max Δρ=0.043，远低于 0.1 阈值，与 ROADMAP 预判精确吻合\n2. **信号来自 vision encoder**: untrained 模型已达 ρ=0.933，说明 SigLIP ViT-SO400M 预训练特征主导 temporal distance 信号\n3. **VLA > DINO-V2 但归因于更强的 vision backbone**: SigLIP（0.933 untrained）> DINO-V2（0.901），不是 LLM 的功劳\n4. **项目定位: Negative Result** — VLA LLM 层不编码显著额外的 scene structure 信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-probe-results.md"
+}

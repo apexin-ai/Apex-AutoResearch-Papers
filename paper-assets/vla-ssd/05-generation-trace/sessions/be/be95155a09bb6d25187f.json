@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be95155a09bb6d25187f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v r2 action probe",
+  "task_key": "worker_code_phi3v_r2_action_probe_20260520T012645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_r2_action_probe_20260520T012645_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "a4ccb6335b4d2e79ae44fc6edc5a5ee1052d9ad2cf7711daba70172a758473ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Extraction is actively running — first task `open_the_middle_drawer_of_the_cabinet.h5.tmp` is being written (269MB so far). GPU utilization is low because the forward passes are quick (single frame at a time with idle periods for data loading).\n\n**Summary:**\n\n- **Script**: `/root/vla-ssd/scripts/phi3v_r2_action_probe.py` — two-phase design:\n  - Phase 1: Extract last-preaction hidden states (33 layers × 3072 dims) from TracVLA-Phi3V for all 10 tasks × 50 demos → saved to `/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/`\n  - Phase 2: Train per-layer MLP probes (5 seeds), compute R² → output to `/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json`\n- **Job**: Running on westd-19183 cuda:0, PID 402232\n- **Registry**: `phi3v_r2_action_probe` → RUNNING\n- **Log**: `/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log`\n- **Estimated time**: Phase 1 (extraction) ~30-60 min for 10 tasks, Phase 2 (probing) ~15 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-r2-action-probe.md"
+}

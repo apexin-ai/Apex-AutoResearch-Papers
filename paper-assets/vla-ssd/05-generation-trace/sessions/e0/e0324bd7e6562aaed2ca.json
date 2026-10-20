@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0324bd7e6562aaed2ca",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero finetuned attention",
+  "task_key": "worker_code_libero_finetuned_attention_20260519T071437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_finetuned_attention_20260519T071437_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "77f3b5fccf9532784b3e17f6894ae0c8378f1b7c11ba4410d52b7c6281793999"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**L1 bookend attention 4 条件比较：**\n\n| Condition | Instruction-dominant heads (/32) | Mean text attn |\n|---|---|---|\n| untrained | 0 | 0.0778 |\n| llama2base | 9 | 0.3627 |\n| openvla7b | 24 | 0.5729 |\n| **libero_finetuned** | **22** | **0.5686** |\n\nLIBERO-Goal fine-tuning基本保持了 L1 bookend pattern（22/32 vs 24/32，text_attn 0.5686 vs 0.5729）。4 条件形成单调训练轨迹：untrained → llama2base → openvla7b ≈ libero_finetuned。\n\n**输出文件：**\n- 完整结果：`/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json`\n- 兼容格式：`/root/autodl-tmp/vla-ssd/results/attention/full_32layer_libero_finetuned.json`\n- 日志：`/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention.log`\n\nRegistry 已更新为 DONE(success)，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-finetuned-attention.md"
+}

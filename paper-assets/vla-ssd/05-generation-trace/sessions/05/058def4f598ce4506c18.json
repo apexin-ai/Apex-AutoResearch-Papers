@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "058def4f598ce4506c18",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "debug kill duplicate and behavioral pilot v2",
+  "task_key": "worker_debug_kill_duplicate_and_behavioral_pilot_v2_20260518T114002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_kill_duplicate_and_behavioral_pilot_v2_20260518T114002.log",
+    "occurrence": 1,
+    "bytes": 554410,
+    "sha256": "8716c1d190ced3ff566febd251da64a421bf1dc462a85507e85e1e8ddb89d1a8"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "058def4f598ce4506c18-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "058def4f598ce4506c18-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-kill-duplicate-and-behavioral-pilot-v2.md"
+}

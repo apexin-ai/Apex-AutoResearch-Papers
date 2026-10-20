@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02c5e42e53850408e61",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh status check and spatial submit",
+  "task_key": "worker_ssh_status_check_and_spatial_submit_20260522T010155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status_check_and_spatial_submit_20260522T010155_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "c8f89c136bc37d66fc1bfa10e80f33f45b872de5da32e124851812a1d1dcd26c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### cf_batch_missing_v1 (PID 584349, cuda:0) — 运行 2h18m\n\n5 个子任务中已完成 4 个，正在执行最后一个：\n\n| # | 子任务 | 耗时 | 状态 |\n|---|--------|------|------|\n| 1 | openvla object untrained | 27.6 min | Done |\n| 2 | tracvla spatial untrained | 29.9 min | Done |\n| 3 | tracvla object untrained | 28.5 min | Done |\n| 4 | tracvla goal untrained | 28.9 min | Done |\n| 5 | tracvla long untrained | — | **进行中**: \"wrong\" condition 4400/5000 |\n\n\"wrong\" condition 剩余 600 iterations (~1 min)，之后还有 \"paraphrased\" condition (5000 iterations, ~15-20 min)。**预计 ~15-20 分钟后完成。**\n\n### openvla_goal_standardized_v1 (PID 591230, cuda:1) — 运行 29m\n\n目前在第一个 condition（可能是 trained），Phase 6 (counterfactual analysis) 的 \"wrong\" condition at 600/5000。Phases 1-5 耗时 ~26 min。Phase 6 剩余量较大，之后还要跑第二个 condition（untrained），**预计还需 1.5-2 小时。**\n\n### GPU 状态\n- cuda:0: 58% utilization, 9.5/95.6 GB — cf_batch 占用\n- cuda:1: 90% utilization, 15.3/95.6 GB — goal pipeline 占用\n\n### 结论\n\n**cf_batch 仍在 cuda:0 上运行，不提交 Spatial pipeline。** 预计 cf_batch ~15-20 分钟后完成，届时可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-and-spatial-submit.md"
+}

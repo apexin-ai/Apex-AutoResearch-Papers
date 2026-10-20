@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d69a22ce27c3136104",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig4 l1 attention and fig5 claim",
+  "task_key": "worker_draw_fig4_l1_attention_and_fig5_claim_20260523T195326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig4_l1_attention_and_fig5_claim_20260523T195326_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "166426f1207c9a56d7547d8fbf7c475c2fe79e4ed31768c738db3c01b8df4ed8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图全部完成：\n\n- **fig_l1_attention.pdf** (18KB) — L1 Attention 横向条形图，三个架构 (OpenVLA/TracVLA/NORA) 各有 Trained/Reference 两根水平条，条上标注分数\n- **fig_claim_evidence.pdf** (29KB) — Claim-Evidence 表格，已完成术语修正：`Inherited Visual Prior` → `Inherited Instruction-Attention Prior`，`untrained` → `reference conditions`\n\nPDF 和 PNG 均已存入本地 `docs/paper/figures/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig4-l1-attention-and-fig5-claim.md"
+}

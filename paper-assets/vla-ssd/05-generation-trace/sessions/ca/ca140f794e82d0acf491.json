@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "ca140f794e82d0acf491",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code l1 head ablation",
+  "task_key": "worker_code_l1_head_ablation_20260517T120230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_head_ablation_20260517T120230.log",
+    "occurrence": 1,
+    "bytes": 701804,
+    "sha256": "0f3fe67f7ef57bc1d8cff7317c611e3491a3b07973ff71921bbacfe5f672eb82"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 62,
+      "user": 1,
+      "tool_result": 62
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ca140f794e82d0acf491-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "ca140f794e82d0acf491-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "ca140f794e82d0acf491-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-l1-head-ablation.md"
+}

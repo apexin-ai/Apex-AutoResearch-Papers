@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a4cd12fc7e44293725",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dino rsa provenance",
+  "task_key": "worker_code_dino_rsa_provenance_20260516T035131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dino_rsa_provenance_20260516T035131_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "4961eb12fc59fb2ce65e4dbab11ad671d8fe271decd3a3f3b9f52d7a07f63baf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Feature | Mean RSA | 95% CI | 之前 hardcode |\n|---------|----------|--------|--------------|\n| **cls_token** | **0.6915** | [0.6409, 0.7401] | 0.692 |\n| **patch_mean** | **0.6307** | [0.5331, 0.7040] | 0.631 |\n\n两个值与之前 hardcode 引用高度一致（cls_token 0.6915 ≈ 0.692，patch_mean 0.6307 ≈ 0.631），四舍五入到小数点后两位完全匹配。\n\n产出：\n- 脚本：`/root/vla-ssd/scripts/rsa_dino_standalone.py`\n- 结果：`/root/autodl-tmp/vla-ssd/results/rsa/rsa_dino_standalone.json`\n- 全部 10 个 task × 50 demos，无 hardcode，7 秒完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dino-rsa-provenance.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33ecbe4a73920e5158a5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag lg extract failed",
+  "task_key": "worker_diag_lg_extract_failed_20260515T165541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_lg_extract_failed_20260515T165541_result.json",
+    "occurrence": 1,
+    "bytes": 1886,
+    "sha256": "e343b43dad3607de1a784955cd36ff94865ce71e82f3c4c6660d91c415cd4a71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结论\n\n### 失败根因\n\n`extract_features.py:80` 的 `AutoProcessor.from_pretrained(model_path, trust_remote_code=True)` 尝试连接 `huggingface.co` 下载/验证文件，AutoDL 实例无外网访问。\n\n关键错误链：\n```\nConnectionError → huggingface.co:443 Network is unreachable\n→ LocalEntryNotFoundError (HF cache 中也找不到)\n→ 进程崩溃\n```\n\nHF 请求的 URL 分别是：\n- trained: `https://huggingface.co/openvla-7b/resolve/main/config.json`\n- untrained: `https://huggingface.co/openvla-7b-untrained/resolve/main/config.json`\n\n这说明 `--model_path` 传的是 HF repo ID（`openvla-7b` / `openvla-7b-untrained`），而非本地绝对路径。HF 库先尝试网络（失败），再找本地 cache（也没有匹配条目），最终崩溃。\n\n### 本地资源状态：完整，无需下载\n\n| 资源 | 状态 |\n|------|------|\n| `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/` | 完整（config.json + 3 shards + processor + tokenizer + custom code） |\n| `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/` | 完整（config.json + 4 shards + 全部文件） |\n| LIBERO-Goal 数据（10 个 HDF5） | 完整 |\n\n### 修复方案\n\n将 `--model_path` 改为本地绝对路径，并设置离线环境变量：\n\n```bash\nexport HF_HUB_OFFLINE=1\nexport TRANSFORMERS_OFFLINE=1\n\n# trained\npython scripts/extract_features.py \\\n  --model_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\n  --mode trained ...\n\n# untrained\npython scripts/extract_features.py \\\n  --model_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\n  --mode untrained ...\n```\n\n修复后可直接重试，不需要下载任何资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-lg-extract-failed.md"
+}

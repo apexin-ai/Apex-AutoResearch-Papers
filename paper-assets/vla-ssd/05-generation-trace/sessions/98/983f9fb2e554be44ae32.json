@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "983f9fb2e554be44ae32",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis openvla long untrained v1",
+  "task_key": "worker_analysis_openvla_long_untrained_v1_20260521T225356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_openvla_long_untrained_v1_20260521T225356_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "3118ee6b2dccce2379c9b9ed5e105a0de3b4785a2cff5c9bd29178b7f3241765"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the analysis summary:\n\n**Conclusion: negative** — hypothesis falsified.\n\nThe OXE-pretrained base (openvla-7b untrained) on LIBERO-Long does NOT lack the convergent routing pattern. Key findings:\n\n1. **R² probing**: No exit collapse (L31 img=0.839, last_pre=0.810 vs peaks 0.848/0.826), but trained also shows no clear collapse — this feature doesn't differentiate conditions. Untrained has lower absolute R² (~0.03-0.04 below trained) and peaks later (L12-L23 vs L8-L11).\n\n2. **L1 attention**: Untrained has 25/32 instruction-dominant heads vs trained 14/32. The base model is MORE instruction-polarized; fine-tuning creates more mixed heads (17 vs 7), suggesting fine-tuning diversifies rather than concentrates routing.\n\n3. **Counterfactual**: Untrained is 1.5-2x MORE sensitive than trained (empty d=1.05 vs 0.51, wrong d=0.83 vs 0.55). Ordering also differs: untrained empty > wrong > shuffled > para, trained shuffled > wrong > empty > para.\n\nThe OXE pretraining (970K+ trajectories) already instills strong instruction-grounded routing. LIBERO fine-tuning reshapes it — increasing R², creating mixed L1 heads, and reducing (not increasing) counterfactual sensitivity."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-openvla-long-untrained-v1.md"
+}

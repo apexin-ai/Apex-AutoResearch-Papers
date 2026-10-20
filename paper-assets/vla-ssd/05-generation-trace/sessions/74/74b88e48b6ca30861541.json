@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b88e48b6ca30861541",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run openvla spatial untrained cuda1",
+  "task_key": "worker_run_openvla_spatial_untrained_cuda1_20260522T091143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_openvla_spatial_untrained_cuda1_20260522T091143_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "525375848664db6dc54ab8237be9f75bd42ee740afb23e8642ba032d5c8999df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，两卡并行运行：\n\n| GPU | 进程 | 任务 | PID |\n|-----|------|------|-----|\n| cuda:0 | trained CF（Phase 6） | `libero_spatial_full_pipeline.py --conditions trained --only-counterfactual` | 645141 |\n| cuda:1 | untrained 6-phase | `spatial_untrained_only.py` → `--conditions untrained` | 646058 |\n\n操作总结：\n- 杀掉了 resume 脚本（PID 645140），trained CF 子进程（645141）reparent 到 init 继续运行\n- untrained pipeline 已在 cuda:1 启动，正在跑 Phase 1 extraction（Task 1/10 进行中）\n- 结果输出到 `/root/autodl-tmp/vla-ssd/results/libero_spatial_untrained/`\n- 日志：`/tmp/spatial_untrained_cuda1.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-openvla-spatial-untrained-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6751fd0bef064041b21b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code behavioral smoketest",
+  "task_key": "worker_code_behavioral_smoketest_20260519T044416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_behavioral_smoketest_20260519T044416_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "fe6cac7595c4d374323311dd46cddbfaf6084972e85c57d0c60b0cfcb576b0cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中。ep 0 完成：fail，R=0.000，300 steps，52s。还有 ep 1 和 ep 2。\n\n**当前状态汇总：**\n\n- **环境修复**：修复了 3 个问题：\n  1. MuJoCo `LD_LIBRARY_PATH` 缺失 → 添加 mujoco 包目录\n  2. `MUJOCO_EGL_DEVICE_ID` 与 `CUDA_VISIBLE_DEVICES` 不匹配 → 设为 1\n  3. numpy/scipy/accelerate 版本冲突 → 升级 scipy 1.11.4→1.15.3，numpy 恢复 2.2.6\n\n- **Smoke test 正在跑**：PID=111373，cuda:1，1 task × 3 episodes × baseline\n  - ep 0: fail (R=0, 300 steps, 52s)\n  - ep 1-2 进行中\n  - 预计 ~3min 后完成\n\n- **注意**：之前的 smoketest 也是 SR=0%。如果本轮也全 fail，说明问题不在环境而在 checkpoint/task 匹配度，需要进一步排查。\n\n- **Registry**: `behavioral_smoketest` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-behavioral-smoketest.md"
+}

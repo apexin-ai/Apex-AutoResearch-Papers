@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ecd33adaef36e1ed9dc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head v2 untrained",
+  "task_key": "worker_code_action_head_v2_untrained_20260526T204306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_v2_untrained_20260526T204306_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "223b7924029065fe0adae2118f430609d4c7d0ccfdef2b8980d45fd288798a92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，所有注册已更新。\n\n## 结果摘要\n\n**Untrained v2** (5000 samples, 249s, 20.1 samp/s):\n- 所有 33 层 R² 均为负值，范围 **-5.61 ~ -3.55**\n- Peak R² = **-3.55** at Layer 32 (exit)\n- Exit MSE = **0.87**\n\n**Sanity checks 全部通过：**\n- No-double-norm 验证：exit layer logits match (diff=0.0625)，double-norm 差异大 (diff=11.19)\n- Generate 输出 6 个 unique tokens\n- Exit layer argmax 匹配 generate first token\n\n**Trained vs Untrained v2 对比：**\n\n| 指标 | Trained | Untrained |\n|------|---------|-----------|\n| Peak R² | -2.77 (L31) | -3.55 (L32) |\n| Exit R² | -3.04 | -3.55 |\n| R² 范围 | -7.08 ~ -2.77 | -5.61 ~ -3.55 |\n| Peak MSE | 0.81 | 0.78 |\n\n两组实验 R² 全部为负——action head 在任何层都无法解码有意义的动作。Untrained 稍差但差异不大，pattern 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-v2-untrained.md"
+}

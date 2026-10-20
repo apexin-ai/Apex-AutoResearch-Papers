@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3630671a930bbc5c3cd5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis linear probe collect",
+  "task_key": "worker_analysis_linear_probe_collect_20260518T030239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_linear_probe_collect_20260518T030239_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "d520a527043b577e29fe483b3ed7399c2a334c88a7560d980e7d8b772f13e86a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时通知可忽略，linear probe 已在之前确认完成，结果已全部提取并汇报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-linear-probe-collect.md"
+}

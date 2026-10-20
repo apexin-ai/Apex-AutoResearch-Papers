@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "021a6bac7b9ea1f610bc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code probe pipeline dryrun",
+  "task_key": "worker_code_probe-pipeline-dryrun_20260515T131837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe-pipeline-dryrun_20260515T131837_result.json",
+    "occurrence": 1,
+    "bytes": 3805,
+    "sha256": "9cb618da73fa5dfb2e4f43439b22dc631c0b7f1d6a84cefbc9ff725480d15374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Dry-run 验证报告\n\n### 1. Features 格式兼容性：✅ 完全兼容\n\n| 项目 | 实际值 | 脚本期望 | 状态 |\n|------|--------|----------|------|\n| 文件数 | 10 个 H5 | `glob(\"*.h5\")` | ✅ |\n| 每文件 demos | 50 (`demo_0`..`demo_49`) | `sorted(f.keys())` | ✅ |\n| Feature keys | `image_mean`, `last_preaction` | AGG_MAP 定义的 primary key | ✅ |\n| Shape | `(T, 33, 4096)` float16 | `is_3d=True`, `n_layers=33`, `hidden_dim=4096` | ✅ |\n| T 范围 | 203–457 | 无限制 | ✅ |\n\n### 2. Probe 训练 Pipeline：✅ 端到端跑通\n\nDry-run 参数：`--layers 0,16,32 --epochs 2 --pairs_per_bin 5`\n\n| Layer | pooled ρ | per-task mean ρ | R² | 耗时 |\n|-------|----------|-----------------|-----|------|\n| 0 | 0.000 | 0.000 | -0.001 | 24s |\n| 16 | 0.699 | 0.707 | 0.378 | 28s |\n| 32 | 0.673 | 0.710 | 0.371 | 22s |\n\n- `scan_features` → `split_by_task` → `sample_pairs` → `load_layer_features` → `train_regression_probe` → `save_results` 全链路正常\n- 输出文件：`layer_*.json` + `summary.csv` + `summary.json`，格式正确\n- `best_layer` 选择用 `per_task_mean_rho`（D002 确认），summary.json 中 `best_layer=32, best_rho=0.710`\n- Layer 0 的 ConstantInputWarning 是 2 epoch 训练不足导致，非 bug\n\n### 3. analyze_results.py 输入期望：✅ 确认\n\n- 输入：`--results_dirs trained:path,untrained:path,dinov2:path`，读取各目录下 `{probe_type}/summary.json`\n- **DINO_GATE_THRESHOLD = 0.554**（per-task mean ρ）\n- 判定逻辑：\n  - **PASS**：permutation test p < 0.05 且 VLA mean ρ ≥ 0.554\n  - **CONDITIONAL**：接近通过但有 contribution warning（VLA-DINO delta < 0.05）\n  - **FAIL**：permutation test 不显著 或 VLA 低于 DINO gate\n\n### 4. Control B（cross-trajectory shuffle）：✅ 就绪\n\n- 非独立脚本，集成为 `train_probes.py --shuffle_cross_trajectory` 参数\n- 实现完整：`sample_cross_trajectory_pairs()` + `build_cross_pair_tensors()` 均在 train_probes.py 中\n- 运行方式：在正常 probe 训练命令后加 `--shuffle_cross_trajectory`\n\n### 5. 发现的问题\n\n**无 blocker。** 唯一注意事项：\n- 脚本无 `--dry_run` 或 `--max_demos` 参数（用 `--layers` + `--epochs` + `--pairs_per_bin` 可替代限制）\n- 完整训练（33 layers × 50 epochs）预估 ~33 × 24s × 25 ≈ 5.5 小时（单 GPU）\n\n### 6. 完整 Probe 训练命令\n\n```bash\n# trained features — temporal distance\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/vla-ssd\n\nnohup python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained/ \\\n  --probe_type temporal_distance \\\n  --gpu 0 \\\n  > /tmp/probe_trained_td.log 2>&1 &\n\n# untrained features — temporal distance（等 untrained 提取完成后启动）\nnohup python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/untrained/ \\\n  --probe_type temporal_distance \\\n  --gpu 1 \\\n  > /tmp/probe_untrained_td.log 2>&1 &\n\n# Control B（与正常训练并行或之后）\nnohup python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained_controlB/ \\\n  --probe_type temporal_distance \\\n  --shuffle_cross_trajectory \\\n  --gpu 0 \\\n  > /tmp/probe_controlB.log 2>&1 &\n\n# 分析（所有 probe 完成后）\npython scripts/analyze_results.py \\\n  --results_dirs trained:/root/autodl-tmp/vla-ssd/results/trained/,untrained:/root/autodl-tmp/vla-ssd/results/untrained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/analysis/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-pipeline-dryrun.md"
+}

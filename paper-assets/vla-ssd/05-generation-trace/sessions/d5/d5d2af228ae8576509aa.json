@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d2af228ae8576509aa",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "fix bootstrap long paths and tracvla",
+  "task_key": "worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410.log",
+    "occurrence": 1,
+    "bytes": 564407,
+    "sha256": "7c40e7b70f54c1b554924e71ee80b2c4a62f49fde497d5f101949e169b327175"
+  },
+  "statistics": {
+    "messages": 248,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 61,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "d5d2af228ae8576509aa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d5d2af228ae8576509aa-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-bootstrap-long-paths-and-tracvla.md"
+}

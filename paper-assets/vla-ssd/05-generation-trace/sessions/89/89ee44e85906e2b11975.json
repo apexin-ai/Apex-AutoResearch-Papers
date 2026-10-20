@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89ee44e85906e2b11975",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug check random ablation results",
+  "task_key": "worker_debug_check_random_ablation_results_20260518T033440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_check_random_ablation_results_20260518T033440_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "0cd4a978998f96f190ad0bdbaeed5f62abab4a2bca40ec3825ab2b496b13098a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|------|------|\n| `results/random_subset_ablation.json` | **不存在** |\n| `results/figures/fig_random_subset_ablation.pdf` | **不存在** |\n| `scripts/random_subset_ablation.py` | 存在 (23KB, 今天 11:30 修改) |\n| 进程 | **PID 655881 正在运行** (CPU 1705%, 已跑 ~37 分钟) |\n\n进程详情：\n```\npython3.12 -u scripts/random_subset_ablation.py \\\n  --demos_per_task 5 --n_random 3 \\\n  --output /tmp/test_fixed.json \\\n  --fig_dir /tmp/\n```\n\n注意输出路径是 `/tmp/test_fixed.json`，不是预期的 `results/` 目录。看起来是测试运行（参数较小：`n_random=3`）。\n\n日志只有 18 行，最后更新在 11:35（启动后 3 分钟），之后无新输出。当前处于 **Phase 1：加载模型并缓存 attention 中间结果**，已枚举 3 个 task。进程仍在高 CPU 运行，说明正在做推理计算，没有中间打印。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-check-random-ablation-results.md"
+}

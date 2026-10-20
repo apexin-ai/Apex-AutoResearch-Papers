@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1089506339718f6acc35",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check matrix completeness",
+  "task_key": "worker_check_matrix_completeness_20260523T154503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_matrix_completeness_20260523T154503_result.json",
+    "occurrence": 1,
+    "bytes": 1970,
+    "sha256": "3f4acce09fde02ed57c5d93066b05c727654d302c1b9b9f5a18cb047b27d0b2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 数据完整度报告\n\n### 1. 文件清单（4 个核心探针 + RSA 可选）\n\n| arch×suite | condition | R² | L1 Attn | Cross-Instr | Counterfactual | RSA |\n|---|---|---|---|---|---|---|\n| **openvla_goal** | trained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| | untrained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| **openvla_spatial** | trained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| | untrained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| **openvla_object** | trained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| | untrained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| **openvla_long** | trained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| | untrained | ✅ | ✅ | ✅ | ✅ | ✅ |\n| **tracvla_goal** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ✅ | — |\n| **tracvla_spatial** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ✅ | — |\n| **tracvla_object** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ✅ | — |\n| **tracvla_long** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ✅ | — |\n| **nora_goal** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ✅ | — |\n| **nora_spatial** | trained | ✅ | ✅ | ✅ | ✅ | — |\n| | untrained | ✅ | ✅ | ✅ | ❌ | — |\n\n### 2. 缺口汇总\n\n**唯一缺口：`nora_spatial/untrained/counterfactual_combined.json`**\n\n### 3. 补跑状态\n\n`nora_spatial_untrained_counterfactual.py` **正在运行**，有两个实例：\n- PID 748325：`timeout 180` 包裹，CPU 765%，已运行 ~12 分钟\n- PID 748707：tmux session `nora_spatial_cf` 中，CPU 636%，已运行 ~4 分钟\n\n两个实例同时跑同一个脚本，可能会冲突（竞争写同一个输出文件）。建议 kill 其中一个（PID 748325 的 timeout 版本会先超时自杀，留 tmux 里的即可）。\n\n### 4. Bootstrap v3\n\n10 个 arch×suite × 2 conditions = 20 个文件，**全部完整**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-matrix-completeness.md"
+}

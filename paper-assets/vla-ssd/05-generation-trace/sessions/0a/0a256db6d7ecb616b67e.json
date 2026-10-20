@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a256db6d7ecb616b67e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis check counterfactual 10tasks",
+  "task_key": "worker_analysis_check_counterfactual_10tasks_20260520T195619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_counterfactual_10tasks_20260520T195619_result.json",
+    "occurrence": 1,
+    "bytes": 2048,
+    "sha256": "19122b3b0b6c5d868bba3fc06603fc0751829752442b379bf0d98f79fa27dbbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。以下是 10-task counterfactual 实验汇总：\n\n## 实验配置\n- 10 tasks × 10 demos × 50 timesteps = 5000 samples/condition\n- 4 counterfactual conditions: wrong, empty, shuffled, paraphrased\n- Model: openvla-7b, seed 42\n\n## Global Effect Ranking (by Cohen's d)\n\n| Condition | Cohen's d | Paired MSE | Token Divergence | KL Divergence |\n|-----------|-----------|------------|------------------|---------------|\n| **empty** | **0.978** | 0.0691 | 91.3% | 8.81 |\n| **wrong** | **0.924** | 0.0647 | 90.8% | 8.38 |\n| **shuffled** | 0.763 | 0.0512 | 87.1% | 7.33 |\n| **paraphrased** | 0.707 | 0.0462 | 83.0% | 6.46 |\n\n## Cross-Task Variance\n\n| Condition | Cohen's d (mean±std) | Range | CV |\n|-----------|---------------------|-------|-----|\n| empty | 0.989 ± 0.169 | [0.681, 1.245] | 0.171 |\n| wrong | 0.949 ± 0.260 | [0.536, 1.505] | 0.274 |\n| shuffled | 0.766 ± 0.142 | [0.458, 0.930] | 0.185 |\n| paraphrased | 0.713 ± 0.211 | [0.411, 0.959] | 0.296 |\n\n## Paraphrased Condition Per-Task Cohen's d\n\n| Task | Cohen's d |\n|------|-----------|\n| push_plate_to_stove | 0.959 |\n| put_wine_bottle_on_rack | 0.427 |\n| put_wine_bottle_on_cabinet | 0.411 |\n| open_middle_drawer | 0.444 |\n| put_bowl_on_plate | 0.759 |\n| put_bowl_on_stove | 0.856 |\n| put_bowl_on_cabinet | 0.867 |\n| put_cream_cheese_in_bowl | 0.921 |\n| open_top_drawer_put_bowl | 0.713 |\n| turn_on_stove | 0.778 |\n\n## 关键发现\n\n1. **Effect ordering 与 3-task 一致**: empty > wrong > shuffled > paraphrased\n2. **所有 condition 全部显著** (p ≈ 0, 所有 Cohen's d > 0.7)\n3. **Paraphrased condition 的 cross-task variance 最大** (CV=0.296)，说明语义敏感度因 task 而异——有些 task 对措辞改变几乎不敏感 (d≈0.41)，有些非常敏感 (d≈0.96)\n4. **empty 最稳定** (CV=0.171)，符合预期——移除指令的效果不依赖具体 task 语义\n\n结果文件路径：`/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/counterfactual_10tasks_combined.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-counterfactual-10tasks.md"
+}

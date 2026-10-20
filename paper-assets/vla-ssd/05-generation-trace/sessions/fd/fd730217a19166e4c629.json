@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd730217a19166e4c629",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4422,
+    "sha256": "bb6ad987326cad32bf74f95e64e601f958e61b5b1fc9e0b8222b16e9b5b492ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-16T04:54:19+00:00'\n---\n\n## Reviewer Handoff — Report #32 未发送，fulllayer_action_probe 数据已完整分析\n\n### 当前最重要的待办\n\n**Report #32（fulllayer_action_probe 结果 + experiments.tex 审查）还没发给 Director。** 数据已全部读完分析完，只差调用 `reviewer_post_to_director`。下面是完整分析结论，直接拿去发。\n\n### fulllayer_action_probe 关键发现\n\n实验已完成（EXIT_CODE=0，19.5min），结果文件：`/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json`（120KB）\n\n**R² peak 层与 RSA peak 不一致——这是本轮最重要的发现：**\n\n| 指标 | image_mean peak | last_preaction peak |\n|------|----------------|-------------------|\n| RSA ρ | L12 (0.628) | L12 (0.643) |\n| R² (fulllayer) | **L8 (0.655)** | **L13 (0.678)** |\n\n论文当前用 unified_action_probe 的 L19 数据（lastpre=0.671, imgmean=0.599），但 fulllayer 扫描显示这些都不是 peak：\n- lastpre 真正 peak 在 L13=0.678（vs L19=0.671，Δ=+0.007）\n- imgmean 真正 peak 在 L8=0.655（vs L19=0.599，Δ=+0.056，巨大差异！）\n- imgmean L8=0.655 > DINOv2=0.634 > Projector=0.630 > imgmean L19=0.599 → **排名被逆转**\n\n**Best-vs-best R² 训练效应显著，与 RSA 矛盾：**\n- R² imgmean best-vs-best: Δ=+0.015, p=0.006 **显著**\n- R² lastpre best-vs-best: Δ=+0.069, p<0.0001 **显著**\n- RSA best-vs-best: Δ=+0.017, **n.s.**\n\n论文 C3 claim \"training redistributes, doesn't create\" 对 RSA 成立但对 R² 不成立。训练不显著改善几何对齐(RSA)但显著提高功能可解码性(R²)。\n\n**L0 identity（已排除 bug）：** trained 和 untrained image_mean L0 值完全一致（0.6403，16位小数）。原因：L0 = LLM 输入（projector 输出），两个模型共享冻结的 projector。L0 R²=0.640 vs projector reference=0.630 有 +0.01 差异，可能是 probe 训练路径差异。\n\n**Untrained lastpre 行为极端：** L0=-0.331, L12=-0.329, L13=-0.329（大量中间层深度负值），L32=0.609（final layer 恢复）。Same-layer L13 delta=+1.007 是真实的——untrained readout token 在中间层完全无用。\n\n**Trained lastpre 轨迹是 sigmoid-plateau 不是 inverted-U：** 从 L0=-0.331 快速上升到 L10~L27 的 0.65-0.68 plateau，peak 在 L13=0.678。与 RSA 的 inverted-U 形态完全不同。\n\n### experiments.tex 审查（已读，关键问题）\n\n文件路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex`\n\n已确认的问题：\n\n1. **[CRITICAL] Line 116**: \"probe R²=0.671 (L19)\" 应更新为 fulllayer peak L13=0.678。Δ=0.041 也需重算。\n2. **[CRITICAL] 缺失 imgmean R² peak**: 论文完全没报 imgmean 的 per-layer R² peak（L8=0.655），只报了 lastpre。imgmean peak 超过 DINOv2 和 Projector，这改变了 Section 3.2 的叙事。\n3. **[WARNING] Line 25**: RSA 方法说 \"cosine distance for representations\"，但 method.tex 和实际代码用的是 Euclidean distance。矛盾。\n4. **[WARNING] \"Around L12\" framing 不精确**: RSA peaks at L12, R² imgmean peaks at L8, R² lastpre peaks at L13。\"Around L12\" 对 imgmean R² 偏差 4 层。\n5. **[WARNING] C3 narrative needs nuancing**: RSA best-vs-best n.s. 但 R² best-vs-best 显著。\"Training redistributes, doesn't create\" 只对几何对齐成立。\n\n### 其他未完成审查\n\n- **method.tex / introduction.tex / discussion.tex / abstract.tex / conclusion.tex** 全部仍用旧数据（SigLIP-SO400M 描述、LIBERO fine-tuning 声称等），等 Paper Agent 重写后需审查\n- **rizzardo2026→buurmeijer2026** cite key 修正仍未执行。`\\cite{rizzardo2026}` 在 tex 文件中仍存在，paper_framing.md 仍写 \"Rizzardo et al.\"\n- **karamcheti2024** bib 条目仍有 `[VERIFY]` 注释标签\n- **paper_provenance.yaml** 仍未创建\n- **discussion.tex line 7**: 引用 \"R²=0.671 vs 0.630\" 需要用 fulllayer peak 更新\n\n### 已发送的报告\n\n本 session: #26-#31（6份）。#32 待发。历史累计 #14-#31。\n\n### citation_verification_2026 worker\n\n第二个 citation verification worker 完成，结论与第一个一致：grant2026 ✓, swann2026 ✓, hou2026 ✓, black2024_pi0 ✓, rizzardo2026 作者名是 hallucinated（真实作者 Buurmeijer）。Worker 更新了 bib 的 [UNVERIFIED] tag 但保留 rizzardo2026 cite key 未改名。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

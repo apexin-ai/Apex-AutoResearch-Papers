@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7c52c4d99dd41e1b976d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fig 32layer attention profile final",
+  "task_key": "worker_code_fig_32layer_attention_profile_final_20260517T074023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_32layer_attention_profile_final_20260517T074023_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "fd1925191b847e582743a1f8ea9af641fb5af1d64c0402f543531953878d59ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb7o2Dmr3zdgxdjdwGV5a\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011Cb7o2Dmr3zdgxdjdwGV5a"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-32layer-attention-profile-final.md"
+}

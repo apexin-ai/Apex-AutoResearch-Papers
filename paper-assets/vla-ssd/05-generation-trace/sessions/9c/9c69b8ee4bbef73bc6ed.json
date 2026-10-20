@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c69b8ee4bbef73bc6ed",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v3 urgent status",
+  "task_key": "worker_check_bootstrap_v3_urgent_status_20260523T080439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v3_urgent_status_20260523T080439_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "17adb4b5d1c6ca3cae3bcea224c87846e18ab37c79b163bc083695f2d2b6a599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**进程状态：双卡均活跃，无异常。**\n\n| 项目 | GPU 0 | GPU 1 |\n|------|-------|-------|\n| 利用率 | **82%** | **0%**（正常，见下） |\n| VRAM | 15.4 / 97.9 GB | 0.7 / 97.9 GB |\n| PID | 728135 | 725751 |\n| 当前任务 | `openvla_object_trained` — 提取中 ~1150/5000 samples | `tracvla_goal_untrained` — **RidgeCV 拟合阶段**（CPU-bound） |\n\n**GPU 1 为 0% 的原因**：该进程已完成 5000 样本提取，正在做 RidgeCV 回归拟合，这是纯 CPU 计算，GPU 空闲是预期行为。\n\n**完成进度：5/20**\n\n已完成：\n1. `openvla_goal/trained` ✅\n2. `openvla_goal/untrained` ✅\n3. `openvla_spatial/trained` ✅\n4. `openvla_spatial/untrained` ✅\n5. `tracvla_goal/trained` ✅\n\n正在运行：\n- `tracvla_goal/untrained`（GPU 1，RidgeCV 阶段，即将产出 JSON）\n- `openvla_object/trained`（GPU 0，提取阶段 ~23%）\n\n剩余 13 个条件待跑。两个 tmux session (`bootstrap_v3_cuda0`, `bootstrap_v3_cuda1`) 均正常，无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v3-urgent-status.md"
+}

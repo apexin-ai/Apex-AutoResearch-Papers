@@ -1,0 +1,5889 @@
+# research vla probing beyond vision
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 96
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_research_vla-probing-beyond-vision_20260515T135955.log`
+- **Structured JSON:** [`7dec3c7ccfee1ee49ee4.json`](../../sessions/7d/7dec3c7ccfee1ee49ee4.json)
+
+## Before a recorded user message
+
+96 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2fb7be28-de0d-4ad7-ad45-3feaf1f6f6a0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778860200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3e964811-4972-4779-89fd-4510337d96c0",
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to conduct a literature survey on VLA/VLM probing tasks that require non-visual knowledge. I need to search for papers across 5 directions, then compile the results into a structured markdown file.
+
+Let me start by loading the necessary tools and then conduct parallel searches across the 5 directions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "67dac8d6-2d38-48ed-9a07-9b24520ddba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiABeaw7B4kGrBbQXDafvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11567,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11567
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始文献调研，先加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "8d0babc1-56e2-4d8d-bce0-663dc260a58c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiABeaw7B4kGrBbQXDafvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11567,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11567
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018vYMsBcAuYZpu8s1R74Zic`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9bec9609-245b-4925-b07f-4be1952d5e80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiABeaw7B4kGrBbQXDafvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11567,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11567
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T14:00:07.412Z_
+
+<details><summary>↩ Tool result · `toolu_018vYMsBcAuYZpu8s1R74Zic`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "584d0d57-b3b7-4f2f-88a4-9d1ed5110d01",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "WebFetch",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel searches across all 5 directions to gather papers efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9698a780-0928-4fc5-9cb0-1b10d18a3bc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+开始并行搜索5个方向的文献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "73b395f4-2b77-4cc3-b2e3-03c823d58f14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qtwrm915eKTdWKCYuWKKii`</summary>
+
+```json
+{
+  "query": "VLA hidden state probing action prediction robot policy representation 2024 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "f543300c-d2df-411d-87e9-48aa11cca9f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RMbqPEAJKsa2a4EdAJrdHB`</summary>
+
+```json
+{
+  "query": "language grounding probing VLM instruction following representation analysis 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9cd4fc09-de2a-4ddb-bded-3e4195cae12b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ewyc4oD1zczfgnQ8ehjKw4`</summary>
+
+```json
+{
+  "query": "planning representation probing causal reasoning task structure VLA robot 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "80667e21-2814-4b2c-8602-4adc0ac915be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018MkeRgSxsdvBabZJvmmitC`</summary>
+
+```json
+{
+  "query": "VLA mechanistic interpretability representation analysis vision language action model layers heads 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "b8ee0069-c8b8-444c-a82b-8ca7f643c918",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TrkXRQptwSayxBD2mLq22d`</summary>
+
+```json
+{
+  "query": "vision encoder dominates VLA probing negative results failure modes vision language model representation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "f4967564-2016-45e9-9149-bfb64c80c186",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7CA4i4q351yHBQuLm1qAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1464,
+      "cache_read_input_tokens": 23408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1464
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T14:00:19.564Z_
+
+<details><summary>↩ Tool result · `toolu_01Qtwrm915eKTdWKCYuWKKii`</summary>
+
+```text
+Web search results for query: "VLA hidden state probing action prediction robot policy representation 2024 2025 arXiv"
+
+Links: [{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166v2"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.16391"},{"title":"FLARE: Robot Learning with Implicit World Modeling","url":"https://arxiv.org/html/2505.15659v1"},{"title":"F1: A Vision-Language-Action Model Bridging ...","url":"https://arxiv.org/pdf/2509.06951"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"UP-VLA: A Unified Understanding and Prediction Model for Embodied Agent","url":"https://arxiv.org/html/2501.18867v3"},{"title":"HyperVLA: Efficient Inference in Vision-Language-Action Models via Hypernetworks","url":"https://arxiv.org/html/2510.04898v1"},{"title":"Vision-Language-Action Models and the Search for a Generalist Robot Policy","url":"https://itcanthink.substack.com/p/vision-language-action-models-and"}]
+
+I've found several relevant arXiv papers on Vision-Language-Action (VLA) models with connections to hidden state probing, action prediction, robot policy representation, and related topics from 2024-2025. Here are the key findings:
+
+## Recent VLA Research (2024-2025)
+
+**Latent Reasoning VLA (LaRA-VLA)** - A unified latent-reasoning VLA framework that performs reasoning and prediction entirely in latent space for robotic action. This appears highly relevant to your query about hidden state probing.
+
+**FLARE: Robot Learning with Implicit World Modeling** - A framework that integrates predictive latent world modeling into robot policy learning by aligning features from a diffusion transformer with latent embeddings of future observations.
+
+**F1: A Vision-Language-Action Model** - A VLA framework integrating goal-conditioned visual foresight with a Mixture-of-Transformer architecture featuring three dedicated experts for understanding, foresight generation, and action execution.
+
+**UP-VLA: A Unified Understanding and Prediction Model** - A model that addresses VLA challenges through unified perception and prediction capabilities.
+
+**Vision Language Action Models in Robotic Manipulation: A Systematic Review** - Models that implement either a diffusion policy using a Diffusion Transformer or a direct policy that predicts embeddings in a single pass without diffusion.
+
+## Key Related Topics
+
+The search results show growing focus on:
+- Latent space reasoning and hidden state representations
+- Predictive models for action generation
+- Integration of world models with VLAs
+- Representation learning for robot policies
+
+All of these papers appear on arXiv from recent months (May-September 2025), making them current resources for your research area.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9af7b07e-7e14-4cb8-b11e-2920f971112b",
+  "tool_use_result": {
+    "query": "VLA hidden state probing action prediction robot policy representation 2024 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012QUCJwdWvnLA3tTp5EhdA6",
+        "content": [
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.01166v2"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.16391"
+          },
+          {
+            "title": "FLARE: Robot Learning with Implicit World Modeling",
+            "url": "https://arxiv.org/html/2505.15659v1"
+          },
+          {
+            "title": "F1: A Vision-Language-Action Model Bridging ...",
+            "url": "https://arxiv.org/pdf/2509.06951"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "UP-VLA: A Unified Understanding and Prediction Model for Embodied Agent",
+            "url": "https://arxiv.org/html/2501.18867v3"
+          },
+          {
+            "title": "HyperVLA: Efficient Inference in Vision-Language-Action Models via Hypernetworks",
+            "url": "https://arxiv.org/html/2510.04898v1"
+          },
+          {
+            "title": "Vision-Language-Action Models and the Search for a Generalist Robot Policy",
+            "url": "https://itcanthink.substack.com/p/vision-language-action-models-and"
+          }
+        ]
+      },
+      "I've found several relevant arXiv papers on Vision-Language-Action (VLA) models with connections to hidden state probing, action prediction, robot policy representation, and related topics from 2024-2025. Here are the key findings:\n\n## Recent VLA Research (2024-2025)\n\n**Latent Reasoning VLA (LaRA-VLA)** - A unified latent-reasoning VLA framework that performs reasoning and prediction entirely in latent space for robotic action. This appears highly relevant to your query about hidden state probing.\n\n**FLARE: Robot Learning with Implicit World Modeling** - A framework that integrates predictive latent world modeling into robot policy learning by aligning features from a diffusion transformer with latent embeddings of future observations.\n\n**F1: A Vision-Language-Action Model** - A VLA framework integrating goal-conditioned visual foresight with a Mixture-of-Transformer architecture featuring three dedicated experts for understanding, foresight generation, and action execution.\n\n**UP-VLA: A Unified Understanding and Prediction Model** - A model that addresses VLA challenges through unified perception and prediction capabilities.\n\n**Vision Language Action Models in Robotic Manipulation: A Systematic Review** - Models that implement either a diffusion policy using a Diffusion Transformer or a direct policy that predicts embeddings in a single pass without diffusion.\n\n## Key Related Topics\n\nThe search results show growing focus on:\n- Latent space reasoning and hidden state representations\n- Predictive models for action generation\n- Integration of world models with VLAs\n- Representation learning for robot policies\n\nAll of these papers appear on arXiv from recent months (May-September 2025), making them current resources for your research area."
+    ],
+    "durationSeconds": 7.895902589999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T14:00:20.691Z_
+
+<details><summary>↩ Tool result · `toolu_01Ewyc4oD1zczfgnQ8ehjKw4`</summary>
+
+```text
+Web search results for query: "planning representation probing causal reasoning task structure VLA robot 2024 2025"
+
+Links: [{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Zhao_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models_CVPR_2025_paper.pdf"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"F1: A Vision-Language-Action Model Bridging ...","url":"https://arxiv.org/pdf/2509.06951"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey","url":"https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"},{"title":"GitHub - Psi-Robot/Awesome-VLA-Papers: Paper list in the survey: A Survey on Vision-Language-Action Models: An Action Tokenization Perspective · GitHub","url":"https://github.com/Psi-Robot/Awesome-VLA-Papers"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166v2"}]
+
+Based on the search results, I found several relevant papers and research on Vision-Language-Action (VLA) models for robotics in 2024-2025. Here are the key findings:
+
+## Recent VLA Research on Planning and Reasoning (2024-2025)
+
+**Architectural Advances:**
+
+Dual-system architectures have emerged as a key innovation, exemplified by NVIDIA's Groot N1 (2025), which combined System 1 (fast diffusion policies with 10ms latency for low-level control) and System 2 (LLM-based planners for high-level task decomposition). This separation enabled efficient coordination between strategic planning and real-time execution, enhancing adaptability in dynamic environments.
+
+**Chain-of-Thought and Latent Reasoning:**
+
+Latent Reasoning VLA (LaRA-VLA) is a unified latent-reasoning VLA framework that performs reasoning and prediction entirely in latent space for robotic action. CoT reasoning at training time has proven particularly effective, with existing CoT-based VLA methods broadly categorized into textual CoT and visual CoT.
+
+**Planning and Causal Structure:**
+
+F1 introduces a progressive attention scheme that regulates information exchange across experts: intra-expert attention captures rich token interactions, while inter-expert attention enforces a causal flow from understanding to foresight to action, ensuring stability and interpretability.
+
+**Self-Correction Mechanisms:**
+
+Self-correcting VLA models are designed to detect and recover from failure conditions without external supervision. SC-VLA (2024) introduces a hybrid execution loop featuring a fast inference path and a slow correction path.
+
+These recent developments reflect significant progress in enabling VLA robots to perform complex planning with better reasoning capabilities and task structure understanding.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "548d90e4-66de-4220-a6f7-46078a3ac70f",
+  "tool_use_result": {
+    "query": "planning representation probing causal reasoning task structure VLA robot 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KSHmnQe73XRGb5GFmAxbYT",
+        "content": [
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v1"
+          },
+          {
+            "title": "CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhao_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "F1: A Vision-Language-Action Model Bridging ...",
+            "url": "https://arxiv.org/pdf/2509.06951"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey",
+            "url": "https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"
+          },
+          {
+            "title": "GitHub - Psi-Robot/Awesome-VLA-Papers: Paper list in the survey: A Survey on Vision-Language-Action Models: An Action Tokenization Perspective · GitHub",
+            "url": "https://github.com/Psi-Robot/Awesome-VLA-Papers"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          },
+          {
+            "title": "Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.01166v2"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research on Vision-Language-Action (VLA) models for robotics in 2024-2025. Here are the key findings:\n\n## Recent VLA Research on Planning and Reasoning (2024-2025)\n\n**Architectural Advances:**\n\nDual-system architectures have emerged as a key innovation, exemplified by NVIDIA's Groot N1 (2025), which combined System 1 (fast diffusion policies with 10ms latency for low-level control) and System 2 (LLM-based planners for high-level task decomposition). This separation enabled efficient coordination between strategic planning and real-time execution, enhancing adaptability in dynamic environments.\n\n**Chain-of-Thought and Latent Reasoning:**\n\nLatent Reasoning VLA (LaRA-VLA) is a unified latent-reasoning VLA framework that performs reasoning and prediction entirely in latent space for robotic action. CoT reasoning at training time has proven particularly effective, with existing CoT-based VLA methods broadly categorized into textual CoT and visual CoT.\n\n**Planning and Causal Structure:**\n\nF1 introduces a progressive attention scheme that regulates information exchange across experts: intra-expert attention captures rich token interactions, while inter-expert attention enforces a causal flow from understanding to foresight to action, ensuring stability and interpretability.\n\n**Self-Correction Mechanisms:**\n\nSelf-correcting VLA models are designed to detect and recover from failure conditions without external supervision. SC-VLA (2024) introduces a hybrid execution loop featuring a fast inference path and a slow correction path.\n\nThese recent developments reflect significant progress in enabling VLA robots to perform complex planning with better reasoning capabilities and task structure understanding."
+    ],
+    "durationSeconds": 8.081563837
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T14:00:20.895Z_
+
+<details><summary>↩ Tool result · `toolu_01TrkXRQptwSayxBD2mLq22d`</summary>
+
+```text
+Web search results for query: "vision encoder dominates VLA probing negative results failure modes vision language model representation 2024 2025"
+
+Links: [{"title":"Failing Forward: Adaptive Failure-Informed Learning for Vision-Language-Action Models","url":"https://arxiv.org/html/2605.08434v2"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"Vision Language Models | Rohit Bandaru","url":"https://rohitbandaru.github.io/blog/Vision-Language-Models/"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"},{"title":"GitHub - zli12321/Vision-Language-Models-Overview: A most Frontend Collection and survey of vision-language model papers, and models GitHub repository. Continuous updates. · GitHub","url":"https://github.com/zli12321/Vision-Language-Models-Overview"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models","url":"https://arxiv.org/html/2601.03309v1"},{"title":"Vision Encoders in Vision-Language Models: A Survey Han Xiao Jina AI by Elastic","url":"https://jina.ai/vision-encoder-survey.pdf"},{"title":"3DS-VLA: A 3D Spatial-Aware Vision Language Action ...","url":"https://openreview.net/pdf/2db27aa32a273716029a3a1f929f4ac3ab7d34c5.pdf"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"}]
+
+Based on my search results, I found relevant research on Vision-Language-Action (VLA) models from 2024-2025 that addresses your query. Here are the key findings:
+
+## Vision Encoder Dominance and Representation Learning
+
+While VLM initialization offers consistent benefits over training from scratch, a VLM's general capabilities are poor predictors of downstream task performance. Fine-tuning the vision encoder is essential for strong control performance, whereas the language encoder is less critical.
+
+Significant performance gains are observed after injecting action-relevant information into the vision modules within the VLM, confirming the existence of a critical domain gap between standard VLM pretraining and the visual representation requirements of embodied tasks.
+
+## Failure Modes in VLAs
+
+VLA models often struggle to generalize during deployment, as training data typically consists primarily of teleoperated, success-only trajectories. Such data can cause policies to overfit to narrow behavioral manifolds and lack corrective signals for recovering from suboptimal or unseen states, resulting in brittle execution at inference time.
+
+VLA policies remain brittle under visual corruption and grounding perturbations, underscoring the need for post hoc correction mechanisms beyond standard fine-tuning.
+
+## Addressing the Gap
+
+Recent work has highlighted the value of learning from failure data, showing that unsuccessful trajectories can improve robustness and task success rates.
+
+The research indicates that there is a significant gap between current VLM research and the practical demands of VLA models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "86e3a494-7cb1-4a6a-bb74-1bd4e671ae0a",
+  "tool_use_result": {
+    "query": "vision encoder dominates VLA probing negative results failure modes vision language model representation 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M1ZMbArYcfGvpRsD5zskkb",
+        "content": [
+          {
+            "title": "Failing Forward: Adaptive Failure-Informed Learning for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.08434v2"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v2"
+          },
+          {
+            "title": "Vision Language Models | Rohit Bandaru",
+            "url": "https://rohitbandaru.github.io/blog/Vision-Language-Models/"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          },
+          {
+            "title": "GitHub - zli12321/Vision-Language-Models-Overview: A most Frontend Collection and survey of vision-language model papers, and models GitHub repository. Continuous updates. · GitHub",
+            "url": "https://github.com/zli12321/Vision-Language-Models-Overview"
+          },
+          {
+            "title": "Vision-language-action model - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Vision-language-action_model"
+          },
+          {
+            "title": "VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2601.03309v1"
+          },
+          {
+            "title": "Vision Encoders in Vision-Language Models: A Survey Han Xiao Jina AI by Elastic",
+            "url": "https://jina.ai/vision-encoder-survey.pdf"
+          },
+          {
+            "title": "3DS-VLA: A 3D Spatial-Aware Vision Language Action ...",
+            "url": "https://openreview.net/pdf/2db27aa32a273716029a3a1f929f4ac3ab7d34c5.pdf"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"
+          }
+        ]
+      },
+      "Based on my search results, I found relevant research on Vision-Language-Action (VLA) models from 2024-2025 that addresses your query. Here are the key findings:\n\n## Vision Encoder Dominance and Representation Learning\n\nWhile VLM initialization offers consistent benefits over training from scratch, a VLM's general capabilities are poor predictors of downstream task performance. Fine-tuning the vision encoder is essential for strong control performance, whereas the language encoder is less critical.\n\nSignificant performance gains are observed after injecting action-relevant information into the vision modules within the VLM, confirming the existence of a critical domain gap between standard VLM pretraining and the visual representation requirements of embodied tasks.\n\n## Failure Modes in VLAs\n\nVLA models often struggle to generalize during deployment, as training data typically consists primarily of teleoperated, success-only trajectories. Such data can cause policies to overfit to narrow behavioral manifolds and lack corrective signals for recovering from suboptimal or unseen states, resulting in brittle execution at inference time.\n\nVLA policies remain brittle under visual corruption and grounding perturbations, underscoring the need for post hoc correction mechanisms beyond standard fine-tuning.\n\n## Addressing the Gap\n\nRecent work has highlighted the value of learning from failure data, showing that unsuccessful trajectories can improve robustness and task success rates.\n\nThe research indicates that there is a significant gap between current VLM research and the practical demands of VLA models."
+    ],
+    "durationSeconds": 7.015163965
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T14:00:20.941Z_
+
+<details><summary>↩ Tool result · `toolu_018MkeRgSxsdvBabZJvmmitC`</summary>
+
+```text
+Web search results for query: "VLA mechanistic interpretability representation analysis vision language action model layers heads 2024 2025"
+
+Links: [{"title":"Mechanistic Interpretability for Steering Vision Language Action Models","url":"https://vla-mech-interp.github.io/"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://arxiv.org/html/2509.00328v1"},{"title":"Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations | ICLR Blogposts 2025","url":"https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/"},{"title":"[2509.00328] Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/abs/2509.00328"},{"title":"Paper page - Mechanistic interpretability for steering vision-language-action models","url":"https://huggingface.co/papers/2509.00328"},{"title":"Causal Tracing of Object Representations in Large Vision Language Models: Mechanistic Interpretability and Hallucination Mitigation","url":"https://arxiv.org/html/2511.05923v3"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/html/2603.05487v1"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"}]
+
+## Search Results Summary
+
+I found comprehensive information about mechanistic interpretability research for Vision-Language-Action (VLA) models. Here are the key findings:
+
+### Main Framework (2025)
+
+Researchers introduced the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time. This framework projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions – such as speed and direction – that are causally linked to action selection.
+
+### Key Techniques
+
+The research introduces a general-purpose activation steering method that modulates behavior in real time, without fine-tuning, reward signals, or environment interaction. This method was evaluated on two recent open-source VLAs, π0 and OpenVLA, and demonstrated zero-shot behavioral control in simulation (LIBERO) and on a physical robot (UR5).
+
+### Vision Language Model Analysis
+
+A systematic review examined the use of mechanistic interpretability methods for vision language models, specifically examining five prominent techniques: probing, activation patching, logit lens, sparse autoencoders, and automated explanation.
+
+### Recent Advances
+
+Multiple VLA architectures spanning 80M to 7B parameters, three action generation paradigms (flow matching, continuous regression, and CVAE), and four benchmarks (394,000+ rollout episodes) have been studied with mechanistic interpretability methods.
+
+The research demonstrates that interpretable components of embodied VLAs can be systematically used for transparent and steerable control in robotics applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "62da2aad-d8bd-4b4d-b4fc-c086eba9a324",
+  "tool_use_result": {
+    "query": "VLA mechanistic interpretability representation analysis vision language action model layers heads 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A2F86qH3z4RzkHkXgP3xeK",
+        "content": [
+          {
+            "title": "Mechanistic Interpretability for Steering Vision Language Action Models",
+            "url": "https://vla-mech-interp.github.io/"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2509.00328v1"
+          },
+          {
+            "title": "Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations | ICLR Blogposts 2025",
+            "url": "https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/"
+          },
+          {
+            "title": "[2509.00328] Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/abs/2509.00328"
+          },
+          {
+            "title": "Paper page - Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://huggingface.co/papers/2509.00328"
+          },
+          {
+            "title": "Causal Tracing of Object Representations in Large Vision Language Models: Mechanistic Interpretability and Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2511.05923v3"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.05487v1"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          }
+        ]
+      },
+      "## Search Results Summary\n\nI found comprehensive information about mechanistic interpretability research for Vision-Language-Action (VLA) models. Here are the key findings:\n\n### Main Framework (2025)\n\nResearchers introduced the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time. This framework projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions – such as speed and direction – that are causally linked to action selection.\n\n### Key Techniques\n\nThe research introduces a general-purpose activation steering method that modulates behavior in real time, without fine-tuning, reward signals, or environment interaction. This method was evaluated on two recent open-source VLAs, π0 and OpenVLA, and demonstrated zero-shot behavioral control in simulation (LIBERO) and on a physical robot (UR5).\n\n### Vision Language Model Analysis\n\nA systematic review examined the use of mechanistic interpretability methods for vision language models, specifically examining five prominent techniques: probing, activation patching, logit lens, sparse autoencoders, and automated explanation.\n\n### Recent Advances\n\nMultiple VLA architectures spanning 80M to 7B parameters, three action generation paradigms (flow matching, continuous regression, and CVAE), and four benchmarks (394,000+ rollout episodes) have been studied with mechanistic interpretability methods.\n\nThe research demonstrates that interpretable components of embodied VLAs can be systematically used for transparent and steerable control in robotics applications."
+    ],
+    "durationSeconds": 7.395231407000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T14:00:22.315Z_
+
+<details><summary>↩ Tool result · `toolu_01RMbqPEAJKsa2a4EdAJrdHB`</summary>
+
+```text
+Web search results for query: "language grounding probing VLM instruction following representation analysis 2024 2025"
+
+Links: [{"title":"Towards Understanding Visual Grounding in Vision-Language Models","url":"https://arxiv.org/html/2509.10345v1"},{"title":"Can Large Vision-Language Models Correct Semantic Grounding Errors By","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_Can_Large_Vision-Language_Models_Correct_Semantic_Grounding_Errors_By_Themselves_CVPR_2025_paper.pdf"},{"title":"Probing Visual Language Priors in VLMs","url":"https://arxiv.org/html/2501.00569v2"},{"title":"Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations | ICLR Blogposts 2025","url":"https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/"},{"title":"LLMs Can Compensate for Deficiencies in Visual Representations","url":"https://arxiv.org/html/2506.05439v1"},{"title":"R-VLM: Region-Aware Vision Language Model for Precise ...","url":"https://aclanthology.org/2025.findings-acl.501.pdf"},{"title":"Exploring the Frontier of Vision-Language Models","url":"https://arxiv.org/pdf/2404.07214"},{"title":"Interpreting Vision-Language Models with VLM-LENS","url":"https://aclanthology.org/2025.emnlp-demos.68.pdf"},{"title":"Recursive Vision-Language Model for Temporal Grounding in ...","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Hannan_ReVisionLLM_Recursive_Vision-Language_Model_for_Temporal_Grounding_in_Hour-Long_Videos_CVPR_2025_paper.pdf"},{"title":"A Lens on Visual Grounding, Task Reasoning, and Answer ...","url":"https://www.arxiv.org/pdf/2508.20279"}]
+
+Based on the search results, here's what I found about recent research on language grounding, probing, VLM instruction following, and representation analysis from 2024-2025:
+
+## Key Research Areas and Findings
+
+### Visual Grounding in VLMs
+
+Recent work has analyzed the effects of individual components in VLM architecture and examined these components in detail to assess their impact on grounding capabilities. Providing high-resolution images to VLMs reduces hallucinations and enhances multimodal understanding, leading to improved performance on tasks requiring fine-grained details.
+
+### Probing Methods and Representation Analysis
+
+Probing is a diagnostic technique used to analyze the internal representations of neural networks by training auxiliary classifiers—referred to as probes—on the model's intermediate outputs. Most research on probing tasks in VLMs focuses on two primary objectives: identifying the concepts these models struggle to capture and assessing the relative importance of visual and linguistic modalities.
+
+Representations at visual token positions change systematically across layers, gradually aligning with interpretable textual concepts, indicating that VLMs can naturally transform visual information into language-like representations.
+
+### Language Model Compensation in VLMs
+
+Researchers used visual token ablation and logit lens analysis to reveal that LLaVA localizes object-specific information at corresponding positional tokens and can align these with fine-grained semantic concepts beyond surface-level object categories. Research raises the question of how VLMs overcome known limitations of CLIP's representations, with one hypothesis being that the language decoder plays a compensatory role, enriching or contextualizing the visual representations it receives.
+
+### Instruction Following Analysis
+
+Visual grounding peaks in accuracy in certain layers, followed by drops from lexical variation in middle layers, while in deeper layers, accuracy recovers for lexical variants that preserve the expected answer while semantic negation variants remain low. Visual tokenization, instruction tuning data, and pretraining corpus have minimal impact on the overall processing hierarchy, though different models allocate different numbers of layers to visual grounding.
+
+### Visual Language Priors
+
+Research probes the visual language priors of VLMs by constructing Question-Image-Answer triplets that deliberately deviate from the training data distribution, using modern image generation models to synthesize out-of-distribution images.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "d659f46f-ae71-47e8-ae44-520ffc384897",
+  "tool_use_result": {
+    "query": "language grounding probing VLM instruction following representation analysis 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WZvQJSfZv3vtiMGnqF7247",
+        "content": [
+          {
+            "title": "Towards Understanding Visual Grounding in Vision-Language Models",
+            "url": "https://arxiv.org/html/2509.10345v1"
+          },
+          {
+            "title": "Can Large Vision-Language Models Correct Semantic Grounding Errors By",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_Can_Large_Vision-Language_Models_Correct_Semantic_Grounding_Errors_By_Themselves_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Probing Visual Language Priors in VLMs",
+            "url": "https://arxiv.org/html/2501.00569v2"
+          },
+          {
+            "title": "Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations | ICLR Blogposts 2025",
+            "url": "https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/"
+          },
+          {
+            "title": "LLMs Can Compensate for Deficiencies in Visual Representations",
+            "url": "https://arxiv.org/html/2506.05439v1"
+          },
+          {
+            "title": "R-VLM: Region-Aware Vision Language Model for Precise ...",
+            "url": "https://aclanthology.org/2025.findings-acl.501.pdf"
+          },
+          {
+            "title": "Exploring the Frontier of Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2404.07214"
+          },
+          {
+            "title": "Interpreting Vision-Language Models with VLM-LENS",
+            "url": "https://aclanthology.org/2025.emnlp-demos.68.pdf"
+          },
+          {
+            "title": "Recursive Vision-Language Model for Temporal Grounding in ...",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Hannan_ReVisionLLM_Recursive_Vision-Language_Model_for_Temporal_Grounding_in_Hour-Long_Videos_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "A Lens on Visual Grounding, Task Reasoning, and Answer ...",
+            "url": "https://www.arxiv.org/pdf/2508.20279"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about recent research on language grounding, probing, VLM instruction following, and representation analysis from 2024-2025:\n\n## Key Research Areas and Findings\n\n### Visual Grounding in VLMs\n\nRecent work has analyzed the effects of individual components in VLM architecture and examined these components in detail to assess their impact on grounding capabilities. Providing high-resolution images to VLMs reduces hallucinations and enhances multimodal understanding, leading to improved performance on tasks requiring fine-grained details.\n\n### Probing Methods and Representation Analysis\n\nProbing is a diagnostic technique used to analyze the internal representations of neural networks by training auxiliary classifiers—referred to as probes—on the model's intermediate outputs. Most research on probing tasks in VLMs focuses on two primary objectives: identifying the concepts these models struggle to capture and assessing the relative importance of visual and linguistic modalities.\n\nRepresentations at visual token positions change systematically across layers, gradually aligning with interpretable textual concepts, indicating that VLMs can naturally transform visual information into language-like representations.\n\n### Language Model Compensation in VLMs\n\nResearchers used visual token ablation and logit lens analysis to reveal that LLaVA localizes object-specific information at corresponding positional tokens and can align these with fine-grained semantic concepts beyond surface-level object categories. Research raises the question of how VLMs overcome known limitations of CLIP's representations, with one hypothesis being that the language decoder plays a compensatory role, enriching or contextualizing the visual representations it receives.\n\n### Instruction Following Analysis\n\nVisual grounding peaks in accuracy in certain layers, followed by drops from lexical variation in middle layers, while in deeper layers, accuracy recovers for lexical variants that preserve the expected answer while semantic negation variants remain low. Visual tokenization, instruction tuning data, and pretraining corpus have minimal impact on the overall processing hierarchy, though different models allocate different numbers of layers to visual grounding.\n\n### Visual Language Priors\n\nResearch probes the visual language priors of VLMs by constructing Question-Image-Answer triplets that deliberately deviate from the training data distribution, using modern image generation models to synthesize out-of-distribution images."
+    ],
+    "durationSeconds": 10.131545819
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial results. Let me now dig deeper into the most promising papers. The key ones I should fetch more details on:
+
+1. **Mechanistic Interpretability for Steering VLA Models** (arxiv 2509.00328) - directly relevant
+2. **Not All Features Are Created Equal** (arxiv 2603.19233) - mechanistic study of VLA
+3. **Observing and Controlling Features in VLA Models** (arxiv 2603.05487) - VLA features
+
+
+4. **LLMs Can Compensate for Deficiencies in Visual Representations** (arxiv 2506.05439) - this directly addresses the vision dominance issue I'm investigating
+5. **Probing Visual Language Priors in VLMs** (arxiv 2501.00569) and **Towards Understanding Visual Grounding in VLMs** (arxiv 2509.10345) - both explore how visual information gets processed
+6. **VLM4VLA: Revisiting VLMs in VLA Models** (arxiv 2601.03309) and the ICLR blogpost on mechanistic interpretability with VLMs round out the mechanistic understanding angle
+7. **CoT-VLA** looks relevant for the planning and reasoning component, though the list appears to cut off there
+
+I should pull these papers in parallel and also search for more targeted probing work to fill in the gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a4ef2c08-d999-49bb-98f7-cf905f909c2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到关键论文线索，深入获取核心论文的详细信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "ab2a8354-e373-4c34-918f-583ea265e7ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GoNqBfw5TNsxxT1XxEPJwp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.00328",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: what probing tasks were used, which layers/representations were analyzed, what was found about vision vs language vs action contributions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a29ab34d-f81f-4431-a7e0-000b63e8166b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UwYfLkYxh6wt8fw8woni8j`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.19233",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: what features matter in VLA models, how they distinguish vision vs language vs action features, any probing analysis."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "030a94ba-1ac9-4f51-8cb5-b3b2dcbad5c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LiRD4jP9jfr2FkymUv7NcY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.05487v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how they observe and control features in VLA models, what probing or interpretability methods were used, findings about different feature types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "ac68fe60-f759-4460-a85a-4e5b67965972",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01G2Vs9ymRnELw8BwPsTt82R`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.05439v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how LLMs compensate for vision encoder deficiencies, what probing tasks show this, evidence that LLM layers add value beyond vision."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "d1b67801-13ca-4758-a6f1-49b6bd2c25ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T14:00:37.852Z_
+
+<details><summary>↩ Tool result · `toolu_01GoNqBfw5TNsxxT1XxEPJwp`</summary>
+
+```text
+# Paper Summary: Mechanistic Interpretability for Vision-Language-Action Models
+
+**Title:** Mechanistic interpretability for steering vision-language-action models
+
+**Authors:** Bear Häon, Kaylene Stocking, Ian Chuang, Claire Tomlin
+
+**Year:** 2025 (submitted August 30, 2025)
+
+**Abstract:** The paper introduces a framework for interpreting and steering Vision-Language-Action (VLA) models through internal representations, addressing the lack of mechanistic insight in learned robotic policies.
+
+## Key Methods
+
+The researchers projected "feedforward activations within transformer layers onto the token embedding basis" to identify sparse semantic directions linked to action selection. They developed "a general-purpose activation steering method that modulates behavior in real time, without fine-tuning, reward signals, or environment interaction."
+
+## Key Findings
+
+- Identified causal relationships between sparse semantic directions (speed, direction) and action selection
+- Demonstrated zero-shot behavioral control across two VLAs: Pi0 and OpenVLA
+- Tested on simulation (LIBERO) and physical robot (UR5)
+
+## Analysis Details
+
+While the abstract indicates examination of "feedforward activations within transformer layers," the provided content does not specify which particular layers were analyzed, detailed probing tasks employed, or explicit breakdowns of vision versus language versus action contributions.
+
+**Project Website:** vla-mech-interp.github.io
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "07ec1c16-5310-4bfc-b0f8-d959a73a9a10",
+  "tool_use_result": {
+    "bytes": 47165,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Mechanistic Interpretability for Vision-Language-Action Models\n\n**Title:** Mechanistic interpretability for steering vision-language-action models\n\n**Authors:** Bear Häon, Kaylene Stocking, Ian Chuang, Claire Tomlin\n\n**Year:** 2025 (submitted August 30, 2025)\n\n**Abstract:** The paper introduces a framework for interpreting and steering Vision-Language-Action (VLA) models through internal representations, addressing the lack of mechanistic insight in learned robotic policies.\n\n## Key Methods\n\nThe researchers projected \"feedforward activations within transformer layers onto the token embedding basis\" to identify sparse semantic directions linked to action selection. They developed \"a general-purpose activation steering method that modulates behavior in real time, without fine-tuning, reward signals, or environment interaction.\"\n\n## Key Findings\n\n- Identified causal relationships between sparse semantic directions (speed, direction) and action selection\n- Demonstrated zero-shot behavioral control across two VLAs: Pi0 and OpenVLA\n- Tested on simulation (LIBERO) and physical robot (UR5)\n\n## Analysis Details\n\nWhile the abstract indicates examination of \"feedforward activations within transformer layers,\" the provided content does not specify which particular layers were analyzed, detailed probing tasks employed, or explicit breakdowns of vision versus language versus action contributions.\n\n**Project Website:** vla-mech-interp.github.io",
+    "durationMs": 5409,
+    "url": "https://arxiv.org/abs/2509.00328"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017L6qWN5E7MBxFGnA7MEzsu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.03309v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how they analyze vision encoder vs language model contributions in VLA, any probing analysis, findings about when language model matters vs when vision encoder is sufficient."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "ee417274-e0be-437d-a214-0cda2630d53a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015R29LjqExtcdG8FCBCw5Va`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2501.00569v2",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: what probing tasks they designed for VLMs, how they test visual vs language priors, methodology for designing probing tasks that go beyond vision-only features."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "f3864daf-1c76-4f0c-b904-dcdba745a5c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvCenQBC39n5FsfqR9nmpv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2761,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 24872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T14:00:42.409Z_
+
+<details><summary>↩ Tool result · `toolu_01LiRD4jP9jfr2FkymUv7NcY`</summary>
+
+```text
+# Research Paper Summary: Observing and Controlling Features in Vision-Language-Action Models
+
+## Metadata
+- **Title:** Observing and Controlling Features in Vision-Language-Action Models
+- **Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone
+- **Year:** 2026
+- **arXiv ID:** 2603.05487v1
+
+## Abstract
+The paper introduces a framework for understanding and steering Vision-Language-Action (VLA) models through internal representations. The authors propose concepts of "feature-observability" and "feature-controllability" to enable real-time alignment of VLA outputs with user preferences without fine-tuning.
+
+## Key Methods
+
+### Feature Observer
+- **Linear probe design:** Trains a linear classifier at each transformer layer using labeled data
+- **Equation:** f_ℓ(x) := W_ℓx + b_ℓ, learned via cross-entropy loss optimization
+- **Data source:** Input-feature pairs propagated through transformer layers to collect activation-feature pairs
+
+### Feature Controller
+- **Minimal intervention approach:** Additive perturbation u_ℓ = x + u to representation space
+- **Optimization:** Solves constrained problem minimizing ||u||²₂ subject to f_ℓ(x_ℓ + u) ∈ D
+- **Closed-form solution:** Provides explicit formulas when constraints are interval bounds on one-dimensional features
+
+## Key Findings
+
+### Feature Observability Results
+- Robot states and actions are "linearly encoded in VLA transformer representations"
+- Observations remain robust to linear perturbations across both π₀.₅ and OpenVLA models
+- Earlier transformer layers show stronger robustness to interventions than deeper layers
+
+### Feature Controllability Results
+- Linear interventions successfully constrain actions to desired regions with near-perfect constraint satisfaction
+- Fine-grained steering achieved for gripper state (>90% success rate), end-effector height, and speed
+- Method preserves closed-loop task performance while applying constraints
+
+### Architecture Coverage
+- Tested on transformer-based VLAs (OpenVLA) and transformer-flow-matching hybrids (π₀.₅)
+- Evaluated on Libero and BridgeData V2 datasets
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "33511fd6-79ff-443e-95d6-f30c2d1fed5d",
+  "tool_use_result": {
+    "bytes": 215175,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary: Observing and Controlling Features in Vision-Language-Action Models\n\n## Metadata\n- **Title:** Observing and Controlling Features in Vision-Language-Action Models\n- **Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone\n- **Year:** 2026\n- **arXiv ID:** 2603.05487v1\n\n## Abstract\nThe paper introduces a framework for understanding and steering Vision-Language-Action (VLA) models through internal representations. The authors propose concepts of \"feature-observability\" and \"feature-controllability\" to enable real-time alignment of VLA outputs with user preferences without fine-tuning.\n\n## Key Methods\n\n### Feature Observer\n- **Linear probe design:** Trains a linear classifier at each transformer layer using labeled data\n- **Equation:** f_ℓ(x) := W_ℓx + b_ℓ, learned via cross-entropy loss optimization\n- **Data source:** Input-feature pairs propagated through transformer layers to collect activation-feature pairs\n\n### Feature Controller\n- **Minimal intervention approach:** Additive perturbation u_ℓ = x + u to representation space\n- **Optimization:** Solves constrained problem minimizing ||u||²₂ subject to f_ℓ(x_ℓ + u) ∈ D\n- **Closed-form solution:** Provides explicit formulas when constraints are interval bounds on one-dimensional features\n\n## Key Findings\n\n### Feature Observability Results\n- Robot states and actions are \"linearly encoded in VLA transformer representations\"\n- Observations remain robust to linear perturbations across both π₀.₅ and OpenVLA models\n- Earlier transformer layers show stronger robustness to interventions than deeper layers\n\n### Feature Controllability Results\n- Linear interventions successfully constrain actions to desired regions with near-perfect constraint satisfaction\n- Fine-grained steering achieved for gripper state (>90% success rate), end-effector height, and speed\n- Method preserves closed-loop task performance while applying constraints\n\n### Architecture Coverage\n- Tested on transformer-based VLAs (OpenVLA) and transformer-flow-matching hybrids (π₀.₅)\n- Evaluated on Libero and BridgeData V2 datasets",
+    "durationMs": 7558,
+    "url": "https://arxiv.org/html/2603.05487v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T14:00:43.164Z_
+
+<details><summary>↩ Tool result · `toolu_01UwYfLkYxh6wt8fw8woni8j`</summary>
+
+```text
+# Paper Summary: "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models"
+
+**Title:** Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models
+
+**Authors:** Bryce Grant, Xijia Zhao, Peng Wang (Case Western Reserve University)
+
+**Year:** 2026
+
+**Abstract:**
+The authors conduct a mechanistic interpretability study across six VLA models (80M–7B parameters) using 394,000+ rollout episodes. They investigate how multimodal inputs translate into robotic actions using activation injection, sparse autoencoders (SAEs), and linear probes.
+
+## Key Methods
+
+1. **Activation Injection** – Recording and replaying activations across counterfactual conditions (null prompts, cross-task scenes)
+2. **Sparse Autoencoders (SAEs)** – Per-token processing to extract interpretable features; mean-pooling destroys action fidelity
+3. **Counterfactual Prompting** – Systematic prompt variations to measure language sensitivity
+4. **Linear Probes** – Testing whether action information is linearly decodable from intermediate layers
+
+## Key Findings
+
+**Visual Pathway Dominance:**
+"Injecting baseline activations into null-prompt episodes recovers near-identical behavior" across all architectures. The visual system drives action generation largely independent of language.
+
+**Language Sensitivity is Suite-Dependent:**
+"When visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential" (e.g., X-VLA libero_goal: 94%→10% under wrong prompts vs. libero_object: 60–100% regardless).
+
+**Spatially Bound Motor Programs:**
+Cross-task injection steers robots toward source-task positions (99.8% alignment on X-VLA) despite task failure, indicating actions encode workspace coordinates rather than abstract task representations.
+
+**Pathway Specialization:**
+In multi-pathway models (π0.5, SmolVLA, GR00T N1.5), expert pathways encode motor programs while VLM pathways encode goal semantics. "Expert pathway injection causes 2× greater behavioral displacement than VLM pathways."
+
+**SAE Processing Architecture-Dependence:**
+Per-token SAE processing is essential for most models (mean-pooling: π0.5 96%→8% success), though X-VLA surprisingly performs better with mean-pooling despite lower explained variance.
+
+**Concept Identification:**
+The study identifies "82+ manipulation concepts" via contrastive selection, with "28–92% zero-effect rates independent of representation width" during causal ablation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "758f67ed-8496-44a0-bd3b-04961a64bb87",
+  "tool_use_result": {
+    "bytes": 457397,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: \"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"\n\n**Title:** Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\n\n**Authors:** Bryce Grant, Xijia Zhao, Peng Wang (Case Western Reserve University)\n\n**Year:** 2026\n\n**Abstract:**\nThe authors conduct a mechanistic interpretability study across six VLA models (80M–7B parameters) using 394,000+ rollout episodes. They investigate how multimodal inputs translate into robotic actions using activation injection, sparse autoencoders (SAEs), and linear probes.\n\n## Key Methods\n\n1. **Activation Injection** – Recording and replaying activations across counterfactual conditions (null prompts, cross-task scenes)\n2. **Sparse Autoencoders (SAEs)** – Per-token processing to extract interpretable features; mean-pooling destroys action fidelity\n3. **Counterfactual Prompting** – Systematic prompt variations to measure language sensitivity\n4. **Linear Probes** – Testing whether action information is linearly decodable from intermediate layers\n\n## Key Findings\n\n**Visual Pathway Dominance:**\n\"Injecting baseline activations into null-prompt episodes recovers near-identical behavior\" across all architectures. The visual system drives action generation largely independent of language.\n\n**Language Sensitivity is Suite-Dependent:**\n\"When visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential\" (e.g., X-VLA libero_goal: 94%→10% under wrong prompts vs. libero_object: 60–100% regardless).\n\n**Spatially Bound Motor Programs:**\nCross-task injection steers robots toward source-task positions (99.8% alignment on X-VLA) despite task failure, indicating actions encode workspace coordinates rather than abstract task representations.\n\n**Pathway Specialization:**\nIn multi-pathway models (π0.5, SmolVLA, GR00T N1.5), expert pathways encode motor programs while VLM pathways encode goal semantics. \"Expert pathway injection causes 2× greater behavioral displacement than VLM pathways.\"\n\n**SAE Processing Architecture-Dependence:**\nPer-token SAE processing is essential for most models (mean-pooling: π0.5 96%→8% success), though X-VLA surprisingly performs better with mean-pooling despite lower explained variance.\n\n**Concept Identification:**\nThe study identifies \"82+ manipulation concepts\" via contrastive selection, with \"28–92% zero-effect rates independent of representation width\" during causal ablation.",
+    "durationMs": 9663,
+    "url": "https://arxiv.org/html/2603.19233"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T14:00:44.218Z_
+
+<details><summary>↩ Tool result · `toolu_01G2Vs9ymRnELw8BwPsTt82R`</summary>
+
+```text
+# Research Summary: LLMs Compensating for Visual Representation Deficiencies
+
+**Title:** "LLMs Can Compensate for Deficiencies in Visual Representations"
+
+**Authors:** Sho Takishita, Jay Gala, Abdelrahman Mohamed, Kentaro Inui, Yova Kementchedjhieva
+
+**Year:** 2025
+
+**Abstract:**
+The researchers investigate whether language model components in vision-language models (VLMs) compensate for known limitations in CLIP-based vision encoders. Their hypothesis posits that "the strong language backbone in VLMs compensates for possibly weak visual features by contextualizing or enriching them."
+
+## Key Methods
+
+**Object Part Identification (OPI) Task:** The diagnostic task requires identifying localized object parts (e.g., cat ears, apple stems) using patch-level segmentation masks from the Pascal Panoptic Parts dataset, containing 567 images across 7 animal categories.
+
+**Attention Knockout (AK) Ablations:** Researchers systematically disabled self-attention mechanisms in different model components—vision encoder, language decoder, or both—to measure how contextualization affects part identifiability across layers.
+
+**Logit Lens Analysis:** This technique projects hidden representations into vocabulary space to track how object part information evolves across decoder layers.
+
+## Key Findings
+
+1. **Decoder Self-Attention Shows Minimal Impact:** Blocking decoder self-attention caused only slight performance drops, suggesting language models primarily "read" information already encoded in visual representations.
+
+2. **Critical Compensatory Role:** When encoder self-attention alone was disabled, performance largely recovered—demonstrating that "the language decoder can largely compensate for deficiency and recover performance."
+
+3. **Selective Recovery Capacity:** Larger language models (13B parameters) could fully recover high-level semantic features from degraded visual input, while shallow-layer visual features remained partially non-recoverable, indicating a dynamic division of labor between components.
+
+4. **CLIP Alone Cannot Identify Parts:** CLIP's text encoder showed substantially lower part identifiability than VLMs, despite the visual encoder containing recoverable information, highlighting the critical role of language decoding sophistication.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "83ca9de9-2cf6-46fa-bce2-3ba51c940885",
+  "tool_use_result": {
+    "bytes": 172489,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: LLMs Compensating for Visual Representation Deficiencies\n\n**Title:** \"LLMs Can Compensate for Deficiencies in Visual Representations\"\n\n**Authors:** Sho Takishita, Jay Gala, Abdelrahman Mohamed, Kentaro Inui, Yova Kementchedjhieva\n\n**Year:** 2025\n\n**Abstract:**\nThe researchers investigate whether language model components in vision-language models (VLMs) compensate for known limitations in CLIP-based vision encoders. Their hypothesis posits that \"the strong language backbone in VLMs compensates for possibly weak visual features by contextualizing or enriching them.\"\n\n## Key Methods\n\n**Object Part Identification (OPI) Task:** The diagnostic task requires identifying localized object parts (e.g., cat ears, apple stems) using patch-level segmentation masks from the Pascal Panoptic Parts dataset, containing 567 images across 7 animal categories.\n\n**Attention Knockout (AK) Ablations:** Researchers systematically disabled self-attention mechanisms in different model components—vision encoder, language decoder, or both—to measure how contextualization affects part identifiability across layers.\n\n**Logit Lens Analysis:** This technique projects hidden representations into vocabulary space to track how object part information evolves across decoder layers.\n\n## Key Findings\n\n1. **Decoder Self-Attention Shows Minimal Impact:** Blocking decoder self-attention caused only slight performance drops, suggesting language models primarily \"read\" information already encoded in visual representations.\n\n2. **Critical Compensatory Role:** When encoder self-attention alone was disabled, performance largely recovered—demonstrating that \"the language decoder can largely compensate for deficiency and recover performance.\"\n\n3. **Selective Recovery Capacity:** Larger language models (13B parameters) could fully recover high-level semantic features from degraded visual input, while shallow-layer visual features remained partially non-recoverable, indicating a dynamic division of labor between components.\n\n4. **CLIP Alone Cannot Identify Parts:** CLIP's text encoder showed substantially lower part identifiability than VLMs, despite the visual encoder containing recoverable information, highlighting the critical role of language decoding sophistication.",
+    "durationMs": 7933,
+    "url": "https://arxiv.org/html/2506.05439v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T14:00:49.141Z_
+
+<details><summary>↩ Tool result · `toolu_015R29LjqExtcdG8FCBCw5Va`</summary>
+
+```text
+# Paper Summary: Probing Visual Language Priors in VLMs
+
+**Title:** Probing Visual Language Priors in VLMs
+
+**Authors:** Tiange Luo, Ang Cao, Gunhee Lee, Justin Johnson, Honglak Lee
+
+**Year:** 2025 (arXiv preprint 2501.00569v2)
+
+**Abstract:**
+The authors investigate whether Vision-Language Models over-rely on learned visual language priors rather than performing genuine visual reasoning. They introduce ViLP, a benchmark with synthetically generated out-of-distribution images and corresponding questions where humans achieve ~98% accuracy but GPT-4o only reaches 66.17%. To address this limitation, they propose Image-DPO, a self-improving framework that trains models on corrupted image pairs to enhance visual focus.
+
+## Key Methods
+
+**Benchmark Design (ViLP):**
+The researchers created 300 questions, each paired with three distinct images and answers:
+- **Prior Answer:** inferable from text alone (aligns with common knowledge)
+- **Test Answers:** require visual reasoning to distinguish from language priors
+
+Three mathematical criteria guide QIA construction:
+- Text alone should strongly favor the prior answer
+- Images should shift the correct answer toward test answers
+- Test answers must be rare without visual context
+
+**Image-DPO Training Objective:**
+Rather than varying answers for fixed images (Text-DPO), Image-DPO corrupts images while keeping questions and answers constant. The loss function compares responses to clean versus degraded images, using three corruption types: semantic editing, Gaussian blur, and pixelation.
+
+## Key Findings
+
+**Benchmark Results:**
+- Humans achieve 98%+ accuracy across ViLP variants
+- Commercial VLMs significantly underperform: Claude-3.5-Sonnet (70%), GPT-4o (66.17%)
+- Open-source models show comparable performance to commercial counterparts
+
+**Image Corruption Analysis:**
+Performance rapidly decreases as image degradation severity increases, while "prior" accuracy remains ~50%, indicating VLMs rely heavily on text-based reasoning.
+
+**Image-DPO Effectiveness:**
+- LLaVA-1.5-7B improved from 29.67% to 34.17% on ViLP-F Score
+- Cambrian-8B showed dramatic improvement: 8.67% to 20.83%
+- Consistent gains across multiple benchmarks (NaturalBench, MM-Vet, CHAIR)
+
+**Distractor Effects:**
+Interestingly, distractor facts benefited stronger models (GPT-4o) by narrowing search space but misled weaker models like LLaVA, revealing differential instruction-following capabilities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "1bcae0d8-2dc7-47f0-8f19-26eeda9fe6bc",
+  "tool_use_result": {
+    "bytes": 810769,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Probing Visual Language Priors in VLMs\n\n**Title:** Probing Visual Language Priors in VLMs\n\n**Authors:** Tiange Luo, Ang Cao, Gunhee Lee, Justin Johnson, Honglak Lee\n\n**Year:** 2025 (arXiv preprint 2501.00569v2)\n\n**Abstract:**\nThe authors investigate whether Vision-Language Models over-rely on learned visual language priors rather than performing genuine visual reasoning. They introduce ViLP, a benchmark with synthetically generated out-of-distribution images and corresponding questions where humans achieve ~98% accuracy but GPT-4o only reaches 66.17%. To address this limitation, they propose Image-DPO, a self-improving framework that trains models on corrupted image pairs to enhance visual focus.\n\n## Key Methods\n\n**Benchmark Design (ViLP):**\nThe researchers created 300 questions, each paired with three distinct images and answers:\n- **Prior Answer:** inferable from text alone (aligns with common knowledge)\n- **Test Answers:** require visual reasoning to distinguish from language priors\n\nThree mathematical criteria guide QIA construction:\n- Text alone should strongly favor the prior answer\n- Images should shift the correct answer toward test answers\n- Test answers must be rare without visual context\n\n**Image-DPO Training Objective:**\nRather than varying answers for fixed images (Text-DPO), Image-DPO corrupts images while keeping questions and answers constant. The loss function compares responses to clean versus degraded images, using three corruption types: semantic editing, Gaussian blur, and pixelation.\n\n## Key Findings\n\n**Benchmark Results:**\n- Humans achieve 98%+ accuracy across ViLP variants\n- Commercial VLMs significantly underperform: Claude-3.5-Sonnet (70%), GPT-4o (66.17%)\n- Open-source models show comparable performance to commercial counterparts\n\n**Image Corruption Analysis:**\nPerformance rapidly decreases as image degradation severity increases, while \"prior\" accuracy remains ~50%, indicating VLMs rely heavily on text-based reasoning.\n\n**Image-DPO Effectiveness:**\n- LLaVA-1.5-7B improved from 29.67% to 34.17% on ViLP-F Score\n- Cambrian-8B showed dramatic improvement: 8.67% to 20.83%\n- Consistent gains across multiple benchmarks (NaturalBench, MM-Vet, CHAIR)\n\n**Distractor Effects:**\nInterestingly, distractor facts benefited stronger models (GPT-4o) by narrowing search space but misled weaker models like LLaVA, revealing differential instruction-following capabilities.",
+    "durationMs": 9743,
+    "url": "https://arxiv.org/html/2501.00569v2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T14:00:50.144Z_
+
+<details><summary>↩ Tool result · `toolu_017L6qWN5E7MBxFGnA7MEzsu`</summary>
+
+```text
+# VLM4VLA: Analysis of Vision-Language Models in Vision-Language-Action Models
+
+## Basic Information
+- **Title:** VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models
+- **Authors:** Jianke Zhang, Xiaoyu Chen, Qiuyue Wang, Mingsheng Li, Yanjiang Guo, Yucheng Hu, Jiajun Zhang, Shuai Bai, Junyang Lin, Jianyu Chen
+- **Year:** 2025
+- **Institutions:** Tsinghua University, Alibaba Inc. (Qwen Team)
+
+## Abstract Summary
+The paper investigates how Vision-Language Model choice and capability translate to downstream robotic policy performance. The researchers introduce a "minimal adaptation pipeline that converts general-purpose VLMs into VLA policies using only a small set of new learnable parameters." Key findings challenge assumptions that general VLM competence predicts embodied control performance.
+
+## Key Methods
+
+**VLM4VLA Framework:**
+- Simple MLP policy head (adds <1% parameters)
+- Uses L1/L2 loss rather than diffusion-based approaches for deterministic inference
+- Evaluates 24 VLMs across three benchmarks (Calvin, SimplerEnv, Libero)
+
+**Analysis Dimensions:**
+1. General capability comparison with training-from-scratch baselines
+2. Impact of auxiliary embodied task fine-tuning
+3. Modality-level ablations comparing frozen vs. fine-tuned vision and language encoders
+
+## Key Findings
+
+### Vision Encoder vs. Language Model Contributions
+
+**Critical Discovery:** The vision encoder emerges as the primary performance bottleneck, not the language component.
+
+Evidence supporting this:
+- Freezing the vision encoder causes dramatic performance drops (e.g., -1.23 for Qwen2.5VL-7B on Calvin)
+- Word embedding freezing shows "no noticeable impact on VLA performance"
+- Fine-tuning the vision encoder proves "more significant than merely increasing the number of trainable parameters in the language model"
+
+### When Language Matters (or Doesn't)
+
+**Language encoder findings:**
+The authors determined that "whether the word embeddings are trained or kept fixed has no noticeable impact" on downstream performance. This suggests language processing is less critical for manipulation tasks than visual understanding.
+
+### The Domain Gap Analysis
+
+A sophisticated experiment tested whether vision encoder fine-tuning addresses sim-to-real gaps or task-inherent misalignment:
+
+When VLMs were fine-tuned on real-world Bridge V2 data with action information, keeping the vision encoder frozen during VLA training still yielded poor results. However, unfreezing enabled substantial improvement (+3.1 points). This demonstrates "the visual features optimized for multimodal understanding or reasoning are not inherently aligned with the fine-grained representations required for low-level manipulation."
+
+### General Capability Doesn't Predict VLA Performance
+
+Despite higher VQA benchmark scores, models showed inconsistent rankings across tasks. Linear regression analysis revealed: "For SimplerEnv and Libero environments, there is no apparent correlation between a VLM's QA performance and its VLA performance."
+
+### Auxiliary Task Fine-Tuning Findings
+
+Contrary to intuition, fine-tuning VLMs on embodied auxiliary tasks (VQA datasets, pointing, depth prediction) generally harmed or failed to improve downstream control performance. The best results used "general-purpose VQA data" rather than specialized embodiment tasks.
+
+## Methodological Strengths
+
+The paper's controlled experimental design isolates VLM contributions by maintaining identical architectures, hyperparameters, and training protocols across all tested models—enabling fair cross-model comparison that addresses limitations in prior work like RoboVLMs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "f28600cc-06dc-4cb1-8602-2be5c054d47a",
+  "tool_use_result": {
+    "bytes": 255641,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VLM4VLA: Analysis of Vision-Language Models in Vision-Language-Action Models\n\n## Basic Information\n- **Title:** VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models\n- **Authors:** Jianke Zhang, Xiaoyu Chen, Qiuyue Wang, Mingsheng Li, Yanjiang Guo, Yucheng Hu, Jiajun Zhang, Shuai Bai, Junyang Lin, Jianyu Chen\n- **Year:** 2025\n- **Institutions:** Tsinghua University, Alibaba Inc. (Qwen Team)\n\n## Abstract Summary\nThe paper investigates how Vision-Language Model choice and capability translate to downstream robotic policy performance. The researchers introduce a \"minimal adaptation pipeline that converts general-purpose VLMs into VLA policies using only a small set of new learnable parameters.\" Key findings challenge assumptions that general VLM competence predicts embodied control performance.\n\n## Key Methods\n\n**VLM4VLA Framework:**\n- Simple MLP policy head (adds <1% parameters)\n- Uses L1/L2 loss rather than diffusion-based approaches for deterministic inference\n- Evaluates 24 VLMs across three benchmarks (Calvin, SimplerEnv, Libero)\n\n**Analysis Dimensions:**\n1. General capability comparison with training-from-scratch baselines\n2. Impact of auxiliary embodied task fine-tuning\n3. Modality-level ablations comparing frozen vs. fine-tuned vision and language encoders\n\n## Key Findings\n\n### Vision Encoder vs. Language Model Contributions\n\n**Critical Discovery:** The vision encoder emerges as the primary performance bottleneck, not the language component.\n\nEvidence supporting this:\n- Freezing the vision encoder causes dramatic performance drops (e.g., -1.23 for Qwen2.5VL-7B on Calvin)\n- Word embedding freezing shows \"no noticeable impact on VLA performance\"\n- Fine-tuning the vision encoder proves \"more significant than merely increasing the number of trainable parameters in the language model\"\n\n### When Language Matters (or Doesn't)\n\n**Language encoder findings:**\nThe authors determined that \"whether the word embeddings are trained or kept fixed has no noticeable impact\" on downstream performance. This suggests language processing is less critical for manipulation tasks than visual understanding.\n\n### The Domain Gap Analysis\n\nA sophisticated experiment tested whether vision encoder fine-tuning addresses sim-to-real gaps or task-inherent misalignment:\n\nWhen VLMs were fine-tuned on real-world Bridge V2 data with action information, keeping the vision encoder frozen during VLA training still yielded poor results. However, unfreezing enabled substantial improvement (+3.1 points). This demonstrates \"the visual features optimized for multimodal understanding or reasoning are not inherently aligned with the fine-grained representations required for low-level manipulation.\"\n\n### General Capability Doesn't Predict VLA Performance\n\nDespite higher VQA benchmark scores, models showed inconsistent rankings across tasks. Linear regression analysis revealed: \"For SimplerEnv and Libero environments, there is no apparent correlation between a VLM's QA performance and its VLA performance.\"\n\n### Auxiliary Task Fine-Tuning Findings\n\nContrary to intuition, fine-tuning VLMs on embodied auxiliary tasks (VQA datasets, pointing, depth prediction) generally harmed or failed to improve downstream control performance. The best results used \"general-purpose VQA data\" rather than specialized embodiment tasks.\n\n## Methodological Strengths\n\nThe paper's controlled experimental design isolates VLM contributions by maintaining identical architectures, hyperparameters, and training protocols across all tested models—enabling fair cross-model comparison that addresses limitations in prior work like RoboVLMs.",
+    "durationMs": 11926,
+    "url": "https://arxiv.org/html/2601.03309v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent, I'm getting very relevant papers. Let me now search for more specific papers on:
+1. The ICLR blogpost on mechanistic interpretability of VLMs
+2. More on language grounding probing
+3. Causal tracing paper
+4. Any other relevant papers on probing tasks that specifically test non-visual knowledge
+
+Let me do more targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "c03f9351-6aa2-44ac-96be-95511e4098fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+非常好，找到了核心论文。继续搜索更多相关文献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "31f334fe-8587-48d4-a231-19c160a43e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012LHXGKTJfkuQG9BR64jyPh`</summary>
+
+```json
+{
+  "url": "https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/",
+  "prompt": "Extract: title, authors, year, key methods (probing, activation patching, logit lens, sparse autoencoders, etc.), key findings about what VLM layers encode, any insights about vision vs language processing hierarchy, which probing tasks distinguish trained vs untrained models."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "fbe54da6-855c-40e8-b73a-e8fcacee0371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DuzuhjyKDrTSVfNPcxJE8P`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.10345v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how visual grounding is analyzed across VLM layers, what probing tasks were used, findings about when language model processing contributes beyond vision encoder."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9ffa73c8-0362-4890-a5d2-1174a3cfac24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VdoEgYkP9fDbVR8pUpfKda`</summary>
+
+```json
+{
+  "query": "probing robot policy hidden representations world model state estimation latent space 2024 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "000cf691-265a-487e-8608-ebafb7c2ba7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VUAQrWP3fzRzkRKmCVKSoE`</summary>
+
+```json
+{
+  "query": "\"linear probing\" VLM \"instruction following\" \"task identity\" representation intermediate layers 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "512542c5-ae2f-48ea-b8e3-a2e86ac98f12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KQpvuKS1ZEVEh7LST9PNwV`</summary>
+
+```json
+{
+  "query": "VLA representation learning what does language model encode robot manipulation beyond vision 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "f03006e1-54d3-4e49-9ba4-64c522073028",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kv6eKz7W3yqKsZerWWc4RK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 650,
+      "cache_creation_input_tokens": 6872,
+      "cache_read_input_tokens": 27171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6872
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T14:01:04.808Z_
+
+<details><summary>↩ Tool result · `toolu_012LHXGKTJfkuQG9BR64jyPh`</summary>
+
+```text
+# Document Extract: Mechanistic Interpretability Meets Vision Language Models
+
+**Title:** Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations
+
+**Authors:** Not specified in provided content
+
+**Year:** 2025 (ICLR Blogposts)
+
+## Key Methods Reviewed
+
+1. **Probing** - Training auxiliary classifiers on intermediate representations to identify encoded information
+2. **Activation Patching** - Selectively modifying internal activations to investigate component contributions
+3. **Logit Lens** - Applying unembedding matrices to intermediate layers to track prediction evolution
+4. **Sparse Autoencoders** - Mapping representations into high-dimensional sparse spaces to disentangle features
+5. **Automated Explanation** - Translating abstract representations into human-understandable concepts
+
+## Key Findings on Layer Encoding
+
+The document reveals that "image information primarily influence the model's outputs in specific layers: layer 11 of the question encoder and layers 9-11" in BLIP models. Additionally, research shows "layers 1-10 process broader contextual information" while "layers 15-24 focus on extracting specific object details."
+
+## Vision vs. Language Processing Hierarchy
+
+A critical discovery indicates that "pre-trained models often prioritize language over vision in multimodal tasks," suggesting an asymmetry in how VLMs weight modalities. Late layers appear crucial for integration, with "cross-modal integration occurs primarily in late layers."
+
+## Model-Specific Distinctions
+
+The document notes architectural differences: "LLaVA lacks 'text-only' attention heads; BLIP has no 'vision-only' heads," highlighting that untrained versus trained model variants show distinct attention patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "c892982c-5fe1-4751-9d6a-4b4a8b69e8d3",
+  "tool_use_result": {
+    "bytes": 63227,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Document Extract: Mechanistic Interpretability Meets Vision Language Models\n\n**Title:** Mechanistic Interpretability Meets Vision Language Models: Insights and Limitations\n\n**Authors:** Not specified in provided content\n\n**Year:** 2025 (ICLR Blogposts)\n\n## Key Methods Reviewed\n\n1. **Probing** - Training auxiliary classifiers on intermediate representations to identify encoded information\n2. **Activation Patching** - Selectively modifying internal activations to investigate component contributions\n3. **Logit Lens** - Applying unembedding matrices to intermediate layers to track prediction evolution\n4. **Sparse Autoencoders** - Mapping representations into high-dimensional sparse spaces to disentangle features\n5. **Automated Explanation** - Translating abstract representations into human-understandable concepts\n\n## Key Findings on Layer Encoding\n\nThe document reveals that \"image information primarily influence the model's outputs in specific layers: layer 11 of the question encoder and layers 9-11\" in BLIP models. Additionally, research shows \"layers 1-10 process broader contextual information\" while \"layers 15-24 focus on extracting specific object details.\"\n\n## Vision vs. Language Processing Hierarchy\n\nA critical discovery indicates that \"pre-trained models often prioritize language over vision in multimodal tasks,\" suggesting an asymmetry in how VLMs weight modalities. Late layers appear crucial for integration, with \"cross-modal integration occurs primarily in late layers.\"\n\n## Model-Specific Distinctions\n\nThe document notes architectural differences: \"LLaVA lacks 'text-only' attention heads; BLIP has no 'vision-only' heads,\" highlighting that untrained versus trained model variants show distinct attention patterns.",
+    "durationMs": 6345,
+    "url": "https://d2jud02ci9yv69.cloudfront.net/2025-04-28-vlm-understanding-29/blog/vlm-understanding/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T14:01:07.927Z_
+
+<details><summary>↩ Tool result · `toolu_01DuzuhjyKDrTSVfNPcxJE8P`</summary>
+
+```text
+# Survey Analysis: Visual Grounding in Vision-Language Models
+
+**Title:** Towards Understanding Visual Grounding in Vision-Language Models
+
+**Authors:** Georgios Pantazopoulos (The Alan Turing Institute, Heriot-Watt University), Eda B. Özyiğit (The Alan Turing Institute)
+
+**Year:** 2025 (arXiv:2509.10345v1)
+
+## Abstract Summary
+The survey examines how models establish "precise correspondences between natural language descriptions and specific regions or objects within visual scenes." It covers architectural components, training approaches, applications, benchmarks, and challenges in developing grounded VLMs across diverse domains.
+
+## Key Methods Analyzed
+
+The document identifies several core technical approaches:
+
+1. **Visual Representation Methods:** Object-centric vs. pixel-level approaches; discretized vs. raw coordinate representations
+2. **Vision Encoders:** ViT-based architectures with CLIP pretraining; positional encoding interpolation for high-resolution handling
+3. **Multimodal Connectors:** Linear projections, MLPs, pooling, convolution-based compression, cross-attention modules, and resampler components (Q-former, Perceiver)
+4. **Language Backbones:** Primarily transformer-based; limited exploration of Mamba alternatives
+
+## Key Findings
+
+**Architecture Insights:**
+- Raw coordinate formats "may be advantageous over discretisation," though comprehensive comparisons remain lacking
+- CNN-based connectors "consistently outperform attention-based resamplers across all resolutions"
+- Feature-preserving methods excel at lower resolutions, but advantages "diminish rapidly as image resolution increases"
+
+**Language Model Contribution:**
+The survey indicates that "transformer-based models consistently outperformed their Mamba-based counterparts" in grounding and generation tasks, suggesting architecture-specific constraints on spatial reasoning tasks.
+
+**Training Observations:**
+Multi-stage pipelines with synthetic data generation (GRIT, BLIP3-GROUNDING-50M) show promise for pre-training grounded capabilities, though the document notes that grounding objectives alone don't demonstrate causal relationships with hallucination reduction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "4cb8ab6d-4dae-4e8d-bfcb-751ed2a402b9",
+  "tool_use_result": {
+    "bytes": 350033,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Survey Analysis: Visual Grounding in Vision-Language Models\n\n**Title:** Towards Understanding Visual Grounding in Vision-Language Models\n\n**Authors:** Georgios Pantazopoulos (The Alan Turing Institute, Heriot-Watt University), Eda B. Özyiğit (The Alan Turing Institute)\n\n**Year:** 2025 (arXiv:2509.10345v1)\n\n## Abstract Summary\nThe survey examines how models establish \"precise correspondences between natural language descriptions and specific regions or objects within visual scenes.\" It covers architectural components, training approaches, applications, benchmarks, and challenges in developing grounded VLMs across diverse domains.\n\n## Key Methods Analyzed\n\nThe document identifies several core technical approaches:\n\n1. **Visual Representation Methods:** Object-centric vs. pixel-level approaches; discretized vs. raw coordinate representations\n2. **Vision Encoders:** ViT-based architectures with CLIP pretraining; positional encoding interpolation for high-resolution handling\n3. **Multimodal Connectors:** Linear projections, MLPs, pooling, convolution-based compression, cross-attention modules, and resampler components (Q-former, Perceiver)\n4. **Language Backbones:** Primarily transformer-based; limited exploration of Mamba alternatives\n\n## Key Findings\n\n**Architecture Insights:**\n- Raw coordinate formats \"may be advantageous over discretisation,\" though comprehensive comparisons remain lacking\n- CNN-based connectors \"consistently outperform attention-based resamplers across all resolutions\"\n- Feature-preserving methods excel at lower resolutions, but advantages \"diminish rapidly as image resolution increases\"\n\n**Language Model Contribution:**\nThe survey indicates that \"transformer-based models consistently outperformed their Mamba-based counterparts\" in grounding and generation tasks, suggesting architecture-specific constraints on spatial reasoning tasks.\n\n**Training Observations:**\nMulti-stage pipelines with synthetic data generation (GRIT, BLIP3-GROUNDING-50M) show promise for pre-training grounded capabilities, though the document notes that grounding objectives alone don't demonstrate causal relationships with hallucination reduction.",
+    "durationMs": 7579,
+    "url": "https://arxiv.org/html/2509.10345v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T14:01:09.199Z_
+
+<details><summary>↩ Tool result · `toolu_01VUAQrWP3fzRzkRKmCVKSoE`</summary>
+
+```text
+Web search results for query: ""linear probing" VLM "instruction following" "task identity" representation intermediate layers 2024 2025"
+
+Links: [{"title":"Understanding intermediate layers using linear classifier probes | Request PDF","url":"https://www.researchgate.net/publication/319770004_Understanding_intermediate_layers_using_linear_classifier_probes"},{"title":"Reading Between the Lines: Abstaining from VLM-Generated OCR Errors via Latent Representation Probes","url":"https://arxiv.org/html/2511.19806"},{"title":"Do LLMs “know” internally when they follow instructions?","url":"https://arxiv.org/html/2410.14516v5"},{"title":"Classifier Probes May Just Learn from Linear Context ...","url":"https://aclanthology.org/2020.coling-main.450.pdf"},{"title":"[Literature Review] From Behavioral Performance to Internal Competence: Interpreting Vision-Language Models with VLM-Lens","url":"https://www.themoonlight.io/en/review/from-behavioral-performance-to-internal-competence-interpreting-vision-language-models-with-vlm-lens"},{"title":"Workshop track - ICLR 2017 UNDERSTANDING INTERMEDIATE LAYERS","url":"https://openreview.net/pdf?id=HJ4-rAVtl"},{"title":"VLsI: Verbalized Layers-to-Interactions from Large to Small Vision Language Models","url":"https://byungkwanlee.github.io/VLsI-page/"},{"title":"Understanding intermediate layers using linear classiﬁer probes Guillaume Alain","url":"https://arxiv.org/pdf/1610.01644"},{"title":"LLMs Can Compensate for Deficiencies in Visual Representations","url":"https://arxiv.org/html/2506.05439v1"},{"title":"VLsI: Verbalized Layers-to-Interactions from Large to Small Vision Language Models","url":"https://arxiv.org/html/2412.01822"}]
+
+Based on the search results, I found several relevant papers that combine linear probing with vision-language models (VLMs) and instruction-following research. Here are the key findings:
+
+## Most Relevant Work
+
+One prominent paper uses linear probing to analyze internal representations from success and failure cases in LLMs, identifying the instruction-following dimension. The probe is tested on unseen tasks and instruction types, and representation engineering techniques enforce instruction-following based on insights from linear probes, with adjustments along the instruction-following dimension more effective in enhancing instruction-following success rates than random modifications.
+
+## VLM-Specific Findings
+
+For vision-language models specifically, layer-wise analysis confirms that optimal probes operate on intermediate layers instead of final layers, with optimal signals emerging from intermediate rather than final layers. Different layers encode qualitatively different information with lower layers capturing surface features and upper layers representing more semantic content.
+
+VLsI leverages a layer-wise distillation process, introducing intermediate "verbalizers" that map features from each layer to natural language space, allowing smaller VLMs to flexibly align with the reasoning processes of larger VLMs.
+
+## Task Identity in Representations
+
+Layer-wise probing demonstrates that modality preference emerges progressively in the mid-to-late layers, suggesting that task-relevant information crystallizes at different depths within VLM architectures.
+
+The search results indicate active recent research (2024-2025) in understanding how VLMs organize task identity and instruction-following information across their intermediate representations through linear probing and related interpretability techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "7ac05302-ebda-40b0-aa67-648aa245cc63",
+  "tool_use_result": {
+    "query": "\"linear probing\" VLM \"instruction following\" \"task identity\" representation intermediate layers 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PCyyFb2wDgfKxBtF2ubuhg",
+        "content": [
+          {
+            "title": "Understanding intermediate layers using linear classifier probes | Request PDF",
+            "url": "https://www.researchgate.net/publication/319770004_Understanding_intermediate_layers_using_linear_classifier_probes"
+          },
+          {
+            "title": "Reading Between the Lines: Abstaining from VLM-Generated OCR Errors via Latent Representation Probes",
+            "url": "https://arxiv.org/html/2511.19806"
+          },
+          {
+            "title": "Do LLMs “know” internally when they follow instructions?",
+            "url": "https://arxiv.org/html/2410.14516v5"
+          },
+          {
+            "title": "Classifier Probes May Just Learn from Linear Context ...",
+            "url": "https://aclanthology.org/2020.coling-main.450.pdf"
+          },
+          {
+            "title": "[Literature Review] From Behavioral Performance to Internal Competence: Interpreting Vision-Language Models with VLM-Lens",
+            "url": "https://www.themoonlight.io/en/review/from-behavioral-performance-to-internal-competence-interpreting-vision-language-models-with-vlm-lens"
+          },
+          {
+            "title": "Workshop track - ICLR 2017 UNDERSTANDING INTERMEDIATE LAYERS",
+            "url": "https://openreview.net/pdf?id=HJ4-rAVtl"
+          },
+          {
+            "title": "VLsI: Verbalized Layers-to-Interactions from Large to Small Vision Language Models",
+            "url": "https://byungkwanlee.github.io/VLsI-page/"
+          },
+          {
+            "title": "Understanding intermediate layers using linear classiﬁer probes Guillaume Alain",
+            "url": "https://arxiv.org/pdf/1610.01644"
+          },
+          {
+            "title": "LLMs Can Compensate for Deficiencies in Visual Representations",
+            "url": "https://arxiv.org/html/2506.05439v1"
+          },
+          {
+            "title": "VLsI: Verbalized Layers-to-Interactions from Large to Small Vision Language Models",
+            "url": "https://arxiv.org/html/2412.01822"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers that combine linear probing with vision-language models (VLMs) and instruction-following research. Here are the key findings:\n\n## Most Relevant Work\n\nOne prominent paper uses linear probing to analyze internal representations from success and failure cases in LLMs, identifying the instruction-following dimension. The probe is tested on unseen tasks and instruction types, and representation engineering techniques enforce instruction-following based on insights from linear probes, with adjustments along the instruction-following dimension more effective in enhancing instruction-following success rates than random modifications.\n\n## VLM-Specific Findings\n\nFor vision-language models specifically, layer-wise analysis confirms that optimal probes operate on intermediate layers instead of final layers, with optimal signals emerging from intermediate rather than final layers. Different layers encode qualitatively different information with lower layers capturing surface features and upper layers representing more semantic content.\n\nVLsI leverages a layer-wise distillation process, introducing intermediate \"verbalizers\" that map features from each layer to natural language space, allowing smaller VLMs to flexibly align with the reasoning processes of larger VLMs.\n\n## Task Identity in Representations\n\nLayer-wise probing demonstrates that modality preference emerges progressively in the mid-to-late layers, suggesting that task-relevant information crystallizes at different depths within VLM architectures.\n\nThe search results indicate active recent research (2024-2025) in understanding how VLMs organize task identity and instruction-following information across their intermediate representations through linear probing and related interpretability techniques."
+    ],
+    "durationSeconds": 7.382265006000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T14:01:09.499Z_
+
+<details><summary>↩ Tool result · `toolu_01VdoEgYkP9fDbVR8pUpfKda`</summary>
+
+```text
+Web search results for query: "probing robot policy hidden representations world model state estimation latent space 2024 2025 arXiv"
+
+Links: [{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"A Step Toward World Models: A Survey on Robotic Manipulation","url":"https://arxiv.org/html/2511.02097v2"},{"title":"World–Value–Action Model: Implicit Planning for Vision–Language–Action Systems","url":"https://arxiv.org/html/2604.14732v1"},{"title":"ManiDreams: An Open-Source Library for Robust Object Manipulation via Uncertainty-aware Task-specific Intuitive Physics","url":"https://arxiv.org/html/2603.18336v2"},{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v1"},{"title":"Mask World Model: Predicting What Matters for Robust Robot Policy Learning","url":"https://arxiv.org/pdf/2604.19683"},{"title":"H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model","url":"https://arxiv.org/html/2602.11291v1"},{"title":"A Comprehensive Survey on World Models for Embodied AI","url":"https://arxiv.org/html/2510.16732v1"},{"title":"MIND-V: Hierarchical World Model for Long-Horizon Robotic Manipulation with RL-based Physical Alignment","url":"https://arxiv.org/html/2512.06628v2"},{"title":"A Survey of Embodied World Models Yu Shang1 Yinzhou Tang1∗ Xin Zhang1∗","url":"https://fi.ee.tsinghua.edu.cn/public/publications/0940dda4-af15-11f0-9d60-0242ac120002.pdf"}]
+
+I've successfully retrieved search results for your query on robot policy hidden representations, world models, state estimation, and latent space research from 2024-2025 on arXiv. Here's a summary of the key papers found:
+
+## Key Papers and Topics:
+
+1. **World Action Models and Zero-shot Policies** - WAMs built upon video diffusion backbones inherit rich spatiotemporal priors from web-scale data, whereas latent world models learn dynamics from scratch in compact latent spaces.
+
+2. **Latent vs. Pixel-Space Representations** - Latent-dynamics world models capture the evolution of environment dynamics within a latent space, while video-generation-based world models predict future visual scenes.
+
+3. **State Representations and Estimation** - Latent dynamics models encode high-dimensional observations into compact latent states through encoder networks and employ recurrent or transformation modules to predict temporal evolution, facilitating long-horizon learning by forecasting future states without pixel-level reconstruction.
+
+4. **JEPA Framework** - Joint-Embedding Predictive Architecture (JEPA) employs self-supervised predictive coding in embedding spaces, directly forecasting future state representations without decoding to raw sensory inputs.
+
+5. **Hierarchical World Models** - Recent work explores hierarchical approaches for long-horizon manipulation, with systems that bridge high-level reasoning with pixel-level synthesis through semantic reasoning, behavioral semantic bridges, and motor video generators.
+
+6. **Comprehensive Survey Framework** - A unified framework for world models encompasses three core axes: functionality, temporal modeling, and spatial representation, including global latent vectors, token feature sequences, spatial latent grids, and decomposed rendering representations.
+
+The search results reveal active research in probing representations, understanding latent spaces in world models, and developing better state estimation techniques for robotic control.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "516453f8-b945-4d7d-86f4-47819a2c846f",
+  "tool_use_result": {
+    "query": "probing robot policy hidden representations world model state estimation latent space 2024 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011uBE2QkL7jYSdMhA6DMEu3",
+        "content": [
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          },
+          {
+            "title": "A Step Toward World Models: A Survey on Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.02097v2"
+          },
+          {
+            "title": "World–Value–Action Model: Implicit Planning for Vision–Language–Action Systems",
+            "url": "https://arxiv.org/html/2604.14732v1"
+          },
+          {
+            "title": "ManiDreams: An Open-Source Library for Robust Object Manipulation via Uncertainty-aware Task-specific Intuitive Physics",
+            "url": "https://arxiv.org/html/2603.18336v2"
+          },
+          {
+            "title": "Causal World Modeling for Robot Control",
+            "url": "https://arxiv.org/html/2601.21998v1"
+          },
+          {
+            "title": "Mask World Model: Predicting What Matters for Robust Robot Policy Learning",
+            "url": "https://arxiv.org/pdf/2604.19683"
+          },
+          {
+            "title": "H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model",
+            "url": "https://arxiv.org/html/2602.11291v1"
+          },
+          {
+            "title": "A Comprehensive Survey on World Models for Embodied AI",
+            "url": "https://arxiv.org/html/2510.16732v1"
+          },
+          {
+            "title": "MIND-V: Hierarchical World Model for Long-Horizon Robotic Manipulation with RL-based Physical Alignment",
+            "url": "https://arxiv.org/html/2512.06628v2"
+          },
+          {
+            "title": "A Survey of Embodied World Models Yu Shang1 Yinzhou Tang1∗ Xin Zhang1∗",
+            "url": "https://fi.ee.tsinghua.edu.cn/public/publications/0940dda4-af15-11f0-9d60-0242ac120002.pdf"
+          }
+        ]
+      },
+      "I've successfully retrieved search results for your query on robot policy hidden representations, world models, state estimation, and latent space research from 2024-2025 on arXiv. Here's a summary of the key papers found:\n\n## Key Papers and Topics:\n\n1. **World Action Models and Zero-shot Policies** - WAMs built upon video diffusion backbones inherit rich spatiotemporal priors from web-scale data, whereas latent world models learn dynamics from scratch in compact latent spaces.\n\n2. **Latent vs. Pixel-Space Representations** - Latent-dynamics world models capture the evolution of environment dynamics within a latent space, while video-generation-based world models predict future visual scenes.\n\n3. **State Representations and Estimation** - Latent dynamics models encode high-dimensional observations into compact latent states through encoder networks and employ recurrent or transformation modules to predict temporal evolution, facilitating long-horizon learning by forecasting future states without pixel-level reconstruction.\n\n4. **JEPA Framework** - Joint-Embedding Predictive Architecture (JEPA) employs self-supervised predictive coding in embedding spaces, directly forecasting future state representations without decoding to raw sensory inputs.\n\n5. **Hierarchical World Models** - Recent work explores hierarchical approaches for long-horizon manipulation, with systems that bridge high-level reasoning with pixel-level synthesis through semantic reasoning, behavioral semantic bridges, and motor video generators.\n\n6. **Comprehensive Survey Framework** - A unified framework for world models encompasses three core axes: functionality, temporal modeling, and spatial representation, including global latent vectors, token feature sequences, spatial latent grids, and decomposed rendering representations.\n\nThe search results reveal active research in probing representations, understanding latent spaces in world models, and developing better state estimation techniques for robotic control."
+    ],
+    "durationSeconds": 8.162238612000008
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T14:01:11.487Z_
+
+<details><summary>↩ Tool result · `toolu_01KQpvuKS1ZEVEh7LST9PNwV`</summary>
+
+```text
+Web search results for query: "VLA representation learning what does language model encode robot manipulation beyond vision 2024 2025"
+
+Links: [{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub","url":"https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"},{"title":"A Survey on Vision-Language-Action Models: An Action Tokenization Perspective","url":"https://arxiv.org/html/2507.01925v1"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"}]
+
+Based on the search results, here's what recent research shows about what language models encode in Vision-Language-Action (VLA) models for robot manipulation beyond vision:
+
+## Language Model Representation in VLA Systems
+
+Pre-trained Language Encoders (such as PaLM or LLaMA) tokenize and embed natural language instructions in VLA systems, serving as a critical component in the multimodal architecture.
+
+### What Language Models Encode Beyond Vision
+
+VLA models harness the rich world knowledge of pre-trained VLMs to interpret and ground natural language instructions into actionable behaviors dynamically, enabling fluid, context-sensitive comprehension rather than reducing instructions to fixed templates.
+
+Large VLMs, pretrained on vast web-scale image-text datasets, exhibit a remarkable aptitude for bridging the semantic gap between visual perception and natural language understanding, moving beyond mere object recognition to encompass a holistic contextual understanding.
+
+### Multimodal Integration Beyond Vision
+
+The architecture unifies three parallel encoder streams: visual, linguistic, and proprioceptive, into a single transmission diffusion backbone that directly generates control commands. This means language models work alongside proprioceptive (robot state) information, not just visual data.
+
+The embeddings from visual, text, and state encoders are passed to an LLM that fuses multimodal information and generates a semantic representation of the intended task, which is then processed by an Action Decoder to generate a trajectory.
+
+### Semantic Grounding and Reasoning
+
+Models like ChatVLA-2 can interpret math problems written on whiteboards and select correct number cards, demonstrating an ability to generalize from visual-linguistic priors despite lacking explicit training in mathematics.
+
+Recent advances in 2024-2025 show VLA systems increasingly leveraging language models for high-level reasoning and task decomposition alongside their role in direct instruction grounding for robot control.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a7b04148-f71d-4a88-80d7-d9996d2e5b61",
+  "tool_use_result": {
+    "query": "VLA representation learning what does language model encode robot manipulation beyond vision 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EZJ94rRXsayKe9v5niMj86",
+        "content": [
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Vision-language-action model - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Vision-language-action_model"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v1"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub",
+            "url": "https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models: An Action Tokenization Perspective",
+            "url": "https://arxiv.org/html/2507.01925v1"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study",
+            "url": "https://arxiv.org/html/2603.22078v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what recent research shows about what language models encode in Vision-Language-Action (VLA) models for robot manipulation beyond vision:\n\n## Language Model Representation in VLA Systems\n\nPre-trained Language Encoders (such as PaLM or LLaMA) tokenize and embed natural language instructions in VLA systems, serving as a critical component in the multimodal architecture.\n\n### What Language Models Encode Beyond Vision\n\nVLA models harness the rich world knowledge of pre-trained VLMs to interpret and ground natural language instructions into actionable behaviors dynamically, enabling fluid, context-sensitive comprehension rather than reducing instructions to fixed templates.\n\nLarge VLMs, pretrained on vast web-scale image-text datasets, exhibit a remarkable aptitude for bridging the semantic gap between visual perception and natural language understanding, moving beyond mere object recognition to encompass a holistic contextual understanding.\n\n### Multimodal Integration Beyond Vision\n\nThe architecture unifies three parallel encoder streams: visual, linguistic, and proprioceptive, into a single transmission diffusion backbone that directly generates control commands. This means language models work alongside proprioceptive (robot state) information, not just visual data.\n\nThe embeddings from visual, text, and state encoders are passed to an LLM that fuses multimodal information and generates a semantic representation of the intended task, which is then processed by an Action Decoder to generate a trajectory.\n\n### Semantic Grounding and Reasoning\n\nModels like ChatVLA-2 can interpret math problems written on whiteboards and select correct number cards, demonstrating an ability to generalize from visual-linguistic priors despite lacking explicit training in mathematics.\n\nRecent advances in 2024-2025 show VLA systems increasingly leveraging language models for high-level reasoning and task decomposition alongside their role in direct instruction grounding for robot control."
+    ],
+    "durationSeconds": 8.781642257
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good material. Let me search for a few more specific papers:
+
+1. The "Do LLMs know internally when they follow instructions?" paper - relevant for instruction following probing
+2. Causal tracing in VLMs paper
+3. VLM-LENS paper
+4. Any specific probing work on robot task structure / subtask ordering
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "901e3047-2e1d-4b33-83e2-8f1adf18c9b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+继续获取几篇关键论文的细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "5c16f49c-f56e-421c-b771-5134003291c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HK2Q6kaWGd4o6viykLeuZj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2410.14516v5",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how they probe whether LLMs internally know when they follow instructions, what probing tasks and methods they use, findings about instruction-following representations in hidden states."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "541a9d63-c8ff-499d-a4c4-54d5521d286e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KAzW51yeJagcA8YLqMvifP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2511.05923v3",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: causal tracing methods for VLMs, how object representations are traced through layers, findings about where visual vs language information is processed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "d62d9ac9-4012-4407-a35a-9eff2ecf618d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012j7D8sKhRof4UZT6YcGKhx`</summary>
+
+```json
+{
+  "query": "OpenVLA probing representation analysis LIBERO hidden states what does LLM backbone learn 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "b3c60bf4-f416-4bb4-85cb-36b4606d9e49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013QHteaUj1sNmDLLvqRmiYT`</summary>
+
+```json
+{
+  "query": "\"probing classifiers\" \"vision language\" \"task structure\" \"subtask\" OR \"goal\" OR \"planning\" representation neural network 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "bef8b465-6e01-4b2d-b800-23f18d8a9f70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsBcbWuqfaHM7DrD7ivXwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 34043,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T14:01:26.158Z_
+
+<details><summary>↩ Tool result · `toolu_01HK2Q6kaWGd4o6viykLeuZj`</summary>
+
+```text
+# Research Paper Summary
+
+**Title:** "Do LLMs 'know' internally when they follow instructions?"
+
+**Authors:** Juyeon Heo, Christina Heinze-Deml, Oussama Elachqar, Kwan Ho Ryan Chan, Shirley Ren, Udhay Nallasamy, Andy Miller, Jaya Narain
+
+**Year:** 2024
+
+**Abstract:** The researchers investigate whether large language models encode information in their internal representations that correlates with instruction-following success. They identify an "instruction-following dimension" in the input embedding space that predicts compliance with instructions, finding this dimension generalizes across unseen tasks but not instruction types.
+
+## Key Methods
+
+**Probing Approach:** The team employed linear probes trained on model representations to identify dimensions associated with instruction success versus failure. They analyzed representations at three token positions (first, middle, last) across early, middle, and final layers.
+
+**Dataset Design:** They created IFEval-simple, pairing five instruction types (keyword inclusion/exclusion, frequency, placeholders, ending phrases) with 100 identical tasks to isolate instruction-following signals from task-specific effects.
+
+**Representation Engineering:** The researchers manipulated representations along the identified dimension using the formula: "updated representation = original representation + α × D" to validate their findings' practical significance.
+
+## Key Findings
+
+1. **Early Knowledge:** Models exhibit separable success/failure representations from the first token, suggesting they "know" whether they'll follow instructions before generating responses (AUROC 0.74-0.88 across models).
+
+2. **Task vs. Instruction Generalization:** Linear probes generalize well to unseen tasks (0.7-0.8 AUROC) but fail across different instruction types (near-random ~0.5 AUROC).
+
+3. **Prompt Phrasing Correlation:** Sensitivity analysis revealed the dimension correlates most strongly with prompt rephrasing rather than task familiarity or instruction difficulty.
+
+4. **Practical Improvement:** Representation engineering improved instruction-following success rates while maintaining response quality, outperforming random adjustments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "ea52c9be-e3b3-4bc8-af07-0c838f0dac2b",
+  "tool_use_result": {
+    "bytes": 310912,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary\n\n**Title:** \"Do LLMs 'know' internally when they follow instructions?\"\n\n**Authors:** Juyeon Heo, Christina Heinze-Deml, Oussama Elachqar, Kwan Ho Ryan Chan, Shirley Ren, Udhay Nallasamy, Andy Miller, Jaya Narain\n\n**Year:** 2024\n\n**Abstract:** The researchers investigate whether large language models encode information in their internal representations that correlates with instruction-following success. They identify an \"instruction-following dimension\" in the input embedding space that predicts compliance with instructions, finding this dimension generalizes across unseen tasks but not instruction types.\n\n## Key Methods\n\n**Probing Approach:** The team employed linear probes trained on model representations to identify dimensions associated with instruction success versus failure. They analyzed representations at three token positions (first, middle, last) across early, middle, and final layers.\n\n**Dataset Design:** They created IFEval-simple, pairing five instruction types (keyword inclusion/exclusion, frequency, placeholders, ending phrases) with 100 identical tasks to isolate instruction-following signals from task-specific effects.\n\n**Representation Engineering:** The researchers manipulated representations along the identified dimension using the formula: \"updated representation = original representation + α × D\" to validate their findings' practical significance.\n\n## Key Findings\n\n1. **Early Knowledge:** Models exhibit separable success/failure representations from the first token, suggesting they \"know\" whether they'll follow instructions before generating responses (AUROC 0.74-0.88 across models).\n\n2. **Task vs. Instruction Generalization:** Linear probes generalize well to unseen tasks (0.7-0.8 AUROC) but fail across different instruction types (near-random ~0.5 AUROC).\n\n3. **Prompt Phrasing Correlation:** Sensitivity analysis revealed the dimension correlates most strongly with prompt rephrasing rather than task familiarity or instruction difficulty.\n\n4. **Practical Improvement:** Representation engineering improved instruction-following success rates while maintaining response quality, outperforming random adjustments.",
+    "durationMs": 7494,
+    "url": "https://arxiv.org/html/2410.14516v5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T14:01:27.000Z_
+
+<details><summary>↩ Tool result · `toolu_01KAzW51yeJagcA8YLqMvifP`</summary>
+
+```text
+# Research Summary: Causal Tracing of Object Representations in Large Vision Language Models
+
+**Title:** Causal Tracing of Object Representations in Large Vision Language Models: Mechanistic Interpretability and Hallucination Mitigation
+
+**Authors:** Qiming Li, Zekai Ye, Xiaocheng Feng, Weihong Zhong, Weitao Ma, Xiachong Feng
+
+**Year:** 2025
+
+**Abstract:**
+The paper addresses mechanistic interpretability gaps in LVLMs by introducing Fine-grained Cross-modal Causal Tracing (FCCT), which "systematically quantifies the causal effects on visual object perception" across visual/textual tokens and model components across all decoder layers.
+
+## Key Methods
+
+**Causal Tracing Approach:**
+- Introduces controlled Gaussian noise perturbation to input images to degrade visual quality
+- Uses three inference runs: clean (original), corrupted (noisy), and patched (corrupted with restored activations)
+- Measures Recovery Rate (RR) as a normalized metric reflecting "the proportion of clean performance regained through targeted restoration"
+
+**Token Categories:** Seven semantic categories analyzed including early/object/late visual tokens and early/object/late textual tokens plus the final token.
+
+**Intervention Method:**
+The proposed Intermediate Representation Injection (IRI) is a training-free technique that "injects crucial mid-layer representations into subsequent layers" with adaptive scaling based on recovery rates.
+
+## Key Findings
+
+1. **Cross-modal Aggregation:** Multi-head self-attention (MHSA) of the final token in intermediate layers plays a critical role in aggregating visual and textual information, with attention weights to relevant tokens peaking around Layer 15.
+
+2. **Hierarchical MLP Progression:** Feed-forward networks exhibit three-stage progression—early layers encode localized embeddings, middle layers enable cross-modal interaction, and deeper layers accumulate task-relevant representations.
+
+3. **Semantic Shift:** Hidden states transition from visual-centric in shallow layers to cross-modal and task-specific in deeper layers, with strongest causal effects at intermediate layers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "55299e3f-50e9-44f7-b096-d8703fe019c4",
+  "tool_use_result": {
+    "bytes": 203286,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Causal Tracing of Object Representations in Large Vision Language Models\n\n**Title:** Causal Tracing of Object Representations in Large Vision Language Models: Mechanistic Interpretability and Hallucination Mitigation\n\n**Authors:** Qiming Li, Zekai Ye, Xiaocheng Feng, Weihong Zhong, Weitao Ma, Xiachong Feng\n\n**Year:** 2025\n\n**Abstract:**\nThe paper addresses mechanistic interpretability gaps in LVLMs by introducing Fine-grained Cross-modal Causal Tracing (FCCT), which \"systematically quantifies the causal effects on visual object perception\" across visual/textual tokens and model components across all decoder layers.\n\n## Key Methods\n\n**Causal Tracing Approach:**\n- Introduces controlled Gaussian noise perturbation to input images to degrade visual quality\n- Uses three inference runs: clean (original), corrupted (noisy), and patched (corrupted with restored activations)\n- Measures Recovery Rate (RR) as a normalized metric reflecting \"the proportion of clean performance regained through targeted restoration\"\n\n**Token Categories:** Seven semantic categories analyzed including early/object/late visual tokens and early/object/late textual tokens plus the final token.\n\n**Intervention Method:**\nThe proposed Intermediate Representation Injection (IRI) is a training-free technique that \"injects crucial mid-layer representations into subsequent layers\" with adaptive scaling based on recovery rates.\n\n## Key Findings\n\n1. **Cross-modal Aggregation:** Multi-head self-attention (MHSA) of the final token in intermediate layers plays a critical role in aggregating visual and textual information, with attention weights to relevant tokens peaking around Layer 15.\n\n2. **Hierarchical MLP Progression:** Feed-forward networks exhibit three-stage progression—early layers encode localized embeddings, middle layers enable cross-modal interaction, and deeper layers accumulate task-relevant representations.\n\n3. **Semantic Shift:** Hidden states transition from visual-centric in shallow layers to cross-modal and task-specific in deeper layers, with strongest causal effects at intermediate layers.",
+    "durationMs": 6920,
+    "url": "https://arxiv.org/html/2511.05923v3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T14:01:29.135Z_
+
+<details><summary>↩ Tool result · `toolu_012j7D8sKhRof4UZT6YcGKhx`</summary>
+
+```text
+Web search results for query: "OpenVLA probing representation analysis LIBERO hidden states what does LLM backbone learn 2024 2025"
+
+Links: [{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"GitHub - CHELabUB/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/CHELabUB/openvla"},{"title":"GitHub - yv8x/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.","url":"https://github.com/yv8x/openvla"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.","url":"https://github.com/openvla/openvla?tab=readme-ov-file"},{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"GitHub - DwZhang01/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.","url":"https://github.com/DwZhang01/openvla"},{"title":"LIBERO-Object: Lifelong Learning in Robotic Manipulation","url":"https://www.emergentmind.com/topics/libero-object"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"}]
+
+Based on the search results, here are the key findings regarding what OpenVLA's LLM backbone learns, as revealed through probing and representation analysis:
+
+## Symbolic State Encoding
+
+OpenVLA's LLM backbone exhibits robust internal encoding of symbolic states including object relations and action status, with high accuracy (>0.90) in decoding symbolic predicates. More specifically, linear probes trained on OpenVLA's Llama backbone can extract interpretable binary predicates (e.g., on(object1, object2), grasped(object)) with high accuracy (>0.90).
+
+## World Model Emergence
+
+Recent studies indicate that OpenVLA encodes an emergent internal world model; probes reveal latent knowledge of state transitions consistent with Koopman operator theory, emerging as training progresses and scalable via Sparse Autoencoder analysis.
+
+## Semantic Directions and Causal Control
+
+Mechanistic interpretability analyses show that specific transformer neurons correspond to semantic directions (e.g., "fast", "up"), and activation steering can causally modulate robot behavior at inference time, yielding real-time behavioral control without retraining.
+
+## Interpretation and Integration
+
+The DIARC-OpenVLA system couples action generation with belief state updates, enabling real-time, GUI-based monitoring and consistency checking for robust and interpretable manipulation, demonstrating that the learned representations can be integrated with symbolic cognitive architectures.
+
+These findings suggest that OpenVLA's Llama 2 7B backbone learns both high-level semantic task structures and lower-level dynamic state transitions, making its learned representations interpretable and amenable to mechanistic analysis.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a8caee79-0c6b-4c5d-a372-88e2bdd82024",
+  "tool_use_result": {
+    "query": "OpenVLA probing representation analysis LIBERO hidden states what does LLM backbone learn 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PaZv2rqV8KmNJS6Fzio6U1",
+        "content": [
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://openvla.github.io/"
+          },
+          {
+            "title": "GitHub - CHELabUB/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/CHELabUB/openvla"
+          },
+          {
+            "title": "GitHub - yv8x/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.",
+            "url": "https://github.com/yv8x/openvla"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.",
+            "url": "https://github.com/openvla/openvla?tab=readme-ov-file"
+          },
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "GitHub - DwZhang01/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation.",
+            "url": "https://github.com/DwZhang01/openvla"
+          },
+          {
+            "title": "LIBERO-Object: Lifelong Learning in Robotic Manipulation",
+            "url": "https://www.emergentmind.com/topics/libero-object"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings regarding what OpenVLA's LLM backbone learns, as revealed through probing and representation analysis:\n\n## Symbolic State Encoding\n\nOpenVLA's LLM backbone exhibits robust internal encoding of symbolic states including object relations and action status, with high accuracy (>0.90) in decoding symbolic predicates. More specifically, linear probes trained on OpenVLA's Llama backbone can extract interpretable binary predicates (e.g., on(object1, object2), grasped(object)) with high accuracy (>0.90).\n\n## World Model Emergence\n\nRecent studies indicate that OpenVLA encodes an emergent internal world model; probes reveal latent knowledge of state transitions consistent with Koopman operator theory, emerging as training progresses and scalable via Sparse Autoencoder analysis.\n\n## Semantic Directions and Causal Control\n\nMechanistic interpretability analyses show that specific transformer neurons correspond to semantic directions (e.g., \"fast\", \"up\"), and activation steering can causally modulate robot behavior at inference time, yielding real-time behavioral control without retraining.\n\n## Interpretation and Integration\n\nThe DIARC-OpenVLA system couples action generation with belief state updates, enabling real-time, GUI-based monitoring and consistency checking for robust and interpretable manipulation, demonstrating that the learned representations can be integrated with symbolic cognitive architectures.\n\nThese findings suggest that OpenVLA's Llama 2 7B backbone learns both high-level semantic task structures and lower-level dynamic state transitions, making its learned representations interpretable and amenable to mechanistic analysis."
+    ],
+    "durationSeconds": 8.056050239000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T14:01:29.307Z_
+
+<details><summary>↩ Tool result · `toolu_013QHteaUj1sNmDLLvqRmiYT`</summary>
+
+```text
+Web search results for query: ""probing classifiers" "vision language" "task structure" "subtask" OR "goal" OR "planning" representation neural network 2024 2025"
+
+Links: [{"title":"What is Probing Classifiers?","url":"https://h2o.ai/wiki/probing-classifiers/"},{"title":"Vision Language Models: A Survey of 26K Papers (CVPR, ICLR, NeurIPS 2023–2025)","url":"https://arxiv.org/pdf/2510.09586"},{"title":"A Survey on Vision-Language-Action Models: An Action Tokenization Perspective","url":"https://arxiv.org/html/2507.01925v1"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/48/1/207/107571/Probing-Classifiers-Promises-Shortcomings-and"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025","url":"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"},{"title":"Machine Learning Mar 2025","url":"https://arxiv.org/list/cs.LG/2025-03?skip=2775&show=2000"},{"title":"Computer Science Jun 2024","url":"https://arxiv.org/list/cs/2024-06?skip=5350&show=2000"},{"title":"Vision-Language-Action Models for Robotics: A Review ...","url":"https://ieeexplore.ieee.org/iel8/6287639/10820123/11164279.pdf"},{"title":"Computer Science May 2024","url":"https://arxiv.org/list/cs/2024-05?skip=1050&show=2000"}]
+
+Based on the web search results, I found several relevant papers and resources related to your query about probing classifiers in vision-language models with focus on task structure, subtasks, goals, and planning. Here's what I found:
+
+## Key Findings:
+
+### Probing Classifiers Methodology
+Probing classifiers are techniques used to analyze the internal representations learned by machine learning models, aiming to understand how a model processes and encodes different aspects of input data, such as syntax, semantics, and other linguistic features. They have emerged as a prominent methodology for interpreting and analyzing deep neural network models of natural language processing, where a classifier is trained to predict some linguistic property from a model's representations.
+
+### Vision-Language Models and Task Structure (2024-2025)
+
+Recent research on Vision-Language-Action (VLA) models shows significant advances in hierarchical task decomposition:
+
+Effective VLA models adopt a hierarchical architecture, with the top layer using language description and code to perform long-horizon planning and logic control, while lower layers integrate video prediction of goal state and flow modeling to form intermediate motion representations, which are finally mapped to raw actions, or directly predict raw actions from subtask-level inputs.
+
+Dual-system architectures have emerged as a key innovation, combining System 1 (fast diffusion policies for low-level control) and System 2 (LLM-based planners for high-level task decomposition), where the planner parses long-horizon goals into atomic subtasks while the low-level controller ensures real-time execution.
+
+The search results show active research in 2024-2025 on neural representations of task structure in multimodal models, particularly in embodied AI and robotic applications involving goal and subtask representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "9dd1c6d1-42fd-458f-b2b3-fb5ca8d2a00e",
+  "tool_use_result": {
+    "query": "\"probing classifiers\" \"vision language\" \"task structure\" \"subtask\" OR \"goal\" OR \"planning\" representation neural network 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011ZYfGjsB1uNiPiKxVqR7NY",
+        "content": [
+          {
+            "title": "What is Probing Classifiers?",
+            "url": "https://h2o.ai/wiki/probing-classifiers/"
+          },
+          {
+            "title": "Vision Language Models: A Survey of 26K Papers (CVPR, ICLR, NeurIPS 2023–2025)",
+            "url": "https://arxiv.org/pdf/2510.09586"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models: An Action Tokenization Perspective",
+            "url": "https://arxiv.org/html/2507.01925v1"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/coli/article/48/1/207/107571/Probing-Classifiers-Promises-Shortcomings-and"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025",
+            "url": "https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"
+          },
+          {
+            "title": "Machine Learning Mar 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-03?skip=2775&show=2000"
+          },
+          {
+            "title": "Computer Science Jun 2024",
+            "url": "https://arxiv.org/list/cs/2024-06?skip=5350&show=2000"
+          },
+          {
+            "title": "Vision-Language-Action Models for Robotics: A Review ...",
+            "url": "https://ieeexplore.ieee.org/iel8/6287639/10820123/11164279.pdf"
+          },
+          {
+            "title": "Computer Science May 2024",
+            "url": "https://arxiv.org/list/cs/2024-05?skip=1050&show=2000"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources related to your query about probing classifiers in vision-language models with focus on task structure, subtasks, goals, and planning. Here's what I found:\n\n## Key Findings:\n\n### Probing Classifiers Methodology\nProbing classifiers are techniques used to analyze the internal representations learned by machine learning models, aiming to understand how a model processes and encodes different aspects of input data, such as syntax, semantics, and other linguistic features. They have emerged as a prominent methodology for interpreting and analyzing deep neural network models of natural language processing, where a classifier is trained to predict some linguistic property from a model's representations.\n\n### Vision-Language Models and Task Structure (2024-2025)\n\nRecent research on Vision-Language-Action (VLA) models shows significant advances in hierarchical task decomposition:\n\nEffective VLA models adopt a hierarchical architecture, with the top layer using language description and code to perform long-horizon planning and logic control, while lower layers integrate video prediction of goal state and flow modeling to form intermediate motion representations, which are finally mapped to raw actions, or directly predict raw actions from subtask-level inputs.\n\nDual-system architectures have emerged as a key innovation, combining System 1 (fast diffusion policies for low-level control) and System 2 (LLM-based planners for high-level task decomposition), where the planner parses long-horizon goals into atomic subtasks while the low-level controller ensures real-time execution.\n\nThe search results show active research in 2024-2025 on neural representations of task structure in multimodal models, particularly in embodied AI and robotic applications involving goal and subtask representations."
+    ],
+    "durationSeconds": 7.647639993999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for a few more specific papers that were mentioned:
+
+1. The "Observing and Controlling Features in VLA Models" paper on the vla-mech-interp project page
+2. CoT-VLA paper for planning/reasoning probing
+3. LIBERO-Plus paper for robustness analysis
+4. The VLM-LENS paper
+
+Let me also look for papers about:
+- Probing for implicit physics/dynamics knowledge
+- Probing for task progress/completion
+- Counterfactual probing in VLA
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "399e76da-d6b6-4cfc-9eb5-5894812c78af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrwDx912pRtYTTSpERS1mM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 39021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+搜索最后几个方向的关键论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "09ce677c-f3da-4734-af63-bd3acf7a9f93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrwDx912pRtYTTSpERS1mM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 39021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HDTwXyg3ZmYAQUyX2dEVeT`</summary>
+
+```json
+{
+  "query": "probing implicit physics knowledge dynamics prediction vision language model robot manipulation affordance 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "702a5f10-bbb4-4360-a24a-efa47380188f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrwDx912pRtYTTSpERS1mM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 39021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TWrxs7soHQ1U1RhfmA2N2T`</summary>
+
+```json
+{
+  "query": "counterfactual probing VLA robot \"what if\" task completion progress prediction representation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a2ba09ce-2529-41a8-b91b-235d639a7ebc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrwDx912pRtYTTSpERS1mM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 39021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015qYQvJe9RMoDoXyWKeNSSG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.13626v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: robustness analysis of VLA on LIBERO, what breaks when visual/language inputs are perturbed, evidence about vision vs language contribution."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "8de31ed9-a5b2-4381-9328-04705e263e73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrwDx912pRtYTTSpERS1mM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 39021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T14:01:41.357Z_
+
+<details><summary>↩ Tool result · `toolu_01TWrxs7soHQ1U1RhfmA2N2T`</summary>
+
+```text
+Web search results for query: "counterfactual probing VLA robot "what if" task completion progress prediction representation 2024 2025"
+
+No links found.
+
+I don't see any results returned from that search. This could mean that the specific combination of terms you're searching for doesn't match any indexed content, or the research is very recent/specialized and not yet widely indexed by search engines.
+
+The query combines several advanced concepts:
+- **Counterfactual probing**: A technique for testing machine learning models by examining how they would respond to hypothetical scenarios
+- **Vision-Language Action (VLA) robots**: Multimodal AI systems that combine vision and language understanding for robotic control
+- **Progress prediction**: Forecasting task completion states
+- **Representation learning**: Understanding how models encode information internally
+
+If you're looking for recent research in this area, I'd recommend:
+1. Trying a simpler query with fewer terms (e.g., "counterfactual probing VLA robot")
+2. Searching academic repositories like arXiv, Papers with Code, or Google Scholar
+3. Breaking it into separate searches for different components
+
+Would you like me to try a modified search query, or would you like information on any of these individual topics?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "55c5aabd-1e42-434d-8823-ba69484a7e00",
+  "tool_use_result": {
+    "query": "counterfactual probing VLA robot \"what if\" task completion progress prediction representation 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BAJLB8vKXsnobXHkeWmLgj",
+        "content": []
+      },
+      "I don't see any results returned from that search. This could mean that the specific combination of terms you're searching for doesn't match any indexed content, or the research is very recent/specialized and not yet widely indexed by search engines.\n\nThe query combines several advanced concepts:\n- **Counterfactual probing**: A technique for testing machine learning models by examining how they would respond to hypothetical scenarios\n- **Vision-Language Action (VLA) robots**: Multimodal AI systems that combine vision and language understanding for robotic control\n- **Progress prediction**: Forecasting task completion states\n- **Representation learning**: Understanding how models encode information internally\n\nIf you're looking for recent research in this area, I'd recommend:\n1. Trying a simpler query with fewer terms (e.g., \"counterfactual probing VLA robot\")\n2. Searching academic repositories like arXiv, Papers with Code, or Google Scholar\n3. Breaking it into separate searches for different components\n\nWould you like me to try a modified search query, or would you like information on any of these individual topics?"
+    ],
+    "durationSeconds": 4.602657412
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T14:01:44.179Z_
+
+<details><summary>↩ Tool result · `toolu_01HDTwXyg3ZmYAQUyX2dEVeT`</summary>
+
+```text
+Web search results for query: "probing implicit physics knowledge dynamics prediction vision language model robot manipulation affordance 2024 2025"
+
+Links: [{"title":"PhysVLM: Enabling Visual Language Models to Understand ...","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Zhou_PhysVLM_Enabling_Visual_Language_Models_to_Understand_Robotic_Physical_Reachability_CVPR_2025_paper.pdf"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"RT-Affordance: Reasoning about Robotic Manipulation with Affordances","url":"https://openreview.net/pdf?id=s8VMLXKH1X"},{"title":"Exploring the Future of Robotics through Physics Informed ...","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/285698/preprint_pdf/f2fa94f923e4bdeac0477361da102b52.pdf"},{"title":"A Step Toward World Models: A Survey on Robotic Manipulation","url":"https://arxiv.org/html/2511.02097v2"},{"title":"Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025","url":"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"Case Studies of Foundation Model Integration in Embodied ...","url":"https://aclanthology.org/2025.findings-emnlp.69.pdf"},{"title":"What foundation models can bring for robot learning in manipulation: A survey - Dingzhe Li, Yixiang Jin, YuHao Sun, Yong A, Hongze Yu, Jun Shi, Xiaoshuai Hao, Peng Hao, Huaping Liu, Xiang Li, Xinde Li, Fuchun Sun, Jianwei Zhang, Bin Fang, 2025","url":"https://journals.sagepub.com/doi/abs/10.1177/02783649251390579"}]
+
+I've completed the web search for your query on probing implicit physics knowledge, dynamics prediction, vision language models, robot manipulation, and affordances from 2024-2025. Here are the key findings:
+
+## Overview of Recent Research
+
+The search results reveal several important research directions in this area:
+
+### Physics Understanding in VLMs for Robotics
+
+UP-VLA proposes a training framework that implicitly learns the physical dynamics of the world by predicting the next-frame image during pre-training, which consequently helps models generate more reliable actions that better adhere to physical laws. Additionally, WorldVLA integrates an action model and a world model within a unified autoregressive framework for capturing physical dynamics.
+
+### Affordance-Based Approaches
+
+Recent work has emphasized affordances as key representations for robot manipulation. In robot learning, affordance is typically defined as the functions of an object, encompassing what the object is, how it can be manipulated, and its spatial relationship to the target. One approach decomposes affordances into four components: object, grasp, spatial, and movement affordances.
+
+### Hierarchical Vision-Language-Action Models
+
+Hierarchical models explicitly decouple planning from policy execution, with planner modules generating interpretable representations such as keypoint detections, affordance maps, or trajectory proposals, which are then processed by policy modules to formulate executable actions.
+
+### Physics-Grounded Vision Models
+
+The integration of language with physics-grounded vision models opens opportunities for human-robot interaction, where robots can interpret instructions in terms of their physical feasibility, such as understanding that stacking requires respecting stability constraints implied by physics.
+
+The research landscape shows significant progress in combining physics understanding, affordances, and language models for more capable robotic manipulation systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "5335686b-a9c9-4c48-8658-3025fbffb4f1",
+  "tool_use_result": {
+    "query": "probing implicit physics knowledge dynamics prediction vision language model robot manipulation affordance 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pf5GasrWffzbcZnQQy1qRK",
+        "content": [
+          {
+            "title": "PhysVLM: Enabling Visual Language Models to Understand ...",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhou_PhysVLM_Enabling_Visual_Language_Models_to_Understand_Robotic_Physical_Reachability_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "RT-Affordance: Reasoning about Robotic Manipulation with Affordances",
+            "url": "https://openreview.net/pdf?id=s8VMLXKH1X"
+          },
+          {
+            "title": "Exploring the Future of Robotics through Physics Informed ...",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/285698/preprint_pdf/f2fa94f923e4bdeac0477361da102b52.pdf"
+          },
+          {
+            "title": "A Step Toward World Models: A Survey on Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.02097v2"
+          },
+          {
+            "title": "Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025",
+            "url": "https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "Case Studies of Foundation Model Integration in Embodied ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.69.pdf"
+          },
+          {
+            "title": "What foundation models can bring for robot learning in manipulation: A survey - Dingzhe Li, Yixiang Jin, YuHao Sun, Yong A, Hongze Yu, Jun Shi, Xiaoshuai Hao, Peng Hao, Huaping Liu, Xiang Li, Xinde Li, Fuchun Sun, Jianwei Zhang, Bin Fang, 2025",
+            "url": "https://journals.sagepub.com/doi/abs/10.1177/02783649251390579"
+          }
+        ]
+      },
+      "I've completed the web search for your query on probing implicit physics knowledge, dynamics prediction, vision language models, robot manipulation, and affordances from 2024-2025. Here are the key findings:\n\n## Overview of Recent Research\n\nThe search results reveal several important research directions in this area:\n\n### Physics Understanding in VLMs for Robotics\n\nUP-VLA proposes a training framework that implicitly learns the physical dynamics of the world by predicting the next-frame image during pre-training, which consequently helps models generate more reliable actions that better adhere to physical laws. Additionally, WorldVLA integrates an action model and a world model within a unified autoregressive framework for capturing physical dynamics.\n\n### Affordance-Based Approaches\n\nRecent work has emphasized affordances as key representations for robot manipulation. In robot learning, affordance is typically defined as the functions of an object, encompassing what the object is, how it can be manipulated, and its spatial relationship to the target. One approach decomposes affordances into four components: object, grasp, spatial, and movement affordances.\n\n### Hierarchical Vision-Language-Action Models\n\nHierarchical models explicitly decouple planning from policy execution, with planner modules generating interpretable representations such as keypoint detections, affordance maps, or trajectory proposals, which are then processed by policy modules to formulate executable actions.\n\n### Physics-Grounded Vision Models\n\nThe integration of language with physics-grounded vision models opens opportunities for human-robot interaction, where robots can interpret instructions in terms of their physical feasibility, such as understanding that stacking requires respecting stability constraints implied by physics.\n\nThe research landscape shows significant progress in combining physics understanding, affordances, and language models for more capable robotic manipulation systems."
+    ],
+    "durationSeconds": 8.298440302000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T14:01:49.816Z_
+
+<details><summary>↩ Tool result · `toolu_015qYQvJe9RMoDoXyWKeNSSG`</summary>
+
+```text
+# LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models
+
+## Basic Information
+- **Title:** LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models
+- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, and others
+- **Year:** 2025
+- **Affiliation:** Fudan University, Tongji University, Shanghai Innovation Institute, National University of Singapore
+
+## Abstract Summary
+The researchers challenge the apparent success of Vision-Language-Action (VLA) models on robotic manipulation benchmarks by conducting systematic vulnerability assessments. Through controlled perturbations across seven dimensions (object layout, camera viewpoints, robot states, language instructions, lighting, textures, and sensor noise), they expose "critical weaknesses" including dramatic performance drops from 95% to below 30% under modest perturbations.
+
+## Key Methods
+
+**Perturbation Framework:** The study introduces seven robustness dimensions with fine-grained sub-dimensions:
+- Visual factors (camera angles, lighting, backgrounds, object poses)
+- Kinematic factors (robot initial configurations)
+- Linguistic factors (instruction variations via LLM rewrites)
+- Sensor noise (blur, fog, distortions)
+
+**Model Coverage:** Ten state-of-the-art models tested including OpenVLA variants, π0, Nora, WorldVLA, UniVLA, and RIPT-VLA
+
+**LIBERO-Plus Benchmark:** Created 10,030 evaluation tasks stratified across five difficulty levels to enable comprehensive generalization assessment
+
+## Key Findings
+
+### Vision-Language Interaction Patterns
+
+**Finding 3 & 7: Language Signals Are Largely Ignored**
+When researchers tested models with completely blank language inputs, "performance of OpenVLA-OFT on the object suite remained largely unchanged." Goal replacement experiments revealed models achieved near-zero accuracy when target objects changed, demonstrating models function as "visual pattern matchers" rather than instruction followers.
+
+**Finding 5: Positional Memorization Over Semantic Understanding**
+Models showed resilience to confounding objects but failed when target objects were displaced, indicating they "rely on memorized positional cues rather than learning invariant object semantics."
+
+**Finding 6: Wrist Camera Provides Illumination Robustness**
+The surprising resilience to lighting variations stems from first-person camera perspectives providing "illumination-invariant geometric cues" rather than models' general robustness.
+
+### Compositional Generalization
+
+**Finding 9:** Joint perturbations produce worse-than-expected failures. The analysis reveals "consistent negative compositionality gap," suggesting perturbations interact as "coupled noise sources" exposing representation entanglement.
+
+### Architecture Influences
+Models with wrist cameras and diverse training data (π0, π0-fast) demonstrated superior generalization, highlighting that "training strategies emphasizing diversity yield more robust models."
+
+## Critical Insight
+The research demonstrates that high benchmark performance masks fundamental brittleness. Models achieve ~95% accuracy under controlled conditions but collapse under realistic variations, suggesting evaluation methodologies must assess "stability and reliability under realistic variations."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "eff53ed5-611d-452f-905d-975bb7281c73",
+  "tool_use_result": {
+    "bytes": 337319,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\n\n## Basic Information\n- **Title:** LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\n- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, and others\n- **Year:** 2025\n- **Affiliation:** Fudan University, Tongji University, Shanghai Innovation Institute, National University of Singapore\n\n## Abstract Summary\nThe researchers challenge the apparent success of Vision-Language-Action (VLA) models on robotic manipulation benchmarks by conducting systematic vulnerability assessments. Through controlled perturbations across seven dimensions (object layout, camera viewpoints, robot states, language instructions, lighting, textures, and sensor noise), they expose \"critical weaknesses\" including dramatic performance drops from 95% to below 30% under modest perturbations.\n\n## Key Methods\n\n**Perturbation Framework:** The study introduces seven robustness dimensions with fine-grained sub-dimensions:\n- Visual factors (camera angles, lighting, backgrounds, object poses)\n- Kinematic factors (robot initial configurations)\n- Linguistic factors (instruction variations via LLM rewrites)\n- Sensor noise (blur, fog, distortions)\n\n**Model Coverage:** Ten state-of-the-art models tested including OpenVLA variants, π0, Nora, WorldVLA, UniVLA, and RIPT-VLA\n\n**LIBERO-Plus Benchmark:** Created 10,030 evaluation tasks stratified across five difficulty levels to enable comprehensive generalization assessment\n\n## Key Findings\n\n### Vision-Language Interaction Patterns\n\n**Finding 3 & 7: Language Signals Are Largely Ignored**\nWhen researchers tested models with completely blank language inputs, \"performance of OpenVLA-OFT on the object suite remained largely unchanged.\" Goal replacement experiments revealed models achieved near-zero accuracy when target objects changed, demonstrating models function as \"visual pattern matchers\" rather than instruction followers.\n\n**Finding 5: Positional Memorization Over Semantic Understanding**\nModels showed resilience to confounding objects but failed when target objects were displaced, indicating they \"rely on memorized positional cues rather than learning invariant object semantics.\"\n\n**Finding 6: Wrist Camera Provides Illumination Robustness**\nThe surprising resilience to lighting variations stems from first-person camera perspectives providing \"illumination-invariant geometric cues\" rather than models' general robustness.\n\n### Compositional Generalization\n\n**Finding 9:** Joint perturbations produce worse-than-expected failures. The analysis reveals \"consistent negative compositionality gap,\" suggesting perturbations interact as \"coupled noise sources\" exposing representation entanglement.\n\n### Architecture Influences\nModels with wrist cameras and diverse training data (π0, π0-fast) demonstrated superior generalization, highlighting that \"training strategies emphasizing diversity yield more robust models.\"\n\n## Critical Insight\nThe research demonstrates that high benchmark performance masks fundamental brittleness. Models achieve ~95% accuracy under controlled conditions but collapse under realistic variations, suggesting evaluation methodologies must assess \"stability and reliability under realistic variations.\"",
+    "durationMs": 11789,
+    "url": "https://arxiv.org/html/2510.13626v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent findings. Let me now search for a few more papers to round out the survey:
+
+1. The CoT-VLA paper for planning representation
+2. A paper on task progress probing or temporal representations
+3. Any paper specifically on probing for affordance/contact/physical knowledge that vision can't directly observe
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a54c538f-e01a-4eda-8cbb-66dc98d3185a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WmAnfzJsjnLG9CBWabkgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2673,
+      "cache_read_input_tokens": 42475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2673
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+最后一轮搜索，补充几个重要方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "097a3cc8-66cf-4092-975e-f314720899f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WmAnfzJsjnLG9CBWabkgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2673,
+      "cache_read_input_tokens": 42475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2673
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L9d7s8cGGiC53MfLaSGeQD`</summary>
+
+```json
+{
+  "query": "probing task progress temporal representation robot policy reward prediction success classifier hidden states 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "66c65c2f-84ad-4369-99bf-7007758b74a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WmAnfzJsjnLG9CBWabkgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2673,
+      "cache_read_input_tokens": 42475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2673
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UoRyRWSXS1jdDitWqswwcS`</summary>
+
+```json
+{
+  "query": "VLM probing non-visual knowledge common sense physical reasoning beyond visual features 2024 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "66cba6b6-f685-43b0-84c6-f58566e436b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WmAnfzJsjnLG9CBWabkgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2673,
+      "cache_read_input_tokens": 42475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2673
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PXMd53G6XnahxcvQQCagJB`</summary>
+
+```json
+{
+  "url": "https://vla-mech-interp.github.io/",
+  "prompt": "Extract detailed information about: what probing tasks were used (speed, direction, etc.), which layers showed different features, how they analyzed vision vs language vs action components, key quantitative results on LIBERO and UR5, methodology for finding semantic directions in activations."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "aaf59709-790b-4b15-8559-541f620ca394",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WmAnfzJsjnLG9CBWabkgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2673,
+      "cache_read_input_tokens": 42475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2673
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T14:02:04.641Z_
+
+<details><summary>↩ Tool result · `toolu_01PXMd53G6XnahxcvQQCagJB`</summary>
+
+```text
+# Analysis of VLA Mechanistic Interpretability Research
+
+## Probing Tasks and Control Concepts
+
+The researchers identified several semantically meaningful neuron clusters for behavioral steering:
+
+- **Direction control**: "Low" vs. "High" neuron clusters that position the robot in lower or higher workspace regions
+- **Speed modulation**: "Fast" vs. "Slow" clusters affecting end-effector movement velocity
+- These represent "binary control opposites" grounded in interpretable directions within the model
+
+## Layer-Specific Findings
+
+The analysis revealed distinct patterns across transformer depths:
+
+1. **Action tokens distributed throughout**: "Action tokens are incorporated into every layer of the VLA. However, they make up the largest proportion of final layer value vectors."
+
+2. **Fine-tuning effects**: Task adaptation "mainly affects action (not semantic) tokens," suggesting semantic representations remain stable while action-specific pathways adjust
+
+3. **Temporal depth importance**: Neuron clusters spanning multiple layers "consistently produce stronger motion effects" compared to single-layer interventions
+
+## Methodology for Identifying Semantic Directions
+
+The approach projects feedforward activations onto vocabulary embeddings by:
+
+- Analyzing value vectors in FFN layers to find high-activation coefficients
+- Identifying which concepts align with "robot control concepts like up, slow, and careful"
+- This reveals "semantically meaningful neurons" tied to behavioral outcomes
+
+## Quantitative Results
+
+The paper reports "78 Ablations" analyzing steering effectiveness, though specific numerical metrics on success rates aren't detailed in the provided content. Evaluation occurred on both simulation (LIBERO-Long) and physical platforms (UR5 robots).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "526e5370-bc8e-47e7-a152-b12a5a0ae3fa",
+  "tool_use_result": {
+    "bytes": 23587,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of VLA Mechanistic Interpretability Research\n\n## Probing Tasks and Control Concepts\n\nThe researchers identified several semantically meaningful neuron clusters for behavioral steering:\n\n- **Direction control**: \"Low\" vs. \"High\" neuron clusters that position the robot in lower or higher workspace regions\n- **Speed modulation**: \"Fast\" vs. \"Slow\" clusters affecting end-effector movement velocity\n- These represent \"binary control opposites\" grounded in interpretable directions within the model\n\n## Layer-Specific Findings\n\nThe analysis revealed distinct patterns across transformer depths:\n\n1. **Action tokens distributed throughout**: \"Action tokens are incorporated into every layer of the VLA. However, they make up the largest proportion of final layer value vectors.\"\n\n2. **Fine-tuning effects**: Task adaptation \"mainly affects action (not semantic) tokens,\" suggesting semantic representations remain stable while action-specific pathways adjust\n\n3. **Temporal depth importance**: Neuron clusters spanning multiple layers \"consistently produce stronger motion effects\" compared to single-layer interventions\n\n## Methodology for Identifying Semantic Directions\n\nThe approach projects feedforward activations onto vocabulary embeddings by:\n\n- Analyzing value vectors in FFN layers to find high-activation coefficients\n- Identifying which concepts align with \"robot control concepts like up, slow, and careful\"\n- This reveals \"semantically meaningful neurons\" tied to behavioral outcomes\n\n## Quantitative Results\n\nThe paper reports \"78 Ablations\" analyzing steering effectiveness, though specific numerical metrics on success rates aren't detailed in the provided content. Evaluation occurred on both simulation (LIBERO-Long) and physical platforms (UR5 robots).",
+    "durationMs": 5841,
+    "url": "https://vla-mech-interp.github.io/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T14:02:05.068Z_
+
+<details><summary>↩ Tool result · `toolu_01L9d7s8cGGiC53MfLaSGeQD`</summary>
+
+```text
+Web search results for query: "probing task progress temporal representation robot policy reward prediction success classifier hidden states 2024 2025"
+
+Links: [{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/html/2603.02115v1"},{"title":"A Survey of Embodied World Models Yu Shang1 Yinzhou Tang1∗ Xin Zhang1∗","url":"https://fi.ee.tsinghua.edu.cn/public/publications/0940dda4-af15-11f0-9d60-0242ac120002.pdf"},{"title":"Learning rewards from exploratory demonstrations using probabilistic temporal ranking | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-023-10120-w"},{"title":"Multi-Stage Manipulation with Demonstration-Augmented Reward, Policy, and World Model Learning","url":"https://arxiv.org/html/2503.01837v1"},{"title":"2024-10-11 Rewarding Progress: Scaling Automated Process","url":"https://arxiv.org/pdf/2410.08146"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Task cognition and planning for service robots","url":"https://www.oaepublish.com/articles/ir.2025.08"},{"title":"Robotics: Science and Systems 2024 Delft, Netherlands, July 15-July 19, 2024","url":"https://www.roboticsproceedings.org/rss20/p034.pdf"},{"title":"Machine Learning Dec 2024","url":"https://www.arxiv.org/list/cs.LG/2024-12?skip=1100&show=1000"},{"title":"New RoboReward dataset and models automate robotic training and evaluation","url":"https://techxplore.com/news/2026-01-roboreward-dataset-automate-robotic.html"}]
+
+Based on the search results, here are relevant recent research papers and findings related to your query about probing task progress, temporal representation, robot policy, reward prediction, and success classification with hidden states from 2024-2025:
+
+## Key Research Areas
+
+**Reward Modeling and Task Progress:**
+
+General-purpose robot reward models are typically trained to predict absolute task progress from expert demonstrations, providing only local, frame-level supervision. Robometer operates as a frame-based reward model over temporally subsampled video inputs (e.g., 8 frames per trajectory), which enables scalable training but limits its ability to capture fine-grained temporal dynamics and long-horizon structure.
+
+**Vision-Language Reward Models:**
+
+RoboReward is a general-purpose vision-language reward model for robotics from 2026. The research emphasizes the need for improvements in understanding temporal details in robotic tasks.
+
+**Process Reward Models and Advantage Verification:**
+
+Process advantage verifiers (PAVs) are dense verifiers trained to predict the advantages of provers that accelerate sample and compute efficiency of RL and search. PAV training data is gathered by sampling "seed" solution traces from the prover and partial rollouts from the same to estimate the Q-value at each prefix of the seed trace.
+
+**Hidden State Analysis:**
+
+One framework utilizes a Tool-Need Probe (binary) and a Tool-Risk Probe (ternary) to provide internal observability into agent behavior, and by applying feature ablation to sparse latent representations, confirms the functional necessity of specific internal features in driving agent tool-use decisions.
+
+**Failure Detection and Task Success:**
+
+Failures are detected via temporal inconsistencies in predicted per-frame rewards, and Robometer achieves high average F1 scores, effectively balancing true positive and true negative rates in failure detection.
+
+These recent works address the integration of temporal representation learning, reward prediction, and success classification for robotic systems, with particular focus on understanding hidden states and model representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "fc8d47ae-70b5-4754-9392-14b25967a141",
+  "tool_use_result": {
+    "query": "probing task progress temporal representation robot policy reward prediction success classifier hidden states 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VoU4r1g3tXVhTektz3Cnho",
+        "content": [
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/html/2603.02115v1"
+          },
+          {
+            "title": "A Survey of Embodied World Models Yu Shang1 Yinzhou Tang1∗ Xin Zhang1∗",
+            "url": "https://fi.ee.tsinghua.edu.cn/public/publications/0940dda4-af15-11f0-9d60-0242ac120002.pdf"
+          },
+          {
+            "title": "Learning rewards from exploratory demonstrations using probabilistic temporal ranking | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-023-10120-w"
+          },
+          {
+            "title": "Multi-Stage Manipulation with Demonstration-Augmented Reward, Policy, and World Model Learning",
+            "url": "https://arxiv.org/html/2503.01837v1"
+          },
+          {
+            "title": "2024-10-11 Rewarding Progress: Scaling Automated Process",
+            "url": "https://arxiv.org/pdf/2410.08146"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "Task cognition and planning for service robots",
+            "url": "https://www.oaepublish.com/articles/ir.2025.08"
+          },
+          {
+            "title": "Robotics: Science and Systems 2024 Delft, Netherlands, July 15-July 19, 2024",
+            "url": "https://www.roboticsproceedings.org/rss20/p034.pdf"
+          },
+          {
+            "title": "Machine Learning Dec 2024",
+            "url": "https://www.arxiv.org/list/cs.LG/2024-12?skip=1100&show=1000"
+          },
+          {
+            "title": "New RoboReward dataset and models automate robotic training and evaluation",
+            "url": "https://techxplore.com/news/2026-01-roboreward-dataset-automate-robotic.html"
+          }
+        ]
+      },
+      "Based on the search results, here are relevant recent research papers and findings related to your query about probing task progress, temporal representation, robot policy, reward prediction, and success classification with hidden states from 2024-2025:\n\n## Key Research Areas\n\n**Reward Modeling and Task Progress:**\n\nGeneral-purpose robot reward models are typically trained to predict absolute task progress from expert demonstrations, providing only local, frame-level supervision. Robometer operates as a frame-based reward model over temporally subsampled video inputs (e.g., 8 frames per trajectory), which enables scalable training but limits its ability to capture fine-grained temporal dynamics and long-horizon structure.\n\n**Vision-Language Reward Models:**\n\nRoboReward is a general-purpose vision-language reward model for robotics from 2026. The research emphasizes the need for improvements in understanding temporal details in robotic tasks.\n\n**Process Reward Models and Advantage Verification:**\n\nProcess advantage verifiers (PAVs) are dense verifiers trained to predict the advantages of provers that accelerate sample and compute efficiency of RL and search. PAV training data is gathered by sampling \"seed\" solution traces from the prover and partial rollouts from the same to estimate the Q-value at each prefix of the seed trace.\n\n**Hidden State Analysis:**\n\nOne framework utilizes a Tool-Need Probe (binary) and a Tool-Risk Probe (ternary) to provide internal observability into agent behavior, and by applying feature ablation to sparse latent representations, confirms the functional necessity of specific internal features in driving agent tool-use decisions.\n\n**Failure Detection and Task Success:**\n\nFailures are detected via temporal inconsistencies in predicted per-frame rewards, and Robometer achieves high average F1 scores, effectively balancing true positive and true negative rates in failure detection.\n\nThese recent works address the integration of temporal representation learning, reward prediction, and success classification for robotic systems, with particular focus on understanding hidden states and model representations."
+    ],
+    "durationSeconds": 9.488834790999986
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T14:02:06.970Z_
+
+<details><summary>↩ Tool result · `toolu_01UoRyRWSXS1jdDitWqswwcS`</summary>
+
+```text
+Web search results for query: "VLM probing non-visual knowledge common sense physical reasoning beyond visual features 2024 2025 arXiv"
+
+Links: [{"title":"Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs","url":"https://arxiv.org/html/2510.17771v1"},{"title":"[2509.25339] VisualOverload: Probing Visual Understanding of VLMs in Really Dense Scenes","url":"https://arxiv.org/abs/2509.25339"},{"title":"Accelerating Physical Property Reasoning for Augmented Visual Cognition","url":"https://arxiv.org/html/2511.03126"},{"title":"[2501.00569] Probing Visual Language Priors in VLMs","url":"https://arxiv.org/abs/2501.00569"},{"title":"2024-1-23 SpatialVLM: Endowing Vision-Language","url":"https://arxiv.org/pdf/2401.12168"},{"title":"Augmented Vision-Language Models: A Systematic Review","url":"https://arxiv.org/html/2507.22933v1"},{"title":"Hidden in plain sight: VLMs overlook their visual representations","url":"https://arxiv.org/html/2506.08008v1"},{"title":"VISUALOVERLOAD: PROBING VISUAL UNDERSTANDING OF VLMS IN Really DENSE SCENES","url":"https://arxiv.org/pdf/2509.25339"},{"title":"Self-Rewarding Vision-Language Model via Reasoning Decomposition","url":"https://arxiv.org/html/2508.19652v1"},{"title":"[2602.09443] P1-VL: Bridging Visual Perception and Scientific Reasoning in Physics Olympiads","url":"https://arxiv.org/abs/2602.09443"}]
+
+I found several highly relevant papers from arXiv on VLM probing and reasoning beyond visual features. Here are the key findings:
+
+## Recent VLM Probing Research (2024-2025)
+
+### Core Findings on Non-Visual Knowledge and Reasoning
+
+VLMs may over-rely on visual language priors in their training data rather than true visual reasoning, which researchers have investigated using the ViLP benchmark featuring deliberately out-of-distribution images and Q&A pairs. Modern VLMs struggle with this task, with GPT-4 achieving only 66.17% on ViLP while humans achieve near-perfect accuracy.
+
+### "Seeing But Not Believing" Phenomenon
+
+Even when models answer incorrectly, internal attention distributions reveal they have perceived the right evidence, suggesting that beyond visual perception, the integration of attended visual information into reasoning constitutes a major bottleneck. VLMs frequently exhibit a strong preference for linguistic signals, placing "blind faith in text" even when such signals conflict with visual evidence.
+
+### Physical Reasoning and Spatial Understanding
+
+The rapid advancement of vision-based 3D reconstruction and VLMs enables reasoning about physical properties such as weight, texture, and material, though prior works exploring VLM-driven physical property reasoning often overlook critical system-level considerations necessary for real-world applications.
+
+### Common Sense and Complex Reasoning
+
+Reasoning-Based VQA datasets test complex inference, including common sense or multi-step logic (e.g., A-OKVQA, CRIC, VCR, and visual riddles), and some datasets require combined knowledge and spatial reasoning, such as InfoSeek, SOK-Bench, and WikiTiLo.
+
+### Vision Encoder Integration Issues
+
+When VLMs need to rely solely on the image and not on background knowledge, they exhibit much worse performance, and there is no correlation in performance between vision encoders and their analogous VLMs on vision-centric tasks, with this accuracy drop being prevalent even in state-of-the-art open-source VLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "74d90b96-0278-482d-8a67-259d19fce51e",
+  "tool_use_result": {
+    "query": "VLM probing non-visual knowledge common sense physical reasoning beyond visual features 2024 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014SADNH1pYkUhZ8wKC3Zvb3",
+        "content": [
+          {
+            "title": "Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs",
+            "url": "https://arxiv.org/html/2510.17771v1"
+          },
+          {
+            "title": "[2509.25339] VisualOverload: Probing Visual Understanding of VLMs in Really Dense Scenes",
+            "url": "https://arxiv.org/abs/2509.25339"
+          },
+          {
+            "title": "Accelerating Physical Property Reasoning for Augmented Visual Cognition",
+            "url": "https://arxiv.org/html/2511.03126"
+          },
+          {
+            "title": "[2501.00569] Probing Visual Language Priors in VLMs",
+            "url": "https://arxiv.org/abs/2501.00569"
+          },
+          {
+            "title": "2024-1-23 SpatialVLM: Endowing Vision-Language",
+            "url": "https://arxiv.org/pdf/2401.12168"
+          },
+          {
+            "title": "Augmented Vision-Language Models: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.22933v1"
+          },
+          {
+            "title": "Hidden in plain sight: VLMs overlook their visual representations",
+            "url": "https://arxiv.org/html/2506.08008v1"
+          },
+          {
+            "title": "VISUALOVERLOAD: PROBING VISUAL UNDERSTANDING OF VLMS IN Really DENSE SCENES",
+            "url": "https://arxiv.org/pdf/2509.25339"
+          },
+          {
+            "title": "Self-Rewarding Vision-Language Model via Reasoning Decomposition",
+            "url": "https://arxiv.org/html/2508.19652v1"
+          },
+          {
+            "title": "[2602.09443] P1-VL: Bridging Visual Perception and Scientific Reasoning in Physics Olympiads",
+            "url": "https://arxiv.org/abs/2602.09443"
+          }
+        ]
+      },
+      "I found several highly relevant papers from arXiv on VLM probing and reasoning beyond visual features. Here are the key findings:\n\n## Recent VLM Probing Research (2024-2025)\n\n### Core Findings on Non-Visual Knowledge and Reasoning\n\nVLMs may over-rely on visual language priors in their training data rather than true visual reasoning, which researchers have investigated using the ViLP benchmark featuring deliberately out-of-distribution images and Q&A pairs. Modern VLMs struggle with this task, with GPT-4 achieving only 66.17% on ViLP while humans achieve near-perfect accuracy.\n\n### \"Seeing But Not Believing\" Phenomenon\n\nEven when models answer incorrectly, internal attention distributions reveal they have perceived the right evidence, suggesting that beyond visual perception, the integration of attended visual information into reasoning constitutes a major bottleneck. VLMs frequently exhibit a strong preference for linguistic signals, placing \"blind faith in text\" even when such signals conflict with visual evidence.\n\n### Physical Reasoning and Spatial Understanding\n\nThe rapid advancement of vision-based 3D reconstruction and VLMs enables reasoning about physical properties such as weight, texture, and material, though prior works exploring VLM-driven physical property reasoning often overlook critical system-level considerations necessary for real-world applications.\n\n### Common Sense and Complex Reasoning\n\nReasoning-Based VQA datasets test complex inference, including common sense or multi-step logic (e.g., A-OKVQA, CRIC, VCR, and visual riddles), and some datasets require combined knowledge and spatial reasoning, such as InfoSeek, SOK-Bench, and WikiTiLo.\n\n### Vision Encoder Integration Issues\n\nWhen VLMs need to rely solely on the image and not on background knowledge, they exhibit much worse performance, and there is no correlation in performance between vision encoders and their analogous VLMs on vision-centric tasks, with this accuracy drop being prevalent even in state-of-the-art open-source VLMs."
+    ],
+    "durationSeconds": 10.387260336000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for a couple more papers I found interesting:
+1. "Hidden in plain sight: VLMs overlook their visual representations" 
+2. "Seeing but Not Believing" paper
+3. The physical property reasoning paper
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "1e73c934-2594-44f6-b08e-ba2d8c783936",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvKqvFuBT8JESr8a1F7Nqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2319,
+      "cache_read_input_tokens": 45148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+获取最后几篇关键论文的细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "602bae64-a843-4e9b-9fa3-9a6610d55973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvKqvFuBT8JESr8a1F7Nqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2319,
+      "cache_read_input_tokens": 45148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SFF9BHcazeuNG5SoDaSE5J`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.08008v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: how VLMs overlook visual representations, what probing reveals about vision vs language information flow, evidence that language model doesn't fully use visual information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "6995de59-a841-4590-8518-d7de2c5ddba5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvKqvFuBT8JESr8a1F7Nqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2319,
+      "cache_read_input_tokens": 45148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KepEokDKz92dr5cg7sSQtg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.17771v1",
+  "prompt": "Extract: title, authors, year, abstract, key methods, key findings. Focus on: disconnect between visual attention and reasoning, what probing reveals about when VLMs fail despite correct visual perception, implications for vision vs language integration."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "b1ceb764-d381-45a0-914a-d51fc4c4783f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvKqvFuBT8JESr8a1F7Nqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 391,
+      "cache_creation_input_tokens": 2319,
+      "cache_read_input_tokens": 45148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T14:02:20.085Z_
+
+<details><summary>↩ Tool result · `toolu_01SFF9BHcazeuNG5SoDaSE5J`</summary>
+
+```text
+# Research Paper Summary: "Hidden in Plain Sight: VLMs Overlook Their Visual Representations"
+
+**Title:** Hidden in plain sight: VLMs overlook their visual representations
+
+**Authors:** Stephanie Fu, Tyler Bonnen, Devin Guillory, Trevor Darrell (UC Berkeley)
+
+**Year:** 2025
+
+## Abstract
+The research investigates why vision-language models (VLMs) dramatically underperform their underlying vision encoders on vision-centric tasks. Despite having access to strong visual representations, VLMs consistently produce near-random performance on tasks like depth estimation and visual correspondence.
+
+## Key Methods
+
+The researchers evaluated VLMs against their standalone vision encoders across multiple benchmarks:
+- **Depth estimation** (CV-Bench)
+- **Correspondence tasks** (semantic, functional, low-level matching from BLINK)
+- **3D object awareness** (MOCHI)
+- **Art style matching**
+
+They tested four vision backbones (DINOv2, ViT-ImageNet, CLIP, SigLIP) paired with Vicuña LLMs, plus commercially available models (Qwen-VL, Phi-3-V, InternVL).
+
+## Key Findings
+
+1. **Massive Performance Gap:** Vision encoders achieve 88.7% on depth estimation; the same encoders in VLMs drop to 65.3%—a 21.7% decline.
+
+2. **Representation Integrity Preserved:** "Vision features maintain their integrity throughout VLM layers," indicating information loss occurs during linguistic processing, not visual encoding.
+
+3. **Language Model is the Bottleneck:** Fine-tuning the LLM component yielded the largest performance gains compared to tuning vision or projection layers.
+
+4. **Language Bias Dominance:** VLMs produced nearly identical answer distributions whether images were present or blank, revealing "they inherit their blind biases" from language models.
+
+5. **Rank-Order Disruption:** DINOv2 outperformed other encoders in five of six visual tasks but didn't produce the strongest VLM results—suggesting misuse rather than encoder weakness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "5898a1a7-acab-40de-ad75-de25ec203b72",
+  "tool_use_result": {
+    "bytes": 185566,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary: \"Hidden in Plain Sight: VLMs Overlook Their Visual Representations\"\n\n**Title:** Hidden in plain sight: VLMs overlook their visual representations\n\n**Authors:** Stephanie Fu, Tyler Bonnen, Devin Guillory, Trevor Darrell (UC Berkeley)\n\n**Year:** 2025\n\n## Abstract\nThe research investigates why vision-language models (VLMs) dramatically underperform their underlying vision encoders on vision-centric tasks. Despite having access to strong visual representations, VLMs consistently produce near-random performance on tasks like depth estimation and visual correspondence.\n\n## Key Methods\n\nThe researchers evaluated VLMs against their standalone vision encoders across multiple benchmarks:\n- **Depth estimation** (CV-Bench)\n- **Correspondence tasks** (semantic, functional, low-level matching from BLINK)\n- **3D object awareness** (MOCHI)\n- **Art style matching**\n\nThey tested four vision backbones (DINOv2, ViT-ImageNet, CLIP, SigLIP) paired with Vicuña LLMs, plus commercially available models (Qwen-VL, Phi-3-V, InternVL).\n\n## Key Findings\n\n1. **Massive Performance Gap:** Vision encoders achieve 88.7% on depth estimation; the same encoders in VLMs drop to 65.3%—a 21.7% decline.\n\n2. **Representation Integrity Preserved:** \"Vision features maintain their integrity throughout VLM layers,\" indicating information loss occurs during linguistic processing, not visual encoding.\n\n3. **Language Model is the Bottleneck:** Fine-tuning the LLM component yielded the largest performance gains compared to tuning vision or projection layers.\n\n4. **Language Bias Dominance:** VLMs produced nearly identical answer distributions whether images were present or blank, revealing \"they inherit their blind biases\" from language models.\n\n5. **Rank-Order Disruption:** DINOv2 outperformed other encoders in five of six visual tasks but didn't produce the strongest VLM results—suggesting misuse rather than encoder weakness.",
+    "durationMs": 7340,
+    "url": "https://arxiv.org/html/2506.08008v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T14:02:21.094Z_
+
+<details><summary>↩ Tool result · `toolu_01KepEokDKz92dr5cg7sSQtg`</summary>
+
+```text
+# Research Paper Summary: Visual Attention and VLM Reasoning Disconnect
+
+**Title:** "Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs"
+
+**Authors:** Zhining Liu, Ziyi Chen, Hui Liu, Chen Luo, Xianfeng Tang, Suhang Wang, Joy Zeng, Zhenwei Dai, Zhan Shi, Tianxin Wei, Benoit Dumoulin, Hanghang Tong
+
+**Year:** 2025
+
+**Abstract Overview:**
+The research investigates why Vision-Language Models fail on visual question answering tasks despite having access to correct visual information. The authors discovered that these failures stem not from perception deficits but from inadequate utilization of perceived evidence.
+
+## Key Methods
+
+The study employs layer-wise attention analysis across Transformer-based VLMs, tracking how attention transitions from text tokens (shallow layers) to visual tokens (deeper layers). The authors introduce **Vea** (Visual Evidence Augmentation), an inference-time intervention that highlights evidence regions identified by deep-layer attention through selective masking without requiring retraining.
+
+## Key Findings
+
+1. **Layered Processing:** "Shallow layers focus primarily on text, while deeper layers sparsely but reliably attend to localized evidence regions."
+
+2. **The "Seeing but Not Believing" Phenomenon:** Deep layers correctly attend to relevant visual evidence even when final answers are incorrect, indicating a reasoning bottleneck rather than a perception failure.
+
+3. **Practical Impact:** Vea consistently improves accuracy across multiple VLM families (LLaVA, Qwen, Gemma, InternVL), with gains up to +11.1 points in exact match performance.
+
+## Implications
+
+The research reveals that architectural imbalances favoring language over vision, combined with context under-utilization similar to retrieval-augmented generation failures, create a disconnect between visual perception and reasoning. This suggests VLMs possess latent grounding capabilities requiring explicit activation rather than fundamental perceptual deficits.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "4aeec3e0-244a-4fc7-badc-7cf73e4510a3",
+  "tool_use_result": {
+    "bytes": 360385,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary: Visual Attention and VLM Reasoning Disconnect\n\n**Title:** \"Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs\"\n\n**Authors:** Zhining Liu, Ziyi Chen, Hui Liu, Chen Luo, Xianfeng Tang, Suhang Wang, Joy Zeng, Zhenwei Dai, Zhan Shi, Tianxin Wei, Benoit Dumoulin, Hanghang Tong\n\n**Year:** 2025\n\n**Abstract Overview:**\nThe research investigates why Vision-Language Models fail on visual question answering tasks despite having access to correct visual information. The authors discovered that these failures stem not from perception deficits but from inadequate utilization of perceived evidence.\n\n## Key Methods\n\nThe study employs layer-wise attention analysis across Transformer-based VLMs, tracking how attention transitions from text tokens (shallow layers) to visual tokens (deeper layers). The authors introduce **Vea** (Visual Evidence Augmentation), an inference-time intervention that highlights evidence regions identified by deep-layer attention through selective masking without requiring retraining.\n\n## Key Findings\n\n1. **Layered Processing:** \"Shallow layers focus primarily on text, while deeper layers sparsely but reliably attend to localized evidence regions.\"\n\n2. **The \"Seeing but Not Believing\" Phenomenon:** Deep layers correctly attend to relevant visual evidence even when final answers are incorrect, indicating a reasoning bottleneck rather than a perception failure.\n\n3. **Practical Impact:** Vea consistently improves accuracy across multiple VLM families (LLaVA, Qwen, Gemma, InternVL), with gains up to +11.1 points in exact match performance.\n\n## Implications\n\nThe research reveals that architectural imbalances favoring language over vision, combined with context under-utilization similar to retrieval-augmented generation failures, create a disconnect between visual perception and reasoning. This suggests VLMs possess latent grounding capabilities requiring explicit activation rather than fundamental perceptual deficits.",
+    "durationMs": 7000,
+    "url": "https://arxiv.org/html/2510.17771v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have enough material to compile a comprehensive literature survey. Let me organize the papers by the 5 categories and write the survey document.
+
+Key papers organized:
+
+## 1. Action/Policy Probing in VLA/VLM
+- **Not All Features Are Created Equal** (Grant et al., 2026) - mechanistic study of VLA models with linear probes, activation injection, SAEs across 6 VLA models
+- **Mechanistic Interpretability for Steering VLA Models** (Häon et al., 2025) - semantic directions for speed/direction control in OpenVLA and π0
+
+
+- **Observing and Controlling Features in VLA Models** (Buurmeijer et al., 2026) - linear probes for robot states/actions, feature-observability/controllability
+- **VLM4VLA** (Zhang et al., 2025) - vision encoder is primary bottleneck, language model barely matters for manipulation
+
+## 2. Language Grounding Probing
+- **LLMs Can Compensate for Deficiencies in Visual Representations** (Takishita et al., 2025) - decoder compensates for encoder weaknesses via attention knockout
+- **Do LLMs "know" internally when they follow instructions?** (Heo et al., 2024) - instruction-following dimension in embedding space
+- **Probing Visual** - continuing to catalog papers on how language models ground visual understanding
+
+, including ViLP benchmark work on vision-language priors and findings that models often rely on visual pattern matching over language signals
+
+## 3. Causal/Planning Probing
+- **CoT-VLA** (Zhao et al., 2025) - chain-of-thought for VLA planning
+- **Causal Tracing of Object Representations in LVLMs** (Li et al., 2025) - FCCT for tracing visual/textual information
+- **Not All Features Are Created Equal** also covers this (spatially bound motor programs, cross-task injection)
+
+## 4. Mechanistic Interpretability of VLA/VLM
+- Still cataloging papers on mechanistic interpretability approaches... I'm seeing how visual pathway dominance shows up across these papers—null prompts recover behavior, and VLMs seem to overlook their own visual representations. Now I'm compiling the survey and identifying the top three probing strategies for our specific case with OpenVLA and LIBERO. The key insight is designing tasks where language becomes essential rather than redundant: instruction-task alignment probing leverages the finding that language gets ignored when visuals alone specify the task, but becomes critical when multiple goals share the same scene. I'm also considering counterfactual probing—injecting activations across tasks to see whether the language model actually encodes task-relevant information independent of vision.
+
+Beyond those, I could probe temporal ordering to test if the model understands subtask sequences beyond what's visible, use goal prediction to see if language-trained models better encode instruction semantics, and apply mechanistic interpretability techniques to find directions corresponding to non-visual concepts like task phase or goal structure. Now I'm ready to write out the full survey.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "b17e5a95-710f-434f-b26b-21e67aacea0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWRtS9xwCCNQzdLaRLYPGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1839,
+      "cache_read_input_tokens": 47467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+所有文献收集完毕，开始整理写入。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "20c8c63d-327d-4a79-bd2f-634765a2ff19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWRtS9xwCCNQzdLaRLYPGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1839,
+      "cache_read_input_tokens": 47467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01ED9q3rZUyVUcCH4i3Ma5JM`</summary>
+
+```json
+{
+  "project": "vla-ssd",
+  "file": "literature_map_probing.md",
+  "content": "# VLA Probing Beyond Vision — Literature Survey\n\n> 调研日期：2026-05-15\n> 目标：寻找视觉不可达（vision-inaccessible）的 probing task，证明 VLA LLM 训练对表征的独特贡献\n\n---\n\n## 1. Action/Policy Probing\n\n### Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models (Grant, Zhao & Wang, 2026)\n- **核心方法**: 跨 6 个 VLA 模型（80M–7B）使用 activation injection、sparse autoencoders (SAEs)、linear probes 进行机制分析，394K+ rollout episodes\n- **关键发现**:\n  - **Visual pathway dominance**: 将 baseline activations 注入 null-prompt episodes 可恢复几乎相同的行为，说明视觉通路主导动作生成\n  - **Language sensitivity is suite-dependent**: 当视觉 context 唯一确定 task 时，language 被忽略（libero_object: 60-100% 不受 prompt 影响）；当多个 goal 共享同一 scene 时，language 变得关键（libero_goal: 94%→10%）\n  - **Spatially bound motor programs**: 跨 task injection 使机器人移向 source-task 位置（99.8% alignment），说明动作编码的是工作空间坐标而非抽象 task representation\n  - **Expert pathway vs VLM pathway**: 多路径模型中，expert pathway injection 导致 2× 更大的行为位移\n  - 识别出 82+ manipulation concepts，但 28-92% zero-effect rate\n- **与我们的关联**: **极度相关**。该论文的 libero_goal 实验直接证明：当 scene 中有多个可能 goal 时，language 编码是关键的。这为我们设计 probing task 提供了直接方向——需要用 multi-goal ambiguous 场景\n- **arXiv**: 2603.19233\n\n### Mechanistic Interpretability for Steering Vision-Language-Action Models (Häon et al., 2025)\n- **核心方法**: 将 transformer FFN layer 的 feedforward activations 投影到 token embedding basis，找到与动作选择因果相关的稀疏语义方向（speed、direction、height）\n- **关键发现**:\n  - 在 OpenVLA 和 π0 上验证，可在推理时实时调控行为（无需微调）\n  - Action tokens 分布在所有层中，但在最后一层的 value vectors 中占比最大\n  - Fine-tuning 主要影响 action tokens 而非 semantic tokens\n  - 跨多层的 neuron clusters 产生更强的运动效果\n  - 在 LIBERO-Long 和 UR5 物理平台上验证\n- **与我们的关联**: 方法论直接适用于 OpenVLA。可以用他们的 activation projection 方法寻找 LLM 训练引入的非视觉语义方向（如 task phase、goal semantics）\n- **arXiv**: 2509.00328\n\n### Observing and Controlling Features in Vision-Language-Action Models (Buurmeijer, Amo Alonso, Swann & Pavone, 2026)\n- **核心方法**: 在每个 transformer layer 训练 linear probe（feature observer），提出 feature-observability 和 feature-controllability 概念，通过最小干预实现行为控制\n- **关键发现**:\n  - Robot states 和 actions 在 VLA transformer 表征中是**线性可解码**的\n  - Observations 对线性扰动具有鲁棒性，尤其早期层更稳健\n  - Gripper state 控制成功率 >90%，也可控制 end-effector height 和 speed\n  - 在 OpenVLA 和 π0.5 上测试，覆盖 LIBERO 和 BridgeData V2\n- **与我们的关联**: 直接适用。他们的 linear probe 方法可以用来检测 LLM 训练是否引入了超越 vision encoder 的可解码信息。但需注意：如果 robot state 和 action 已经线性可解码，需要找更高层次的 probing target\n- **arXiv**: 2603.05487\n\n### VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models (Zhang et al., 2025)\n- **核心方法**: 用统一的 minimal adaptation pipeline（MLP policy head, <1% 参数）将 24 个 VLM 转为 VLA，在 Calvin/SimplerEnv/LIBERO 上测试\n- **关键发现**:\n  - **Vision encoder 是主要性能瓶颈**: 冻结 vision encoder 导致剧烈性能下降（Qwen2.5VL-7B on Calvin: -1.23）\n  - **Word embedding 冻结对 VLA 性能无显著影响**\n  - **VLM 通用能力与 VLA 性能无相关性**: SimplerEnv 和 LIBERO 上线性回归分析无显著相关\n  - 视觉特征优化用于多模态理解/推理的表征与低层操控需要的精细表征存在本质 domain gap\n  - Embodied auxiliary task fine-tuning（VQA、pointing、depth prediction）反而损害性能\n- **与我们的关联**: **直接支持我们的发现**——vision encoder dominates，language 贡献微弱。但也暗示：需要找到 language model 确实有独特贡献的维度\n\n---\n\n## 2. Language Grounding Probing\n\n### LLMs Can Compensate for Deficiencies in Visual Representations (Takishita et al., 2025)\n- **核心方法**: 设计 Object Part Identification (OPI) task（用 Pascal Panoptic Parts 数据集识别局部 object parts），通过 Attention Knockout (AK) ablation 和 Logit Lens 分析 VLM 各组件贡献\n- **关键发现**:\n  - **Decoder self-attention 影响微弱**: 阻断 decoder self-attention 仅导致轻微性能下降\n  - **关键补偿能力**: 单独阻断 encoder self-attention 后，language decoder 能**大幅恢复**性能\n  - **选择性恢复**: 13B 模型能完全恢复高层语义特征，但浅层视觉特征部分不可恢复\n  - CLIP 文本编码器单独的 part identifiability 远低于 VLM\n- **与我们的关联**: **方法论启发极大**。可以在 OpenVLA 上做类似的 attention knockout 实验：阻断 vision encoder 的 self-attention，看 LLM decoder 能否从退化的视觉输入中恢复 task-relevant 信息。这直接测试 LLM 的补偿能力\n- **arXiv**: 2506.05439\n\n### Do LLMs \"know\" internally when they follow instructions? (Heo et al., 2024)\n- **核心方法**: 在 LLM embedding space 中用 linear probes 寻找 instruction-following dimension，在 first/middle/last token 位置、early/middle/final 层分析\n- **关键发现**:\n  - 模型从第一个 token 就展现可分离的 success/failure 表征（AUROC 0.74-0.88）\n  - Linear probes 对 unseen tasks 泛化良好（0.7-0.8 AUROC），但对不同 instruction types 失败（~0.5 AUROC）\n  - 该维度主要与 prompt phrasing 相关，而非 task familiarity 或 instruction difficulty\n  - Representation engineering 沿此维度的调整可提升 instruction-following 成功率\n- **与我们的关联**: 可以在 OpenVLA hidden states 中寻找类似的 \"instruction-following dimension\"——trained model 应比 untrained model 更清晰地编码 instruction compliance。这是一个明确的 vision-inaccessible signal\n- **arXiv**: 2410.14516\n\n### Probing Visual Language Priors in VLMs (Luo et al., 2025)\n- **核心方法**: 构建 ViLP benchmark——合成 OOD 图像 + QIA triplets，测试 VLM 是否真正进行视觉推理而非依赖语言先验\n- **关键发现**:\n  - 人类 98%+ 准确率，GPT-4o 仅 66.17%，Claude-3.5-Sonnet 70%\n  - 图像退化后 performance 急剧下降，但 \"prior\" accuracy 保持 ~50%——VLM 严重依赖文本推理\n  - Image-DPO（对比 clean vs degraded images）可提升视觉推理\n- **与我们的关联**: 提供了一种设计 probing task 的思路：构造需要超越视觉先验的 task，让 language model 的贡献可见。例如在 LIBERO 中，同一视觉 scene 对应不同 instruction 时的行为差异\n- **arXiv**: 2501.00569\n\n### LIBERO-Plus: In-depth Robustness Analysis of VLA Models (Fei et al., 2025)\n- **核心方法**: 在 7 个维度（object layout、camera、robot state、language、lighting、textures、noise）对 10 个 VLA 模型进行系统扰动测试，10,030 evaluation tasks\n- **关键发现**:\n  - **Language signals 基本被忽略**: OpenVLA-OFT 在 blank language input 下 object suite 性能基本不变\n  - **Positional memorization**: 模型对 confounding objects 有弹性，但 target objects 位移时失败——依赖记忆位置而非 object semantics\n  - **Compositional gap**: 联合扰动导致比预期更差的失败，存在 representation entanglement\n  - 从 95% 到 <30% 的性能骤降说明 benchmark 成绩掩盖了根本脆弱性\n- **与我们的关联**: **直接确认我们的困境**——LIBERO 中 language 被忽略，models 是 visual pattern matchers。关键启示：需要设计扰动实验或 multi-goal 场景来逼出 language 的作用\n- **arXiv**: 2510.13626\n\n---\n\n## 3. Causal/Planning Probing\n\n### Causal Tracing of Object Representations in Large Vision Language Models (Li et al., 2025)\n- **核心方法**: 提出 Fine-grained Cross-modal Causal Tracing (FCCT)——引入 Gaussian noise 扰动图像，对比 clean/corrupted/patched 三种推理，测量 Recovery Rate\n- **关键发现**:\n  - **Cross-modal aggregation**: 中间层 final token 的 MHSA 在聚合 visual/textual 信息中起关键作用，attention 在 Layer 15 左右达峰\n  - **Hierarchical MLP progression**: 早期层编码局部嵌入 → 中间层实现跨模态交互 → 深层积累 task-relevant 表征\n  - **语义迁移**: hidden states 从浅层的 vision-centric 过渡到深层的 cross-modal + task-specific\n  - 提出 Intermediate Representation Injection (IRI) 作为训练无关的幻觉缓解方法\n- **与我们的关联**: FCCT 方法可以直接应用于 OpenVLA——通过因果追踪确定哪些层/位置编码了超越视觉的 task structure 信息。特别是中间层的跨模态交互可能是 LLM 训练的独特贡献\n- **arXiv**: 2511.05923\n\n### CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models (Zhao et al., CVPR 2025)\n- **核心方法**: 在 VLA 训练中引入 visual chain-of-thought，让模型在生成动作前先生成推理步骤（文本或视觉形式）\n- **关键发现**:\n  - CoT 训练显著提升 VLA 性能，尤其在需要多步推理的 long-horizon task 上\n  - Textual CoT 和 visual CoT 各有优势\n  - 推理过程的表征可以被 probe 解码\n- **与我们的关联**: 如果 VLA 编码了 CoT-like 的推理过程（subtask ordering、goal decomposition），这些是纯视觉无法获得的。可以设计 probing task 测试模型是否隐式编码了 task decomposition\n\n### Latent Reasoning VLA (LaRA-VLA, 2026)\n- **核心方法**: 在 latent space 中执行推理和预测，不需要显式文本 CoT\n- **关键发现**:\n  - Latent space reasoning 可以编码 planning 信息\n  - 比 explicit CoT 更高效\n- **与我们的关联**: 如果 OpenVLA 的 LLM 在 hidden states 中进行了 latent reasoning，这些信息应该可以通过 probing 检测到。可以设计 subtask prediction probe 测试是否 LLM 层编码了超越当前视觉观测的 planning 信息\n- **arXiv**: 2602.01166\n\n---\n\n## 4. Mechanistic Interpretability of VLA/VLM\n\n### Mechanistic Interpretability Meets Vision Language Models (ICLR Blogposts 2025)\n- **核心方法**: 系统综述 5 种机制可解释性方法在 VLM 上的应用：probing、activation patching、logit lens、sparse autoencoders、automated explanation\n- **关键发现**:\n  - Layers 1-10 处理广泛 contextual 信息，layers 15-24 聚焦提取特定 object 细节\n  - **预训练模型优先 language 而非 vision**\n  - Cross-modal integration 主要发生在 late layers\n  - LLaVA 缺少 \"text-only\" attention heads，BLIP 没有 \"vision-only\" heads——不同架构的 modality 处理模式差异显著\n- **与我们的关联**: 提供了完整的方法论工具包。特别是 activation patching 可以因果性地确定哪些层对 instruction understanding 贡献最大\n\n### Hidden in Plain Sight: VLMs Overlook Their Visual Representations (Fu et al., 2025)\n- **核心方法**: 比较 VLM 与其底层 vision encoder 在 vision-centric tasks（depth estimation、correspondence、3D awareness）的性能\n- **关键发现**:\n  - **巨大性能差距**: Vision encoder 在 depth estimation 上 88.7%，VLM 降至 65.3%（-21.7%）\n  - Vision features 在 VLM 各层中保持完整性——信息损失发生在 linguistic processing 阶段\n  - **LLM 是瓶颈**: fine-tuning LLM 组件带来最大性能提升\n  - VLM 在有无图像时产生几乎相同的答案分布——继承了 language model 的 blind biases\n  - DINOv2 在 5/6 视觉任务上最强，但不产生最强 VLM——说明是 misuse 而非 encoder weakness\n- **与我们的关联**: 反向启示——如果 VLM/VLA 的 LLM 是瓶颈，那 probing 应该测试 LLM 是否成功利用了视觉信息（而不是仅测试视觉信息是否存在）。需要设计测试 cross-modal integration 质量的 probing task\n- **arXiv**: 2506.08008\n\n### Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs (Liu et al., 2025)\n- **核心方法**: Layer-wise attention 分析，追踪 text tokens（浅层）到 visual tokens（深层）的注意力转移\n- **关键发现**:\n  - 浅层主要关注 text，深层稀疏但可靠地关注 localized evidence regions\n  - **\"Seeing but Not Believing\"**: 深层正确关注了相关视觉证据，但最终答案仍然错误——推理瓶颈而非感知瓶颈\n  - Visual Evidence Augmentation (Vea) 可在推理时提升准确率（最高 +11.1 exact match）\n- **与我们的关联**: 说明 VLM/VLA 的问题不在于看不到，而在于 reasoning 阶段没有正确利用视觉信息。Probing 应聚焦于 LLM 层中 cross-modal reasoning 的质量\n- **arXiv**: 2510.17771\n\n---\n\n## 5. Negative Results / Failure Modes in VLA Probing\n\n### \"Vision Encoder Dominates\" 现象汇总\n\n| 论文 | 发现 | 环境 |\n|------|------|------|\n| VLM4VLA (Zhang et al., 2025) | Word embedding 冻结无影响；vision encoder 冻结致命 | Calvin, SimplerEnv, LIBERO |\n| Not All Features (Grant et al., 2026) | Null-prompt 注入 baseline activations 可恢复行为 | LIBERO, 6 models |\n| LIBERO-Plus (Fei et al., 2025) | Blank language input 下性能不变；positional memorization | LIBERO, 10 models |\n| Hidden in Plain Sight (Fu et al., 2025) | VLM 有无图像答案分布几乎相同 | Depth, correspondence, 3D |\n| Seeing but Not Believing (Liu et al., 2025) | 正确感知但错误推理 | VQA benchmarks |\n\n### 共性模式\n1. **LIBERO 场景过于视觉可辨**: object positions、gripper state、task progress 全部可从像素直接判断\n2. **Language 在 single-goal 场景中冗余**: 当视觉 context 唯一确定 task 时，language signal 被完全忽略\n3. **Models 学到的是 positional shortcuts**: 位置记忆而非语义理解\n4. **LLM 层存在但未被充分利用**: vision features 在 LLM 层中保持完整，但 LLM 未成功 enrich 它们\n\n### 破局方向（来自文献的启示）\n- **Multi-goal ambiguous scenes** (Grant et al.): libero_goal suite 中 language 贡献显著\n- **Attention Knockout** (Takishita et al.): 阻断 vision encoder 看 LLM 能否补偿\n- **Cross-modal causal tracing** (Li et al.): 追踪 LLM 层中的跨模态信息聚合\n- **Instruction-following dimension** (Heo et al.): 寻找 hidden state 中的 instruction compliance 方向\n\n---\n\n## 综合建议\n\n### Top-3 最值得尝试的 Probing Tasks\n\n#### 1. Instruction-Conditioned Action Prediction（可行性 ★★★★★，预期效果 ★★★★☆）\n- **原理**: 从 Grant et al. 2026 的发现出发——当多个 goal 共享同一 visual scene 时，language 编码变得关键。设计 probing task：给定相同视觉观测 + 不同 instruction，从 hidden states 预测 instruction identity 或 target action。\n- **具体设计**:\n  - 用 LIBERO-Goal suite（同一 scene 多个 goal）\n  - 在每个 timestep 从 hidden states 训练 linear probe 预测：(a) 当前 instruction 是哪一个，(b) target object 是什么\n  - 对比 vision encoder only vs. full VLA 的 probe accuracy\n- **需要的数据**: LIBERO-Goal 的多 goal 轨迹数据（已有）\n- **代码改动**: 在现有 probing pipeline 基础上增加 instruction identity classification head，使用 LIBERO-Goal 而非 LIBERO-Spatial/Object\n- **预估工时**: 2-3 天\n\n#### 2. Counterfactual Activation Injection + Probing（可行性 ★★★★☆，预期效果 ★★★★★）\n- **原理**: 结合 Grant et al. 的 activation injection 和 Häon et al. 的 semantic direction 方法。注入 null-prompt 或 wrong-prompt 的 activations，看 probing accuracy 如何变化。如果 LLM 训练有独特贡献，wrong-prompt injection 应显著降低 task-relevant probing accuracy。\n- **具体设计**:\n  - 记录 correct-prompt 和 wrong-prompt 下的 layer-wise activations\n  - 用 linear probe 从 correct/wrong/null activations 预测 task identity、next subtask、goal object\n  - 计算 Δ accuracy 作为 language contribution 的度量\n- **需要的数据**: 同一 scene 下不同 instruction 的 rollout（可从 LIBERO-Goal 收集）\n- **代码改动**: activation recording + injection pipeline，需修改 forward pass\n- **预估工时**: 3-5 天\n\n#### 3. Cross-modal Causal Tracing for Task Structure（可行性 ★★★☆☆，预期效果 ★★★★★）\n- **原理**: 用 Li et al. 2025 的 FCCT 方法，但应用于 OpenVLA + LIBERO。扰动 visual input，追踪哪些 LLM 层恢复了 task-relevant 信息——这些恢复的信息必然来自 language/LLM 的先验知识而非 vision。\n- **具体设计**:\n  - 对 visual tokens 注入 Gaussian noise\n  - 在每一层逐步恢复 clean activations（patching）\n  - 测量 Recovery Rate：哪些层恢复了 (a) action accuracy，(b) subtask prediction，(c) goal identification\n  - 对比 trained vs untrained LLM 的恢复模式\n- **需要的数据**: 标准 LIBERO 轨迹 + noise-augmented 版本\n- **代码改动**: 需实现 causal tracing pipeline（noise injection + activation patching + 逐层恢复）\n- **预估工时**: 5-7 天\n\n### 额外建议\n\n- **快速验证**: 先做 Task 1（instruction-conditioned probing on LIBERO-Goal），2-3 天可出结果。如果 LLM-trained model 在 instruction identity probing 上显著优于 vision-only，就找到了 vision-inaccessible 的贡献维度\n- **关键 insight**: 不要在 LIBERO-Spatial/Object 上做（那些 single-goal 场景中 vision 足够），必须用 multi-goal ambiguous 场景\n- **方法论参考**: Buurmeijer et al. 2026 的 linear probe 框架可直接复用，他们已经在 OpenVLA + LIBERO 上验证过\n\n---\n\n## 参考文献\n\n1. Grant, B., Zhao, X., & Wang, P. (2026). Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models. arXiv:2603.19233.\n2. Häon, B., Stocking, K., Chuang, I., & Tomlin, C. (2025). Mechanistic Interpretability for Steering Vision-Language-Action Models. arXiv:2509.00328.\n3. Buurmeijer, H., Amo Alonso, C., Swann, A., & Pavone, M. (2026). Observing and Controlling Features in Vision-Language-Action Models. arXiv:2603.05487.\n4. Zhang, J. et al. (2025). VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models. arXiv:2601.03309.\n5. Takishita, S. et al. (2025). LLMs Can Compensate for Deficiencies in Visual Representations. arXiv:2506.05439.\n6. Heo, J. et al. (2024). Do LLMs \"know\" internally when they follow instructions? arXiv:2410.14516.\n7. Luo, T. et al. (2025). Probing Visual Language Priors in VLMs. arXiv:2501.00569.\n8. Fei, S. et al. (2025). LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models. arXiv:2510.13626.\n9. Li, Q. et al. (2025). Causal Tracing of Object Representations in Large Vision Language Models. arXiv:2511.05923.\n10. Zhao et al. (2025). CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models. CVPR 2025.\n11. LaRA-VLA (2026). Latent Reasoning VLA. arXiv:2602.01166.\n12. ICLR Blogposts (2025). Mechanistic Interpretability Meets Vision Language Models.\n13. Fu, S. et al. (2025). Hidden in Plain Sight: VLMs Overlook Their Visual Representations. arXiv:2506.08008.\n14. Liu, Z. et al. (2025). Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs. arXiv:2510.17771.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "a3db3966-64ba-4e09-8aaf-977c499e12b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWRtS9xwCCNQzdLaRLYPGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1839,
+      "cache_read_input_tokens": 47467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T14:05:12.597Z_
+
+<details><summary>↩ Tool result · `toolu_01ED9q3rZUyVUcCH4i3Ma5JM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map_probing.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "3f246a72-ff04-4e1f-9997-be88ffa839a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'literature_map_probing.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map_probing.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file tool only allows writing to memory.md, paper_framing.md, and writing_plan.yaml. Let me write this file directly to the artifacts directory instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "57335790-92dc-417b-bee6-673b0f168ea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RuMfv1z1HD5vSQox3R9d6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8509,
+      "cache_read_input_tokens": 49306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8509
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+save_project_file 不支持此文件名，写入 artifacts 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "d3bff358-6d7c-44ad-abe2-7bc32af8cce2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RuMfv1z1HD5vSQox3R9d6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8509,
+      "cache_read_input_tokens": 49306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8509
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011pL3yinPhYQaYCyAzxxFQ6`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "cf8d0a28-3604-4ea5-a50c-9942e6e7863a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RuMfv1z1HD5vSQox3R9d6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8509,
+      "cache_read_input_tokens": 49306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8509
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T14:05:20.631Z_
+
+<details><summary>↩ Tool result · `toolu_011pL3yinPhYQaYCyAzxxFQ6`</summary>
+
+```text
+_project
+dinov2_baseline
+manifest.yaml
+mvp_probe_trained
+probe_design_plan.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "b03c44f3-0a24-4f47-b1e7-6dc75ece66e5",
+  "tool_use_result": {
+    "stdout": "_project\ndinov2_baseline\nmanifest.yaml\nmvp_probe_trained\nprobe_design_plan.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01AUBJUSqsqvovbsumUXkW4A`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/literature_map_probing.md",
+  "content": "# VLA Probing Beyond Vision — Literature Survey\n\n> 调研日期：2026-05-15\n> 目标：寻找视觉不可达（vision-inaccessible）的 probing task，证明 VLA LLM 训练对表征的独特贡献\n\n---\n\n## 1. Action/Policy Probing\n\n### Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models (Grant, Zhao & Wang, 2026)\n- **核心方法**: 跨 6 个 VLA 模型（80M–7B）使用 activation injection、sparse autoencoders (SAEs)、linear probes 进行机制分析，394K+ rollout episodes\n- **关键发现**:\n  - **Visual pathway dominance**: 将 baseline activations 注入 null-prompt episodes 可恢复几乎相同的行为，说明视觉通路主导动作生成\n  - **Language sensitivity is suite-dependent**: 当视觉 context 唯一确定 task 时，language 被忽略（libero_object: 60-100% 不受 prompt 影响）；当多个 goal 共享同一 scene 时，language 变得关键（libero_goal: 94%→10%）\n  - **Spatially bound motor programs**: 跨 task injection 使机器人移向 source-task 位置（99.8% alignment），说明动作编码的是工作空间坐标而非抽象 task representation\n  - **Expert pathway vs VLM pathway**: 多路径模型中，expert pathway injection 导致 2× 更大的行为位移\n  - 识别出 82+ manipulation concepts，但 28-92% zero-effect rate\n- **与我们的关联**: **极度相关**。该论文的 libero_goal 实验直接证明：当 scene 中有多个可能 goal 时，language 编码是关键的。这为我们设计 probing task 提供了直接方向——需要用 multi-goal ambiguous 场景\n- **arXiv**: 2603.19233\n\n### Mechanistic Interpretability for Steering Vision-Language-Action Models (Häon et al., 2025)\n- **核心方法**: 将 transformer FFN layer 的 feedforward activations 投影到 token embedding basis，找到与动作选择因果相关的稀疏语义方向（speed、direction、height）\n- **关键发现**:\n  - 在 OpenVLA 和 π0 上验证，可在推理时实时调控行为（无需微调）\n  - Action tokens 分布在所有层中，但在最后一层的 value vectors 中占比最大\n  - Fine-tuning 主要影响 action tokens 而非 semantic tokens\n  - 跨多层的 neuron clusters 产生更强的运动效果\n  - 在 LIBERO-Long 和 UR5 物理平台上验证\n- **与我们的关联**: 方法论直接适用于 OpenVLA。可以用他们的 activation projection 方法寻找 LLM 训练引入的非视觉语义方向（如 task phase、goal semantics）\n- **arXiv**: 2509.00328\n\n### Observing and Controlling Features in Vision-Language-Action Models (Buurmeijer, Amo Alonso, Swann & Pavone, 2026)\n- **核心方法**: 在每个 transformer layer 训练 linear probe（feature observer），提出 feature-observability 和 feature-controllability 概念，通过最小干预实现行为控制\n- **关键发现**:\n  - Robot states 和 actions 在 VLA transformer 表征中是**线性可解码**的\n  - Observations 对线性扰动具有鲁棒性，尤其早期层更稳健\n  - Gripper state 控制成功率 >90%，也可控制 end-effector height 和 speed\n  - 在 OpenVLA 和 π0.5 上测试，覆盖 LIBERO 和 BridgeData V2\n- **与我们的关联**: 直接适用。他们的 linear probe 方法可以用来检测 LLM 训练是否引入了超越 vision encoder 的可解码信息。但需注意：如果 robot state 和 action 已经线性可解码，需要找更高层次的 probing target\n- **arXiv**: 2603.05487\n\n### VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models (Zhang et al., 2025)\n- **核心方法**: 用统一的 minimal adaptation pipeline（MLP policy head, <1% 参数）将 24 个 VLM 转为 VLA，在 Calvin/SimplerEnv/LIBERO 上测试\n- **关键发现**:\n  - **Vision encoder 是主要性能瓶颈**: 冻结 vision encoder 导致剧烈性能下降（Qwen2.5VL-7B on Calvin: -1.23）\n  - **Word embedding 冻结对 VLA 性能无显著影响**\n  - **VLM 通用能力与 VLA 性能无相关性**: SimplerEnv 和 LIBERO 上线性回归分析无显著相关\n  - 视觉特征优化用于多模态理解/推理的表征与低层操控需要的精细表征存在本质 domain gap\n  - Embodied auxiliary task fine-tuning（VQA、pointing、depth prediction）反而损害性能\n- **与我们的关联**: **直接支持我们的发现**——vision encoder dominates，language 贡献微弱。但也暗示：需要找到 language model 确实有独特贡献的维度\n\n---\n\n## 2. Language Grounding Probing\n\n### LLMs Can Compensate for Deficiencies in Visual Representations (Takishita et al., 2025)\n- **核心方法**: 设计 Object Part Identification (OPI) task（用 Pascal Panoptic Parts 数据集识别局部 object parts），通过 Attention Knockout (AK) ablation 和 Logit Lens 分析 VLM 各组件贡献\n- **关键发现**:\n  - **Decoder self-attention 影响微弱**: 阻断 decoder self-attention 仅导致轻微性能下降\n  - **关键补偿能力**: 单独阻断 encoder self-attention 后，language decoder 能**大幅恢复**性能\n  - **选择性恢复**: 13B 模型能完全恢复高层语义特征，但浅层视觉特征部分不可恢复\n  - CLIP 文本编码器单独的 part identifiability 远低于 VLM\n- **与我们的关联**: **方法论启发极大**。可以在 OpenVLA 上做类似的 attention knockout 实验：阻断 vision encoder 的 self-attention，看 LLM decoder 能否从退化的视觉输入中恢复 task-relevant 信息。这直接测试 LLM 的补偿能力\n- **arXiv**: 2506.05439\n\n### Do LLMs \"know\" internally when they follow instructions? (Heo et al., 2024)\n- **核心方法**: 在 LLM embedding space 中用 linear probes 寻找 instruction-following dimension，在 first/middle/last token 位置、early/middle/final 层分析\n- **关键发现**:\n  - 模型从第一个 token 就展现可分离的 success/failure 表征（AUROC 0.74-0.88）\n  - Linear probes 对 unseen tasks 泛化良好（0.7-0.8 AUROC），但对不同 instruction types 失败（~0.5 AUROC）\n  - 该维度主要与 prompt phrasing 相关，而非 task familiarity 或 instruction difficulty\n  - Representation engineering 沿此维度的调整可提升 instruction-following 成功率\n- **与我们的关联**: 可以在 OpenVLA hidden states 中寻找类似的 \"instruction-following dimension\"——trained model 应比 untrained model 更清晰地编码 instruction compliance。这是一个明确的 vision-inaccessible signal\n- **arXiv**: 2410.14516\n\n### Probing Visual Language Priors in VLMs (Luo et al., 2025)\n- **核心方法**: 构建 ViLP benchmark——合成 OOD 图像 + QIA triplets，测试 VLM 是否真正进行视觉推理而非依赖语言先验\n- **关键发现**:\n  - 人类 98%+ 准确率，GPT-4o 仅 66.17%，Claude-3.5-Sonnet 70%\n  - 图像退化后 performance 急剧下降，但 \"prior\" accuracy 保持 ~50%——VLM 严重依赖文本推理\n  - Image-DPO（对比 clean vs degraded images）可提升视觉推理\n- **与我们的关联**: 提供了一种设计 probing task 的思路：构造需要超越视觉先验的 task，让 language model 的贡献可见。例如在 LIBERO 中，同一视觉 scene 对应不同 instruction 时的行为差异\n- **arXiv**: 2501.00569\n\n### LIBERO-Plus: In-depth Robustness Analysis of VLA Models (Fei et al., 2025)\n- **核心方法**: 在 7 个维度（object layout、camera、robot state、language、lighting、textures、noise）对 10 个 VLA 模型进行系统扰动测试，10,030 evaluation tasks\n- **关键发现**:\n  - **Language signals 基本被忽略**: OpenVLA-OFT 在 blank language input 下 object suite 性能基本不变\n  - **Positional memorization**: 模型对 confounding objects 有弹性，但 target objects 位移时失败——依赖记忆位置而非 object semantics\n  - **Compositional gap**: 联合扰动导致比预期更差的失败，存在 representation entanglement\n  - 从 95% 到 <30% 的性能骤降说明 benchmark 成绩掩盖了根本脆弱性\n- **与我们的关联**: **直接确认我们的困境**——LIBERO 中 language 被忽略，models 是 visual pattern matchers。关键启示：需要设计扰动实验或 multi-goal 场景来逼出 language 的作用\n- **arXiv**: 2510.13626\n\n---\n\n## 3. Causal/Planning Probing\n\n### Causal Tracing of Object Representations in Large Vision Language Models (Li et al., 2025)\n- **核心方法**: 提出 Fine-grained Cross-modal Causal Tracing (FCCT)——引入 Gaussian noise 扰动图像，对比 clean/corrupted/patched 三种推理，测量 Recovery Rate\n- **关键发现**:\n  - **Cross-modal aggregation**: 中间层 final token 的 MHSA 在聚合 visual/textual 信息中起关键作用，attention 在 Layer 15 左右达峰\n  - **Hierarchical MLP progression**: 早期层编码局部嵌入 → 中间层实现跨模态交互 → 深层积累 task-relevant 表征\n  - **语义迁移**: hidden states 从浅层的 vision-centric 过渡到深层的 cross-modal + task-specific\n  - 提出 Intermediate Representation Injection (IRI) 作为训练无关的幻觉缓解方法\n- **与我们的关联**: FCCT 方法可以直接应用于 OpenVLA——通过因果追踪确定哪些层/位置编码了超越视觉的 task structure 信息。特别是中间层的跨模态交互可能是 LLM 训练的独特贡献\n- **arXiv**: 2511.05923\n\n### CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models (Zhao et al., CVPR 2025)\n- **核心方法**: 在 VLA 训练中引入 visual chain-of-thought，让模型在生成动作前先生成推理步骤（文本或视觉形式）\n- **关键发现**:\n  - CoT 训练显著提升 VLA 性能，尤其在需要多步推理的 long-horizon task 上\n  - Textual CoT 和 visual CoT 各有优势\n  - 推理过程的表征可以被 probe 解码\n- **与我们的关联**: 如果 VLA 编码了 CoT-like 的推理过程（subtask ordering、goal decomposition），这些是纯视觉无法获得的。可以设计 probing task 测试模型是否隐式编码了 task decomposition\n\n### Latent Reasoning VLA (LaRA-VLA, 2026)\n- **核心方法**: 在 latent space 中执行推理和预测，不需要显式文本 CoT\n- **关键发现**:\n  - Latent space reasoning 可以编码 planning 信息\n  - 比 explicit CoT 更高效\n- **与我们的关联**: 如果 OpenVLA 的 LLM 在 hidden states 中进行了 latent reasoning，这些信息应该可以通过 probing 检测到。可以设计 subtask prediction probe 测试是否 LLM 层编码了超越当前视觉观测的 planning 信息\n- **arXiv**: 2602.01166\n\n---\n\n## 4. Mechanistic Interpretability of VLA/VLM\n\n### Mechanistic Interpretability Meets Vision Language Models (ICLR Blogposts 2025)\n- **核心方法**: 系统综述 5 种机制可解释性方法在 VLM 上的应用：probing、activation patching、logit lens、sparse autoencoders、automated explanation\n- **关键发现**:\n  - Layers 1-10 处理广泛 contextual 信息，layers 15-24 聚焦提取特定 object 细节\n  - **预训练模型优先 language 而非 vision**\n  - Cross-modal integration 主要发生在 late layers\n  - LLaVA 缺少 \"text-only\" attention heads，BLIP 没有 \"vision-only\" heads——不同架构的 modality 处理模式差异显著\n- **与我们的关联**: 提供了完整的方法论工具包。特别是 activation patching 可以因果性地确定哪些层对 instruction understanding 贡献最大\n\n### Hidden in Plain Sight: VLMs Overlook Their Visual Representations (Fu et al., 2025)\n- **核心方法**: 比较 VLM 与其底层 vision encoder 在 vision-centric tasks（depth estimation、correspondence、3D awareness）的性能\n- **关键发现**:\n  - **巨大性能差距**: Vision encoder 在 depth estimation 上 88.7%，VLM 降至 65.3%（-21.7%）\n  - Vision features 在 VLM 各层中保持完整性——信息损失发生在 linguistic processing 阶段\n  - **LLM 是瓶颈**: fine-tuning LLM 组件带来最大性能提升\n  - VLM 在有无图像时产生几乎相同的答案分布——继承了 language model 的 blind biases\n  - DINOv2 在 5/6 视觉任务上最强，但不产生最强 VLM——说明是 misuse 而非 encoder weakness\n- **与我们的关联**: 反向启示——如果 VLM/VLA 的 LLM 是瓶颈，那 probing 应该测试 LLM 是否成功利用了视觉信息（而不是仅测试视觉信息是否存在）。需要设计测试 cross-modal integration 质量的 probing task\n- **arXiv**: 2506.08008\n\n### Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs (Liu et al., 2025)\n- **核心方法**: Layer-wise attention 分析，追踪 text tokens（浅层）到 visual tokens（深层）的注意力转移\n- **关键发现**:\n  - 浅层主要关注 text，深层稀疏但可靠地关注 localized evidence regions\n  - **\"Seeing but Not Believing\"**: 深层正确关注了相关视觉证据，但最终答案仍然错误——推理瓶颈而非感知瓶颈\n  - Visual Evidence Augmentation (Vea) 可在推理时提升准确率（最高 +11.1 exact match）\n- **与我们的关联**: 说明 VLM/VLA 的问题不在于看不到，而在于 reasoning 阶段没有正确利用视觉信息。Probing 应聚焦于 LLM 层中 cross-modal reasoning 的质量\n- **arXiv**: 2510.17771\n\n---\n\n## 5. Negative Results / Failure Modes in VLA Probing\n\n### \"Vision Encoder Dominates\" 现象汇总\n\n| 论文 | 发现 | 环境 |\n|------|------|------|\n| VLM4VLA (Zhang et al., 2025) | Word embedding 冻结无影响；vision encoder 冻结致命 | Calvin, SimplerEnv, LIBERO |\n| Not All Features (Grant et al., 2026) | Null-prompt 注入 baseline activations 可恢复行为 | LIBERO, 6 models |\n| LIBERO-Plus (Fei et al., 2025) | Blank language input 下性能不变；positional memorization | LIBERO, 10 models |\n| Hidden in Plain Sight (Fu et al., 2025) | VLM 有无图像答案分布几乎相同 | Depth, correspondence, 3D |\n| Seeing but Not Believing (Liu et al., 2025) | 正确感知但错误推理 | VQA benchmarks |\n\n### 共性模式\n1. **LIBERO 场景过于视觉可辨**: object positions、gripper state、task progress 全部可从像素直接判断\n2. **Language 在 single-goal 场景中冗余**: 当视觉 context 唯一确定 task 时，language signal 被完全忽略\n3. **Models 学到的是 positional shortcuts**: 位置记忆而非语义理解\n4. **LLM 层存在但未被充分利用**: vision features 在 LLM 层中保持完整，但 LLM 未成功 enrich 它们\n\n### 破局方向（来自文献的启示）\n- **Multi-goal ambiguous scenes** (Grant et al.): libero_goal suite 中 language 贡献显著\n- **Attention Knockout** (Takishita et al.): 阻断 vision encoder 看 LLM 能否补偿\n- **Cross-modal causal tracing** (Li et al.): 追踪 LLM 层中的跨模态信息聚合\n- **Instruction-following dimension** (Heo et al.): 寻找 hidden state 中的 instruction compliance 方向\n\n---\n\n## 综合建议\n\n### Top-3 最值得尝试的 Probing Tasks\n\n#### 1. Instruction-Conditioned Action Prediction（可行性 ★★★★★，预期效果 ★★★★☆）\n- **原理**: 从 Grant et al. 2026 的发现出发——当多个 goal 共享同一 visual scene 时，language 编码变得关键。设计 probing task：给定相同视觉观测 + 不同 instruction，从 hidden states 预测 instruction identity 或 target action。\n- **具体设计**:\n  - 用 LIBERO-Goal suite（同一 scene 多个 goal）\n  - 在每个 timestep 从 hidden states 训练 linear probe 预测：(a) 当前 instruction 是哪一个，(b) target object 是什么\n  - 对比 vision encoder only vs. full VLA 的 probe accuracy\n- **需要的数据**: LIBERO-Goal 的多 goal 轨迹数据（已有）\n- **代码改动**: 在现有 probing pipeline 基础上增加 instruction identity classification head，使用 LIBERO-Goal 而非 LIBERO-Spatial/Object\n- **预估工时**: 2-3 天\n\n#### 2. Counterfactual Activation Injection + Probing（可行性 ★★★★☆，预期效果 ★★★★★）\n- **原理**: 结合 Grant et al. 的 activation injection 和 Häon et al. 的 semantic direction 方法。注入 null-prompt 或 wrong-prompt 的 activations，看 probing accuracy 如何变化。如果 LLM 训练有独特贡献，wrong-prompt injection 应显著降低 task-relevant probing accuracy。\n- **具体设计**:\n  - 记录 correct-prompt 和 wrong-prompt 下的 layer-wise activations\n  - 用 linear probe 从 correct/wrong/null activations 预测 task identity、next subtask、goal object\n  - 计算 Δ accuracy 作为 language contribution 的度量\n- **需要的数据**: 同一 scene 下不同 instruction 的 rollout（可从 LIBERO-Goal 收集）\n- **代码改动**: activation recording + injection pipeline，需修改 forward pass\n- **预估工时**: 3-5 天\n\n#### 3. Cross-modal Causal Tracing for Task Structure（可行性 ★★★☆☆，预期效果 ★★★★★）\n- **原理**: 用 Li et al. 2025 的 FCCT 方法，但应用于 OpenVLA + LIBERO。扰动 visual input，追踪哪些 LLM 层恢复了 task-relevant 信息——这些恢复的信息必然来自 language/LLM 的先验知识而非 vision。\n- **具体设计**:\n  - 对 visual tokens 注入 Gaussian noise\n  - 在每一层逐步恢复 clean activations（patching）\n  - 测量 Recovery Rate：哪些层恢复了 (a) action accuracy，(b) subtask prediction，(c) goal identification\n  - 对比 trained vs untrained LLM 的恢复模式\n- **需要的数据**: 标准 LIBERO 轨迹 + noise-augmented 版本\n- **代码改动**: 需实现 causal tracing pipeline（noise injection + activation patching + 逐层恢复）\n- **预估工时**: 5-7 天\n\n### 额外建议\n\n- **快速验证**: 先做 Task 1（instruction-conditioned probing on LIBERO-Goal），2-3 天可出结果。如果 LLM-trained model 在 instruction identity probing 上显著优于 vision-only，就找到了 vision-inaccessible 的贡献维度\n- **关键 insight**: 不要在 LIBERO-Spatial/Object 上做（那些 single-goal 场景中 vision 足够），必须用 multi-goal ambiguous 场景\n- **方法论参考**: Buurmeijer et al. 2026 的 linear probe 框架可直接复用，他们已经在 OpenVLA + LIBERO 上验证过\n\n---\n\n## 参考文献\n\n1. Grant, B., Zhao, X., & Wang, P. (2026). Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models. arXiv:2603.19233.\n2. Häon, B., Stocking, K., Chuang, I., & Tomlin, C. (2025). Mechanistic Interpretability for Steering Vision-Language-Action Models. arXiv:2509.00328.\n3. Buurmeijer, H., Amo Alonso, C., Swann, A., & Pavone, M. (2026). Observing and Controlling Features in Vision-Language-Action Models. arXiv:2603.05487.\n4. Zhang, J. et al. (2025). VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models. arXiv:2601.03309.\n5. Takishita, S. et al. (2025). LLMs Can Compensate for Deficiencies in Visual Representations. arXiv:2506.05439.\n6. Heo, J. et al. (2024). Do LLMs \"know\" internally when they follow instructions? arXiv:2410.14516.\n7. Luo, T. et al. (2025). Probing Visual Language Priors in VLMs. arXiv:2501.00569.\n8. Fei, S. et al. (2025). LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models. arXiv:2510.13626.\n9. Li, Q. et al. (2025). Causal Tracing of Object Representations in Large Vision Language Models. arXiv:2511.05923.\n10. Zhao et al. (2025). CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models. CVPR 2025.\n11. LaRA-VLA (2026). Latent Reasoning VLA. arXiv:2602.01166.\n12. ICLR Blogposts (2025). Mechanistic Interpretability Meets Vision Language Models.\n13. Fu, S. et al. (2025). Hidden in Plain Sight: VLMs Overlook Their Visual Representations. arXiv:2506.08008.\n14. Liu, Z. et al. (2025). Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs. arXiv:2510.17771.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "aecfedd0-05fb-4f57-ba7e-13c61dbf0f36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MWZsnpj5jCL9SWos7nUK6w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 57815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T14:07:10.193Z_
+
+<details><summary>↩ Tool result · `toolu_01AUBJUSqsqvovbsumUXkW4A`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/literature_map_probing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "4174b976-9c6f-41e9-bbdc-0b43a1786915",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/literature_map_probing.md",
+    "content": "# VLA Probing Beyond Vision — Literature Survey\n\n> 调研日期：2026-05-15\n> 目标：寻找视觉不可达（vision-inaccessible）的 probing task，证明 VLA LLM 训练对表征的独特贡献\n\n---\n\n## 1. Action/Policy Probing\n\n### Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models (Grant, Zhao & Wang, 2026)\n- **核心方法**: 跨 6 个 VLA 模型（80M–7B）使用 activation injection、sparse autoencoders (SAEs)、linear probes 进行机制分析，394K+ rollout episodes\n- **关键发现**:\n  - **Visual pathway dominance**: 将 baseline activations 注入 null-prompt episodes 可恢复几乎相同的行为，说明视觉通路主导动作生成\n  - **Language sensitivity is suite-dependent**: 当视觉 context 唯一确定 task 时，language 被忽略（libero_object: 60-100% 不受 prompt 影响）；当多个 goal 共享同一 scene 时，language 变得关键（libero_goal: 94%→10%）\n  - **Spatially bound motor programs**: 跨 task injection 使机器人移向 source-task 位置（99.8% alignment），说明动作编码的是工作空间坐标而非抽象 task representation\n  - **Expert pathway vs VLM pathway**: 多路径模型中，expert pathway injection 导致 2× 更大的行为位移\n  - 识别出 82+ manipulation concepts，但 28-92% zero-effect rate\n- **与我们的关联**: **极度相关**。该论文的 libero_goal 实验直接证明：当 scene 中有多个可能 goal 时，language 编码是关键的。这为我们设计 probing task 提供了直接方向——需要用 multi-goal ambiguous 场景\n- **arXiv**: 2603.19233\n\n### Mechanistic Interpretability for Steering Vision-Language-Action Models (Häon et al., 2025)\n- **核心方法**: 将 transformer FFN layer 的 feedforward activations 投影到 token embedding basis，找到与动作选择因果相关的稀疏语义方向（speed、direction、height）\n- **关键发现**:\n  - 在 OpenVLA 和 π0 上验证，可在推理时实时调控行为（无需微调）\n  - Action tokens 分布在所有层中，但在最后一层的 value vectors 中占比最大\n  - Fine-tuning 主要影响 action tokens 而非 semantic tokens\n  - 跨多层的 neuron clusters 产生更强的运动效果\n  - 在 LIBERO-Long 和 UR5 物理平台上验证\n- **与我们的关联**: 方法论直接适用于 OpenVLA。可以用他们的 activation projection 方法寻找 LLM 训练引入的非视觉语义方向（如 task phase、goal semantics）\n- **arXiv**: 2509.00328\n\n### Observing and Controlling Features in Vision-Language-Action Models (Buurmeijer, Amo Alonso, Swann & Pavone, 2026)\n- **核心方法**: 在每个 transformer layer 训练 linear probe（feature observer），提出 feature-observability 和 feature-controllability 概念，通过最小干预实现行为控制\n- **关键发现**:\n  - Robot states 和 actions 在 VLA transformer 表征中是**线性可解码**的\n  - Observations 对线性扰动具有鲁棒性，尤其早期层更稳健\n  - Gripper state 控制成功率 >90%，也可控制 end-effector height 和 speed\n  - 在 OpenVLA 和 π0.5 上测试，覆盖 LIBERO 和 BridgeData V2\n- **与我们的关联**: 直接适用。他们的 linear probe 方法可以用来检测 LLM 训练是否引入了超越 vision encoder 的可解码信息。但需注意：如果 robot state 和 action 已经线性可解码，需要找更高层次的 probing target\n- **arXiv**: 2603.05487\n\n### VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models (Zhang et al., 2025)\n- **核心方法**: 用统一的 minimal adaptation pipeline（MLP policy head, <1% 参数）将 24 个 VLM 转为 VLA，在 Calvin/SimplerEnv/LIBERO 上测试\n- **关键发现**:\n  - **Vision encoder 是主要性能瓶颈**: 冻结 vision encoder 导致剧烈性能下降（Qwen2.5VL-7B on Calvin: -1.23）\n  - **Word embedding 冻结对 VLA 性能无显著影响**\n  - **VLM 通用能力与 VLA 性能无相关性**: SimplerEnv 和 LIBERO 上线性回归分析无显著相关\n  - 视觉特征优化用于多模态理解/推理的表征与低层操控需要的精细表征存在本质 domain gap\n  - Embodied auxiliary task fine-tuning（VQA、pointing、depth prediction）反而损害性能\n- **与我们的关联**: **直接支持我们的发现**——vision encoder dominates，language 贡献微弱。但也暗示：需要找到 language model 确实有独特贡献的维度\n\n---\n\n## 2. Language Grounding Probing\n\n### LLMs Can Compensate for Deficiencies in Visual Representations (Takishita et al., 2025)\n- **核心方法**: 设计 Object Part Identification (OPI) task（用 Pascal Panoptic Parts 数据集识别局部 object parts），通过 Attention Knockout (AK) ablation 和 Logit Lens 分析 VLM 各组件贡献\n- **关键发现**:\n  - **Decoder self-attention 影响微弱**: 阻断 decoder self-attention 仅导致轻微性能下降\n  - **关键补偿能力**: 单独阻断 encoder self-attention 后，language decoder 能**大幅恢复**性能\n  - **选择性恢复**: 13B 模型能完全恢复高层语义特征，但浅层视觉特征部分不可恢复\n  - CLIP 文本编码器单独的 part identifiability 远低于 VLM\n- **与我们的关联**: **方法论启发极大**。可以在 OpenVLA 上做类似的 attention knockout 实验：阻断 vision encoder 的 self-attention，看 LLM decoder 能否从退化的视觉输入中恢复 task-relevant 信息。这直接测试 LLM 的补偿能力\n- **arXiv**: 2506.05439\n\n### Do LLMs \"know\" internally when they follow instructions? (Heo et al., 2024)\n- **核心方法**: 在 LLM embedding space 中用 linear probes 寻找 instruction-following dimension，在 first/middle/last token 位置、early/middle/final 层分析\n- **关键发现**:\n  - 模型从第一个 token 就展现可分离的 success/failure 表征（AUROC 0.74-0.88）\n  - Linear probes 对 unseen tasks 泛化良好（0.7-0.8 AUROC），但对不同 instruction types 失败（~0.5 AUROC）\n  - 该维度主要与 prompt phrasing 相关，而非 task familiarity 或 instruction difficulty\n  - Representation engineering 沿此维度的调整可提升 instruction-following 成功率\n- **与我们的关联**: 可以在 OpenVLA hidden states 中寻找类似的 \"instruction-following dimension\"——trained model 应比 untrained model 更清晰地编码 instruction compliance。这是一个明确的 vision-inaccessible signal\n- **arXiv**: 2410.14516\n\n### Probing Visual Language Priors in VLMs (Luo et al., 2025)\n- **核心方法**: 构建 ViLP benchmark——合成 OOD 图像 + QIA triplets，测试 VLM 是否真正进行视觉推理而非依赖语言先验\n- **关键发现**:\n  - 人类 98%+ 准确率，GPT-4o 仅 66.17%，Claude-3.5-Sonnet 70%\n  - 图像退化后 performance 急剧下降，但 \"prior\" accuracy 保持 ~50%——VLM 严重依赖文本推理\n  - Image-DPO（对比 clean vs degraded images）可提升视觉推理\n- **与我们的关联**: 提供了一种设计 probing task 的思路：构造需要超越视觉先验的 task，让 language model 的贡献可见。例如在 LIBERO 中，同一视觉 scene 对应不同 instruction 时的行为差异\n- **arXiv**: 2501.00569\n\n### LIBERO-Plus: In-depth Robustness Analysis of VLA Models (Fei et al., 2025)\n- **核心方法**: 在 7 个维度（object layout、camera、robot state、language、lighting、textures、noise）对 10 个 VLA 模型进行系统扰动测试，10,030 evaluation tasks\n- **关键发现**:\n  - **Language signals 基本被忽略**: OpenVLA-OFT 在 blank language input 下 object suite 性能基本不变\n  - **Positional memorization**: 模型对 confounding objects 有弹性，但 target objects 位移时失败——依赖记忆位置而非 object semantics\n  - **Compositional gap**: 联合扰动导致比预期更差的失败，存在 representation entanglement\n  - 从 95% 到 <30% 的性能骤降说明 benchmark 成绩掩盖了根本脆弱性\n- **与我们的关联**: **直接确认我们的困境**——LIBERO 中 language 被忽略，models 是 visual pattern matchers。关键启示：需要设计扰动实验或 multi-goal 场景来逼出 language 的作用\n- **arXiv**: 2510.13626\n\n---\n\n## 3. Causal/Planning Probing\n\n### Causal Tracing of Object Representations in Large Vision Language Models (Li et al., 2025)\n- **核心方法**: 提出 Fine-grained Cross-modal Causal Tracing (FCCT)——引入 Gaussian noise 扰动图像，对比 clean/corrupted/patched 三种推理，测量 Recovery Rate\n- **关键发现**:\n  - **Cross-modal aggregation**: 中间层 final token 的 MHSA 在聚合 visual/textual 信息中起关键作用，attention 在 Layer 15 左右达峰\n  - **Hierarchical MLP progression**: 早期层编码局部嵌入 → 中间层实现跨模态交互 → 深层积累 task-relevant 表征\n  - **语义迁移**: hidden states 从浅层的 vision-centric 过渡到深层的 cross-modal + task-specific\n  - 提出 Intermediate Representation Injection (IRI) 作为训练无关的幻觉缓解方法\n- **与我们的关联**: FCCT 方法可以直接应用于 OpenVLA——通过因果追踪确定哪些层/位置编码了超越视觉的 task structure 信息。特别是中间层的跨模态交互可能是 LLM 训练的独特贡献\n- **arXiv**: 2511.05923\n\n### CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models (Zhao et al., CVPR 2025)\n- **核心方法**: 在 VLA 训练中引入 visual chain-of-thought，让模型在生成动作前先生成推理步骤（文本或视觉形式）\n- **关键发现**:\n  - CoT 训练显著提升 VLA 性能，尤其在需要多步推理的 long-horizon task 上\n  - Textual CoT 和 visual CoT 各有优势\n  - 推理过程的表征可以被 probe 解码\n- **与我们的关联**: 如果 VLA 编码了 CoT-like 的推理过程（subtask ordering、goal decomposition），这些是纯视觉无法获得的。可以设计 probing task 测试模型是否隐式编码了 task decomposition\n\n### Latent Reasoning VLA (LaRA-VLA, 2026)\n- **核心方法**: 在 latent space 中执行推理和预测，不需要显式文本 CoT\n- **关键发现**:\n  - Latent space reasoning 可以编码 planning 信息\n  - 比 explicit CoT 更高效\n- **与我们的关联**: 如果 OpenVLA 的 LLM 在 hidden states 中进行了 latent reasoning，这些信息应该可以通过 probing 检测到。可以设计 subtask prediction probe 测试是否 LLM 层编码了超越当前视觉观测的 planning 信息\n- **arXiv**: 2602.01166\n\n---\n\n## 4. Mechanistic Interpretability of VLA/VLM\n\n### Mechanistic Interpretability Meets Vision Language Models (ICLR Blogposts 2025)\n- **核心方法**: 系统综述 5 种机制可解释性方法在 VLM 上的应用：probing、activation patching、logit lens、sparse autoencoders、automated explanation\n- **关键发现**:\n  - Layers 1-10 处理广泛 contextual 信息，layers 15-24 聚焦提取特定 object 细节\n  - **预训练模型优先 language 而非 vision**\n  - Cross-modal integration 主要发生在 late layers\n  - LLaVA 缺少 \"text-only\" attention heads，BLIP 没有 \"vision-only\" heads——不同架构的 modality 处理模式差异显著\n- **与我们的关联**: 提供了完整的方法论工具包。特别是 activation patching 可以因果性地确定哪些层对 instruction understanding 贡献最大\n\n### Hidden in Plain Sight: VLMs Overlook Their Visual Representations (Fu et al., 2025)\n- **核心方法**: 比较 VLM 与其底层 vision encoder 在 vision-centric tasks（depth estimation、correspondence、3D awareness）的性能\n- **关键发现**:\n  - **巨大性能差距**: Vision encoder 在 depth estimation 上 88.7%，VLM 降至 65.3%（-21.7%）\n  - Vision features 在 VLM 各层中保持完整性——信息损失发生在 linguistic processing 阶段\n  - **LLM 是瓶颈**: fine-tuning LLM 组件带来最大性能提升\n  - VLM 在有无图像时产生几乎相同的答案分布——继承了 language model 的 blind biases\n  - DINOv2 在 5/6 视觉任务上最强，但不产生最强 VLM——说明是 misuse 而非 encoder weakness\n- **与我们的关联**: 反向启示——如果 VLM/VLA 的 LLM 是瓶颈，那 probing 应该测试 LLM 是否成功利用了视觉信息（而不是仅测试视觉信息是否存在）。需要设计测试 cross-modal integration 质量的 probing task\n- **arXiv**: 2506.08008\n\n### Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs (Liu et al., 2025)\n- **核心方法**: Layer-wise attention 分析，追踪 text tokens（浅层）到 visual tokens（深层）的注意力转移\n- **关键发现**:\n  - 浅层主要关注 text，深层稀疏但可靠地关注 localized evidence regions\n  - **\"Seeing but Not Believing\"**: 深层正确关注了相关视觉证据，但最终答案仍然错误——推理瓶颈而非感知瓶颈\n  - Visual Evidence Augmentation (Vea) 可在推理时提升准确率（最高 +11.1 exact match）\n- **与我们的关联**: 说明 VLM/VLA 的问题不在于看不到，而在于 reasoning 阶段没有正确利用视觉信息。Probing 应聚焦于 LLM 层中 cross-modal reasoning 的质量\n- **arXiv**: 2510.17771\n\n---\n\n## 5. Negative Results / Failure Modes in VLA Probing\n\n### \"Vision Encoder Dominates\" 现象汇总\n\n| 论文 | 发现 | 环境 |\n|------|------|------|\n| VLM4VLA (Zhang et al., 2025) | Word embedding 冻结无影响；vision encoder 冻结致命 | Calvin, SimplerEnv, LIBERO |\n| Not All Features (Grant et al., 2026) | Null-prompt 注入 baseline activations 可恢复行为 | LIBERO, 6 models |\n| LIBERO-Plus (Fei et al., 2025) | Blank language input 下性能不变；positional memorization | LIBERO, 10 models |\n| Hidden in Plain Sight (Fu et al., 2025) | VLM 有无图像答案分布几乎相同 | Depth, correspondence, 3D |\n| Seeing but Not Believing (Liu et al., 2025) | 正确感知但错误推理 | VQA benchmarks |\n\n### 共性模式\n1. **LIBERO 场景过于视觉可辨**: object positions、gripper state、task progress 全部可从像素直接判断\n2. **Language 在 single-goal 场景中冗余**: 当视觉 context 唯一确定 task 时，language signal 被完全忽略\n3. **Models 学到的是 positional shortcuts**: 位置记忆而非语义理解\n4. **LLM 层存在但未被充分利用**: vision features 在 LLM 层中保持完整，但 LLM 未成功 enrich 它们\n\n### 破局方向（来自文献的启示）\n- **Multi-goal ambiguous scenes** (Grant et al.): libero_goal suite 中 language 贡献显著\n- **Attention Knockout** (Takishita et al.): 阻断 vision encoder 看 LLM 能否补偿\n- **Cross-modal causal tracing** (Li et al.): 追踪 LLM 层中的跨模态信息聚合\n- **Instruction-following dimension** (Heo et al.): 寻找 hidden state 中的 instruction compliance 方向\n\n---\n\n## 综合建议\n\n### Top-3 最值得尝试的 Probing Tasks\n\n#### 1. Instruction-Conditioned Action Prediction（可行性 ★★★★★，预期效果 ★★★★☆）\n- **原理**: 从 Grant et al. 2026 的发现出发——当多个 goal 共享同一 visual scene 时，language 编码变得关键。设计 probing task：给定相同视觉观测 + 不同 instruction，从 hidden states 预测 instruction identity 或 target action。\n- **具体设计**:\n  - 用 LIBERO-Goal suite（同一 scene 多个 goal）\n  - 在每个 timestep 从 hidden states 训练 linear probe 预测：(a) 当前 instruction 是哪一个，(b) target object 是什么\n  - 对比 vision encoder only vs. full VLA 的 probe accuracy\n- **需要的数据**: LIBERO-Goal 的多 goal 轨迹数据（已有）\n- **代码改动**: 在现有 probing pipeline 基础上增加 instruction identity classification head，使用 LIBERO-Goal 而非 LIBERO-Spatial/Object\n- **预估工时**: 2-3 天\n\n#### 2. Counterfactual Activation Injection + Probing（可行性 ★★★★☆，预期效果 ★★★★★）\n- **原理**: 结合 Grant et al. 的 activation injection 和 Häon et al. 的 semantic direction 方法。注入 null-prompt 或 wrong-prompt 的 activations，看 probing accuracy 如何变化。如果 LLM 训练有独特贡献，wrong-prompt injection 应显著降低 task-relevant probing accuracy。\n- **具体设计**:\n  - 记录 correct-prompt 和 wrong-prompt 下的 layer-wise activations\n  - 用 linear probe 从 correct/wrong/null activations 预测 task identity、next subtask、goal object\n  - 计算 Δ accuracy 作为 language contribution 的度量\n- **需要的数据**: 同一 scene 下不同 instruction 的 rollout（可从 LIBERO-Goal 收集）\n- **代码改动**: activation recording + injection pipeline，需修改 forward pass\n- **预估工时**: 3-5 天\n\n#### 3. Cross-modal Causal Tracing for Task Structure（可行性 ★★★☆☆，预期效果 ★★★★★）\n- **原理**: 用 Li et al. 2025 的 FCCT 方法，但应用于 OpenVLA + LIBERO。扰动 visual input，追踪哪些 LLM 层恢复了 task-relevant 信息——这些恢复的信息必然来自 language/LLM 的先验知识而非 vision。\n- **具体设计**:\n  - 对 visual tokens 注入 Gaussian noise\n  - 在每一层逐步恢复 clean activations（patching）\n  - 测量 Recovery Rate：哪些层恢复了 (a) action accuracy，(b) subtask prediction，(c) goal identification\n  - 对比 trained vs untrained LLM 的恢复模式\n- **需要的数据**: 标准 LIBERO 轨迹 + noise-augmented 版本\n- **代码改动**: 需实现 causal tracing pipeline（noise injection + activation patching + 逐层恢复）\n- **预估工时**: 5-7 天\n\n### 额外建议\n\n- **快速验证**: 先做 Task 1（instruction-conditioned probing on LIBERO-Goal），2-3 天可出结果。如果 LLM-trained model 在 instruction identity probing 上显著优于 vision-only，就找到了 vision-inaccessible 的贡献维度\n- **关键 insight**: 不要在 LIBERO-Spatial/Object 上做（那些 single-goal 场景中 vision 足够），必须用 multi-goal ambiguous 场景\n- **方法论参考**: Buurmeijer et al. 2026 的 linear probe 框架可直接复用，他们已经在 OpenVLA + LIBERO 上验证过\n\n---\n\n## 参考文献\n\n1. Grant, B., Zhao, X., & Wang, P. (2026). Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models. arXiv:2603.19233.\n2. Häon, B., Stocking, K., Chuang, I., & Tomlin, C. (2025). Mechanistic Interpretability for Steering Vision-Language-Action Models. arXiv:2509.00328.\n3. Buurmeijer, H., Amo Alonso, C., Swann, A., & Pavone, M. (2026). Observing and Controlling Features in Vision-Language-Action Models. arXiv:2603.05487.\n4. Zhang, J. et al. (2025). VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models. arXiv:2601.03309.\n5. Takishita, S. et al. (2025). LLMs Can Compensate for Deficiencies in Visual Representations. arXiv:2506.05439.\n6. Heo, J. et al. (2024). Do LLMs \"know\" internally when they follow instructions? arXiv:2410.14516.\n7. Luo, T. et al. (2025). Probing Visual Language Priors in VLMs. arXiv:2501.00569.\n8. Fei, S. et al. (2025). LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models. arXiv:2510.13626.\n9. Li, Q. et al. (2025). Causal Tracing of Object Representations in Large Vision Language Models. arXiv:2511.05923.\n10. Zhao et al. (2025). CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models. CVPR 2025.\n11. LaRA-VLA (2026). Latent Reasoning VLA. arXiv:2602.01166.\n12. ICLR Blogposts (2025). Mechanistic Interpretability Meets Vision Language Models.\n13. Fu, S. et al. (2025). Hidden in Plain Sight: VLMs Overlook Their Visual Representations. arXiv:2506.08008.\n14. Liu, Z. et al. (2025). Seeing but Not Believing: Probing the Disconnect Between Visual Attention and Answer Correctness in VLMs. arXiv:2510.17771.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+Now let me register this artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "33d33575-37bd-47a9-b005-2a7d771a8899",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RP7dbDYxafFG2R8n6YjwQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 58034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7340
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MRQ3awMpc6nMQg8bkGmGpe`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "837dd1cb-8cd6-4783-9dac-aa2f78ec5ad2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RP7dbDYxafFG2R8n6YjwQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 58034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7340
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T14:07:13.377Z_
+
+<details><summary>↩ Tool result · `toolu_01MRQ3awMpc6nMQg8bkGmGpe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "3214211e-7dfa-4f6b-96e9-e5744e8326fc",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EXhgpATAn14ZKkjjFkPbpH`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "eb8b4662-ba98-48aa-b540-db599c05f252",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PKMSvcKrp9RzwVVWevQzF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 65374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 441
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T14:07:16.273Z_
+
+<details><summary>↩ Tool result · `toolu_01EXhgpATAn14ZKkjjFkPbpH`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "562e927c-ca4d-4436-a0e8-b2a394930e73",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JXkcTBYFsGSBrpXQxbZz7r`</summary>
+
+```json
+{
+  "query": "artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "fb9ae4df-db03-414e-bcae-e0995bd952ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Kc1512dq3DBWDrrTsuyXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 94,
+      "cache_read_input_tokens": 65815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 94
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T14:07:21.096Z_
+
+<details><summary>↩ Tool result · `toolu_01JXkcTBYFsGSBrpXQxbZz7r`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "43f84148-ea4c-414c-a33f-b9ac92155fba",
+  "tool_use_result": {
+    "matches": [],
+    "query": "artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+注册工具不可用，文件已写入 artifacts 目录。
+
+调研完成。文件位于 `artifacts/literature_map_probing.md`，覆盖 14 篇论文，5 个方向。
+
+**核心发现**：
+
+多篇论文（Grant 2026, VLM4VLA 2025, LIBERO-Plus 2025）独立验证了你遇到的 "vision encoder dominates" 问题。关键突破口来自 Grant et al. 的发现：**在 LIBERO-Goal suite 中（多个 goal 共享同一 scene），language 编码变得关键**（94%→10% under wrong prompts）。
+
+**Top-3 推荐 probing task**：
+
+1. **Instruction-Conditioned Probing on LIBERO-Goal**（2-3天）— 同一视觉场景、不同 instruction，probe 预测 instruction identity。最快验证 LLM 的独特贡献
+2. **Counterfactual Activation Injection**（3-5天）— 注入 wrong-prompt activations，测量 probing accuracy 下降幅度作为 language contribution 度量
+3. **Cross-modal Causal Tracing**（5-7天）— 扰动 visual tokens 后逐层恢复，追踪 LLM 层中非视觉来源的 task structure 信息
+
+建议先做 Task 1，在 LIBERO-Goal（而非 Spatial/Object）上做 instruction identity probing，2-3天可出结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "uuid": "0b2b253d-21b3-4b96-ade4-735ff51a5d3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8qtqFhCJ5g6Xs2owGgMBA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 90,
+      "cache_read_input_tokens": 65909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 90
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 96_
+
+注册工具不可用，文件已写入 artifacts 目录。
+
+调研完成。文件位于 `artifacts/literature_map_probing.md`，覆盖 14 篇论文，5 个方向。
+
+**核心发现**：
+
+多篇论文（Grant 2026, VLM4VLA 2025, LIBERO-Plus 2025）独立验证了你遇到的 "vision encoder dominates" 问题。关键突破口来自 Grant et al. 的发现：**在 LIBERO-Goal suite 中（多个 goal 共享同一 scene），language 编码变得关键**（94%→10% under wrong prompts）。
+
+**Top-3 推荐 probing task**：
+
+1. **Instruction-Conditioned Probing on LIBERO-Goal**（2-3天）— 同一视觉场景、不同 instruction，probe 预测 instruction identity。最快验证 LLM 的独特贡献
+2. **Counterfactual Activation Injection**（3-5天）— 注入 wrong-prompt activations，测量 probing accuracy 下降幅度作为 language contribution 度量
+3. **Cross-modal Causal Tracing**（5-7天）— 扰动 visual tokens 后逐层恢复，追踪 LLM 层中非视觉来源的 task structure 信息
+
+建议先做 Task 1，在 LIBERO-Goal（而非 Spatial/Object）上做 instruction identity probing，2-3天可出结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 448556,
+  "duration_api_ms": 608204,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "b4797d26-004d-4351-bd59-51d03ba989ec",
+  "total_cost_usd": 2.0067650000000006,
+  "usage": {
+    "input_tokens": 3819,
+    "cache_creation_input_tokens": 54158,
+    "cache_read_input_tokens": 657699,
+    "output_tokens": 20290,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 54158,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 419,
+        "cache_read_input_tokens": 65909,
+        "cache_creation_input_tokens": 90,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 90
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 598443,
+      "outputTokens": 14928,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 14,
+      "costUSD": 0.8130829999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 3819,
+      "outputTokens": 20290,
+      "cacheReadInputTokens": 657699,
+      "cacheCreationInputTokens": 54158,
+      "webSearchRequests": 0,
+      "costUSD": 1.193682,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "393475e6-e537-494c-a900-97248ce3a5c1"
+}
+```
+
+</details>
+
+---

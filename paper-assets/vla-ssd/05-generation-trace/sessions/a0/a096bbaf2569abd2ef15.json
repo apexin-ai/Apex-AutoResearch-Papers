@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a096bbaf2569abd2ef15",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code demo standardized rsa",
+  "task_key": "worker_code_demo_standardized_rsa_20260516T025703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_demo_standardized_rsa_20260516T025703_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "fa03b2563c27243575cb485e6633508c8c2123a59d89adc0cd0afb2e20d07104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**标准化 RSA（10 demos, Method B）**\n\n| Model | RSA | 95% CI |\n|-------|-----|--------|\n| **DINO cls** | **0.641** | [0.495, 0.775] |\n| DINO patch_mean | 0.568 | [0.392, 0.734] |\n| SigLIP projector | 0.565 | [0.427, 0.701] |\n| CLIP patch_mean | 0.541 | [0.362, 0.710] |\n| VLA untrained L9 imgmean | 0.514 | [0.367, 0.674] |\n| VLA trained L9 lastpre | 0.499 | [0.343, 0.635] |\n| CLIP cls | 0.482 | [0.292, 0.659] |\n\n**Pairwise Δ 重要发现**：\n- trained vs untrained 方向**因 feature type 而逆转**：`last_preaction` untrained > trained (Δ=-0.078, sig)，`image_mean` trained > untrained (Δ=+0.056, sig)。说明 training 在 token 位置间重新分配了 action information。\n- DINO cls > SigLIP projector (Δ=+0.077, sig)\n- SigLIP vs VLA trained: borderline (CI 下界 ≈ 0)\n\n**Step 2 回答**：`image_mean` 聚合的是 positions 1:257（256 个 image patch tokens），不含 BOS 和 text tokens。代码见 `extract_features.py` 第 `hs_tuple[li][:, 1:1+NUM_IMAGE_TOKENS, :].mean(dim=1)` 行。\n\nJSON 已保存到 `/root/autodl-tmp/vla-ssd/results/rsa/rsa_demo_standardized.json`，摘要在 `artifacts/demo_standardized_rsa.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-demo-standardized-rsa.md"
+}

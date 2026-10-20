@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef5c941ae1e9670ee082",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778878475.md",
+  "task_key": "loop_3_1778878475",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778878475.md",
+    "occurrence": 1,
+    "bytes": 4139,
+    "sha256": "7d7f13cba1889b9f7d94d2e5611ce373850d6e5386831a936d8ae417915b2165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T20:44:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 上只能用 cuda:0 和 cuda:1（2×RTX PRO 6000）\n- LIBERO-Goal 特征提取必须用 LIBERO-10 fine-tuned checkpoint（D017），不是 base pretrained\n- extract_features.py 必须带 `local_files_only=True`（AutoDL 无网络，不加会崩）\n- Goal Classification Gate 已锁定（memory.md），实验后不可修改阈值：Sanity-GC ≤25%, G1-GC >40%, G2-GC >25pp, G3-GC >10pp\n- 大文件只能放 `/root/autodl-tmp/vla-ssd/`，根分区 ~30GB 会满\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd/`（代码），数据盘 `/root/autodl-tmp/vla-ssd/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 checkpoint：`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`（trained）、`openvla-7b-untrained/`\n- LIBERO-10 特征：`/root/autodl-tmp/vla-ssd/features/trained/`、`untrained/`、`dinov2/`\n- LIBERO-Goal 特征：`/root/autodl-tmp/vla-ssd/features/trained_libero_goal/`（10/10 完成）、`untrained_libero_goal/`（状态待确认）\n- LIBERO-Goal 数据：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：无 RUNNING 实验。2 GPU 空闲\n\n### 3. 📊 当前状态\n**刚做完**：\n- lg_extract_trained：DONE/success（retry 后完成，53.4 min，10/10 tasks）\n- lg_extract_untrained：registry 显示 DONE/success，但这是诊断 Worker 修复后的状态——**需要验证 untrained_libero_goal/ 目录是否真的 10/10 h5 完整**\n- 诊断 Worker（worker_diagnose_lg_extract_failed_20260515T165835）修复了 `local_files_only` 问题并重跑了两个实验\n- 验证 Worker（worker_verify_lg_extract_trained_20260515T174035）已派出但未收到回调\n\n**等待中**：\n- 上述两个 Worker 的 [WORKER DONE] 回调可能已经完成但未被处理（session reset）\n- lg_extract_untrained 的 cron 完成回调可能也未被处理\n\n**Registry 异常条目**：\n- lg_extract_trained_r2、lg_extract_untrained_r2、mvp2_action_probe 状态为 DONE/killed——可能是诊断 Worker 为重跑而 kill 的旧进程，需确认\n\n### 4. 📋 待办（条件触发式）\n- **立即**：SSH 验证 `untrained_libero_goal/` 是否 10/10 h5 文件完整 → 完整则标 DONE/success，不完整则重跑\n- untrained 确认完成 → 启动 DINO-V2 LIBERO-Goal 特征提取（双卡并行）\n- DINO 提取完成 → 跑 t=0 cosine similarity sanity check（确认 shared-scene goals 视觉不可区分，gate ≥0.95）\n- sanity check PASS → 提交 goal classification probing 实验方案（trained/untrained/DINO 三组，按 Gate 定义评估）\n- sanity check FAIL → 汇报 Director，vision-ambiguous 假设不成立，需重新评估\n- **任何实验提交前**：读 `experiment_plan.yaml` 确认 plan_id 对齐\n\n### 5. 🎯 战略上下文\n- **核心 story**：VLA training matters when vision alone is insufficient。LIBERO-10（vision-sufficient）→ VLA 信号 vision-dominated（MVP-1/2 confirmed）；LIBERO-Goal（vision-ambiguous）→ instruction grounding 应该是 VLA 独有贡献\n- **决策链**：D007(G2 FAIL) → D008-D009(subtask pivot 终止) → D010-D014(action probe 也 vision-dominated) → D015(pivot to LIBERO-Goal) → D017(用 LIBERO-10 fine-tuned checkpoint, OOD 测试更有说服力)\n- **DDL**：CoRL 2026 Abstract May 26（11天），Paper May 29（14天）\n- **易错点**：\n  1. 不要用 base pretrained checkpoint 做 LIBERO-Goal（D017 明确要求 fine-tuned）\n  2. DINO 在 LIBERO-Goal 上可能通过 trajectory 后半段物体位移部分区分 goal——如果 DINO >25%，需检查 per-timestep accuracy 曲线，考虑只用前 30% 帧\n  3. AutoDL 提取脚本必须 `local_files_only=True`，网络不可靠\n  4. Grant et al. 2026 是最直接的竞争者——他们有 behavioral intervention 但没有 trained vs untrained representation analysis，这是我们的 novelty gap\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778878475.md"
+}

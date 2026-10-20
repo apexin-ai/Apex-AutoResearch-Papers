@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "dfbccf8044f41bb0f3fc",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fig llama2base attention comparison",
+  "task_key": "worker_code_fig_llama2base_attention_comparison_20260517T061138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_llama2base_attention_comparison_20260517T061138.log",
+    "occurrence": 1,
+    "bytes": 1380301,
+    "sha256": "2877d00d0bc752fd76db0dcebe78991a166717b8a1505b51a72b46ffe5f9e2d3"
+  },
+  "statistics": {
+    "messages": 348,
+    "user_turns": 2,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 125,
+      "tool_result": 125,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "dfbccf8044f41bb0f3fc-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "dfbccf8044f41bb0f3fc-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "dfbccf8044f41bb0f3fc-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "dfbccf8044f41bb0f3fc-part-0002.json",
+          "message_count": 42
+        },
+        {
+          "path": "dfbccf8044f41bb0f3fc-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fig-llama2base-attention-comparison.md"
+}

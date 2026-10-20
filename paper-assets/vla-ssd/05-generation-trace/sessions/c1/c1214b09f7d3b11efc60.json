@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1214b09f7d3b11efc60",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research read p1 result",
+  "task_key": "worker_research_read_p1_result_20260516T101333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_read_p1_result_20260516T101333_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "66f83dffd44334d4a00875b27e24aa6e376ba9bd227fff59e6c8cda02f58d743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== P1 Seed Robustness Results ===\nSeeds: [0, 1, 2, 3, 42]\nPeak layer per seed: [9, 16, 9, 10, 9]\nPeak R2 per seed: [0.6534, 0.6549, 0.6529, 0.6531, 0.6587]\nPeak layer mean±std: 10.6 ± 2.73\nPeak R2 mean±std: 0.6546 ± 0.0022\nPer-layer std range: min=0.0022, max=0.0086\nElapsed: 845.7s\n\nFile: -rw-r--r-- 1 root root 6948 May 16 17:33 /root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-read-p1-result.md"
+}

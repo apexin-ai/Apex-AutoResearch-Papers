@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "dd4403cbbbfaeabe53a6",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code gen cross inst heatmap",
+  "task_key": "worker_code_gen_cross_inst_heatmap_20260517T043900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gen_cross_inst_heatmap_20260517T043900.log",
+    "occurrence": 1,
+    "bytes": 662348,
+    "sha256": "cc2ccf5566283f2f12d979301629b8426cf59923af9fe740c9bc6cfc013c7e27"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 2,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 50,
+      "tool_result": 50,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "dd4403cbbbfaeabe53a6-part-0001.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "dd4403cbbbfaeabe53a6-part-0001.json",
+          "message_count": 26
+        },
+        {
+          "path": "dd4403cbbbfaeabe53a6-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "dd4403cbbbfaeabe53a6-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gen-cross-inst-heatmap.md"
+}

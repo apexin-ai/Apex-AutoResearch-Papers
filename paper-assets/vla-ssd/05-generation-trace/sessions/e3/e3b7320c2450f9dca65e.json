@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3b7320c2450f9dca65e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code llama2 base control setup",
+  "task_key": "worker_code_llama2_base_control_setup_20260517T045040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2_base_control_setup_20260517T045040_result.json",
+    "occurrence": 1,
+    "bytes": 2069,
+    "sha256": "bcb921015bc65716e378861bf579a29ec7bd2d1dbfc7a3a0b87445a8beff2a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK, I'll stop polling now. The download is clearly progressing at a steady ~290 MB/min. Here's the full status report:\n\n---\n\n## Summary\n\n### Completed:\n1. **Weight mapping confirmed** — OpenVLA's LLM keys are `language_model.{llama2_key}`. Direct 1:1 mapping with `language_model.` prefix.\n\n2. **Vocab mismatch handled** — OpenVLA has 32064 tokens (32000 + 64 action bins). For `embed_tokens` and `lm_head`: first 32000 rows from Llama-2 base, extra 64 rows kept from trained OpenVLA.\n\n3. **Scripts written**:\n   - **`/root/vla-ssd/scripts/create_llama2_base_openvla.py`** — Standalone checkpoint creation. Loads both models' state dicts, injects Llama-2 base weights into `language_model.*`, saves sharded safetensors.\n   - **`/root/vla-ssd/scripts/cross_instruction_extract_dense.py`** — Modified to accept `--condition llama2base` (loads Llama-2 base at runtime, same as existing `untrained` pattern).\n\n4. **Server ready** — 2x RTX PRO 6000 (98GB), PyTorch 2.10, CUDA, safetensors 0.7.0.\n\n### In progress:\n- **Llama-2-7B downloading** from `NousResearch/Llama-2-7b-hf` via hf-mirror.com (Meta gated model → used community copy). ~3.2GB / ~13.5GB done. **ETA: ~35 min** (PID 768142).\n- Saved to: `/root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/`\n\n### After download completes, run:\n```bash\n# Find the snapshot path\nSNAP=$(ls /root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/)\n# Create checkpoint\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/create_llama2_base_openvla.py \\\n  --openvla_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b \\\n  --llama2_path /root/autodl-tmp/hf_cache/models--NousResearch--Llama-2-7b-hf/snapshots/$SNAP \\\n  --output_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-llama2base\n```\n\nOr skip the checkpoint and run the probe directly:\n```bash\n/root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/cross_instruction_extract_dense.py \\\n  --condition llama2base --dry-run\n```\n\n### No blockers — just waiting on download."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama2-base-control-setup.md"
+}

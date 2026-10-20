@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4435480a275f4cd1a5a",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778877858.md",
+  "task_key": "loop_3_1778877858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778877858.md",
+    "occurrence": 1,
+    "bytes": 5113,
+    "sha256": "1d147224c2f5c51dbca7e77afa8475616b08da6c7877c96da20b37aa0106e306"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T20:18:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0`, `cuda:1`（westd-19183），无其他可用 GPU\n- Instruction ablation 是 **HARD GATE**（D023/D025）：PASS (RSA ρ < DINO-anchored threshold) → 锁定 Option B；FAIL (ρ ≥ 0.30) → 立即回退 Option A \"Representational Redundancy\"。**不可跳过此 gate 直接写论文**\n- Claim 措辞已锁定为 \"Instruction Input Pathway Drives Conditioning, Not Training\"——禁止用 \"Architecture Trumps Training\" 等 overclaim 措辞\n- Scope 限定 OpenVLA-class architecture，不 over-claim generality\n- `lg_output_head_analysis` 和 `lg_instruction_ablation` 是旧 ID 已 killed，正式 ID 是 `d021_output_head_analysis` 和 `d021_instruction_ablation`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183，2×RTX PRO 6000\n- **工作目录**: `/root/vla-ssd`（代码），`/root/autodl-tmp/vla-ssd/`（数据/features/checkpoints/results）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`（trained），`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/`（untrained），`/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/`\n- **Features**: `/root/autodl-tmp/vla-ssd/features/{trained,untrained,dinov2}_libero_goal/`（LIBERO-Goal），`/root/autodl-tmp/vla-ssd/features/{trained,untrained,dinov2}/`（LIBERO-10）\n- **W&B**: 未配置（probing 实验用本地 JSON 记录）\n- **活跃 Workers**（截至 handoff）:\n  - `worker_ssh_instruction-ablation`（running，started 20:09 UTC）— 执行 d021_instruction_ablation\n  - `worker_ssh_pca1024-goal-classification`（running，started 19:16 UTC）— 可能已完成但未回调\n  - `worker_ssh_exp1-pca-linear-perlayer`（running，started 19:21 UTC）— 可能已完成但未回调\n- **Crons**: reconcile 返回 0 active\n\n### 3. 📊 当前状态\n本 session 在约 10 小时内完成了完整的 MVP 实验链：feature extraction → temporal distance probing → action prediction → goal classification → RSA → framing pivot。\n\n**核心结论**：6 轮 probing 一致显示 trained VLA ≈ untrained VLA >> DINO。LLM training 不改变表征结构，instruction input pathway（multi-modal fusion）是 action-relevant structure 的来源。\n\n**Registry 关键状态**：\n- `d021_instruction_ablation`: PREPARING — Worker `worker_ssh_instruction-ablation` 正在执行（P0 BLOCKING）\n- `d021_output_head_analysis`: PREPARING — Worker `worker_ssh_output-head-analysis` 已 done（20:17 UTC），但 registry 未更新到 DONE。**下一个\"你\"需要检查这个 Worker 的产出并更新 registry**\n- 其余 31 个实验全部 DONE（18 success, 5 negative, 8 killed/duplicates）\n\n**等待中**：\n- `worker_ssh_instruction-ablation` 回调 — 这是最关键的 gate\n- `worker_ssh_output-head-analysis` 已完成但未处理 — 需要读 Worker 产出更新 registry\n\n### 4. 📋 待办（条件触发式）\n- `worker_ssh_output-head-analysis` done 回调到达 → 读产出、更新 `d021_output_head_analysis` registry（metrics + conclusion）、更新 report.md\n- `worker_ssh_instruction-ablation` done 回调到达 → **这是 HARD GATE**:\n  - RSA ρ significantly < 0.48（DINO-anchored，D025）→ PASS → 锁定 Option B \"Instruction Input Pathway\"，汇报 Director，进入 complete_mvp → writing 阶段\n  - RSA ρ ≈ 0.48 → FAIL → 回退 Option A \"Representational Redundancy\"，产出 Framing 调整提案，等 Director 决策\n- 两个验证实验都 PASS → 向 Director 汇报 ready for complete_mvp，请求进入 research/writing 阶段\n- 进入 writing → 先 Read `paper-plan` skill，启动论文规划\n\n### 5. 🎯 战略上下文\n- **CoRL 2026**: Abstract DDL May 26（11天），Paper DDL May 29（14天）。时间紧迫但充足（AI 速度下论文写作 1-2 天）\n- **决策链**: D015(LIBERO-Goal pivot) → D017(统一 checkpoint) → D018(PCA+linear) → D019(GC 方法论失败) → D020(RSA gates) → D021(Framing pivot to Option B) → D022(RSA G2 FAIL) → D023(Reviewer 共识: claim 收窄) → D024(Reviewer 评估) → D025(DINO-anchored gate)\n- **方向 Pivot 历史**: Temporal Distance G2 FAIL → Action Prediction G2 FAIL → Action-Delta G3 FAIL → Goal Classification G3 FAIL → RSA G2 FAIL → 最终 pivot 到 \"architecture provides conditioning, not training\"\n- **易错点**:\n  - `d021_output_head_analysis` Worker 已完成但 registry 还是 PREPARING——不要以为它还没跑\n  - Instruction ablation 的 gate 阈值在 D025 改为 DINO-anchored（不是 D023 的绝对 ρ<0.15）——检查 D025 决策详情\n  - Grant 2026 用 OFT checkpoint，我们用 standard fine-tuning——Related Work 必须 qualify\n  - `lg_instruction_ablation` 和 `lg_output_head_analysis` 是旧 killed ID，不要操作它们\n  - 服务器无外网（AutoProcessor 会 Network unreachable），所有 HF 操作必须 `local_files_only=True`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778877858.md"
+}

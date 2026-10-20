@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "91cf85151b7a2c52fc3d",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh d028 figure data prep",
+  "task_key": "worker_ssh_d028-figure-data-prep_20260515T223154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d028-figure-data-prep_20260515T223154.log",
+    "occurrence": 1,
+    "bytes": 812087,
+    "sha256": "7713d80a94900a29502550c24397ed79b9eb80b5b2a6d8980b8a788eb55e7723"
+  },
+  "statistics": {
+    "messages": 96,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 37,
+      "tool_result": 37,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "91cf85151b7a2c52fc3d-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "91cf85151b7a2c52fc3d-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d028-figure-data-prep.md"
+}

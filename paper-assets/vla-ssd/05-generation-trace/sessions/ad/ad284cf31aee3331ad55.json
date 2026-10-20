@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad284cf31aee3331ad55",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis controlb both",
+  "task_key": "worker_analysis_controlb_both_20260515T141111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_controlb_both_20260515T141111_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "42db9175ee3f7d0b74dae3b985000244b3692b1656e63f5f79f9d52ccd7ab2aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## Control B 结果\n\n| 实验 | Best ρ (shuffled) | Best ρ (real) | 下降 |\n|------|-------------------|---------------|------|\n| **Trained OpenVLA** | 0.013 | 0.955 | −98.6% |\n| **Untrained OpenVLA** | 0.009 | 0.933 | −99.0% |\n| DINOv2 (参考) | 0.039 | 0.554 | −93.0% |\n\n**Control B 验证通过。** 打乱标签后所有层 ρ≈0、R²为负、MAE 无改善，确认 trained/untrained OpenVLA probe 学到的是真实 temporal distance 信号。VLA 的 control B ρ（≈0.01）甚至比 DINOv2（0.039）更干净。\n\n报告已注册为 artifact `art_20260515_95b0e2`，两个实验 registry 已更新为 DONE + metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-controlb-both.md"
+}

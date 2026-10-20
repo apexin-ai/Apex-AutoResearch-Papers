@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9efc43129e4dcf189353",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code behavioral smoketest",
+  "task_key": "worker_code_behavioral_smoketest_20260519T034635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_behavioral_smoketest_20260519T034635_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "80f9ade9727f03a05e66499be521dbe602cb84972fa9dc5657e731ae3700d9eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job submitted and registry updated. Summary:\n\n**Environment fixes applied:**\n- `NUMBA_DISABLE_JIT=1` — fixes robosuite numba/mujoco type mismatch (`can't unbox array from PyObject`)\n- `LD_LIBRARY_PATH` includes mujoco package dir — fixes `libmujoco.so.3.1.6` not found\n- `transformers` downgraded 5.8.1 → 4.40.2 — OpenVLA needs `AutoModelForVision2Seq` (removed in 5.x)\n- `numpy` upgraded 1.24.0 → 2.0.2 — fixes torch/numpy type mismatch in `torchvision.to_tensor()`\n- Installed `future`, `matplotlib`, `timm`, `accelerate` (missing deps)\n\n**Script:** `/root/vla-ssd/scripts/behavioral_smoketest.py`\n- 1 task (task_id=0: \"open the middle drawer of the cabinet\") × 3 episodes × baseline\n- If baseline SR > 0, automatically runs ablated condition (L1 top-24 heads)\n- Ablation hook rewritten for transformers 4.40.2 (patches `LlamaAttention.forward` directly, not `eager_attention_forward`)\n\n**Running in:** tmux session `behavioral_smoketest` on cuda:1\n**Log:** `/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.log`\n**Results:** `/root/autodl-tmp/vla-ssd/results/behavioral_smoketest.json`\n\nEstimated runtime: ~15-20min (model inference ~0.5s/step × 400 max steps × 3 episodes). Registry: `behavioral_smoketest` status=RUNNING."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-behavioral-smoketest-copy-2.md"
+}

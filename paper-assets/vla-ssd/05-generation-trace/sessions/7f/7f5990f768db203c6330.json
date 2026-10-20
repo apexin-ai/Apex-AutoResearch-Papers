@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f5990f768db203c6330",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code specificity random seed expansion",
+  "task_key": "worker_code_specificity_random_seed_expansion_20260519T202943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_specificity_random_seed_expansion_20260519T202943_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "71b099b5a4b04a9a296c9f69a02455e93e5a94ce8e26d211b7fd31da52e112c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：需要 GPU 做一次性缓存生成**\n\n分析结论：\n- **Method A 不可行**：服务器上没有 per-head 独立 ablation 数据。已有数据都是 group ablation（24头/8头/32头同时 ablate），不是单个 head 独立 ablate 后的 R² drop。\n- **必须走 Method B**：`random_subset_ablation.py` 的工作方式是先做一次 model forward pass 缓存 Layer 1 的 per-head attention intermediates（full_context, non_inst_sum, non_inst_weight, residual），再用这些缓存做不同 head 组合的 feature 重建 + probe 训练。\n- **缓存未持久化**：parent 实验运行时缓存在 RAM 中，进程挂起后丢失，磁盘上没有 `.pt` / `.npz` 缓存文件。\n\n**已完成：**\n- 脚本已写好：`/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\n- 两阶段设计：\n  - `--generate-cache`：GPU 阶段，加载模型做 forward pass，保存 cache 到 `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt`（约 ~2GB）\n  - 默认模式：CPU-only，加载 cache，跑 30 seeds bootstrap + 统计（约 1-2 小时）\n- 实验已注册为 QUEUED\n\n**GPU 状态：**\n- GPU 0：空闲（3 MiB / 97887 MiB，0% 利用率）\n- GPU 1：少量负载（1739 MiB，45%）\n\n**请决定：**\n1. 是否允许我用 GPU 0 跑 `--generate-cache`（约 20 分钟，完成后立即释放 GPU）？\n2. 或者分配其他资源？\n\n缓存生成完成后，bootstrap 阶段完全不碰 GPU（`CUDA_VISIBLE_DEVICES=\"\"`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-specificity-random-seed-expansion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1de5373fdf811b47cf76",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run bootstrap restart 1000",
+  "task_key": "worker_run_bootstrap_restart_1000_20260522T155234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_bootstrap_restart_1000_20260522T155234_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "41fd635c8e784e6b65909f56029c4f506c20c982f8aeeabe882b0bc014793bf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 session 均已成功启动：\n\n- **bootstrap_cuda0** — 正在加载 openvla goal trained 模型（GPU 0 尚在加载权重阶段）\n- **bootstrap_cuda1** — tracvla goal trained 已开始提取特征（150/5000 samples），GPU 1 占用 8927 MiB，55% 利用率\n\n参数确认 `bootstrap=1000`，20 conditions（cuda0: 12 runs, cuda1: 8 runs）并行执行中。日志在 `/tmp/bootstrap_cuda0.log` 和 `/tmp/bootstrap_cuda1.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-bootstrap-restart-1000.md"
+}

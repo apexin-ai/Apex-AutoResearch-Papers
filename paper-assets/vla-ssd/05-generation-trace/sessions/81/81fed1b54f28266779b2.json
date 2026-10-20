@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81fed1b54f28266779b2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research read p2 result",
+  "task_key": "worker_research_read_p2_result_20260516T102422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_read_p2_result_20260516T102422_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "726b753b09c2cec0716a471113383c40378f61ba794b2658085a502df821c60a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**状态：仍在运行中**（进程 PID 720674，CPU 205%，已用内存 ~5.2GB，启动于 18:17）\n\n**已产出的结果文件** (`demo_sensitivity_25.json`)：\n\n| 指标 | 50 demos | 25 demos |\n|------|----------|----------|\n| RSA (layer 0) | 0.0484 | 0.0198 |\n| Probe R² (layer 0) | 0.6448 | 0.5709 |\n\n- 只有 layer 0 的单点结果，`rsa_profile_correlation` 和 `probe_profile_correlation` 均为 `null`（需要多层数据才能算 profile 相关）\n- 条件：`trained_image_mean`，subsample seed=42，10 tasks\n- 耗时 50.7 秒完成了这部分\n\n**日志文件**为空（stdout 重定向到日志但尚无新输出），exit 文件不存在 → 进程尚未退出。\n\n脚本当前仍在 GPU 1 上运行，可能正在处理更多层或其他条件的计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-read-p2-result.md"
+}

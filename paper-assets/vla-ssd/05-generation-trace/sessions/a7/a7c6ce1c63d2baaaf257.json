@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c6ce1c63d2baaaf257",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research literature map build",
+  "task_key": "worker_research_literature-map-build_20260515T204701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-build_20260515T204701_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "ec73d272c9596614e585820d72e449968e58236f2de4ff08494e5b8322f58357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已写入。覆盖 5 个方向共 21 篇论文：\n\n**Direct Competitors (9篇)**\n- Grant 2026 (`2603.19233`) — 最直接竞争者，behavioral intervention on 6 VLA models，\"encoded but not used\"\n- Swann 2026 (`2603.19183`) — SAE on OpenVLA，Stanford\n- Rizzardo 2026 (`2603.05487`) — feature-observability/controllability\n- Häon 2025 (`2509.00328`) — CoRL 2025，mechanistic interpretability + activation steering\n- Molinari 2025 (`2509.24559`) — world model probing on OpenVLA\n- Lu 2025 (`2502.04558`) — symbolic state probing on OpenVLA + LIBERO\n- Fang 2025 (`2506.09930`) — intention vs execution probing\n- LIBERO-CF (`2602.17659`) — counterfactual benchmark，OpenVLA-OFT 0.4% success rate\n- LangGap (`2603.00592`) — VLAs ignore language 系统性诊断\n\n**Method (3篇)**: Kriegeskorte 2008 (RSA), Kornblith 2019 (CKA), Alain 2017 (linear probing)\n\n**Background (2篇)**: Prismatic VLMs, VLA survey 2025\n\n**Evaluation (4篇)**: LIBERO + LIBERO-Plus/PRO/Para\n\n**Architecture (4篇)**: OpenVLA, RT-2, Octo, π0\n\n核心 novelty gap：**没有任何一篇做过 trained vs untrained VLA representation comparison**。Grant 2026 比较不同架构（cross-model），我们比较同一架构 trained vs untrained（training effect isolation）。两项工作互补。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-build.md"
+}

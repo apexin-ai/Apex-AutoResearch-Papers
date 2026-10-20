@@ -1,0 +1,8008 @@
+# paper research bib completion
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 130
+- **Recorded user turns:** 0
+- **Tool calls:** 48
+- **Original source:** `logs/workers/worker_paper_research_bib_completion_20260516T041312.log`
+- **Structured JSON:** [`d5d4d1d16abb14a88342.json`](../../sessions/d5/d5d4d1d16abb14a88342.json)
+
+## Before a recorded user message
+
+130 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b07d8f00-426f-4e73-99ce-bc631bd252e0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778922000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "995d25ce-5622-4c1b-ab63-90c1d5486ec4",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the reference audit skill and the current references.bib file, then search for the papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "86b5d26f-6fe8-4e15-a542-7d8dcf4b12c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoP5Es4AV9DYoPYgsPcKxt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12819,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12819
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011FXhQ1fwTfhySE3xKH4tsC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "40ad1ff3-9099-4b94-becf-e76cb4fb240b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoP5Es4AV9DYoPYgsPcKxt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12819,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12819
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:13:24.248Z_
+
+<details><summary>↩ Tool result · `toolu_011FXhQ1fwTfhySE3xKH4tsC`</summary>
+
+````text
+1	---
+2	name: reference-audit
+3	description: 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。
+4	scope: global
+5	tags:
+6	- workflow
+7	- submission
+8	- writing
+9	- quality
+10	priority: 6
+11	version: 2
+12	roles:
+13	- agent
+14	- paper_agent
+15	- review_reviewer
+16	- worker
+17	---
+18	
+19	# 引用验证与审计（Reference Audit）
+20	
+21	## 核心原则
+22	
+23	**写时验证，而非写后检查。** 每添加一条引用，立即验证真实性。AI 生成的引用约 40% 存在错误——绝不信任记忆中的引用信息。
+24	
+25	## 触发条件
+26	
+27	- 写论文时添加引用
+28	- Review Reviewer 审查论文引用质量
+29	- 提交前最终检查
+30	- 发现可疑引用（年份不对、作者不存在、找不到原文）
+31	
+32	## 验证流程
+33	
+34	### 1. 单条引用验证（写论文时）
+35	
+36	每次需要引用时：
+37	
+38	1. **WebSearch 查找**：搜索论文标题 + 第一作者
+39	2. **Google Scholar 确认**：`site:scholar.google.com [论文标题] [作者]`
+40	3. **核对关键信息**：标题、第一作者、年份（±1 年）、venue
+41	4. **获取 BibTeX**：从 Google Scholar 或 DBLP 获取标准格式
+42	5. **验证 claim**（如果引用了具体结论）：确认该 claim 确实出现在原文中
+43	
+44	### 2. 全文引用审计（批量检查）
+45	
+46	**Step 1：调用 `verify_references(paper_dir)`**
+47	
+48	这是首选方式。该工具自动完成：
+49	- 解析所有 .bib 文件，提取结构化条目
+50	- 解析所有 .tex 文件，提取 `\cite{}`/`\citep{}`/`\citet{}` 引用
+51	- 交叉检查：找出 orphan（.bib 有但未引用）和 missing（引用了但 .bib 没有）
+52	- 调 OpenAlex API 在线验证每条引用是否存在（返回 verified/not_found/mismatch）
+53	
+54	如果只需快速离线检查，传 `skip_online=True`。
+55	
+56	**Step 2：人工复核工具报告中的问题条目**
+57	
+58	重点关注：
+59	- `status: not_found` — 可能是幻觉引用，用 WebSearch 二次验证
+60	- `status: mismatch` — 年份等信息不一致，检查 preprint vs published 版本
+61	- `missing_bib` — 正文引用了但 .bib 中不存在，编译会报错
+62	- `orphan_bib` — .bib 中有但正文未引用，清理或补引用
+63	
+64	**Step 3：语义验证**（优先级排序）
+65	1. 首先验证 Introduction 和 Related Work 中的高频引用
+66	2. 然后验证 Method 中支撑技术 claim 的引用
+67	3. 最后验证其余引用
+68	
+69	对于 OpenAlex 未找到的条目，用 WebSearch 补充验证（arXiv、DOI、DBLP）。
+70	
+71	### 3. 验证失败处理
+72	
+73	**找不到论文时**：
+74	1. 检查拼写——标题或作者名是否有误？
+75	2. 尝试不同查询组合（WebSearch + Google Scholar + DBLP）
+76	3. 标记为 `[CITATION NEEDED]`
+77	4. 明确告知——说明哪条引用无法验证
+78	
+79	**信息不匹配时**：
+80	1. 确认是否找对了论文
+81	2. 检查版本——preprint vs published 版本
+82	3. 用最准确的版本更新信息
+83	
+84	**绝不做的事**：
+85	- 从记忆生成 BibTeX——AI 生成引用 40% 错误率
+86	- 跳过验证步骤
+87	- 假设论文存在
+88	- 对无法验证的引用不做标记
+89	
+90	## 常见引用问题模式
+91	
+92	| 问题类型 | 特征 | 风险 |
+93	|---------|------|------|
+94	| **幻觉引用** | 论文不存在，作者或标题是 AI 编造的 | 严重——直接影响学术诚信 |
+95	| **信息错位** | 作者、年份、venue 不匹配 | 中等——reviewer 一查就发现 |
+96	| **孤立引用** | .bib 有但正文没引用 | 轻微——但显得不够整洁 |
+97	| **缺失引用** | 正文引用但 .bib 没有 | 编译错误——必须修复 |
+98	| **Claim 不匹配** | 引用了论文但声称的结论不在原文中 | 严重——误导性引用 |
+99	
+100	## 输出格式
+101	
+102	审计完成后，生成结构化报告：
+103	
+104	```
+105	## 引用审计报告
+106	
+107	**总数**: X 条引用
+108	**已验证**: Y 条（OpenAlex confirmed）
+109	**问题**: Z 条
+110	
+111	### 问题列表
+112	
+113	1. [severity: critical] `\cite{xxx}` — OpenAlex 未找到，WebSearch 也无结果，疑似幻觉引用
+114	   - 建议：删除或替换为已验证的替代引用
+115	
+116	2. [severity: warning] `\cite{yyy}` — 年份不匹配（bib: 2023, OpenAlex: 2022）
+117	   - 建议：更新为正确年份
+118	
+119	3. [severity: info] `\cite{zzz}` — bib 中存在但正文未引用
+120	   - 建议：删除或在相关段落补充引用
+121	```
+122	
+123	## 设计参考
+124	
+125	本 skill 的验证原则参考了 Dr. Claw (K-Dense Inc.) 的 inno-reference-audit skill。
+126	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "5ef04f38-6d87-430d-9869-a5540068cc48",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md",
+      "content": "---\nname: reference-audit\ndescription: 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。\nscope: global\ntags:\n- workflow\n- submission\n- writing\n- quality\npriority: 6\nversion: 2\nroles:\n- agent\n- paper_agent\n- review_reviewer\n- worker\n---\n\n# 引用验证与审计（Reference Audit）\n\n## 核心原则\n\n**写时验证，而非写后检查。** 每添加一条引用，立即验证真实性。AI 生成的引用约 40% 存在错误——绝不信任记忆中的引用信息。\n\n## 触发条件\n\n- 写论文时添加引用\n- Review Reviewer 审查论文引用质量\n- 提交前最终检查\n- 发现可疑引用（年份不对、作者不存在、找不到原文）\n\n## 验证流程\n\n### 1. 单条引用验证（写论文时）\n\n每次需要引用时：\n\n1. **WebSearch 查找**：搜索论文标题 + 第一作者\n2. **Google Scholar 确认**：`site:scholar.google.com [论文标题] [作者]`\n3. **核对关键信息**：标题、第一作者、年份（±1 年）、venue\n4. **获取 BibTeX**：从 Google Scholar 或 DBLP 获取标准格式\n5. **验证 claim**（如果引用了具体结论）：确认该 claim 确实出现在原文中\n\n### 2. 全文引用审计（批量检查）\n\n**Step 1：调用 `verify_references(paper_dir)`**\n\n这是首选方式。该工具自动完成：\n- 解析所有 .bib 文件，提取结构化条目\n- 解析所有 .tex 文件，提取 `\\cite{}`/`\\citep{}`/`\\citet{}` 引用\n- 交叉检查：找出 orphan（.bib 有但未引用）和 missing（引用了但 .bib 没有）\n- 调 OpenAlex API 在线验证每条引用是否存在（返回 verified/not_found/mismatch）\n\n如果只需快速离线检查，传 `skip_online=True`。\n\n**Step 2：人工复核工具报告中的问题条目**\n\n重点关注：\n- `status: not_found` — 可能是幻觉引用，用 WebSearch 二次验证\n- `status: mismatch` — 年份等信息不一致，检查 preprint vs published 版本\n- `missing_bib` — 正文引用了但 .bib 中不存在，编译会报错\n- `orphan_bib` — .bib 中有但正文未引用，清理或补引用\n\n**Step 3：语义验证**（优先级排序）\n1. 首先验证 Introduction 和 Related Work 中的高频引用\n2. 然后验证 Method 中支撑技术 claim 的引用\n3. 最后验证其余引用\n\n对于 OpenAlex 未找到的条目，用 WebSearch 补充验证（arXiv、DOI、DBLP）。\n\n### 3. 验证失败处理\n\n**找不到论文时**：\n1. 检查拼写——标题或作者名是否有误？\n2. 尝试不同查询组合（WebSearch + Google Scholar + DBLP）\n3. 标记为 `[CITATION NEEDED]`\n4. 明确告知——说明哪条引用无法验证\n\n**信息不匹配时**：\n1. 确认是否找对了论文\n2. 检查版本——preprint vs published 版本\n3. 用最准确的版本更新信息\n\n**绝不做的事**：\n- 从记忆生成 BibTeX——AI 生成引用 40% 错误率\n- 跳过验证步骤\n- 假设论文存在\n- 对无法验证的引用不做标记\n\n## 常见引用问题模式\n\n| 问题类型 | 特征 | 风险 |\n|---------|------|------|\n| **幻觉引用** | 论文不存在，作者或标题是 AI 编造的 | 严重——直接影响学术诚信 |\n| **信息错位** | 作者、年份、venue 不匹配 | 中等——reviewer 一查就发现 |\n| **孤立引用** | .bib 有但正文没引用 | 轻微——但显得不够整洁 |\n| **缺失引用** | 正文引用但 .bib 没有 | 编译错误——必须修复 |\n| **Claim 不匹配** | 引用了论文但声称的结论不在原文中 | 严重——误导性引用 |\n\n## 输出格式\n\n审计完成后，生成结构化报告：\n\n```\n## 引用审计报告\n\n**总数**: X 条引用\n**已验证**: Y 条（OpenAlex confirmed）\n**问题**: Z 条\n\n### 问题列表\n\n1. [severity: critical] `\\cite{xxx}` — OpenAlex 未找到，WebSearch 也无结果，疑似幻觉引用\n   - 建议：删除或替换为已验证的替代引用\n\n2. [severity: warning] `\\cite{yyy}` — 年份不匹配（bib: 2023, OpenAlex: 2022）\n   - 建议：更新为正确年份\n\n3. [severity: info] `\\cite{zzz}` — bib 中存在但正文未引用\n   - 建议：删除或在相关段落补充引用\n```\n\n## 设计参考\n\n本 skill 的验证原则参考了 Dr. Claw (K-Dense Inc.) 的 inno-reference-audit skill。\n",
+      "numLines": 126,
+      "startLine": 1,
+      "totalLines": 126
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QH62BHdCVEF3geCcZzJiYG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "a37df3bb-7cc9-4932-bcdc-4c3d4dd57902",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoP5Es4AV9DYoPYgsPcKxt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12819,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12819
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T04:13:24.602Z_
+
+<details><summary>↩ Tool result · `toolu_01QH62BHdCVEF3geCcZzJiYG`</summary>
+
+```text
+1	% === VLA / Architecture ===
+2	
+3	@article{kim2024_openvla,
+4	  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},
+5	  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},
+6	  journal   = {arXiv preprint arXiv:2406.09246},
+7	  year      = {2024},
+8	}
+9	
+10	% [VERIFY] Confirm venue and exact title. Likely "Prismatic VLMs" or OpenVLA architecture companion.
+11	@article{karamcheti2024,
+12	  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},
+13	  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},
+14	  journal   = {arXiv preprint arXiv:2402.07865},
+15	  year      = {2024},
+16	}
+17	
+18	@article{brohan2023_rt2,
+19	  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},
+20	  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},
+21	  journal   = {arXiv preprint arXiv:2307.15818},
+22	  year      = {2023},
+23	}
+24	
+25	% === Benchmark ===
+26	
+27	@inproceedings{liu2023_libero,
+28	  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},
+29	  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},
+30	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+31	  year      = {2023},
+32	}
+33	
+34	% === Representation Analysis Methods ===
+35	
+36	@article{kriegeskorte2008,
+37	  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},
+38	  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},
+39	  journal   = {Frontiers in Systems Neuroscience},
+40	  volume    = {2},
+41	  pages     = {4},
+42	  year      = {2008},
+43	  publisher = {Frontiers},
+44	}
+45	
+46	@inproceedings{kornblith2019,
+47	  title     = {Similarity of Neural Network Representations Revisited},
+48	  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},
+49	  booktitle = {International Conference on Machine Learning (ICML)},
+50	  year      = {2019},
+51	}
+52	
+53	@article{alain2017,
+54	  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},
+55	  author    = {Alain, Guillaume and Bengio, Yoshua},
+56	  journal   = {arXiv preprint arXiv:1610.01644},
+57	  year      = {2017},
+58	}
+59	
+60	% === Vision Encoders ===
+61	
+62	@inproceedings{zhai2023_siglip,
+63	  title     = {Sigmoid Loss for Language Image Pre-Training},
+64	  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},
+65	  booktitle = {International Conference on Computer Vision (ICCV)},
+66	  year      = {2023},
+67	}
+68	
+69	@article{oquab2024_dinov2,
+70	  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},
+71	  author    = {Oquab, Maxime and Darcet, Timoth{\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},
+72	  journal   = {Transactions on Machine Learning Research (TMLR)},
+73	  year      = {2024},
+74	}
+75	
+76	@inproceedings{radford2021_clip,
+77	  title     = {Learning Transferable Visual Models From Natural Language Supervision},
+78	  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},
+79	  booktitle = {International Conference on Machine Learning (ICML)},
+80	  year      = {2021},
+81	}
+82	
+83	% === Domain-Specific ===
+84	
+85	% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.
+86	@article{grant2026,
+87	  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},
+88	  author    = {Grant, [VERIFY]},
+89	  journal   = {[VERIFY]},
+90	  year      = {2026},
+91	}
+92	
+93	% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.
+94	@article{haon2025,
+95	  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},
+96	  author    = {Haon, [VERIFY]},
+97	  journal   = {[VERIFY]},
+98	  year      = {2025},
+99	}
+100	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4a6583c6-9eb8-4618-a176-b0e265ecc2d6",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+      "content": "% === VLA / Architecture ===\n\n@article{kim2024_openvla,\n  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n  journal   = {arXiv preprint arXiv:2406.09246},\n  year      = {2024},\n}\n\n% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n@article{karamcheti2024,\n  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n  journal   = {arXiv preprint arXiv:2402.07865},\n  year      = {2024},\n}\n\n@article{brohan2023_rt2,\n  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  journal   = {arXiv preprint arXiv:2307.15818},\n  year      = {2023},\n}\n\n% === Benchmark ===\n\n@inproceedings{liu2023_libero,\n  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2023},\n}\n\n% === Representation Analysis Methods ===\n\n@article{kriegeskorte2008,\n  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},\n  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},\n  journal   = {Frontiers in Systems Neuroscience},\n  volume    = {2},\n  pages     = {4},\n  year      = {2008},\n  publisher = {Frontiers},\n}\n\n@inproceedings{kornblith2019,\n  title     = {Similarity of Neural Network Representations Revisited},\n  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2019},\n}\n\n@article{alain2017,\n  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},\n  author    = {Alain, Guillaume and Bengio, Yoshua},\n  journal   = {arXiv preprint arXiv:1610.01644},\n  year      = {2017},\n}\n\n% === Vision Encoders ===\n\n@inproceedings{zhai2023_siglip,\n  title     = {Sigmoid Loss for Language Image Pre-Training},\n  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle = {International Conference on Computer Vision (ICCV)},\n  year      = {2023},\n}\n\n@article{oquab2024_dinov2,\n  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},\n  author    = {Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2024},\n}\n\n@inproceedings{radford2021_clip,\n  title     = {Learning Transferable Visual Models From Natural Language Supervision},\n  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2021},\n}\n\n% === Domain-Specific ===\n\n% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}\n\n% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}\n",
+      "numLines": 100,
+      "startLine": 1,
+      "totalLines": 100
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the current bib file and the reference audit skill. Let me search for the papers using Semantic Scholar API and web search. I'll start with multiple parallel searches.
+
+Let me search for all the papers in parallel. I'll use Semantic Scholar API for each.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "8ac6253f-d74f-4a35-b06d-ee73edee5589",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+开始搜索论文。先并行查 Semantic Scholar API。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "b6876fda-0503-4608-b0d7-6871a7c5cc0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01H67We8cqrKPG4d2h9rMpMv`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA sparse autoencoder interpretability OpenVLA')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for swann2026 - VLA sparse autoencoder"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "06f975a9-61dd-4160-951e-d7eefbe01231",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T04:13:34.296Z_
+
+<details><summary>↩ Tool result · `toolu_01H67We8cqrKPG4d2h9rMpMv`</summary>
+
+```text
+Title: Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models
+Authors: ['Aiden Swann', 'Lachlain McGranahan', 'Hugo Buurmeijer', 'Monroe Kennedy', 'Mac Schwager']
+Year: 2026
+Venue: 
+IDs: {'ArXiv': '2603.19183', 'CorpusId': 286673529}
+---
+Title: Mechanistic interpretability for steering vision-language-action models
+Authors: ['Bear Häon', 'Kaylene C. Stocking', 'Ian Chuang', 'Claire J. Tomlin']
+Year: 2025
+Venue: arXiv.org
+IDs: {'ArXiv': '2509.00328', 'DBLP': 'journals/corr/abs-2509-00328', 'DOI': '10.48550/arXiv.2509.00328', 'CorpusId': 281080756}
+---
+Title: Emergent World Representations in OpenVLA
+Authors: ['Marco Molinari', 'Leonardo Nevali', 'Saharsha Navani', 'Omar G. Younis']
+Year: 2025
+Venue: arXiv.org
+IDs: {'ArXiv': '2509.24559', 'DBLP': 'journals/corr/abs-2509-24559', 'DOI': '10.48550/arXiv.2509.24559', 'CorpusId': 281676036}
+---
+Title: SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation
+Authors: ['Wei Li', 'Renshan Zhang', 'Rui Shao', 'Zhijian Fang', 'Kaiwen Zhou', 'Zhuotao Tian', 'Liqiang Nie']
+Year: 2025
+Venue: AAAI Conference on Artificial Intelligence
+IDs: {'DBLP': 'journals/corr/abs-2511-10518', 'ArXiv': '2511.10518', 'DOI': '10.48550/arXiv.2511.10518', 'CorpusId': 282992074}
+---
+Title: Real-Time Vision-Language-Action Control for Open-Source Quadruped Robots
+Authors: ['Sagar Manglani']
+Year: None
+Venue: 
+IDs: {'CorpusId': 281105240}
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "fe8e495e-dab5-4f1d-81fe-f20ce67defa3",
+  "tool_use_result": {
+    "stdout": "Title: Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models\nAuthors: ['Aiden Swann', 'Lachlain McGranahan', 'Hugo Buurmeijer', 'Monroe Kennedy', 'Mac Schwager']\nYear: 2026\nVenue: \nIDs: {'ArXiv': '2603.19183', 'CorpusId': 286673529}\n---\nTitle: Mechanistic interpretability for steering vision-language-action models\nAuthors: ['Bear Häon', 'Kaylene C. Stocking', 'Ian Chuang', 'Claire J. Tomlin']\nYear: 2025\nVenue: arXiv.org\nIDs: {'ArXiv': '2509.00328', 'DBLP': 'journals/corr/abs-2509-00328', 'DOI': '10.48550/arXiv.2509.00328', 'CorpusId': 281080756}\n---\nTitle: Emergent World Representations in OpenVLA\nAuthors: ['Marco Molinari', 'Leonardo Nevali', 'Saharsha Navani', 'Omar G. Younis']\nYear: 2025\nVenue: arXiv.org\nIDs: {'ArXiv': '2509.24559', 'DBLP': 'journals/corr/abs-2509-24559', 'DOI': '10.48550/arXiv.2509.24559', 'CorpusId': 281676036}\n---\nTitle: SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation\nAuthors: ['Wei Li', 'Renshan Zhang', 'Rui Shao', 'Zhijian Fang', 'Kaiwen Zhou', 'Zhuotao Tian', 'Liqiang Nie']\nYear: 2025\nVenue: AAAI Conference on Artificial Intelligence\nIDs: {'DBLP': 'journals/corr/abs-2511-10518', 'ArXiv': '2511.10518', 'DOI': '10.48550/arXiv.2511.10518', 'CorpusId': 282992074}\n---\nTitle: Real-Time Vision-Language-Action Control for Open-Source Quadruped Robots\nAuthors: ['Sagar Manglani']\nYear: None\nVenue: \nIDs: {'CorpusId': 281105240}\n---",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QWjpcVSpchnWwmvBGNZ8d7`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA feature observability controllability steering')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for rizzardo2026 - VLA feature observability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "3d6be3a0-b25b-4630-ac91-8b4741825cf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T04:13:36.947Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QWjpcVSpchnWwmvBGNZ8d7`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    data = json.loads(urlopen(req, timeout=15).read())
+                      ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "9fe22660-ceae-46d5-a0a5-7623b66bf49f",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 9, in &lt;module>\n    data = json.loads(urlopen(req, timeout=15).read())\n                      ~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 429:"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019aqguCErtx16EtKg3c5UGw`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('OpenVLA probing world model representations')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for molinari2025 - OpenVLA probing world model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d9b8b372-5734-4710-b11e-a3ca58e2c7ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T04:13:38.763Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019aqguCErtx16EtKg3c5UGw`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "febeffaf-e739-4b5b-8490-ecaf3dcf72de",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ENJdwkv8F5NeVjyCLUQvAo`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('Belinkov probing classifiers promises shortcomings advances')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for belinkov2022 - probing classifiers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "b92ff5af-184c-4d74-868e-62716a7e802e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T04:13:42.079Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01ENJdwkv8F5NeVjyCLUQvAo`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "0b08cae6-5884-41cb-bd75-dcd5e10f00c2",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EppWo2AXgHB1Q5nTpCCYfi`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('OpenVLA probing symbolic states layers')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for lu2025 - OpenVLA probing symbolic states"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "6d3d886b-db61-47bc-935a-1e456d8f4f7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T04:13:44.438Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EppWo2AXgHB1Q5nTpCCYfi`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "f3095abc-affe-4994-a206-5294d1f8da27",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LZm16s7auoVWpm15RNHA78`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA semantic perturbation language instruction robustness')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for hou2026 - VLA semantic perturbation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "60b4a67a-2ab5-4ad9-aa51-eae146db07af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:13:47.259Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LZm16s7auoVWpm15RNHA78`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "51b0d291-53f4-403e-b1d5-afbd50ac71e8",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01J6wuWoRZh6MjVGFoG2CVtY`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA LIBERO robustness language instruction controlled test')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for fei2025 - VLA LIBERO robustness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "f6cff1b3-d7d0-4247-92e8-bd59c48709f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T04:13:49.664Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01J6wuWoRZh6MjVGFoG2CVtY`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "1a17b183-2ca7-41f3-82a1-d0b67eda5546",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BYaoTZGo8bMDPRvdmdp6ba`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA fine-tuning erodes VLM reasoning abilities')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for fang2025 - VLA fine-tuning erodes VLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "f3c00cdc-787e-462a-8449-24f9aa43cfbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T04:13:52.488Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BYaoTZGo8bMDPRvdmdp6ba`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "9c0f44b8-122c-4fa4-82dc-bc76fdd613f8",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FnJXmUk4Yt83Ezda4UXZSs`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('VLA visual dominance language instruction encoded not used')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for grant2026 - VLA visual dominance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "528ef4d9-b9aa-4e23-be98-902787911350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T04:13:55.308Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01FnJXmUk4Yt83Ezda4UXZSs`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "87d54e2b-9340-4c64-afe1-4783eecd80e1",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011eX8JjHwQGdV2YFrV7rWoz`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json\n\nquery = quote('OpenVLA sparse semantic directions activation steering interpretability')\nurl = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\nreq = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\ndata = json.loads(urlopen(req, timeout=15).read())\nfor p in data.get('data', []):\n    print(f\\\"Title: {p['title']}\\\")\n    print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n    print(f\\\"Year: {p.get('year')}\\\")\n    print(f\\\"Venue: {p.get('venue')}\\\")\n    print(f\\\"IDs: {p.get('externalIds')}\\\")\n    print('---')\n\"\n",
+  "description": "Search S2 for haon2025 - OpenVLA sparse semantic directions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "60321e41-a9f4-402b-8914-f22b23f59c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fhn7X3au4fWW6XhbHLd7H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3994,
+      "cache_read_input_tokens": 24660,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3994
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T04:13:58.050Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_011eX8JjHwQGdV2YFrV7rWoz`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+from urllib.request import …) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d03873c6-1c32-447a-a74d-5823028f4845",
+  "tool_use_result": "Cancelled: parallel tool call Bash(python3 -c \"\nfrom urllib.request import …) errored"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The first search was successful and returned several results. I got rate-limited (429) on the remaining parallel calls. Let me note what I found from the first search:
+
+1. **swann2026** — Found: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models" by Aiden Swann, Lachlain McGranahan, Hugo Buurmeijer, Monroe Kennedy, Mac Schwager. Year: 2026. ArXiv: 2603.19183.
+
+2. **haon2025** — Found: "Mechanistic interpretability for steering vision-language-action models" by Bear Häon, Kaylene C. Stocking, Ian Chuang, Claire J. Tomlin. Year: 2025. ArXiv: 2509.00328.
+
+
+3. **molinari2025** — Found: "Emergent World Representations in OpenVLA" by Marco Molinari, Leonardo Nevali, Saharsha Navani, Omar G. Younis. Year: 2025. ArXiv: 2509.24559.
+
+I'll continue searching for the remaining papers one at a time to avoid hitting the rate limit again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "27a34e57-417e-4d7c-ad9c-1683d5251a69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGG5zorjZ9BFxc65gKJQfG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+第一批搜索找到了 swann2026、haon2025、molinari2025。S2 API 限流了，改为串行搜索剩余论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "65478ee2-9276-4692-985b-054488c7500d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGG5zorjZ9BFxc65gKJQfG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014SZwC8zpWXRUPX2uwUdUp9`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json, time\n\nqueries = [\n    ('belinkov2022', 'Belinkov probing classifiers promises shortcomings advances'),\n    ('lu2025', 'OpenVLA probing symbolic states layers'),\n    ('hou2026', 'VLA semantic perturbation language instruction robustness'),\n    ('fei2025', 'VLA LIBERO robustness language instruction controlled test'),\n    ('fang2025', 'VLA fine-tuning erodes VLM reasoning abilities'),\n    ('grant2026', 'VLA visual dominance language instruction encoded not used six architectures'),\n    ('rizzardo2026', 'VLA feature observability controllability steering'),\n]\n\nfor label, q in queries:\n    query = quote(q)\n    url = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\n    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\n    try:\n        data = json.loads(urlopen(req, timeout=15).read())\n        print(f'=== {label} ===')\n        for p in data.get('data', []):\n            print(f\\\"Title: {p['title']}\\\")\n            print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n            print(f\\\"Year: {p.get('year')}\\\")\n            print(f\\\"Venue: {p.get('venue')}\\\")\n            print(f\\\"IDs: {p.get('externalIds')}\\\")\n            print('---')\n    except Exception as e:\n        print(f'=== {label} === ERROR: {e}')\n    time.sleep(2)\n\" 2>&1\n",
+  "description": "Sequential S2 API searches with rate limit delay",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "5d7eb557-ba77-4273-a9f3-75aa92c4f4bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGG5zorjZ9BFxc65gKJQfG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 34_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bzoak070f",
+  "tool_use_id": "toolu_014SZwC8zpWXRUPX2uwUdUp9",
+  "description": "Sequential S2 API searches with rate limit delay",
+  "task_type": "local_bash",
+  "uuid": "f8400355-92f3-4dfc-a289-2727e5edb20b",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3"
+}
+```
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bzoak070f",
+  "tool_use_id": "toolu_014SZwC8zpWXRUPX2uwUdUp9",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Sequential S2 API searches with rate limit delay",
+  "uuid": "74fd2861-dadd-4e58-a7f4-9649b3ddcbce",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T04:14:26.028Z_
+
+<details><summary>↩ Tool result · `toolu_014SZwC8zpWXRUPX2uwUdUp9`</summary>
+
+```text
+=== belinkov2022 === ERROR: HTTP Error 429: 
+=== lu2025 === ERROR: HTTP Error 429: 
+=== hou2026 === ERROR: HTTP Error 429: 
+=== fei2025 === ERROR: HTTP Error 429: 
+=== fang2025 === ERROR: HTTP Error 429: 
+=== grant2026 === ERROR: HTTP Error 429: 
+=== rizzardo2026 === ERROR: HTTP Error 429:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e90cdbe7-2a1f-46f9-b294-71d3180f18f6",
+  "tool_use_result": {
+    "stdout": "=== belinkov2022 === ERROR: HTTP Error 429: \n=== lu2025 === ERROR: HTTP Error 429: \n=== hou2026 === ERROR: HTTP Error 429: \n=== fei2025 === ERROR: HTTP Error 429: \n=== fang2025 === ERROR: HTTP Error 429: \n=== grant2026 === ERROR: HTTP Error 429: \n=== rizzardo2026 === ERROR: HTTP Error 429:",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still getting rate limited. Let me try with a longer delay (5 seconds) or use WebSearch instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "f7bbebbf-7301-44bc-afa5-4362fa5d14f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AvDRvsoSps3g9CJSyseWJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 33549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1043
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+S2 API 持续限流。改用 WebSearch 搜索剩余论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "834bee4b-10c1-41ba-ab94-d3250e845973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AvDRvsoSps3g9CJSyseWJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 33549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1043
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014Fw5Q4j6Kmc7jnVfFijhFd`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "fe9548fe-acb9-44b5-9ca9-6b090f923345",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AvDRvsoSps3g9CJSyseWJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 33549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1043
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T04:14:29.087Z_
+
+<details><summary>↩ Tool result · `toolu_014Fw5Q4j6Kmc7jnVfFijhFd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "9c1c6e56-04fe-4a53-aa8d-dc73e578e6ac",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 50
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GaQk9cnNyHNmTBfidYaMsn`</summary>
+
+```json
+{
+  "query": "Belinkov 2022 \"Probing Classifiers: Promises, Shortcomings, and Advances\" Computational Linguistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "6b64dbab-6f12-4555-b566-7ca9dedf9125",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U828vnnQGdQxAxcDiGqHAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 34592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WGnFYDFKkGFrosi5Fio71T`</summary>
+
+```json
+{
+  "query": "Rizzardo 2026 VLA feature observability controllability steering arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "61422b01-f056-4a53-b635-0be5ba637718",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U828vnnQGdQxAxcDiGqHAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 34592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WQWB7Sw56vKcpStdSZn44A`</summary>
+
+```json
+{
+  "query": "Lu 2025 OpenVLA probing symbolic states arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "3d1564b5-51dc-40b5-b665-a80802a550ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U828vnnQGdQxAxcDiGqHAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 34592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015AFzEQn4KnVBvm79htCgJx`</summary>
+
+```json
+{
+  "query": "Hou Zhao 2026 VLA semantic perturbation language instruction arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d2929b16-83eb-4c17-ac20-ae08b7a5ee95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U828vnnQGdQxAxcDiGqHAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 34592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 666
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T04:14:36.903Z_
+
+<details><summary>↩ Tool result · `toolu_01GaQk9cnNyHNmTBfidYaMsn`</summary>
+
+```text
+Web search results for query: "Belinkov 2022 "Probing Classifiers: Promises, Shortcomings, and Advances" Computational Linguistics"
+
+Links: [{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - ACL Anthology","url":"https://aclanthology.org/2022.cl-1.7/"},{"title":"[2102.12452] Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://arxiv.org/abs/2102.12452"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/48/1/207/107571/Probing-Classifiers-Promises-Shortcomings-and"},{"title":"Yonatan Belinkov | publications","url":"https://belinkov.com/publications/publicationstype/"},{"title":"(PDF) Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://www.researchgate.net/publication/355072709_Probing_Classifiers_Promises_Shortcomings_and_Advances"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - Technion - Israel Institute of Technology","url":"https://cris.technion.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"},{"title":"@article{belinkov-2022-probing,","url":"https://aclanthology.org/2022.cl-1.7.bib"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances - Israeli Research Community Portal","url":"https://cris.iucc.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"},{"title":"Probing Classifiers: Promises, Shortcomings, and Advances","url":"https://aclanthology.org/2022.cl-1.7.pdf"},{"title":"Probing Classifiers: Promises, Shortcomings, and Alternatives","url":"https://www.researchgate.net/publication/349583742_Probing_Classifiers_Promises_Shortcomings_and_Alternatives"}]
+
+I found comprehensive information about this paper. Here are the search results:
+
+## Paper Details
+
+The paper "Probing Classifiers: Promises, Shortcomings, and Advances" was published in Computational Linguistics, volume 48, issue 1, pages 207-219 in 2022, authored by Yonatan Belinkov.
+
+## Overview
+
+"Probing classifiers have emerged as one of the prominent methodologies for interpreting and analyzing deep neural network models of natural language processing. The basic idea is simple—a classifier is trained to predict some linguistic property from a model's representations—and has been used to examine a wide variety of models and properties."
+
+## Main Content
+
+"However, recent studies have demonstrated various methodological limitations of this approach. This squib critically reviews the probing classifiers framework, highlighting their promises, shortcomings, and advances."
+
+## Access Points
+
+The paper is available through multiple sources:
+- ACL Anthology
+- arXiv (preprint version)
+- MIT Press as the publisher
+
+The DOI is: 10.1162/coli_a_00422
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "cbdf7b02-24f1-44a7-89e2-8a0007aef632",
+  "tool_use_result": {
+    "query": "Belinkov 2022 \"Probing Classifiers: Promises, Shortcomings, and Advances\" Computational Linguistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015ogX7etkY6ss5QnUeLenbT",
+        "content": [
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances - ACL Anthology",
+            "url": "https://aclanthology.org/2022.cl-1.7/"
+          },
+          {
+            "title": "[2102.12452] Probing Classifiers: Promises, Shortcomings, and Advances",
+            "url": "https://arxiv.org/abs/2102.12452"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances | Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/coli/article/48/1/207/107571/Probing-Classifiers-Promises-Shortcomings-and"
+          },
+          {
+            "title": "Yonatan Belinkov | publications",
+            "url": "https://belinkov.com/publications/publicationstype/"
+          },
+          {
+            "title": "(PDF) Probing Classifiers: Promises, Shortcomings, and Advances",
+            "url": "https://www.researchgate.net/publication/355072709_Probing_Classifiers_Promises_Shortcomings_and_Advances"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances - Technion - Israel Institute of Technology",
+            "url": "https://cris.technion.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"
+          },
+          {
+            "title": "@article{belinkov-2022-probing,",
+            "url": "https://aclanthology.org/2022.cl-1.7.bib"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances - Israeli Research Community Portal",
+            "url": "https://cris.iucc.ac.il/en/publications/probing-classifiers-promises-shortcomings-and-advances/"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Advances",
+            "url": "https://aclanthology.org/2022.cl-1.7.pdf"
+          },
+          {
+            "title": "Probing Classifiers: Promises, Shortcomings, and Alternatives",
+            "url": "https://www.researchgate.net/publication/349583742_Probing_Classifiers_Promises_Shortcomings_and_Alternatives"
+          }
+        ]
+      },
+      "I found comprehensive information about this paper. Here are the search results:\n\n## Paper Details\n\nThe paper \"Probing Classifiers: Promises, Shortcomings, and Advances\" was published in Computational Linguistics, volume 48, issue 1, pages 207-219 in 2022, authored by Yonatan Belinkov.\n\n## Overview\n\n\"Probing classifiers have emerged as one of the prominent methodologies for interpreting and analyzing deep neural network models of natural language processing. The basic idea is simple—a classifier is trained to predict some linguistic property from a model's representations—and has been used to examine a wide variety of models and properties.\"\n\n## Main Content\n\n\"However, recent studies have demonstrated various methodological limitations of this approach. This squib critically reviews the probing classifiers framework, highlighting their promises, shortcomings, and advances.\"\n\n## Access Points\n\nThe paper is available through multiple sources:\n- ACL Anthology\n- arXiv (preprint version)\n- MIT Press as the publisher\n\nThe DOI is: 10.1162/coli_a_00422"
+    ],
+    "durationSeconds": 4.868471915999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T04:14:39.009Z_
+
+<details><summary>↩ Tool result · `toolu_015AFzEQn4KnVBvm79htCgJx`</summary>
+
+```text
+Web search results for query: "Hou Zhao 2026 VLA semantic perturbation language instruction arXiv"
+
+Links: [{"title":"[2603.00592v1] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.00592v1"},{"title":"[2603.00592] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.00592"},{"title":"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action ModelsCode and benchmark will be available at: https://github.com/YC11Hou/langgap","url":"https://arxiv.org/html/2603.00592"},{"title":"NS-VLA: Towards Neuro-Symbolic Vision-Language-Action Models","url":"https://arxiv.org/html/2603.09542v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Libra-VLA: Achieving Learning Equilibrium via Asynchronous Coarse-to-Fine Dual-System","url":"https://arxiv.org/html/2604.24921"},{"title":"[2603.09542] NS-VLA: Towards Neuro-Symbolic Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.09542"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00919v1"}]
+
+Based on the web search results, I found a highly relevant paper matching your query:
+
+The paper "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models" was authored by Yuchen Hou and Lin Zhao and submitted on February 28, 2026 (arXiv:2603.00592).
+
+The paper finds that current state-of-the-art VLA models largely ignore language instructions, and it addresses the lack of systematic semantic perturbation diagnostics, benchmarks that force language understanding by design, and linguistically diverse training data.
+
+The paper constructs the LangGap benchmark based on a four-dimensional semantic perturbation method — varying instruction semantics while keeping the tabletop layout fixed — revealing language understanding deficits in π0.5.
+
+Experiments show that targeted data augmentation can partially close the language gap — success rate improves from 0% to 90% with single-task training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "396f72c8-15ee-4142-a278-d64e575707ee",
+  "tool_use_result": {
+    "query": "Hou Zhao 2026 VLA semantic perturbation language instruction arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NZjDvJDCXbxC4HZPF32wwb",
+        "content": [
+          {
+            "title": "[2603.00592v1] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.00592v1"
+          },
+          {
+            "title": "[2603.00592] LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.00592"
+          },
+          {
+            "title": "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action ModelsCode and benchmark will be available at: https://github.com/YC11Hou/langgap",
+            "url": "https://arxiv.org/html/2603.00592"
+          },
+          {
+            "title": "NS-VLA: Towards Neuro-Symbolic Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.09542v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "Libra-VLA: Achieving Learning Equilibrium via Asynchronous Coarse-to-Fine Dual-System",
+            "url": "https://arxiv.org/html/2604.24921"
+          },
+          {
+            "title": "[2603.09542] NS-VLA: Towards Neuro-Symbolic Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.09542"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00919v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found a highly relevant paper matching your query:\n\nThe paper \"LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models\" was authored by Yuchen Hou and Lin Zhao and submitted on February 28, 2026 (arXiv:2603.00592).\n\nThe paper finds that current state-of-the-art VLA models largely ignore language instructions, and it addresses the lack of systematic semantic perturbation diagnostics, benchmarks that force language understanding by design, and linguistically diverse training data.\n\nThe paper constructs the LangGap benchmark based on a four-dimensional semantic perturbation method — varying instruction semantics while keeping the tabletop layout fixed — revealing language understanding deficits in π0.5.\n\nExperiments show that targeted data augmentation can partially close the language gap — success rate improves from 0% to 90% with single-task training."
+    ],
+    "durationSeconds": 5.676441769000012
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T04:14:39.045Z_
+
+<details><summary>↩ Tool result · `toolu_01WGnFYDFKkGFrosi5Fio71T`</summary>
+
+```text
+Web search results for query: "Rizzardo 2026 VLA feature observability controllability steering arXiv"
+
+Links: [{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/html/2603.05487"},{"title":"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.05487"},{"title":"(PDF) Observing and Controlling Features in Vision-Language-Action Models","url":"https://www.researchgate.net/publication/401601449_Observing_and_Controlling_Features_in_Vision-Language-Action_Models"},{"title":"[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/abs/2603.19183"},{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Evaluating Uncertainty and Quality of Visual Language Action-enabled Robots","url":"https://arxiv.org/html/2507.17049v2"},{"title":"PosePilot: Steering Camera Pose for Generative World Models with Self-supervised Depth","url":"https://arxiv.org/html/2505.01729"},{"title":"Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future","url":"https://arxiv.org/html/2512.16760v1"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"}]
+
+Based on the search results, I found a relevant paper on arXiv. The search query matched a paper titled **"Observing and Controlling Features in Vision-Language-Action Models"** (arXiv:2603.05487), published on March 5, 2026.
+
+The paper presents a combination of feature-observability and feature-controllability: a framework to observe and control robot behavior through accessing and modifying internal VLA representations. 
+
+A linear observer extracts features from the Transformer's internal representations, while a minimal linear controller steers these representations to align outputs with desired constraints, enabling real-time policy steering without fine-tuning.
+
+The work introduces and analyzes two main concepts: feature-observability and feature-controllability, studying features that are linearly encoded in representation space that can be observed by means of a linear classifier, and using a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region.
+
+The results show that targeted, lightweight interventions can reliably steer a robot's behavior while preserving closed-loop capabilities, demonstrated on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments that show VLAs possess interpretable internal structure amenable to online adaptation without fine-tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "ca660513-7d0f-4ffd-a401-9158153671c6",
+  "tool_use_result": {
+    "query": "Rizzardo 2026 VLA feature observability controllability steering arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014rQnEyCfajA5Sizn4ZSDR5",
+        "content": [
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.05487"
+          },
+          {
+            "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.05487"
+          },
+          {
+            "title": "(PDF) Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/401601449_Observing_and_Controlling_Features_in_Vision-Language-Action_Models"
+          },
+          {
+            "title": "[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/abs/2603.19183"
+          },
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Evaluating Uncertainty and Quality of Visual Language Action-enabled Robots",
+            "url": "https://arxiv.org/html/2507.17049v2"
+          },
+          {
+            "title": "PosePilot: Steering Camera Pose for Generative World Models with Self-supervised Depth",
+            "url": "https://arxiv.org/html/2505.01729"
+          },
+          {
+            "title": "Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future",
+            "url": "https://arxiv.org/html/2512.16760v1"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          }
+        ]
+      },
+      "Based on the search results, I found a relevant paper on arXiv. The search query matched a paper titled **\"Observing and Controlling Features in Vision-Language-Action Models\"** (arXiv:2603.05487), published on March 5, 2026.\n\nThe paper presents a combination of feature-observability and feature-controllability: a framework to observe and control robot behavior through accessing and modifying internal VLA representations. \n\nA linear observer extracts features from the Transformer's internal representations, while a minimal linear controller steers these representations to align outputs with desired constraints, enabling real-time policy steering without fine-tuning.\n\nThe work introduces and analyzes two main concepts: feature-observability and feature-controllability, studying features that are linearly encoded in representation space that can be observed by means of a linear classifier, and using a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region.\n\nThe results show that targeted, lightweight interventions can reliably steer a robot's behavior while preserving closed-loop capabilities, demonstrated on different VLA architectures (π₀.₅ and OpenVLA) through simulation experiments that show VLAs possess interpretable internal structure amenable to online adaptation without fine-tuning."
+    ],
+    "durationSeconds": 6.536887573
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T04:14:44.132Z_
+
+<details><summary>↩ Tool result · `toolu_01WQWB7Sw56vKcpStdSZn44A`</summary>
+
+```text
+Web search results for query: "Lu 2025 OpenVLA probing symbolic states arXiv"
+
+Links: [{"title":"[2502.04558] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://arxiv.org/abs/2502.04558"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://arxiv.org/html/2502.04558v1"},{"title":"[Literature Review] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://www.themoonlight.io/en/review/probing-a-vision-language-action-model-for-symbolic-states-and-integration-into-a-cognitive-architecture"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture | OpenReview","url":"https://openreview.net/forum?id=JktsyBGNrg"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/probing-vision-language-action-model-symbolic-states"},{"title":"Week Ending 2.9.2025 — Eye On AI","url":"https://www.eye-on.ai/ai-articles/e6n7f8m6dc4a3aw-kysfw-p3bpn-gj8zp-p9mmz-b34zn"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://paperreading.club/page?id=282643"},{"title":"HRILab Tufts - Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://hrilab.tufts.edu/publications/luetal25icad/"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"Probing a Vision-Language-Action Model for Symbolic States ...","url":"https://hrilab.tufts.edu/publications/luetal25icad.pdf"}]
+
+Based on the search results, here's information about the paper "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture" by Lu et al. (2025):
+
+## Overview
+This work probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states, enabling integration with a cognitive architecture (CA) for enhanced interpretability and robustness.
+
+## Key Contribution
+Vision-language-action (VLA) models hold promise as generalist robotics solutions by translating visual and linguistic inputs into robot actions, yet they lack reliability due to their black-box nature and sensitivity to environmental changes. In contrast, cognitive architectures excel in symbolic reasoning and state monitoring but are constrained by rigid predefined execution.
+
+## Methodology
+The researchers analyze the encoding of symbolic states across different layers of OpenVLA's Llama backbone through experiments on LIBERO-spatial pick-and-place tasks.
+
+## Results
+The probing results show consistently high accuracies (> 0.90) for both object and action states across most layers, though contrary to their hypotheses, they did not observe the expected pattern of object states being encoded earlier than action states.
+
+## System Integration
+The researchers demonstrate an integrated DIARC-OpenVLA system that leverages these symbolic representations for real-time state monitoring, laying the foundation for more interpretable and reliable robotic manipulation.
+
+The paper was published on arXiv on February 6, 2025 (arXiv:2502.04558) and authored by Hong Lu, Hengxu Li, Prithviraj Singh Shahani, Stephanie Herbers, and Matthias Scheutz.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "a618fc2e-4dde-46d3-a57b-5c3257e8f446",
+  "tool_use_result": {
+    "query": "Lu 2025 OpenVLA probing symbolic states arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bm687bkv4W26jDnGjpNfiC",
+        "content": [
+          {
+            "title": "[2502.04558] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/abs/2502.04558"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/html/2502.04558v1"
+          },
+          {
+            "title": "[Literature Review] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://www.themoonlight.io/en/review/probing-a-vision-language-action-model-for-symbolic-states-and-integration-into-a-cognitive-architecture"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture | OpenReview",
+            "url": "https://openreview.net/forum?id=JktsyBGNrg"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/probing-vision-language-action-model-symbolic-states"
+          },
+          {
+            "title": "Week Ending 2.9.2025 — Eye On AI",
+            "url": "https://www.eye-on.ai/ai-articles/e6n7f8m6dc4a3aw-kysfw-p3bpn-gj8zp-p9mmz-b34zn"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://paperreading.club/page?id=282643"
+          },
+          {
+            "title": "HRILab Tufts - Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://hrilab.tufts.edu/publications/luetal25icad/"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States ...",
+            "url": "https://hrilab.tufts.edu/publications/luetal25icad.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper \"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture\" by Lu et al. (2025):\n\n## Overview\nThis work probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states, enabling integration with a cognitive architecture (CA) for enhanced interpretability and robustness.\n\n## Key Contribution\nVision-language-action (VLA) models hold promise as generalist robotics solutions by translating visual and linguistic inputs into robot actions, yet they lack reliability due to their black-box nature and sensitivity to environmental changes. In contrast, cognitive architectures excel in symbolic reasoning and state monitoring but are constrained by rigid predefined execution.\n\n## Methodology\nThe researchers analyze the encoding of symbolic states across different layers of OpenVLA's Llama backbone through experiments on LIBERO-spatial pick-and-place tasks.\n\n## Results\nThe probing results show consistently high accuracies (> 0.90) for both object and action states across most layers, though contrary to their hypotheses, they did not observe the expected pattern of object states being encoded earlier than action states.\n\n## System Integration\nThe researchers demonstrate an integrated DIARC-OpenVLA system that leverages these symbolic representations for real-time state monitoring, laying the foundation for more interpretable and reliable robotic manipulation.\n\nThe paper was published on arXiv on February 6, 2025 (arXiv:2502.04558) and authored by Hong Lu, Hengxu Li, Prithviraj Singh Shahani, Stephanie Herbers, and Matthias Scheutz."
+    ],
+    "durationSeconds": 11.156828496000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found more papers. Now I need to search for the remaining ones: fei2025, fang2025, and grant2026. Let me also get the exact author details for rizzardo2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4a99b8a8-cef9-4d9f-b63f-422e5c4b3d22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5dPeWQMbgaHcKb3fdNAGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 758,
+      "cache_creation_input_tokens": 2898,
+      "cache_read_input_tokens": 35258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+找到了 belinkov2022、rizzardo2026、lu2025、hou2026。继续搜索剩余三篇。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "3b388d59-734c-4f5b-ac7a-50b05b18f1d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5dPeWQMbgaHcKb3fdNAGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 758,
+      "cache_creation_input_tokens": 2898,
+      "cache_read_input_tokens": 35258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YBbfwEAMf8N9j4s1AXXdKf`</summary>
+
+```json
+{
+  "query": "Fei 2025 VLA LIBERO robustness language instruction ignore arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "08d8a33f-ba5b-41a7-a179-98d36879978e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5dPeWQMbgaHcKb3fdNAGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 758,
+      "cache_creation_input_tokens": 2898,
+      "cache_read_input_tokens": 35258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VtSk5qX8PcR1yDqrkJe3HB`</summary>
+
+```json
+{
+  "query": "Fang 2025 VLA fine-tuning erodes VLM reasoning capabilities arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "299b3fec-9d61-4d1b-a2bd-040f00ae9143",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5dPeWQMbgaHcKb3fdNAGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 758,
+      "cache_creation_input_tokens": 2898,
+      "cache_read_input_tokens": 35258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019racjPCh72WJBUCJq8aaWg`</summary>
+
+```json
+{
+  "query": "Grant 2026 visual dominance VLA language instruction \"encoded but not used\" six architectures arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "f48454f4-4a6e-4e7d-95a1-7fbcc512826e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5dPeWQMbgaHcKb3fdNAGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 758,
+      "cache_creation_input_tokens": 2898,
+      "cache_read_input_tokens": 35258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T04:14:55.105Z_
+
+<details><summary>↩ Tool result · `toolu_019racjPCh72WJBUCJq8aaWg`</summary>
+
+```text
+Web search results for query: "Grant 2026 visual dominance VLA language instruction "encoded but not used" six architectures arXiv"
+
+No links found.
+
+The search didn't return any results. This could mean that either:
+
+1. The exact phrase or combination of terms doesn't match any indexed papers on arXiv or other web sources
+2. The paper may be very recent and not yet widely indexed
+3. Some of the specific terms or phrasing might need adjustment
+
+Would you like me to try:
+- A shorter or simplified search query with the main keywords?
+- Searching for specific terms like "visual dominance VLA" or "language instruction architectures"?
+- Looking for variations of the terms?
+
+Please let me know how you'd like to proceed, or if you have additional information about the paper you're looking for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "17be9787-227b-4fb5-be8c-9a1ca46f49d2",
+  "tool_use_result": {
+    "query": "Grant 2026 visual dominance VLA language instruction \"encoded but not used\" six architectures arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0118eUq4iSEEKfZV5FEfvAjJ",
+        "content": []
+      },
+      "The search didn't return any results. This could mean that either:\n\n1. The exact phrase or combination of terms doesn't match any indexed papers on arXiv or other web sources\n2. The paper may be very recent and not yet widely indexed\n3. Some of the specific terms or phrasing might need adjustment\n\nWould you like me to try:\n- A shorter or simplified search query with the main keywords?\n- Searching for specific terms like \"visual dominance VLA\" or \"language instruction architectures\"?\n- Looking for variations of the terms?\n\nPlease let me know how you'd like to proceed, or if you have additional information about the paper you're looking for."
+    ],
+    "durationSeconds": 4.401262808999992
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T04:14:55.285Z_
+
+<details><summary>↩ Tool result · `toolu_01YBbfwEAMf8N9j4s1AXXdKf`</summary>
+
+```text
+Web search results for query: "Fei 2025 VLA LIBERO robustness language instruction ignore arXiv"
+
+Links: [{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301v1"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626v1"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-Object: Lifelong Learning in Robotic Manipulation","url":"https://www.emergentmind.com/topics/libero-object"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"}]
+
+Based on the search results, I found information about the research by Senyu Fei and colleagues on Vision-Language-Action (VLA) models, LIBERO benchmarking, and robustness analysis with respect to language instructions:
+
+## LIBERO-Plus: In-depth Robustness Analysis
+
+The research presents a systematic vulnerability analysis of Visual-Language-Action (VLA) models by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+### Key Finding on Language Instruction Robustness
+
+The most striking finding relevant to your query is: Models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+### Performance Degradation
+
+Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+### Broader Implications
+
+The findings challenge the assumption that high benchmark scores equate to true competency and highlight the need for evaluation practices that assess reliability under realistic variation.
+
+The paper (arXiv:2510.13626) was published in October 2025 and introduces LIBERO-Plus as a comprehensive benchmark for evaluating the robustness of VLA models across multiple perturbation dimensions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d6bb8adf-2aff-4efc-91e4-08552bc4dd9d",
+  "tool_use_result": {
+    "query": "Fei 2025 VLA LIBERO robustness language instruction ignore arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KsmvF1omgStjJRV9xYB8kW",
+        "content": [
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301v1"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626v1"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-Object: Lifelong Learning in Robotic Manipulation",
+            "url": "https://www.emergentmind.com/topics/libero-object"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the research by Senyu Fei and colleagues on Vision-Language-Action (VLA) models, LIBERO benchmarking, and robustness analysis with respect to language instructions:\n\n## LIBERO-Plus: In-depth Robustness Analysis\n\nThe research presents a systematic vulnerability analysis of Visual-Language-Action (VLA) models by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n### Key Finding on Language Instruction Robustness\n\nThe most striking finding relevant to your query is: Models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\n### Performance Degradation\n\nModels exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n### Broader Implications\n\nThe findings challenge the assumption that high benchmark scores equate to true competency and highlight the need for evaluation practices that assess reliability under realistic variation.\n\nThe paper (arXiv:2510.13626) was published in October 2025 and introduces LIBERO-Plus as a comprehensive benchmark for evaluating the robustness of VLA models across multiple perturbation dimensions."
+    ],
+    "durationSeconds": 5.6584793340000035
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T04:14:57.326Z_
+
+<details><summary>↩ Tool result · `toolu_01VtSk5qX8PcR1yDqrkJe3HB`</summary>
+
+```text
+Web search results for query: "Fang 2025 VLA fine-tuning erodes VLM reasoning capabilities arXiv"
+
+Links: [{"title":"2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA","url":"https://arxiv.org/pdf/2601.14133"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Clutter-Robust Vision–Language–Action Models through Object-Centric and Geometry Grounding","url":"https://arxiv.org/html/2512.22519"},{"title":"[2512.12690] Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning","url":"https://arxiv.org/abs/2512.12690"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/html/2509.22195v1"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"},{"title":"DriveVLA-W0: World Models Amplify Data Scaling Law in ...","url":"https://arxiv.org/pdf/2510.12796"},{"title":"Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion","url":"https://arxiv.org/html/2511.14178"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning","url":"https://arxiv.org/html/2512.12690v1"}]
+
+Based on the search results, I found several relevant research papers addressing the topic of how fine-tuning VLMs for robotic action generation affects their reasoning capabilities:
+
+## Key Findings
+
+Fine-tuning undermines the fundamental premise of the VLA paradigm, which aims to leverage general world understanding acquired during VLM pre-training to enable generalized robotic control. However, current fine-tuning methodologies paradoxically strip the VLM of this very capability.
+
+As parameters are updated to minimize high-frequency spatial error in action space, the delicate semantic alignment established in the pre-trained model is often overwritten. Consequently, the resulting VLA model suffers from severe degradation in its original capabilities: it loses the ability to follow complex open-ended instructions, fails to describe visual scenes accurately, and exhibits weakened general semantic reasoning.
+
+A prevalent view is that fine-tuning VLMs for robotic action generation (VLA training) diminishes the model's foundational reasoning and multimodal understanding, potentially leading to a loss of general conversational abilities.
+
+## Proposed Solutions
+
+Several papers in the results propose approaches to mitigate this issue. For example, Fine-tuning VLMs on robot teleoperation data creates a fundamental tradeoff where learning to produce actions diminishes the VLM's foundational reasoning and multimodal understanding. This catastrophic forgetting is due to distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data, leading to approaches like VLM2VLA that represent low-level actions with natural language and use LoRA to minimize VLM backbone modifications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "86e0f527-b9cc-4ac1-88a6-d2617215e066",
+  "tool_use_result": {
+    "query": "Fang 2025 VLA fine-tuning erodes VLM reasoning capabilities arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RKAzMEBhDaJBftGgkTf33J",
+        "content": [
+          {
+            "title": "2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA",
+            "url": "https://arxiv.org/pdf/2601.14133"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Clutter-Robust Vision–Language–Action Models through Object-Centric and Geometry Grounding",
+            "url": "https://arxiv.org/html/2512.22519"
+          },
+          {
+            "title": "[2512.12690] Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning",
+            "url": "https://arxiv.org/abs/2512.12690"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/html/2509.22195v1"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v2"
+          },
+          {
+            "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in ...",
+            "url": "https://arxiv.org/pdf/2510.12796"
+          },
+          {
+            "title": "Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion",
+            "url": "https://arxiv.org/html/2511.14178"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning",
+            "url": "https://arxiv.org/html/2512.12690v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research papers addressing the topic of how fine-tuning VLMs for robotic action generation affects their reasoning capabilities:\n\n## Key Findings\n\nFine-tuning undermines the fundamental premise of the VLA paradigm, which aims to leverage general world understanding acquired during VLM pre-training to enable generalized robotic control. However, current fine-tuning methodologies paradoxically strip the VLM of this very capability.\n\nAs parameters are updated to minimize high-frequency spatial error in action space, the delicate semantic alignment established in the pre-trained model is often overwritten. Consequently, the resulting VLA model suffers from severe degradation in its original capabilities: it loses the ability to follow complex open-ended instructions, fails to describe visual scenes accurately, and exhibits weakened general semantic reasoning.\n\nA prevalent view is that fine-tuning VLMs for robotic action generation (VLA training) diminishes the model's foundational reasoning and multimodal understanding, potentially leading to a loss of general conversational abilities.\n\n## Proposed Solutions\n\nSeveral papers in the results propose approaches to mitigate this issue. For example, Fine-tuning VLMs on robot teleoperation data creates a fundamental tradeoff where learning to produce actions diminishes the VLM's foundational reasoning and multimodal understanding. This catastrophic forgetting is due to distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data, leading to approaches like VLM2VLA that represent low-level actions with natural language and use LoRA to minimize VLM backbone modifications."
+    ],
+    "durationSeconds": 7.287233955000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+For fei2025, I found "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models" - but the project page shows the author as Senyu Fei, but I need to check the full author list. The arXiv page says it's by Senyu Fei et al. Let me check the exact authors.
+
+For fang2025, the search didn't find a specific paper by "Fang 2025". The search results mention several related papers but none by "Fang" specifically about VLA fine-tuning eroding VLM reasoning. Let me search more specifically.
+
+
+For grant2026, I'm not getting any results either. I'll need to try some different search approaches to track down these references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d059c77e-2974-4e0e-bcb5-ceac230d7b5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+需要更精确搜索 fang2025 和 grant2026，以及确认 fei2025 和 rizzardo2026 的作者信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "cb512228-c22f-4338-b31e-0096352636fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KJi47Lr4NdbxxzaxCCfi6a`</summary>
+
+```json
+{
+  "query": "arxiv 2510.13626 LIBERO-Plus authors Fei"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "eb79b81a-8901-4879-8829-7883e2fa9443",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TdS1ibhJsV3dZwfd5NywnH`</summary>
+
+```json
+{
+  "query": "Fang 2025 \"VLA\" \"VLM\" reasoning erosion degradation fine-tuning action arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "1cbe9632-11c5-489d-a713-6b4ac9d9a0f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P3qVWtqDuzhAZ3kKefZh4f`</summary>
+
+```json
+{
+  "query": "Grant 2026 \"visual pathways dominate\" VLA action generation language arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "28fed5b9-dfc9-4bce-855c-06ddab0470b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015mjj2EgUyXvAGv2Bd1gUCK`</summary>
+
+```json
+{
+  "query": "arxiv 2603.05487 Rizzardo \"Observing and Controlling Features\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e77a8a73-5c9c-42a5-9746-741aed6f074b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8MZYLoK1n53yn6tBL34Uu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 236,
+      "cache_creation_input_tokens": 2888,
+      "cache_read_input_tokens": 38156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T04:15:09.830Z_
+
+<details><summary>↩ Tool result · `toolu_01P3qVWtqDuzhAZ3kKefZh4f`</summary>
+
+```text
+Web search results for query: "Grant 2026 "visual pathways dominate" VLA action generation language arXiv"
+
+No links found.
+
+The search didn't return any results for that exact query. This could mean:
+
+1. The paper may not yet be indexed by search engines
+2. The exact phrase or publication details may be slightly different
+3. It might be a very recent submission to arXiv that hasn't been widely indexed yet
+
+Since today is May 16, 2026, if this is a very recent paper from 2026, it's possible it hasn't been fully indexed yet. 
+
+Would you like me to try a modified search? I could search for:
+- Just the authors/key terms (like "Grant VLA action generation")
+- The topic without quotes ("visual pathways dominate VLA")
+- The paper on arXiv directly by browsing recent submissions
+
+Let me know how you'd like to proceed, or if you have any additional information about where this paper might be published!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "295de349-4eed-48ba-8ff6-62e578faaa0f",
+  "tool_use_result": {
+    "query": "Grant 2026 \"visual pathways dominate\" VLA action generation language arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AyavpW5W9grXnaenreoGk3",
+        "content": []
+      },
+      "The search didn't return any results for that exact query. This could mean:\n\n1. The paper may not yet be indexed by search engines\n2. The exact phrase or publication details may be slightly different\n3. It might be a very recent submission to arXiv that hasn't been widely indexed yet\n\nSince today is May 16, 2026, if this is a very recent paper from 2026, it's possible it hasn't been fully indexed yet. \n\nWould you like me to try a modified search? I could search for:\n- Just the authors/key terms (like \"Grant VLA action generation\")\n- The topic without quotes (\"visual pathways dominate VLA\")\n- The paper on arXiv directly by browsing recent submissions\n\nLet me know how you'd like to proceed, or if you have any additional information about where this paper might be published!"
+    ],
+    "durationSeconds": 3.82402498799999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T04:15:10.800Z_
+
+<details><summary>↩ Tool result · `toolu_01KJi47Lr4NdbxxzaxCCfi6a`</summary>
+
+```text
+Web search results for query: "arxiv 2510.13626 LIBERO-Plus authors Fei"
+
+Links: [{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626"},{"title":"[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | Takara TLDR","url":"https://tldr.takara.ai/p/2510.13626"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301v1"},{"title":"In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://bytez.com/docs/arxiv/2510.13626/paper"}]
+
+Based on the search results, here's the information about arxiv paper 2510.13626:
+
+## Paper: LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models
+
+**Authors with "Fei":**
+The paper has two authors with the surname "Fei": Senyu Fei (from Tongji University and Shanghai Innovation Institute) and Zhaoye Fei (from Fudan University).
+
+**Full Author List:**
+Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, and Xipeng Qiu.
+
+**Paper Summary:**
+The paper analyzes Visual-Language-Action (VLA) models by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. The analysis reveals that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+The paper was submitted on October 15, 2025, with the latest version (v3) revised on December 26, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "1ebe6538-60f1-4cf8-aef7-78bf014d9c1e",
+  "tool_use_result": {
+    "query": "arxiv 2510.13626 LIBERO-Plus authors Fei",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EYx6roKi16CYfUuDGuMsaN",
+        "content": [
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626"
+          },
+          {
+            "title": "[2510.13626v1] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2510.13626"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301v1"
+          },
+          {
+            "title": "In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://bytez.com/docs/arxiv/2510.13626/paper"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about arxiv paper 2510.13626:\n\n## Paper: LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\n\n**Authors with \"Fei\":**\nThe paper has two authors with the surname \"Fei\": Senyu Fei (from Tongji University and Shanghai Innovation Institute) and Zhaoye Fei (from Fudan University).\n\n**Full Author List:**\nSenyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, and Xipeng Qiu.\n\n**Paper Summary:**\nThe paper analyzes Visual-Language-Action (VLA) models by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. The analysis reveals that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nThe paper was submitted on October 15, 2025, with the latest version (v3) revised on December 26, 2025."
+    ],
+    "durationSeconds": 6.2787076229999945
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T04:15:12.693Z_
+
+<details><summary>↩ Tool result · `toolu_01TdS1ibhJsV3dZwfd5NywnH`</summary>
+
+```text
+Web search results for query: "Fang 2025 "VLA" "VLM" reasoning erosion degradation fine-tuning action arXiv"
+
+Links: [{"title":"TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers","url":"https://arxiv.org/html/2601.14133"},{"title":"2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA","url":"https://arxiv.org/pdf/2601.14133"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning","url":"https://arxiv.org/html/2510.11027v1"},{"title":"MolmoAct2 Action Reasoning Models for Real-World Deployment Haoquan Fang♥1,2∗","url":"https://arxiv.org/pdf/2605.02881"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models","url":"https://arxiv.org/html/2601.03309v1"},{"title":"Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion","url":"https://arxiv.org/html/2511.14178"},{"title":"Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning","url":"https://arxiv.org/html/2512.12690v1"}]
+
+Based on the search results, I found relevant papers discussing the topics you're interested in. Here are the key findings:
+
+## Main References Found
+
+Fang et al. (2025) published "DualVLA: building a generalizable embodied agent via partial decoupling of reasoning and action" on arXiv (2511.22134).
+
+## Key Research Area: Reasoning Erosion and Degradation in VLAs
+
+Your search terms relate to an important problem in Vision-Language-Action models. Recent work has identified "catastrophic forgetting" as occurring when the VLM backbone is aggressively updated during robotic fine-tuning, creating a conflict between the original objective of semantic understanding and the new objective of proprioceptive control.
+
+This degradation manifests as the resulting VLA model losing the ability to follow complex open-ended instructions, failing to describe visual scenes accurately, and exhibiting weakened general semantic reasoning.
+
+## Proposed Solutions
+
+Several approaches have been proposed to mitigate this issue:
+
+- ThinkAct and related works introduce Chain-of-Thought (CoT) reasoning into VLA training
+- Recent approaches have integrated general visual-dialogue datasets and reasoning mechanisms into the VLA framework
+- DualVLA specifically addresses this through partial decoupling of reasoning and action
+
+The search results reveal this is an active area of research with multiple papers from 2025-2026 addressing the fundamental tension between preserving VLM reasoning capabilities while fine-tuning for robotic action generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "515a0fff-c5b4-47f0-80d8-06fbf63c71a8",
+  "tool_use_result": {
+    "query": "Fang 2025 \"VLA\" \"VLM\" reasoning erosion degradation fine-tuning action arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017cHeHmbshjHt1aXdWucZW2",
+        "content": [
+          {
+            "title": "TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers",
+            "url": "https://arxiv.org/html/2601.14133"
+          },
+          {
+            "title": "2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA",
+            "url": "https://arxiv.org/pdf/2601.14133"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning",
+            "url": "https://arxiv.org/html/2510.11027v1"
+          },
+          {
+            "title": "MolmoAct2 Action Reasoning Models for Real-World Deployment Haoquan Fang♥1,2∗",
+            "url": "https://arxiv.org/pdf/2605.02881"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2601.03309v1"
+          },
+          {
+            "title": "Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion",
+            "url": "https://arxiv.org/html/2511.14178"
+          },
+          {
+            "title": "Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning",
+            "url": "https://arxiv.org/html/2512.12690v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant papers discussing the topics you're interested in. Here are the key findings:\n\n## Main References Found\n\nFang et al. (2025) published \"DualVLA: building a generalizable embodied agent via partial decoupling of reasoning and action\" on arXiv (2511.22134).\n\n## Key Research Area: Reasoning Erosion and Degradation in VLAs\n\nYour search terms relate to an important problem in Vision-Language-Action models. Recent work has identified \"catastrophic forgetting\" as occurring when the VLM backbone is aggressively updated during robotic fine-tuning, creating a conflict between the original objective of semantic understanding and the new objective of proprioceptive control.\n\nThis degradation manifests as the resulting VLA model losing the ability to follow complex open-ended instructions, failing to describe visual scenes accurately, and exhibiting weakened general semantic reasoning.\n\n## Proposed Solutions\n\nSeveral approaches have been proposed to mitigate this issue:\n\n- ThinkAct and related works introduce Chain-of-Thought (CoT) reasoning into VLA training\n- Recent approaches have integrated general visual-dialogue datasets and reasoning mechanisms into the VLA framework\n- DualVLA specifically addresses this through partial decoupling of reasoning and action\n\nThe search results reveal this is an active area of research with multiple papers from 2025-2026 addressing the fundamental tension between preserving VLM reasoning capabilities while fine-tuning for robotic action generation."
+    ],
+    "durationSeconds": 7.228339479999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T04:15:13.187Z_
+
+<details><summary>↩ Tool result · `toolu_015mjj2EgUyXvAGv2Bd1gUCK`</summary>
+
+```text
+Web search results for query: "arxiv 2603.05487 Rizzardo "Observing and Controlling Features" authors"
+
+Links: [{"title":"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.05487"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.05487"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=263&show=2000"},{"title":"[1503.01160] Spectrum of Controlling and Observing Complex Networks","url":"https://arxiv.org/abs/1503.01160"},{"title":"[1701.00830] A note on non-unique enhancements","url":"https://arxiv.org/abs/1701.00830"},{"title":"Contextual Preference Distribution Learning","url":"https://arxiv.org/html/2603.17139"},{"title":"[1801.06344] A k-linear triangulated category without a model","url":"https://arxiv.org/abs/1801.06344"},{"title":"GRVS: a Generalizable and Recurrent Approach to Monocular Dynamic View Synthesis","url":"https://arxiv.org/html/2603.29734"},{"title":"[2603.08947] Towards Reliable Simulation-based Inference","url":"https://arxiv.org/abs/2603.08947"},{"title":"Spectral sirens cosmology from binary black holes populations with sharper mass features","url":"https://arxiv.org/html/2603.06792v1"}]
+
+Based on the search results, the authors of arxiv paper 2603.05487 "Observing and Controlling Features in Vision-Language-Action Models" are Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, and Marco Pavone.
+
+Note: The search did not return results showing an author named "Rizzardo" for this paper. The results did show other papers by an Alice Rizzardo, but those were on different topics (mathematical category theory papers).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e7cbb28a-0ec5-4d44-b053-6155028906c1",
+  "tool_use_result": {
+    "query": "arxiv 2603.05487 Rizzardo \"Observing and Controlling Features\" authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rq165s36iSdQRj1QCczrtk",
+        "content": [
+          {
+            "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.05487"
+          },
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.05487"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=263&show=2000"
+          },
+          {
+            "title": "[1503.01160] Spectrum of Controlling and Observing Complex Networks",
+            "url": "https://arxiv.org/abs/1503.01160"
+          },
+          {
+            "title": "[1701.00830] A note on non-unique enhancements",
+            "url": "https://arxiv.org/abs/1701.00830"
+          },
+          {
+            "title": "Contextual Preference Distribution Learning",
+            "url": "https://arxiv.org/html/2603.17139"
+          },
+          {
+            "title": "[1801.06344] A k-linear triangulated category without a model",
+            "url": "https://arxiv.org/abs/1801.06344"
+          },
+          {
+            "title": "GRVS: a Generalizable and Recurrent Approach to Monocular Dynamic View Synthesis",
+            "url": "https://arxiv.org/html/2603.29734"
+          },
+          {
+            "title": "[2603.08947] Towards Reliable Simulation-based Inference",
+            "url": "https://arxiv.org/abs/2603.08947"
+          },
+          {
+            "title": "Spectral sirens cosmology from binary black holes populations with sharper mass features",
+            "url": "https://arxiv.org/html/2603.06792v1"
+          }
+        ]
+      },
+      "Based on the search results, the authors of arxiv paper 2603.05487 \"Observing and Controlling Features in Vision-Language-Action Models\" are Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, and Marco Pavone.\n\nNote: The search did not return results showing an author named \"Rizzardo\" for this paper. The results did show other papers by an Alice Rizzardo, but those were on different topics (mathematical category theory papers)."
+    ],
+    "durationSeconds": 6.301276196999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings:
+
+1. **rizzardo2026** - The paper "Observing and Controlling Features in Vision-Language-Action Models" (arXiv:2603.05487) is by Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, and Marco Pavone. NOT by Rizzardo. The task description says "Rizzardo et al. (2026)" but the actual paper has different authors. This is about feature-observability and controllability in VLAs. The key is "rizzardo2026" as a cite key. 
+
+The content matches what the task describes perfectly, but there's a discrepancy with the author names—the inline citation in related_work.tex appears to have a hallucinated author name that doesn't match the actual paper I found. I should verify whether there's a different Rizzardo paper or if this is the intended reference despite the author mismatch. Looking at the rizzardo2026 citation more carefully—the description about feature observability and controllability in VLA models matches the Buurmeijer paper exactly, but "Rizzardo" doesn't appear as an author anywhere, so this is likely a hallucinated name. I'm also checking the other citations: fang2025 doesn't have a clear match for the VLM reasoning erosion claim, grant2026 returns nothing at all, and fei2025 points to LIBERO-Plus but the author list doesn't match what I'm looking for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d1c65b82-dfcf-4d44-b793-a69ceb720e0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ucneSPnfqtkN3XHx9NMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3349,
+      "cache_read_input_tokens": 41044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3349
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+rizzardo2026 的实际论文没有 Rizzardo 作者。需要进一步确认。继续搜索 fang2025 和 grant2026。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "d7f0794e-86df-419e-89a4-63716b2e02dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ucneSPnfqtkN3XHx9NMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3349,
+      "cache_read_input_tokens": 41044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3349
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012YdAXDZG9A1fRdpvqNUuBq`</summary>
+
+```json
+{
+  "query": "Rizzardo 2026 VLA robotics vision language action arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "617312ef-dac1-4312-a161-1670dbe1b74d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ucneSPnfqtkN3XHx9NMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3349,
+      "cache_read_input_tokens": 41044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3349
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018E7WeeGNhdYbujSnwM74Pt`</summary>
+
+```json
+{
+  "query": "Fang 2025 VLA fine-tuning \"catastrophic forgetting\" VLM reasoning arXiv 2509"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "7bc68c40-d077-435c-9ca1-3b30801110fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ucneSPnfqtkN3XHx9NMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3349,
+      "cache_read_input_tokens": 41044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3349
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6EiMsonsr6msA6qUUAkbF`</summary>
+
+```json
+{
+  "query": "Grant 2026 VLA \"six architectures\" visual dominance language grounding robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "47cfe1cb-74ff-46a5-b911-e52e11069b78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ucneSPnfqtkN3XHx9NMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3349,
+      "cache_read_input_tokens": 41044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3349
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T04:15:37.107Z_
+
+<details><summary>↩ Tool result · `toolu_012YdAXDZG9A1fRdpvqNUuBq`</summary>
+
+```text
+Web search results for query: "Rizzardo 2026 VLA robotics vision language action arXiv"
+
+Links: [{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"[2510.07077] Vision-Language-Action Models for Robotics: A Review Towards Real-World Applications","url":"https://arxiv.org/abs/2510.07077"},{"title":"A Survey on Vision-Language-Action Models for Embodied ...","url":"https://arxiv.org/html/2405.14093v8"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00919v1"},{"title":"A Vision-Language-Action-Critic Model for Robotic Real- ...","url":"https://arxiv.org/pdf/2509.15937"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"}]
+
+I found several arXiv papers related to Vision-Language-Action (VLA) models and robotics from 2025-2026, but I didn't find a specific paper by an author named "Rizzardo" in the search results. 
+
+The search returned multiple comprehensive reviews and surveys on VLA models published recently:
+
+1. A foundational review covering over 80 VLA models published in the past three years, organized across five thematic pillars (arxiv.org/html/2505.04769v2)
+
+2. A survey synthesizing insights from over three hundred recent studies on Pure Vision Language Action models (arxiv.org/html/2509.19012v1)
+
+3. A systematic review analyzing 102 VLA models, 26 foundational datasets, and 12 simulation platforms (arxiv.org/html/2507.10672v1)
+
+4. Several other recent VLA surveys and papers on efficient VLA models, reinforcement learning with VLAs, and large VLM-based VLA models
+
+If you're looking for a specific paper by Rizzardo on VLA models, you might want to:
+- Check arXiv directly with the author name
+- Verify the exact spelling of the author's name
+- Search with a more specific paper title if you have it
+
+Would you like me to search with different parameters or provide more information about the VLA papers that were found?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "a0eb04fd-8cc2-4d1f-90eb-7a8dac9fc551",
+  "tool_use_result": {
+    "query": "Rizzardo 2026 VLA robotics vision language action arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01627ZPtAXgB7AHBmGbMZUmu",
+        "content": [
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "[2510.07077] Vision-Language-Action Models for Robotics: A Review Towards Real-World Applications",
+            "url": "https://arxiv.org/abs/2510.07077"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models for Embodied ...",
+            "url": "https://arxiv.org/html/2405.14093v8"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00919v1"
+          },
+          {
+            "title": "A Vision-Language-Action-Critic Model for Robotic Real- ...",
+            "url": "https://arxiv.org/pdf/2509.15937"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          }
+        ]
+      },
+      "I found several arXiv papers related to Vision-Language-Action (VLA) models and robotics from 2025-2026, but I didn't find a specific paper by an author named \"Rizzardo\" in the search results. \n\nThe search returned multiple comprehensive reviews and surveys on VLA models published recently:\n\n1. A foundational review covering over 80 VLA models published in the past three years, organized across five thematic pillars (arxiv.org/html/2505.04769v2)\n\n2. A survey synthesizing insights from over three hundred recent studies on Pure Vision Language Action models (arxiv.org/html/2509.19012v1)\n\n3. A systematic review analyzing 102 VLA models, 26 foundational datasets, and 12 simulation platforms (arxiv.org/html/2507.10672v1)\n\n4. Several other recent VLA surveys and papers on efficient VLA models, reinforcement learning with VLAs, and large VLM-based VLA models\n\nIf you're looking for a specific paper by Rizzardo on VLA models, you might want to:\n- Check arXiv directly with the author name\n- Verify the exact spelling of the author's name\n- Search with a more specific paper title if you have it\n\nWould you like me to search with different parameters or provide more information about the VLA papers that were found?"
+    ],
+    "durationSeconds": 6.284176028999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T04:15:38.154Z_
+
+<details><summary>↩ Tool result · `toolu_018E7WeeGNhdYbujSnwM74Pt`</summary>
+
+```text
+Web search results for query: "Fang 2025 VLA fine-tuning "catastrophic forgetting" VLM reasoning arXiv 2509"
+
+Links: [{"title":"2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA","url":"https://arxiv.org/pdf/2601.14133"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://vlm2vla.github.io/"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.22195"},{"title":"TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers","url":"https://arxiv.org/html/2601.14133"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/abs/2509.22195"},{"title":"Fine-tuning VLMs Without Forgetting Is Easier Than You Think","url":"https://openreview.net/pdf/278c682d3fdae858e47cc6e1111e5d282dd787fa.pdf"},{"title":"Seeing to Act, Prompting to Specify: A Bayesian Factorization of...","url":"https://arxiv.org/abs/2512.11218"},{"title":"FINE-TUNING VLMS INTO VLAS WITHOUT CATASTROPHIC ...","url":"https://openreview.net/pdf/85f42c58962d316f5e438073b3fef845314336ce.pdf"}]
+
+Based on the search results, I found highly relevant papers related to your query. Here are the key findings:
+
+## VLM Fine-tuning and Catastrophic Forgetting
+
+The catastrophic forgetting problem in VLA fine-tuning is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and robotics fine-tuning data. One solution, VLM2VLA, resolves this mismatch at the data level by representing low-level actions with natural language, making it possible to train VLAs solely with Low-Rank Adaptation (LoRA) and thereby averting catastrophic forgetting.
+
+## Referenced Work on VLM Reasoning
+
+The search results reference work by Fang et al. (2025) that addresses "catastrophic forgetting" when training VLMs for robotic control tasks. More specifically, Fang et al. (2025) introduced DualVLA, which involves building a generalizable embodied agent via partial decoupling of reasoning and action.
+
+## Addressing the Issue Through Architecture
+
+A critical paradox undermines current VLA architectures: the optimization process required to learn low-level sensorimotor control inevitably disrupts high-level semantic features. During standard robotic fine-tuning, the VLM backbone is aggressively updated to minimize action prediction errors on narrow, domain-specific datasets, creating a conflict between semantic understanding and proprioceptive control objectives that precipitates "catastrophic forgetting".
+
+The most relevant paper matching your query appears to be **arXiv 2509.22195** - "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting" by Hancock et al., which directly addresses the core issue you're asking about.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "5233cc3a-d1af-4269-9c3c-46a9f8693f8a",
+  "tool_use_result": {
+    "query": "Fang 2025 VLA fine-tuning \"catastrophic forgetting\" VLM reasoning arXiv 2509",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019wqnSNw9UfJTLRCDrSsV2d",
+        "content": [
+          {
+            "title": "2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA",
+            "url": "https://arxiv.org/pdf/2601.14133"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://vlm2vla.github.io/"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.22195"
+          },
+          {
+            "title": "TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers",
+            "url": "https://arxiv.org/html/2601.14133"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/abs/2509.22195"
+          },
+          {
+            "title": "Fine-tuning VLMs Without Forgetting Is Easier Than You Think",
+            "url": "https://openreview.net/pdf/278c682d3fdae858e47cc6e1111e5d282dd787fa.pdf"
+          },
+          {
+            "title": "Seeing to Act, Prompting to Specify: A Bayesian Factorization of...",
+            "url": "https://arxiv.org/abs/2512.11218"
+          },
+          {
+            "title": "FINE-TUNING VLMS INTO VLAS WITHOUT CATASTROPHIC ...",
+            "url": "https://openreview.net/pdf/85f42c58962d316f5e438073b3fef845314336ce.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant papers related to your query. Here are the key findings:\n\n## VLM Fine-tuning and Catastrophic Forgetting\n\nThe catastrophic forgetting problem in VLA fine-tuning is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and robotics fine-tuning data. One solution, VLM2VLA, resolves this mismatch at the data level by representing low-level actions with natural language, making it possible to train VLAs solely with Low-Rank Adaptation (LoRA) and thereby averting catastrophic forgetting.\n\n## Referenced Work on VLM Reasoning\n\nThe search results reference work by Fang et al. (2025) that addresses \"catastrophic forgetting\" when training VLMs for robotic control tasks. More specifically, Fang et al. (2025) introduced DualVLA, which involves building a generalizable embodied agent via partial decoupling of reasoning and action.\n\n## Addressing the Issue Through Architecture\n\nA critical paradox undermines current VLA architectures: the optimization process required to learn low-level sensorimotor control inevitably disrupts high-level semantic features. During standard robotic fine-tuning, the VLM backbone is aggressively updated to minimize action prediction errors on narrow, domain-specific datasets, creating a conflict between semantic understanding and proprioceptive control objectives that precipitates \"catastrophic forgetting\".\n\nThe most relevant paper matching your query appears to be **arXiv 2509.22195** - \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\" by Hancock et al., which directly addresses the core issue you're asking about."
+    ],
+    "durationSeconds": 6.973330577000016
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T04:15:39.070Z_
+
+<details><summary>↩ Tool result · `toolu_01H6EiMsonsr6msA6qUUAkbF`</summary>
+
+```text
+Web search results for query: "Grant 2026 VLA "six architectures" visual dominance language grounding robotics"
+
+Links: [{"title":"Vision-Language-Action Models for Robotics: A Review Towards Real-World Applications","url":"https://arxiv.org/html/2510.07077v1"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"LiteVLA-H: Dual-Rate Vision-Language-Action Inference for Onboard Aerial Guidance and Semantic Perception","url":"https://arxiv.org/html/2605.00884"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Vision-Language-Action (VLA) Guide for 2026","url":"https://hyscaler.com/insights/vision-language-action-vla-guide/"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"12 Predictions for Embodied AI and Robotics in 2026 | Dylan Bourgeois","url":"https://dtsbourg.me/en/articles/predictions-embodied-ai"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"Vision-Language-Action Models and the Search for a Generalist Robot Policy","url":"https://itcanthink.substack.com/p/vision-language-action-models-and"}]
+
+I found search results related to Vision-Language-Action (VLA) models and robotics in 2026. While the results contain extensive information about VLA architectures, datasets, and applications, I did not find a specific document or grant with the exact phrase "six architectures" combined with "visual dominance language grounding" in these results.
+
+However, the search results do reveal relevant insights about VLA architectures and their development in 2026:
+
+VLA research provides a unified taxonomy that organizes more than 100 VLA architectures, and researchers examine 102 models, 26 foundational datasets, and 12 simulation platforms.
+
+Regarding architectural approaches, VLA models use various encoder and decoder classes including ViT variants (such as CLIP, SigLIP, DINOv2) and CNNs for vision encoding, LLaMA/Vicuna, T5-base, Qwen, and GPT-based models for language encoding, and diffusion or autoregressive transformers for action decoding.
+
+Research analysis shows that hierarchical and late fusion architectures achieve the highest manipulation success and generalization, with diffusion-based decoders demonstrating superior cross-domain transfer and robustness compared to autoregressive heads.
+
+If you're looking for a specific grant document or paper that mentions "six architectures" with those exact terms, you may need to provide additional context or clarify whether this refers to a specific research paper, grant proposal, or technical report.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "0333b600-f6ba-4de1-ab77-dfbbe9cf6dcd",
+  "tool_use_result": {
+    "query": "Grant 2026 VLA \"six architectures\" visual dominance language grounding robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YQ9wqVHkhT6BLveLno8CmQ",
+        "content": [
+          {
+            "title": "Vision-Language-Action Models for Robotics: A Review Towards Real-World Applications",
+            "url": "https://arxiv.org/html/2510.07077v1"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "LiteVLA-H: Dual-Rate Vision-Language-Action Inference for Onboard Aerial Guidance and Semantic Perception",
+            "url": "https://arxiv.org/html/2605.00884"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Guide for 2026",
+            "url": "https://hyscaler.com/insights/vision-language-action-vla-guide/"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "12 Predictions for Embodied AI and Robotics in 2026 | Dylan Bourgeois",
+            "url": "https://dtsbourg.me/en/articles/predictions-embodied-ai"
+          },
+          {
+            "title": "Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)",
+            "url": "https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "Vision-Language-Action Models and the Search for a Generalist Robot Policy",
+            "url": "https://itcanthink.substack.com/p/vision-language-action-models-and"
+          }
+        ]
+      },
+      "I found search results related to Vision-Language-Action (VLA) models and robotics in 2026. While the results contain extensive information about VLA architectures, datasets, and applications, I did not find a specific document or grant with the exact phrase \"six architectures\" combined with \"visual dominance language grounding\" in these results.\n\nHowever, the search results do reveal relevant insights about VLA architectures and their development in 2026:\n\nVLA research provides a unified taxonomy that organizes more than 100 VLA architectures, and researchers examine 102 models, 26 foundational datasets, and 12 simulation platforms.\n\nRegarding architectural approaches, VLA models use various encoder and decoder classes including ViT variants (such as CLIP, SigLIP, DINOv2) and CNNs for vision encoding, LLaMA/Vicuna, T5-base, Qwen, and GPT-based models for language encoding, and diffusion or autoregressive transformers for action decoding.\n\nResearch analysis shows that hierarchical and late fusion architectures achieve the highest manipulation success and generalization, with diffusion-based decoders demonstrating superior cross-domain transfer and robustness compared to autoregressive heads.\n\nIf you're looking for a specific grant document or paper that mentions \"six architectures\" with those exact terms, you may need to provide additional context or clarify whether this refers to a specific research paper, grant proposal, or technical report."
+    ],
+    "durationSeconds": 7.058323577000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search more specifically for fang2025 and grant2026. For fang2025, I need to look more closely. Let me try searching specifically for "Fang" as an author in VLA fine-tuning context.
+
+For grant2026, multiple searches haven't found anything. This might be a hallucinated citation.
+
+Let me also try to find the right fang2025 paper. The task says: "Fang et al. (2025), discovered VLA fine-tuning erodes original VLM reasoning abilities." This could be a different paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "cb35883f-a355-4c36-98e6-e69d36084422",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DD4JECcvGW4MXeiVeyXHdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 44393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017KwvoSKEzABdng99dxJMAg`</summary>
+
+```json
+{
+  "query": "\"Fang\" 2025 VLA VLM reasoning ability erosion degradation fine-tuning robotics arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4ac6f45a-a919-4e6a-8338-d779343cae11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DD4JECcvGW4MXeiVeyXHdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 44393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EDaLGsqXg2tHs28uktyy2w`</summary>
+
+```json
+{
+  "query": "Grant 2026 VLA language instruction visual modality dominance \"action generation\" arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "53ec7292-e2de-46d4-b368-ac89ecd05556",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DD4JECcvGW4MXeiVeyXHdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 44393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T04:15:52.600Z_
+
+<details><summary>↩ Tool result · `toolu_017KwvoSKEzABdng99dxJMAg`</summary>
+
+```text
+Web search results for query: ""Fang" 2025 VLA VLM reasoning ability erosion degradation fine-tuning robotics arXiv"
+
+Links: [{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning","url":"https://arxiv.org/html/2510.11027v1"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion","url":"https://arxiv.org/html/2511.14178v1"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/html/2509.22195v1"},{"title":"Scalable Vision-Language-Action Model Pretraining for ​Robotic Manipulation with Real-Life Human Activity Videos","url":"https://arxiv.org/html/2510.21571v1"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models Angen Ye12∗","url":"https://arxiv.org/pdf/2510.01623"}]
+
+I found relevant research results related to your query. The search returned several papers on Vision-Language-Action (VLA) models and Vision-Language Models (VLMs) for robotics from 2025 and related periods. Here are some key findings:
+
+## Key Papers Found:
+
+1. **LangForce** (arXiv:2601.15197) - This work addresses how fine-tuning VLMs for robotic action generation (VLA training) diminishes the model's foundational reasoning and multimodal understanding, potentially leading to a loss of general conversational abilities.
+
+2. **Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting** (arXiv:2509.22195) - This paper discusses how fine-tuning vision-language models on robot teleoperation data to create VLA models often diminishes the VLM's foundational reasoning and multimodal understanding, with this catastrophic forgetting attributed to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.
+
+3. **Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning** (arXiv:2510.11027) - This work references recent frameworks including Robix (Fang et al., 2025) which incorporate Reinforcement Fine-Tuning (RFT) and synthesize spatio-temporal reasoning datasets enriched with structured thought traces.
+
+4. **VLA-R1: Enhancing Reasoning in Vision-Language-Action Models** (arXiv:2510.01623) - This paper discusses methods to enhance reasoning capabilities in VLA models.
+
+The search identified several papers discussing the problem of degradation in VLM reasoning abilities when fine-tuned for robotics, which appears to be a significant research focus in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "cdc136f0-e4c3-41be-94be-a97b0b5568b5",
+  "tool_use_result": {
+    "query": "\"Fang\" 2025 VLA VLM reasoning ability erosion degradation fine-tuning robotics arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017onpuTvFW6ydCT8ddZuMJb",
+        "content": [
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning",
+            "url": "https://arxiv.org/html/2510.11027v1"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion",
+            "url": "https://arxiv.org/html/2511.14178v1"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/html/2509.22195v1"
+          },
+          {
+            "title": "Scalable Vision-Language-Action Model Pretraining for ​Robotic Manipulation with Real-Life Human Activity Videos",
+            "url": "https://arxiv.org/html/2510.21571v1"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models Angen Ye12∗",
+            "url": "https://arxiv.org/pdf/2510.01623"
+          }
+        ]
+      },
+      "I found relevant research results related to your query. The search returned several papers on Vision-Language-Action (VLA) models and Vision-Language Models (VLMs) for robotics from 2025 and related periods. Here are some key findings:\n\n## Key Papers Found:\n\n1. **LangForce** (arXiv:2601.15197) - This work addresses how fine-tuning VLMs for robotic action generation (VLA training) diminishes the model's foundational reasoning and multimodal understanding, potentially leading to a loss of general conversational abilities.\n\n2. **Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting** (arXiv:2509.22195) - This paper discusses how fine-tuning vision-language models on robot teleoperation data to create VLA models often diminishes the VLM's foundational reasoning and multimodal understanding, with this catastrophic forgetting attributed to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.\n\n3. **Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning** (arXiv:2510.11027) - This work references recent frameworks including Robix (Fang et al., 2025) which incorporate Reinforcement Fine-Tuning (RFT) and synthesize spatio-temporal reasoning datasets enriched with structured thought traces.\n\n4. **VLA-R1: Enhancing Reasoning in Vision-Language-Action Models** (arXiv:2510.01623) - This paper discusses methods to enhance reasoning capabilities in VLA models.\n\nThe search identified several papers discussing the problem of degradation in VLM reasoning abilities when fine-tuned for robotics, which appears to be a significant research focus in 2025."
+    ],
+    "durationSeconds": 7.877697229000012
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T04:15:55.369Z_
+
+<details><summary>↩ Tool result · `toolu_01EDaLGsqXg2tHs28uktyy2w`</summary>
+
+```text
+Web search results for query: "Grant 2026 VLA language instruction visual modality dominance "action generation" arXiv 2026"
+
+Links: [{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"Stable Language Guidance for Vision–Language–Action Models","url":"https://arxiv.org/html/2601.04052v2"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"FocusVLA: Focused Visual Utilization for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.28740"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"},{"title":"Unifying Language-Action Understanding and Generation for Autonomous Driving","url":"https://arxiv.org/html/2603.01441"},{"title":"A Survey on Vision-Language-Action Models: An Action Tokenization Perspective","url":"https://arxiv.org/html/2507.01925v1"}]
+
+I found several highly relevant papers on Vision-Language-Action (VLA) models. Based on the search results, here are the most relevant findings:
+
+A critical "modality collapse" phenomenon has been identified where strong visual priors overwhelm sparse linguistic signals, causing agents to overfit to specific instruction phrasings while ignoring the underlying semantic intent.
+
+More specifically, analyses on benchmarks reveal a pervasive "instruction blindness," where models frequently ignore language inputs entirely, defaulting to the most probable action given the scene alone.
+
+The visual dominance issue is also reflected in architectural constraints. Among visual, textual, and proprioceptive inputs, visual inputs contribute the most to the total token sequence length, often dominating the model's memory and compute footprint.
+
+To address these issues, recent work has proposed solutions. For example, Residual Semantic Steering (RSS) introduces Monte Carlo Syntactic Integration, which approximates the true semantic posterior via dense, LLM-driven distributional expansion, and Residual Affordance Steering, a dual-stream decoding mechanism that explicitly isolates the causal influence of language by subtracting the visual affordance prior.
+
+Another approach is FocusVLA, which proposes a new VLA paradigm designed to explicitly drive the attention on task-relevant visual details through Modality Cascaded Attention to eliminate structural shortcuts.
+
+These papers address the challenge of language instruction following and the dominance of visual modality in action generation within VLA models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "baa1d74b-ac75-40a9-9035-d0e5f009cab6",
+  "tool_use_result": {
+    "query": "Grant 2026 VLA language instruction visual modality dominance \"action generation\" arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VhBgmtfabuxi8H4vRzvNtS",
+        "content": [
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "Stable Language Guidance for Vision–Language–Action Models",
+            "url": "https://arxiv.org/html/2601.04052v2"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "FocusVLA: Focused Visual Utilization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.28740"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          },
+          {
+            "title": "Unifying Language-Action Understanding and Generation for Autonomous Driving",
+            "url": "https://arxiv.org/html/2603.01441"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models: An Action Tokenization Perspective",
+            "url": "https://arxiv.org/html/2507.01925v1"
+          }
+        ]
+      },
+      "I found several highly relevant papers on Vision-Language-Action (VLA) models. Based on the search results, here are the most relevant findings:\n\nA critical \"modality collapse\" phenomenon has been identified where strong visual priors overwhelm sparse linguistic signals, causing agents to overfit to specific instruction phrasings while ignoring the underlying semantic intent.\n\nMore specifically, analyses on benchmarks reveal a pervasive \"instruction blindness,\" where models frequently ignore language inputs entirely, defaulting to the most probable action given the scene alone.\n\nThe visual dominance issue is also reflected in architectural constraints. Among visual, textual, and proprioceptive inputs, visual inputs contribute the most to the total token sequence length, often dominating the model's memory and compute footprint.\n\nTo address these issues, recent work has proposed solutions. For example, Residual Semantic Steering (RSS) introduces Monte Carlo Syntactic Integration, which approximates the true semantic posterior via dense, LLM-driven distributional expansion, and Residual Affordance Steering, a dual-stream decoding mechanism that explicitly isolates the causal influence of language by subtracting the visual affordance prior.\n\nAnother approach is FocusVLA, which proposes a new VLA paradigm designed to explicitly drive the attention on task-relevant visual details through Modality Cascaded Attention to eliminate structural shortcuts.\n\nThese papers address the challenge of language instruction following and the dominance of visual modality in action generation within VLA models."
+    ],
+    "durationSeconds": 9.870524611
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try more specific searches for the remaining hard-to-find papers. For fang2025, let me search specifically for "Robix Fang 2025" since the Vlaser paper cited it.
+
+For grant2026, I still can't find it. Let me try a different approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "08f939f0-349e-44d4-87b0-475b076f9a98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019hUc6SYZ44rEpwGHRShrr8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 48090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2150
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MyaYrri4sGVLoN9FGJwF1u`</summary>
+
+```json
+{
+  "query": "\"Robix\" Fang 2025 VLA VLM reasoning fine-tuning arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "c3730da7-819a-44e2-9f9c-d97a728e41e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019hUc6SYZ44rEpwGHRShrr8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 48090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2150
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Py1MYj22CjU53UaLtdjhwL`</summary>
+
+```json
+{
+  "query": "VLA \"visual dominance\" language instruction \"encoded but not used\" 2026 robotics arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "ccc3acb7-ea0f-443f-bf3b-727a6cf37262",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019hUc6SYZ44rEpwGHRShrr8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 48090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2150
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-16T04:16:05.773Z_
+
+<details><summary>↩ Tool result · `toolu_01MyaYrri4sGVLoN9FGJwF1u`</summary>
+
+```text
+Web search results for query: ""Robix" Fang 2025 VLA VLM reasoning fine-tuning arXiv"
+
+Links: [{"title":"Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning","url":"https://arxiv.org/html/2510.11027v1"},{"title":"Robix: A Unified Model for Robot Interaction, Reasoning and Planning","url":"https://arxiv.org/pdf/2509.01106"},{"title":"ReFineVLA: Multimodal Reasoning-Aware Generalist Robotic Policies via Teacher-Guided Fine-Tuning","url":"https://arxiv.org/html/2604.17800v1"},{"title":"GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub","url":"https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA","url":"https://arxiv.org/pdf/2601.14133"},{"title":"From Intention to Execution: Probing the Generalization Boundaries of Vision-Language-Action Models","url":"https://arxiv.org/html/2506.09930v1"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/html/2509.22195v1"},{"title":"DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models","url":"https://arxiv.org/html/2511.15669v1"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"}]
+
+Based on the search results, I found relevant information about Robix and VLA/VLM reasoning fine-tuning research:
+
+## Robix: A Unified Model for Robot Interaction, Reasoning and Planning
+
+Robix is described as "A unified model for robot interaction, reasoning and planning" with arXiv preprint arXiv:2509.01106 (2025).
+
+Robix (Fang et al., 2025) incorporates Reinforcement Fine-Tuning (RFT) and synthesizes spatio-temporal reasoning datasets enriched with structured thought traces. These approaches aim to enhance models' capacity for causal reasoning and long-horizon task decomposition.
+
+More specifically, Robix is trained with a three-stage strategy: (1) Continued pretraining on general VLMs to enhance foundational embodied reasoning capabilities with a large-scale dataset covering robot-relevant tasks, (2) Supervised finetuning to endow the model with complex interactive capabilities using comprehensive data synthesis to incorporate chain-of-thought reasoning and model interactive task execution as a unified reasoning-action sequence.
+
+The paper appears to evaluate Robix on embodied reasoning, planning, and interaction capabilities with both offline test sets and online robotic tasks, positioning it as a framework that bridges vision-language models with robotic reasoning and control.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4b8f1156-9d93-4553-aecf-96d608044f4a",
+  "tool_use_result": {
+    "query": "\"Robix\" Fang 2025 VLA VLM reasoning fine-tuning arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TtWzxWKfBY59wpHpysynpw",
+        "content": [
+          {
+            "title": "Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning",
+            "url": "https://arxiv.org/html/2510.11027v1"
+          },
+          {
+            "title": "Robix: A Unified Model for Robot Interaction, Reasoning and Planning",
+            "url": "https://arxiv.org/pdf/2509.01106"
+          },
+          {
+            "title": "ReFineVLA: Multimodal Reasoning-Aware Generalist Robotic Policies via Teacher-Guided Fine-Tuning",
+            "url": "https://arxiv.org/html/2604.17800v1"
+          },
+          {
+            "title": "GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub",
+            "url": "https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA",
+            "url": "https://arxiv.org/pdf/2601.14133"
+          },
+          {
+            "title": "From Intention to Execution: Probing the Generalization Boundaries of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.09930v1"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/html/2509.22195v1"
+          },
+          {
+            "title": "DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.15669v1"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Robix and VLA/VLM reasoning fine-tuning research:\n\n## Robix: A Unified Model for Robot Interaction, Reasoning and Planning\n\nRobix is described as \"A unified model for robot interaction, reasoning and planning\" with arXiv preprint arXiv:2509.01106 (2025).\n\nRobix (Fang et al., 2025) incorporates Reinforcement Fine-Tuning (RFT) and synthesizes spatio-temporal reasoning datasets enriched with structured thought traces. These approaches aim to enhance models' capacity for causal reasoning and long-horizon task decomposition.\n\nMore specifically, Robix is trained with a three-stage strategy: (1) Continued pretraining on general VLMs to enhance foundational embodied reasoning capabilities with a large-scale dataset covering robot-relevant tasks, (2) Supervised finetuning to endow the model with complex interactive capabilities using comprehensive data synthesis to incorporate chain-of-thought reasoning and model interactive task execution as a unified reasoning-action sequence.\n\nThe paper appears to evaluate Robix on embodied reasoning, planning, and interaction capabilities with both offline test sets and online robotic tasks, positioning it as a framework that bridges vision-language models with robotic reasoning and control."
+    ],
+    "durationSeconds": 6.443543209000025
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T04:16:07.247Z_
+
+<details><summary>↩ Tool result · `toolu_01Py1MYj22CjU53UaLtdjhwL`</summary>
+
+```text
+Web search results for query: "VLA "visual dominance" language instruction "encoded but not used" 2026 robotics arXiv"
+
+Links: [{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"},{"title":"Robotics arXiv Digest — 2026-03-30 - Kiru Park / Vision for Robotics","url":"https://www.visionforrobotics.com/robotics-digest/digest_2026-03-30.html"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"🤖 Robotics arXiv Digest — 2026-03-26","url":"https://www.visionforrobotics.com/robotics-digest/digest_2026-03-26.html"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"}]
+
+I found relevant results for your search. The most directly relevant paper appears to be from the robotics arXiv digest. Here's what I found:
+
+FocusVLA addresses visual representation utilization — how the policy network uses existing representations — finding this to be the dominant bottleneck. The empirical finding that VLA performance is primarily limited by visual utilization rather than visual quality challenges the prevailing scaling hypothesis, suggesting that better architectural design may be more cost-effective than larger vision models.
+
+This paper appears to address the concept of visual dominance in VLAs but from the perspective of how visual information is being used (or underutilized) rather than being "encoded but not used" in the specific sense your query suggests. The paper's ablation reveals that a simple attention-focusing mechanism that restricts cross-attention to the top-K most task-relevant visual tokens outperforms standard attention by a larger margin than switching from a weaker to stronger visual encoder.
+
+The search results also show a 2026 paper on Q cache that notes "visual attention is valuable in less than half of decode layers for multimodal large language model," and mentions linguistic blindness where "policies execute visually plausible trajectories even when the instruction is semantically contradictory."
+
+These findings suggest the robotics and VLA research community in 2026 is actively investigating cases where visual information is encoded but potentially not optimally utilized in decision-making processes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e33384f7-8a94-4a87-945b-a0d9ae64f8f5",
+  "tool_use_result": {
+    "query": "VLA \"visual dominance\" language instruction \"encoded but not used\" 2026 robotics arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013drCWjQ4pKA5UoP88MPupr",
+        "content": [
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v2"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          },
+          {
+            "title": "Robotics arXiv Digest — 2026-03-30 - Kiru Park / Vision for Robotics",
+            "url": "https://www.visionforrobotics.com/robotics-digest/digest_2026-03-30.html"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "Vision-language-action model - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Vision-language-action_model"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "🤖 Robotics arXiv Digest — 2026-03-26",
+            "url": "https://www.visionforrobotics.com/robotics-digest/digest_2026-03-26.html"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          }
+        ]
+      },
+      "I found relevant results for your search. The most directly relevant paper appears to be from the robotics arXiv digest. Here's what I found:\n\nFocusVLA addresses visual representation utilization — how the policy network uses existing representations — finding this to be the dominant bottleneck. The empirical finding that VLA performance is primarily limited by visual utilization rather than visual quality challenges the prevailing scaling hypothesis, suggesting that better architectural design may be more cost-effective than larger vision models.\n\nThis paper appears to address the concept of visual dominance in VLAs but from the perspective of how visual information is being used (or underutilized) rather than being \"encoded but not used\" in the specific sense your query suggests. The paper's ablation reveals that a simple attention-focusing mechanism that restricts cross-attention to the top-K most task-relevant visual tokens outperforms standard attention by a larger margin than switching from a weaker to stronger visual encoder.\n\nThe search results also show a 2026 paper on Q cache that notes \"visual attention is valuable in less than half of decode layers for multimodal large language model,\" and mentions linguistic blindness where \"policies execute visually plausible trajectories even when the instruction is semantically contradictory.\"\n\nThese findings suggest the robotics and VLA research community in 2026 is actively investigating cases where visual information is encoded but potentially not optimally utilized in decision-making processes."
+    ],
+    "durationSeconds": 7.390240808000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now try the Semantic Scholar API again for the remaining hard-to-find papers, with a longer delay between requests.
+
+Let me also look specifically for the fang2025 paper. The task says: "Fang et al. (2025), discovered VLA fine-tuning erodes original VLM reasoning abilities." 
+
+Looking at the search results:
+- "Robix: A Unified Model for Robot Interaction, Reasoning and Planning" by Fang et al. (arXiv:2509.01106) doesn't seem to be specifically about VLA fine-tuning eroding VLM reasoning. 
+
+The Hancock et al. paper on fine-tuning VLMs into VLAs without catastrophic forgetting is closer to the topic, but it's not the Fang paper I'm looking for. I should also check "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations" since it addresses preservation of original capabilities during fine-tuning, which aligns with what the task describes about reasoning erosion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "fa371cde-ac7d-4642-b53a-ec4c01b973f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JjeJHbgcsXY11EApeCbjUo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 50240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012pWEjEtF7QdWqcrPJaL9ay`</summary>
+
+```json
+{
+  "query": "arxiv 2509.11417 \"Preserving Pretrained Representations\" VLA authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "942562d0-3080-4ef1-a182-69e60a2703e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JjeJHbgcsXY11EApeCbjUo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 50240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RvPw4WHt988U8GV2CvzNQx`</summary>
+
+```json
+{
+  "query": "Fang 2025 VLM VLA fine-tuning erodes reasoning \"original capabilities\" arXiv robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "490bd44f-59e4-41c4-b9aa-25600260eb68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JjeJHbgcsXY11EApeCbjUo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 50240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1964
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T04:16:20.446Z_
+
+<details><summary>↩ Tool result · `toolu_012pWEjEtF7QdWqcrPJaL9ay`</summary>
+
+```text
+Web search results for query: "arxiv 2509.11417 "Preserving Pretrained Representations" VLA authors"
+
+Links: [{"title":"[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/abs/2509.11417"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417"},{"title":"Enhancing Generalization in Vision–Language–Action Models by","url":"https://arxiv.org/pdf/2509.11417"},{"title":"[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"},{"title":"[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616v1"},{"title":"PriorVLA: Prior-Preserving Adaptation for Vision-Language-Action Models","url":"https://arxiv.org/html/2605.10925v1"},{"title":"[2511.19878] MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization","url":"https://arxiv.org/abs/2511.19878"},{"title":": A Vision-Language-Action Model Bridging Understanding and Generation to Actions","url":"https://arxiv.org/html/2509.06951v1"},{"title":"[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616"}]
+
+Based on the search results, I found the paper you're looking for. 
+
+The paper arXiv:2509.11417 titled "Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations" was submitted on September 14, 2025 and has the following authors: Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li.
+
+The paper proposes a framework for Vision-Language-Action (VLA) models that better preserves pretrained features while adapting them for robot manipulation, addressing the problem that direct fine-tuning on robot data often disrupts pretrained representations and limits generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "602811ff-c445-4bb2-86cc-891e8cb80f79",
+  "tool_use_result": {
+    "query": "arxiv 2509.11417 \"Preserving Pretrained Representations\" VLA authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TqkbxWtWMDxpaKigXZGD75",
+        "content": [
+          {
+            "title": "[2509.11417] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/abs/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by",
+            "url": "https://arxiv.org/pdf/2509.11417"
+          },
+          {
+            "title": "[PDF] Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Enhancing-Generalization-in-Vision-Language-Action-Grover-Gopalkrishnan/272525654b60ab7f4366e58244feadcfd2675aaf"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          },
+          {
+            "title": "[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616v1"
+          },
+          {
+            "title": "PriorVLA: Prior-Preserving Adaptation for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.10925v1"
+          },
+          {
+            "title": "[2511.19878] MAPS: Preserving Vision-Language Representations via Module-Wise Proximity Scheduling for Better Vision-Language-Action Generalization",
+            "url": "https://arxiv.org/abs/2511.19878"
+          },
+          {
+            "title": ": A Vision-Language-Action Model Bridging Understanding and Generation to Actions",
+            "url": "https://arxiv.org/html/2509.06951v1"
+          },
+          {
+            "title": "[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. \n\nThe paper arXiv:2509.11417 titled \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" was submitted on September 14, 2025 and has the following authors: Shresth Grover, Akshay Gopalkrishnan, Bo Ai, Henrik I. Christensen, Hao Su, and Xuanlin Li.\n\nThe paper proposes a framework for Vision-Language-Action (VLA) models that better preserves pretrained features while adapting them for robot manipulation, addressing the problem that direct fine-tuning on robot data often disrupts pretrained representations and limits generalization."
+    ],
+    "durationSeconds": 4.600823518000019
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T04:16:22.026Z_
+
+<details><summary>↩ Tool result · `toolu_01RvPw4WHt988U8GV2CvzNQx`</summary>
+
+```text
+Web search results for query: "Fang 2025 VLM VLA fine-tuning erodes reasoning "original capabilities" arXiv robotics"
+
+Links: [{"title":"[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/abs/2509.22195"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/html/2509.22195v1"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"},{"title":"Asynchronous Fast-Slow Vision-Language-Action Policies for Whole-Body Robotic Manipulation","url":"https://arxiv.org/html/2512.20188v1"},{"title":"GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub","url":"https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning","url":"https://arxiv.org/html/2510.11027v1"},{"title":"MolmoAct2 Action Reasoning Models for Real-World Deployment Haoquan Fang♥1,2∗","url":"https://arxiv.org/pdf/2605.02881"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"}]
+
+I found relevant research on this topic. The search results contain information about the problem of fine-tuning vision-language models (VLMs) for vision-language-action (VLA) models in robotics.
+
+Fine-tuning vision-language models on robot teleoperation data to create vision-language-action models suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.
+
+This catastrophic forgetting is argued to be due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.
+
+The most prominent recent paper addressing this issue is "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting" (arXiv:2509.22195) from September 2025. The researchers introduce VLM2VLA, a VLA training paradigm that resolves the distribution mismatch at the data level by representing low-level actions with natural language, making it possible to train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "dc7b9daa-4270-459d-bbe6-8f75e84e2362",
+  "tool_use_result": {
+    "query": "Fang 2025 VLM VLA fine-tuning erodes reasoning \"original capabilities\" arXiv robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MKRmcXmFEFhxrbsjbH8qNy",
+        "content": [
+          {
+            "title": "[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/abs/2509.22195"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/html/2509.22195v1"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "Asynchronous Fast-Slow Vision-Language-Action Policies for Whole-Body Robotic Manipulation",
+            "url": "https://arxiv.org/html/2512.20188v1"
+          },
+          {
+            "title": "GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub",
+            "url": "https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning",
+            "url": "https://arxiv.org/html/2510.11027v1"
+          },
+          {
+            "title": "MolmoAct2 Action Reasoning Models for Real-World Deployment Haoquan Fang♥1,2∗",
+            "url": "https://arxiv.org/pdf/2605.02881"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          }
+        ]
+      },
+      "I found relevant research on this topic. The search results contain information about the problem of fine-tuning vision-language models (VLMs) for vision-language-action (VLA) models in robotics.\n\nFine-tuning vision-language models on robot teleoperation data to create vision-language-action models suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.\n\nThis catastrophic forgetting is argued to be due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.\n\nThe most prominent recent paper addressing this issue is \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\" (arXiv:2509.22195) from September 2025. The researchers introduce VLM2VLA, a VLA training paradigm that resolves the distribution mismatch at the data level by representing low-level actions with natural language, making it possible to train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting."
+    ],
+    "durationSeconds": 6.1789992740000015
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still can't find the specific "Fang et al. (2025)" paper about VLA fine-tuning eroding VLM reasoning. The closest match from the search results seems to be:
+
+1. "Robix: A Unified Model for Robot Interaction, Reasoning and Planning" - by Fang et al., arXiv:2509.01106, but this is about a unified model, not specifically about erosion of VLM reasoning.
+
+2. "MolmoAct2" by Haoquan Fang - but this is from 2026, not 2025.
+
+Let me also check the related_work.tex to see how fang2025 is cited in context.
+
+
+I'm trying a few more targeted searches to track down the exact paper—checking arXiv 2509.11417 (which turns out to be Grover et al., not Fang), looking at the VLM2VLA paper by Hancock, and examining the related_work.tex file to understand the citation context better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "ff813a83-d2fe-4ac3-ae7d-373e62faae90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmCZDWBNVEuH9HRXMxDkTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 52204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01ALQdb2Tv4xkc4Qjx2EUMtm`</summary>
+
+```json
+{
+  "pattern": "**/related_work.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "b036400e-1dd2-4e4e-bd75-b8a17f6ac9f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmCZDWBNVEuH9HRXMxDkTH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 52204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2073
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T04:16:30.372Z_
+
+<details><summary>↩ Tool result · `toolu_01ALQdb2Tv4xkc4Qjx2EUMtm`</summary>
+
+```text
+docs/paper/related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "912ae9f0-ba53-4316-8d01-6f4a529768c4",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/related_work.tex"
+    ],
+    "durationMs": 12,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01E2z6bXCxpjVJKU1rHNXdDX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "0492de3e-1203-45fc-a5c1-c1397d5ceda9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjaDCDJaH1y6gxeX3MMRN8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 54277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 433
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T04:16:32.604Z_
+
+<details><summary>↩ Tool result · `toolu_01E2z6bXCxpjVJKU1rHNXdDX`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related_work}
+2	
+3	\paragraph{Vision-language-action models.}
+4	VLAs fine-tune large language models on robot demonstration data to produce action-conditioned policies.
+5	RT-2~\cite{brohan2023_rt2} pioneered this paradigm by co-fine-tuning PaLM-E on robotic trajectories; OpenVLA~\cite{kim2024_openvla} extended it with open-source weights and 970K demonstrations, built on the Prismatic VLM architecture~\cite{karamcheti2024} that chains frozen vision encoders with a Llama-2 backbone.
+6	These architectures share a core design assumption---that LLM fine-tuning injects action-relevant knowledge---that our work tests at the representational level.
+7	
+8	\paragraph{Behavioral analysis of VLAs.}
+9	A growing body of work reveals that VLAs rely disproportionately on visual input.
+10	\cite{grant2026} showed across six architectures that visual pathways dominate action generation, with language instructions ``encoded but not used'' when visual context uniquely specifies the task.
+11	Hou and Zhao~(2026) and Fei et al.~(2025) corroborated this through semantic perturbations and controlled robustness tests on LIBERO, finding that models largely ignore language instructions.
+12	These studies establish the behavioral phenomenon; we provide a representational account showing that action-relevant geometric structure originates in the frozen vision encoder and is invariant to both LLM training and instruction content.
+13	
+14	\paragraph{Mechanistic interpretability of VLAs.}
+15	Recent work has probed VLA internals from several angles.
+16	\cite{haon2025} identified sparse semantic directions in OpenVLA causally linked to action selection, enabling activation steering without fine-tuning.
+17	Swann et al.~(2026) applied sparse autoencoders, finding features dominated by memorized sequences with some interpretable motion primitives; Rizzardo et al.~(2026) introduced feature-observability and controllability concepts for VLA steering.
+18	Lu et al.~(2025) and Molinari et al.~(2025) probed OpenVLA layers, extracting symbolic states and world-model representations respectively.
+19	These studies analyze individual features or single components; we complement them with a systematic decomposition quantifying each architectural component's contribution to action structure, with trained-versus-untrained controls absent from all prior work.
+20	
+21	\paragraph{Vision encoder representations.}
+22	Our analysis leverages three encoder families spanning different pretraining objectives: DinoSigLIP (OpenVLA's frozen fused backbone combining DINOv2~\cite{oquab2024_dinov2} and SigLIP~\cite{zhai2023_siglip}), CLIP~\cite{radford2021_clip} (independent VL baseline), and standalone DINOv2~\cite{oquab2024_dinov2} (self-supervised control), all at ViT-L/14 scale.
+23	Comparing self-supervised and VL-pretrained encoders at matched architecture tests whether language grounding contributes to action-relevant structure.
+24	Relatedly, Fang et al.~(2025) showed that VLA fine-tuning erodes original VLM reasoning abilities, consistent with our finding that fine-tuning does not improve the geometric structure inherited from the vision encoder.
+25	
+26	\paragraph{Representational similarity analysis.}
+27	We adopt RSA~\cite{kriegeskorte2008} and CKA~\cite{kornblith2019} as complementary geometric metrics, paired with linear probes~\cite{alain2017} for functional evaluation.
+28	This multi-metric approach proves essential: we show that RSA and linear CKA can produce divergent rankings, while RSA and probe $R^2$ converge---underscoring the importance of metric choice in representation analysis.
+29	
+30	\paragraph{Positioning.}
+31	Our work is distinguished from prior VLA analyses by three features.
+32	First, we perform a \emph{component-level} representational decomposition---separately quantifying vision encoder, projector, and each LLM layer---rather than analyzing individual features or the model as a whole.
+33	Second, we introduce trained-versus-untrained controls that isolate the effect of VLA fine-tuning, revealing that geometric structure is training-invariant while functional routing requires it.
+34	Third, we combine geometric and functional metrics with instruction ablation, providing converging evidence that the vision encoder is the \emph{source} and the LLM is the \emph{router} of action-relevant structure---complementing the behavioral evidence of \cite{grant2026}, the mechanistic directions of \cite{haon2025}, and the feature-level analyses of Swann et al.~(2026).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "62490b58-5a90-4fdb-81e8-28a239b6d8f5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{Vision-language-action models.}\nVLAs fine-tune large language models on robot demonstration data to produce action-conditioned policies.\nRT-2~\\cite{brohan2023_rt2} pioneered this paradigm by co-fine-tuning PaLM-E on robotic trajectories; OpenVLA~\\cite{kim2024_openvla} extended it with open-source weights and 970K demonstrations, built on the Prismatic VLM architecture~\\cite{karamcheti2024} that chains frozen vision encoders with a Llama-2 backbone.\nThese architectures share a core design assumption---that LLM fine-tuning injects action-relevant knowledge---that our work tests at the representational level.\n\n\\paragraph{Behavioral analysis of VLAs.}\nA growing body of work reveals that VLAs rely disproportionately on visual input.\n\\cite{grant2026} showed across six architectures that visual pathways dominate action generation, with language instructions ``encoded but not used'' when visual context uniquely specifies the task.\nHou and Zhao~(2026) and Fei et al.~(2025) corroborated this through semantic perturbations and controlled robustness tests on LIBERO, finding that models largely ignore language instructions.\nThese studies establish the behavioral phenomenon; we provide a representational account showing that action-relevant geometric structure originates in the frozen vision encoder and is invariant to both LLM training and instruction content.\n\n\\paragraph{Mechanistic interpretability of VLAs.}\nRecent work has probed VLA internals from several angles.\n\\cite{haon2025} identified sparse semantic directions in OpenVLA causally linked to action selection, enabling activation steering without fine-tuning.\nSwann et al.~(2026) applied sparse autoencoders, finding features dominated by memorized sequences with some interpretable motion primitives; Rizzardo et al.~(2026) introduced feature-observability and controllability concepts for VLA steering.\nLu et al.~(2025) and Molinari et al.~(2025) probed OpenVLA layers, extracting symbolic states and world-model representations respectively.\nThese studies analyze individual features or single components; we complement them with a systematic decomposition quantifying each architectural component's contribution to action structure, with trained-versus-untrained controls absent from all prior work.\n\n\\paragraph{Vision encoder representations.}\nOur analysis leverages three encoder families spanning different pretraining objectives: DinoSigLIP (OpenVLA's frozen fused backbone combining DINOv2~\\cite{oquab2024_dinov2} and SigLIP~\\cite{zhai2023_siglip}), CLIP~\\cite{radford2021_clip} (independent VL baseline), and standalone DINOv2~\\cite{oquab2024_dinov2} (self-supervised control), all at ViT-L/14 scale.\nComparing self-supervised and VL-pretrained encoders at matched architecture tests whether language grounding contributes to action-relevant structure.\nRelatedly, Fang et al.~(2025) showed that VLA fine-tuning erodes original VLM reasoning abilities, consistent with our finding that fine-tuning does not improve the geometric structure inherited from the vision encoder.\n\n\\paragraph{Representational similarity analysis.}\nWe adopt RSA~\\cite{kriegeskorte2008} and CKA~\\cite{kornblith2019} as complementary geometric metrics, paired with linear probes~\\cite{alain2017} for functional evaluation.\nThis multi-metric approach proves essential: we show that RSA and linear CKA can produce divergent rankings, while RSA and probe $R^2$ converge---underscoring the importance of metric choice in representation analysis.\n\n\\paragraph{Positioning.}\nOur work is distinguished from prior VLA analyses by three features.\nFirst, we perform a \\emph{component-level} representational decomposition---separately quantifying vision encoder, projector, and each LLM layer---rather than analyzing individual features or the model as a whole.\nSecond, we introduce trained-versus-untrained controls that isolate the effect of VLA fine-tuning, revealing that geometric structure is training-invariant while functional routing requires it.\nThird, we combine geometric and functional metrics with instruction ablation, providing converging evidence that the vision encoder is the \\emph{source} and the LLM is the \\emph{router} of action-relevant structure---complementing the behavioral evidence of \\cite{grant2026}, the mechanistic directions of \\cite{haon2025}, and the feature-level analyses of Swann et al.~(2026).",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the exact context of the citations. Let me look at the specific ones I still need:
+
+1. **fang2025** - Line 24: "Fang et al.~(2025) showed that VLA fine-tuning erodes original VLM reasoning abilities" - this is inline, not using \cite{}, so it's an inline reference. The task says we need to find this paper and add a bib entry.
+
+2. **grant2026** - Line 10: "\cite{grant2026}" - this is already used as a \cite{} in the tex, and the bib has a [VERIFY] entry.
+
+
+For fang2025, I'm searching for this reference but it might be hallucinated. I found a few Fang papers like "Robix" about robot interaction, but nothing that directly matches the claim about VLA fine-tuning eroding VLM reasoning abilities. The inline citation on line 24 isn't using \cite{} format, which makes it harder to verify.
+
+For grant2026, that one does use \cite{} so it was intentional, though the bib entry is marked [VERIFY]. Let me try some more targeted searches to track down these papers, keeping in mind that the author names themselves might not be entirely accurate if they were hallucinated by the original AI.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "5d49f24e-2302-44c6-b362-5bf3b09237ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JfSt2saegTzxJ6mPTFRj8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 54710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QdiRKXVft2pxHJByPf2KR7`</summary>
+
+```json
+{
+  "query": "Fang 2025 VLA fine-tuning VLM reasoning abilities degradation erosion arxiv preprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "2e2c096a-f4de-4644-a9b1-8448c78072fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JfSt2saegTzxJ6mPTFRj8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 54710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0121D6TbqYkUXdTbHf7uBWmr`</summary>
+
+```json
+{
+  "query": "Grant 2026 VLA visual pathways dominate action generation language \"six architectures\" preprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "396f17bc-a478-4896-84e8-8711fb7c3b17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JfSt2saegTzxJ6mPTFRj8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 54710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T04:16:53.167Z_
+
+<details><summary>↩ Tool result · `toolu_01QdiRKXVft2pxHJByPf2KR7`</summary>
+
+```text
+Web search results for query: "Fang 2025 VLA fine-tuning VLM reasoning abilities degradation erosion arxiv preprint"
+
+Links: [{"title":"TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers","url":"https://arxiv.org/html/2601.14133"},{"title":"2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA","url":"https://arxiv.org/pdf/2601.14133"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"},{"title":"Knowledge Insulating Vision-Language-Action Models","url":"https://www.physicalintelligence.company/download/pi05_KI.pdf"},{"title":"Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning","url":"https://arxiv.org/html/2512.12690v1"},{"title":"Unmasking the Illusion of Embodied Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2604.18000v1"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.22195"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"},{"title":"Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion","url":"https://arxiv.org/html/2511.14178v1"}]
+
+Based on the search results, I found relevant information about research on VLA (Vision-Language-Action) models and the degradation of reasoning abilities during fine-tuning. The search results include references to a work by Fang et al., 2025 that addresses this topic.
+
+Fang et al. (2025) is cited as discussing "catastrophic forgetting" that occurs during standard robotic fine-tuning when the VLM backbone is aggressively updated to minimize action prediction errors on narrow, domain-specific datasets, creating a conflict between the original objective of semantic understanding and the new objective of proprioceptive control.
+
+The specific paper appears to be titled "DualVLA: building a generalizable embodied agent via partial decoupling of reasoning and action" with the arXiv ID 2511.22134.
+
+The resulting VLA model suffers from a severe degradation in its original capabilities: it loses the ability to follow complex open-ended instructions, fails to describe visual scenes accurately, and exhibits weakened general semantic reasoning.
+
+This work is part of a broader research discussion about how the degradation of general conversational capabilities in VLMs during VLA training can be mitigated through various approaches. The issue of reasoning ability erosion during VLA fine-tuning is a significant challenge being addressed by multiple recent studies in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "2ca0e2c6-efb9-4c05-81a4-b03695e4c47f",
+  "tool_use_result": {
+    "query": "Fang 2025 VLA fine-tuning VLM reasoning abilities degradation erosion arxiv preprint",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CjnbGUvnr5UmUDX9AXRzZM",
+        "content": [
+          {
+            "title": "TwinBrainVLA: Unleashing the Potential of Generalist VLMs for Embodied Tasks via Asymmetric Mixture-of-Transformers",
+            "url": "https://arxiv.org/html/2601.14133"
+          },
+          {
+            "title": "2026-01-21 Work in progress. TwinBrainVLA TwinBrainVLA",
+            "url": "https://arxiv.org/pdf/2601.14133"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          },
+          {
+            "title": "Knowledge Insulating Vision-Language-Action Models",
+            "url": "https://www.physicalintelligence.company/download/pi05_KI.pdf"
+          },
+          {
+            "title": "Reassessing the Role of Supervised Fine-Tuning: An Empirical Study in VLM Reasoning",
+            "url": "https://arxiv.org/html/2512.12690v1"
+          },
+          {
+            "title": "Unmasking the Illusion of Embodied Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2604.18000v1"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.22195"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v2"
+          },
+          {
+            "title": "Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion",
+            "url": "https://arxiv.org/html/2511.14178v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about research on VLA (Vision-Language-Action) models and the degradation of reasoning abilities during fine-tuning. The search results include references to a work by Fang et al., 2025 that addresses this topic.\n\nFang et al. (2025) is cited as discussing \"catastrophic forgetting\" that occurs during standard robotic fine-tuning when the VLM backbone is aggressively updated to minimize action prediction errors on narrow, domain-specific datasets, creating a conflict between the original objective of semantic understanding and the new objective of proprioceptive control.\n\nThe specific paper appears to be titled \"DualVLA: building a generalizable embodied agent via partial decoupling of reasoning and action\" with the arXiv ID 2511.22134.\n\nThe resulting VLA model suffers from a severe degradation in its original capabilities: it loses the ability to follow complex open-ended instructions, fails to describe visual scenes accurately, and exhibits weakened general semantic reasoning.\n\nThis work is part of a broader research discussion about how the degradation of general conversational capabilities in VLMs during VLA training can be mitigated through various approaches. The issue of reasoning ability erosion during VLA fine-tuning is a significant challenge being addressed by multiple recent studies in the field."
+    ],
+    "durationSeconds": 6.408929514000017
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-16T04:16:53.998Z_
+
+<details><summary>↩ Tool result · `toolu_0121D6TbqYkUXdTbHf7uBWmr`</summary>
+
+```text
+Web search results for query: "Grant 2026 VLA visual pathways dominate action generation language "six architectures" preprint"
+
+Links: [{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"Vision-Language-Action (VLA) Guide for 2026","url":"https://hyscaler.com/insights/vision-language-action-vla-guide/"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"},{"title":"Vision-Language-Action Models and the Search for a Generalist Robot Policy","url":"https://itcanthink.substack.com/p/vision-language-action-models-and"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"}]
+
+Based on the search results, I found several comprehensive VLA (Vision-Language-Action) research papers and reviews from 2025-2026, though I didn't find a specific paper exactly matching your query with those precise keywords.
+
+However, the search did return several highly relevant recent works on VLA architectures:
+
+1. A unified taxonomy that organizes more than 100 VLA architectures published in a systematic review.
+
+2. Early efforts such as CLIPort laid the foundation by disentangling visual processing into a "what" pathway for object identification and a "where" pathway for action localization, which relates to your interest in visual pathways and action generation.
+
+3. VLA systems typically operate on multi-modal inputs, including visual observation, textual instruction, and robot proprioception, among which visual inputs contribute the most to the total token sequence length, often dominating the model's memory and compute footprint.
+
+The most relevant comprehensive survey appears to be "Vision-Language-Action Models in Robotic Manipulation: A Systematic Review" from July 2025, which examines 102 VLA models and their architectural approaches to integrating vision, language, and action.
+
+If you're looking for a specific preprint about "six architectures" and visual pathway dominance in action generation, could you provide any additional details such as the authors' names or a more specific paper title?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "33568139-532c-4b02-bc71-1ebabc7070a2",
+  "tool_use_result": {
+    "query": "Grant 2026 VLA visual pathways dominate action generation language \"six architectures\" preprint",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B3V5mP2fF5mjr8WfvRpuV1",
+        "content": [
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Guide for 2026",
+            "url": "https://hyscaler.com/insights/vision-language-action-vla-guide/"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v1"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          },
+          {
+            "title": "Vision-Language-Action Models and the Search for a Generalist Robot Policy",
+            "url": "https://itcanthink.substack.com/p/vision-language-action-models-and"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          }
+        ]
+      },
+      "Based on the search results, I found several comprehensive VLA (Vision-Language-Action) research papers and reviews from 2025-2026, though I didn't find a specific paper exactly matching your query with those precise keywords.\n\nHowever, the search did return several highly relevant recent works on VLA architectures:\n\n1. A unified taxonomy that organizes more than 100 VLA architectures published in a systematic review.\n\n2. Early efforts such as CLIPort laid the foundation by disentangling visual processing into a \"what\" pathway for object identification and a \"where\" pathway for action localization, which relates to your interest in visual pathways and action generation.\n\n3. VLA systems typically operate on multi-modal inputs, including visual observation, textual instruction, and robot proprioception, among which visual inputs contribute the most to the total token sequence length, often dominating the model's memory and compute footprint.\n\nThe most relevant comprehensive survey appears to be \"Vision-Language-Action Models in Robotic Manipulation: A Systematic Review\" from July 2025, which examines 102 VLA models and their architectural approaches to integrating vision, language, and action.\n\nIf you're looking for a specific preprint about \"six architectures\" and visual pathway dominance in action generation, could you provide any additional details such as the authors' names or a more specific paper title?"
+    ],
+    "durationSeconds": 7.2108058559999915
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try to find the DualVLA paper by Fang et al. to confirm its details, and also try one more search for grant2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4e6ce9b8-faf2-4a79-87b1-cf530b0e98ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015XNd1dsFWCBE1J8b91zbbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2347,
+      "cache_read_input_tokens": 55986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MhKNNa4FgqnK62VUBC15qb`</summary>
+
+```json
+{
+  "query": "arxiv 2511.22134 DualVLA Fang authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "476fff3e-c0fe-4590-92a9-09e23bd50bb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015XNd1dsFWCBE1J8b91zbbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2347,
+      "cache_read_input_tokens": 55986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016iP5ojdiNKiWFHUzMq4u3b`</summary>
+
+```json
+{
+  "query": "\"LangGap\" OR \"instruction blindness\" OR \"visual dominance\" VLA 2026 Grant author six architectures language \"encoded but not used\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "403fbc48-7807-45cf-b2c4-d5c2052f3318",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015XNd1dsFWCBE1J8b91zbbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2347,
+      "cache_read_input_tokens": 55986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2347
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-16T04:17:02.508Z_
+
+<details><summary>↩ Tool result · `toolu_01MhKNNa4FgqnK62VUBC15qb`</summary>
+
+```text
+Web search results for query: "arxiv 2511.22134 DualVLA Fang authors"
+
+Links: [{"title":"[2511.22134] DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action","url":"https://arxiv.org/abs/2511.22134"},{"title":"DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action","url":"https://arxiv.org/html/2511.22134"},{"title":"[2602.22134] Secure Semantic Communications via AI Defenses: Fundamentals, Solutions, and Future Directions","url":"https://arxiv.org/abs/2602.22134"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=1593&show=1000"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/pastweek?skip=1527&show=1000"},{"title":"Mathematics","url":"https://www.arxiv.org/list/math/recent?skip=185&show=500"},{"title":"Shuai Bai on X: \"Excited to share the release of our Qwen3-VL paper! 🚀 Paper: https://t.co/8nWMoRfhWi https://t.co/tWbsSxq17a\" / X","url":"https://x.com/shuai_bai_/status/1993919195206307961"},{"title":"Computer Science Nov 2024","url":"https://arxiv.org/list/cs/2024-11?skip=2275&show=1000"},{"title":"Computer Vision and Pattern Recognition 2025","url":"https://arxiv.org/list/cs.CV/2025?skip=23125&show=25"},{"title":"Machine Learning","url":"https://web3.arxiv.org/list/cs.LG/recent?skip=542&show=2000"}]
+
+Based on the search results, here's the information about arxiv paper 2511.22134:
+
+The paper "DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action" was authored by Zhen Fang, Zhuoyang Liu, Jiaming Liu, Hao Chen, Yu Zeng, Shiting Huang, Zehui Chen, Lin Chen, Shanghang Zhang, and Feng Zhao.
+
+The paper proposes DualVLA, which enhances action performance through carefully designed post-training while preserving reasoning capability, using a dual-layer data pruning method and a dual-teacher adaptive distillation strategy. Experiments show that DualVLA achieves an average success rate of 61.0 in SimplerEnv and an average score of 65.4 across eight competitive multimodal benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4ddd5657-ae55-485a-8089-e7c9d5b33bd6",
+  "tool_use_result": {
+    "query": "arxiv 2511.22134 DualVLA Fang authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012EToDp3AYvpzVZ35AnqRHt",
+        "content": [
+          {
+            "title": "[2511.22134] DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action",
+            "url": "https://arxiv.org/abs/2511.22134"
+          },
+          {
+            "title": "DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action",
+            "url": "https://arxiv.org/html/2511.22134"
+          },
+          {
+            "title": "[2602.22134] Secure Semantic Communications via AI Defenses: Fundamentals, Solutions, and Future Directions",
+            "url": "https://arxiv.org/abs/2602.22134"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=1593&show=1000"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/pastweek?skip=1527&show=1000"
+          },
+          {
+            "title": "Mathematics",
+            "url": "https://www.arxiv.org/list/math/recent?skip=185&show=500"
+          },
+          {
+            "title": "Shuai Bai on X: \"Excited to share the release of our Qwen3-VL paper! 🚀 Paper: https://t.co/8nWMoRfhWi https://t.co/tWbsSxq17a\" / X",
+            "url": "https://x.com/shuai_bai_/status/1993919195206307961"
+          },
+          {
+            "title": "Computer Science Nov 2024",
+            "url": "https://arxiv.org/list/cs/2024-11?skip=2275&show=1000"
+          },
+          {
+            "title": "Computer Vision and Pattern Recognition 2025",
+            "url": "https://arxiv.org/list/cs.CV/2025?skip=23125&show=25"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://web3.arxiv.org/list/cs.LG/recent?skip=542&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about arxiv paper 2511.22134:\n\nThe paper \"DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action\" was authored by Zhen Fang, Zhuoyang Liu, Jiaming Liu, Hao Chen, Yu Zeng, Shiting Huang, Zehui Chen, Lin Chen, Shanghang Zhang, and Feng Zhao.\n\nThe paper proposes DualVLA, which enhances action performance through carefully designed post-training while preserving reasoning capability, using a dual-layer data pruning method and a dual-teacher adaptive distillation strategy. Experiments show that DualVLA achieves an average success rate of 61.0 in SimplerEnv and an average score of 65.4 across eight competitive multimodal benchmarks."
+    ],
+    "durationSeconds": 5.22962844499998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T04:17:06.200Z_
+
+<details><summary>↩ Tool result · `toolu_016iP5ojdiNKiWFHUzMq4u3b`</summary>
+
+```text
+Web search results for query: ""LangGap" OR "instruction blindness" OR "visual dominance" VLA 2026 Grant author six architectures language "encoded but not used""
+
+Links: [{"title":"Stable Language Guidance for Vision–Language–Action Models","url":"https://arxiv.org/html/2601.04052v2"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"Vision-Language-Action (VLA) Guide for 2026","url":"https://hyscaler.com/insights/vision-language-action-vla-guide/"},{"title":"How Visual-Language-Action (VLA) Models Work | Towards Data Science","url":"https://towardsdatascience.com/how-visual-language-action-vla-models-work/"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"A systematic review of vision language models: Comprehensive analysis of architectures, applications, datasets and challenges towards robust multimodal intelligence - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2590005626000627"},{"title":"Vision-language-action model - Wikipedia","url":"https://en.wikipedia.org/wiki/Vision-language-action_model"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"}]
+
+Based on the search results, I found several relevant papers discussing instruction blindness and visual dominance in VLA (Vision-Language-Action) models in 2026:
+
+## Key Findings:
+
+VLA analyses on the Libero-Plus and RADAR benchmarks reveal a pervasive "instruction blindness," where models frequently ignore language inputs entirely, defaulting to the most probable action given the scene alone.
+
+VLA agents frequently suffer from "instruction blindness" or rote execution, as dense high-frequency visual signals tend to overwhelm sparse linguistic tokens.
+
+A paper titled "Stable Language Guidance for Vision–Language–Action Models" addresses these issues through an approach called Residual Semantic Steering (RSS). To combat instruction blindness, RSS operates in two stages, with the right stage mitigating visual prior dominance.
+
+Another relevant paper, "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models," discusses a VLA-specific grounding failure, sometimes described as linguistic blindness where policies execute visually plausible trajectories even when the instruction is semantically contradictory.
+
+However, I did not find specific results matching the exact query parameters you mentioned (the specific term "LangGap," "2026 Grant author," or "six architectures" with "encoded but not used" in the search results). The papers found discuss instruction blindness and visual dominance issues in VLAs for 2026, but may not be the specific research you're looking for. You may want to try searching with alternative keywords or author names.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "3f6ed6ac-90d3-43b3-9cf7-a772fb3c8a67",
+  "tool_use_result": {
+    "query": "\"LangGap\" OR \"instruction blindness\" OR \"visual dominance\" VLA 2026 Grant author six architectures language \"encoded but not used\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019iTHCyevZkrMs4p6BQmHjJ",
+        "content": [
+          {
+            "title": "Stable Language Guidance for Vision–Language–Action Models",
+            "url": "https://arxiv.org/html/2601.04052v2"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v2"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Guide for 2026",
+            "url": "https://hyscaler.com/insights/vision-language-action-vla-guide/"
+          },
+          {
+            "title": "How Visual-Language-Action (VLA) Models Work | Towards Data Science",
+            "url": "https://towardsdatascience.com/how-visual-language-action-vla-models-work/"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "A systematic review of vision language models: Comprehensive analysis of architectures, applications, datasets and challenges towards robust multimodal intelligence - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2590005626000627"
+          },
+          {
+            "title": "Vision-language-action model - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Vision-language-action_model"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers discussing instruction blindness and visual dominance in VLA (Vision-Language-Action) models in 2026:\n\n## Key Findings:\n\nVLA analyses on the Libero-Plus and RADAR benchmarks reveal a pervasive \"instruction blindness,\" where models frequently ignore language inputs entirely, defaulting to the most probable action given the scene alone.\n\nVLA agents frequently suffer from \"instruction blindness\" or rote execution, as dense high-frequency visual signals tend to overwhelm sparse linguistic tokens.\n\nA paper titled \"Stable Language Guidance for Vision–Language–Action Models\" addresses these issues through an approach called Residual Semantic Steering (RSS). To combat instruction blindness, RSS operates in two stages, with the right stage mitigating visual prior dominance.\n\nAnother relevant paper, \"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models,\" discusses a VLA-specific grounding failure, sometimes described as linguistic blindness where policies execute visually plausible trajectories even when the instruction is semantically contradictory.\n\nHowever, I did not find specific results matching the exact query parameters you mentioned (the specific term \"LangGap,\" \"2026 Grant author,\" or \"six architectures\" with \"encoded but not used\" in the search results). The papers found discuss instruction blindness and visual dominance issues in VLAs for 2026, but may not be the specific research you're looking for. You may want to try searching with alternative keywords or author names."
+    ],
+    "durationSeconds": 7.656033804000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, let me now try the Semantic Scholar API again for the remaining hard-to-find papers. The rate limit should have cooled down by now.
+
+Let me also check the ICLR 2026 blog post about VLA research for grant2026.
+
+Actually, I think I've done enough searching. Let me summarize what I found and what I couldn't find:
+
+**Found papers:**
+
+1. **swann2026** — "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models" by Aiden Swann, Lachlain McGranahan, Hugo Buurmeijer, Monroe Kennedy, Mac Schwager. 
+
+arXiv:2603.19183, 2026.
+
+2. **rizzardo2026** — I found "Observing and Controlling Features in Vision-Language-Action Models" by Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, Marco Pavone (arXiv:2603.05487, 2026) that matches the description perfectly for feature observability and controllability in VLA steering, but there's no author named Rizzardo—this looks like a hallucinated author name in the bib key.
+
+3. **molinari2025** — "Emergent World Representations in OpenVLA" by Marco Molinari, Leonardo Nevali, Saharsha Navani, Omar G. Younis (arXiv:2509.24559, 2025).
+
+4. **belinkov2022** — "Probing Classifiers: Promises, Shortcomings, and Advances" by Yonatan Belinkov in Computational Linguistics, 48(1), 207-219, 2022 (DOI: 10.1162/coli_a_00422, arXiv:2102.12452).
+
+5. **lu2025** — "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture" by Hong Lu, Hengxu Li, Prithviraj Singh Shahani, Stephanie Herbers, Matthias Scheutz (arXiv:2502.04558, 2025).
+
+6.
+
+Now I'm adding more recent papers on vision-language-action models. There's work on diagnosing language gaps in these systems, robustness analysis of VLA models, and research on building more generalizable embodied agents through decoupling reasoning from action execution. I couldn't find grant2026 despite trying multiple search approaches—it seems to be a hallucinated reference. For rizzardo2026, there's a mismatch: the inline citation attributes it to "Rizzardo et al. (2026)" but the actual paper is by Buurmeijer, Amo Alonso, Swann, and Pavone, which creates a problem since the bib key needs to stay as rizzardo2026 while the authors don't match. For rizzardo2026, there's a mismatch—the actual paper is by Buurmeijer et al., not Rizzardo, so I'll add the correct entry with a note about this discrepancy. For fang2025, the DualVLA paper by Zhen Fang et al. aligns well with the citation context about VLA fine-tuning eroding reasoning abilities. Grant2026 remains unverified despite extensive searching, so I'll mark it as such. Now I need to verify the remaining citations. I'm noting the discrepancy where the citation references "Rizzardo et al." but the actual paper is by Buurmeijer and colleagues. Before finalizing this entry, I should verify whether Rizzardo is a separate paper or if this is a citation error, so let me do one more targeted search to confirm.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "8adddf03-c196-4b16-96ba-61270f7faf36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012unEhtncCPRo7eanonDAWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1923,
+      "cache_read_input_tokens": 58333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1923
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HGgWdUjhHVNMyuC8DctkXL`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import quote\nimport json, time\n\nqueries = [\n    ('rizzardo2026', 'Rizzardo 2026 VLA feature observability controllability'),\n    ('grant2026', 'Grant 2026 visual dominance VLA action generation language instruction'),\n    ('fang2025_dualvla', 'DualVLA Fang 2025 generalizable embodied agent reasoning action'),\n]\n\nfor label, q in queries:\n    query = quote(q)\n    url = f'https://api.semanticscholar.org/graph/v1/paper/search?query={query}&limit=5&fields=title,authors,year,venue,externalIds,url'\n    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})\n    try:\n        data = json.loads(urlopen(req, timeout=15).read())\n        print(f'=== {label} ===')\n        for p in data.get('data', []):\n            print(f\\\"Title: {p['title']}\\\")\n            print(f\\\"Authors: {[a['name'] for a in p.get('authors', [])]}\\\")\n            print(f\\\"Year: {p.get('year')}\\\")\n            print(f\\\"Venue: {p.get('venue')}\\\")\n            print(f\\\"IDs: {p.get('externalIds')}\\\")\n            print('---')\n    except Exception as e:\n        print(f'=== {label} === ERROR: {e}')\n    time.sleep(3)\n\" 2>&1\n",
+  "description": "S2 API retry for remaining papers",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "316fff72-8bd3-4db4-a625-7cf04e851e26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012unEhtncCPRo7eanonDAWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1923,
+      "cache_read_input_tokens": 58333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1923
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 107_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b2c5y7b5t",
+  "tool_use_id": "toolu_01HGgWdUjhHVNMyuC8DctkXL",
+  "description": "S2 API retry for remaining papers",
+  "task_type": "local_bash",
+  "uuid": "1e6e8439-de47-4c3d-956a-be9481a3c431",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3"
+}
+```
+
+---
+
+### System
+
+_source line 108_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b2c5y7b5t",
+  "tool_use_id": "toolu_01HGgWdUjhHVNMyuC8DctkXL",
+  "status": "completed",
+  "output_file": "",
+  "summary": "S2 API retry for remaining papers",
+  "uuid": "3ce3f85e-99c6-41c6-8bf4-87071dc3a2dd",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-16T04:18:05.374Z_
+
+<details><summary>↩ Tool result · `toolu_01HGgWdUjhHVNMyuC8DctkXL`</summary>
+
+```text
+=== rizzardo2026 === ERROR: HTTP Error 429: 
+=== grant2026 === ERROR: HTTP Error 429: 
+=== fang2025_dualvla === ERROR: HTTP Error 429:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "793fe5ae-6c94-4b8c-83cf-db750d77ddd6",
+  "tool_use_result": {
+    "stdout": "=== rizzardo2026 === ERROR: HTTP Error 429: \n=== grant2026 === ERROR: HTTP Error 429: \n=== fang2025_dualvla === ERROR: HTTP Error 429:",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+S2 API is still rate-limited. Let me try with a longer delay (10 seconds).
+
+Actually, let me just proceed with what I have. I've done extensive searching. Let me compile all the results:
+
+For **rizzardo2026**, the search clearly found "Observing and Controlling Features in Vision-Language-Action Models" (arXiv:2603.05487). The content matches perfectly: "feature-observability and controllability concepts for VLA steering." But the authors are Buurmeijer, Amo Alonso, Swann, and Pavone — no Rizzardo. 
+
+Since I can't locate any VLA paper with Rizzardo as an author, this appears to be either a hallucinated name or an error in the related_work.tex file. I'll add the correct bib entry with the actual authors and flag the discrepancy. For **grant2026**, I've exhausted my search options and can't verify this paper exists. As for **fang2025**, I found DualVLA (arXiv:2511.22134) by Zhen Fang et al., which directly addresses VLA fine-tuning eroding VLM reasoning capabilities — this looks like the right match.
+
+Now I need to double-check the author list for the Buurmeijer paper before finalizing all the bib entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "312e5db1-9cfb-4cca-a373-e33029d046e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuhguFcmzYu8WkN2U6HKy6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 60256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2645
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+S2 API 还在限流。用 WebSearch 确认最后几个细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "93b9f7ba-50c2-4727-961c-218e2c365a12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuhguFcmzYu8WkN2U6HKy6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 60256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2645
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DtHu18eNG3ph2aii5wVsMk`</summary>
+
+```json
+{
+  "query": "arxiv 2603.05487 authors \"Observing and Controlling Features in Vision-Language-Action Models\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "c4fb0f5c-a7b5-4ae4-9116-3abdb2c6f00f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuhguFcmzYu8WkN2U6HKy6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 60256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2645
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KvPfVG5ukBb9omNNovkLpx`</summary>
+
+```json
+{
+  "query": "arxiv 2511.22134 DualVLA full author list Fang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "71f562e5-a477-4222-b10f-4fc8545bc69e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuhguFcmzYu8WkN2U6HKy6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2645,
+      "cache_read_input_tokens": 60256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2645
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-16T04:18:19.264Z_
+
+<details><summary>↩ Tool result · `toolu_01KvPfVG5ukBb9omNNovkLpx`</summary>
+
+```text
+Web search results for query: "arxiv 2511.22134 DualVLA full author list Fang"
+
+Links: [{"title":"[2511.22134] DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action","url":"https://arxiv.org/abs/2511.22134"},{"title":"DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action","url":"https://arxiv.org/html/2511.22134"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=694&show=1000"},{"title":"Computation and Language","url":"https://www.arxiv.org/list/cs.CL/recent?skip=284&show=100"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/recent?skip=205&show=2000"},{"title":"Artificial Intelligence","url":"https://arxiv.org/list/cs.AI/recent?skip=70&show=2000"},{"title":"Artificial Intelligence 2025","url":"https://arxiv.org/list/cs.AI/2025?skip=7575&show=2000"},{"title":"Computer Science Nov 2024","url":"https://arxiv.org/list/cs/2024-11?skip=2275&show=1000"},{"title":"Computer Science Jun 2025","url":"https://arxiv.org/list/cs/2025-06?skip=325&show=2000"},{"title":"[2511.01183] QiMeng-NeuComBack: Self-Evolving Translation from IR to Assembly Code","url":"https://arxiv.org/abs/2511.01183"}]
+
+Based on the search results, I found the full author list for the arXiv paper 2511.22134 titled "DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action":
+
+The authors are: Zhen Fang, Zhuoyang Liu, Jiaming Liu, Hao Chen, Yu Zeng, Shiting Huang, Zehui Chen, Lin Chen, Shanghang Zhang, and Feng Zhao.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "1c804600-1874-4500-ab6f-4b73c1d5c75c",
+  "tool_use_result": {
+    "query": "arxiv 2511.22134 DualVLA full author list Fang",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XEm5rXxy52aQkxdFjKEvqM",
+        "content": [
+          {
+            "title": "[2511.22134] DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action",
+            "url": "https://arxiv.org/abs/2511.22134"
+          },
+          {
+            "title": "DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action",
+            "url": "https://arxiv.org/html/2511.22134"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=694&show=1000"
+          },
+          {
+            "title": "Computation and Language",
+            "url": "https://www.arxiv.org/list/cs.CL/recent?skip=284&show=100"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/recent?skip=205&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence",
+            "url": "https://arxiv.org/list/cs.AI/recent?skip=70&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025?skip=7575&show=2000"
+          },
+          {
+            "title": "Computer Science Nov 2024",
+            "url": "https://arxiv.org/list/cs/2024-11?skip=2275&show=1000"
+          },
+          {
+            "title": "Computer Science Jun 2025",
+            "url": "https://arxiv.org/list/cs/2025-06?skip=325&show=2000"
+          },
+          {
+            "title": "[2511.01183] QiMeng-NeuComBack: Self-Evolving Translation from IR to Assembly Code",
+            "url": "https://arxiv.org/abs/2511.01183"
+          }
+        ]
+      },
+      "Based on the search results, I found the full author list for the arXiv paper 2511.22134 titled \"DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action\":\n\nThe authors are: Zhen Fang, Zhuoyang Liu, Jiaming Liu, Hao Chen, Yu Zeng, Shiting Huang, Zehui Chen, Lin Chen, Shanghang Zhang, and Feng Zhao."
+    ],
+    "durationSeconds": 3.922125261000008
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-16T04:18:21.492Z_
+
+<details><summary>↩ Tool result · `toolu_01DtHu18eNG3ph2aii5wVsMk`</summary>
+
+```text
+Web search results for query: "arxiv 2603.05487 authors "Observing and Controlling Features in Vision-Language-Action Models""
+
+Links: [{"title":"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.05487"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/html/2603.05487v1"},{"title":"(PDF) Observing and Controlling Features in Vision-Language-Action Models","url":"https://www.researchgate.net/publication/401601449_Observing_and_Controlling_Features_in_Vision-Language-Action_Models"},{"title":"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v1"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"A Survey on Vision-Language-Action Models for Autonomous Driving","url":"https://arxiv.org/html/2506.24044v1"},{"title":"Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.15618v2"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"How Do Vision-Language Models Process Conflicting Information Across Modalities?","url":"https://arxiv.org/html/2507.01790v1"}]
+
+Based on the web search results, here is the information about arxiv paper 2603.05487:
+
+## Paper Details
+
+**Title:** Observing and Controlling Features in Vision-Language-Action Models
+
+**Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann and Marco Pavone
+
+**Submission Date:** 5 Mar 2026
+
+## Summary
+
+Vision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. While their architecture partially resembles that of Large Language Models (LLMs), VLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads.
+
+The paper addresses this complexity by introducing two main concepts: feature-observability and feature-controllability. The authors study features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and then use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e0439dd4-eec6-4dc4-a1f7-6101bb190238",
+  "tool_use_result": {
+    "query": "arxiv 2603.05487 authors \"Observing and Controlling Features in Vision-Language-Action Models\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012QxzeazdBGqquCE54iSpNk",
+        "content": [
+          {
+            "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.05487"
+          },
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.05487v1"
+          },
+          {
+            "title": "(PDF) Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/401601449_Observing_and_Controlling_Features_in_Vision-Language-Action_Models"
+          },
+          {
+            "title": "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v1"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models for Autonomous Driving",
+            "url": "https://arxiv.org/html/2506.24044v1"
+          },
+          {
+            "title": "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.15618v2"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "How Do Vision-Language Models Process Conflicting Information Across Modalities?",
+            "url": "https://arxiv.org/html/2507.01790v1"
+          }
+        ]
+      },
+      "Based on the web search results, here is the information about arxiv paper 2603.05487:\n\n## Paper Details\n\n**Title:** Observing and Controlling Features in Vision-Language-Action Models\n\n**Authors:** Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann and Marco Pavone\n\n**Submission Date:** 5 Mar 2026\n\n## Summary\n\nVision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. While their architecture partially resembles that of Large Language Models (LLMs), VLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads.\n\nThe paper addresses this complexity by introducing two main concepts: feature-observability and feature-controllability. The authors study features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and then use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region."
+    ],
+    "durationSeconds": 6.263233752000029
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to construct all the bib entries. Let me also check that I have the correct venue for the belinkov2022 paper. Looking at the search results:
+- ACL Anthology: 2022.cl-1.7
+- Computational Linguistics, 48(1), 207-219, 2022
+- DOI: 10.1162/coli_a_00422
+
+Let me now compile all entries.
+
+Here's my summary:
+
+1. **swann2026** — FOUND: "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models" by Swann, McGranahan, Buurmeijer, Kennedy, Schwager. arXiv:2603.19183, 2026.
+
+
+2. **rizzardo2026** — FOUND with a caveat: "Observing and Controlling Features in Vision-Language-Action Models" by Buurmeijer, Amo Alonso, Swann, Pavone. arXiv:2603.05487, 2026. The citation references Rizzardo et al., but that author doesn't appear on the actual paper.
+3. **molinari2025** — FOUND: "Emergent World Representations in OpenVLA" by Molinari, Nevali, Navani, Younis. arXiv:2509.24559, 2025.
+4. **be** — Still locating this entry.
+
+Continuing through the remaining citations: belinkov2022 is confirmed as "Probing Classifiers: Promises, Shortcomings, and Advances" in Computational Linguistics, lu2025 covers probing vision-language-action models for symbolic states, hou2026 examines language gaps in these models, and fei2025 provides robustness analysis of vision-language-action systems.
+
+For fang2025, I found "DualVLA: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action" — this is a strong match since it directly addresses how fine-tuning erodes reasoning capabilities in VLAs, though it's solution-focused rather than purely analytical. And häon2025 is verified as "Mechanistic interpretability for steering vision-language-action models."
+
+I couldn't locate grant2026 despite trying multiple search variations, so I'm marking that as unverified. Now I need to compile the bibliography entries, adding the newly found papers 1-8, updating haon2025 with the complete author list and arXiv details, and noting grant2026 as unverified. I should also check that karamcheti2024 entry which has a verification flag — it looks like it might need the full title and venue details confirmed. I see the karamcheti2024 entry has a [VERIFY] tag, but the task only asks me to verify grant2026 and haon2025. Since the paper is real and the citation is essentially correct, I'll leave it as is and focus on the two entries the task specifies.
+
+For haon2025, I found the real paper, so I can replace the [VERIFY] placeholder with the actual citation. Grant2026 remains unverified, so I'll mark it clearly as such. Then I need to add all the new entries I've collected. I need to handle the grant2026 entry next—it's currently marked as unverified, so I'll update it with proper bibliographic information. I also notice the rizzardo2026 citation is a mismatch since the actual paper is by Buurmeijer et al., so I should add a clarifying note about that discrepancy when I append the new entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "ca45a7d6-4312-4e49-9d6a-99679df48afb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNrEMfWfQHeQ396CJnXF4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 596,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 62901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 117_
+
+搜索完成。汇总结果：
+- **找到 8 篇**：swann2026, rizzardo2026 (作者名有误), molinari2025, belinkov2022, lu2025, hou2026, fei2025, fang2025
+- **已验证 1 篇**：haon2025
+- **未找到 1 篇**：grant2026
+
+现在更新 bib 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "0cb5b1ff-6f28-4986-b73a-16505e1217de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNrEMfWfQHeQ396CJnXF4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 596,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 62901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019N2Zq7HDZv3sCdBhLwHhtp`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+  "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}",
+  "new_string": "% [UNVERIFIED] Could not find this paper via S2 or web search\n@article{grant2026,\n  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [UNVERIFIED]},\n  journal   = {[UNVERIFIED]},\n  year      = {2026},\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "4db26ec1-e490-4751-9217-acf5d97db194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNrEMfWfQHeQ396CJnXF4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 596,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 62901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-16T04:19:05.903Z_
+
+<details><summary>↩ Tool result · `toolu_019N2Zq7HDZv3sCdBhLwHhtp`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "2c438a80-4ddb-49b8-834d-6cab145b0bd8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+    "oldString": "% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}",
+    "newString": "% [UNVERIFIED] Could not find this paper via S2 or web search\n@article{grant2026,\n  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [UNVERIFIED]},\n  journal   = {[UNVERIFIED]},\n  year      = {2026},\n}",
+    "originalFile": "% === VLA / Architecture ===\n\n@article{kim2024_openvla,\n  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n  journal   = {arXiv preprint arXiv:2406.09246},\n  year      = {2024},\n}\n\n% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n@article{karamcheti2024,\n  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n  journal   = {arXiv preprint arXiv:2402.07865},\n  year      = {2024},\n}\n\n@article{brohan2023_rt2,\n  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  journal   = {arXiv preprint arXiv:2307.15818},\n  year      = {2023},\n}\n\n% === Benchmark ===\n\n@inproceedings{liu2023_libero,\n  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2023},\n}\n\n% === Representation Analysis Methods ===\n\n@article{kriegeskorte2008,\n  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},\n  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},\n  journal   = {Frontiers in Systems Neuroscience},\n  volume    = {2},\n  pages     = {4},\n  year      = {2008},\n  publisher = {Frontiers},\n}\n\n@inproceedings{kornblith2019,\n  title     = {Similarity of Neural Network Representations Revisited},\n  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2019},\n}\n\n@article{alain2017,\n  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},\n  author    = {Alain, Guillaume and Bengio, Yoshua},\n  journal   = {arXiv preprint arXiv:1610.01644},\n  year      = {2017},\n}\n\n% === Vision Encoders ===\n\n@inproceedings{zhai2023_siglip,\n  title     = {Sigmoid Loss for Language Image Pre-Training},\n  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle = {International Conference on Computer Vision (ICCV)},\n  year      = {2023},\n}\n\n@article{oquab2024_dinov2,\n  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},\n  author    = {Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2024},\n}\n\n@inproceedings{radford2021_clip,\n  title     = {Learning Transferable Visual Models From Natural Language Supervision},\n  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2021},\n}\n\n% === Domain-Specific ===\n\n% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.\n@article{grant2026,\n  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2026},\n}\n\n% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 82,
+        "oldLines": 11,
+        "newStart": 82,
+        "newLines": 11,
+        "lines": [
+          " ",
+          " % === Domain-Specific ===",
+          " ",
+          "-% [VERIFY] Cannot confirm full bibliographic details. Cited for behavioral visual dominance in VLA policies.",
+          "+% [UNVERIFIED] Could not find this paper via S2 or web search",
+          " @article{grant2026,",
+          "-  title     = {[VERIFY] Behavioral Visual Dominance in Vision-Language-Action Policies},",
+          "-  author    = {Grant, [VERIFY]},",
+          "-  journal   = {[VERIFY]},",
+          "+  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},",
+          "+  author    = {Grant, [UNVERIFIED]},",
+          "+  journal   = {[UNVERIFIED]},",
+          "   year      = {2026},",
+          " }",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01PMT6xFXcDn5VxApEtyenTK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+  "old_string": "% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}",
+  "new_string": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "23cadf1d-7df9-403f-9f54-463b55efeaef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNrEMfWfQHeQ396CJnXF4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 596,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 62901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-16T04:19:07.769Z_
+
+<details><summary>↩ Tool result · `toolu_01PMT6xFXcDn5VxApEtyenTK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "bb04cc7f-789c-42e2-9a93-e70e784b92af",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+    "oldString": "% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}",
+    "newString": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}",
+    "originalFile": "% === VLA / Architecture ===\n\n@article{kim2024_openvla,\n  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n  journal   = {arXiv preprint arXiv:2406.09246},\n  year      = {2024},\n}\n\n% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n@article{karamcheti2024,\n  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n  journal   = {arXiv preprint arXiv:2402.07865},\n  year      = {2024},\n}\n\n@article{brohan2023_rt2,\n  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  journal   = {arXiv preprint arXiv:2307.15818},\n  year      = {2023},\n}\n\n% === Benchmark ===\n\n@inproceedings{liu2023_libero,\n  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2023},\n}\n\n% === Representation Analysis Methods ===\n\n@article{kriegeskorte2008,\n  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},\n  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},\n  journal   = {Frontiers in Systems Neuroscience},\n  volume    = {2},\n  pages     = {4},\n  year      = {2008},\n  publisher = {Frontiers},\n}\n\n@inproceedings{kornblith2019,\n  title     = {Similarity of Neural Network Representations Revisited},\n  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2019},\n}\n\n@article{alain2017,\n  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},\n  author    = {Alain, Guillaume and Bengio, Yoshua},\n  journal   = {arXiv preprint arXiv:1610.01644},\n  year      = {2017},\n}\n\n% === Vision Encoders ===\n\n@inproceedings{zhai2023_siglip,\n  title     = {Sigmoid Loss for Language Image Pre-Training},\n  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle = {International Conference on Computer Vision (ICCV)},\n  year      = {2023},\n}\n\n@article{oquab2024_dinov2,\n  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},\n  author    = {Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2024},\n}\n\n@inproceedings{radford2021_clip,\n  title     = {Learning Transferable Visual Models From Natural Language Supervision},\n  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2021},\n}\n\n% === Domain-Specific ===\n\n% [UNVERIFIED] Could not find this paper via S2 or web search\n@article{grant2026,\n  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [UNVERIFIED]},\n  journal   = {[UNVERIFIED]},\n  year      = {2026},\n}\n\n% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.\n@article{haon2025,\n  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},\n  author    = {Haon, [VERIFY]},\n  journal   = {[VERIFY]},\n  year      = {2025},\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 90,
+        "oldLines": 10,
+        "newStart": 90,
+        "newLines": 9,
+        "lines": [
+          "   year      = {2026},",
+          " }",
+          " ",
+          "-% [VERIFY] Cannot confirm full bibliographic details. Cited for VLA interpretability.",
+          " @article{haon2025,",
+          "-  title     = {[VERIFY] Interpretability of Vision-Language-Action Models},",
+          "-  author    = {Haon, [VERIFY]},",
+          "-  journal   = {[VERIFY]},",
+          "+  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},",
+          "+  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},",
+          "+  journal   = {arXiv preprint arXiv:2509.00328},",
+          "   year      = {2025},",
+          " }"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014ciTGBLU7KS1XedHjHZUdn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "22dad393-f592-41b8-9058-9fc6fb06605a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWFGkSkZ7FQYbjgDuu5nci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3668,
+      "cache_read_input_tokens": 64150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3668
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-16T04:19:10.900Z_
+
+<details><summary>↩ Tool result · `toolu_014ciTGBLU7KS1XedHjHZUdn`</summary>
+
+```text
+1	% === VLA / Architecture ===
+2	
+3	@article{kim2024_openvla,
+4	  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},
+5	  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},
+6	  journal   = {arXiv preprint arXiv:2406.09246},
+7	  year      = {2024},
+8	}
+9	
+10	% [VERIFY] Confirm venue and exact title. Likely "Prismatic VLMs" or OpenVLA architecture companion.
+11	@article{karamcheti2024,
+12	  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},
+13	  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},
+14	  journal   = {arXiv preprint arXiv:2402.07865},
+15	  year      = {2024},
+16	}
+17	
+18	@article{brohan2023_rt2,
+19	  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},
+20	  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},
+21	  journal   = {arXiv preprint arXiv:2307.15818},
+22	  year      = {2023},
+23	}
+24	
+25	% === Benchmark ===
+26	
+27	@inproceedings{liu2023_libero,
+28	  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},
+29	  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},
+30	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+31	  year      = {2023},
+32	}
+33	
+34	% === Representation Analysis Methods ===
+35	
+36	@article{kriegeskorte2008,
+37	  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},
+38	  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},
+39	  journal   = {Frontiers in Systems Neuroscience},
+40	  volume    = {2},
+41	  pages     = {4},
+42	  year      = {2008},
+43	  publisher = {Frontiers},
+44	}
+45	
+46	@inproceedings{kornblith2019,
+47	  title     = {Similarity of Neural Network Representations Revisited},
+48	  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},
+49	  booktitle = {International Conference on Machine Learning (ICML)},
+50	  year      = {2019},
+51	}
+52	
+53	@article{alain2017,
+54	  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},
+55	  author    = {Alain, Guillaume and Bengio, Yoshua},
+56	  journal   = {arXiv preprint arXiv:1610.01644},
+57	  year      = {2017},
+58	}
+59	
+60	% === Vision Encoders ===
+61	
+62	@inproceedings{zhai2023_siglip,
+63	  title     = {Sigmoid Loss for Language Image Pre-Training},
+64	  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},
+65	  booktitle = {International Conference on Computer Vision (ICCV)},
+66	  year      = {2023},
+67	}
+68	
+69	@article{oquab2024_dinov2,
+70	  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},
+71	  author    = {Oquab, Maxime and Darcet, Timoth{\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},
+72	  journal   = {Transactions on Machine Learning Research (TMLR)},
+73	  year      = {2024},
+74	}
+75	
+76	@inproceedings{radford2021_clip,
+77	  title     = {Learning Transferable Visual Models From Natural Language Supervision},
+78	  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},
+79	  booktitle = {International Conference on Machine Learning (ICML)},
+80	  year      = {2021},
+81	}
+82	
+83	% === Domain-Specific ===
+84	
+85	% [UNVERIFIED] Could not find this paper via S2 or web search
+86	@article{grant2026,
+87	  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},
+88	  author    = {Grant, [UNVERIFIED]},
+89	  journal   = {[UNVERIFIED]},
+90	  year      = {2026},
+91	}
+92	
+93	@article{haon2025,
+94	  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},
+95	  author    = {H{\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},
+96	  journal   = {arXiv preprint arXiv:2509.00328},
+97	  year      = {2025},
+98	}
+99	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "e192631c-44fa-4aad-ac40-f5d956816250",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+      "content": "% === VLA / Architecture ===\n\n@article{kim2024_openvla,\n  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n  journal   = {arXiv preprint arXiv:2406.09246},\n  year      = {2024},\n}\n\n% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n@article{karamcheti2024,\n  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n  journal   = {arXiv preprint arXiv:2402.07865},\n  year      = {2024},\n}\n\n@article{brohan2023_rt2,\n  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  journal   = {arXiv preprint arXiv:2307.15818},\n  year      = {2023},\n}\n\n% === Benchmark ===\n\n@inproceedings{liu2023_libero,\n  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2023},\n}\n\n% === Representation Analysis Methods ===\n\n@article{kriegeskorte2008,\n  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},\n  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},\n  journal   = {Frontiers in Systems Neuroscience},\n  volume    = {2},\n  pages     = {4},\n  year      = {2008},\n  publisher = {Frontiers},\n}\n\n@inproceedings{kornblith2019,\n  title     = {Similarity of Neural Network Representations Revisited},\n  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2019},\n}\n\n@article{alain2017,\n  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},\n  author    = {Alain, Guillaume and Bengio, Yoshua},\n  journal   = {arXiv preprint arXiv:1610.01644},\n  year      = {2017},\n}\n\n% === Vision Encoders ===\n\n@inproceedings{zhai2023_siglip,\n  title     = {Sigmoid Loss for Language Image Pre-Training},\n  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle = {International Conference on Computer Vision (ICCV)},\n  year      = {2023},\n}\n\n@article{oquab2024_dinov2,\n  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},\n  author    = {Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2024},\n}\n\n@inproceedings{radford2021_clip,\n  title     = {Learning Transferable Visual Models From Natural Language Supervision},\n  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2021},\n}\n\n% === Domain-Specific ===\n\n% [UNVERIFIED] Could not find this paper via S2 or web search\n@article{grant2026,\n  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [UNVERIFIED]},\n  journal   = {[UNVERIFIED]},\n  year      = {2026},\n}\n\n@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}\n",
+      "numLines": 99,
+      "startLine": 1,
+      "totalLines": 99
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+现在追加 8 个新条目。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "7cf78bad-5f44-46aa-a898-aa5904f06cff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XjSxk3zqumx8JBHoZqsAu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1873,
+      "cache_read_input_tokens": 67818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1873
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LASzvyV1vp6oHnPZy1ebXW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+  "old_string": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}",
+  "new_string": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}\n\n% === Behavioral Analysis of VLAs ===\n\n@article{hou2026,\n  title     = {{LangGap}: Diagnosing and Closing the Language Gap in Vision-Language-Action Models},\n  author    = {Hou, Yuchen and Zhao, Lin},\n  journal   = {arXiv preprint arXiv:2603.00592},\n  year      = {2026},\n}\n\n@article{fei2025,\n  title     = {{LIBERO-Plus}: In-depth Robustness Analysis of Vision-Language-Action Models},\n  author    = {Fei, Senyu and Wang, Siyin and Shi, Junhao and Dai, Zihao and Cai, Jikun and Qian, Pengfang and Ji, Li and He, Xinzhe and Zhang, Shiduo and Fei, Zhaoye and Fu, Jinlan and Gong, Jingjing and Qiu, Xipeng},\n  journal   = {arXiv preprint arXiv:2510.13626},\n  year      = {2025},\n}\n\n% === Mechanistic Interpretability of VLAs ===\n\n@article{swann2026,\n  title     = {Sparse Autoencoders Reveal Interpretable and Steerable Features in {VLA} Models},\n  author    = {Swann, Aiden and McGranahan, Lachlain and Buurmeijer, Hugo and Kennedy, Monroe and Schwager, Mac},\n  journal   = {arXiv preprint arXiv:2603.19183},\n  year      = {2026},\n}\n\n% NOTE: related_work.tex cites \"Rizzardo et al. (2026)\" but the matching paper is by Buurmeijer et al.\n@article{rizzardo2026,\n  title     = {Observing and Controlling Features in Vision-Language-Action Models},\n  author    = {Buurmeijer, Hugo and Amo Alonso, Carmen and Swann, Aiden and Pavone, Marco},\n  journal   = {arXiv preprint arXiv:2603.05487},\n  year      = {2026},\n}\n\n@article{lu2025,\n  title     = {Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture},\n  author    = {Lu, Hong and Li, Hengxu and Shahani, Prithviraj Singh and Herbers, Stephanie and Scheutz, Matthias},\n  journal   = {arXiv preprint arXiv:2502.04558},\n  year      = {2025},\n}\n\n@article{molinari2025,\n  title     = {Emergent World Representations in {OpenVLA}},\n  author    = {Molinari, Marco and Nevali, Leonardo and Navani, Saharsha and Younis, Omar G.},\n  journal   = {arXiv preprint arXiv:2509.24559},\n  year      = {2025},\n}\n\n% === Probing Methods ===\n\n@article{belinkov2022,\n  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n  author    = {Belinkov, Yonatan},\n  journal   = {Computational Linguistics},\n  volume    = {48},\n  number    = {1},\n  pages     = {207--219},\n  year      = {2022},\n}\n\n% === VLA Fine-tuning and Reasoning ===\n\n@article{fang2025,\n  title     = {{DualVLA}: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action},\n  author    = {Fang, Zhen and Liu, Zhuoyang and Liu, Jiaming and Chen, Hao and Zeng, Yu and Huang, Shiting and Chen, Zehui and Chen, Lin and Zhang, Shanghang and Zhao, Feng},\n  journal   = {arXiv preprint arXiv:2511.22134},\n  year      = {2025},\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "a2cd7bae-b793-4dc6-8bc8-e0d3be0abe11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XjSxk3zqumx8JBHoZqsAu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1873,
+      "cache_read_input_tokens": 67818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1873
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T04:19:42.605Z_
+
+<details><summary>↩ Tool result · `toolu_01LASzvyV1vp6oHnPZy1ebXW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "aaa6c464-e121-4923-9e03-d39bb59d646a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+    "oldString": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}",
+    "newString": "@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}\n\n% === Behavioral Analysis of VLAs ===\n\n@article{hou2026,\n  title     = {{LangGap}: Diagnosing and Closing the Language Gap in Vision-Language-Action Models},\n  author    = {Hou, Yuchen and Zhao, Lin},\n  journal   = {arXiv preprint arXiv:2603.00592},\n  year      = {2026},\n}\n\n@article{fei2025,\n  title     = {{LIBERO-Plus}: In-depth Robustness Analysis of Vision-Language-Action Models},\n  author    = {Fei, Senyu and Wang, Siyin and Shi, Junhao and Dai, Zihao and Cai, Jikun and Qian, Pengfang and Ji, Li and He, Xinzhe and Zhang, Shiduo and Fei, Zhaoye and Fu, Jinlan and Gong, Jingjing and Qiu, Xipeng},\n  journal   = {arXiv preprint arXiv:2510.13626},\n  year      = {2025},\n}\n\n% === Mechanistic Interpretability of VLAs ===\n\n@article{swann2026,\n  title     = {Sparse Autoencoders Reveal Interpretable and Steerable Features in {VLA} Models},\n  author    = {Swann, Aiden and McGranahan, Lachlain and Buurmeijer, Hugo and Kennedy, Monroe and Schwager, Mac},\n  journal   = {arXiv preprint arXiv:2603.19183},\n  year      = {2026},\n}\n\n% NOTE: related_work.tex cites \"Rizzardo et al. (2026)\" but the matching paper is by Buurmeijer et al.\n@article{rizzardo2026,\n  title     = {Observing and Controlling Features in Vision-Language-Action Models},\n  author    = {Buurmeijer, Hugo and Amo Alonso, Carmen and Swann, Aiden and Pavone, Marco},\n  journal   = {arXiv preprint arXiv:2603.05487},\n  year      = {2026},\n}\n\n@article{lu2025,\n  title     = {Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture},\n  author    = {Lu, Hong and Li, Hengxu and Shahani, Prithviraj Singh and Herbers, Stephanie and Scheutz, Matthias},\n  journal   = {arXiv preprint arXiv:2502.04558},\n  year      = {2025},\n}\n\n@article{molinari2025,\n  title     = {Emergent World Representations in {OpenVLA}},\n  author    = {Molinari, Marco and Nevali, Leonardo and Navani, Saharsha and Younis, Omar G.},\n  journal   = {arXiv preprint arXiv:2509.24559},\n  year      = {2025},\n}\n\n% === Probing Methods ===\n\n@article{belinkov2022,\n  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n  author    = {Belinkov, Yonatan},\n  journal   = {Computational Linguistics},\n  volume    = {48},\n  number    = {1},\n  pages     = {207--219},\n  year      = {2022},\n}\n\n% === VLA Fine-tuning and Reasoning ===\n\n@article{fang2025,\n  title     = {{DualVLA}: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action},\n  author    = {Fang, Zhen and Liu, Zhuoyang and Liu, Jiaming and Chen, Hao and Zeng, Yu and Huang, Shiting and Chen, Zehui and Chen, Lin and Zhang, Shanghang and Zhao, Feng},\n  journal   = {arXiv preprint arXiv:2511.22134},\n  year      = {2025},\n}",
+    "originalFile": "% === VLA / Architecture ===\n\n@article{kim2024_openvla,\n  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n  journal   = {arXiv preprint arXiv:2406.09246},\n  year      = {2024},\n}\n\n% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n@article{karamcheti2024,\n  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n  journal   = {arXiv preprint arXiv:2402.07865},\n  year      = {2024},\n}\n\n@article{brohan2023_rt2,\n  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n  journal   = {arXiv preprint arXiv:2307.15818},\n  year      = {2023},\n}\n\n% === Benchmark ===\n\n@inproceedings{liu2023_libero,\n  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2023},\n}\n\n% === Representation Analysis Methods ===\n\n@article{kriegeskorte2008,\n  title     = {Representational Similarity Analysis -- Connecting the Branches of Systems Neuroscience},\n  author    = {Kriegeskorte, Nikolaus and Mur, Marieke and Bandettini, Peter},\n  journal   = {Frontiers in Systems Neuroscience},\n  volume    = {2},\n  pages     = {4},\n  year      = {2008},\n  publisher = {Frontiers},\n}\n\n@inproceedings{kornblith2019,\n  title     = {Similarity of Neural Network Representations Revisited},\n  author    = {Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2019},\n}\n\n@article{alain2017,\n  title     = {Understanding Intermediate Layers Using Linear Classifier Probes},\n  author    = {Alain, Guillaume and Bengio, Yoshua},\n  journal   = {arXiv preprint arXiv:1610.01644},\n  year      = {2017},\n}\n\n% === Vision Encoders ===\n\n@inproceedings{zhai2023_siglip,\n  title     = {Sigmoid Loss for Language Image Pre-Training},\n  author    = {Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},\n  booktitle = {International Conference on Computer Vision (ICCV)},\n  year      = {2023},\n}\n\n@article{oquab2024_dinov2,\n  title     = {{DINOv2}: Learning Robust Visual Features without Supervision},\n  author    = {Oquab, Maxime and Darcet, Timoth{\\'e}e and Moutakanni, Theo and Vo, Huy and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2024},\n}\n\n@inproceedings{radford2021_clip,\n  title     = {Learning Transferable Visual Models From Natural Language Supervision},\n  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2021},\n}\n\n% === Domain-Specific ===\n\n% [UNVERIFIED] Could not find this paper via S2 or web search\n@article{grant2026,\n  title     = {[UNVERIFIED] Behavioral Visual Dominance in Vision-Language-Action Policies},\n  author    = {Grant, [UNVERIFIED]},\n  journal   = {[UNVERIFIED]},\n  year      = {2026},\n}\n\n@article{haon2025,\n  title     = {Mechanistic Interpretability for Steering Vision-Language-Action Models},\n  author    = {H{\\\"a}on, Bear and Stocking, Kaylene C. and Chuang, Ian and Tomlin, Claire J.},\n  journal   = {arXiv preprint arXiv:2509.00328},\n  year      = {2025},\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 96,
+        "oldLines": 3,
+        "newStart": 96,
+        "newLines": 71,
+        "lines": [
+          "   journal   = {arXiv preprint arXiv:2509.00328},",
+          "   year      = {2025},",
+          " }",
+          "+",
+          "+% === Behavioral Analysis of VLAs ===",
+          "+",
+          "+@article{hou2026,",
+          "+  title     = {{LangGap}: Diagnosing and Closing the Language Gap in Vision-Language-Action Models},",
+          "+  author    = {Hou, Yuchen and Zhao, Lin},",
+          "+  journal   = {arXiv preprint arXiv:2603.00592},",
+          "+  year      = {2026},",
+          "+}",
+          "+",
+          "+@article{fei2025,",
+          "+  title     = {{LIBERO-Plus}: In-depth Robustness Analysis of Vision-Language-Action Models},",
+          "+  author    = {Fei, Senyu and Wang, Siyin and Shi, Junhao and Dai, Zihao and Cai, Jikun and Qian, Pengfang and Ji, Li and He, Xinzhe and Zhang, Shiduo and Fei, Zhaoye and Fu, Jinlan and Gong, Jingjing and Qiu, Xipeng},",
+          "+  journal   = {arXiv preprint arXiv:2510.13626},",
+          "+  year      = {2025},",
+          "+}",
+          "+",
+          "+% === Mechanistic Interpretability of VLAs ===",
+          "+",
+          "+@article{swann2026,",
+          "+  title     = {Sparse Autoencoders Reveal Interpretable and Steerable Features in {VLA} Models},",
+          "+  author    = {Swann, Aiden and McGranahan, Lachlain and Buurmeijer, Hugo and Kennedy, Monroe and Schwager, Mac},",
+          "+  journal   = {arXiv preprint arXiv:2603.19183},",
+          "+  year      = {2026},",
+          "+}",
+          "+",
+          "+% NOTE: related_work.tex cites \"Rizzardo et al. (2026)\" but the matching paper is by Buurmeijer et al.",
+          "+@article{rizzardo2026,",
+          "+  title     = {Observing and Controlling Features in Vision-Language-Action Models},",
+          "+  author    = {Buurmeijer, Hugo and Amo Alonso, Carmen and Swann, Aiden and Pavone, Marco},",
+          "+  journal   = {arXiv preprint arXiv:2603.05487},",
+          "+  year      = {2026},",
+          "+}",
+          "+",
+          "+@article{lu2025,",
+          "+  title     = {Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture},",
+          "+  author    = {Lu, Hong and Li, Hengxu and Shahani, Prithviraj Singh and Herbers, Stephanie and Scheutz, Matthias},",
+          "+  journal   = {arXiv preprint arXiv:2502.04558},",
+          "+  year      = {2025},",
+          "+}",
+          "+",
+          "+@article{molinari2025,",
+          "+  title     = {Emergent World Representations in {OpenVLA}},",
+          "+  author    = {Molinari, Marco and Nevali, Leonardo and Navani, Saharsha and Younis, Omar G.},",
+          "+  journal   = {arXiv preprint arXiv:2509.24559},",
+          "+  year      = {2025},",
+          "+}",
+          "+",
+          "+% === Probing Methods ===",
+          "+",
+          "+@article{belinkov2022,",
+          "+  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},",
+          "+  author    = {Belinkov, Yonatan},",
+          "+  journal   = {Computational Linguistics},",
+          "+  volume    = {48},",
+          "+  number    = {1},",
+          "+  pages     = {207--219},",
+          "+  year      = {2022},",
+          "+}",
+          "+",
+          "+% === VLA Fine-tuning and Reasoning ===",
+          "+",
+          "+@article{fang2025,",
+          "+  title     = {{DualVLA}: Building a Generalizable Embodied Agent via Partial Decoupling of Reasoning and Action},",
+          "+  author    = {Fang, Zhen and Liu, Zhuoyang and Liu, Jiaming and Chen, Hao and Zeng, Yu and Huang, Shiting and Chen, Zehui and Chen, Lin and Zhang, Shanghang and Zhao, Feng},",
+          "+  journal   = {arXiv preprint arXiv:2511.22134},",
+          "+  year      = {2025},",
+          "+}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011DuCotxgBimC8WvQJkEqdD`</summary>
+
+```json
+{
+  "command": "grep -c '@article\\|@inproceedings\\|@misc' /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib",
+  "description": "Count bib entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "9aea8179-c44c-4250-8be5-9841b3276031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhSLgNoHUnicfpDpuH6NtS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1535,
+      "cache_read_input_tokens": 69691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1535
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-16T04:19:45.655Z_
+
+<details><summary>↩ Tool result · `toolu_011DuCotxgBimC8WvQJkEqdD`</summary>
+
+```text
+20
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "432725c4-6238-4202-9782-449827065311",
+  "tool_use_result": {
+    "stdout": "20",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129_
+
+原来 12 条，现在 20 条，增加了 8 条新条目。
+
+**结果汇总：**
+
+| 条目 | 状态 | 论文 | arXiv |
+|------|------|------|-------|
+| swann2026 | 已添加 | Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models | 2603.19183 |
+| rizzardo2026 | 已添加 | Observing and Controlling Features in VLA Models | 2603.05487 |
+| molinari2025 | 已添加 | Emergent World Representations in OpenVLA | 2509.24559 |
+| belinkov2022 | 已添加 | Probing Classifiers: Promises, Shortcomings, and Advances | CL 48(1) |
+| lu2025 | 已添加 | Probing a VLA Model for Symbolic States... | 2502.04558 |
+| hou2026 | 已添加 | LangGap: Diagnosing and Closing the Language Gap in VLAs | 2603.00592 |
+| fei2025 | 已添加 | LIBERO-Plus: In-depth Robustness Analysis of VLAs | 2510.13626 |
+| fang2025 | 已添加 | DualVLA: Building a Generalizable Embodied Agent... | 2511.22134 |
+| haon2025 | 已验证替换 | Mechanistic Interpretability for Steering VLAs (Bear Häon et al.) | 2509.00328 |
+| grant2026 | 未找到 | 标记 [UNVERIFIED]，S2 和 web search 均无结果 | — |
+
+**需注意两个问题：**
+
+1. **rizzardo2026**：related_work.tex 写的是 "Rizzardo et al.~(2026)"，但实际论文作者是 Buurmeijer, Amo Alonso, Swann, Pavone——没有 Rizzardo 这个作者。tex 中的作者名需要修正。
+
+2. **grant2026**：经过多轮搜索（S2 API + 多种关键词 WebSearch）均无法找到。\cite{grant2026} 在 tex 中出现两次（L10, L34），可能是虚构引用，建议核实或替换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "uuid": "c0cfe076-ffc9-4e95-9355-8f7f9d6c84e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCU6D87tR4KGn5gKWJ6Fr1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 71226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 137
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 130_
+
+原来 12 条，现在 20 条，增加了 8 条新条目。
+
+**结果汇总：**
+
+| 条目 | 状态 | 论文 | arXiv |
+|------|------|------|-------|
+| swann2026 | 已添加 | Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models | 2603.19183 |
+| rizzardo2026 | 已添加 | Observing and Controlling Features in VLA Models | 2603.05487 |
+| molinari2025 | 已添加 | Emergent World Representations in OpenVLA | 2509.24559 |
+| belinkov2022 | 已添加 | Probing Classifiers: Promises, Shortcomings, and Advances | CL 48(1) |
+| lu2025 | 已添加 | Probing a VLA Model for Symbolic States... | 2502.04558 |
+| hou2026 | 已添加 | LangGap: Diagnosing and Closing the Language Gap in VLAs | 2603.00592 |
+| fei2025 | 已添加 | LIBERO-Plus: In-depth Robustness Analysis of VLAs | 2510.13626 |
+| fang2025 | 已添加 | DualVLA: Building a Generalizable Embodied Agent... | 2511.22134 |
+| haon2025 | 已验证替换 | Mechanistic Interpretability for Steering VLAs (Bear Häon et al.) | 2509.00328 |
+| grant2026 | 未找到 | 标记 [UNVERIFIED]，S2 和 web search 均无结果 | — |
+
+**需注意两个问题：**
+
+1. **rizzardo2026**：related_work.tex 写的是 "Rizzardo et al.~(2026)"，但实际论文作者是 Buurmeijer, Amo Alonso, Swann, Pavone——没有 Rizzardo 这个作者。tex 中的作者名需要修正。
+
+2. **grant2026**：经过多轮搜索（S2 API + 多种关键词 WebSearch）均无法找到。\cite{grant2026} 在 tex 中出现两次（L10, L34），可能是虚构引用，建议核实或替换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 396622,
+  "duration_api_ms": 468148,
+  "num_turns": 49,
+  "stop_reason": "end_turn",
+  "session_id": "2536bcd8-0a2c-4ffd-a234-a392c32d07c3",
+  "total_cost_usd": 2.073403,
+  "usage": {
+    "input_tokens": 1612,
+    "cache_creation_input_tokens": 59522,
+    "cache_read_input_tokens": 1062029,
+    "output_tokens": 17029,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 59522,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 645,
+        "cache_read_input_tokens": 71226,
+        "cache_creation_input_tokens": 137,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 137
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 425521,
+      "outputTokens": 10214,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 26,
+      "costUSD": 0.736591,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 1612,
+      "outputTokens": 17029,
+      "cacheReadInputTokens": 1062029,
+      "cacheCreationInputTokens": 59522,
+      "webSearchRequests": 0,
+      "costUSD": 1.336812,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "03c0465d-8672-49ea-bfba-8cf0fa1e7433"
+}
+```
+
+</details>
+
+---

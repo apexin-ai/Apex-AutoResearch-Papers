@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "68b63bb44f8d2d885164",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh linear probe gc",
+  "task_key": "worker_ssh_linear-probe-gc_20260515T191639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_linear-probe-gc_20260515T191639.log",
+    "occurrence": 1,
+    "bytes": 1350475,
+    "sha256": "d5193602cb3d21c7519e5b185335f973ccb343e1684a00f550a222bb8fdbeda0"
+  },
+  "statistics": {
+    "messages": 1069,
+    "user_turns": 1,
+    "tool_calls": 478,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 478,
+      "tool_result": 478,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1025,
+      "chunks": [
+        {
+          "path": "68b63bb44f8d2d885164-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68b63bb44f8d2d885164-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "68b63bb44f8d2d885164-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "68b63bb44f8d2d885164-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "68b63bb44f8d2d885164-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "68b63bb44f8d2d885164-part-0006.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "68b63bb44f8d2d885164-part-0006.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-linear-probe-gc.md"
+}

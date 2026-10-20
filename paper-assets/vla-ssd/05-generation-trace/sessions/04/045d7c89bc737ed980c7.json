@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "045d7c89bc737ed980c7",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code llama2 base control setup",
+  "task_key": "worker_code_llama2_base_control_setup_20260517T045040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2_base_control_setup_20260517T045040.log",
+    "occurrence": 1,
+    "bytes": 552660,
+    "sha256": "aa87e80aec4f76ed4c6554a300d95a6eafd98f8c7429c9b548eebf459fe6fbdf"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 115,
+      "tool_result": 115,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "045d7c89bc737ed980c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "045d7c89bc737ed980c7-part-0002.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama2-base-control-setup.md"
+}

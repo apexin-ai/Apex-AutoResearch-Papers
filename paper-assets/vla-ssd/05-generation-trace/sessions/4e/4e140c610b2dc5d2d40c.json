@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e140c610b2dc5d2d40c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code nora fix and long download",
+  "task_key": "worker_code_nora_fix_and_long_download_20260521T020533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nora_fix_and_long_download_20260521T020533_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "384878668119cfd7741364ff41aa8b8bd13cb66a35025fddceaab4d92c3317db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n\n**任务 1 (NORA PyTorch)**: ✅ 已完成 — `torch 2.10.0+cu128`, CUDA 可用，无需修复。\n\n**任务 2 (LIBERO-Long 下载)**: 进行中。\n- 清理 features/ 释放 117GB（52% → 磁盘充裕）\n- 小文件已全部下载\n- 大文件通过 aria2c（3 并发 × 8 连接）从 hf-mirror → xet CDN 下载中\n  - model-00001: 170MB/4.5GB, 2.8MB/s, ETA ~27min\n  - model-00002: 37MB/4.6GB, 471KB/s, ETA ~2h50min\n  - model-00003: 36MB/4.6GB, 384KB/s, ETA ~3h28min\n  - model-00004 + action_head + lora_adapter 排队中（共 ~1GB）\n\n**总 ETA ~3.5 小时**，纯 CPU/网络任务不影响 GPU pipeline。aria2c 有自动重试（10 次），断点续传已开启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nora-fix-and-long-download.md"
+}

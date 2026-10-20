@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e91a6b54682119873d96",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_10_1779392468.md",
+  "task_key": "loop_10_1779392468",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779392468.md",
+    "occurrence": 1,
+    "bytes": 4096,
+    "sha256": "0615bf37db056a732f9a3d0380497c1a682d18b09425428be62aa19c1f76b0b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-21T19:41:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，不可用其他设备\n- 模型路径不可删除：TracVLA-Phi3V checkpoint `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/`，Phi-3-mini base `/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct`\n- DDL：Abstract 2026-05-26（4天），Paper 2026-05-29（7天）\n- 论文在 Group C 审稿中，未经 Director 批准不可改动 paper 文件\n- 8 个 PREPARING 实验（含 `tracvla_spatial_trained`）未经 Director 批准不可提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks x 50 demos）\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/`\n- Feature 目录：`/root/autodl-tmp/vla-ssd/features/`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 磁盘：根分区 816G/879G 可用（3%），数据盘 5.3T/7.3T 可用（24%）\n- 活跃进程：`libero_object_full_pipeline` PID 513513 on cuda:0，cron 监控中\n- Cron：1 个活跃（`libero_object_full_pipeline`）\n\n### 3. 📊 当前状态\nSession #10 刚启动，完成了 session-start 初始化（registry + reconcile + report + ROADMAP）并向 Director 汇报。\n\nRegistry：\n- RUNNING: `libero_object_full_pipeline`（cuda:0）— 验证 LIBERO-Object 跨 benchmark routing 一致性\n- PREPARING (8个): `tracvla_spatial_trained`, `libero_finetuned_probe`, `behavioral_smoketest_diag`, `behavioral_pilot_v2`, `behavioral_pilot`, `fulllayer_action_probe`, `l1_head_ablation_control8`, `l1_head_ablation_50demos`（后 5 个已标记 killed/superseded，仅 `tracvla_spatial_trained` 和 `libero_finetuned_probe` 实质有效）\n- DONE: 115 个（88 success, 16 negative, 1 failed, 10 killed）\n\nWorkers 运行中：\n- `worker_code_nora_goal_pipeline_prep_20260521T021532` — 准备 NORA goal pipeline 代码\n- `worker_analysis_tracvla_spatial_results_and_fix_20260521T023522` — 分析 `tracvla_spatial_pipeline` 失败（EXIT_CODE=129）并修复\n\ncuda:1 空闲，等待 tracvla_spatial 修复后重跑。\n\n### 4. 📋 待办\n- `worker_analysis_tracvla_spatial_results_and_fix` 回调 → 读取产出，若修复可行则在 cuda:1 重跑 tracvla_spatial\n- `worker_code_nora_goal_pipeline_prep` 回调 → 读取产出，按需提交或等 Director 审批\n- `libero_object_full_pipeline` cron 回调（完成/失败）→ 按 on-experiment-done 流程：更新 registry → report.md → 汇报 Director → 文献联动\n- Round 15 审稿结果到达 → 根据 gap analysis 启动 targeted experiments（GPU 已预留）\n- Director 回复 Session #10 汇报 → 按指示执行\n\n### 5. 🎯 战略上下文\n**核心叙事**：VLA 微调创造 instruction routing（attention head specialization），这是跨架构的收敛性质（OpenVLA + TracVLA-Phi3V 双架构验证）。\n\n**关键决策链**：\n- D086: Phi3V untrained probe 确认 inverted-U 是训练产物（控制实验 success）\n- D082-D084: Framing 升级为 \"convergent property across architectures\"\n- D080: Path B（闭环行为验证）关闭，全资源转 Path A（representational analysis）\n- D087: Closed-loop 确认不可行（0/30 SR）\n\n**当前扩展方向**：跨 benchmark 复现（LIBERO-Object 在跑，LIBERO-Spatial tracvla 失败待修复）。这是论文 scope 扩展的关键——从 LIBERO-Goal only 到多 benchmark family。\n\n**易错点**：\n- `tracvla_spatial_pipeline` EXIT_CODE=129 是 SIGHUP/OOM kill，不是代码 bug——修复可能需要调资源配置\n- 8 个 PREPARING 中大部分已被 killed/superseded，不要被数量误导——实质有效的只有 `tracvla_spatial_trained` 和 `libero_finetuned_probe`\n- Reviewer session 持续瘫痪（已 escalate 6 次），审稿结果获取可能受阻\n- 论文已 33 页（主文 8 页），审稿反馈来之前不要主动改 paper\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779392468.md"
+}

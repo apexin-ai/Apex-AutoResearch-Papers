@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20eedc65a798449e19f8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research concurrent work fang buurmeijer",
+  "task_key": "worker_research_concurrent_work_fang_buurmeijer_20260522T140447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_concurrent_work_fang_buurmeijer_20260522T140447_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "6a46e641bf414c18c2ad18693b8a75f9fab1749eeff937165decbd5848f48054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/concurrent_work_analysis.md`。\n\n核心发现：\n\n**Fang et al. (arXiv:2602.17659)** — 最直接的 concurrent work。与我们共享 LIBERO 平台和 counterfactual perturbation 思路，但分析层面完全不同：他们做 behavioral failure 评估 + 推理时 CAG 修复，我们做 representational dynamics 分析（Cohen's d, trained vs untrained）。两者互补：我们提供了他们观察到的 vision-override 现象的表征层解释。\n\n**Buurmeijer et al. (arXiv:2603.05487)** — 方法层面的 concurrent work。与我们共享 linear probing on VLA hidden states 的方法论，但他们只 probe 低层 motor features（位置/抓手），我们 probe 高层 semantic features（language sensitivity）。他们的 observability/controllability 框架与我们的 counterfactual sensitivity 框架形成多层次互补。\n\n两篇论文都不做 trained vs. untrained 对比，也都不做 cross-architecture 的 semantic-level probing — 这正是我们的独特贡献点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-concurrent-work-fang-buurmeijer.md"
+}

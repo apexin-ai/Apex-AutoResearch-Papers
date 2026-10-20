@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60d5beca3c2b90d70202",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code sync figures local",
+  "task_key": "worker_code_sync_figures_local_20260516T081324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_figures_local_20260516T081324_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "25c3783643c71abc85da60e72c0fa68c576d153148181fd551260a0401874a50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。3 个 PDF 已就位，均 >10KB，`cross_benchmark_comparison.pdf` 已重命名为 `fig7.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-figures-local-copy-2.md"
+}

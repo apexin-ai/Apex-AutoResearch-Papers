@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0941d0d34f3453ed7ad",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code untrained study scene1 completion",
+  "task_key": "worker_code_untrained-study-scene1-completion_20260515T131334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_untrained-study-scene1-completion_20260515T131334_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "303f61f74b58baa858d552e9eae2f9c38adedbf4fdbda758d81f07b726f9da1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "untrained 特征提取补完完成，registry 已更新。\n\n**结果**：10/10 tasks 全部 50 demos，shape `(timesteps, 33, 4096)`，总计 ~57GB。STUDY_SCENE1 从 18 demos/754MB → 50 demos/3.9GB。Phase 2 特征提取全部就绪，可进入 Phase 3 probe 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-untrained-study-scene1-completion.md"
+}

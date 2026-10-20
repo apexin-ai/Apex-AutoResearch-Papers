@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f8b5d37fdcda609622",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis action metrics extended",
+  "task_key": "worker_analysis_action_metrics_extended_20260518T171335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_action_metrics_extended_20260518T171335_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "dcd2f95208d63bcb2905f6613563835fe2650313f24435c6be25634f4e76c8e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存至 `/root/autodl-tmp/vla-ssd/results/action_metrics_extended.json`。\n\n**Per-dim MAE ratio (instruction 24h / control 8h):**\n\n| Dim | Inst MAE | Ctrl MAE | Ratio |\n|---|---|---|---|\n| dx | 0.00189 | 0.00037 | **5.09x** |\n| dy | 0.00531 | 0.00125 | **4.26x** |\n| dz | 0.00762 | 0.00243 | **3.14x** |\n| roll | 0.02059 | 0.00785 | 2.62x |\n| pitch | 0.03071 | 0.01387 | 2.21x |\n| yaw | 0.03388 | 0.01783 | 1.90x |\n| gripper | 0.29072 | 0.14072 | 2.07x |\n\n**关键发现：** 平移维度 (dx/dy/dz) 受 instruction-head ablation 影响的比例最大（3-5x），远高于旋转维度（1.9-2.6x）。这说明 instruction heads 对精细位移控制的影响不成比例地大。\n\n**Cosine similarity 无法计算：** 两个源 JSON 只存了聚合统计（mean/std），没有保存 raw per-sample action vectors。如需 cosine similarity，需重新跑 forward pass 并保存 per-sample (baseline, ablated) action pairs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-action-metrics-extended.md"
+}

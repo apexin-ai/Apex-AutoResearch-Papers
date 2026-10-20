@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34e09440e2f5afaecca4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis groundtruth action error",
+  "task_key": "worker_analysis_groundtruth_action_error_20260519T015959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_groundtruth_action_error_20260519T015959_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "34f513fefb6a2e83ad675f1fb05a95519881f139574a09bd126ab769c0a38023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE (negative)，artifact 已注册。\n\n**结果总结**：\n\n- **Top-24 instruction-dominant heads 消融**：GT error 不升反降 (Δ MSE = -0.0011)，Wilcoxon p = 0.52，完全不显著\n- **Bottom-24 non-instruction heads 消融**：GT error 略升 (Δ MSE = +0.0082)，主要来自 gripper 维度\n- Translation 和 rotation MSE 在所有条件下几乎不变\n- 所有变化都集中在 gripper 维度（值域 ~2.9-2.97），translation/rotation 维度的 delta 在小数点后第 3-4 位\n\n**解读**：消融 instruction-dominant heads 对 ground-truth action quality 没有可检测的影响。这与之前 action_trajectory_analysis 中观察到的 original-vs-ablated divergence 形成对照：那些头确实改变了模型输出，但改变的方向并非系统性地偏离 GT，而是\"随机漂移\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-groundtruth-action-error.md"
+}

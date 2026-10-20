@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51c95c57a3916c0d8b4f",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3571,
+    "sha256": "1e948eb71bf31b62caf10715cc890f54a5adceac73a8aa7b2ddbda64cc3c2b05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-19T11:17:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 仅 cuda:0 和 cuda:1。越界立即 severity=critical\n- 论文 LaTeX 源码在**本地** `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/`，不在远程服务器。远程只有脚本/数据/结果\n- paper_framing.md 第 54/93 行仍残留 1.15x（应为 1.08x）。论文 .tex 已修正，但内部文档未同步——如果有 worker 引用 paper_framing.md 做数值会出错\n- \"trained\" 条件的 attention 数据来自 **openvla-7b**（Bridge/OXE 970K），不是 openvla-7b-finetuned-libero-goal。Worker 经常搞混这两个 checkpoint\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，代码 `/root/vla-ssd/`，数据/结果 `/root/autodl-tmp/vla-ssd/`\n- Conda env：`libero`（`/root/miniconda3/envs/libero/`）\n- Checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/` 下有 openvla-7b (15G)、openvla-7b-finetuned-libero-goal (14G)、openvla-7b-llama2base、dinov2-large。untrained checkpoint 已删除（可通过 init_untrained.py 重建）\n- 磁盘：250G 总，206G 用，45G 可用（83%）\n- GPU：**两张卡均空闲**，实验阶段结束，GPU 释放已通知 Manager\n- 活跃进程：无。所有 tmux session 已结束。无 cron 任务\n\n### 3. 📊 当前状态\n项目处于 **FINAL 状态**，等待用户确认投稿。\n\n最后完成的工作：\n- 系统性弱点审计（确认 6.0-6.7 是 scope ceiling）\n- 4-condition training trajectory（D075）：untrained(0) → llama2(9) → openvla-7b(24) → libero-finetuned(22) at L1，发现 L31 exit collapse 18→0\n- LIBERO fine-tuned probe profile：L2+ 全部 ceiling 1.0，确认 routing 改变不影响 information accessibility\n- Round 12 PDF 编译上传（27 页，0 errors）\n\nRegistry：99 个实验全部 DONE（无 RUNNING/PREPARING）。behavioral_smoketest_diag 有个残留 PREPARING/killed 状态，无实际影响。\n\n无等待中的 worker/cron/Director 决策。\n\n### 4. 📋 待办\n- 用户批准投稿 → 确认 Abstract (May 26) + Paper (May 29) 提交安排\n- Director 要求 Round 12 审稿 → 审查论文终稿（PDF 已编译）\n- Director 转发章节审查 → 按 §5 审查维度执行（先 Read red-section skill 检查合规）\n- Director 转发 Framing 调整提案 → Read negative-framing-review skill，四维度审查\n- 如果用户要求再跑实验 → GPU 已释放，需先通过 Manager 重新申请\n\n### 5. 🎯 战略上下文\n**核心结论链**：D067(dose-response 强阳性) → D068(counterfactual 强阳性) → D070(specificity 弱阳性→distributed routing reframe) → D073(claim 全面降级 open-loop) → D074(closed-loop SR=0 放弃) → D075(4-condition trajectory L31 collapse)\n\n**最容易判断错的事**：\n1. Worker 汇报\"L1 bookend preserved\"时只看 L1 不看 L31——本轮已抓到一次。永远检查完整 32 层 profile\n2. matched_ablation_controls registry 显示 conclusion=\"success\" 但 failure_reason 字段仍有旧文本（\"process dead 5×\"）——这是 cron 监控 artifact，数据有效\n3. behavioral_smoketest 被重试 3 次（v1 crash → v1 重跑 SR=0 → v2 SR=0 → v3 SR=0），Worker 每次都声称找到新 root cause。实际就是 checkpoint 在 closed-loop 不工作\n4. Score 估计 6.0-6.7 是 scope ceiling，不是文本打磨不够。不要浪费 context 做第 12 轮 polish\n5. openvla-7b 训练于 OXE 970K diverse episodes——这削弱了\"单模型\"批评，论文 method.tex:11 已明确说明\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

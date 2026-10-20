@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb866800f235c89202da",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check intermediate checkpoints",
+  "task_key": "worker_check_intermediate_checkpoints_20260523T234750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_intermediate_checkpoints_20260523T234750_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "1943cc2bae52c2205fb5b5db5b2d65f403f54f9c6be0d8411bd5c4fee89071b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**服务器上所有模型均只有最终 checkpoint，没有任何中间 checkpoint。**\n\n| 模型 | 路径 | 大小 | 中间 checkpoint |\n|------|------|------|----------------|\n| **TracVLA** | `tracevla-phi3v/` | 7.8G | 无 — 仅最终权重（2 个 .bin） |\n| **NORA-goal** | `nora-libero-goal/` | 7.1G | 无 — 仅最终权重（2 个 .safetensors） |\n| **NORA-spatial** | `nora-libero-spatial/` | 7.1G | 无 — 同上 |\n| **OpenVLA-goal** | `openvla-7b-finetuned-libero-goal/` | 14G | 无 — 仅最终权重（4 个 .safetensors） |\n| **OpenVLA-object** | `openvla-7b-finetuned-libero-object/` | 15G | 无 — 同上 |\n| **OpenVLA-spatial** | `openvla-7b-finetuned-libero-spatial/` | 15G | 无 — 同上 |\n| **OpenVLA-OFT** | `openvla-7b-oft-finetuned-libero-10/` | 15G | 无 — 有 `action_head--150000_checkpoint.pt` 和 `proprio_projector--150000_checkpoint.pt`，但这是 OFT 的 head 权重，不是 backbone 中间 checkpoint |\n\n补充确认：\n- 全盘搜索 `checkpoint-*`、`epoch_*`、`step_*`、`global_step*` 命名目录：**零结果**\n- 无 `trainer_state.json`、`training_args.bin`、`optimizer.pt` 等训练中间产物\n- 这些 checkpoint 全部从 HuggingFace Hub 下载的预训练/微调最终权重，不是本地训练产出\n\n**无法在现有 checkpoint 上做 training dynamics 分析。** 需要重新训练并配置 `save_steps` 保存中间 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-intermediate-checkpoints.md"
+}

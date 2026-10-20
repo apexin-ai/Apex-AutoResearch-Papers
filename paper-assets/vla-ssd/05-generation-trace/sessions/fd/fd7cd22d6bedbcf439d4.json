@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7cd22d6bedbcf439d4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code gen cross inst heatmap",
+  "task_key": "worker_code_gen_cross_inst_heatmap_20260517T043900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gen_cross_inst_heatmap_20260517T043900_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "de1d124aa8ce246126ec2d7abf630a9753e206b5be7d758beaa7461e1c98d50b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已成功传输到本地。图表数据和布局正确：\n\n- **Trained last_preaction**: L0=10, L1-L31 全部 100（训练后 action token 完美编码指令信息）\n- **Untrained last_preaction**: L0=10, L1=100, L4=100, 从 L8 开始逐渐下降 98→92→86→82（未训练模型高层逐渐丢失指令区分度）\n- **Trained image_mean / DINOv2**: 全部 10（chance level，视觉 token 不编码指令信息）\n\n文件位置：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig2_cross_instruction_heatmap.pdf`（22,895 bytes）\n\n服务器端副本：`/root/autodl-tmp/vla-ssd/results/cross_instruction/fig2_cross_instruction_heatmap.pdf` + `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gen-cross-inst-heatmap.md"
+}

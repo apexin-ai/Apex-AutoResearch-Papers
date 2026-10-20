@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3797d6306a673726d66e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research tracvla libero coverage",
+  "task_key": "worker_research_tracvla_libero_coverage_20260521T003607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tracvla_libero_coverage_20260521T003607_result.json",
+    "occurrence": 1,
+    "bytes": 4482,
+    "sha256": "5edf31280aa32c9a77e0ee92a6a7b3e76170a9649d327643dd350bc1b7c02d6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是完整结果。\n\n---\n\n## 1. TraceVLA 训练配置\n\n| 属性 | 详情 |\n|------|------|\n| 预训练数据 | Open X-Embodiment (OXE), 970K trajectories + 150K visual trace trajectories |\n| 模型变体 | TraceVLA-7B (Llama2-based), TraceVLA-Phi3V (Phi-3-Vision 4B) |\n| LIBERO 评估 | 论文在**全部 4 个 suite** 上做了 fine-tune + eval（遵循 OpenVLA 协议：LoRA r=32, 每 suite 10 tasks × 50 demos） |\n\n## 2. 公开 Checkpoint 可用性\n\n| Checkpoint | 来源 | Suite | 类型 |\n|-----------|------|-------|------|\n| `furonghuang-lab/tracevla_phi3v` | HuggingFace | N/A (OXE pretrained) | Phi3V backbone |\n| `furonghuang-lab/tracevla_7b` | HuggingFace | N/A (OXE pretrained) | 7B Llama2 backbone |\n| `furonghuang-lab/openvla_phi3v` | HuggingFace | N/A (OXE pretrained) | Phi3V base (no trace) |\n| `openvla/openvla-7b-finetuned-libero-spatial` | HuggingFace | Spatial | **7B Llama2 only** |\n| `openvla/openvla-7b-finetuned-libero-object` | HuggingFace | Object | **7B Llama2 only** |\n| `openvla/openvla-7b-finetuned-libero-10` | HuggingFace | Long | **7B Llama2 only** |\n\n**关键发现：没有任何 TraceVLA-Phi3V 的 LIBERO suite-specific fine-tuned checkpoint 发布。** 论文做了实验但未开源这些 checkpoint。LIBERO-specific checkpoints 只有 OpenVLA-7B (Llama2) 版本。\n\n## 3. 服务器已有资源\n\n```\n/root/autodl-tmp/vla-ssd/checkpoints/\n├── tracevla-phi3v/                      ← OXE-pretrained (= furonghuang-lab/tracevla_phi3v)\n├── openvla-phi3v/                       ← OXE-pretrained base\n├── openvla-7b/                          ← 7B base\n├── openvla-7b-finetuned-libero-goal/    ← 7B LIBERO-Goal (Llama2)\n├── openvla-7b-finetuned-libero-object/  ← 7B LIBERO-Object (Llama2)\n├── nora-libero-goal/                    ← Qwen2.5-VL (无关模型)\n└── dinov2-large/\n```\n\n已提取的特征：`phi3v_trained_libero_goal`, `phi3v_untrained_libero_goal` — 仅 Goal suite。\n\n## 4. 对我们项目的影响分析\n\n我们之前的 \"trained vs untrained\" 对比是：\n- **trained** = `tracevla-phi3v`（OXE 预训练后的 VLA）\n- **untrained** = 未经 VLA 训练的 base Phi-3-Vision\n\n这个对比的核心不是\"在某个 LIBERO suite 上 fine-tune 前后\"，而是\"VLA 训练是否改变了 LLM 表征\"。\n\n**好消息：如果沿用这个定义，扩展到其他 suite 不需要新 checkpoint。** 同样的两个模型（tracevla-phi3v + untrained phi3v）跑在不同 LIBERO suite 的 demo 数据上即可。模型不变，只是输入数据（环境布局/物体/任务）变了。\n\n## 5. 自行训练的成本估算（如果需要 suite-specific fine-tuned checkpoint）\n\n| 项目 | 估计 |\n|------|------|\n| 训练代码 | TraceVLA repo `phi3` branch 有训练脚本，LIBERO fine-tuning 需适配 |\n| 每 suite 数据量 | 500 demos (10 tasks × 50) |\n| Phi3V (4B) LoRA fine-tune | ~0.5–1 GPU-hour per suite (单卡 A100/A6000) |\n| 3 个新 suite 总计 | ~1.5–3 GPU-hours |\n\n## 6. 建议方案\n\n**推荐方案：直接用现有 checkpoint 扩展到其他 suite。**\n\n理由：\n- 我们的研究问题是\"VLA training 如何改变 LLM representations\"，不是\"per-suite fine-tuning 的影响\"\n- 同一对 checkpoint（trained/untrained）在不同 suite 上的表征差异，可以揭示 VLA 训练获得的通用能力在不同任务类型（spatial reasoning / object recognition / goal understanding / long-horizon planning）上的表现\n- 科学价值：跨 suite 的一致性模式（如所有 suite 都在中间层出现 R² 峰值）说明 VLA 训练带来的表征变化是通用的而非 task-specific 的；不一致的模式则暴露 VLA 训练的局限性\n\n**如果 reviewer 要求 suite-specific fine-tuning 对照**，再训练也只需 ~3 GPU-hours，成本很低。\n\nSources:\n- [TraceVLA Paper (arXiv:2412.10345)](https://arxiv.org/abs/2412.10345)\n- [TraceVLA GitHub](https://github.com/umd-huang-lab/tracevla)\n- [TraceVLA HuggingFace Collection](https://huggingface.co/collections/furonghuang-lab/tracevla-677d98483d23e9cec903d076)\n- [furonghuang-lab/tracevla_phi3v](https://huggingface.co/furonghuang-lab/tracevla_phi3v)\n- [OpenVLA LIBERO-Spatial checkpoint](https://huggingface.co/openvla/openvla-7b-finetuned-libero-spatial)\n- [OpenVLA LIBERO-Object checkpoint](https://huggingface.co/openvla/openvla-7b-finetuned-libero-object)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tracvla-libero-coverage.md"
+}

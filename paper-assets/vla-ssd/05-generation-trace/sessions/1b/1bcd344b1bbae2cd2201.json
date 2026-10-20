@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bcd344b1bbae2cd2201",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code libero object resume",
+  "task_key": "worker_code_libero_object_resume_20260521T002750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_object_resume_20260521T002750_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "5a297904c5dd7c2304e56703797387825e561191f34d2c9857304251668c747f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正式启动，配置正确：10 tasks × 10 demos × 50 timesteps × 15 seeds。\n\n总结：\n- **Checkpoint**: openvla-7b-finetuned-libero-object 已下载完成（16GB）\n- **Data**: 10 个 LIBERO-Object hdf5 文件齐全\n- **Script**: `libero_object_full_pipeline.py` 已修复 4 个问题：\n  1. `global N_IMG_TOKENS` 声明位置（SyntaxError）\n  2. `PrismaticProcessor` 加载（AutoProcessor 兼容性）\n  3. pixel_values dtype 转 bfloat16\n  4. 小样本 probing/classification 边界检查\n- **新增 RSA 模块**: Phase 5，within-task Spearman(cosine_rep, euclidean_act)\n- **Dry-run**: 6 个 phase 全部通过\n- **正式实验**: `libero_object_full_pipeline` 已提交到 cuda:0，tmux session 运行中\n- **输出**: `/root/autodl-tmp/vla-ssd/results/libero_object/` → 5 个 JSON + pipeline.log"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-libero-object-resume.md"
+}

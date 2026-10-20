@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "16bd844b60138181ca74",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh plan012 clip action probe",
+  "task_key": "worker_ssh_plan012-clip-action-probe_20260516T014922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan012-clip-action-probe_20260516T014922.log",
+    "occurrence": 1,
+    "bytes": 574511,
+    "sha256": "02cd1ab69fa69352c2204567869f02ac9377a024a220a6a69bd3b62d3a32c510"
+  },
+  "statistics": {
+    "messages": 231,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "16bd844b60138181ca74-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "16bd844b60138181ca74-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "16bd844b60138181ca74-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-plan012-clip-action-probe.md"
+}

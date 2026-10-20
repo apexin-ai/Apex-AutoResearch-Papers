@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "3dca3c5376256a975ce0",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh exp1 pca linear perlayer",
+  "task_key": "worker_ssh_exp1-pca-linear-perlayer_20260515T192115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp1-pca-linear-perlayer_20260515T192115.log",
+    "occurrence": 1,
+    "bytes": 2344270,
+    "sha256": "0eab93b273d11a7def6534223a2637151b4b8d7b2a8e8ed150568a9c78066848"
+  },
+  "statistics": {
+    "messages": 1462,
+    "user_turns": 2,
+    "tool_calls": 639,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 3,
+      "assistant": 168,
+      "tool_call": 639,
+      "tool_result": 639,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 689,
+      "chunks": [
+        {
+          "path": "3dca3c5376256a975ce0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0004.json",
+          "message_count": 149
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 758,
+      "chunks": [
+        {
+          "path": "3dca3c5376256a975ce0-part-0004.json",
+          "message_count": 31
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dca3c5376256a975ce0-part-0009.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "3dca3c5376256a975ce0-part-0009.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-exp1-pca-linear-perlayer.md"
+}

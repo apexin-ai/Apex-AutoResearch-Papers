@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11f781cbed8e260508a5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ridge probing migration",
+  "task_key": "worker_code_ridge_probing_migration_20260521T050309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ridge_probing_migration_20260521T050309_result.json",
+    "occurrence": 1,
+    "bytes": 1754,
+    "sha256": "c91c8f823f402ca09e30fc0ca4c6d4184dc3d35e414e4c5c9870b470b29218e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个环境 RidgeCV import 均通过。\n\n## 完成总结\n\n### 修改了 7 个文件\n\n| # | 文件 | 修改内容 |\n|---|------|---------|\n| 1 | `libero_object_full_pipeline.py` | import + run_probing |\n| 2 | `nora_goal_full_pipeline.py` | import + run_probing |\n| 3 | `nora_spatial_full_pipeline.py` | import + run_probing |\n| 4 | `tracvla_spatial_full_pipeline.py` | import + run_probing |\n| 5 | `tracvla_object_full_pipeline.py` | import + run_probing |\n| 6 | `libero_long_full_pipeline.py` | import + run_probing |\n| 7 | `tracvla_spatial_probing_only.py` | import + run_probing |\n\n### 每个文件的具体修改\n\n1. **Import**: `from sklearn.neural_network import MLPRegressor` → `from sklearn.linear_model import RidgeCV`\n2. **run_probing 函数**:\n   - MLPRegressor(hidden_layer_sizes=(256,), ...) → RidgeCV(alphas=[0.01, 0.1, 1.0, 10.0, 100.0])\n   - 去掉 15-seed 循环，改为单次 train/test split（固定 random_state=42）\n   - R² 计算方式不变（全局 ss_res/ss_tot，保持与 MLP 版本可比性）\n   - 输出 JSON 格式不变：`{\"mean\": X, \"std\": 0.0, \"values\": [X]}`\n3. **Docstring**: `per-layer MLP probe, 15 seeds` → `per-layer Ridge probe`\n\n### 验证结果\n\n- conda base 环境：RidgeCV OK\n- NORA venv 环境：RidgeCV OK\n\n### 重提交命令\n\n**cuda:0 — OpenVLA Object:**\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py\"\n```\n\n**cuda:1 — NORA Goal:**\n```bash\nbash -c \"source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate && python /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py --conditions trained untrained\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ridge-probing-migration.md"
+}

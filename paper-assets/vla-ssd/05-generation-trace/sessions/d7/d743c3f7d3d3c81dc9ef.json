@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d743c3f7d3d3c81dc9ef",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research probe design",
+  "task_key": "worker_research_probe-design_20260515T045705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_probe-design_20260515T045705_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "d9fc8736d5d5da9e72a4295b3a294a499bc0fa42a0fe22b7c9c62ad6261be107"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入。核心要点总结：\n\n**关键发现**: OpenVLA 对每个 trajectory timestep 做独立 forward pass，RoPE 编码的是 sequence 内 token position（固定不变），**不是** trajectory timestep。因此 RoPE 实际上不构成 temporal distance probing 的混淆因素。\n\n**设计要点**:\n- **Probe 输入**: |h(t_j) − h(t_i)| 绝对差值（对称、紧凑）\n- **Token 聚合**: last pre-action token（模型决策汇聚点）\n- **输出**: 回归预测 |t_j − t_i|/T，用 Spearman ρ 评估\n- **核心控制实验是 Control C（untrained model）**, 而非 timestep fraction baseline——因为后者恒等于目标（ρ ≈ 1.0），VLA 不可能超越\n\n**需 Director 确认的关键修改**: Roadmap 中 \"VLA > timestep-baseline (Δρ > 0.1)\" 在当前目标定义下不成立。建议改为 **VLA > untrained-model (Δρ > 0.1)**，这能真正分离 VLA 训练贡献 vs 架构偏差。\n\n文件位置: `artifacts/probe_design_plan.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-probe-design.md"
+}

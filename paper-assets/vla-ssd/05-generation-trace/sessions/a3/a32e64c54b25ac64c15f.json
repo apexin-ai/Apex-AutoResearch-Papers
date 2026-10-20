@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a32e64c54b25ac64c15f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig6 appendix untrained to reference",
+  "task_key": "worker_draw_fig6_appendix_untrained_to_reference_20260523T195340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig6_appendix_untrained_to_reference_20260523T195340_result.json",
+    "occurrence": 1,
+    "bytes": 1696,
+    "sha256": "45e691ab85b8c9446723e5082d69bcc4c3aaf5fcc75487d329b61d7e700ff8cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 7 个 PDF 已传输到本地。\n\n## 汇报\n\n### 已修改并重新生成的图（7 个）\n\n| 本地文件名 | 修改内容 | 脚本 |\n|---|---|---|\n| `fig_counterfactual_bar.pdf` | title: \"Untrained base VLMs\" → \"Reference base VLMs\" | `/tmp/draw_counterfactual_bar.py` |\n| `fig_action_r2_threecond.pdf` | legend: \"Untrained VLA\" → \"Reference VLA\" | `/root/vla-ssd/scripts/plot_action_r2_threecond.py` |\n| `fig_multi_layer_attn.pdf` | legend: \"Untrained VLA\" → \"Reference VLA\" | `/tmp/plot_multi_layer_attention.py` |\n| `fig_rsa_perlayer_curve.pdf` | legend: \"Untrained, image mean/last pre-action\" → \"Reference, ...\" | `/tmp/plot_rsa_perlayer.py` |\n| `fig_32layer_attention.pdf` | legend: \"Untrained VLA\" → \"Reference VLA\" (2处) | `/root/vla-ssd/scripts/plot_full_32layer_attention.py` |\n| `fig_probe_conditions.pdf` | legend: \"Untrained VLA\" → \"Reference VLA\" | `/root/vla-ssd/scripts/plot_three_condition_probe.py` |\n| `fig2_cross_instruction_heatmap.pdf` | ylabel: \"Untrained\\nlast_preaction\" → \"Reference\\nlast_preaction\" | `/tmp/gen_heatmap.py` |\n\n另外 2 个脚本也已修改但输出不在 paper 目录中：\n- `plot_32layer_attention_profile.py` — legend \"Untrained VLA\" → \"Reference VLA\"\n- `plot_threecond_multiseed_v2.py` — legend \"Untrained\" → \"Reference\"\n\n### 不包含 \"Untrained\" 的图（跳过）\n- `fig_teaser.pdf`, `fig_specificity_bootstrap_30seeds.pdf`, `fig_ood_diagnostics.pdf`, `fig_claim_evidence.pdf`, `fig_matrix_heatmap.pdf`, `fig_overview.pdf`, `fig_dose_response.pdf`\n\n### 其他 Worker 处理（跳过）\n- `fig_r2_collapse.pdf`, `fig_cross_arch_l1.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig6-appendix-untrained-to-reference.md"
+}

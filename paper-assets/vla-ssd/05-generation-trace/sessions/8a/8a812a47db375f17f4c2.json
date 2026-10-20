@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a812a47db375f17f4c2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix figure fontsize v2",
+  "task_key": "worker_code_fix_figure_fontsize_v2_20260517T113417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_figure_fontsize_v2_20260517T113417_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "ebe6a53f8f07a41ed85bddca8d7f16dbb1f377a7bf888f561383036754b25b0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终报告\n\n| PDF | 本地路径 | 远程路径 | 大小 | 最小字体 | 结果 |\n|-----|---------|---------|------|---------|------|\n| `fig_32layer_attention.pdf` | artifacts/.../paper/ (14867B, May 17 08:08 UTC) | `/root/vla-ssd/scripts/fig_32layer_attention_profile.pdf` (14854B) | ~14.9KB | **8.00pt** | **PASS** |\n| `fig_l1_stacked_bar.pdf` | artifacts/.../paper/ (29419B, May 17 07:39 UTC) | `/root/autodl-tmp/vla-ssd/results/attention/fig_l1_attention_three_conditions.pdf` (23264B) | ~23-29KB | **8.00pt** | **PASS** |\n\n### 字体详情\n\n- **fig_32layer_attention**: 字体尺寸 `[8.0, 9.0]`。8pt 用于 annotations (entry/exit routing, mid-layer processing) 和 legend。9pt 用于轴标签。\n- **fig_l1_stacked_bar**: 字体尺寸 `[8.0, 9.0, 10.0]`。8pt 用于 tick labels、annotation text 和 legend。9pt 用于 xlabel/ylabel。10pt 用于 subplot titles。\n\n### 结论\n\n两个 PDF 最小字体均为 8pt，满足 ≥ 8pt 要求。无需修改生成脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-figure-fontsize-v2.md"
+}

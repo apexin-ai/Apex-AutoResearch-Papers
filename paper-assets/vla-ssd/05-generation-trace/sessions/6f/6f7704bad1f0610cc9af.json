@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7704bad1f0610cc9af",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "sync counterfactual 10tasks results",
+  "task_key": "worker_sync_counterfactual_10tasks_results_20260520T201607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_counterfactual_10tasks_results_20260520T201607.log",
+    "occurrence": 1,
+    "bytes": 946224,
+    "sha256": "59c97fd12cc026a29fa89312222417a682f9b3a476e8dabca6f732275e18dd27"
+  },
+  "statistics": {
+    "messages": 330,
+    "user_turns": 1,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 71,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 115,
+      "tool_result": 114,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "6f7704bad1f0610cc9af-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "6f7704bad1f0610cc9af-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "6f7704bad1f0610cc9af-part-0002.json",
+          "message_count": 157
+        },
+        {
+          "path": "6f7704bad1f0610cc9af-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-counterfactual-10tasks-results.md"
+}

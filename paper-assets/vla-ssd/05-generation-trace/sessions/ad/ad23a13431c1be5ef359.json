@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad23a13431c1be5ef359",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_2_1778863795.md",
+  "task_key": "loop_2_1778863795",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778863795.md",
+    "occurrence": 1,
+    "bytes": 4596,
+    "sha256": "5c0d9900376cbe60975e857cd2b977e657e481bd3682c6636978d9a2ada4004d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T16:12:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，不可用其他卡\n- mvp_001 是 umbrella 实验，不要单独推它到 DONE——它跟踪整个 MVP 验证流程，等所有子实验（trained/untrained extraction + probe + controls）全部完成后才结束\n- MVP 判定标准已经过 D001-D004 四轮修订，**必须用 per-task mean ρ**（不是 pooled ρ）。pooled ρ=0.833 是 DINO 的膨胀值，正确 baseline 是 per-task mean ρ=0.554。搞混这个会被 Director CRITICAL\n- analyze_mvp.py 已废弃，唯一的 verdict 脚本是 analyze_results.py\n- openvla-untrained-extract 的 EXIT_CODE=130 是 Worker 主动 kill（修 I/O 瓶颈），不是真失败。8/10 tasks 已完成，剩 LIVING_ROOM_SCENE6 和 STUDY_SCENE1\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183（2×RTX PRO 6000 Ada）\n- 工作目录：/root/autodl-tmp/vla-ssd/（数据盘），代码可能在 /root/vla-ssd/（有 symlink）\n- Python：需探测确认（可能 conda base 或 venv，上一轮未记录具体路径）。镜像可能是 aml-train（conda 环境）\n- 模型路径：/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/（trained），/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/（untrained）\n- 数据路径：/root/autodl-tmp/vla-ssd/data/libero/libero_10/\n- 特征路径：/root/autodl-tmp/vla-ssd/features/trained/ 和 features/untrained/（也可能通过 /root/vla-ssd/features/ symlink 访问）\n- DINO 特征：/root/autodl-tmp/vla-ssd/features/dinov2/（503MB, 10 .pt files）\n- DINO 结果：/root/autodl-tmp/vla-ssd/results/dinov2/\n- 活跃进程：openvla-trained-extract 刚退出（PID 27091 已结束）；untrained 可能有 fix-extraction-restart Worker 在补跑剩余 2 tasks\n\n### 3. 📊 当前状态\n刚收到 openvla-trained-extract 完成回调（ANALYZING），已派 Worker `analysis:openvla-trained-extract` SSH 去检查日志和特征文件完整性。\n\nRegistry 状态：\n- **openvla-trained-extract** (ANALYZING): 等 analysis Worker 回调确认 10 tasks 是否全部提取成功\n- **mvp_001** (RUNNING): umbrella，等所有子实验完成\n- **dinov2_baseline** (DONE/success): per-task mean ρ=0.554, subtask AUC=0.9717\n- **openvla-untrained-extract** (DONE/failed): 8/10 tasks，Worker `fix-extraction-restart` 正在补跑\n\n等待中的回调/Worker：\n1. **Worker `analysis:openvla-trained-extract`** → 回调后更新 registry（conclusion=success/failed），然后决定下一步\n2. **Worker `fix-extraction-restart`** → 补跑 untrained 剩余 2 tasks（LIVING_ROOM_SCENE6, STUDY_SCENE1）\n3. **Worker `d003-d004-code-alignment`** → 对齐 analyze_results.py 使用 per-task mean ρ\n\n### 4. 📋 待办\n- analysis Worker 确认 trained 10 tasks 全部成功 → update_registry(openvla-trained-extract, status=DONE, conclusion=success)，记录 checkpoint_path 和 feature 统计\n- fix-extraction-restart Worker 完成 untrained 补跑 → 验证 10/10 files，update_registry(openvla-untrained-extract, conclusion=success 覆盖 failed)\n- d003-d004-code-alignment Worker 完成 → 确认 analyze_results.py 用 per-task mean ρ\n- **三个 Worker 全部完成后** → spawn Worker 跑 Phase 3：`python scripts/train_probes.py` 对 trained + untrained 做 temporal distance probe，再跑 Control B (label permutation)\n- Probe 结果出来后 → 运行 analyze_results.py 做三分支判定（PASS/CONDITIONAL/FAIL）\n- 判定结果 → main_agent_post_to_director 汇报，附 metrics + 对比 + 建议\n\n### 5. 🎯 战略上下文\n- 项目核心假设：OpenVLA 7B 隐状态编码 task-progress 信息，且信号来自 VLA 训练（不是架构偏差）\n- CoRL 2026 DDL：abstract May 26, paper May 29——时间极紧\n- 决策链：D001（MVP 判定标准校准）→ D002（切 per-task mean ρ）→ D003（移除 subtask gate）→ D004（勘误 DINO 阈值 0.833→0.554）\n- 三分支判定：PASS（per-task mean ρ>0.5 + Δρ>0.1 + VLA≥0.554）/ CONDITIONAL（Δρ>0.1 但 VLA<0.554 → pivot DINO pipeline）/ FAIL（终止）\n- 易踩坑：OpenVLA 每 timestep 独立 forward pass，RoPE 编码 token position 不是 trajectory timestep——所以 RoPE positional shortcut 不成立，这个已确认不需要额外控制实验\n- transformers 版本差异（期望 4.40.1 vs 实际 4.57.6）——trained/untrained 用同一版本所以对比有效，但复现时注意\n- Control B（label permutation）baseline ρ=0.039 已在 dinov2_baseline 里跑过，VLA 的 Control B 还没跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778863795.md"
+}

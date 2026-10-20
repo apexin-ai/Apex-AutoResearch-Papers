@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7baa6d41011fd6ee7869",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research bddl predicates",
+  "task_key": "worker_research_bddl-predicates_20260515T115648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bddl-predicates_20260515T115648_result.json",
+    "occurrence": 1,
+    "bytes": 5336,
+    "sha256": "51bac5f090a6a17fc7324d5d5567aa8f51324dfff9d17600c075f9f3fe541a9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是完整技术方案。\n\n---\n\n## LIBERO BDDL Predicate 提取技术方案\n\n### 1. Predicate 系统工作原理\n\nLIBERO 的 predicate 系统由三层组成：\n\n**BDDL 文件**（130 个 task，分布在 libero_spatial/object/goal/10/90 五个 suite 中）：\n- `:init` 定义初始状态（`On`, `Open`, `Close` 等）\n- `:goal` 定义目标状态，使用 `(And pred1 pred2 ...)` 连接\n\n**Predicate 函数**（`libero/libero/envs/predicates/`）：\n- `On(a, b)` → `b.check_ontop(a)` — 需要 body position + **contact detection**\n- `In(a, b)` → `b.check_contact(a) and b.check_contain(a)` — 需要 **contact detection** + bounding box\n- `Open(a)` / `Close(a)` → 读取 joint qpos，判断关节角度阈值\n- `TurnOn(a)` / `TurnOff(a)` → 同上，joint qpos 阈值\n\n**ObjectState 层**（`libero/libero/envs/object_states/base_object_states.py`）：\n- 所有 predicate 函数的参数都是 `ObjectState` 对象\n- `ObjectState` 封装了 `env.sim.data` 的访问接口\n- **关键依赖**：`check_contact()` 调用 `env.check_contact(obj1, obj2)`，这来自 robosuite 的 `MujocoEnv.check_contact()`，依赖 `sim.data.contact` — 即 MuJoCo 物理引擎的碰撞检测结果\n\n**Goal 中的 predicate 类型统计**：\n- `In`: 63 次\n- `On`: 61 次\n- `Close`: 11 次\n- `Open`: 7 次\n\n### 2. 从 HDF5 State 提取 Predicate 的可行性分析\n\nHDF5 中的 `states` 是 `sim.get_state().flatten()` 的输出 — 即 MuJoCo 的完整 flattened state（包含 qpos, qvel, act, udd_state）。\n\n**结论：不可能绕过 MuJoCo，必须加载 simulator。**\n\n原因：\n- `On` 和 `In` predicate 都依赖 `check_contact()`，这需要 MuJoCo 的碰撞检测引擎（`sim.data.contact` 在 `mj_forward()` 后才计算）\n- `check_ontop()` 还需要 `body_xpos`（body 的世界坐标），这也是 MuJoCo forward dynamics 的输出，不直接存在于 flattened state 中（flattened state 只有 qpos/qvel）\n- `SiteObjectState.check_contain()` 需要 `site_xpos` 和 `site_xmat`，同样需要 `mj_forward()`\n\n**但好消息是**：只需要 `mj_forward()`（运动学前向计算），**不需要 `mj_step()`（物理仿真步进）**。这意味着：\n- 不需要 rendering → 不需要 GPU\n- 不需要 offscreen renderer\n- 计算量极低，纯 CPU 就够\n\n### 3. 推荐方案：Headless MuJoCo State Replay + Predicate Evaluation\n\n```\n输入: HDF5 demo files + BDDL task specs + model_xml (存在 HDF5 attrs 中)\n输出: 每个 timestep 的 predicate binary labels (shape: [T, num_predicates])\n```\n\n**核心流程**：\n\n1. 从 HDF5 读取 `model_xml`（在 `ep.attrs[\"model_file\"]` 中）和 `states` 数组\n2. 用 `env_wrapper.ControlEnv` 创建环境（`has_renderer=False, has_offscreen_renderer=False, use_camera_obs=False`）\n3. 用 `env.reset_from_xml_string(model_xml)` 加载场景\n4. 对每个 timestep：\n   - `env.sim.set_state_from_flattened(states[t])`\n   - `env.sim.forward()` — 触发 MuJoCo 运动学计算，填充 `body_xpos`、`contact` 等\n   - 遍历 goal_state 中每个 predicate，调用 `env._eval_predicate(state)` 获取 True/False\n5. 收集结果为 `[T, num_predicates]` 的 binary 矩阵\n\n**关键：不仅可以评估 goal predicates，还可以评估 init predicates 和自定义 predicates。** 对于 sub-task probing，可以把每个 goal predicate 独立拆开，各自作为一个 binary label channel。\n\n### 4. 备选方案（如果想完全避免 simulator）\n\n**只对 Open/Close/TurnOn/TurnOff 可行**：\n\n这些 predicate 只看 joint qpos 阈值。可以从 flattened state 中提取 qpos 段，再结合 object 的 joint 定义做阈值判断。但需要知道每个 joint 在 qpos 数组中的 offset（需要 model XML 来确定）。\n\n**对 On/In 不可行**：因为需要碰撞检测，纯数学近似不够准确。\n\n### 5. 依赖与资源\n\n**依赖**：\n```\nrobosuite >= 1.4.1  (MuJoCo binding + env base classes)\nmujoco >= 2.3.0     (physics engine)\nbddl                (BDDL parser)\nlibero              (pip install libero 或 git clone)\nh5py, numpy\n```\n\n**资源**：\n- **不需要 GPU** — 纯 CPU MuJoCo forward dynamics\n- 每个 timestep 的 `mj_forward()` 约 0.1-0.5ms，一个 demo 300-500 steps → 约 0.05-0.25 秒/demo\n- 主要瓶颈在环境初始化（加载 XML、创建 MuJoCo model），每个 task 约 2-5 秒\n- 所有 LIBERO 数据（130 tasks × ~50 demos × ~300 steps）预计 10-20 分钟完成\n\n**预估实现工时**：\n- 编写 predicate extraction 脚本：~30 min\n- 调试环境依赖（robosuite + libero 安装）：~30 min\n- 批量运行所有 tasks：~20 min\n- **总计约 60-90 分钟 AI Worker 时间**\n\n### 6. 关键注意事项\n\n- HDF5 文件中 `ep.attrs[\"model_file\"]` 包含完整的 MuJoCo XML，已经包含了所有 object 的 geom 定义，可以直接加载\n- `ControlEnv` 初始化时 `has_offscreen_renderer=False` 可以跳过 OpenGL 初始化，纯 CPU 运行\n- 每个 task 的 goal predicates 列表从 BDDL 文件解析，`parsed_problem[\"goal_state\"]` 已经是 `[[\"on\", \"obj1\", \"obj2\"], [\"close\", \"obj3\"]]` 格式\n- 如果只需要 goal completion（而非 sub-task），`env._check_success()` 已经做了全部 conjunction，直接返回 True/False"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bddl-predicates.md"
+}

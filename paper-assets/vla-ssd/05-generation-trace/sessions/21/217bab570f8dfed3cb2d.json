@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "217bab570f8dfed3cb2d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "sync pull figures",
+  "task_key": "worker_sync_pull_figures_20260519T185853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_pull_figures_20260519T185853_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "4cc195b04514261962bd4a1100dbebb3fee7db28deb51eb6473303dcf23eeb4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。4 个文件大小均与远程一致：\n\n| 文件 | 大小 |\n|------|------|\n| PDF | 29,211 bytes |\n| PNG | 323,142 bytes (~323KB) |\n\n两个目标路径 (`artifacts/` 和 `docs/paper/figures/`) 均已覆盖为修正版。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-pull-figures.md"
+}

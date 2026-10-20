@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd2843ac35ff5a15b24b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fig three condition probe lineplot",
+  "task_key": "worker_code_fig_three_condition_probe_lineplot_20260517T064656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_three_condition_probe_lineplot_20260517T064656_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "f61f06f6a847859dfe3eb8493d26185205f89683b04d7dd8110d0d587147bfbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器端脚本和图表也已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-three-condition-probe-lineplot.md"
+}

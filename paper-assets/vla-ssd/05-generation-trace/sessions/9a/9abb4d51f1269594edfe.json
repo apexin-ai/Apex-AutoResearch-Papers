@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "9abb4d51f1269594edfe",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis linear probe collect",
+  "task_key": "worker_analysis_linear_probe_collect_20260518T030239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_linear_probe_collect_20260518T030239.log",
+    "occurrence": 1,
+    "bytes": 1123196,
+    "sha256": "3345ea480b3fc5c865d5d79734c659e3bcf09fced2375c32a7033d622a7b8401"
+  },
+  "statistics": {
+    "messages": 991,
+    "user_turns": 1,
+    "tool_calls": 392,
+    "roles": {
+      "log": 1,
+      "system": 81,
+      "record": 2,
+      "assistant": 120,
+      "tool_call": 392,
+      "tool_result": 392,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 966,
+      "chunks": [
+        {
+          "path": "9abb4d51f1269594edfe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9abb4d51f1269594edfe-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9abb4d51f1269594edfe-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9abb4d51f1269594edfe-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9abb4d51f1269594edfe-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "9abb4d51f1269594edfe-part-0006.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "9abb4d51f1269594edfe-part-0006.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-linear-probe-collect.md"
+}

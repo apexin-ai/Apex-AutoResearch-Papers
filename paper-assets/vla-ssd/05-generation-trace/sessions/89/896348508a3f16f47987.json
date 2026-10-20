@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "896348508a3f16f47987",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis kendall w",
+  "task_key": "worker_analysis_kendall_w_20260519T154932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kendall_w_20260519T154932_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "8f37149e487ec4d38ccd31d6268c74e1d3ef9f12fadb6d8bf3d05b7404998981"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。\n\n**Cross-Layer Kendall's W = 0.7186** (χ²=68.99, df=32, p=0.000168)\n\n三个训练条件对层级 action R² 排名高度一致（W>0.7, p<0.001）。早期-中期层（L2-L9）普遍排名高，晚期层（L28-L31）排名低。\n\n**Cross-Task at L0: W = 1.0**（平凡结果——L0 所有条件共享相同 SigLIP 视觉特征）。\n\n**数据限制**: 峰值层（trained L8, llama2base L4, untrained L0）的 per-task R² 在远程服务器上，本地日志因 SSH 8KB 截断无法恢复。需要在服务器上执行以下命令获取完整 cross-task 数据：\n\n```python\npython -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json')); lb=json.load(open('/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json')); print(json.dumps({'trained_L8': d['trained']['image_mean']['layer_8']['per_task_R2'], 'untrained_L0': d['untrained']['image_mean']['layer_0']['per_task_R2'], 'llama2base_L4': lb['llama2base_image_mean']['layer_4']['per_task_R2']}))\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kendall-w.md"
+}

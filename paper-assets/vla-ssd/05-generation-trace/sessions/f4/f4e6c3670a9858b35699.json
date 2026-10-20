@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4e6c3670a9858b35699",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan008 extraction check",
+  "task_key": "worker_ssh_plan008-extraction-check_20260516T005227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan008-extraction-check_20260516T005227_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "e652e4f21565a732276ed199e35f1391974303ff28d672183b282d330363792d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RSA 分析已后台启动（PID 682976）。90 秒后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan008-extraction-check.md"
+}

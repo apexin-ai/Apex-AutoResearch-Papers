@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21298365632fd7dcbdac",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research openvla libero goal compat",
+  "task_key": "worker_research_openvla-libero-goal-compat_20260515T160816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_openvla-libero-goal-compat_20260515T160816_result.json",
+    "occurrence": 1,
+    "bytes": 1613,
+    "sha256": "8983c9ecc8e11172f65627ee453255a2a168fd1dfc25e2c244114f1aa550e6ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/openvla_libero_goal_compat.md`。以下是核心结论摘要：\n\n---\n\n### 五个问题的明确结论\n\n**Q1: OpenVLA-7B 训练数据**\n- 训练于 OXE 的 25 个**真实世界**数据集（~970K trajectories）\n- **不含任何 LIBERO 数据**（代码级、论文级、数据性质三重确认）\n\n**Q2: LIBERO-Goal vs LIBERO-10 场景重叠**\n- **无重叠。** LIBERO-Goal 10 个 task 共享一个 kitchen tabletop scene；LIBERO-10 跨 7 个不同 scene（KITCHEN/LIVING_ROOM/STUDY）\n- Action space (7-DoF)、image resolution (128×128)、HDF5 格式完全一致，`extract_features.py` 无需修改\n\n**Q3: Zero-shot 特征提取可行性**\n- **可行。** 我们做的是 probing hidden states，不需要 action 输出正确\n- 不需要 fine-tune，且**不应该** fine-tune（会引入 memorization confound）\n\n**Q4: Grant et al. 2026**\n- 用 **fine-tuned** models 做 behavioral evaluation（394K rollouts）\n- LIBERO-Goal 效应量极大：OFT 100%→10%，GR00T 97%→0%，X-VLA 94%→10%\n- π0.5 是例外（83.3%→76.7%，不显著）\n- 他们的 linear probe paradox（99.3% prompt classification but no behavioral effect）是我们的切入点\n- **我们的差异**：pretrained vs fine-tuned, representational vs behavioral, trained vs untrained comparison\n\n**Q5: Reviewer 数据污染风险**\n- **无风险。** OpenVLA-7B 预训练不含 LIBERO → probe 结果反映 true representational structure，非记忆\n- 这使我们的 story 比 Grant et al. 更 clean：测试的是 VLA 训练的**泛化** instruction encoding"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-openvla-libero-goal-compat.md"
+}

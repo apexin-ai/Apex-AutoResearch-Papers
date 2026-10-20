@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4ce995d9d1ee84f759",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_4_1778890560.md",
+  "task_key": "loop_4_1778890560",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778890560.md",
+    "occurrence": 1,
+    "bytes": 4841,
+    "sha256": "b3acd10c9b27683dd86dd5904c461a65ef3cd08573707b969cb44e535d665cc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T00:03:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1**（westd-19183）。禁止使用其他 GPU\n- C001 约束：goal classification 实验必须 trained + untrained 对照齐全后才写 conclusion，单臂禁下结论（两次 CRITICAL 教训）\n- 服务器 westd-19183 **无外网**：所有 HF 操作必须 `local_files_only=True`\n- 分析 Worker 不得覆盖 registry 的 spec 字段\n- Untrained model = `from_config()` 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）\n- 根分区 ~30GB，大文件必须在 `/root/autodl-tmp/vla-ssd/`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183，工作目录 `/root/vla-ssd`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **模型**: openvla-7b（路径需在服务器确认，大概率 `/root/autodl-tmp/` 下）\n- **数据**: `/root/autodl-tmp/vla-ssd/data/libero/libero_goal`（500 demos）\n- **活跃 Workers**（4 个 running）:\n  - `worker_ssh_plan009-cka-verification_20260515T234351` — CKA 验证脚本编写/执行（CPU-only）\n  - `worker_ssh_untrained-last-preaction-probe_20260515T234931` — **关键**: untrained last_preaction R²，paper_framing.md 标 TBD 的最后一个缺失数据点\n  - `worker_ssh_check-gpu-and-shuffled-orphan_20260516T000110` — 检查 GPU 状态 + shuffled orphan 进程\n  - `worker_ssh_plan008-shuffled-rsa_20260516T000130` — plan_008 shuffled instruction RSA 计算\n- **活跃实验**: plan_008_random_inst_control（RUNNING，cuda:0，random_s0 模式）。**⚠️ 无 cron 注册**——reconcile_crons 返回 0，需要手动 poll 或注册 cron\n- **PREPARING**: plan_009_cka_verification（CPU-only，Worker 已在准备中）\n\n### 3. 📊 当前状态\n上一个 session 刚完成 plan_011 functional probe 分析（D031），将 Claim 2 从 \"LLM degrades\" 升级为 \"LLM redistributes\"。随后启动了多个并行任务：\n- plan_008 random instruction control 已提交（random_s0 在 cuda:0 跑），shuffled 条件由另一个 Worker 处理\n- plan_009 CKA verification Worker 在写脚本准备执行\n- untrained last_preaction probe Worker 在跑——这是 paper_framing.md 里最后一个 TBD 数据点（决定 redistribution 是否 training-invariant）\n- 总计：成功 26 / 负向 7 / 失败 0 / killed 6 / 共 39 实验\n\n**等待中**：\n- 4 个 Worker 回调（上述）\n- plan_008 无 cron——需注册或手动监控\n- Director 未有新指令\n\n### 4. 📋 待办（条件触发式）\n- **untrained last_preaction Worker 回调** → 拿到 R² 数字 → 更新 paper_framing.md TBD 行 → 判断 redistribution 是否 training-invariant（若 untrained last_preaction R² ≈ trained 0.731 → redistribution 是 architecture-intrinsic；若显著低 → training 贡献了 concentration ability）\n- **plan_008 random_s0 完成** → 计算 RSA → 若 RSA ≈ 0.488（正常 instruction）→ Claim 3 instruction invariance 进一步强化；若显著不同 → Claim 3 需要 nuance\n- **plan_008 shuffled Worker 回调** → 同上，shuffled 条件的 RSA\n- **plan_009 CKA Worker 回调** → CKA 数值是否复现 RSA 的 SigLIP dominance 模式 → metric robustness 验证\n- **以上全部完成** → re-dream 验证新 framing → PASS 后启动 Paper Agent（目标 5/17-18）\n- **CoRL abstract DDL = 5/26，paper DDL = 5/29** → 时间紧迫，所有实验必须 5/17 前收尾\n\n### 5. 🎯 战略上下文\n**核心发现链**：SigLIP+projector 提供 action-relevant 表征（RSA=0.615, R²=0.706）→ LLM 降解分布式 image token 表征但通过 attention 将信号 concentrate 到 readout token（R²=0.731）→ training 和 instruction 均无显著影响。\n\n**决策链关键节点**：\n- D027: Instruction ablation FAIL → Option A 锁定（vision encoder dominance，不是 instruction pathway）\n- D028: SigLIP-only RSA = 0.615 smoking gun PASS\n- D031: Claim 2 从 \"degrades\" 升级为 \"redistributes\"（functional probe 揭示 readout concentration）\n- D033: DINO R² ≈ Projector R²（0.712 vs 0.706, p=0.22）— action info presence vs geometric alignment 是不同维度\n\n**易错点**：\n- plan_008 **没有 cron**，下一个 session 必须立即注册或手动 poll，否则实验完成无人知道\n- DINO vs Projector：R² 几乎相同但 RSA 差距大——论文必须区分 \"information presence\"（probe decodability）和 \"geometric alignment\"（RSA 结构匹配），不能混淆\n- image_mean vs last_preaction 聚合口径导致结论方向相反（image_mean: Proj > LLM; last_preaction: LLM > Proj）——主文用 image_mean，last_preaction 放 supplementary，但必须讨论\n- 方向 pivot 历史很长（见 memory.md），不要重走老路（temporal distance / goal classification 都已验证无效）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778890560.md"
+}

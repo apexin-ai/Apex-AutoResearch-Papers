@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98de8b6d76f71e49370d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check nlp download status",
+  "task_key": "worker_check_nlp_download_status_20260522T082510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_nlp_download_status_20260522T082510_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "5ac72368db951778704bf467e4fc55618e5986c6635b6ca77cab8eb6ed456ee3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **shard2** (model-00002-of-00002.safetensors) | **已完成** — 3.3G/3.26G (100%) |\n| **shard1** (model-00001-of-00002.safetensors) | **下载中** — 3.94G/9.29G (**42%**) |\n| **下载速度** | ~407-450 KB/s (ModelScope CDN，偏慢) |\n| **已运行时间** | 2h53m |\n| **预计剩余** | ~3h50m（日志显示 ETA 约 3:50-4:00） |\n| **预计完成时间** | 约 **20:15** (北京时间) |\n\n**进程状态**：\n- PID 612753 (download_llama.py) — 存活，RSS 557MB\n- PID 613202 (wait_and_run.sh) — 存活，等待下载完成后启动 NLP control 实验\n\n**GPU**：两卡均空闲 (0% util, 0 MiB)，等待下载完成后启动训练。\n\nshard1 正在临时目录 `._____temp/` 中下载（当前 4.0G），完成后会移到上级目录。速度约 400-450 KB/s，还需约 3.5-4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-nlp-download-status.md"
+}

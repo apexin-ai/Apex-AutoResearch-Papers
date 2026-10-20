@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e407da6f870da91eb49",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research rebuttal material",
+  "task_key": "worker_research_rebuttal_material_20260520T152447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rebuttal_material_20260520T152447_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "0544900cd8b206d0ac2729a404285ce56b6d1955e03bd2816271609441990b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入并注册：`artifacts/rebuttal_material_2026_05_20.md`\n\n汇总：\n\n**素材 1 — Interventional Evidence**: 收集到 **11 项独立因果实验**，涵盖 dose-response ablation (d=0.48→0.64)、counterfactual perturbation (d=0.63→0.97, Spearman ρ=1.0)、matched specificity controls、30-seed random-subset bootstrap (z=−3.11)、GT error dissociation、cross-architecture replication、permutation test 等。\n\n**素材 2 — 2×2 Effect Sizes**: OpenVLA mean Δ R² = +0.273 (Cohen's d = 2.41), Phi3V mean Δ R² = +0.113 (d = 0.69)，两架构 31-32/33 层均 Δ > 0，cross-architecture profile 相关 r = 0.70，per-layer seed-level d 均值 1.9–3.1。\n\n**素材 3 — 先例论文**: 找到 18 篇顶会 pure analysis papers（CoRL 2023, NeurIPS 2023 Spotlight, ICLR 2023 Oral, ICML 2024 Oral 等），多数无闭环实验。CoRL 本身已接收 analysis-only 论文。另有 3 篇 VLA interpretability 预印本表明领域趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rebuttal-material.md"
+}

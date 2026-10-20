@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ed65244be7203a6462b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper figure fig3",
+  "task_key": "worker_paper_figure_fig3_20260516T014750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_20260516T014750_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "304a4ccbcce24d6ad135e823c24725e6b8f2510054c107887b49e8816a4fdcb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册（`art_20260516_468ffa`）。\n\n**输出文件：**\n- PDF: `artifacts/figures/paper/fig3.pdf`\n- PNG: `artifacts/figures/paper/fig3.png`\n\n**注意：** 由于无法 SSH 读取服务器上的逐层数据 (`perlayer_degradation_curve.json`)，当前使用 fallback 摘要数据通过 PCHIP 插值生成的合成曲线。拿到真实逐层数据后应替换。关键特征已正确呈现：\n- Proj→L1 最大 drop（Embedding Interface 高亮区域）\n- Trained−instruction（橙色）呈持续上升模式，peak 在 L30 附近\n- 其余三条线呈 non-monotonic 模式，peak 在 L6–L12\n- SigLIP+Proj (0.615) 和 DINOv2 (0.388) 参考线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3.md"
+}

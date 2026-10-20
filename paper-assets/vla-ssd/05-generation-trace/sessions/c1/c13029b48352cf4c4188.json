@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c13029b48352cf4c4188",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh initial frame gc",
+  "task_key": "worker_ssh_initial-frame-gc_20260515T191053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_initial-frame-gc_20260515T191053.log",
+    "occurrence": 1,
+    "bytes": 1054920,
+    "sha256": "33d0c3e8ce92829a1ecbcb61a80f1cae1a3511c83e9c2001684786661a2b4387"
+  },
+  "statistics": {
+    "messages": 812,
+    "user_turns": 0,
+    "tool_calls": 358,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 358,
+      "tool_result": 358,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 812,
+      "chunks": [
+        {
+          "path": "c13029b48352cf4c4188-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c13029b48352cf4c4188-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c13029b48352cf4c4188-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c13029b48352cf4c4188-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c13029b48352cf4c4188-part-0005.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-initial-frame-gc.md"
+}

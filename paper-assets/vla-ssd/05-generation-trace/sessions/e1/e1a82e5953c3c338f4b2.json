@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1a82e5953c3c338f4b2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper compile current v1",
+  "task_key": "worker_paper_compile_current_v1_20260524T061502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_current_v1_20260524T061502_result.json",
+    "occurrence": 1,
+    "bytes": 256,
+    "sha256": "8981ec8955c96cf35eccdf0d0bd58be9acefbd70e2965bfb188e91fba003cebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。\n\n- **Errors: 0**，**Warnings: 22**（均为无害的 float specifier `h→ht` 和 hyperref token 警告）\n- **未解析的 citation/reference: 0**\n- **PDF: 37 页，762 KB**\n- Artifact 已注册：`art_20260524_d38e54`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-current-v1.md"
+}

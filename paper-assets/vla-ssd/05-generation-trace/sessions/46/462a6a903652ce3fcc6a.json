@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "462a6a903652ce3fcc6a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag check tracvla results and recover",
+  "task_key": "worker_diag_check_tracvla_results_and_recover_20260521T191136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_check_tracvla_results_and_recover_20260521T191136_result.json",
+    "occurrence": 1,
+    "bytes": 3570,
+    "sha256": "66dbc6d103be93294650c44d96c081a9a701f3cb0a948bd3cdd1de2ad723e09a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 实验状态\n\n| 实验 | 状态 | 当前阶段 | 进度 |\n|------|------|---------|------|\n| tracvla_long_v1 | **运行中** | trained / Phase 5 counterfactual / paraphrased | ~200/5000 |\n| tracvla_goal_v1 | **运行中** | trained / Phase 5 counterfactual / paraphrased | ~400/5000 |\n\n- GPU: 2× ~9GB/98GB，43% 利用率\n- **`untrained/` 目录尚未创建**——两个实验都还在跑 trained 条件\n- paraphrased 是第 4 个 counterfactual 条件（前 3 个: wrong, empty, shuffled 已完成）\n- 预计 paraphrased 还需 ~28min，之后整个 untrained pipeline（Phase 1-5）约需 3h+\n\n---\n\n### tracvla_long — trained 已完成结果\n\n**R² Probing (action_r2_probing.json):**\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.7950 | 0.6160 |\n| L4 | 0.8027 | 0.7733 |\n| L8 | 0.8103 | 0.7924 |\n| L11 | 0.8163 | **0.8168** (peak) |\n| L16 | **0.8264** (peak) | 0.8079 |\n| L20 | 0.8242 | 0.7980 |\n| L24 | 0.8180 | 0.7496 |\n| L28 | 0.8115 | 0.6144 |\n| L30 | 0.7987 | **0.4336** (trough) |\n| L31 | 0.7900 | 0.6186 (bounce) |\n\n- image_mean: 平坦（0.795→0.790），几乎无衰减\n- last_preaction: **严重 exit collapse**，peak 0.817@L11 → trough 0.434@L30，Δ=0.383\n\n**L1 Attention:**\n- Instruction-dominant: **30/32**，mixed: 2，image-dominant: 0\n- Top 5: head_8=0.949, head_26=0.886, head_19=0.873, head_20=0.854, head_1=0.853\n- Mixed heads: head_13=0.430, head_22=0.464\n\n**Cross-instruction Classification:**\n- image_mean: **1.0** all layers（L0-L31）\n- last_preaction: L0=0.983, L1+=**1.0**\n\n**Counterfactual (interim d-values from log):**\n- wrong: d=1.418, empty: d=1.473, shuffled: d=1.391, paraphrased: running\n\n---\n\n### tracvla_goal — trained 已完成结果\n\n**R² Probing (action_r2_probing.json):**\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|----------------|\n| L0 | 0.8027 | 0.6122 |\n| L4 | 0.8099 | 0.7949 |\n| L8 | 0.8294 | 0.7827 |\n| L12 | 0.8162 | 0.7843 |\n| L18 | 0.8358 | **0.8024** (peak) |\n| L23 | **0.8416** (peak) | 0.7499 |\n| L24 | 0.8385 | 0.7411 |\n| L28 | 0.8173 | 0.6046 |\n| L30 | 0.8118 | **0.3072** (trough) |\n| L31 | 0.8048 | 0.5741 (bounce) |\n\n- image_mean: 平坦（0.803→0.805），range 仅 0.039\n- last_preaction: **更严重的 exit collapse**，peak 0.802@L18 → trough **0.307@L30**，Δ=**0.495**\n\n**L1 Attention:**\n- Instruction-dominant: **27/32**，mixed: 5，image-dominant: 0\n- Top 5: head_8=0.943, head_26=0.900, head_19=0.897, head_20=0.852, head_1=0.842\n- Mixed heads: head_2=0.450, head_6=0.488, head_13=0.417, head_22=0.417, head_24=0.480\n\n**Cross-instruction Classification:**\n- image_mean: L0=0.996, L1+=~1.0\n- last_preaction: L0=**0.915**, L1+=1.0\n\n**Counterfactual (interim d-values from log):**\n- wrong: d=1.405, empty: d=1.524, shuffled: d=1.336, paraphrased: running\n\n---\n\n### 关键数字记录（仅 trained，遵守 C001 不下结论）\n\n1. **R² exit collapse**：两个实验一致，last_preaction 在 L30 出现深谷（long: 0.434, goal: **0.307**），goal 比 long 更极端\n2. **L1 attention 分布**：两实验 top heads 高度一致（head_8/26/19/20/1），goal 的 mixed heads 更多（5 vs 2）\n3. **Cross-instruction**：几乎完美可分（≥0.996），说明 instruction identity 在所有层都被保留\n4. **Counterfactual interim ranking**：empty > wrong > shuffled（两实验一致）\n\n**⚠️ 等 untrained 数据齐全后才能做 trained-vs-untrained 对比和归因分析。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-check-tracvla-results-and-recover.md"
+}

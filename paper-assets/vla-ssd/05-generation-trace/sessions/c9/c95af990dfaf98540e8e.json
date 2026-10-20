@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c95af990dfaf98540e8e",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "audit maintext numbers",
+  "task_key": "worker_audit_maintext_numbers_20260529T044822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_maintext_numbers_20260529T044822.log",
+    "occurrence": 1,
+    "bytes": 793577,
+    "sha256": "0b07d26e2baa18997df26890c7fcca5a56b30739cbd73995b06ffce9aedd4a27"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "c95af990dfaf98540e8e-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "c95af990dfaf98540e8e-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-maintext-numbers.md"
+}

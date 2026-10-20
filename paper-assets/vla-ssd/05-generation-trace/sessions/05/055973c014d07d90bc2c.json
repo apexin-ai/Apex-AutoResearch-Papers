@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "055973c014d07d90bc2c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis attention normalization entropy",
+  "task_key": "worker_analysis_attention_normalization_entropy_20260519T024015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_attention_normalization_entropy_20260519T024015_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "28964750f320041e9f4ff48f63be0ae5af055b39b3c6aeacbad29e11e1f7204a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Results:\n\n## Token-Count Normalization\n\n| Condition | Group | Text attn (raw) | Image attn (raw) | n_text | n_image | Per-token text | Per-token image | Ratio |\n|---|---|---|---|---|---|---|---|---|\n| trained | instr-dom 24h | 0.6239 | 0.1883 | 22.2 | 256 | 0.028104 | 0.000736 | **38.2x** |\n| trained | control 8h | 0.4490 | 0.2711 | 22.2 | 256 | 0.020225 | 0.001059 | **19.1x** |\n| untrained | instr-dom 24h | 0.1148 | 0.8805 | 22.2 | 256 | 0.005171 | 0.003439 | 1.5x |\n| untrained | control 8h | 0.1234 | 0.8716 | 22.2 | 256 | 0.005559 | 0.003405 | 1.6x |\n\n## Attention Entropy by Head Group\n\n| Condition | Group | Mean entropy | Std | Normalized |\n|---|---|---|---|---|\n| trained_2cat | instr-dom 24h | 0.4647 | 0.1080 | 0.6705 |\n| trained_2cat | control 8h | 0.5694 | 0.0547 | 0.8215 |\n| untrained_2cat | instr-dom 24h | 0.3303 | 0.1230 | 0.4765 |\n| untrained_2cat | control 8h | 0.3297 | 0.1796 | 0.4757 |\n| trained_3cat | instr-dom 24h | 0.8817 | 0.1363 | 0.8026 |\n| trained_3cat | control 8h | 1.0506 | 0.0242 | 0.9563 |\n\n## Key Findings\n\n- **Token asymmetry**: 256 image / 22.2 text = 11.5x\n- Even after normalizing for this 11.5x asymmetry, trained instruction-dominant heads show **38.2x** per-token text/image ratio (control heads: 19.1x)\n- Untrained baseline: both groups near parity (~1.5x), so the effect is training-induced\n- Training amplifies the per-token ratio from 1.5x to 38.2x (**25.5x increase**)\n- Instruction-dominant heads have **lower entropy** (0.465) than control heads (0.569), confirming sharper text specialization\n- The raw \"57.7% attention to text\" claim is not an artifact of token count asymmetry\n\nOutput saved to `/root/autodl-tmp/vla-ssd/results/attention_normalization_entropy.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-attention-normalization-entropy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c20c07e9c8ed40ed82b4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check behavioral ablation feasibility",
+  "task_key": "worker_check_behavioral_ablation_feasibility_20260524T001923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_behavioral_ablation_feasibility_20260524T001923_result.json",
+    "occurrence": 1,
+    "bytes": 2846,
+    "sha256": "bb9e685066d2e2ba8f63ab01044847b6361d8a66cfafd69cf7c5505c4cb96ab9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## 环境检查结果\n\n### 1. LIBERO simulator: ✅\n- **conda env `libero`** (`/root/miniconda3/envs/libero`, Python 3.10) 已安装:\n  - `robosuite` ✅\n  - `mujoco` ✅\n  - `torch 2.12.0+cu130` ✅\n  - `transformers` ✅\n  - `accelerate` ✅\n  - `timm` ✅\n  - `PIL` ✅\n- **flash_attn**: ❌ 未安装（OpenVLA 加载可能需要，可 fallback 到 eager attention）\n- LIBERO 源码: `/root/autodl-tmp/LIBERO/libero/`，含完整 envs/benchmark/utils\n- **注意**: nora venv 不含模拟器依赖，必须用 libero conda env\n\n### 2. OpenVLA checkpoint: ✅\n- 路径: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/`\n- 4 个 safetensors shard（~14.5GB 合计），config.json 完整\n- 模型架构: `OpenVLAForActionPrediction`，Llama-2-7B backbone\n- 包含 libero_goal norm_stats（428 trajectories, 52042 transitions）\n- 自带 `configuration_prismatic.py` + `modeling_prismatic.py`\n\n### 3. Rendering: ✅ (EGL)\n- **EGL**: ✅ 有 NVIDIA EGL (`libEGL_nvidia.so`)\n- **OSMesa**: ❌ 不存在（不需要，EGL 足够）\n- **Xvfb**: ❌ 不存在（不需要，用 `MUJOCO_GL=egl` 即可 headless 渲染）\n\n### 4. GPU: ✅✅\n- **2x NVIDIA RTX PRO 6000 Blackwell, 98GB VRAM each**\n- cuda:0 空闲, cuda:1 空闲\n- CUDA 13.0, Driver 580.82.09\n\n### 5. LIBERO-Goal 任务定义: ✅\n- `/root/autodl-tmp/LIBERO/libero/libero/bddl_files/libero_goal/` 含 10 个 `.bddl` 文件\n- 完整覆盖全部 10 个 LIBERO-Goal tasks\n\n### 6. 现有 ablation 脚本: ❌\n- 已有 attention 分析脚本（probing/counterfactual/bootstrap），但**没有 rollout/behavioral evaluation 脚本**\n- 需要从零编写：模型加载 → attention head ablation → LIBERO env rollout → success rate 统计\n\n### 7. 磁盘: ⚠️\n- 数据盘 250GB，已用 207GB，剩余 44GB — 够用但不富裕\n\n---\n\n## 可行性评估\n\n| 项目 | 估算 |\n|------|------|\n| GPU 显存 | OpenVLA-7B bf16 ≈ 14-15GB VRAM，单卡 98GB 绰绰有余 |\n| 单 episode 时间 | ~30-60s（300 step horizon，每步 forward pass ~0.1-0.2s） |\n| 10 tasks × 10 episodes | ~50-100 min per condition |\n| ablated + intact 对比 | ~2-3 小时总计 |\n\n## 总体判断: **可行**\n\n**需要做的搭建工作**（预计 2-3 小时开发 + 调试）:\n1. **写 rollout 脚本**: 加载 OpenVLA checkpoint → hook L1 attention → ablate top-24 instruction-dominant heads → LIBERO env rollout → 记录 success rate\n2. **安装 flash-attn**（可选，若 eager attention 加载失败则需要）\n3. **确认 libero conda env 下 LIBERO import 正常**（源码已有但需确认 `pip install -e .` 是否已执行）\n4. 设置 `MUJOCO_GL=egl` 环境变量\n\n硬件和核心依赖全部就绪，主要工作量在编写 behavioral evaluation 脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-behavioral-ablation-feasibility.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f74efd36c450b0f387d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper appendix reproducibility audit",
+  "task_key": "worker_paper_appendix_reproducibility_audit_20260519T150435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_reproducibility_audit_20260519T150435_result.json",
+    "occurrence": 1,
+    "bytes": 3383,
+    "sha256": "64a095693293f7b1e77521a23b760ffda0f0825fe5aaeac4203cbb85d8d1b216"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the audit report:\n\n---\n\n## Appendix Reproducibility Audit\n\n### Per-Subsection Check (✓ present / ✗ missing / -- N/A)\n\n| Subsection | Model | Dataset | Hyperparams | Metric Def | Hardware |\n|---|---|---|---|---|---|\n| CKA Analysis Method | ✓* | ✓* | -- | ✓ | ✓* |\n| Metric Sensitivity: RSA vs CKA | ✓* | ✓* | -- | ✓ | ✓* |\n| Branch-Split Detailed Analysis | ✓* | ✓* | -- | ✓ | ✓* |\n| RSA Across Representation Sources | ✓* | ✓* | -- | ✓ | ✓* |\n| Per-Layer RSA Profiles | ✓* | ✓* | -- | ✓ | ✓* |\n| Per-Layer Action Decoding (3 cond) | ✓* | ✓ | ✓ (3 seeds, 50 demos) | ✓ | ✓* |\n| Random-Subset Ablation | ✓* | ✓* | ✓ (10 subsets, 24/32) | ✓ | ✓* |\n| Action Trajectory Analysis | ✓* | ✓ (5×10 demos, 3 tasks) | ✓ (10K bootstrap) | ✓ | ✓* |\n| Pretrained LLM OOD Diagnostics | ✓* | ✓* | -- | ✓ | ✓* |\n| Probe Architecture Sensitivity | ✓* | ✓* | ✓ (linear 4096→7) | ✓ | ✓* |\n| Functional Probe Comparison | ✓* | ✓* | ✓* | ✓ | ✓* |\n| Training Effect & Instr Invariance | ✓* | ✓* | -- | ✓ | ✓* |\n| Additional RSA Values | ✓* | ✓* | -- | ✓ | ✓* |\n| Cross-Benchmark: LIBERO-Spatial | ✓* | ✓ **fixed** | ✓* | ✓ | ✓* |\n| Distance Metric Invariance | ✓* | ✓* | -- | ✓ | ✓* |\n| Per-DOF Decomposition | ✓* | ✓* | -- | ✓ | ✓* |\n| Permutation Test | ✓* | ✓* | ✓ (1K shuffles) | ✓ | ✓* |\n| Probe Seed Sensitivity | ✓* | ✓* | ✓ (5 seeds) | ✓ | ✓* |\n| Demo Subsample Sensitivity | ✓* | ✓ (25 vs 50) | -- | ✓ | ✓* |\n| Detailed Training Effects | ✓* | ✓* | ✓ (10K bootstrap) | ✓ | ✓* |\n| Training Effect Size Summary | ✓* | ✓* | -- | ✓ | ✓* |\n| Cross-Instruction Dense Profile | ✓* | ✓* | ✓* | ✓ | ✓* |\n| LOOCV Validation | ✓* | ✓* | ✓ (10 folds) | ✓ | ✓* |\n| QA Probe | ✓* | ✓* | ✓ **fixed** | ✓ | ✓* |\n| Probe Profiles | ✓* | ✓* | ✓* | ✓ | ✓* |\n| Four-Condition Probe | ✓* | ✓* | ✓* | ✓ | ✓* |\n| L1 Attention Pattern | ✓* | ✓* | -- | ✓ | ✓* |\n| Multi-Layer Attention | ✓* | ✓* | -- | ✓ | ✓* |\n| Threshold Sensitivity | ✓* | ✓* | -- | ✓ | ✓* |\n| L1 Attention Decomposition | ✓* | ✓* | -- | ✓ | ✓* |\n| Per-Dimension MAE | ✓* | ✓* | -- | ✓ | ✓* |\n| Per-Task R² Distribution | ✓* | ✓ (5 demos/task) | ✓ (MLP) | ✓ | ✓* |\n| Task Complexity & Routing | ✓* | ✓* | -- | ✓ (Mann-Whitney) | ✓* |\n| Specificity Control | ✓* | ✓* | ✓ (5 seeds random) | ✓ | ✓* |\n\n✓* = covered by the new shared setup paragraph referencing §3.1--§3.6\n\n### Changes Made\n\n| Location | Change |\n|---|---|\n| `appendix.tex:9-12` | Added shared setup paragraph: checkpoint source (`openvla/openvla-7b`), dataset (LIBERO-Goal, N=63,228), hardware (2× RTX PRO 6000 Ada, 48 GB), seed (42), cross-refs to §3.1--§3.6, LIBERO-Spatial protocol |\n| `appendix.tex:287` | Added explicit sample count for LIBERO-Spatial: \"10 out-of-distribution tasks × 50 demonstrations each\" |\n| `appendix.tex:517` | QA Probe: specified logistic regression (C=1.0, max_iter=1000), corrected labeling (4-class progress from equal temporal segments, binary subtask), added 80/20 split |\n\n### Compilation\n- 0 errors\n- 27 pages (within ≤ 28 limit)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-reproducibility-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18dfbe229475a6c83e24",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code threecond multiseed r2",
+  "task_key": "worker_code_threecond_multiseed_r2_20260518T064603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_threecond_multiseed_r2_20260518T064603_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "6696e3d84a835a0f6af51d9511c2387ca00d7216f99b54641bf699167e63d08d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常运行中。每层 ~25s × 3 seeds，33 layers × 3 conditions ≈ 82 min。实验已在跑，registry 已更新为 RUNNING。\n\n总结：\n- 脚本 `/root/vla-ssd/scripts/threecond_multiseed_probe.py` 已部署\n- tmux session `threecond_multiseed` 运行中，GPU cuda:0\n- 3 条件 × 33 层 × 3 seeds = 297 个 probe 训练\n- 预计 ~80 min 完成\n- 日志: `/root/autodl-tmp/vla-ssd/results/threecond_multiseed.log`\n- 输出 JSON: `/root/autodl-tmp/vla-ssd/results/threecond_multiseed.json`\n- 输出图: `/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-threecond-multiseed-r2.md"
+}

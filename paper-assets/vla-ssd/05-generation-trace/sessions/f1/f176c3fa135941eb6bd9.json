@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f176c3fa135941eb6bd9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix nora untrained counterfactual",
+  "task_key": "worker_fix_nora_untrained_counterfactual_20260521T071138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_nora_untrained_counterfactual_20260521T071138_result.json",
+    "occurrence": 1,
+    "bytes": 1953,
+    "sha256": "278c820b0de3342522f56aede789f6aa6c46c19eb8e337ce86343ce708631fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK — 1000/5000 at 15:25:22. The \"empty\" condition is significantly slower (~72s per 200 samples vs ~20s for \"wrong\"). This is because the empty instruction still requires a full forward pass with the correct instruction, and then another with the empty one — the empty string as input to the processor creates a different tokenization.\n\nAt this rate \"empty\" alone will take ~25 min. Total remaining (3 conditions) could be ~45 min. The process is stable, I'll report the status and let it run.\n\n---\n\n## Updated Status\n\nThe counterfactual job is running but slower than expected due to the \"empty\" condition's processing overhead.\n\n| Condition | Status | Last-layer cos_dist | Cross-task d |\n|-----------|--------|--------------------:|-------------:|\n| wrong | **Done** | 0.0143 | 7.7111 |\n| empty | Running (1000/5000) | — | — |\n| shuffled | Pending | — | — |\n| paraphrased | Pending | — | — |\n\n**Process**: PID 541450 on cuda:1, running stably via nohup.  \n**Rate**: \"wrong\" was ~20s/200 samples, \"empty\" is ~72s/200 samples (3.5x slower due to empty instruction tokenization).  \n**Revised ETA**: ~16:10 UTC for completion (all 4 conditions).\n\n### Download Status (both complete)\n- `nora-libero-spatial`: 7.1G, 2/2 safetensors\n- `phi3v-base`: 7.8G, 2/2 safetensors\n\n### Verification Command\n```bash\ntail -10 /tmp/nora_untrained_cf.log\n```\n\nWhen finished:\n```bash\npython3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json'))\nfor k in ['wrong','empty','shuffled','paraphrased']:\n    s = d[k]['global_metrics']['last_layer_summary']\n    print(f\\\"{k:12s}  cos_dist={s['mean']:.6f}  cohen_d={s['cohens_d']:.4f}\\\")\nprint('Ranking:', [r['condition'] for r in d['ranking_by_cosine_distance']])\n\"\n```\n\n### cuda:1 Next Step\nAfter ~16:10, cuda:1 is free for the next pipeline (NORA Spatial or Phi-3V)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-nora-untrained-counterfactual.md"
+}

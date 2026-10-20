@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5c9154e28ade2e1396",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose urgent gpu status check",
+  "task_key": "worker_diagnose_urgent_gpu_status_check_20260521T042114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_urgent_gpu_status_check_20260521T042114_result.json",
+    "occurrence": 1,
+    "bytes": 1705,
+    "sha256": "347d67aa7672b6a8f469944d64001b13a9151c8b6d165f7fc50e54364723d072"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **cuda:0 (Object)** | ALIVE | PID 513523 · Phase 2 R² probing · L0-L8 done, ~L12-13 now · ~14min/层, 预计还需 ~4.5h |\n| **cuda:1 (NORA Goal v2)** | ALIVE | PID 526944 · Phase 2 R² probing · L0 done · ~25min/层, 刚开始 |\n| **Phi-3-Vision download** | ⚠️ 挣扎中 | PID 521338 · 584MB/~8GB · 11/21 files · HF 大文件反复 ReadTimeout，正在重试 |\n| **NORA Spatial ckpt** | ❌ 失败 | 447MB/~5GB · ChunkedEncodingError: 仅下载 197MB/4.76GB 后断连 · **进程已死** |\n| **OFT ckpt (Long)** | 进行中 ~95% | PID 522184 (aria2c) · 15GB · model 1-3 完成, model-4 + action_head + lora adapter 还在下 |\n| **LIBERO-Long data** | ✅ 完成 | 10 个 hdf5 文件 |\n\n### Phase 2 中间结果（目前产出的 R² 值）\n\n**Object (OpenVLA, cuda:0)**:\n| Layer | img_mean R² | last_pre R² |\n|-------|------------|------------|\n| L0 | 0.6952 | 0.5710 |\n| L8 | 0.6727 | 0.6753 |\n\n**NORA Goal v2 (cuda:1)**:\n| Layer | img_mean R² | last_pre R² |\n|-------|------------|------------|\n| L0 | 0.6081 | 0.5864 |\n\n### 需要处理的问题\n\n1. **NORA Spatial 下载需要重启** — 进程已死，只下了元数据文件，主模型 safetensors 断连。建议用 `HF_HUB_DISABLE_XET=1` 重新启动，或改用 ModelScope 下载。\n\n2. **Phi-3-Vision 下载极慢** — HF 代理反复超时。如果持续失败，应 kill 后改用 ModelScope（`microsoft/Phi-3-vision-128k-instruct` 在 ModelScope 有镜像）。\n\n3. **两个实验 GPU util 0%** — 正常，Phase 2 的 sklearn MLP probing 是 CPU-bound 操作，GPU 内存占用但不做计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-urgent-gpu-status-check.md"
+}

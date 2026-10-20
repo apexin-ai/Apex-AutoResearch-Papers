@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5796db9b038f99ea846",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check nora spatial cf status",
+  "task_key": "worker_check_nora_spatial_cf_status_20260523T164458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_nora_spatial_cf_status_20260523T164458_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "4f8a28290d053031524296808713f76b1ed1bd620c359328750ea0a17f96b2a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**运行状态：已完成。**\n\n- 进程列表中没有 `nora_spatial_untrained_counterfactual.py` 在运行\n- `counterfactual_combined.json`（36KB，最后修改 May 24 00:22）已生成完毕\n\n**结果完整性：完整。**\n\n- 配置：10 tasks × 10 demos × 50 timesteps，模型 `qwen25-vl-3b-base-untrained`，13 层分析\n- 4 个 counterfactual conditions 全部完成：`wrong` / `empty` / `shuffled` / `paraphrased`\n- 每个 condition 每层 n_samples = 5000（= 10 tasks × 10 demos × 50 timesteps），数据量正确\n- JSON 结构完整，尾部有 `ranking_by_cosine_distance` 汇总\n\n**关键结果预览**（mean cosine distance 排序）：\n\n| Condition | Mean Cosine Distance |\n|-----------|---------------------|\n| empty | 0.0807 |\n| shuffled | 0.0313 |\n| paraphrased | 0.0047 |\n| wrong | 0.0020 |\n\n输出目录还有 3 个辅助文件：`action_r2_probing.json`、`cross_instruction_classification.json`、`l1_attention_profile.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-nora-spatial-cf-status.md"
+}

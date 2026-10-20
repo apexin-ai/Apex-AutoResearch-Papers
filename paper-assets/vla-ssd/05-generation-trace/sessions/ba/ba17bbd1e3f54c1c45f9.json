@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba17bbd1e3f54c1c45f9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research extract perlayer and bootstrap",
+  "task_key": "worker_research_extract_perlayer_and_bootstrap_20260516T032838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_extract_perlayer_and_bootstrap_20260516T032838_result.json",
+    "occurrence": 1,
+    "bytes": 3774,
+    "sha256": "ef10dd3d85186e7e03523175bd2c1a13f0c88d2ad257933632138b58207355b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## PART 1: Per-layer RSA at key layers\n\n### trained_with_inst / image_mean\n| Layer | RSA |\n|-------|-----|\n| L0 | 0.6117 |\n| L1 | 0.6124 |\n| L12 | 0.6282 |\n| L22 | 0.5720 |\n| L32 | 0.4223 |\n\n### trained_with_inst / last_preaction\n| Layer | RSA |\n|-------|-----|\n| L0 | nan |\n| L1 | 0.5682 |\n| L12 | 0.6425 |\n| L22 | 0.6060 |\n| L32 | 0.5843 |\n\n### untrained_with_inst / image_mean\n| Layer | RSA |\n|-------|-----|\n| L0 | 0.6117 |\n| L1 | 0.5712 |\n| L12 | 0.5496 |\n| L22 | 0.5497 |\n| L32 | 0.5446 |\n\n### untrained_with_inst / last_preaction\n| Layer | RSA |\n|-------|-----|\n| L0 | nan |\n| L1 | 0.6262 |\n| L12 | 0.5953 |\n| L22 | 0.5927 |\n| L32 | 0.5866 |\n\n---\n\n## Full curves (all 33 layers)\n\n### trained_with_inst / image_mean\n```\nL0:0.6117  L1:0.6124  L2:0.6121  L3:0.6127  L4:0.6137  L5:0.6146  L6:0.6175  L7:0.6201\nL8:0.6187  L9:0.6199  L10:0.6198 L11:0.6169 L12:0.6282 L13:0.6266 L14:0.6243 L15:0.6172\nL16:0.6128 L17:0.6088 L18:0.6071 L19:0.6072 L20:0.6041 L21:0.5959 L22:0.5720 L23:0.5558\nL24:0.5459 L25:0.5346 L26:0.5159 L27:0.5136 L28:0.5125 L29:0.4971 L30:0.4395 L31:0.4328\nL32:0.4223\n```\n\n### untrained_with_inst / image_mean\n```\nL0:0.6117  L1:0.5712  L2:0.5604  L3:0.5597  L4:0.5576  L5:0.5576  L6:0.5588  L7:0.5570\nL8:0.5553  L9:0.5532  L10:0.5510 L11:0.5509 L12:0.5496 L13:0.5496 L14:0.5494 L15:0.5493\nL16:0.5497 L17:0.5495 L18:0.5500 L19:0.5495 L20:0.5488 L21:0.5487 L22:0.5497 L23:0.5497\nL24:0.5494 L25:0.5482 L26:0.5480 L27:0.5467 L28:0.5457 L29:0.5454 L30:0.5454 L31:0.5448\nL32:0.5446\n```\n\n### trained_with_inst / last_preaction\n```\nL0:nan     L1:0.5682  L2:0.5818  L3:0.5880  L4:0.5892  L5:0.5836  L6:0.5617  L7:0.5430\nL8:0.5469  L9:0.5682  L10:0.5577 L11:0.5993 L12:0.6425 L13:0.6395 L14:0.6374 L15:0.6348\nL16:0.6303 L17:0.6261 L18:0.6227 L19:0.6194 L20:0.6164 L21:0.6086 L22:0.6060 L23:0.6003\nL24:0.5950 L25:0.5855 L26:0.5812 L27:0.5822 L28:0.5814 L29:0.5787 L30:0.5724 L31:0.5703\nL32:0.5843\n```\n\n### untrained_with_inst / last_preaction\n```\nL0:nan     L1:0.6262  L2:0.6207  L3:0.6156  L4:0.6119  L5:0.6084  L6:0.6053  L7:0.6029\nL8:0.6013  L9:0.6008  L10:0.5977 L11:0.5966 L12:0.5953 L13:0.5939 L14:0.5934 L15:0.5936\nL16:0.5941 L17:0.5950 L18:0.5947 L19:0.5945 L20:0.5938 L21:0.5936 L22:0.5927 L23:0.5917\nL24:0.5913 L25:0.5907 L26:0.5895 L27:0.5888 L28:0.5879 L29:0.5885 L30:0.5883 L31:0.5870\nL32:0.5866\n```\n\n---\n\n## PART 2: Bootstrap CI (Method B, per-task paired)\n\n### image_mean (best-vs-best)\n- **Trained peak**: L12 = 0.6282\n- **Untrained peak**: L0 = 0.6117\n- **Δ**: 0.0165\n- **95% CI**: [-0.0002, 0.0346] — **not significant** (CI includes 0)\n- **p**: 0.0264\n- Per-task deltas: [0.0204, 0.0117, 0.0393, 0.0336, 0.0809, -0.0077, 0.0115, 0.0080, -0.0304, -0.0023]\n- N = 10\n\n### image_mean same-layer (L12)\n- Trained L12: 0.6282, Untrained L12: 0.5496\n- **Δ**: 0.0787, **95% CI**: [0.0597, 0.0985], **p**: 0.0000 — **highly significant**\n\n### last_preaction (best-vs-best, NaN excluded)\n- **Trained peak**: L12 = 0.6425\n- **Untrained peak**: L1 = 0.6262\n- **Δ**: 0.0163\n- **95% CI**: [0.0001, 0.0312] — **marginally significant** (CI barely excludes 0)\n- **p**: 0.0249\n- Per-task deltas: [0.0453, -0.0413, 0.0169, 0.0039, 0.0553, 0.0105, 0.0135, 0.0175, 0.0025, 0.0391]\n- N = 10\n\n### last_preaction same-layer (L12)\n- Trained L12: 0.6425, Untrained L12: 0.5953\n- **Δ**: 0.0472, **95% CI**: [0.0240, 0.0712], **p**: 0.0000 — **highly significant**\n\n---\n\n## PART 3: Instruction control (4 conditions)\n\n| Condition | Best Layer | Peak RSA |\n|-----------|-----------|----------|\n| normal | 12 | 0.6282 |\n| no_inst | 13 | 0.6225 |\n| random_s0 | 12 | 0.6283 |\n| shuffled | 12 | 0.6282 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-extract-perlayer-and-bootstrap.md"
+}

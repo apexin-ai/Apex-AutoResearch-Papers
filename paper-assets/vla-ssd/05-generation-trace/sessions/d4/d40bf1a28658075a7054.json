@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d40bf1a28658075a7054",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix bootstrap ci",
+  "task_key": "worker_code_fix-bootstrap-ci_20260515T112616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-bootstrap-ci_20260515T112616_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "25b3bb2c29ce5f6f5aa5639ed08c855c8b7089eb7b0b6c9be9356d85d90f89dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Smoke test 通过。结果验证：\n\n- **`per_task_rho`**: 10 个 task 各自的 Spearman ρ 已正确输出（范围 0.41–0.68）\n- **`per_task_n_pairs`**: 每个 task 500 对，记录完整\n- 全局 `spearman_rho=0.5542` 与 per-task 均值一致\n\n**已完成的修改：**\n\n1. **`train_probes.py`**:\n   - `train_regression_probe` 现在返回 `(metrics, pred, y_np)` 三元组\n   - `run_temporal_distance` 按 task 分组 val pairs，对每个 task 单独计算 Spearman ρ，输出 `per_task_rho` 和 `per_task_n_pairs`\n   - `run_oracle` 适配新返回格式\n\n2. **`analyze_results.py`**:\n   - `bootstrap_delta_rho` 改为 task-level bootstrap：以 best layer 的 per-task ρ 为采样单元，返回 `(observed_delta, ci_lower, ci_upper, p_value)`，附加 permutation test\n   - `compute_judgment` 在 best layer 上用 task-level bootstrap 计算 CI，判定条件改为 `ci_lower > 0 AND p_value < 0.05`\n\n3. 原文件已备份为 `.bak2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83c0253944cb61491747",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix kill duplicate cf",
+  "task_key": "worker_fix_kill_duplicate_cf_20260523T154746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_duplicate_cf_20260523T154746_result.json",
+    "occurrence": 1,
+    "bytes": 122,
+    "sha256": "ced8d2522f4a776ae95e21ef8c7425d55b9171068bc898a2b3471958382bf86d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 748325 已杀掉。当前只剩 tmux session `nora_spatial_cf` 的实例（PID 748707），无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-duplicate-cf.md"
+}

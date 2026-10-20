@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "445860b1c730b9878447",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan008 random s0 rsa",
+  "task_key": "worker_ssh_plan008-random-s0-rsa_20260516T000557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan008-random-s0-rsa_20260516T000557_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "edd90f07b220d611b622c84c8ec52a01fe89ba9ad82c87806fb83919adf60f07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件还在写入（从 521MB 增长到 594MB）。\n\n**random_s0 特征提取状态：进行中**\n\n- 进程 PID 678338 正常运行，已耗时 ~8 分钟\n- 完成 1/10 个 task，第 2 个正在写入\n- 脚本注释标注全量提取约 48 分钟（RTX PRO 6000）\n- 预计还需 ~40 分钟完成（约 08:50 UTC）\n\n需要我过 40 分钟后再来检查并计算 RSA 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan008-random-s0-rsa.md"
+}

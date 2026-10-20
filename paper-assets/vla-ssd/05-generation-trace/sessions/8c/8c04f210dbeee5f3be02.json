@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c04f210dbeee5f3be02",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check nlp control final",
+  "task_key": "worker_check_nlp_control_final_20260522T122710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_nlp_control_final_20260522T122710_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "2443b2fa98bb41afd2e0f6208b27d29550a9ce24796334d3473eba34deca6571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. 模型下载：未完成，快了\n- **shard2** (3.3GB): 已完成，在主目录\n- **shard1** (9.29GB): **97% (8.99/9.29GB)**，仍在 `._____temp/`，速度 ~300kB/s，ETA ~17 分钟\n- 下载进程 PID 612753 活跃，已跑 ~7 小时（HF 下载速度极慢）\n\n### 2. GPU\n- 2× NVIDIA RTX PRO 6000 Blackwell (98GB each)\n- 全部空闲，0% 利用率，无 GPU 进程\n\n### 3. wait_and_run\n- PID 613207 活跃，每 60s 轮询检查两个 shard 是否就位\n- 当前仍在循环等待（log 只有一行 waiting 消息）\n- 下载完成后会自动执行 `scripts/nlp_control_r2_probing.py --gpu 0`\n\n### 4. Probing 结果\n- **未开始**，等下载完成\n- 结果目录只有空 run.log\n\n### 预计时间线\n下载剩余 ~300MB @ 300kB/s ≈ **17 分钟后**下载完成 → wait_and_run 检测到（最多再等 60s）→ 自动启动 probing。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-nlp-control-final.md"
+}

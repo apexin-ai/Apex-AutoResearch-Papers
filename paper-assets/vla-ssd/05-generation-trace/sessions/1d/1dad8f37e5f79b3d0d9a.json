@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dad8f37e5f79b3d0d9a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz fig r2 collapse v3",
+  "task_key": "worker_viz_fig_r2_collapse_v3_20260524T044532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_r2_collapse_v3_20260524T044532_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "0efd9cfcf13d1736a44edd6f3d8ecff04fccc5ce56487c305efce7da1081c592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。四个输出文件已生成：\n\n- `docs/paper/figures/fig_r2_collapse.pdf` / `.png`\n- `artifacts/figures/paper/fig_r2_collapse.pdf` / `.png`\n- 脚本：`scripts/plot_r2_collapse.py`\n\n数据来源：NORA 用实际实验数据（`nora_goal_r2_trained.json` / `_untrained.json`，36 层），OpenVLA 和 TracVLA 用论文关键数据点 + PCHIP 插值生成平滑曲线（32 层）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-r2-collapse-v3.md"
+}

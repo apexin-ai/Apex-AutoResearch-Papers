@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "033fbd2cdc085e8b84e0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run nora spatial untrained cf",
+  "task_key": "worker_run_nora_spatial_untrained_cf_20260523T154138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_nora_spatial_untrained_cf_20260523T154138_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "c3e503cebe3fe60d85efca2e9e5b12b6179d3d0128a6efeb14b38174184235e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n**汇报：**\n\n1. **脚本修改摘要**：基于 `nora_goal_untrained_counterfactual_only.py` 创建 `nora_spatial_untrained_counterfactual.py`，修改了：\n   - `DATA` → `libero_spatial`\n   - `RESULTS_DIR` → `nora_spatial/untrained`\n   - `DEVICE` → `cuda:1`\n   - `experiment` 标记 → `counterfactual_nora_spatial`\n   - `TASKS` → 10 个 LIBERO-Spatial task（与 trained 版本一致）\n   - `PARAPHRASES` → 与 `nora_spatial/trained/counterfactual_combined.json` 中使用的相同\n\n2. **Dry-run**：模型 4.2s 加载成功，cuda:1 占用 23.6GB，counterfactual 已开始执行\n\n3. **启动确认**：tmux session `nora_spatial_cf`，日志 `logs/nora_spatial_untrained_cf.log`\n\n4. **预估完成时间**：10 tasks × 10 demos × 50 timesteps × 4 conditions = 20,000 forward pass pairs。参考 goal 版本，预计 2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-nora-spatial-untrained-cf.md"
+}

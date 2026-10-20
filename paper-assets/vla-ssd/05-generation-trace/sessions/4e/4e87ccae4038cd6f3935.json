@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e87ccae4038cd6f3935",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose behavioral pilot w4",
+  "task_key": "worker_diagnose_behavioral_pilot_w4_20260518T103243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_behavioral_pilot_w4_20260518T103243_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "f1956972befd2c09ea4b47022e8c7c8527a6a895af96f98616c77ef2c35f8850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/behavioral_pilot_w4_diagnosis.md`。\n\n核心结论：\n\n- **失败原因**：SSH 连接断开导致级联终止（SIGHUP→SIGTERM），不是 OOM 或脚本 bug\n- **进度**：仅完成 6/60 episodes (10%)，Task 0 baseline ep 0-5 全部 fail (R=0.000)\n- **无 W&B**：脚本本身没有 wandb 集成，只写 JSON\n- **可直接重跑**：环境完整，GPU 空闲\n- **关键风险**：baseline 成功率为 0，重跑前建议先排查 `unnorm_key=\"bridge_orig\"` 是否正确匹配 LIBERO 的 action space，否则 85 分钟跑完也拿不到有意义的对比数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-behavioral-pilot-w4.md"
+}

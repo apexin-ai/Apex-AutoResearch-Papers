@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "885d1c1c2928fb903e47",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose matched ablation controls",
+  "task_key": "worker_diagnose_matched_ablation_controls_20260519T041002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_matched_ablation_controls_20260519T041002_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "85909007291125ca9c916536a9e44ac808733b1e679a1c125af54cf49fde56ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/matched_ablation_controls_diagnosis.md`。\n\n**核心发现：**\n\n1. **matched_ablation_controls** — 实际已正常完成（10500 passes, return_code=0），不是\"异常退出\"。无 W&B metrics 是因为脚本根本没集成 W&B，结果只存 JSON。Registry 应更新为 COMPLETED。\n\n2. **behavioral_smoketest** — 进程已正常退出，不是 RUNNING。Baseline 3 episodes 全部失败（SR=0.00），脚本按设计提前终止。Registry 应更新为 COMPLETED (baseline_zero)。\n\n3. **环境注意事项** — 磁盘 95% 已满（剩 15G），后续实验前需要清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-matched-ablation-controls.md"
+}

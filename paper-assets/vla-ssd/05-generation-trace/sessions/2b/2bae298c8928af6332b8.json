@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bae298c8928af6332b8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh patch mean probe",
+  "task_key": "worker_ssh_patch-mean-probe_20260516T022703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_patch-mean-probe_20260516T022703_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "bf24f1f507d6f85384d67035cf7db36e1a72021a69e3bd88f28caec6b29a3a65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Action Probe R²（超参完全一致）\n\n| Model | feature_key | R² (mean) |\n|-------|-----------|-----------|\n| CLIP | cls_token | 0.587 |\n| CLIP | **patch_mean** | **0.591** |\n| DINO | cls_token | 0.634 |\n| DINO | **patch_mean** | **0.631** |\n| SigLIP projector | — | 0.630 |\n\npatch_mean vs cls_token 差异不显著（CLIP: p=0.644, DINO: p=0.620）。\n\n### DINO RSA 确认\n\n**DINO RSA=0.388 用的是 `cls_token`**，但来自与 `rsa_clip.py` 不同的 RSA 方法论（rsa_results.json 中的框架）。用 rsa_clip.py **同一方法**重算：\n\n| Model | feature_key | RSA |\n|-------|-----------|-----|\n| CLIP | cls_token | 0.506 |\n| CLIP | patch_mean | 0.557 |\n| DINO | cls_token | **0.692** |\n| DINO | patch_mean | **0.631** |\n| SigLIP projector | — | 0.615 |\n\n### Table 1 公平对比表（同一 feature key = patch_mean，同一 RSA 方法）\n\n| Model | feature_key | RSA | R² |\n|-------|-----------|-----|-----|\n| CLIP | patch_mean | 0.557 | 0.591 |\n| DINO | patch_mean | 0.631 | 0.631 |\n| SigLIP projector | — | 0.615 | 0.630 |\n\n### 注意\n\nDINO RSA 用 rsa_clip.py 同一方法重算后（0.631 patch_mean / 0.692 cls_token），**远高于**之前引用的 0.388。这意味着 Table 1 中的 DINO RSA 值需要更新，否则低估了 DINO 的 action-alignment 能力。建议确认论文中引用的 DINO RSA=0.388 是否应替换为 0.631（patch_mean，与 CLIP 同方法同 feature key）。\n\n### Bootstrap 关键结论\n- CLIP patch_mean 显著低于 DINO patch_mean（Δ=-0.040, p=0.0002）和 projector（Δ=-0.039, p<0.001）\n- DINO patch_mean 与 projector 无显著差异（Δ=+0.001, p=0.911）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-patch-mean-probe.md"
+}

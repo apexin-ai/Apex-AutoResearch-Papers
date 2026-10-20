@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da6eb788a3a871ccffa",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix openvla spatial pkv and rerun",
+  "task_key": "worker_fix_openvla_spatial_pkv_and_rerun_20260522T090214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_openvla_spatial_pkv_and_rerun_20260522T090214_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "f1acc49b8a1f1663996ab6eb06bdd96791395b8b768773bc2614dc27cc0bc12c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **修复了两个 modeling_prismatic.py**（finetuned + base）：移除了 line 346 和 363 的 `assert past_key_values is None` 断言，兼容 transformers 5.x 的 `generate()` 行为。两个分支本身已传 `past_key_values=None` 给底层 LM，assert 纯属多余。\n\n2. **创建了恢复脚本** `spatial_resume_pipeline.py`：先跑 trained CF（Phase 6），再跑 untrained 全部（Phase 1-6）。\n\n3. **已启动** PID=645135，cuda:0，日志 `/tmp/spatial_resume.log`。模型加载成功，已进入 trained counterfactual 阶段，past_key_values 修复生效。\n\n4. **Registry** 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-openvla-spatial-pkv-and-rerun.md"
+}

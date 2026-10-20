@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "535f2e4d4c00130b1672",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code matched ablation controls",
+  "task_key": "worker_code_matched_ablation_controls_20260519T032640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_matched_ablation_controls_20260519T032640_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "6ca7ae29455b1d56c65ba55f60cda40a3bc2e5212222e821f38fd35a72719eea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running: tmux session `matched_ablation` active, python process using 15.5 GB on GPU. The model is loaded and processing data (log output is likely buffered by `tee`).\n\n**Summary:**\n- Script: `/root/vla-ssd/scripts/matched_ablation_controls.py`\n- tmux session: `matched_ablation` on westd-19183, cuda:0\n- 10,500 total forward passes (1 baseline + 5 random seeds + 1 image-dominant per sample, 1500 samples)\n- Results will be saved to `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json`\n- Log: `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log`\n- Registry: `matched_ablation_controls` set to RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-matched-ablation-controls.md"
+}

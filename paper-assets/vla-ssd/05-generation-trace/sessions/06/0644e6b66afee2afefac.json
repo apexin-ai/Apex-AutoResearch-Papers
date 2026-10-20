@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0644e6b66afee2afefac",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh exp2 pca linear pertimestep",
+  "task_key": "worker_ssh_exp2-pca-linear-pertimestep_20260515T192148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp2-pca-linear-pertimestep_20260515T192148.log",
+    "occurrence": 1,
+    "bytes": 686330,
+    "sha256": "d382bfe578e1715a7253146980f3cbb5f1573100e6e181c6a4c38f84496a3681"
+  },
+  "statistics": {
+    "messages": 515,
+    "user_turns": 0,
+    "tool_calls": 231,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 231,
+      "tool_result": 231,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 515,
+      "chunks": [
+        {
+          "path": "0644e6b66afee2afefac-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0644e6b66afee2afefac-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0644e6b66afee2afefac-part-0003.json",
+          "message_count": 155
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-exp2-pca-linear-pertimestep.md"
+}

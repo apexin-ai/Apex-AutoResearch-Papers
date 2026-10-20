@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3901e9add1af8cb0d54a",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_9_1779337294.md",
+  "task_key": "loop_9_1779337294",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1779337294.md",
+    "occurrence": 1,
+    "bytes": 4042,
+    "sha256": "cc8f6891ba9d33bc08cefaf7d99729ab869a58babf12168fe7e2b15d64570110"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-21T02:36:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，不可用其他设备\n- 模型路径：TracVLA-Phi3V checkpoint 在 `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/`，Phi-3-mini base 在 `/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct`——不可删除\n- DDL：Abstract 2026-05-26（5天），Paper 2026-05-29（8天）\n- 论文处于审稿阶段（Group C），未经 Director 批准不可改动 paper 文件\n- 7 个 PREPARING 实验（behavioral_pilot 系列等）未经 Director 批准不可提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/vla-ssd`\n- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks x 50 demos）\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/`（各实验子目录）\n- Feature 目录：`/root/autodl-tmp/vla-ssd/features/`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 磁盘：根分区 816G/879G 可用（3%），数据盘 5.3T/7.3T 可用（24%）\n- 活跃进程：无（两块 GPU 均空闲）\n- Cron：reconcile 结果 0 个活跃 cron\n\n### 3. 📊 当前状态\n**刚做完**：收到 `phi3v_r2_untrained_probe` 完成回调（ANALYZING），已派 Worker `worker_analysis_phi3v_r2_untrained_probe_20260520T102858` 分析结果。\n\n**等待中的回调**：\n- Worker `worker_analysis_phi3v_r2_untrained_probe_20260520T102858`（正在运行）→ 回调后需：更新 registry 到 DONE、更新 report.md、向 Director 汇报结果（带资源行）、文献联动\n\n**Registry 状态**：\n- ANALYZING: `phi3v_r2_untrained_probe`（untrained Phi-3-mini R² probe，验证 inverted-U 是否为训练产物）\n- PREPARING (7个): `libero_finetuned_probe`, `behavioral_smoketest_diag`, `behavioral_pilot_v2`, `behavioral_pilot`, `fulllayer_action_probe`, `l1_head_ablation_control8`, `l1_head_ablation_50demos`\n- 其余 108 个 DONE（82 success, 16 negative, 10 killed）\n- 两块 GPU 均空闲\n\n### 4. 📋 待办\n- Worker `worker_analysis_phi3v_r2_untrained_probe_*` 回调到达 → 读取 Worker 产出 → 按 on-experiment-done 流程处理：\n  - conclusion=success（预期：untrained flat/low R² 确认训练产物）→ 更新 report.md → 向 Director 汇报（这是 C2 claim 的控制实验，强化跨架构叙事）→ 检查 experiment_plan 是否有下一格\n  - conclusion=negative（untrained 也有 inverted-U）→ 这将动摇核心 framing（inverted-U 可能是架构伪影）→ 必须按 red-section skill 产出 Framing 调整提案 → 向 Director 汇报 → 等 Director 决策\n- Director 确认 review mode 后 → Group C 审稿启动\n- 审稿反馈到达 → 根据 gap analysis 启动 targeted experiments（GPU 已保留）\n\n### 5. 🎯 战略上下文\n**核心叙事**：VLA 微调创造 instruction routing（attention head specialization），这是跨架构的收敛性质（OpenVLA + TracVLA-Phi3V 双架构验证）。\n\n**决策链关键节点**：\n- D082: Framing 从 \"VLA training creates routing\" 升级为 \"instruction routing is a convergent property\"\n- D083-D084: C3 geometry claim 升级为跨架构性质\n- D085: R² cross-arch patch 完成\n- D080: Path B（闭环行为验证）彻底关闭，全资源转 Path A（representational analysis）\n\n**易错点**：\n- `phi3v_r2_untrained_probe` 是关键控制实验——如果 untrained 也有 inverted-U，整个 \"training creates the profile\" 叙事需要修正。但根据 OpenVLA 的 untrained 控制（已做过，R² flat），预期 Phi3V untrained 也是 flat\n- 7 个 PREPARING 实验是审稿后 targeted experiments 的储备，不要主动提交\n- 论文在 Group C 审稿中，不可擅自修改 paper 文件\n- Worker 池当前 1 个（分析 Worker），回调后降为 0——但当前无其他可并行任务（GPU 空闲等审稿反馈），不算失职\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779337294.md"
+}

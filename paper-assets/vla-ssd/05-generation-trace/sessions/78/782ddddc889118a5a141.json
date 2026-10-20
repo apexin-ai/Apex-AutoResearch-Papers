@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "782ddddc889118a5a141",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix extraction restart",
+  "task_key": "worker_code_fix-extraction-restart_20260515T125118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-extraction-restart_20260515T125118_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "91197e863e386ab87e4cb498d3477c664d2e5155372c652d7e2478fc3b6dfc0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**总结：**\n\n| 操作 | 结果 |\n|------|------|\n| Kill stray train_probes.py | 7 个进程全部清除 |\n| Kill untrained extraction | 已终止（PID 28160） |\n| Trained extraction | 自然完成（EXIT_CODE=0，185.3 min） |\n| 修复 extract_features.py | 264→2 次 .cpu()/batch + 增量写盘 |\n| Untrained 重跑 | 2 个 task（LIVING_ROOM_SCENE6 + STUDY_SCENE1）18.5 min 完成 |\n\n**特征文件完整性：**\n- `features/trained/` — 10/10 task .h5 文件 ✓\n- `features/untrained/` — 10/10 task .h5 文件 ✓\n\n**性能改善：** 0.8 step/s → ~42 step/s（52x 加速）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-extraction-restart.md"
+}

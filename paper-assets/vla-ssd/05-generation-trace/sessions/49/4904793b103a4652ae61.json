@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4904793b103a4652ae61",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check spatial cf and next",
+  "task_key": "worker_check_spatial_cf_and_next_20260522T094854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_spatial_cf_and_next_20260522T094854_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "c23b3a913f918b490e1d6a99e5aa51317740fabe3aed80a1796edeaab2f9a3cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### cuda:0 — trained CF：进行中\n\n- **PID 645141** 存活，运行 43 分钟，GPU 0 利用率 81%，显存 15.3 GiB\n- CF 结果文件 **尚未生成**\n- 日志显示已完成 `wrong` condition（d=0.8849），当前正在跑 **`empty` condition**，进度 ~3200/5000\n- 预计 empty 跑完后还有剩余 conditions，整体还需一段时间\n\n### cuda:1 — untrained pipeline：进行中\n\n- **PID 646058** 存活，运行 35 分钟，GPU 1 利用率 77%，显存 15.3 GiB\n- 日志显示当前进度 **4400/5000**（接近完成当前 condition）\n- 具体是哪个 condition/phase 日志未显示，但推进速度 ~200 samples/52s\n\n### NLP shard1 下载：进行中\n\n- **PID 612753** 存活，已运行 **4h17m**\n- shard1 temp 文件当前 **5.9 GB**（在 `._____temp/` 中），仍在写入\n- shard2 已完成（3.3 GB）\n- shard1 完整大小通常 ~9.98 GB，当前约 **59% 完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-spatial-cf-and-next.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaa731fa466e293d0305",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head v2 trained",
+  "task_key": "worker_code_action_head_v2_trained_20260526T201901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_v2_trained_20260526T201901_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "a3cf10b492848254f02abcdbeeb412f7bcfe1bd854f138532538bb1c556ced74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果总结：**\n- 5000 samples (10 tasks × 50 demos × 10 frames), 288s, 17.3 samp/s\n- **所有 33 层的 R² 均为负值**（-7.08 ~ -2.77），表示 action head 在任何层的 hidden state 上直接解码都比预测均值更差\n- Peak R² = **-2.77** at layer 31（最后一个 transformer layer，pre-norm）\n- Exit R² = **-3.04**（post-norm layer 32）\n- 层趋势呈 U 形：中间层 (L10-L14) 最差，后期层逐步改善\n- **hidden_states[27] == [28] aliasing 确认**（两层 MSE 完全相同）\n- Sanity check 通过：模型 generate 正常（6 unique tokens），no-double-norm 验证正确\n\nRegistry 已更新为 DONE (negative)。Artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-v2-trained.md"
+}

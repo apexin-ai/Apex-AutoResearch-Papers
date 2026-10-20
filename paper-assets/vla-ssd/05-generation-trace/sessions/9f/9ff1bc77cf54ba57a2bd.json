@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff1bc77cf54ba57a2bd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug cuda0 progress check",
+  "task_key": "worker_debug_cuda0_progress_check_20260517T200047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_cuda0_progress_check_20260517T200047_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "053340c2d0235c893b1cc140b318fe0cbd98621ae131d32ad7f7f53df651774d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncuda:0 GPU util: 84%\nMemory: 15821 MiB / 97887 MiB\nCurrent progress: [ablate_all24] frame extraction 3550/10208 (~35%)\nEstimated remaining: ~107 min (~1h47m)\nOutput file: not yet (action_probe_50demos.json)\n```\n\n**进度详情：**\n- 3 个 conditions：`baseline` / `ablate_all24` / `ablate_all32`\n- `baseline`：已完成（耗时 64.2 min）\n- `ablate_all24`：正在提取特征，3550/10208 frames（~35%），预计还需 ~43 min\n- `ablate_all32`：未开始，预计 ~64 min\n- `action_probe_50demos_control8.json` 已生成（cuda:1 上的 control8 实验已完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-cuda0-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73a5470b45de71788980",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra cleanup downloads",
+  "task_key": "worker_infra_cleanup-downloads_20260515T084316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup-downloads_20260515T084316_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "156b4c79391cc48fe428866c1674aebcfb6650725e52e1ed3f76c7fbba53fa56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载已完全卡死。**\n\n对比 3 分钟前后：\n- 文件大小：6,165,845,349 → 6,165,845,349（**不变**）\n- rchar：252,727 → 252,727（**网络零读入**）\n- wchar 增加了 ~187MB（aria2c 在写控制数据，但没有新数据进来）\n- 进程已运行 34 分钟\n\nPID 21381 虽然还活着，但实际上已经没有数据流入。文件停在 6.17GB / 目标 6.95GB（88.7%），还差 ~783MB。\n\n**按指令要求，不启动新下载。报告当前状态等待指令：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 21381 (aria2c) | 存活但卡死，rchar 9分钟无变化 |\n| 竞争进程 | 已全部清除 |\n| 文件进度 | 6.17GB / 6.95GB (88.7%) |\n| 缺失 | ~783MB |\n| 磁盘空间 | 220GB 可用 |\n| shard 2 & 3 | 未检查 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-downloads.md"
+}

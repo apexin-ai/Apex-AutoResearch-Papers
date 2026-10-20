@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acc1bf591f84bdaa2177",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh fix analyze gates",
+  "task_key": "worker_ssh_fix-analyze-gates_20260515T173145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-analyze-gates_20260515T173145_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "b0f9ac3a23c55abf59a9f3972ff296b96855c03d24d8ab63a2ac86e6b71076e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。结果汇总：\n\n### 关键 diff\n\n| 项 | 修改前 | 修改后 |\n|---|---|---|\n| `--acc_gate` 默认值 | 0.50 | **0.40** |\n| `--gap_gate` 默认值 | 0.40 | **0.25** |\n| Sanity-GC | 不存在 | **新增** `--sanity_gate 0.25`，DINO acc ≤ 25% |\n| G3-GC | 不存在 | **新增** `--g3_gate 0.10`，Δ(trained-untrained) > 10pp |\n| Gate 输出格式 | 单条 PASS/FAIL | **4 条独立 Gate** + Overall 汇总 |\n| untrained 缺失处理 | 无 | G3-GC 输出 **SKIP** |\n| DINO 缺失处理 | gap 按 0 算 | Sanity-GC/G2-GC 输出 **SKIP** |\n\n### 4 Gate 实现确认\n\n- **Sanity-GC**: DINO best acc ≤ `sanity_gate`(0.25） → PASS；> 0.25 → FAIL + \"visual ambiguity not confirmed\"\n- **G1-GC**: trained best acc > `acc_gate`（0.40）→ PASS\n- **G2-GC**: Δ(trained - DINO) > `gap_gate`（0.25）→ PASS；DINO 缺失 → SKIP\n- **G3-GC**: Δ(trained - untrained) > `g3_gate`（0.10）→ PASS；untrained 缺失 → SKIP\n\n### 语法验证\n```\nSYNTAX OK\n```\n所有 4 个新参数（`--acc_gate`, `--gap_gate`, `--sanity_gate`, `--g3_gate`）均正常注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-analyze-gates.md"
+}

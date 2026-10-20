@@ -1,0 +1,1302 @@
+{
+  "schema_version": "1.0",
+  "session_id": "99632bb605237ca64c22",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W97wZ2xpf9FTAtYiKYzob5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "4832f02f-dd5a-48b1-b99b-204aca0a0769",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Frms8mg6uwWh1jYRYG65y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 920,
+                "cache_creation_input_tokens": 2568,
+                "cache_read_input_tokens": 48022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2568
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-15T16:04:07.995Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W97wZ2xpf9FTAtYiKYzob5",
+              "type": "tool_result",
+              "content": "1\t# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n2\t\n3\t> 日期: 2026-05-15 | 项目: vla-ssd\n4\t\n5\t---\n6\t\n7\t## 1. LIBERO-Goal 数据结构\n8\t\n9\t### 1.1 Suite 设计\n10\t\n11\tLIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。\n12\t\n13\t### 1.2 完整 Task 列表（10 tasks）\n14\t\n15\t| # | Task Name | HDF5 文件大小 |\n16\t|---|-----------|-------------|\n17\t| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |\n18\t| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |\n19\t| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |\n20\t| 4 | put_the_bowl_on_the_plate | 468 MB |\n21\t| 5 | put_the_bowl_on_the_stove | 509 MB |\n22\t| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |\n23\t| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |\n24\t| 8 | put_the_wine_bottle_on_the_rack | 879 MB |\n25\t| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |\n26\t| 10 | turn_on_the_stove | 448 MB |\n27\t\n28\t**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n29\t\n30\t### 1.3 下载方式\n31\t\n32\t```bash\n33\t# 方式 1: LIBERO 官方脚本\n34\tpython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n35\t\n36\t# 方式 2: 直接从 HuggingFace 下载\n37\t# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/\n38\thuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n39\t```\n40\t\n41\t### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性\n42\t\n43\t**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：\n44\t- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n45\t- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8\n46\t- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)\n47\t- 每 task 50 demos，每 demo 220-290 timesteps\n48\t\n49\t**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**\n50\t\n51\t---\n52\t\n53\t## 2. Instruction-Conditioned Probe 设计\n54\t\n55\t### 2.1 核心思想\n56\t\n57\t> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n58\t\n59\t这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。\n60\t\n61\t### 2.2 Probe 架构\n62\t\n63\t```\n64\tInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\n65\tProbe:  Linear(4096, 10) + softmax  →  10-way classification\n66\tTarget: instruction identity (哪个 task)\n67\tLoss:   CrossEntropy\n68\t```\n69\t\n70\t**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n71\t\n72\t### 2.3 关键实验设计\n73\t\n74\t#### Experiment A: Full-Trajectory Instruction Identity Probe\n75\t\n76\t- **输入**: 所有 timestep 的 hidden states\n77\t- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP\n78\t- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B\n79\t\n80\t#### Experiment B: Early-Timestep Probe（核心实验）\n81\t\n82\t- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing\n83\t- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化\n84\t- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机\n85\t- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps\n86\t\n87\t#### Experiment C: Layer-wise Analysis\n88\t\n89\t- 33 层中哪些层编码了 instruction identity？\n90\t- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy\n91\t- 与 temporal distance probe 的 layer profile 对比\n92\t\n93\t### 2.4 Train/Test Split\n94\t\n95\t- **每 task 50 demos**: 40 train / 10 test (stratified by task)\n96\t- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class\n97\t- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples\n98\t- 对于 linear probe 足够\n99\t\n100\t### 2.5 潜在 Confound 及控制\n101\t\n102\t| Confound | 风险 | 控制方法 |\n103\t|----------|------|---------|\n104\t| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |\n105\t| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |\n106\t| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |\n107\t\n108\t---\n109\t\n110\t## 3. Feature Extraction 工时估算\n111\t\n112\t### 3.1 数据下载\n113\t\n114\t| 步骤 | 耗时估算 |\n115\t|------|---------|\n116\t| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |\n117\t| 验证 HDF5 结构兼容性 | ~10 min |\n118\t\n119\t### 3.2 特征提取\n120\t\n121\t参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。\n122\t\n123\t| 模型 | Tasks | 预估总时间 |\n124\t|------|-------|-----------|\n125\t| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |\n126\t| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |\n127\t| DINO-V2 ViT-L | 10 | ~15 min |\n128\t| SigLIP (optional) | 10 | ~15 min |\n129\t| **总计** | | **~6.5 hours** |\n130\t\n131\t### 3.3 存储需求\n132\t\n133\t| 数据 | 大小 |\n134\t|------|------|\n135\t| 原始 HDF5 | 6.37 GB |\n136\t| Trained features (10 tasks × ~5.3 GB) | ~53 GB |\n137\t| Untrained features | ~53 GB |\n138\t| DINO features | ~0.5 GB |\n139\t| **总计** | **~113 GB** |\n140\t\n141\t**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。\n142\t\n143\t### 3.4 Probe 训练\n144\t\n145\t- Linear probe 训练极快：每层 < 1 min\n146\t- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours\n147\t- 分析和绘图：~1 hour\n148\t\n149\t### 3.5 总工时\n150\t\n151\t| 阶段 | 工时 |\n152\t|------|------|\n153\t| 数据下载 + 验证 | 0.5h |\n154\t| 特征提取 (GPU time) | 6.5h |\n155\t| Probe 训练 + 分析 | 3h |\n156\t| **端到端** | **~10h (1 个工作日)** |\n157\t\n158\t如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。\n159\t\n160\t---\n161\t\n162\t## 4. 与 Grant et al. 2026 的关系\n163\t\n164\t### 4.1 Grant et al. 论文概要\n165\t\n166\t**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)\n167\t\n168\t- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT\n169\t- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes\n170\t- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）\n171\t- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）\n172\t- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction\n173\t- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为\n174\t\n175\t### 4.2 我们的方法 vs Grant et al.\n176\t\n177\t| 维度 | Grant et al. | 我们 |\n178\t|------|-------------|------|\n179\t| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |\n180\t| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |\n181\t| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |\n182\t| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |\n183\t| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |\n184\t| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |\n185\t\n186\t### 4.3 互补性分析\n187\t\n188\tGrant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。\n189\t\n190\t我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。\n191\t\n192\t**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。\n193\t\n194\t---\n195\t\n196\t## 5. Story 强度评估\n197\t\n198\t### 5.1 Claim\n199\t\n200\t> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"\n201\t\n202\t### 5.2 强度分析\n203\t\n204\t**优势**:\n205\t1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable\n206\t2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖\n207\t3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义\n208\t4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献\n209\t5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"\n210\t\n211\t**劣势**:\n212\t1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）\n213\t2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个\n214\t3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）\n215\t4. 10-way classification 的 chance level 是 10%，bar 不高\n216\t\n217\t### 5.3 潜在审稿攻击\n218\t\n219\t| 攻击 | 严重性 | 防御 |\n220\t|------|--------|------|\n221\t| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |\n222\t| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |\n223\t| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |\n224\t| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |\n225\t| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |\n226\t\n227\t### 5.4 Story 在论文中的定位\n228\t\n229\t**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。\n230\t\n231\t**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：\n232\t1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)\n233\t2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)\n234\t3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)\n235\t\n236\t三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。\n237\t\n238\t---\n239\t\n240\t## 6. Go/No-Go 建议\n241\t\n242\t### Decision Matrix\n243\t\n244\t| 因素 | 评分 | 说明 |\n245\t|------|------|------|\n246\t| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n247\t| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n248\t| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |\n249\t| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |\n250\t| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |\n251\t| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |\n252\t| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |\n253\t\n254\t### 建议: **Conditional GO**\n255\t\n256\t**条件**：\n257\t1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间\n258\t2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h\n259\t3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal\n260\t4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**\n261\t\n262\t**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。\n263\t\n264\t**如果两个 probe 都成功**，论文结构为：\n265\t- Section 4.1: Temporal distance probe (vision-solvable → negative)\n266\t- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)\n267\t- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)\n268\t- Section 5: \"When does VLA training matter?\" — unified analysis\n269\t\n270\t---\n271\t\n272\t## 附录: OpenVLA Prompt 构造\n273\t\n274\tLIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：\n275\t\n276\t```python\n277\tLIBERO_GOAL_PROMPTS = {\n278\t    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n279\t    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n280\t    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n281\t    # ... 以此类推，task name 的下划线替换为空格，首字母大写\n282\t}\n283\t```\n284\t\n285\t注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。\n286\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "1323a5bc-9580-4377-ae92-118876949709",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md",
+                "content": "# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n\n> 日期: 2026-05-15 | 项目: vla-ssd\n\n---\n\n## 1. LIBERO-Goal 数据结构\n\n### 1.1 Suite 设计\n\nLIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。\n\n### 1.2 完整 Task 列表（10 tasks）\n\n| # | Task Name | HDF5 文件大小 |\n|---|-----------|-------------|\n| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |\n| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |\n| 4 | put_the_bowl_on_the_plate | 468 MB |\n| 5 | put_the_bowl_on_the_stove | 509 MB |\n| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |\n| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |\n| 8 | put_the_wine_bottle_on_the_rack | 879 MB |\n| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |\n| 10 | turn_on_the_stove | 448 MB |\n\n**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n\n### 1.3 下载方式\n\n```bash\n# 方式 1: LIBERO 官方脚本\npython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n\n# 方式 2: 直接从 HuggingFace 下载\n# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/\nhuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n```\n\n### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性\n\n**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：\n- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)\n- 每 task 50 demos，每 demo 220-290 timesteps\n\n**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**\n\n---\n\n## 2. Instruction-Conditioned Probe 设计\n\n### 2.1 核心思想\n\n> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n\n这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。\n\n### 2.2 Probe 架构\n\n```\nInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\nProbe:  Linear(4096, 10) + softmax  →  10-way classification\nTarget: instruction identity (哪个 task)\nLoss:   CrossEntropy\n```\n\n**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n\n### 2.3 关键实验设计\n\n#### Experiment A: Full-Trajectory Instruction Identity Probe\n\n- **输入**: 所有 timestep 的 hidden states\n- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP\n- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B\n\n#### Experiment B: Early-Timestep Probe（核心实验）\n\n- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing\n- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化\n- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机\n- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps\n\n#### Experiment C: Layer-wise Analysis\n\n- 33 层中哪些层编码了 instruction identity？\n- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy\n- 与 temporal distance probe 的 layer profile 对比\n\n### 2.4 Train/Test Split\n\n- **每 task 50 demos**: 40 train / 10 test (stratified by task)\n- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class\n- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples\n- 对于 linear probe 足够\n\n### 2.5 潜在 Confound 及控制\n\n| Confound | 风险 | 控制方法 |\n|----------|------|---------|\n| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |\n| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |\n| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |\n\n---\n\n## 3. Feature Extraction 工时估算\n\n### 3.1 数据下载\n\n| 步骤 | 耗时估算 |\n|------|---------|\n| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |\n| 验证 HDF5 结构兼容性 | ~10 min |\n\n### 3.2 特征提取\n\n参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。\n\n| 模型 | Tasks | 预估总时间 |\n|------|-------|-----------|\n| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| DINO-V2 ViT-L | 10 | ~15 min |\n| SigLIP (optional) | 10 | ~15 min |\n| **总计** | | **~6.5 hours** |\n\n### 3.3 存储需求\n\n| 数据 | 大小 |\n|------|------|\n| 原始 HDF5 | 6.37 GB |\n| Trained features (10 tasks × ~5.3 GB) | ~53 GB |\n| Untrained features | ~53 GB |\n| DINO features | ~0.5 GB |\n| **总计** | **~113 GB** |\n\n**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。\n\n### 3.4 Probe 训练\n\n- Linear probe 训练极快：每层 < 1 min\n- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours\n- 分析和绘图：~1 hour\n\n### 3.5 总工时\n\n| 阶段 | 工时 |\n|------|------|\n| 数据下载 + 验证 | 0.5h |\n| 特征提取 (GPU time) | 6.5h |\n| Probe 训练 + 分析 | 3h |\n| **端到端** | **~10h (1 个工作日)** |\n\n如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。\n\n---\n\n## 4. 与 Grant et al. 2026 的关系\n\n### 4.1 Grant et al. 论文概要\n\n**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)\n\n- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT\n- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes\n- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）\n- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）\n- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction\n- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为\n\n### 4.2 我们的方法 vs Grant et al.\n\n| 维度 | Grant et al. | 我们 |\n|------|-------------|------|\n| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |\n| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |\n| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |\n| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |\n| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |\n| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |\n\n### 4.3 互补性分析\n\nGrant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。\n\n我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。\n\n**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。\n\n---\n\n## 5. Story 强度评估\n\n### 5.1 Claim\n\n> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"\n\n### 5.2 强度分析\n\n**优势**:\n1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable\n2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖\n3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义\n4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献\n5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"\n\n**劣势**:\n1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）\n2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个\n3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）\n4. 10-way classification 的 chance level 是 10%，bar 不高\n\n### 5.3 潜在审稿攻击\n\n| 攻击 | 严重性 | 防御 |\n|------|--------|------|\n| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |\n| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |\n| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |\n| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |\n| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |\n\n### 5.4 Story 在论文中的定位\n\n**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。\n\n**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：\n1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)\n2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)\n3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)\n\n三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。\n\n---\n\n## 6. Go/No-Go 建议\n\n### Decision Matrix\n\n| 因素 | 评分 | 说明 |\n|------|------|------|\n| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |\n| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |\n| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |\n| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |\n| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |\n\n### 建议: **Conditional GO**\n\n**条件**：\n1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间\n2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h\n3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal\n4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**\n\n**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。\n\n**如果两个 probe 都成功**，论文结构为：\n- Section 4.1: Temporal distance probe (vision-solvable → negative)\n- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)\n- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)\n- Section 5: \"When does VLA training matter?\" — unified analysis\n\n---\n\n## 附录: OpenVLA Prompt 构造\n\nLIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：\n\n```python\nLIBERO_GOAL_PROMPTS = {\n    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n    # ... 以此类推，task name 的下划线替换为空格，首字母大写\n}\n```\n\n注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。\n",
+                "numLines": 286,
+                "startLine": 1,
+                "totalLines": 286
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYQwEheFrNaM6KfJWkidPL",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.19233",
+                "prompt": "Focus on these specific details: 1) Table 5 or Table 6 - the exact numbers for all models on libero_goal vs libero_object under different prompt conditions (null, wrong, correct), 2) Linear probing results - especially the 99.3% prompt classification accuracy finding: what exactly was probed, at which layer, and what does it mean that the model represents language but doesn't use it behaviorally? 3) The SAE findings about manipulation concepts. 4) Did they compare any of these findings between LIBERO-Goal and other LIBERO suites?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "927528f4-b704-430b-9f7f-7d909fd2a147",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Frms8mg6uwWh1jYRYG65y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 920,
+                "cache_creation_input_tokens": 2568,
+                "cache_read_input_tokens": 48022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2568
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-15T16:04:21.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYQwEheFrNaM6KfJWkidPL",
+              "type": "tool_result",
+              "content": "# Key Findings from Vision-Language-Action Models Study\n\n## 1) Counterfactual Prompting Results (Table 5)\n\nThe researchers tested language sensitivity across models with these suite-dependent patterns:\n\n**libero_goal (most language-sensitive):**\n- π0.5: 83.3% baseline → 80% null → 76.7% wrong object\n- OFT: 100% baseline → 10% null/wrong object\n- X-VLA: 94% baseline → 10% null → 4-10% wrong object\n- GR00T: 97% baseline → 0% null/wrong object\n\n**libero_object (language-insensitive):**\n- π0.5: 77.4% baseline → 77% null → 74.2% wrong object\n- OFT: 100% across all conditions\n- X-VLA: 100% baseline → 60% null → 60-90% wrong object\n\nThe key insight: \"language sensitivity depends on task structure, not architecture.\" When visual context alone identifies targets, prompts are ignored; when scenes are ambiguous, language becomes critical.\n\n## 2) Linear Probing Paradox\n\nAt layer 17 of π0.5, linear classifiers achieved \"99.3% accuracy\" discriminating prompt categories despite near-zero behavioral variation across prompts. This reveals a crucial dissociation: the model encodes linguistic information densely in intermediate representations but doesn't route this information to motor pathways. The authors interpret this as \"prompts are encoded but not used,\" suggesting vision dominates action generation regardless of representational richness.\n\n## 3) SAE-Identified Concepts\n\nAcross all six models, researchers identified \"82+ manipulation concepts\" spanning motion primitives, object categories, and spatial relationships. Contrastive feature identification recovered 43-82 distinct concepts per model using frequency-weighted Cohen's d scoring.\n\n## 4) Cross-Suite Comparisons\n\nYes—the paper extensively compares libero_goal against other LIBERO suites (object, spatial, 10/long). All three multi-pathway architectures showed consistent specialization: expert pathways generated \"2×greater behavioral displacement\" under cross-task injection than VLM pathways, confirming that motor programs bind to scene coordinates rather than abstract task semantics across different benchmark structures."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "29e1be9c-3ddd-45c4-b746-b21ef6ea724e",
+            "tool_use_result": {
+              "bytes": 457397,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Key Findings from Vision-Language-Action Models Study\n\n## 1) Counterfactual Prompting Results (Table 5)\n\nThe researchers tested language sensitivity across models with these suite-dependent patterns:\n\n**libero_goal (most language-sensitive):**\n- π0.5: 83.3% baseline → 80% null → 76.7% wrong object\n- OFT: 100% baseline → 10% null/wrong object\n- X-VLA: 94% baseline → 10% null → 4-10% wrong object\n- GR00T: 97% baseline → 0% null/wrong object\n\n**libero_object (language-insensitive):**\n- π0.5: 77.4% baseline → 77% null → 74.2% wrong object\n- OFT: 100% across all conditions\n- X-VLA: 100% baseline → 60% null → 60-90% wrong object\n\nThe key insight: \"language sensitivity depends on task structure, not architecture.\" When visual context alone identifies targets, prompts are ignored; when scenes are ambiguous, language becomes critical.\n\n## 2) Linear Probing Paradox\n\nAt layer 17 of π0.5, linear classifiers achieved \"99.3% accuracy\" discriminating prompt categories despite near-zero behavioral variation across prompts. This reveals a crucial dissociation: the model encodes linguistic information densely in intermediate representations but doesn't route this information to motor pathways. The authors interpret this as \"prompts are encoded but not used,\" suggesting vision dominates action generation regardless of representational richness.\n\n## 3) SAE-Identified Concepts\n\nAcross all six models, researchers identified \"82+ manipulation concepts\" spanning motion primitives, object categories, and spatial relationships. Contrastive feature identification recovered 43-82 distinct concepts per model using frequency-weighted Cohen's d scoring.\n\n## 4) Cross-Suite Comparisons\n\nYes—the paper extensively compares libero_goal against other LIBERO suites (object, spatial, 10/long). All three multi-pathway architectures showed consistent specialization: expert pathways generated \"2×greater behavioral displacement\" under cross-task injection than VLM pathways, confirming that motor programs bind to scene coordinates rather than abstract task semantics across different benchmark structures.",
+              "durationMs": 8903,
+              "url": "https://arxiv.org/html/2603.19233"
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent! I now have comprehensive information. The existing feasibility doc at `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md` is already quite detailed. Let me review what's there and what's missing based on the task requirements:\n\nThe existing doc covers:\n1. ✅ LIBERO-Goal data structure\n2. ✅ Complete task list  \n3. ✅ Instruction-conditioned probe design\n\n\n4. ✅ Feature extraction time estimates\n5. ✅ Grant et al. relationship\n6. ✅ Story strength analysis\n7. ✅ Go/No-Go decision\n\nBut I need to expand several sections: Grant et al.'s key findings require more detail about the performance gaps across models and the linear probing paradox they discovered, plus the SAE insights; I should add the recent related work like Buurmeijer et al. 2026 and LIBERO-CF to strengthen the novelty gap analysis; and I need to flesh out the risk assessment section that's currently missing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "448b2371-e023-4a76-ac97-effd1be77dfa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SzkyG4xgV4rC4dh3XkvuyG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8001,
+                "cache_read_input_tokens": 50590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The existing feasibility doc is solid. I need to update it with the detailed findings from my search — especially the per-model numbers from Grant et al., the linear probing paradox (99.3% prompt classification despite behavioral invariance), and the related work novelty analysis. Let me write the updated version."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "9f6a16f4-48ac-418a-a685-690da73567bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SzkyG4xgV4rC4dh3XkvuyG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8001,
+                "cache_read_input_tokens": 50590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S87FhT3DiBRpfXV4Gien64",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "16a48e31-b17d-4815-a0d3-0b137b822676",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SzkyG4xgV4rC4dh3XkvuyG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8001,
+                "cache_read_input_tokens": 50590,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8001
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-15T16:04:36.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S87FhT3DiBRpfXV4Gien64",
+              "type": "tool_result",
+              "content": "1\t# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n2\t\n3\t> 日期: 2026-05-15 | 项目: vla-ssd\n4\t\n5\t---\n6\t\n7\t## 1. LIBERO-Goal 数据结构\n8\t\n9\t### 1.1 Suite 设计\n10\t\n11\tLIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。\n12\t\n13\t### 1.2 完整 Task 列表（10 tasks）\n14\t\n15\t| # | Task Name | HDF5 文件大小 |\n16\t|---|-----------|-------------|\n17\t| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |\n18\t| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |\n19\t| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |\n20\t| 4 | put_the_bowl_on_the_plate | 468 MB |\n21\t| 5 | put_the_bowl_on_the_stove | 509 MB |\n22\t| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |\n23\t| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |\n24\t| 8 | put_the_wine_bottle_on_the_rack | 879 MB |\n25\t| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |\n26\t| 10 | turn_on_the_stove | 448 MB |\n27\t\n28\t**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n29\t\n30\t### 1.3 下载方式\n31\t\n32\t```bash\n33\t# 方式 1: LIBERO 官方脚本\n34\tpython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n35\t\n36\t# 方式 2: 直接从 HuggingFace 下载\n37\t# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/\n38\thuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n39\t```\n40\t\n41\t### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性\n42\t\n43\t**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：\n44\t- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n45\t- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8\n46\t- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)\n47\t- 每 task 50 demos，每 demo 220-290 timesteps\n48\t\n49\t**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**\n50\t\n51\t---\n52\t\n53\t## 2. Instruction-Conditioned Probe 设计\n54\t\n55\t### 2.1 核心思想\n56\t\n57\t> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n58\t\n59\t这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。\n60\t\n61\t### 2.2 Probe 架构\n62\t\n63\t```\n64\tInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\n65\tProbe:  Linear(4096, 10) + softmax  →  10-way classification\n66\tTarget: instruction identity (哪个 task)\n67\tLoss:   CrossEntropy\n68\t```\n69\t\n70\t**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n71\t\n72\t### 2.3 关键实验设计\n73\t\n74\t#### Experiment A: Full-Trajectory Instruction Identity Probe\n75\t\n76\t- **输入**: 所有 timestep 的 hidden states\n77\t- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP\n78\t- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B\n79\t\n80\t#### Experiment B: Early-Timestep Probe（核心实验）\n81\t\n82\t- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing\n83\t- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化\n84\t- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机\n85\t- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps\n86\t\n87\t#### Experiment C: Layer-wise Analysis\n88\t\n89\t- 33 层中哪些层编码了 instruction identity？\n90\t- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy\n91\t- 与 temporal distance probe 的 layer profile 对比\n92\t\n93\t### 2.4 Train/Test Split\n94\t\n95\t- **每 task 50 demos**: 40 train / 10 test (stratified by task)\n96\t- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class\n97\t- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples\n98\t- 对于 linear probe 足够\n99\t\n100\t### 2.5 潜在 Confound 及控制\n101\t\n102\t| Confound | 风险 | 控制方法 |\n103\t|----------|------|---------|\n104\t| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |\n105\t| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |\n106\t| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |\n107\t\n108\t---\n109\t\n110\t## 3. Feature Extraction 工时估算\n111\t\n112\t### 3.1 数据下载\n113\t\n114\t| 步骤 | 耗时估算 |\n115\t|------|---------|\n116\t| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |\n117\t| 验证 HDF5 结构兼容性 | ~10 min |\n118\t\n119\t### 3.2 特征提取\n120\t\n121\t参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。\n122\t\n123\t| 模型 | Tasks | 预估总时间 |\n124\t|------|-------|-----------|\n125\t| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |\n126\t| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |\n127\t| DINO-V2 ViT-L | 10 | ~15 min |\n128\t| SigLIP (optional) | 10 | ~15 min |\n129\t| **总计** | | **~6.5 hours** |\n130\t\n131\t### 3.3 存储需求\n132\t\n133\t| 数据 | 大小 |\n134\t|------|------|\n135\t| 原始 HDF5 | 6.37 GB |\n136\t| Trained features (10 tasks × ~5.3 GB) | ~53 GB |\n137\t| Untrained features | ~53 GB |\n138\t| DINO features | ~0.5 GB |\n139\t| **总计** | **~113 GB** |\n140\t\n141\t**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。\n142\t\n143\t### 3.4 Probe 训练\n144\t\n145\t- Linear probe 训练极快：每层 < 1 min\n146\t- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours\n147\t- 分析和绘图：~1 hour\n148\t\n149\t### 3.5 总工时\n150\t\n151\t| 阶段 | 工时 |\n152\t|------|------|\n153\t| 数据下载 + 验证 | 0.5h |\n154\t| 特征提取 (GPU time) | 6.5h |\n155\t| Probe 训练 + 分析 | 3h |\n156\t| **端到端** | **~10h (1 个工作日)** |\n157\t\n158\t如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。\n159\t\n160\t---\n161\t\n162\t## 4. 与 Grant et al. 2026 的关系\n163\t\n164\t### 4.1 Grant et al. 论文概要\n165\t\n166\t**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)\n167\t\n168\t- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT\n169\t- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes\n170\t- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）\n171\t- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）\n172\t- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction\n173\t- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为\n174\t\n175\t### 4.2 我们的方法 vs Grant et al.\n176\t\n177\t| 维度 | Grant et al. | 我们 |\n178\t|------|-------------|------|\n179\t| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |\n180\t| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |\n181\t| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |\n182\t| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |\n183\t| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |\n184\t| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |\n185\t\n186\t### 4.3 互补性分析\n187\t\n188\tGrant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。\n189\t\n190\t我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。\n191\t\n192\t**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。\n193\t\n194\t---\n195\t\n196\t## 5. Story 强度评估\n197\t\n198\t### 5.1 Claim\n199\t\n200\t> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"\n201\t\n202\t### 5.2 强度分析\n203\t\n204\t**优势**:\n205\t1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable\n206\t2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖\n207\t3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义\n208\t4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献\n209\t5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"\n210\t\n211\t**劣势**:\n212\t1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）\n213\t2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个\n214\t3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）\n215\t4. 10-way classification 的 chance level 是 10%，bar 不高\n216\t\n217\t### 5.3 潜在审稿攻击\n218\t\n219\t| 攻击 | 严重性 | 防御 |\n220\t|------|--------|------|\n221\t| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |\n222\t| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |\n223\t| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |\n224\t| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |\n225\t| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |\n226\t\n227\t### 5.4 Story 在论文中的定位\n228\t\n229\t**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。\n230\t\n231\t**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：\n232\t1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)\n233\t2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)\n234\t3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)\n235\t\n236\t三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。\n237\t\n238\t---\n239\t\n240\t## 6. Go/No-Go 建议\n241\t\n242\t### Decision Matrix\n243\t\n244\t| 因素 | 评分 | 说明 |\n245\t|------|------|------|\n246\t| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n247\t| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n248\t| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |\n249\t| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |\n250\t| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |\n251\t| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |\n252\t| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |\n253\t\n254\t### 建议: **Conditional GO**\n255\t\n256\t**条件**：\n257\t1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间\n258\t2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h\n259\t3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal\n260\t4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**\n261\t\n262\t**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。\n263\t\n264\t**如果两个 probe 都成功**，论文结构为：\n265\t- Section 4.1: Temporal distance probe (vision-solvable → negative)\n266\t- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)\n267\t- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)\n268\t- Section 5: \"When does VLA training matter?\" — unified analysis\n269\t\n270\t---\n271\t\n272\t## 附录: OpenVLA Prompt 构造\n273\t\n274\tLIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：\n275\t\n276\t```python\n277\tLIBERO_GOAL_PROMPTS = {\n278\t    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n279\t    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n280\t    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n281\t    # ... 以此类推，task name 的下划线替换为空格，首字母大写\n282\t}\n283\t```\n284\t\n285\t注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。\n286\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "943955b1-6d8a-4cf8-ab8a-753a6ec50d5c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md",
+                "content": "# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n\n> 日期: 2026-05-15 | 项目: vla-ssd\n\n---\n\n## 1. LIBERO-Goal 数据结构\n\n### 1.1 Suite 设计\n\nLIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。\n\n### 1.2 完整 Task 列表（10 tasks）\n\n| # | Task Name | HDF5 文件大小 |\n|---|-----------|-------------|\n| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |\n| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |\n| 4 | put_the_bowl_on_the_plate | 468 MB |\n| 5 | put_the_bowl_on_the_stove | 509 MB |\n| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |\n| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |\n| 8 | put_the_wine_bottle_on_the_rack | 879 MB |\n| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |\n| 10 | turn_on_the_stove | 448 MB |\n\n**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n\n### 1.3 下载方式\n\n```bash\n# 方式 1: LIBERO 官方脚本\npython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n\n# 方式 2: 直接从 HuggingFace 下载\n# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/\nhuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n```\n\n### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性\n\n**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：\n- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)\n- 每 task 50 demos，每 demo 220-290 timesteps\n\n**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**\n\n---\n\n## 2. Instruction-Conditioned Probe 设计\n\n### 2.1 核心思想\n\n> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n\n这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。\n\n### 2.2 Probe 架构\n\n```\nInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\nProbe:  Linear(4096, 10) + softmax  →  10-way classification\nTarget: instruction identity (哪个 task)\nLoss:   CrossEntropy\n```\n\n**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n\n### 2.3 关键实验设计\n\n#### Experiment A: Full-Trajectory Instruction Identity Probe\n\n- **输入**: 所有 timestep 的 hidden states\n- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP\n- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B\n\n#### Experiment B: Early-Timestep Probe（核心实验）\n\n- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing\n- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化\n- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机\n- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps\n\n#### Experiment C: Layer-wise Analysis\n\n- 33 层中哪些层编码了 instruction identity？\n- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy\n- 与 temporal distance probe 的 layer profile 对比\n\n### 2.4 Train/Test Split\n\n- **每 task 50 demos**: 40 train / 10 test (stratified by task)\n- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class\n- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples\n- 对于 linear probe 足够\n\n### 2.5 潜在 Confound 及控制\n\n| Confound | 风险 | 控制方法 |\n|----------|------|---------|\n| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |\n| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |\n| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |\n\n---\n\n## 3. Feature Extraction 工时估算\n\n### 3.1 数据下载\n\n| 步骤 | 耗时估算 |\n|------|---------|\n| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |\n| 验证 HDF5 结构兼容性 | ~10 min |\n\n### 3.2 特征提取\n\n参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。\n\n| 模型 | Tasks | 预估总时间 |\n|------|-------|-----------|\n| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| DINO-V2 ViT-L | 10 | ~15 min |\n| SigLIP (optional) | 10 | ~15 min |\n| **总计** | | **~6.5 hours** |\n\n### 3.3 存储需求\n\n| 数据 | 大小 |\n|------|------|\n| 原始 HDF5 | 6.37 GB |\n| Trained features (10 tasks × ~5.3 GB) | ~53 GB |\n| Untrained features | ~53 GB |\n| DINO features | ~0.5 GB |\n| **总计** | **~113 GB** |\n\n**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。\n\n### 3.4 Probe 训练\n\n- Linear probe 训练极快：每层 < 1 min\n- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours\n- 分析和绘图：~1 hour\n\n### 3.5 总工时\n\n| 阶段 | 工时 |\n|------|------|\n| 数据下载 + 验证 | 0.5h |\n| 特征提取 (GPU time) | 6.5h |\n| Probe 训练 + 分析 | 3h |\n| **端到端** | **~10h (1 个工作日)** |\n\n如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。\n\n---\n\n## 4. 与 Grant et al. 2026 的关系\n\n### 4.1 Grant et al. 论文概要\n\n**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)\n\n- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT\n- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes\n- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）\n- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）\n- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction\n- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为\n\n### 4.2 我们的方法 vs Grant et al.\n\n| 维度 | Grant et al. | 我们 |\n|------|-------------|------|\n| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |\n| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |\n| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |\n| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |\n| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |\n| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |\n\n### 4.3 互补性分析\n\nGrant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。\n\n我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。\n\n**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。\n\n---\n\n## 5. Story 强度评估\n\n### 5.1 Claim\n\n> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"\n\n### 5.2 强度分析\n\n**优势**:\n1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable\n2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖\n3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义\n4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献\n5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"\n\n**劣势**:\n1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）\n2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个\n3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）\n4. 10-way classification 的 chance level 是 10%，bar 不高\n\n### 5.3 潜在审稿攻击\n\n| 攻击 | 严重性 | 防御 |\n|------|--------|------|\n| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |\n| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |\n| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |\n| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |\n| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |\n\n### 5.4 Story 在论文中的定位\n\n**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。\n\n**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：\n1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)\n2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)\n3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)\n\n三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。\n\n---\n\n## 6. Go/No-Go 建议\n\n### Decision Matrix\n\n| 因素 | 评分 | 说明 |\n|------|------|------|\n| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |\n| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |\n| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |\n| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |\n| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |\n\n### 建议: **Conditional GO**\n\n**条件**：\n1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间\n2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h\n3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal\n4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**\n\n**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。\n\n**如果两个 probe 都成功**，论文结构为：\n- Section 4.1: Temporal distance probe (vision-solvable → negative)\n- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)\n- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)\n- Section 5: \"When does VLA training matter?\" — unified analysis\n\n---\n\n## 附录: OpenVLA Prompt 构造\n\nLIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：\n\n```python\nLIBERO_GOAL_PROMPTS = {\n    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n    # ... 以此类推，task name 的下划线替换为空格，首字母大写\n}\n```\n\n注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。\n",
+                "numLines": 286,
+                "startLine": 1,
+                "totalLines": 286
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The existing document is comprehensive and well-structured. I need to update it with the new information I gathered:\n\n1. **Grant et al. detailed numbers**: Per-model results (π0.5, OFT, X-VLA, GR00T) on libero_goal vs libero_object\n2. **The 99.3% linear probing paradox**: π0.5 layer 17 encodes prompt information perfectly but doesn't route it to motor output\n3. **Buurmeijer et al. (Swann et al. 2026)**: SAE paper on π0.5 and OpenVLA, memorization findings\n\n\n4. **LIBERO-CF (2026)**: Counterfactual benchmark showing vision dominates with 94-97% success while language plays a secondary role\n5. **Updated novelty gap analysis** incorporating all these recent findings\n6. **Risk analysis expansion** to address the implications of these new results\n\nNow I'm ready to write the comprehensive updated version.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "91e22a38-7b9b-4dd8-9634-29d489d5d560",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012CngWQtuD3RpovF12fFPDy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6846,
+                "cache_read_input_tokens": 58591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6846
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The existing doc is already quite good. I'll update it with the detailed per-model numbers, the probing paradox finding, and the comprehensive related work analysis."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "c742492b-43f0-4cb0-b0a3-8b0a94abe2cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012CngWQtuD3RpovF12fFPDy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6846,
+                "cache_read_input_tokens": 58591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6846
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdDFusg3xcXmUZK25Pa8YB",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md",
+                "content": "# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n\n> 日期: 2026-05-15 (updated) | 项目: vla-ssd\n\n---\n\n## 1. Grant et al. 2026 关键发现\n\n**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"**\narXiv:2603.19233 | ICLR 2026 Workshop MM Intelligence | Case Western Reserve University\n\n### 1.1 实验规模\n\n- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA (~1B, 24 layers, Florence-2), SmolVLA, GR00T N1.5, ACT\n- 方法: activation injection + 424 SAEs (TopK k=64) + linear probes\n- 总 rollout: 394K+ episodes，跨 4 个 LIBERO suites + SimplerEnv\n\n### 1.2 LIBERO-Goal vs LIBERO-Object：语言敏感性的关键对比\n\n**LIBERO-Goal (shared scene, language-critical):**\n\n| Model | Correct Prompt | Null Prompt | Wrong Object |\n|-------|---------------|-------------|--------------|\n| π0.5 | 83.3% | 80% | 76.7% |\n| OFT | 100% | 10% | 10% |\n| X-VLA | 94% | 10% | 4-10% |\n| GR00T | 97% | 0% | 0% |\n\n**LIBERO-Object (distinct scenes, vision-sufficient):**\n\n| Model | Correct Prompt | Null Prompt | Wrong Object |\n|-------|---------------|-------------|--------------|\n| π0.5 | 77.4% | 77% | 74.2% |\n| OFT | 100% | 100% | 100% |\n| X-VLA | 100% | 60% | 60-90% |\n\n**核心结论**: 语言敏感性取决于 task structure（scene 是否 ambiguous），而非模型架构。OFT/X-VLA/GR00T 在 LIBERO-Goal 上 collapse 到 0-10%；π0.5 衰减较小（可能因其 dual-pathway 架构保留了更多视觉 prior）。\n\n### 1.3 线性 Probe 的 Paradox（对我们至关重要）\n\n**π0.5 Layer 17: 99.3% prompt classification accuracy，但行为几乎不受 prompt 影响。**\n\n这意味着：模型在中间层 **密集编码了语言信息**，但没有将其路由到 motor pathway。\"Prompts are encoded but not used\"——视觉主导 action generation，语言信息在 LIBERO-Object 等 vision-sufficient 场景中被 bypass。\n\n**GR00T N1.5**: 100% task identification + 96.4% success prediction（32 层均一致）。\n\n**与我们的关系**: Grant 的 probe 在 fine-tuned models 的 **rollout episodes** 上做 task ID。我们在 **offline demo features** 上做 instruction identity，且对比 **trained vs untrained**——这是他们没有做的。\n\n### 1.4 SAE 分析\n\n- 6 个模型上 82+ manipulation concepts（motion primitives, object categories, spatial relationships）\n- 频率加权 contrastive selection (Cohen's d)\n- 43-82 distinct concepts per model\n- Causal ablation: 28-92% zero-effect rates（很多 feature 对行为无影响）\n\n### 1.5 Counterfactual 条件设计（6 种）\n\nBaseline (correct), null prompt (empty), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switches.\n\n---\n\n## 2. 相关工作与 Novelty Gap 分析\n\n### 2.1 Swann, McGranahan, **Buurmeijer**, Kennedy, Schwager (2026)\n\n**\"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models\"**\narXiv:2603.19183 | Stanford University\n\n- 模型: π0.5 (primary) + OpenVLA\n- 数据: LIBERO (4 suites, 1693 episodes, 40 tasks) + DROID (2000 episodes, 1545 tasks)\n- **发现**: VLA 存在大量 episode-level memorization；larger/diverse datasets (DROID) 产生更多 generalizable features\n- **Feature 类型**: general (grasping, transport, alignment) vs memorized (episode-specific sequences)\n- 79% features interpretable, steering experiments 验证因果影响\n- **与我们的关系**: 他们关注 sensorimotor features，**没有分析 language-related features**，没有 trained vs untrained 对比\n\n### 2.2 LIBERO-CF (2026)\n\n**\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"**\narXiv:2602.17659\n\n- 首个 VLA counterfactual benchmark（CF-Spatial, CF-Object, CF-Long, CF-OOD）\n- **Modality ablation**: VLA 维持 94-97% vision-only success，language-only collapse 到 ~0%\n- π0.5 best model 也只有 30.8% grounding / 13.2% task success on counterfactual instructions\n- **Bayesian 解释**: VLAs collapse 到 P(a|o) 而非正确加权 P(a|l,o)。Language 是 secondary conditioning signal\n- Object removal 实验: 移除 training-task objects → counterfactual performance +25.4%\n- **与我们的关系**: 他们测 behavioral 层面的 counterfactual failure（intervention），我们测 representational 层面的 instruction encoding（probing）。互补。\n\n### 2.3 INT-ACT (2026)\n\n**\"From Intention to Execution: Probing the Generalization Boundaries of VLA Models\"**\narXiv:2506.09930\n\n- 提出 \"intention-action gap\"：VLA 在 OOD shifts 下维持高 semantic intent，但 motor success 大幅下降\n- **与我们的关系**: 他们 probe \"intention\" 的 generalization，我们 probe instruction identity 的 **training-dependent encoding**\n\n### 2.4 Novelty Gap 总结\n\n| 论文 | 做了什么 | **没有做什么**（我们的空间） |\n|------|---------|---------------------------|\n| Grant 2026 | Behavioral language sensitivity (causal, 6 models) | Trained vs untrained; layer×timestep granularity |\n| Swann/Buurmeijer 2026 | SAE feature interpretability + steering | No language features; no training effect comparison |\n| LIBERO-CF 2026 | Counterfactual behavioral benchmark | No representation analysis |\n| INT-ACT 2026 | Intention probing under OOD | No shared-scene instruction discrimination |\n\n**我们的独特贡献**:\n1. **Trained vs untrained VLA** — 唯一一篇对比 VLA 训练前后的 instruction encoding\n2. **Layer × timestep granularity** — 33 层 × early/mid/late timesteps 的细粒度分析\n3. **Vision-unsolvable probing target** — early timestep + shared scene = 纯 vision baseline 无法区分\n4. **Offline demo probing** — 无需 rollout 环境，可复现性强\n\n---\n\n## 3. LIBERO-Goal 数据集规格\n\n### 3.1 Suite 设计\n\nLIBERO-Goal 是 LIBERO benchmark 的 4 个主要 suite 之一（Spatial / Object / Goal / 100）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 视觉 ambiguous，必须依赖 instruction 区分 task。\n\n### 3.2 完整 Task 列表（10 tasks）\n\n| # | Task Name | Language Instruction | HDF5 Size |\n|---|-----------|---------------------|-----------|\n| 1 | open_the_middle_drawer_of_the_cabinet | Open the middle drawer of the cabinet | 702 MB |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | Open the top drawer and put the bowl inside | 1.02 GB |\n| 3 | push_the_plate_to_the_front_of_the_stove | Push the plate to the front of the stove | 763 MB |\n| 4 | put_the_bowl_on_the_plate | Put the bowl on the plate | 468 MB |\n| 5 | put_the_bowl_on_the_stove | Put the bowl on the stove | 509 MB |\n| 6 | put_the_bowl_on_top_of_the_cabinet | Put the bowl on top of the cabinet | 510 MB |\n| 7 | put_the_cream_cheese_in_the_bowl | Put the cream cheese in the bowl | 536 MB |\n| 8 | put_the_wine_bottle_on_the_rack | Put the wine bottle on the rack | 879 MB |\n| 9 | put_the_wine_bottle_on_top_of_the_cabinet | Put the wine bottle on top of the cabinet | 540 MB |\n| 10 | turn_on_the_stove | Turn on the stove | 448 MB |\n\n**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n\n### 3.3 Task 特征分析（对 probing 的影响）\n\n- Tasks 4-6 (bowl → plate/stove/cabinet) 共享 object (bowl) 但 target location 不同 → **同 object 不同 goal 的 subset**\n- Tasks 8-9 (wine bottle → rack/cabinet) 类似\n- Task 1 vs 10 (drawer vs stove) → **完全不同的操作对象和动作**\n- 这种 hierarchical structure 可支持 sub-group 分析（within-object vs cross-object instruction discrimination）\n\n### 3.4 HDF5 格式（与现有 LIBERO-10 完全兼容）\n\n```\ndata/demo_{i}/obs/agentview_rgb     (T, 128, 128, 3) uint8\ndata/demo_{i}/obs/eye_in_hand_rgb   (T, 128, 128, 3) uint8\ndata/demo_{i}/actions               (T, 7) float64 [3D pos delta + 3D rot delta + gripper]\n```\n\n- 每 task 50 demos，每 demo 220-290 timesteps，max 300 steps\n- 20 Hz control frequency, Franka Panda arm\n- **`extract_features.py` 可直接使用，无需修改数据加载代码**\n\n### 3.5 下载\n\n```bash\n# HuggingFace (推荐)\nhuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n\n# 或 LIBERO 官方脚本\npython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n```\n\nAutoDL 注意: `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL certs.\n\n---\n\n## 4. Instruction-Conditioned Probe 方案\n\n### 4.1 核心思想\n\n> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n\n直接回应 MVP 失败的根因：temporal distance 是 vision-solvable，所以需要 **vision-unsolvable** 的 probing target。LIBERO-Goal trajectory 开头视觉几乎相同（共享 scene），只有 instruction 不同——天然的 vision-unsolvable 信号。\n\n### 4.2 Probe 架构\n\n```\nInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\nProbe:  Linear(4096, 10) + softmax  →  10-way classification\nTarget: instruction identity (哪个 task)\nLoss:   CrossEntropy\n```\n\n每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n\n### 4.3 对比条件（4 models）\n\n| Condition | Has instruction tokens? | Has trained LLM? | Has vision? | 预期 early-step accuracy |\n|-----------|------------------------|-------------------|-------------|------------------------|\n| Trained VLA | Yes | Yes | Yes | **高 (70-90%)** |\n| Untrained VLA | Yes | No (random LLM) | Yes (SigLIP preserved) | **中 (30-50%)** — token embeddings 提供 partial signal |\n| DINO-V2 | No | No | Yes | **低 (~10% = chance)** — 强 control |\n| SigLIP only | No | No | Yes | **低 (~10%)** — 另一个 vision control |\n\n### 4.4 关键实验\n\n**Exp A: Full-Trajectory Instruction Identity Probe**\n- 所有 timestep 的 hidden states\n- 预期: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分\n\n**Exp B: Early-Timestep Probe（核心实验）**\n- 只用前 K 步 (K=5, 10, 20)\n- 理由: trajectory 开头视觉场景几乎相同，行为尚未分化\n- **关键指标**: Δ_acc(trained VLA − DINO) @ K=5\n\n**Exp C: Layer-wise Analysis**\n- 33 层的 instruction identity accuracy profile\n- 预期: early layers (vision-dominated) 低，middle/late layers (LLM-processed) 高\n- 与 Grant 的 99.3% finding 对照：trained 在哪些层 encode instruction？untrained 呢？\n\n**Exp D: Sub-group Analysis**\n- Within-object pairs (bowl→plate vs bowl→stove vs bowl→cabinet): harder, requires fine-grained goal distinction\n- Cross-object pairs (bowl tasks vs wine bottle tasks): easier, object identity helps\n- 如果 trained VLA 在 within-object 也高 accuracy → 更强的 claim\n\n### 4.5 Train/Test Split\n\n- 每 task 50 demos: 40 train / 10 test (stratified)\n- K=10: 10 classes × 40 × 10 = 4000 train, 1000 test\n- Linear probe 足够\n\n### 4.6 Confound 控制\n\n| Confound | 风险 | 控制 |\n|----------|------|------|\n| t=0 视觉微小差异 | 低 | 检查 DINO t=0 accuracy；如果 >20% → probe premise 有问题 |\n| Instruction tokens 直接泄露 | 高（但不是 bug） | Untrained 对比：也有 instruction tokens 但缺 grounded encoding |\n| Trajectory 长度分布差异 | 中 | 固定 K，不用 relative position |\n| OpenVLA 未在 LIBERO-Goal 上 fine-tune | 中 | 不需要 task success — 只需 hidden states 编码 instruction；通用 prompt format 足够 |\n\n---\n\n## 5. 时间/资源估算\n\n### 5.1 数据下载 + 验证\n\n| 步骤 | 耗时 |\n|------|------|\n| LIBERO-Goal HDF5 (6.37 GB) | ~30 min |\n| 验证 HDF5 兼容 + t=0 visual check | ~10 min |\n\n### 5.2 特征提取 (GPU time, 2×RTX PRO 6000)\n\n| 模型 | 方案 A (全 33 层) | 方案 B (8 关键层) |\n|------|------------------|------------------|\n| Trained OpenVLA | ~3h | ~1h |\n| Untrained OpenVLA | ~3h | ~1h |\n| DINO-V2 | ~15 min | ~15 min |\n| SigLIP | ~15 min | ~15 min |\n| **总计** | **~6.5h** | **~2.5h** |\n\n### 5.3 存储\n\n| 数据 | 方案 A | 方案 B |\n|------|--------|--------|\n| 原始 HDF5 | 6.37 GB | 6.37 GB |\n| Trained features | ~53 GB | ~13 GB |\n| Untrained features | ~53 GB | ~13 GB |\n| DINO + SigLIP | ~1 GB | ~1 GB |\n| **总计** | **~113 GB** | **~34 GB** |\n\n当前 `/root/autodl-tmp/` 已有 ~107 GB LIBERO-10 features。方案 B 需额外 34 GB，可行。方案 A 需清理旧数据。\n\n### 5.4 Probe 训练 + 分析\n\n- Linear probe 训练: 每层 < 1 min\n- 33 layers × 4 models × 3-4 K values ≈ ~2h\n- 分析、绘图、写报告: ~1h\n\n### 5.5 总工时\n\n| 阶段 | 方案 A | 方案 B (推荐) |\n|------|--------|--------------|\n| 数据下载 + 验证 | 0.5h | 0.5h |\n| 特征提取 | 6.5h | 2.5h |\n| Probe 训练 + 分析 | 3h | 3h |\n| **端到端** | **~10h** | **~6h** |\n\n---\n\n## 6. 风险分析\n\n### 6.1 实验可能 FAIL 的场景\n\n| 风险 | 概率 | 后果 | 缓解 |\n|------|------|------|------|\n| **LIBERO-Goal t=0 视觉其实不同** — 初始 arm pose 或 scene layout 因 task 而异 | 中 | Probe premise 不成立，DINO 也能高 accuracy → 实验无价值 | **下载后立即验证** t=0 DINO cosine similarity；如果 10 个 task 的 t=0 两两 sim > 0.95 → OK；否则 abort |\n| **Untrained VLA 也高 accuracy** — random LLM 的 token embeddings 足以区分 instruction | 中-高 | \"VLA training contributes instruction grounding\" claim 不成立 | 这种情况下 pivot 到 \"where in the network does instruction info reside\"，仍有 layer-wise 贡献 |\n| **Trained VLA accuracy 也低 (~10-20%)** — OpenVLA 未在 LIBERO-Goal 上 fine-tune，instruction 未被 grounded | 低-中 | Negative result → instruction encoding 确实 weak | 报告为 negative result；与 Grant 的 behavioral finding (94%→10%) 对比分析 |\n| **存储空间不足** | 中 | 无法存全部 features | 用方案 B (8 层) 或清理 LIBERO-10 旧 features |\n| **OpenVLA prompt format 不匹配** | 低 | 模型收到格式异常的 instruction → hidden states 不正常 | 测试前用 1 个 demo 验证 forward pass 输出合理 |\n\n### 6.2 \"这条路也 FAIL\" 的最坏情况\n\n如果 trained VLA accuracy ≈ untrained ≈ DINO（都能或都不能区分），说明：\n- LIBERO-Goal 的 \"shared scene\" 其实在 pixel level 已经可区分\n- 或 OpenVLA 的 instruction processing 根本不工作（因为没有在 LIBERO-Goal 上 fine-tune）\n\n此时 instruction probe 作为 **informative negative** 仍有价值：证明 VLA 训练的 instruction grounding 在 out-of-distribution scenes 上失效，与 LIBERO-CF 的 findings 一致。\n\n---\n\n## 7. Go/No-Go 建议\n\n### Decision Matrix\n\n| 因素 | 评分 | 说明 |\n|------|------|------|\n| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n| 工时可控 | ✅ | 方案 B ~6h 端到端 |\n| Novelty 空间 | ✅ | Trained vs untrained + layer×timestep granularity 无人做过 |\n| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 behavioral insight |\n| 组合 story 强度 | ✅ | 与 temporal distance + action probe 构成 \"when does VLA training matter\" 的完整 story |\n| CoRL deadline 风险 | ⚠️ | 还剩 14 天 (abstract 5/26, paper 5/29) |\n| 存储空间 | ✅ | 方案 B 仅需 ~34 GB |\n\n### 建议: **Conditional GO**\n\n**必须先过的 gate**:\n1. 下载 LIBERO-Goal 后，用 DINO 检查 10 个 task 的 t=0 pairwise cosine similarity ≥ 0.95 → 确认视觉 ambiguity\n2. Action prediction probe 结果出来后，确认 \"VLA training matters for action\" story 成立\n\n**执行顺序**:\n1. 下载 + t=0 visual check (0.5h)\n2. 方案 B 特征提取：8 关键层 (2.5h)\n3. Probe 训练 + 分析 (3h)\n4. 如果结果好 → 补全 33 层做 full layer-wise analysis\n\n**论文定位（最终 story）**:\n- Sec 4.1: Temporal distance probe → vision-solvable → Δρ 小 (informative negative)\n- Sec 4.2: Instruction identity probe → vision-unsolvable → Δ_acc 大 (VLA training matters)\n- Sec 4.3: Action prediction probe → policy knowledge → Δ large (VLA training matters)\n- Sec 5: Unified \"when does VLA training matter?\" analysis\n\n---\n\n## 附录 A: OpenVLA Prompt 构造\n\n```python\nLIBERO_GOAL_PROMPTS = {\n    \"open_the_middle_drawer_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\":\n        \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n    \"push_the_plate_to_the_front_of_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n    \"put_the_bowl_on_the_plate\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the plate.\",\n    \"put_the_bowl_on_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the stove.\",\n    \"put_the_bowl_on_top_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on top of the cabinet.\",\n    \"put_the_cream_cheese_in_the_bowl\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the cream cheese in the bowl.\",\n    \"put_the_wine_bottle_on_the_rack\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on the rack.\",\n    \"put_the_wine_bottle_on_top_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on top of the cabinet.\",\n    \"turn_on_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nTurn on the stove.\",\n}\n```\n\n## 附录 B: Grant et al. 方法学详细\n\n**六种 Counterfactual 条件**: correct prompt, null (empty string), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switch.\n\n**Activation Injection**: 替换模型内部 activation 为另一 task 的 activation → 测试 vision vs language pathway 的因果贡献。Visual pathway injection: cosine sim 0.999 with source task behavior.\n\n**SAE Training**: 424 SAEs across 6 architectures, TopK sparsity (k=64), frequency-weighted contrastive selection → 82+ manipulation concepts.\n\n**Linear Probes on Rollouts**: GR00T 100% task ID across 32 layers; π0.5 99.3% prompt classification at L17 despite behavioral invariance to prompts → **\"encoded but not used\"** paradox.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "7c8bce0d-b75b-43d8-a3ce-13ae2fe30ad1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012CngWQtuD3RpovF12fFPDy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6846,
+                "cache_read_input_tokens": 58591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6846
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-15T16:06:59.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdDFusg3xcXmUZK25Pa8YB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "6a1c2887-2736-4fcc-a2e4-15671c87ac4f",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md",
+              "content": "# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n\n> 日期: 2026-05-15 (updated) | 项目: vla-ssd\n\n---\n\n## 1. Grant et al. 2026 关键发现\n\n**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"**\narXiv:2603.19233 | ICLR 2026 Workshop MM Intelligence | Case Western Reserve University\n\n### 1.1 实验规模\n\n- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA (~1B, 24 layers, Florence-2), SmolVLA, GR00T N1.5, ACT\n- 方法: activation injection + 424 SAEs (TopK k=64) + linear probes\n- 总 rollout: 394K+ episodes，跨 4 个 LIBERO suites + SimplerEnv\n\n### 1.2 LIBERO-Goal vs LIBERO-Object：语言敏感性的关键对比\n\n**LIBERO-Goal (shared scene, language-critical):**\n\n| Model | Correct Prompt | Null Prompt | Wrong Object |\n|-------|---------------|-------------|--------------|\n| π0.5 | 83.3% | 80% | 76.7% |\n| OFT | 100% | 10% | 10% |\n| X-VLA | 94% | 10% | 4-10% |\n| GR00T | 97% | 0% | 0% |\n\n**LIBERO-Object (distinct scenes, vision-sufficient):**\n\n| Model | Correct Prompt | Null Prompt | Wrong Object |\n|-------|---------------|-------------|--------------|\n| π0.5 | 77.4% | 77% | 74.2% |\n| OFT | 100% | 100% | 100% |\n| X-VLA | 100% | 60% | 60-90% |\n\n**核心结论**: 语言敏感性取决于 task structure（scene 是否 ambiguous），而非模型架构。OFT/X-VLA/GR00T 在 LIBERO-Goal 上 collapse 到 0-10%；π0.5 衰减较小（可能因其 dual-pathway 架构保留了更多视觉 prior）。\n\n### 1.3 线性 Probe 的 Paradox（对我们至关重要）\n\n**π0.5 Layer 17: 99.3% prompt classification accuracy，但行为几乎不受 prompt 影响。**\n\n这意味着：模型在中间层 **密集编码了语言信息**，但没有将其路由到 motor pathway。\"Prompts are encoded but not used\"——视觉主导 action generation，语言信息在 LIBERO-Object 等 vision-sufficient 场景中被 bypass。\n\n**GR00T N1.5**: 100% task identification + 96.4% success prediction（32 层均一致）。\n\n**与我们的关系**: Grant 的 probe 在 fine-tuned models 的 **rollout episodes** 上做 task ID。我们在 **offline demo features** 上做 instruction identity，且对比 **trained vs untrained**——这是他们没有做的。\n\n### 1.4 SAE 分析\n\n- 6 个模型上 82+ manipulation concepts（motion primitives, object categories, spatial relationships）\n- 频率加权 contrastive selection (Cohen's d)\n- 43-82 distinct concepts per model\n- Causal ablation: 28-92% zero-effect rates（很多 feature 对行为无影响）\n\n### 1.5 Counterfactual 条件设计（6 种）\n\nBaseline (correct), null prompt (empty), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switches.\n\n---\n\n## 2. 相关工作与 Novelty Gap 分析\n\n### 2.1 Swann, McGranahan, **Buurmeijer**, Kennedy, Schwager (2026)\n\n**\"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models\"**\narXiv:2603.19183 | Stanford University\n\n- 模型: π0.5 (primary) + OpenVLA\n- 数据: LIBERO (4 suites, 1693 episodes, 40 tasks) + DROID (2000 episodes, 1545 tasks)\n- **发现**: VLA 存在大量 episode-level memorization；larger/diverse datasets (DROID) 产生更多 generalizable features\n- **Feature 类型**: general (grasping, transport, alignment) vs memorized (episode-specific sequences)\n- 79% features interpretable, steering experiments 验证因果影响\n- **与我们的关系**: 他们关注 sensorimotor features，**没有分析 language-related features**，没有 trained vs untrained 对比\n\n### 2.2 LIBERO-CF (2026)\n\n**\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"**\narXiv:2602.17659\n\n- 首个 VLA counterfactual benchmark（CF-Spatial, CF-Object, CF-Long, CF-OOD）\n- **Modality ablation**: VLA 维持 94-97% vision-only success，language-only collapse 到 ~0%\n- π0.5 best model 也只有 30.8% grounding / 13.2% task success on counterfactual instructions\n- **Bayesian 解释**: VLAs collapse 到 P(a|o) 而非正确加权 P(a|l,o)。Language 是 secondary conditioning signal\n- Object removal 实验: 移除 training-task objects → counterfactual performance +25.4%\n- **与我们的关系**: 他们测 behavioral 层面的 counterfactual failure（intervention），我们测 representational 层面的 instruction encoding（probing）。互补。\n\n### 2.3 INT-ACT (2026)\n\n**\"From Intention to Execution: Probing the Generalization Boundaries of VLA Models\"**\narXiv:2506.09930\n\n- 提出 \"intention-action gap\"：VLA 在 OOD shifts 下维持高 semantic intent，但 motor success 大幅下降\n- **与我们的关系**: 他们 probe \"intention\" 的 generalization，我们 probe instruction identity 的 **training-dependent encoding**\n\n### 2.4 Novelty Gap 总结\n\n| 论文 | 做了什么 | **没有做什么**（我们的空间） |\n|------|---------|---------------------------|\n| Grant 2026 | Behavioral language sensitivity (causal, 6 models) | Trained vs untrained; layer×timestep granularity |\n| Swann/Buurmeijer 2026 | SAE feature interpretability + steering | No language features; no training effect comparison |\n| LIBERO-CF 2026 | Counterfactual behavioral benchmark | No representation analysis |\n| INT-ACT 2026 | Intention probing under OOD | No shared-scene instruction discrimination |\n\n**我们的独特贡献**:\n1. **Trained vs untrained VLA** — 唯一一篇对比 VLA 训练前后的 instruction encoding\n2. **Layer × timestep granularity** — 33 层 × early/mid/late timesteps 的细粒度分析\n3. **Vision-unsolvable probing target** — early timestep + shared scene = 纯 vision baseline 无法区分\n4. **Offline demo probing** — 无需 rollout 环境，可复现性强\n\n---\n\n## 3. LIBERO-Goal 数据集规格\n\n### 3.1 Suite 设计\n\nLIBERO-Goal 是 LIBERO benchmark 的 4 个主要 suite 之一（Spatial / Object / Goal / 100）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 视觉 ambiguous，必须依赖 instruction 区分 task。\n\n### 3.2 完整 Task 列表（10 tasks）\n\n| # | Task Name | Language Instruction | HDF5 Size |\n|---|-----------|---------------------|-----------|\n| 1 | open_the_middle_drawer_of_the_cabinet | Open the middle drawer of the cabinet | 702 MB |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | Open the top drawer and put the bowl inside | 1.02 GB |\n| 3 | push_the_plate_to_the_front_of_the_stove | Push the plate to the front of the stove | 763 MB |\n| 4 | put_the_bowl_on_the_plate | Put the bowl on the plate | 468 MB |\n| 5 | put_the_bowl_on_the_stove | Put the bowl on the stove | 509 MB |\n| 6 | put_the_bowl_on_top_of_the_cabinet | Put the bowl on top of the cabinet | 510 MB |\n| 7 | put_the_cream_cheese_in_the_bowl | Put the cream cheese in the bowl | 536 MB |\n| 8 | put_the_wine_bottle_on_the_rack | Put the wine bottle on the rack | 879 MB |\n| 9 | put_the_wine_bottle_on_top_of_the_cabinet | Put the wine bottle on top of the cabinet | 540 MB |\n| 10 | turn_on_the_stove | Turn on the stove | 448 MB |\n\n**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n\n### 3.3 Task 特征分析（对 probing 的影响）\n\n- Tasks 4-6 (bowl → plate/stove/cabinet) 共享 object (bowl) 但 target location 不同 → **同 object 不同 goal 的 subset**\n- Tasks 8-9 (wine bottle → rack/cabinet) 类似\n- Task 1 vs 10 (drawer vs stove) → **完全不同的操作对象和动作**\n- 这种 hierarchical structure 可支持 sub-group 分析（within-object vs cross-object instruction discrimination）\n\n### 3.4 HDF5 格式（与现有 LIBERO-10 完全兼容）\n\n```\ndata/demo_{i}/obs/agentview_rgb     (T, 128, 128, 3) uint8\ndata/demo_{i}/obs/eye_in_hand_rgb   (T, 128, 128, 3) uint8\ndata/demo_{i}/actions               (T, 7) float64 [3D pos delta + 3D rot delta + gripper]\n```\n\n- 每 task 50 demos，每 demo 220-290 timesteps，max 300 steps\n- 20 Hz control frequency, Franka Panda arm\n- **`extract_features.py` 可直接使用，无需修改数据加载代码**\n\n### 3.5 下载\n\n```bash\n# HuggingFace (推荐)\nhuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n\n# 或 LIBERO 官方脚本\npython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n```\n\nAutoDL 注意: `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL certs.\n\n---\n\n## 4. Instruction-Conditioned Probe 方案\n\n### 4.1 核心思想\n\n> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n\n直接回应 MVP 失败的根因：temporal distance 是 vision-solvable，所以需要 **vision-unsolvable** 的 probing target。LIBERO-Goal trajectory 开头视觉几乎相同（共享 scene），只有 instruction 不同——天然的 vision-unsolvable 信号。\n\n### 4.2 Probe 架构\n\n```\nInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\nProbe:  Linear(4096, 10) + softmax  →  10-way classification\nTarget: instruction identity (哪个 task)\nLoss:   CrossEntropy\n```\n\n每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n\n### 4.3 对比条件（4 models）\n\n| Condition | Has instruction tokens? | Has trained LLM? | Has vision? | 预期 early-step accuracy |\n|-----------|------------------------|-------------------|-------------|------------------------|\n| Trained VLA | Yes | Yes | Yes | **高 (70-90%)** |\n| Untrained VLA | Yes | No (random LLM) | Yes (SigLIP preserved) | **中 (30-50%)** — token embeddings 提供 partial signal |\n| DINO-V2 | No | No | Yes | **低 (~10% = chance)** — 强 control |\n| SigLIP only | No | No | Yes | **低 (~10%)** — 另一个 vision control |\n\n### 4.4 关键实验\n\n**Exp A: Full-Trajectory Instruction Identity Probe**\n- 所有 timestep 的 hidden states\n- 预期: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分\n\n**Exp B: Early-Timestep Probe（核心实验）**\n- 只用前 K 步 (K=5, 10, 20)\n- 理由: trajectory 开头视觉场景几乎相同，行为尚未分化\n- **关键指标**: Δ_acc(trained VLA − DINO) @ K=5\n\n**Exp C: Layer-wise Analysis**\n- 33 层的 instruction identity accuracy profile\n- 预期: early layers (vision-dominated) 低，middle/late layers (LLM-processed) 高\n- 与 Grant 的 99.3% finding 对照：trained 在哪些层 encode instruction？untrained 呢？\n\n**Exp D: Sub-group Analysis**\n- Within-object pairs (bowl→plate vs bowl→stove vs bowl→cabinet): harder, requires fine-grained goal distinction\n- Cross-object pairs (bowl tasks vs wine bottle tasks): easier, object identity helps\n- 如果 trained VLA 在 within-object 也高 accuracy → 更强的 claim\n\n### 4.5 Train/Test Split\n\n- 每 task 50 demos: 40 train / 10 test (stratified)\n- K=10: 10 classes × 40 × 10 = 4000 train, 1000 test\n- Linear probe 足够\n\n### 4.6 Confound 控制\n\n| Confound | 风险 | 控制 |\n|----------|------|------|\n| t=0 视觉微小差异 | 低 | 检查 DINO t=0 accuracy；如果 >20% → probe premise 有问题 |\n| Instruction tokens 直接泄露 | 高（但不是 bug） | Untrained 对比：也有 instruction tokens 但缺 grounded encoding |\n| Trajectory 长度分布差异 | 中 | 固定 K，不用 relative position |\n| OpenVLA 未在 LIBERO-Goal 上 fine-tune | 中 | 不需要 task success — 只需 hidden states 编码 instruction；通用 prompt format 足够 |\n\n---\n\n## 5. 时间/资源估算\n\n### 5.1 数据下载 + 验证\n\n| 步骤 | 耗时 |\n|------|------|\n| LIBERO-Goal HDF5 (6.37 GB) | ~30 min |\n| 验证 HDF5 兼容 + t=0 visual check | ~10 min |\n\n### 5.2 特征提取 (GPU time, 2×RTX PRO 6000)\n\n| 模型 | 方案 A (全 33 层) | 方案 B (8 关键层) |\n|------|------------------|------------------|\n| Trained OpenVLA | ~3h | ~1h |\n| Untrained OpenVLA | ~3h | ~1h |\n| DINO-V2 | ~15 min | ~15 min |\n| SigLIP | ~15 min | ~15 min |\n| **总计** | **~6.5h** | **~2.5h** |\n\n### 5.3 存储\n\n| 数据 | 方案 A | 方案 B |\n|------|--------|--------|\n| 原始 HDF5 | 6.37 GB | 6.37 GB |\n| Trained features | ~53 GB | ~13 GB |\n| Untrained features | ~53 GB | ~13 GB |\n| DINO + SigLIP | ~1 GB | ~1 GB |\n| **总计** | **~113 GB** | **~34 GB** |\n\n当前 `/root/autodl-tmp/` 已有 ~107 GB LIBERO-10 features。方案 B 需额外 34 GB，可行。方案 A 需清理旧数据。\n\n### 5.4 Probe 训练 + 分析\n\n- Linear probe 训练: 每层 < 1 min\n- 33 layers × 4 models × 3-4 K values ≈ ~2h\n- 分析、绘图、写报告: ~1h\n\n### 5.5 总工时\n\n| 阶段 | 方案 A | 方案 B (推荐) |\n|------|--------|--------------|\n| 数据下载 + 验证 | 0.5h | 0.5h |\n| 特征提取 | 6.5h | 2.5h |\n| Probe 训练 + 分析 | 3h | 3h |\n| **端到端** | **~10h** | **~6h** |\n\n---\n\n## 6. 风险分析\n\n### 6.1 实验可能 FAIL 的场景\n\n| 风险 | 概率 | 后果 | 缓解 |\n|------|------|------|------|\n| **LIBERO-Goal t=0 视觉其实不同** — 初始 arm pose 或 scene layout 因 task 而异 | 中 | Probe premise 不成立，DINO 也能高 accuracy → 实验无价值 | **下载后立即验证** t=0 DINO cosine similarity；如果 10 个 task 的 t=0 两两 sim > 0.95 → OK；否则 abort |\n| **Untrained VLA 也高 accuracy** — random LLM 的 token embeddings 足以区分 instruction | 中-高 | \"VLA training contributes instruction grounding\" claim 不成立 | 这种情况下 pivot 到 \"where in the network does instruction info reside\"，仍有 layer-wise 贡献 |\n| **Trained VLA accuracy 也低 (~10-20%)** — OpenVLA 未在 LIBERO-Goal 上 fine-tune，instruction 未被 grounded | 低-中 | Negative result → instruction encoding 确实 weak | 报告为 negative result；与 Grant 的 behavioral finding (94%→10%) 对比分析 |\n| **存储空间不足** | 中 | 无法存全部 features | 用方案 B (8 层) 或清理 LIBERO-10 旧 features |\n| **OpenVLA prompt format 不匹配** | 低 | 模型收到格式异常的 instruction → hidden states 不正常 | 测试前用 1 个 demo 验证 forward pass 输出合理 |\n\n### 6.2 \"这条路也 FAIL\" 的最坏情况\n\n如果 trained VLA accuracy ≈ untrained ≈ DINO（都能或都不能区分），说明：\n- LIBERO-Goal 的 \"shared scene\" 其实在 pixel level 已经可区分\n- 或 OpenVLA 的 instruction processing 根本不工作（因为没有在 LIBERO-Goal 上 fine-tune）\n\n此时 instruction probe 作为 **informative negative** 仍有价值：证明 VLA 训练的 instruction grounding 在 out-of-distribution scenes 上失效，与 LIBERO-CF 的 findings 一致。\n\n---\n\n## 7. Go/No-Go 建议\n\n### Decision Matrix\n\n| 因素 | 评分 | 说明 |\n|------|------|------|\n| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n| 工时可控 | ✅ | 方案 B ~6h 端到端 |\n| Novelty 空间 | ✅ | Trained vs untrained + layer×timestep granularity 无人做过 |\n| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 behavioral insight |\n| 组合 story 强度 | ✅ | 与 temporal distance + action probe 构成 \"when does VLA training matter\" 的完整 story |\n| CoRL deadline 风险 | ⚠️ | 还剩 14 天 (abstract 5/26, paper 5/29) |\n| 存储空间 | ✅ | 方案 B 仅需 ~34 GB |\n\n### 建议: **Conditional GO**\n\n**必须先过的 gate**:\n1. 下载 LIBERO-Goal 后，用 DINO 检查 10 个 task 的 t=0 pairwise cosine similarity ≥ 0.95 → 确认视觉 ambiguity\n2. Action prediction probe 结果出来后，确认 \"VLA training matters for action\" story 成立\n\n**执行顺序**:\n1. 下载 + t=0 visual check (0.5h)\n2. 方案 B 特征提取：8 关键层 (2.5h)\n3. Probe 训练 + 分析 (3h)\n4. 如果结果好 → 补全 33 层做 full layer-wise analysis\n\n**论文定位（最终 story）**:\n- Sec 4.1: Temporal distance probe → vision-solvable → Δρ 小 (informative negative)\n- Sec 4.2: Instruction identity probe → vision-unsolvable → Δ_acc 大 (VLA training matters)\n- Sec 4.3: Action prediction probe → policy knowledge → Δ large (VLA training matters)\n- Sec 5: Unified \"when does VLA training matter?\" analysis\n\n---\n\n## 附录 A: OpenVLA Prompt 构造\n\n```python\nLIBERO_GOAL_PROMPTS = {\n    \"open_the_middle_drawer_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\":\n        \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n    \"push_the_plate_to_the_front_of_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n    \"put_the_bowl_on_the_plate\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the plate.\",\n    \"put_the_bowl_on_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the stove.\",\n    \"put_the_bowl_on_top_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on top of the cabinet.\",\n    \"put_the_cream_cheese_in_the_bowl\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the cream cheese in the bowl.\",\n    \"put_the_wine_bottle_on_the_rack\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on the rack.\",\n    \"put_the_wine_bottle_on_top_of_the_cabinet\":\n        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on top of the cabinet.\",\n    \"turn_on_the_stove\":\n        \"In: LIBERO-Goal Kitchen Scene\\nTurn on the stove.\",\n}\n```\n\n## 附录 B: Grant et al. 方法学详细\n\n**六种 Counterfactual 条件**: correct prompt, null (empty string), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switch.\n\n**Activation Injection**: 替换模型内部 activation 为另一 task 的 activation → 测试 vision vs language pathway 的因果贡献。Visual pathway injection: cosine sim 0.999 with source task behavior.\n\n**SAE Training**: 424 SAEs across 6 architectures, TopK sparsity (k=64), frequency-weighted contrastive selection → 82+ manipulation concepts.\n\n**Linear Probes on Rollouts**: GR00T 100% task ID across 32 layers; π0.5 99.3% prompt classification at L17 despite behavioral invariance to prompts → **\"encoded but not used\"** paradox.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 285,
+                  "newStart": 1,
+                  "newLines": 375,
+                  "lines": [
+                    " # LIBERO-Goal Instruction-Conditioned Probe 可行性评估",
+                    " ",
+                    "-> 日期: 2026-05-15 | 项目: vla-ssd",
+                    "+> 日期: 2026-05-15 (updated) | 项目: vla-ssd",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 1. LIBERO-Goal 数据结构",
+                    "+## 1. Grant et al. 2026 关键发现",
+                    " ",
+                    "-### 1.1 Suite 设计",
+                    "+**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"**",
+                    "+arXiv:2603.19233 | ICLR 2026 Workshop MM Intelligence | Case Western Reserve University",
+                    " ",
+                    "-LIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。",
+                    "+### 1.1 实验规模",
+                    " ",
+                    "-### 1.2 完整 Task 列表（10 tasks）",
+                    "+- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA (~1B, 24 layers, Florence-2), SmolVLA, GR00T N1.5, ACT",
+                    "+- 方法: activation injection + 424 SAEs (TopK k=64) + linear probes",
+                    "+- 总 rollout: 394K+ episodes，跨 4 个 LIBERO suites + SimplerEnv",
+                    " ",
+                    "-| # | Task Name | HDF5 文件大小 |",
+                    "-|---|-----------|-------------|",
+                    "-| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |",
+                    "-| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |",
+                    "-| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |",
+                    "-| 4 | put_the_bowl_on_the_plate | 468 MB |",
+                    "-| 5 | put_the_bowl_on_the_stove | 509 MB |",
+                    "-| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |",
+                    "-| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |",
+                    "-| 8 | put_the_wine_bottle_on_the_rack | 879 MB |",
+                    "-| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |",
+                    "-| 10 | turn_on_the_stove | 448 MB |",
+                    "+### 1.2 LIBERO-Goal vs LIBERO-Object：语言敏感性的关键对比",
+                    " ",
+                    "-**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**",
+                    "+**LIBERO-Goal (shared scene, language-critical):**",
+                    " ",
+                    "-### 1.3 下载方式",
+                    "+| Model | Correct Prompt | Null Prompt | Wrong Object |",
+                    "+|-------|---------------|-------------|--------------|",
+                    "+| π0.5 | 83.3% | 80% | 76.7% |",
+                    "+| OFT | 100% | 10% | 10% |",
+                    "+| X-VLA | 94% | 10% | 4-10% |",
+                    "+| GR00T | 97% | 0% | 0% |",
+                    " ",
+                    "-```bash",
+                    "-# 方式 1: LIBERO 官方脚本",
+                    "-python benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface",
+                    "+**LIBERO-Object (distinct scenes, vision-sufficient):**",
+                    " ",
+                    "-# 方式 2: 直接从 HuggingFace 下载",
+                    "-# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/",
+                    "-huggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/",
+                    "-```",
+                    "+| Model | Correct Prompt | Null Prompt | Wrong Object |",
+                    "+|-------|---------------|-------------|--------------|",
+                    "+| π0.5 | 77.4% | 77% | 74.2% |",
+                    "+| OFT | 100% | 100% | 100% |",
+                    "+| X-VLA | 100% | 60% | 60-90% |",
+                    " ",
+                    "-### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性",
+                    "+**核心结论**: 语言敏感性取决于 task structure（scene 是否 ambiguous），而非模型架构。OFT/X-VLA/GR00T 在 LIBERO-Goal 上 collapse 到 0-10%；π0.5 衰减较小（可能因其 dual-pathway 架构保留了更多视觉 prior）。",
+                    " ",
+                    "-**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：",
+                    "-- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8",
+                    "-- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8",
+                    "-- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)",
+                    "-- 每 task 50 demos，每 demo 220-290 timesteps",
+                    "+### 1.3 线性 Probe 的 Paradox（对我们至关重要）",
+                    " ",
+                    "-**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**",
+                    "+**π0.5 Layer 17: 99.3% prompt classification accuracy，但行为几乎不受 prompt 影响。**",
+                    " ",
+                    "----",
+                    "+这意味着：模型在中间层 **密集编码了语言信息**，但没有将其路由到 motor pathway。\"Prompts are encoded but not used\"——视觉主导 action generation，语言信息在 LIBERO-Object 等 vision-sufficient 场景中被 bypass。",
+                    " ",
+                    "-## 2. Instruction-Conditioned Probe 设计",
+                    "+**GR00T N1.5**: 100% task identification + 96.4% success prediction（32 层均一致）。",
+                    " ",
+                    "-### 2.1 核心思想",
+                    "+**与我们的关系**: Grant 的 probe 在 fine-tuned models 的 **rollout episodes** 上做 task ID。我们在 **offline demo features** 上做 instruction identity，且对比 **trained vs untrained**——这是他们没有做的。",
+                    " ",
+                    "-> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？",
+                    "+### 1.4 SAE 分析",
+                    " ",
+                    "-这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。",
+                    "+- 6 个模型上 82+ manipulation concepts（motion primitives, object categories, spatial relationships）",
+                    "+- 频率加权 contrastive selection (Cohen's d)",
+                    "+- 43-82 distinct concepts per model",
+                    "+- Causal ablation: 28-92% zero-effect rates（很多 feature 对行为无影响）",
+                    " ",
+                    "-### 2.2 Probe 架构",
+                    "+### 1.5 Counterfactual 条件设计（6 种）",
+                    " ",
+                    "-```",
+                    "-Input:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)",
+                    "-Probe:  Linear(4096, 10) + softmax  →  10-way classification",
+                    "-Target: instruction identity (哪个 task)",
+                    "-Loss:   CrossEntropy",
+                    "-```",
+                    "+Baseline (correct), null prompt (empty), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switches.",
+                    " ",
+                    "-**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。",
+                    "+---",
+                    " ",
+                    "-### 2.3 关键实验设计",
+                    "+## 2. 相关工作与 Novelty Gap 分析",
+                    " ",
+                    "-#### Experiment A: Full-Trajectory Instruction Identity Probe",
+                    "+### 2.1 Swann, McGranahan, **Buurmeijer**, Kennedy, Schwager (2026)",
+                    " ",
+                    "-- **输入**: 所有 timestep 的 hidden states",
+                    "-- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP",
+                    "-- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B",
+                    "+**\"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models\"**",
+                    "+arXiv:2603.19183 | Stanford University",
+                    " ",
+                    "-#### Experiment B: Early-Timestep Probe（核心实验）",
+                    "+- 模型: π0.5 (primary) + OpenVLA",
+                    "+- 数据: LIBERO (4 suites, 1693 episodes, 40 tasks) + DROID (2000 episodes, 1545 tasks)",
+                    "+- **发现**: VLA 存在大量 episode-level memorization；larger/diverse datasets (DROID) 产生更多 generalizable features",
+                    "+- **Feature 类型**: general (grasping, transport, alignment) vs memorized (episode-specific sequences)",
+                    "+- 79% features interpretable, steering experiments 验证因果影响",
+                    "+- **与我们的关系**: 他们关注 sensorimotor features，**没有分析 language-related features**，没有 trained vs untrained 对比",
+                    " ",
+                    "-- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing",
+                    "-- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化",
+                    "-- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机",
+                    "-- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps",
+                    "+### 2.2 LIBERO-CF (2026)",
+                    " ",
+                    "-#### Experiment C: Layer-wise Analysis",
+                    "+**\"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs\"**",
+                    "+arXiv:2602.17659",
+                    " ",
+                    "-- 33 层中哪些层编码了 instruction identity？",
+                    "-- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy",
+                    "-- 与 temporal distance probe 的 layer profile 对比",
+                    "+- 首个 VLA counterfactual benchmark（CF-Spatial, CF-Object, CF-Long, CF-OOD）",
+                    "+- **Modality ablation**: VLA 维持 94-97% vision-only success，language-only collapse 到 ~0%",
+                    "+- π0.5 best model 也只有 30.8% grounding / 13.2% task success on counterfactual instructions",
+                    "+- **Bayesian 解释**: VLAs collapse 到 P(a|o) 而非正确加权 P(a|l,o)。Language 是 secondary conditioning signal",
+                    "+- Object removal 实验: 移除 training-task objects → counterfactual performance +25.4%",
+                    "+- **与我们的关系**: 他们测 behavioral 层面的 counterfactual failure（intervention），我们测 representational 层面的 instruction encoding（probing）。互补。",
+                    " ",
+                    "-### 2.4 Train/Test Split",
+                    "+### 2.3 INT-ACT (2026)",
+                    " ",
+                    "-- **每 task 50 demos**: 40 train / 10 test (stratified by task)",
+                    "-- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class",
+                    "-- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples",
+                    "-- 对于 linear probe 足够",
+                    "+**\"From Intention to Execution: Probing the Generalization Boundaries of VLA Models\"**",
+                    "+arXiv:2506.09930",
+                    " ",
+                    "-### 2.5 潜在 Confound 及控制",
+                    "+- 提出 \"intention-action gap\"：VLA 在 OOD shifts 下维持高 semantic intent，但 motor success 大幅下降",
+                    "+- **与我们的关系**: 他们 probe \"intention\" 的 generalization，我们 probe instruction identity 的 **training-dependent encoding**",
+                    " ",
+                    "-| Confound | 风险 | 控制方法 |",
+                    "-|----------|------|---------|",
+                    "-| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |",
+                    "-| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |",
+                    "-| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |",
+                    "+### 2.4 Novelty Gap 总结",
+                    " ",
+                    "+| 论文 | 做了什么 | **没有做什么**（我们的空间） |",
+                    "+|------|---------|---------------------------|",
+                    "+| Grant 2026 | Behavioral language sensitivity (causal, 6 models) | Trained vs untrained; layer×timestep granularity |",
+                    "+| Swann/Buurmeijer 2026 | SAE feature interpretability + steering | No language features; no training effect comparison |",
+                    "+| LIBERO-CF 2026 | Counterfactual behavioral benchmark | No representation analysis |",
+                    "+| INT-ACT 2026 | Intention probing under OOD | No shared-scene instruction discrimination |",
+                    "+",
+                    "+**我们的独特贡献**:",
+                    "+1. **Trained vs untrained VLA** — 唯一一篇对比 VLA 训练前后的 instruction encoding",
+                    "+2. **Layer × timestep granularity** — 33 层 × early/mid/late timesteps 的细粒度分析",
+                    "+3. **Vision-unsolvable probing target** — early timestep + shared scene = 纯 vision baseline 无法区分",
+                    "+4. **Offline demo probing** — 无需 rollout 环境，可复现性强",
+                    "+",
+                    " ---",
+                    " ",
+                    "-## 3. Feature Extraction 工时估算",
+                    "+## 3. LIBERO-Goal 数据集规格",
+                    " ",
+                    "-### 3.1 数据下载",
+                    "+### 3.1 Suite 设计",
+                    " ",
+                    "-| 步骤 | 耗时估算 |",
+                    "-|------|---------|",
+                    "-| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |",
+                    "-| 验证 HDF5 结构兼容性 | ~10 min |",
+                    "+LIBERO-Goal 是 LIBERO benchmark 的 4 个主要 suite 之一（Spatial / Object / Goal / 100）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 视觉 ambiguous，必须依赖 instruction 区分 task。",
+                    " ",
+                    "-### 3.2 特征提取",
+                    "+### 3.2 完整 Task 列表（10 tasks）",
+                    " ",
+                    "-参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。",
+                    "+| # | Task Name | Language Instruction | HDF5 Size |",
+                    "+|---|-----------|---------------------|-----------|",
+                    "+| 1 | open_the_middle_drawer_of_the_cabinet | Open the middle drawer of the cabinet | 702 MB |",
+                    "+| 2 | open_the_top_drawer_and_put_the_bowl_inside | Open the top drawer and put the bowl inside | 1.02 GB |",
+                    "+| 3 | push_the_plate_to_the_front_of_the_stove | Push the plate to the front of the stove | 763 MB |",
+                    "+| 4 | put_the_bowl_on_the_plate | Put the bowl on the plate | 468 MB |",
+                    "+| 5 | put_the_bowl_on_the_stove | Put the bowl on the stove | 509 MB |",
+                    "+| 6 | put_the_bowl_on_top_of_the_cabinet | Put the bowl on top of the cabinet | 510 MB |",
+                    "+| 7 | put_the_cream_cheese_in_the_bowl | Put the cream cheese in the bowl | 536 MB |",
+                    "+| 8 | put_the_wine_bottle_on_the_rack | Put the wine bottle on the rack | 879 MB |",
+                    "+| 9 | put_the_wine_bottle_on_top_of_the_cabinet | Put the wine bottle on top of the cabinet | 540 MB |",
+                    "+| 10 | turn_on_the_stove | Turn on the stove | 448 MB |",
+                    " ",
+                    "-| 模型 | Tasks | 预估总时间 |",
+                    "-|------|-------|-----------|",
+                    "-| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |",
+                    "-| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |",
+                    "-| DINO-V2 ViT-L | 10 | ~15 min |",
+                    "-| SigLIP (optional) | 10 | ~15 min |",
+                    "-| **总计** | | **~6.5 hours** |",
+                    "+**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**",
+                    " ",
+                    "-### 3.3 存储需求",
+                    "+### 3.3 Task 特征分析（对 probing 的影响）",
+                    " ",
+                    "-| 数据 | 大小 |",
+                    "-|------|------|",
+                    "-| 原始 HDF5 | 6.37 GB |",
+                    "-| Trained features (10 tasks × ~5.3 GB) | ~53 GB |",
+                    "-| Untrained features | ~53 GB |",
+                    "-| DINO features | ~0.5 GB |",
+                    "-| **总计** | **~113 GB** |",
+                    "+- Tasks 4-6 (bowl → plate/stove/cabinet) 共享 object (bowl) 但 target location 不同 → **同 object 不同 goal 的 subset**",
+                    "+- Tasks 8-9 (wine bottle → rack/cabinet) 类似",
+                    "+- Task 1 vs 10 (drawer vs stove) → **完全不同的操作对象和动作**",
+                    "+- 这种 hierarchical structure 可支持 sub-group 分析（within-object vs cross-object instruction discrimination）",
+                    " ",
+                    "-**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。",
+                    "+### 3.4 HDF5 格式（与现有 LIBERO-10 完全兼容）",
+                    " ",
+                    "-### 3.4 Probe 训练",
+                    "+```",
+                    "+data/demo_{i}/obs/agentview_rgb     (T, 128, 128, 3) uint8",
+                    "+data/demo_{i}/obs/eye_in_hand_rgb   (T, 128, 128, 3) uint8",
+                    "+data/demo_{i}/actions               (T, 7) float64 [3D pos delta + 3D rot delta + gripper]",
+                    "+```",
+                    " ",
+                    "-- Linear probe 训练极快：每层 < 1 min",
+                    "-- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours",
+                    "-- 分析和绘图：~1 hour",
+                    "+- 每 task 50 demos，每 demo 220-290 timesteps，max 300 steps",
+                    "+- 20 Hz control frequency, Franka Panda arm",
+                    "+- **`extract_features.py` 可直接使用，无需修改数据加载代码**",
+                    " ",
+                    "-### 3.5 总工时",
+                    "+### 3.5 下载",
+                    " ",
+                    "-| 阶段 | 工时 |",
+                    "-|------|------|",
+                    "-| 数据下载 + 验证 | 0.5h |",
+                    "-| 特征提取 (GPU time) | 6.5h |",
+                    "-| Probe 训练 + 分析 | 3h |",
+                    "-| **端到端** | **~10h (1 个工作日)** |",
+                    "+```bash",
+                    "+# HuggingFace (推荐)",
+                    "+huggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/",
+                    " ",
+                    "-如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。",
+                    "+# 或 LIBERO 官方脚本",
+                    "+python benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface",
+                    "+```",
+                    " ",
+                    "+AutoDL 注意: `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL certs.",
+                    "+",
+                    " ---",
+                    " ",
+                    "-## 4. 与 Grant et al. 2026 的关系",
+                    "+## 4. Instruction-Conditioned Probe 方案",
+                    " ",
+                    "-### 4.1 Grant et al. 论文概要",
+                    "+### 4.1 核心思想",
+                    " ",
+                    "-**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)",
+                    "+> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？",
+                    " ",
+                    "-- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT",
+                    "-- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes",
+                    "-- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）",
+                    "-- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）",
+                    "-- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction",
+                    "-- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为",
+                    "+直接回应 MVP 失败的根因：temporal distance 是 vision-solvable，所以需要 **vision-unsolvable** 的 probing target。LIBERO-Goal trajectory 开头视觉几乎相同（共享 scene），只有 instruction 不同——天然的 vision-unsolvable 信号。",
+                    " ",
+                    "-### 4.2 我们的方法 vs Grant et al.",
+                    "+### 4.2 Probe 架构",
+                    " ",
+                    "-| 维度 | Grant et al. | 我们 |",
+                    "-|------|-------------|------|",
+                    "-| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |",
+                    "-| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |",
+                    "-| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |",
+                    "-| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |",
+                    "-| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |",
+                    "-| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |",
+                    "+```",
+                    "+Input:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)",
+                    "+Probe:  Linear(4096, 10) + softmax  →  10-way classification",
+                    "+Target: instruction identity (哪个 task)",
+                    "+Loss:   CrossEntropy",
+                    "+```",
+                    " ",
+                    "-### 4.3 互补性分析",
+                    "+每层单独训练一个 linear probe，沿用 last_preaction token 位置。",
+                    " ",
+                    "-Grant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。",
+                    "+### 4.3 对比条件（4 models）",
+                    " ",
+                    "-我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。",
+                    "+| Condition | Has instruction tokens? | Has trained LLM? | Has vision? | 预期 early-step accuracy |",
+                    "+|-----------|------------------------|-------------------|-------------|------------------------|",
+                    "+| Trained VLA | Yes | Yes | Yes | **高 (70-90%)** |",
+                    "+| Untrained VLA | Yes | No (random LLM) | Yes (SigLIP preserved) | **中 (30-50%)** — token embeddings 提供 partial signal |",
+                    "+| DINO-V2 | No | No | Yes | **低 (~10% = chance)** — 强 control |",
+                    "+| SigLIP only | No | No | Yes | **低 (~10%)** — 另一个 vision control |",
+                    " ",
+                    "-**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。",
+                    "+### 4.4 关键实验",
+                    " ",
+                    "+**Exp A: Full-Trajectory Instruction Identity Probe**",
+                    "+- 所有 timestep 的 hidden states",
+                    "+- 预期: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分",
+                    "+",
+                    "+**Exp B: Early-Timestep Probe（核心实验）**",
+                    "+- 只用前 K 步 (K=5, 10, 20)",
+                    "+- 理由: trajectory 开头视觉场景几乎相同，行为尚未分化",
+                    "+- **关键指标**: Δ_acc(trained VLA − DINO) @ K=5",
+                    "+",
+                    "+**Exp C: Layer-wise Analysis**",
+                    "+- 33 层的 instruction identity accuracy profile",
+                    "+- 预期: early layers (vision-dominated) 低，middle/late layers (LLM-processed) 高",
+                    "+- 与 Grant 的 99.3% finding 对照：trained 在哪些层 encode instruction？untrained 呢？",
+                    "+",
+                    "+**Exp D: Sub-group Analysis**",
+                    "+- Within-object pairs (bowl→plate vs bowl→stove vs bowl→cabinet): harder, requires fine-grained goal distinction",
+                    "+- Cross-object pairs (bowl tasks vs wine bottle tasks): easier, object identity helps",
+                    "+- 如果 trained VLA 在 within-object 也高 accuracy → 更强的 claim",
+                    "+",
+                    "+### 4.5 Train/Test Split",
+                    "+",
+                    "+- 每 task 50 demos: 40 train / 10 test (stratified)",
+                    "+- K=10: 10 classes × 40 × 10 = 4000 train, 1000 test",
+                    "+- Linear probe 足够",
+                    "+",
+                    "+### 4.6 Confound 控制",
+                    "+",
+                    "+| Confound | 风险 | 控制 |",
+                    "+|----------|------|------|",
+                    "+| t=0 视觉微小差异 | 低 | 检查 DINO t=0 accuracy；如果 >20% → probe premise 有问题 |",
+                    "+| Instruction tokens 直接泄露 | 高（但不是 bug） | Untrained 对比：也有 instruction tokens 但缺 grounded encoding |",
+                    "+| Trajectory 长度分布差异 | 中 | 固定 K，不用 relative position |",
+                    "+| OpenVLA 未在 LIBERO-Goal 上 fine-tune | 中 | 不需要 task success — 只需 hidden states 编码 instruction；通用 prompt format 足够 |",
+                    "+",
+                    " ---",
+                    " ",
+                    "-## 5. Story 强度评估",
+                    "+## 5. 时间/资源估算",
+                    " ",
+                    "-### 5.1 Claim",
+                    "+### 5.1 数据下载 + 验证",
+                    " ",
+                    "-> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"",
+                    "+| 步骤 | 耗时 |",
+                    "+|------|------|",
+                    "+| LIBERO-Goal HDF5 (6.37 GB) | ~30 min |",
+                    "+| 验证 HDF5 兼容 + t=0 visual check | ~10 min |",
+                    " ",
+                    "-### 5.2 强度分析",
+                    "+### 5.2 特征提取 (GPU time, 2×RTX PRO 6000)",
+                    " ",
+                    "-**优势**:",
+                    "-1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable",
+                    "-2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖",
+                    "-3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义",
+                    "-4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献",
+                    "-5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"",
+                    "+| 模型 | 方案 A (全 33 层) | 方案 B (8 关键层) |",
+                    "+|------|------------------|------------------|",
+                    "+| Trained OpenVLA | ~3h | ~1h |",
+                    "+| Untrained OpenVLA | ~3h | ~1h |",
+                    "+| DINO-V2 | ~15 min | ~15 min |",
+                    "+| SigLIP | ~15 min | ~15 min |",
+                    "+| **总计** | **~6.5h** | **~2.5h** |",
+                    " ",
+                    "-**劣势**:",
+                    "-1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）",
+                    "-2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个",
+                    "-3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）",
+                    "-4. 10-way classification 的 chance level 是 10%，bar 不高",
+                    "+### 5.3 存储",
+                    " ",
+                    "-### 5.3 潜在审稿攻击",
+                    "+| 数据 | 方案 A | 方案 B |",
+                    "+|------|--------|--------|",
+                    "+| 原始 HDF5 | 6.37 GB | 6.37 GB |",
+                    "+| Trained features | ~53 GB | ~13 GB |",
+                    "+| Untrained features | ~53 GB | ~13 GB |",
+                    "+| DINO + SigLIP | ~1 GB | ~1 GB |",
+                    "+| **总计** | **~113 GB** | **~34 GB** |",
+                    " ",
+                    "-| 攻击 | 严重性 | 防御 |",
+                    "-|------|--------|------|",
+                    "-| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |",
+                    "-| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |",
+                    "-| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |",
+                    "-| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |",
+                    "-| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |",
+                    "+当前 `/root/autodl-tmp/` 已有 ~107 GB LIBERO-10 features。方案 B 需额外 34 GB，可行。方案 A 需清理旧数据。",
+                    " ",
+                    "-### 5.4 Story 在论文中的定位",
+                    "+### 5.4 Probe 训练 + 分析",
+                    " ",
+                    "-**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。",
+                    "+- Linear probe 训练: 每层 < 1 min",
+                    "+- 33 layers × 4 models × 3-4 K values ≈ ~2h",
+                    "+- 分析、绘图、写报告: ~1h",
+                    " ",
+                    "-**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：",
+                    "-1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)",
+                    "-2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)",
+                    "-3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)",
+                    "+### 5.5 总工时",
+                    " ",
+                    "-三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。",
+                    "+| 阶段 | 方案 A | 方案 B (推荐) |",
+                    "+|------|--------|--------------|",
+                    "+| 数据下载 + 验证 | 0.5h | 0.5h |",
+                    "+| 特征提取 | 6.5h | 2.5h |",
+                    "+| Probe 训练 + 分析 | 3h | 3h |",
+                    "+| **端到端** | **~10h** | **~6h** |",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 6. Go/No-Go 建议",
+                    "+## 6. 风险分析",
+                    " ",
+                    "+### 6.1 实验可能 FAIL 的场景",
+                    "+",
+                    "+| 风险 | 概率 | 后果 | 缓解 |",
+                    "+|------|------|------|------|",
+                    "+| **LIBERO-Goal t=0 视觉其实不同** — 初始 arm pose 或 scene layout 因 task 而异 | 中 | Probe premise 不成立，DINO 也能高 accuracy → 实验无价值 | **下载后立即验证** t=0 DINO cosine similarity；如果 10 个 task 的 t=0 两两 sim > 0.95 → OK；否则 abort |",
+                    "+| **Untrained VLA 也高 accuracy** — random LLM 的 token embeddings 足以区分 instruction | 中-高 | \"VLA training contributes instruction grounding\" claim 不成立 | 这种情况下 pivot 到 \"where in the network does instruction info reside\"，仍有 layer-wise 贡献 |",
+                    "+| **Trained VLA accuracy 也低 (~10-20%)** — OpenVLA 未在 LIBERO-Goal 上 fine-tune，instruction 未被 grounded | 低-中 | Negative result → instruction encoding 确实 weak | 报告为 negative result；与 Grant 的 behavioral finding (94%→10%) 对比分析 |",
+                    "+| **存储空间不足** | 中 | 无法存全部 features | 用方案 B (8 层) 或清理 LIBERO-10 旧 features |",
+                    "+| **OpenVLA prompt format 不匹配** | 低 | 模型收到格式异常的 instruction → hidden states 不正常 | 测试前用 1 个 demo 验证 forward pass 输出合理 |",
+                    "+",
+                    "+### 6.2 \"这条路也 FAIL\" 的最坏情况",
+                    "+",
+                    "+如果 trained VLA accuracy ≈ untrained ≈ DINO（都能或都不能区分），说明：",
+                    "+- LIBERO-Goal 的 \"shared scene\" 其实在 pixel level 已经可区分",
+                    "+- 或 OpenVLA 的 instruction processing 根本不工作（因为没有在 LIBERO-Goal 上 fine-tune）",
+                    "+",
+                    "+此时 instruction probe 作为 **informative negative** 仍有价值：证明 VLA 训练的 instruction grounding 在 out-of-distribution scenes 上失效，与 LIBERO-CF 的 findings 一致。",
+                    "+",
+                    "+---",
+                    "+",
+                    "+## 7. Go/No-Go 建议",
+                    "+",
+                    " ### Decision Matrix",
+                    " ",
+                    " | 因素 | 评分 | 说明 |",
+                    " |------|------|------|",
+                    " | 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |",
+                    " | Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |",
+                    "-| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |",
+                    "-| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |",
+                    "-| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |",
+                    "-| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |",
+                    "-| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |",
+                    "+| 工时可控 | ✅ | 方案 B ~6h 端到端 |",
+                    "+| Novelty 空间 | ✅ | Trained vs untrained + layer×timestep granularity 无人做过 |",
+                    "+| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 behavioral insight |",
+                    "+| 组合 story 强度 | ✅ | 与 temporal distance + action probe 构成 \"when does VLA training matter\" 的完整 story |",
+                    "+| CoRL deadline 风险 | ⚠️ | 还剩 14 天 (abstract 5/26, paper 5/29) |",
+                    "+| 存储空间 | ✅ | 方案 B 仅需 ~34 GB |",
+                    " ",
+                    " ### 建议: **Conditional GO**",
+                    " ",
+                    "-**条件**：",
+                    "-1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间",
+                    "-2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h",
+                    "-3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal",
+                    "-4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**",
+                    "+**必须先过的 gate**:",
+                    "+1. 下载 LIBERO-Goal 后，用 DINO 检查 10 个 task 的 t=0 pairwise cosine similarity ≥ 0.95 → 确认视觉 ambiguity",
+                    "+2. Action prediction probe 结果出来后，确认 \"VLA training matters for action\" story 成立",
+                    " ",
+                    "-**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。",
+                    "+**执行顺序**:",
+                    "+1. 下载 + t=0 visual check (0.5h)",
+                    "+2. 方案 B 特征提取：8 关键层 (2.5h)",
+                    "+3. Probe 训练 + 分析 (3h)",
+                    "+4. 如果结果好 → 补全 33 层做 full layer-wise analysis",
+                    " ",
+                    "-**如果两个 probe 都成功**，论文结构为：",
+                    "-- Section 4.1: Temporal distance probe (vision-solvable → negative)",
+                    "-- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)",
+                    "-- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)",
+                    "-- Section 5: \"When does VLA training matter?\" — unified analysis",
+                    "+**论文定位（最终 story）**:",
+                    "+- Sec 4.1: Temporal distance probe → vision-solvable → Δρ 小 (informative negative)",
+                    "+- Sec 4.2: Instruction identity probe → vision-unsolvable → Δ_acc 大 (VLA training matters)",
+                    "+- Sec 4.3: Action prediction probe → policy knowledge → Δ large (VLA training matters)",
+                    "+- Sec 5: Unified \"when does VLA training matter?\" analysis",
+                    " ",
+                    " ---",
+                    " ",
+                    "-## 附录: OpenVLA Prompt 构造",
+                    "+## 附录 A: OpenVLA Prompt 构造",
+                    " ",
+                    "-LIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：",
+                    "-",
+                    " ```python",
+                    " LIBERO_GOAL_PROMPTS = {",
+                    "-    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",",
+                    "-    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",",
+                    "-    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",",
+                    "-    # ... 以此类推，task name 的下划线替换为空格，首字母大写",
+                    "+    \"open_the_middle_drawer_of_the_cabinet\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",",
+                    "+    \"open_the_top_drawer_and_put_the_bowl_inside\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",",
+                    "+    \"push_the_plate_to_the_front_of_the_stove\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",",
+                    "+    \"put_the_bowl_on_the_plate\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the plate.\",",
+                    "+    \"put_the_bowl_on_the_stove\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on the stove.\",",
+                    "+    \"put_the_bowl_on_top_of_the_cabinet\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the bowl on top of the cabinet.\",",
+                    "+    \"put_the_cream_cheese_in_the_bowl\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the cream cheese in the bowl.\",",
+                    "+    \"put_the_wine_bottle_on_the_rack\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on the rack.\",",
+                    "+    \"put_the_wine_bottle_on_top_of_the_cabinet\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nPut the wine bottle on top of the cabinet.\",",
+                    "+    \"turn_on_the_stove\":",
+                    "+        \"In: LIBERO-Goal Kitchen Scene\\nTurn on the stove.\",",
+                    " }",
+                    " ```",
+                    " ",
+                    "-注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。",
+                    "+## 附录 B: Grant et al. 方法学详细",
+                    "+",
+                    "+**六种 Counterfactual 条件**: correct prompt, null (empty string), negation (\"Don't pick up X\"), motor command (\"Move slowly\"), object swap, temporal switch.",
+                    "+",
+                    "+**Activation Injection**: 替换模型内部 activation 为另一 task 的 activation → 测试 vision vs language pathway 的因果贡献。Visual pathway injection: cosine sim 0.999 with source task behavior.",
+                    "+",
+                    "+**SAE Training**: 424 SAEs across 6 architectures, TopK sparsity (k=64), frequency-weighted contrastive selection → 82+ manipulation concepts.",
+                    "+",
+                    "+**Linear Probes on Rollouts**: GR00T 100% task ID across 32 layers; π0.5 99.3% prompt classification at L17 despite behavioral invariance to prompts → **\"encoded but not used\"** paradox."
+                  ]
+                }
+              ],
+              "originalFile": "# LIBERO-Goal Instruction-Conditioned Probe 可行性评估\n\n> 日期: 2026-05-15 | 项目: vla-ssd\n\n---\n\n## 1. LIBERO-Goal 数据结构\n\n### 1.1 Suite 设计\n\nLIBERO-Goal 是 LIBERO benchmark 的 5 个 suite 之一（Spatial / Object / Goal / Long / 90）。**核心特征：10 个 task 共享同一 kitchen scene（相同物体、相同空间布局），仅 goal 不同。** 这正是我们需要的——视觉 ambiguous，必须依赖 instruction 区分 task。\n\n### 1.2 完整 Task 列表（10 tasks）\n\n| # | Task Name | HDF5 文件大小 |\n|---|-----------|-------------|\n| 1 | open_the_middle_drawer_of_the_cabinet | 702 MB |\n| 2 | open_the_top_drawer_and_put_the_bowl_inside | 1.02 GB |\n| 3 | push_the_plate_to_the_front_of_the_stove | 763 MB |\n| 4 | put_the_bowl_on_the_plate | 468 MB |\n| 5 | put_the_bowl_on_the_stove | 509 MB |\n| 6 | put_the_bowl_on_top_of_the_cabinet | 510 MB |\n| 7 | put_the_cream_cheese_in_the_bowl | 536 MB |\n| 8 | put_the_wine_bottle_on_the_rack | 879 MB |\n| 9 | put_the_wine_bottle_on_top_of_the_cabinet | 540 MB |\n| 10 | turn_on_the_stove | 448 MB |\n\n**总计: 6.37 GB, 10 tasks × 50 demos = 500 trajectories**\n\n### 1.3 下载方式\n\n```bash\n# 方式 1: LIBERO 官方脚本\npython benchmark_scripts/download_libero_datasets.py --datasets libero_goal --use-huggingface\n\n# 方式 2: 直接从 HuggingFace 下载\n# repo: yifengzhu-hf/LIBERO-datasets, 子目录: libero_goal/\nhuggingface-cli download yifengzhu-hf/LIBERO-datasets --include \"libero_goal/*\" --local-dir ./data/\n```\n\n### 1.4 与现有 LIBERO-10 (libero_spatial) 兼容性\n\n**完全兼容。** 同属 LIBERO benchmark，使用相同 HDF5 结构：\n- `data/demo_{i}/obs/agentview_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/obs/eye_in_hand_rgb` — (T, 128, 128, 3) uint8\n- `data/demo_{i}/actions` — (T, 7) float64 (3D pos delta + 3D rot delta + gripper)\n- 每 task 50 demos，每 demo 220-290 timesteps\n\n**我们的 `extract_features.py` 可直接使用，无需修改数据加载代码。**\n\n---\n\n## 2. Instruction-Conditioned Probe 设计\n\n### 2.1 核心思想\n\n> 同一 visual scene + 不同 instruction → hidden states 是否编码了 instruction identity？\n\n这直接回应了 MVP 失败的根因：temporal distance 是 vision-solvable 的，所以我们需要一个 **vision-unsolvable** 的 probing target。在 LIBERO-Goal 中，trajectory 开头的视觉几乎相同（共享 scene），只有 instruction 不同——这创造了一个天然的 vision-unsolvable 信号。\n\n### 2.2 Probe 架构\n\n```\nInput:  h_t ∈ R^4096  (layer l, timestep t 的 hidden state)\nProbe:  Linear(4096, 10) + softmax  →  10-way classification\nTarget: instruction identity (哪个 task)\nLoss:   CrossEntropy\n```\n\n**与 temporal distance probe 保持一致**：每层单独训练一个 linear probe，沿用 last_preaction token 位置。\n\n### 2.3 关键实验设计\n\n#### Experiment A: Full-Trajectory Instruction Identity Probe\n\n- **输入**: 所有 timestep 的 hidden states\n- **对比**: Trained VLA vs Untrained VLA vs DINO-V2 vs SigLIP\n- **预期**: 随着 trajectory 推进，视觉分歧增大，vision-only 也能区分 → 需要结合 Exp B\n\n#### Experiment B: Early-Timestep Probe（核心实验）\n\n- **只用前 K 步** (K = 5, 10, 20) 的 hidden states 做 probing\n- **理由**: trajectory 开头视觉场景几乎相同，行为尚未分化\n- **预期**: VLA hidden states 在 early steps 就能区分 instruction (accuracy >> 10% chance)，而 DINO/SigLIP 在 early steps 接近随机\n- **关键指标**: Δ_acc(VLA − vision-only) @ early timesteps\n\n#### Experiment C: Layer-wise Analysis\n\n- 33 层中哪些层编码了 instruction identity？\n- 预期 pattern: early layers (vision-dominated) 低 accuracy，middle/late layers (LLM-processed) 高 accuracy\n- 与 temporal distance probe 的 layer profile 对比\n\n### 2.4 Train/Test Split\n\n- **每 task 50 demos**: 40 train / 10 test (stratified by task)\n- **Early-step probing**: 每 demo 取前 K steps → 40 × K training samples per class\n- K=10 时: 10 classes × 40 × 10 = 4000 training samples, 10 × 10 × 10 = 1000 test samples\n- 对于 linear probe 足够\n\n### 2.5 潜在 Confound 及控制\n\n| Confound | 风险 | 控制方法 |\n|----------|------|---------|\n| 视觉在 t=0 已有微小差异（随机初始化噪声） | 低 | 检查 DINO 在 t=0 的 accuracy，应接近 chance |\n| Instruction 作为 input tokens 直接泄露到 hidden states | 高 | **这不是 bug 而是 feature**——我们正是要测量 instruction 信息如何编码。但需与 untrained 对比：untrained 也有 instruction tokens 但缺乏训练的 grounding |\n| 不同 task 的 trajectory 长度分布不同 | 中 | 固定 K 步，不用 relative position |\n\n---\n\n## 3. Feature Extraction 工时估算\n\n### 3.1 数据下载\n\n| 步骤 | 耗时估算 |\n|------|---------|\n| LIBERO-Goal HDF5 下载 (6.37 GB) | ~30 min (AutoDL + network_turbo) |\n| 验证 HDF5 结构兼容性 | ~10 min |\n\n### 3.2 特征提取\n\n参考现有 LIBERO-10 benchmark：10 tasks 提取耗时 ~3 小时（trained），平均 18.5 min/task。\n\n| 模型 | Tasks | 预估总时间 |\n|------|-------|-----------|\n| Trained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| Untrained OpenVLA (all 33 layers) | 10 | ~3 hours |\n| DINO-V2 ViT-L | 10 | ~15 min |\n| SigLIP (optional) | 10 | ~15 min |\n| **总计** | | **~6.5 hours** |\n\n### 3.3 存储需求\n\n| 数据 | 大小 |\n|------|------|\n| 原始 HDF5 | 6.37 GB |\n| Trained features (10 tasks × ~5.3 GB) | ~53 GB |\n| Untrained features | ~53 GB |\n| DINO features | ~0.5 GB |\n| **总计** | **~113 GB** |\n\n**注意**: 当前 `/root/autodl-tmp/` 已有 ~107 GB 特征。需确认磁盘空间是否充足。可能需要清理旧特征或只提取关键层（如 L4, L8, L12, L16, L20, L24, L28）来减少存储。\n\n### 3.4 Probe 训练\n\n- Linear probe 训练极快：每层 < 1 min\n- 33 layers × 4 models × 若干 K 值 ≈ ~2 hours\n- 分析和绘图：~1 hour\n\n### 3.5 总工时\n\n| 阶段 | 工时 |\n|------|------|\n| 数据下载 + 验证 | 0.5h |\n| 特征提取 (GPU time) | 6.5h |\n| Probe 训练 + 分析 | 3h |\n| **端到端** | **~10h (1 个工作日)** |\n\n如果只提取 8 个关键层而非全部 33 层，GPU 时间可压缩到 ~2.5h，总工时 ~6h。\n\n---\n\n## 4. 与 Grant et al. 2026 的关系\n\n### 4.1 Grant et al. 论文概要\n\n**\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv 2603.19233)\n\n- 6 个 VLA 模型 (80M–7B): π0.5, OpenVLA-OFT, X-VLA, SmolVLA, GR00T N1.5, ACT\n- 方法: activation injection + SAEs + linear probes, 394K+ rollout episodes\n- **LIBERO-Goal 关键结果**: OFT 正确 prompt 100% → wrong prompt 10%（语言关键）\n- **LIBERO-Object**: 60-100% regardless of prompt（视觉足以区分）\n- **线性 probe**: GR00T N1.5 上 100% task identification, 96.4% success prediction\n- **视觉主导**: baseline visual activation injection 恢复 cosine similarity 0.999 的行为\n\n### 4.2 我们的方法 vs Grant et al.\n\n| 维度 | Grant et al. | 我们 |\n|------|-------------|------|\n| **方法** | Activation injection (causal) + SAEs + probes | Linear probes (correlational) |\n| **度量** | 行为后果（success rate） | 表征内容（classification accuracy） |\n| **模型** | 6 models (需要 rollout 环境) | OpenVLA only (只需 forward pass) |\n| **分析粒度** | 模型级别 | 层级别 (33 layers) + timestep 级别 |\n| **训练效果** | 未比较 trained vs untrained | **Trained vs untrained vs vision-only** |\n| **核心 claim** | Language sensitivity depends on task structure | **VLA training creates instruction-discriminative representations that raw vision lacks** |\n\n### 4.3 互补性分析\n\nGrant et al. 回答了 **\"语言是否影响行为？\"**（因果方向，通过 intervention）。\n\n我们回答 **\"VLA 训练如何改变表征中的 instruction 信息编码？\"**（表征方向，通过 probing）。\n\n**关键差异化**: 我们的 trained vs untrained 对比是 Grant et al. 没有做的。Untrained VLA 也接收 instruction tokens，但 LLM 权重是随机的——如果 untrained 也能高 accuracy 区分 instruction，说明 instruction 信息 trivially 存在于 token embeddings 中；如果 trained >> untrained，说明 VLA 训练学会了 **grounding** instruction 到 task-relevant representations。\n\n---\n\n## 5. Story 强度评估\n\n### 5.1 Claim\n\n> \"在 multi-goal ambiguous scene 中，VLA 的 LLM 编码了 instruction-discriminative 信息，这是纯视觉无法获得的。更重要的是，这种信息需要 VLA 训练才能涌现——随机初始化的 LLM 无法将 instruction tokens grounding 到 task-discriminative representations。\"\n\n### 5.2 强度分析\n\n**优势**:\n1. 直击 MVP 失败的根因：temporal distance 是 vision-solvable，instruction identity 在 shared-scene 中是 vision-unsolvable\n2. Trained vs untrained 对比是新的贡献，Grant et al. 未覆盖\n3. 层级分析可揭示 instruction 信息在哪些层编码——对 VLA 设计有指导意义\n4. Early-timestep 控制实验干净地隔离了 instruction vs visual divergence 的贡献\n5. 与 action prediction probe 互补：instruction probe 测 \"知道做什么\"，action probe 测 \"知道怎么做\"\n\n**劣势**:\n1. Linear probe 是 correlational，不是 causal（Grant et al. 的 activation injection 更强）\n2. 仅 OpenVLA 一个模型，Grant et al. 有 6 个\n3. \"VLA hidden states 编码 instruction\" 可能被视为 obvious（instruction 就是 input tokens）\n4. 10-way classification 的 chance level 是 10%，bar 不高\n\n### 5.3 潜在审稿攻击\n\n| 攻击 | 严重性 | 防御 |\n|------|--------|------|\n| \"Instruction tokens 直接在 input 里，hidden states 当然包含这个信息\" | **高** | Untrained 也有 input tokens 但 accuracy 应该低 → training 的贡献不是 trivial。另外 vision-only baseline 没有 instruction tokens 但在 late timesteps 也能区分 → 说明视觉分歧最终也提供区分力 |\n| \"只有 OpenVLA 一个模型，能否 generalize？\" | 中 | 承认是 limitation；但 Grant et al. 已在 6 个模型上验证了 behavioral 层面，我们补充 representational 层面的深度分析 |\n| \"Linear probe 太弱，non-linear probe 结果可能不同\" | 低 | Linear probe 是标准做法，且如果 linear probe 就能区分，说明信息是 linearly accessible 的（更强的 claim） |\n| \"Grant et al. 已经做了 linear probes，你的贡献在哪？\" | **高** | Grant 的 probe 是在 rollout episodes 上做 task identification（成功预测），我们是在 **offline demo features** 上做 instruction identity，且有 **trained vs untrained** 和 **layer × timestep** 的细粒度分析 |\n| \"Early-timestep 控制不够：t=0 时 robot arm pose 可能因 task 而异\" | 中 | 检查 LIBERO-Goal 的初始状态是否真的相同；如有微小差异，报告 DINO 在 t=0 的 accuracy 作为 upper bound |\n\n### 5.4 Story 在论文中的定位\n\n**如果作为独立 story → 偏弱**。Grant et al. 已经覆盖了核心 insight（language matters in shared scenes），我们的 probing 是补充不是突破。\n\n**如果作为 action prediction probe story 的补充实验 → 很强**。组合叙事：\n1. Temporal distance probe: vision-solvable → Δρ 小 (negative result, but informative)\n2. **Instruction identity probe: vision-unsolvable in shared scene → Δ_acc 大** (VLA training matters)\n3. Action prediction probe: needs policy knowledge → Δ large (VLA training matters)\n\n三者共同构成一个 **\"什么时候 VLA 训练才有用？\"** 的 story：只有在 probing target 需要超越视觉信息的知识时，VLA 训练才贡献显著。\n\n---\n\n## 6. Go/No-Go 建议\n\n### Decision Matrix\n\n| 因素 | 评分 | 说明 |\n|------|------|------|\n| 数据可用性 | ✅ | HuggingFace 直接下载，HDF5 兼容 |\n| Pipeline 兼容性 | ✅ | extract_features.py 无需修改 |\n| 工时可控 | ✅ | ~10h 端到端，1 个工作日 |\n| 独立 story 强度 | ⚠️ | Grant et al. 已覆盖核心 insight |\n| 补充 story 强度 | ✅ | 与 action probe 组合叙事很强 |\n| CoRL deadline 风险 | ⚠️ | 还剩 14 天，需要与 action probe 并行 |\n| 存储空间 | ⚠️ | 需要 ~113 GB 额外空间，需确认磁盘 |\n\n### 建议: **Conditional GO**\n\n**条件**：\n1. **Action prediction probe (MVP-2) 优先**。Instruction probe 是补充实验，不应占用 action probe 的 GPU 时间\n2. **精简版先行**：先只提取 8 个关键层 (L0, L4, L8, L12, L16, L20, L24, L28) 而非全部 33 层，GPU 时间从 6.5h 压缩到 ~2h\n3. **串行执行**：等 action probe 特征提取完成后，用空闲 GPU 时间跑 LIBERO-Goal\n4. **提前验证 t=0 视觉相似性**：下载后先检查 10 个 task 的第一帧是否真的视觉相似（用 DINO 余弦相似度），如果 t=0 就有大视觉差异，整个 probe 的 premise 不成立 → **abort**\n\n**如果 action probe 结果也不理想**，instruction probe 可以作为 **backup pivot** 独立撑起一个 story（虽然弱一些）。\n\n**如果两个 probe 都成功**，论文结构为：\n- Section 4.1: Temporal distance probe (vision-solvable → negative)\n- Section 4.2: Instruction identity probe (vision-unsolvable → VLA training matters)\n- Section 4.3: Action prediction probe (policy knowledge → VLA training matters)\n- Section 5: \"When does VLA training matter?\" — unified analysis\n\n---\n\n## 附录: OpenVLA Prompt 构造\n\nLIBERO-Goal 的 instruction 可直接从 task name 转换为 OpenVLA prompt：\n\n```python\nLIBERO_GOAL_PROMPTS = {\n    \"open_the_middle_drawer_of_the_cabinet\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the middle drawer of the cabinet.\",\n    \"open_the_top_drawer_and_put_the_bowl_inside\": \"In: LIBERO-Goal Kitchen Scene\\nOpen the top drawer and put the bowl inside.\",\n    \"push_the_plate_to_the_front_of_the_stove\": \"In: LIBERO-Goal Kitchen Scene\\nPush the plate to the front of the stove.\",\n    # ... 以此类推，task name 的下划线替换为空格，首字母大写\n}\n```\n\n注意：OpenVLA 的 prompt format 需与 fine-tuning 时的格式一致。如果 OpenVLA 未在 LIBERO-Goal 上 fine-tune，用通用 prompt format：`\"In: <scene>\\n<instruction>\"` 即可。模型不需要\"正确执行\"任务——我们只需要它的 hidden states 编码 instruction 信息。\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "1b5aa484-3e6b-42e5-81c9-a55fb9ad133c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PNY8gWJd51WrWrT2vUyLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7224,
+                "cache_read_input_tokens": 65437,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7224
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0176NFvUQTrgWnwRR58wdkfX",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "LIBERO-Goal Instruction-Conditioned Probe Feasibility Report v2",
+                "type": "report",
+                "description": "Updated feasibility analysis for instruction-conditioned probing on LIBERO-Goal: Grant et al. per-model results, Buurmeijer SAE paper, LIBERO-CF, novelty gap analysis, probe design, risk analysis, time estimates",
+                "project": "vla-ssd",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_goal_feasibility.md",
+                "tags": [
+                  "libero-goal",
+                  "instruction-probing",
+                  "feasibility",
+                  "literature-review",
+                  "grant-2026"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "a8842077-7b81-4a42-82b0-a34acd43b241",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014PNY8gWJd51WrWrT2vUyLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7224,
+                "cache_read_input_tokens": 65437,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7224
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-15T16:07:05.810Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0176NFvUQTrgWnwRR58wdkfX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_48441f\\\", \\\"name\\\": \\\"LIBERO-Goal Instruction-Conditioned Probe Feasibility Report v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Updated feasibility analysis for instruction-conditioned probing on LIBERO-Goal: Grant et al. per-model results, Buurmeijer SAE paper, LIBERO-CF, novelty gap analysis, probe design, risk analysis, time estimates\\\", \\\"path\\\": \\\"projects/vla-ssd/artifacts/_project/report/libero_goal_feasibility.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"vla-ssd\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:07:05.786800+00:00\\\", \\\"tags\\\": [\\\"libero-goal\\\", \\\"instruction-probing\\\", \\\"feasibility\\\", \\\"literature-review\\\", \\\"grant-2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "c2cecc8e-57f3-4ca6-888f-a6c30643be97",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_48441f\\\", \\\"name\\\": \\\"LIBERO-Goal Instruction-Conditioned Probe Feasibility Report v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Updated feasibility analysis for instruction-conditioned probing on LIBERO-Goal: Grant et al. per-model results, Buurmeijer SAE paper, LIBERO-CF, novelty gap analysis, probe design, risk analysis, time estimates\\\", \\\"path\\\": \\\"projects/vla-ssd/artifacts/_project/report/libero_goal_feasibility.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"vla-ssd\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:07:05.786800+00:00\\\", \\\"tags\\\": [\\\"libero-goal\\\", \\\"instruction-probing\\\", \\\"feasibility\\\", \\\"literature-review\\\", \\\"grant-2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_48441f\", \"name\": \"LIBERO-Goal Instruction-Conditioned Probe Feasibility Report v2\", \"type\": \"report\", \"description\": \"Updated feasibility analysis for instruction-conditioned probing on LIBERO-Goal: Grant et al. per-model results, Buurmeijer SAE paper, LIBERO-CF, novelty gap analysis, probe design, risk analysis, time estimates\", \"path\": \"projects/vla-ssd/artifacts/_project/report/libero_goal_feasibility.md\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T16:07:05.786800+00:00\", \"tags\": [\"libero-goal\", \"instruction-probing\", \"feasibility\", \"literature-review\", \"grant-2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新并注册。核心发现总结：\n\n**Grant et al. 2026 精读结果**:\n- LIBERO-Goal 10 tasks 共享同一 kitchen scene，仅 goal 不同\n- OFT/X-VLA/GR00T 在 wrong prompt 下 collapse 到 0-10%（LIBERO-Object 不受影响）\n- **关键 paradox**: π0.5 Layer 17 上 99.3% prompt classification accuracy，但行为不受 prompt 影响 → \"encoded but not used\"\n\n**Novelty gap 明确**:\n- Grant: behavioral intervention (6 models)，**没有 trained vs untrained 对比**\n- Swann/Buurmeijer: SAE interpretability，**没有 language features 分析**\n- LIBERO-CF: counterfactual behavioral benchmark，**没有 representation analysis**\n- 我们的空间: **trained vs untrained × layer × timestep granularity 的 instruction probing** — 无人做过\n\n**建议 Conditional GO**:\n1. 先过 t=0 visual similarity gate（DINO cosine sim ≥ 0.95）\n2. 方案 B（8 关键层）~6h 端到端\n3. 与 temporal distance + action probe 组成 \"when does VLA training matter?\" 的三段式 story"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "uuid": "2496a8c5-c0a2-4b29-8e95-f5d40b9269ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EJaLp16nVnN7CtFn5AWkXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 72661,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 622
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新并注册。核心发现总结：\n\n**Grant et al. 2026 精读结果**:\n- LIBERO-Goal 10 tasks 共享同一 kitchen scene，仅 goal 不同\n- OFT/X-VLA/GR00T 在 wrong prompt 下 collapse 到 0-10%（LIBERO-Object 不受影响）\n- **关键 paradox**: π0.5 Layer 17 上 99.3% prompt classification accuracy，但行为不受 prompt 影响 → \"encoded but not used\"\n\n**Novelty gap 明确**:\n- Grant: behavioral intervention (6 models)，**没有 trained vs untrained 对比**\n- Swann/Buurmeijer: SAE interpretability，**没有 language features 分析**\n- LIBERO-CF: counterfactual behavioral benchmark，**没有 representation analysis**\n- 我们的空间: **trained vs untrained × layer × timestep granularity 的 instruction probing** — 无人做过\n\n**建议 Conditional GO**:\n1. 先过 t=0 visual similarity gate（DINO cosine sim ≥ 0.95）\n2. 方案 B（8 关键层）~6h 端到端\n3. 与 temporal distance + action probe 组成 \"when does VLA training matter?\" 的三段式 story"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 409634,
+            "duration_api_ms": 518001,
+            "num_turns": 39,
+            "stop_reason": "end_turn",
+            "session_id": "3b3e1f33-f952-4c58-949c-fcaadf015741",
+            "total_cost_usd": 1.8712075499999994,
+            "usage": {
+              "input_tokens": 1487,
+              "cache_creation_input_tokens": 61442,
+              "cache_read_input_tokens": 682449,
+              "output_tokens": 13204,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 61442,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 363,
+                  "cache_read_input_tokens": 72661,
+                  "cache_creation_input_tokens": 622,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 622
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 431360,
+                "outputTokens": 16493,
+                "cacheReadInputTokens": 593543,
+                "cacheCreationInputTokens": 76205,
+                "webSearchRequests": 14,
+                "costUSD": 0.8084355500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1487,
+                "outputTokens": 13204,
+                "cacheReadInputTokens": 682449,
+                "cacheCreationInputTokens": 61442,
+                "webSearchRequests": 0,
+                "costUSD": 1.062772,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4e9b405d-dae5-4df8-89b8-369a312ec36d"
+          },
+          "id": "event-000197"
+        }
+      ]
+    }
+  ]
+}

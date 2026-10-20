@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d62f9b45a46abad1a4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis check object pipeline gpu",
+  "task_key": "worker_analysis_check_object_pipeline_gpu_20260521T011932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_object_pipeline_gpu_20260521T011932_result.json",
+    "occurrence": 1,
+    "bytes": 1986,
+    "sha256": "3502c5be5607d583bd22be96fbaa06a5933ddaf0ecd031e9da1c3db2bc9300eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 任务 1: LIBERO-Object Pipeline\n\n| 项目 | 状态 |\n|------|------|\n| GPU 0 | RTX PRO 6000 (98GB), 15.1GB 显存占用, 0% util |\n| GPU 1 | RTX PRO 6000 (98GB), 空闲 |\n| tmux session | `libero_object_full_pipeline` 运行中 |\n| PID | 513523, CPU 4041% (多线程 probing) |\n\n**Pipeline 进度：**\n- **Phase 1 (数据收集)**: 已完成，10/10 tasks，5000 samples，耗时 249.1s\n- **Phase 2 (action R2 probing)**: 进行中，已输出第一层结果：\n  - `L0: img_mean R2=0.6952  last_pre R2=0.5710`\n  - 最后输出时间 09:14:49，当前 09:20，正在计算后续层，**正常运行中**\n\n### 任务 2: NORA 下载\n\n**NORA 环境:** venv 已创建 (`/root/autodl-tmp/vla-ssd/envs/nora/`)，PyTorch 仍在安装中（PID 508806，`pip install torch --index-url .../cu128`，已运行 ~53min）\n\n**NORA 模型 (nora-libero-goal):** 4.8GB 已下载\n- `model-00001-of-00002.safetensors`: 4.62GB — **完成**\n- `model-00002-of-00002.safetensors`: 仅 60MB — **仍在下载**\n- 有多个并发下载进程（HF direct + hf-mirror + wget），其中一个遇到 `ChunkedEncodingError`（连接中断）\n- hf-mirror 进程 (PID 513278, 53% 8/15 files) 仍在继续\n\n### 任务 3: LIBERO-Long (openvla-7b-oft-finetuned-libero-10)\n\n| 项目 | 状态 |\n|------|------|\n| PID 513449 | **存活** |\n| 已下载 | 817MB |\n| 进度 | 12% (3/25 files) |\n| 预计剩余 | ~1h37m |\n| **问题** | `model-00002-of-00004.safetensors` 下载遇到 **ReadTimeoutError**（xethub cas-bridge 超时），正在自动重试 (1/5) |\n\n### 需要关注的问题\n\n1. **NORA PyTorch 安装耗时异常**（53min），可能卡住或网络极慢，建议检查\n2. **NORA 模型下载有 3 个并发进程**在抢同一个文件，可能互相干扰\n3. **LIBERO-Long 下载遇到 xethub 超时**，自动重试中，但 AutoDL 上 xethub 连接不稳定，若持续失败需要改用 `HF_HUB_DISABLE_XET=1` 或 hf-mirror"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-object-pipeline-gpu.md"
+}

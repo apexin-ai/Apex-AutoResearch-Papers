@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a88445008a5d7994c9f3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose fulllayer action probe status",
+  "task_key": "worker_diagnose_fulllayer_action_probe_status_20260516T044354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_fulllayer_action_probe_status_20260516T044354_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "6edc2054320580f9c530acf7d6810b489e7e8e02f56d923797bec35b70579070"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：DONE** — 进程已正常完成。\n\n| 项目 | 状态 |\n|------|------|\n| PID 700649 | 已退出（不在进程表中） |\n| 退出码 | `EXIT_CODE=0`（成功） |\n| 运行时长 | 19.5 分钟 |\n| GPU | 两块 GPU 均已释放（0 MiB / 0% 利用率） |\n| 结果文件 | `/root/autodl-tmp/vla-ssd/results/functional_validation/fulllayer_action_probe.json`（120KB，写入时间 12:10） |\n\n### 实验结果摘要\n\n**Trained model probing（33层，L0-L32）：**\n- `image_mean` peak: **L8, R²=0.6553**\n- `last_preaction` peak: **L13, R²=0.6779**\n\n**Untrained model probing：**\n- `image_mean` peak: **L0, R²=0.6403**\n- `last_preaction` peak: **L32, R²=0.6093**\n\n**Bootstrap 对比（全部显著）：**\n- trained(L8) vs untrained(L0) image_mean: delta=+0.0149, p=0.006\n- trained(L13) vs untrained(L32) last_preaction: delta=+0.0686, p<0.0001\n- same-layer(L8) image_mean trained vs untrained: delta=+0.1229, p<0.0001\n- same-layer(L13) last_preaction trained vs untrained: delta=+1.0071, p<0.0001"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-fulllayer-action-probe-status.md"
+}

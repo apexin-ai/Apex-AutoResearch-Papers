@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f987d79ddcc5a6e7ae5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis cf batch missing v1",
+  "task_key": "worker_analysis_cf_batch_missing_v1_20260522T012627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cf_batch_missing_v1_20260522T012627_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "b5afca0c0164132b15a09d821f7becb29e4e955c2c76bb1b08f4e9c81062efd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。5/5 条件全部成功，registry 和 artifact 已更新。\n\n**核心发现**：\n\n| Condition | Untrained Ordering (cos_dist) |\n|-----------|-------------------------------|\n| OpenVLA Object | E(0.569) >> S(0.298) > W(0.231) > P(0.085) |\n| TracVLA Spatial | E(0.180) > S(0.140) >> W(0.005) ~ P(0.004) |\n| TracVLA Object | E(0.185) >> S(0.098) >> P(0.005) ~ W(0.004) |\n| TracVLA Goal | E(0.153) >> S(0.084) >> W(0.016) > P(0.004) |\n| TracVLA Long | E(0.173) >> S(0.120) >> W(0.022) > P(0.007) |\n\n所有 untrained 模型呈现一致的两层结构：结构扰动（empty, shuffled）产生大的表征偏移，语义扰动（wrong, para）几乎无影响。训练后 wrong 条件的敏感度显著上升，与 shuffled 缩小差距——说明训练建立了对语义内容（具体物体/动作名称）的 grounding。\n\nOpenVLA base 在所有条件上 cos_dist 绝对值远大于 TracVLA base（Llama-2 vs Phi-3V 架构差异）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cf-batch-missing-v1.md"
+}

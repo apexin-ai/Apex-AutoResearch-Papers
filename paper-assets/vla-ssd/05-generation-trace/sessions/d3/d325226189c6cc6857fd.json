@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d325226189c6cc6857fd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research read qa probe result",
+  "task_key": "worker_research_read_qa_probe_result_20260516T223757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_read_qa_probe_result_20260516T223757_result.json",
+    "occurrence": 1,
+    "bytes": 1121,
+    "sha256": "b7dad4fa212bba5a7ae94022e936cdfcd0a95f2e952c0f80c0110e692f13b312"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下。文件已写入，但进程仍在运行（可能在跑更多层，当前只有 L0）。\n\n---\n\n## QA Probe Classification Results\n\n**Method**: Classification probe (LogisticRegression)\n\n### Progress 4-class\n\n| Condition | Acc | F1 |\n|-----------|------|------|\n| **trained L0** | 0.9474 | 0.9476 |\n| **untrained L0** | 0.9474 | 0.9476 |\n| **dino_cls** | 0.9545 | 0.9544 |\n| **projector** | 0.9474 | 0.9476 |\n\n### Subtask Binary\n\n| Condition | Acc | F1 |\n|-----------|------|------|\n| **trained L0** | 0.9829 | 0.9829 |\n| **untrained L0** | 0.9829 | 0.9829 |\n| **dino_cls** | 0.9836 | 0.9836 |\n| **projector** | 0.9829 | 0.9829 |\n\n---\n\n**状态**: 进程仍在运行（tmux session `qa_probe_classification` 活跃，python 进程占 CPU 3877%）。当前结果只有 L0 层，后续层正在计算中。Log 显示大量 LogisticRegression convergence warnings（lbfgs 达到 max_iter=1000 上限）。\n\n**初步观察**（仅 L0，不下结论）：trained 与 untrained 在 L0 上数值完全相同，dino_cls 略高。需等全部层跑完再看趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-read-qa-probe-result.md"
+}

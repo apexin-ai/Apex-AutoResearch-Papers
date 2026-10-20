@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3b16baa5b9be8e0f9d4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v3 20 20 final",
+  "task_key": "worker_check_bootstrap_v3_20_20_final_20260523T120246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v3_20_20_final_20260523T120246_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "868fbb83128414625bb14cd3f6c32fe57aad114b8c77fb3c53653aded7d85f4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**19/20** — `tracvla_long/untrained` 正在运行。\n\n当前进度：Task 6/10，3250/5000 samples。每 50 samples ~17s。\n\n预估剩余：\n- 当前 task 剩 1750 samples → ~10 min\n- 剩余 4 个 tasks × 5000 samples → ~113 min\n- **总计 ~2 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v3-20-20-final.md"
+}

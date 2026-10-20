@@ -1,0 +1,3611 @@
+# research verify n demos
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_research_verify_n_demos_20260516T032717.log`
+- **Structured JSON:** [`d83d6ae7866f8780dfa6.json`](../../sessions/d8/d83d6ae7866f8780dfa6.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b375a012-6477-46c0-8afd-15f5ce0aad53",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778904000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e3957421-a9ec-4ea5-985c-56a0dbc5a375",
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to the server and run several commands to check the actual number of demos used in various RSA result files. Let me execute these commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "191a5a8a-92e1-40f3-9452-8834ca4df23f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwuok7y8pM6Av1bJqfmhki",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12459,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12459
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me先加载SSH工具，然后执行这些检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "fe0ea35a-1595-45a7-b1ea-5820e046b819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwuok7y8pM6Av1bJqfmhki",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12459,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12459
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HEh1M4QxeJj8ZpoD7nmFQ3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "2ad86a5d-5e3e-4e8c-bab0-814fa9de1dc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwuok7y8pM6Av1bJqfmhki",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12459,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12459
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:27:30.673Z_
+
+<details><summary>↩ Tool result · `toolu_01HEh1M4QxeJj8ZpoD7nmFQ3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "3b161e64-dc44-4516-a1d1-e1606f79afb0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the commands. I'll start with the first two in parallel since they're independent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "b98d9bba-1405-4571-a127-11c2adccbbea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+开始执行检查。先并行读取 unified_rsa_results.json 和 feature h5 文件的 demo 数量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "603d2ae9-b412-4a8a-af9a-052f052e013b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D8hHYwrGvUNx2o1rkHPY37`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json') as f:\n    data = json.load(f)\nprint('Top keys:', list(data.keys()))\nprint('Summary:', json.dumps(data.get('summary', {}), indent=2))\nfor cond in data.get('conditions', {}):\n    for agg in data['conditions'][cond]:\n        layer_data = data['conditions'][cond][agg].get('layer_12', {})\n        per_task = layer_data.get('per_task', {})\n        n_tasks = len([v for v in per_task.values() if v is not None])\n        print(f'{cond}/{agg}: {n_tasks} tasks with valid RSA at L12')\n        break\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "3416c42e-6e6a-43fe-a01f-c02d109ea18f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T03:27:40.189Z_
+
+<details><summary>↩ Tool result · `toolu_01D8hHYwrGvUNx2o1rkHPY37`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "63a3e2b2-bff7-41c9-a4bc-c233135f36af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013qFhbf73U3YYU8Ns5kumi3`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/features/trained_libero_goal/open_the_middle_drawer_of_the_cabinet.h5', 'r')\ndemo_keys = [k for k in f.keys() if k.startswith('demo_')]\nprint(f'Trained features: {len(demo_keys)} demos')\nprint(f'Demo IDs: {sorted([int(k.split(\\\"_\\\")[1]) for k in demo_keys])}')\nf.close()\nf2 = h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'r')\ndemo_keys2 = [k for k in f2['data'].keys() if k.startswith('demo_')]\nprint(f'Action data: {len(demo_keys2)} demos')\nprint(f'Demo IDs: {sorted([int(k.split(\\\"_\\\")[1]) for k in demo_keys2])}')\nf2.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "43525fcd-9b90-44ea-a367-0e63a9979203",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSzRjQ8KHKbQzgyRu8H31a`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "python3 -c \"\nimport json, os\npath = '/root/autodl-tmp/vla-ssd/results/rsa/rsa_demo_standardized.json'\nif os.path.exists(path):\n    with open(path) as f:\n        data = json.load(f)\n    print('demo_standardized keys:', list(data.keys())[:10])\n    for k in ['n_demos', 'n_demo', 'demos_per_task', 'n_samples']:\n        if k in data:\n            print(f'{k}: {data[k]}')\n    print(json.dumps({k: v for k, v in data.items() if not isinstance(v, dict)}, indent=2))\nelse:\n    print('NOT FOUND')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "9bd4eeba-6d2e-4ed0-886f-f109679be394",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KTUTCNtbnRAWDnWvzwXE5x`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "ls -la /root/autodl-tmp/vla-ssd/results/rsa/branch_split*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "aae98327-c19d-41af-ae8a-66d6a6f20ab5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq2Zc99FWuKhemywVAA2Z3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 24300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:27:42.048Z_
+
+<details><summary>↩ Tool result · `toolu_013qFhbf73U3YYU8Ns5kumi3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "527607f6-e1b1-4549-8f6c-b4280683d52f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T03:27:42.059Z_
+
+<details><summary>↩ Tool result · `toolu_01MSzRjQ8KHKbQzgyRu8H31a`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "65348109-62e5-4f5d-92b9-2b3cd3ab646f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:27:42.579Z_
+
+<details><summary>↩ Tool result · `toolu_01KTUTCNtbnRAWDnWvzwXE5x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/rsa/branch_split*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "d0bf84ad-8aca-47b5-95d1-cc1be97f5b7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/vla-ssd/results/rsa/branch_split*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/rsa/branch_split*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Several issues:
+1. `ssh_read_only` blocks `open()` in python expressions - I need to use `cat` instead to read JSON files
+2. `python3` not found - need to use the conda path `/root/miniconda3/bin/python3`
+3. branch_split files don't exist
+4. For h5py reading, I'll need `ssh_execute` since it requires python with h5py
+
+Let me adjust. For JSON files I can use `cat` and pipe through head or just cat the whole thing. But shell metacharacters like `|` are blocked in ssh_read_only too. 
+
+I'll use `cat` to read the JSON files directly with the conda python path, but since `ssh_read_only` blocks pipes and `open()`, I need to load `ssh_execute` for the h5py operations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "d3cc5bf8-ab05-4b0d-bf1b-b6a0953c5330",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LEzC44xqsZAVkv7vqwCHK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1570,
+      "cache_read_input_tokens": 24793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1570
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+ssh_read_only 限制较多，需要用 cat 读 JSON 和用 conda python。让我调整策略。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "327fbbbb-ea23-4d64-85bf-13f7f0dfe16c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LEzC44xqsZAVkv7vqwCHK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1570,
+      "cache_read_input_tokens": 24793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1570
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013Bwt8mVrBgaZ4A1DVd9VsJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "cddfc887-507c-49b5-9150-061e561b0e13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LEzC44xqsZAVkv7vqwCHK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1570,
+      "cache_read_input_tokens": 24793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1570
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:27:52.388Z_
+
+<details><summary>↩ Tool result · `toolu_013Bwt8mVrBgaZ4A1DVd9VsJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "f60d15e8-0cb7-4047-9b3e-9f15e34fc9d0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VyYkovZVPnaoZKV56ziMCf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json') as f:\n    data = json.load(f)\nprint('Top keys:', list(data.keys()))\nprint('Summary:', json.dumps(data.get('summary', {}), indent=2))\nfor cond in data.get('conditions', {}):\n    for agg in data['conditions'][cond]:\n        layer_data = data['conditions'][cond][agg].get('layer_12', {})\n        per_task = layer_data.get('per_task', {})\n        n_tasks = len([v for v in per_task.values() if v is not None])\n        print(f'{cond}/{agg}: {n_tasks} tasks with valid RSA at L12')\n        break\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "6ec6db9c-1a3b-49d7-8917-d2d27cf6703b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXec6mHqvg81B1WLcnRDPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 26363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:27:58.267Z_
+
+<details><summary>↩ Tool result · `toolu_01VyYkovZVPnaoZKV56ziMCf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['method', 'rep_distance', 'action_distance', 'n_sample', 'n_layers', 'n_tasks', 'seed', 'conditions', 'instruction_control', 'summary', 'note_empty_condition', 'elapsed_seconds']\\nSummary: {\\n  \\\"trained_with_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6282\\n  },\\n  \\\"trained_with_inst_last_preaction_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6425\\n  },\\n  \\\"untrained_with_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 0,\\n    \\\"rsa\\\": 0.6117\\n  },\\n  \\\"untrained_with_inst_last_preaction_best\\\": {\\n    \\\"layer\\\": 1,\\n    \\\"rsa\\\": 0.6262\\n  },\\n  \\\"trained_no_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 13,\\n    \\\"rsa\\\": 0.6225\\n  },\\n  \\\"untrained_no_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 0,\\n    \\\"rsa\\\": 0.6106\\n  },\\n  \\\"random_s0_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6283\\n  },\\n  \\\"shuffled_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6282\\n  }\\n}\\ntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\nuntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\ntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\nuntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\nrandom_s0/image_mean: 10 tasks with valid RSA at L12\\nshuffled/image_mean: 10 tasks with valid RSA at L12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "67bff17c-7e41-497a-8ffc-1233b5ba07db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top keys: ['method', 'rep_distance', 'action_distance', 'n_sample', 'n_layers', 'n_tasks', 'seed', 'conditions', 'instruction_control', 'summary', 'note_empty_condition', 'elapsed_seconds']\\\\nSummary: {\\\\n  \\\\\\\"trained_with_inst_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 12,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6282\\\\n  },\\\\n  \\\\\\\"trained_with_inst_last_preaction_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 12,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6425\\\\n  },\\\\n  \\\\\\\"untrained_with_inst_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 0,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6117\\\\n  },\\\\n  \\\\\\\"untrained_with_inst_last_preaction_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 1,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6262\\\\n  },\\\\n  \\\\\\\"trained_no_inst_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 13,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6225\\\\n  },\\\\n  \\\\\\\"untrained_no_inst_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 0,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6106\\\\n  },\\\\n  \\\\\\\"random_s0_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 12,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6283\\\\n  },\\\\n  \\\\\\\"shuffled_image_mean_best\\\\\\\": {\\\\n    \\\\\\\"layer\\\\\\\": 12,\\\\n    \\\\\\\"rsa\\\\\\\": 0.6282\\\\n  }\\\\n}\\\\ntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\\\nuntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\\\ntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\\\nuntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\\\nrandom_s0/image_mean: 10 tasks with valid RSA at L12\\\\nshuffled/image_mean: 10 tasks with valid RSA at L12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['method', 'rep_distance', 'action_distance', 'n_sample', 'n_layers', 'n_tasks', 'seed', 'conditions', 'instruction_control', 'summary', 'note_empty_condition', 'elapsed_seconds']\\nSummary: {\\n  \\\"trained_with_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6282\\n  },\\n  \\\"trained_with_inst_last_preaction_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6425\\n  },\\n  \\\"untrained_with_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 0,\\n    \\\"rsa\\\": 0.6117\\n  },\\n  \\\"untrained_with_inst_last_preaction_best\\\": {\\n    \\\"layer\\\": 1,\\n    \\\"rsa\\\": 0.6262\\n  },\\n  \\\"trained_no_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 13,\\n    \\\"rsa\\\": 0.6225\\n  },\\n  \\\"untrained_no_inst_image_mean_best\\\": {\\n    \\\"layer\\\": 0,\\n    \\\"rsa\\\": 0.6106\\n  },\\n  \\\"random_s0_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6283\\n  },\\n  \\\"shuffled_image_mean_best\\\": {\\n    \\\"layer\\\": 12,\\n    \\\"rsa\\\": 0.6282\\n  }\\n}\\ntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\nuntrained_with_inst/image_mean: 10 tasks with valid RSA at L12\\ntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\nuntrained_no_inst/image_mean: 10 tasks with valid RSA at L12\\nrandom_s0/image_mean: 10 tasks with valid RSA at L12\\nshuffled/image_mean: 10 tasks with valid RSA at L12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01M5wJerwgbJNDjy5PkkcVhi`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/features/trained_libero_goal/open_the_middle_drawer_of_the_cabinet.h5', 'r')\ndemo_keys = [k for k in f.keys() if k.startswith('demo_')]\nprint(f'Trained features: {len(demo_keys)} demos')\nprint(f'Demo IDs: {sorted([int(k.split(\\\"_\\\")[1]) for k in demo_keys])}')\nf.close()\nf2 = h5py.File('/root/autodl-tmp/vla-ssd/data/libero/libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5', 'r')\ndemo_keys2 = [k for k in f2['data'].keys() if k.startswith('demo_')]\nprint(f'Action data: {len(demo_keys2)} demos')\nprint(f'Demo IDs: {sorted([int(k.split(\\\"_\\\")[1]) for k in demo_keys2])}')\nf2.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "42e2a37b-d48b-4001-9d07-740d204d749a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXec6mHqvg81B1WLcnRDPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 26363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:28:00.349Z_
+
+<details><summary>↩ Tool result · `toolu_01M5wJerwgbJNDjy5PkkcVhi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Trained features: 50 demos\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\nAction data: 50 demos\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "d2a2740e-fe25-4722-ae69-a0b39a47a54e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Trained features: 50 demos\\\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\\\nAction data: 50 demos\\\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Trained features: 50 demos\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\nAction data: 50 demos\\nDemo IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QrekbYtV7V5qNajYwfPuuq`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\npath = '/root/autodl-tmp/vla-ssd/results/rsa/rsa_demo_standardized.json'\nif os.path.exists(path):\n    with open(path) as f:\n        data = json.load(f)\n    print('demo_standardized keys:', list(data.keys())[:10])\n    for k in ['n_demos', 'n_demo', 'demos_per_task', 'n_samples']:\n        if k in data:\n            print(f'{k}: {data[k]}')\n    print(json.dumps({k: v for k, v in data.items() if not isinstance(v, dict)}, indent=2))\nelse:\n    print('NOT FOUND')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "f9086e08-b462-4279-81f9-2edea997a3bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXec6mHqvg81B1WLcnRDPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 26363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:28:02.573Z_
+
+<details><summary>↩ Tool result · `toolu_01QrekbYtV7V5qNajYwfPuuq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"demo_standardized keys: ['method', 'demos_per_task', 'demo_ids_standard', 'models', 'pairwise_deltas', 'token_info']\\ndemos_per_task: 10\\n{\\n  \\\"method\\\": \\\"within-task + euclidean action + cosine rep + N_SAMPLE=20\\\",\\n  \\\"demos_per_task\\\": 10,\\n  \\\"demo_ids_standard\\\": [\\n    \\\"demo_0\\\",\\n    \\\"demo_1\\\",\\n    \\\"demo_2\\\",\\n    \\\"demo_3\\\",\\n    \\\"demo_4\\\",\\n    \\\"demo_5\\\",\\n    \\\"demo_6\\\",\\n    \\\"demo_7\\\",\\n    \\\"demo_8\\\",\\n    \\\"demo_9\\\"\\n  ]\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "d794bb84-17bf-4705-9637-5a873351c364",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"demo_standardized keys: ['method', 'demos_per_task', 'demo_ids_standard', 'models', 'pairwise_deltas', 'token_info']\\\\ndemos_per_task: 10\\\\n{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"within-task + euclidean action + cosine rep + N_SAMPLE=20\\\\\\\",\\\\n  \\\\\\\"demos_per_task\\\\\\\": 10,\\\\n  \\\\\\\"demo_ids_standard\\\\\\\": [\\\\n    \\\\\\\"demo_0\\\\\\\",\\\\n    \\\\\\\"demo_1\\\\\\\",\\\\n    \\\\\\\"demo_2\\\\\\\",\\\\n    \\\\\\\"demo_3\\\\\\\",\\\\n    \\\\\\\"demo_4\\\\\\\",\\\\n    \\\\\\\"demo_5\\\\\\\",\\\\n    \\\\\\\"demo_6\\\\\\\",\\\\n    \\\\\\\"demo_7\\\\\\\",\\\\n    \\\\\\\"demo_8\\\\\\\",\\\\n    \\\\\\\"demo_9\\\\\\\"\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"demo_standardized keys: ['method', 'demos_per_task', 'demo_ids_standard', 'models', 'pairwise_deltas', 'token_info']\\ndemos_per_task: 10\\n{\\n  \\\"method\\\": \\\"within-task + euclidean action + cosine rep + N_SAMPLE=20\\\",\\n  \\\"demos_per_task\\\": 10,\\n  \\\"demo_ids_standard\\\": [\\n    \\\"demo_0\\\",\\n    \\\"demo_1\\\",\\n    \\\"demo_2\\\",\\n    \\\"demo_3\\\",\\n    \\\"demo_4\\\",\\n    \\\"demo_5\\\",\\n    \\\"demo_6\\\",\\n    \\\"demo_7\\\",\\n    \\\"demo_8\\\",\\n    \\\"demo_9\\\"\\n  ]\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PHgxGsqeCJEDRMwauCS61G`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, glob\nfor path in glob.glob('/root/autodl-tmp/vla-ssd/results/rsa/branch_split*'):\n    with open(path) as f:\n        data = json.load(f)\n    print(f'=== {path} ===')\n    for k in ['n_demos', 'demos_per_task', 'n_sample']:\n        if k in data:\n            print(f'{k}: {data[k]}')\n    if 'summary' in data:\n        print('Summary:', json.dumps(data['summary'], indent=2))\nprint('Done scanning branch_split files')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "ec5decb4-09c4-4f71-a9b4-a78a80de3aba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXec6mHqvg81B1WLcnRDPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 26363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T03:28:04.374Z_
+
+<details><summary>↩ Tool result · `toolu_01PHgxGsqeCJEDRMwauCS61G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done scanning branch_split files\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "b209f268-0d46-4f43-a8e7-b5b93928119d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done scanning branch_split files\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Done scanning branch_split files\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SUxKqqmtcHmySTM3FMnLBL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nfor name in ['rsa_siglip_projector.json', 'rsa_siglip_only.json', 'rsa_dino.json', 'rsa_dino_corrected.json', 'rsa_clip.json']:\n    path = f'/root/autodl-tmp/vla-ssd/results/rsa/{name}'\n    if os.path.exists(path):\n        with open(path) as f:\n            data = json.load(f)\n        for k in ['n_demos', 'demos_per_task', 'n_sample', 'n_pairs']:\n            if k in data:\n                print(f'{name} {k}: {data[k]}')\n        if 'per_task' in data:\n            tasks = list(data['per_task'].keys())\n            print(f'{name}: {len(tasks)} tasks')\n        elif 'conditions' in data:\n            print(f'{name}: has conditions key')\n        print()\n    else:\n        print(f'{name}: NOT FOUND')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "982e138c-514a-460a-9965-3c288c7a3b0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXec6mHqvg81B1WLcnRDPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 26363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:28:07.036Z_
+
+<details><summary>↩ Tool result · `toolu_01SUxKqqmtcHmySTM3FMnLBL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"rsa_siglip_projector.json: NOT FOUND\\nrsa_siglip_only.json: 10 tasks\\n\\nrsa_dino.json: NOT FOUND\\nrsa_dino_corrected.json: NOT FOUND\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "90d577cd-8237-487f-803a-2744818cc96d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rsa_siglip_projector.json: NOT FOUND\\\\nrsa_siglip_only.json: 10 tasks\\\\n\\\\nrsa_dino.json: NOT FOUND\\\\nrsa_dino_corrected.json: NOT FOUND\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"rsa_siglip_projector.json: NOT FOUND\\nrsa_siglip_only.json: 10 tasks\\n\\nrsa_dino.json: NOT FOUND\\nrsa_dino_corrected.json: NOT FOUND\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check the unified_rsa_results.json for the `n_sample` field, and also check the rsa_siglip_only.json for demo counts. Also need to check if unified_rsa_results.json records actual n_demos per condition.
+
+Key findings so far:
+1. **unified_rsa_results.json**: Has `n_sample` key (not `n_demos`). All 6 conditions have 10 tasks with valid RSA at L12. But I need to check what `n_sample` is.
+2. **Feature h5 / Action hdf5**: Both have exactly 50 demos (demo_0 to demo_49) - perfect intersection.
+
+
+3. **rsa_demo_standardized.json**: Uses 10 demos per task (demo_0 through demo_9), while the branch_split files don't appear to exist. For vision-only RSA, I found rsa_siglip_only.json with 10 tasks but need to verify if rsa_clip.json was actually located.
+
+I need to dig deeper into unified_rsa_results.json to find the actual n_demos value and check whether the conditions track per-task demo counts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "42f27b16-fadb-451f-a185-6348a04d0219",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K6puTGF9qYrbkHY1XM1mg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 27003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+需要进一步检查 unified_rsa_results.json 的 `n_sample` 字段和 rsa_siglip_only.json 的 demo 数量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "f6544a6d-d9e3-463c-af8e-e56240357031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K6puTGF9qYrbkHY1XM1mg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 27003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RLaVnSVrVQfonXXbUAKQSL`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json') as f:\n    data = json.load(f)\nprint('n_sample:', data.get('n_sample'))\nprint('n_layers:', data.get('n_layers'))\nprint('n_tasks:', data.get('n_tasks'))\nprint('method:', data.get('method'))\nprint('seed:', data.get('seed'))\n# Check if any condition stores n_demos info\ncond0 = list(data['conditions'].keys())[0]\nagg0 = list(data['conditions'][cond0].keys())[0]\nlayer0 = list(data['conditions'][cond0][agg0].keys())[0]\nlayer_data = data['conditions'][cond0][agg0][layer0]\nprint(f'Layer data keys for {cond0}/{agg0}/{layer0}:', list(layer_data.keys()))\n# Check per_task to see actual task count and demo info\nper_task = layer_data.get('per_task', {})\nprint(f'per_task tasks: {list(per_task.keys())}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "26acf003-09ec-4a84-a66f-307620029e3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K6puTGF9qYrbkHY1XM1mg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 27003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T03:28:21.382Z_
+
+<details><summary>↩ Tool result · `toolu_01RLaVnSVrVQfonXXbUAKQSL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"n_sample: 20\\nn_layers: 33\\nn_tasks: 10\\nmethod: B (within-task + cosine rep dist + euclidean action dist + full trajectory)\\nseed: 42\\nLayer data keys for trained_with_inst/image_mean/layer_0: ['mean_rsa', 'ci95', 'per_task']\\nper_task tasks: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "680f7199-b4d8-4d0e-89fd-cd8a79c16d98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n_sample: 20\\\\nn_layers: 33\\\\nn_tasks: 10\\\\nmethod: B (within-task + cosine rep dist + euclidean action dist + full trajectory)\\\\nseed: 42\\\\nLayer data keys for trained_with_inst/image_mean/layer_0: ['mean_rsa', 'ci95', 'per_task']\\\\nper_task tasks: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"n_sample: 20\\nn_layers: 33\\nn_tasks: 10\\nmethod: B (within-task + cosine rep dist + euclidean action dist + full trajectory)\\nseed: 42\\nLayer data keys for trained_with_inst/image_mean/layer_0: ['mean_rsa', 'ci95', 'per_task']\\nper_task tasks: ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014KZVho7nwDbwqwwYAyVo14`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_siglip_only.json') as f:\n    data = json.load(f)\nprint('Top keys:', list(data.keys()))\nfor k in ['n_demos', 'demos_per_task', 'n_sample', 'n_pairs', 'method']:\n    if k in data:\n        print(f'{k}: {data[k]}')\ntasks = list(data.get('per_task', {}).keys())\nprint(f'Tasks ({len(tasks)}): {tasks}')\n# Check if there is per_task detail\nif tasks:\n    sample_task = tasks[0]\n    task_data = data['per_task'][sample_task]\n    if isinstance(task_data, dict):\n        print(f'Sample task keys: {list(task_data.keys())}')\n    else:\n        print(f'Sample task value type: {type(task_data).__name__}, val: {task_data}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "2ea9d3bb-91ff-4c5c-91cc-bb86e2b5a8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K6puTGF9qYrbkHY1XM1mg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 27003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:28:25.165Z_
+
+<details><summary>↩ Tool result · `toolu_014KZVho7nwDbwqwwYAyVo14`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['siglip_only_peak_rsa', 'ci95', 'per_task', 'comparison', 'gate_judgment']\\nTasks (10): ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\nSample task value type: float, val: 0.7087\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "5e798177-ead8-4697-92b4-05aac9e92789",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top keys: ['siglip_only_peak_rsa', 'ci95', 'per_task', 'comparison', 'gate_judgment']\\\\nTasks (10): ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\\\nSample task value type: float, val: 0.7087\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['siglip_only_peak_rsa', 'ci95', 'per_task', 'comparison', 'gate_judgment']\\nTasks (10): ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\nSample task value type: float, val: 0.7087\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GZpSVX5DmCs5DZNWdkfWJT`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n# Check clip result\npath = '/root/autodl-tmp/vla-ssd/results/rsa/rsa_clip.json'\nif os.path.exists(path):\n    with open(path) as f:\n        data = json.load(f)\n    print('rsa_clip.json found')\n    print('Keys:', list(data.keys()))\nelse:\n    print('rsa_clip.json NOT FOUND')\n\n# List all RSA result files\nimport glob\nfiles = sorted(glob.glob('/root/autodl-tmp/vla-ssd/results/rsa/*.json'))\nprint()\nprint('All RSA JSON files:')\nfor f in files:\n    print(f'  {os.path.basename(f)}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "ade1e144-5efa-41e3-8613-665bdd2d36d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K6puTGF9qYrbkHY1XM1mg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3481,
+      "cache_read_input_tokens": 27003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:28:27.801Z_
+
+<details><summary>↩ Tool result · `toolu_01GZpSVX5DmCs5DZNWdkfWJT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"rsa_clip.json found\\nKeys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\n\\nAll RSA JSON files:\\n  bootstrap_training_effect.json\\n  perlayer_comparison_inst_ablation.json\\n  perlayer_degradation_curve.json\\n  rsa_branch_split.json\\n  rsa_clip.json\\n  rsa_demo_standardized.json\\n  rsa_image_mean.json\\n  rsa_image_mean_no_inst.json\\n  rsa_instruction_control_last_preaction.json\\n  rsa_instruction_control_quick.json\\n  rsa_method_audit.json\\n  rsa_results.json\\n  rsa_results_no_inst.json\\n  rsa_siglip_only.json\\n  rsa_trained_no_inst.json\\n  unified_rsa_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "6fe37421-4254-4407-a340-5fa548b27df7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rsa_clip.json found\\\\nKeys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\\\n\\\\nAll RSA JSON files:\\\\n  bootstrap_training_effect.json\\\\n  perlayer_comparison_inst_ablation.json\\\\n  perlayer_degradation_curve.json\\\\n  rsa_branch_split.json\\\\n  rsa_clip.json\\\\n  rsa_demo_standardized.json\\\\n  rsa_image_mean.json\\\\n  rsa_image_mean_no_inst.json\\\\n  rsa_instruction_control_last_preaction.json\\\\n  rsa_instruction_control_quick.json\\\\n  rsa_method_audit.json\\\\n  rsa_results.json\\\\n  rsa_results_no_inst.json\\\\n  rsa_siglip_only.json\\\\n  rsa_trained_no_inst.json\\\\n  unified_rsa_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"rsa_clip.json found\\nKeys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\n\\nAll RSA JSON files:\\n  bootstrap_training_effect.json\\n  perlayer_comparison_inst_ablation.json\\n  perlayer_degradation_curve.json\\n  rsa_branch_split.json\\n  rsa_clip.json\\n  rsa_demo_standardized.json\\n  rsa_image_mean.json\\n  rsa_image_mean_no_inst.json\\n  rsa_instruction_control_last_preaction.json\\n  rsa_instruction_control_quick.json\\n  rsa_method_audit.json\\n  rsa_results.json\\n  rsa_results_no_inst.json\\n  rsa_siglip_only.json\\n  rsa_trained_no_inst.json\\n  unified_rsa_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check the actual n_demos used in the unified RSA computation. The `n_sample` is 20 (timepoints per demo, likely), not demo count. The JSON doesn't explicitly store `n_demos`. Let me check the actual RSA computation code to understand what n_sample means, and also check the rsa_branch_split.json and rsa_clip.json for their demo counts.
+
+Actually, I should check the code that generated unified_rsa_results.json to understand what n_sample=20 means. But more importantly, I should directly check the feature h5 files for multiple tasks across conditions to confirm whether all tasks have 50 demos.
+
+
+I also need to look at rsa_branch_split.json since my earlier glob pattern didn't capture it properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "16e7e88e-4092-4b91-92a2-2a6c84e321c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkS9uAHxvD14ZjTERShxdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 30484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+发现 `rsa_branch_split.json` 存在（之前 glob pattern 不对）。继续检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "dc81cb82-7698-4ff7-af8e-a69225fcbe55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkS9uAHxvD14ZjTERShxdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 30484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TzVAZkcvpwzpYKbEYUsam7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_branch_split.json') as f:\n    data = json.load(f)\nprint('Keys:', list(data.keys()))\nfor k in ['n_demos', 'demos_per_task', 'n_sample', 'n_pairs', 'method']:\n    if k in data:\n        print(f'{k}: {data[k]}')\nif 'summary' in data:\n    print('Summary:', json.dumps(data['summary'], indent=2))\n# Show non-dict top-level values\nfor k,v in data.items():\n    if not isinstance(v, (dict, list)):\n        print(f'{k}: {v}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "e71e3a6c-34d1-433f-af95-9e81eda5e816",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkS9uAHxvD14ZjTERShxdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 30484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:28:38.383Z_
+
+<details><summary>↩ Tool result · `toolu_01TzVAZkcvpwzpYKbEYUsam7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['experiment', 'method', 'concat_order', 'results', 'comparison']\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\nexperiment: branch_split_rsa\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\nconcat_order: DINOv2 (0:1024) | SigLIP (1024:2176)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "ed3be86a-1b36-427d-828a-0664799e5e23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['experiment', 'method', 'concat_order', 'results', 'comparison']\\\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\\\nexperiment: branch_split_rsa\\\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\\\nconcat_order: DINOv2 (0:1024) | SigLIP (1024:2176)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['experiment', 'method', 'concat_order', 'results', 'comparison']\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\nexperiment: branch_split_rsa\\nmethod: within-task, cosine rep dist, euclidean action dist, N=20, Spearman\\nconcat_order: DINOv2 (0:1024) | SigLIP (1024:2176)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Jooe9YWvP9jxPdRH91rwp7`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_clip.json') as f:\n    data = json.load(f)\nprint('All keys:', list(data.keys()))\nfor k,v in data.items():\n    if not isinstance(v, (dict, list)):\n        print(f'{k}: {v}')\n    elif isinstance(v, dict):\n        print(f'{k}: {list(v.keys())[:5]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "e8c15877-b134-42a8-9f55-ae345404606b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkS9uAHxvD14ZjTERShxdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 30484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:28:40.741Z_
+
+<details><summary>↩ Tool result · `toolu_01Jooe9YWvP9jxPdRH91rwp7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All keys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\nmodel: CLIP ViT-L/14 (openai)\\nper_feature_key: ['cls_token', 'patch_mean']\\nbest_key: patch_mean\\nbest_rsa: 0.5572\\ncomparison: ['siglip_projector', 'siglip_only', 'trained_vla', 'untrained_vla', 'dino']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "1c420020-1820-4160-8e81-e4dff18c2f54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All keys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\\\nmodel: CLIP ViT-L/14 (openai)\\\\nper_feature_key: ['cls_token', 'patch_mean']\\\\nbest_key: patch_mean\\\\nbest_rsa: 0.5572\\\\ncomparison: ['siglip_projector', 'siglip_only', 'trained_vla', 'untrained_vla', 'dino']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All keys: ['model', 'per_feature_key', 'best_key', 'best_rsa', 'comparison']\\nmodel: CLIP ViT-L/14 (openai)\\nper_feature_key: ['cls_token', 'patch_mean']\\nbest_key: patch_mean\\nbest_rsa: 0.5572\\ncomparison: ['siglip_projector', 'siglip_only', 'trained_vla', 'untrained_vla', 'dino']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011i6TJUBJvem7wEemAvv4Rg`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport h5py, os, glob\n\n# Check demo counts across multiple tasks for trained features\nfeature_dir = '/root/autodl-tmp/vla-ssd/features/trained_libero_goal/'\nh5_files = sorted(glob.glob(feature_dir + '*.h5'))\nprint('=== Trained features ===')\nfor fp in h5_files:\n    f = h5py.File(fp, 'r')\n    demos = [k for k in f.keys() if k.startswith('demo_')]\n    task = os.path.basename(fp).replace('.h5','')\n    print(f'{task}: {len(demos)} demos')\n    f.close()\n\n# Check untrained features\nfeature_dir2 = '/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/'\nif os.path.isdir(feature_dir2):\n    h5_files2 = sorted(glob.glob(feature_dir2 + '*.h5'))\n    print()\n    print('=== Untrained features ===')\n    for fp in h5_files2:\n        f = h5py.File(fp, 'r')\n        demos = [k for k in f.keys() if k.startswith('demo_')]\n        task = os.path.basename(fp).replace('.h5','')\n        print(f'{task}: {len(demos)} demos')\n        f.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "11cd9828-1ea4-4259-854f-9929e3c393e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkS9uAHxvD14ZjTERShxdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 30484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T03:28:45.328Z_
+
+<details><summary>↩ Tool result · `toolu_011i6TJUBJvem7wEemAvv4Rg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Trained features ===\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\nput_the_bowl_on_the_plate: 50 demos\\nput_the_bowl_on_the_stove: 50 demos\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\nput_the_cream_cheese_in_the_bowl: 50 demos\\nput_the_wine_bottle_on_the_rack: 50 demos\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\nturn_on_the_stove: 50 demos\\n\\n=== Untrained features ===\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\nput_the_bowl_on_the_plate: 50 demos\\nput_the_bowl_on_the_stove: 50 demos\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\nput_the_cream_cheese_in_the_bowl: 50 demos\\nput_the_wine_bottle_on_the_rack: 50 demos\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\nturn_on_the_stove: 50 demos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "41b02c95-c55a-4dfd-bdad-d5dbc1d83eb2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Trained features ===\\\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\\\nput_the_bowl_on_the_plate: 50 demos\\\\nput_the_bowl_on_the_stove: 50 demos\\\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\\\nput_the_cream_cheese_in_the_bowl: 50 demos\\\\nput_the_wine_bottle_on_the_rack: 50 demos\\\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\\\nturn_on_the_stove: 50 demos\\\\n\\\\n=== Untrained features ===\\\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\\\nput_the_bowl_on_the_plate: 50 demos\\\\nput_the_bowl_on_the_stove: 50 demos\\\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\\\nput_the_cream_cheese_in_the_bowl: 50 demos\\\\nput_the_wine_bottle_on_the_rack: 50 demos\\\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\\\nturn_on_the_stove: 50 demos\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Trained features ===\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\nput_the_bowl_on_the_plate: 50 demos\\nput_the_bowl_on_the_stove: 50 demos\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\nput_the_cream_cheese_in_the_bowl: 50 demos\\nput_the_wine_bottle_on_the_rack: 50 demos\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\nturn_on_the_stove: 50 demos\\n\\n=== Untrained features ===\\nopen_the_middle_drawer_of_the_cabinet: 50 demos\\nopen_the_top_drawer_and_put_the_bowl_inside: 50 demos\\npush_the_plate_to_the_front_of_the_stove: 50 demos\\nput_the_bowl_on_the_plate: 50 demos\\nput_the_bowl_on_the_stove: 50 demos\\nput_the_bowl_on_top_of_the_cabinet: 50 demos\\nput_the_cream_cheese_in_the_bowl: 50 demos\\nput_the_wine_bottle_on_the_rack: 50 demos\\nput_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\nturn_on_the_stove: 50 demos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check what `n_sample` means in the unified results. It's likely the number of timepoint samples per demo trajectory, not demo count. Let me also check rsa_demo_standardized more carefully - it uses only 10 demos per task. And let me check whether the rsa_clip.json and rsa_siglip_only.json recorded their demo counts anywhere.
+
+Let me also check the RSA computation code to understand what n_sample=20 means and how many demos were used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "a74b9fa3-b8a4-4f27-986d-f41d477049a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNG48NYXKdcY8VjVwjpusq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 32916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+最后确认 `n_sample=20` 的含义和 demo_standardized 的实际 demo 数量差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "28d54cd3-2866-4c2e-9c2c-3e45ae559aa2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNG48NYXKdcY8VjVwjpusq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 32916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01E56BbxdRVNnecV7drti26N`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# Check rsa_demo_standardized deeper - what models does it compare?\nwith open('/root/autodl-tmp/vla-ssd/results/rsa/rsa_demo_standardized.json') as f:\n    data = json.load(f)\nprint('=== rsa_demo_standardized ===')\nprint('demos_per_task:', data['demos_per_task'])\nprint('demo_ids_standard:', data['demo_ids_standard'])\nprint('models keys:', list(data.get('models', {}).keys()))\nfor model_name, model_data in data.get('models', {}).items():\n    if isinstance(model_data, dict):\n        print(f'  {model_name}: keys={list(model_data.keys())[:5]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "2a1bb0ba-763f-4080-8f3a-a6a91b01e36e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNG48NYXKdcY8VjVwjpusq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 32916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T03:28:55.143Z_
+
+<details><summary>↩ Tool result · `toolu_01E56BbxdRVNnecV7drti26N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== rsa_demo_standardized ===\\ndemos_per_task: 10\\ndemo_ids_standard: ['demo_0', 'demo_1', 'demo_2', 'demo_3', 'demo_4', 'demo_5', 'demo_6', 'demo_7', 'demo_8', 'demo_9']\\nmodels keys: ['dino_cls', 'dino_patch_mean', 'clip_cls', 'clip_patch_mean', 'siglip_projector', 'vla_trained_L9_lastpre', 'vla_untrained_L9_lastpre', 'vla_trained_L9_imgmean', 'vla_untrained_L9_imgmean']\\n  dino_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  dino_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  clip_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  clip_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  siglip_projector: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_trained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_untrained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_trained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_untrained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "c1f6f021-7d7f-4888-8b72-6d21bd1ae389",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== rsa_demo_standardized ===\\\\ndemos_per_task: 10\\\\ndemo_ids_standard: ['demo_0', 'demo_1', 'demo_2', 'demo_3', 'demo_4', 'demo_5', 'demo_6', 'demo_7', 'demo_8', 'demo_9']\\\\nmodels keys: ['dino_cls', 'dino_patch_mean', 'clip_cls', 'clip_patch_mean', 'siglip_projector', 'vla_trained_L9_lastpre', 'vla_untrained_L9_lastpre', 'vla_trained_L9_imgmean', 'vla_untrained_L9_imgmean']\\\\n  dino_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  dino_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  clip_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  clip_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  siglip_projector: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  vla_trained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  vla_untrained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  vla_trained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n  vla_untrained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== rsa_demo_standardized ===\\ndemos_per_task: 10\\ndemo_ids_standard: ['demo_0', 'demo_1', 'demo_2', 'demo_3', 'demo_4', 'demo_5', 'demo_6', 'demo_7', 'demo_8', 'demo_9']\\nmodels keys: ['dino_cls', 'dino_patch_mean', 'clip_cls', 'clip_patch_mean', 'siglip_projector', 'vla_trained_L9_lastpre', 'vla_untrained_L9_lastpre', 'vla_trained_L9_imgmean', 'vla_untrained_L9_imgmean']\\n  dino_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  dino_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  clip_cls: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  clip_patch_mean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  siglip_projector: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_trained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_untrained_L9_lastpre: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_trained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n  vla_untrained_L9_imgmean: keys=['mean_rsa', 'ci_low', 'ci_high', 'per_task', 'demo_ids']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TsCBCsKLXf37ftuasPdZai`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\n# Check what n_sample=20 means by looking at how RSA pairs are computed\n# n_sample likely = number of timepoint samples per demo for trajectory representation\n# Let's check feature shape to understand\nimport h5py\nf = h5py.File('/root/autodl-tmp/vla-ssd/features/trained_libero_goal/open_the_middle_drawer_of_the_cabinet.h5', 'r')\ndemo = f['demo_0']\nprint('demo_0 keys:', list(demo.keys()))\nfor k in list(demo.keys())[:3]:\n    if hasattr(demo[k], 'shape'):\n        print(f'  {k}: shape={demo[k].shape}, dtype={demo[k].dtype}')\nf.close()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "9699c93f-6a5f-4c66-a8b5-c7807685704b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNG48NYXKdcY8VjVwjpusq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 32916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T03:28:57.950Z_
+
+<details><summary>↩ Tool result · `toolu_01TsCBCsKLXf37ftuasPdZai`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"demo_0 keys: ['image_mean', 'last_preaction']\\n  image_mean: shape=(138, 33, 4096), dtype=float16\\n  last_preaction: shape=(138, 33, 4096), dtype=float16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "87fb4b84-2e09-443e-bab2-c88d93f501e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"demo_0 keys: ['image_mean', 'last_preaction']\\\\n  image_mean: shape=(138, 33, 4096), dtype=float16\\\\n  last_preaction: shape=(138, 33, 4096), dtype=float16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"demo_0 keys: ['image_mean', 'last_preaction']\\n  image_mean: shape=(138, 33, 4096), dtype=float16\\n  last_preaction: shape=(138, 33, 4096), dtype=float16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize:
+
+### Feature shape
+- `demo_0/image_mean`: shape=(138, 33, 4096) → 138 timesteps, 33 layers, 4096 dim
+- `n_sample=20` in unified_rsa_results.json → this is the number of timepoint samples per demo that were used for RSA computation (subsampled from the full trajectory of ~138 timesteps)
+
+### Data sources and their n_demos:
+
+1. **Feature h5 files** (source data):
+   - Trained and untrained features: 50 demos per task across all 10 tasks
+
+2. **Action hdf5 files** (source data):
+   - 50 demos per task
+
+3. **unified_rsa_results.json** (VLA全层扫描):
+   - `n_sample=20` refers to timepoint samples rather than demos
+   - `n_tasks=10`
+   - Doesn't explicitly record the number of demos, but all conditions cover the 10 tasks with valid data
+
+The RSA analysis used the intersection of feature and action data, which gives us 50 demos per task. The standardized comparison file covers 9 different models but only uses 10 demos per task (demo_0 through demo_9), while the other RSA result files don't explicitly document their demo counts. I need to verify whether the unified RSA actually processed all 50 demos or if it subsampled them—the results file doesn't explicitly record n_demos, only n_sample=20 for timepoints. With 50 demos per task, I'd expect around 1,225 pairwise comparisons, but I should check the generating code to confirm what was actually used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "a061d23e-ec7b-4490-9621-e3e428689458",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FS8nZtvNQBuXYqDYoDT5AX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1697,
+      "cache_read_input_tokens": 35106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+确认 unified_rsa_results.json 实际使用了多少 demos——检查生成代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "d8239ab4-179a-48f7-a66b-1d52b355cb22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FS8nZtvNQBuXYqDYoDT5AX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1697,
+      "cache_read_input_tokens": 35106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GegxgEp5ihfyuQsFHKpDtG`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rn \"n_sample\\|n_demos\\|demo_ids\\|intersection\" /root/vla-ssd/scripts/rsa/ --include=\"*.py\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "affd5d0f-b634-4ad3-a208-ac6712fccc81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FS8nZtvNQBuXYqDYoDT5AX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1697,
+      "cache_read_input_tokens": 35106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T03:29:18.620Z_
+
+<details><summary>↩ Tool result · `toolu_01GegxgEp5ihfyuQsFHKpDtG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "beb5f225-9880-4c08-ac8f-dfeca4a8a7ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014Sv7K1oLRZ1CncgLv2LAQo`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -rn 'n_demos\\|demo_ids\\|intersection\\|50\\|all demos' /root/vla-ssd/scripts/rsa/ --include=\"*.py\" | head -40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "b12f1ecb-cf4c-493e-8e99-7fd8a05d860c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pB5xxvYGcgZ8HntLQSFYF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 36803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1204
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T03:29:22.029Z_
+
+<details><summary>↩ Tool result · `toolu_014Sv7K1oLRZ1CncgLv2LAQo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/vla-ssd/scripts/rsa/: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "1ff8171d-5f40-4e6b-8320-f7dd8bf0f2b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/vla-ssd/scripts/rsa/: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/vla-ssd/scripts/rsa/: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MoBoGn4wuHrsRwBbzwwCJN`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "find /root/vla-ssd/ -name \"*.py\" -path \"*rsa*\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "64be77d6-ec92-43f1-925f-18e9641962b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M1fC1zEWBc28Wopssx1wT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 38007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T03:29:25.032Z_
+
+<details><summary>↩ Tool result · `toolu_01MoBoGn4wuHrsRwBbzwwCJN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/rsa_siglip_only.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/rsa_clip.py\\n/root/vla-ssd/scripts/rsa_method_audit.py\\n/root/vla-ssd/scripts/rsa_branch_split.py\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\n/root/vla-ssd/scripts/rsa_definitive.py\\n/root/vla-ssd/rsa_analysis.py\\n/root/vla-ssd/rsa_analysis_no_inst.py\\n/root/vla-ssd/rsa_no_instruction.py\\n/root/vla-ssd/rsa_image_mean.py\\n/root/vla-ssd/rsa_image_mean_no_inst.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "f1538774-c1cd-4f34-81ec-401d632156a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/vla-ssd/scripts/rsa_siglip_only.py\\\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\\\n/root/vla-ssd/scripts/rsa_clip.py\\\\n/root/vla-ssd/scripts/rsa_method_audit.py\\\\n/root/vla-ssd/scripts/rsa_branch_split.py\\\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\\\n/root/vla-ssd/scripts/rsa_definitive.py\\\\n/root/vla-ssd/rsa_analysis.py\\\\n/root/vla-ssd/rsa_analysis_no_inst.py\\\\n/root/vla-ssd/rsa_no_instruction.py\\\\n/root/vla-ssd/rsa_image_mean.py\\\\n/root/vla-ssd/rsa_image_mean_no_inst.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/rsa_siglip_only.py\\n/root/vla-ssd/scripts/rsa_instruction_control.py\\n/root/vla-ssd/scripts/rsa_clip.py\\n/root/vla-ssd/scripts/rsa_method_audit.py\\n/root/vla-ssd/scripts/rsa_branch_split.py\\n/root/vla-ssd/scripts/rsa_unified_vla.py\\n/root/vla-ssd/scripts/rsa_demo_standardized.py\\n/root/vla-ssd/scripts/rsa_definitive.py\\n/root/vla-ssd/rsa_analysis.py\\n/root/vla-ssd/rsa_analysis_no_inst.py\\n/root/vla-ssd/rsa_no_instruction.py\\n/root/vla-ssd/rsa_image_mean.py\\n/root/vla-ssd/rsa_image_mean_no_inst.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Poxa8sxF7a3xfydFHaTadf`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "grep -n 'demo\\|n_sample\\|intersection\\|common' /root/vla-ssd/scripts/rsa_unified_vla.py | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "8be26ab5-5855-4e0e-9a15-62f0366448c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NbaZXF1aEc8f1nJGYTDHUU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 38235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T03:29:28.505Z_
+
+<details><summary>↩ Tool result · `toolu_01Poxa8sxF7a3xfydFHaTadf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"72:    path = DATA_DIR / f\\\"{task}_demo.hdf5\\\"\\n76:            if key.startswith(\\\"demo_\\\"):\\n107:        demo_keys = [k for k in f.keys() if k.startswith(\\\"demo_\\\")]\\n108:        common_dids = sorted(\\n109:            set(int(k.split(\\\"_\\\")[1]) for k in demo_keys) & set(actions.keys())\\n112:        if len(common_dids) < 2:\\n117:        n = len(common_dids)\\n121:            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\n130:            for did in common_dids:\\n131:                raw = f[f\\\"demo_{did}/{agg}\\\"][:]\\n268:        \\\"n_sample\\\": N_SAMPLE,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "f90dbf05-eb38-4061-8195-06cf6c6113f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"72:    path = DATA_DIR / f\\\\\\\"{task}_demo.hdf5\\\\\\\"\\\\n76:            if key.startswith(\\\\\\\"demo_\\\\\\\"):\\\\n107:        demo_keys = [k for k in f.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")]\\\\n108:        common_dids = sorted(\\\\n109:            set(int(k.split(\\\\\\\"_\\\\\\\")[1]) for k in demo_keys) & set(actions.keys())\\\\n112:        if len(common_dids) < 2:\\\\n117:        n = len(common_dids)\\\\n121:            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\\\n130:            for did in common_dids:\\\\n131:                raw = f[f\\\\\\\"demo_{did}/{agg}\\\\\\\"][:]\\\\n268:        \\\\\\\"n_sample\\\\\\\": N_SAMPLE,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"72:    path = DATA_DIR / f\\\"{task}_demo.hdf5\\\"\\n76:            if key.startswith(\\\"demo_\\\"):\\n107:        demo_keys = [k for k in f.keys() if k.startswith(\\\"demo_\\\")]\\n108:        common_dids = sorted(\\n109:            set(int(k.split(\\\"_\\\")[1]) for k in demo_keys) & set(actions.keys())\\n112:        if len(common_dids) < 2:\\n117:        n = len(common_dids)\\n121:            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\n130:            for did in common_dids:\\n131:                raw = f[f\\\"demo_{did}/{agg}\\\"][:]\\n268:        \\\"n_sample\\\": N_SAMPLE,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0148qsCfnsQETWKo17jdLiGd`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "head -140 /root/vla-ssd/scripts/rsa_unified_vla.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "c7a5ab3b-aa27-43a3-9530-93bd6ea1fa40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FEDMEFNCtD3Xak9XZWELFU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 430,
+      "cache_read_input_tokens": 38685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 430
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T03:29:32.181Z_
+
+<details><summary>↩ Tool result · `toolu_0148qsCfnsQETWKo17jdLiGd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified RSA recalculation for all VLA conditions using Method B.\\n\\nMethod B (reference: rsa_clip.py):\\n  - rep_dist: cosine\\n  - act_dist: euclidean (L2)\\n  - N_SAMPLE: 20 (np.linspace subsample)\\n  - pairing: within-task itertools.combinations\\n  - aggregation: per-task Spearman -> mean + bootstrap CI\\n  - seed: 42\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nfrom scipy.spatial.distance import pdist\\nfrom scipy.stats import spearmanr\\n\\nFEAT_BASE = Path(\\\"/root/autodl-tmp/vla-ssd/features\\\")\\nDATA_DIR = Path(\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\")\\nOUT_PATH = Path(\\\"/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json\\\")\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\n\\nFEAT_DIRS = {\\n    \\\"trained_with_inst\\\": FEAT_BASE / \\\"trained_libero_goal\\\",\\n    \\\"untrained_with_inst\\\": FEAT_BASE / \\\"untrained_libero_goal\\\",\\n    \\\"trained_no_inst\\\": FEAT_BASE / \\\"trained_libero_goal_no_inst\\\",\\n    \\\"untrained_no_inst\\\": FEAT_BASE / \\\"untrained_libero_goal_no_inst\\\",\\n    \\\"random_s0\\\": FEAT_BASE / \\\"trained_libero_goal_random_s0\\\",\\n    \\\"shuffled\\\": FEAT_BASE / \\\"trained_libero_goal_shuffled\\\",\\n}\\n\\nCONDITION_AGGS = {\\n    \\\"trained_with_inst\\\": [\\\"image_mean\\\", \\\"last_preaction\\\"],\\n    \\\"untrained_with_inst\\\": [\\\"image_mean\\\", \\\"last_preaction\\\"],\\n    \\\"trained_no_inst\\\": [\\\"image_mean\\\"],\\n    \\\"untrained_no_inst\\\": [\\\"image_mean\\\"],\\n    \\\"random_s0\\\": [\\\"image_mean\\\"],\\n    \\\"shuffled\\\": [\\\"image_mean\\\"],\\n}\\n\\nN_LAYERS = 33\\nN_SAMPLE = 20\\n\\n\\ndef subsample_to_length(arr, target_len):\\n    T = arr.shape[0]\\n    if T <= target_len:\\n        return arr\\n    idx = np.linspace(0, T - 1, target_len, dtype=int)\\n    return arr[idx]\\n\\n\\ndef load_actions(task):\\n    path = DATA_DIR / f\\\"{task}_demo.hdf5\\\"\\n    result = {}\\n    with h5py.File(path, \\\"r\\\") as f:\\n        for key in f[\\\"data\\\"].keys():\\n            if key.startswith(\\\"demo_\\\"):\\n                did = int(key.split(\\\"_\\\")[1])\\n                result[did] = f[f\\\"data/{key}/actions\\\"][:].astype(np.float32)\\n    return result\\n\\n\\ndef bootstrap_ci(values, n_boot=1000, ci=0.95):\\n    values = np.array(values)\\n    boot_means = [\\n        np.mean(np.random.choice(values, len(values), replace=True))\\n        for _ in range(n_boot)\\n    ]\\n    lo = np.percentile(boot_means, (1 - ci) / 2 * 100)\\n    hi = np.percentile(boot_means, (1 + ci) / 2 * 100)\\n    return float(np.mean(values)), float(lo), float(hi)\\n\\n\\ndef compute_rsa_all_layers(feat_dir, task, aggs, actions_cache):\\n    if task not in actions_cache:\\n        actions_cache[task] = load_actions(task)\\n    actions = actions_cache[task]\\n\\n    results = {}\\n\\n    feat_path = feat_dir / f\\\"{task}.h5\\\"\\n    if not feat_path.exists():\\n        for agg in aggs:\\n            results[agg] = {layer: None for layer in range(N_LAYERS)}\\n        return results\\n\\n    with h5py.File(feat_path, \\\"r\\\") as f:\\n        demo_keys = [k for k in f.keys() if k.startswith(\\\"demo_\\\")]\\n        common_dids = sorted(\\n            set(int(k.split(\\\"_\\\")[1]) for k in demo_keys) & set(actions.keys())\\n        )\\n\\n        if len(common_dids) < 2:\\n            for agg in aggs:\\n                results[agg] = {layer: None for layer in range(N_LAYERS)}\\n            return results\\n\\n        n = len(common_dids)\\n        n_pairs = n * (n - 1) // 2\\n\\n        sub_acts = np.stack(\\n            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\n        )\\n        act_dists = np.zeros(n_pairs)\\n        for t in range(sub_acts.shape[1]):\\n            act_dists += pdist(sub_acts[:, t, :], metric=\\\"euclidean\\\")\\n        act_dists /= sub_acts.shape[1]\\n\\n        for agg in aggs:\\n            sub_feats = []\\n            for did in common_dids:\\n                raw = f[f\\\"demo_{did}/{agg}\\\"][:]\\n                sub = subsample_to_length(raw, N_SAMPLE).astype(np.float32)\\n                sub_feats.append(sub)\\n\\n            feat_stack = np.stack(sub_feats)  # (n, 20, 33, 4096)\\n            del sub_feats\\n\\n            results[agg] = {}\\n            for layer in range(N_LAYERS):\\n                feat_layer = feat_stack[:, :, layer, :]  # (n, 20, 4096)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "657ad8e8-6f65-466e-843b-b215058ea447",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified RSA recalculation for all VLA conditions using Method B.\\\\n\\\\nMethod B (reference: rsa_clip.py):\\\\n  - rep_dist: cosine\\\\n  - act_dist: euclidean (L2)\\\\n  - N_SAMPLE: 20 (np.linspace subsample)\\\\n  - pairing: within-task itertools.combinations\\\\n  - aggregation: per-task Spearman -> mean + bootstrap CI\\\\n  - seed: 42\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport h5py\\\\nimport numpy as np\\\\nfrom scipy.spatial.distance import pdist\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nFEAT_BASE = Path(\\\\\\\"/root/autodl-tmp/vla-ssd/features\\\\\\\")\\\\nDATA_DIR = Path(\\\\\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\\\\")\\\\nOUT_PATH = Path(\\\\\\\"/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json\\\\\\\")\\\\n\\\\nTASKS = [\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\",\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\",\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\",\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\",\\\\n]\\\\n\\\\nFEAT_DIRS = {\\\\n    \\\\\\\"trained_with_inst\\\\\\\": FEAT_BASE / \\\\\\\"trained_libero_goal\\\\\\\",\\\\n    \\\\\\\"untrained_with_inst\\\\\\\": FEAT_BASE / \\\\\\\"untrained_libero_goal\\\\\\\",\\\\n    \\\\\\\"trained_no_inst\\\\\\\": FEAT_BASE / \\\\\\\"trained_libero_goal_no_inst\\\\\\\",\\\\n    \\\\\\\"untrained_no_inst\\\\\\\": FEAT_BASE / \\\\\\\"untrained_libero_goal_no_inst\\\\\\\",\\\\n    \\\\\\\"random_s0\\\\\\\": FEAT_BASE / \\\\\\\"trained_libero_goal_random_s0\\\\\\\",\\\\n    \\\\\\\"shuffled\\\\\\\": FEAT_BASE / \\\\\\\"trained_libero_goal_shuffled\\\\\\\",\\\\n}\\\\n\\\\nCONDITION_AGGS = {\\\\n    \\\\\\\"trained_with_inst\\\\\\\": [\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"],\\\\n    \\\\\\\"untrained_with_inst\\\\\\\": [\\\\\\\"image_mean\\\\\\\", \\\\\\\"last_preaction\\\\\\\"],\\\\n    \\\\\\\"trained_no_inst\\\\\\\": [\\\\\\\"image_mean\\\\\\\"],\\\\n    \\\\\\\"untrained_no_inst\\\\\\\": [\\\\\\\"image_mean\\\\\\\"],\\\\n    \\\\\\\"random_s0\\\\\\\": [\\\\\\\"image_mean\\\\\\\"],\\\\n    \\\\\\\"shuffled\\\\\\\": [\\\\\\\"image_mean\\\\\\\"],\\\\n}\\\\n\\\\nN_LAYERS = 33\\\\nN_SAMPLE = 20\\\\n\\\\n\\\\ndef subsample_to_length(arr, target_len):\\\\n    T = arr.shape[0]\\\\n    if T <= target_len:\\\\n        return arr\\\\n    idx = np.linspace(0, T - 1, target_len, dtype=int)\\\\n    return arr[idx]\\\\n\\\\n\\\\ndef load_actions(task):\\\\n    path = DATA_DIR / f\\\\\\\"{task}_demo.hdf5\\\\\\\"\\\\n    result = {}\\\\n    with h5py.File(path, \\\\\\\"r\\\\\\\") as f:\\\\n        for key in f[\\\\\\\"data\\\\\\\"].keys():\\\\n            if key.startswith(\\\\\\\"demo_\\\\\\\"):\\\\n                did = int(key.split(\\\\\\\"_\\\\\\\")[1])\\\\n                result[did] = f[f\\\\\\\"data/{key}/actions\\\\\\\"][:].astype(np.float32)\\\\n    return result\\\\n\\\\n\\\\ndef bootstrap_ci(values, n_boot=1000, ci=0.95):\\\\n    values = np.array(values)\\\\n    boot_means = [\\\\n        np.mean(np.random.choice(values, len(values), replace=True))\\\\n        for _ in range(n_boot)\\\\n    ]\\\\n    lo = np.percentile(boot_means, (1 - ci) / 2 * 100)\\\\n    hi = np.percentile(boot_means, (1 + ci) / 2 * 100)\\\\n    return float(np.mean(values)), float(lo), float(hi)\\\\n\\\\n\\\\ndef compute_rsa_all_layers(feat_dir, task, aggs, actions_cache):\\\\n    if task not in actions_cache:\\\\n        actions_cache[task] = load_actions(task)\\\\n    actions = actions_cache[task]\\\\n\\\\n    results = {}\\\\n\\\\n    feat_path = feat_dir / f\\\\\\\"{task}.h5\\\\\\\"\\\\n    if not feat_path.exists():\\\\n        for agg in aggs:\\\\n            results[agg] = {layer: None for layer in range(N_LAYERS)}\\\\n        return results\\\\n\\\\n    with h5py.File(feat_path, \\\\\\\"r\\\\\\\") as f:\\\\n        demo_keys = [k for k in f.keys() if k.startswith(\\\\\\\"demo_\\\\\\\")]\\\\n        common_dids = sorted(\\\\n            set(int(k.split(\\\\\\\"_\\\\\\\")[1]) for k in demo_keys) & set(actions.keys())\\\\n        )\\\\n\\\\n        if len(common_dids) < 2:\\\\n            for agg in aggs:\\\\n                results[agg] = {layer: None for layer in range(N_LAYERS)}\\\\n            return results\\\\n\\\\n        n = len(common_dids)\\\\n        n_pairs = n * (n - 1) // 2\\\\n\\\\n        sub_acts = np.stack(\\\\n            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\\\n        )\\\\n        act_dists = np.zeros(n_pairs)\\\\n        for t in range(sub_acts.shape[1]):\\\\n            act_dists += pdist(sub_acts[:, t, :], metric=\\\\\\\"euclidean\\\\\\\")\\\\n        act_dists /= sub_acts.shape[1]\\\\n\\\\n        for agg in aggs:\\\\n            sub_feats = []\\\\n            for did in common_dids:\\\\n                raw = f[f\\\\\\\"demo_{did}/{agg}\\\\\\\"][:]\\\\n                sub = subsample_to_length(raw, N_SAMPLE).astype(np.float32)\\\\n                sub_feats.append(sub)\\\\n\\\\n            feat_stack = np.stack(sub_feats)  # (n, 20, 33, 4096)\\\\n            del sub_feats\\\\n\\\\n            results[agg] = {}\\\\n            for layer in range(N_LAYERS):\\\\n                feat_layer = feat_stack[:, :, layer, :]  # (n, 20, 4096)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified RSA recalculation for all VLA conditions using Method B.\\n\\nMethod B (reference: rsa_clip.py):\\n  - rep_dist: cosine\\n  - act_dist: euclidean (L2)\\n  - N_SAMPLE: 20 (np.linspace subsample)\\n  - pairing: within-task itertools.combinations\\n  - aggregation: per-task Spearman -> mean + bootstrap CI\\n  - seed: 42\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nfrom scipy.spatial.distance import pdist\\nfrom scipy.stats import spearmanr\\n\\nFEAT_BASE = Path(\\\"/root/autodl-tmp/vla-ssd/features\\\")\\nDATA_DIR = Path(\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\")\\nOUT_PATH = Path(\\\"/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json\\\")\\n\\nTASKS = [\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n    \\\"put_the_bowl_on_the_plate\\\",\\n    \\\"put_the_bowl_on_the_stove\\\",\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n    \\\"put_the_cream_cheese_in_the_bowl\\\",\\n    \\\"put_the_wine_bottle_on_the_rack\\\",\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n    \\\"turn_on_the_stove\\\",\\n]\\n\\nFEAT_DIRS = {\\n    \\\"trained_with_inst\\\": FEAT_BASE / \\\"trained_libero_goal\\\",\\n    \\\"untrained_with_inst\\\": FEAT_BASE / \\\"untrained_libero_goal\\\",\\n    \\\"trained_no_inst\\\": FEAT_BASE / \\\"trained_libero_goal_no_inst\\\",\\n    \\\"untrained_no_inst\\\": FEAT_BASE / \\\"untrained_libero_goal_no_inst\\\",\\n    \\\"random_s0\\\": FEAT_BASE / \\\"trained_libero_goal_random_s0\\\",\\n    \\\"shuffled\\\": FEAT_BASE / \\\"trained_libero_goal_shuffled\\\",\\n}\\n\\nCONDITION_AGGS = {\\n    \\\"trained_with_inst\\\": [\\\"image_mean\\\", \\\"last_preaction\\\"],\\n    \\\"untrained_with_inst\\\": [\\\"image_mean\\\", \\\"last_preaction\\\"],\\n    \\\"trained_no_inst\\\": [\\\"image_mean\\\"],\\n    \\\"untrained_no_inst\\\": [\\\"image_mean\\\"],\\n    \\\"random_s0\\\": [\\\"image_mean\\\"],\\n    \\\"shuffled\\\": [\\\"image_mean\\\"],\\n}\\n\\nN_LAYERS = 33\\nN_SAMPLE = 20\\n\\n\\ndef subsample_to_length(arr, target_len):\\n    T = arr.shape[0]\\n    if T <= target_len:\\n        return arr\\n    idx = np.linspace(0, T - 1, target_len, dtype=int)\\n    return arr[idx]\\n\\n\\ndef load_actions(task):\\n    path = DATA_DIR / f\\\"{task}_demo.hdf5\\\"\\n    result = {}\\n    with h5py.File(path, \\\"r\\\") as f:\\n        for key in f[\\\"data\\\"].keys():\\n            if key.startswith(\\\"demo_\\\"):\\n                did = int(key.split(\\\"_\\\")[1])\\n                result[did] = f[f\\\"data/{key}/actions\\\"][:].astype(np.float32)\\n    return result\\n\\n\\ndef bootstrap_ci(values, n_boot=1000, ci=0.95):\\n    values = np.array(values)\\n    boot_means = [\\n        np.mean(np.random.choice(values, len(values), replace=True))\\n        for _ in range(n_boot)\\n    ]\\n    lo = np.percentile(boot_means, (1 - ci) / 2 * 100)\\n    hi = np.percentile(boot_means, (1 + ci) / 2 * 100)\\n    return float(np.mean(values)), float(lo), float(hi)\\n\\n\\ndef compute_rsa_all_layers(feat_dir, task, aggs, actions_cache):\\n    if task not in actions_cache:\\n        actions_cache[task] = load_actions(task)\\n    actions = actions_cache[task]\\n\\n    results = {}\\n\\n    feat_path = feat_dir / f\\\"{task}.h5\\\"\\n    if not feat_path.exists():\\n        for agg in aggs:\\n            results[agg] = {layer: None for layer in range(N_LAYERS)}\\n        return results\\n\\n    with h5py.File(feat_path, \\\"r\\\") as f:\\n        demo_keys = [k for k in f.keys() if k.startswith(\\\"demo_\\\")]\\n        common_dids = sorted(\\n            set(int(k.split(\\\"_\\\")[1]) for k in demo_keys) & set(actions.keys())\\n        )\\n\\n        if len(common_dids) < 2:\\n            for agg in aggs:\\n                results[agg] = {layer: None for layer in range(N_LAYERS)}\\n            return results\\n\\n        n = len(common_dids)\\n        n_pairs = n * (n - 1) // 2\\n\\n        sub_acts = np.stack(\\n            [subsample_to_length(actions[d], N_SAMPLE) for d in common_dids]\\n        )\\n        act_dists = np.zeros(n_pairs)\\n        for t in range(sub_acts.shape[1]):\\n            act_dists += pdist(sub_acts[:, t, :], metric=\\\"euclidean\\\")\\n        act_dists /= sub_acts.shape[1]\\n\\n        for agg in aggs:\\n            sub_feats = []\\n            for did in common_dids:\\n                raw = f[f\\\"demo_{did}/{agg}\\\"][:]\\n                sub = subsample_to_length(raw, N_SAMPLE).astype(np.float32)\\n                sub_feats.append(sub)\\n\\n            feat_stack = np.stack(sub_feats)  # (n, 20, 33, 4096)\\n            del sub_feats\\n\\n            results[agg] = {}\\n            for layer in range(N_LAYERS):\\n                feat_layer = feat_stack[:, :, layer, :]  # (n, 20, 4096)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see the code clearly. At line 108-109:
+
+```python
+common_dids = sorted(
+    set(int(k.split("_")[1]) for k in demo_keys) & set(actions.keys())
+)
+```
+
+This takes the intersection of demo IDs from the feature h5 and the action hdf5. Since both have demos 0-49, the intersection is all 50 demos.
+
+`n = len(common_dids)` → n = 50
+`n_pairs = n * (n - 1) // 2` → 50*49/2 = 1225 pairs
+
+
+I realize `N_SAMPLE = 20` refers to timepoint samples along each trajectory, not the demo count. So the unified_rsa_results.json file is indeed using all 50 demos per task. Let me check whether the no_inst and random/shuffled conditions also have the same 50 demos available.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "23b16a17-efdc-492d-a31f-3af8decae1d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJV25Foas6kR7YcZB6GL4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2196,
+      "cache_read_input_tokens": 39115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2196
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+确认代码逻辑了。再检查 no_inst 和 random/shuffled 条件的 feature 文件 demo 数量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "844c5fb0-292f-48cd-a730-bbe4f89e8872",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJV25Foas6kR7YcZB6GL4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2196,
+      "cache_read_input_tokens": 39115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2196
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RZLb8PutsRTdsMd47Ne1uj`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport h5py, os, glob\n\ndirs = {\n    'trained_no_inst': '/root/autodl-tmp/vla-ssd/features/trained_libero_goal_no_inst/',\n    'untrained_no_inst': '/root/autodl-tmp/vla-ssd/features/untrained_libero_goal_no_inst/',\n    'random_s0': '/root/autodl-tmp/vla-ssd/features/trained_libero_goal_random_s0/',\n    'shuffled': '/root/autodl-tmp/vla-ssd/features/trained_libero_goal_shuffled/',\n}\nfor label, d in dirs.items():\n    if not os.path.isdir(d):\n        print(f'{label}: DIR NOT FOUND')\n        continue\n    files = sorted(glob.glob(d + '*.h5'))\n    counts = []\n    for fp in files:\n        f = h5py.File(fp, 'r')\n        demos = [k for k in f.keys() if k.startswith('demo_')]\n        counts.append(len(demos))\n        f.close()\n    print(f'{label}: {len(files)} tasks, demos/task={set(counts)}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "789eeb06-7665-4f7b-b805-bd3b9ed7b085",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJV25Foas6kR7YcZB6GL4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2196,
+      "cache_read_input_tokens": 39115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2196
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T03:29:44.359Z_
+
+<details><summary>↩ Tool result · `toolu_01RZLb8PutsRTdsMd47Ne1uj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trained_no_inst: 10 tasks, demos/task={50, 10}\\nuntrained_no_inst: 10 tasks, demos/task={50, 10}\\nrandom_s0: 10 tasks, demos/task={50}\\nshuffled: 10 tasks, demos/task={50}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "b830a2aa-5b60-4244-b418-7ec3e7bfbfd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"trained_no_inst: 10 tasks, demos/task={50, 10}\\\\nuntrained_no_inst: 10 tasks, demos/task={50, 10}\\\\nrandom_s0: 10 tasks, demos/task={50}\\\\nshuffled: 10 tasks, demos/task={50}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"trained_no_inst: 10 tasks, demos/task={50, 10}\\nuntrained_no_inst: 10 tasks, demos/task={50, 10}\\nrandom_s0: 10 tasks, demos/task={50}\\nshuffled: 10 tasks, demos/task={50}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! `trained_no_inst` and `untrained_no_inst` have mixed demo counts - some tasks have 50 demos, others have 10. Let me check which tasks have how many demos.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "abf87345-bdd2-45a1-80ed-46dccb8d3539",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4qxQU3wLEGNfDhfSf59xP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 41311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 851
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+no_inst 条件 demo 数量不一致（有 50 有 10），需要细查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "8bea777a-b994-4a00-808c-43e0634a23cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4qxQU3wLEGNfDhfSf59xP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 41311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 851
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MuHFTZR6ymZzZwsELvSmLF`</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport h5py, os, glob\n\nfor label, d in [('trained_no_inst', '/root/autodl-tmp/vla-ssd/features/trained_libero_goal_no_inst/'),\n                  ('untrained_no_inst', '/root/autodl-tmp/vla-ssd/features/untrained_libero_goal_no_inst/')]:\n    print(f'=== {label} ===')\n    for fp in sorted(glob.glob(d + '*.h5')):\n        f = h5py.File(fp, 'r')\n        demos = [k for k in f.keys() if k.startswith('demo_')]\n        task = os.path.basename(fp).replace('.h5','')\n        print(f'  {task}: {len(demos)} demos')\n        f.close()\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "5a376754-fd1e-4e2a-a3c7-da2e8de9f6f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4qxQU3wLEGNfDhfSf59xP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 41311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 851
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T03:29:52.770Z_
+
+<details><summary>↩ Tool result · `toolu_01MuHFTZR6ymZzZwsELvSmLF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== trained_no_inst ===\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\n  put_the_bowl_on_the_plate: 50 demos\\n  put_the_bowl_on_the_stove: 50 demos\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\n  put_the_cream_cheese_in_the_bowl: 10 demos\\n  put_the_wine_bottle_on_the_rack: 10 demos\\n  put_the_wine_bottle_on_top_of_the_cabinet: 10 demos\\n  turn_on_the_stove: 10 demos\\n\\n=== untrained_no_inst ===\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\n  put_the_bowl_on_the_plate: 50 demos\\n  put_the_bowl_on_the_stove: 50 demos\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\n  put_the_cream_cheese_in_the_bowl: 50 demos\\n  put_the_wine_bottle_on_the_rack: 50 demos\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\n  turn_on_the_stove: 10 demos\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "5a3c2899-33ed-420f-b261-9055d1029275",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== trained_no_inst ===\\\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\\\n  put_the_bowl_on_the_plate: 50 demos\\\\n  put_the_bowl_on_the_stove: 50 demos\\\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\\\n  put_the_cream_cheese_in_the_bowl: 10 demos\\\\n  put_the_wine_bottle_on_the_rack: 10 demos\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: 10 demos\\\\n  turn_on_the_stove: 10 demos\\\\n\\\\n=== untrained_no_inst ===\\\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\\\n  put_the_bowl_on_the_plate: 50 demos\\\\n  put_the_bowl_on_the_stove: 50 demos\\\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\\\n  put_the_cream_cheese_in_the_bowl: 50 demos\\\\n  put_the_wine_bottle_on_the_rack: 50 demos\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\\\n  turn_on_the_stove: 10 demos\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== trained_no_inst ===\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\n  put_the_bowl_on_the_plate: 50 demos\\n  put_the_bowl_on_the_stove: 50 demos\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\n  put_the_cream_cheese_in_the_bowl: 10 demos\\n  put_the_wine_bottle_on_the_rack: 10 demos\\n  put_the_wine_bottle_on_top_of_the_cabinet: 10 demos\\n  turn_on_the_stove: 10 demos\\n\\n=== untrained_no_inst ===\\n  open_the_middle_drawer_of_the_cabinet: 50 demos\\n  open_the_top_drawer_and_put_the_bowl_inside: 50 demos\\n  push_the_plate_to_the_front_of_the_stove: 50 demos\\n  put_the_bowl_on_the_plate: 50 demos\\n  put_the_bowl_on_the_stove: 50 demos\\n  put_the_bowl_on_top_of_the_cabinet: 50 demos\\n  put_the_cream_cheese_in_the_bowl: 50 demos\\n  put_the_wine_bottle_on_the_rack: 50 demos\\n  put_the_wine_bottle_on_top_of_the_cabinet: 50 demos\\n  turn_on_the_stove: 10 demos\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me compile the results.
+
+### Summary
+
+**Source data (feature h5 ∩ action hdf5):**
+
+| Condition | Demos per task | Notes |
+|-----------|---------------|-------|
+| trained_with_inst | 50 | All 10 tasks |
+| untrained_with_inst | 50 | All 10 tasks |
+| trained_no_inst | 50 for 6 tasks, 10 for 4 tasks | cream_cheese, wine_rack, wine_cabinet, stove only have 10 |
+
+
+| untrained_no_inst | 50 for 9 tasks, 10 for 1 task | only turn_on_the_stove has 10 |
+| random_s0 | 50 | All 10 tasks |
+| shuffled | 50 | All 10 tasks |
+| Action hdf5 | 50 | All 10 tasks |
+
+**Result files:**
+
+| File | n_demos | Notes |
+|------|---------|-------|
+| unified_rsa_results.json | Uses intersection (varies by condition) | n_sample=20 is timepoints, not demos. Code takes feature |
+| rsa_demo_standardized.json | 10 per task | Explicitly standardized to demo_0-9 for cross-model comparison |
+| rsa_siglip_only.json | Not recorded | 10 tasks |
+| rsa_clip.json | Not recorded | |
+| rsa_branch_split.json | Not recorded | N=20 (timepoints) |
+| branch_split* (glob) | Not found | |
+
+I'm noticing that the no_inst conditions don't have uniform demo counts across tasks—trained_no_inst is missing full feature extraction for four tasks while untrained_no_inst only has the issue with turn_on_the_stove. Since the unified RSA code uses intersection across conditions, those incomplete tasks will constrain the overall sample size.
+
+The with_inst conditions, random_s0, and shuffled all maintain the full 50 demos per task, but rsa_demo_standardized.json deliberately downsampled to 10 demos per task to ensure fair comparison across models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "fa084080-7adb-43ac-941d-b60459066f9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1AP5zE9vY6qjtdWUEFHb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 42162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+## 汇总
+
+### 源数据（feature h5 文件中实际 demo 数量）
+
+| Condition | Demos/task | 例外 |
+|-----------|-----------|------|
+| **trained_with_inst** | **50** | 全部 10 tasks 一致 |
+| **untrained_with_inst** | **50** | 全部 10 tasks 一致 |
+| **trained_no_inst** | **50 或 10** | cream_cheese, wine_rack, wine_cabinet, stove 仅 10 demos |
+| **untrained_no_inst** | **50 或 10** | turn_on_the_stove 仅 10 demos |
+| **random_s0** | **50** | 全部 10 tasks 一致 |
+| **shuffled** | **50** | 全部 10 tasks 一致 |
+| **Action hdf5** | **50** | 全部 10 tasks 一致 |
+
+### unified_rsa_results.json
+
+- `n_sample=20` 是**轨迹时间步采样数**（np.linspace），不是 demo 数
+- 代码逻辑（`rsa_unified_vla.py:108-109`）取 feature h5 和 action hdf5 的 demo ID 交集
+- **with_inst / random_s0 / shuffled 条件：50 demos/task**
+- **no_inst 条件：部分 task 仅 10 demos**（trained_no_inst 有 4 个 task 只有 10，untrained_no_inst 有 1 个只有 10）
+- JSON 中**未显式记录 n_demos**
+
+### 其他结果文件
+
+| 文件 | n_demos | 说明 |
+|------|---------|------|
+| **rsa_demo_standardized.json** | **10/task** | 显式标注 `demos_per_task=10`，仅用 demo_0-9，用于跨模型公平对比 |
+| **rsa_siglip_only.json** | 未记录 | 10 tasks |
+| **rsa_clip.json** | 未记录 | |
+| **rsa_branch_split.json** | 未记录 | N=20 同为时间步采样 |
+
+### 结论
+
+**不是所有数据源都统一使用 50 demos/task：**
+1. `trained_no_inst` 有 4 个 task 特征提取不完整（仅 10 demos），`untrained_no_inst` 有 1 个 task 仅 10 demos — 这意味着 unified_rsa_results.json 中这些 task 的 no_inst 条件 RSA 是基于更少的 demo pair 计算的
+2. `rsa_demo_standardized.json` 是有意降采样到 10 demos/task 做跨模型对比，这是 by design
+3. with_inst、random_s0、shuffled 三组确认全部 50 demos/task
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "uuid": "84c32e54-0eab-40f9-86ab-df85efca81cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1AP5zE9vY6qjtdWUEFHb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 42162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+## 汇总
+
+### 源数据（feature h5 文件中实际 demo 数量）
+
+| Condition | Demos/task | 例外 |
+|-----------|-----------|------|
+| **trained_with_inst** | **50** | 全部 10 tasks 一致 |
+| **untrained_with_inst** | **50** | 全部 10 tasks 一致 |
+| **trained_no_inst** | **50 或 10** | cream_cheese, wine_rack, wine_cabinet, stove 仅 10 demos |
+| **untrained_no_inst** | **50 或 10** | turn_on_the_stove 仅 10 demos |
+| **random_s0** | **50** | 全部 10 tasks 一致 |
+| **shuffled** | **50** | 全部 10 tasks 一致 |
+| **Action hdf5** | **50** | 全部 10 tasks 一致 |
+
+### unified_rsa_results.json
+
+- `n_sample=20` 是**轨迹时间步采样数**（np.linspace），不是 demo 数
+- 代码逻辑（`rsa_unified_vla.py:108-109`）取 feature h5 和 action hdf5 的 demo ID 交集
+- **with_inst / random_s0 / shuffled 条件：50 demos/task**
+- **no_inst 条件：部分 task 仅 10 demos**（trained_no_inst 有 4 个 task 只有 10，untrained_no_inst 有 1 个只有 10）
+- JSON 中**未显式记录 n_demos**
+
+### 其他结果文件
+
+| 文件 | n_demos | 说明 |
+|------|---------|------|
+| **rsa_demo_standardized.json** | **10/task** | 显式标注 `demos_per_task=10`，仅用 demo_0-9，用于跨模型公平对比 |
+| **rsa_siglip_only.json** | 未记录 | 10 tasks |
+| **rsa_clip.json** | 未记录 | |
+| **rsa_branch_split.json** | 未记录 | N=20 同为时间步采样 |
+
+### 结论
+
+**不是所有数据源都统一使用 50 demos/task：**
+1. `trained_no_inst` 有 4 个 task 特征提取不完整（仅 10 demos），`untrained_no_inst` 有 1 个 task 仅 10 demos — 这意味着 unified_rsa_results.json 中这些 task 的 no_inst 条件 RSA 是基于更少的 demo pair 计算的
+2. `rsa_demo_standardized.json` 是有意降采样到 10 demos/task 做跨模型对比，这是 by design
+3. with_inst、random_s0、shuffled 三组确认全部 50 demos/task
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 172075,
+  "duration_api_ms": 167401,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "afd5f354-d30f-4169-bc68-d38976650774",
+  "total_cost_usd": 0.7088065000000001,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 31370,
+    "cache_read_input_tokens": 487124,
+    "output_tokens": 10667,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31370,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1430,
+        "cache_read_input_tokens": 42162,
+        "cache_creation_input_tokens": 1049,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1049
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2322,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002407,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 10667,
+      "cacheReadInputTokens": 487124,
+      "cacheCreationInputTokens": 31370,
+      "webSearchRequests": 0,
+      "costUSD": 0.7063995000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d2e4842c-41b7-4e45-b531-1b2b58194842"
+}
+```
+
+</details>
+
+---

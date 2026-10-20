@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95120a55ca435f5432b2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 010 download cleanup",
+  "task_key": "worker_code_plan_010_download_cleanup_20260516T045835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_download_cleanup_20260516T045835_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "0ac2f257e8be35da29a5516b64f04b4648d270bc5edd43554422af2ce8735c45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n## 报告\n\n### 磁盘清理\n删除了 4 个 instruction ablation 实验产物目录，释放 **~90 GB**：\n| 目录 | 大小 |\n|------|------|\n| `trained_libero_goal_no_inst/` | 18G |\n| `trained_libero_goal_random_s0/` | 25G |\n| `trained_libero_goal_shuffled/` | 25G |\n| `untrained_libero_goal_no_inst/` | 24G |\n\n### LIBERO-Spatial 数据\n- **10 tasks**，每 task **50 demos**，共 **500 demos**\n- 总大小：**5.9 GB**\n- 路径：`/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/`\n- 数据源：`yifengzhu-hf/LIBERO-datasets`（hf-mirror.com 无代理直连）\n\n### 当前磁盘状态\n- 总容量：250G\n- 已用：113G\n- **可用：138G（46% 使用率）**\n\n### 两路并行 extraction 空间评估\n需要 ~50 GB，当前剩余 138 GB — **空间充足**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-download-cleanup.md"
+}

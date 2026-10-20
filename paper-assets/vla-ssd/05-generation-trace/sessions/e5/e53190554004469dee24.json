@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e53190554004469dee24",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh untrained timestep accuracy",
+  "task_key": "worker_ssh_untrained-timestep-accuracy_20260515T190533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_untrained-timestep-accuracy_20260515T190533_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "4f1d88be43dd5b4ff78da7404086d0683b893df30a74863e4354c063a00ad013"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。\n\n## 结果：Untrained VLA Per-Timestep Goal Classification Accuracy\n\n**Layer 1（best layer），所有 10 个 bin 均为 100.0% accuracy。**\n\n| Bin | Range | Trained VLA | DINO | **Untrained VLA** |\n|-----|-------|-------------|------|--------------------|\n| 0 | [0.0, 0.1) | 100% | 43.3% | **100%** |\n| 1 | [0.1, 0.2) | 100% | — | 100% |\n| 2 | [0.2, 0.3) | 100% | — | 100% |\n| 3 | [0.3, 0.4) | 100% | — | 100% |\n| 4 | [0.4, 0.5) | 100% | — | 100% |\n| 5 | [0.5, 0.6) | 100% | — | 100% |\n| 6 | [0.6, 0.7) | 100% | — | 100% |\n| 7 | [0.7, 0.8) | 100% | — | 100% |\n| 8 | [0.8, 0.9) | 100% | — | 100% |\n| 9 | [0.9, 1.0] | 100% | — | 100% |\n\n### 核心结论\n\n**Untrained VLA bin 0 = 100%**，与 Trained VLA 相同，远高于 DINO 的 43.3%。\n\n这意味着 **language grounding 来自 LLM 预训练而非 VLA action 训练**——核心 claim 成立。未经 action 训练的 VLA（仅有 LLM 预训练权重）已经能在所有 timestep 上完美区分不同 goal，说明 language-conditioned goal representation 是 LLM backbone 带来的，不是 robot data finetuning 学到的。\n\nJSON 已保存至 `/root/autodl-tmp/vla-ssd/results/untrained_libero_goal/goal_classification/timestep_accuracy.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-untrained-timestep-accuracy.md"
+}

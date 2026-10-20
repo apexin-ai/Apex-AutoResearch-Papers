@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3620c27551d37b39c46c",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3575,
+    "sha256": "4cd7fa89c51df16645826b0d4a0682bbf5c3f3f335a32aaf8db5b875c9423c03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_messages\nupdated: '2026-05-28T11:05:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文主文必须 ≤ 8 页（当前 v12 正好 8 页，任何新增内容必须同时压缩等量空间）\n- Figure 4 已从 wrapfigure 改为全宽 figure[t]，width=0.80\\columnwidth，再改回 wrapfigure 会重新引发重叠问题\n- float 间距已压缩到极限（textfloatsep=6pt, floatsep=6pt, intextsep=4pt），不要再缩\n- GPU 释放已请求 Manager 7 次未响应，不要自行释放或在白名单外操作 GPU\n- 论文 DDL 5/29（今天），用户需自行操作 OpenReview 提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com)，工作目录 /root/vla-ssd\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd\n- 论文源文件：上述 workspace 的 docs/paper/（main.tex 入口）\n- 提交包：artifacts/submission_package/（main.pdf + supplementary_code.tar.gz + SUBMIT_GUIDE.md）\n- 图表脚本：scripts/（gen_fig_matrix_heatmap.py, plot_r2_collapse.py, plot_counterfactual_bar.py, plot_l1_attention.py）\n- figures 是 symlink：docs/paper/figures → artifacts/figures/paper\n- 实验 artifacts：artifacts/clustered_bootstrap_reanalysis_v3/（权威数据源）\n- GPU：2 张分配，0 张在用，107 个成功实验全部完成\n- 活跃进程：无（无 RUNNING 实验，无 tmux，无 cron 任务）\n\n### 3. 📊 当前状态\n**刚做完**：用户要求的一系列格式修改（v6-v12），包括三级标题→paragraph、表头加粗、图字体放大、Figure 4 改全宽左右布局、主文压回 8 页。\n\n**正在进行**：Agent 正在执行全面数据+事实验证（数值一致性、事实性、叙事一致性、交叉引用四个维度），由用户吴俊豪要求。验证完成后需汇总结果并发送最新 PDF 给用户。\n\n**之前的验证结果**：59/59 PASS，5 项 CANNOT VERIFY（远程服务器数据），Reviewer 评估 5 项均不影响核心 claim。\n\n**Registry**：156 个实验，109 成功，0 RUNNING，11 PENDING（不会再跑）。审稿阶段进行中（review_chat_id: oc_554a5023cde4d603635cf97e6ab8151a）。\n\n### 4. 📋 待办\n- Agent 数据验证回调 → 汇总 PASS/FAIL 报告 → 编译最终 PDF → 上传给用户吴俊豪\n- 若验证发现 FAIL → 立即修复对应数值，重新编译\n- 用户确认 PDF 无问题 → 提醒用户去 OpenReview 操作提交（我们不能代操作）\n- 用户要求任何格式改动 → 改完后必须验证主文仍 ≤ 8 页\n\n### 5. 🎯 战略上下文\n- 项目核心结论：VLM→VLA 微调伴随 exit-layer collapse（ΔR²=0.16-0.46），VLA→VLA 无此现象（<0.10），NLP controls 也无（=0.000）。L1 instruction attention 主要继承自预训练 backbone。\n- 论文版本历史：v6（三级标题改）→ v7（abstract 加数值）→ v8（caption 优化）→ v9-v10（Fig4 图例修复）→ v11（Fig4 改全宽）→ v12（压回 8 页，当前版本）\n- Discussion 在 v12 中被精简：去除了重复的 ρ=0.583 统计值，合并了 \"cross-architecture decomposition\" 结论句。核心 claim 未丢失。\n- 易错点：gen_fig_matrix_heatmap.py 的 cell 尺寸被 Agent 在硬编码清理时误回退过一次（0.88→1.0 被还原），已修复，注意后续修改不要再回退\n- 用户有两个人：周雪阳（主要研究者，一直在给格式反馈）和吴俊豪（刚加入，问了 GPU 和数据验证）\n- Reviewer 和 Director 都刚批准 RESET_BOTH，新 session 启动后 Reviewer 是干净的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14.md"
+}

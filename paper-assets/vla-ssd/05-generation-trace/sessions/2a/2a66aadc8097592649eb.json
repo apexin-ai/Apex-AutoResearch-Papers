@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a66aadc8097592649eb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code analyze mvp d002",
+  "task_key": "worker_code_analyze-mvp-d002_20260515T122754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-mvp-d002_20260515T122754_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "c71c8df960e06881a8c789895da317b60710730e0d050e47f33aec996ac3e966"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of findings and changes:\n\n**Finding**: **Situation A** — `analyze_results.py` has superseded `analyze_mvp.py` for judgment. No pipeline runner references either script; both are standalone CLI tools. `analyze_results.py` already has D002-compliant per-task mean ρ judgment. `analyze_mvp.py` still uses pooled ρ in its `compute_verdict`.\n\n**Changes made**:\n\n1. **`scripts/analyze_mvp.py`** — Added 3-line deprecation notice at top:\n   ```\n   # DEPRECATED: This script has been superseded by analyze_results.py\n   # which implements D002-compliant per-task mean ρ judgment.\n   # Do not use this script for MVP verdict.\n   ```\n\n2. **`scripts/train_probes.py` `save_results`** (line 606-609) — best_layer selection now uses `per_task_mean_rho` (with fallback to `spearman_rho` for backward compat). Also writes `best_pooled_rho` to summary.json for reference.\n\n3. All three scripts pass syntax check; `analyze_mvp.py --mock` dry-run completes successfully."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-mvp-d002.md"
+}

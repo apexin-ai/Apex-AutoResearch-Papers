@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ba4c27e36f69ed31ed",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "knowledge paper provenance rebuild",
+  "task_key": "worker_knowledge_paper_provenance_rebuild_20260518T174151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_provenance_rebuild_20260518T174151_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "7eda4a8faaf5748230f914725be2d9cba5153058ae241a339de2803a83b1cd43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "映射完成。结果汇总：\n\n**新增 13 条 tier1 claims（C430-C442），覆盖全部 8 个实验：**\n\n| 实验 | Claims | 位置 |\n|------|--------|------|\n| `dose_response_curve` | C430 (数据), C431 (机制) | §4.3 + Discussion (4) |\n| `counterfactual_instruction` | C432 (数据), C433 (机制) | §4.3 + Discussion (5) |\n| `action_trajectory_analysis` | C434 (数据), C435 (机制) | §4.3 + Discussion (3) |\n| `action_trajectory_control` | C436 (数据), C437 (机制+permutation) | §4.3 + Discussion per-head |\n| `ablation_50demos_main` | C438 (数据), C439 (机制) | §4.3 + Discussion (2) |\n| `random_subset_ablation` | C440 | §4.3 random subset |\n| `permutation_test_I2` | C441 + C437(共享) | Appendix §A.8 |\n| `threecond_multiseed_r2_v2` | C442 | §4.1 + §4.2 |\n\n**覆盖率：69/74 → 74/74（100%）**，tier1 从 0 升至 18，tier2 从 69 降至 64。\n\n**剩余 gap：无。** 2 条 tierX（无证据的定性 claim）不影响实验覆盖率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-provenance-rebuild.md"
+}

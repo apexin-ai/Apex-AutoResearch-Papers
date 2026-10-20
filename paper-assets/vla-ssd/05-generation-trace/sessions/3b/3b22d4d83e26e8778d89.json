@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b22d4d83e26e8778d89",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug check control ablation results",
+  "task_key": "worker_debug_check_control_ablation_results_20260518T121214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_check_control_ablation_results_20260518T121214_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "1bd7224909f0888b2097b36b33b31a28ab16476029dbb2b4ddf7682e152703d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Full-scale 实验已完成。** 5 tasks × 10 demos × 50 timesteps = 2500 samples（每 task 500），共 5000 forward passes。\n\n核心结果摘要：\n\n| Metric | Value |\n|---|---|\n| **Paired Action MSE** | 0.0201 ± 0.0489 (t=20.54, p≈9e-87, Cohen's d=0.41) |\n| **Token Divergence Rate** | 29.3% |\n| **KL Divergence** | 1.69 ± 3.70 |\n| **Wilcoxon p** | 8e-235 |\n\n**Per-dim action shift**（ablation vs baseline 的偏移）：\n\n| Dim | Mean Shift | Std |\n|---|---|---|\n| dx | 0.00037 | 0.0019 |\n| dy | 0.00125 | 0.0042 |\n| dz | 0.00243 | 0.0060 |\n| rx | 0.00785 | 0.0162 |\n| ry | 0.01387 | 0.0241 |\n| rz | 0.01783 | 0.0305 |\n| **gripper** | **0.1407** | **0.3441** |\n\n**Per-task paired MSE：**\n\n| Task | MSE | Cohen's d | Token Div Rate |\n|---|---|---|---|\n| open_middle_drawer | 0.0071 | 0.24 | 24.0% |\n| open_top_drawer_put_bowl | 0.0258 | 0.48 | 30.4% |\n| push_plate_to_stove | 0.0213 | 0.42 | 30.6% |\n| put_bowl_on_plate | 0.0227 | 0.44 | 29.9% |\n| put_bowl_on_stove | 0.0236 | 0.45 | 31.3% |\n\n关键发现：\n- Zeroing 8 个 non-instruction heads 造成**统计显著**的 action 偏移（p≈9e-87），效应量中等（d=0.41）\n- **Gripper 维度受影响最大**（shift 0.14，比位移维度高 1-2 个数量级）\n- 旋转维度 > 位移维度，说明 non-instruction heads 对精细控制信号影响更大\n- KL divergence 在 token position 4-5 最高（3.32, 3.72），最后一个 token（gripper）反而较低（0.55）\n- 所有 5 个 task 效果一致，open_middle_drawer 受影响最小（d=0.24）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-check-control-ablation-results.md"
+}

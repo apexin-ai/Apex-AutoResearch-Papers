@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d2f41c599054d51f52b",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_4_1778889810.md",
+  "task_key": "loop_4_1778889810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778889810.md",
+    "occurrence": 1,
+    "bytes": 5506,
+    "sha256": "cb53de4f9d67567e1be708392b7c8d3d5a609d3612e7064f729895592bea7517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T00:00:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0`, `cuda:1`（westd-19183 上仅两卡）。训练脚本内 `--gpu 0` 或 `--gpu 1`，不得用其他编号\n- **服务器无外网**：所有 HF 操作必须 `local_files_only=True`，不能 `from_pretrained()` 在线拉模型\n- 根分区 ~30GB，大文件必须在 `/root/autodl-tmp/vla-ssd/`\n- Untrained model = `from_config()` 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B）——不是 zero-shot\n- **分析 Worker 不得覆盖 spec 字段**（registry 里的 command/server/gpu/pid 由 submit_training_job 写入）\n- `if args.task_instruction:` 对空字符串返回 False——instruction ablation 已修过这个 bug，不要再踩\n- lg_output_head_analysis / lg_instruction_ablation 状态是 QUEUED 但 conclusion=killed，这是历史遗留（D021 两个实验被否决），不要尝试恢复它们\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183，工作目录 `/root/vla-ssd`，数据盘 `/root/autodl-tmp/vla-ssd/`\n- **Python**: 用 miniconda（`source /root/miniconda3/bin/activate`），不是 venv\n- **预置镜像**: `aml-train`，连接后先 `detect_image` 确认\n- **模型**: `openvla/openvla-7b`（本地缓存，HF_HOME 在 autodl-tmp）\n- **Feature 缓存**: `/root/autodl-tmp/vla-ssd/features/` 下有 `siglip_only_libero_goal/`, `trained_libero_goal/`, `untrained_libero_goal/`, `dino_libero_goal/` 等预提取特征\n- **W&B**: 项目中未使用 wandb（全部离线 probe/RSA 实验）\n- **活跃 Worker（4个 running）**:\n  - `worker_ssh_plan009-cka-verification`（CPU-only CKA 验证）\n  - `worker_ssh_untrained-last-preaction-probe`（untrained last_preaction R²，C001 关键缺失数据）\n  - `worker_ssh_plan008-random-s0`（random instruction control）\n  - `worker_ssh_plan008-shuffled`（shuffled instruction control）\n- **活跃 Cron**: reconcile 返回 0（无活跃 cron，因为当前实验都是 Worker 内完成的 CPU 分析任务）\n\n### 3. 📊 当前状态\n**刚做完**: plan_011 functional action probe 全套（raw action + action-delta + DINO 三方对比 + bootstrap CI），结论：Claim 2 从 \"LLM degrades\" 升级为 \"LLM redistributes\"（D031）。p0_functional_probe_v2 完成 DINO 对比，发现 DINO R²=0.712 ≈ Projector 0.706（p=0.22 n.s.），但 RSA 几何差异显著（0.388 vs 0.615）。这区分了 \"information presence\" 与 \"geometric alignment\"。\n\n**Registry 总览**: 39 实验 DONE（26 success, 7 negative, 6 killed），2 PREPARING（plan_008, plan_009），2 QUEUED 但已 killed（历史遗留）。\n\n**正在等待的 4 个 Worker 回调**:\n1. `untrained-last-preaction-probe` → **C001 关键缺失**：如果 untrained last_preaction R² ≈ trained 0.731，则 redistribution 是 architecture-intrinsic（不需要 training）；如果显著低，则 training enables redistribution\n2. `plan009-cka-verification` → CKA 是否复现 RSA 发现的 dominance pattern；Dream 提到 CKA 可能缩小 gap（C7）\n3. `plan008-random-s0` + `plan008-shuffled` → Claim 3 instruction invariance 的 stronger control（random/shuffled vs real instruction）\n\n**无 Director 决策在等待**。Director 已批准 D031 redistribution framing（D032 确认 Option A），无 pending 审批。\n\n### 4. 📋 待办（条件触发式）\n- `untrained-last-preaction-probe` 回调 → 如果 R² ≈ 0.731 → C001 填入 paper_framing.md，redistribution = architecture-intrinsic，Claim 2 更强；如果 R² << 0.731 → 需新 framing 讨论，向 Director 汇报\n- `plan009-cka-verification` 回调 → CKA dominance pattern 与 RSA 一致 → 加入 supplementary；若 gap 缩小（Dream 预期）→ 正面讨论 metric dependency（C7 应对方案已在 paper_framing.md）\n- `plan008-random-s0` + `plan008-shuffled` 都完成 → 比较 random/shuffled vs real instruction RSA，Δ 应 < 0.05；结果汇报 Director + 更新 Claim 3 evidence\n- 上述 4 个 Worker 全部回调完成 → 向 Director 汇报\"re-dream 前置条件就绪\"，建议启动 re-dream\n- Re-dream 通过 → 启动 Paper Agent（目标 5/17-18 开始 full draft，5/29 CoRL DDL）\n\n### 5. 🎯 战略上下文\n**核心发现链**: SigLIP+projector 是 action-relevant 信息源头（RSA=0.615, R²=0.706）→ LLM 降解分布式 image token 表征（R²→0.683）但 concentrate 到 readout token（R²=0.731）→ training 和 instruction 对此无影响（CI 含 0）。\n\n**决策链**: D027 Option B 死亡 → D028 SigLIP smoking gun → D030 Dream 低于 acceptance → D031 Claim 2 \"redistribution\" pivot → D032 Option A 锁定 → D033 DINO ≈ Proj（geometric vs information 新维度）\n\n**易错点**:\n- **不要把 DINO R²≈Proj R² 解读为 DINO=Proj**。RSA 几何差异是显著的（0.388 vs 0.615）。论文需区分 information presence（probe 可解码）vs geometric alignment（表征空间结构）\n- **image_mean 是主文聚合口径**，last_preaction 放 supplementary。两种聚合方式对 Claim 2 的结论方向不同（image_mean: Proj wins; last_preaction: LLM wins）——必须如实讨论\n- **lg_output_head_analysis / lg_instruction_ablation 是 killed 状态**，不要试图恢复（D021 已否决）\n- **CoRL 时间紧**：abstract 5/26, paper 5/29。re-dream 完成后立即铺 Paper Agent，不留 buffer\n- **plan_012 CLIP-ViT control 是 P1 但未排期**——如果 GPU 空出且时间允许，应主动提给 Director\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778889810.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62456c802757296442b0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh p0 functional probe v2",
+  "task_key": "worker_ssh_p0-functional-probe-v2_20260515T234809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-functional-probe-v2_20260515T234809_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "9fe020e05860a33eec4eceaa44051547067e9c016dd01cfe9a5677a5c97c7167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三件事全部完成。结果汇总：\n\n### 1. Bootstrap CI: Projector vs Image_mean_trained_L19 — **PASS**\n\n| | Mean R² |\n|---|---|\n| Projector (SigLIP+Proj) | 0.7063 |\n| LLM image_mean L19 | 0.6832 |\n| **Δ** | **+0.0231** |\n| 95% CI | [0.0105, 0.0367] |\n| p-value | < 0.001 |\n\nCI 下界 > 0，projector 显著优于 LLM image_mean。\n\n### 2. DINO Action Probe\n\n| Source | Mean R² |\n|---|---|\n| DINO (cls_token) | **0.7116** |\n| Projector | 0.7063 |\n| LLM image_mean L19 | 0.6832 |\n\nDINO vs Projector: Δ=+0.005, CI [-0.008, 0.019], p=0.22 — 无显著差异。\nAction-delta probe: DINO 0.100, Projector 0.118 — 均较低。\n\n**Three-way ordering: DINO ≈ Projector > LLM image_mean**\n\n### 3. Untrained L10/L11 诊断 — **pathological_random_init**\n\nFeature stats 正常（L10 std=5.29, L9 std=5.05，无 NaN/Inf/全零），但 probe R² 从 L9 的 0.632 骤降到 L10 的 0.029。结论：随机初始化 LLM 在 L10/L11 的内部表示虽然数值分布正常，但不包含可线性解码的 action 信息。\n\n结果已保存到 `action_probe_v2.json` 并注册为 artifact `art_20260515_2a55c0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-functional-probe-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "944512d0aa71d44c38cc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose object pipeline ridge v2 exit",
+  "task_key": "worker_diagnose_object_pipeline_ridge_v2_exit_20260521T085047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_object_pipeline_ridge_v2_exit_20260521T085047_result.json",
+    "occurrence": 1,
+    "bytes": 2833,
+    "sha256": "aabfa3036d6de57751ca96bca813fa812682f83f6d9655a9bbcea94be9588dbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中清除或过期）。\n\n---\n\n## 诊断结果：`object_pipeline_ridge_v2` — 部分完成（trained only）\n\n**状态**: Pipeline 全 6 phase 成功完成，耗时 96.3 min。但**只跑了 trained model**（`openvla-7b-finetuned-libero-object`），无 untrained 对照。按 C001 约束，不下结论，只记数字。\n\n**输出文件** (5个，位于 `/root/autodl-tmp/vla-ssd/results/libero_object/`):\n- `action_r2_probing.json`, `l1_attention_profile.json`, `cross_instruction_classification.json`, `rsa_analysis.json`, `counterfactual_combined.json`\n\n### Trained Model 关键 Metrics\n\n**Action R² Probing (Ridge)**\n\n| Position | Peak R² | Peak Layer | Last Layer (L31) |\n|----------|---------|------------|------------------|\n| img_mean | 0.8071 | L12 | 0.7931 |\n| last_pre | 0.7871 | L13 | 0.6663 |\n\nimg_mean R² 全层稳定 ~0.80；last_pre 在中间层达峰后尾部下降至 0.67。\n\n**L1 Attention Profile**\n- **24/32 instruction-dominant**, 0 image-dominant, 8 mixed\n- Top heads: h0 (0.880), h22 (0.828), h10 (0.745), h25 (0.740), h14 (0.721)\n\n**Cross-instruction Classification**\n- **所有层 = 1.000 accuracy**（ceiling effect，10 个不同 object name 太容易区分）\n\n**RSA**\n- Best: L28_last_preaction = **0.622** (CI: 0.589–0.651)\n- last_pre RSA 从 L0 (0.493) 上升至 L28 (0.622)\n\n**Counterfactual (trained)**\n\n| Condition | Cohen's d | Cross-task mean d | Token div |\n|-----------|-----------|-------------------|-----------|\n| empty | **1.212** | 1.223 | 1.000 |\n| wrong | **1.188** | 1.193 | 0.999 |\n| shuffled | **1.122** | 1.125 | 1.000 |\n| paraphrased | **0.896** | 0.898 | 0.963 |\n\n### 与 Goal 实验初步数值对比（不做因果归因，仅记录差异）\n\n| Metric | Goal (trained, from counterfactual_instruction) | Object (trained) |\n|--------|------------------------------------------------|-------------------|\n| Counterfactual: empty d | 0.968 | **1.212** |\n| Counterfactual: wrong d | 0.844 | **1.188** |\n| Counterfactual: shuffled d | 0.625 | **1.122** |\n| Counterfactual: paraphrased d | 0.697 | **0.896** |\n| L1 instruction-dominant heads | — | 24/32 |\n\nObject suite 全部 counterfactual condition 的 Cohen's d 均高于 Goal suite（注意 Goal 数据来自 untrained base model `counterfactual_instruction` 实验，非 finetuned model，因此不可直接对比——需要 Object untrained 数据才能做 paired comparison）。\n\n### Registry 更新\n- `status=DONE`, `conclusion=negative`（缺 untrained 对照，C001 约束）\n- Metrics 和 notes 已写入\n\n### 下一步\n需要跑 **untrained base model**（`openvla-7b`）在 LIBERO Object 上的相同 pipeline，才能完成 3×4 矩阵中 Object cell 的 trained vs untrained 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-object-pipeline-ridge-v2-exit.md"
+}

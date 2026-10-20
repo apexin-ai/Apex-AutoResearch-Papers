@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39f00fd60ddf485495dc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code inst cond extraction script",
+  "task_key": "worker_code_inst_cond_extraction_script_20260516T230628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_inst_cond_extraction_script_20260516T230628_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "ec63a023f702b009a807498fa38636e89d4c0dc5e726ead6d8e42c67459f968f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证完成，一切正常：\n\n- **HDF5 结构正确**：`task_0/frame_0/instruction_{0,1}/{image_mean, last_preaction}` shape `(5, 4096)` float16\n- **特征确实随 instruction 变化**：`last_preaction` 差异 0.39（显著），`image_mean` 差异 0.001（较小，符合预期，因为 image tokens 主要编码视觉信息）\n- **性能**：~1.6 fwd/s（符合预估），全量 5000 forwards 单卡约 52 min\n- **采样正确**：取轨迹中点（timestep=69, demo_length=138）\n\n脚本路径：`/root/vla-ssd/scripts/instruction_conditional_extract.py`，就绪待提交运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-inst-cond-extraction-script.md"
+}

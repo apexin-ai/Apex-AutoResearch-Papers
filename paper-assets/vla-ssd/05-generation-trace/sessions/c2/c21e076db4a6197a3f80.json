@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c21e076db4a6197a3f80",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan012 clip extract",
+  "task_key": "worker_ssh_plan012-clip-extract_20260516T013043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan012-clip-extract_20260516T013043_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "a1b3ae35bd8e560d2760e95969b7706b80b8eb185af68f7c68c368d86437c3e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**特征提取**：10/10 任务完成，63728 帧，354s，180 fps。每个文件 50 trajectories，cls_token + patch_mean shape (T, 1024) float16。\n\n**RSA 结果**：\n\n| Model | Peak RSA | CI95 |\n|-------|---------|------|\n| SigLIP + projector | 0.615 | — |\n| **CLIP ViT-L/14** | **0.557** | [0.442, 0.660] |\n| SigLIP only | 0.488 | — |\n| Trained VLA | 0.488 | — |\n| Untrained VLA | 0.485 | — |\n| DINO | 0.388 | — |\n\n**结论**：CLIP RSA=0.557，远高于 DINO (0.388)，接近 SigLIP+projector (0.615)。Action-relevant representational structure 是 VL pretrained encoders 的通用属性，非 SigLIP 独有。CLIP 和 SigLIP 都显著优于 vision-only 的 DINO，确认 VL pretraining 是关键因素。Projector 仍有额外增益 (0.615 vs 0.557)。\n\nRegistry 已更新为 DONE，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan012-clip-extract.md"
+}

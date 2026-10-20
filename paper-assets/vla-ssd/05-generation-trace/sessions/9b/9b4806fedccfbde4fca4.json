@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b4806fedccfbde4fca4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh verify action probe start",
+  "task_key": "worker_ssh_verify-action-probe-start_20260515T141945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-action-probe-start_20260515T141945_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "11afa7a69ccd30d65e777fe6711e9aa241a5ebc0d09247d1306eea527e93054b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常运行。\n\n| 实验 | 状态 | 进度 | GPU | 显存 | 利用率 |\n|------|------|------|-----|------|--------|\n| `mvp2_action_trained` | **Running** | Layer 3 (4/33) 训练中 | cuda:0 | 2936MiB / 97887MiB | 50% |\n| `mvp2_action_untrained` | **Running** | Layer 4 (5/33) 训练中 | cuda:1 | 2936MiB / 97887MiB | 0% (采样间隙) |\n\n指标初步观察：\n- **Trained** 模型：Layer 0 R²≈0.01（随机），Layer 2 已升至 R²=0.55，grip_acc=0.86，逐层提升趋势正常\n- **Untrained** 模型：Layer 0 同样 R²≈0.01，Layer 1 即达 R²=0.57 / grip_acc=0.88，后续层保持 ~0.53-0.57\n\n注意 untrained 日志显示 `device=cuda:0` 而非预期的 `cuda:1`，但 nvidia-smi 确认 PID 613482 实际跑在 GPU 1 上（可能是 `CUDA_VISIBLE_DEVICES=1` 使得进程内部看到的是 `cuda:0`）。两个实验互不冲突，正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-action-probe-start.md"
+}

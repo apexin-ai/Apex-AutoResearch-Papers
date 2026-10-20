@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86445b54777efd637d7d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis dino subtask auc",
+  "task_key": "worker_analysis_dino-subtask-auc_20260515T120832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dino-subtask-auc_20260515T120832_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "9af503e27568e906db04f3948e5400f033f62b221bd841792c423113273ad1ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总结果：\n\n## DINO-V2 Subtask AUC Baseline 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Macro AUC** | **0.9717** |\n| subtask_0 AUC | 0.9694 |\n| subtask_1 AUC | 0.9739 |\n| Per-task AUC range (subtask_0) | 0.946 - 0.981 |\n| Per-task AUC range (subtask_1) | 0.907 - 0.999 |\n\n**方法**：\n- 从 LIBERO demo 的 MuJoCo state 向量中自动提取 subtask completion 标注（检测 object state 维度的 step transition，K-means 聚类成 2 个 subtask group）\n- 对 DINO-V2 cls_token (1024-dim) 特征训练 sklearn LogisticRegression (L-BFGS)\n- 80/20 per-task split，110K train / 27K val frames\n\n**对 MVP 判定的影响**：\n- D001 三分支判定的第三条件是 `subtask_AUC > 0.7`\n- DINO-V2 baseline 的 subtask AUC = 0.9717 远超阈值\n- 这意味着即使 VLA 的 temporal distance ρ 低于 DINO-V2，只要 VLA 的 subtask AUC 也超过 0.7，第三条件仍然可以满足\n- 但 DINO-V2 subtask AUC 设定了一个很高的 baseline (0.97)，VLA 需要在 subtask AUC 上至少接近这个水平才有意义\n\n已更新：registry `dinov2_baseline` metrics 添加了 subtask_auc 字段，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dino-subtask-auc.md"
+}

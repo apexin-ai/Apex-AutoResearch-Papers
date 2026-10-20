@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa0b427f3a8bc3f2b3fc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code d003 remove subtask gate",
+  "task_key": "worker_code_d003-remove-subtask-gate_20260515T123231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d003-remove-subtask-gate_20260515T123231_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "9ee1471ad8e4f6cafe82fecbe36c93d45a06338c578b4c1023137fc5768b2b9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`analyze_results.py` 的 `compute_judgment` 已更新为 D003 三分支判定：subtask gate 从 verdict 逻辑中移除，subtask AUC 仍计算并报告但不参与判定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d003-remove-subtask-gate.md"
+}

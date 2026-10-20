@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c88d0270d3eb333e1417",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action delta implementation",
+  "task_key": "worker_code_action-delta-implementation_20260515T142441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action-delta-implementation_20260515T142441_result.json",
+    "occurrence": 1,
+    "bytes": 1939,
+    "sha256": "ca07f5a1012362c5784184aedfdd7e50118c43c11064babf3cb969b1c6795504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n---\n\n## Action Delta Dry-Run (Trained, Layer 4)\n\n| 指标 | 值 |\n|---|---|\n| overall_r2 | 0.0345 |\n| per_task_mean_r2 | 0.0329 |\n| gripper_accuracy | 0.697 |\n| gripper_delta_accuracy | 0.987 |\n| raw_mse | 0.0077 |\n\nper_dim_r2: dx=0.140, dy=0.200, dz=0.318, drx=0.041, dry=0.040, drz=0.109, gripper=0.013\n\n符合预期：去除自相关后 R² 从 ~0.54 降到 ~0.035（copy baseline = 0），说明 layer 4 对 action delta 有微弱但正的预测能力。gripper delta accuracy 高达 98.7%（因为大部分时间 gripper 不变，delta=0 占绝对多数）。\n\n---\n\n## DINO Action Prediction (Layer 0)\n\n目录 **存在**，结果：\n\n| 指标 | 值 |\n|---|---|\n| overall_r2 | 0.669 |\n| per_task_mean_r2 | 0.676 |\n| gripper_accuracy | 0.900 |\n\nDINO 只有 1 层（layer 0），已跑完。\n\n---\n\n## 全 33 层 Sweep 启动命令\n\n**Trained:**\n```bash\ncd /root/vla-ssd && nohup python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained/ \\\n  --probe_type action_delta \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ \\\n  --gpu 0 \\\n  > /tmp/action_delta_trained.log 2>&1 &\n```\n\n**Untrained:**\n```bash\ncd /root/vla-ssd && nohup python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/untrained/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/untrained/ \\\n  --probe_type action_delta \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ \\\n  --gpu 0 \\\n  > /tmp/action_delta_untrained.log 2>&1 &\n```\n\n**代码改动摘要**: `train_probes.py` 新增 `action_delta` probe type，复用 `run_action_prediction` 函数，通过 `predict_delta` flag 切换 target 为 `a[t+1]-a[t]`。额外报告 `gripper_delta_accuracy`（3-class）。结果输出到 `action_delta/` 子目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-delta-implementation.md"
+}

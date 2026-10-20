@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dd9d99f3134cac54451",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix 32layer attention figures",
+  "task_key": "worker_code_fix_32layer_attention_figures_20260517T075957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_32layer_attention_figures_20260517T075957_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "73b7280766d293f39c222b4391845093191ceef98620d3c07d7d1995fc40ffc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。MD5 和文件大小均与远程一致：\n\n| 文件 | 本地路径 | MD5 | 大小 |\n|------|----------|-----|------|\n| 双 panel (Appendix) | `artifacts/attention/fig_full_32layer_attention.pdf` | `4f25318097f422a1004319ce3356da55` | 20,195 bytes |\n| 单 panel (正文) | `artifacts/attention/fig_32layer_attention_profile.pdf` | `854270bc158023b5ab72dc61e63e186b` | 14,867 bytes |\n| 单 panel (正文引用路径) | `artifacts/figures/paper/fig_32layer_attention.pdf` | `854270bc158023b5ab72dc61e63e186b` | 14,867 bytes |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-32layer-attention-figures.md"
+}

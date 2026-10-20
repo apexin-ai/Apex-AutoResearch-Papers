@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3678d44b29eae838f284",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code d003 critical fix",
+  "task_key": "worker_code_d003-critical-fix_20260515T124756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d003-critical-fix_20260515T124756_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "eaaf2ae3c589fe9a28183d6fb612512a9589aabe6af5ee5edb45a420f8d4d6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。检查清单：\n\n- [x] `analyze_mvp.py` 已重命名为 `analyze_mvp_DEPRECATED.py`\n- [x] DEPRECATED 文件顶部有 `raise SystemExit`\n- [x] `compute_judgment` 不再包含 subtask AUC 判定分支（`subtask_auc_pass` 仅存于 criteria 字典，不参与 verdict）\n- [x] subtask AUC 仍在 summary 输出中（supplementary）\n- [x] PASS/CONDITIONAL/FAIL 三分支逻辑正确：\n  - **PASS**: `delta_pass AND rho_pass AND third_criterion`\n  - **CONDITIONAL**: `delta_pass AND (NOT rho_pass OR NOT third_criterion)`\n  - **FAIL**: `NOT delta_pass`\n- [x] 无硬编码 0.833（grep 返回空）\n- [x] dry-run 通过，mock 数据正确输出 `PASS`，`subtask_auc_pass` 在 criteria 中但不影响 verdict\n\n额外修复：`delta_pass` 从 `ci_excludes_zero and p_value_perm < 0.05` 改为 `delta_at_best > 0.1 and ci_excludes_zero`，与 D003 规范对齐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d003-critical-fix.md"
+}

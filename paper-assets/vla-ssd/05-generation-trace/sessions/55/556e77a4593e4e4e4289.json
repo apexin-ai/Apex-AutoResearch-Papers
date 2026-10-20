@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "556e77a4593e4e4e4289",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug counterfactual check result",
+  "task_key": "worker_debug_counterfactual_check_result_20260518T172122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_counterfactual_check_result_20260518T172122_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "016ed4edec5939e2e089cc339a157ccb886fa3fe9af328ac0caf4389c37da3fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。\n\n---\n\n## 实验结果报告：counterfactual_instruction\n\n**状态**: DONE (success) | **模型**: openvla-7b | **样本数**: 1500 (3 tasks × 10 demos × 50 timesteps)\n\n### 各条件指标（按 Cohen's d 降序）\n\n| Condition | Cohen's d | Paired MSE | Token Divergence | KL Divergence |\n|-----------|-----------|------------|------------------|---------------|\n| **empty** | **0.968** | 0.0685 | 0.907 | 8.888 |\n| **wrong** | **0.844** | 0.0585 | 0.895 | 8.326 |\n| **paraphrased** | **0.697** | 0.0456 | 0.826 | 6.928 |\n| **shuffled** | **0.625** | 0.0391 | 0.857 | 7.732 |\n\n### 关键发现\n\n- 所有 4 个条件效应量均为 large (d > 0.5)，说明 OpenVLA 确实对指令内容敏感\n- **empty > wrong > paraphrased > shuffled** 的 Cohen's d 排序表明：完全移除指令的影响最大，替换为错误任务次之\n- paraphrased 条件 d=0.697 值得注意：语义等价的改写仍产生中等偏大的行为偏移，说明模型对表面形式也有依赖\n- shuffled 效应最小 (d=0.625)，但 token divergence (0.857) 高于 paraphrased (0.826)，说明打乱词序主要影响 token 层面而非整体行为幅度\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-counterfactual-check-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d0028e97ee9dc0c741e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix offline loading",
+  "task_key": "worker_code_fix-offline-loading_20260515T170300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-offline-loading_20260515T170300_result.json",
+    "occurrence": 1,
+    "bytes": 194,
+    "sha256": "836a3d750733793858a524d92ecbb471b68b3ceb119ea8e4a721a34c503ca2d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已经包含 `local_files_only=True`。两处 `from_pretrained` 调用（第80行 `AutoProcessor` 和第81行 `AutoModelForVision2Seq`）都已有该参数，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-offline-loading.md"
+}

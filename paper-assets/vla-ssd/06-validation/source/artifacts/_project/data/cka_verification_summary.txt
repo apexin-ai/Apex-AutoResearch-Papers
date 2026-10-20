@@ -1,0 +1,1 @@
+CKA vs actions (linear): untrained(0.0894) > trained(0.0834) > projector(0.0809) > dino(0.0664). CKA vs action RDM (kernel): trained(0.2599) > projector(0.2568) > untrained(0.2464) > dino(0.2408). RSA reference: projector(0.6153) > trained(0.5014) > untrained(0.4847) > dino(0.3880). Full JSON at /root/autodl-tmp/vla-ssd/results/cka/cka_verification.json on westd-19183.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c34bb0543a1a09eeb9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix object pipeline offline load",
+  "task_key": "worker_fix_object_pipeline_offline_load_20260521T071226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_object_pipeline_offline_load_20260521T071226_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "9fab9d3348b51b0b6e85e65657026c95b56ff986425636398ded181190f0dc54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新进程运行正常，正在 Phase 1 提取表征。\n\n## 产出\n\n**1. HF 引用 + 修复**\n- `preprocessor_config.json` auto_map — 已经是本地路径，无需修\n- `config.json` auto_map — 已经是本地路径，无需修\n- **`tokenizer_config.json` auto_map** — 这是崩溃根因。`\"AutoProcessor\": \"openvla/openvla-7b--processing_prismatic.PrismaticProcessor\"` → 改为 `\"processing_prismatic.PrismaticProcessor\"`\n- `processing_prismatic.py` 本地已存在\n\n**2. 离线验证** — `HF_HUB_OFFLINE=1 AutoProcessor.from_pretrained()` 成功，`AutoConfig.from_pretrained()` 成功\n\n**3. 新进程** — PID **541379**，tmux session `object_pipeline_ridge`，日志 `~/runs/vla-ssd/object_pipeline_ridge_v2.log`，已进入 Phase 1 评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-object-pipeline-offline-load.md"
+}

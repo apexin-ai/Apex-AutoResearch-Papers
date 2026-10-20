@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22e86e7128889819cafe",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3612,
+    "sha256": "bb9b0e150f4ec70c4ba2c6cfc161540eaaacb402da7fbec5f35cbd146bea3005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-21T01:42:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-19183 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- 项目处于审稿阶段，GPU 保留给审稿反馈后 targeted experiments，不要主动起新方向实验\n- DDL: Abstract 2026-05-26, Paper 2026-05-29（ICML 2025 workshop 或类似）\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 论文 framing 已锁定（D082-D085 决策链），不要改动 paper story 除非 Director 明确批准\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，项目目录 /root/vla-ssd（代码），/root/autodl-tmp/vla-ssd（数据+结果+checkpoints）\n- Python：/root/miniconda3/bin/python（conda base env）\n- 模型：TracVLA-Phi3V → /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/；OpenVLA checkpoints 同目录下\n- 数据：/root/autodl-tmp/vla-ssd/data/libero/libero_goal/（10 tasks × 50 demos）\n- 结果：/root/autodl-tmp/vla-ssd/results/（各实验子目录）\n- 日志：~/runs/vla-ssd/（各实验 .log）\n- 活跃进程：phi3v_r2_untrained_probe (PID 441603, cuda:0, tmux session, cron 监控中)\n- 磁盘：根分区 816G/879G 可用（充裕）\n\n### 3. 📊 当前状态\n**刚收到 phi3v_r2_seed_expansion cron 回调**（状态 ANALYZING），已派 Worker `worker_analysis_phi3v_r2_seed_expansion_20260520T093900` 去 SSH 分析结果。**Worker 尚未回调**——等 [WORKER DONE] 后处理：更新 registry conclusion/metrics → 刷新 report.md → 汇报 Director。\n\nRegistry 关键状态：\n- **phi3v_r2_seed_expansion** — ANALYZING，seeds 6-15 扩展 R² probe，等 Worker 分析结果\n- **phi3v_r2_untrained_probe** — RUNNING (cuda:0, PID 441603)，验证 untrained backbone R² 为 flat/low（确认 inverted-U 非架构 artifact）\n- 7 个 PREPARING 实验（behavioral 相关，等审稿反馈决定是否启动）\n\n当前 Worker 池：1 running（分析 Worker）。\n\n### 4. 📋 待办\n- Worker `worker_analysis_phi3v_r2_seed_expansion_20260520T093900` 回调 → 读产出 → update_registry(conclusion=success/negative, metrics={...}) → 刷新 report.md → 汇报 Director（带 [资源] 行）\n- phi3v_r2_untrained_probe cron 回调 → 派 Worker 分析 → 预期 flat R² 确认 inverted-U 来自训练而非架构\n- untrained_probe success + seed_expansion success → 跨架构 R² 证据链完整，论文 C3 claim 全面成立\n- 审稿反馈到达 → 根据 reviewer comments 启动 targeted experiments（PREPARING 池中已有候选）\n\n### 5. 🎯 战略上下文\n- **核心结论**：VLA 微调创造 instruction routing（attention head specialization），跨架构收敛（OpenVLA LLaMA-2 + TracVLA Phi3V 双验证）\n- **D082-D085 决策链**：Framing 从单模型观察升级为跨架构收敛性质。C1 token specialization + C2 entry-exit routing + C3 R² inverted-U geometry 全部双架构复现\n- **关键数据点**：Peak R² 0.637 (L9, OpenVLA) vs 0.634 (L11, Phi3V)，Δ=0.003——几乎相同\n- **当前两个 RUNNING 实验是收尾性质**：seed expansion 收窄 CI 做统计对比，untrained probe 排除架构 artifact\n- **易错点**：\n  - 不要把 phi3v_r2_action_probe（5 seeds）和 phi3v_r2_seed_expansion（seeds 6-15）当独立实验——它们合在一起才是 15-seed 完整数据\n  - 审稿前不要主动启动 behavioral experiments（7 个 PREPARING），Director 明确说\"GPU 保留给审稿反馈后\"\n  - Provenance coverage 91/96，不要随意改实验 spec 破坏已有 provenance\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-2.md"
+}

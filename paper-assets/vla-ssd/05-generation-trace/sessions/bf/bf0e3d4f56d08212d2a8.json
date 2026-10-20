@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf0e3d4f56d08212d2a8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dino action probe adaptation",
+  "task_key": "worker_code_dino-action-probe-adaptation_20260515T142009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dino-action-probe-adaptation_20260515T142009_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "fd7e6a9828f58ac3cc2818a8dc925294e65476c7214c9bf06a7920286e3d4296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n## 结论\n\n**状态: ready** — 无需修改代码。\n\n`train_probes.py` 已经完全兼容 DINO features：\n- `scan_features` 通过 `AGG_MAP` fallback 找到 `cls_token`，检测 2D shape → `n_layers=1, hidden_dim=1024`\n- `load_layer_features` 对 2D 数据直接 `ds[:]`，忽略 layer 参数\n- `ActionMLPProbe(1024)` 自动适配输入维度\n- 只 sweep 1 层 (`[0]`)，500 trajs (400 train / 100 val)\n\n**执行命令:**\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ \\\n  --probe_type action_prediction \\\n  --epochs 50 --patience 5 --batch_size 256 --lr 1e-3 --gpu 0\n```\n\n**预估运行时间:** 1-2 分钟。只有 1 层，维度 1024（比 VLA 的 4096 小 4x），50 epochs with early stopping，数据量 ~120k samples。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dino-action-probe-adaptation.md"
+}

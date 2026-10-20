@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39575e2508637ecc5a85",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify cf cohens d all conditions",
+  "task_key": "worker_verify_cf_cohens_d_all_conditions_20260523T175248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cf_cohens_d_all_conditions_20260523T175248_result.json",
+    "occurrence": 1,
+    "bytes": 3385,
+    "sha256": "6b58c4d1e27561a2aa000056fbbbdba11df6adcb78b5f78f9c76610b217c8158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部收集完毕。以下是完整分析报告。\n\n---\n\n## 数据不一致根因\n\n三个来源使用了**不同的数据文件**：\n\n| 来源 | 引用值 (empty / wrong) | 实际文件 | 问题 |\n|---|---|---|---|\n| 画图 Worker | 1.17 / 1.18 | `libero_goal/counterfactual_combined.json` (May 22, **finetuned**) | **正确** ✓ |\n| Paper Agent Table 4 | 0.98 / 0.92 | `counterfactual_10tasks/` (May 21, **base openvla-7b**) | **用错文件** ✗ |\n| paper_framing.md | 1.09 (empty) | 不明 — 最接近 libero_goal **shuffled**=1.096 | **搞混了 condition** ✗ |\n\n**权威数据**来自 `libero_goal/counterfactual_combined.json`（最新版，finetuned 模型，May 22）。\n\n`counterfactual_10tasks/` 是旧版实验，用的是 **base openvla-7b + bridge_orig**（非 finetuned），config 中 model=\"openvla-7b\", unnorm_key=\"bridge_orig\"。Paper Agent 把这个当成了 trained 结果。\n\n---\n\n## 完整 Cohen's d 表格（所有 trained 条件）\n\n### OpenVLA (finetuned) — 基于 action MSE 的 global Cohen's d\n\n| Arch-Suite | empty | wrong | shuffled | paraphrased | 数据文件 | 修改时间 |\n|---|---|---|---|---|---|---|\n| OpenVLA-Object | **1.212** | 1.188 | 1.1218 | 0.8955 | `libero_object/counterfactual_combined.json` | May 21 16:50 |\n| OpenVLA-Goal | **1.1696** | 1.1821 | 1.096 | 0.9956 | `libero_goal/counterfactual_combined.json` | May 22 10:22 |\n| OpenVLA-Spatial | **1.1734** | 0.8849 | 0.9787 | 0.807 | `libero_spatial/counterfactual_combined.json` | May 22 18:40 |\n| OpenVLA-Long | 0.5048 | 0.5453 | **0.5646** | 0.4486 | `libero_long/counterfactual_combined.json` | May 22 06:39 |\n\n### TracVLA (finetuned)\n\n| Arch-Suite | empty | wrong | shuffled | paraphrased | 数据文件 |\n|---|---|---|---|---|---|\n| TracVLA-Object | **1.2117** | 1.0595 | 1.1643 | 0.9711 | `tracvla_object/trained/` |\n| TracVLA-Goal | **1.5241** | 1.4046 | 1.3358 | 1.2128 | `tracvla_goal/trained/` |\n| TracVLA-Spatial | **1.3268** | 1.1724 | 1.2947 | 1.1825 | `tracvla_spatial/trained/` |\n| TracVLA-Long | **1.4726** | 1.4176 | 1.3909 | 1.1614 | `tracvla_long/trained/` |\n\n### NORA (trained) — 使用不同指标\n\n| Arch-Suite | 指标类型 | empty | wrong | shuffled | paraphrased | 说明 |\n|---|---|---|---|---|---|---|\n| NORA-Goal | cosine_dist | 1.0 | 1.0 | 1.0 | 1.0 | Cohen's d 全部 = 0.0（FAST+ 离散 token，MSE 无差异） |\n| NORA-Spatial | cosine_dist | 0.238 | 0.275 | 0.114 | 0.023 | 有 Cohen's d（per-task 级，非全局） |\n\nNORA config 明确说明：\"NORA uses FAST+ action tokens; MSE-based counterfactual not applicable. Using readout cosine distance instead.\"\n\n---\n\n## d 值含义\n\n这些 Cohen's d 是 **global_metrics 级别**：5000 个 paired samples（10 tasks × 10 demos × 50 timesteps）的 action output MSE 计算的效应量。**不涉及任何 layer 信息**——纯粹度量 correct vs counterfactual instruction 下 action 输出的差异。\n\n---\n\n## 旧版文件清单（应避免引用）\n\n| 文件 | 模型 | 日期 | 备注 |\n|---|---|---|---|\n| `counterfactual_combined.json` (根目录) | openvla-7b (base), 3 tasks | May 19 | 最早版本 |\n| `counterfactual_10tasks/` | openvla-7b (base), 10 goal tasks | May 21 | Paper Agent 误用 |\n| `counterfactual_spatial/` | openvla-7b (base), 10 spatial tasks | May 21 | 旧版 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cf-cohens-d-all-conditions.md"
+}

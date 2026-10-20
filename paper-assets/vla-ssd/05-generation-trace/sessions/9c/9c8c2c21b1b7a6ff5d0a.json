@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8c2c21b1b7a6ff5d0a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check d021 status",
+  "task_key": "worker_ssh_check-d021-status_20260515T210547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-d021-status_20260515T210547_result.json",
+    "occurrence": 1,
+    "bytes": 1781,
+    "sha256": "08771763fc4ff9d2bf21e3a38e36045af6a551274f9798fc80e3a7517a2a544e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d021_instruction_ablation 状态报告\n\n### 1. 进程状态：RUNNING\n\n| PID | 任务 | GPU | 运行时间 | 当前进度 |\n|-----|------|-----|---------|---------|\n| **658056** | untrained no_inst 特征提取 | GPU:1 | 37 min | task 3/10 (`push_the_plate`) 62% |\n| **661030** (新) | trained no_inst 特征提取 | GPU:0 | ~4 min | task 1/10 (`open_middle_drawer`) 38% |\n\n- PID 659993 已不存在，被 661030 替代（启动命令含 `kill 660873`，说明做了重启）。\n\n### 2. GPU 占用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU:0 | 0% | 16.4 / 97.9 GB |\n| GPU:1 | 60% | 16.4 / 97.9 GB |\n\n另有 PID 651902 在跑 `pca_linear_probe_perlayer.py`（当前 layer 23，acc=0.9994）。\n\n### 3. 特征提取输出文件\n\n**untrained_libero_goal_no_inst/** — 3 文件（2 完成 + 1 写入中）:\n- `open_the_middle_drawer_of_the_cabinet.h5` — 2.9 GB\n- `open_the_top_drawer_and_put_the_bowl_inside.h5` — 4.2 GB\n- `push_the_plate_to_the_front_of_the_stove.h5` — 1.9 GB (写入中)\n\n**trained_libero_goal_no_inst/** — 1 文件（写入中）:\n- `open_the_middle_drawer_of_the_cabinet.h5` — 1.0 GB (写入中)\n\n文件大小与参考目录一致（参考: trained_libero_goal/ 和 untrained_libero_goal/ 各 10 个 task，各 ~25 GB）。\n\n### 4. RSA 分析：未开始\n\nresults 目录下无 `*no_inst*` 或 `*ablation*` 相关文件。\n\n### 5. 预估剩余时间\n\n- **untrained (GPU:1)**: 已完成 ~2.5/10 tasks in 37 min → 预计还需 **~2 小时**\n- **trained (GPU:0)**: 已完成 ~0.4/10 tasks in 4 min → 预计还需 **~1.5-2 小时**（GPU:0 速度更快，~40 step/s vs GPU:1 的 ~20 step/s）\n\n两路提取可能在 **~2 小时后** 同时完成，之后还需跑 RSA 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-d021-status.md"
+}

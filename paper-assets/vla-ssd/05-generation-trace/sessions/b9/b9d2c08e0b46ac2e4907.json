@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9d2c08e0b46ac2e4907",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug behavioral feasibility check",
+  "task_key": "worker_debug_behavioral_feasibility_check_20260518T092651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_behavioral_feasibility_check_20260518T092651_result.json",
+    "occurrence": 1,
+    "bytes": 1928,
+    "sha256": "0cfb354bbf6a219c542e23339e081c9ed4e296a26b59d4da74366cb5e6546f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成。\n\n```\n=== Behavioral Feasibility Check ===\n\nCheck 1 (LIBERO headless): FAIL\n  Detail:\n  - LIBERO benchmark 定义加载: OK（libero_goal 10 tasks, 如 \"open the middle drawer of the cabinet\"）\n  - 环境创建/渲染: FAIL\n  - 根因: EGL 库加载失败 — PyOpenGL 找不到可用的 EGL platform\n    `AttributeError: 'NoneType' object has no attribute 'eglQueryString'`\n  - 完整调用链: robosuite import → mujoco.rendering → mujoco.egl → OpenGL.EGL → FAIL\n  - 服务器有 libEGL_nvidia.so 但缺少 libEGL_mesa0; libOSMesa 未安装\n  - OSMesa 同样失败（`'NoneType' object has no attribute 'glGetError'`）\n  - mujoco 3.8.1 + PyOpenGL 组合在此镜像上无法完成 headless GL context 初始化\n\nCheck 2 (OpenVLA inference): PASS\n  Detail:\n  - 模型路径: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\n  - 模型类型: OpenVLAForActionPrediction\n  - 模型加载耗时: 7.7s\n  - generate() 耗时: 4.77s (max_new_tokens=256)\n  - 输出 shape: [1, 262]\n  - Peak GPU 显存: 15.2 GB\n  - GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition × 2\n\nCheck 3 (L1 patch + inference): PASS\n  Detail:\n  - Patch 方式: 全局替换 llama_mod.eager_attention_forward（非 register_hook）\n  - Attention 实现: eager（config 指定），与 patch 兼容\n  - Patch 后 generate() 耗时: 4.87s（与未 patch 基本一致）\n  - 输出 shape: [1, 262]，正常\n  - KV cache 兼容: OK（autoregressive generation 完整跑通 256 tokens）\n  - Peak GPU 显存: 15.2 GB\n\nOverall: BLOCKED by Check 1 (LIBERO headless rendering)\n```\n\n**修复 Check 1 的方向**（仅供参考，未执行）：\n- `apt install libegl-mesa0 libegl-dev` 或 `apt install libosmesa6-dev` 安装缺失的 GL 库\n- 或降级 mujoco 到 2.x 版本（渲染后端不同）\n- 或设置 `PYOPENGL_PLATFORM=egl` + 确保 nvidia EGL ICD 可被 PyOpenGL 发现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-behavioral-feasibility-check.md"
+}

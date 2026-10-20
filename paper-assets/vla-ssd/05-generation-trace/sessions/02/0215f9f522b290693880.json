@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0215f9f522b290693880",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research verify perlayer r2",
+  "task_key": "worker_research_verify_perlayer_r2_20260516T054952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_perlayer_r2_20260516T054952_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "9a86b83cdfe6f3adfa6a730eb48a2a2942cdb4cbeee69832ef1a9fbc29ad2735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构已确认：\n\n- Line 14: `trained` → Line 15: `image_mean` → Line 611: `last_preaction`\n- Line 1208: `untrained` → Line 1209: `image_mean` → Line 1805: `last_preaction`\n\ngrep 的 4 次匹配依次对应：trained/image_mean, trained/last_preaction, untrained/image_mean, untrained/last_preaction。\n\n## 验证结果\n\n### trained image_mean（论文引用条件）\n\n| Layer | 源数据 mean_R² | 论文引用值 | 匹配？ |\n|-------|----------------|-----------|--------|\n| L11 | 0.64357 | 0.644 | **一致**（四舍五入到3位） |\n| L12 | 0.60861 | 0.609 | **一致** |\n| L13 | 0.62961 | 0.630 | **一致** |\n\n### trained last_preaction（交叉参考）\n\n| Layer | mean_R² |\n|-------|---------|\n| L11 | 0.6579 |\n| L12 | 0.6663 |\n| L13 | 0.6779 |\n\n**结论：论文引用的三个 R² 值 (L11=0.644, L12=0.609, L13=0.630) 与源数据完全一致，均为 mean_R² 四舍五入到小数点后三位的结果。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-perlayer-r2.md"
+}

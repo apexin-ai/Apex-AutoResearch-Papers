@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42b673b54f849b521743",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper final verification",
+  "task_key": "worker_paper_final_verification_20260519T134242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_verification_20260519T134242_result.json",
+    "occurrence": 1,
+    "bytes": 3082,
+    "sha256": "baf72389fcc3ca27263e7d2abc23584e8b62b90b1b0240ee2ab7b7481f5ef26b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是完整汇报。\n\n---\n\n## 任务 1：编译验证\n\n| 项目 | 结果 |\n|------|------|\n| LaTeX errors | **0** |\n| Warnings | **20**：17× `h float specifier changed to ht`（浮动体位置，无害）+ 3× hyperref `Token not allowed in PDF string`（数学符号在 PDF bookmark，无害） |\n| Conclusion 位置 | **page 8** ✓ |\n| References 起始 | **page 8**（与 Conclusion 同页） |\n| Appendix 起始 | **page 12** |\n| 总页数 | **27 页** |\n\n正文 ≤8 页约束满足。\n\n---\n\n## 任务 2：数值一致性 spot check\n\n| # | 数值 | 论文位置 | Artifact 来源 | Artifact 值 | 判定 |\n|---|------|----------|---------------|-------------|------|\n| 1 | **24/32 instruction-dominant heads** | `experiments.tex:53,97`; `discussion.tex:7,15`; `appendix.tex:566,599` | `libero_finetuned_attention/data/libero_finetuned_attention_profile_summary.txt` → `openvla7b=24` | 24 | ✓ 完全一致 |\n| 2 | **d = 0.65 (trajectory divergence)** | `experiments.tex:78,86`; `discussion.tex:7,12`; `appendix.tex:121,139` (tab:perhead_bootstrap), `appendix.tex:767` (tab:specificity_control = 0.650) | `matched_ablation_controls_diagnosis.md` → `Instruction-dominant-24 traj_d: 0.65` | 0.65 | ✓ 完全一致 |\n| 3 | **specificity ratio 1.08×** | `discussion.tex:7` | `matched_ablation_controls_diagnosis.md` → instruction d=0.65, random d=0.601; tab:specificity_control caption: \"8% over random\" | 0.65/0.601 = 1.0815 | ✓ 合理四舍五入 |\n| 4 | **counterfactual d = 0.63--0.97** | `abstract.tex:5`; `introduction.tex:18`; `discussion.tex:7` | `appendix.tex:189-192` tab:counterfactual → Shuffled 0.625, Empty 0.968 | 0.625–0.968 | ✓ 合理四舍五入（0.625→0.63, 0.968→0.97） |\n| 5 | **probe accuracy L1 = 99.6%** | `experiments.tex:64` (99.7% for LIBERO), `experiments.tex:97` (99.6% for VLA), `appendix.tex:555` (OpenVLA-7B=99.6%, LIBERO=99.7%) | `libero_finetuned_probe_profile.json` → L1=0.997 (LIBERO-finetuned) | 99.7% (LIBERO) | ✓ LIBERO 99.7% 与 JSON 完全一致；OpenVLA-7B 99.6% 无独立本地 JSON，但论文 Tab 2 与 Tab 10 内部一致 |\n\n**注意**：先前一致性报告（2026-05-18）曾标记 registry 中 head 数为 25 vs 论文 24 的不一致。但实际 attention profile summary 确认 openvla7b=24，且论文 tab:multilayer_attention caption 已说明 \"bulk extraction 可能因 threshold boundary effects 与 dedicated per-layer analysis 略有差异\"。当前论文值 24/32 与 attention profile 数据一致。\n\n---\n\n## 任务 3：Figure/Table 引用检查\n\n| 项目 | 结果 |\n|------|------|\n| `\\ref{}` 总数 | **62 个 unique** |\n| 每个 `\\ref{}` 有对应 `\\label{}` | ✓ **全部匹配** |\n| 悬空引用 (\"??\") | **0** |\n| undefined reference 警告 | **0** |\n| multiply-defined labels | **0** |\n| 孤立 `\\label{}`（有定义无引用） | 5 个 appendix figure labels + 22 个 appendix section labels（正常，不影响编译） |\n\n**结论**：无断裂引用，所有交叉引用完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-verification.md"
+}

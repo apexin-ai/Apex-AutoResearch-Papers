@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5207976b127b82bc6051",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head decoding",
+  "task_key": "worker_code_action_head_decoding_20260526T191338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_decoding_20260526T191338_result.json",
+    "occurrence": 1,
+    "bytes": 2306522,
+    "sha256": "25a6b63d16228db0261f0dd64cb7183ff1e9c16bfb1d83fcc7dc44a9086b35f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2306542,
+                "serialized_sha256": "1af8e164055c02eb7667157afe292532b7ac40550f90092470e103bd896c81ff",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-decoding.md"
+}

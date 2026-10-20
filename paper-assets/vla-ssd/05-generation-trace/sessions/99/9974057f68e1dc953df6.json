@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9974057f68e1dc953df6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh final check and extract",
+  "task_key": "worker_ssh_final_check_and_extract_20260521T210621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_final_check_and_extract_20260521T210621_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "367b3e9b9b080b8bac4f96e341435b7d0a70198dbf797801489611a03b6fe703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整报告\n\n### 1. 进程状态\n- **已退出**: 是，两个实验均 EXIT_CODE=0 干净退出\n- **GPU 已释放**: 是，两块 H20 均 0 MiB\n\n### 2. Cross-instruction classification (untrained vs trained)\n\n**tracvla_long (10 tasks, chance=0.1):**\n\n| | Untrained | Trained |\n|---|---|---|\n| image_mean (all layers) | **1.000** | **1.000** |\n| last_preaction (all layers) | **1.000** | **1.000** (L0=0.983) |\n\n**tracvla_goal (10 tasks, chance=0.1):**\n\n| | Untrained | Trained |\n|---|---|---|\n| image_mean L0-L5 | 0.998-0.999 | 0.996-0.998 |\n| image_mean L6+ | 1.000 | 0.999-1.000 |\n| last_preaction L0 | **0.970** | **0.915** |\n| last_preaction L1+ | 1.000 | 1.000 |\n\n结论：cross-instruction 分类在 trained 和 untrained 模型上都接近 ceiling（≈1.0）。预训练 LLM backbone 已经完美分离不同指令的表征，action tuning 对此几乎无影响。goal-conditioned 的 L0 last_preaction 反而在 trained 后轻微下降（0.970→0.915），但都远高于 chance。\n\n### 3. Counterfactual sensitivity (仅 trained)\n\nUntrained 无 counterfactual 数据（Phase 5 被跳过：untrained 模型无法生成有意义动作）。\n\n**tracvla_long trained:**\n\n| Condition | Cohen's d | MSE mean |\n|---|---|---|\n| empty | 1.4726 | 0.1609 |\n| wrong | 1.4176 | 0.1570 |\n| shuffled | 1.3909 | 0.1466 |\n| paraphrased | 1.1614 | 0.1250 |\n\n**tracvla_goal trained:**\n\n| Condition | Cohen's d | MSE mean |\n|---|---|---|\n| empty | 1.5241 | 0.1398 |\n| wrong | 1.4046 | 0.1370 |\n| shuffled | 1.3358 | 0.1349 |\n| paraphrased | 1.2128 | 0.1245 |\n\n两个模型一致：empty > wrong > shuffled > paraphrased，所有条件 Cohen's d > 1.0（大效应量）。token_divergence_rate = 1.0（指令改变后 100% 的 action token 都变了）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-check-and-extract.md"
+}

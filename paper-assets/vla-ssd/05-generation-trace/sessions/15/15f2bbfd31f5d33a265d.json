@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15f2bbfd31f5d33a265d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code p0 image mean rsa verify",
+  "task_key": "worker_code_p0_image_mean_rsa_verify_20260515T223349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_image_mean_rsa_verify_20260515T223349_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "669d6535e08026dc0e5bc729c90351c9a9cdfeab68c303a612e662c5cfe89949"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| Condition | last_preaction | image_mean | SigLIP projector |\n|-----------|---------------|------------|------------------|\n| **Trained** (peak, L23) | 0.4876 | **0.5014** | 0.6153 |\n| **Untrained** (peak, L23) | 0.4846 | **0.4847** | — |\n\n**结论: Claim 2 HOLDS**\n\nimage_mean RSA = 0.5014，与 last_preaction (0.4876) 在同一量级，远低于 SigLIP projector (0.6153)。gap = 0.1139。\n\n即使使用与 SigLIP 完全相同的 mean pooling 聚合方式，VLA 的 action alignment 仍然显著低于 SigLIP —— 排除了 Reviewer 提出的\"聚合伪影\"假说。LLM 确实降解了 action alignment。\n\n- 脚本: `/root/vla-ssd/rsa_image_mean.py`（已有，直接运行）\n- 结果 JSON: `/root/autodl-tmp/vla-ssd/results/rsa/rsa_image_mean.json`\n- Artifact 已注册: `art_20260515_bd66b6`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-image-mean-rsa-verify.md"
+}

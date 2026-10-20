@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dbacf507c9c8a77ba71f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh rsa analysis",
+  "task_key": "worker_ssh_rsa-analysis_20260515T194627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsa-analysis_20260515T194627.log",
+    "occurrence": 1,
+    "bytes": 730881,
+    "sha256": "6e0a25c991ef8bed8b37633313b0825e9dc8f50589b012dd5b9bd2b0e525ffeb"
+  },
+  "statistics": {
+    "messages": 391,
+    "user_turns": 0,
+    "tool_calls": 170,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 170,
+      "tool_result": 170,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "dbacf507c9c8a77ba71f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dbacf507c9c8a77ba71f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dbacf507c9c8a77ba71f-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-rsa-analysis.md"
+}

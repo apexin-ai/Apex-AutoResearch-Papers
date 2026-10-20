@@ -1,0 +1,3570 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9a29c95422970b10d04e",
+  "rounds": [
+    {
+      "number": 225,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-19T20:26:03.876128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:26:02.846Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6195}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2652
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-19T20:26:10.351717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "phi3v_attention_trained_10tasks",
+              "summary": "Phi3V attention profile扩展到10个LIBERO-Goal任务，验证L1 32/32 instruction-dominant pattern的task-level一致性",
+              "risk_reason": "cuda:0, ~40min, 复用已有phi3v_attention_profile.py脚本扩展task列表",
+              "diff_summary": "复制phi3v_attention_profile.py → 修改task列表从5→10个任务",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-19T20:26:12.917143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "r2_probe_seed_expansion",
+              "summary": "Action R² probe种子扩展5→15，缩小CI支撑C2 claim统计稳健性",
+              "risk_reason": "cuda:1, ~30min, 复用已有probe脚本扩展seed range",
+              "diff_summary": "复制threecond_multiseed_r2脚本 → seeds从[0-4]扩展到[0-14]",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-19T20:26:14.323777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6ff8389db0a0b166e8c6651434d\\\", \\\"chat_id\\\": \\\"oc_a1d032cbe70bdd2058438e67e0d57613\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 3972
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-19T20:26:15.176760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "specificity_random_seed_expansion",
+              "summary": "Random-head ablation bootstrap扩展5→30 seeds，收紧specificity control的CI",
+              "risk_reason": "CPU-only, ~15min, 基于已有ablation数据做bootstrap重采样",
+              "diff_summary": "新建bootstrap脚本，从已有ablation数据(action_probe_50demos_control8.json)重采样30 seeds",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-19T20:26:15.330343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6ff838a888a0b34ba741c7fcf78\\\", \\\"chat_id\\\": \\\"oc_a1d032cbe70bdd2058438e67e0d57613\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 2413
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-19T20:26:16.634707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6ff838b7f8a0b2eac1c6fb0215d\\\", \\\"chat_id\\\": \\\"oc_a1d032cbe70bdd2058438e67e0d57613\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 1457
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-19T20:26:22.462194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-19T20:26:22.462638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-19T20:26:28.890858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (待分配) | Worker 0 (待审批后派发) | 磁盘: westd-19183 未检查\n\n三个统计稳健性实验已注册并提交审批：\n\n1. **phi3v_attention_trained_10tasks** — cuda:0, Phi3V attention 5→10 tasks\n2. **r2_probe_seed_expansion** — cuda:1, R² probe 5→15 seeds\n3. **specificity_random_seed_expansion** — CPU, random ablation bootstrap 5→30 seeds\n\n审批卡已发飞书，批准后立即三线并行派 Worker。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-19T20:26:30.095755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1204
+          },
+          "id": "event-002351"
+        },
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-19T20:26:35.175282+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个审批卡已发出，已通知 Director。等待审批回调后立即三线并行派 Worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002352"
+        }
+      ]
+    },
+    {
+      "number": 226,
+      "messages": [
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-19T20:27:34.965326+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **phi3v_attention_trained_10tasks** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "approval"
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-19T20:27:41.554750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_available_gpus,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-19T20:27:41.556059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-19T20:27:44.719389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "vla-ssd",
+              "section": "execution"
+            }
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-19T20:27:44.820421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"vla-ssd\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/vla-ssd\\\", \\\"servers\\\": [\\\"westd-19183\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 101
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-19T20:27:44.820823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_available_gpus"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_available_gpus",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-19T20:27:46.127693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"gpus\\\": [{\\\"id\\\": \\\"cuda:0\\\", \\\"name\\\": \\\"NVIDIA RTX PRO 6000 Blackwell Server Edition\\\", \\\"memory_used_mb\\\": 0, \\\"memory_total_mb\\\": 97887, \\\"utilization_pct\\\": 0, \\\"temperature_c\\\": 29, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:1\\\", \\\"name\\\": \\\"NVIDIA RTX PRO 6000 Blackwell Server Edition\\\", \\\"memory_used_mb\\\": 0, \\\"memory_total_mb\\\": 97887, \\\"utilization_pct\\\": 0, \\\"temperature_c\\\": 29, \\\"config_available\\\": true}], \\\"server\\\": \\\"westd-19183\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_available_gpus",
+            "elapsed_ms": 1306
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-19T20:28:02.801383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_trained_10tasks",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-19T20:28:04.082484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_trained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:38.418Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:28:03.194Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V attention profile from 5 to 10 LIBERO-Goal tasks yields consistent L1 instruction-dominant pattern (32/32, mean text attn ~0.73), eliminating sample size as a reviewer attack surface.\\\", \\\"parent\\\": \\\"phi3v_attention_trained\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-19T20:26:52.288Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1281
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-19T20:28:26.586885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:phi3v_attention_trained_10tasks",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：Phi3V Attention Profile 扩展到 10 个 LIBERO-Goal 任务\n\n### 目标\n在 westd-19183 cuda:0 上运行 Phi3V trained attention profile，从原来的 5 个任务扩展到 10 个 LIBERO-Goal 任务。产出 per-layer、per-head 的 text attention 比例。\n\n### 实验 ID\n`phi3v_attention_trained_10tasks`\n\n### 环境\n- 服务器：westd-19183\n- GPU：cuda:0\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/vla-ssd/`\n- 数据路径：`/root/autodl-tmp/libero/libero_goal/` (LIBERO-Goal demos)\n- 模型：TracVLA-Phi3V checkpoint at `/root/autodl-tmp/tracvla-phi3v/`\n\n### 参考脚本\n现有脚本在 `/root/vla-ssd/scripts/` 目录下。先用 ssh_read_only 找到 Phi3V attention profile 相关脚本（可能叫 `phi3v_attention_profile.py` 或类似名称）。这个脚本之前只跑了 5 个任务。\n\n**关键架构信息（不要从零读源码）**：\n- TracVLA-Phi3V 用 `Phi3VForCausalLM`，32层32头，hidden=3072\n- Vision encoder: CLIP ViT-L/14，运行时 313 个 image tokens\n- QKV 是 fused `qkv_proj`，需要 split 才能拿到 attention weights\n- Token 边界检测：找 `<|image|>` 或类似 special token 来分割 text/image/action tokens\n\n### 步骤\n\n1. **ssh_read_only** 找到已有的 Phi3V attention profile 脚本，看它用了哪 5 个任务\n2. **ssh_read_only** 列出 `/root/autodl-tmp/libero/libero_goal/` 下所有可用任务（.hdf5 文件）\n3. **ssh_execute** 复制脚本为新文件 `phi3v_attention_profile_10tasks.py`，修改任务列表为 10 个任务（保留原 5 个 + 新增 5 个）\n4. **验证**：`ssh_execute` 运行 `CUDA_VISIBLE_DEVICES=0 python phi3v_attention_profile_10tasks.py --help` 或 dry-run 前几行确认能跑\n5. **提交训练**：用 `submit_training_job` 提交：\n   - exp_id: `phi3v_attention_trained_10tasks`\n   - server: `westd-19183`\n   - gpu: `cuda:0`\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py`\n6. **update_registry**: 转 RUNNING，spec 包含 command, server, data_path, data_count=10 tasks, model_name=TracVLA-Phi3V, seed\n\n### 输出\n结果应保存到 `/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json`\n\n### 错误排查\n- CUDA OOM → 减小 batch 或 demos_per_task\n- 模型加载失败 → 检查 `/root/autodl-tmp/tracvla-phi3v/` 路径是否正确\n- token 边界错误 → 参考现有脚本的 token boundary 逻辑，不要改动"
+            }
+          },
+          "id": "event-002362"
+        },
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-19T20:28:32.466596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_attention_trained_10tasks_20260519T202827\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_phi3v_attention_trained_10tasks_20260519T202827.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_phi3v_attention_trained_10tasks_20260519T202827 started. Use get_worker_status('worker_code_phi3v_attention_trained_10tasks_20260519T202827') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5879
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-19T20:28:36.450312+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker `worker_code_phi3v_attention_trained_10tasks_20260519T202827` 已派发到 cuda:0。等待另外两个实验的审批回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002364"
+        }
+      ]
+    },
+    {
+      "number": 227,
+      "messages": [
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-19T20:28:36.454194+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **r2_probe_seed_expansion** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "approval"
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-19T20:28:43.434632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "r2_probe_seed_expansion",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002366"
+        },
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-19T20:28:44.539140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"r2_probe_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:40.605Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:28:43.782Z\\\", \\\"hypothesis\\\": \\\"Expanding action R² probe from 5 to 15 seeds narrows confidence intervals while preserving the inverted-U layer profile and trained>untrained separation, strengthening statistical robustness of C2 claims.\\\", \\\"parent\\\": \\\"threecond_multiseed_r2_v2\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T20:26:53.108Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0803}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1104
+          },
+          "id": "event-002367"
+        },
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-19T20:29:03.636817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:r2_probe_seed_expansion",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：Action R² Probe 种子扩展 5→15\n\n### 目标\n在 westd-19183 cuda:1 上运行 action R² probe，将种子从 5 个扩展到 15 个（seeds 0-14），缩小 CI 支撑 C2 claim 统计稳健性。\n\n### 实验 ID\n`r2_probe_seed_expansion`\n\n### 环境\n- 服务器：westd-19183\n- GPU：cuda:1\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/vla-ssd/`\n- 数据路径：`/root/autodl-tmp/libero/libero_goal/`\n- 模型：OpenVLA checkpoint（OXE-trained）\n\n### 参考脚本\n在 `/root/vla-ssd/scripts/` 目录下找到 multiseed R² probe 相关脚本（可能叫 `threecond_multiseed_r2.py`、`multiseed_r2_probe.py` 或类似名称）。这个脚本之前用 seeds [0,1,2,3,4]（5个种子）。\n\n**关键背景**：\n- 这是 three-condition action R² probe：untrained / base LLM / VLA-trained 三个条件\n- 每个条件下对每一层做 Ridge regression 预测 action，输出 R²\n- Parent 实验 `threecond_multiseed_r2_v2` 已经跑了 5 seeds，结果显示 inverted-U layer profile + trained>untrained separation\n- 本次扩展到 15 seeds（0-14）以收紧 CI\n\n### 步骤\n\n1. **ssh_read_only** 找到已有的 multiseed R² 脚本，确认其结构和 seed 参数\n2. **ssh_execute** 复制为新文件 `r2_probe_seed_expansion.py`，修改：\n   - seeds 从 `[0,1,2,3,4]` 改为 `list(range(15))` 即 [0-14]\n   - 输出路径改为 `/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json`\n   - 其他逻辑不变\n3. **验证**：dry-run 确认脚本能启动（`python script.py --help` 或跑第一个 seed 的前几步）\n4. **submit_training_job** 提交：\n   - exp_id: `r2_probe_seed_expansion`\n   - server: `westd-19183`\n   - gpu: `cuda:1`\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py`\n5. **update_registry**: 转 RUNNING，spec 包含 command, server, data_path, data_count, model_name=OpenVLA, seed=0-14\n\n### 输出\n- `/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json`\n- 格式与原 5-seed 结果一致，但包含 15 个 seed 的 per-layer R² 数据\n\n### 错误排查\n- CUDA OOM → 可能需要减 demos_per_task 或串行处理 seed\n- 脚本找不到 → `ls /root/vla-ssd/scripts/*r2*` 或 `*multiseed*` 或 `*threecond*` 搜索\n- 模型路径 → 检查原脚本中 model path 的写法，保持一致"
+            }
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-19T20:29:09.562460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_r2_probe_seed_expansion_20260519T202904\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_r2_probe_seed_expansion_20260519T202904.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_r2_probe_seed_expansion_20260519T202904 started. Use get_worker_status('worker_code_r2_probe_seed_expansion_20260519T202904') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5925
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-19T20:29:12.819381+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发到 cuda:1。两块 GPU 现在都有 Worker 在准备实验。等待 `specificity_random_seed_expansion` 的审批卡通过后派 CPU Worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002370"
+        }
+      ]
+    },
+    {
+      "number": 228,
+      "messages": [
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-19T20:29:12.831541+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **specificity_random_seed_expansion** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "approval"
+          },
+          "id": "event-002371"
+        },
+        {
+          "source_line": 2372,
+          "timestamp": "2026-05-19T20:29:19.360477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "specificity_random_seed_expansion",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-19T20:29:20.465551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:29:19.694Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1185}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1105
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-19T20:29:43.425325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:specificity_random_seed_expansion",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：Random-Head Ablation Bootstrap 扩展 5→30 Seeds\n\n### 目标\n在 westd-19183 上（CPU-only，不占 GPU）运行 random-24-head ablation 的 bootstrap 种子扩展，从 5 seeds 扩展到 30 seeds，收紧 specificity control 的 CI。\n\n### 实验 ID\n`specificity_random_seed_expansion`\n\n### 环境\n- 服务器：westd-19183\n- GPU：**不使用 GPU**，纯 CPU 计算（bootstrap 重采样）\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/vla-ssd/`\n\n### 背景\nParent 实验 `random_subset_ablation` 用 5 个 random seeds 选 24 个随机 head 做 ablation，与 instruction-dominant 24 heads 的 ablation 对比。现在要扩展到 30 seeds 以获得更紧的 CI。\n\n有两种可能的实现方式，按优先级：\n\n**方式 A（优先）**：如果已有预计算的 per-head ablation 数据（每个 head 独立 ablation 的 R² drop），可以直接在 CPU 上做 bootstrap 重采样 —— 随机选 24 个 head，sum 其 R² drop，重复 30 seeds。这很快（秒级）。\n\n**方式 B**：如果没有预计算数据，需要从头跑 30 个 random seed 的 ablation。每个 seed 选 24 个随机 head，跑 action probe。这需要 GPU 但因为是 CPU 任务要避免占 GPU。\n\n### 步骤\n\n1. **ssh_read_only** 查看已有的 ablation 相关脚本和数据：\n   - `ls /root/vla-ssd/scripts/*ablation*` 和 `ls /root/vla-ssd/scripts/*random*`\n   - `ls /root/autodl-tmp/vla-ssd/results/l1_head_ablation/` 查看已有数据\n   - `ls /root/autodl-tmp/vla-ssd/results/functional_validation/*ablation*`\n   - 找到 parent 实验的脚本和输出\n\n2. **ssh_read_only** 读取已有的 random subset ablation 脚本，理解其逻辑\n\n3. **判断方式**：\n   - 如果有 per-head 独立 ablation 数据 → 写一个简单的 bootstrap 脚本（方式 A）\n   - 如果没有 → 复制 random ablation 脚本，改 seed range 为 30，设 `CUDA_VISIBLE_DEVICES=\"\"` 强制 CPU\n\n4. **ssh_execute** 创建新脚本 `specificity_bootstrap_30seeds.py`\n\n5. **验证**：dry-run 确认能跑\n\n6. **submit_training_job** 提交：\n   - exp_id: `specificity_random_seed_expansion`\n   - server: `westd-19183`\n   - gpu: 不填或填空（CPU 任务）\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=\"\" python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\n\n7. **update_registry**: 转 RUNNING，spec 包含 command, server, data_path, data_count=30 seeds, model_name=N/A (bootstrap), seed=0-29\n\n### 输出\n- `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json`\n- 格式：per-seed 的 random-24-head ablation R² drop，加 mean/std/CI 统计\n\n### 注意\n- **严禁占用 GPU**：设置 `CUDA_VISIBLE_DEVICES=\"\"`\n- 如果需要加载模型做 forward pass（方式 B），则需要 GPU，此时汇报回来让我重新分配资源\n- 如果是纯 bootstrap（方式 A），应在几分钟内完成"
+            }
+          },
+          "id": "event-002374"
+        },
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-19T20:29:50.381021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_specificity_random_seed_expansion_20260519T202943\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_specificity_random_seed_expansion_20260519T202943.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_specificity_random_seed_expansion_20260519T202943 started. Use get_worker_status('worker_code_specificity_random_seed_expansion_20260519T202943') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6955
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-19T20:29:53.936536+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三线全部派出：\n- **cuda:0**: `phi3v_attention_trained_10tasks` Worker 运行中\n- **cuda:1**: `r2_probe_seed_expansion` Worker 运行中\n- **CPU**: `specificity_random_seed_expansion` Worker 运行中\n\n等待 Worker 完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002376"
+        }
+      ]
+    },
+    {
+      "number": 229,
+      "messages": [
+        {
+          "source_line": 2377,
+          "timestamp": "2026-05-19T20:32:05.411633+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_phi3v_attention_trained_10tasks_20260519T202827 已完成（status=done）。用 `get_worker_status('worker_code_phi3v_attention_trained_10tasks_20260519T202827')` 读取结果，然后处理。\n\n- worker_id: worker_code_phi3v_attention_trained_10tasks_20260519T202827\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002377"
+        },
+        {
+          "source_line": 2378,
+          "timestamp": "2026-05-19T20:32:12.045812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002378"
+        },
+        {
+          "source_line": 2379,
+          "timestamp": "2026-05-19T20:32:12.096522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002379"
+        },
+        {
+          "source_line": 2380,
+          "timestamp": "2026-05-19T20:32:15.058189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_phi3v_attention_trained_10tasks_20260519T202827"
+            }
+          },
+          "id": "event-002380"
+        },
+        {
+          "source_line": 2381,
+          "timestamp": "2026-05-19T20:32:15.159087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_attention_trained_10tasks_20260519T202827\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:phi3v_attention_trained_10tasks\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T20:28:27.146819+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T20:32:03.694576+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"实验完成。结果摘要：\\\\n\\\\n| Layer | Text-dominant heads | Mean text attn | Mean image attn |\\\\n|-------|-------------------|----------------|-----------------|\\\\n| L0 | 3/32 | 0.225 | 0.776 |\\\\n| L1 | **32/32** | **0.735** | 0.265 |\\\\n| L2 | **32/32** | **0.785** | 0.215 |\\\\n| L3-L8 | 0-4/32 | 0.27-0.35 | 0.65-0.73 |\\\\n| L9-L24 | 3-10/32 | 0.34-0.43 | 0.57-0.66 |\\\\n| L25-L28 | 10-12/32 | 0.48-0.50 | 0.50-0.52 |\\\\n| L29 | 17/32 | 0.524 | 0.476 |\\\\n| L30 | 16/32 | 0.529 | 0.471 |\\\\n| L31 | **18/32** | **0.652** | 0.348 |\\\\n\\\\n- 脚本：`/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py`\\\\n- 结果：`/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json`\\\\n- Registry: `phi3v_attention_trained_10tasks` → DONE (success)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-002381"
+        },
+        {
+          "source_line": 2382,
+          "timestamp": "2026-05-19T20:32:24.750987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'phi3v_attention_trained_10tasks'}",
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002382"
+        },
+        {
+          "source_line": 2383,
+          "timestamp": "2026-05-19T20:32:25.655902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3822}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-002383"
+        },
+        {
+          "source_line": 2384,
+          "timestamp": "2026-05-19T20:32:25.707775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-002384"
+        },
+        {
+          "source_line": 2385,
+          "timestamp": "2026-05-19T20:32:25.808618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-002385"
+        },
+        {
+          "source_line": 2386,
+          "timestamp": "2026-05-19T20:32:29.323087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "vla-ssd",
+              "fields": "['status', 'conclusion', 'metrics']",
+              "limit": "5"
+            }
+          },
+          "id": "event-002386"
+        },
+        {
+          "source_line": 2387,
+          "timestamp": "2026-05-19T20:32:29.724888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phi3v_attention_trained_10tasks\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"action_trajectory_cpu_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"bootstrap_per_head_d\\\": {\\\"instruction_24h\\\": {\\\"mean\\\": 0.0271, \\\"ci_95\\\": [0.0258, 0.0285]}, \\\"control_8h\\\": {\\\"mean\\\": 0.0514, \\\"ci_95\\\": [0.0478, 0.0551]}, \\\"difference_ctrl_minus_inst\\\": {\\\"mean\\\": 0.0244, \\\"ci_95\\\": [0.0203, 0.0281]}, \\\"task_paired_t\\\": {\\\"t\\\": 7.356, \\\"p\\\": 0.0018}, \\\"all_5_tasks_ctrl_gt_inst\\\": true, \\\"interpretation\\\": \\\"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\\\"}, \\\"temporal_coherence_proxy\\\": {\\\"per_dim_cv_instruction\\\": 1.3, \\\"per_dim_cv_control\\\": 2.74, \\\"cross_task_I2_instruction\\\": 0.87, \\\"cross_task_I2_control\\\": 0.78, \\\"interpretation\\\": \\\"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phi3v_probe_untrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"image_mean_L1\\\": 0.1, \\\"image_mean_L31\\\": 0.098, \\\"last_preaction_L1\\\": 0.981, \\\"last_preaction_L2\\\": 1, \\\"last_preaction_L31\\\": 1, \\\"extraction_time_min\\\": 3.4, \\\"total_forwards\\\": 5000}}, \\\"phi3v_probe_trained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"image_mean_L1\\\": 0.1, \\\"image_mean_L31\\\": 0.102, \\\"last_preaction_L1\\\": 0.836, \\\"last_preaction_L2_to_L31\\\": 1, \\\"n_classes\\\": 10, \\\"train_samples\\\": 4000, \\\"test_samples\\\": 1000}}, \\\"phi3v_attention_untrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"L1_instruction_dominant_heads\\\": 28, \\\"L1_total_heads\\\": 32, \\\"L1_mean_text_attn\\\": 0.7745, \\\"L1_mean_image_attn\\\": 0.2255, \\\"L0_instruction_dominant_heads\\\": 3, \\\"all_layers_avg_dominant_heads\\\": 27.1,\n…[truncated 395 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-002387"
+        },
+        {
+          "source_line": 2388,
+          "timestamp": "2026-05-19T20:32:29.725385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md"
+            }
+          },
+          "id": "event-002388"
+        },
+        {
+          "source_line": 2389,
+          "timestamp": "2026-05-19T20:32:29.776215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- specificity_random_seed_expansion: Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.（已分配 ? GPU:?，等待提交）\\\\n- r2_probe_seed_expansion: Expanding action R² probe from 5 to 15 seeds narrows confidence intervals while preserving the inverted-U layer profile and trained>untrained separation, strengthening statistical robustness of C2 claims.（已分配 westd-19183 GPU:cuda:1，等待提交）\\\\n- libero_finetuned_probe（准备中）\\\\n- behavioral_smoketest_diag（准备中）\\\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\\\n- fulllayer_action_probe（准备中）\\\\n- l1_head_ablation_control8（准备中）\\\\n- l1_head_ablation_50demos（准备中）\\\\n\\\\n## 近期结论\\\\n- **phi3v_attention_trained_10tasks** (success): Expanding the attention profile analysis from 5 to 10 LIBERO-Goal tasks will provide more robust per-layer/per-head text attention statistics for TracVLA-Phi3V trained model. ← 基于 phi3v_attention_trained\\\\n- **action_trajectory_cpu_analysis** (success): Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) \n…[truncated 1240 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-002389"
+        },
+        {
+          "source_line": 2390,
+          "timestamp": "2026-05-19T20:32:51.420985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md",
+              "content": "# Handover — 2026-05-19\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n- **r2_probe_seed_expansion**: R² probe 5→15 seeds (cuda:1, westd-19183)\n- **specificity_random_seed_expansion**: Random ablation bootstrap 5→30 seeds (CPU, westd-19183)\n\n## 待处理\n- libero_finetuned_probe（准备中）\n\n## 近期结论\n- **phi3v_attention_trained_10tasks** (success): 10-task Phi3V attention profile 与 5-task 完全一致。L1=32/32 (0.735), L2=32/32 (0.785), L31=18/32 (0.652)。Entry-exit bookend pattern 在 task-level 稳健。← 基于 phi3v_attention_trained\n- **action_trajectory_cpu_analysis** (success): Bootstrap per-head effect size: instruction 24h d=0.027 vs control 8h d=0.051, CIs 不重叠 (p=0.0018)。Instruction heads 通过 24-head collective coordination 实现更大总效应。← 基于 action_trajectory_control\n- **phi3v_probe_untrained** (success): Base Phi-3-instruct 已在 last_preaction 编码 instruction identity (L1=98.1%, L2+=100%)，image_mean=10%。← 基于 phi3v_attention_untrained\n- **phi3v_probe_trained** (success): Trained Phi3V last_preaction L1=83.6%, L2-L31=100%, image_mean=10%。C1 readout pattern 跨架构一致。\n- **phi3v_attention_trained** (success): Phi3V trained L1=32/32 (0.735), bookend topology 与 OpenVLA 收敛。\n- **phi3v_attention_untrained** (negative): Base Phi-3-instruct 已有 28/32 uniform routing → VLA training reshapes to focused bookend。\n\n## 趋势\n成功 78 / 负向 16 / 失败 0 / 共 104\n\n## 下一步\n等待 r2_probe_seed_expansion 和 specificity_random_seed_expansion 完成，三项统计稳健性扩展全部就绪后汇总。\n\n## 资源状态\nwestd-19183: cuda:0 空闲 (10tasks刚完成) | cuda:1 running (r2_probe) | CPU running (bootstrap)\n\n## 告警\n（旧 killed 实验已清理，不再列出）\n"
+            }
+          },
+          "id": "event-002390"
+        },
+        {
+          "source_line": 2391,
+          "timestamp": "2026-05-19T20:32:51.471738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'report.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use (auto-generated, not manually writable) instead.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-002391"
+        },
+        {
+          "source_line": 2392,
+          "timestamp": "2026-05-19T20:33:04.432232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/2 占用 (cuda:1 r2_probe) | cuda:0 空闲 | Worker 2 (GPU 1 / CPU 1) | 磁盘: westd-19183 未检查\n\n**phi3v_attention_trained_10tasks 完成 ✓ (success)**\n\n10-task 结果与 5-task 高度一致，bookend pattern task-level 稳健：\n\n| 指标 | 5-task | 10-task | Δ |\n|------|--------|---------|---|\n| L1 dominant heads | 32/32 | 32/32 | = |\n| L1 mean text attn | 0.7348 | 0.735 | +0.0002 |\n| L2 dominant heads | 32/32 | 32/32 | = |\n| L31 dominant heads | 18/32 | 18/32 | = |\n| L31 mean text attn | 0.6478 | 0.652 | +0.004 |\n\n结论：扩展 task 数量不改变 pattern，reviewer \"样本量不够\" 攻击面已消除。\n\n剩余两个实验仍在跑：\n- r2_probe_seed_expansion (cuda:1) — 15 seeds\n- specificity_random_seed_expansion (CPU) — 30 seeds bootstrap\n\ncuda:0 当前空闲，如有新任务可立即分配。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002392"
+        },
+        {
+          "source_line": 2393,
+          "timestamp": "2026-05-19T20:33:08.251793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3819
+          },
+          "id": "event-002393"
+        },
+        {
+          "source_line": 2394,
+          "timestamp": "2026-05-19T20:33:11.491291+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已汇报 Director。phi3v_attention_trained_10tasks 成功，10-task 与 5-task 完全一致，bookend pattern 稳健。cuda:0 空闲待分配，另两个实验继续跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002394"
+        }
+      ]
+    },
+    {
+      "number": 230,
+      "messages": [
+        {
+          "source_line": 2395,
+          "timestamp": "2026-05-19T20:35:05.793356+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_r2_probe_seed_expansion_20260519T202904 已完成（status=done）。用 `get_worker_status('worker_code_r2_probe_seed_expansion_20260519T202904')` 读取结果，然后处理。\n\n- worker_id: worker_code_r2_probe_seed_expansion_20260519T202904\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002395"
+        },
+        {
+          "source_line": 2396,
+          "timestamp": "2026-05-19T20:35:15.123068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_r2_probe_seed_expansion_20260519T202904"
+            }
+          },
+          "id": "event-002396"
+        },
+        {
+          "source_line": 2397,
+          "timestamp": "2026-05-19T20:35:15.173792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_r2_probe_seed_expansion_20260519T202904\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:r2_probe_seed_expansion\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T20:29:04.277497+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T20:35:04.127229+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"正常运行中。L0 已完成，15 seeds 输出正确，mean=0.6294 ± 0.0159。\\\\n\\\\n总结：\\\\n- 脚本 `/root/vla-ssd/scripts/r2_probe_seed_expansion.py` 已创建，基于 v2 版本\\\\n- 修改：seeds `[0-14]`（15个），device `cuda:1`，输出到 `functional_validation/r2_probe_15seeds.json`\\\\n- PID 168392 在 westd-19183 后台运行中\\\\n- Registry 已更新为 RUNNING，exp_id=`r2_probe_seed_expansion`\\\\n- 3 conditions × 33 layers × 15 seeds，每层约 54s，预计总时间 ~90 min\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002397"
+        },
+        {
+          "source_line": 2398,
+          "timestamp": "2026-05-19T20:35:24.898372+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 完成代码编写和提交。r2_probe_seed_expansion 已在 westd-19183 后台运行（PID 168392），预计 ~90 min。3 conditions × 33 layers × 15 seeds。Cron 监控中，完成后会回调。\n\ncuda:0 仍空闲，cuda:1 被 r2_probe 占用。等待 specificity_random_seed_expansion worker 回调和 r2_probe cron 完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002398"
+        }
+      ]
+    },
+    {
+      "number": 231,
+      "messages": [
+        {
+          "source_line": 2399,
+          "timestamp": "2026-05-19T20:36:39.472704+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] `specificity_random_seed_expansion` 已审批+分配但还没启动 worker。这是 CPU 任务，立即派 worker 启动。不需要 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002399"
+        },
+        {
+          "source_line": 2400,
+          "timestamp": "2026-05-19T20:36:46.339084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_specificity_random_seed_expansion_20260519T202943"
+            }
+          },
+          "id": "event-002400"
+        },
+        {
+          "source_line": 2401,
+          "timestamp": "2026-05-19T20:36:46.440052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_specificity_random_seed_expansion_20260519T202943\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:specificity_random_seed_expansion\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T20:29:44.090261+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-002401"
+        },
+        {
+          "source_line": 2402,
+          "timestamp": "2026-05-19T20:36:51.610759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/2 占用 (cuda:1 r2_probe) | cuda:0 空闲 | Worker 2 (GPU 1 / CPU 1)\n\n`specificity_random_seed_expansion` 的 Worker 已在运行中（worker_code_specificity_random_seed_expansion_20260519T202943，20:29 启动）。审批通过后即派发，当前正在执行。等待完成回调。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002402"
+        },
+        {
+          "source_line": 2403,
+          "timestamp": "2026-05-19T20:36:55.174101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-002403"
+        },
+        {
+          "source_line": 2404,
+          "timestamp": "2026-05-19T20:36:57.421579+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已在运行中（20:29 启动，尚未完成）。向 Director 确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002404"
+        }
+      ]
+    },
+    {
+      "number": 232,
+      "messages": [
+        {
+          "source_line": 2405,
+          "timestamp": "2026-05-19T20:43:36.806084+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_specificity_random_seed_expansion_20260519T202943 已完成（status=done）。用 `get_worker_status('worker_code_specificity_random_seed_expansion_20260519T202943')` 读取结果，然后处理。\n\n- worker_id: worker_code_specificity_random_seed_expansion_20260519T202943\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002405"
+        },
+        {
+          "source_line": 2406,
+          "timestamp": "2026-05-19T20:43:43.626234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_specificity_random_seed_expansion_20260519T202943"
+            }
+          },
+          "id": "event-002406"
+        },
+        {
+          "source_line": 2407,
+          "timestamp": "2026-05-19T20:43:43.677003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_specificity_random_seed_expansion_20260519T202943\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:specificity_random_seed_expansion\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T20:29:44.090261+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T20:43:35.239767+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"**汇报：需要 GPU 做一次性缓存生成**\\\\n\\\\n分析结论：\\\\n- **Method A 不可行**：服务器上没有 per-head 独立 ablation 数据。已有数据都是 group ablation（24头/8头/32头同时 ablate），不是单个 head 独立 ablate 后的 R² drop。\\\\n- **必须走 Method B**：`random_subset_ablation.py` 的工作方式是先做一次 model forward pass 缓存 Layer 1 的 per-head attention intermediates（full_context, non_inst_sum, non_inst_weight, residual），再用这些缓存做不同 head 组合的 feature 重建 + probe 训练。\\\\n- **缓存未持久化**：parent 实验运行时缓存在 RAM 中，进程挂起后丢失，磁盘上没有 `.pt` / `.npz` 缓存文件。\\\\n\\\\n**已完成：**\\\\n- 脚本已写好：`/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\\\\n- 两阶段设计：\\\\n  - `--generate-cache`：GPU 阶段，加载模型做 forward pass，保存 cache 到 `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt`（约 ~2GB）\\\\n  - 默认模式：CPU-only，加载 cache，跑 30 seeds bootstrap + 统计（约 1-2 小时）\\\\n- 实验已注册为 QUEUED\\\\n\\\\n**GPU 状态：**\\\\n- GPU 0：空闲（3 MiB / 97887 MiB，0% 利用率）\\\\n- GPU 1：少量负载（1739 MiB，45%）\\\\n\\\\n**请决定：**\\\\n1. 是否允许我用 GPU 0 跑 `--generate-cache`（约 20 分钟，完成后立即释放 GPU）？\\\\n2. 或者分配其他资源？\\\\n\\\\n缓存生成完成后，bootstrap 阶段完全不碰 GPU（`CUDA_VISIBLE_DEVICES=\\\\\\\"\\\\\\\"`）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002407"
+        },
+        {
+          "source_line": 2408,
+          "timestamp": "2026-05-19T20:44:08.377114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:specificity_random_seed_expansion_run",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：执行 Specificity Bootstrap 30 Seeds（两阶段）\n\n### 目标\n在 westd-19183 上执行已写好的 `specificity_bootstrap_30seeds.py` 脚本，两阶段：\n1. GPU 阶段（cuda:0）：生成 L1 attention cache（约 20 分钟）\n2. CPU 阶段：用 cache 跑 30 seeds bootstrap + 统计（约 1-2 小时）\n\n### 实验 ID\n`specificity_random_seed_expansion`\n\n### 环境\n- 服务器：westd-19183\n- GPU：cuda:0（仅 cache 阶段使用）\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 脚本已就绪\n`/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\n- `--generate-cache` 模式：GPU forward pass，保存到 `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt`\n- 默认模式：CPU-only bootstrap，从 cache 读取\n\n### 步骤\n\n1. **ssh_read_only** 确认脚本存在：`ls -la /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\n\n2. **ssh_read_only** 确认 cuda:0 空闲：`nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0`\n\n3. **用 submit_training_job 提交**（两阶段合并为一条命令）：\n   - exp_id: `specificity_random_seed_expansion`\n   - server: `westd-19183`\n   - gpu: `cuda:0`\n   - command:\n     ```\n     source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES=\"\" python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\n     ```\n   这样第一阶段用 GPU 生成 cache，第二阶段纯 CPU 跑 bootstrap。\n\n4. **update_registry**: 确保状态为 RUNNING，spec 包含 command, server, data_path=/root/autodl-tmp/libero/libero_goal/, data_count=30 seeds, model_name=OpenVLA (cache generation), seed=0-29\n\n### 输出\n- Cache: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt`\n- 结果: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json`\n\n### 注意\n- 如果 registry 当前状态不允许直接转 RUNNING（可能卡在 QUEUED），需要先转 ALLOCATED 再 RUNNING\n- 如果脚本有问题（如找不到模型路径），检查 parent 实验 `random_subset_ablation` 的脚本 `/root/vla-ssd/scripts/random_subset_ablation.py` 获取正确路径"
+            }
+          },
+          "id": "event-002408"
+        },
+        {
+          "source_line": 2409,
+          "timestamp": "2026-05-19T20:44:14.202154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_specificity_random_seed_expansion_run_20260519T204408\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_specificity_random_seed_expansion_run_20260519T204408.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_specificity_random_seed_expansion_run_20260519T204408 started. Use get_worker_status('worker_code_specificity_random_seed_expansion_run_20260519T204408') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5825
+          },
+          "id": "event-002409"
+        },
+        {
+          "source_line": 2410,
+          "timestamp": "2026-05-19T20:44:22.830216+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发执行两阶段 bootstrap（cuda:0 cache → CPU 30 seeds）。等待完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002410"
+        }
+      ]
+    },
+    {
+      "number": 233,
+      "messages": [
+        {
+          "source_line": 2411,
+          "timestamp": "2026-05-19T20:46:07.571145+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_specificity_random_seed_expansion_run_20260519T204408 已完成（status=done）。用 `get_worker_status('worker_code_specificity_random_seed_expansion_run_20260519T204408')` 读取结果，然后处理。\n\n- worker_id: worker_code_specificity_random_seed_expansion_run_20260519T204408\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002411"
+        },
+        {
+          "source_line": 2412,
+          "timestamp": "2026-05-19T20:46:15.761041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_specificity_random_seed_expansion_run_20260519T204408"
+            }
+          },
+          "id": "event-002412"
+        },
+        {
+          "source_line": 2413,
+          "timestamp": "2026-05-19T20:46:15.811826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_specificity_random_seed_expansion_run_20260519T204408\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:specificity_random_seed_expansion_run\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T20:44:09.085839+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T20:46:05.778074+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"任务已提交，状态汇总：\\\\n\\\\n- **实验**: `specificity_random_seed_expansion` → **RUNNING**\\\\n- **PID**: 169052 on westd-19183\\\\n- **Phase 1** (GPU cache generation): 模型已加载，正在跑 forward pass\\\\n- **Phase 2** (CPU bootstrap 30 seeds): 将在 Phase 1 完成后自动启动\\\\n- **日志**: `/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log`\\\\n- **预计总时长**: ~1.5-2 小时\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002413"
+        },
+        {
+          "source_line": 2414,
+          "timestamp": "2026-05-19T20:46:24.933300+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并在 RUNNING（PID 169052）。Phase 1 GPU cache 生成中，完成后自动进入 Phase 2 CPU bootstrap。Cron 监控会在完成时回调。\n\n当前状态：\n- `phi3v_attention_trained_10tasks`: DONE ✓\n- `r2_probe_seed_expansion`: RUNNING (cuda:1, ~90min)\n- `specificity_random_seed_expansion`: RUNNING (PID 169052, ~1.5-2h)\n\n等待两个 cron 完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002414"
+        }
+      ]
+    },
+    {
+      "number": 234,
+      "messages": [
+        {
+          "source_line": 2415,
+          "timestamp": "2026-05-19T22:19:41.642311+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令 — 紧急] 你已空闲 93 分钟。两个实验状态不明，立即检查：\n\n1. **r2_probe_seed_expansion**：registry 仍 RUNNING 但 GPU 利用率 0%。检查 worker 状态（`get_worker_status`）+ 服务器上进程是否还在。如果已完成，读取结果，注册 DONE + metrics。\n\n2. **specificity_random_seed_expansion**：Phase 1 worker 20:46 已 DONE，Phase 2 是否启动了？结果文件在哪？读取结果并注册。\n\n3. 两个结果都拿到后，**立即汇报**：包括具体数字、对论文的影响、是否需要更新正文。\n\n不要等我追问，主动报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002415"
+        },
+        {
+          "source_line": 2416,
+          "timestamp": "2026-05-19T22:19:47.871483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__check_job_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002416"
+        },
+        {
+          "source_line": 2417,
+          "timestamp": "2026-05-19T22:19:47.922084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002417"
+        },
+        {
+          "source_line": 2418,
+          "timestamp": "2026-05-19T22:19:51.536376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'r2_probe_seed_expansion'}",
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002418"
+        },
+        {
+          "source_line": 2419,
+          "timestamp": "2026-05-19T22:19:51.988401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3391}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-002419"
+        },
+        {
+          "source_line": 2420,
+          "timestamp": "2026-05-19T22:19:51.988811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'specificity_random_seed_expansion'}",
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002420"
+        },
+        {
+          "source_line": 2421,
+          "timestamp": "2026-05-19T22:19:52.340367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3051}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-002421"
+        },
+        {
+          "source_line": 2422,
+          "timestamp": "2026-05-19T22:19:57.259019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002422"
+        },
+        {
+          "source_line": 2423,
+          "timestamp": "2026-05-19T22:19:57.611499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"specificity_random_seed_expansion\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:45:39.237Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero/libero_goal/\\\", \\\"data_count\\\": \\\"30 seeds\\\", \\\"model_name\\\": \\\"OpenVLA (cache generation)\\\", \\\"seed\\\": \\\"0-29\\\", \\\"pid\\\": 169052, \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\", \\\"output_cache\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\", \\\"output_results\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, L1 attention patterns\\\"}}, \\\"r2_probe_seed_expansion\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:40.605Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:34:25.919Z\\\", \\\"hypothesis\\\": \\\"Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializations, not artifacts of seed variance.\\\", \\\"parent\\\": \\\"threecond_multiseed_r2_v2\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"r\n…[truncated 890 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-002423"
+        },
+        {
+          "source_line": 2424,
+          "timestamp": "2026-05-19T22:20:03.388352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "169052"
+            }
+          },
+          "id": "event-002424"
+        },
+        {
+          "source_line": 2425,
+          "timestamp": "2026-05-19T22:20:03.690203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "168392"
+            }
+          },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-19T22:20:04.644526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"169052\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"S\\\", \\\"elapsed_time\\\": \\\"01:35:18\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1256
+          },
+          "id": "event-002426"
+        },
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-19T22:20:05.448852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"168392\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"S\\\", \\\"elapsed_time\\\": \\\"01:46:37\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1758
+          },
+          "id": "event-002427"
+        },
+        {
+          "source_line": 2428,
+          "timestamp": "2026-05-19T22:20:20.155426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:experiment_progress",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh']",
+              "task_prompt": "## 任务：检查两个运行中实验的进度\n\n在 westd-19183 上用 ssh_read_only 检查以下内容，**不要执行任何修改操作**。\n\n### 1. r2_probe_seed_expansion (PID 168392)\n- 读日志尾部：`tail -50 /tmp/r2_probe_seed_expansion.log`\n- 检查结果文件是否已生成：`ls -la /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json 2>/dev/null && echo EXISTS || echo NOT_YET`\n- 如果结果文件存在，读取：`cat /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in list(d.items())[:5]}, indent=2))\" 2>/dev/null || head -100 /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json`\n\n### 2. specificity_random_seed_expansion (PID 169052)\n- 读日志尾部：`tail -50 /root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log`\n- 检查 cache 文件：`ls -la /root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt 2>/dev/null && echo CACHE_EXISTS || echo NO_CACHE`\n- 检查结果文件：`ls -la /root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json 2>/dev/null && echo EXISTS || echo NOT_YET`\n- 如果结果文件存在，读取摘要\n\n### 3. GPU 状态\n- `nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader`\n\n汇报每个实验的进度百分比（已完成多少 layers/seeds）和预计剩余时间。"
+            }
+          },
+          "id": "event-002428"
+        },
+        {
+          "source_line": 2429,
+          "timestamp": "2026-05-19T22:20:26.130628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_experiment_progress_20260519T222020\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_check_experiment_progress_20260519T222020.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_experiment_progress_20260519T222020 started. Use get_worker_status('worker_check_experiment_progress_20260519T222020') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5975
+          },
+          "id": "event-002429"
+        },
+        {
+          "source_line": 2430,
+          "timestamp": "2026-05-19T22:20:28.113871+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在运行中：\n- r2_probe (PID 168392): 运行 1h47m\n- specificity bootstrap (PID 169052): 运行 1h35m\n\n派 Worker 读取日志查看进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002430"
+        }
+      ]
+    },
+    {
+      "number": 235,
+      "messages": [
+        {
+          "source_line": 2431,
+          "timestamp": "2026-05-19T22:21:41.792812+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_experiment_progress_20260519T222020 已完成（status=done）。用 `get_worker_status('worker_check_experiment_progress_20260519T222020')` 读取结果，然后处理。\n\n- worker_id: worker_check_experiment_progress_20260519T222020\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002431"
+        },
+        {
+          "source_line": 2432,
+          "timestamp": "2026-05-19T22:21:49.144693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_experiment_progress_20260519T222020"
+            }
+          },
+          "id": "event-002432"
+        },
+        {
+          "source_line": 2433,
+          "timestamp": "2026-05-19T22:21:49.195475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_experiment_progress_20260519T222020\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:experiment_progress\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T22:20:20.768757+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:21:40.267099+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 实验进度汇报\\\\n\\\\n### 1. r2_probe_seed_expansion (PID 168392)\\\\n\\\\n- **进度: ~76% (75/99 layers)**\\\\n- 3 个 condition，每个 33 layers (L0-L32)：\\\\n  - `untrained`: 已完成 (33/33)\\\\n  - `llama2base`: 已完成 (33/33)\\\\n  - `trained`: 进行中 (9/33, 当前完成 L0-L8)\\\\n- 子进程 PID 168397 活跃，347% CPU\\\\n- 每层约 100-130s，剩余 24 层 ≈ **40-50 分钟**\\\\n- 结果文件尚未生成\\\\n- GPU 1 在用 (1739 MiB, 22%)\\\\n\\\\n### 2. specificity_random_seed_expansion (PID 169052)\\\\n\\\\n- **Phase 1 (GPU cache): 已完成** — 63728 frames, 10 tasks, 500 demos, 耗时 25.1 min\\\\n- **Phase 2 (CPU bootstrap 30 seeds): 刚启动**，日志无进度输出\\\\n- Cache 文件已生成: 1.8GB (`l1_attention_cache.pt`)\\\\n- 子进程 PID 169053 活跃，3001% CPU（约 30 核全开做 bootstrap）\\\\n- 结果文件尚未生成\\\\n- 预计剩余时间不确定（取决于 bootstrap 计算量，但 CPU 全力运行中）\\\\n\\\\n### 3. GPU 状态\\\\n\\\\n| GPU | 显存占用 | 利用率 |\\\\n|-----|---------|--------|\\\\n| 0 | 3 MiB | 0% |\\\\n| 1 | 1739 MiB | 22% |\\\\n\\\\n两个实验均在正常运行。r2_probe 预计约 40-50 分钟内完成；specificity 的 Phase 2 刚开始，需要等后续日志输出才能估算剩余时间。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002433"
+        },
+        {
+          "source_line": 2434,
+          "timestamp": "2026-05-19T22:22:07.838122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/2 占用 (cuda:1 r2_probe 22%) | cuda:0 空闲 | Worker 0 活跃 (两个实验自行后台运行)\n\n**两个实验状态检查结果：**\n\n### 1. r2_probe_seed_expansion — 正常运行，~76% 完成\n- 3 conditions × 33 layers × 15 seeds\n- untrained: ✅ 33/33 完成\n- llama2base: ✅ 33/33 完成\n- trained: 🔄 9/33（当前 L8）\n- 剩余 24 层，每层 ~100-130s，**预计 ~40-50 min 后完成**\n- PID 168392 活跃，GPU1 1739MiB/22%\n\n### 2. specificity_random_seed_expansion — 正常运行，Phase 2 进行中\n- Phase 1 (GPU cache): ✅ 完成，63728 frames，25.1 min，cache 1.8GB\n- Phase 2 (CPU bootstrap 30 seeds): 🔄 刚启动，30 核全开 (3001% CPU)\n- PID 169052 活跃，GPU 已释放\n- 完成时间待日志进一步输出后可估算\n\n**结论：两个实验均正常推进，非异常停滞。** GPU 利用率 0% 是因为 r2_probe 的 GPU 占用只在 feature extraction 时峰值，probe training 阶段主要用 CPU；specificity 已完成 GPU 阶段进入纯 CPU bootstrap。\n\ncron 会在进程结束后自动回调。结果到手后立即注册 metrics + 汇报。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002434"
+        },
+        {
+          "source_line": 2435,
+          "timestamp": "2026-05-19T22:22:11.833456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3995
+          },
+          "id": "event-002435"
+        },
+        {
+          "source_line": 2436,
+          "timestamp": "2026-05-19T22:22:13.867791+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行。立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002436"
+        }
+      ]
+    },
+    {
+      "number": 236,
+      "messages": [
+        {
+          "source_line": 2437,
+          "timestamp": "2026-05-19T22:53:42.833121+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] 两件事：\n\n1. **cuda:0 空闲——启动 `phi3v_attention_untrained_10tasks`**。与 trained 10-task 配对，扩 untrained 到 10 tasks。复用已有脚本，只改 task list + 加载 untrained model。提交审批。\n\n2. **r2_probe_seed_expansion 预计很快完成**。完成后立即读取结果、注册 DONE + metrics、汇报。不要等我问。同样处理 specificity_random_seed_expansion——Phase 2 完成后立即汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002437"
+        },
+        {
+          "source_line": 2438,
+          "timestamp": "2026-05-19T22:53:51.146956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002438"
+        },
+        {
+          "source_line": 2439,
+          "timestamp": "2026-05-19T22:53:52.355309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_untrained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:51.511Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.172}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1208
+          },
+          "id": "event-002439"
+        },
+        {
+          "source_line": 2440,
+          "timestamp": "2026-05-19T22:53:58.668651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "field": "hypothesis",
+              "value": "Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002440"
+        },
+        {
+          "source_line": 2441,
+          "timestamp": "2026-05-19T22:53:59.321777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_untrained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:58.992Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.531}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-002441"
+        },
+        {
+          "source_line": 2442,
+          "timestamp": "2026-05-19T22:53:59.423091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "field": "parent",
+              "value": "phi3v_attention_untrained",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002442"
+        },
+        {
+          "source_line": 2443,
+          "timestamp": "2026-05-19T22:53:59.925622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_untrained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:59.673Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.\\\", \\\"parent\\\": \\\"phi3v_attention_untrained\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4984}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-002443"
+        },
+        {
+          "source_line": 2444,
+          "timestamp": "2026-05-19T22:54:03.291081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "field": "status",
+              "value": "PENDING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002444"
+        },
+        {
+          "source_line": 2445,
+          "timestamp": "2026-05-19T22:54:04.446748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_untrained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:54:03.627Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.\\\", \\\"parent\\\": \\\"phi3v_attention_untrained\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1211}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1155
+          },
+          "id": "event-002445"
+        },
+        {
+          "source_line": 2446,
+          "timestamp": "2026-05-19T22:54:10.473111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "summary": "Phi3V untrained (base Phi-3-instruct) attention profile扩展到10个LIBERO-Goal任务，与trained 10-task配对验证uniform→bookend reshape",
+              "risk_reason": "cuda:0, ~40min, 复用phi3v_attention_profile_10tasks.py脚本改加载untrained模型",
+              "diff_summary": "复制phi3v_attention_profile_10tasks.py → 改模型加载为base Phi-3-mini-4k-instruct替换decoder layers",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002446"
+        },
+        {
+          "source_line": 2447,
+          "timestamp": "2026-05-19T22:54:14.339502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6ffaef98d0a0b2f03380a1eb213\\\", \\\"chat_id\\\": \\\"oc_a1d032cbe70bdd2058438e67e0d57613\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 3866
+          },
+          "id": "event-002447"
+        },
+        {
+          "source_line": 2448,
+          "timestamp": "2026-05-19T22:54:20.774845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/2 占用 (cuda:1 r2_probe ~76%) | cuda:0 待分配 (phi3v_attention_untrained_10tasks 审批中) | Worker 0 活跃\n\n1. **phi3v_attention_untrained_10tasks** 已注册 + 提交审批。hypothesis: 扩展 untrained 到 10 tasks 确认 uniform ~28/32 pattern，与 trained 10-task 配对。批准后立即派 Worker 到 cuda:0。\n\n2. r2_probe / specificity 完成后会自动回调，立即处理不等追问。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002448"
+        },
+        {
+          "source_line": 2449,
+          "timestamp": "2026-05-19T22:54:21.979959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1205
+          },
+          "id": "event-002449"
+        },
+        {
+          "source_line": 2450,
+          "timestamp": "2026-05-19T22:54:24.313707+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审批卡已发。向 Director 确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002450"
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "messages": [
+        {
+          "source_line": 2451,
+          "timestamp": "2026-05-19T22:54:55.552703+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **phi3v_attention_untrained_10tasks** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "approval"
+          },
+          "id": "event-002451"
+        },
+        {
+          "source_line": 2452,
+          "timestamp": "2026-05-19T22:55:01.787103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_attention_untrained_10tasks",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002452"
+        },
+        {
+          "source_line": 2453,
+          "timestamp": "2026-05-19T22:55:03.043471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_attention_untrained_10tasks\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:51.511Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:55:02.212Z\\\", \\\"hypothesis\\\": \\\"Expanding Phi3V untrained (base Phi-3-instruct) attention profile from 5 to 10 LIBERO-Goal tasks confirms the uniform ~28/32 routing pattern across all layers, paired with trained 10-task to show VLA training reshapes uniform→bookend at consistent task scale.\\\", \\\"parent\\\": \\\"phi3v_attention_untrained\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-19T22:54:39.022Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2387}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1256
+          },
+          "id": "event-002453"
+        },
+        {
+          "source_line": 2454,
+          "timestamp": "2026-05-19T22:55:28.713130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:phi3v_attention_untrained_10tasks",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：Phi3V Untrained Attention Profile 扩展到 10 个 LIBERO-Goal 任务\n\n### 目标\n在 westd-19183 cuda:0 上运行 Phi3V **untrained** (base Phi-3-mini-4k-instruct) attention profile，扩展到 10 个 LIBERO-Goal 任务。与已完成的 trained 10-task 配对。\n\n### 实验 ID\n`phi3v_attention_untrained_10tasks`\n\n### 环境\n- 服务器：westd-19183\n- GPU：cuda:0\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/vla-ssd/`\n- 数据路径：`/root/autodl-tmp/libero/libero_goal/`\n\n### 参考脚本\n**最关键**：已有两个可参考的脚本：\n1. `/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py` — trained 版本，刚跑完 10 tasks，这是主要参考\n2. 之前的 Phi3V untrained attention 脚本（搜索 `ls /root/vla-ssd/scripts/*phi3v*untrained*` 或 `*phi3v*attention*`）\n\n**做法**：复制 `phi3v_attention_profile_10tasks.py` 为 `phi3v_attention_untrained_10tasks.py`，只做以下修改：\n- 模型加载改为 untrained：用 base Phi-3-mini-4k-instruct 权重替换 TracVLA-Phi3V 的 LLM decoder layers\n- 保持相同的 10 个任务列表\n- 输出路径改为 `phi3v_attention_untrained_10tasks.json`\n\n### 关键架构信息（不要从零读源码）\n- TracVLA-Phi3V: `Phi3VForCausalLM`, 32L/32H, hidden=3072\n- Untrained 构造方法：加载 TracVLA-Phi3V checkpoint，然后用 `microsoft/Phi-3-mini-4k-instruct` 的 decoder layers 替换 `model.model.layers`\n- 之前的 5-task untrained 结果：L1=28/32 (0.7745), 全层 uniform ~27-28/32\n- Vision encoder 保持 TracVLA-Phi3V 的（只替换 LLM 部分）\n\n### 步骤\n\n1. **ssh_read_only** 读取 `phi3v_attention_profile_10tasks.py` 了解结构\n2. **ssh_read_only** 找之前的 untrained 脚本看 untrained model 构造代码\n3. **ssh_execute** 复制并修改：`phi3v_attention_untrained_10tasks.py`\n4. **验证**：dry-run 确认能启动\n5. **submit_training_job** 提交：\n   - exp_id: `phi3v_attention_untrained_10tasks`\n   - server: `westd-19183`\n   - gpu: `cuda:0`\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py`\n6. **update_registry**: 转 RUNNING，spec 包含 command, server, data_path, data_count=10 tasks, model_name=Phi-3-mini-4k-instruct (untrained VLA), seed\n\n### 输出\n`/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json`\n\n### 错误排查\n- 模型加载：确保 base Phi-3-mini-4k-instruct 权重可用（检查 HF cache 或 `/root/autodl-tmp/` 下）\n- 如果 base 模型不在本地，需要下载：先 `source /etc/network_turbo` 再下载\n- token 边界逻辑必须与 trained 版本完全一致"
+            }
+          },
+          "id": "event-002454"
+        },
+        {
+          "source_line": 2455,
+          "timestamp": "2026-05-19T22:55:34.689567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_attention_untrained_10tasks_20260519T225529\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_phi3v_attention_untrained_10tasks_20260519T225529.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_phi3v_attention_untrained_10tasks_20260519T225529 started. Use get_worker_status('worker_code_phi3v_attention_untrained_10tasks_20260519T225529') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5976
+          },
+          "id": "event-002455"
+        },
+        {
+          "source_line": 2456,
+          "timestamp": "2026-05-19T22:55:37.076623+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发到 cuda:0。等待完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002456"
+        }
+      ]
+    },
+    {
+      "number": 238,
+      "messages": [
+        {
+          "source_line": 2457,
+          "timestamp": "2026-05-19T22:59:27.038444+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_phi3v_attention_untrained_10tasks_20260519T225529 已完成（status=done）。用 `get_worker_status('worker_code_phi3v_attention_untrained_10tasks_20260519T225529')` 读取结果，然后处理。\n\n- worker_id: worker_code_phi3v_attention_untrained_10tasks_20260519T225529\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002457"
+        },
+        {
+          "source_line": 2458,
+          "timestamp": "2026-05-19T22:59:33.865293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_phi3v_attention_untrained_10tasks_20260519T225529"
+            }
+          },
+          "id": "event-002458"
+        },
+        {
+          "source_line": 2459,
+          "timestamp": "2026-05-19T22:59:33.916130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_attention_untrained_10tasks_20260519T225529\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:phi3v_attention_untrained_10tasks\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T22:55:29.318763+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:59:25.524938+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"实验完成，registry 已更新为 DONE (success)。\\\\n\\\\n**结果摘要**（10 tasks, untrained Phi3V）：\\\\n\\\\n| Layer | n_dom | text | image |\\\\n|-------|-------|------|-------|\\\\n| L1 | 28/32 | 0.7745 | — |\\\\n| L0-L31 | 28-32/32 | ~0.60-0.77 | ~0.25-0.40 |\\\\n\\\\n所有层均匀高 instruction dominance（28-32/32），无层间分化。与 5-task untrained 结果一致。\\\\n\\\\n输出文件：\\\\n- `/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json`\\\\n- `/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002459"
+        },
+        {
+          "source_line": 2460,
+          "timestamp": "2026-05-19T22:59:45.912942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "168392"
+            }
+          },
+          "id": "event-002460"
+        },
+        {
+          "source_line": 2461,
+          "timestamp": "2026-05-19T22:59:45.963573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "169052"
+            }
+          },
+          "id": "event-002461"
+        },
+        {
+          "source_line": 2462,
+          "timestamp": "2026-05-19T22:59:47.469787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"168392\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"S\\\", \\\"elapsed_time\\\": \\\"02:26:19\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1556
+          },
+          "id": "event-002462"
+        },
+        {
+          "source_line": 2463,
+          "timestamp": "2026-05-19T22:59:48.325130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"169052\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"S\\\", \\\"elapsed_time\\\": \\\"02:15:02\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 2361
+          },
+          "id": "event-002463"
+        },
+        {
+          "source_line": 2464,
+          "timestamp": "2026-05-19T22:59:59.076008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 1/2 占用 (cuda:1 r2_probe) | cuda:0 空闲 (untrained 10tasks 刚完成) | Worker 0 活跃\n\n**phi3v_attention_untrained_10tasks 完成 ✓ (success)**\n\n10-task untrained 与 5-task 完全一致，uniform pattern 稳健：\n\n| 指标 | 5-task | 10-task |\n|------|--------|---------|\n| L1 dominant heads | 28/32 | 28/32 |\n| L1 mean text attn | 0.7745 | 0.7745 |\n| 全层 range | 27-28/32 | 28-32/32 |\n| 层间分化 | 无 | 无 |\n\n**Trained vs Untrained 10-task 配对对比（Phi3V）**：\n- Trained: L1=32/32, L2=32/32, 中间层 0-10/32, L31=18/32 → **bookend topology**\n- Untrained: 全层 28-32/32 uniform → **无层间分化**\n- 结论：VLA training reshapes uniform → focused bookend，10-task scale 确认\n\n**剩余两个实验仍在跑**：\n- r2_probe_seed_expansion: PID 168392, 2h26m（trained condition 进行中）\n- specificity_random_seed_expansion: PID 169052, 2h15m（Phase 2 CPU bootstrap）\n\n完成后立即处理汇报。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002464"
+        },
+        {
+          "source_line": 2465,
+          "timestamp": "2026-05-19T23:00:03.671911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4595
+          },
+          "id": "event-002465"
+        },
+        {
+          "source_line": 2466,
+          "timestamp": "2026-05-19T23:00:08.340104+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个仍在跑（r2_probe 2h26m, specificity 2h15m）。先汇报 untrained 10-task 结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002466"
+        }
+      ]
+    },
+    {
+      "number": 239,
+      "messages": [
+        {
+          "source_line": 2467,
+          "timestamp": "2026-05-19T23:35:18.179699+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令 — 紧急] 你已空闲 35 分钟。r2_probe 预计 23:10 完成，现在已过时——大概率已跑完但没人收割。\n\n立即执行：\n1. 检查 r2_probe_seed_expansion 状态：PID 168392 还在吗？结果文件在哪？如果完成，读取 15-seed R² 数据，注册 DONE + metrics，汇报完整对比（5-seed vs 15-seed，哪些层/条件的误差棒收窄了多少）。\n\n2. 检查 specificity_random_seed_expansion Phase 2 状态：PID 169052 还在吗？如果完成，读取 30-seed bootstrap 结果，注册 DONE + metrics，汇报 specificity ratio 新 CI。\n\n3. 两个结果都拿到后，一并汇报对论文的影响。\n\n**不要等回调，主动检查。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002467"
+        },
+        {
+          "source_line": 2468,
+          "timestamp": "2026-05-19T23:35:23.869480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "168392"
+            }
+          },
+          "id": "event-002468"
+        },
+        {
+          "source_line": 2469,
+          "timestamp": "2026-05-19T23:35:24.072191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-19183",
+              "pid": "169052"
+            }
+          },
+          "id": "event-002469"
+        },
+        {
+          "source_line": 2470,
+          "timestamp": "2026-05-19T23:35:25.478539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"168392\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1609
+          },
+          "id": "event-002470"
+        },
+        {
+          "source_line": 2471,
+          "timestamp": "2026-05-19T23:35:26.282475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"169052\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"S\\\", \\\"elapsed_time\\\": \\\"02:50:40\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 2210
+          },
+          "id": "event-002471"
+        },
+        {
+          "source_line": 2472,
+          "timestamp": "2026-05-19T23:35:45.362125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "harvest:r2_probe_and_specificity_check",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：收割 r2_probe 结果 + 检查 specificity 进度\n\n### 1. r2_probe_seed_expansion（已完成，PID 168392 已退出）\n\n**必须完成以下所有步骤：**\n\nA) **读取结果文件**：\n```bash\ncat /root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nprint(json.dumps(d, indent=2))\n\" 2>/dev/null\n```\n如果文件不存在，搜索：`find /root/autodl-tmp/vla-ssd/results/ -name '*r2*15*' -o -name '*r2_probe*seed*' 2>/dev/null`\n\nB) **读取日志确认正常完成**：\n```bash\ntail -30 /tmp/r2_probe_seed_expansion.log\n```\n\nC) **提取关键 metrics 并对比**：\n需要提取的数据：\n- 每个 condition (untrained/llama2base/trained) 的 per-layer R² mean 和 std（15 seeds）\n- 与之前 5-seed 结果对比：CI 是否收窄\n- peak layer 和 inverted-U profile 是否保持\n\nD) **update_registry**：将 `r2_probe_seed_expansion` 转为 DONE (success 或 negative)，设置：\n- conclusion: 根据结果判断\n- metrics: 包含 per-condition peak R², mean across layers, CI width\n- checkpoint_path: 结果 JSON 路径\n- log_path: `/tmp/r2_probe_seed_expansion.log`\n\n### 2. specificity_random_seed_expansion（PID 169052 仍在运行）\n\nA) **读取日志看进度**：\n```bash\ntail -50 /root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\n```\n\nB) **检查结果文件是否已部分生成**：\n```bash\nls -la /root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json 2>/dev/null\n```\n\nC) 汇报进度（已完成多少 seeds，预计还需多久）\n\n### 输出格式\n请以结构化方式汇报：\n1. r2_probe 完整结果（per-condition, per-layer R² 表格）\n2. r2_probe 与 5-seed 对比（CI 收窄程度）\n3. specificity 当前进度"
+            }
+          },
+          "id": "event-002472"
+        },
+        {
+          "source_line": 2473,
+          "timestamp": "2026-05-19T23:35:51.681270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_harvest_r2_probe_and_specificity_check_20260519T233545\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_harvest_r2_probe_and_specificity_check_20260519T233545.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_harvest_r2_probe_and_specificity_check_20260519T233545 started. Use get_worker_status('worker_harvest_r2_probe_and_specificity_check_20260519T233545') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6319
+          },
+          "id": "event-002473"
+        },
+        {
+          "source_line": 2474,
+          "timestamp": "2026-05-19T23:35:54.015064+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "r2_probe 已完成（PID 168392 已退出），specificity 仍在跑。立即派 Worker 读取 r2_probe 结果 + 检查 specificity 进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002474"
+        }
+      ]
+    },
+    {
+      "number": 240,
+      "messages": [
+        {
+          "source_line": 2475,
+          "timestamp": "2026-05-19T23:41:48.347786+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_harvest_r2_probe_and_specificity_check_20260519T233545 已完成（status=done）。用 `get_worker_status('worker_harvest_r2_probe_and_specificity_check_20260519T233545')` 读取结果，然后处理。\n\n- worker_id: worker_harvest_r2_probe_and_specificity_check_20260519T233545\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002475"
+        },
+        {
+          "source_line": 2476,
+          "timestamp": "2026-05-19T23:41:55.476106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_harvest_r2_probe_and_specificity_check_20260519T233545"
+            }
+          },
+          "id": "event-002476"
+        },
+        {
+          "source_line": 2477,
+          "timestamp": "2026-05-19T23:41:55.527003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_harvest_r2_probe_and_specificity_check_20260519T233545\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"harvest:r2_probe_and_specificity_check\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-19T23:35:46.101090+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T23:41:46.808293+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新。以下是完整结果汇报：\\\\n\\\\n---\\\\n\\\\n## 1. R² Probe 15-seed 完整结果\\\\n\\\\n运行时间 146.9 min，正常完成。图表已保存。\\\\n\\\\n### Per-condition, per-layer R² 表格\\\\n\\\\n| Layer | Untrained (mean±std) | Llama2Base (mean±std) | Trained (mean±std) |\\\\n|-------|---------------------|-----------------------|-------------------|\\\\n| L0 | 0.629 ± 0.016 | 0.629 ± 0.016 | 0.629 ± 0.016 |\\\\n| L1 | 0.539 ± 0.023 | 0.626 ± 0.018 | 0.625 ± 0.017 |\\\\n| L2 | 0.517 ± 0.047 | 0.631 ± 0.013 | 0.622 ± 0.010 |\\\\n| L3 | 0.448 ± 0.216 | 0.631 ± 0.011 | 0.624 ± 0.014 |\\\\n| L4 | 0.496 ± 0.057 | 0.625 ± 0.010 | 0.628 ± 0.014 |\\\\n| L5 | 0.475 ± 0.101 | 0.627 ± 0.015 | 0.627 ± 0.019 |\\\\n| L6 | 0.422 ± 0.119 | 0.630 ± 0.010 | 0.631 ± 0.012 |\\\\n| L7 | 0.459 ± 0.093 | 0.625 ± 0.014 | 0.632 ± 0.012 |\\\\n| **L8** | 0.347 ± 0.283 | 0.635 ± 0.008 | **0.635 ± 0.013** |\\\\n| **L9** | 0.445 ± 0.127 | **0.635 ± 0.011** | **0.637 ± 0.008** |\\\\n| L10 | 0.353 ± 0.224 | 0.627 ± 0.015 | 0.624 ± 0.014 |\\\\n| L11 | 0.356 ± 0.122 | 0.627 ± 0.012 | 0.623 ± 0.016 |\\\\n| L12 | 0.409 ± 0.203 | 0.628 ± 0.010 | 0.626 ± 0.011 |\\\\n| L13 | 0.341 ± 0.227 | 0.627 ± 0.010 | 0.624 ± 0.013 |\\\\n| L14 | 0.374 ± 0.211 | 0.633 ± 0.010 | 0.623 ± 0.015 |\\\\n| L15 | 0.297 ± 0.225 | 0.621 ± 0.018 | 0.619 ± 0.012 |\\\\n| L16 | 0.323 ± 0.226 | 0.613 ± 0.017 | 0.619 ± 0.011 |\\\\n| L17 | 0.395 ± 0.109 | 0.611 ± 0.011 | 0.609 ± 0.023 |\\\\n| L18 | 0.214 ± 0.307 | 0.610 ± 0.014 | 0.613 ± 0.017 |\\\\n| L19 | 0.241 ± 0.258 | 0.606 ± 0.014 | 0.613 ± 0.013 |\\\\n| L20 | 0.086 ± 0.311 | 0.601 ± 0.019 | 0.611 ± 0.014 |\\\\n| L21 | 0.330 ± 0.216 | 0.598 ± 0.016 | 0.589 ± 0.023\n…[truncated 1920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002477"
+        },
+        {
+          "source_line": 2478,
+          "timestamp": "2026-05-19T23:42:21.151148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/2 空闲 (cuda:0 + cuda:1 均空) | Worker 0 活跃 | specificity PID 169052 仍在 CPU 跑\n\n---\n\n## r2_probe_seed_expansion 完成 ✓ (success)\n\n15-seed R² probe，运行 147 min，registry 已更新 DONE。\n\n### 核心数据\n\n| Metric | Untrained | Llama2Base | Trained |\n|--------|-----------|------------|---------|\n| Peak layer | L0 (0.629) | L9 (0.635) | **L9 (0.637)** |\n| Avg R² (L1-L31) | 0.30 | 0.61 | 0.60 |\n| Avg std (15 seeds) | 0.185 | 0.016 | 0.020 |\n\n### CI 收窄（15 vs 5 seeds）\n- SEM 缩减 √(5/15) ≈ 0.577 → **95% CI 宽度缩窄 ~42%**\n- Trained L9 peak: 95% CI width = ±0.004（极窄）\n- Trained/Llama2Base 所有层 CI width < 0.02\n\n### 关键发现\n1. **Trained > Untrained 在 L1-L31 每一层成立**，avg gap ~0.27 R²，无例外\n2. **Inverted-U profile 稳健**：peak at L8-L9，之后温和下降\n3. **Exit layer 分化**：trained 在 L25-L31 比 llama2base 低 ~0.03-0.06 R²，VLA training 使 exit 层表征更特化（与 bookend attention 一致）\n4. **Untrained 方差极大**（std 0.1-0.3）vs trained/llama2base 极小（std 0.01-0.05）→ VLA/instruction training 稳定了表征\n\n### 对论文影响\n- C2 claim（action R² inverted-U + trained>untrained）现在有 15-seed 支撑，CI 极窄，reviewer 无法攻击统计稳健性\n- Exit layer 分化是新发现——trained 在高层 R² 下降更多，可能说明 exit layers 发展出 action-specific 而非 general 的表征\n\n---\n\n## specificity_random_seed_expansion — 仍在运行\n- PID 169052, 2h50m+\n- Phase 1 (GPU cache) 已完成\n- Phase 2 (CPU bootstrap 30 seeds) 进行中，30 核全开\n- 结果文件尚未生成\n- 完成后立即收割汇报\n\n---\n\n**两块 GPU 当前都空闲**，如有新任务可立即分配。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002478"
+        },
+        {
+          "source_line": 2479,
+          "timestamp": "2026-05-19T23:42:24.867308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3716
+          },
+          "id": "event-002479"
+        },
+        {
+          "source_line": 2480,
+          "timestamp": "2026-05-19T23:42:27.669687+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "r2_probe 15-seed 完整结果已收割。核心发现：CI 收窄 ~42%，inverted-U profile 和 trained>untrained 分离在所有层稳健。立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002480"
+        }
+      ]
+    },
+    {
+      "number": 241,
+      "messages": [
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-20T00:27:42.977166+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] specificity_random_seed_expansion 已完成。三件事：\n\n1. 注册 DONE + metrics：z=-3.11, percentile=0%, instruction_increase=+0.0301, random_mean_increase=+0.0712±0.0132, baseline_r2=0.5243, n_seeds=30\n\n2. 同步图表到本地：`fig_specificity_bootstrap_30seeds.pdf` 从 westd-19183 拉到 artifacts/ + docs/paper/figures/\n\n3. 汇报完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-20T00:27:50.608512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "specificity_random_seed_expansion",
+              "field": "conclusion",
+              "value": "success",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002482"
+        },
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-20T00:27:51.913960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:27:50.935Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero/libero_goal/\\\", \\\"data_count\\\": \\\"30 seeds\\\", \\\"model_name\\\": \\\"OpenVLA (cache generation)\\\", \\\"seed\\\": \\\"0-29\\\", \\\"pid\\\": 169052, \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\", \\\"output_cache\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\", \\\"output_results\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, L1 attention patterns\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6041}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1305
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-20T00:27:51.964668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "specificity_random_seed_expansion",
+              "field": "metrics",
+              "value": "{'z_score': -3.11, 'percentile': 0, 'instruction_increase': 0.0301, 'random_mean_increase': 0.0712, 'random_std_increase': 0.0132, 'baseline_r2': 0.5243, 'n_seeds': 30}",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002484"
+        },
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-20T00:27:52.518459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:27:52.263Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero/libero_goal/\\\", \\\"data_count\\\": \\\"30 seeds\\\", \\\"model_name\\\": \\\"OpenVLA (cache generation)\\\", \\\"seed\\\": \\\"0-29\\\", \\\"pid\\\": 169052, \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\", \\\"output_cache\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\", \\\"output_results\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, L1 attention patterns\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"z_score\\\": -3.11, \\\"percentile\\\": 0, \\\"instruction_increase\\\": 0.0301, \\\"random_mean_increase\\\": 0.0712, \\\"random_std_increase\\\": 0.0132, \\\"baseline_r2\\\": 0.5243, \\\"n_seeds\\\": 30}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5197}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-20T00:27:57.192912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "specificity_random_seed_expansion",
+              "field": "status",
+              "value": "DONE",
+              "project": "vla-ssd",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json', 'log_path': '/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log'}"
+            }
+          },
+          "id": "event-002486"
+        },
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-20T00:27:58.347333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:23:42.838Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:27:57.565Z\\\", \\\"hypothesis\\\": \\\"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets.\\\", \\\"parent\\\": \\\"random_subset_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py --generate-cache && CUDA_VISIBLE_DEVICES='' python /root/vla-ssd/scripts/specificity_bootstrap_30seeds.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero/libero_goal/\\\", \\\"data_count\\\": \\\"30 seeds\\\", \\\"model_name\\\": \\\"OpenVLA (cache generation)\\\", \\\"seed\\\": \\\"0-29\\\", \\\"pid\\\": 169052, \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log\\\", \\\"output_cache\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\", \\\"output_results\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\", \\\"checkpoint_source\\\": \\\"openvla/openvla-7b (HuggingFace)\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks, L1 attention patterns\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"z_score\\\": -3.11, \\\"percentile\\\": 0, \\\"instruction_increase\\\": 0.0301, \\\"random_mean_increase\\\": 0.0712, \\\"random_std_increase\\\": 0.0132, \\\"baseline_r2\\\": 0.5243, \\\"n_seeds\\\": 30}, \\\"completed_at\\\": \\\"2026-05-20T00:27:57.565Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0962}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1154
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-20T00:28:10.120250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "sync:specificity_bootstrap_figure",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh']",
+              "task_prompt": "## 任务：同步 specificity bootstrap 图表到本地\n\n### 步骤\n\n1. **ssh_read_only** 找到图表文件：\n```bash\nls -la /root/autodl-tmp/vla-ssd/results/l1_head_ablation/fig_specificity_bootstrap_30seeds.pdf 2>/dev/null\nls -la /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf 2>/dev/null\nfind /root/autodl-tmp/vla-ssd/results/ -name '*specificity*bootstrap*' -name '*.pdf' 2>/dev/null\nfind /root/autodl-tmp/vla-ssd/results/ -name '*specificity*bootstrap*' -name '*.png' 2>/dev/null\n```\n\n2. 找到 PDF 和 PNG 后，用 base64 编码读取：\n```bash\nbase64 /path/to/fig_specificity_bootstrap_30seeds.pdf\n```\n```bash\nbase64 /path/to/fig_specificity_bootstrap_30seeds.png\n```\n\n3. 用 Bash 在本地解码写入两个位置：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.png`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_specificity_bootstrap_30seeds.pdf`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_specificity_bootstrap_30seeds.png`\n\n确保本地目标目录存在（`mkdir -p` 如果不存在）。\n\n4. 验证本地文件大小非零：`ls -la` 每个目标文件。"
+            }
+          },
+          "id": "event-002488"
+        },
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-20T00:28:16.356092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_sync_specificity_bootstrap_figure_20260520T002810\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_sync_specificity_bootstrap_figure_20260520T002810.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_sync_specificity_bootstrap_figure_20260520T002810 started. Use get_worker_status('worker_sync_specificity_bootstrap_figure_20260520T002810') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6235
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-20T00:28:19.095790+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新 DONE。派 Worker 同步图表到本地。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002490"
+        }
+      ]
+    },
+    {
+      "number": 242,
+      "messages": [
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-20T01:24:42.907632+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] GPU 不能空着。启动 Reviewer 建议的最后一个实验：\n\n**cuda:0 — `phi3v_r2_action_probe`**：TracVLA-Phi3V 的 per-layer R² action probe。验证 inverted-U profile 是否跨架构复现。复用 OpenVLA R² probe 脚本，适配 Phi3V（hidden_size=3072, 模型加载路径换 TracVLA-Phi3V）。5 seeds 即可。预计 ~2h。\n\n提交审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-20T01:24:49.403457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002492"
+        },
+        {
+          "source_line": 2493,
+          "timestamp": "2026-05-20T01:24:50.508712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_r2_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:24:49.759Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0822}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1105
+          },
+          "id": "event-002493"
+        },
+        {
+          "source_line": 2494,
+          "timestamp": "2026-05-20T01:24:55.582914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "field": "hypothesis",
+              "value": "TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002494"
+        },
+        {
+          "source_line": 2495,
+          "timestamp": "2026-05-20T01:24:56.236079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_r2_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:24:55.907Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5529}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-002495"
+        },
+        {
+          "source_line": 2496,
+          "timestamp": "2026-05-20T01:24:56.236512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "field": "parent",
+              "value": "r2_probe_seed_expansion",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002496"
+        },
+        {
+          "source_line": 2497,
+          "timestamp": "2026-05-20T01:24:56.788827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_r2_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:24:56.529Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\\\", \\\"parent\\\": \\\"r2_probe_seed_expansion\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5214}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-002497"
+        },
+        {
+          "source_line": 2498,
+          "timestamp": "2026-05-20T01:25:00.763902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "field": "status",
+              "value": "PENDING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002498"
+        },
+        {
+          "source_line": 2499,
+          "timestamp": "2026-05-20T01:25:02.175108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_r2_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:25:01.141Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\\\", \\\"parent\\\": \\\"r2_probe_seed_expansion\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4401}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1411
+          },
+          "id": "event-002499"
+        },
+        {
+          "source_line": 2500,
+          "timestamp": "2026-05-20T01:25:07.745774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "summary": "TracVLA-Phi3V per-layer R² action probe (5 seeds)，验证inverted-U profile跨架构复现",
+              "risk_reason": "cuda:0, ~2h, 复用OpenVLA R² probe脚本适配Phi3V (hidden_size=3072)",
+              "diff_summary": "复制r2_probe脚本 → 改模型加载为TracVLA-Phi3V, hidden_size 3072, 5 seeds",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002500"
+        },
+        {
+          "source_line": 2501,
+          "timestamp": "2026-05-20T01:25:11.616780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6fe499a544a4b22bdac109160d8\\\", \\\"chat_id\\\": \\\"oc_a1d032cbe70bdd2058438e67e0d57613\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 3871
+          },
+          "id": "event-002501"
+        },
+        {
+          "source_line": 2502,
+          "timestamp": "2026-05-20T01:25:18.143457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/2 空闲 (cuda:0 + cuda:1) | Worker 1 (sync figure) | 磁盘: westd-19183 未检查\n\n**phi3v_r2_action_probe** 已注册 + 审批卡已发。\n- cuda:0, 5 seeds, ~2h\n- hypothesis: Phi3V inverted-U R² profile 跨架构复现\n- 批准后立即派 Worker",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002502"
+        },
+        {
+          "source_line": 2503,
+          "timestamp": "2026-05-20T01:25:19.550070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1406
+          },
+          "id": "event-002503"
+        }
+      ]
+    },
+    {
+      "number": 243,
+      "messages": [
+        {
+          "source_line": 2504,
+          "timestamp": "2026-05-20T01:26:10.718232+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **phi3v_r2_action_probe** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "approval"
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-20T01:26:17.299088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "phi3v_r2_action_probe",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-20T01:26:18.353121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phi3v_r2_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T01:24:49.759Z\\\", \\\"updated_at\\\": \\\"2026-05-20T01:26:17.606Z\\\", \\\"hypothesis\\\": \\\"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\\\", \\\"parent\\\": \\\"r2_probe_seed_expansion\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T01:25:36.493Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0511}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-20T01:26:45.100148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:phi3v_r2_action_probe",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：TracVLA-Phi3V Per-Layer R² Action Probe（5 seeds）\n\n### 目标\n在 westd-19183 cuda:0 上运行 TracVLA-Phi3V 的 per-layer action R² probe，验证 inverted-U profile 是否跨架构复现。\n\n### 实验 ID\n`phi3v_r2_action_probe`\n\n### 环境\n- 服务器：westd-19183\n- GPU：cuda:0\n- Python：`/root/miniconda3/bin/python` (conda base)\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/vla-ssd/`\n- 数据路径：`/root/autodl-tmp/libero/libero_goal/`\n- 模型：TracVLA-Phi3V checkpoint at `/root/autodl-tmp/tracvla-phi3v/`\n\n### 参考脚本\n复用 OpenVLA R² probe 脚本，适配 Phi3V。关键参考：\n\n1. **OpenVLA R² probe 脚本**：找 `/root/vla-ssd/scripts/r2_probe_seed_expansion.py` 或 `/root/vla-ssd/scripts/threecond_multiseed_r2*.py` — 这是 per-layer R² probe 的主逻辑\n2. **Phi3V 模型加载**：参考 `/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py` 中的模型加载代码\n\n### 关键适配点（不要从零读源码）\n- **hidden_size**: OpenVLA=4096, Phi3V=**3072** — Ridge regression 输入维度需要匹配\n- **模型加载**: `Phi3VForCausalLM.from_pretrained(\"/root/autodl-tmp/tracvla-phi3v/\")`\n- **层数**: 32 layers (L0-L31) + output embedding (L32)\n- **QKV fused**: Phi3V 用 `qkv_proj`，但 R² probe 用的是 hidden states 不是 attention weights，所以不受影响\n- **Token 位置**: 用 last_preaction token 的 hidden state 做 action R² probe（与 OpenVLA 一致）\n- **Seeds**: 5 seeds [0,1,2,3,4]\n- **Action dim**: 7 (与 OpenVLA 一致，LIBERO 7-DoF)\n- **只跑 trained condition**（不需要 untrained/llama2base，这是单架构验证）\n\n### 步骤\n\n1. **ssh_read_only** 读取 OpenVLA R² probe 脚本，理解结构（特别是 feature extraction + Ridge regression 流程）\n2. **ssh_read_only** 读取 Phi3V 模型加载代码（从 phi3v_attention_profile_10tasks.py）\n3. **ssh_execute** 创建 `/root/vla-ssd/scripts/phi3v_r2_action_probe.py`：\n   - 复制 R² probe 逻辑\n   - 替换模型加载为 Phi3V\n   - hidden_size=3072\n   - 5 seeds, 33 layers (L0-L32)\n   - 输出到 `/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json`\n4. **验证**：dry-run 确认脚本能启动\n5. **submit_training_job** 提交：\n   - exp_id: `phi3v_r2_action_probe`\n   - server: `westd-19183`\n   - gpu: `cuda:0`\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py`\n6. **update_registry**: 转 RUNNING，spec 包含 command, server, data_path, data_count=10 tasks × 50 demos, model_name=TracVLA-Phi3V, seed=0-4\n\n### 输出\n- `/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json`\n- 格式：per-layer R² mean±std across 5 seeds\n\n### 错误排查\n- CUDA OOM → 减 demos_per_task 或用 gradient checkpointing\n- 模型路径 → 确认 `/root/autodl-tmp/tracvla-phi3v/` 存在\n- hidden_size mismatch → 确认用 3072 不是 4096\n- feature extraction 需要 hook 到每层 → 参考 OpenVLA 脚本的 hook 注册方式，适配 Phi3V 层名称（`model.model.layers.{i}`）"
+            }
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-20T01:26:51.885281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_r2_action_probe_20260520T012645\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_phi3v_r2_action_probe_20260520T012645.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_phi3v_r2_action_probe_20260520T012645 started. Use get_worker_status('worker_code_phi3v_r2_action_probe_20260520T012645') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6785
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-20T01:26:55.179444+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发到 cuda:0。等待完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002509"
+        }
+      ]
+    },
+    {
+      "number": 244,
+      "messages": [
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-20T01:36:43.343247+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_phi3v_r2_action_probe_20260520T012645 已完成（status=done）。用 `get_worker_status('worker_code_phi3v_r2_action_probe_20260520T012645')` 读取结果，然后处理。\n\n- worker_id: worker_code_phi3v_r2_action_probe_20260520T012645\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-20T01:36:49.879380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_phi3v_r2_action_probe_20260520T012645"
+            }
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-20T01:36:49.930113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_phi3v_r2_action_probe_20260520T012645\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:phi3v_r2_action_probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-20T01:26:45.726603+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T01:36:41.458683+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Extraction is actively running — first task `open_the_middle_drawer_of_the_cabinet.h5.tmp` is being written (269MB so far). GPU utilization is low because the forward passes are quick (single frame at a time with idle periods for data loading).\\\\n\\\\n**Summary:**\\\\n\\\\n- **Script**: `/root/vla-ssd/scripts/phi3v_r2_action_probe.py` — two-phase design:\\\\n  - Phase 1: Extract last-preaction hidden states (33 layers × 3072 dims) from TracVLA-Phi3V for all 10 tasks × 50 demos → saved to `/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/`\\\\n  - Phase 2: Train per-layer MLP probes (5 seeds), compute R² → output to `/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json`\\\\n- **Job**: Running on westd-19183 cuda:0, PID 402232\\\\n- **Registry**: `phi3v_r2_action_probe` → RUNNING\\\\n- **Log**: `/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log`\\\\n- **Estimated time**: Phase 1 (extraction) ~30-60 min for 10 tasks, Phase 2 (probing) ~15 min\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-20T01:36:53.936861+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已提交训练，PID 402232 在 cuda:0 运行中。Phase 1 feature extraction 进行中（~30-60 min），Phase 2 probing 之后自动跑（~15 min）。等待 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-002513"
+        }
+      ]
+    },
+    {
+      "number": 245,
+      "messages": [
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-20T01:53:14.965914+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_sync_specificity_bootstrap_figure_20260520T002810 已完成（status=done）。用 `get_worker_status('worker_sync_specificity_bootstrap_figure_20260520T002810')` 读取结果，然后处理。\n\n- worker_id: worker_sync_specificity_bootstrap_figure_20260520T002810\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-20T01:53:23.614682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_sync_specificity_bootstrap_figure_20260520T002810"
+            }
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-20T01:53:23.715810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_sync_specificity_bootstrap_figure_20260520T002810\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"sync:specificity_bootstrap_figure\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-20T00:28:10.977628+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T01:53:13.098054+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"All 4 files synced successfully:\\\\n\\\\n- `artifacts/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\\\\n- `artifacts/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\\\\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\\\\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\\\\n\\\\nMD5 verified against remote (`81a1d1df36ba681a446dfa920c719b62`). Transfer completed via direct SCP using decrypted credentials from the MCP config.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-20T01:53:29.468590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-20T01:53:29.519274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-20T01:53:35.956374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_specificity_bootstrap_30seeds",
+              "type": "chart",
+              "description": "Specificity bootstrap 30-seed analysis: instruction-head ablation R² increase vs 30 random-24-head bootstrap distribution. z=-3.11, percentile=0%, confirming instruction heads produce qualitatively different action disruption.",
+              "project": "vla-ssd",
+              "exp_id": "specificity_random_seed_expansion",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf",
+              "tags": "['specificity', 'bootstrap', 'ablation', 'paper-figure']"
+            }
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-20T01:53:36.108159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_d04593\\\", \\\"name\\\": \\\"fig_specificity_bootstrap_30seeds\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Specificity bootstrap 30-seed analysis: instruction-head ablation R² increase vs 30 random-24-head bootstrap distribution. z=-3.11, percentile=0%, confirming instruction heads produce qualitatively different action disruption.\\\", \\\"path\\\": \\\"projects/vla-ssd/artifacts/specificity_random_seed_expansion/chart/fig_specificity_bootstrap_30seeds.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"vla-ssd\\\", \\\"exp_id\\\": \\\"specificity_random_seed_expansion\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T01:53:35.913986+00:00\\\", \\\"tags\\\": [\\\"specificity\\\", \\\"bootstrap\\\", \\\"ablation\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 151
+          },
+          "id": "event-002520"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84155f5e16a26981aaf3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug check dose response final",
+  "task_key": "worker_debug_check_dose_response_final_20260518T162658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_check_dose_response_final_20260518T162658_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "36c80af5d5fb122126700c36a6dcb5937d1f48ae7da99297306f70e6d47a460b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**实验仍在运行，未完成。**\n\n| | GPU 0 (dose0) | GPU 1 (dose1) |\n|---|---|---|\n| 条件 | top-4, 8, 12, 16 | top-20, 24, 28, 32 |\n| 已完成 | top4 ✅, top8 ✅ | （无） |\n| 当前进度 | top12: 7100/7500 (ETA ~1min) | top20: 6500/7500 (ETA ~3min) |\n| 剩余条件 | top16 | top24, top28, top32 |\n| 速度 | 6.7 calls/s | 6.1 calls/s |\n\n**已产出文件：**\n- `dose_response_top4.json` — paired_mse=0.071, token_div=0.5, KL=2.46\n- `dose_response_top8.json` — paired_mse=0.071, token_div=0.5, KL=2.44\n\n**ETA 估算：** 每个条件约 19-20 min。GPU 0 还需 ~20 min（1个条件），GPU 1 还需 ~63 min（3个条件）。瓶颈在 GPU 1，预计约 **65 分钟后全部完成**（~01:32 服务器时间）。\n\n**注意：** top4 和 top8 的 paired_mse 完全相同（0.0710），token_divergence_rate 也一样（0.5），KL 仅微降（2.46→2.44）。n_samples 只有 2，样本量很小。需要等全部 8 个条件跑完后看完整曲线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-check-dose-response-final.md"
+}

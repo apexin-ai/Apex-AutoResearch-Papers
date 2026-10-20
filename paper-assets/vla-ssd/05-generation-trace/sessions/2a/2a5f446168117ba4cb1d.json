@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5f446168117ba4cb1d",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code fix type3 fonts",
+  "task_key": "worker_code_fix_type3_fonts_20260526T215833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_type3_fonts_20260526T215833.log",
+    "occurrence": 1,
+    "bytes": 1588050,
+    "sha256": "ce18d4d58dd7e1eb34890a2f4b2e47b5f9b75a115ac78dc098c4294626e31177"
+  },
+  "statistics": {
+    "messages": 1365,
+    "user_turns": 3,
+    "tool_calls": 463,
+    "roles": {
+      "log": 1,
+      "system": 352,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 463,
+      "tool_result": 463,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "2a5f446168117ba4cb1d-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "2a5f446168117ba4cb1d-part-0001.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 582,
+      "chunks": [
+        {
+          "path": "2a5f446168117ba4cb1d-part-0001.json",
+          "message_count": 65
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0004.json",
+          "message_count": 157
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 668,
+      "chunks": [
+        {
+          "path": "2a5f446168117ba4cb1d-part-0004.json",
+          "message_count": 23
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a5f446168117ba4cb1d-part-0008.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-type3-fonts-copy-2.md"
+}

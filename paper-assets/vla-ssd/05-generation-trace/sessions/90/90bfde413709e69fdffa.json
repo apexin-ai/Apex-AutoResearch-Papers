@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90bfde413709e69fdffa",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh cf batch progress check",
+  "task_key": "worker_ssh_cf_batch_progress_check_20260521T231902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cf_batch_progress_check_20260521T231902_result.json",
+    "occurrence": 1,
+    "bytes": 1848,
+    "sha256": "886bcdc5f28ec94f6dfc58e1094adb28bb1ec283077e707f5c8181c7e059bd87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`libero_long_untrained` 是旧的 MSE 方法结果（非 cosine_distance），来自之前的 openvla 实验，不可直接比较。\n\n## 综合报告\n\n### 1. 当前进度\n\n**Batch 1 (cf_batch_missing_v1, cuda:0)**\n| # | Task | Status |\n|---|------|--------|\n| 1 | openvla object untrained | ✅ 完成 (27.6 min) |\n| 2 | tracvla spatial untrained | 🔄 condition \"wrong\" 4800/5000 (96%) |\n| 3 | tracvla object untrained | ⏳ 未开始 |\n\n**Batch 2 (cf_batch_part2_v1, cuda:1)**\n| # | Task | Status |\n|---|------|--------|\n| 1 | tracvla goal untrained | 🔄 2/4 conditions done, \"shuffled\" 刚开始 |\n| 2 | tracvla long untrained | ⏳ 未开始 |\n\nBatch 2 中间结果 (tracvla goal untrained):\n- wrong: cos_dist = **0.0160**\n- empty: cos_dist = **0.1530**\n\n---\n\n### 2. 已完成结果：OpenVLA Object Untrained (cosine_distance, last layer L31)\n\n| Condition | cos_dist | Cohen's d |\n|-----------|----------|-----------|\n| empty | **0.5688** | — |\n| shuffled | **0.2981** | — |\n| wrong | **0.2308** | 5.57 |\n| paraphrased | **0.0845** | — |\n\n排序：empty >> shuffled > wrong >> paraphrased\n\n---\n\n### 3. 预计剩余时间\n\nTracVLA 每个 condition 约 **8 min**（5000 samples）。\n\n- **Batch 1**: ~25 min (spatial 剩余 3 conditions) + ~32 min (object 4 conditions) = **~57 min**\n- **Batch 2**: ~16 min (goal 剩余 2 conditions) + ~32 min (long 4 conditions) = **~48 min**\n\n预计全部完成时间：约 **08:10 (batch 2)** / **08:17 (batch 1)**（服务器时间 UTC+8）。\n\n---\n\n### 4. 注意\n\n已有的 `libero_long_untrained/counterfactual_combined.json` 使用旧的 paired_mse 方法（`model=openvla-7b-finetuned-libero-object`），不是当前 cosine_distance 方法的结果。Batch 2 会产出新的 tracvla long untrained cosine_distance 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cf-batch-progress-check.md"
+}

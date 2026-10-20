@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca15b37d4accfb856ff",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh p0 bootstrap ci training effect",
+  "task_key": "worker_ssh_p0-bootstrap-ci-training-effect_20260515T224516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-bootstrap-ci-training-effect_20260515T224516_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "8f79957662d80298f000f2ed4bbeddfe295b46b1cf2ec17d00fb1d07f7de1d15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap 完成。结果：\n\n| 聚合方式 | Δ (trained−untrained) | 95% CI | p-value | 显著？ |\n|---|---|---|---|---|\n| **image_mean** | +0.0206 | [−0.0314, +0.0638] | 0.200 | 否 |\n| **last_preaction** | +0.0076 | [−0.0395, +0.0558] | 0.370 | 否 |\n\n两个 CI 都包含 0，training effect 在 task-level bootstrap 下均不显著。10 个 task 的 per-task RSA 方差很大（如 `turn_on_the_stove` image_mean Δ=−0.17，`put_the_bowl_on_the_stove` Δ=+0.15），导致 CI 宽度约 0.09，远大于观测到的 Δ。\n\n结果文件：`/root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json`，已注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-bootstrap-ci-training-effect.md"
+}

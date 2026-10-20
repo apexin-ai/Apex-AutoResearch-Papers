@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bec3cedc82545db8bccd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis counterfactual 10tasks trajectory",
+  "task_key": "worker_analysis_counterfactual_10tasks_trajectory_20260520T203534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_counterfactual_10tasks_trajectory_20260520T203534_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "d38107a7f2b5ec34086b078723c15b27376d89b596b064364ab081ea66d9b70f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本在 GPU 1 上运行中，PID 494980，当前进度约 19%（4750/25000 passes），速率 8.0 pass/s，预计还需约 42 分钟。30 分钟后回来检查完成情况。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-counterfactual-10tasks-trajectory.md"
+}

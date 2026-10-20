@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a14f67d3980fb71fc426",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis threshold sensitivity",
+  "task_key": "worker_analysis_threshold_sensitivity_20260517T134939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_threshold_sensitivity_20260517T134939_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "0b2ad71df2c0a8b3b0c7a8a763756c2da9511898d06d3c2cb7e4258954cf6a7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sanity check 通过（L1 trained @ 50% = 24）。结果已保存到 `threshold_sensitivity.json`。\n\n### 关键发现\n\n**Table 1: L1 Threshold Sweep**\n\n| Threshold | Trained | Llama2-Base | Untrained |\n|-----------|---------|-------------|-----------|\n| 30% | 32 | 13 | 0 |\n| 40% | 31 | 10 | 0 |\n| **50%** | **24** | **9** | **0** |\n| 60% | 9 | 4 | 0 |\n| 70% | 5 | 3 | 0 |\n\n**Robust Range 分析**\n\n所有关键层在 50% threshold 下，三条件梯度 (untrained < llama2base < trained) 均成立：\n\n| Layer | Robust Range | Midpoint | 50% in range? |\n|-------|-------------|----------|---------------|\n| L0 | [10%, 62%] | 36% | Yes |\n| L1 | [10%, 85%] | 48% | Yes |\n| L8 | [10%, 79%] | 44% | Yes |\n| L16 | [10%, 74%] | 42% | Yes |\n| L31 | [10%, 90%] | 50% | Yes |\n\n**结论**：50% threshold 落在所有关键层 robust range 内部，且非常接近 L1 的 midpoint（48%）和 L31 的 midpoint（50%）。选择 50% 不是 cherry-picked，而是位于梯度保持区间的中央位置。\n\n**注意**：L0 在 70% threshold 出现反转（llama2base=8 > trained=4），L8 和 L16 中间层 llama2base > trained 在部分 threshold 下也出现。这些层的 attention 分布模式不同于 L1，属于预期行为（中间层 llama2base 保留了更多 LLM 的 text-attending 惯性，而 trained 模型重新分配了 attention）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-threshold-sensitivity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02c2a4da94605c3cb6f6",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 4063,
+    "sha256": "985b5cdaad18f05a390ea7ea510c1dce9fb59f64b7e1d6018d83f178b5b4454e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-26T16:53:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 上 cuda:0 和 cuda:1（2× RTX PRO 6000 96GB）。项目已无实验可跑，GPU 释放请求已提 Manager 5 次未回复。\n- 论文处于 anonymous submission 模式（`\\author{Anonymous}`，无 `[final]` flag）。任何修改不得引入 identifying information。\n- Paper DDL 2026-05-29，用户需自行操作 OpenReview 提交。Reviewer 不执行实验、不修改文件、不提交。\n- 17 个 negative 结果经 D110 决策终结——不再重试任何一个。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，代码根目录 `/root/vla-ssd`，数据盘 `/root/autodl-tmp/vla-ssd/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型 checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/`（openvla-7b, tracvla, nora 等）\n- 数据集：`/root/autodl-tmp/vla-ssd/data/libero/`（4 suites × 10 tasks × 50 demos）\n- 实验结果：`/root/autodl-tmp/vla-ssd/results/`\n- 本地论文：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/`\n- 活跃进程：无。全部实验已完成（107 success / 17 negative / 7 failed）。无 tmux session / cron。\n\n### 3. 📊 当前状态\n**刚完成**：\n1. 17 个 negative 逐条审查（结论：无一值得重试）→ posted D110\n2. 论文 story 最终审视（claim-evidence alignment 良好，1 个 warning：§4.6 specificity caveat 建议加一句）\n3. Camera-ready QA（CoRL 2026 格式合规，2 个 non-blocking warning：appendix overfull hbox + 参考文献格式不统一）\n4. ROADMAP 更新审查（与审查结论一致，无异常）\n\n**Registry 状态**：全部 DONE，无 RUNNING/PREPARING。\n\n**等待中**：\n- 用户确认 abstract 提交状态（DDL 5/26 已过）\n- 用户操作 paper 提交（DDL 5/29）\n- Type 3 mathtext 字体清除（Worker 进行中，非阻塞）\n- Manager 批准 GPU 释放\n\n### 4. 📋 待办（条件触发式）\n- Director 转发章节修改审查请求 → 模式 B 对抗审查（先读 paper-quality-lessons skill）\n- Director 转发 Framing 调整提案 → 读 negative-framing-review skill，四维度审查\n- 论文被 rebuttal → 读 rebuttal skill，对照 `artifacts/anticipated_rebuttal_v2.md`（9 个预期问题已准备好）\n- Worker 报告 Type 3 字体修复完成 → 验证 `pdffonts main.pdf` 无 Type 3 残留\n- ROADMAP 再次更新 → 快速一致性检查（当前状态 = 等待提交，无实验变动）\n\n### 5. 🎯 战略上下文\n**核心结论**：VLM→VLA 微调产生 exit collapse（ΔR²=0.16-0.46），VLA→VLA 不产生（<0.10），NLP controls 确认 VLA-specificity（0.000）。L1 instruction attention 是继承的，非训练产物。三个分析方法（probe + counterfactual + L1 profiling）构成跨架构分解。\n\n**关键决策链**：D101（Weak Reject 4.5/10 → 统计框架重构）→ D102（转 effect size threshold）→ D103（framing 路径）→ D105（Qwen NLP control 闭合 limitation）→ D107（n=9 硬约束终结）→ D110（17 negative 终结，GPU 释放）\n\n**易错点**：\n- **n=9 behavioral correlation（ρ=0.583, p=0.10）是设计硬约束**，不可通过 sub-split/bootstrap/augmentation 扩展。D107 已终结讨论。别再试。\n- **L1 \"instruction-dominant\" 分类是 attention-based，不是 functional-specificity**。specificity_control_action 显示 ablating non-instruction heads 产生类似 d 值（0.565 vs 0.65）。论文用 \"distributed redistribution\" 处理。审稿人可能攻击这个点——准备好 rebuttal。\n- **OpenVLA reference 是 VLA（OXE-pretrained），不是 VLM**。TracVLA/NORA reference 才是 VLM。这个不对称是论文的核心设计，不是 bug。\n- **counterfactual sensitivity 跨 metric 不可比**：Cohen's d（OpenVLA/TracVLA）vs cosine distance（NORA/reference VLMs），论文已反复强调。\n- **页数**：ROADMAP 写 42 页，main.log 编译显示 40 页。可能编译版本差异，不影响合规。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-3.md"
+}

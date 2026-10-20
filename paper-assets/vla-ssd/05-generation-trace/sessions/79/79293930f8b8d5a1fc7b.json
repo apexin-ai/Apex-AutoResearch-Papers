@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79293930f8b8d5a1fc7b",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "reviewer / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_12.md",
+    "occurrence": 1,
+    "bytes": 2706,
+    "sha256": "4b7c267d234e7b1c055fca3bf4ba71eb8a99a019c2c58a6f62995b3b5cb38516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_wall_time\nupdated: '2026-05-25T22:18:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-19183，代码根目录 /root/vla-ssd\n- Reviewer 角色只读——不执行实验、不修改文件、不 ssh_execute\n- 唯一输出渠道：`reviewer_post_to_director`\n- 论文 DDL：Abstract 5/26，Paper 5/29（CoRL 2026）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 /root/vla-ssd\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/\n- 论文源码：projects/vla-ssd/docs/paper/（main.tex + 分章节 .tex + appendix.tex ~1278行）\n- 无活跃训练进程——所有 143 个实验已完成，项目处于论文写作/提交阶段\n- 无 wandb 需要监控\n\n### 3. 📊 当前状态\n刚完成并已 post：两个新增 appendix 小节审查（§cross_arch_rationale + §convergent_evidence）。结论 WARNING——NORA vision encoder 写成 \"InternViT\"（错，应为 Qwen2.5-VL native ViT）、vision integration 写成 \"Cross-attention (interleaved)\"（错，应为 token concatenation）。§convergent_evidence 通过。\n\n已完成的审查链：\n- Figure 3 random-split CRITICAL → 已修复验证\n- Figure 4 colorblind/caption → 已修复验证\n- v12 全文一致性 pass（78项）→ 通过\n- Rebuttal v2 Bonferroni 48→40 错误 → 已报 Director，**未确认修复**\n- conclusion.tex 孤儿文件 → 已报（info级）\n\nRegistry: 全部 DONE，无 RUNNING/PREPARING。无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- Director 确认 NORA vision encoder/integration 修复 → 验证 appendix 对应行是否改正\n- Rebuttal v2 最终版出来 → 检查 Bonferroni \"48/63\" 是否已改为 \"40/45 (88.9%)\"\n- 若 Director 触发最终提交前审查 → 做 PDF 视觉审查（load paper-visual-review skill）\n- 若收到新章节/大改 → 按模式 B 审查（load paper-quality-lessons skill）\n\n### 5. 🎯 战略上下文\n项目核心结论：VLM→VLA fine-tuning 产生 exit collapse（ΔR²=0.16-0.46），VLA→VLA 不产生（<0.10）；L1 instruction attention 继承自 backbone；counterfactual sensitivity d=0.45-1.52 跨架构一致。N=2 VLM→VLA transitions 是最大 limitation。\n\n易错点：\n- 论文中有两套 R² 数字体系：demo-split（正确，Table 1）和 random-split（历史残留，部分旧 artifact 可能还有）——永远以 demo-split 为准\n- appendix 1278 行很长，需要指定 offset/limit 分段读\n- conclusion.tex 是孤儿文件（main.tex 不 include 它），真正的结论在 discussion.tex 末尾\n- Rebuttal artifact 在 projects/vla-ssd/artifacts/anticipated_rebuttal_v2.md，其中 Bonferroni 数字仍有错\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-3.md"
+}

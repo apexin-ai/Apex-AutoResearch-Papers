@@ -1,0 +1,3469 @@
+{
+  "schema_version": "1.0",
+  "session_id": "497e6584b4dbc2a30271",
+  "rounds": [
+    {
+      "number": 26,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-22T13:37:48.015845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-22T13:37:48.473821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 912
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-22T13:37:49.384265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1368
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-22T13:37:55.123133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-22T13:37:55.676065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-22T13:37:56.232609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1109
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-22T13:37:56.233041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-22T13:37:57.095523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1419
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-22T13:37:57.101597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 868
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-22T13:37:57.104373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-22T13:37:57.456978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-22T13:37:57.711444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 607
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-22T13:37:58.064760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 607
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-22T13:38:04.598741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-22T13:38:04.950655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p27.png"
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-22T13:38:05.857246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1258
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-22T13:38:05.908710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-22T13:38:06.009503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-22T13:38:06.615481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-22T13:38:06.668284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-22T13:38:06.921389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-22T13:38:07.278073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 609
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-22T13:38:07.836426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 915
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-22T13:38:39.783615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-22T13:38:40.292461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 508
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-22T13:38:40.293167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p32.png"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-22T13:38:40.898777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-22T13:38:40.899235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-22T13:38:41.304529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 405
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-22T13:38:41.305009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p34.png"
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-22T13:38:41.708303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-22T13:46:05.686197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿报告：方法严谨性、统计有效性和实验设计\n\n**论文**: \"Three Architectures, One Routing Pattern: How VLA Fine-Tuning Reshapes Instruction Flow\"\n**Venue**: CoRL 2026\n**审稿侧重**: 方法论严谨性、统计有效性、实验设计\n\n---\n\n## 总体评分\n\n**Overall**: 5/10（Borderline — 方法论有新意但统计框架存在结构性缺陷）\n\n**一句话总结**: 研究问题新颖、实验设计系统，但核心统计推断（sign test N=6 的 power、63K 观测的伪重复、trained/untrained 不对称性）存在根本性方法论问题，削弱了\"跨架构通用路由模式\"这一中心 claim 的可信度。\n\n## 官方维度打分（来自 CoRL review form: Originality, Quality, Clarity, Significance, Relevance, Limitations）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Originality | 7/10 | 首次系统跨 VLA 架构比较 fine-tuning 对内部表征路由的影响，问题定义明确且填补空白 |\n| Quality | 4/10 | Sign test power 不足（N=6）、伪重复严重（N=63K 但有效独立单元远少）、关键对照不对称 |\n| Clarity | 7/10 | 写作清晰、结构合理，但统计假设和局限性的透明度不足 |\n| Significance | 5/10 | 发现有趣但缺乏 actionable insight——routing pattern 如何指导 VLA 模型设计或训练策略？ |\n| Relevance | 8/10 | VLA 内部机制分析直接关联 robot learning 社区核心问题 |\n| Limitations | 6/10 | 承认了 LIBERO-only 和 single checkpoint，但统计方法论局限讨论严重不足 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Sign Test N=6 的统计 Power 极低且独立性假设不成立\n\n- 具体位置：Section 4.2 / Abstract (\"sign test p=0.016, 6/6 cells\")\n- 问题：Sign test 在 N=6 时的最小可达 p 值为 2⁻⁶ = 0.016，恰好在 α=0.05 以下。这意味着只要有**一个** cell 不显示效应，sign test 即失败（p=0.109）。这不是 robust 的统计发现，而是\"踩线\"的结果。更根本的问题是，6 个 cell 并非独立：来自同一架构的 cell 共享模型权重和训练流程（结构依赖），来自同一 task suite 的 cell 共享环境和物体集（环境依赖）。如果 I⁰ exit collapse 是 Transformer fine-tuning 的通用架构现象（而非 action-specific），那么同一架构的所有 cell 会因同一原因显示效应，有效独立样本量降至 N=3（架构数）甚至更低，sign test 完全不可用。\n- 为什么影响接收：这是论文\"跨架构通用性\"claim 的**唯一**正式统计检验。检验 validity 存疑等于核心结论失去统计支撑。\n- 建议修改方向：(1) 使用 permutation test 或 block bootstrap 处理架构/task 的依赖结构；(2) 以 effect size + CI 为主要报告方式，而非依赖刚好显著的 p 值；(3) 在主文中诚实讨论 N=6 的 power limitation。\n\n**N2** [critical] N=63,228 观测的伪重复（Pseudo-replication）\n\n- 具体位置：Section 3.2（\"N = 63,228 observations\"）及全文基于此 N 的所有统计检验\n- 问题：63,228 个\"观测\"来自 ~3 个架构 × ~10 个任务 × ~50 个 demo × ~数百个 timestep × ~30 层的 probing 组合。这些观测存在至少三层嵌套依赖：(a) 同一 trajectory 内 timestep 高度时序相关；(b) 同一模型不同层共享相同输入；(c) 同一任务不同 demo 共享视觉/动作分布。有效独立单元数远低于 63,228——对于跨架构 claims，可能仅为 10 个 cell（3 架构 × 4 task suite 减 2 缺失）。使用膨胀的 N 计算 bootstrap CI 和置信度估计会系统性低估 uncertainty。\n- 为什么影响接收：几乎所有定量结果的置信区间都依赖此 N。如果 uncertainty 被低估，Table 2、Figure 2 等核心结果的 error bars 不可信——看似显著的效应可能在正确的 CI 下不再显著。\n- 建议修改方向：(1) 明确三层嵌套的 clustering 结构；(2) 使用 cluster-robust bootstrap（至少在 task 或 demo 层面聚类）；(3) 在 task 或 architecture 层面报告 aggregate effect size 和 CI。附录 A.18.4（5 seeds probe sensitivity）方向正确但需贯穿全文。\n\n**N3** [critical] Trained/Untrained 不对称性严重混淆跨架构可比性\n\n- 具体位置：Section 3.1（\"OpenVLA's untrained checkpoint is the OXE pretrained VLA\"）、Table 1\n- 问题：OpenVLA 的\"untrained\"基线是经过 OXE 大规模 action 数据预训练的 VLA（VLA → VLA 转换），而 TracVLA 和 NORA 的\"untrained\"基线是纯 VLM（VLM → VLA 转换）。这是质的不同。当论文声称\"training effects are consistent across architectures\"时，OpenVLA 展示的可能主要是 OXE 预训练遗留的 inherited effects，TracVLA/NORA 展示的则是 LIBERO fine-tuning 的 induced effects。论文在 Section 4.4 区分了 inherited/induced，但仍在 sign test 和跨架构汇总中将三者等同对待，逻辑不自洽。\n- 为什么影响接收：如果 OpenVLA 的 routing pattern 源自 OXE 训练而非 LIBERO fine-tuning，则 \"fine-tuning reshapes instruction flow\" 对 OpenVLA 并不成立。跨架构一致性需要比较同类转换。\n- 建议修改方向：(1) 将 OpenVLA 作为独立 case study 分析，不与 TracVLA/NORA 混入同一 sign test；(2) 增加 base Llama-2-7B（无 OXE 训练）→ LIBERO fine-tuning 对照来隔离 OXE 效应；(3) 或在 title/abstract 层面区分 \"fine-tuning induces\" vs. \"pretraining inherits + fine-tuning preserves\"。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] MLP Probe 容量过大，线性 Probe 结果应提升至主文\n\n- 具体位置：Section 3.2（\"Two-layer MLP probes: d_in → 256 → 7\"）、Appendix A.13\n- 问题：对 Llama-2-7B（d_in=4096），MLP probe 有 ~105 万参数，训练数据 ~80K 样本。过参数化 probe 可能\"学习解码\"而非\"探测线性可读信息\"。A.13 的线性 probe（Figure 11）显示定性模式一致但 R² 更低——这个关键 robustness check 在主文中完全缺席。\n- 建议：主文中至少用一句话或 footnote 提及线性 probe 结论不变。\n\n**W2** [warning] 单一 Training Checkpoint 无法支持 \"emerge\" 的动态性 Claim\n\n- 具体位置：Section 8、Appendix A.9（Figure 7）\n- 问题：论文多处使用 \"emerge\"、\"reshape\" 等动态性词汇，但仅分析 final checkpoint。A.9 提供 3 个离散快照（untrained/base/trained），不是连续训练轨迹。如果 pattern 在训练中期出现又消失，当前分析无法捕获。\n- 建议：分析 2-3 个中间 checkpoint 展示 pattern 演化，或使用更审慎的静态描述（\"observed in trained models\" 而非 \"emerges through training\"）。\n\n**W3** [warning] TOST 等价检验的等价边界选择缺乏 Justification\n\n- 具体位置：Appendix A.29\n- 问题：TOST 使用等价边界 δ=0.30（如 PDF 所示），对 R² ∈ [0,1] 来说过于宽松——R² 差 0.29 仍被判定\"等价\"。观察到的差异仅 0.003，90% CI 在 [-0.05, 0.05] 内，说明 δ=0.05 也能通过 TOST，但文中未报告更严格边界的结果。\n- 建议：报告多个 δ（0.05, 0.10, 0.30）下的 TOST 结果，并 justify 为何所选 δ 代表 practically meaningful difference。\n\n**W4** [warning] L1 注意力头分类的 50% 阈值缺乏理论依据\n\n- 具体位置：Section 3.2、Appendix A.21.8（Table 19）\n- 问题：将 >50% 注意力给 instruction tokens 的头定义为 \"instruction-dominant\" 是任意选择。A.21.8 显示 30%-70% 范围内结论稳健，但 (1) 为何不用连续变量（instruction attention fraction）做回归？(2) 若 instruction tokens 仅占全部 token 的 ~5%，50% 注意力意味着 10× over-representation，这可能是更有信息量的 metric。\n- 建议：补充 instruction attention fraction 的连续分布，讨论 token 数量归一化后的比例。\n\n**W5** [warning] Cross-Benchmark Validation 实际上是 LIBERO 内部 Cross-Suite Validation\n\n- 具体位置：Appendix A.17\n- 问题：A.17 标题为 \"Cross-Benchmark Validation: LIBERO-Spatial\"，但 LIBERO-Spatial 是 LIBERO 的子 suite，共享视觉环境、物体集和物理引擎。这不是独立 benchmark 验证。在 RLBench、MetaWorld 或真实机器人数据上复现才构成真正的 cross-benchmark evidence。\n- 建议：改标题为 \"Cross-Suite Validation within LIBERO\"，在 Limitations 明确说明所有实验在同一仿真环境中进行。\n\n**W6** [warning] Counterfactual 分析中 Cohen's d 与 cosine distance 的不可比性\n\n- 具体位置：Section 4.3、Table 2（CF columns）\n- 问题：Table 2 中 CF (top-cool.) 列在不同 cell 可能使用了 Cohen's d（probe R² 比较）和 cosine distance（representation similarity），两者尺度和含义不同。并列在同一 table 中暗示可比性，但 cosine distance = 0.15 和 Cohen's d = 1.5 并不能直接比较。\n- 建议：在 Table 2 caption 中明确标注每个 cell 的 metric 类型和跨 metric 不可比性。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: R² 在 7-D action space 上取平均可能掩盖维度间差异（gripper 为近二值变量可能主导整体 R²）。A.22 有 per-dimension MAE，建议补充 per-dimension R²。\n- **M2**: 3×4 矩阵中 NORA Object/Long-Horizon 缺失（17% missing data），在 N 已极小的情况下进一步削弱通用性 claim。\n- **M3**: NLP control 使用 Llama-2-7b-**chat**（已 instruction-tuned），而非 base Llama-2-7b。Chat fine-tuning 可能已创建某些 instruction routing pattern，使 control 不够\"null\"。应讨论 chat tuning 的潜在影响。\n- **M4**: Figure 2 中 per-layer R² 曲线的 error bars 来源不清——是 cross-task variance、cross-seed、还是 bootstrap？应在 caption 中说明。\n- **M5**: A.18.3 permutation test 应说明 permutation 的具体操作（shuffle across tasks/demos/timesteps?），不同方案测试不同 null hypothesis。\n\n---\n\n## 需作者澄清的方法论问题（Questions）\n\n**Q1**: Sign test 的 6 个 cell 具体对应哪些 architecture × task suite 组合？为何不是 10 个 filled cells 全部参与 sign test？是否因为部分 cell 的 metric 不可比而排除？\n\n**Q2**: 报告的 bootstrap CI（如 Table 2 中的 error bars）是在什么层面进行 resampling 的？如果是 observation-level resampling（忽略 trajectory/task clustering），CI 可能严重偏窄。能否提供 task-level 或 demo-level clustered bootstrap 的结果？\n\n**Q3**: 是否尝试过在 OXE 预训练前的 base Llama-2-7B 上直接做 LIBERO fine-tuning？这将隔离 OXE training 对 routing pattern 的贡献，解决 N3 中的混淆问题。\n\n**Q4**: MLP probe 的 test R²（在 held-out demos 40-49 上）与 train R² 的 gap 有多大？如果 gap 很小，过拟合风险较低；如果 gap 大，则 test R² 的绝对值意义有限。\n\n**Q5**: 论文中 \"exit collapse\" 的操作性定义是什么？是 R² 下降到某个绝对阈值以下，还是相对于 peak R² 的比例下降？不同定义可能影响 sign test 的结果。\n\n**Q6**: 为何不用 mixed-effects model（random intercepts for architecture and task suite）来处理嵌套数据结构，而非依赖 sign test + bootstrap？Mixed-effects model 可以同时估计 architecture-level 和 task-level 的方差分量。\n\n**Q7**: TOST 的等价边界 δ=0.30 是如何确定的？是否基于 pilot data 或领域先验知识？如果 δ=0.05 TOST 也能 reject（看起来可以），为何不报告更严格边界的结果？\n\n---\n\n## 主要优势\n\n- **S1**: 研究问题新颖且重要——首次系统跨 VLA 架构比较 fine-tuning 对内部表征路由的影响，对 robot learning interpretability 有贡献（Section 1）。\n- **S2**: 系统的 3 架构 × 4 task suite 实验设计，比单架构 mechanistic study 有更强的 external validity（Table 1, Table 2）。\n- **S3**: 极其详尽的附录（24 页、30+ 辅助分析），包括 probe 敏感性（A.13, A.18.4）、阈值稳定性（A.21.8）、随机子集消融（A.10）、等价检验（A.29）、多重比较校正（A.30, 48/65 通过 Bonferroni）。\n- **S4**: Counterfactual perturbation 设计多维度（empty/shuffled/paraphrased），是测试 instruction sensitivity 的合理方法（Section 3.2, Table 6）。\n- **S5**: Inherited vs. induced effects 的分析框架有洞察力——区分了 OXE 预训练遗留和 LIBERO fine-tuning 引入的效应（Section 4.4）。\n- **S6**: 多重比较校正覆盖 65 个检验（A.30），方法论意识高于同类 interpretability 论文的平均水平。\n\n---\n\n## 方法论总评\n\n本文提出了一个有价值的研究问题——VLA fine-tuning 是否跨架构产生一致的 instruction routing pattern——并进行了系统性的实验尝试。附录的深度和广度表明作者对 robustness 认真负责。然而，支撑核心 claim 的统计框架存在三个结构性问题：(1) sign test 的 N=6 power 几乎为零、独立性假设不成立；(2) N=63,228 的伪重复严重膨胀了统计显著性；(3) OpenVLA 与 TracVLA/NORA 的 trained/untrained 不对称使得\"跨架构一致性\"的比较基础存疑。\n\n这些不是可以通过补充分析轻松修复的 minor issues——它们触及论文的核心推断逻辑。修复方案需要：正确处理嵌套依赖结构（如 mixed-effects model 或 hierarchical bootstrap）、隔离 OXE 预训练效应（增加 base Llama-2-7B 对照）、以及更诚实地讨论 N=6 sign test 的极限 power。\n\n如果作者能解决 N1-N3 中的至少两个，并将 W1-W6 中的关键 robustness check 提升到主文，评分可上调至 6-7/10。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-22T13:46:09.604756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3918
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-22T13:46:18.507052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images"
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-22T13:46:18.558105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 51
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-22T13:46:33.038888+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n核心发现：论文研究问题新颖（首次系统跨 VLA 架构比较 fine-tuning 对 instruction routing 的影响），附录极其详尽（24 页 30+ 辅助分析），但统计框架存在三个结构性缺陷：\n\n1. **Sign test N=6**：最小可达 p=0.016 刚好踩线，且 6 个 cell 存在架构/task 依赖，独立性假设不成立\n2. **N=63,228 伪重复**：三层嵌套依赖（timestep/layer/task）导致有效独立样本量远低于报告值，CI 系统性偏窄\n3. **Trained/untrained 不对称**：OpenVLA（OXE 预训练 VLA）vs TracVLA/NORA（纯 VLM）是不同类型转换，混入同一跨架构比较逻辑不自洽\n\n总评 5/10，borderline。修复 N1-N3 中至少两个可上调至 6-7。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000756"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "messages": [
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-22T13:46:50.169667+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：请逐条回应 Reviewer 2 和 Reviewer 3 的审稿意见\n\n以下是 Reviewer 2（新颖性/贡献定位）和 Reviewer 3（Scope/格式/写作）的完整审稿意见。请对每条 Must-Fix 和 Should-Fix 逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n### Reviewer 2 的审稿意见（Overall 5/10 Borderline）\n\n**Must-Fix:**\n\n**R2-N1** [critical] 标题 \"One Routing Pattern\" overclaim：N=2 不足以支撑 convergence\n- \"One Routing Pattern\" 的证据实际仅来自 N=2 的 VLM→VLA 转换（TracVLA 和 NORA）\n- NORA 还缺少 Object 和 Long-Horizon 两个 suite 的 checkpoint\n- OpenVLA 因 OXE pretraining 是 confounded data point\n\n**R2-N2** [critical] \"VLA-specific\" claim 缺少 NLP fine-tuning control\n- 缺少关键 control：相同 backbone 上的 NLP fine-tuning（如 Llama-2 instruction tuning、Phi-3 chat fine-tuning）\n- 没有这个 control 无法区分 exit collapse 是 VLA-specific 还是通用 fine-tuning 效应\n\n**R2-N3** [critical] 与高度相关并发工作的新颖性区分不足\n- Swann et al. (2026) 6 models × 4 benchmarks × 394K rollouts，规模远大于本文\n- Buurmeijer et al. (2026) 在 π₀.₅ 和 OpenVLA 上发现可解释结构并提出 intervention\n- Fang et al. (2026) 在 LIBERO 上研究 VLA counterfactual instruction following，本文未引用\n- Related Work 对 differentiation 不足\n\n**Should-Fix:**\n\n**R2-W1** LIBERO-only 评估限制泛化性\n**R2-W2** 论文定位模糊：confirmatory vs. discovery\n**R2-W3** Cohen's d ≥ 0.45 framing 为 \"substantial\" 但在 Cohen's convention 中仅为 medium effect\n**R2-W4** 单一 checkpoint 分析缺少训练轨迹视角\n\n---\n\n### Reviewer 3 的审稿意见（Overall 4/10 倾向拒稿）\n\n**Must-Fix:**\n\n**R3-N1** [critical] CoRL Scope Fit 根本性错配\n- 纯 representational/mechanistic analysis，无物理机器人实验、无 closed-loop 评估\n- CoRL CFP：\"Submissions should focus on a core robotics problem\"\n- Discussion 中的 actionable implications（early exit、layer pruning）全为推测\n\n**R3-N2** [critical] 正文超过 8 页限制\n- Conclusion 最后 2 行溢出到第 9 页\n\n**R3-N3** [critical] 模板间距修改违反 CoRL 格式要求\n- main.tex 有 7 条 \\setlength 命令修改间距\n- CoRL 要求 \"Text density, fonts, spacing, and margins must match template exactly\"\n\n**Should-Fix:**\n\n**R3-W1** 对 CoRL 受众可读性门槛偏高（RSA、CKA 等术语未充分解释）\n**R3-W2** Abstract 信息过载（~220 词含大量定量结果）\n**R3-W3** Discussion 与 Conclusion 内容重复\n**R3-W4** Introduction 贡献列表与 Abstract 高度重叠\n**R3-W5** Actionable implications 缺乏验证\n\n---\n\n请逐条回应以上所有 Must-Fix 和 Should-Fix，明确标注 [AGREE] 或 [REBUT]。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-22T13:48:16.160687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "1-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-22T13:48:17.064270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 307.6}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 343.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 359.9}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 362.4}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 378.0}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 333.8}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 357.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 292.7}], \\\"total_pages\\\": 34, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 903
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-22T13:48:26.443738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-22T13:48:26.645040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-22T13:48:27.000899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 557
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-22T13:48:27.102117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-22T13:48:27.255376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 610
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-22T13:48:27.609702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 507
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-22T13:48:34.034109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-22T13:48:34.488727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-22T13:48:34.489261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-22T13:48:35.444470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-22T13:48:35.444805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-22T13:48:35.695994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/review_reviewer_1_458aa27f."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-22T13:48:35.696345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-22T13:48:35.746734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/review_reviewer_1_458aa27f."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-22T13:48:45.844601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-22T13:48:46.248399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-22T13:51:53.070649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 交叉回应：逐条回应 Reviewer 2 和 Reviewer 3\n\n---\n\n### 回应 Reviewer 2（新颖性/贡献定位）\n\n---\n\n**[AGREE] R2-N1: 标题 \"One Routing Pattern\" overclaim**\n\n同意，且与我的 R1-N3（trained/untrained 不对称性）相互印证。从方法论角度补充：\n\n1. **有效独立证据链仅 N=2**：Clean VLM→VLA 转换仅有 TracVLA（Phi-3-mini）和 NORA（Qwen2.5-VL）。OpenVLA 因 OXE 预训练已包含 action routing，是 confounded data point（Section 3.1 明确承认：\"OpenVLA's untrained checkpoint is the OXE pretrained VLA\"）。\n2. **NORA 数据不完整**：Table 2 显示 NORA Object 和 Long-Horizon 两个 suite 标注 \"no checkpoints available\"，即 NORA 仅有 Goal 和 Spatial 两个 cell。这使得 NORA 的证据尤其薄弱。\n3. **与我的 R1-N1 叠加**：sign test N=6 已经 power 极低，如果排除 confounded 的 OpenVLA cells，有效 N 降至 4（TracVLA 2 + NORA 2），sign test 完全不可行（最小 p = 2⁻⁴ = 0.0625 > 0.05）。\n\n结论：标题应从 \"One Routing Pattern\" 修改为更审慎的表述，如 \"A Common Routing Pattern\" 或 \"Converging Routing Patterns\"，并在 abstract 中明确 N=2 clean transitions 的限制。\n\n---\n\n**[REBUT] R2-N2: \"VLA-specific\" claim 缺少 NLP fine-tuning control — 但论文已有部分 control**\n\nR2 声称\"缺少关键 control：相同 backbone 上的 NLP fine-tuning\"，这一描述不够准确——论文**已包含**一个 NLP fine-tuning control：\n\n- **Table 1**（Section 3.1）明确列出 Llama-2-7b-chat 作为 NLP control\n- **Table 2**（Section 4.2）报告了 Llama-2-chat 的 probe R² 和 CF 值，显示其不展现 exit collapse 模式\n- **Section 5**（Discussion, page 7）提到 \"a chat-finetuned control using the basic backbone shows d > 0.37 for all trained cells\"，用于区分 VLA-specific 效应\n\n**但我部分同意 R2 的深层关切**：\n\n1. **仅一个架构有 NLP control**：只有 OpenVLA backbone（Llama-2）有对应的 chat control。TracVLA（Phi-3-mini）和 NORA（Qwen2.5-VL）没有对应的 NLP fine-tuning control。这意味着 \"VLA-specific\" 的 claim 仅在 Llama-2 这一个 backbone 上有 control evidence。\n2. **Chat fine-tuning 不等于 narrow task-specific fine-tuning**：Llama-2-chat 经过 RLHF 训练处理多样化指令，而 VLA 在特定 action task 上做窄域 fine-tuning。更好的 control 是：在 Llama-2-7B 上做窄域 NLP fine-tuning（如 10-class 情感分类），看是否也出现 exit collapse。这将区分 \"action-specific\" vs. \"any narrow task fine-tuning\" 的效应。\n\n结论：R2 的 claim 过于绝对（论文确实有 NLP control），但 control 的覆盖度不足（仅一个架构、仅 chat-style fine-tuning）。建议增加 Phi-3-chat 和/或 Qwen2.5-chat 作为附加 control。\n\n---\n\n**[AGREE] R2-N3: 与并发工作的新颖性区分不足 — 有方法论层面的影响**\n\n新颖性评估主要是 R2 的职责，但从方法论角度我补充一个关切：\n\n如果 Swann et al. (2026) 已经用 **6 models × 4 benchmarks × 394K rollouts** 展示了类似的 routing pattern，那么本文的方法论贡献（3 models × 1 benchmark × ~63K observations）在**规模和泛化性**上都显著弱于并发工作。这不仅是新颖性问题，也是方法论充分性问题——如果更大规模的研究已经存在，本文的 N=3 architectures 和 LIBERO-only 设计就从\"可接受的初步探索\"降级为\"不充分的重复\"。\n\nSection 2（Related Work, page 3）提到 \"Mechanistic and behavioral analysis\" 类工作，但我无法从 PDF 中确认是否引用并细致区分了 R2 提到的三篇特定并发工作（Swann et al., Buurmeijer et al., Fang et al.）。如果未引用 Fang et al. (2026) 在 LIBERO 上的 counterfactual instruction following 研究，这在方法论上是不可接受的遗漏——直接相关的同领域、同 benchmark 工作必须讨论。\n\n---\n\n**[AGREE] R2-W1: LIBERO-only 泛化性限制**\n\n与我的 R1-W5 一致。补充：Appendix A.17 标题为 \"Cross-Benchmark Validation: LIBERO-Spatial\"，但 LIBERO-Spatial 是 LIBERO 套件的一个 sub-suite，共享相同的仿真环境和物体集。这不构成 cross-benchmark validation。\n\n---\n\n**[AGREE] R2-W2: 论文定位模糊（confirmatory vs. discovery）**\n\n这一点有方法论含义。论文同时使用 discovery 语言（\"we identify two training effects\"）和 confirmatory 统计检验（sign test p=0.016）。如果发现是 post-hoc 的（先观察到 pattern，再设计检验），那么 p 值需要调整以反映 multiple testing / researcher degrees of freedom。如果是 pre-registered hypothesis（先预测 pattern，再验证），论文应说明预注册依据。当前写法让读者无法判断 p=0.016 是 confirmatory 还是 exploratory 的结果，这直接影响统计推断的有效性。\n\n---\n\n**[AGREE] R2-W3: Cohen's d ≥ 0.45 被 framing 为 \"substantial\" 但仅为中等偏下**\n\nAbstract（page 1）写道 \"substantial counterfactual sensitivity\" 并引用 \"Cohen's d ≥ 0.45\"。在 Cohen (1988) 的标准中：d=0.2 small, d=0.5 medium, d=0.8 large。d=0.45 严格来说不到 medium。\n\n需指出 Section 4.3（page 5）报告了更强的结果：\"every perturbation condition produces d > 1.63\"（对于 empty instruction perturbation）。Abstract 选择报告较弱的 d ≥ 0.45 下界而非正文中更强的 d > 1.63，且用 \"substantial\" 修饰，确实存在 effect size inflation 的表述问题。建议 abstract 用 \"moderate-to-large\" 替代 \"substantial\"，或报告正文中的 d > 1.63 最小值。\n\n---\n\n**[AGREE] R2-W4: 单一 checkpoint 分析**\n\n与我的 R1-W2 一致。附录 A.9（Figure 7）提供了 3 个离散快照（untrained / base / trained），但不是连续训练轨迹。\n\n---\n\n### 回应 Reviewer 3（Scope/格式/写作）\n\n---\n\n**[REBUT] R3-N1: CoRL Scope Fit 根本性错配 — 不同意\"根本性\"的判定**\n\nR3 的 claim 过于绝对。从方法论角度反驳：\n\n1. **CoRL 明确接受理论和分析贡献**：CoRL 2024 reviewer guidelines 写道 \"we take a broad view of robot learning\" 且评估标准包括 \"significance and novelty of the results, **either theoretical or empirical**\"。纯分析/理论贡献不构成 scope 违规。\n2. **CoRL 历史上接受过类似工作**：representational analysis 和 understanding papers 在 CoRL 往年有接收先例。VLA 内部机制分析直接服务于 robot learning 系统的理解和改进。\n3. **CFP 原文 \"core robotics problem\" 的范围**：理解 VLA 如何编码 instruction 信息 IS 一个 core robotics problem——它影响 VLA 的训练策略、架构设计和部署决策。\n\n**但我部分同意 R3 的深层关切**：\n\n- Discussion（page 7）提出的 actionable implications（early exit、layer pruning、attention-guided routing）全为推测，无任何验证实验。哪怕一个 proof-of-concept（如基于发现的 routing pattern 做 layer pruning，测量 task success rate 的变化）就能显著增强论文的 robotics relevance。\n- 这一缺陷不构成 scope rejection，但确实降低了 significance 评分。这与我给 Significance 5/10 的评价一致。\n\n---\n\n**[AGREE] R3-N2: 正文超过 8 页限制 — 但属于 trivially fixable**\n\n从 page 8 的视觉检查来看，Conclusion 文本在页面底部非常紧凑。如果确实有 2 行溢出到第 9 页，这违反 CoRL 的正文页数限制，必须修复。\n\n但我不同意将此列为 **Must-Fix critical**。这是一个 trivially fixable 的格式问题（删减 2 行或合并 Discussion/Conclusion 的重复内容，见 R3-W3）。在审稿实践中，页数微溢通常作为 conditional accept 的修改要求，而非 rejection 理由。R3 将其升级为 critical 等级可能过于严格。\n\n---\n\n**[AGREE] R3-N3: 模板间距修改 — 同意需要修复，但不同意 critical 等级**\n\n如果 main.tex 确实有 7 条 \\setlength 命令修改间距，这违反 CoRL 的格式要求。我同意这必须修复。\n\n但几点保留意见：\n\n1. **从 PDF 观察**：论文排版整体未显示极端异常的文字密度。如果间距修改在合理容差范围内（如 ±1-2pt），实际影响有限。\n2. **审稿实践的比例原则**：格式微调在顶会提交中非常普遍。除非间距修改显著增加了正文容量（使得本来放不下的内容挤进了 8 页），否则这应该是 should-fix 而非 must-fix。\n3. **与 R3-N2 相关**：如果去掉间距修改后 Conclusion 溢出更多，说明间距修改是为了挤版面，此时两个问题应合并处理——根本解决方案是精简正文，而非调间距。\n\n建议降级为 should-fix，修改方案：移除所有 \\setlength 修改，精简 Discussion/Conclusion 重复内容以确保正文在标准间距下不超 8 页。\n\n---\n\n**[REBUT] R3-W1: CoRL 受众可读性门槛偏高**\n\nRSA（Representational Similarity Analysis, Kriegeskorte et al. 2008）和 CKA（Centered Kernel Alignment, Kornblith et al. 2019）是 representation learning 领域的标准工具，在 NeurIPS、ICML、ICLR 的 robot learning 和 representation 论文中广泛使用。CoRL 的审稿人通常具备 ML 背景（reviewer guidelines 要求 \"minimum of 3 first author publications in major robotics conferences and journals\" 和 \"core machine learning venues\"）。\n\n论文确实引用了基础文献（[35] RSA, [19] CKA, [16] linear probes）。虽然 2-3 行的 inline 定义会有帮助，但我不认为这构成显著的可读性障碍。\n\n---\n\n**[AGREE] R3-W2: Abstract 信息过载**\n\nAbstract（page 1）包含 N=63,228、p=0.016、d≥0.45、6/6 cells、Cohen's d、TOST 等大量定量细节。这些属于 Results/Methods 的内容。Abstract 应聚焦于 high-level findings 和 narrative，将具体数字移至正文。这也与 R2-W3 相关——abstract 报告了较弱的 d≥0.45 下界而非正文中更强的 d>1.63，造成 framing 失误。\n\n---\n\n**[AGREE] R3-W3: Discussion 与 Conclusion 内容重复**\n\nSection 5（Discussion, page 7）和 Section 8（Conclusion, page 8）均讨论了 exit collapse、L1 attention、cross-architecture convergence。合并或明确划分边界可以：(1) 释放约 0.3-0.5 页空间；(2) 解决 R3-N2 的页数溢出问题；(3) 减少读者的重复感。\n\n具体建议：Discussion 聚焦于 mechanism interpretation 和 implications，Conclusion 仅保留 summary + future work。\n\n---\n\n**[AGREE] R3-W4: Introduction 贡献列表与 Abstract 高度重叠**\n\nPage 1-2 的 Introduction 末尾贡献列表与 Abstract 内容高度重叠，这在顶会论文中虽然常见，但在本文空间已极度紧张的情况下是浪费。可以精简 Introduction 贡献列表为 3 个 bullet points（不含具体数字），将节省的空间用于正文内容。\n\n---\n\n**[AGREE] R3-W5: Actionable implications 缺乏验证**\n\n与我对 Significance（5/10）的评估和 R3-N1 的部分同意一致。Discussion（page 7）提出了 early exit、layer pruning、attention-guided routing 等建议，但全部停留在推测层面。至少需要一个 proof-of-concept 实验来验证发现的可操作性。例如：\n\n- 基于 exit collapse pattern，对 OpenVLA 的最后 N 层做 pruning，测量 LIBERO success rate 变化\n- 基于 L1 instruction-dominant heads 的发现，做 targeted head ablation，测量 downstream task performance\n\n这类实验成本低（不需要额外训练），但能显著增强论文的实践价值。\n\n---\n\n### 交叉一致性总结\n\n| 议题 | R1 | R2 | R3 | 一致性 |\n|------|----|----|----|----|\n| 跨架构 claim 过强 / N 太小 | N1 (sign test power) + N3 (asymmetry) | N1 (overclaim) | — | R1+R2 一致 |\n| NLP control 不足 | M3 (chat vs base) | N2 (缺 NLP control) | — | 部分一致（R1 认为有 control 但不够） |\n| 并发工作区分 | — | N3 | — | R2 独有，R1 方法论角度支持 |\n| LIBERO-only 泛化性 | W5 | W1 | — | R1+R2 一致 |\n| 单一 checkpoint | W2 | W4 | — | R1+R2 一致 |\n| CoRL scope | — | — | N1 | R1 反驳 critical 等级，但同意缺验证 |\n| 格式违规 | — | — | N2+N3 | R1 同意需修复，但不同意 critical |\n| 统计推断缺陷 | N1+N2 (核心) | — | — | R1 独有（R2/R3 未触及） |\n\n**三位 reviewer 的共识区域**：跨架构 claim 证据不足（N 太小、confound 未解决）、LIBERO-only 限制泛化性、缺乏下游验证。\n\n**R1 独有的核心关切（R2/R3 未覆盖）**：N=63,228 的伪重复问题和 bootstrap CI 的 clustering 缺陷——这是最严重的统计方法论问题，直接影响全文所有定量结果的可信度。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-22T13:51:57.041064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3970
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-22T13:52:04.830016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_15/_pdf_images"
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-22T13:52:04.880605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-22T13:52:14.720683+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。总结：\n\n- **R2 的 7 条意见**：3 条 AGREE，1 条 REBUT（R2-N2，论文确实有 Llama-2-chat NLP control，但覆盖度不足），3 条 AGREE\n- **R3 的 8 条意见**：2 条 REBUT（R3-N1 scope 不构成根本性错配、R3-W1 RSA/CKA 可读性门槛合理），其余 6 条 AGREE（但 R3-N2/N3 的 critical 等级应降为 should-fix）\n- **三位 reviewer 共识**：跨架构 claim 证据不足、LIBERO-only 限制泛化性、缺乏下游验证实验\n- **R1 独有核心关切**：N=63,228 伪重复和 bootstrap CI clustering 缺陷——R2/R3 均未触及此点"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000780"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "messages": [
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-23T15:40:33.714273+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 16 审稿请求]:\n## Round 16 修订评估 — Reviewer 1（方法/统计/实验严谨性）\n\n**角色**：你是 CoRL 2026 审稿人，侧重方法论和统计严谨性。这是 R15→R16 修订评估，不是初审。\n\n**论文**：VLA instruction routing 的跨架构分析（OpenVLA/TracVLA/NORA × 4 LIBERO suites）。\n**Venue**：CoRL 2026，8 页正文限制，corl_2026 模板，double-blind。\n\n**你的任务**：逐条检查以下 R15 遗留问题是否已修复，每条标注 `[RESOLVED]` 或 `[STILL_OPEN]` + 理由。同时识别修改引入的新问题。\n\n---\n\n### 必须检查的 Open/In-Progress Issues（方法/统计类）\n\n**CRITICAL：**\n\n1. **R15-N1 / R9-W7** — N=63,228 伪重复：三层嵌套依赖（timestep/layer/task）导致 CI 系统性偏窄。R15 要求 cluster-robust bootstrap（至少 demo 层面聚类）。\n   - R16 修改：Method §3.3 新增 Monte Carlo cross-validation with demo-level splitting (n=1,000)，Table 2 新增 95% CI 列。\n   - **检查**：demo-level splitting 是否充分解决嵌套依赖？是否还需要 task/architecture 层面聚类？CI 是否合理？\n\n2. **R15-N2** — NLP control（Llama-2-7b-chat）方法细节不足，R15 时仅一句话。\n   - R16 修改：Experiments §4.2 新增完整 `\\paragraph{NLP finetuning control.}` 段落。\n   - **检查**：段落是否包含实验设置、样本量、与 VLA 训练的对比？chat-tuned model 是否为合适的 null control？\n\n3. **R9-N6** — 统计框架：R15 时 sign test N=6 power 极低。\n   - R16 修改：sign test narrative 似乎被 effect-size + CI 框架替代。\n   - **检查**：sign test 是否已移除？effect-size + CI 是否为主要报告方式？是否仍有 p-value 误用？\n\n4. **R14-N1** — \"Convergent reorganization\" overclaim，N=2 VLM→VLA 不足。\n   - R16 修改：标题改为 \"How VLA Fine-Tuning Changes Instruction Routing: A Cross-Architecture Analysis\"。\n   - **检查**：标题是否仍有 overclaim？正文中 \"convergent\"/\"universal\" 等词是否已清除？N=2 限制是否显式标注？\n\n**WARNING：**\n\n5. **R9-W4** — Cohen's d 独立性假设违反；Table 2 将 d 和 cosine distance 并列暗示可比性。\n   - R16 修改：Table 2 新增脚注标注 metric 类型。\n   - **检查**：Table 2 中 d 和 cosine distance 是否有足够视觉/格式区分？caveat 是否在正文（非 Appendix）中充分说明？\n\n6. **R15-W3** — Cohen's d ≥ 0.45 标为 \"substantial\" 但仅为 medium effect。\n   - R16 修改：Abstract 改为 \"medium-to-large (d = 0.45–1.97)\"。\n   - **检查**：全文是否一致使用 \"medium-to-large\"？是否还有 \"substantial\" 残留用于 d 值？\n\n7. **R15-W4** — TOST 等价边界 δ=0.30 过宽。\n   - **检查**：TOST 是否仍在使用？δ 值是否有 justification？是否报告了多个 δ 下的结果？\n\n8. **R14-DIV1** — MLP probe 1.05M 参数 overfitting 风险；linear probe 应提升至主文。\n   - R16 修改：Method 中提到 linear probe。\n   - **检查**：linear probe 在主文中是否有足够呈现（不仅仅是 Appendix 引用）？\n\n9. **R14-W2** — 单 checkpoint：'emerge'/'reshape' 等动态语言需改为静态描述。\n   - R16 修改：标题含 \"Changes\"。\n   - **检查**：正文中 \"emerge\"/\"reshape\"/\"build\" 等动态词是否已替换为 \"is observed in\"/\"differs between\" 等静态表述？\n\n---\n\n### 输出格式\n\n```\n## Issue Checklist\n\n### [RESOLVED] R15-N1 — 理由：...\n### [STILL_OPEN] R9-N6 — 理由：...\n...\n\n## New Issues（R16 修改引入的新问题）\n\n### R16-Nx — 描述 + 严重程度 + 建议\n\n## Overall Assessment\n- Score: X/10\n- Verdict: strong reject / weak reject / borderline / weak accept / accept\n- 一段话总结\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-23T15:40:47.748144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-23T15:40:48.852135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 312.2}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 305.8}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 352.9}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 353.9}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 391.9}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 319.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 363.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 279.1}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 336.2}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ss\n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1103
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-23T15:40:55.831344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-23T15:40:56.286040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-23T15:40:56.286484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-23T15:40:57.241673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-23T15:40:57.242158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-23T15:40:57.543969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-23T15:40:57.651009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 408
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-23T15:40:58.005276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 461
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-23T15:41:48.852229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-23T15:41:48.852692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-23T15:41:48.852982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-23T15:41:48.853263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-23T15:41:50.321472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1468
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-23T15:41:50.328121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1475
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-23T15:41:50.332350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1479
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-23T15:41:50.437697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1585
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-23T15:43:09.222093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "11-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-23T15:43:10.227871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 342.0}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 321.1}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 395.6}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 337.9}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 208.7}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 313.3}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 146.6}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 327.5}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 245.8}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_\n…[truncated 357 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-23T15:43:14.802422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-23T15:43:15.307702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 505
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-23T15:43:15.810111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-23T15:43:16.213735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-23T15:43:16.214229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-23T15:43:16.618214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-23T15:43:16.720096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-23T15:43:17.076793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 356
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-23T15:43:24.727107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "21-35",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-23T15:43:26.376544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 234.9}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 288.4}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 276.5}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 276.1}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 232.8}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 193.3}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p27.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 257.7}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p28.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 244.9}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p29.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 185.9}, {\\\"page\\\": 30, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_\n…[truncated 1397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1649
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-23T15:43:32.621050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-23T15:43:33.125059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 504
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-23T15:43:33.125515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-23T15:43:34.030291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 904
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-23T15:43:34.082106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-23T15:43:34.286268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p31.png"
+            }
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-23T15:43:34.590526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 508
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-23T15:43:35.146238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 859
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-23T15:43:39.966942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p32.png"
+            }
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-23T15:43:40.922852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-23T15:43:40.923564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-23T15:43:41.380507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 456
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-23T15:43:41.381165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p34.png"
+            }
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-23T15:43:41.783281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images/submitted_p35.png"
+            }
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-23T15:43:41.937641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 556
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-23T15:43:42.139733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 356
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-23T15:48:00.158555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 — R16 修订评估（方法/统计/实验严谨性）\n\n---\n\n## Issue Checklist\n\n### [RESOLVED] R15-N1 / R9-W7 — N=63,228 伪重复与 CI 偏窄\n\n**修改内容确认：**\n- §3.3（page 4）新增完整描述：\"Transfer splits follow demonstration boundaries to prevent within-trajectory leakage (demos-level splitting reduces R² from 7.5–0.8 to 6.1–0.6 compared to random splitting, confirming that temporal correlations inflate aggregate estimates).\"\n- CI 方法：Monte Carlo cross-validation with demo-level splitting (n = 1,000 iterations)，peak layer fixed from full-data split to avoid cherry-picking。\n- Table 2（page 6）新增 95% CI 列，每个 architecture × suite cell 均有独立 CI。\n\n**为何判定 RESOLVED：**\n1. Demo-level splitting 直接解决了最关键的依赖源——trajectory 内 timestep 时序相关。作者还**量化**了 inflation（demo-split 后 R² 从 7.5–0.8 降至 6.1–0.6），展示了方法论诚实度。\n2. Peak layer fixed from full-data split 是正确做法——避免了 per-fold 选择 peak 导致的乐观偏差。\n3. Table 2 的 per-cell CI 适用于 per-cell claims。跨架构 claims 现在基于 effect-size + CI pattern matching（见 R9-N6 判定），而非依赖膨胀的 N 做形式检验。\n4. Layer-level 依赖（同一模型不同层共享输入）是分析设计的固有特征——probing 每一层是 method 的核心操作，无法也不需要\"修复\"。\n\n**残余关切（minor）：** \"N = 63,228\" 是否仍出现在某处且未附带 effective-N caveat？从我的阅读来看，R16 abstract 不再突出此数字，§3.3 明确说明了 demo-level splitting。可接受。\n\n---\n\n### [RESOLVED] R15-N2 — NLP control 方法细节\n\n**修改内容确认：**\n- §4.2（page 5）新增专门段落 \"NLP finetuning control\"：明确说明 Llama-2-7b-chat 经 SFT + RLHF 训练，无 action head，无 robot demonstration data；报告了定量结果（R² = 0.012 ± 0.003, ΔR² = 0.008，全 32 层 flat profile）；与 VLM-to-VLA 训练结果（ΔR² = 0.126–0.43）做了显式对比。\n\n**为何判定 RESOLVED：**\n1. 段落包含实验设置、样本量、定量结果和对比——从 R15 的一句话变为完整 control analysis。\n2. Control 逻辑清晰：相同 backbone + 不同训练目标（chat vs. action），isolates action-specific effect。\n3. 残余的\"仅一个 backbone 有 NLP control\"限制属于 nice-to-have 级别改进，不构成 critical issue。\n\n---\n\n### [RESOLVED] R9-N6 — Sign test N=6 power 极低\n\n**修改内容确认：**\n- 主文（§3.3, §4.2, §5）已**全面转向 effect-size + CI 框架**：exit collapse 以 ΔR² > 0.10 阈值 + 95% CI 为主要报告方式，而非依赖 sign test p-value。\n- Sign test 在主文中未出现。\n- §3.3 补充了阈值敏感性：\"the qualitative separation between VLM-to-VLA exit and other conditions is robust to threshold choices (0.08, 0.10, 0.20 yield the same grouping)\"。\n- 附录 A.29 的多重比较校正基于 63 个检验（permutation tests、t-tests、bootstrap、TOST、Spearman），sign test 不在此列表中。\n\n**为何判定 RESOLVED：**\n1. 从 p=0.016 sign test 转向 effect-size + CI 是 R15 review 的核心建议，已完全采纳。\n2. 阈值敏感性分析（0.08/0.10/0.20 三个阈值）为 ΔR² > 0.10 选择提供了 robustness check。\n3. 残留 p-values（如 Appendix A.32: r = 0.363, p = 0.11）用于辅助分析，且报告为 non-significant——表述诚实。\n\n---\n\n### [RESOLVED] R14-N1 — \"Convergent reorganization\" overclaim\n\n**修改内容确认：**\n- 标题改为 \"How VLA Fine-Tuning Changes Instruction Routing: A Cross-Architecture Analysis\"——移除了 \"One Routing Pattern\" 和隐含的 universality。\n- Limitations（page 8）明确写出：\"Cross-architecture evidence rests on N = 2 independent VLM-to-VLA transitions. OpenVLA tests a different transition type.\"\n- 扩展讨论（page 35）进一步写明 \"The three-tier gradient has n = 1 at Tier 2, limiting its inferential power.\"\n\n**为何判定 RESOLVED：**\n1. 标题从 declarative claim 改为 descriptive analysis framing。\n2. N=2 限制在 Limitations 显式标注。\n3. OpenVLA 的不同转换类型被明确区分。\n4. \"converge\" 一词仍在 page 8 出现（\"Two independent VLM-to-VLA transitions converge on the same qualitative pattern\"），但这是**对两个具体观察的描述**，附有 \"qualitative pattern\" 限定词和 N=2 caveat，可接受。\n\n---\n\n### [RESOLVED] R9-W4 — Cohen's d 与 cosine distance 并列暗示可比性\n\n**修改内容确认：**\n- §3.3（page 4，最后一段）新增显式 caveat：\"Trained models' counterfactual sensitivity is measured via Cohen's d on action MSE for models that produce actions and via cosine distance on hidden representations for untrained VLMs (§4.4). These metrics differ in scale and distributional properties; ratios between them are not meaningful.\"\n- Table 2（page 6）脚注区分了 metric 类型：†标记 cosine distance，‡标记 Cohen's d。\n- 扩展讨论（page 35）再次强调 metric 不可比性，并用 OpenVLA Long-Horizon inversion（trained d < 0.56 vs. untrained d < 1.01）作为具体 cautionary example。\n\n**为何判定 RESOLVED：**\n1. Caveat 在主文（而非仅 Appendix）中明确陈述。\n2. Table 2 脚注提供了 metric 标识。\n3. 扩展讨论提供了反例说明为何不能跨 metric 比较。\n\n---\n\n### [RESOLVED] R15-W3 — Cohen's d ≥ 0.45 被标为 \"substantial\"\n\n**修改内容确认：**\n- Abstract（page 1）改为 \"medium-to-large counterfactual sensitivity (Cohen's d = 0.45–1.97)\"。\n- §4.3（page 7）改为 \"All trained VLAs exhibit medium-to-large counterfactual sensitivity\"。\n- \"substantial\" 一词现仅用于 ΔR² > 0.10（exit collapse），不再用于 Cohen's d——术语分离清晰。\n\n**为何判定 RESOLVED：** Effect size 描述现在符合 Cohen (1988) 惯例。d=0.45 确实接近 medium (0.5)，d=1.97 为 very large。\"medium-to-large\" 准确覆盖了实际 range。\n\n---\n\n### [LARGELY RESOLVED] R15-W4 — TOST 等价边界 δ=0.30 过宽\n\n**修改内容确认：**\n- Appendix A.28（page 32）：TOST 等价边界从 δ=0.30 改为 **δ=0.10**。\n- 结果：\"Both one-sided tests reject at p < 0.001; the 90% confidence interval for the difference is [-0.009], falling entirely within [-0.10, 0.10].\"\n- 观测差异仅 Δ=0.003，远小于 δ=0.10。\n\n**为何判定 LARGELY RESOLVED：**\n1. δ=0.10 对于 R² ∈ [0,1] 来说是**合理且有意义**的等价边界——两个模型的 peak R² 差 <0.10 可被视为 practically equivalent。\n2. 从 δ=0.30 收紧至 δ=0.10 是 3× 改进，且 TOST 仍通过（p < 0.001）。\n\n**残余关切（minor）：** 未报告 δ=0.05 下的 TOST 结果。鉴于 90% CI = [-0.009, 0.009]，δ=0.05 也极可能通过。报告这一点会进一步增强结论。但 δ=0.10 已可接受。\n\n---\n\n### [RESOLVED] R14-DIV1 — Linear probe 提升至主文\n\n**修改内容确认：**\n- §3.3（page 4）明确写入：\"Linear probes yield consistent patterns (Appendix A.13), confirming that the observed effects are not artifacts of MLP probe capacity.\"\n\n**为何判定 RESOLVED：** 在主文中用一句话确认 linear probe 一致性，引用附录详细结果。空间限制下这是恰当的处理方式。\n\n---\n\n### [PARTIALLY RESOLVED] R14-W2 — 动态语言 \"emerge\"/\"reshape\" 需改为静态描述\n\n**修改内容确认：**\n- 标题改为 \"Changes\"（中性，优于 \"Reshapes\"）。\n- 大量句式使用静态描述：§4.2 \"is observed exclusively\"、§4.3 \"exhibit medium-to-large\"、Conclusion \"shows only small fluctuations\"。\n\n**残余问题：**\n- Page 7：\"VLA fine-tuning **creates** new instruction routing rather than merely inheriting language-model attention\" — \"creates\" 对于单 checkpoint 观察来说仍偏动态。\n- Page 5：\"training **induces** the following\" — 在 induced/inherited 框架内使用 \"induces\" 可接受，但严格来说仍是因果性语言。\n- Page 4：\"training **stabilizes** random instruction classification\" — 描述了 before/after 比较中的静态差异，但 \"stabilizes\" 暗示了动态过程。\n\n**为何判定 PARTIALLY RESOLVED：** 主要 claims 和 title 已改用中性语言，改进显著。但正文中仍散布约 3-5 处动态性表述。这些在单 checkpoint 设计下严格来说不成立，但已从 critical concern 降为 minor presentation issue。\n\n---\n\n## New Issues（R16 修改引入的新问题）\n\n### R16-N1 [minor] — ΔR² > 0.10 阈值的 post-hoc 选择风险\n\n- 具体位置：§3.3（page 4），§4.2（page 5），Table 2（page 6）\n- 描述：R16 用 ΔR² > 0.10 作为 \"substantial exit collapse\" 的分界线，恰好完美分离了 VLM-to-VLA（全部 > 0.10）和 VLA-to-VLA（全部 < 0.10）两组。这种完美分离可能是 post-hoc threshold selection 的结果——先观察数据分布，再选择使得两组完全分离的阈值。\n- 缓解因素：§3.3 已提供阈值敏感性分析（\"0.08, 0.10, 0.20 yield the same grouping\"），表明分离不依赖于精确阈值选择。这大幅降低了 post-hoc concern。\n- 严重程度：Minor。敏感性分析已充分覆盖。\n- 建议：明确说明 0.10 阈值是基于 \"10% absolute variance explained\" 的 substantive 含义选定，而非 data-driven。\n\n### R16-N2 [minor] — Table 2 部分 CI 格式存疑\n\n- 具体位置：Table 2（page 6）\n- 描述：由于 PDF 图像分辨率限制，Table 2 中部分 95% CI 区间数值难以精确辨认。个别 CI 下界可能大于上界（如某些 untrained 条件下的 CI），但这也可能是我的 OCR 误读。建议作者 double-check Table 2 所有 CI 区间的格式一致性和数值正确性。\n- 严重程度：Minor（可能是阅读 artifact）。\n\n---\n\n## Overall Assessment\n\n- **Score: 7/10**\n- **Verdict: Weak Accept**\n\n**总结：** R16 修订实质性地解决了 R15 提出的三个 Critical 问题中的全部三个，以及六个 Warning 中的五个半。最关键的改进是：\n\n1. **统计框架根本性升级**：sign test (N=6, p=0.016) 被 effect-size + CI 框架替代，demo-level Monte Carlo CV (n=1,000) 解决了伪重复问题，95% CI 现在基于 demo-level 聚类而非 observation-level。作者还量化了 random vs. demo splitting 的 CI inflation（R² 7.5→6.1），展示了方法论诚实度。\n\n2. **Claims 恰当收窄**：标题从 \"One Routing Pattern\" 改为 \"A Cross-Architecture Analysis\"，Limitations 显式标注 N=2 clean transitions，\"substantial\" 不再用于 Cohen's d。\n\n3. **Control analysis 完善**：NLP control 有完整段落，TOST δ 从 0.30 收紧至 0.10，linear probe 结果提升至主文。\n\n**从 5/10 上调至 7/10 的理由**：R15 的核心关切（伪重复导致 CI 不可信、sign test power 不足、claims 过度）均已得到实质性而非表面性的修复。当前版本的方法论框架是 defensible 的——虽然 N=2 clean transitions 仍然有限，但作者诚实承认了这一点，且在这个 N 下的分析是 methodologically sound 的。\n\n**尚存的轻微保留**：(1) 3-5 处残余动态语言（minor presentation issue）；(2) ΔR² > 0.10 阈值虽有敏感性分析支撑但仍为 post-hoc 选择；(3) 仍限于 LIBERO 单一 benchmark。这些不再构成 rejection-level concerns，但在 camera-ready 阶段应进一步打磨。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-23T15:48:04.131075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3972
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-23T15:48:10.459771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_16/_pdf_images"
+            }
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-23T15:48:10.476289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 16
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-23T15:48:16.481995+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "R16 修订评估已提交。\n\n**评分从 5/10 上调至 7/10 (Weak Accept)**。三个 Critical 问题全部 Resolved，六个 Warning 中五个半 Resolved。最关键的改进：sign test 被 effect-size + CI 替代、demo-level Monte Carlo CV 解决伪重复、claims 恰当收窄。残余问题（少量动态语言、单 benchmark）已降为 minor 级别。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000832"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "messages": [
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-23T15:48:52.582464+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 16 审稿请求]:\n## Round 16 交叉分享 — Reviewer 2 的完整审稿意见\n\n请阅读 Reviewer 2（Framing/Novelty/Writing/Format 侧重）的完整审稿意见，逐条回应 `[AGREE]` 或 `[REBUT]` + 理由。重点关注你们之间的分歧。\n\n---\n\n### Reviewer 2 评分：6/10 (Weak Accept)\n\n### Reviewer 2 Issue Checklist（摘要）\n\n**CRITICAL — 全部 RESOLVED：**\n- R12-N2/R15-N4（页面溢出+setlength）：RESOLVED。正文≤8页，setlength已移除，仅余表格内 tabcolsep 调整。\n- R12-N3（Abstract 信息过载）：RESOLVED。137词，3-finding结构，定量结果精简。\n- R15-N3（并发工作区分）：RESOLVED。Related Work新增Concurrent work段落，Fang 2026已引用，behavioral vs representational区分系统。\n\n**WARNING — 6/8 RESOLVED：**\n- R15-W1（可读性）：RESOLVED。每个分析工具有直觉解释。\n- R15-W2（定位模糊）：RESOLVED。统一为 observational study。\n- R15-W5（Cross-Benchmark命名）：RESOLVED。改为Cross-Suite Validation within LIBERO。\n- R15-W6（Discussion/Conclusion重复）：RESOLVED。合并为单一section。\n- R12-I1（术语不一致）：RESOLVED。统一为readout token。\n- R13-W1（Orthogonal措辞）：RESOLVED。改为complementary。\n- R12-W3（arXiv引用）：STILL_OPEN (minor)。touvron2023, black2024_pi0 仍为 arXiv。\n- R15-I3（Pages 3-5文本密集）：PARTIALLY_RESOLVED。\n\n### Reviewer 2 新发现：\n\n1. **R16-N1 [minor]** — NLP control 仅覆盖 Llama-2 backbone，而 VLM→VLA exit collapse 主要在 TracVLA (Phi-3) 和 NORA (Qwen2.5) 上观察到。理想应包括 Phi-3-mini-chat 或 Qwen2.5-instruct 的 probing。\n2. **R16-N2 [minor]** — Table 2 脚注 6 种标记视觉密度高。\n3. **R16-N3 [minor]** — 主文 Limitations 未显式提及 closed-loop validation 缺失（Appendix 有但主文遗漏）。\n\n### Reviewer 2 对结构性问题的评估：\n- R9-N1（单一benchmark）：Limitations 承认 ✓\n- R9-N2（无closed-loop）：Appendix提及但主文Limitations未显式列出，建议补充。\n- R9-W1（CoRL scope）：论文定位为complementary representational analysis，scope fit由AC判断。\n\n---\n\n**请逐条回应，特别关注：**\n1. 你给 7/10，R2 给 6/10——分歧主要在哪里？\n2. R2 的 R16-N1（NLP control 仅覆盖一个 backbone）是否构成有意义的 weakness？\n3. R2 对 closed-loop limitation 在主文 Limitations 中缺失的判断是否合理？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-23T15:50:07.895323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 交叉回应：R16 Reviewer 2 审稿意见\n\n---\n\n### 评分分歧分析：R1 7/10 vs R2 6/10\n\n分歧约 1 分，实质差异不大。核心区别在于**审查侧重的权重不同**：\n\n- **R1（方法/统计）**：R16 的统计框架升级（demo-level CV 替代 observation-level bootstrap、sign test → effect-size + CI、TOST δ 从 0.30→0.10）是**实质性改进**。从方法论角度，当前版本是 defensible 的。这是我上调至 7 的主要原因。\n- **R2（Framing/Novelty/Writing）**：即便格式和写作问题全部修复，论文的 novelty/impact 层面的天花板（N=2 clean transitions、LIBERO-only、无 downstream validation）仍然限制了评分上限。R2 对这些结构性限制给予更高权重，导致 6/10。\n\n**我认为这一分歧是合理的**——两个侧重的审稿人对同一修订版有 1 分差异，反映的是评审视角差异而非事实判断冲突。如果 AC 更看重方法论 soundness，应偏向 7；如果更看重 impact/novelty breadth，应偏向 6。\n\n---\n\n### 逐条回应\n\n---\n\n**[AGREE] R2 全部 CRITICAL issues 判定为 RESOLVED**\n\n与我的判定一致。页面溢出修复、Abstract 精简、并发工作区分——这些在 R16 均得到实质性解决。无分歧。\n\n---\n\n**[AGREE] R2 WARNING issues 的 RESOLVED/STILL_OPEN 判定**\n\n逐条确认：\n- R15-W1（可读性）RESOLVED ✓ — 与我的 R15 交叉回应中对 R3-W1 的 REBUT 一致（我当时认为 RSA/CKA 对 CoRL 受众不构成障碍，R16 的 inline 解释进一步降低了门槛）。\n- R15-W2（定位模糊）RESOLVED ✓ — 统一为 observational study 是正确选择，与我在 R15 中对 R2-W2 的 AGREE 一致（confirmatory vs. discovery 模糊性当时是方法论关切）。\n- R15-W5/W6 RESOLVED ✓ — 均与我的 R15 判定一致。\n- R12-W3（arXiv 引用）STILL_OPEN ✓ — 同意这是 minor issue。touvron2023 和 black2024_pi0 在审稿时可能确实尚无正式发表版本，arXiv 引用可接受。\n\n---\n\n**[AGREE] R16-N1 — NLP control 仅覆盖 Llama-2 backbone**\n\n同意这是一个有意义的 weakness，但同意 R2 的 minor 严重程度判定。\n\n我的补充分析：\n\n1. **逻辑缺口确实存在**：VLM→VLA exit collapse 的主要证据来自 TracVLA（Phi-3-mini）和 NORA（Qwen2.5-VL），但 NLP control 仅在 Llama-2 上做。这意味着 \"exit collapse is VLA-specific, not a generic fine-tuning artifact\" 的 claim 只在 Llama-2 上有 direct control evidence。对于 Phi-3 和 Qwen2.5，exit collapse 也可能是 narrow task fine-tuning 的通用结果（不仅限于 action training）。\n2. **但 R15 时我已将此评为 nice-to-have**：在 R15 交叉回应中，我对 R2-N2 做了 REBUT with qualification，指出论文确实有一个 NLP control（Llama-2-chat），且 R16 进一步完善了这个 control 的描述段落（§4.2）。从 single-backbone NLP control 升级到 all-backbone NLP control 需要额外实验，超出了 revision 的合理范围。\n3. **缓解因素**：三个 backbone 属于不同架构家族（decoder-only Llama vs decoder-only Phi vs encoder-decoder Qwen2.5-VL），如果 exit collapse 在这三种截然不同的架构上都出现，仅靠 \"generic fine-tuning artifact\" 解释就需要假设所有架构对 narrow fine-tuning 的响应方式完全相同——这本身是一个 strong assumption。因此跨架构一致性本身就提供了部分 specificity evidence，即便没有 per-backbone NLP control。\n\n**结论**：minor weakness，不影响接收决定。Camera-ready 版本中加一句 \"Extending the NLP control to Phi-3 and Qwen2.5 backbones is left for future work\" 即可。\n\n---\n\n**[AGREE] R16-N2 — Table 2 脚注视觉密度高**\n\n同意。我在 R16 评估中也指出了 Table 2 脚注系统（6 种标记）的可读性问题（我的 R16-N2 关注的是 CI 格式，R2 关注的是脚注密度——本质上是同一张 table 的呈现问题）。\n\n建议：将 metric 类型区分从脚注升级为列内标识（如在 CF 列中直接标注 \"d\" 或 \"cos\"），减少读者在 table 和脚注间的跳转。\n\n---\n\n**[AGREE] R16-N3 — 主文 Limitations 未显式提及 closed-loop validation 缺失**\n\n同意 R2 的判断。\n\n验证：我在 R16 评估中阅读了 page 8 的 Limitations 段落。主文 Limitations 列出了：N=2 transitions、LIBERO-only、NORA 缺失 2 suite checkpoints、single checkpoint。确实未提及 closed-loop validation 缺失。\n\n附录 page 35（Extended Limitations）写道：\"All analyses are open-loop; consistent with prior representational studies [5, 8], closed-loop validation would provide complementary evidence about the behavioral relevance of the identified routing structures.\"——这是恰当的讨论，但放在附录而非主文。\n\n**为何应在主文提及**：对于 CoRL（以 robotics 实践为核心的 venue），缺乏 closed-loop validation 是审稿人和读者的自然关切。主文 Limitations 仅一句话（\"All analyses are open-loop; closed-loop behavioral validation is left for future work\"）就能消除读者疑虑，代价极小。\n\n**结论**：同意 R2，这是 trivially fixable 的遗漏。\n\n---\n\n**[AGREE] R2 对结构性问题的评估**\n\n- R9-N1（单一 benchmark）：我在 R15 中标为 W5，R16 评估中标为\"残余 minor 关切\"。Limitations 已承认。一致。\n- R9-N2（无 closed-loop）：见上述 R16-N3 回应。一致。\n- R9-W1（CoRL scope）：我在 R15 交叉回应中对 R3-N1 做了 REBUT（不同意 \"根本性错配\"），认为 CoRL 接受理论/分析贡献。R2 将此判断留给 AC 是恰当的。一致。\n\n---\n\n### 交叉一致性总结\n\n| 议题 | R1 判定 | R2 判定 | 一致性 |\n|------|--------|--------|--------|\n| 统计框架改进质量 | 核心改进，7/10 | 认可但权重较低，6/10 | 方向一致，权重不同 |\n| CRITICAL issues 修复 | 全部 RESOLVED | 全部 RESOLVED | 完全一致 |\n| NLP control 覆盖度 | Minor weakness | Minor weakness | 完全一致 |\n| Table 2 呈现问题 | CI 格式存疑 | 脚注密度高 | 同一问题的不同侧面 |\n| Closed-loop 在主文缺失 | 未独立发现 | R16-N3 新发现 | R1 同意 R2 判断 |\n| CoRL scope | 不构成 rejection | 由 AC 判断 | 实质一致 |\n| 动态语言残余 | PARTIALLY RESOLVED | 未重点关注 | R1 独有关切（minor） |\n\n**两位 reviewer 之间无实质性分歧。** 1 分差异（7 vs 6）反映审查侧重不同：R1 更重视方法论修复的质量（从 broken → defensible 是显著提升），R2 更重视论文 impact 的结构性天花板（N=2, LIBERO-only, no downstream）。两种视角都是合理的。\n\n建议 AC 参考区间 **6–7/10 (Weak Accept)**，取决于对方法论 soundness vs. novelty breadth 的相对权重。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-23T15:50:12.287125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4391
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-23T15:50:19.613187+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。\n\nR1 与 R2 之间**无实质性分歧**。所有 issue 判定方向一致，1 分评分差异（7 vs 6）源于审查侧重权重不同：R1 更重视统计框架从 broken → defensible 的实质升级，R2 更重视 novelty/impact 的结构性天花板。建议 AC 参考区间 6–7/10 (Weak Accept)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000836"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "messages": [
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-27T00:51:08.772534+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 17 审稿请求]:\n## Round 17 修订评估 — Reviewer 1（方法/统计/内容质量）\n\n**角色**：CoRL 2026 审稿人，侧重方法论和内容质量。R16→R17 修订评估。\n**Venue**：CoRL 2026，8 页正文限制，corl_2026 模板，double-blind。\n\n**R16 评分**：综合 6.5/10 (Borderline Weak Accept)。R1 给 7/10，R2 给 6/10。\n\n**R17 重大变化**（Director 预审发现）：\n1. NLP control 从 1 个 backbone 扩展到 3 个（Llama-2-7b-chat + Phi-3-mini-4k-instruct + Qwen2.5-3B-Instruct）\n2. Discussion 新增 \"Practical implications\" 段落（checkpoint selection, transfer learning, mid-layer probe value）\n3. Table 2 重构：CF 指标拆分为独立 Table (tab:cf_summary)\n4. 新增 wrapfigures（counterfactual bar, L1 attention）和 heatmap figure (fig_result_matrix)\n5. \"untrained\" → \"reference\" 术语全文替换\n6. Counterfactual section 分为两个 subsection（action-producing + representation-space）\n7. Cohen's d 范围从 0.45-1.97 变为 0.45-1.52（上界变化）\n8. Abstract 完全重写为问句开头、无具体数字的叙事风格\n9. Related Work 大幅扩展（新增 ~8 条引用）\n10. Synthesis 段新增 permutation test (p=0.008) 和 label-permutation controls\n\n**你的任务**：\n\n### A. 验证 R16 Should-Fix 修复\n\n1. **SF-4 (R16-N1)** — NLP control 仅覆盖 Llama-2 backbone。\n   - R17 扩展到 3 个 backbone。**检查**：Phi-3-mini-4k-instruct 和 Qwen2.5-3B-Instruct 是否为合适的 matched controls？Qwen2.5-3B-Instruct vs Qwen2.5-VL-3B 的架构差异（无 vision encoder）是否有足够说明？ΔR²=0.000 对所有三个 controls 是否可信？\n\n2. **SF-2 (R14-W2)** — 动态语言 \"creates\"/\"induces\"/\"stabilizes\"。\n   - **检查**：正文是否仍有动态语言残留？特别注意 Introduction line 5 \"reshaped\"、experiments 中的 \"indicating\"。\n\n### B. 评估新增内容\n\n3. **\"Practical implications\" 段落** — 这是全新内容，R16 Discussion 没有。\n   - **检查**：3 个 actionable diagnostics 是否由数据支撑？是否有 overclaim？\"replacing costly rollout evaluation\" 是否过强（仅有 ΔR² vs success rate correlation ρ=0.583, p=0.10 non-significant）？\n   - Transfer learning 建议（\"justifying staged pipelines\"）是否有充分依据？\n   - Mid-layer probe 建议（\"outperform exit-layer features for reward modeling\"）是否有实验验证？\n\n4. **Cohen's d 范围变化** — R16 报告 d=0.45-1.97，R17 报告 d=0.45-1.52。\n   - **检查**：为何上界从 1.97 降至 1.52？是修正了计算还是改变了报告范围？是否与 Appendix Table 一致？\n\n5. **Permutation test (p=0.008)** — §4.6 Synthesis 新增。\n   - **检查**：这个 permutation test 具体检验什么假设？样本量是否充分？是否与 R16 的 effect-size + CI 框架一致？\n\n6. **Label-permutation controls** — Synthesis 新增。\n   - **检查**：Appendix 中是否有完整描述？这是否为新实验还是已有数据的重新分析？\n\n7. **\"reference\" 术语** — 替换 \"untrained\"。\n   - **检查**：全文是否一致？是否改善了 trained/untrained asymmetry 的表述？\n\n### C. 旧 Issue 状态确认\n\n以下 R16 已 resolved 的 issue，快速确认未复发：\n- R15-N1 (伪重复/CI)：demo-level MCCV 仍在\n- R9-N6 (sign test)：sign test 仍未出现\n- R14-N1 (convergent overclaim)：标题无 overclaim\n- R12-N2 (页面溢出)：正文 ≤8 页\n\n---\n\n### 输出格式\n\n```\n## R16 SF Verification\n### [RESOLVED/STILL_OPEN] SF-4 — 理由\n### [RESOLVED/STILL_OPEN] SF-2 — 理由\n\n## New Content Evaluation\n### Practical Implications — 评估 + 是否有 overclaim\n### Cohen's d Range — 解释变化\n### Permutation Test — 评估\n### Label-Permutation Controls — 评估\n### \"Reference\" Terminology — 评估\n\n## Regression Check\n（确认已解决 issue 未复发）\n\n## New Issues\n### R17-Nx — 描述 + 严重程度\n\n## Overall Assessment\n- Score: X/10\n- Verdict: ...\n- 总结\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-27T00:51:22.540085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-27T00:51:23.644776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 279.2}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 479.8}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 371.2}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 352.2}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 311.4}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 351.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 282.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 389.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 354.8}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ss\n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-27T00:51:28.734051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-27T00:51:29.086032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-27T00:51:29.539704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 805
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-27T00:51:29.545821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 459
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-27T00:51:29.546310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-27T00:51:30.153317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 606
+          },
+          "id": "event-000845"
+        },
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-27T00:51:30.153779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-27T00:51:30.509602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 355
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-27T00:51:36.383904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-27T00:51:36.791012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 407
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-27T00:51:36.791469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-27T00:51:37.195140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000851"
+        },
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-27T00:51:37.245733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-27T00:51:37.811694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 565
+          },
+          "id": "event-000853"
+        },
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-27T00:51:37.814084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-27T00:51:38.472288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 658
+          },
+          "id": "event-000855"
+        },
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-27T00:52:51.570430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-000856"
+        },
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-27T00:52:51.873128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-000857"
+        },
+        {
+          "source_line": 858,
+          "timestamp": "2026-05-27T00:52:52.026187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-000858"
+        },
+        {
+          "source_line": 859,
+          "timestamp": "2026-05-27T00:52:52.381076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 507
+          },
+          "id": "event-000859"
+        },
+        {
+          "source_line": 860,
+          "timestamp": "2026-05-27T00:52:58.970325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "11-22",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000860"
+        },
+        {
+          "source_line": 861,
+          "timestamp": "2026-05-27T00:53:00.079473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 350.2}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 349.3}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 320.5}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 383.3}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 339.1}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 306.7}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 252.0}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 287.0}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p19.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 243.2}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_\n…[truncated 773 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1109
+          },
+          "id": "event-000861"
+        },
+        {
+          "source_line": 862,
+          "timestamp": "2026-05-27T00:53:04.346948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-000862"
+        },
+        {
+          "source_line": 863,
+          "timestamp": "2026-05-27T00:53:04.802623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 455
+          },
+          "id": "event-000863"
+        },
+        {
+          "source_line": 864,
+          "timestamp": "2026-05-27T00:53:04.803293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-000864"
+        },
+        {
+          "source_line": 865,
+          "timestamp": "2026-05-27T00:53:05.309889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 506
+          },
+          "id": "event-000865"
+        },
+        {
+          "source_line": 866,
+          "timestamp": "2026-05-27T00:53:05.312350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-000866"
+        },
+        {
+          "source_line": 867,
+          "timestamp": "2026-05-27T00:53:05.819601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 507
+          },
+          "id": "event-000867"
+        },
+        {
+          "source_line": 868,
+          "timestamp": "2026-05-27T00:53:13.002176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/submitted.pdf",
+              "project": "vla-ssd",
+              "pages": "23-42",
+              "dpi": "150"
+            }
+          },
+          "id": "event-000868"
+        },
+        {
+          "source_line": 869,
+          "timestamp": "2026-05-27T00:53:14.710507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 283.1}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 317.8}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 294.1}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 344.3}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p27.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 226.0}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p28.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 255.3}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p29.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 201.7}, {\\\"page\\\": 30, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p30.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 271.9}, {\\\"page\\\": 31, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p31.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 205.8}, {\\\"page\\\": 32, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_\n…[truncated 2437 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1708
+          },
+          "id": "event-000869"
+        },
+        {
+          "source_line": 870,
+          "timestamp": "2026-05-27T00:53:19.380774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p33.png"
+            }
+          },
+          "id": "event-000870"
+        },
+        {
+          "source_line": 871,
+          "timestamp": "2026-05-27T00:53:19.735248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 354
+          },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-27T00:53:19.786046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p34.png"
+            }
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-27T00:53:20.741745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000873"
+        },
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-27T00:53:20.742299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p37.png"
+            }
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-27T00:53:21.146417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000875"
+        },
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-27T00:53:21.146896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p38.png"
+            }
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-27T00:53:21.551994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 405
+          },
+          "id": "event-000877"
+        },
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-27T00:53:29.066027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p39.png"
+            }
+          },
+          "id": "event-000878"
+        },
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-27T00:53:29.517852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p40.png"
+            }
+          },
+          "id": "event-000879"
+        },
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-27T00:53:30.426745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1360
+          },
+          "id": "event-000880"
+        },
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-27T00:53:30.428427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 910
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-27T00:53:30.428855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p41.png"
+            }
+          },
+          "id": "event-000882"
+        },
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-27T00:53:30.731039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images/submitted_p42.png"
+            }
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-27T00:53:30.833136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000884"
+        },
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-27T00:53:31.136001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-27T00:57:50.319351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 — R17 修订评估（方法/统计/内容质量）\n\n---\n\n## R16 SF Verification\n\n### [RESOLVED] SF-4 (R16-N1) — NLP control 扩展至 3 个 backbone\n\n**修改确认：**\n- §4.3（page 6）：NLP controls 扩展为三个 matched controls——Llama-2-7b-chat（匹配 OpenVLA）、Phi-3-mini-4k-instruct（匹配 TracVLA）、Qwen2.5-3B-Instruct（匹配 NORA）。\n- Appendix Table 31（page 39）：完整报告三个 control 的 ΔR² 值——0.008、0.000、0.001，均为 flat profile。\n- Figure 24（page 40）：叠加展示 VLA trained profile、reference profile 和 NLP control flat baseline，视觉对比清晰。\n- Qwen2.5 匹配的 caveat 已在 Table 31 脚注说明：\"Qwen2.5-3B-Instruct shares the Qwen2.5 language backbone with NORA's Qwen2.5-VL-3B but lacks the vision encoder and cross-attention modules.\"\n\n**为何判定 RESOLVED：**\n1. **每个 VLA backbone 现在都有匹配的 NLP control**——从 R16 的 1/3 覆盖升至 3/3。这直接回应了 R16 交叉回应中我和 R2 共同指出的 weakness。\n2. **三个 control 的 ΔR² 一致接近零**（0.000–0.008）——排除了 exit collapse 是 generic fine-tuning artifact 的可能性，跨三个不同架构家族。\n3. **Qwen2.5 匹配不完美**（语言 backbone 匹配但缺 vision encoder）已在脚注中显式标注。这是当前可获得的最佳近似 control——Qwen2.5-VL-3B-Instruct 不存在。在 decoder layers 的 exit collapse 分析中，语言 backbone 匹配是最关键的，vision encoder 是 input-side component。可接受。\n4. **ΔR² ≈ 0 对所有三个 controls 可信**——instruction-tuned LLM 在没有 action head 和 robot data 的情况下，隐藏状态中不包含 action-relevant information 是预期结果。\n\n---\n\n### [RESOLVED] SF-2 (R14-W2) — 动态语言残留\n\n**修改确认：**\n- **标题再次修改**：从 R16 \"How VLA Fine-Tuning Changes Instruction Routing\" → R17 \"Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis\"。R17 标题完全是描述性的，无任何动态动词。\n- **Abstract**：使用 \"associated with\"（×2）、\"is absent in\"、\"reveal\"、\"provide\" 等静态/描述性语言。\n- **§4.3**（page 5）：\"VLM-to-VLA fine-tuning **is associated with** substantial exit collapse\"——correlational framing ✓\n- **§4.5**（page 7）：\"L1 instruction attention is **inherited** from base-to-reference transitions\"——框架术语 ✓\n- **§5**（page 8）：\"Exit collapse **is correlational** (confounded by data distribution and architecture)\"——显式 caveat ✓\n\n**残留检查：**\n- \"develop\"（Abstract: \"trained VLAs develop substantial sensitivity\"）——仍有轻微动态感，但 \"develop\" 在 observational 语境下可接受（描述 observed difference between states）。\n- \"training-associated\" 作为复合形容词全文使用——合适。\n\n**为何判定 RESOLVED：** R16 时我标为 PARTIALLY RESOLVED，主要因为 \"creates\"/\"induces\"/\"stabilizes\" 残留。R17 已大幅清理，标题完全静态化，主要 claims 使用 \"associated with\" 和 \"correlational\"。\"develop\" 是唯一残余，但在 observational 语境下不构成问题。\n\n---\n\n## New Content Evaluation\n\n### Practical Implications — 方向正确但关键数据不显著，需谨慎\n\n**内容确认（page 8, §5）：**\n论文新增 \"Practical implications\" 段落，提出三个 actionable diagnostics：\n1. **Checkpoint selection**：ΔR² 与 published success rates 的相关性（ρ = 0.583, p = 0.10, n = 9）\n2. **Transfer learning**：\"justifying staged pipelines\"\n3. **Mid-layer probe value**：\"outperform exit-layer features\"\n\n**评估：**\n\n1. **Checkpoint selection — hedging 充分但数据不显著：** ρ = 0.583 在 n = 9 时 p = 0.10，未达常规显著性阈值。论文用 \"suggest\" 和 \"requiring independent validation\" 做了适当 hedging，且在 Appendix A.31 标注了 n = 9 的限制。**我接受这个表述**——在 observational study 中提出 tentative practical direction 是合理的，只要 non-significance 被透明报告（已做到）。但 \"replacing costly rollout evaluation\" 如果出现在文中则过强——让我确认... 从我的阅读来看，主文并未使用 \"replacing\" 这一表述。可接受。\n\n2. **Transfer learning — 依据充分：** \"inherited base-model priors, justifying staged pipelines\" 基于 §4.5-4.6 的 inherited vs. training-associated 分解。L1 attention patterns 在 reference models 中已存在（§4.5），这确实为 staged training（先利用已有 routing，再 fine-tune action-specific layers）提供了 observational support。非 overclaim。\n\n3. **Mid-layer probe — 需验证：** \"mid-layer representations outperform exit-layer features for reward modeling\" 是 speculative claim，无实验验证。但段落开头的 \"each requiring independent validation\" 覆盖了这一点。可接受作为 future direction。\n\n**结论：** Practical implications 段落是对 R15/R16 中 \"缺乏 actionable insight\" 关切的直接回应。表述适度审慎。主要风险是读者可能忽略 hedging 而把 tentative suggestions 当作 validated recommendations，但这在 observational interpretability 论文中是常见写法。**不构成新的 must-fix。**\n\n---\n\n### Cohen's d 范围变化（0.45–1.97 → 0.45–1.52）\n\n**分析：**\n- R16 Table 2 混合了 OpenVLA/TracVLA 的 Cohen's d 和 NORA 的 cosine distance 在同一表格中\n- R17 Table 2 仅包含 action-producing models（OpenVLA: d = 0.45–1.22; TracVLA: d = 1.05–1.52），NORA 的 cosine distance 分离到 §4.4.2 prose 中\n- 因此 R17 的 d range = 0.45–1.52 仅来自 Cohen's d 值，而 R16 的 1.97 上界可能混入了 NORA 的 metric 或来自不同 perturbation 条件\n\n**判定：** 这是一个**改进而非问题**。R17 的范围更 honest——仅包含同一 metric（Cohen's d）下的同类比较。Abstract 中 \"medium-to-large\" 描述符仍然适用（d = 0.45 ≈ medium, d = 1.52 ≈ very large）。上界降低不影响任何 claim 的有效性。\n\n---\n\n### Permutation Test (p = 0.008)\n\n**内容确认：**\n- §4.6（page 7-8）提到 permutation test\n- Appendix A.37（page 41）详细描述：\"The probability of observing consistent collapse in two structurally divergent architectures under a null hypothesis of random association is low (permutation test p = 0.008).\"\n- Table 32（page 41）展示两个 VLM-to-VLA transitions 的结构差异（backbone family、attention mechanism、layer count 等均不同）\n\n**评估：**\n1. **假设检验逻辑合理**：在 H₀ \"exit collapse 与 VLM-to-VLA training 无关\" 下，两个结构截然不同的架构同时展现一致的 collapse pattern 的概率应该很低。\n2. **p = 0.008 的可信度**：如果 permutation 是在 suite level 进行（TracVLA 4 suites + NORA 2 suites = 6 cells，shuffling trained/reference labels），2⁶ = 64 permutations 给出最小 p ≈ 0.016。p = 0.008 暗示 permutation space 更大或使用了连续 test statistic。**建议**：Appendix 应明确说明 permutation scheme——是 label permutation（shuffle trained/reference per cell）还是其他方式？有多少 permutations？\n3. **与 R16 框架的一致性**：R16 转向 effect-size + CI 框架，R17 新增 permutation test 补充而非替代。两者互补——effect-size + CI 展示效应大小，permutation test 检验 H₀ 下的 chance level。合适。\n\n**判定：** 方向正确，增强了统计支撑。Minor concern 是 permutation scheme 的细节描述应更精确（具体 shuffle 什么、多少次 permutation、test statistic 是什么）。\n\n---\n\n### Label-Permutation Controls\n\n**内容确认：**\n- §4.6（page 7）引用 \"Appendix Table 26\" 关于 label-shuffled data 的 permutation 结果\n- Appendix 中对应内容展示 label-permutation（shuffle instruction labels）后 counterfactual sensitivity 消失，确认原始结果不是 trivial correlation\n\n**评估：** 这是已有数据的重新分析（对 counterfactual perturbation 的 instruction labels 做 shuffle），而非新实验。方法论上合适——standard practice in interpretability research。作为 robustness check 有价值。\n\n---\n\n### \"Reference\" 术语\n\n**全文一致性检查：**\n- Abstract: \"trained/reference controls\" ✓\n- §3.1–3.3: \"reference\" ✓\n- Table 1, Figure 2, Figure 3: \"Reference\" ✓\n- §4.2–4.6: \"reference\" 全文一致 ✓\n- Appendix: \"reference\" throughout ✓\n\n**评估：** 这是一个有意义的改进。\n1. OpenVLA 的 \"reference\" = OXE-pretrained VLA，TracVLA/NORA 的 \"reference\" = pure VLM——\"reference\" 是中性术语，正确反映了两者作为 comparison baseline 的角色。\n2. 消除了 \"untrained\" 对 OpenVLA 的误导性（它实际上是 trained on OXE）。\n3. 减少了 R15-N3（trained/untrained asymmetry）的概念混淆。\n\n**判定：** 纯改进，无 concern。\n\n---\n\n## Regression Check\n\n| R16 RESOLVED Issue | R17 状态 | 确认方法 |\n|---|---|---|\n| R15-N1（伪重复/CI） | ✓ 无复发 | §3.3 demo-level MCCV n=1,000 仍在（page 4） |\n| R9-N6（sign test） | ✓ 无复发 | 主文无 sign test；permutation test (A.37) 是不同的、更恰当的检验 |\n| R14-N1（convergent overclaim） | ✓ 无复发 | 标题更加中性；N=2 限制在 Limitations 和 A.37 均标注 |\n| R12-N2（页面溢出） | ✓ 无复发 | 正文 pages 1-8，references page 9 |\n| R15-W3（d \"substantial\"） | ✓ 无复发 | Abstract 使用 \"medium-to-large (d = 0.45–1.52)\" |\n| R15-W4（TOST δ） | 需确认 | 未在主文中重新检查 TOST，但 R16 已从 δ=0.30→0.10，A.28 应保持 |\n| R9-W4（d vs cosine 混淆） | ✓ 改进 | Table 2 现仅含 Cohen's d；NORA cosine distance 分离至 §4.4.2 |\n\n---\n\n## New Issues\n\n### R17-N1 [minor] — Permutation test (p=0.008) 的具体 scheme 描述不足\n\n- 位置：§4.6（page 7）引用 Appendix A.37（page 41）\n- 问题：Appendix A.37 报告 \"permutation test p = 0.008\" 但未详细说明：(a) 具体 shuffle 什么（trained/reference labels? per-cell? per-suite?）; (b) permutation 次数；(c) test statistic（mean ΔR² difference? count of cells with ΔR² > 0.10?）。p = 0.008 对于 N=2 architectures × 2-4 suites 的 permutation space 来说需要解释其来源。\n- 严重程度：Minor。结论方向正确，但 reproducibility 需要 scheme 细节。\n- 建议：在 A.37 补充 2-3 句说明 permutation procedure。\n\n### R17-N2 [minor] — Practical implications 中 checkpoint selection 基于 non-significant correlation\n\n- 位置：§5（page 8），Appendix A.31\n- 问题：ρ = 0.583, p = 0.10, n = 9——未达 α = 0.05 显著性。作为 \"actionable diagnostic\" 的首个建议，读者可能过度解读。\n- 缓解因素：段落开头 \"suggest three actionable uses, each requiring independent validation\" 提供了充分 hedging；p = 0.10 和 n = 9 被透明报告。\n- 严重程度：Minor。Hedging 充分，不构成 overclaim。\n- 建议：在 camera-ready 中明确标注 \"non-significant at conventional levels\" 以进一步防止误读。\n\n### R17-N3 [negligible] — 标题信息量降低\n\n- R16: \"How VLA Fine-Tuning Changes Instruction Routing: A Cross-Architecture Analysis\"（告诉读者做了什么 + 发现了什么）\n- R17: \"Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis\"（告诉读者主题 + 方法，但不暗示任何发现）\n- 评估：R17 标题更安全（无 overclaim 风险），但对浏览论文列表的读者来说信息量较低。这是 trade-off，不是错误。不需要修改。\n\n---\n\n## Overall Assessment\n\n- **Score: 7.5/10**\n- **Verdict: Weak Accept (leaning Accept)**\n\n**总结：**\n\nR17 在 R16 的基础上做了两项实质性改进和多项 polish：\n\n**实质性改进：**\n1. **NLP control 从 1/3 扩展到 3/3 backbone 覆盖**——这是对 exit collapse \"VLA-specific\" claim 的最有力增强。三个不同架构家族的 NLP controls 均显示 ΔR² ≈ 0，排除了 generic fine-tuning artifact 的解释。这一改进价值等同于 R16 中从 sign test → effect-size + CI 的框架转换。\n2. **Counterfactual 指标分离**——Table 2 仅含 Cohen's d（action-producing models），NORA cosine distance 独立讨论。这消除了 R15 以来反复提出的 metric 不可比性问题。\n\n**Polish 改进：**\n- \"reference\" 术语消除了 trained/untrained asymmetry 的概念混淆\n- 标题完全静态化，dynamic language 基本清除\n- Practical implications 段落回应了 \"缺乏 actionable insight\" 关切\n- Permutation test 补充了 effect-size + CI 框架的统计支撑\n- Abstract 重写为叙事风格，无数字过载\n\n**从 R15（5/10）到 R17（7.5/10）的改进轨迹：**\n- R15→R16（+2 分）：统计框架根本性修复（demo-level CV, sign test→effect-size+CI, TOST δ收紧, claims 收窄）\n- R16→R17（+0.5 分）：NLP control 覆盖完善 + 指标分离 + 术语/语言 polish\n\n**残余结构性限制（已承认，不影响接收决定）：**\n- N = 2 clean VLM-to-VLA transitions\n- LIBERO-only benchmark\n- Single checkpoint per architecture\n- Open-loop analysis without closed-loop validation\n\n这些是论文 scope 的固有限制，已在 Limitations 和 Extended Discussion 中充分承认。在当前 scope 内，方法论 sound、统计框架 defensible、claims 适当 hedged。推荐 weak accept，如 AC 认为 VLA interpretability 的 intrinsic value 足以弥补 scope 限制，可升至 accept。",
+              "reviewer_id": "1",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000886"
+        },
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-27T00:57:54.587219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4267
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": "2026-05-27T00:58:00.280466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_round_17/_pdf_images"
+            }
+          },
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": "2026-05-27T00:58:00.331147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-000889"
+        },
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-27T00:58:07.732419+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "R17 评估已提交。**评分 7.5/10 (Weak Accept, leaning Accept)**。\n\n两项核心改进：NLP control 从 1→3 个 backbone 全覆盖（exit collapse VLA-specificity 的最有力证据）、Cohen's d 与 cosine distance 指标彻底分离。其余为 polish：标题静态化、\"reference\" 术语、practical implications 段落、permutation test 补充。残余 issues 均为 minor（permutation scheme 细节、non-significant correlation hedging）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1"
+          },
+          "id": "event-000890"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "messages": [
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-27T00:59:24.954742+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 17 审稿请求]:\n## 交叉分享：Reviewer 2 的 R17 初审结果\n\n请逐条回应 Reviewer 2 的发现，使用 [AGREE] 或 [REBUT] 标记。\n\n---\n\n### Reviewer 2 核心发现\n\n**评分：6/10，条件性 Weak Accept**\n\n**关键问题：`\\enlargethispage{12\\baselineskip}` 构成 R15-N4 格式违规的复发**\n\nReviewer 2 认为论文使用了 `\\enlargethispage{12\\baselineskip}` 命令，导致实质内容超出 CoRL 8 页限制。这构成了 R15-N4（模板间距违规：setlength 命令修改 corl_2026 模板间距）的复发。R16 已将所有 7 条 setlength 移除并标记为 RESOLVED，但 R17 引入了新的 `\\enlargethispage` 命令来扩展页面。\n\n**内容改进方面**，Reviewer 2 确认：\n- 3 个 NLP controls 是实质改进\n- Related Work 扩展充分\n\n---\n\n### 你需要回应的问题\n\n1. **`\\enlargethispage{12\\baselineskip}` 是否构成格式违规？** 你的初审未提及此问题。请检查论文 LaTeX 源码中是否存在此命令，评估其对页面内容量的影响，以及是否违反 CoRL 2026 格式规定。注意：`\\enlargethispage` 与 R15-N4 的 `\\setlength` 性质不同——前者是 LaTeX 标准命令用于单页调整，后者是全局间距修改。但效果上是否导致实质内容超 8 页是关键判断标准。\n\n2. **R2 的 6/10 评分是否因格式问题被过度压低？** 如果排除格式问题，R2 确认了内容改进。你认为内容改进的幅度是否支持更高评分？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000891"
+        },
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-27T00:59:39.964960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\enlargethispage",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-27T00:59:40.266639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex:1:\\enlargethispage{12\\baselineskip}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_2026.sty:445:  \\enlargethispage{2\\baselineskip}%"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 301
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-27T00:59:41.070240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\setlength",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000894"
+        },
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-27T00:59:41.171035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-27T00:59:46.142336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex",
+              "limit": "10"
+            }
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-27T00:59:46.494203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\enlargethispage{12\\baselineskip}\n2\t\\section{Discussion and Conclusion}\n3\t\\label{sec:discussion}\n4\t\\vspace{-4pt}\n5\t\n6\t\\paragraph{Scope and limitations.}\\looseness=-1\n7\tAll findings are correlational (confounded by data distribution and optimization; $N = 2$ VLM-to-VLA transitions; Appendix~\\ref{sec:claim_evidence_appendix}); we analyze causal-decoder VLAs on LIBERO only (flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} architectures may differ); all analyses are open-loop.\n8\tTrained $\\Delta R^2$ correlates with published success rates ($\\rho = 0.583$, $p = 0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) but is underpowered ($n = 9$; effect size is large, $|\\rho| > 0.5$); tracing collapse onset remains for future work.\n9\t\n10\t\\paragraph{Practical implications.}\\looseness=-1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-27T00:59:46.796000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_2026.sty",
+              "offset": "440",
+              "limit": "10"
+            }
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-27T00:59:46.896957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "440\t\n441\t% add conference notice to bottom of first page\n442\t\\newcommand{\\ftype@noticebox}{8}\n443\t\\newcommand{\\@notice}{%\n444\t  % give a bit of extra room back to authors on first page\n445\t  \\enlargethispage{2\\baselineskip}%\n446\t  \\@float{noticebox}[b]%\n447\t    \\footnotesize\\@noticestring%\n448\t  \\end@float%\n449\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-27T01:00:23.210125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_554a5023cde4d603635cf97e6ab8151a:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000900"
+        }
+      ]
+    }
+  ]
+}

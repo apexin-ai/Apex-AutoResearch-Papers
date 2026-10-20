@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eae0e97630c1f017a8c7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "util download threecond figure",
+  "task_key": "worker_util_download_threecond_figure_20260518T074647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_download_threecond_figure_20260518T074647_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "e4868dac4c79de1ea159239b3fe3c5b113d6c564e01ea9fec7e3e79b29b0ce23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件下载完成。17843 字节，与远程文件一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-download-threecond-figure.md"
+}

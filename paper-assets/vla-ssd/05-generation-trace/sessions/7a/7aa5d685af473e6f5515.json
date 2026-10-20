@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aa5d685af473e6f5515",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig2 r2 profile fix",
+  "task_key": "worker_draw_fig2_r2_profile_fix_20260523T193336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig2_r2_profile_fix_20260523T193336_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "3240d3d87cabb84a4147c3c27f515d31d0ffb096c04cabdac3e26195ac91674a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。图已生成并保存至本地。\n\n**变更汇总：**\n- Legend: `Untrained` → `Reference`（Llama-2-chat (NLP) 保留不变）\n- Subplot 标题: `OpenVLA (VLA→VLA)`, `TracVLA (VLM→VLA)`, `NORA (VLM→VLA)`\n- 标注格式: `Peak R² = 0.869 (L10)`, `ΔR² = 0.016` 等\n- 配色: Okabe-Ito 色盲友好（蓝 #0072B2 / 橙 #E69F00）\n- 字体: 8-10pt\n\n**输出文件：**\n- 远程: `/root/vla-ssd/paper_figures/fig_r2_collapse.pdf` + `.png` (33.9KB / 269KB)\n- 本地: `docs/paper/figures/fig_r2_collapse.pdf` + `.png` (33.9KB / 263KB)\n- 远程脚本: `/root/vla-ssd/scripts/gen_fig_r2_collapse_v3.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig2-r2-profile-fix.md"
+}

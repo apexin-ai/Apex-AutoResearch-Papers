@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c549bcbe548ac0c76e3d",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_4_1778895396.md",
+  "task_key": "loop_4_1778895396",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778895396.md",
+    "occurrence": 1,
+    "bytes": 5199,
+    "sha256": "a898000f2133752762fa04ee7e7e22acc8c5d81fa2679e182026adc294139b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T00:26:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：`cuda:0`, `cuda:1`（westd-19183），不得用其他设备号\n- 服务器**无外网**：所有 HF/AutoProcessor 操作必须 `local_files_only=True`，pip install 不可用\n- 大文件必须放 `/root/autodl-tmp/vla-ssd/`，根分区只有 ~30GB\n- 分析 Worker 不得覆盖 registry 的 `spec` 字段（spec 是训练 Worker 写的溯源记录）\n- Untrained model = `from_config()` 重初始化 LLM（6.74B random），保留 SigLIP（0.80B），不是 from_pretrained\n- Instruction ablation 代码已修过 bug：`if args.task_instruction:` 对空字符串返回 False，确认修复已在 codebase\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-19183**，工作目录 `/root/vla-ssd`\n- Python 环境：conda base（`/root/miniconda3/bin/python`），aml-train 镜像\n- 数据/features 路径：`/root/autodl-tmp/vla-ssd/features/`（trained_libero_goal, untrained_libero_goal 子目录）\n- 模型 checkpoint：LIBERO-10 fine-tuned OpenVLA（标准 checkpoint，非 OFT）\n- W&B：未见配置（本项目主要用 probe 分析，非长训练）\n- 活跃进程：**plan_008_random_inst_control** PID=678338，tmux session 应存在，cron 监控 active（reconcile 确认 still running）\n- GPU 占用：plan_008 占用中（具体哪张卡未明确，可能双卡）\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化 + registry/cron 同步。上一轮 session 完成了 D033（DINO geometric-functional dissociation）、D034（untrained redistribution training-dependent）、plan_009（CKA verification）、untrained_last_preaction_probe（bootstrap CI）。三条 Claim 已定稿写入 paper_framing.md。\n\n**正在跑**：\n| exp_id | 状态 | 摘要 |\n|--------|------|------|\n| plan_008_random_inst_control | RUNNING (pid=678338) | Random instruction control — 验证 Claim 3 instruction invariance。gibberish/shuffled instruction 的 RSA 是否 ≈ 正常 instruction（0.488） |\n\n**等待**：\n- plan_008 cron 回调 → 分析结果 → 如 RSA ≈ 0.488 则 Claim 3 final evidence 完成\n- plan_008 完成后 → **re-dream**（用更新后的 framing 验证 paper 可投性）→ 达标则启动 Paper Agent Full Draft\n- lg_output_head_analysis / lg_instruction_ablation 标记 QUEUED/killed，已被后续实验取代，不再需要\n\n**Worker 池**：0 running（⚠️ 违反 L1 硬约束 \"Worker 池 < 2 = 失职\"，但当前唯一阻塞点是 plan_008 RUNNING 等回调，无其他 GPU 任务可并行）\n\n### 4. 📋 待办（条件触发式）\n- **plan_008 cron 回调到达** → spawn worker 分析结果（RSA 值 + bootstrap CI）→ update_registry → 判断：RSA ≈ 0.488 → Claim 3 完整，发 success 汇报；RSA 显著偏离 → negative，走 red-section framing 提案\n- **plan_008 success + 所有 Claim evidence 齐全** → 立即触发 re-dream（spawn worker 用最新 paper_framing.md 做 acceptance prediction）→ 汇报 Director\n- **re-dream ≥ borderline accept** → 启动 Paper Agent Full Draft（spawn 多 worker 并行写各 section）→ 同时启动 plan_012 CLIP-ViT control（P1，用空闲 GPU）\n- **re-dream < borderline accept** → 汇报 Director 差距在哪，建议补充实验（plan_012 CLIP-ViT 或 plan_010 LIBERO-Spatial cross-benchmark）\n- **任何时刻有空闲 GPU** → 可先启动 plan_012 CLIP-ViT control（不依赖 plan_008 结果，纯 Claim 1 加强证据）\n\n### 5. 🎯 战略上下文\n**核心结论链**：MVP temporal distance FAIL → Action prediction pivot → RSA 组件分解 → SigLIP smoking gun（0.615 >> 0.488）→ Functional probe 揭示 RSA-R² 分离 → D031 \"LLM redistributes, not degrades\" pivot → D032 Option A 锁定 → D033 DINO≈Proj in R²（geometric-functional dissociation）→ D034 untrained readout < projector（redistribution is training-dependent）→ **三条 Claim 定稿**\n\n**最容易判断错的事**：\n1. CKA 和 RSA 排序反转（C7）——**不要**说 \"LLM degrades representations\"，必须限定为 \"geometric (RSA) degradation\"。CKA 显示 LLM 保留甚至增强 global structure。论文主打 RSA，CKA 做 supplementary + discussion\n2. image_mean 聚合 vs last_preaction 聚合结论不同——主文用 image_mean（公平对比），last_preaction 放 supplementary。Proj vs LLM 在 image_mean 下 Proj 赢，在 last_preaction 下 LLM 赢\n3. DINO 与 Projector 在 R² 上无差异（0.712 vs 0.706, p=0.22）但 RSA 差异巨大（0.388 vs 0.615）——这是 **feature** 不是 bug，说明 VL pretraining 贡献 geometric alignment 而非 information content\n4. **DDL 极近**：CoRL abstract May 26（10 天），paper May 29（13 天）。re-dream 通过后必须全速铺 Paper Agent，没有 buffer\n\n**已验证无效/不要再试**：\n- Temporal distance probe 方向（MVP-1/MVP-2 多次 FAIL）\n- Goal classification on untrained features（lg_gc_untrained negative）\n- PCA+linear per-timestep（lg_pca1024 negative）\n- Output head shallow adaptation hypothesis（D026 FAIL）\n- Option B framing（instruction pathway as source）（D027 FAIL，Option A 锁定）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778895396.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72a09979473693e501d6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dino action probe prep",
+  "task_key": "worker_code_dino-action-probe-prep_20260515T141941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dino-action-probe-prep_20260515T141941_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "1cae6130e57f26cf59acbe86ce888282a489fff96d90881d3b263680711fd209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。\n\n## 结果\n\n**兼容性**：train_probes.py 原生支持 DINO 特征，无需任何修改。\n- DINO `.h5` 文件包含 `cls_token` (T, 1024) 和 `patch_mean` (T, 1024)\n- `scan_features` 自动检测为单层 (n_layers=1, hidden_dim=1024)\n- `AGG_MAP` fallback 机制自动选择 `cls_token`\n\n**Dry-run 指标** (Layer 0, 唯一层):\n- overall R² = 0.6689\n- per_task_mean_R² = 0.6759\n- gripper_accuracy = 0.9001\n- epochs = 17, 耗时 7.3s\n\n**最终启动命令**（DINO 只有单层，跑完就是全部结果）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python scripts/train_probes.py --features_dir /root/autodl-tmp/vla-ssd/features/dinov2/ --output_dir /root/autodl-tmp/vla-ssd/results/dinov2/ --probe_type action_prediction --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ --gpu 0\"\n```\n\n实际上 dry-run 已经产出了完整结果（单层 7 秒跑完），结果已存于 `/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dino-action-probe-prep.md"
+}

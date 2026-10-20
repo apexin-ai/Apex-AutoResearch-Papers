@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad1ec844217486dd9be0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation p4 permutation",
+  "task_key": "worker_code_ablation_p4_permutation_20260516T085748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p4_permutation_20260516T085748_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "64ce7a0d44f06845ec876ad6de7b2b4bc328c2dd7d4d0a33f87526dc702d889c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n| Layer | Observed RSA | Null Mean | Null Max | p-value |\n|-------|-------------|-----------|----------|---------|\n| 0 | 0.612 | 0.001 | 0.081 | 0.000 *** |\n| 8 | 0.619 | -0.000 | 0.092 | 0.000 *** |\n| 12 | 0.628 | -0.001 | 0.098 | 0.000 *** |\n| 24 | 0.546 | 0.001 | 0.095 | 0.000 *** |\n| 32 | 0.422 | 0.000 | 0.104 | 0.000 *** |\n\n所有 5 个层的 observed RSA 均远超 null distribution 最大值（observed 最低 0.42 vs null max 0.10），p < 0.001。Observed 值与原始 unified_rsa_results 完全一致。\n\n脚���：`/root/vla-ssd/scripts/ablations/rsa_permutation_null.py`\n结果：`/root/autodl-tmp/vla-ssd/results/ablations/rsa_permutation_null.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-p4-permutation.md"
+}

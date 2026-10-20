@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b78695c2758d1e3d2a2",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_5_1778902485.md",
+  "task_key": "loop_5_1778902485",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778902485.md",
+    "occurrence": 1,
+    "bytes": 5128,
+    "sha256": "5a71f57e545403eccc4385c2e329f575424033a9d66d3b1649238988dfdca700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-16T03:10:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 cuda:0 和 cuda:1**（westd-19183），其他 GPU 一律不可用\n- westd-19183 是 **SeetaCloud**，不是 AutoDL——**不适用** network_turbo/ModelScope/AutoDL 磁盘规则\n- 服务器**无外网**：所有 HF 操作必须 `local_files_only=True`\n- D039 已确认：**论文中 RSA 数字不得混用方法 A（cross-task+cosine+3-phase）和方法 B（within-task+euclidean+全轨迹）**。旧 VLA per-layer RSA（0.501/0.488 等）全部是方法 A，与 SigLIP 0.615/CLIP 0.557/DINO 0.631（方法 B）不可比。两个 Worker 正在用方法 B 重算全部 VLA RSA\n- DinoSigLIP fused backbone：OpenVLA 的 \"SigLIP+Projector\" 实际含 DINOv2 信息（DINOv2 ViT-L + SigLIP-SO400M → torch.cat → MLP），论文叙事不能说 \"纯 SigLIP\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-19183**，工作目录 `/root/vla-ssd`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型/数据/缓存：`/root/autodl-tmp/vla-ssd/`（大文件）；features 在 `/root/autodl-tmp/vla-ssd/results/` 下\n- W&B：未配置（本项目不用 W&B，所有 metrics 来自 SSH 读 JSON/txt + registry）\n- 活跃进程：无训练进程跑在 GPU 上（所有 46 实验已 DONE）。当前 RSA 重算是 CPU-only 任务\n- 活跃 Worker：\n  - `worker_code_unified_rsa_recalc_20260516T025219`（turn 31, ssh_read_only 循环，可能卡住）\n  - `worker_code_definitive_rsa_recalc_20260516T030716`（turn 14, 正在 ssh_execute 探测目录结构）\n- Crons：无\n\n### 3. 📊 当前状态\n**刚完成**：D037-D038 确认 DINO RSA 方法论错误 + dissociation 失效 + paper_framing.md 清理。D039 确认全部 VLA RSA 方法论不一致。D040（provisional）发现用统一方法后 training effect 是 token-dependent 且方向相反（readout RSA↓ + image_mean RSA↑）。\n\n**正在做**：两个 Worker 在用方法 B 重算全部 VLA RSA（全层+多条件）。这是当前 **唯一阻塞性任务**——重算结果决定 Claim 2（degradation 幅度）和 Claim 3（training invariance vs token-dependent redistribution）是否需要再次 reframe。\n\n**Registry**：46 实验全部 DONE（success 31 / negative 7 / killed 8）。无 RUNNING/PREPARING。\n\n**未完成汇报**：D039/D040 结果尚未向 Director 汇报（等 Worker 重算完成后一并汇报）。\n\n### 4. 📋 待办（条件触发式）\n- **两个 RSA Worker 完成** → 读取重算后的全部 VLA RSA 数字 → update registry → 更新 paper_framing.md 所有数值 → 更新 memory.md → 向 Director 汇报（带 [资源] 行 + 新旧数值对比 + Claim 2/3 是否需要 reframe 的判断）\n- **D040 token-dependent 效应确认（50 demos + 全层）** → 如显著，Claim 3 从 \"training invariance\" 升级为 \"token-dependent redistribution\"（更强 finding）；如不显著，保持 \"training invariance\" + caveat\n- **RSA 重算完成 + Claim 2/3 稳定** → 派 Worker 做 branch-split 实验（分离 DINOv2 1088d vs SigLIP 1088d vs fused+projector 4096d RSA），回应 C2 reviewer concern\n- **所有数值稳定后** → Paper Agent comprehensive reframe（D037/D038 后全面重写 Claim 1 相关章节）\n- **LIBERO-Spatial**（plan_010, P2）→ 有空余 GPU 时跑跨 benchmark 验证\n\n### 5. 🎯 战略上下文\n**核心 story（post-D038）**：(1) 所有 pretrained vision encoders 含 action info，self-supervised DINOv2 在 geometric + functional 两维度均最强/并列；(2) VL pretraining 不增加 action-relevant structure；(3) LLM 降解分布式 image token 结构但通过训练依赖的 attention 将信号 concentrate 到 readout token；(4) Training teaches routing, not creating。\n\n**决策链**：D015 pivot LIBERO-Goal → D019 RSA → D027 Option A2 → D028 smoking gun → D031 redistribution → D033 DINO≈Proj → D036 unified probe → **D037 DINO RSA 方法错误（关键转折）** → D038 dissociation 失效 → D039 全部 VLA RSA 方法不一致 → D040 token-dependent training effect（provisional）\n\n**最容易判断错的事**：\n1. **不要用旧 RSA 数字写论文**。paper_framing.md 中 VLA RSA（0.501/0.488 等）仍是方法 A 的值，Worker 重算完成前这些数字全部待更新。只有 SigLIP 0.615 / CLIP 0.557 / DINO 0.631 是方法 B 的可信值\n2. **D040 是 provisional**。10 demos / 单层 / N_BOOT=1000 的初步结果。\"token-dependent redistribution\" 比 \"training invariance\" 更有趣，但需要 50 demos + 全层确认后才能写进论文\n3. **两个 Worker 可能一个是多余的**（unified_rsa_recalc turn 31 可能卡住）。接手后先 verbose check 两个 Worker 状态，如果 unified 确实卡住则 cancel，保留 definitive\n4. **CoRL DDL 极近**：abstract 5/26（10天），paper 5/29（13天）。RSA 重算 + 数值确认是 critical path，之后才能 reframe + 写论文。不要开新实验线，集中精力把现有数值搞对 + paper 写完\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778902485.md"
+}

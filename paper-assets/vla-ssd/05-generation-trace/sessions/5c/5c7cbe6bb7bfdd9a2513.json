@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c7cbe6bb7bfdd9a2513",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "chart phi3v cross architecture",
+  "task_key": "worker_chart_phi3v_cross_architecture_20260519T184441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_chart_phi3v_cross_architecture_20260519T184441_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "407b0b9c749a493396705049d5ffb7ce108c132375bb75758315f7bb914345cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册（`art_20260519_7fe815`）。\n\n**数据概要：**\n- **OpenVLA**: untrained 全部为 0 → trained 在 L0=20, L1=22 处出现强 entry spike，之后迅速衰减至 0\n- **Phi3V**: untrained 已经在大部分层保持 28-32 的高水平（继承自 instruction tuning）→ trained 在 L1-L2 饱和到 32，但中间层大幅下降（dip 到 0-7），尾部逐步回升至 17-18\n\n**输出文件：**\n- 服务器: `/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.{pdf,png}`\n- 本地 artifacts: `fig_cross_architecture_attention.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/chart-phi3v-cross-architecture.md"
+}

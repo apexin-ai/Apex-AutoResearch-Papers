@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "db1bb29955dfa9c39eb9",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis random subset ablation",
+  "task_key": "worker_analysis_random_subset_ablation_20260518T021745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random_subset_ablation_20260518T021745.log",
+    "occurrence": 1,
+    "bytes": 907775,
+    "sha256": "fa0711604d7b59537389037b87ecc7b400fba035593232b2646630a10b12396b"
+  },
+  "statistics": {
+    "messages": 404,
+    "user_turns": 1,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 152,
+      "tool_result": 152,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 365,
+      "chunks": [
+        {
+          "path": "db1bb29955dfa9c39eb9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "db1bb29955dfa9c39eb9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "db1bb29955dfa9c39eb9-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "db1bb29955dfa9c39eb9-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-random-subset-ablation.md"
+}

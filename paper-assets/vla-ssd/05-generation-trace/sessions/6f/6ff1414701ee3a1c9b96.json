@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ff1414701ee3a1c9b96",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code goal classification probe",
+  "task_key": "worker_code_goal-classification-probe_20260515T162300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_goal-classification-probe_20260515T162300_result.json",
+    "occurrence": 1,
+    "bytes": 1461,
+    "sha256": "170bf00a12c1ab2f0938e8a8a3b5f5e16501f9de8e6237903550a91fee23e718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结已实现的内容：\n\n**`/root/vla-ssd/scripts/train_probes.py` 新增：**\n- `GoalClassificationProbe` (line 335) — MLP (D → 256 → n_classes)，ReLU + Dropout(0.1)\n- `train_goal_classification_probe()` (line 469) — CrossEntropyLoss，early stopping on val accuracy (patience=5)\n- `run_goal_classification()` (line 894) — 复用 `scan_features` / `split_by_task` / `load_layer_features`；每帧一个样本，label = task index；per-layer 独立训练\n- 输出：accuracy, macro_f1, per_class_accuracy, confusion_matrix, best_layer, accuracy_by_layer\n- `parse_args` / `save_results` / `main()` 均已更新\n\n**`/root/vla-ssd/scripts/analyze_goal_probes.py` 新建：**\n- 读取 trained/untrained/dinov2 三组结果\n- Per-layer accuracy 对比表 + best layer summary\n- Gate: trained acc > 50% AND trained-DINO gap > 40pp\n\n**Dry-run 验证**（LIBERO-10 trained features, layer 16）：\n- 500 trajs → 400 train / 100 val → 110660/27430 samples → acc=1.00, F1=1.00, 6 epochs, 30s\n- 100% accuracy 符合预期：LIBERO-10 各 task 来自不同 scene，视觉即可区分\n- LIBERO-Goal（同一 scene 不同 goal）才是真正有意义的测试目标\n\n运行命令示例：\n```bash\npython scripts/train_probes.py \\\n  --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/results/trained/ \\\n  --probe_type goal_classification\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-goal-classification-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7203f68cb4dbecfcbaae",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code control b label permutation",
+  "task_key": "worker_code_control-b-label-permutation_20260515T121501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_control-b-label-permutation_20260515T121501_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "5f26894807c8d8324fd336c17118518a006323c42d8270eafdc5aa0b2fca8b8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。`--shuffle_labels` 结果符合预期：\n\n**Global ρ = 0.039, mean per-task ρ = 0.039, R² = -0.052**\n\nPer-task ρ 值：\n\n| Task | ρ |\n|------|---|\n| KITCHEN_SCENE3 (stove + moka pot) | 0.074 |\n| KITCHEN_SCENE4 (bowl in drawer) | 0.046 |\n| KITCHEN_SCENE6 (mug in microwave) | 0.071 |\n| KITCHEN_SCENE8 (both moka pots) | 0.014 |\n| LIVING_ROOM_1 (soup + cheese in basket) | 0.062 |\n| LIVING_ROOM_2 (soup + sauce) | 0.018 |\n| LIVING_ROOM_2 (cheese + butter) | 0.051 |\n| LIVING_ROOM_5 (mugs on plates) | 0.093 |\n| LIVING_ROOM_6 (mug + pudding) | 0.050 |\n| STUDY_SCENE1 (book in caddy) | -0.091 |\n\n所有 per-task ρ 都在 [-0.1, +0.1] 范围内，全局 ρ ≈ 0.04（p=0.049，本质上与随机一致）。R² 为负值表明模型预测不如直接用均值。这正是 label permutation negative control 的预期行为——打乱标签后 probe 无法学到有意义的映射。\n\n代码修改完成并通过验证。三处改动：\n1. **argparse**：新增 `--shuffle_labels` flag（line 63）\n2. **模式检测**：运行时打印 mode 标识（line 430-431）\n3. **标签置换**：训练前用 `torch.randperm` 独立打乱 y_tr 和 y_val（line 467-468）\n\n原有 cross-trajectory shuffle 代码保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-control-b-label-permutation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbae9896c0de194dc711",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix fig claim evidence margin",
+  "task_key": "worker_fix_fig_claim_evidence_margin_20260523T203825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig_claim_evidence_margin_20260523T203825_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "5706f24c37e318a662b14d746d6552f532f2071d1791a2a475db6cbf96d9d83f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个问题都已修复：\n\n1. **左侧裁切** — 去掉 `bbox='tight'`，改用 `fig.subplots_adjust(left=0.01)` + `bbox_inches=None` 手动控制边距。\"Training-Associated\" 和 \"Inherited Instruction-\" 现在完整显示。\n\n2. **Evidence 行2 补充 \"6/8\"** — `\"empty ranks first\"` → `\"empty ranks first in 6/8\"`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig-claim-evidence-margin.md"
+}

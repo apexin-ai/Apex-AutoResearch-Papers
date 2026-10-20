@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c0deb97292ca5a19706",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh pca1024 goal classification",
+  "task_key": "worker_ssh_pca1024-goal-classification_20260515T191620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_pca1024-goal-classification_20260515T191620_result.json",
+    "occurrence": 1,
+    "bytes": 201,
+    "sha256": "e25de1cf4e94e1c6f148838e532ad9db5b27f683de9314d4a54f5f3b015ba07d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor armed — it will notify me when the experiment finishes (or fails). Currently at 17/33 layers, ~14 min remaining. I'll report the final comparison table once all results are in."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pca1024-goal-classification.md"
+}

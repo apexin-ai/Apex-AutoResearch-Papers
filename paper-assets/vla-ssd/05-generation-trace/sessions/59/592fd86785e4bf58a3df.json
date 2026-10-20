@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "592fd86785e4bf58a3df",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code l1 attention pattern untrained",
+  "task_key": "worker_code_l1_attention_pattern_untrained_20260517T005256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_attention_pattern_untrained_20260517T005256_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "1c2bf48b17ab60088f0b613b99e7f1f0fb943a1cc8943987540ac1b7dc263c8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files saved. Results:\n\n**L1 Attention Summary (UNTRAINED VLA)**\n\n| Metric | Value |\n|--------|-------|\n| Mean attn to IMAGE | **0.8782** ± 0.1002 |\n| Mean attn to INSTRUCTION | **0.1170** ± 0.0995 |\n\nAll 32 heads are IMAGE-dominant. The untrained model's last_preaction token overwhelmingly attends to image tokens (87.8%) with only 11.7% going to instruction tokens.\n\n**Key comparison with trained model (if available):** The untrained model shows the last_preaction token attending almost entirely to image patches, not instruction tokens. If the trained model shows significant instruction attention, that proves the routing is **learned** (not architectural). If the trained model shows a similar image-dominant pattern, it would support architectural routing.\n\nOutput saved:\n- PDF: `/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained.pdf`\n- JSON: `/root/autodl-tmp/vla-ssd/results/attention/l1_attention_untrained_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l1-attention-pattern-untrained.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "972ce7b03a077a7815f2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code traj level accuracy",
+  "task_key": "worker_code_traj-level-accuracy_20260515T170104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_traj-level-accuracy_20260515T170104_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "31854fbd37eb83c29e0b3b10027a54fc66878259b090704e4ca959438fe9bba5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本语法验证通过。\n\n修改汇总：\n\n**`train_probes.py`** (6处):\n1. `train_goal_classification_probe()` 返回值增加 `val_preds`\n2. `run_goal_classification()` 的 `flatten()` 增加 `return_traj_ids` 参数，val set 额外返回每个样本的 trajectory index\n3. 训练后对 val predictions 按 trajectory 分组，`np.bincount` 取多数投票，计算 `traj_accuracy`\n4. 打印增加 `traj_acc` 字段\n5. CSV summary 字段增加 `traj_accuracy`\n6. JSON summary 增加 `best_traj_accuracy`（所有层最大值）和 `traj_accuracy_by_layer`\n\n**`analyze_goal_probes.py`** (3处):\n1. 新增 `get_traj_acc()` helper\n2. Per-layer 表格每个模型增加 `_traj` 列\n3. Best summary 和 Gate judgment 增加 traj_accuracy 展示"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-traj-level-accuracy.md"
+}

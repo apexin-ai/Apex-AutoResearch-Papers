@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "949d92789a650ad1ee7b",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code unified rsa recalc",
+  "task_key": "worker_code_unified_rsa_recalc_20260516T025219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unified_rsa_recalc_20260516T025219.log",
+    "occurrence": 1,
+    "bytes": 715238,
+    "sha256": "3749baee72059947ae1babfe0e89a6bf2f15cecb68f8f0d3059b0a72656002e1"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 0,
+    "tool_calls": 234,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 74,
+      "tool_call": 234,
+      "tool_result": 234,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "949d92789a650ad1ee7b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "949d92789a650ad1ee7b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "949d92789a650ad1ee7b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "949d92789a650ad1ee7b-part-0004.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-unified-rsa-recalc.md"
+}

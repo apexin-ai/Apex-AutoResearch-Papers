@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27adc6228debab627d50",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing experiments d095",
+  "task_key": "worker_paper_writing_experiments_d095_20260522T043542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_d095_20260522T043542_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "c75711d329d8af8a18c04db6df87673d3a02f366af1e1851048c4e811f63bd63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 tables + 3 figures = 5 floats. All labels, citations, and appendix references are correct. \n\nSummary of the complete `experiments.tex` rewrite:\n\n- **6 subsections**: Setup, OpenVLA deep dive, R² exit collapse, counterfactual sensitivity, L1 priors, three-tier gradient\n- **5 floats** (2 tables + 3 placeholder figures): `tab_cross_arch_matrix`, `tab_counterfactual`, `fig_r2_collapse`, `fig_cross_arch_l1`, `fig_three_tier`\n- **All numbers verified** against `matrix_summary_table.md`\n- **D096 qualification** correctly framed: exit collapse at VLM-to-VLA (6/6) vs VLA-to-VLA (1/3)\n- **Style rules enforced**: no em-dashes, no -ing phrase endings, no banned words, booktabs only, `\\centering` not `\\begin{center}`, self-contained captions\n- **Old floats removed** from main text (tab_dense_routing_main, tab_routing_gradient, tab_rsa_overview, fig_attention_profile, fig_layer_curves, fig_dose_response all moved to appendix references)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-d095.md"
+}

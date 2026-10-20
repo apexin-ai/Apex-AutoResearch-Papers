@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dc172b4a47765eb0116",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code r2 probe seed expansion",
+  "task_key": "worker_code_r2_probe_seed_expansion_20260519T202904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r2_probe_seed_expansion_20260519T202904_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "3d5f5d0efcdb86a10d17a4bdd0573b0c555c34b8ec1d1b1cd1f8fb464474ccc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常运行中。L0 已完成，15 seeds 输出正确，mean=0.6294 ± 0.0159。\n\n总结：\n- 脚本 `/root/vla-ssd/scripts/r2_probe_seed_expansion.py` 已创建，基于 v2 版本\n- 修改：seeds `[0-14]`（15个），device `cuda:1`，输出到 `functional_validation/r2_probe_15seeds.json`\n- PID 168392 在 westd-19183 后台运行中\n- Registry 已更新为 RUNNING，exp_id=`r2_probe_seed_expansion`\n- 3 conditions × 33 layers × 15 seeds，每层约 54s，预计总时间 ~90 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r2-probe-seed-expansion.md"
+}

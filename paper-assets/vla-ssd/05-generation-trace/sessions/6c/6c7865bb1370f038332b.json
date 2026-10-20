@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7865bb1370f038332b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "sync statistical supplements",
+  "task_key": "worker_sync_statistical_supplements_20260520T175455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_statistical_supplements_20260520T175455_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "0abbb5cf7e9006701cd7a6f9655bbd56074b1d90bfb3dfdae342e08db9358aaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。3 个文件，2 次 SSH 调用。\n\n| 文件 | 远程大小 | 本地大小 |\n|------|---------|---------|\n| paired_cohens_d.json | 1572 | 1573 |\n| power_analysis.json | 848 | 849 |\n| tost_equivalence.json | 1113 | 1114 |\n\n各文件差 1 字节是末尾换行符，内容一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-statistical-supplements.md"
+}

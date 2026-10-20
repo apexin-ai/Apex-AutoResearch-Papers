@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d28ea13697c05d2a224",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix analyze results d002",
+  "task_key": "worker_code_fix-analyze-results-d002_20260515T121152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-analyze-results-d002_20260515T121152_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "b9fa6441738ac14566c5760975098bc559bafa8f2f607fec34aad75b4763c37d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。变更摘要：\n\n**新增** `extract_per_task_mean_rho(data)` — 从每层的 `per_task_rho` 字段计算 mean ρ\n\n**`compute_judgment` 三处改动**：\n1. **ρ > 0.5 下限**：改用 per-task mean ρ（无 per_task_rho 时 fallback 到 pooled）\n2. **VLA ≥ DINO gate**：从 pooled max (0.833) 改为 per-task mean max (0.554)\n3. **Δρ bootstrap**：已确认原本就是 task-level bootstrap，无需修改\n\n**输出保留 pooled ρ**：`best_pooled_rho` 字段仍在 criteria 和 summary 中，仅用于参考。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-analyze-results-d002.md"
+}

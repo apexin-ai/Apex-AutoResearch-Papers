@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "baeb0e9d9ffc3be75ef2",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code libero object resume",
+  "task_key": "worker_code_libero_object_resume_20260521T002750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_object_resume_20260521T002750.log",
+    "occurrence": 1,
+    "bytes": 750724,
+    "sha256": "e6441ee9b71106cbf1b371cd0c9f977d4213d5a7e3636c42b10368edacf9452e"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "baeb0e9d9ffc3be75ef2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "baeb0e9d9ffc3be75ef2-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-libero-object-resume.md"
+}

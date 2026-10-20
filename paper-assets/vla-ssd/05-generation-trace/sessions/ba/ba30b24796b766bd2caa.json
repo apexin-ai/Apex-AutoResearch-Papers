@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba30b24796b766bd2caa",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action trajectory analysis",
+  "task_key": "worker_code_action_trajectory_analysis_20260518T103905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_trajectory_analysis_20260518T103905_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "3376712b1f5c4eb991bc5165c0627833892489d3dd41c08a608a126a59ab55d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `action_trajectory_analysis`\n- **tmux session**: `action_trajectory_analysis`\n- **GPU**: cuda:0\n- **预计时间**: ~20-40 分钟（5000 forward passes）\n- **日志**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.log`\n- **结果**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_analysis.json`\n\nDry-run 验证通过：ablation 使 78.6% action tokens 发生变化，paired MSE=0.14，KL divergence=5.19。gripper 维度受影响最大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-trajectory-analysis.md"
+}

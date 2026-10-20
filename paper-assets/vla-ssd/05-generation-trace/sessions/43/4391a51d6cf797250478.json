@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4391a51d6cf797250478",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code counterfactual spatial",
+  "task_key": "worker_code_counterfactual_spatial_20260520T201754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_counterfactual_spatial_20260520T201754_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "c9a3b4b12ca365591f9f237cae55363c9572cb39a56a01e17b4403445a13f9fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并正在运行。日志输出因 `tee` 缓冲延迟，但进程和 GPU 占用确认正常。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| LIBERO-Spatial 数据 | 10 tasks × 50 demos，全部就绪 |\n| 模型 | openvla-7b（pretrained，与 Goal 实验一致） |\n| 脚本 | `/root/vla-ssd/scripts/counterfactual_spatial.py` (553 行) |\n| 输出目录 | `/root/autodl-tmp/vla-ssd/results/counterfactual_spatial/` |\n| Job ID | `counterfactual_spatial` (tmux session) |\n| GPU | cuda:0，RTX PRO 6000 Blackwell (98GB) |\n| 预计耗时 | ~1h（参考 Goal 实验 ~57min @7.3 pass/s） |\n\n**关键设计决策：**\n- \"wrong\" condition 使用**其他 spatial task 的指令**（同一对象/动作，不同空间参照），直接测试空间语言 grounding 的敏感性——这比 Goal 实验更精细，因为只改变了空间参照词\n- 其余 3 个 condition（empty/shuffled/paraphrased）与 Goal 实验完全一致\n- 参数保持一致：10 demos × 50 timesteps, seed=42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-counterfactual-spatial.md"
+}

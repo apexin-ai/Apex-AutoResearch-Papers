@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78597ccdc0939da76b55",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check gpu and phi3 status",
+  "task_key": "worker_check_gpu_and_phi3_status_20260523T235401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_and_phi3_status_20260523T235401_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "8b53980481c3fc1e5d525b9fb0582c1994fc3782d15acb0ca3a98e8fe99d8290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 0** | RTX PRO 6000 Black (98GB), 40°C, 89W, 显存 681MiB/97887MiB, 利用率 0%（Phase 2 是 CPU-bound Ridge 回归） |\n| **GPU 1** | RTX PRO 6000 Black (98GB), 36°C, 36W, 显存 0MiB, 空闲无进程 |\n| **phi3_nlp_control 进程** | PID 775588, 07:53 启动（运行约 1 分钟），CPU 3623%，`python scripts/phi3_nlp_control_probe.py --gpu 0` |\n| **最近产出** | `results/phi3_nlp_control/` 目录已创建（May 24 07:30），日志正在写入 |\n\n**日志进度**：\n- Phase 1（hidden state 提取）已完成：5000 samples, 10 tasks, 耗时 1.4s\n- Phase 2（Ridge R2 probing）进行中：已完成 L0 (R2=0.1555), L4 (R2=0.1554), L8 (R2=0.1555)，每层约 20s\n- 按每 4 层采样、32 层总计，还剩约 6 层（L12–L32），预计 ~2 分钟内完成\n\n**判断：实验正常运行中**，Phase 2 CPU 密集计算进行中，GPU 仅用于模型加载/推理（Phase 1 已结束）。R2 值在前 3 层均 ~0.155，符合 NLP-only 模型作为 control baseline 的预期（无视觉 grounding → 低 action 预测能力）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-and-phi3-status.md"
+}

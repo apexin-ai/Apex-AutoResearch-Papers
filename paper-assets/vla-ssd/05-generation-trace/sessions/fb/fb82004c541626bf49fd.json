@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "fb82004c541626bf49fd",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "infra shard1 resume and extract",
+  "task_key": "worker_infra_shard1-resume-and-extract_20260515T085607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_shard1-resume-and-extract_20260515T085607.log",
+    "occurrence": 1,
+    "bytes": 957668,
+    "sha256": "9fbac7a974703f9cdaa1aa8ab79c3500e44abd311f023c700dcec85cccd6e1e2"
+  },
+  "statistics": {
+    "messages": 812,
+    "user_turns": 0,
+    "tool_calls": 331,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 147,
+      "tool_call": 331,
+      "tool_result": 331
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 812,
+      "chunks": [
+        {
+          "path": "fb82004c541626bf49fd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb82004c541626bf49fd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb82004c541626bf49fd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb82004c541626bf49fd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb82004c541626bf49fd-part-0005.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-shard1-resume-and-extract.md"
+}

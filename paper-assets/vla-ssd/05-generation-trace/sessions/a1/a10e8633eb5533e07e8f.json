@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10e8633eb5533e07e8f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig l1 attention fraction v2",
+  "task_key": "worker_draw_fig_l1_attention_fraction_v2_20260523T203816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig_l1_attention_fraction_v2_20260523T203816_result.json",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "ffa64b4d6da95798f8f83efc365666a32f6d0325adce6022af6a1f3daef6e64f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表完成，已保存到本地 `docs/paper/figures/fig_l1_attention.pdf`。远程服务器副本在 `/root/vla-ssd/paper_figures/fig_l1_attention.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig-l1-attention-fraction-v2.md"
+}

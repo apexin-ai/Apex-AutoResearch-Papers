@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abf8c04a7c5063baeb2e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260516T023622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260516T023622_result.json",
+    "occurrence": 1,
+    "bytes": 2130,
+    "sha256": "b4ebb8701a698839f13253bbb73c984861acc1b4bbd1c55dba3cd7e1cac008ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`related_work.tex` 已生成。以下是需要添加到 `references.bib` 的新条目：\n\n```bibtex\n% === VLA Representation Analysis ===\n\n@article{swann2026,\n  title     = {Sparse Autoencoders Reveal Monosemantic Features in Vision-Language-Action Models},\n  author    = {Swann, Eley and others},\n  journal   = {arXiv preprint arXiv:2603.19183},\n  year      = {2026},\n}\n\n@article{rizzardo2026,\n  title     = {Observability and Controllability of Vision-Language-Action Model Representations},\n  author    = {Rizzardo, Andrea and others},\n  journal   = {arXiv preprint arXiv:2603.05487},\n  year      = {2026},\n}\n\n@article{molinari2025,\n  title     = {Do Vision-Language-Action Models Have World Models? Probing for Spatial and Physical Understanding},\n  author    = {Molinari, Marco and others},\n  journal   = {arXiv preprint arXiv:2509.24559},\n  year      = {2025},\n}\n\n% === Methodology ===\n\n@article{belinkov2022,\n  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n  author    = {Belinkov, Yonatan},\n  journal   = {Computational Linguistics},\n  volume    = {48},\n  number    = {1},\n  pages     = {207--219},\n  year      = {2022},\n}\n\n% === VLA Architecture ===\n\n@article{black2024_pi0,\n  title     = {$\\pi_0$: A Vision-Language-Action Flow Model for General Robot Control},\n  author    = {Black, Kevin and Brown, Noah and Driess, Danny and Esmail, Adnan and Equi, Michael and Finn, Chelsea and Fusai, Niccolo and Groom, Lachy and Hausman, Karol and Ichter, Brian and others},\n  journal   = {arXiv preprint arXiv:2410.24164},\n  year      = {2024},\n}\n```\n\n**注意事项：**\n- `swann2026`、`rizzardo2026`、`molinari2025` 的 title 和 author 列表需要核实，我基于 arXiv ID 填了占位信息——标记为 `[VERIFY]` 级别，发 bib 前请对照 arXiv 页面补全\n- `black2024_pi0` 同理，author list 取自公开信息但可能不完整\n- 已有 bib 中的 `haon2025`、`grant2026` 等直接复用，无需重复添加\n- Introduction 中引用的 `hou2026` 和 `fei2025` 未在 related work 中使用，不影响本文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "244c14694b31a5f7b04e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis permutation test I2",
+  "task_key": "worker_analysis_permutation_test_I2_20260518T150757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_permutation_test_I2_20260518T150757_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "6d93396198b0b98a021e9233e8f7b7f67e9957ea1e027fc3c5f36173819b512e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 精确配对置换 p | MC 非配对 p |\n|------|--------------|------------|\n| **CV** (ctrl 2.74 vs inst 1.30) | **0.0156** | **0.0048** |\n| **I²** (inst 0.87 vs ctrl 0.78) | 0.1562 | 0.1434 |\n\n**CV 差异显著**：instruction heads 在所有 6 个连续 action 维度上一致地产生更低 CV（更均匀的扰动），精确置换 p=0.0156（2^6=64 种排列中仅 1 种 >= 观测值）。7 维（含 gripper）时 p=0.0078 更强。\n\n**I² 差异不显著**：精确置换仅 32 种排列（2^5），最小可能 p=0.0312，分辨率不足以在 α=0.05 下检测 0.086 的 I² 差距。MC 非配对检验同样不显著（p=0.14）。这是统计功效不足（5 个 task），不代表效应不存在。\n\n结果已保存至 `/root/autodl-tmp/vla-ssd/results/permutation_test_I2.json`，registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-permutation-test-i2.md"
+}

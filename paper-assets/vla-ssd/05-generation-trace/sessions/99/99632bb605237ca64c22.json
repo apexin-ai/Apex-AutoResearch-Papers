@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "99632bb605237ca64c22",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "research libero goal feasibility",
+  "task_key": "worker_research_libero-goal-feasibility_20260515T160020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero-goal-feasibility_20260515T160020.log",
+    "occurrence": 1,
+    "bytes": 580505,
+    "sha256": "00b6860407af78f073e9834e5bc331d49dfd84d593a62a381b0bf0e74b64108c"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "99632bb605237ca64c22-part-0001.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "99632bb605237ca64c22-part-0001.json",
+          "message_count": 94
+        },
+        {
+          "path": "99632bb605237ca64c22-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-libero-goal-feasibility.md"
+}

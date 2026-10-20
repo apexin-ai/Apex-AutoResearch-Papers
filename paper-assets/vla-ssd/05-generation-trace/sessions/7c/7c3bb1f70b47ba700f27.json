@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7c3bb1f70b47ba700f27",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260520T124828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260520T124828_result.json",
+    "occurrence": 1,
+    "bytes": 2114228,
+    "sha256": "c2102ca709b26356e78f594d049be8e191a9b2ae964551b2df79a76d23700e43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2114248,
+                "serialized_sha256": "1426873c30c279d3aeb149ff663765f55936c76cf078630fd0a890cbf7cffce9",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

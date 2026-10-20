@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "27c74c677cd2c2d303d8",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "infra openvla download v3",
+  "task_key": "worker_infra_openvla-download-v3_20260515T060130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openvla-download-v3_20260515T060130.log",
+    "occurrence": 1,
+    "bytes": 705091,
+    "sha256": "6e60c5215924af262a08b90a2c47a31081f62fec60fb01937000a6cb88c29667"
+  },
+  "statistics": {
+    "messages": 615,
+    "user_turns": 0,
+    "tool_calls": 166,
+    "roles": {
+      "log": 1,
+      "system": 109,
+      "record": 1,
+      "assistant": 144,
+      "tool_call": 166,
+      "tool_result": 166,
+      "result": 28
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 615,
+      "chunks": [
+        {
+          "path": "27c74c677cd2c2d303d8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "27c74c677cd2c2d303d8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "27c74c677cd2c2d303d8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "27c74c677cd2c2d303d8-part-0004.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-openvla-download-v3.md"
+}

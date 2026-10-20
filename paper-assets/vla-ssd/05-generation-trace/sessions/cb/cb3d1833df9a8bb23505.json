@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb3d1833df9a8bb23505",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 010 data recon",
+  "task_key": "worker_code_plan_010_data_recon_20260516T045444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_data_recon_20260516T045444_result.json",
+    "occurrence": 1,
+    "bytes": 3667,
+    "sha256": "c1cbbd5c49ac2a38d7a2cbff30d0464f9c8da64011184af6f75fdfd3f878c8a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部侦察完成。下面是报告。\n\n---\n\n## LIBERO-Spatial 侦察报告\n\n### 1. 数据状态\n\n**LIBERO-Spatial 数据不存在。** `/root/autodl-tmp/vla-ssd/data/libero/` 下只有：\n- `libero_10/`、`libero_90/`、`libero_goal/`（10 tasks × 50 demos，6.0GB）\n\n需要下载 LIBERO-Spatial 数据到 `/root/autodl-tmp/vla-ssd/data/libero/libero_spatial/`。\n\n下载命令（AutoDL 需先 `source /etc/network_turbo`）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nsource /etc/network_turbo && \\\nHF_HUB_DISABLE_XET=1 \\\nREQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \\\nSSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \\\npython -c \"\nfrom huggingface_hub import snapshot_download\nsnapshot_download(\n    repo_id='libero-project/LIBERO',\n    repo_type='dataset',\n    allow_patterns='libero_spatial/*',\n    local_dir='/root/autodl-tmp/vla-ssd/data/libero/'\n)\n\"\n```\n\n预估大小：~6GB（与 libero_goal 规模相当，10 tasks × 50 demos）。\n\n### 2. Checkpoint 状态\n\n| 类型 | 路径 | 状态 |\n|------|------|------|\n| Trained (OpenVLA-7B) | `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/` | ✓ 存在 (3 shards) |\n| Untrained (LLM reinitialized) | `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/` | ✓ 存在 (4 shards) |\n\n### 3. 脚本状态\n\n**无需新脚本。** `extract_features.py` 已支持 `--data_dir` 参数，可直接指向 LIBERO-Spatial 目录。文件名解析也兼容 Spatial 格式（`LIVING_ROOM_SCENE2_put_the_red_mug_...` → regex 提取 task description）。\n\n参考现有 LIBERO-Goal 特征格式：`(T, 33, 4096)` float16，含 `last_preaction` + `image_mean`，gzip 压缩。\n\n### 4. 运行命令\n\n**Trained extraction (cuda:0):**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/vla-ssd && \\\nCUDA_VISIBLE_DEVICES=0 HDF5_USE_FILE_LOCKING=FALSE python scripts/extract_features.py \\\n  --model_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_spatial/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/features/trained_libero_spatial/ \\\n  --mode trained --gpu 0 --batch_size 4 --max_demos 50\n```\n\n**Untrained extraction (cuda:1):**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/vla-ssd && \\\nCUDA_VISIBLE_DEVICES=1 HDF5_USE_FILE_LOCKING=FALSE python scripts/extract_features.py \\\n  --model_path /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_spatial/ \\\n  --output_dir /root/autodl-tmp/vla-ssd/features/untrained_libero_spatial/ \\\n  --mode trained --gpu 0 --batch_size 4 --max_demos 50\n```\n\n注意 untrained 用 `--mode trained`（使用预保存的 untrained checkpoint，避免每次随机重初始化，保证与 LIBERO-Goal untrained 特征一致）。\n\n### 5. 预估\n\n| 项目 | 估计值 |\n|------|--------|\n| 每个模型 extraction 时间 | ~100-150 min（参考 LIBERO-Goal：10 tasks × 50 demos，RTX PRO 6000 98GB VRAM） |\n| 两个可并行 | 是（双 GPU），总墙钟 ~2-2.5h |\n| 特征输出大小 | ~25GB/模型（参考 trained_libero_goal） |\n\n### 6. 磁盘风险\n\n**数据盘剩余 54GB，预计需要 ~56GB**（数据 6GB + trained features 25GB + untrained features 25GB）。非常紧张。建议：\n- 先清理不需要的特征目录（如 `trained_libero_goal_no_inst`、`trained_libero_goal_shuffled` 等实验性目录）\n- 或串行 extraction（先跑 trained，分析后再决定是否跑 untrained）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-data-recon.md"
+}

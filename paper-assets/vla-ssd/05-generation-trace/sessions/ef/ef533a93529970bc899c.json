@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef533a93529970bc899c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix bootstrap add long suite",
+  "task_key": "worker_fix_bootstrap_add_long_suite_20260522T151040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_add_long_suite_20260522T151040_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "9ca4e79491a2aa08d549e44d6107ec73985895db066ef8ea636e215607680d00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**脚本修改完成：**\n- `--suite` choices 已添加 `\"long\"`（L356）\n- CKPT 映射已添加 openvla long（L27）和 tracvla long（L37）\n- Wrapper 脚本已创建：`run_bootstrap_long_cuda0.sh`（OpenVLA）、`run_bootstrap_long_cuda1.sh`（TracVLA）\n\n**Dry-run 结果 — 两项缺失阻塞 long suite 运行：**\n\n| 缺失项 | 预期路径 |\n|--------|---------|\n| Long 数据集 | `/root/autodl-tmp/vla-ssd/data/libero/libero_long/` |\n| OpenVLA Long checkpoint | `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-long` |\n\nTracVLA long 的 checkpoint 没问题（用通用的 `tracevla-phi3v`）。\n\n**当前 batch 进度：**\n- **cuda0**: 仍在运行（bootstrap 10000 iterations 阶段）\n- **cuda1**: 已完成，但 `tracvla_object_untrained` 失败 — `DynamicCache.from_legacy_cache` AttributeError（transformers 版本兼容性问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-add-long-suite.md"
+}

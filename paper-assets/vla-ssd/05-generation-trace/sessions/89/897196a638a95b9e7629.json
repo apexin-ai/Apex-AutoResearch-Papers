@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "897196a638a95b9e7629",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp init and extract untrained",
+  "task_key": "worker_exp_init-and-extract-untrained_20260515T100244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_init-and-extract-untrained_20260515T100244_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "84d1c59bea44237a0b833d3ac3f3baefc69b5dc5f7bf33c182fc572482cfdfbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **init_untrained.py** — 成功。LLM backbone（6.74B）随机重初始化，Vision+Proj（0.80B）保留。保存到 `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-untrained/`（14.1GB，4 shards）。\n2. **untrained 特征提取** — 已提交到 cuda:1，tmux session `openvla-untrained-extract`，日志 `~/runs/vla-ssd/openvla-untrained-extract.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-init-and-extract-untrained.md"
+}

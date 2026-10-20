@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee76537ab67245be943",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research writing plan",
+  "task_key": "worker_research_writing_plan_20260516T002929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_writing_plan_20260516T002929_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "ff94439fc7047fe9a2ddddfa2da587b72fe64b10e682aed89ac037207b74e040"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`writing_plan.yaml` 已写入，包含：\n\n- **7 个 section** 的要点、字数预算和 claim 映射\n- **6 张图**：pipeline 概念图、RSA 对比、per-layer 曲线、geometric-functional dissociation、2×2 heatmap、readout concentration 对比，每张标注数据来源 exp_id 和尺寸\n- **2 张表**：主数值汇总 + bootstrap 统计检验\n- **5 项 supplementary**：CKA dissociation、聚合 robustness、action-delta、random instruction、per-layer probe\n- **写作顺序**：Method → Results → Discussion → Introduction → Related Work → Abstract → Conclusion\n- **17 篇必引文献**，分 foundational / directly related / language gap / broader context 四组\n- **8 个 reviewer 风险点**及对应防御策略和落位 section\n- **时间线**：5/17 Method+Results 初稿，5/19 全文初稿，5/26 abstract，5/29 paper"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-writing-plan.md"
+}

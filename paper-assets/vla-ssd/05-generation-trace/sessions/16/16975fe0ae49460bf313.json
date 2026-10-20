@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16975fe0ae49460bf313",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action probe baselines",
+  "task_key": "worker_code_action-probe-baselines_20260515T141645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action-probe-baselines_20260515T141645_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "5133c84ec02c24ce0a2b44ed976caa151c90161783a55c1c4b23405c805dcd7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果：\n\n### Action Prediction Baselines\n\n| Metric | Copy Baseline | Random-Frame Baseline |\n|---|---|---|\n| **Global Overall R²** | **0.9751** | **-0.9100** |\n| **Per-Task Mean R²** | **0.9720** | **-0.9771** |\n\n**Per-dim R² (Copy baseline):**\n\n| dx | dy | dz | drx | dry | drz | grip |\n|---|---|---|---|---|---|---|\n| 0.979 | 0.988 | 0.982 | 0.971 | 0.966 | 0.991 | 0.949 |\n\n**关键结论：**\n\n1. **Copy baseline R² = 0.975** — 极高，证实 Director 的担忧：LIBERO 轨迹 action 自相关非常强，相邻帧 action 几乎相同。这意味着 **action prediction probe 的 R² 必须显著超过 0.975 才能说明 hidden state 编码了超越简单时序自相关的信息**。\n2. **Random-frame baseline R² ≈ -0.9** — 如预期，随机帧毫无预测力（负 R² 说明比 predict-mean 还差）。\n3. 所有 10 个 task 的 copy baseline R² 都在 0.96–0.98 之间，非常一致。\n\n结果已保存到 `/root/autodl-tmp/vla-ssd/results/action_baselines.json`，脚本在 `/root/vla-ssd/action_baselines.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-probe-baselines.md"
+}

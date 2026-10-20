@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c21c4d128d3d0e9f65f3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh kill conflict process",
+  "task_key": "worker_ssh_kill-conflict-process_20260515T205622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-conflict-process_20260515T205622_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "740944b65416e5044930036f27aa245ef8e9926561f58335c824763cc2537732"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 659993**（冲突进程）：已不存在，无需 kill\n- **PID 658056**（主进程）：正常运行中，已 28 分钟，GPU 1 占用 16361 MiB，利用率 10%\n- **GPU 0**：空闲（3 MiB，0%），确认冲突进程已消失\n- **输出文件**：已完成 2 个任务，文件大小正常（~2.9GB、~2.9GB），无异常小文件\n  - `open_the_middle_drawer_of_the_cabinet.h5` — 2.9 GB\n  - `open_the_top_drawer_and_put_the_bowl_inside.h5` — 2.9 GB\n\n主进程正在正常提取第 3 个任务的特征，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-conflict-process.md"
+}

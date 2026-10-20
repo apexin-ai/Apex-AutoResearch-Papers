@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc6da902bf6f3663279",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing introduction d097",
+  "task_key": "worker_paper_writing_introduction_d097_20260522T052631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_d097_20260522T052631_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "29fb77efc7abfdaca4078184e327a6aea06e03e6bba9cac4a6d9b893f7edc6c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 重写完成。文件已写入 `introduction.tex`。\n\n验证通过：无 em-dash、无禁用词、无旧 section labels、无 -ing 短语结尾。\n\n结构：Hook+Gap（2段） → 方法概述（1段） → Teaser figure → 三个 Findings（R² exit collapse / CF sensitivity / L1 inherited priors） → 三条 Contributions。所有 section 引用使用新 labels（`sec:r2_collapse`, `sec:cf_sensitivity`, `sec:l1_priors`, `sec:setup`, `sec:method`, `sec:openvla_routing`）。D097 约束全部遵守：无 \"architecture-independent\"、无 CF amplification ratio、无无统计支持的 \"significantly\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-d097.md"
+}

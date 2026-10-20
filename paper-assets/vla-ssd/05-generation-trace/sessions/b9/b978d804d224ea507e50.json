@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b978d804d224ea507e50",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh verify startup dual",
+  "task_key": "worker_ssh_verify_startup_dual_20260521T211204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_startup_dual_20260521T211204_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "ee69a3d7fdb3221c85d453447f26cacca29c4a4588ca31967a5541ef2e817f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均启动成功：\n\n| 实验 | PID | GPU | 显存 | 运行时间 | 状态 |\n|------|-----|-----|------|----------|------|\n| openvla_long_cf_trained | 579760 | cuda:0 | 15313 MiB, 85% util | 2m54s | Phase 6 counterfactual, 600/5000 |\n| openvla_long_untrained_v1 | 580167 | cuda:1 | 15593 MiB, 72% util | 0m44s | Phase 1 representation extraction, Task 1/10, 600/5000 |\n\n- PID 存活 ✓\n- GPU 占用正常 ✓\n- 日志正常输出，无 error/traceback ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-startup-dual.md"
+}

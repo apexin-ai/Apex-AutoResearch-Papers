@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dede223a98ab03431f9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action prediction probe prep",
+  "task_key": "worker_code_action-prediction-probe-prep_20260515T140041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action-prediction-probe-prep_20260515T140041_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "c43fdb6b8c9afcb2c180837446ba065fa7808022f333441ec1e2b1c79baf1899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已写入 `artifacts/action_probe_design.md`。\n\n**调研结果摘要**：\n\n- Actions 是连续 7-dim float64：dims 0-2 position delta, dims 3-5 orientation delta, dim 6 gripper binary {-1, 1}\n- Feature T 与 action T 完全对齐，50 demos/task，10 tasks\n- Feature HDF5 不含 action，需从 LIBERO 原始 hdf5 加载，文件名映射 `{TASK}.h5` → `{TASK}_demo.hdf5`\n- DINO 用 `traj_X` key vs VLA 用 `demo_X`，index 一一对应\n\n**设计要点**：\n\n- 预测 a_{t+1}（next action），比 a_t 更需要策略理解\n- MLP regression probe (in→256→7)，MSE loss on per-dim standardized actions\n- 核心指标：per-task mean R² 的 Δ(trained − untrained)\n- 代码改动 ~170 行新增 + ~20 行修改，大量复用现有基础设施\n- 三组对比运行（trained/untrained/dinov2），每组 ~5-10 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-prediction-probe-prep.md"
+}

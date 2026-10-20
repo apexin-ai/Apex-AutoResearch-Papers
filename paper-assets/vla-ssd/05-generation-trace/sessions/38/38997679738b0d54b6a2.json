@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38997679738b0d54b6a2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh urgent gpu diagnosis",
+  "task_key": "worker_ssh_urgent_gpu_diagnosis_20260522T045933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_gpu_diagnosis_20260522T045933_result.json",
+    "occurrence": 1,
+    "bytes": 2651,
+    "sha256": "72a4551739e6b2e30d7b17e822f9a7d5f891cfd63b71b255e2859ba9f6f40751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全面诊断完成，汇总如下：\n\n---\n\n## 1. nvidia-smi 完整状态\n\n| GPU | 型号 | 显存 | 占用 | 利用率 | 温度 |\n|-----|------|------|------|--------|------|\n| 0 | NVIDIA RTX PRO 6000 Blackwell | 97887 MiB | **0 MiB** | 0% | 30°C |\n| 1 | NVIDIA RTX PRO 6000 Blackwell | 97887 MiB | **0 MiB** | 0% | 30°C |\n\n**两张 GPU 完全空闲，无任何 GPU 进程。**\n\n---\n\n## 2. openvla_spatial pipeline 状态\n\n**存活：是** — PID 594575 及其子进程链仍在运行（`run_spatial_pipeline.sh` → sleep 30 循环等待）。\n\n**当前卡在：等待 checkpoint 下载完成。** pipeline 脚本在等两个条件满足：\n- `model-00004-of-00004.safetensors` ✅ 已存在（263MB）\n- `modeling_prismatic.py` ❌ **不存在**\n\n**checkpoint 下载状态：**\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| model-00002-of-00004.safetensors | 4.9GB | ✅ 完成 |\n| model-00003-of-00004.safetensors | 4.9GB | ✅ 完成 |\n| model-00004-of-00004.safetensors | 263MB | ✅ 完成 |\n| **model-00001-of-00004.safetensors** | **3.5GB / ~4.9GB** | ⏳ **下载中**（.incomplete 文件） |\n| **modeling_prismatic.py** | — | ❌ **未下载** |\n\n下载进程 PID 594477 (`python /tmp/dl_spatial.py`) 运行中，从 09:36 开始，已跑 ~3.5 小时。当前 model-00001 下载了 3.5GB，速度极慢（~200-300 KB/s，典型 AutoDL HF 代理限速）。\n\n**预计还需**：model-00001 剩余 ~1.4GB + modeling_prismatic.py（小文件），按当前速度还需 ~1-2 小时。\n\n---\n\n## 3. cuda:1 状态\n\n完全空闲，0 MiB 占用，0% 利用率。无进程占用。\n\n---\n\n## 4. 所有活跃进程\n\n| 进程 | PID | 状态 | 说明 |\n|------|-----|------|------|\n| `python /tmp/dl_spatial.py` | 594477 | 运行中 | HF snapshot_download 下载 spatial checkpoint |\n| `run_spatial_pipeline.sh` | 594580 | 运行中 | 每 30s 轮询等待 checkpoint 完成 |\n| openvla_spatial tmux wrapper | 594575 | 运行中 | tmux session 主进程 |\n| openvla_long_cf_trained | — | **已完成** | EXIT_CODE=0，耗时 90min，昨天 22:39 结束 |\n| http.server :8765 | 759476 | 运行中 | attention results 文件服务 |\n| tensorboard :6007 | 820 | 运行中 | — |\n\n---\n\n## 核心问题\n\n**下载太慢**。AutoDL 通过 HF 代理下 openvla-7b（~15GB 总量），速度只有几百 KB/s。pipeline 脚本在死循环等 `model-00001` 和 `modeling_prismatic.py` 出现。\n\n**可选加速方案**：用 ModelScope 替代 HF 下载（如果 ModelScope 有这个模型的话），或者检查是否已 `source /etc/network_turbo`。需要处理吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-diagnosis.md"
+}

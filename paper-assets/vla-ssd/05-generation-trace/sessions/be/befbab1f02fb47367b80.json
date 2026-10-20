@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "befbab1f02fb47367b80",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation p2 demo sensitivity",
+  "task_key": "worker_code_ablation_p2_demo_sensitivity_20260517T200208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p2_demo_sensitivity_20260517T200208_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "b2171617e697a3b4d0298ded97dc54f7f86069f0af2597f87b483aa849be4a44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已存在，结果已重新格式化并保存到指定路径。\n\n```\n=== 25-demo Subsample Results (image_mean, trained) ===\nRSA: peak at L12 (ρ=0.6059), 50-demo peak at L12 (ρ=0.6282)\nR²:  peak at L11 (R²=0.6088), 50-demo peak at L9 (R²=0.6587)\nPer-layer comparison: max |Δρ| = 0.0266 at L32, max |ΔR²| = 0.0848 at L30\nProfile correlation: RSA r=0.9696, R² r=0.8189\nPattern stability: inverted-U preserved (both RSA and R²)\n```\n\n关键发现：\n- **RSA peak 完全一致**：50-demo 和 25-demo 均在 L12，ρ 从 0.6282 降至 0.6059（Δ=-0.022），profile correlation r=0.97\n- **Probe peak 微移**：L9→L11，R² 整体下降约 0.05-0.08（数据量减半预期之内），profile correlation r=0.82\n- **Inverted-U pattern 在两项指标中均保持稳定**\n- RSA 尾部层（L29-L32）25-demo 反而略高于 50-demo，可能是 subsample 方差\n- 结果已保存到 `/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-p2-demo-sensitivity.md"
+}

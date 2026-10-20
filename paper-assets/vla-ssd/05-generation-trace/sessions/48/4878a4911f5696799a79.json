@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4878a4911f5696799a79",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code d003 d004 code alignment",
+  "task_key": "worker_code_d003-d004-code-alignment_20260515T130140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d003-d004-code-alignment_20260515T130140_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "5925731ab392a96db4002e9f078fedf144f3d6433bb2330d7d00078ea5a02197"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改已验证：\n\n**train_probes.py**:\n- L606-607: `save_results` 中 best_layer 严格用 `results[k][\"per_task_mean_rho\"]` 选择（去掉了 pooled fallback），加 D002 注释\n- pooled ρ 仍计算并存为 `best_pooled_rho`\n\n**analyze_results.py**:\n- L121: 新增 `DINO_GATE_THRESHOLD = 0.554` 常量 (D004)\n- L362-363: `delta_pass` 加入 `p_value_perm < 0.05` 条件 (D003)\n- L376: 第三准则改为固定阈值 `vla_mean_rho >= 0.554` (D004)，不再动态比较 VLA vs DINO\n- L397-403: 判定逻辑重写 — FAIL: rho_pass 或 delta_pass 不满足; PASS: 两者满足且 VLA ≥ 0.554; CONDITIONAL: 两者满足但 VLA < 0.554 (D003)\n- L406-409: 效果量评估 — PASS 后若 VLA-DINO Δρ < 0.05 标记 `contribution_warning` (D004)\n- 旧的 `subtask_auc_pass`/`third_criterion`/`vla_ge_dinov2` 键已移除（grep 返回空），subtask AUC 仅作为补充记录\n\n**analyze_mvp_DEPRECATED.py**: 已有 DEPRECATED 标记和 `raise SystemExit`，无需改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d003-d004-code-alignment.md"
+}

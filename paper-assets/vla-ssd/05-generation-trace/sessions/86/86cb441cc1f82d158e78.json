@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86cb441cc1f82d158e78",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra download libero dino",
+  "task_key": "worker_infra_download-libero-dino_20260515T052657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-libero-dino_20260515T052657_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "26b17606659a13bc1526941e43476a714caeac198f5b5211068d1b0ad5075aa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出报告\n\n### 1. LIBERO 下载状态\n- **数据源**: `yifengzhu-hf/LIBERO-datasets` (HuggingFace)\n- **完成**: 3/10 HDF5 文件（~2.1GB）\n- **下载中**: 7 个文件正在后台下载（PID 6224 存活）\n- **总大小**: 当前 7.8GB（含 libero_90 的 7 个文件和缓存）\n- **预计**: 剩余 7 个文件按当前速度约 10-15 分钟完成\n- **路径**: `/root/autodl-tmp/vla-ssd/data/libero/libero_10/`\n\n### 2. DINO-V2 下载状态\n- **验证通过**: 304.4M 参数，1.2GB\n- **路径**: `/root/autodl-tmp/vla-ssd/checkpoints/dinov2-large/`\n\n### 3. 符号链接状态\n- `data` → `/root/autodl-tmp/vla-ssd/data` ✓\n- `checkpoints` → `/root/autodl-tmp/vla-ssd/checkpoints` ✓\n- `features` → `/root/autodl-tmp/vla-ssd/features` ✓\n\n### 4. 磁盘空间\n- 数据盘 250GB，已用 12GB，剩余 239GB（充足）\n\n> LIBERO 下载仍在后台进行（PID 6224），可稍后用 `tail -5 /tmp/download_libero3.log` 和 `find /root/autodl-tmp/vla-ssd/data/libero/libero_10/ -name \"*.hdf5\" | wc -l` 检查是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-libero-dino.md"
+}

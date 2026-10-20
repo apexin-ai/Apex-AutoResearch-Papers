@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "766ae172c29ec0d6d6ef",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis counterfactual 10tasks trajectory",
+  "task_key": "worker_analysis_counterfactual_10tasks_trajectory_20260520T203534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_counterfactual_10tasks_trajectory_20260520T203534.log",
+    "occurrence": 1,
+    "bytes": 1060145,
+    "sha256": "129bc6513e58f21a9214eace4f17d0483f5dfaa5d8eaf30853faed57b1978bcb"
+  },
+  "statistics": {
+    "messages": 485,
+    "user_turns": 1,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 121,
+      "tool_call": 178,
+      "tool_result": 178,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 457,
+      "chunks": [
+        {
+          "path": "766ae172c29ec0d6d6ef-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "766ae172c29ec0d6d6ef-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "766ae172c29ec0d6d6ef-part-0003.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "766ae172c29ec0d6d6ef-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-counterfactual-10tasks-trajectory.md"
+}

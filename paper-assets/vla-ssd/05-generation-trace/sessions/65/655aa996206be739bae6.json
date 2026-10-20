@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "655aa996206be739bae6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis controlb results",
+  "task_key": "worker_analysis_controlb_results_20260515T141047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_controlb_results_20260515T141047_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "292e90abea5c5e0bb6df3c0f2c0b41e794ed233841202c7172cf7627e5fdf253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## Control B 结果汇总\n\n| 条件 | 正常 ρ | Shuffled ρ (均值) | Shuffled ρ (最佳层) | 判定 |\n|------|--------|-------------------|---------------------|------|\n| OpenVLA trained | **0.955** | 0.0012 | 0.0123 (L8) | PASS |\n| OpenVLA untrained | **0.933** | 0.0003 | 0.0085 (L1) | PASS |\n| DINOv2 baseline | — | 0.039 | — | ref |\n\n**Null control 通过。** 两个实验 shuffled ρ 均 < 0.013，远低于 0.1 阈值，与正常实验的 ρ ≈ 0.95 相差 >100 倍。Probe 不是过拟合——正常实验的高 ρ 反映的是 OpenVLA features 中真实的 temporal-distance 信号。\n\n报告已保存至 `artifacts/controlb_analysis/controlb_analysis.md`，两个实验 registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-controlb-results.md"
+}

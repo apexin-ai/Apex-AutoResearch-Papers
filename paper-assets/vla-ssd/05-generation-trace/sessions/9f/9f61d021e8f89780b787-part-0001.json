@@ -1,0 +1,3539 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9f61d021e8f89780b787",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:49:14.199489+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Research Reviewer，这是 Loop #12。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-19183 cuda:0, cuda:1（仅此两张）\n- C001 约束: Goal classification 实验必须 trained + untrained 对照齐全后才写 conclusion，单臂数据禁止下结论\n- CF 数据必须全部使用标准化管线（`openvla_*_standardized_v1` / `tracvla_*/trained/` / `nora_*/trained/`），禁止混用旧 `counterfactual_10tasks` / `counterfactual_spatial` 数据\n- 论文 R² 数值统一使用 bootstrap v3 MCCV 值（非 standardized pipeline 原始 probe 值），两者差异可达 3-5x\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-19183，代码根目录 /root/vla-ssd，数据/结果 /root/autodl-tmp/vla-ssd/\n- Python: /root/miniconda3/bin/python（conda base 环境）\n- 本地 workspace: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/\n- 论文 tex: `docs/paper/*.tex`，产出: `artifacts/`\n- Bootstrap v3 结果: /root/autodl-tmp/vla-ssd/results/bootstrap_v3/（20 JSON，10 arch-suite × 2 conditions）\n- CF 标准化结果: /root/autodl-tmp/vla-ssd/results/{libero_goal,libero_spatial,libero_object,libero_long,tracvla_*,nora_*}/counterfactual_combined.json\n- 活跃进程: 无（GPU 空闲）\n- 活跃 cron: 无\n\n### 3. 📊 当前状态\n刚完成一轮完整的数据一致性审查：\n- **d=1.97 幻影数值**: 已修复为 d=1.52（5 处 tex 文件）✓\n- **OpenVLA Goal CF 统一到标准化管线**: Table 2/3/appendix 全部更新 ✓\n- **Appendix Spatial d 列更新**: ✓，但 **CV 列仍为旧管线值**（WARNING 已提交，Empty 0.185→0.087, Wrong 0.093→0.272）\n- **R² Table 1**: 全部 14 个 delta 和 10 个正常 CI 与 bootstrap v3 原始 JSON 完全吻合 ✓\n- **CF 排序变化**: Goal wrong>empty (Δ=0.012, p≈0.74) 在噪声范围内，\"6/8 empty first\" 表述已足够 ✓\n- **ROADMAP 数值修正**: 0/3→0/4, Δ range 更新为 MCCV 值 ✓\n\nRegistry: 无 RUNNING/PREPARING 实验。152 total, 105 success。\n等待: Worker 修复 Appendix Spatial CV 列 + fig2 R² profile 重画完成。\n\n### 4. 📋 待办\n- Appendix Spatial CV 修复 worker 完成 → 确认 CV 列更新为 [0.087, 0.272, 0.162, 0.179]，caption \"All d > 0.8\" 改为 \"All global d > 0.8\"\n- 论文编译 + 新图整合完成 → 做 paper-visual-review（pdf_to_images 检查排版/图表/字体）\n- Director 提交 fresh review 请求 → 按审查模式 B 做全文对抗审查（先 Read paper-quality-lessons.skill.md）\n- checkpoint 完整性确认: `openvla_goal_standardized_v1` config 中 `\"model\": \"openvla-7b-finetuned-libero-object\"` 是否为 stale metadata（任务列表确认是 Goal 任务，但 config field 存疑）→ Agent 应确认实际加载的 checkpoint\n\n### 5. 🎯 战略上下文\n- **论文核心**: VLA fine-tuning 的 instruction routing 分解为 training-associated（R² exit collapse, CF sensitivity）和 inherited（L1 attention）两类，跨 3 架构验证\n- **决策链**: D095（跨架构升级）→ D096（claim 降级 VLM→VLA）→ D100（NLP control）→ D102（effect size threshold）\n- **DDL**: Abstract 5/26, Paper 5/29\n- **易错点**:\n  1. R² 数值有两套: standardized pipeline（原始 probe, 高值）vs MCCV bootstrap v3（demo-level splits, 低值）。论文 Table 1 用 MCCV，别混\n  2. 两个 bootstrap CI 异常已正确用脚注披露: NORA Goal trained（CI=[0.91,1.61] 不含 delta 0.455）和 TracVLA Spatial untrained（CI=[-0.61,-0.46] 方向反转）\n  3. CF metric 不可跨条件比较: trained 用 Cohen's d (action MSE), untrained VLM 用 cosine distance，不同 scale\n  4. OpenVLA 的 reference 是 OXE-pretrained VLA（不是纯 VLM），这是 VLA→VLA vs VLM→VLA 区分的核心\n\n## 项目硬约束 (memory.md 节选)\n\n## 服务器信息\n\n- westd-19183: 2× RTX PRO 6000\n- Bootstrap v3 输出: `/root/autodl-tmp/vla-ssd/results/bootstrap_v3/`\n- JSON 文件名: `{trained,untrained}.json`\n\n## 可查的历史\n前 10 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:49:25.740635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:49:25.741027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:49:29.281990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:49:29.633532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:49:29.784519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4742}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:49:30.236530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"bootstrap_v3_cuda1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-23T06:44:43.352Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:44:43.353Z\\\"}, \\\"bootstrap_v3_cuda0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-23T06:44:41.488Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:44:41.488Z\\\"}, \\\"behavioral_smoketest_diag\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T05:05:18.989Z\\\", \\\"updated_at\\\": \\\"2026-05-21T23:25:45.876Z\\\", \\\"parent\\\": \\\"behavioral_smoketest\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion.\\\"}, \\\"behavioral_pilot_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T11:40:18.951Z\\\", \\\"updated_at\\\": \\\"2026-05-21T23:25:45.108Z\\\", \\\"hypothesis\\\": \\\"Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Director 确认放弃 behavioral rollout（mujoco 版本不匹配）。Phase 1 SR=0/3，fine-tuned checkpoint 加载成功但 action[0] 锁定在 0.236，Blackwell GPU 需要 device_map 绕过 segfault，可能影响 inference。不再投入。\\\"}, \\\"behavioral_pilot\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T09:25:24.217Z\\\", \\\"updated_at\\\": \\\"2026-05-21T23:25:44.194Z\\\", \\\"hypothesis\\\": \\\"Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.\\\", \\\"parent\\\": \\\"ablation_50demos_main\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tracvla_spatial_trained\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T02:11:21.748Z\\\", \\\"updated_at\\\": \\\"2026-05-21T02:11:21.748Z\\\"}, \\\"libero_finetuned_probe\\\": {\\\"status\\\": \\\"PREPARING\\\",\n…[truncated 1035 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 602
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:49:55.605065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:49:55.655729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:49:59.628894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:50:01.287614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 0 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1658
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:50:01.288117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/docs/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:50:01.388906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_example.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:50:10.275712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Spatial.*CV|CV.*Spatial|appendix.*spatial|0\\.185|0\\.087|0\\.272|0\\.093",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:50:10.777631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "435:Empty (no instruction) & 0.000 & 1.173 & 0.087 \\\\\n436:Wrong (different task) & 0.174 & 0.885 & 0.272 \\\\\n510:A 15-seed replication confirms stability: trained peak remains at L9 ($R^2 = 0.637 \\pm 0.004$), with all trained/Llama-2-base layers showing CI width ${<}0.02$; the randomly initialized condition exhibits higher variance (std $0.185$ at peak), consistent with random initialization instability.\n1052:L7  & $0.459 \\pm 0.093$ & $0.632 \\pm 0.012$ & $0.569 \\pm 0.023$ & $0.616 \\pm 0.014$ \\\\\n1077:L32 & $0.584 \\pm 0.011$ & $0.535 \\pm 0.015$ & $0.410 \\pm 0.185$ & $0.550 \\pm 0.007$ \\\\\n1133:Tier~1 (VLM bases, no action training): inherited L1 attention (TracVLA 32/32, NORA 13--14/16), negligible exit collapse ($\\Delta R^2 \\leq 0.048$), and minimal counterfactual sensitivity (cosine distance $\\leq 0.185$)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 501
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:50:10.978601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Spatial|spatial",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:50:11.029267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11:Cross-suite experiments (\\S\\ref{sec:cross_benchmark_appendix}) use LIBERO-Spatial with the same protocol (10 tasks $\\times$ 50 demonstrations).\n28:TracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\n74:The effect replicates across LIBERO-Spatial (10 tasks): empty $1.173$, shuffled $0.979$, wrong $0.885$, paraphrased $0.807$ (Table~\\ref{tab:counterfactual_spatial}).\n76:Spatial instructions differ only in prepositions, yet wrong-task perturbation still produces $d = 0.885$; instruction-dominant heads route fine-grained spatial information, not merely task identity.\n102:OpenVLA & Spatial & E\\,1.17 & S\\,0.98 & W\\,0.89 & P\\,0.81 \\\\\n107:TracVLA & Spatial & E\\,1.33 & S\\,1.30 & P\\,1.18 & W\\,1.17 \\\\\n122:NORA Spatial produces a peak cosine distance of $0.275$ for the ``wrong'' condition.\n397:\\subsection{Cross-Suite Validation within LIBERO: Spatial}\n400:To assess generalization beyond in-distribution tasks, we repeat the core RSA and probe analyses on LIBERO-Spatial (10 out-of-distribution tasks $\\times$ 50 demonstrations each, requiring spatial reasoning).\n401:Figure~\\ref{fig:cross_benchmark} shows per-layer RSA and $R^2$ profiles for both LIBERO-Goal and LIBERO-Spatial side by side.\n403:The inverted-U profile replicates on LIBERO-Spatial: trained image\\_mean RSA peaks at L14 ($\\rho = 0.691$) and $R^2$ at L13 ($0.696$), with peaks shifting ${\\sim}2$ layers deeper than LIBERO-Goal (RSA L12, $R^2$ L8--L10), consistent with increased task difficulty requiring deeper processing.\n407:First, the absolute RSA values are higher on Spatial ($0.691$ vs.\\ $0.628$), possibly reflecting greater action diversity in spatial tasks that produces a more discriminative action RDM.\n414:\\caption{Cross-suite validation: per-layer RSA and $R^2$ profiles on LIBERO-Goal (left) vs.\\ LIBERO-Spatial (right). The inverted-U replicates across suites. LIBERO-Spatial shows a significant training effect (RSA best-vs-best $\\Delta = +0.023$, $p < 0.001$) and deeper peak laye\n…[truncated 1664 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:50:31.580127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "419",
+              "limit": "30"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:50:31.630726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "419\t\\label{sec:spatial_counterfactual}\n420\t\n421\tTable~\\ref{tab:counterfactual_spatial} reports counterfactual instruction analysis on LIBERO-Spatial (10 tasks).\n422\tThe ordering differs from LIBERO-Goal: empty $>$ shuffled $>$ wrong $>$ paraphrased (vs.\\ wrong $>$ empty $>$ shuffled $>$ paraphrased on Goal).\n423\tAll global effect sizes exceed $d = 0.8$ (per-task wrong minimum is $0.591$).\n424\tSpatial instructions differ only in prepositions (e.g., ``on the plate'' vs.\\ ``in the drawer''); the wrong-task $d = 0.885$ suggests that instruction-dominant heads encode fine-grained spatial relations, not merely task identity.\n425\t\n426\t\\begin{table}[h]\n427\t\\centering\n428\t\\caption{Counterfactual instruction analysis on LIBERO-Spatial (10 tasks). Ordering: empty $>$ shuffled $>$ wrong $>$ paraphrased, differing from Goal. All global $d > 0.8$.}\n429\t\\label{tab:counterfactual_spatial}\n430\t\\small\n431\t\\begin{tabular}{lccc}\n432\t\\toprule\n433\tCondition & Jaccard & Cohen's $d$ & CV \\\\\n434\t\\midrule\n435\tEmpty (no instruction) & 0.000 & 1.173 & 0.087 \\\\\n436\tWrong (different task) & 0.174 & 0.885 & 0.272 \\\\\n437\tShuffled (random order) & 1.000 & 0.979 & 0.162 \\\\\n438\tParaphrased & 0.533 & 0.807 & 0.179 \\\\\n439\t\\bottomrule\n440\t\\end{tabular}\n441\t\\end{table}\n442\t\n443\t\\subsubsection{Cross-Instruction Probe on LIBERO-Spatial}\n444\t\\label{sec:spatial_cross_instruction}\n445\t\n446\tTable~\\ref{tab:spatial_cross_instruction} reports cross-instruction 10-way classification accuracy on LIBERO-Spatial.\n447\tThe core pattern from LIBERO-Goal replicates: image\\_mean remains at chance (${\\sim}10\\%$) across all layers and conditions, while the trained readout token saturates to $100\\%$ by L4.\n448\tThe reference readout decays more steeply than on LIBERO-Goal ($75.4\\%$ at L31 vs.\\ $82\\%$), consistent with greater task difficulty."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:50:44.270119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/autodl-tmp/vla-ssd/results/libero_spatial/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:50:44.923169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_long\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-object\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\",\\\\n      \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"wrong\\\\\\\": {\\\\n    \\\\\\\"global_metrics\\\\\\\": {\\\\n      \\\\\\\"paired_mse\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.064334,\\\\n        \\\\\\\"std\\\\\\\": 0.072693,\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.8849\\\\n      },\\\\n      \\\\\\\"per_dim_shift\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": [\\\\n          0.062546,\\\\n          0.08748,\\\\n          0.160448,\\\\n          0.019787,\\\\n          0.03698,\\\\n          0.028073,\\\\n          0.347027\\\\n        ],\\\\n        \\\\\\\"stds\\\\\\\": [\\\\n          0.113851,\\\\n          0.114462,\\\\n          0.185842,\\\\n          0.026243,\\\\n          0.047985,\\\n…[truncated 7643 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:50:44.923611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -lt /root/vla-ssd/docs/paper/figures/ --time-style=long-iso"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:50:45.375366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/vla-ssd/docs/paper/figures/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:51:14.803110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/vla-ssd/results/libero_spatial/counterfactual_combined.json')); [print(c, d[c]['cross_task_variance']['cohens_d']['cv']) for c in ['empty','wrong','shuffled','paraphrased']]\""
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:51:14.803590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:51:24.187495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/vla-ssd/results/libero_spatial/counterfactual_combined.json'))\nfor c in ['empty','wrong','shuffled','paraphrased']:\n    print(c, d[c]['cross_task_variance']['cohens_d']['cv'])\n\""
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:51:24.288236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:51:28.719041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -o '\"cv\": [0-9.]*' /root/autodl-tmp/vla-ssd/results/libero_spatial/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:51:29.172481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"cv\\\\\\\": 0.2721\\\\n\\\\\\\"cv\\\\\\\": 0.0869\\\\n\\\\\\\"cv\\\\\\\": 0.1616\\\\n\\\\\\\"cv\\\\\\\": 0.1788\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:51:45.971730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**fig*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:51:46.523769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig2_cross_instruction_heatmap.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_rsa_perlayer_curve.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_rsa_perlayer_curve.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_ood_diagnostics.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_cross_architecture_attention.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_cross_architecture_attention.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_cross_architecture_attention.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 552
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T19:51:47.877822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig2|fig_2|r2_profile|exit_collapse",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T19:51:47.928384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fls:296:INPUT ./figures/fig2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fls:297:INPUT ./figures/fig2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fls:298:INPUT ./figures/fig2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fls:299:INPUT ./figures/fig2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fls:300:INPUT ./figures/fig2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.log:672:<figures/fig2.pdf, id=966, 706.60551pt x 308.77583pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.log:673:File: figures/fig2.pdf Graphic file (type pdf)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.log:674:<use figures/fig2.pdf>\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.log:675:Package pdftex.def Info: figures/fig2.pdf  used on input line 169.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.log:701:[16 <./figures/fig2.pdf> <./figures/fig_rsa_perlayer_curve.pdf>]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.fdb_latexmk:139:  \"figures/fig2.pdf\" 1778906622.20544 22396 516d731c8a99fe3793d3331c33629e60 \"\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:169:\\includegraphics[width=\\columnwidth]{figures/fig2.pdf}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T19:52:05.565912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2.pdf 2>/dev/null && stat /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2.pdf 2>/dev/null",
+              "description": "Check fig2.pdf modification time"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T19:52:06.419207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 22396 2026-05-16 04:43 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2.pdf\n  File: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2.pdf\n  size: 22396     \tBlocks: 48         IO Block: 4096   regular file\nDevice: 259,1\tInode: 2261125     Links: 1\nAccess: (0644/-rw-r--r--)  Uid: ( 1000/  ubuntu)   Gid: ( 1000/  ubuntu)\nAccess: 2026-05-23 06:46:02.818273513 +0000\nModify: 2026-05-16 04:43:42.205442828 +0000\nChange: 2026-05-16 04:43:42.205442828 +0000\n Birth: 2026-05-16 01:45:57.199165016 +0000"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T19:52:07.623708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "160",
+              "limit": "20"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T19:52:07.675132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "160\tThe MLP projector then compresses this signal: DinoSigLIP+Projector achieves $\\rho = 0.615$, a drop of $\\Delta = 0.019$ from the fused 2{,}176-D input.\n161\t\n162\t\\subsection{RSA Across Representation Sources}\n163\t\\label{sec:rsa_bar_appendix}\n164\t\n165\tFigure~\\ref{fig:rsa_bar} shows RSA with the action space across all representation sources; the ordering matches the RSA results reported in \\S\\ref{sec:routing_synthesis}.\n166\t\n167\t\\begin{figure}[h]\n168\t\\centering\n169\t\\includegraphics[width=\\columnwidth]{figures/fig2.pdf}\n170\t\\caption{RSA with the action space ($\\rho$) across representation sources. Self-supervised DINOv2 \\texttt{cls\\_token} ($\\rho{=}0.692$) achieves the highest geometric alignment. CLIP ($0.557$) yields the weakest alignment among pretrained encoders. Error bars: 95\\% bootstrap CIs.}\n171\t\\label{fig:rsa_bar}\n172\t\\end{figure}\n173\t\n174\t\\subsection{Per-Layer RSA Profiles}\n175\t\\label{sec:rsa_perlayer_appendix}\n176\t\n177\tFigure~\\ref{fig:rsa_perlayer_curve} extends Figure~\\ref{fig:r2_collapse} (main text) by adding readout and reference profiles.\n178\t\n179\t\\begin{figure}[h]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T19:52:20.570109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/ -name \"*.pdf\" -newer /root/autodl-tmp/vla-ssd/results/bootstrap_v3/ -type f"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T19:52:21.072330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T19:52:21.624348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/vla-ssd/ -name \"*.pdf\" -newer /root/vla-ssd/docs/ -type f"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T19:52:22.377586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/vla-ssd/docs/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T19:52:22.377967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T19:52:22.428355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T19:52:27.408828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T19:52:29.241280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-23 18:48 UTC | 更新原因: Reviewer 修正 MCCV 数值：0/3→0/4, Δ range 更新\\\\n\\\\n> 核心方向详见 paper_framing.md（D095→D102 修正链）\\\\n\\\\n## 核心方向\\\\nVLA 微调如何重组 instruction routing——跨架构 × 跨任务。R² exit collapse 在所有 VLM→VLA 转换一致出现 (6/6, Δ=0.156-0.455)，VLA→VLA 转换无实质性 collapse (0/4, Δ=0.033-0.086)。NLP control 确认 VLA-specificity (Δ=0.000)。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 论文终稿冲刺（DDL: Abstract 5/26, Paper 5/29）\\\\n- **实验**: 152 个实验完成（105 success），全部 plan 实验 done\\\\n- **统计**: Bootstrap v3 MCCV n=1000 完成，20/20 conditions，CI 已集成到论文 Table 2\\\\n- **D102**: Effect size threshold framework (Δ>0.10) 替代 significance testing\\\\n- **写作大改版**: PI 16 点修改意见全部执行完毕 ✅\\\\n- **CF 数据修正**: Table 4 数据源更正为 finetuned model (M019)，d 范围 0.45-1.52\\\\n- **CF 排序变化**: Reviewer 确认 Goal wrong>empty 在统计噪声内 (p≈0.74)，\\\\\\\"6/8\\\\\\\" 表述足够，无需额外讨论\\\\n- **标题**: \\\\\\\"Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis\\\\\\\"\\\\n- **编译**: 0 critical warnings，正文 8 页\\\\n\\\\n## 近期任务\\\\n- [ ] 确认 Appendix Spatial/Goal CV 列是否需要从标准化管线更新（Agent 核查中）\\\\n- [ ] 编译最新 PDF（Agent 执行中）\\\\n- [ ] 提交 fresh review（写作大改版后）\\\\n- [ ] 根据 Reviewer 反馈最终调整\\\\n- [ ] 终稿 + 通知用户\\\\n\\\\n## 已完成里程碑\\\\n- [x] P0 格式+framing 修订（14/14 项）\\\\n- [x] P1 Framing 修订（7/7 项）\\\\n- [x] P2 统计重分析（bootstrap v3 + CI 集成 + multi-threshold）\\\\n- [x] PI 写作大改版（16/16 项 + 质量审查 + CF 数据修正 + Reviewer PASS）\\\\n\\\\n## GPU 预算\\\\nwestd-19183: 2× RTX PRO 6000 — 当前空闲，无实验需求（全部 plan 实验已完成）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D102 | 2026-05-23 | 统计框架从 significance testing 转为 effect size threshol | clustered_bootstrap_reanalysis_v2 |\\\\n| D101 | 2026-05-22 | Round 15 审稿 Weak Reject (4.5/10)：三个系统性问题（统计框架/Over | nlp_finetuning_control_v1, openvla_spatial_standardized_v1 |\\\\n| D100 | 2026-05-22 | NLP control 确认 R² exit collapse 是 VLA-specific（Lla | nlp_finetuning_control_v\n…[truncated 956 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1832
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T19:52:29.793987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ | head -20",
+              "description": "List figure files by modification time"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T19:52:30.246076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 2660\n-rw-r--r-- 1 ubuntu ubuntu 262862 2026-05-23 19:40 fig_r2_collapse.png\n-rw-r--r-- 1 ubuntu ubuntu  33855 2026-05-23 19:40 fig_r2_collapse.pdf\n-rw-r--r-- 1 ubuntu ubuntu  28904 2026-05-23 17:36 fig_claim_evidence.pdf\n-rw-r--r-- 1 ubuntu ubuntu  26788 2026-05-23 17:36 fig_counterfactual_bar.pdf\n-rw-r--r-- 1 ubuntu ubuntu  43680 2026-05-23 17:36 fig_matrix_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  17060 2026-05-22 06:47 fig_cross_arch_l1.pdf\n-rw-r--r-- 1 ubuntu ubuntu 159195 2026-05-21 02:55 fig_teaser.png\n-rw-r--r-- 1 ubuntu ubuntu  39709 2026-05-21 02:55 fig_teaser.pdf\ndrwxr-xr-x 2 ubuntu ubuntu   4096 2026-05-20 13:06 _pdf_images\n-rw-r--r-- 1 ubuntu ubuntu  47769 2026-05-20 05:14 fig_specificity_bootstrap_30seeds.png\n-rw-r--r-- 1 ubuntu ubuntu  16980 2026-05-20 05:14 fig_specificity_bootstrap_30seeds.pdf\n-rw-r--r-- 1 ubuntu ubuntu 323142 2026-05-19 19:04 fig_cross_architecture_attention.png\n-rw-r--r-- 1 ubuntu ubuntu  29211 2026-05-19 19:04 fig_cross_architecture_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu  17295 2026-05-18 16:36 fig_dose_response.pdf\n-rw-r--r-- 1 ubuntu ubuntu  16910 2026-05-18 09:17 fig_action_r2_threecond.pdf\n-rw-r--r-- 1 ubuntu ubuntu  24291 2026-05-18 05:27 fig_ood_diagnostics.pdf\n-rw-r--r-- 1 ubuntu ubuntu  18374 2026-05-18 05:27 fig_linear_vs_mlp_probe.pdf\n-rw-r--r-- 1 ubuntu ubuntu  17698 2026-05-18 05:27 fig_random_subset_ablation.pdf\n-rw-r--r-- 1 ubuntu ubuntu  20658 2026-05-17 20:49 fig_rsa_perlayer_curve.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T19:52:30.349113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/*.tex | head -15",
+              "description": "List tex files by modification time"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T19:52:30.450002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  2228 2026-05-23 19:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu 14252 2026-05-23 19:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu 78033 2026-05-23 19:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  7340 2026-05-23 19:19 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu  1148 2026-05-23 19:19 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu  3564 2026-05-23 18:05 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  1593 2026-05-23 18:00 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu   776 2026-05-23 17:42 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu  3418 2026-05-23 17:20 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu  7653 2026-02-09 23:06 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_example.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T19:52:58.203115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\begin\\{table|Table.*R.*2|Table.*action|\\\\\\\\caption.*R.*2|\\\\\\\\caption.*exit|Delta|delta",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "40"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T19:52:58.561002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "21:\\caption{\\textbf{Cross-architecture evaluation matrix.} Rows denote VLA architectures and columns denote LIBERO task suites. Each cell reports the peak-to-exit action-probe drop, $\\Delta R^2$. OpenVLA compares LIBERO-finetuned checkpoints against an OXE-pretrained action-capable VLA reference, yielding a VLA-to-VLA transition. TracVLA and NORA compare VLA-finetuned checkpoints against action-untrained VLM references, yielding VLM-to-VLA transitions. Gray cells indicate unavailable checkpoints.}\n39:We define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe accuracy from peak layer to exit layer (Table~\\ref{tab:cross_arch_matrix}).\n40:VLM-to-VLA fine-tuning is associated with substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across all four suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse}), all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n41:Under VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); reference baselines similarly show $\\Delta R^2 \\leq 0.097$.\n42:The magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$.\n55:Across all 32 layers, the $R^2$ action-probe profile is completely flat ($R^2 = 0.155 \\pm 0.001$, $\\Delta R^2 = 0.000$), showing no peak-to-exit drop.\n56:By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.455$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.033$--$0.086$).\n61:\\caption{\\textbf{Peak-to-exit action-probe drop across the architecture-suite matrix.} $\\Delta R^2$ \n…[truncated 752 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 357
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T19:52:58.582197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "1",
+              "limit": "50"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T19:52:58.697655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe apply all three analyses (\\S\\ref{sec:cross_arch_analyses}) to the $3 \\times 4$ architecture-suite matrix described in \\S\\ref{sec:arch_data} (Table~\\ref{tab:cross_arch_matrix}).\n8\tOf the 12 cells, 10 are filled; NORA Object and Long-Horizon lack available checkpoints.\n9\tFor OpenVLA LIBERO-Goal, $N = 63{,}228$ observations; other cells are at comparable scale.\n10\tFor trained models that produce action outputs, counterfactual sensitivity is measured via Cohen's $d$ on action MSE.\n11\tFor reference VLMs (Phi-3-Vision, Qwen2.5-VL) that do not produce actions, sensitivity is measured via cosine distance on hidden representations; these metrics operate on different scales and are not directly comparable (\\S\\ref{sec:cf_sensitivity}).\n12\tOpenVLA's OXE-pretrained checkpoint produces actions, permitting same-metric (Cohen's $d$) comparison in that condition.\n13\tBonferroni correction details appear in Appendix~\\ref{sec:bonferroni_correction}.\n14\tFigure~\\ref{fig:result_matrix} summarizes the $3 \\times 4$ architecture-suite matrix.\n15\tOpenVLA provides a VLA-to-VLA transition because its reference checkpoint is an OXE-pretrained action model, whereas TracVLA and NORA provide VLM-to-VLA transitions from action-untrained VLM references.\n16\tThe NORA Object and Long-Horizon cells are unavailable due to missing checkpoints.\n17\t\n18\t\\begin{figure}[t]\n19\t\\centering\n20\t\\includegraphics[width=0.75\\textwidth]{figures/fig_matrix_heatmap.pdf}\n21\t\\caption{\\textbf{Cross-architecture evaluation matrix.} Rows denote VLA architectures and columns denote LIBERO task suites. Each cell reports the peak-to-exit action-probe drop, $\\Delta R^2$. OpenVLA compares LIBERO-finetuned checkpoints against an OXE-pretrained action-capable VLA reference, yielding a VLA-to-VLA transition. TracVLA and NORA compare VLA-finetuned checkpoints against action-untrained VLM references, yielding VLM-to-VLA tra\n…[truncated 3329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 115
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T19:53:07.536426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "58",
+              "limit": "55"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T19:53:07.536983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "58\t\n59\t\\begin{table}[t]\n60\t\\centering\n61\t\\caption{\\textbf{Peak-to-exit action-probe drop across the architecture-suite matrix.} $\\Delta R^2$ is computed as the difference between the maximum layer-wise action-probe $R^2$ and the exit-layer $R^2$. Values above 0.10 are treated as substantial descriptive drops. OpenVLA is a VLA-to-VLA comparison, whereas TracVLA and NORA are VLM-to-VLA comparisons.}\n62\t\\label{tab:cross_arch_matrix}\n63\t\\small\n64\t\\setlength{\\tabcolsep}{3pt}\n65\t\\begin{tabular}{@{}lll cccc@{}}\n66\t\\toprule\n67\t& & & \\multicolumn{4}{c}{$\\Delta R^2$ (peak $-$ exit)} \\\\\n68\t\\cmidrule(l){4-7}\n69\tArchitecture & Suite & Transition & Trained & 95\\% CI & Reference & 95\\% CI \\\\\n70\t\\midrule\n71\tOpenVLA & Goal    & VLA$\\to$VLA & 0.086 & [$-$0.06, 0.11] & 0.056 & [0.01, 0.08] \\\\\n72\tOpenVLA & Spatial & VLA$\\to$VLA & 0.037 & [0.01, 0.10]    & 0.044 & [0.03, 0.11] \\\\\n73\tOpenVLA & Object  & VLA$\\to$VLA & 0.037 & [0.00, 0.09]    & 0.051 & [0.00, 0.09] \\\\\n74\tOpenVLA & Long    & VLA$\\to$VLA & 0.033 & [0.00, 0.10]    & 0.035 & [0.03, 0.10] \\\\\n75\t\\midrule\n76\tTracVLA & Goal    & VLM$\\to$VLA & 0.333 & [0.21, 0.45]    & 0.065 & [$-$0.11, 0.05] \\\\\n77\tTracVLA & Spatial & VLM$\\to$VLA & 0.156 & [0.09, 0.22]    & 0.048 & ---$^{a}$ \\\\\n78\tTracVLA & Object  & VLM$\\to$VLA & 0.362 & [0.28, 0.50]    & 0.009 & [$-$0.07, 0.02] \\\\\n79\tTracVLA & Long    & VLM$\\to$VLA & 0.358 & [0.17, 0.53]    & 0.097 & [$-$0.02, 0.11] \\\\\n80\t\\midrule\n81\tNORA    & Goal    & VLM$\\to$VLA & 0.455$^{b}$ & ---$^{b}$  & 0.081 & [$-$0.01, 0.11] \\\\\n82\tNORA    & Spatial & VLM$\\to$VLA & 0.308 & [0.30, 0.51]    & 0.089 & [$-$0.01, 0.09] \\\\\n83\t\\bottomrule\n84\t\\multicolumn{7}{l}{\\footnotesize NORA Object and Long-Horizon checkpoints are unavailable.}\\\\\n85\t\\multicolumn{7}{l}{\\footnotesize $^{a}$CI artifact from flat $R^2$ profile. $^{b}$Bootstrap CI unreliable (exit-layer $R^2 \\approx -0.006$).}\\\\\n86\t\\end{tabular}\n87\t\\end{table}\n88\t\n89\t%------------------------------------------------------------------\n90\t\\subsection{Instruction Se\n…[truncated 1616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T19:53:23.400663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf 2>/dev/null",
+              "description": "Check if compiled PDF exists"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T19:53:23.902971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 779693 2026-05-23 19:35 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T19:53:24.254572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "113",
+              "limit": "80"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T19:53:24.455851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "113\tOn Long-Horizon, the pattern inverts: the OXE-pretrained model ($d = 1.05$) exceeds the LIBERO-trained model ($d = 0.57$), consistent with small collapse ($\\Delta R^2 = 0.033$) and the general-purpose model maintaining broader instruction responsiveness.\n114\t\n115\t\\begin{table}[t]\n116\t\\centering\n117\t\\caption{\\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TracVLA). NORA uses cosine distance on hidden representations (different scale; see \\S\\ref{sec:cf_repr}).}\n118\t\\label{tab:cf_summary}\n119\t\\small\n120\t\\begin{tabular}{@{}llcl@{}}\n121\t\\toprule\n122\tArchitecture & $d$ range & Most sensitive & Metric \\\\\n123\t\\midrule\n124\tOpenVLA & 0.45--1.21 & empty (6/8 cells) & Cohen's $d$ \\\\\n125\tTracVLA & 0.97--1.52 & empty (6/8 cells) & Cohen's $d$ \\\\\n126\t\\midrule\n127\tNORA    & 0.28--sat. & --- & cosine dist.$^{a}$ \\\\\n128\t\\bottomrule\n129\t\\multicolumn{4}{l}{\\footnotesize $^{a}$Representation-space only; not comparable to Cohen's $d$ (\\S\\ref{sec:cf_repr}).}\\\\\n130\t\\end{tabular}\n131\t\\end{table}\n132\t\n133\t\\subsubsection{Representation-Space Sensitivity in NORA and Reference VLMs}\n134\t\\label{sec:cf_repr}\n135\t\n136\tNORA and action-untrained reference VLMs lack action outputs; their sensitivity is measured via cosine distance on hidden representations, which operates on a different scale from Cohen's $d$ and should be interpreted as auxiliary evidence.\n137\tNORA Goal produces saturated cosine distances ($1.0$); NORA Spatial peaks at $0.275$.\n138\tReference VLMs show weak sensitivity ($\\leq 0.19$; Appendix~\\ref{sec:cf_details_appendix}).\n139\t\n140\t\\paragraph{Probing limitations.}\n141\tLinear and MLP probes measure decodability, not whether the model causally uses the decoded information for action generation.\n142\tHigh probe $R^2$ at a given layer establishes that action-relevant structure is accessible under the probe, not that the model's forward pass relies on it at that layer.\n143\t\n144\t%-----------------------\n…[truncated 2716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T19:53:57.450584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "counterfactual.*tab|tab.*counterfactual|\\\\\\\\caption.*Counterfactual.*Goal|tab:counterfactual\\\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T19:53:57.954177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "74:The effect replicates across LIBERO-Spatial (10 tasks): empty $1.173$, shuffled $0.979$, wrong $0.885$, paraphrased $0.807$ (Table~\\ref{tab:counterfactual_spatial}).\n90:Table~\\ref{tab:counterfactual} reports per-condition counterfactual rankings for all eight cells where Cohen's $d$ is available.\n95:\\label{tab:counterfactual}\n301:\\label{tab:counterfactual_goal_detail}\n421:Table~\\ref{tab:counterfactual_spatial} reports counterfactual instruction analysis on LIBERO-Spatial (10 tasks).\n429:\\label{tab:counterfactual_spatial}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 503
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T19:53:59.169715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -o '\"cv\": [0-9.]*' /root/autodl-tmp/vla-ssd/results/libero_goal/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T19:53:59.621537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"cv\\\\\\\": 0.0869\\\\n\\\\\\\"cv\\\\\\\": 0.0729\\\\n\\\\\\\"cv\\\\\\\": 0.0417\\\\n\\\\\\\"cv\\\\\\\": 0.1035\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T19:54:05.040790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -20 /root/autodl-tmp/vla-ssd/results/libero_goal/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T19:54:05.542997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"counterfactual_libero_long\\\\\\\",\\\\n    \\\\\\\"conditions\\\\\\\": [\\\\n      \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"paraphrased\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_tasks\\\\\\\": 10,\\\\n    \\\\\\\"n_demos_per_task\\\\\\\": 10,\\\\n    \\\\\\\"n_timesteps_per_demo\\\\\\\": 50,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"openvla-7b-finetuned-libero-object\\\\\\\",\\\\n    \\\\\\\"unnorm_key\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"task_names\\\\\\\": [\\\\n      \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\",\\\\n      \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\",\\\\n      \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\",\\\\n      \\\\\\\"put_the_bowl_on_the_plate\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T19:54:05.543368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "88",
+              "limit": "50"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T19:54:05.593896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\t\\label{sec:cf_details_appendix}\n89\t\n90\tTable~\\ref{tab:counterfactual} reports per-condition counterfactual rankings for all eight cells where Cohen's $d$ is available.\n91\t\n92\t\\begin{table}[h]\n93\t\\centering\n94\t\\caption{Counterfactual condition ranking for trained models (Cohen's $d$; higher $=$ greater action divergence under instruction perturbation). Conditions: E $=$ empty instruction, W $=$ wrong task, S $=$ shuffled tokens, P $=$ paraphrased. ``Empty'' ranks first in 6 of 8 cells; OpenVLA Goal (``wrong'' first) and Long (``shuffled'' first) are the exceptions. NORA cells use cosine distance and are reported in \\S\\ref{sec:cf_sensitivity}.}\n95\t\\label{tab:counterfactual}\n96\t\\small\n97\t\\begin{tabular}{llcccc}\n98\t\\toprule\n99\tArch. & Suite & 1st & 2nd & 3rd & 4th \\\\\n100\t\\midrule\n101\tOpenVLA & Goal    & W\\,1.18 & E\\,1.17 & S\\,1.10 & P\\,1.00 \\\\\n102\tOpenVLA & Spatial & E\\,1.17 & S\\,0.98 & W\\,0.89 & P\\,0.81 \\\\\n103\tOpenVLA & Object  & E\\,1.21 & W\\,1.19 & S\\,1.12 & P\\,0.90 \\\\\n104\tOpenVLA & Long    & S\\,0.57 & W\\,0.55 & E\\,0.51 & P\\,0.45 \\\\\n105\t\\midrule\n106\tTracVLA & Goal    & E\\,1.52 & W\\,1.40 & S\\,1.34 & P\\,1.21 \\\\\n107\tTracVLA & Spatial & E\\,1.33 & S\\,1.30 & P\\,1.18 & W\\,1.17 \\\\\n108\tTracVLA & Object  & E\\,1.21 & S\\,1.16 & W\\,1.06 & P\\,0.97 \\\\\n109\tTracVLA & Long    & E\\,1.47 & W\\,1.42 & S\\,1.39 & P\\,1.16 \\\\\n110\t\\bottomrule\n111\t\\end{tabular}\n112\t\\end{table}\n113\t\n114\t\\paragraph{Metric constraints on trained--reference comparison.}\n115\tTrained models produce action outputs, enabling Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action tokens (NORA).\n116\tReference VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations—a metric with different scale, units, and distributional properties.\n117\tRatios between Cohen's $d$ and cosine distance are therefore methodologically invalid, and we do not report cross-metric amplification factors.\n118\tQualitatively, reference VLMs show weak sens\n…[truncated 1671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T19:54:16.430789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -E '\"cohens_d\"|\"condition\"' /root/autodl-tmp/vla-ssd/results/libero_goal/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T19:54:18.287780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1856
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T19:54:18.388627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "295",
+              "limit": "30"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T19:54:18.439327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "295\t\\end{tabular}\n296\t\\end{table}\n297\t\n298\t\\begin{table}[h]\n299\t\\centering\n300\t\\caption{Counterfactual instruction analysis across all 10 LIBERO-Goal tasks. Jaccard: token overlap with original instruction; Cohen's $d$: mean across 10 tasks. ``Wrong'' slightly exceeds ``empty'' ($d = 1.182$ vs.\\ $1.170$); all four conditions produce large effects ($d \\geq 1.0$). L1 ablation included for comparison.}\n301\t\\label{tab:counterfactual_goal_detail}\n302\t\\small\n303\t\\begin{tabular}{lcc}\n304\t\\toprule\n305\tCondition & Jaccard & Cohen's $d$ \\\\\n306\t\\midrule\n307\tEmpty (no instruction) & 0.000 & 1.170 \\\\\n308\tWrong (different task) & 0.174 & 1.182 \\\\\n309\tShuffled (random order) & 1.000 & 1.096 \\\\\n310\tParaphrased & 0.533 & 0.996 \\\\\n311\t\\midrule\n312\tL1 ablation (24 heads) & --- & 0.650 \\\\\n313\t\\bottomrule\n314\t\\end{tabular}\n315\t\\end{table}\n316\t\n317\t\\begin{table}[h]\n318\t\\centering\n319\t\\caption{Mean absolute action shift per dimension under L1 head ablation. Instruction: 24 dominant heads; Control: 8 remaining heads. Gripper shift dominates both conditions.}\n320\t\\label{tab:action_shift_perdim}\n321\t\\small\n322\t\\begin{tabular}{lccccccc}\n323\t\\toprule\n324\tCondition & $dx$ & $dy$ & $dz$ & $rx$ & $ry$ & $rz$ & Gripper \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T19:54:29.842034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep \"ranking_by_cohens_d\" -A 30 /root/autodl-tmp/vla-ssd/results/libero_goal/counterfactual_combined.json"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T19:54:30.293968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"ranking_by_cohens_d\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"wrong\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 1.1821,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.093784\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"empty\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 1.1696,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.094\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"shuffled\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 1.096,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.088126\\\\n    },\\\\n    {\\\\n      \\\\\\\"condition\\\\\\\": \\\\\\\"paraphrased\\\\\\\",\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.9956,\\\\n      \\\\\\\"paired_mse_mean\\\\\\\": 0.080407\\\\n    }\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T19:55:05.493504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T19:55:05.694582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Scope of claims.}\n5\tOur analyses are observational—we compare trained and reference checkpoints without intervening on training.\n6\tAll findings are correlational; we cannot distinguish whether exit collapse is caused by action fine-tuning or by confounded factors (e.g., data distribution, optimization trajectory).\n7\tThe cross-architecture design ($N = 2$ VLM-to-VLA transitions) strengthens external validity but remains insufficient for strong causal claims.\n8\tA systematic claim--evidence--scope summary is provided in Figure~\\ref{fig:claim_evidence} (Appendix).\n9\t\n10\t\\paragraph{Synthesis.}\n11\tTraining-associated effects concentrate at the readout token ($+0.069$ $R^2$ shift vs.\\ $+0.015$ at image\\_mean), while L1 instruction attention is inherited from base-model pretraining (Phi-3-Vision: 32/32, Qwen2.5-VL: 13--14/16 before training).\n12\tMid-layer probes outperform exit-layer probes in architectures with pronounced collapse, suggesting potential early-exit efficiency gains ($\\rho = 0.583$, $p = 0.10$; Appendix~\\ref{sec:extended_discussion_appendix}).\n13\t\n14\t\\paragraph{Limitations.}\n15\tCross-architecture evidence rests on $N = 2$ VLM-to-VLA transitions.\n16\tAll experiments use LIBERO; benchmarks with richer language grounding are needed.\n17\tWe analyze only causal-decoder VLAs; flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} architectures may differ.\n18\tNORA lacks 2 of 4 suite checkpoints, and the NLP control covers only the Llama-2 backbone (extended discussion in Appendix~\\ref{sec:extended_discussion_appendix}).\n19\tAll analyses are open-loop; closed-loop behavioral validation is left for future work.\n20\t\n21\t\\paragraph{Conclusion.}\n22\tAcross three VLA architectures and four LIBERO suites, VLM-to-VLA fine-tuning is associated with substantial exit collapse ($\\Delta R^2 = 0.15$--$0.45$), whereas VLA-to-VLA conditions show only small fluctuations ($\\Delta R^2 < 0.10$).\n2\n…[truncated 292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T19:55:05.694983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T19:55:05.745447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tVision-language-action (VLA) models adapt pretrained vision-language or language backbones for robotic action prediction, yet how instruction-related information is represented across trained VLAs remains poorly understood.\n2\tWe study this question through a cross-architecture representational analysis of OpenVLA, TracVLA, and NORA across four LIBERO task suites, comparing trained checkpoints with their corresponding reference models.\n3\tUsing layer-wise action probes, attention profiling, and counterfactual instruction perturbations, we find that the two tested VLM-to-VLA transitions exhibit pronounced peak-to-exit reductions in action-probe decodability, whereas the tested VLA-to-VLA transition shows only small fluctuations.\n4\tTrained action-producing VLAs also show measurable sensitivity to instruction perturbations, while L1 instruction-dominant attention largely pre-exists in the underlying pretrained backbones.\n5\tThese results provide a cross-architecture characterization of instruction-related representations in action-finetuned VLAs and clarify which observed patterns are training-associated versus inherited from reference models.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T19:55:40.982632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T19:55:41.033257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T19:56:01.723025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Loop #12 数据完整性 + 论文一致性\n\n**结论**: WARNING（一项需处理）\n\n### 发现\n\n- [severity: info] **Appendix Spatial CV 列修复已确认**：4 个 CV 值全部与标准化管线 JSON 吻合（Empty 0.087←0.0869, Wrong 0.272←0.2721, Shuffled 0.162←0.1616, Paraphrased 0.179←0.1788）。Caption 已改为 \"All global d > 0.8\"。\n\n- [severity: info] **CF 排序表全部 8 cells 交叉验证通过**：OpenVLA Goal (W 1.18←1.1821, E 1.17←1.1696, S 1.10←1.096, P 1.00←0.9956)、Spatial、Object、Long + TracVLA 4 suites 数值均与源 JSON ranking_by_cohens_d 精确匹配。d 范围 claims: OpenVLA 0.45–1.21✓, TracVLA 0.97–1.52✓。\n\n- [severity: info] **Discussion/Conclusion 数值一致**：ΔR²=0.15–0.45（精确值 0.156–0.455，四舍五入可接受）、d=0.45–1.52✓、NLP ΔR²=0.000✓。Abstract 无数值 claim，仅定性描述。\n\n- [severity: warning] **fig_r2_collapse.pdf 更新晚于 PDF 编译**：`fig_r2_collapse.pdf` 修改时间 19:40，`main.pdf` 编译时间 19:35。当前 PDF 不包含最新 R² profile 图。**需要重新编译**。\n\n- [severity: info] **GPU 状态**：双卡空闲（0% util, 0 MiB），无越界进程。\n\n- [severity: info] **Registry 卫生**：4 个 stale PREPARING 实验未清理（bootstrap_v3_cuda0/1、tracvla_spatial_trained、libero_finetuned_probe），无 conclusion 标记。建议标 killed 或补全状态。\n\n- [severity: info] **CF JSON config metadata stale**：Goal 和 Spatial 的 counterfactual_combined.json 中 `\"experiment\": \"counterfactual_libero_long\"` 和 `\"model\": \"openvla-7b-finetuned-libero-object\"` 为历史残留字段。实际数据（unnorm_key、task_names）正确，不影响结果，但如需开源应清理。\n\n### 建议\n- 重新编译 PDF 以包含更新后的 fig_r2_collapse.pdf\n- 编译完成后我可执行 paper-visual-review（pdf_to_images 全页检查）",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T19:56:05.390289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3667
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T19:56:12.178027+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。本轮核实结果：\n\n- **Appendix Spatial CV 修复**：全部 4 个值与源 JSON 精确匹配 ✅\n- **CF 排序表 8 cells**：全部 d 值交叉验证通过 ✅\n- **Discussion/Abstract 数值一致性**：通过 ✅\n- **需处理**：`fig_r2_collapse.pdf` (19:40) 晚于 `main.pdf` 编译 (19:35)，需重新编译\n- **Registry**：4 个 stale PREPARING 待清理（info 级）\n\n等待 Director 确认编译完成后可执行 paper-visual-review。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000082"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T19:57:46.537374+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_draw_fig4_l1_attention_and_fig5_claim_20260523T195326]:\nWorker worker_draw_fig4_l1_attention_and_fig5_claim_20260523T195326 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "worker_done:worker_draw_fig4_l1_attention_and_fig5_claim_20260523t195326"
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T19:57:55.126711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "limit": "5",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T19:57:56.531611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"clustered_bootstrap_reanalysis_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T06:46:06.392Z\\\", \\\"updated_at\\\": \\\"2026-05-23T12:54:54.894Z\\\", \\\"hypothesis\\\": \\\"Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.\\\", \\\"parent\\\": \\\"clustered_bootstrap_reanalysis_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"tmux: bootstrap_v3_cuda0 (12 conditions) + bootstrap_v3_cuda1 (8 conditions)\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/ (extracted features)\\\", \\\"data_count\\\": \\\"20 conditions (3 arch × 4 suites × 2 conditions)\\\", \\\"model_name\\\": \\\"OpenVLA/TracVLA/NORA kernel ridge probes\\\", \\\"seed\\\": \\\"per-iteration RNG seeds via np.random.default_rng\\\", \\\"checkpoint_source\\\": \\\"clustered_bootstrap_reanalysis_v2 (reusing extracted features)\\\", \\\"eval_data\\\": \\\"LIBERO goal/spatial/object/long demo features (100 demos each)\\\"}, \\\"notes\\\": \\\"2026-05-23 11:25 UTC D102决策: (1) NORA goal trained 报 canonical Δ=0.455, 表中脚注 \\\\\\\"†CI unreliable due to near-zero exit-layer R²\\\\\\\" (2) TracVLA goal untrained 直接报告, CI穿零是正面结果. 进度 17/20, 等 tracvla_object/untrained + tracvla_long trained/untrained 完成.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T07:47:57.790Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T07:47:59.985Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T07:48:03.448404+00:00\\\"}]}, \\\"metrics\\\": {\\\"vlm_vla_trained_substantial\\\": \\\"6/6\\\", \\\"openvla_trained_substantial\\\": \\\"0/4\\\", \\\"untrained_substantial\\\": \\\"0/10\\\", \\\"delta_in_ci\\\": \\\"17/\n…[truncated 4690 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1404
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T19:57:57.033704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ | head -10",
+              "description": "Check for newly updated figures"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T19:57:57.887470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 2948\n-rw-r--r-- 1 ubuntu ubuntu 215846 2026-05-23 19:57 fig_claim_evidence.png\n-rw-r--r-- 1 ubuntu ubuntu  54106 2026-05-23 19:57 fig_l1_attention.png\n-rw-r--r-- 1 ubuntu ubuntu  28731 2026-05-23 19:57 fig_claim_evidence.pdf\n-rw-r--r-- 1 ubuntu ubuntu  18445 2026-05-23 19:57 fig_l1_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu 262862 2026-05-23 19:40 fig_r2_collapse.png\n-rw-r--r-- 1 ubuntu ubuntu  33855 2026-05-23 19:40 fig_r2_collapse.pdf\n-rw-r--r-- 1 ubuntu ubuntu  26788 2026-05-23 17:36 fig_counterfactual_bar.pdf\n-rw-r--r-- 1 ubuntu ubuntu  43680 2026-05-23 17:36 fig_matrix_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  17060 2026-05-22 06:47 fig_cross_arch_l1.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T19:57:57.888035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/ | head -15",
+              "description": "Check artifacts for new figures"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T19:57:58.038881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 3748\n-rw-r--r-- 1 ubuntu ubuntu 781731 2026-05-23 19:17 vla-ssd_draft_2026-05-23.pdf\ndrwxr-xr-x 3 ubuntu ubuntu   4096 2026-05-23 17:35 figures\n-rw-r--r-- 1 ubuntu ubuntu  62672 2026-05-23 17:12 manifest.yaml\n-rw-r--r-- 1 ubuntu ubuntu  36947 2026-05-23 16:54 review_issues.yaml\ndrwxr-xr-x 2 ubuntu ubuntu   4096 2026-05-23 16:44 multi_threshold_robustness\ndrwxr-xr-x 2 ubuntu ubuntu   4096 2026-05-23 15:56 review_reports\ndrwxr-xr-x 2 ubuntu ubuntu   4096 2026-05-23 15:44 review_round_16\ndrwxr-xr-x 3 ubuntu ubuntu   4096 2026-05-23 12:08 clustered_bootstrap_reanalysis_v3\ndrwxr-xr-x 3 ubuntu ubuntu   4096 2026-05-23 06:24 clustered_bootstrap_reanalysis_v2\n-rw-r--r-- 1 ubuntu ubuntu   2626 2026-05-22 23:04 bootstrap_progress.md\n-rw-r--r-- 1 ubuntu ubuntu  17084 2026-05-22 14:45 clustered_bootstrap_probe.py\n-rw-r--r-- 1 ubuntu ubuntu  11536 2026-05-22 14:07 concurrent_work_analysis.md\ndrwxr-xr-x 2 ubuntu ubuntu   4096 2026-05-22 13:51 review_round_15\ndrwxr-xr-x 4 ubuntu ubuntu   4096 2026-05-22 13:30 nlp_finetuning_control_v1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T19:58:20.986431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig_l1_attention|fig_claim_evidence|fig_cross_arch_l1",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T19:58:21.037111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:161:\\includegraphics[width=0.46\\columnwidth]{figures/fig_cross_arch_l1.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1163:\\includegraphics[width=\\columnwidth]{figures/fig_claim_evidence.pdf}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T19:58:21.037578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_l1_attention.png"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T19:58:21.037833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_claim_evidence.png"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T19:58:21.241458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 203
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T19:58:21.494328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 456
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T19:59:20.658728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "1155",
+              "limit": "20"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-23T19:59:20.659145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1155\tAll analyses are open-loop, consistent with prior representational studies~\\cite{grant2026,haon2025}; closed-loop validation would provide complementary evidence about the behavioral relevance of the identified routing structures.\n1156\tThe three-tier gradient has $n = 1$ at Tier~2, limiting its inferential power; populating this tier with additional general-purpose VLAs is a priority for future work.\n1157\t\n1158\t\\subsection{Claim-Evidence Summary}\n1159\t\\label{sec:claim_evidence_appendix}\n1160\t\n1161\t\\begin{figure}[h]\n1162\t\\centering\n1163\t\\includegraphics[width=\\columnwidth]{figures/fig_claim_evidence.pdf}\n1164\t\\caption{\\textbf{Claim--evidence--scope summary.} Each main finding is paired with its supporting analysis and its main limitation. The figure distinguishes directly observed representational patterns from stronger causal interpretations that require interventional or training-dynamics evidence.}\n1165\t\\label{fig:claim_evidence}\n1166\t\\end{figure}\n1167\t\n1168\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-23T19:59:20.659408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "155",
+              "limit": "15"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-23T19:59:20.760468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "155\tInstead, both reference VLMs already saturate or near-saturate, and training leaves these counts unchanged or slightly reduced.\n156\tThese results suggest that L1 instruction-dominant attention is largely inherited from pretrained backbones rather than created de novo by VLA fine-tuning.\n157\t\n158\t\\begin{wrapfigure}{r}{0.48\\columnwidth}\n159\t\\vspace{-12pt}\n160\t\\centering\n161\t\\includegraphics[width=0.46\\columnwidth]{figures/fig_cross_arch_l1.pdf}\n162\t\\caption{L1 instruction-dominant head counts (trained vs.\\ reference).}\n163\t\\label{fig:cross_arch_l1}\n164\t\\vspace{-10pt}\n165\t\\end{wrapfigure}\n166\t\n167\t%------------------------------------------------------------------\n168\t\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n169\t\\label{sec:routing_synthesis}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-23T19:59:36.485535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_cross_arch_l1.pdf"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-23T19:59:37.339115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_cross_arch_l1.pdf (16.7KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 853
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-23T19:59:38.756118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "L1.*head.*count|instruction.dominant.*head|head.*count.*per.*suite|\\\\d+/32.*\\\\d+/32",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "30",
+              "-i": "True"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-23T19:59:38.817257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "65:At L1, three conditions form a gradient of instruction attention: randomly initialized networks allocate 0/32 instruction-dominant heads ($11.7\\%$ text attention, $1.5\\times$ text-to-image ratio), Llama-2 base~\\cite{touvron2023_llama2} allocates 9/32 ($36.5\\%$), and VLA-trained allocates 24/32 ($57.7\\%$, $38.2\\times$ text-to-image ratio; \\S\\ref{sec:attention_decomp}).\n76:Spatial instructions differ only in prepositions, yet wrong-task perturbation still produces $d = 0.885$; instruction-dominant heads route fine-grained spatial information, not merely task identity.\n79:Dose-response ablation of L1 instruction-dominant heads produces monotonic trajectory divergence: $d$ rises from $0.482$ to $0.639$ as 4--32 heads are progressively ablated, with steep increase through 12 heads and plateau beyond 20 (\\S\\ref{sec:action_trajectory}).\n80:Ablating all 24 instruction-dominant heads alters $72.3\\%$ of action tokens (token-level $d = 0.65$, trajectory-level $d = 2.943$); control ablation of 8 random heads yields $d = 0.41$ ($29.3\\%$ tokens affected), concentrated on the gripper dimension.\n209:To evaluate whether the ablation effect in \\S\\ref{sec:openvla_routing} is specific to instruction-dominant heads, we compare dominant-head ablation against 30 random subsets of 24/32 L1 heads (each subset drawn without replacement).\n223:Table~\\ref{tab:action_shift_perdim} reports per-dimension mean absolute shift for instruction-dominant (24 heads) and control (8 heads) L1 ablations.\n242:This is consistent with the information-computation dissociation: instruction-dominant heads control instruction-specific direction selection rather than action precision.\n273:\\caption{Dose-response gradient: trajectory divergence (Cohen's $d$) as a function of ablated instruction-dominant heads at L1. Error bars: 95\\% bootstrap CIs ($10{,}000$ resamples). Dashed red: control ablation (8 non-instruction heads, $d = 0.41$). Steep rise through 12 heads, plateau at 16--20, diminishing returns beyond.}\n4\n…[truncated 6205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 61
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-23T20:00:54.953940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tab:cross_arch_probe|cross_arch_probe",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "5"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-23T20:00:55.004543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "723:Table~\\ref{tab:cross_arch_probe} reports cross-instruction probe accuracy and L1 instruction-dominant head counts across six conditions spanning two architectures.\n731:\\label{tab:cross_arch_probe}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-23T20:00:58.015794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "offset": "723",
+              "limit": "30"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-23T20:00:58.116676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "723\tTable~\\ref{tab:cross_arch_probe} reports cross-instruction probe accuracy and L1 instruction-dominant head counts across six conditions spanning two architectures.\n724\tThe probe-attention dissociation at L1 is notable: TraceVLA training \\emph{increases} instruction-dominant heads ($28 \\to 32$) while \\emph{decreasing} probe accuracy ($98.1\\% \\to 83.6\\%$), consistent with representational reorganization for attention efficiency rather than linear separability.\n725\t\n726\t\\begin{table}[h]\n727\t\\centering\n728\t\\caption{Cross-instruction 10-way probe accuracy and L1 instruction-dominant heads across six conditions.\n729\tProbe accuracy and attention head count are dissociated at L1: TracVLA-Phi3V increases heads ($28 \\to 32$) while decreasing probe accuracy ($98.1\\% \\to 83.6\\%$), paralleling the information-computation dissociation observed in OpenVLA.\n730\tImage\\_mean remains at chance ($10\\%$) in all conditions (omitted).}\n731\t\\label{tab:cross_arch_probe}\n732\t\\small\n733\t\\begin{tabular}{lccccc}\n734\t\\toprule\n735\tCondition & L1 heads & L1 & L2+ & L31 & Mode \\\\\n736\t\\midrule\n737\t\\multicolumn{6}{l}{\\emph{OpenVLA (Llama-2 7B)}} \\\\\n738\t\\quad Random init & 0/32 & 100.0\\% & decays & 82.0\\% & incid.+forget \\\\\n739\t\\quad Llama-2 base & 9/32 & 80.2\\% & L5: 100\\% & 100.0\\% & gradual+stable \\\\\n740\t\\quad VLA trained & 24/32 & 99.6\\% & 100\\% & 100.0\\% & immed.+stable \\\\\n741\t\\quad LIBERO-finetuned & 22/32 & 99.7\\% & 100\\% & 100.0\\% & immed.+stable \\\\\n742\t\\midrule\n743\t\\multicolumn{6}{l}{\\emph{TraceVLA (Phi-3-V 4B)}} \\\\\n744\t\\quad Phi-3-Instruct & 28/32 & 98.1\\% & 100\\% & 100.0\\% & inherited+stable \\\\\n745\t\\quad VLA trained & 32/32 & 83.6\\% & 100\\% & 100.0\\% & reorg.+stable \\\\\n746\t\\bottomrule\n747\t\\end{tabular}\n748\t\\end{table}\n749\t\n750\t\\begin{figure}[h]\n751\t\\centering\n752\t\\includegraphics[width=\\columnwidth]{figures/fig_cross_architecture_attention.pdf}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-23T20:02:35.180083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Worker fig4/fig5 审查 + TracVLA L1 数据矛盾\n\n**结论**: CRITICAL（1 项数据矛盾）+ WARNING（3 项图表问题）\n\n### 发现\n\n- [severity: critical] **TracVLA L1 head count 主文与 appendix 方向矛盾**：\n  - **主文** (experiments.tex:149-150): \"TracVLA reference (Phi-3-Vision) allocates **32/32** heads... Training slightly **reduces** this count to **27--30/32**\"\n  - **Appendix** (tab:cross_arch_probe, appendix.tex:744-745): \"Phi-3-Instruct: **28/32**, VLA trained: **32/32**\" → 训练从 28 **增加**到 32\n  - **Appendix 正文** (appendix.tex:724): \"TraceVLA training **increases** instruction-dominant heads (28→32)\"\n  - 训练效果方向完全相反：主文说训练减少（32→27-30），appendix 说训练增加（28→32）\n  - 两张新旧 figure 均显示 reference>trained（与主文一致），与 appendix 表格矛盾\n  - 可能原因：(1) appendix 表格行标签互换（Phi-3-Instruct/VLA trained 标反了），(2) 不同实验/suite 的数据混用，(3) \"Phi-3-Instruct\" 和 \"Phi-3-Vision\" 实为不同模型但未区分\n  - **审稿人如果对照主文和 appendix 会立即发现矛盾**\n\n- [severity: warning] **新图 fig_l1_attention.pdf 未在 tex 中引用**：experiments.tex:161 仍引用旧文件 `fig_cross_arch_l1.pdf`。新旧图数据不同（TracVLA trained 28 vs 27，NORA ref 14 vs 13），均在主文声明范围内，但两个图各选了范围内不同的 suite 值且 caption 均未注明具体 suite。\n\n- [severity: warning] **新 fig_l1_attention 使用绝对计数 x 轴**：NORA (16 heads total) 的条形在视觉上远小于 OpenVLA/TracVLA (32 heads)，但实际分数相近（~81% vs ~72-87%）。旧图使用 Fraction y 轴更适合跨架构比较。建议保留分数归一化。\n\n- [severity: warning] **fig_claim_evidence 左侧裁切**：PNG 渲染中行标签首字符被裁掉（\"raining-Associated\"、\"ction-Relevant\"、\"nherited Instruction\"）。PDF 版本需确认此问题是否存在——如果 PDF 也被裁切，上传后审稿人会看到损坏的图。\n\n- [severity: info] **fig_claim_evidence \"empty ranks first\" 缺少限定词**：论文正文说 \"6 of 8 cells\"，图中仅写 \"empty ranks first\" 未标 \"6/8\"。\n\n### 建议\n- **最高优先**：解决 TracVLA L1 矛盾——确认 appendix 表 tab:cross_arch_probe 的行标签是否反了，或者 Phi-3-Instruct vs Phi-3-Vision 是不同模型。修正后统一主文、appendix 和图表\n- fig_l1_attention：如要替换旧图，建议保留分数 y 轴，caption 注明使用的 suite，更新 tex 引用\n- fig_claim_evidence：检查 PDF 左侧边距，补 \"6/8\" 限定",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-23T20:02:38.795998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3615
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-23T20:02:45.564517+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。本轮核心发现：\n\n1. **CRITICAL** — TracVLA L1 head count 主文与 appendix 矛盾（方向相反：主文说训练减少 32→27-30，appendix 说训练增加 28→32），审稿人对照会立即发现\n2. **WARNING** — 新 fig_l1_attention 未被 tex 引用、使用绝对计数轴不利跨架构比较\n3. **WARNING** — fig_claim_evidence 左侧文字裁切\n4. **已确认** — Appendix Spatial CV 列修复正确，所有 CF 数值与源 JSON 吻合，fig_r2_collapse 已更新但 PDF 需重编译"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000110"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-23T20:03:25.120771+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_draw_fig6_appendix_untrained_to_reference_20260523T195340]:\nWorker worker_draw_fig6_appendix_untrained_to_reference_20260523T195340 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "worker_done:worker_draw_fig6_appendix_untrained_to_reference_20260523t195340"
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-23T20:03:34.668131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ | head -15",
+              "description": "Check for newly updated figures"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-23T20:03:34.819453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 2996\n-rw-r--r-- 1 ubuntu ubuntu  22965 2026-05-23 20:03 fig2_cross_instruction_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  16072 2026-05-23 20:03 fig_probe_conditions.pdf\n-rw-r--r-- 1 ubuntu ubuntu  20285 2026-05-23 20:02 fig_32layer_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu  20652 2026-05-23 20:02 fig_rsa_perlayer_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu  25220 2026-05-23 20:02 fig_multi_layer_attn.pdf\n-rw-r--r-- 1 ubuntu ubuntu  21037 2026-05-23 20:02 fig_action_r2_threecond.pdf\n-rw-r--r-- 1 ubuntu ubuntu  43443 2026-05-23 20:02 fig_counterfactual_bar.pdf\n-rw-r--r-- 1 ubuntu ubuntu 215846 2026-05-23 19:57 fig_claim_evidence.png\n-rw-r--r-- 1 ubuntu ubuntu  54106 2026-05-23 19:57 fig_l1_attention.png\n-rw-r--r-- 1 ubuntu ubuntu  28731 2026-05-23 19:57 fig_claim_evidence.pdf\n-rw-r--r-- 1 ubuntu ubuntu  18445 2026-05-23 19:57 fig_l1_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu 262862 2026-05-23 19:40 fig_r2_collapse.png\n-rw-r--r-- 1 ubuntu ubuntu  33855 2026-05-23 19:40 fig_r2_collapse.pdf\n-rw-r--r-- 1 ubuntu ubuntu  43680 2026-05-23 17:36 fig_matrix_heatmap.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-23T20:03:42.583016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-23T20:03:43.044369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf (42.4KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 461
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-23T20:03:43.104096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_action_r2_threecond.pdf"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-23T20:03:43.611261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_action_r2_threecond.pdf (20.5KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 507
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-23T20:03:43.611771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_rsa_perlayer_curve.pdf"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-23T20:03:43.663237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_rsa_perlayer_curve.pdf (20.2KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-23T20:04:14.803026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-23T20:04:15.807668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf (42.4KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-23T20:04:16.059175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_32layer_attention.pdf"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-23T20:04:16.111223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_32layer_attention.pdf (19.8KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-23T20:04:16.111728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_probe_conditions.pdf"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-23T20:04:16.162340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_probe_conditions.pdf (15.7KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-23T20:05:04.102099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig_32layer_attention|fig_multi_layer_attn|multilayer_attention",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-23T20:05:04.152702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "766:\\caption{L1 attention from the readout token across three conditions, per head (sorted by instruction attention fraction). VLA-trained: 24/32 instruction-dominant heads ($57.7\\%$ text attention). Llama-2 base: 9/32 heads ($36.5\\%$). Randomly initialized: 0/32 heads ($11.7\\%$). See Table~\\ref{tab:multilayer_attention} for quantitative comparison across layers.}\n771:\\label{sec:multilayer_attention}\n773:Table~\\ref{tab:multilayer_attention} shows a 4-layer subset of the full 32-layer attention profile.\n774:The full profile (Figure~\\ref{fig:multilayer_attention}) reveals three qualitatively distinct patterns: the randomly initialized model maintains 0 instruction-dominant heads at all 32 layers; Llama-2 base shows a mid-depth peak (L9--L16: 15--22 heads), consistent with typical autoregressive LM processing depth; VLA fine-tuning produces an entry-exit pattern (L0--L1: 21--24 heads, L31: 18 heads, intermediate layers 0--11).\n778:\\includegraphics[width=\\columnwidth]{figures/fig_multi_layer_attn.pdf}\n780:\\label{fig:multilayer_attention}\n785:\\caption{Instruction-dominant heads and text attention fraction at four sampled layers (subset of the 32-layer profile in Figure~\\ref{fig:multilayer_attention}). VLA-trained shows entry-exit concentration (L1, L31); Llama-2 base peaks at mid-depth (L16); randomly initialized shows no instruction attention. Head counts from the 32-layer bulk extraction may differ slightly from dedicated per-layer analyses (\\S\\ref{sec:openvla_routing}) due to threshold boundary effects.}\n786:\\label{tab:multilayer_attention}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-23T20:05:34.790023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_multi_layer_attn.pdf"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-23T20:05:35.141768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_multi_layer_attn.pdf (24.6KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-23T20:05:35.142465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2_cross_instruction_heatmap.pdf"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-23T20:05:35.293319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig2_cross_instruction_heatmap.pdf (22.4KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-23T20:06:21.795710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Worker fig6 appendix untrained→reference 术语更新\n\n**结论**: CRITICAL（2 项严重问题）\n\n### 发现\n\n- [severity: critical] **fig_multi_layer_attn.pdf 和 fig_32layer_attention.pdf 标签错误：\"Randomly Initialized\" 被错误改为 \"Reference VLA\"**\n  - 这两张图展示 OpenVLA 三条件 attention profile（VLA Trained / Llama-2 Base / 第三条件）\n  - 第三条件是**随机初始化模型**（0/32 instruction-dominant heads，全层为 0）\n  - Worker 将 \"Randomly Initialized\" / \"Untrained\" 统一改成了 \"Reference VLA\"\n  - **但 \"Reference VLA\" 在论文中特指 OXE-pretrained checkpoint（24-26/32 heads），而非随机初始化（0/32）**\n  - 论文 caption 仍正确写着 \"randomly initialized shows no instruction attention\"（appendix.tex:785），与图例 \"Reference VLA\" 直接矛盾\n  - 原因：Worker 做了 blanket \"Untrained→Reference\" 替换，未区分 \"untrained = random init\" vs \"untrained = OXE-pretrained reference\"\n  - **修复**：这两张图中标签必须改回 \"Random Init\" 或 \"Randomly Initialized\"，不能用 \"Reference VLA\"\n\n- [severity: critical] **fig_counterfactual_bar.pdf 渲染为全白空白页**\n  - 文件大小 42KB（非空文件），但视觉渲染完全空白（新旧版本均如此）\n  - 此图是主文 experiments.tex:102 引用的 Figure（wrapfigure），展示跨架构 CF sensitivity\n  - 可能原因：matplotlib 白色背景 + 白色图元 / 透明度问题 / 色彩空间不兼容\n  - **必须验证编译后 PDF 中此图是否正常显示**——如果 LaTeX 编译也是空白，论文中会出现一个空 figure\n\n### 正确更新的图（无问题）\n- fig_action_r2_threecond.pdf: \"Reference VLA\" 正确指向 OXE-pretrained ✓\n- fig_rsa_perlayer_curve.pdf: \"Reference\" 正确 ✓  \n- fig_probe_conditions.pdf: \"Reference VLA\" 正确指向 OXE-pretrained（decay to 82%）✓\n- fig2_cross_instruction_heatmap.pdf: \"Reference\" 正确 ✓\n\n### 建议\n1. **立即修复**：fig_multi_layer_attn.pdf 和 fig_32layer_attention.pdf 中 \"Reference VLA\" 改回 \"Random Init\"\n2. **验证** fig_counterfactual_bar.pdf：在服务器上用 `python3 -c \"from matplotlib.backends.backend_pdf import PdfPages; ...\"` 检查图是否有内容，或重新生成\n3. 修复后需重新编译 PDF",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-23T20:06:25.409087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-23T20:06:39.830726+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。汇总本轮审查发现的所有问题：\n\n**CRITICAL（3项）：**\n1. TracVLA L1 head count 主文与 appendix 方向矛盾（主文说训练减少 32→27-30，appendix 表说训练增加 28→32）\n2. fig_multi_layer_attn.pdf / fig_32layer_attention.pdf 中 \"Random Init\" 被错误标为 \"Reference VLA\"（0/32 heads ≠ OXE-pretrained 24-26/32）\n3. fig_counterfactual_bar.pdf 渲染空白（主文关键 figure）\n\n**WARNING（4项）：**\n1. fig_r2_collapse.pdf (19:40) 更新晚于 main.pdf 编译 (19:35)，需重编译\n2. 新 fig_l1_attention.pdf 未在 tex 中引用（仍引用旧 fig_cross_arch_l1.pdf），且数据与旧图不同\n3. 新 fig_l1_attention 使用绝对计数轴，跨架构比较不如旧图分数轴直观\n4. fig_claim_evidence 左侧文字可能被裁切\n\n**已验证通过：**\n- Appendix Spatial CV 列修复 ✓\n- CF 全表 d 值与源 JSON 一致 ✓\n- Table 1 ΔR² 值无变化 ✓\n- Discussion/Conclusion 数值一致 ✓\n- GPU 双卡空闲，无越界进程 ✓"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000134"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-23T20:06:40.292048+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_draw_fig3_cf_bar_split_20260523T195303]:\nWorker worker_draw_fig3_cf_bar_split_20260523T195303 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "worker_done:worker_draw_fig3_cf_bar_split_20260523t195303"
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-23T20:06:49.215270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual* 2>/dev/null",
+              "description": "Check counterfactual figure files"
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-23T20:06:50.119237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 229153 2026-05-23 20:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.png\n-rw-r--r-- 1 ubuntu ubuntu  43437 2026-05-23 20:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-23T20:06:50.420792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/ | head -10",
+              "description": "Check latest figure updates"
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-23T20:06:50.521862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 3220\n-rw-r--r-- 1 ubuntu ubuntu 229153 2026-05-23 20:04 fig_counterfactual_bar.png\n-rw-r--r-- 1 ubuntu ubuntu  43437 2026-05-23 20:04 fig_counterfactual_bar.pdf\n-rw-r--r-- 1 ubuntu ubuntu  22965 2026-05-23 20:03 fig2_cross_instruction_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  16072 2026-05-23 20:03 fig_probe_conditions.pdf\n-rw-r--r-- 1 ubuntu ubuntu  20285 2026-05-23 20:02 fig_32layer_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu  20652 2026-05-23 20:02 fig_rsa_perlayer_curve.pdf\n-rw-r--r-- 1 ubuntu ubuntu  25220 2026-05-23 20:02 fig_multi_layer_attn.pdf\n-rw-r--r-- 1 ubuntu ubuntu  21037 2026-05-23 20:02 fig_action_r2_threecond.pdf\n-rw-r--r-- 1 ubuntu ubuntu 215846 2026-05-23 19:57 fig_claim_evidence.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-23T20:06:56.295134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.png"
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-23T20:06:57.502560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1207
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-23T20:07:36.037133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf"
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-23T20:07:36.088107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_counterfactual_bar.pdf (42.4KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-23T20:08:21.530069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "97",
+              "limit": "15"
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-23T20:08:21.580694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "97\tAcross OpenVLA and TracVLA, instruction perturbations produce medium-to-large action divergence in all eight architecture-suite cells (Figure~\\ref{fig:counterfactual_bar}).\n98\t\n99\t\\begin{wrapfigure}{r}{0.48\\columnwidth}\n100\t\\vspace{-12pt}\n101\t\\centering\n102\t\\includegraphics[width=0.46\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n103\t\\caption{Counterfactual sensitivity (top perturbation condition per cell). Cohen's $d$ for OpenVLA/TracVLA; cosine distance for NORA/reference VLMs.}\n104\t\\label{fig:counterfactual_bar}\n105\t\\vspace{-10pt}\n106\t\\end{wrapfigure}\n107\tEvery perturbation condition yields $d = 0.45$--$1.52$ (Table~\\ref{tab:cf_summary}; full per-condition rankings in Appendix Table~\\ref{tab:counterfactual}).\n108\tThe ``empty'' condition ranks first in 6 of 8 cells ($d = 1.17$--$1.52$); ``paraphrased'' ranks last in 7 of 8, indicating that VLAs encode instruction content beyond token-level matching.\n109\tTracVLA produces systematically higher effect sizes ($d = 0.97$--$1.52$) than OpenVLA ($0.45$--$1.21$).\n110\t\n111\tTwo OpenVLA cells permit same-metric trained/reference comparison, since the OXE-pretrained baseline also produces actions."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-23T20:08:48.127095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Worker fig3 CF bar split\n\n**结论**: PASS（2 项 info）\n\n### 发现\n\n- [severity: info] **fig_counterfactual_bar.pdf 现在可以正常渲染**（之前报告的空白问题已解决）。Panel A (Cohen's d, OpenVLA+TracVLA 8 cells) 和 Panel B (cosine distance, NORA+reference VLMs) 数据与论文排序表和 source JSON 一致。Star 标注正确标记最高条件。\"all=1.0\" 标注正确处理 NORA Goal 饱和值。\"Not directly comparable to Panel A\" 注释存在。\n\n- [severity: info] **布局注意**：新图为双面板堆叠设计（A+B），但 tex 中仍以 wrapfigure 0.48\\columnwidth 引用。这个高宽比在编译时可能占据过多垂直空间或使条形过小。需在编译后确认排版效果。Panel B 中使用 \"untrained ref\" 标签，与论文正文 \"reference\" 术语略有不一致（但语义正确）。\n\n### 优先级提醒\n上一轮报告的两个 CRITICAL 仍待处理：\n1. fig_multi_layer_attn.pdf \"Random Init\" 被错标为 \"Reference VLA\"\n2. TracVLA L1 head count 主文与 appendix 方向矛盾",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-23T20:08:51.840433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3713
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-23T20:08:54.850909+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图内容正确，数据与论文一致。有两个小问题值得注意。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer"
+          },
+          "id": "event-000148"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-23T20:36:37.401443+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_verify_tracvla_l1_head_count_critical_20260523T203254]:\nWorker worker_verify_tracvla_l1_head_count_critical_20260523T203254 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "source": "system"
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-23T20:36:51.298077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-23T20:36:53.306306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"clustered_bootstrap_reanalysis_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T06:46:06.392Z\\\", \\\"updated_at\\\": \\\"2026-05-23T12:54:54.894Z\\\", \\\"hypothesis\\\": \\\"Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.\\\", \\\"parent\\\": \\\"clustered_bootstrap_reanalysis_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"tmux: bootstrap_v3_cuda0 (12 conditions) + bootstrap_v3_cuda1 (8 conditions)\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/ (extracted features)\\\", \\\"data_count\\\": \\\"20 conditions (3 arch × 4 suites × 2 conditions)\\\", \\\"model_name\\\": \\\"OpenVLA/TracVLA/NORA kernel ridge probes\\\", \\\"seed\\\": \\\"per-iteration RNG seeds via np.random.default_rng\\\", \\\"checkpoint_source\\\": \\\"clustered_bootstrap_reanalysis_v2 (reusing extracted features)\\\", \\\"eval_data\\\": \\\"LIBERO goal/spatial/object/long demo features (100 demos each)\\\"}, \\\"notes\\\": \\\"2026-05-23 11:25 UTC D102决策: (1) NORA goal trained 报 canonical Δ=0.455, 表中脚注 \\\\\\\"†CI unreliable due to near-zero exit-layer R²\\\\\\\" (2) TracVLA goal untrained 直接报告, CI穿零是正面结果. 进度 17/20, 等 tracvla_object/untrained + tracvla_long trained/untrained 完成.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T07:47:57.790Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T07:47:59.985Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T07:48:03.448404+00:00\\\"}]}, \\\"metrics\\\": {\\\"vlm_vla_trained_substantial\\\": \\\"6/6\\\", \\\"openvla_trained_substantial\\\": \\\"0/4\\\", \\\"untrained_substantial\\\": \\\"0/10\\\", \\\"delta_in_ci\\\": \\\"17/\n…[truncated 1529 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2008
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-23T20:36:53.407505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt --time-style=long-iso /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "description": "Check if tex files were modified"
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-23T20:36:53.558654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 14252 2026-05-23 19:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu 78033 2026-05-23 19:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-23T20:37:09.324376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*tracvla*\" -name \"*l1*\" -type f"
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-23T20:37:09.525496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/ -path \"*tracvla*\" -name \"*attention*\" -type f"
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-23T20:37:10.429247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-23T20:37:10.931482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_long/untrained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json\\\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1405
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-23T20:37:24.743699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep \"instruction_dominant_count\" /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-23T20:37:25.550757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 807
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-23T20:37:25.603069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep \"instruction_dominant_count\" /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-23T20:37:26.006741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep \"instruction_dominant_count\" /root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-23T20:37:26.458648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 855
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-23T20:37:26.710256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-23T20:37:26.710652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep \"instruction_dominant_count\" /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-23T20:37:27.163252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-23T20:37:31.947808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -30 /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-23T20:37:32.400938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6951,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0203,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.842,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0117,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.45,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0272,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"mixed\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5057,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0172,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.712,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0133,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5048,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0156,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-23T20:37:32.451510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -30 /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-23T20:37:32.956120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_head\\\\\\\": {\\\\n    \\\\\\\"head_0\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9484,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_1\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.9648,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0024,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_2\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.5586,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0095,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_3\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.7993,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_4\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6978,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0086,\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"instruction_dominant\\\\\\\"\\\\n    },\\\\n    \\\\\\\"head_5\\\\\\\": {\\\\n      \\\\\\\"instruction_ratio_mean\\\\\\\": 0.6106,\\\\n      \\\\\\\"instruction_ratio_std\\\\\\\": 0.0101,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-23T20:37:39.812293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-23T20:37:40.314345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-23T20:37:40.314664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-23T20:37:41.268387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-23T20:37:41.268733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-23T20:37:41.770755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-23T20:37:42.223070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-23T20:37:42.675073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-23T20:37:42.675524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_object/trained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-23T20:37:43.227808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-23T20:37:43.629635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"instruction_dominant\" /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/l1_attention_profile.json"
+            }
+          },
+          "id": "event-000180"
+        }
+      ]
+    }
+  ]
+}

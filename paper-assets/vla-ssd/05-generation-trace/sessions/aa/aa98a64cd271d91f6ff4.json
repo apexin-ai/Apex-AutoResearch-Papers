@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa98a64cd271d91f6ff4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "viz action r2 threecond",
+  "task_key": "worker_viz_action_r2_threecond_20260517T220502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_action_r2_threecond_20260517T220502_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "b2f6d7ade9654689f11d88cc815cfd763ff21589e917e75a9f9fde33a8da5e60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- PDF: `/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.pdf` (21 KB)\n- PNG: `/root/autodl-tmp/vla-ssd/results/figures/fig_action_r2_threecond.png` (206 KB)\n\n脚本位于 `/root/vla-ssd/scripts/plot_action_r2_threecond.py`。\n\n三条线在 L0 完全重合（R²=0.6403），untrained 在 L10-L11 有负 R²（-0.33, -0.28）已用浅红色带标注，trained peak at L8 (0.6553) 已加箭头标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-action-r2-threecond.md"
+}

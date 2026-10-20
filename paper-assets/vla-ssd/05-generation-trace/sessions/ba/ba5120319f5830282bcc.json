@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba5120319f5830282bcc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v probe untrained",
+  "task_key": "worker_code_phi3v_probe_untrained_20260519T182430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_probe_untrained_20260519T182430_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "b7d9f46b23afa3a9e0618fe53f12a8c9d7b5b9b646095a5e753def9f116e1f11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n**Untrained (base Phi-3-instruct) vs Trained 对比：**\n\n| Position | Layer | Untrained | Trained |\n|---|---|---|---|\n| **last_preaction** | L0 | 10% | 10% |\n| | L1 | **98.1%** | 83.6% |\n| | L2-L31 | **100%** | 100% |\n| **image_mean** | L0-L31 | ~10% | ~10% |\n\n关键发现：\n- **last_preaction**: untrained 从 L1 就达到 98.1%（甚至高于 trained 的 83.6%），L2+ 完全 100%。instruction routing 完全继承自 base Phi-3 的 instruction tuning，VLA 训练未创造此能力。\n- **image_mean**: 两个条件均为 chance（~10%），instruction 信息从未写入 image token 均值。\n- **Untrained L1 > Trained L1**: 这暗示 VLA 训练轻微扰动了 L1 的 instruction routing（83.6% vs 98.1%），但 L2+ 不受影响。\n\n输出文件：\n- HDF5: `/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5` (1.9 GB)\n- JSON: `/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json`\n- Registry: `phi3v_probe_untrained` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-probe-untrained.md"
+}

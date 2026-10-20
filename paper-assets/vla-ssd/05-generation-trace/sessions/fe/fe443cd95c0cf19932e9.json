@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe443cd95c0cf19932e9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260516T025433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260516T025433_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "f7ce4365491645c28bf9898d11f05c7bc3dffaa98562a0a7efaffac921b233ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex`。\n\n**结构**：5 段，按 writing_plan.yaml 的 para_1–para_5 组织：\n1. **Problem** — VLA 的隐含假设：LLM fine-tuning 注入 action knowledge\n2. **Gap** — 现有工作停留在 behavioral 层面，无 representational decomposition（引用 grant2026, haon2025）\n3. **Approach** — 2×2 factorial design + RSA + probes，分解 OpenVLA 各组件\n4. **Findings** — 三个核心发现，所有数字均来自同一 probe set（50ep），RSA 数字全部安全\n5. **Contributions** — 3-item itemize + 一句 implications 指向 Discussion\n\n**合规检查**：\n- R² 数字仅引用 Proj/LLM 系列（0.706, 0.731, 0.686），未混入 CLIP/DINO 100ep 数字\n- 未使用 \"consistently\"（单 benchmark）\n- \"significantly\" 未出现（统计检验用 p 值直接报告）\n- 所有引用均限于允许的 bibtex keys\n- 术语与 experiments.tex / method.tex / discussion.tex 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-2.md"
+}

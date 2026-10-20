@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08ed7dcbcd4ed4ab6a6a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v2 post restart",
+  "task_key": "worker_check_bootstrap_v2_post_restart_20260523T034046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v2_post_restart_20260523T034046_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "28804427e591fb39df76f1aaabfb258d21f6c4ee58eb6dd091a333ec5bc15b2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**进程状态**：全部被杀。两张 GPU 均空闲（0% util, 691 MiB），tmux 无法通过 read_only 检查但从 GPU 状态判断进程已死。两份日志都停在 \"fitting RidgeCV per layer...\" 中途。\n\n**已完成 11/20 JSON**：\n\n| 条件组 | 完成情况 |\n|--------|---------|\n| openvla_goal | trained ✓ untrained ✓ |\n| openvla_spatial | trained ✓ untrained ✓ |\n| openvla_object | trained ✓ untrained ✓ |\n| openvla_long | trained ✓ untrained ✓ |\n| tracvla_goal | trained ✓ untrained ✓ |\n| tracvla_spatial | trained ✓ (untrained 缺失) |\n| tracvla_object | 缺失 |\n| tracvla_long | 缺失 |\n| nora_* | 全部缺失（目录都没创建） |\n\n**待重启 9 个条件**：\n- TracVLA 5 个：spatial/untrained, object/trained, object/untrained, long/trained, long/untrained\n- NORA 4 个：全部\n\n需要重新启动剩余条件的 bootstrap。是否现在重启？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v2-post-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8bd8d89394e81cef98",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp counterfactual 10tasks",
+  "task_key": "worker_exp_counterfactual_10tasks_20260520T184556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_counterfactual_10tasks_20260520T184556_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "0989f62c2c5beb31bf8a99f52852d25129e06d872efe4df31d445e4cb2269ac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 已加载 ~15GB (openvla-7b bf16)，利用率 90%，正在处理中。Python 输出被 tee 缓冲，但实验在正常推进。\n\n实验状态汇总：\n\n- **实验**: `counterfactual_10tasks` — RUNNING on westd-19183, cuda:0\n- **原有 3 tasks**: open_the_middle_drawer_of_the_cabinet, open_the_top_drawer_and_put_the_bowl_inside, push_the_plate_to_the_front_of_the_stove\n- **新增 7 tasks**: put_the_bowl_on_the_plate, put_the_bowl_on_the_stove, put_the_bowl_on_top_of_the_cabinet, put_the_cream_cheese_in_the_bowl, put_the_wine_bottle_on_the_rack, put_the_wine_bottle_on_top_of_the_cabinet, turn_on_the_stove\n- **4 conditions**: wrong, empty, shuffled, paraphrased (+ correct baseline)\n- **规模**: 10 tasks × 10 demos × 50 timesteps = 5000 samples → 25000 forward passes\n- **预估运行时间**: ~60-70 分钟\n- **输出目录**: `/root/autodl-tmp/vla-ssd/results/counterfactual_10tasks/`\n- **输出文件**: \n  - `counterfactual_{wrong,empty,shuffled,paraphrased}.json` (per-condition, with per-task breakdown)\n  - `counterfactual_correct.json` (baseline)\n  - `counterfactual_10tasks_combined.json` (combined summary + cross-task variance)\n- **cross-task variance**: 每个 condition 报告 Cohen's d 的 mean ± std, min/max, CV across 10 tasks"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-counterfactual-10tasks.md"
+}

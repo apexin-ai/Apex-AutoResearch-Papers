@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d2a5c17426c8a3f6c8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code branch split rsa",
+  "task_key": "worker_code_branch_split_rsa_20260516T033714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_branch_split_rsa_20260516T033714_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "d5cc89e4c079348d1bf89f1ac5dbc75294950348c689af80ed5685bdecdda7db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### Branch-Split RSA (Method B)\n\n| 表征层 | 维度 | RSA | 95% CI |\n|--------|------|-----|--------|\n| DINOv2 branch | 1024d | **0.619** | [0.522, 0.705] |\n| SigLIP branch | 1152d | **0.621** | [0.520, 0.701] |\n| Fused pre-projector | 2176d | **0.634** | [0.537, 0.722] |\n| Projector output | 4096d | **0.615** | [0.526, 0.695] |\n\n参考 baselines：standalone DINO patch_mean=0.631, standalone CLIP cls=0.557, VLA trained=0.501\n\n### 关键发现\n\n1. **DINOv2 和 SigLIP 贡献几乎相等**（0.619 vs 0.621），CI 高度重叠，无显著差异\n2. **Fused > 两个单独分支**（0.634 > 0.619/0.621），拼接带来约 +0.015 的互补增益\n3. **Projector 略降 RSA**（0.634→0.615），MLP 投影轻微损失 action-relevant structure\n4. **修正**：实际维度是 DINOv2=1024d + SigLIP=1152d（非任务描述中的 1088+1088），已由提取脚本 h5 metadata `DINOv2(0:1024)|SigLIP(1024:2176)` 确认\n\n结果已保存至 `westd-19183:/root/vla-ssd/branch_split_rsa_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-branch-split-rsa.md"
+}

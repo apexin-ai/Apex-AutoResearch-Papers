@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f08da8e47263892ad7f5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh exp1 pca linear perlayer",
+  "task_key": "worker_ssh_exp1-pca-linear-perlayer_20260515T192115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp1-pca-linear-perlayer_20260515T192115_result.json",
+    "occurrence": 1,
+    "bytes": 2360564,
+    "sha256": "8b8ce21b159269c86811def4d5b0b9a9114ad554003b4d83fd66741c18e6fe12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2360584,
+                "serialized_sha256": "e949d7c85d5b0a566c06ba42d1cbedbe8b51ffcbe146e2995ccb32b6de6eca6d",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp1-pca-linear-perlayer.md"
+}

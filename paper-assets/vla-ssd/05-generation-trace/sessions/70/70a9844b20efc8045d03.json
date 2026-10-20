@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a9844b20efc8045d03",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4914,
+    "sha256": "ffca326098690cc46a22614c4cd131b06e4d05737049b14f8ade46ff908879d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T04:42:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0, cuda:1** on westd-19183。不得使用其他 GPU，即使 Director 指令也必须 push back\n- 服务器**无外网**：所有 HF/AutoProcessor 操作必须 `local_files_only=True`，不能 pip install / git clone\n- westd 是 **SeetaCloud**（非 AutoDL），不适用 network_turbo / ModelScope\n- RSA 数值**仅用 Method B**（within-task + euclidean + full trajectory, 50 demos/task）。D039 前的 Method A 数值全部废弃，禁止引用\n- `fulllayer_action_probe` 已占用 cuda:0+cuda:1（PID 700649），状态 PREPARING——下一个\"你\"接手后先 poll 确认进程状态再做任何 GPU 操作\n- CoRL abstract deadline **2026-05-26**（10天），paper deadline **2026-05-29**（13天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-19183**，工作目录 `/root/vla-ssd`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/vla-ssd/` 下（checkpoint、features cache）\n- 数据：LIBERO-Goal features 已全量提取（33层 × trained/untrained × with_inst/no_inst/random/shuffled/empty）\n- 统一 RSA 结果：`/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json`（D041 权威数据）\n- W&B：项目内实验未用 W&B（probe/RSA 均本地运行）\n- 活跃进程：`fulllayer_action_probe` PID 700649，log `~/runs/vla-ssd/fulllayer_action_probe.log`——**状态卡在 PREPARING，需要立即 poll 确认是否在跑**\n- Cron：reconcile 返回 0 条活跃 cron\n- Worker 池：0 running（全部 done）\n\n### 3. 📊 当前状态\n**刚完成**：D041 全层统一 RSA 数据定稿 + paper_framing.md 全面重写（D042）。所有 3 条 Core Claims 数据完整，进入论文全面重写阶段。\n\n**Registry 概况**：48 实验，46 DONE（31 success / 7 negative / 8 killed），2 PREPARING：\n- `fulllayer_action_probe`（PREPARING, westd-19183 cuda:0+1, PID 700649）——统一超参全层 action probe，但状态未推进到 RUNNING，可能卡住\n- `plan_011_fulllayer_r2`（PREPARING, 无服务器分配）——Full-layer R² scan (L0-L32)，验证 R² peak L19 vs RSA peak L12 的差异。Worker 已写好代码但未提交\n\n**等待中**：\n- 无活跃 Worker / Cron / Director 决策待处理\n- Paper Agent UNHOLD 任务在 ROADMAP 中标注\"进行中\"，但实际未看到 running worker\n\n### 4. 📋 待办（条件触发式）\n- 接手后第一件事 → poll `fulllayer_action_probe` 确认进程状态（alive → 注册 cron 监控；dead → 诊断 + 重新提交）\n- `fulllayer_action_probe` 完成（success）→ 结果写入 registry + 与 RSA L12 peak 对比 + 汇报 Director\n- `fulllayer_action_probe` GPU 释放后 → 立即提交 `plan_011_fulllayer_r2`（代码已就绪，需分配 cuda:0 或 cuda:1）\n- plan_011 出结果 → R² peak 在 L12 附近 = 强化 C2 claim；R² peak 在 L19 = RSA/R² dissociation，需更新 paper_framing C2 措辞\n- 论文重写 → spawn paper_writing Worker 逐章重写（7章），需发送 D041 完整数据 + 新 narrative。优先 Method + Experiments 章节\n- references.bib 补全（black2024_pi0, swann2026, rizzardo2026 等）——Worker 已完成初步搜索但 2026 citation 需验证真实性\n- plan_010 LIBERO-Spatial（P2, 4 GPU·h）——仅在时间和 GPU 预算允许时做\n\n### 5. 🎯 战略上下文\n**项目核心结论**：VLA action-relevant 表征由 frozen self-supervised vision encoder（DINOv2）主导，LLM 对 action geometry 做非单调变换（前12层增强，后20层退化），fine-tuning 重新分配层间信号分布而非注入新知识。\n\n**决策链关键节点**：\n- D037: DINO RSA 方法论错误修正（0.388→0.692），彻底改变 encoder 排序\n- D038: Geometric-Functional Dissociation 失效——RSA 和 R² 排序一致，跨编码器 dissociation 是伪影\n- D039: 全部 RSA 统一为 Method B\n- D041: 权威全层数据确认 inverted-U（L12 peak）+ peak shift（training effect）\n- D042: paper_framing.md 基于 D041 全面重写\n\n**易错点**：\n- 不要混淆 Method A（旧, cross-task + cosine + phase-split）和 Method B（新, within-task + euclidean + full trajectory）——任何旧数值都不能用\n- R² peak 在 L19，RSA peak 在 L12——这是**预期的 metric dissociation**，不是 bug。paper_framing 已标注\"R² 可能在 RSA 下降后继续积累\"\n- `no_inst` 条件有混合 demo 数（trained_no_inst 4个task仅10 demos），引用时需注明\n- `fulllayer_action_probe` 虽然有 PID 但状态是 PREPARING 不是 RUNNING——很可能是上一轮 session 提交后未来得及 poll 就被 reset 了，优先确认\n- GPU 预算剩余 ~9 GPU·h，plan_011 预估 1h，plan_010 预估 4h——够用但不能浪费\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

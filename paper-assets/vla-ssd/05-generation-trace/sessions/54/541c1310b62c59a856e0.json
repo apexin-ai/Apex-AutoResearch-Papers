@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "541c1310b62c59a856e0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper figure fig2",
+  "task_key": "worker_paper_figure_fig2_20260516T014515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_20260516T014515_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "c244575d22a7102ef5ea693dc9de0b28d3d9c5218b97d28ab17d4b077feb261f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已生成并注册。\n\n输出文件：\n- PDF: `artifacts/figures/paper/fig2.pdf`\n- PNG: `artifacts/figures/paper/fig2.png`\n\n图表展示了 SigLIP+Projector (ρ=0.615) >> VLA (~0.49) >> DINOv2 (0.388) 的层级关系，包含 SigLIP 的 95% CI whisker、Δ=0.123 标注、DINO baseline 虚线，以及 trained/untrained × instruction 的 hatch 区分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2.md"
+}

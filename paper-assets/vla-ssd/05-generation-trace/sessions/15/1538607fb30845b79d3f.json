@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1538607fb30845b79d3f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag behavioral smoketest action",
+  "task_key": "worker_diag_behavioral_smoketest_action_20260523T153722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_behavioral_smoketest_action_20260523T153722_result.json",
+    "occurrence": 1,
+    "bytes": 1863,
+    "sha256": "8a7ef368a741c5bee436c20f640661e549af1035e6d038f85a913f06abedeb43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，结果很清晰。关键发现：\n\n## 诊断结果\n\n### action[0] 并非硬锁定，但严重坍缩\n\n9 个样本中 action[0] 只出现 3 个不同值：\n- **0.236** (6/9) — bin 156, token 31843\n- **0.001** (3/9) — bin 123, token 31876  \n- **0.086** (1/9) — bin 135, token 31864\n\nstd = 0.109，远低于 GT action[0] 的范围 [-0.43, 0.94]。\n\n### 但问题不止 action[0]\n\n对比 GT 和预测可以看到**所有维度都有严重偏差**：\n\n| 样本 | GT action | Pred action |\n|------|-----------|-------------|\n| Task1 t=10 | [0.94, 0.23, -0.20, ...] | [0.24, 0.27, 0.21, ...] |\n| Task1 t=25 | [-0.43, -0.07, -0.94, ...] | [0.24, 0.31, 0.21, ...] |\n\nTask1 t=10 和 t=25 的预测几乎相同，尽管 GT 差异巨大。\n\n### action[6] (gripper) 也有问题\nGT 几乎全是 -1.0（闭合），模型预测几乎全是 +0.996（打开）。mask[6]=False，所以 gripper 不做 unnorm，直接用 norm_act 值。\n\n### 根因推测\n\nLogits 分析显示模型置信度很高但预测错误。第一个 action token 的 logit gap 很大（top1 ≈ 14-15, top2 ≈ 9-10），模型不是不确定，而是确定地选了错误的 bin。\n\n这更像是 **checkpoint 质量问题**（fine-tuning 可能没收敛好，或者 action tokenization/unnorm 流程在训练时和推理时不一致），不是 decode 逻辑 bug——decode 逻辑和官方 `predict_action()` 方法完全一致。\n\n### 下一步建议\n\n1. 确认 fine-tuning 时用的 normalization 参数和推理时的 `dataset_statistics.json` 是否一致\n2. 用 `predict_action()` 官方接口对比 `generate_action()` 手动解码，排除任何细微差异\n3. 检查 gripper 维度 mask=False 在训练时是否也是这样处理的\n\n是否要继续跑 1 episode 实际 rollout，还是先排查 checkpoint/训练配置？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-behavioral-smoketest-action.md"
+}

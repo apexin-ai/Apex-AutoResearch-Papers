@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee7dc82fb9d3eb2cf271",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research nora bib entry",
+  "task_key": "worker_research_nora_bib_entry_20260522T061000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_nora_bib_entry_20260522T061000_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "eb2ab4cd8e62d09420154355508fee33f92fb39db3c202d428ebe53714a1bd1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```bibtex\n@article{hung2025nora,\n  title={{NORA}: A Small Open-Sourced Generalist Vision Language Action Model for Embodied Tasks},\n  author={Hung, Chia-Yu and Sun, Qi and Hong, Pengfei and Zadeh, Amir and Li, Chuan and Tan, U-Xuan and Majumder, Navonil and Poria, Soujanya},\n  journal={arXiv preprint arXiv:2504.19854},\n  year={2025}\n}\n```\n\narXiv ID: 2504.19854，2025年4月发表，来自 DeCLaRe Lab (Soujanya Poria 组)。基于 Qwen2.5-VL-3B，3B 参数，用 FAST+ tokenizer 在 970k 真实机器人示范上训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-nora-bib-entry.md"
+}

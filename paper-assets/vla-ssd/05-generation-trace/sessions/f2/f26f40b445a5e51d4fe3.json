@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f26f40b445a5e51d4fe3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra fix storage path",
+  "task_key": "worker_infra_fix-storage-path_20260515T051232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-storage-path_20260515T051232_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "a4000494390cc5b27b1d0feb438ffb06f2a47fe196cfe505bd2146d8bb4a5b8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修复结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 符号链接 | `/root/vla-ssd/features` → `/root/autodl-tmp/vla-ssd/features` |\n| 数据盘可用空间 | **816GB**（XFS，`/dev/sda2`） |\n| 根分区可用空间 | 23GB（不再承载 features） |\n| checkpoints/data | 均为空（0 bytes），暂无需迁移 |\n\n特征提取产生的 ~110GB hidden states 将写入数据盘，根分区不受影响。如果后续 checkpoints 或 data 目录增长，需要同样做符号链接迁移。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-storage-path.md"
+}

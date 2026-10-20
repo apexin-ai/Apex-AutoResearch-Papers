@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8c22cb84128f3c9c1f7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run bootstrap cuda0",
+  "task_key": "worker_run_bootstrap_cuda0_20260522T144626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_bootstrap_cuda0_20260522T144626_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "5c70a00917837ebb1f409deb3feacef38fc96012b485bcd47c4f8e9b87d6f881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行状态确认：\n\n| 项目 | 状态 |\n|------|------|\n| tmux session `bootstrap_cuda0` | 运行中 |\n| GPU 0 占用 | 15384 MiB (python PID 670838) |\n| 当前任务 | OpenVLA goal trained — 正在提取特征 (450/5000) |\n\n**与用户预期的差异**：脚本 argparse 没有 `long` 选项，数据目录也没有 `libero_long`，所以实际是：\n- OpenVLA: goal/spatial/object × 2 = **6 runs**\n- NORA: goal/spatial × 2 = **4 runs**（object ×2 会被脚本优雅跳过）\n- 有效总计 **10 runs**，不是 12"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-bootstrap-cuda0.md"
+}

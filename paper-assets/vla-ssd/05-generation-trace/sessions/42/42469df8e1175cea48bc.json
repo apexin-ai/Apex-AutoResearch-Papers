@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42469df8e1175cea48bc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "pull fig r2 collapse v2",
+  "task_key": "worker_pull_fig_r2_collapse_v2_20260522T132422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pull_fig_r2_collapse_v2_20260522T132422_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "1a62358700252501b8a0cde24f680f870a4afe23cd93a55abec0e9a4a5abe8de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已拉取到本地：\n- PDF (36K) → `docs/paper/figures/fig_r2_collapse.pdf`\n- PNG (278K) → `artifacts/figures/paper/fig_r2_collapse.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pull-fig-r2-collapse-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d8a9ee719c1453db7c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis readout rsa curve",
+  "task_key": "worker_analysis_readout_rsa_curve_20260517T191343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_readout_rsa_curve_20260517T191343_result.json",
+    "occurrence": 1,
+    "bytes": 2989,
+    "sha256": "82c8474cca440afba115e58f8361135fd263ab8db6e4801bc69a9982e8d33bbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是结果。\n\n---\n\n## 结果：Readout Token (last_preaction) Per-Layer RSA\n\n**来源文件**: `/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json`  \n**路径**: `conditions → {trained_with_inst, untrained_with_inst} → last_preaction → layer_X → mean_rsa`\n\n### Per-Layer RSA ρ 表格\n\n| Layer | Trained ρ | Untrained ρ |\n|-------|-----------|-------------|\n| L0    | nan       | nan         |\n| L1    | 0.5682    | 0.6262      |\n| L2    | 0.5818    | 0.6207      |\n| L3    | 0.5880    | 0.6156      |\n| L4    | 0.5892    | 0.6119      |\n| L5    | 0.5836    | 0.6084      |\n| L6    | 0.5617    | 0.6053      |\n| L7    | 0.5430    | 0.6029      |\n| L8    | 0.5469    | 0.6013      |\n| L9    | 0.5682    | 0.6008      |\n| L10   | 0.5577    | 0.5977      |\n| L11   | 0.5993    | 0.5966      |\n| L12   | **0.6425**| 0.5953      |\n| L13   | 0.6395    | 0.5939      |\n| L14   | 0.6374    | 0.5934      |\n| L15   | 0.6348    | 0.5936      |\n| L16   | 0.6303    | 0.5941      |\n| L17   | 0.6261    | 0.5950      |\n| L18   | 0.6227    | 0.5947      |\n| L19   | 0.6194    | 0.5945      |\n| L20   | 0.6164    | 0.5938      |\n| L21   | 0.6086    | 0.5936      |\n| L22   | 0.6060    | 0.5927      |\n| L23   | 0.6003    | 0.5917      |\n| L24   | 0.5950    | 0.5913      |\n| L25   | 0.5855    | 0.5907      |\n| L26   | 0.5812    | 0.5895      |\n| L27   | 0.5822    | 0.5888      |\n| L28   | 0.5814    | 0.5879      |\n| L29   | 0.5787    | 0.5885      |\n| L30   | 0.5724    | 0.5883      |\n| L31   | 0.5703    | 0.5870      |\n| L32   | 0.5843    | 0.5866      |\n\n### Peak 信息\n\n| Token | Condition | Peak Layer | Peak ρ | CI95 |\n|-------|-----------|-----------|--------|------|\n| last_preaction | Trained | **L12** | 0.6425 | [0.561, 0.716] |\n| last_preaction | Untrained | **L1** | 0.6262 | — |\n| image_mean | Trained | **L12** | 0.6282 | — |\n| image_mean | Untrained | **L0** | 0.6117 | — |\n\n### 总结\n\n1. **Trained last_preaction 呈 inverted-U**：从 L1 (0.568) 上升至 L12 peak (0.643)，之后单调下降至 L31 (0.570)。曲线形状与 image_mean trained 一致，peak 位置完全相同（均为 L12）。\n\n2. **Untrained last_preaction 单调递减**：L1 (0.626) 最高，逐层缓慢下降至 L32 (0.587)，无 inverted-U。这也与 image_mean untrained 的模式一致（peak 在最早层）。\n\n3. **训练效应**：训练使 last_preaction 在中间层（L11-L16）的 RSA 显著提升（超过 untrained 约 0.04），在早期层（L1-L10）则低于 untrained。这说明训练将 action-relevant 信息从早期层重新组织到中间层——readout token 和 image_mean token 展现相同的学习动态。\n\n4. **与 image_mean 对比**：两种 token 的 trained peak 位置完全一致（L12），trained peak ρ 值 last_preaction (0.643) 略高于 image_mean (0.628)，表明 readout token 在 peak 层对 action structure 的编码略强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-readout-rsa-curve.md"
+}

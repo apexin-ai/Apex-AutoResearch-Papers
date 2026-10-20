@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c47642d4be9609d47b94",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "extract tracvla full metrics",
+  "task_key": "worker_extract_tracvla_full_metrics_20260521T154630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_tracvla_full_metrics_20260521T154630_result.json",
+    "occurrence": 1,
+    "bytes": 5762,
+    "sha256": "5642d3f4e4547e34c37325ac6e3fb25b00ce5b67f078f6fa49e437f9bdcae881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是完整 metrics 表格。\n\n---\n\n## GPU 状态\n\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| 0 | 0% | 15161 MiB |\n| 1 | 24% | 9323 MiB |\n\nGPU 1 正在跑 **TracVLA Spatial untrained**（task 6/10, 3100/5000 samples）。Spatial untrained 目录暂无输出文件。\n\n---\n\n## 1. TraceVLA Object\n\n### 1.1 Action R² Probing\n\n| Layer | Trained img_mean | Trained last_preaction | Untrained img_mean (Phi-3-Vision base) | Untrained last_preaction (Phi-3-Vision base) |\n|-------|-----------------|----------------------|---------------------------------------|---------------------------------------------|\n| L0 | 0.7458 | 0.6214 | 0.7356 | 0.5877 |\n| L4 | 0.7531 | 0.7290 | 0.7406 | 0.6487 |\n| L8 | 0.7562 | 0.7506 | 0.7526 | 0.6595 |\n| L12 | 0.7589 | 0.7418 | 0.7470 | 0.6532 |\n| L16 | 0.7687 | 0.7544 | 0.7488 | 0.6805 |\n| L20 | 0.7728 | 0.7354 | 0.7531 | 0.6782 |\n| L24 | 0.7620 | 0.6605 | 0.7419 | 0.6889 |\n| L28 | 0.7661 | 0.5039 | 0.7448 | 0.6784 |\n| L31 | 0.7483 | 0.4699 | 0.7362 | 0.6811 |\n| **PEAK** | **0.7757 @ L22** | **0.7636 @ L9** | **0.7531 @ L20** | **0.6900 @ L23** |\n\n**关键对比：**\n- Trained last_preaction 呈倒U型：从 L0=0.6214 升到 L9=0.7636（peak），然后剧烈下降到 L30=0.1855（最低点），L31 回弹至 0.4699\n- Untrained last_preaction 几乎平坦：全程在 0.59–0.69 区间波动，无显著下降\n- Trained image_mean 略高于 untrained（~0.77 vs ~0.75），均相对平稳\n\n### 1.2 L1 Attention Profile\n\n| Metric | Trained | Untrained (Phi-3-Vision base) |\n|--------|---------|-------------------------------|\n| Instr-dominant heads | 30/32 | 32/32 |\n| Mixed heads | 2 (h13=0.472, h22=0.472) | 0 |\n| Image-dominant heads | 0 | 0 |\n| Top-3 instr ratio | h8=0.939, h26=0.920, h19=0.901 | h8=0.997, h26=0.984, h19=0.981 |\n| Bottom-3 instr ratio | h13=0.472, h22=0.472, h3=0.522 | h2=0.584, h24=0.603, h5=0.635 |\n\n**关键对比：**\n- Untrained 的 instruction ratio 普遍更高（top heads 接近 1.0）\n- Trained 出现了 2 个 mixed heads (h13, h22)，untrained 全部 instruction-dominant\n- 训练让部分 head 的 instruction ratio 下降（如 h8: 0.997→0.939）\n\n### 1.3 Cross-Instruction Classification (10-way, chance=0.1)\n\n| Layer | Trained img_mean | Trained last_preaction | Untrained img_mean | Untrained last_preaction |\n|-------|-----------------|----------------------|-------------------|-------------------------|\n| L0 | 1.000 | 0.858 | 1.000 | 0.922 |\n| L1 | 1.000 | 0.999 | 1.000 | 0.998 |\n| L2–L31 | 1.000 | 1.000 | 1.000 | 1.000 |\n\n两个模型在 L1+ 均达到完美分类，差异仅在 L0 last_preaction（Trained=0.858 vs Untrained=0.922）。\n\n### 1.4 Counterfactual Sensitivity\n\n**Trained — Ranking by Cohen's d:**\n\n| Condition | Cohen's d | Paired MSE | Token Div. Rate |\n|-----------|----------|------------|-----------------|\n| empty | 1.2117 | 0.1359 | 1.0 |\n| shuffled | 1.1643 | 0.1061 | 1.0 |\n| wrong | 1.0595 | 0.0948 | 1.0 |\n| paraphrased | 0.9711 | 0.0925 | 1.0 |\n\n**Wrong condition per-task Cohen's d:** mean=1.06, std=0.09 (range: 0.94–1.22)\n**Paraphrased condition per-task Cohen's d:** mean=1.00, std=0.12 (range: 0.81–1.22)\n\n**Untrained — `counterfactual_combined.json` 不存在**（缺失）\n\n---\n\n## 2. TraceVLA Spatial\n\n### 2.1 Action R² Probing (Trained only; untrained 仍在运行)\n\n| Layer | Trained img_mean | Trained last_preaction |\n|-------|-----------------|----------------------|\n| L0 | 0.8059 | 0.6656 |\n| L4 | 0.8091 | 0.7954 |\n| L8 | 0.8134 | 0.7908 |\n| L12 | 0.8231 | 0.7980 |\n| L16 | 0.8311 | 0.8035 |\n| L20 | 0.8310 | 0.7981 |\n| L24 | 0.8169 | 0.7463 |\n| L28 | 0.8223 | 0.6150 |\n| L31 | 0.7907 | 0.6712 |\n| **PEAK** | **0.8347 @ L19** | **0.8090 @ L17** |\n\n**关键特征：**\n- image_mean 整体高于 Object（~0.83 vs ~0.77），spatial task 的视觉信息预测能力更强\n- last_preaction 同样倒U型：L0=0.6656 → L17=0.8090（peak）→ L30=0.4472（最低）→ L31=0.6712 回弹\n- Peak R² 更高（0.809 vs Object 的 0.764），spatial task 的 action 可预测性更强\n\n### 2.2 L1 Attention Profile (Trained)\n\n| Metric | Value |\n|--------|-------|\n| Instr-dominant heads | 30/32 |\n| Mixed heads | 2 (h13=0.450, h22=0.474) |\n| Image-dominant heads | 0 |\n| Top-5 instr ratio | h8=0.945, h26=0.913, h19=0.903, h20=0.859, h1=0.839 |\n| Bottom-3 instr ratio | h13=0.450, h22=0.474, h2=0.514 |\n\n与 Object trained 几乎同构：同样的 head 偏好、同样的 h13/h22 mixed pattern。\n\n### 2.3 Cross-Instruction Classification (Trained, 10-way, chance=0.1)\n\n| Layer | img_mean | last_preaction |\n|-------|---------|----------------|\n| L0 | 1.000 | 0.923 |\n| L1 | 1.000 | 0.998 |\n| L2–L31 | 1.000 | 1.000 |\n\n与 Object 模式一致。\n\n### 2.4 Counterfactual Sensitivity (Trained)\n\n| Condition | Cohen's d | Paired MSE | Token Div. Rate |\n|-----------|----------|------------|-----------------|\n| empty | 1.3268 | 0.1072 | 1.0 |\n| shuffled | 1.2947 | 0.0937 | 1.0 |\n| paraphrased | 1.1825 | 0.0715 | 1.0 |\n| wrong | 1.1724 | 0.0795 | 1.0 |\n\n**vs Object Trained:** Spatial 的 Cohen's d 全面更高（empty 1.33 vs 1.21, wrong 1.17 vs 1.06）。Spatial 排序中 paraphrased > wrong，与 Object 相反。\n\n**Wrong condition per-task Cohen's d:** mean=1.17, std varies (range: 0.86–1.37)\n**Paraphrased condition per-task Cohen's d:** mean=1.24, std=0.11 (range: 1.13–1.44)\n\n---\n\n## 数据缺口\n\n| 实验 | 缺失 |\n|------|------|\n| Object untrained | `counterfactual_combined.json` 不存在 |\n| Spatial untrained | 全部 4 个 probe 均缺失（实验进行中，task 6/10 @ 3100/5000） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-tracvla-full-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd0bd210ea79b8dd53bb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analyze lg dino extract",
+  "task_key": "worker_analyze_lg_dino_extract_20260515T175027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_lg_dino_extract_20260515T175027_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "9c718c1124395f3477b94a16fb9e91d0bb48e0bdad3695e619291d7410aaaa6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结果汇总：\n\n**lg_dino_extract → success**\n\n| 指标 | 值 |\n|------|-----|\n| Tasks | 10/10 完成 |\n| Demos | 50/task, 500 total |\n| Total frames | 63,728 |\n| Feature dim | 1024 (ViT-L/14) |\n| Feature keys | `cls_token`, `patch_mean` |\n| dtype | float16 |\n| Files | 10 × .h5, 共 234MB |\n| Speed | 183 fps, 347s |\n| 输出路径 | `/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/` |\n\n每个 .h5 文件包含 50 条轨迹（traj_0~traj_49），每条轨迹有两种特征表示，维度均为 (frames, 1024)。数据完整，可用于下游 Goal Classification 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-lg-dino-extract.md"
+}

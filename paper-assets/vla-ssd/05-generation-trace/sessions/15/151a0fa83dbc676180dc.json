@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "151a0fa83dbc676180dc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code threecond multiseed r2 v2 analysis",
+  "task_key": "worker_code_threecond_multiseed_r2_v2_analysis_20260518T084856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_threecond_multiseed_r2_v2_analysis_20260518T084856_result.json",
+    "occurrence": 1,
+    "bytes": 3494,
+    "sha256": "b15a3f86dbaf3a92fb7bef313188cc4eb8d030a521b38f41100fa38bb5122d43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。以下是完整分析。\n\n```\n=== threecond_multiseed_r2_v2 分析 ===\n\n注：L0 三条件完全相同（共享 vision encoder 输出），下表 Peak Layer 排除 L0。\n\n条件       | Peak Layer | Peak R² (mean±std)  | L0 R² (shared)\n-----------|-----------|---------------------|----------------\ntrained    | L9        | 0.6434 ± 0.0137     | 0.6451 ± 0.0084\nllama2base | L12       | 0.6344 ± 0.0131     | 0.6451 ± 0.0084\nuntrained  | L32       | 0.5885 ± 0.0071     | 0.6451 ± 0.0084\n\n（untrained 若排除 L32 异常值，次高 peak = L1: 0.5470 ± 0.0080）\n\n--- vs v1 对比 ---\n- trained peak: v1 = L10, 0.548±0.012 → v2 = L9, 0.6434±0.0137 (+17.4%)\n- split 修复效果确认，v1 的 random shuffle 导致系统性低估\n\n--- 层级 profile 特征 ---\n- trained: L0-L15 高位平台 (~0.62-0.65)，L16+ 渐降至 ~0.47-0.52。非尖锐 inverted-U，更接近 plateau-then-decline\n- llama2base: 全 33 层极其稳定 (~0.56-0.64)，std 全部 < 0.03\n- untrained: L0 后迅速退化，L10-L13 出现负 R²（mean -0.09 to 0.22），L14+ 大幅震荡，L32 异常回升至 0.5885\n\n--- Hypothesis 验证 ---\n- trained > llama2base > untrained（at peaks excl L0）: YES\n  0.6434 > 0.6344 > 0.5885（或 0.5470 若排除 L32）\n- layer-by-layer gradient (L1-L20): 大部分层成立\n  例外：L12 llama2base(0.6344) > trained(0.6205)\n  L25+ llama2base 有时 > trained\n  L32: untrained(0.5885) > llama2base(0.5513) > trained(0.5240) — 完全反转\n- seed variance 低 (std < 0.03):\n  - trained: 27/33 层 < 0.03，但 L23(0.080) L27(0.068) L31(0.067) 偏高\n  - llama2base: 33/33 层 < 0.03 ✓\n  - untrained: 大量层 std > 0.1，最高 0.377 ✗\n  → PARTIAL — trained 和 llama2base 低方差，untrained 极高方差\n- max std across all: 0.377 (untrained L22)\n\n--- vs 原始单 seed 参考值 ---\n                    原始单seed    v2 multi-seed (excl L0)\ntrained peak:       ~0.655        0.6434 (接近，合理)\nllama2base peak:    ~0.53-0.54    0.6344 (显著更高!)\nuntrained peak:     ~0.49-0.53    0.5470 (L1, 一致) / 0.5885 (L32, 异常)\n\nllama2base 原始参考值偏低原因待查（可能原始单 seed 也用了 shuffle split）\n\n--- 关键发现 ---\n1. L0 完全相同 = 三模型共享 vision encoder，vision-only baseline R²=0.645\n2. trained-llama2base gap 极小（peak diff = 0.009），robot fine-tuning 对 action encoding 增益有限\n3. llama2base 全层稳定 ~0.60，说明 Llama2 pretrained representations 本身已保留大量 action-relevant 信息\n4. untrained 中间层崩溃（负 R² + 巨大方差）= 随机权重破坏信息流\n5. untrained L32 异常高且低方差（0.5885±0.007）— 可能 final layer norm / projection 恢复了部分结构，需调查\n\n--- 结论 ---\n建议 conclusion: partial success\n- gradient 在 peak 层成立 ✓，但 trained-llama2base 间距极小（not statistically significant at 0.009 diff）\n- untrained 高方差是最强信号（random weights → chaotic representations）\n- 主要故事可能不是 \"trained 编码了更好的 action info\"，而是 \"pretrained LLM 已经保留了 vision encoder 的 action info，fine-tuning 只是微调\"\n\n建议 notes:\n- trained vs llama2base 差异可能需要统计检验（paired t-test across layers）确认是否显著\n- untrained L32 anomaly 需要单独调查\n- 考虑是否需要更多 seeds（当前 3 seeds 统计力有限）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-threecond-multiseed-r2-v2-analysis.md"
+}

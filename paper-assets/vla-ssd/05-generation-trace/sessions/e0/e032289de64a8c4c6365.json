@@ -1,0 +1,1033 @@
+{
+  "schema_version": "1.0",
+  "id": "e032289de64a8c4c6365",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "code p0 analyze results fix",
+  "task_key": "worker_code_p0-analyze-results-fix_20260515T134631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_p0-analyze-results-fix_20260515T134631.jsonl",
+    "occurrence": 1,
+    "bytes": 58075,
+    "sha256": "2ca263969cc637a977d316c027180b4155f5e2321d07c3dcaf0263f8e46e07cf"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:50:06.296185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:50:06.296516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:50:06.296684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:50:06.297015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[s\n…[truncated 7293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:50:06.297252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def compute_judgment\" /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:50:06.297388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "wc -l /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:50:06.297518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"307:def compute_judgment(all_data):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:50:06.297686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"535 /root/vla-ssd/scripts/analyze_results.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:50:06.297871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -n 450 /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:50:06.298175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[s\n…[truncated 7279 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:50:06.298353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -n 340 /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T13:50:06.298599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"analyze_results.py — Compare probe results across models and visualize.\\\\n\\\\nInput:  Multiple result directories (from train_probes.py)\\\\nOutput: Comparison tables, plots, PASS/FAIL judgment\\\\n\\\\nUsage:\\\\n  python analyze_results.py \\\\\\\\\\\\n    --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\\\\\\\\\\n    --output_dir results/analysis/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Analyze and compare probe results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--results_dirs\\\\\\\", required=True,\\\\n                   help=\\\\\\\"Comma-separated name:path pairs, e.g. trained:results/trained/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--probe_type\\\\\\\", default=\\\\\\\"temporal_distance\\\\\\\",\\\\n                   choices=[\\\\\\\"temporal_distance\\\\\\\", \\\\\\\"subtask_predicate\\\\\\\"])\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef parse_results_dirs(s):\\\\n    d = {}\\\\n    for entry in s.split(\\\\\\\",\\\\\\\"):\\\\n        name, path = entry.strip().split(\\\\\\\":\\\\\\\")\\\\n        d[name.strip()] = path.strip()\\\\n    return d\\\\n\\\\n\\\\ndef load_results(results_dir, probe_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load probe results from a directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probe_dir = os.path.join(results_dir, probe_type)\\\\n    summary_path = os.path.join(probe_dir, \\\\\\\"summary.json\\\\\\\")\\\\n    if os.path.exists(summary_path):\\\\n        with open(summary_path) as f:\\\\n            return json.load(f)\\\\n\\\\n    results = {}\\\\n    for p in sorted(glob.glob(os.path.join(probe_dir, \\\\\\\"layer_*.json\\\\\\\"))):\\\\n        with open(p) as f:\\\\n            m = json.load(f)\\\\n        key = m.get(\\\\\\\"layer\\\\\\\", Path(p).stem.replace(\\\\\\\"layer_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        results[s\n…[truncated 7205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T13:50:06.298773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -n +340 /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T13:50:06.299046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        best_key = str(best_layer)\\\\n        has_per_task = (best_key in tr_results\\\\n                        and \\\\\\\"per_task_rho\\\\\\\" in tr_results.get(best_key, {})\\\\n                        and best_key in un_results\\\\n                        and \\\\\\\"per_task_rho\\\\\\\" in un_results.get(best_key, {}))\\\\n        if has_per_task:\\\\n            delta_at_best, delta_ci_lower, delta_ci_upper, p_value_perm = (\\\\n                bootstrap_delta_rho(tr_results, un_results, best_key))\\\\n            ci_excludes_zero = delta_ci_lower > 0\\\\n        else:\\\\n            l_tr, rho_tr = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            l_un, rho_un = extract_layer_metrics(all_data[\\\\\\\"untrained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\n            tr_map = dict(zip(l_tr.tolist(), rho_tr.tolist()))\\\\n            un_map = dict(zip(l_un.tolist(), rho_un.tolist()))\\\\n            if best_layer in tr_map and best_layer in un_map:\\\\n                delta_at_best = tr_map[best_layer] - un_map[best_layer]\\\\n\\\\n    criteria[\\\\\\\"delta_at_best\\\\\\\"] = delta_at_best\\\\n    criteria[\\\\\\\"delta_ci_lower\\\\\\\"] = delta_ci_lower\\\\n    criteria[\\\\\\\"delta_ci_upper\\\\\\\"] = delta_ci_upper\\\\n    criteria[\\\\\\\"ci_excludes_zero\\\\\\\"] = ci_excludes_zero\\\\n    criteria[\\\\\\\"p_value_perm\\\\\\\"] = p_value_perm\\\\n    # D003: delta_pass requires CI excludes 0 AND permutation p < 0.05\\\\n    criteria[\\\\\\\"delta_pass\\\\\\\"] = delta_at_best > 0.1 and ci_excludes_zero and p_value_perm < 0.05\\\\n\\\\n    # 3) VLA per-task mean rho >= DINO gate threshold (D004: 0.554)\\\\n    vla_mean_rho = 0.0\\\\n    dino_mean_rho = 0.0\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\n        _, rho_vla_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\n        if len(rho_vla_pt) > 0:\\\\n            vla_mean_rho = float(rho_vla_pt.max())\\\\n    if \\\\\\\"dinov2\\\\\\\" in all_data:\\\\n        _, rho_dino_pt = extract_per_task_mean_rho(all_data[\\\\\\\"dinov2\\\\\\\"])\\\\n        if len(rho_din\n…[truncated 6862 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T13:50:06.299244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"DINO_GATE_THRESHOLD\\|def compute_judgment\\|best_rho = float\\|best_layer = int\\|criteria\\[.best_rho.\\]\\|criteria\\[.best_layer.\\]\\|criteria\\[.rho_pass.\\]\\|delta_at_best = 0\" /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T13:50:06.299382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T13:50:06.299507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"DINO_GATE_THRESHOLD\" /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T13:50:06.299635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"121:DINO_GATE_THRESHOLD = 0.554\\\\n376:    vla_ge_threshold = vla_mean_rho >= DINO_GATE_THRESHOLD\\\\n392:    criteria[\\\\\\\"dino_gate_threshold\\\\\\\"] = DINO_GATE_THRESHOLD\\\\n422:        reasons.append(f\\\\\\\"VLA per-task mean rho ({vla_mean_rho:.4f}) < DINO gate ({DINO_GATE_THRESHOLD})\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:50:06.299759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"def compute_judgment\" /root/vla-ssd/scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T13:50:06.299880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"307:def compute_judgment(all_data):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T13:50:06.300060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && python3 << 'PATCH_EOF'\nimport re\n\nwith open(\"scripts/analyze_results.py\", \"r\") as f:\n    content = f.read()\n\n# === Fix 1: DINO threshold ===\ncontent = content.replace(\n    \"DINO_GATE_THRESHOLD = 0.554\",\n    \"DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\"\n)\n\n# === Fix 2: Collapsed layer filtering in compute_judgment ===\n# Replace the section that computes best_rho/best_layer from trained data\n# Original block (lines 310-322 approx):\nold_block = '''    # 1) per-task mean rho at best layer > 0.5 (D002)\n    if \"trained\" in all_data:\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\n        if len(rhos_pt) > 0:\n            best_rho = float(rhos_pt.max())\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\n        else:\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n    else:\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.5'''\n\nnew_block = '''    # 1) per-task mean rho at best layer > 0.5 (D002)\n    # D006: detect collapsed layers (per-task mean rho < 0.1 in either model)\n    collapsed_layers = set()\n    for model_name in [\"trained\", \"untrained\"]:\n        if model_name in all_data:\n            c_layers, c_rhos = extract_per_task_mean_rho(all_data[model_name])\n            for l, r in zip(c_layers.tolist(), c_rhos.tolist()):\n                if r < 0.1:\n                    collapsed_layers.add(int(l))\n\n    if \"trained\" in all_data:\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\n        # Filter out collapsed layers\n        if len(layers_pt) > 0:\n            healthy_mask = np.array([int(l) not in collapsed_layers for l in layers_pt])\n            healthy_layers = layers_pt[healthy_mask]\n            healthy_rhos = rhos_pt[healthy_mask]\n        else:\n            healthy_layers, healthy_rhos = layers_pt, rhos_pt\n\n        if len(healthy_rhos) > 0:\n            best_rho = float(healthy_rhos.max())\n            best_layer = int(healthy_layers[np.argmax(healthy_rhos)])\n        elif len(layers_pt) > 0:\n            # All layers collapsed\n            best_rho = 0.0\n            best_layer = -1\n        else:\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n    else:\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"collapsed_layers_excluded\"] = sorted(collapsed_layers)\n    criteria[\"rho_pass\"] = best_rho > 0.5'''\n\nassert old_block in content, \"Could not find old_block in file!\"\ncontent = content.replace(old_block, new_block)\n\n# Add \"all layers collapsed\" FAIL reason before the final judgment block\n# Find the judgment decision block and add collapsed-all check\nold_judgment = '''    # D003: judgment based on temporal distance only (no subtask AUC gate)\n    if not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\n        judgment = \"FAIL\"\n    elif vla_ge_threshold:\n        judgment = \"PASS\"\n    else:\n        judgment = \"CONDITIONAL\"'''\n\nnew_judgment = '''    # D003: judgment based on temporal distance only (no subtask AUC gate)\n    if len(collapsed_layers) > 0 and best_layer == -1:\n        judgment = \"FAIL\"\n    elif not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\n        judgment = \"FAIL\"\n    elif vla_ge_threshold:\n        judgment = \"PASS\"\n    else:\n        judgment = \"CONDITIONAL\"'''\n\nassert old_judgment in content, \"Could not find old_judgment in file!\"\ncontent = content.replace(old_judgment, new_judgment)\n\n# Add reason for all-layers-collapsed\nold_reasons_start = '''    reasons = []\n    if not criteria[\"rho_pass\"]:'''\n\nnew_reasons_start = '''    reasons = []\n    if len(collapsed_layers) > 0 and best_layer == -1:\n        reasons.append(f\"All layers collapsed (excluded: {sorted(collapsed_layers)})\")\n    if not criteria[\"rho_pass\"]:'''\n\nassert old_reasons_start in content, \"Could not find old_reasons_start in file!\"\ncontent = content.replace(old_reasons_start, new_reasons_start)\n\nwith open(\"scripts/analyze_results.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"PATCH APPLIED OK\")\nPATCH_EOF"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T13:50:06.300307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/vla-ssd && python3 << \\\\\\\\'PATCH_EOF\\\\\\\\'\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\"scripts/analyze_results.py\\\\\\\", \\\\\\\"r\\\\\\\") as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# === Fix 1: DINO threshold ===\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\"DINO_GATE_THRESHOLD = 0.554\\\\\\\",\\\\\\\\n    \\\\\\\"DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\\\\\\\"\\\\\\\\n)\\\\\\\\n\\\\\\\\n# === Fix 2: Collapsed layer filtering in compute_judgment ===\\\\\\\\n# Replace the section that computes best_rho/best_layer from trained data\\\\\\\\n# Original block (lines 310-322 approx):\\\\\\\\nold_block = \\\\\\\\'\\\\\\\\'\\\\\\\\'    # 1) per-task mean rho at best layer > 0.5 (D002)\\\\\\\\n    if \\\\\\\"trained\\\\\\\" in all_data:\\\\\\\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\\\\\n        if len(rhos_pt) > 0:\\\\\\\\n            best_rho = float(rhos_pt.max())\\\\\\\\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\\\\\\\n        else:\\\\\\\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\\\\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\\\\\\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\\\\\\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\\\\\\\"trained\\\\\\\"], \\\\\\\"spearman_rho\\\\\\\")\\\\\\\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\\\\\\\n    else:\\\\\\\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\\\\\\\n\\\\\\\\n    criteria[\\\\\\\"best_rho\\\\\\\"] = best_rho\\\\\\\\n    criteria[\\\\\\\"best_pooled_rho\\\\\\\"] = best_pooled_rho\\\\\\\\n    criteria[\\\\\\\"best_layer\\\\\\\"] = best_layer\\\\\\\\n    criteria[\\\\\\\"rho_pass\\\\\\\"] = best_rho > 0.5\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_block = \\\\\\\\'\\\\\\\\'\\\\\\\\'    # 1) per-task mean rho at best layer > 0.5 (D002)\\\\\\\\n    # D006: detect col\n…[truncated 4305 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:50:06.300513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/patch_analyze.py << 'PYEOF'\nimport sys\n\nwith open(\"/root/vla-ssd/scripts/analyze_results.py\", \"r\") as f:\n    content = f.read()\n\n# === Fix 1: DINO threshold ===\nold1 = \"DINO_GATE_THRESHOLD = 0.554\"\nnew1 = \"DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\"\nassert old1 in content, \"Fix1: old string not found\"\ncontent = content.replace(old1, new1)\nprint(\"Fix 1 applied: DINO threshold\")\n\n# === Fix 2: Collapsed layer filtering ===\nold_block = '    # 1) per-task mean rho at best layer > 0.5 (D002)\\n    if \"trained\" in all_data:\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\\n        if len(rhos_pt) > 0:\\n            best_rho = float(rhos_pt.max())\\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\n        else:\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n    else:\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\n\\n    criteria[\"best_rho\"] = best_rho\\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\\n    criteria[\"best_layer\"] = best_layer\\n    criteria[\"rho_pass\"] = best_rho > 0.5'\n\nnew_block = '    # 1) per-task mean rho at best layer > 0.5 (D002)\\n    # D006: detect collapsed layers (per-task mean rho < 0.1 in either model)\\n    collapsed_layers = set()\\n    for model_name in [\"trained\", \"untrained\"]:\\n        if model_name in all_data:\\n            c_layers, c_rhos = extract_per_task_mean_rho(all_data[model_name])\\n            for l, r in zip(c_layers.tolist(), c_rhos.tolist()):\\n                if r < 0.1:\\n                    collapsed_layers.add(int(l))\\n\\n    if \"trained\" in all_data:\\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\\n        if len(layers_pt) > 0:\\n            healthy_mask = np.array([int(l) not in collapsed_layers for l in layers_pt])\\n            healthy_layers = layers_pt[healthy_mask]\\n            healthy_rhos = rhos_pt[healthy_mask]\\n        else:\\n            healthy_layers, healthy_rhos = layers_pt, rhos_pt\\n\\n        if len(healthy_rhos) > 0:\\n            best_rho = float(healthy_rhos.max())\\n            best_layer = int(healthy_layers[np.argmax(healthy_rhos)])\\n        elif len(layers_pt) > 0:\\n            best_rho = 0.0\\n            best_layer = -1\\n        else:\\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\\n    else:\\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\\n\\n    criteria[\"best_rho\"] = best_rho\\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\\n    criteria[\"best_layer\"] = best_layer\\n    criteria[\"collapsed_layers_excluded\"] = sorted(collapsed_layers)\\n    criteria[\"rho_pass\"] = best_rho > 0.5'\n\nassert old_block in content, f\"Fix2a: old_block not found\"\ncontent = content.replace(old_block, new_block)\nprint(\"Fix 2a applied: collapsed layer detection + healthy layer selection\")\n\n# Fix 2b: judgment logic - add all-collapsed check\nold_j = '    # D003: judgment based on temporal distance only (no subtask AUC gate)\\n    if not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\\n        judgment = \"FAIL\"\\n    elif vla_ge_threshold:\\n        judgment = \"PASS\"\\n    else:\\n        judgment = \"CONDITIONAL\"'\n\nnew_j = '    # D003: judgment based on temporal distance only (no subtask AUC gate)\\n    if len(collapsed_layers) > 0 and best_layer == -1:\\n        judgment = \"FAIL\"\\n    elif not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\\n        judgment = \"FAIL\"\\n    elif vla_ge_threshold:\\n        judgment = \"PASS\"\\n    else:\\n        judgment = \"CONDITIONAL\"'\n\nassert old_j in content, \"Fix2b: old_judgment not found\"\ncontent = content.replace(old_j, new_j)\nprint(\"Fix 2b applied: all-collapsed FAIL guard\")\n\n# Fix 2c: add collapsed reason\nold_r = '    reasons = []\\n    if not criteria[\"rho_pass\"]:'\nnew_r = '    reasons = []\\n    if len(collapsed_layers) > 0 and best_layer == -1:\\n        reasons.append(f\"All layers collapsed (excluded: {sorted(collapsed_layers)}\")\\n    if not criteria[\"rho_pass\"]:'\n\nassert old_r in content, \"Fix2c: old_reasons not found\"\ncontent = content.replace(old_r, new_r)\nprint(\"Fix 2c applied: collapsed reason message\")\n\nwith open(\"/root/vla-ssd/scripts/analyze_results.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"ALL PATCHES APPLIED SUCCESSFULLY\")\nPYEOF\npython3 /tmp/patch_analyze.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T13:50:06.300697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fix 1 applied: DINO threshold\\\\nFix 2a applied: collapsed layer detection + healthy layer selection\\\\nFix 2b applied: all-collapsed FAIL guard\\\\nFix 2c applied: collapsed reason message\\\\nALL PATCHES APPLIED SUCCESSFULLY\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T13:50:06.300842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 -c \"import ast; ast.parse(open('scripts/analyze_results.py').read()); print('SYNTAX OK')\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T13:50:06.300988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && git diff scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T13:50:06.301117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T13:50:06.301246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/vla-ssd && git diff scripts/analyze_results.py'\\\\n\\\\nExit code: 129\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression\\\\n    -O <file>             control the order in which files appear in the output\\\\n    --rotate-to <path>    show the change in the specified path first\\\\n    --skip-to <path>      skip the output to the specified path\\\\n    --find-object <object-id>\\\\n                          look for differences that change the number of occurrences of the specified object\\\\n    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]\\\\n                          select files by diff type\\\\n    --output <file>       Output to a specific file\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T13:50:06.301389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && git --no-pager diff scripts/analyze_results.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T13:50:06.301519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/vla-ssd && git --no-pager diff scripts/analyze_results.py'\\\\n\\\\nExit code: 129\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression\\\\n    -O <file>             control the order in which files appear in the output\\\\n    --rotate-to <path>    show the change in the specified path first\\\\n    --skip-to <path>      skip the output to the specified path\\\\n    --find-object <object-id>\\\\n                          look for differences that change the number of occurrences of the specified object\\\\n    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]\\\\n                          select files by diff type\\\\n    --output <file>       Output to a specific file\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T13:50:06.301669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && git diff -- scripts/analyze_results.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T13:50:06.301858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"warning: Not a git repository. Use --no-index to compare two paths outside a working tree\\\\nusage: git diff --no-index [<options>] <path> <path>\\\\n\\\\nDiff output format options\\\\n    -p, --patch           generate patch\\\\n    -s, --no-patch        suppress diff output\\\\n    -u                    generate patch\\\\n    -U, --unified[=<n>]   generate diffs with <n> lines context\\\\n    -W, --function-context\\\\n                          generate diffs with <n> lines context\\\\n    --raw                 generate the diff in raw format\\\\n    --patch-with-raw      synonym for '-p --raw'\\\\n    --patch-with-stat     synonym for '-p --stat'\\\\n    --numstat             machine friendly --stat\\\\n    --shortstat           output only the last line of --stat\\\\n    -X, --dirstat[=<param1,param2>...]\\\\n                          output the distribution of relative amount of changes for each sub-directory\\\\n    --cumulative          synonym for --dirstat=cumulative\\\\n    --dirstat-by-file[=<param1,param2>...]\\\\n                          synonym for --dirstat=files,param1,param2...\\\\n    --check               warn if changes introduce conflict markers or whitespace errors\\\\n    --summary             condensed summary such as creations, renames and mode changes\\\\n    --name-only           show only names of changed files\\\\n    --name-status         show only names and status of changed files\\\\n    --stat[=<width>[,<name-width>[,<count>]]]\\\\n                          generate diffstat\\\\n    --stat-width <width>  generate diffstat with a given width\\\\n    --stat-name-width <width>\\\\n                          generate diffstat with a given name width\\\\n    --stat-graph-width <width>\\\\n                          generate diffstat with a given graph width\\\\n    --stat-count <count>  generate diffstat with limited lines\\\\n    --compact-summary     generate compact summary in diffstat\\\\n    --binary              output a b\n…[truncated 5738 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T13:50:06.302065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/vla-ssd/.git 2>/dev/null; cd /root/vla-ssd && git rev-parse --git-dir 2>/dev/null; echo \"EXIT:$?\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T13:50:06.302223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT:128\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T13:50:06.302349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cd /root/vla-ssd && git init && git add scripts/analyze_results.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T13:50:06.302481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Initialized empty Git repository in /root/vla-ssd/.git/\\\\n\\\", \\\"stderr\\\": \\\"hint: Using 'master' as the name for the initial branch. This default branch name\\\\nhint: is subject to change. To configure the initial branch name to use in all\\\\nhint: of your new repositories, which will suppress this warning, call:\\\\nhint: \\\\nhint: \\\\tgit config --global init.defaultBranch <name>\\\\nhint: \\\\nhint: Names commonly chosen instead of 'master' are 'main', 'trunk' and\\\\nhint: 'development'. The just-created branch can be renamed via this command:\\\\nhint: \\\\nhint: \\\\tgit branch -m <name>\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T13:50:06.302636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\n# Reconstruct original by reversing patches, save to temp, diff\ncontent = open(\"/root/vla-ssd/scripts/analyze_results.py\").read()\n\norig = content\n\n# Reverse Fix 1\norig = orig.replace(\n    \"DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\",\n    \"DINO_GATE_THRESHOLD = 0.554\"\n)\n\n# Reverse Fix 2a\nnew_block = '''    # 1) per-task mean rho at best layer > 0.5 (D002)\n    # D006: detect collapsed layers (per-task mean rho < 0.1 in either model)\n    collapsed_layers = set()\n    for model_name in [\"trained\", \"untrained\"]:\n        if model_name in all_data:\n            c_layers, c_rhos = extract_per_task_mean_rho(all_data[model_name])\n            for l, r in zip(c_layers.tolist(), c_rhos.tolist()):\n                if r < 0.1:\n                    collapsed_layers.add(int(l))\n\n    if \"trained\" in all_data:\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\n        if len(layers_pt) > 0:\n            healthy_mask = np.array([int(l) not in collapsed_layers for l in layers_pt])\n            healthy_layers = layers_pt[healthy_mask]\n            healthy_rhos = rhos_pt[healthy_mask]\n        else:\n            healthy_layers, healthy_rhos = layers_pt, rhos_pt\n\n        if len(healthy_rhos) > 0:\n            best_rho = float(healthy_rhos.max())\n            best_layer = int(healthy_layers[np.argmax(healthy_rhos)])\n        elif len(layers_pt) > 0:\n            best_rho = 0.0\n            best_layer = -1\n        else:\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n    else:\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"collapsed_layers_excluded\"] = sorted(collapsed_layers)\n    criteria[\"rho_pass\"] = best_rho > 0.5'''\n\nold_block = '''    # 1) per-task mean rho at best layer > 0.5 (D002)\n    if \"trained\" in all_data:\n        layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\n        if len(rhos_pt) > 0:\n            best_rho = float(rhos_pt.max())\n            best_layer = int(layers_pt[np.argmax(rhos_pt)])\n        else:\n            layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n            best_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n            best_layer = int(layers_pooled[np.argmax(rhos_pooled)]) if len(rhos_pooled) > 0 else -1\n        layers_pooled, rhos_pooled = extract_layer_metrics(all_data[\"trained\"], \"spearman_rho\")\n        best_pooled_rho = float(rhos_pooled.max()) if len(rhos_pooled) > 0 else 0.0\n    else:\n        best_rho, best_layer, best_pooled_rho = 0.0, -1, 0.0\n\n    criteria[\"best_rho\"] = best_rho\n    criteria[\"best_pooled_rho\"] = best_pooled_rho\n    criteria[\"best_layer\"] = best_layer\n    criteria[\"rho_pass\"] = best_rho > 0.5'''\n\norig = orig.replace(new_block, old_block)\n\n# Reverse Fix 2b\norig = orig.replace(\n    '    # D003: judgment based on temporal distance only (no subtask AUC gate)\\n    if len(collapsed_layers) > 0 and best_layer == -1:\\n        judgment = \"FAIL\"\\n    elif not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\\n        judgment = \"FAIL\"',\n    '    # D003: judgment based on temporal distance only (no subtask AUC gate)\\n    if not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\\n        judgment = \"FAIL\"'\n)\n\n# Reverse Fix 2c\norig = orig.replace(\n    '    reasons = []\\n    if len(collapsed_layers) > 0 and best_layer == -1:\\n        reasons.append(f\"All layers collapsed (excluded: {sorted(collapsed_layers)}\")\\n    if not criteria[\"rho_pass\"]:',\n    '    reasons = []\\n    if not criteria[\"rho_pass\"]:'\n)\n\nwith open(\"/tmp/analyze_results_orig.py\", \"w\") as f:\n    f.write(orig)\n\nprint(\"Original reconstructed\")\nPYEOF"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T13:50:06.302803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Original reconstructed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T13:50:06.302943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "diff -u /tmp/analyze_results_orig.py /root/vla-ssd/scripts/analyze_results.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T13:50:06.303130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"--- /tmp/analyze_results_orig.py\\\\t2026-05-15 21:49:04.746907790 +0800\\\\n+++ /root/vla-ssd/scripts/analyze_results.py\\\\t2026-05-15 21:48:07.447970316 +0800\\\\n@@ -118,7 +118,7 @@\\\\n MARKERS = {\\\\\\\"trained\\\\\\\": \\\\\\\"o\\\\\\\", \\\\\\\"untrained\\\\\\\": \\\\\\\"s\\\\\\\", \\\\\\\"dinov2\\\\\\\": \\\\\\\"^\\\\\\\", \\\\\\\"oracle\\\\\\\": \\\\\\\"D\\\\\\\"}\\\\n \\\\n # D004: DINO gate threshold (per-task mean ρ)\\\\n-DINO_GATE_THRESHOLD = 0.554\\\\n+DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\\\\n \\\\n \\\\n def plot_layer_rho(all_data, oracle_rho, output_dir):\\\\n@@ -309,11 +309,30 @@\\\\n     criteria = {}\\\\n \\\\n     # 1) per-task mean rho at best layer > 0.5 (D002)\\\\n+    # D006: detect collapsed layers (per-task mean rho < 0.1 in either model)\\\\n+    collapsed_layers = set()\\\\n+    for model_name in [\\\\\\\"trained\\\\\\\", \\\\\\\"untrained\\\\\\\"]:\\\\n+        if model_name in all_data:\\\\n+            c_layers, c_rhos = extract_per_task_mean_rho(all_data[model_name])\\\\n+            for l, r in zip(c_layers.tolist(), c_rhos.tolist()):\\\\n+                if r < 0.1:\\\\n+                    collapsed_layers.add(int(l))\\\\n+\\\\n     if \\\\\\\"trained\\\\\\\" in all_data:\\\\n         layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\\\\\\\"trained\\\\\\\"])\\\\n-        if len(rhos_pt) > 0:\\\\n-            best_rho = float(rhos_pt.max())\\\\n-            best_layer = int(layers_pt[np.argmax(rhos_pt)])\\\\n+        if len(layers_pt) > 0:\\\\n+            healthy_mask = np.array([int(l) not in collapsed_layers for l in layers_pt])\\\\n+            healthy_layers = layers_pt[healthy_mask]\\\\n+            healthy_rhos = rhos_pt[healthy_mask]\\\\n+        else:\\\\n+            healthy_layers, healthy_rhos = layers_pt, rhos_pt\\\\n+\\\\n+        if len(healthy_rhos) > 0:\\\\n+            best_rho = float(healthy_rhos.max())\\\\n+            best_layer = int(healthy_layers[np.argmax(healthy_rhos)])\\\\n+        elif len(layers_pt) > 0:\\\\n+            best_rho = 0.0\\\\n+            best_layer =\n…[truncated 1681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T13:50:06.303296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/results/trained/temporal_distance/ 2>/dev/null"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T13:50:06.303421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T13:50:06.303540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/ 2>/dev/null"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T13:50:06.303658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T13:50:06.303779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/results/trained/temporal_distance/"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T13:50:06.303908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"layer_0.json\\\\nlayer_1.json\\\\nlayer_10.json\\\\nlayer_11.json\\\\nlayer_12.json\\\\nlayer_13.json\\\\nlayer_14.json\\\\nlayer_15.json\\\\nlayer_16.json\\\\nlayer_17.json\\\\nlayer_18.json\\\\nlayer_19.json\\\\nlayer_2.json\\\\nlayer_20.json\\\\nlayer_21.json\\\\nlayer_22.json\\\\nlayer_23.json\\\\nlayer_24.json\\\\nlayer_25.json\\\\nlayer_26.json\\\\nlayer_27.json\\\\nlayer_28.json\\\\nlayer_29.json\\\\nlayer_3.json\\\\nlayer_30.json\\\\nlayer_31.json\\\\nlayer_32.json\\\\nlayer_4.json\\\\nlayer_5.json\\\\nlayer_6.json\\\\nlayer_7.json\\\\nlayer_8.json\\\\nlayer_9.json\\\\nsummary.csv\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T13:50:06.304050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls /root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T13:50:06.304176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"layer_0.json\\\\nlayer_1.json\\\\nlayer_10.json\\\\nlayer_11.json\\\\nlayer_12.json\\\\nlayer_13.json\\\\nlayer_14.json\\\\nlayer_15.json\\\\nlayer_16.json\\\\nlayer_17.json\\\\nlayer_18.json\\\\nlayer_19.json\\\\nlayer_2.json\\\\nlayer_20.json\\\\nlayer_21.json\\\\nlayer_22.json\\\\nlayer_23.json\\\\nlayer_24.json\\\\nlayer_25.json\\\\nlayer_26.json\\\\nlayer_27.json\\\\nlayer_28.json\\\\nlayer_29.json\\\\nlayer_3.json\\\\nlayer_30.json\\\\nlayer_31.json\\\\nlayer_32.json\\\\nlayer_4.json\\\\nlayer_5.json\\\\nlayer_6.json\\\\nlayer_7.json\\\\nlayer_8.json\\\\nlayer_9.json\\\\nsummary.csv\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T13:50:06.304320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/vla-ssd && python3 scripts/analyze_results.py --results_dirs \"trained:/root/autodl-tmp/vla-ssd/results/trained/,untrained:/root/autodl-tmp/vla-ssd/results/untrained/\" --output_dir /tmp/analyze_test",
+              "warn": "True"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T13:50:06.304482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Loading results: ['trained', 'untrained']\\\\n  trained: 33 entries\\\\n  untrained: 33 entries\\\\n\\\\n=== Layer-wise Spearman rho ===\\\\n       Layer |      trained |    untrained\\\\n------------------------------------------\\\\n           0 |       0.0000 |       0.0000\\\\n           1 |       0.9482 |       0.9329\\\\n           2 |       0.9539 |       0.9273\\\\n           3 |       0.9556 |       0.0000\\\\n           4 |       0.9543 |       0.9116\\\\n           5 |       0.9500 |       0.9305\\\\n           6 |       0.9488 |       0.9238\\\\n           7 |       0.9436 |       0.9031\\\\n           8 |       0.9330 |       0.9271\\\\n           9 |       0.9397 |       0.0000\\\\n          10 |       0.9382 |       0.9115\\\\n          11 |       0.9244 |       0.8877\\\\n          12 |       0.9020 |       0.8935\\\\n          13 |       0.9033 |       0.9318\\\\n          14 |       0.9058 |       0.9025\\\\n          15 |       0.9051 |       0.0000\\\\n          16 |       0.0000 |       0.8731\\\\n          17 |       0.9044 |       0.8838\\\\n          18 |       0.0000 |       0.8827\\\\n          19 |       0.9103 |       0.8754\\\\n          20 |       0.9201 |       0.0000\\\\n          21 |       0.8939 |       0.8884\\\\n          22 |       0.0000 |       0.7703\\\\n          23 |       0.0000 |       0.9012\\\\n          24 |       0.0000 |       0.9069\\\\n          25 |       0.9046 |       0.8895\\\\n          26 |       0.0000 |       0.0000\\\\n          27 |       0.8879 |       0.0000\\\\n          28 |       0.0000 |       0.8793\\\\n          29 |       0.8846 |       0.8503\\\\n          30 |       0.0000 |       0.8589\\\\n          31 |       0.8785 |       0.0000\\\\n          32 |       0.0000 |       0.0000\\\\n\\\\n=== Best Layer ===\\\\n  trained: layer 3 (rho=0.9556)\\\\n  untrained: layer 1 (rho=0.9329)\\\\nSaved /tmp/analyze_test/layer_rho.png\\\\nSaved /tmp/analyze_test/delta_rho.png\\\\nSaved /tmp/analyze_test/per_layer_rho_profile.png\\\\n\\\\n=== Judg\n…[truncated 1937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T13:50:06.304712+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证成功。核心逻辑正确运行：\n\n**坍塌层过滤生效**：从表中可以看到层 0/3/9/15/16/18/20/22/23/24/26/27/28/30/31/32 的 ρ=0.000（某一模型坍塌），全部被排除。\n\n**best_layer 从 3→4**：原始逻辑会选层 3（trained 最高 ρ=0.9556），但层 3 的 untrained ρ=0.0（坍塌），Δρ 会虚高。修复后选层 4 作为健康层中的 best。\n\nJSON 序列化错误是 `ci_excludes_zero`（numpy bool_）的 **预存 bug**，与本次修复无关。\n\n---\n\n## 完整 diff\n\n```diff\n--- a/scripts/analyze_results.py\n+++ b/scripts/analyze_results.py\n@@ -118,7 +118,7 @@\n MARKERS = {\"trained\": \"o\", \"untrained\": \"s\", \"dinov2\": \"^\", \"oracle\": \"D\"}\n\n # D004: DINO gate threshold (per-task mean ρ)\n-DINO_GATE_THRESHOLD = 0.554\n+DINO_GATE_THRESHOLD = 0.901  # D006: rerun with updated pipeline (per_task_n_pairs=5000)\n\n\n def plot_layer_rho(all_data, oracle_rho, output_dir):\n@@ -309,11 +309,30 @@\n     criteria = {}\n\n     # 1) per-task mean rho at best layer > 0.5 (D002)\n+    # D006: detect collapsed layers (per-task mean rho < 0.1 in either model)\n+    collapsed_layers = set()\n+    for model_name in [\"trained\", \"untrained\"]:\n+        if model_name in all_data:\n+            c_layers, c_rhos = extract_per_task_mean_rho(all_data[model_name])\n+            for l, r in zip(c_layers.tolist(), c_rhos.tolist()):\n+                if r < 0.1:\n+                    collapsed_layers.add(int(l))\n+\n     if \"trained\" in all_data:\n         layers_pt, rhos_pt = extract_per_task_mean_rho(all_data[\"trained\"])\n-        if len(rhos_pt) > 0:\n-            best_rho = float(rhos_pt.max())\n-            best_layer = int(layers_pt[np.argmax(rhos_pt)])\n+        if len(layers_pt) > 0:\n+            healthy_mask = np.array([int(l) not in collapsed_layers for l in layers_pt])\n+            healthy_layers = layers_pt[healthy_mask]\n+            healthy_rhos = rhos_pt[healthy_mask]\n+        else:\n+            healthy_layers, healthy_rhos = layers_pt, rhos_pt\n+\n+        if len(healthy_rhos) > 0:\n+            best_rho = float(healthy_rhos.max())\n+            best_layer = int(healthy_layers[np.argmax(healthy_rhos)])\n+        elif len(layers_pt) > 0:\n+            best_rho = 0.0\n+            best_layer = -1\n         else:\n             ...\n@@ -326,6 +345,7 @@\n     criteria[\"best_rho\"] = best_rho\n     criteria[\"best_pooled_rho\"] = best_pooled_rho\n     criteria[\"best_layer\"] = best_layer\n+    criteria[\"collapsed_layers_excluded\"] = sorted(collapsed_layers)\n     criteria[\"rho_pass\"] = best_rho > 0.5\n\n@@ -395,7 +415,9 @@\n     # D003: judgment based on temporal distance only (no subtask AUC gate)\n-    if not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\n+    if len(collapsed_layers) > 0 and best_layer == -1:\n+        judgment = \"FAIL\"\n+    elif not criteria[\"rho_pass\"] or not criteria[\"delta_pass\"]:\n         judgment = \"FAIL\"\n\n@@ -409,6 +431,8 @@\n     reasons = []\n+    if len(collapsed_layers) > 0 and best_layer == -1:\n+        reasons.append(f\"All layers collapsed (excluded: {sorted(collapsed_layers)}\")\n     if not criteria[\"rho_pass\"]:\n```\n\n**验证结果**（已有数据 quick validation）:\n- `SYNTAX OK`\n- 16 坍塌层被动态检测并排除：`[0, 3, 9, 15, 16, 18, 20, 22, 23, 24, 26, 27, 28, 30, 31, 32]`\n- best_layer: 4（健康层中 trained ρ 最高）\n- 假 PASS 防护生效：层 3 的 untrained ρ=0.0 不再被选为 best layer"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_p0-analyze-results-fix_20260515T134631"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/code-p0-analyze-results-fix.md"
+}

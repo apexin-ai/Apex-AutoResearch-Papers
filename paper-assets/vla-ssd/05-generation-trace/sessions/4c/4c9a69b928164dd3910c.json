@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c9a69b928164dd3910c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose gpu status session resume",
+  "task_key": "worker_diagnose_gpu_status_session_resume_20260522T095316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_status_session_resume_20260522T095316_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "efde6ac09c81c86b21c54f0242a1aca675657795df886560baa7d24a217ff9a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 82% | 15.3 / 95.6 GB |\n| cuda:1 | 82% | 14.8 / 95.6 GB |\n\n两块 GPU 都在满负荷运行。\n\n### openvla_spatial 进程 — **全部存活**\n| PID | 运行时间 | 任务 |\n|-----|----------|------|\n| 645141 | 47 min | `trained --only-counterfactual` (cuda:0) |\n| 646058 | 39 min | `untrained` (cuda:1) |\n\n**日志进度：**\n- **cuda:0 (trained CF)**: 正在跑 `empty` condition，进度 4200/5000。之前 `wrong` condition 已完成（d=0.8849, cross-task mean=0.9146）。\n- **cuda:1 (untrained)**: 也在跑 `empty` condition，进度 400/5000。之前 `wrong` condition 已完成（d=0.7944, cross-task mean=0.8005）。\n\n两个进程都在稳步推进，每 200 samples 约 50-55 秒。\n\n### NLP control 进程 — **全部存活但有问题**\n| PID | 运行时间 | 任务 |\n|-----|----------|------|\n| 612753 | 4h 21m | `download_llama.py` |\n| 613202 | 4h 19m | `wait_and_run.sh` |\n\n**但 Llama-2-7b-chat-hf 模型目录不存在。** 下载进程跑了 4 小时却没产出文件，大概率卡死或下载失败。\n\n### 结果目录 — **均不存在**\n`openvla_spatial_trained/` 和 `openvla_spatial_untrained/` 结果目录都还没创建，说明两个 pipeline 尚未完成任何 condition 的完整结果写入（结果可能在内存中或最后统一写出）。\n\n### 结论\n1. **openvla_spatial 双卡实验正常运行中**，都在 `empty` condition 阶段，预计还需 ~20-30 分钟完成当前 condition。\n2. **NLP Llama 下载大概率失败** — 4 小时无产出，需要排查 download_llama.py 日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-session-resume.md"
+}

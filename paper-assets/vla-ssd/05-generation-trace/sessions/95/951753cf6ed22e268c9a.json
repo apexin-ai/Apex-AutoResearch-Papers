@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951753cf6ed22e268c9a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code cross layer L8 ablation",
+  "task_key": "worker_code_cross_layer_L8_ablation_20260518T133705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_layer_L8_ablation_20260518T133705_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "69715227e1ec6387c78f601d295306437a4e55fc5fae165851e606277100fd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并正在运行：\n\n- **脚本**: `/root/vla-ssd/scripts/action_trajectory_L8_ablation.py`\n- **PID**: 53738\n- **exp_id**: `cross_layer_L8_ablation` (RUNNING)\n- **配置**: L8 全层 ablation (32 heads), 5 tasks × 10 demos × 50 timesteps\n- **ablation 方式**: monkey-patch `LlamaAttention.forward`, 正常计算 attention + KV cache，但将 `attn_output` 置零后再过 `o_proj`，使该层 attention 贡献为零\n- **输出**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.json`\n- **日志**: `/root/autodl-tmp/vla-ssd/results/action_trajectory_L8_ablation.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-layer-l8-ablation.md"
+}

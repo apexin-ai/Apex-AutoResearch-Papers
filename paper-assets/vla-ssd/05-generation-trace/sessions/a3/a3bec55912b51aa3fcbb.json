@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3bec55912b51aa3fcbb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code control b verify",
+  "task_key": "worker_code_control-b-verify_20260515T115703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_control-b-verify_20260515T115703_result.json",
+    "occurrence": 1,
+    "bytes": 1773,
+    "sha256": "cff9b0576040e0160a999dc19a489745e4bca8899598da5507cf2769e7db3e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\nControl B (Cross-Trajectory Shuffle) on DINO-V2:\n\n| 指标 | 值 |\n|------|-----|\n| **Global ρ** | **0.6502** |\n| R² | 0.4318 |\n| MAE | 0.1700 |\n| Epochs | 11 (early stopped) |\n\n**Per-task ρ:**\n\n| Task | ρ |\n|------|---|\n| KITCHEN_SCENE3 (stove + moka pot) | 0.637 |\n| KITCHEN_SCENE4 (bowl in drawer) | 0.666 |\n| KITCHEN_SCENE6 (mug in microwave) | 0.610 |\n| KITCHEN_SCENE8 (both moka pots) | 0.594 |\n| LIVING_ROOM_SCENE1 (soup + cheese → basket) | 0.660 |\n| LIVING_ROOM_SCENE2 (soup + sauce → basket) | 0.632 |\n| LIVING_ROOM_SCENE2 (cheese + butter → basket) | 0.628 |\n| LIVING_ROOM_SCENE5 (two mugs on plates) | **0.722** |\n| LIVING_ROOM_SCENE6 (mug + pudding) | 0.686 |\n| STUDY_SCENE1 (book in caddy) | 0.664 |\n\n**ρ ≈ 0.65，远非预期的 ≈ 0。** 这说明 cross-trajectory shuffle 并没有摧毁 temporal distance 信号。\n\n原因：`sample_cross_trajectory_pairs` 的 target 用的是 `|t_b/T_b - t_a/T_a|`（normalized position difference）。即使 frame 来自不同 trajectory，DINO-V2 特征本身编码了视觉进度（开头场景 vs 结束场景），这种 visual progress 在 trajectory 间是共享的（同一 task 的不同 demo 视觉演变相似，甚至跨 task 的 \"早期=物体未动、后期=物体已移动\" 模式也通用）。所以 probe 可以通过 visual difference magnitude 预测 temporal distance，即使是跨 trajectory pairs。\n\n这实际上意味着 **Control B 的设计需要重新审视** —— 它没有真正打断 temporal signal，因为 normalized position 本身就和 visual features 相关。要做有效的 negative control，需要在保留 pair 结构的同时 **随机打乱 distance labels**（而不是打乱 trajectory 归属）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-control-b-verify.md"
+}

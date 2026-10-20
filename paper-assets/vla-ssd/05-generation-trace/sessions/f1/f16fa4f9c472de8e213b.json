@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16fa4f9c472de8e213b",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code probe pipeline",
+  "task_key": "worker_code_probe-pipeline_20260515T065409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe-pipeline_20260515T065409_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "43401e29ef1bff60000eee8aabdf8faaa9f0ace8da2ffb5e63fdb110ca27c6e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署到 `/root/vla-ssd/scripts/`：\n\n| 脚本 | 大小 | 功能 |\n|------|------|------|\n| `train_probes.py` | 18K | Probe 训练（temporal_distance / subtask_predicate / oracle） |\n| `analyze_results.py` | 13K | 多模型结果对比、可视化、PASS/FAIL 判定 |\n| `init_untrained.py` | 3.5K | OpenVLA LLM backbone 随机重初始化 |\n\n**使用示例**：\n\n```bash\n# 1. Temporal distance probe（对每层训练线性 probe）\npython scripts/train_probes.py \\\n  --features_dir features/trained/ \\\n  --output_dir results/trained/ \\\n  --probe_type temporal_distance\n\n# 2. Oracle 基线（输入=时间差标量，预期 ρ≈1.0）\npython scripts/train_probes.py \\\n  --features_dir features/trained/ \\\n  --output_dir results/trained/ \\\n  --probe_type oracle\n\n# 3. Sub-task predicate probe（需要 label 文件）\npython scripts/train_probes.py \\\n  --features_dir features/trained/ \\\n  --output_dir results/trained/ \\\n  --probe_type subtask_predicate \\\n  --label_file labels/predicates.json\n\n# 4. 初始化 untrained 模型\npython scripts/init_untrained.py \\\n  --model_path checkpoints/openvla-7b \\\n  --output_path checkpoints/openvla-7b-untrained/\n\n# 5. 结果分析与对比\npython scripts/analyze_results.py \\\n  --results_dirs trained:results/trained/,untrained:results/untrained/,dinov2:results/dinov2/ \\\n  --output_dir results/analysis/\n```\n\n**关键设计**：\n- 逐层加载特征（避免一次性加载 33 层 × 所有轨迹的内存爆炸）\n- 自动检测 OpenVLA（`demo_N/last_preaction`）和 DINO-V2（`traj_N/cls_token`）格式\n- Distance-stratified sampling：10 bins × 50 pairs/bin/traj → 训练约 200K pairs\n- 分析脚本自动检测 oracle 结果并画入对比图，输出 PNG + PDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-pipeline.md"
+}

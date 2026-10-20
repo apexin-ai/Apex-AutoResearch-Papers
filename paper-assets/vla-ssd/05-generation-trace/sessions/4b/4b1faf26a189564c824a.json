@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1faf26a189564c824a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis clean verdict",
+  "task_key": "worker_analysis_clean-verdict_20260515T135244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_clean-verdict_20260515T135244_result.json",
+    "occurrence": 1,
+    "bytes": 3484,
+    "sha256": "81c186f42148ed7df513a2d441b96d6463601071911fb048c7f03999d5213539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 正式 MVP Verdict 结果\n\n### Overall Judgment: **FAIL**\n\n失败原因：`delta-rho = 0.0427 ≤ 0.1` — trained vs untrained 的差异不足以通过 Gate 2。\n\n---\n\n### Gate 判定\n\n| Gate | 条件 | 值 | 结果 |\n|------|------|----|------|\n| **Gate 1: rho_pass** | best_layer rho 足够高 | best_rho = **0.9550** (layer 4) | **PASS** |\n| **Gate 2: delta_pass** | trained−untrained Δρ > 0.1 | Δρ = **0.0427**, CI [0.0359, 0.0502], p=0.0 | **FAIL** |\n| **Gate 3: DINO gate** | VLA mean_rho ≥ DINO threshold (0.901) | VLA = **0.9562** ≥ 0.901 | **PASS** |\n\n---\n\n### 关键数值\n\n| 指标 | 值 |\n|------|----|\n| best_layer (healthy) | **4** |\n| best_pooled_rho (trained) | 0.9556 |\n| best_per_task_mean_rho (trained) | 0.9562 |\n| best_rho (untrained, layer 1) | 0.9334 |\n| **Δρ at best layer** | **+0.0427** |\n| Δρ 95% CI | [0.0359, 0.0502] |\n| permutation p-value | 0.0 (CI excludes zero) |\n| DINO mean_rho | 0.9008 |\n| DINO gate threshold | 0.901 |\n\n---\n\n### 完整 33 层 Layer Profile\n\n| Layer | Trained ρ | Untrained ρ | Δρ | Status |\n|-------|-----------|-------------|--------|--------|\n| 0 | 0.0000 | 0.0000 | +0.0000 | COLLAPSED |\n| 1 | 0.9485 | 0.9334 | +0.0151 | healthy |\n| 2 | 0.9547 | 0.9278 | +0.0269 | healthy |\n| 3 | 0.9562 | 0.0000 | +0.9562 | COLLAPSED |\n| **4** | **0.9550** | **0.9123** | **+0.0427** | **healthy (best)** |\n| 5 | 0.9502 | 0.9310 | +0.0192 | healthy |\n| 6 | 0.9495 | 0.9250 | +0.0245 | healthy |\n| 7 | 0.9438 | 0.9036 | +0.0402 | healthy |\n| 8 | 0.9336 | 0.9278 | +0.0058 | healthy |\n| 9 | 0.9404 | 0.0000 | +0.9404 | COLLAPSED |\n| 10 | 0.9394 | 0.9120 | +0.0274 | healthy |\n| 11 | 0.9247 | 0.8878 | +0.0369 | healthy |\n| 12 | 0.9012 | 0.8938 | +0.0075 | healthy |\n| 13 | 0.9028 | 0.9321 | −0.0292 | healthy |\n| 14 | 0.9058 | 0.9031 | +0.0027 | healthy |\n| 15 | 0.9049 | 0.0000 | +0.9049 | COLLAPSED |\n| 16 | 0.0000 | 0.8729 | −0.8729 | COLLAPSED |\n| 17 | 0.9047 | 0.8839 | +0.0207 | healthy |\n| 18 | 0.0000 | 0.8826 | −0.8826 | COLLAPSED |\n| 19 | 0.9102 | 0.8752 | +0.0350 | healthy |\n| 20 | 0.9203 | 0.0000 | +0.9203 | COLLAPSED |\n| 21 | 0.8940 | 0.8883 | +0.0057 | healthy |\n| 22 | 0.0000 | 0.7699 | −0.7699 | COLLAPSED |\n| 23 | 0.0000 | 0.9024 | −0.9024 | COLLAPSED |\n| 24 | 0.0000 | 0.9078 | −0.9078 | COLLAPSED |\n| 25 | 0.9046 | 0.8899 | +0.0147 | healthy |\n| 26 | 0.0000 | 0.0000 | +0.0000 | COLLAPSED |\n| 27 | 0.8874 | 0.0000 | +0.8874 | COLLAPSED |\n| 28 | 0.0000 | 0.8799 | −0.8799 | COLLAPSED |\n| 29 | 0.8845 | 0.8498 | +0.0346 | healthy |\n| 30 | 0.0000 | 0.8587 | −0.8587 | COLLAPSED |\n| 31 | 0.8785 | 0.0000 | +0.8785 | COLLAPSED |\n| 32 | 0.0000 | 0.0000 | +0.0000 | COLLAPSED |\n\n---\n\n### 坍塌层统计\n\n- **16/33 层坍塌**（trained 或 untrained 的 per_task_mean_ρ < 0.1）\n- 坍塌层：`[0, 3, 9, 15, 16, 18, 20, 22, 23, 24, 26, 27, 28, 30, 31, 32]`\n- 健康层：`[1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 17, 19, 21, 25, 29]` (17 层)\n\n---\n\n### 解读\n\n在 17 个健康层中，trained 模型在 best layer (4) 的 Δρ = +0.0427，CI 完全排除零（p=0.0），说明 trained 确实优于 untrained。但 **效应量不足**：Δρ = 0.043 远低于 0.1 阈值，Gate 2 未通过。同时 Gate 3 勉强通过（VLA 0.956 vs DINO 0.901，阈值 0.901）。\n\n产出文件已保存至 `/root/autodl-tmp/vla-ssd/results/analysis/`（summary.json + 3 组图表 PDF/PNG）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-clean-verdict.md"
+}

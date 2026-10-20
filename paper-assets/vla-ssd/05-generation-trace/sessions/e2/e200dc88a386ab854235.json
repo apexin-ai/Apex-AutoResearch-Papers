@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e200dc88a386ab854235",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code d019 script dedup",
+  "task_key": "worker_code_d019-script-dedup_20260515T170423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d019-script-dedup_20260515T170423_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "46605af408fa5f0c4aafcec7933ced2f32714a584f4ce195339c3ffe2d97cba7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已删除：**\n- `scripts/train_instruction_probes.py`\n- `scripts/train_goal_probe.py`\n- `scripts/analyze_goal_results.py`\n\n**保留：**\n- `scripts/train_probes.py`（`--probe_type goal_classification` 正常工作）\n- `scripts/analyze_goal_probes.py`\n\n**`train_instruction_probes.py` 独特功能记录：**\n- `--dino_visual_gate` flag（行 73）— 在 t=0 计算 DINO cosine similarity 作为 visual gate\n- `compute_visual_gate()` 函数（行 320）— 实现 DINO 特征余弦相似度检查\n- 相关逻辑在行 377-390（gate 执行 + 结果保存为 `visual_gate.json`）\n\n该功能已由 `visual_similarity_gate.py` 独立实现，无需合并。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d019-script-dedup.md"
+}

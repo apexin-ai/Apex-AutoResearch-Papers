@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb01d011f6a436651642",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose object pipeline ridge",
+  "task_key": "worker_diagnose_object_pipeline_ridge_20260521T071649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_object_pipeline_ridge_20260521T071649_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "7ed121eaedb254d10651b2ca63a52a5b56609ed937e0acae3c47e599e3482781"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：cron 启动脚本时未 `source /etc/network_turbo`，导致第 534 行 `PrismaticProcessor.from_pretrained(CKPT, trust_remote_code=True)` 尝试从 HF Hub 下载 `processing_prismatic.py` 时网络不通。模型权重本身已缓存，加载正常。\n\n**当前状态**：v2 已在运行中（PID 541379），Phase 1 即将完成（Task 9/10），无需重试。`results/libero_object/` 已有一次完整的 5-phase 结果可复用。\n\n**修复建议**：cron 命令加 `source /etc/network_turbo`，或给 `from_pretrained` 加 `local_files_only=True`。\n\n报告已写入 `artifacts/worker_output_diagnose_object_pipeline_ridge.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-object-pipeline-ridge.md"
+}

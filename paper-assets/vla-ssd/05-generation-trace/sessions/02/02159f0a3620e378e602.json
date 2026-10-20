@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02159f0a3620e378e602",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify appendix spatial cv",
+  "task_key": "worker_verify_appendix_spatial_cv_20260523T184704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_appendix_spatial_cv_20260523T184704_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "48b0a8251c8e9c8e76049fdbc71a75ba896fcd822d889ed6b3ea5b2cd526eab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Spatial 表 CV 列：4 个值全部不一致\n\n| Condition | Paper d | Pipeline d | Paper CV | Pipeline CV | 差异 |\n|-----------|---------|------------|----------|-------------|------|\n| Empty | 1.173 | 1.181 | **0.185** | **0.087** | ❌ 偏差 +0.098 |\n| Wrong | 0.885 | 0.915 | **0.093** | **0.272** | ❌ 偏差 -0.179 |\n| Shuffled | 0.979 | 0.994 | **0.166** | **0.162** | ❌ 偏差 +0.004 |\n| Paraphrased | 0.807 | 0.816 | **0.128** | **0.179** | ❌ 偏差 -0.051 |\n\nCohen's d 列使用的是全局 d（与 ranking 一致，无误），但 CV 列与管线 `cross_task_variance.cohens_d.cv` 严重不符。\n\nEmpty 和 Wrong 的 CV 看起来可能被**互换**了（paper Empty=0.185 ≈ pipeline Paraphrased=0.179；paper Wrong=0.093 ≈ pipeline Empty=0.087），但即使考虑互换也无法完全对齐。\n\n**正确值**（来自管线 JSON，population std）：\n\n```\nEmpty:       CV = 0.087\nWrong:       CV = 0.272\nShuffled:    CV = 0.162\nParaphrased: CV = 0.179\n```\n\n### Goal 表\n\nGoal 表 (`tab:counterfactual_goal_detail`) 没有 CV 列，无需核查。管线中 Goal 的 CV 值为：empty=0.073, wrong=0.087, shuffled=0.042, paraphrased=0.104。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-appendix-spatial-cv.md"
+}

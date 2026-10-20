@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6baa572422c58bbaf65d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap v2 progress 2",
+  "task_key": "worker_check_bootstrap_v2_progress_2_20260523T012937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_v2_progress_2_20260523T012937_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "ca62f9a4c039dbe34a6c43acf6b78720c20964ced4fd3eb62dde6da0114a9796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Bootstrap v2 进度：2/20 完成\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 0% | 2135 MiB | cuda0 进入 bootstrap 阶段（1000 iter, 100 workers） |\n| 1 | 8% | 12621 MiB | cuda1 还在 extraction（1250/5000 samples, task 2/10） |\n\n### 已完成结果\n\n| arch | suite | cond | peak R² | peak layer | exit R² | exit layer | delta | CI 95% | boot mean±std |\n|------|-------|------|---------|------------|---------|------------|-------|--------|---------------|\n| **openvla** | goal | trained | 0.4556 | L1 | 0.3395 | L31 | 0.116 | [-0.253, -0.012] | -0.142±0.065 |\n| **tracvla** | goal | trained | 0.5399 | L13 | 0.2065 | L31 | 0.333 | [0.055, 0.342] | 0.167±0.073 |\n\n两个都是 n_demos=100, n_samples=5000, n_bootstrap=1000。\n\n关键对比：\n- **TracVLA** goal-trained 的 peak→exit 下降显著（delta=0.333, CI 不含 0），目标信息在深层大幅丢失（L27-L30 甚至为负）\n- **OpenVLA** goal-trained 的 delta 较小（0.116），但 bootstrap CI 在负侧（[-0.253, -0.012]），说明 bootstrap 采样下 exit 实际常高于 peak — 层间变异大，信号不稳定\n\ncuda0 当前在做 bootstrap 计算（即将完成下一个条件），cuda1 还在 extraction 早期阶段，整体预计还需较长时间完成全部 20 个条件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-v2-progress-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbcfaf95dc8c7b0aa24",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh linear probe gc",
+  "task_key": "worker_ssh_linear-probe-gc_20260515T191639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_linear-probe-gc_20260515T191639_result.json",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "cf26e97c875b67b04729ac23d644ed0cbd1bca8df0a4f64ed6d707bdf19f7586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Another stale background task from the previous session — already resolved. All three linear probe experiments completed and the comparison table is ready above."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-linear-probe-gc.md"
+}

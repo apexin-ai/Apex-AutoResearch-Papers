@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4be255983e87770f057",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research vla rsa method audit",
+  "task_key": "worker_research_vla_rsa_method_audit_20260516T024305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_vla_rsa_method_audit_20260516T024305_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "1572ae3570a1b8be83ab0e6da7152e74153799531415ea04892d6d9790c3e3c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/vla_rsa_method_audit.md`。\n\n**核心结论**：\n\n5 个脚本中，4 个使用方法 A（cross-task global + cosine + 3-phase），唯一的例外是 `rsa_siglip_only.py` 使用方法 B（within-task + euclidean + 全轨迹）。\n\n**🔴 论文关键风险确认**：Claim 2 (\"LLM degrades from 0.615 to 0.488\") 是无效比较。SigLIP+Projector RSA=0.615（方法B）与 VLA RSA=0.4876（方法A）存在 3 个方法论差异（配对方式、距离度量、时序处理），0.127 的差值无法归因于 LLM。\n\n修复：用方法 A 重算 SigLIP+Projector RSA，成本最低（只需改一个脚本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-vla-rsa-method-audit.md"
+}

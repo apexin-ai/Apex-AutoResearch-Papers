@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4c523a74cc61d3bb596",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis llama2base action probe results",
+  "task_key": "worker_analysis_llama2base_action_probe_results_20260517T215857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama2base_action_probe_results_20260517T215857_result.json",
+    "occurrence": 1,
+    "bytes": 2256,
+    "sha256": "f5cec055c986650ca83d623b7565dc292e6b93e536b8968efc89b8945c64f025"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 三条件对比表（mean R² per layer, image_mean readout）\n\n| Layer | Untrained | Llama2Base | Trained | Pattern |\n|-------|-----------|------------|---------|---------|\n| L0 | 0.6403 | 0.6403 | 0.6403 | U = L = T |\n| **L1** | **0.5546** | **0.6366** | **0.6331** | **U < L >= T** |\n| L2 | 0.5219 | 0.6124 | 0.6278 | U < L < T |\n| L3 | 0.5338 | 0.6446 | 0.6519 | U < L < T |\n| L4 | 0.5606 | 0.6447 | 0.6468 | U < L < T |\n| L5 | 0.5383 | 0.6326 | 0.6468 | U < L < T |\n| L6 | 0.5313 | 0.6413 | 0.6494 | U < L < T |\n| L7 | 0.5176 | 0.6335 | 0.6447 | U < L < T |\n| **L8** | 0.5323 | 0.6307 | **0.6553** | U < L < T |\n| L9 | 0.5350 | 0.6371 | 0.6511 | U < L < T |\n| L10 | -0.3293 | 0.6233 | 0.6427 | U < L < T |\n| L11 | -0.2806 | 0.6184 | 0.6436 | U < L < T |\n| L12 | 0.5198 | 0.6268 | 0.6086 | U < L >= T |\n| L13 | 0.4410 | 0.6047 | 0.6296 | U < L < T |\n| L14-L20 | ... | ... | ... | U < L < T |\n| L21-L31 | ~0.45 | ~0.57 | ~0.48 | U < L >= T |\n| L32 | 0.5785 | 0.5255 | 0.5390 | U >= L < T |\n\n### L1 关键数值\n- **Untrained: 0.5546**\n- **Llama2Base: 0.6366**\n- **Trained (VLA): 0.6331**\n- Delta: llama2base比untrained高 +0.082, 但比trained略高 +0.004\n\n### 整体 Pattern\n\n| 指标 | Untrained | Llama2Base | Trained |\n|------|-----------|------------|---------|\n| Peak R² | 0.6403 (L0) | 0.6447 (L4) | 0.6553 (L8) |\n| Mean (all layers) | 0.4491 | **0.6014** | 0.5849 |\n| Mean (L2-L9) | 0.5294 | 0.6347 | **0.6463** |\n| Mean (L21-L32) | 0.4686 | **0.5700** | 0.4924 |\n\n### 核心发现\n\n1. **假设部分成立**：Peak-to-peak 确认 untrained(0.64) < llama2base(0.64) < trained(0.66)，但差异很小\n\n2. **Early-mid layers (L2-L9)**：19/21 层符合 U<L<T，VLA training 在语言预训练基础上确实有增量改善\n\n3. **Late layers (L21-L31)**：10/11 层 llama2base 反超 trained。VLA training 将后层重新用于 action token generation，降低了 image_mean readout 的 action encoding\n\n4. **L1 意外发现**：llama2base(0.6366) ≈ trained(0.6331)。语言预训练已经在 L1 建立了与 VLA-trained 相当的 spatial representation\n\n### 结果文件\n`/root/autodl-tmp/vla-ssd/results/llama2base_action_probe/three_condition_comparison.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama2base-action-probe-results.md"
+}

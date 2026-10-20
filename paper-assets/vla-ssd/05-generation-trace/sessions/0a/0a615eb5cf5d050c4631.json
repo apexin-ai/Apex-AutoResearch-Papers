@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a615eb5cf5d050c4631",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis urgent server status",
+  "task_key": "worker_analysis_urgent_server_status_20260521T014431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_urgent_server_status_20260521T014431_result.json",
+    "occurrence": 1,
+    "bytes": 2285,
+    "sha256": "d04e3eaea3e8f21462cd1ca662c14a1a7bd3f3e73d4a04a4b7c1ed509369d760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-19183 全面状态报告\n\n### GPU\n| GPU | 型号 | 显存使用 | 温度 | 利用率 |\n|-----|------|---------|------|--------|\n| 0 | NVIDIA RTX PRO 6000 Black (98GB) | 15149MiB / 97887MiB | 34°C | 0% |\n| 1 | NVIDIA RTX PRO 6000 Black (98GB) | 0MiB / 97887MiB | 30°C | 0% |\n\nGPU 0 有 python 进程 (PID 513523) 占用 15.1GB 显存。\n\n### 活跃进程\n1. **libero_object_full_pipeline** (tmux session) — PID 513523，运行 `libero_object_full_pipeline.py`，GPU 0\n2. **HF 下载 openvla-7b-oft-finetuned-libero-10** (PID 513455) — **正在超时重试**，`model-00002-of-00004.safetensors` 下载卡在 xethub ReadTimeout，进度 44% (11/25 files)\n\n### Pipeline 日志\nPhase 1 (feature extraction) 已完成：5000 samples，249.1s。\nPhase 2 (action R2 probing) 正在运行，已输出 L0: `img_mean R2=0.6952, last_pre R2=0.5710`。\n\n### Checkpoints\n\n| 模型 | 状态 | 大小 |\n|------|------|------|\n| openvla-7b-finetuned-libero-object | ✅ 就绪 | 15G |\n| tracevla-phi3v | ✅ 就绪 | 7.8G |\n| openvla-phi3v (untrained baseline) | ❌ NOT_FOUND | — |\n| nora-libero-goal | ✅ 就绪 | 5.1G |\n| qwen25-vl-3b-base | 目录存在，但 config.json 路径不匹配 | — |\n| openvla-7b-oft-finetuned-libero-10 | ⚠️ 下载中 (44%, 卡在超时重试) | 817M (不完整) |\n\n### NORA 环境\n✅ 就绪：`torch=2.10.0+cu128, transformers=4.50.0`\n\n### LIBERO 数据\n| Suite | HDF5 文件数 |\n|-------|------------|\n| libero_goal | 10 |\n| libero_spatial | 10 |\n| libero_object | 10 |\n| libero_long | **0** |\n\n### 磁盘 ⚠️ 严重\n```\n/dev/md0  250G  249G  1.7G  100%  /root/autodl-tmp\n```\n| 目录 | 大小 |\n|------|------|\n| checkpoints/ | 64G |\n| features/ | 117G |\n| results/ | 18G |\n\n**磁盘几乎满了，仅剩 1.7G。** OFT 模型下载完整需要 ~15G (4 个 safetensors shard)，当前空间不够。\n\n### 关键问题\n\n1. **磁盘满** — 1.7G 剩余，OFT 模型下载无法完成，后续实验也会受影响\n2. **OFT 下载卡死** — xethub ReadTimeout 反复重试（未设 `HF_HUB_DISABLE_XET=1`），且即使恢复也因磁盘不足会失败\n3. **openvla-phi3v (untrained baseline) 缺失** — 未下载\n4. **libero_long 数据为 0** — 无 HDF5 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-urgent-server-status.md"
+}

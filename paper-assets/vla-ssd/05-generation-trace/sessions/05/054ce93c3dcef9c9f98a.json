@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054ce93c3dcef9c9f98a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis rsa rise phase ci",
+  "task_key": "worker_analysis_rsa_rise_phase_ci_20260517T191324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rsa_rise_phase_ci_20260517T191324_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "0244c8876bedd2975100c135075960040c11e20f87b32f8512af5baa93258e64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== RSA Rise Phase Bootstrap CI ===\n\nNote: L0 is NaN for last_preaction (no action tokens at embedding layer). Using L1 as start.\n\nTrained last_preaction:\n  L1:  ρ = 0.5682, L12: ρ = 0.6425\n  Δρ = 0.0743, 95% CI [0.0486, 0.0995], p < 0.0001\n\nUntrained last_preaction:\n  L1:  ρ = 0.6262, L12: ρ = 0.5953\n  Δρ = -0.0309, 95% CI [-0.0419, -0.0215], p < 0.0001\n\nTrained vs Untrained rise difference:\n  Trained rise:   +0.0743\n  Untrained rise: -0.0309\n  Difference:      0.1052, 95% CI [0.0783, 0.1331], p < 0.0001\n```\n\nMethod: Paired bootstrap (10,000 resamples) over 10 tasks. Per-task Δρ = ρ(L12) - ρ(L1) resampled with replacement.\n\nKey findings:\n- **Trained**: significant rise from L1→L12 (all 10 tasks show positive delta), CI excludes 0\n- **Untrained**: significant *decline* from L1→L12 (all 10 tasks show negative delta)\n- The trained-vs-untrained rise difference (0.105) is strongly significant, confirming the L1→L12 rise is training-dependent"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rsa-rise-phase-ci.md"
+}

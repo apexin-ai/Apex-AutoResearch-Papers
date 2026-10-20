@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5c68ec125069b82c38",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "exp dinov2 probe",
+  "task_key": "worker_exp_dinov2-probe_20260515T071343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_dinov2-probe_20260515T071343_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "8fefd0272400272b2e1ac245644d2de22d0431b5a54a65e8922ae8060d4cdd1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，结果符合预期：\n\n| 实验 | Spearman ρ | R² | MAE |\n|------|-----------|-----|------|\n| **Control D (DINO-V2 temporal distance probe)** | 0.833 | 0.687 | 0.127 |\n| **Control A (Oracle)** | 1.000 | 1.000 | 0.000 |\n\n- DINO-V2 只有 1 层特征（cls_token, 1024-dim），单层 ρ=0.833\n- Oracle baseline ρ=1.0，完美 ceiling，验证实验流程正确\n- 产出分别在 `/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance/` 和 `/root/autodl-tmp/vla-ssd/results/oracle/oracle/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-dinov2-probe.md"
+}

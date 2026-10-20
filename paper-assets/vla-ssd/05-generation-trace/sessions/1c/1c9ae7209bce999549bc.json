@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9ae7209bce999549bc",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh openvla goal spatial extract",
+  "task_key": "worker_ssh_openvla_goal_spatial_extract_20260522T001622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_openvla_goal_spatial_extract_20260522T001622_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "3952dbfc846323c08945b1658f2e4df79fa439e7c85803b7af94627f0efc71a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已提取并写入 `artifacts/openvla_goal_spatial_data.md`。\n\n关键发现：\n\n**数据缺失项：**\n- OpenVLA Goal **无 R² probing 数据**（`trained/action_prediction/` 实际是 LIBERO-Long，不是 Goal）\n- OpenVLA Spatial **无 L1 attention 数据**（`attention/` 目录下的数据是 Goal 任务）\n- NORA Spatial untrained **CF 缺失**（目录下无 `counterfactual_combined.json`）\n\n**可用数据摘要：**\n\n| | OpenVLA Goal | OpenVLA Spatial |\n|--|--|--|\n| R² peak | **缺失** | 0.696 (trained L13) / 0.673 (untrained L0) |\n| L1 heads | 24/32 trained, 0/32 untrained | **缺失** |\n| Cross-inst | 1.0 trained (L8+), 0.82 untrained (L31) | 1.0 trained (L4+), 0.754 untrained (L31) |\n| CF top d | 0.978 empty (token), 3.85 (traj) | 0.942 empty (token) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-openvla-goal-spatial-extract.md"
+}

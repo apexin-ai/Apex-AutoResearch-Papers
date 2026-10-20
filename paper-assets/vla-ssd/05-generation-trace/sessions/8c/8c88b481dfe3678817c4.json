@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c88b481dfe3678817c4",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh p0 dino action probe",
+  "task_key": "worker_ssh_p0-dino-action-probe_20260515T234230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-dino-action-probe_20260515T234230_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "3abd1e6bcb0076791e63671c855cc4435beb6c3f876c54b4bbaada2521ab00e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三方对比结果：\n\n| 特征源 | mean_R² | overall_R² | grip_acc |\n|--------|---------|------------|----------|\n| **DINO cls_token** | 0.7116 | 0.7188 | 0.9259 |\n| DINO patch_mean | 0.7082 | 0.7166 | 0.9205 |\n| SigLIP+Projector | 0.7063 | 0.7169 | 0.9221 |\n| LLM trained L19 | 0.7309 | — | — |\n| LLM trained im_mean L19 | 0.6832 | — | — |\n\n- **DINO ≈ Projector**：delta=+0.0054，95% CI=[-0.008, 0.019]，p=0.22，差异不显著\n- **Action-delta probe** 很低（mean_R²=0.10），DINO 单帧特征几乎不编码动作变化量\n- 结果保存在 `/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-dino-action-probe.md"
+}

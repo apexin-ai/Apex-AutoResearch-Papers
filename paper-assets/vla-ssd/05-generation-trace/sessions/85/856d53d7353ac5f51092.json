@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "856d53d7353ac5f51092",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap gpu crosscheck",
+  "task_key": "worker_check_bootstrap_gpu_crosscheck_20260523T041453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_gpu_crosscheck_20260523T041453_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "0e7fa481b7d73a4fc0d91c346aace7c2c08969cccece47bce4a6685ba5dc1327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态正常，无需重启。**\n\n| 卡 | 显存 | GPU利用率 | 状态 |\n|---|---|---|---|\n| GPU 0 | 691MiB | 0% | nora_goal untrained — **已进入 bootstrap 阶段**（CPU密集，100 workers 并行，GPU 空闲是正常的） |\n| GPU 1 | 12641MiB | 26% | nora 相关任务 — 仍在 feature extraction（3700/5000 samples） |\n\n**已完成 12 个 JSON**：\n- openvla: goal/long/object/spatial 全部 trained+untrained ✓\n- tracvla: goal trained+untrained ✓, spatial trained（缺 untrained）\n- nora: goal trained（untrained 正在跑）\n\n**GPU 利用率低的原因**：GPU 0 已完成特征提取，当前在做 1000 次 bootstrap 重采样——这是纯 CPU 计算（RidgeCV + kernel matrix），GPU 自然空闲。GPU 1 在做特征提取但该模型（nora）推理本身显存占用不高，利用率 26% 属正常范围。\n\n两个 tmux session 和所有 python 进程均存活，进度正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-gpu-crosscheck.md"
+}

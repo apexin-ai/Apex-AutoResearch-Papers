@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "681b169efac4db9cd4b7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code branch split rsa",
+  "task_key": "worker_code_branch_split_rsa_20260516T024941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_branch_split_rsa_20260516T024941_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "1c538dfba0b4e9bc3fc9bfafaa695714b76f28e1d8802c21abae809062f4743d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## Branch-Split RSA 结果\n\n| 表征 | RSA |\n|---|---|\n| Standalone DINO cls | 0.692 |\n| **Fused 2176d (pre-projector)** | **0.634** |\n| Standalone DINO patch_mean | 0.631 |\n| **SigLIP branch** (1152d) | **0.621** |\n| **DINOv2 branch** (1024d) | **0.619** |\n| Fused+Projector 4096d | 0.615 |\n| Standalone CLIP patch_mean | 0.557 |\n\n核心发现：\n1. **DINOv2 和 SigLIP 两个 branch RSA 几乎相同**（0.619 vs 0.621），无显著差异\n2. Fused 2176d (0.634) > 两个单独 branch，拼接有互补收益\n3. Pre-projector (0.634) > post-projector (0.615)，projector MLP 略微压缩了 action-relevant 信息\n4. SigLIP branch (0.621) >> standalone CLIP (0.557)，验证了 Prismatic 选择 SigLIP 的合理性\n\n所有产出：\n- JSON: 服务器 `/root/autodl-tmp/vla-ssd/results/rsa/rsa_branch_split.json`\n- 分析摘要: 本地 `artifacts/branch_split_rsa_results.md`\n- Features: `/root/autodl-tmp/vla-ssd/features/fused_backbone_libero_goal/` (10 tasks × 50 demos × 2176d)\n- 脚本: 服务器 `/root/vla-ssd/scripts/rsa_branch_split.py` + `extract_fused_backbone.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-branch-split-rsa-copy-2.md"
+}

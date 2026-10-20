@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1003caad900213352bc1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis linear probe baseline",
+  "task_key": "worker_analysis_linear_probe_baseline_20260518T025737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_linear_probe_baseline_20260518T025737_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "72f951face2bee111398ee881400b14ab745deda542c08ff400bdd851e0103d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Linear probe 已在后台运行。脚本对 33 layers × 2 conditions (trained + untrained) 逐层训练 `Linear(4096→7)` probe，CPU 上跑。等进度出来后汇报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-linear-probe-baseline.md"
+}

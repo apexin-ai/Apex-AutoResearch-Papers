@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a80b7c6630b8b7e96f5",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3349,
+    "sha256": "6d78989b253a3567b0cd42c80fdf46e7a66c9a7d6343c60cb1deb70e4da3735e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-19T11:17:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-19183 的 cuda:0 和 cuda:1（已通知 Manager 释放，但未收到确认前仍归本项目）\n- 论文中所有 \"entry-exit\"/\"bookend\" 描述基于 openvla-7b（Bridge/OXE 训练），不是 LIBERO fine-tuned。LIBERO fine-tuned 是 entry-only（L31=0）。混用会被审稿人攻击\n- Specificity ratio 是 1.08x（不是 1.15x），KL 1.56x 行已从表中移除（控制组不一致）。全文 .tex 和 paper_framing.md 均已修正\n- Worker 报告 attention 数据时必须检查全部关键层（L0/L1/L9-L16/L24-L30/L31），不能只看 L1（M009 教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com)，工作目录 /root/vla-ssd\n- 论文本地路径：projects/vla-ssd/docs/paper/（main.tex, experiments.tex, discussion.tex, appendix.tex 等）\n- 远程代码/数据：/root/autodl-tmp/vla-ssd/（results/, checkpoints/）\n- Checkpoints：openvla-7b（~14GB）、openvla-7b-finetuned-libero-goal（~14GB）、untrained/llama2base\n- 磁盘：83%（45GB 可用），之前 95% 已清理\n- 活跃进程：无。全部 GPU 实验完成，0 RUNNING\n\n### 3. 📊 当前状态\n刚完成：\n- 4-condition training trajectory 整合（untrained→llama2→bridge-vla→libero-finetuned）\n- L31 exit collapse 发现（18→0 heads）+ positive reframe（multi-task overhead pruning）\n- Cross-instruction probe 4 条件数据（appendix 表格 + experiments 半句引用）\n- OXE 970K 训练数据多样性说明（method.tex + discussion.tex）\n- 最终 PDF 已上传用户（vla-ssd_final_2026-05-19.pdf）\n- Reviewer 系统性弱点审计完成：6.0-6.7 是 scope ceiling，GPU 无更多实验\n\n等待中：\n- Round 12 审稿（apr_20260519T074245_dd2a）pending 用户批准 continue mode\n- GPU 释放 Manager 确认\n- 用户确认投稿安排（Abstract May 26, Paper May 29）\n\n### 4. 📋 待办\n- Round 12 审稿用户批准 → 等审稿结果 → 按 review-report-action 协议处理（预期 6+，增量修改）\n- 用户说\"投稿\" → 走投稿准备流程（checklist、anonymization、format 检查）\n- 用户问 rebuttal → Reviewer 已提供 R9-N1（单模型）和 R9-N2（无闭环）的 rebuttal 措辞建议，见本 session Reviewer 回复\n- Manager 确认 GPU 释放 → ACK 即可\n- 如果用户要求新实验（如找到第二个 VLA checkpoint）→ 重新评估，但 Reviewer 判断无可行选项\n\n### 5. 🎯 战略上下文\n- 核心决策链：D072（Round 9 response）→ D073（用户 9 指令 claim 降级）→ D074（放弃 closed-loop SR=0/3）→ D075（4-condition trajectory + L31 collapse positive reframe）\n- 论文从 Round 9 的 5/10 提升到 Round 11 的 6/10。所有方法论 issues 已闭环（11 RESOLVED），仅剩 2 个 structural scope limitations（单模型 + 无闭环）标 wont_fix\n- CoRL 接受概率 35-45%。6/10 是 borderline，AC 对 pure analysis paper 态度决定性\n- 易错点：不要试图跑更多 GPU 实验来升分——Reviewer 已确认 6.0-6.7 是 ceiling，到 7 需要第二个 VLA 或 closed-loop（都不可行）。时间应花在投稿准备和 rebuttal 上\n- paper_framing.md 是论文 story 的权威文档，已包含 D075 的 4-condition 数据和所有修正后的数值\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5.md"
+}

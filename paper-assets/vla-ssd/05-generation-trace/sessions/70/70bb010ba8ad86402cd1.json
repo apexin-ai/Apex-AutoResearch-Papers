@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70bb010ba8ad86402cd1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper figure fetch ablation fig",
+  "task_key": "worker_paper_figure_fetch_ablation_fig_20260518T051954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fetch_ablation_fig_20260518T051954_result.json",
+    "occurrence": 1,
+    "bytes": 275,
+    "sha256": "db52f6415ba6a69212441d9604842e318c1831ba98743a7ad6f1ba0342746bc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败。`~/.ssh/config` 中没有 westd 服务器的配置条目，也没有对应的私钥文件——只有 GitHub deploy key。无法连接 `connect.westd.seetacloud.com`。\n\n需要补充 westd-19183 的 SSH 密钥和配置才能下载文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fetch-ablation-fig.md"
+}

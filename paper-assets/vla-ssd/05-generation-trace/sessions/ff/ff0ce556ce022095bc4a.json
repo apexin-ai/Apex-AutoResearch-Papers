@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff0ce556ce022095bc4a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "transfer figures base64",
+  "task_key": "worker_transfer_figures_base64_20260523T173302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_transfer_figures_base64_20260523T173302_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "a7477d5a4ccfd4358f36402cd98f4c0f2eeabd5ba803a295a7dd1bff2fb83731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件全部传输完成，本地与远程大小完全一致：\n\n| 文件 | 大小 |\n|------|------|\n| fig_matrix_heatmap.pdf | 43,680 |\n| fig_matrix_heatmap.png | 175,270 |\n| fig_counterfactual_bar.pdf | 26,788 |\n| fig_counterfactual_bar.png | 137,380 |\n| fig_claim_evidence.pdf | 28,904 |\n| fig_claim_evidence.png | 207,164 |\n\nbase64 方式因 MCP 输出截断不可行，最终通过 SCP 直连（端口 19183）完成传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/transfer-figures-base64.md"
+}

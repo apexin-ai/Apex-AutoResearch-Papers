@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b90144cd40fdd8cfb2b9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper reviewer fixes round12",
+  "task_key": "worker_paper_reviewer_fixes_round12_20260519T115635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reviewer_fixes_round12_20260519T115635_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "ede402da8dcd1a5cb5f9931d9f691aeadec6a146168c975bec9f34f20104acac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No em-dashes or explanatory en-dashes found. Summary of all modifications:\n\n| # | File | Location | Change |\n|---|------|----------|--------|\n| 1 | `discussion.tex:13-14` | Mechanistic interpretation ¶ | Added 2.4 SD statistical description for 1.08x specificity ratio |\n| 2a | `discussion.tex:20-21` | Functional stages ¶ | \"suggesting\" → \"consistent with the hypothesis that\" + N=2 caveat + alternative explanation (training data diversity) |\n| 2b | `experiments.tex:63` | Task-specific sharpening ¶ | \"sharpening entry-exit routing to entry-only\" → N=2 hedged hypothesis + data diversity caveat |\n| 3 | `appendix.tex:182` | Table counterfactual caption | Added \"computed on 3 representative tasks (cabinet, bowl, plate)\" |\n| 4 | `experiments.tex:59-60` | Redistribution of routing ¶ | Added single-sample extraction caveat with threshold sensitivity reference |\n| 5 | `related_work.tex:17` + `references.bib` | Mechanistic interp. ¶ | Added Michel et al. 2019 sentence + bib entry |\n| 6 | `related_work.tex:7` + `references.bib` | VLA ¶ | Added instruction tuning bridge sentence + Wei 2022 + Ouyang 2022 bib entries |\n| 7 | `paper_framing.md` | 6 occurrences | \"25/32\" → \"24/32\" |\n\nCompilation: 0 errors, 0 undefined citations, 0 warnings. Body is 9 pages (1 over CoRL limit; may have been pre-existing)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reviewer-fixes-round12.md"
+}

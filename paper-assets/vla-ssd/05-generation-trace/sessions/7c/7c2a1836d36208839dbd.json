@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c2a1836d36208839dbd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug matched ablation check",
+  "task_key": "worker_debug_matched_ablation_check_20260519T040251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_matched_ablation_check_20260519T040251_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "a3513a2895eb8732d0c8d7ca5e3822d863667b10f5f7b3e37556f5bf46153c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清除或未在本 session 创建），无需处理。\n\n**实验结果：成功**\n\n| Condition | traj_d | token_d |\n|---|---|---|\n| **Instruction-dominant 24** (ref) | **0.650** | — |\n| **Random 24** (5 seeds mean±std) | 0.601 ± 0.021 | 3.056 ± 0.305 |\n| **Image-dominant 24** | 0.580 | 2.169 |\n\nInstruction-dominant heads 的 ablation 造成的轨迹偏移 (0.650) 大于 random 控制组 (0.601) 和 image-dominant 控制组 (0.580)，且 random 控制组 5 seeds 的标准差仅 0.021，instruction-dominant 的 0.650 落在 random 分布的 ~2.4σ 之外。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-matched-ablation-check-copy-2.md"
+}

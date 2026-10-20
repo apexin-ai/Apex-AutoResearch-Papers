@@ -1,0 +1,827 @@
+{
+  "schema_version": "1.0",
+  "id": "8610d73b998c297e5f16",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260516T022839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_introduction_20260516T022839.jsonl",
+    "occurrence": 1,
+    "bytes": 37569,
+    "sha256": "9637798910b0d3ddb76b222a5a684e4e98e19e503a949d6e6bdf8654b040a4df"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:30:23.511610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/experiments.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:30:23.512160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Benchmark and model.}\n8\tWe evaluate on the LIBERO-Goal suite~\\cite{liu2023_libero}, comprising 10 tabletop manipulation tasks with 50 human demonstrations each.\n9\tWe use OpenVLA-7B~\\cite{kim2024_openvla,karamcheti2024}, a vision-language-action model consisting of a SigLIP-SO400M vision encoder~\\cite{zhai2023_siglip}, an MLP projector, and a Llama-2 7B language backbone, fine-tuned on the LIBERO-10 split.\n10\t\n11\t\\paragraph{Representation sources.}\n12\tWe extract representations from five sources:\n13\t(a)~\\textbf{SigLIP+Projector}---the vision encoder output after MLP projection into LLM input space;\n14\t(b)~\\textbf{LLM image\\_mean}---the mean of image token activations at each LLM layer, capturing distributed visual information;\n15\t(c)~\\textbf{LLM last\\_preaction}---the final token position before action decoding (readout token) at each LLM layer;\n16\t(d)~\\textbf{DINOv2 ViT-L/14}~\\cite{oquab2024_dinov2} \\texttt{cls\\_token}; and\n17\t(e)~\\textbf{CLIP ViT-L/14}~\\cite{radford2021_clip} \\texttt{patch\\_mean}.\n18\tSources (d) and (e) serve as external baselines with no VLA training signal.\n19\t\n20\t\\paragraph{Experimental conditions.}\n21\tWe use a $2 \\times 2$ factorial design crossing \\emph{training status} (trained vs.\\ untrained) with \\emph{instruction presence} (with vs.\\ without language instruction).\n22\tThe untrained control applies \\texttt{from\\_config()} to reinitialize the LLM parameters (6.74B random weights) while preserving the frozen SigLIP encoder (0.80B pretrained weights), isolating the LLM's learned contribution from the vision encoder's pretrained geometry.\n23\t\n24\t\\paragraph{Representational Similarity Analysis (RSA).}\n25\tFollowing~\\cite{kriegeskorte2008}, we compute pairwise representational dissimilarity matrices (RDMs) for each representation source and for the 7-dimensional action space.\n26\tWe report Spearman rank correlation $\\rho$ betwee\n…[truncated 13148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:30:23.512374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:30:23.512516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:30:23.512658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find paper framing files",
+              "prompt": "Search for paper_framing.md or any framing/story document in the vla-ssd project. Check paths like /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ and subdirectories. Also look for references.bib. Report file paths found and key content snippets."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:30:23.512808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper_framing.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:30:23.513116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/median/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/worst/paper_framing.md\npaper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:30:23.513362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/references.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:30:23.513531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib\nartifacts/_project/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:30:23.513669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*framing*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:30:23.513791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/median/paper_framing.md\nartifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T011810/worst/paper_framing.md\npaper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:30:23.513940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*story*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:30:23.514104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:30:23.514239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*.md\" | head -20"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:30:23.514364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/agent.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/director.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/reviewer.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/director/loop_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3_1778877858.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_4_1778887654.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_2_1778866326.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3_1778878478.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_2_1778865132.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_2_1778867412.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_4_1778895396.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3_1778878475.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3_1778889604.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_3_1778875986.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_2_1778863795.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/task_context/history/agent/loop_4_1778886984.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ta\n…[truncated 159 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:30:23.514516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:30:23.514700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — vla-ssd\n2\t\n3\t## Target Venue\n4\t- Primary: CoRL 2026\n5\t- Deadline: Abstract May 26, Paper May 29\n6\t- Format: 8 pages + references\n7\t\n8\t## Core Claims (3 条)\n9\t\n10\t1. **Vision Encoder Dominance + Geometric-Functional Dissociation**: VLA 中 action-relevant 表征结构由 frozen vision encoder 决定。RSA geometric alignment: SigLIP (0.615) > CLIP (0.557) >> DINO (0.388)——VL pretrained encoders 显著优于 vision-only。但 functional capacity (R²) 方向相反: DINO (0.634) ≈ Projector (0.630) > CLIP (0.587)。**Geometric alignment 和 predictive capacity 是可分离的独立维度**。VL pretraining 提供 geometric alignment（表征结构匹配 action 空间），不增加甚至略降低 functional capacity。\n11\t2. **LLM Redistributes Action-Relevant Structure (Training-Dependent)**: LLM 降解 distributed image token 的 **geometric alignment**（RSA: 0.615→0.501）和 functional capacity（R²: 0.630→0.599, p<0.001），但 global structure 保留（CKA 单调上升）。**训练后** LLM 学会将 action 信号 concentrate 到 readout token（trained R²=0.671 > projector 0.630, p=0.002），但 **untrained LLM 做不到**（untrained readout best=0.686 < projector）。Readout concentration 是 learned behavior，不是架构固有属性。\n12\t3. **Training: Routing Without Creating**: VLA fine-tuning 不改变 distributed representation structure（image_mean RSA: trained 0.501 ≈ untrained 0.485, bootstrap CI includes 0, p=0.20），但提升 readout concentration（trained last_preaction 0.731 >> untrained 0.686，Δ=0.045, bootstrap CI=[0.032, 0.058], p<0.0001）。Instruction input 对两者均无影响。综合解读：**Training 的贡献是学习信息路由（routing），而非注入新的 action knowledge（creating）**。\n13\t\n14\t## Paper 主数值基准（image_mean 聚合，公平对比）\n15\t\n16\t| Model / Condition | RSA (image_mean) | Notes |\n17\t|---|---|---|\n18\t| **SigLIP+Projector** | **0.615** | Smoking gun, LLM input |\n19\t| VLA trained with-inst | 0.501 | Peak L23 |\n20\t| VLA untrained with-inst | 0.485 | Peak L23 |\n21\t| VLA trained no-inst | 0.501 | Peak L23, identical to with-inst |\n22\t| VLA untrained no-inst | 0.482 | Peak L29 |\n23\t| **CLIP ViT-L/14** | **0.557** | VL-pretrained control, CI=[0.442, 0.660] |\n24\t| DINO-V2 | 0.388 | Vision-only\n…[truncated 10428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:30:23.514860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:30:23.515043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === VLA / Architecture ===\n2\t\n3\t@article{kim2024_openvla,\n4\t  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n5\t  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n6\t  journal   = {arXiv preprint arXiv:2406.09246},\n7\t  year      = {2024},\n8\t}\n9\t\n10\t% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n11\t@article{karamcheti2024,\n12\t  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n13\t  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n14\t  journal   = {arXiv preprint arXiv:2402.07865},\n15\t  year      = {2024},\n16\t}\n17\t\n18\t@article{brohan2023_rt2,\n19\t  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n20\t  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n21\t  journal   = {arXiv preprint arXiv:2307.15818},\n22\t  year      = {2023},\n23\t}\n24\t\n25\t% === Benchmark ===\n26\t\n27\t@inproceedings{liu2023_libero,\n28\t  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n29\t  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n30\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n31\t  year      = {2023},\n32\t}\n33\t\n34\t% === Representation Analysis Methods ===\n35\t\n36\t@article{kriegeskorte2008,\n37\t  title     = {Representational Similarity Analysis -- Connecting \n…[truncated 2717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:30:23.515213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:30:23.515355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === VLA / Architecture ===\n2\t\n3\t@article{kim2024_openvla,\n4\t  title     = {{OpenVLA}: An Open-Source Vision-Language-Action Model},\n5\t  author    = {Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Lu, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},\n6\t  journal   = {arXiv preprint arXiv:2406.09246},\n7\t  year      = {2024},\n8\t}\n9\t\n10\t% [VERIFY] Confirm venue and exact title. Likely \"Prismatic VLMs\" or OpenVLA architecture companion.\n11\t@article{karamcheti2024,\n12\t  title     = {Prismatic {VLMs}: Investigating the Design Space of Visually-Conditioned Language Models},\n13\t  author    = {Karamcheti, Siddharth and Nair, Suraj and Balakrishna, Ashwin and Liang, Percy and Kollar, Thomas and Sadigh, Dorsa},\n14\t  journal   = {arXiv preprint arXiv:2402.07865},\n15\t  year      = {2024},\n16\t}\n17\t\n18\t@article{brohan2023_rt2,\n19\t  title     = {{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},\n20\t  author    = {Brohan, Anthony and Brown, Noah and Carbajal, Justice and Chebotar, Yevgen and Chen, Xi and Choromanski, Krzysztof and Ding, Tianli and Driess, Danny and Dubey, Avinava and Finn, Chelsea and others},\n21\t  journal   = {arXiv preprint arXiv:2307.15818},\n22\t  year      = {2023},\n23\t}\n24\t\n25\t% === Benchmark ===\n26\t\n27\t@inproceedings{liu2023_libero,\n28\t  title     = {{LIBERO}: Benchmarking Knowledge Transfer for Lifelong Robot Learning},\n29\t  author    = {Liu, Bo and Zhu, Yifeng and Gao, Chongkai and Feng, Yihao and Liu, Qiang and Zhu, Yuke and Stone, Peter},\n30\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n31\t  year      = {2023},\n32\t}\n33\t\n34\t% === Representation Analysis Methods ===\n35\t\n36\t@article{kriegeskorte2008,\n37\t  title     = {Representational Similarity Analysis -- Connecting \n…[truncated 2682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:30:23.515510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:30:23.515663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — vla-ssd\n2\t\n3\t## Target Venue\n4\t- Primary: CoRL 2026\n5\t- Deadline: Abstract May 26, Paper May 29\n6\t- Format: 8 pages + references\n7\t\n8\t## Core Claims (3 条)\n9\t\n10\t1. **Vision Encoder Dominance**: VLA 中 action-relevant 表征结构由 frozen vision encoder（SigLIP）决定。SigLIP+projector 的 RSA 与 action structure 的相关性（ρ=0.615）远高于完整 VLA（ρ≈0.488）和 standalone vision model（DINOv2 ρ=0.388）。\n11\t2. **LLM Degrades Action Alignment**: LLM processing 降低而非增强 action-relevant 几何结构（0.615→0.488）。这一 degradation 在 trained/untrained、with/without instruction 四种条件下一致发生。\n12\t3. **Training and Instruction Invariance**: VLA task-specific fine-tuning（Δ<0.01）和 instruction input（Δ<0.005）均不显著改变 LLM hidden state 中的 action-relevant 表征结构。2×2 matrix（training × instruction）四格收敛于 0.48-0.49。\n13\t\n14\t## Story Spine\n15\t\n16\t- **Problem**: VLAs 通过 fine-tuning LLM on robot data 实现 impressive performance，但 action-relevant 表征从何而来？业界隐性假设 fine-tuning 注入 new representational knowledge，但无系统性验证。\n17\t- **Existing approaches & gaps**: Grant et al. 2026 从 behavioral level 发现 visual pathway dominates，但未做 representational decomposition。无人测量过 VLA 各组件（vision encoder / projector / LLM）对 action-relevant 表征结构的独立贡献。\n18\t- **Our framing**: 首次对 VLA 进行系统性 representational analysis——7 种 probing 方法 × 2 benchmarks × 组件级分解，定量揭示 action-relevant 结构的来源。发现 LLM 不仅不贡献，反而 degrades vision encoder 提供的 action alignment。\n19\t- **Headline result**: \"SigLIP+projector representations achieve RSA ρ=0.615 with action structure, while the full VLA only achieves ρ≈0.488 regardless of training or instruction — the LLM degrades rather than enhances action-relevant representations.\"\n20\t\n21\t## Anticipated Reviewer Concerns & Responses\n22\t\n23\t### C1: 单一 VLA 架构（OpenVLA）泛化性\n24\t- **应对**: Scope 明确限定为 \"OpenVLA-class architecture\"。OpenVLA 是最广泛使用的开源 VLA 之一，findings 对该架构族直接适用。Discussion 中讨论扩展到其他架构的预期。\n25\t- **实验**: 无需额外实验，Limitations 明确标注。\n26\t\n27\t### C2: SigLIP vs DINOv2 pretraining confound\n28\t- **问题**: SigLIP 是 image-text contrastive pretrained，DINOv2 是 self-sup\n…[truncated 2272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:30:23.515819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ | head -30"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:30:23.515975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 328K\ndrwxr-xr-x  9 ubuntu ubuntu 4.0K May 16 02:21 .\ndrwxrwxr-x  5 ubuntu ubuntu 4.0K May 15 04:32 ..\ndrwxr-xr-x  3 ubuntu ubuntu 4.0K May 15 04:32 .claude\n-rw-------  1 ubuntu ubuntu    0 May 15 17:07 .registry_veak6jl2.tmp\n-rw-r--r--  1 ubuntu ubuntu  13K May 16 02:28 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu    0 May 15 04:34 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu 4.1K May 16 02:14 ROADMAP.md\ndrwxr-xr-x 10 ubuntu ubuntu 4.0K May 16 02:09 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu  32K May 16 02:17 checkpoints\n-rw-r--r--  1 ubuntu ubuntu    0 May 15 19:40 constraints.lock\n-rw-------  1 ubuntu ubuntu  440 May 15 19:40 constraints.yaml\n-rw-r--r--  1 ubuntu ubuntu    0 May 15 11:03 decisions.lock\n-rw-------  1 ubuntu ubuntu  43K May 16 02:14 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu 4.0K May 15 05:23 docs\n-rwxr-xr-x  1 ubuntu ubuntu    0 May 15 05:23 dream_registry.lock\n-rw-------  1 ubuntu ubuntu 1.9K May 16 01:59 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu 1.9K May 16 01:59 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu 5.3K May 16 01:41 experiment_plan.yaml\n-rw-r--r--  1 ubuntu ubuntu  29K May 16 02:15 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu 4.0K May 15 04:56 logs\n-rw-r--r--  1 ubuntu ubuntu 6.2K May 16 02:14 memory.md\n-rw-r--r--  1 ubuntu ubuntu  15K May 16 02:21 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu    0 May 15 04:55 registry.lock\n-rw-------  1 ubuntu ubuntu  83K May 16 02:20 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu 1.9K May 16 02:17 report.md\ndrwxr-xr-x  2 ubuntu ubuntu 4.0K May 15 19:16 scripts\n-rwxr-xr-x  1 ubuntu ubuntu    0 May 15 04:33 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu 4.0K May 16 02:28 task_context\n-rw-r--r--  1 ubuntu ubuntu  27K May 16 02:09 writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:30:23.516187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. I've found all the framing and bibliography files. Let me provide you with a comprehensive report.\n\n## Summary of Findings\n\nI found three key document types in the vla-ssd project:\n\n### Paper Framing Documents Located\n\n**Main file:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md`\n\n**Dream report variants (historical iterations):**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/median/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/worst/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/best/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/median/paper_framing.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/worst/paper_framing.md`\n\n### Bibliography Files Located\n\n**Main BibTeX file:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib`\n\n**Archived version:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/references.bib`\n\n---\n\n### Key Content Snippets\n\n**Main Paper Framing:**\nThe primary framing document is comprehensive and highly detailed. The core contribution is a **three-claim architecture**:\n\n1. **Vision Encoder Dominance + Geometric-Functional Dissociation**: VLA action-relevant representations are determined by frozen vision encoder (SigLIP). Representational Similarity Analysis shows: SigLIP (RSA ρ=0.615) > CLIP (0.557) >> DINO (0.388). But action prediction capacity (R²) shows opposite ordering: DINO (\n…[truncated 2507 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Agent",
+            "elapsed_ms": 3
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:30:23.516343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:30:23.516516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — vla-ssd\n2\t\n3\t## Target Venue\n4\t- Primary: CoRL 2026\n5\t- Deadline: Abstract May 26, Paper May 29\n6\t- Format: 8 pages + references\n7\t\n8\t## Core Claims (3 条)\n9\t\n10\t1. **Vision Encoder Dominance + Geometric-Functional Dissociation**: VLA 中 action-relevant 表征结构由 frozen vision encoder 决定。RSA geometric alignment: SigLIP (0.615) > CLIP (0.557) >> DINO (0.388)——VL pretrained encoders 显著优于 vision-only。但 functional capacity (R²) 方向相反: DINO (0.634) ≈ Projector (0.630) > CLIP (0.587)。**Geometric alignment 和 predictive capacity 是可分离的独立维度**。VL pretraining 提供 geometric alignment（表征结构匹配 action 空间），不增加甚至略降低 functional capacity。\n11\t2. **LLM Redistributes Action-Relevant Structure (Training-Dependent)**: LLM 降解 distributed image token 的 **geometric alignment**（RSA: 0.615→0.501）和 functional capacity（R²: 0.630→0.599, p<0.001），但 global structure 保留（CKA 单调上升）。**训练后** LLM 学会将 action 信号 concentrate 到 readout token（trained R²=0.671 > projector 0.630, p=0.002），但 **untrained LLM 做不到**（untrained readout best=0.686 < projector）。Readout concentration 是 learned behavior，不是架构固有属性。\n12\t3. **Training: Routing Without Creating**: VLA fine-tuning 不改变 distributed representation structure（image_mean RSA: trained 0.501 ≈ untrained 0.485, bootstrap CI includes 0, p=0.20），但提升 readout concentration（trained last_preaction 0.731 >> untrained 0.686，Δ=0.045, bootstrap CI=[0.032, 0.058], p<0.0001）。Instruction input 对两者均无影响。综合解读：**Training 的贡献是学习信息路由（routing），而非注入新的 action knowledge（creating）**。\n13\t\n14\t## Paper 主数值基准（image_mean 聚合，公平对比）\n15\t\n16\t| Model / Condition | RSA (image_mean) | Notes |\n17\t|---|---|---|\n18\t| **SigLIP+Projector** | **0.615** | Smoking gun, LLM input |\n19\t| VLA trained with-inst | 0.501 | Peak L23 |\n20\t| VLA untrained with-inst | 0.485 | Peak L23 |\n21\t| VLA trained no-inst | 0.501 | Peak L23, identical to with-inst |\n22\t| VLA untrained no-inst | 0.482 | Peak L29 |\n23\t| **CLIP ViT-L/14** | **0.557** | VL-pretrained control, CI=[0.442, 0.660] |\n24\t| DINO-V2 | 0.388 | Vision-only\n…[truncated 5489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:30:23.516711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nVision-language-action models (VLAs) achieve impressive robotic manipulation performance by fine-tuning large language models on robot demonstration data~\\cite{brohan2023_rt2,kim2024_openvla}.\nThe dominant architecture grafts a frozen vision encoder onto a pretrained LLM backbone, then fine-tunes the system end-to-end to map visual observations and language instructions to continuous actions~\\cite{karamcheti2024}.\nAn implicit assumption underlies this paradigm: fine-tuning injects action-relevant representational knowledge into the LLM.\nBut where do action representations actually come from?\nDo they originate in the vision encoder's pretrained features, emerge through LLM processing, or arise from task-specific fine-tuning?\n\nRecent work reveals cracks in this assumption.\nGrant et al.~\\cite{grant2026} showed that the visual pathway dominates action generation across multiple VLA architectures, with ablations to the language stream producing minimal behavioral degradation.\nIndependently, Hou et al.~\\cite{hou2026} and Fei et al.~\\cite{fei2025} demonstrated that VLAs largely ignore language instructions during policy execution.\nThese findings challenge the prevailing narrative but remain at the behavioral level---they reveal \\emph{what} drives VLA outputs without explaining \\emph{where} action-relevant structure resides in the representation space.\nNo prior work has performed a representational decomposition that measures each component's independent contribution to action-relevant structure.\nWithout this, we cannot determine whether fine-tuning truly injects action knowledge or merely learns to route pre-existing structure.\n\nWe present the first systematic representational and functional analysis of a VLA.\nTaking OpenVLA-7B~\\cite{kim2024_openvla} as a case study, we decompose its processing pipeline into constituent components: the frozen SigLIP vision encoder~\\cite{zhai2023_siglip} with MLP projector, every layer of the Llama-2 7B backbone, and the readout token position.\nWe apply Representational Similarity Analysis (RSA)~\\cite{kriegeskorte2008} to measure geometric alignment with the action space and train functional probes to measure action decodability.\nA $2 \\times 2$ factorial design crossing training status (trained vs.\\ untrained LLM) with instruction presence (with vs.\\ without) isolates each factor's contribution.\nExternal baselines---DINOv2~\\cite{oquab2024_dinov2} (vision-only) and CLIP ViT-L/14~\\cite{radford2021_clip} (vision-language pretrained, no VLA training)---anchor our comparisons.\n\nThree findings emerge from experiments on the LIBERO-Goal benchmark~\\cite{liu2023_libero}.\n\\textbf{First}, frozen vision-language encoders provide the dominant action-relevant geometric structure.\nSigLIP+Projector achieves the highest action-space alignment (RSA $\\rho = 0.615$), followed by CLIP ($\\rho = 0.557$), both far exceeding the vision-only DINOv2 ($\\rho = 0.388$).\nYet DINOv2 matches SigLIP+Projector in action prediction capacity ($R^2 = 0.712$ vs.\\ $0.706$, $p = 0.22$), revealing a geometric-functional dissociation: VL pretraining provides geometric alignment with the action space without increasing raw decodability.\n\\textbf{Second}, the LLM degrades distributed geometric alignment (RSA $0.615 \\to 0.501$) but concentrates a functionally superior signal at the readout token ($R^2 = 0.731$, exceeding the projector's $0.706$).\nThis concentration is training-dependent: an untrained LLM's readout achieves only $R^2 = 0.686$, falling below the projector baseline.\n\\textbf{Third}, training teaches routing, not creating.\nDistributed RSA is training-invariant ($\\Delta = 0.021$, 95\\% CI includes zero, $p = 0.20$), while readout concentration shows a large training effect ($\\Delta = 0.045$, $p < 0.0001$).\nLanguage instructions affect neither metric.\n\nThese results reframe how we understand VLA representations and carry direct design implications: vision encoder pretraining quality---not LLM fine-tuning---is the primary lever for action-relevant structure~\\cite{haon2025}.\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n    \\item The first systematic representational decomposition of a VLA, quantifying each component's contribution to action-relevant structure with both geometric (RSA) and functional (probe $R^2$) metrics.\n    \\item Discovery of a geometric-functional dissociation: vision-language pretraining provides geometric alignment with the action space beyond what raw information content predicts, while vision-only features are functionally rich but geometrically dissimilar.\n    \\item Evidence that LLM fine-tuning teaches information routing---concentrating pre-existing vision-encoder structure at the readout position---rather than creating new action-relevant representations.\n\\end{enumerate}\n"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:30:23.516891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:30:23.517045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:30:23.517171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:30:23.517301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:30:23.517418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:30:23.517571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:30:23.517689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:30:23.517802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "mcp agent-ml-research",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:30:23.517937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:30:23.518073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:30:23.518220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tVision-language-action models (VLAs) achieve impressive robotic manipulation performance by fine-tuning large language models on robot demonstration data~\\cite{brohan2023_rt2,kim2024_openvla}.\n5\tThe dominant architecture grafts a frozen vision encoder onto a pretrained LLM backbone, then fine-tunes the system end-to-end to map visual observations and language instructions to continuous actions~\\cite{karamcheti2024}.\n6\tAn implicit assumption underlies this paradigm: fine-tuning injects action-relevant representational knowledge into the LLM.\n7\tBut where do action representations actually come from?\n8\tDo they originate in the vision encoder's pretrained features, emerge through LLM processing, or arise from task-specific fine-tuning?\n9\t\n10\tRecent work reveals cracks in this assumption.\n11\tGrant et al.~\\cite{grant2026} showed that the visual pathway dominates action generation across multiple VLA architectures, with ablations to the language stream producing minimal behavioral degradation.\n12\tIndependently, Hou et al.~\\cite{hou2026} and Fei et al.~\\cite{fei2025} demonstrated that VLAs largely ignore language instructions during policy execution.\n13\tThese findings challenge the prevailing narrative but remain at the behavioral level---they reveal \\emph{what} drives VLA outputs without explaining \\emph{where} action-relevant structure resides in the representation space.\n14\tNo prior work has performed a representational decomposition that measures each component's independent contribution to action-relevant structure.\n15\tWithout this, we cannot determine whether fine-tuning truly injects action knowledge or merely learns to route pre-existing structure.\n16\t\n17\tWe present the first systematic representational and functional analysis of a VLA.\n18\tTaking OpenVLA-7B~\\cite{kim2024_openvla} as a case study, we decompose its processing pipeline into constituent components: the frozen SigLIP vision encoder~\\cite{zhai2023_s\n…[truncated 2967 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:30:23.518403+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`introduction.tex` 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/paper/introduction.tex`。\n\n5 段结构：Problem → Gap → Approach → Findings (with headline numbers) → Implications + 3 contributions（enumerate）。约 ~650 词，符合 1-1.5 页目标。所有引用 key 均按指定使用，包括 `hou2026` 和 `fei2025`。数值用 p0_probe_v2 口径（R² 0.706/0.683/0.731/0.686，RSA 0.615/0.557/0.388）。\n\n`register_artifact` 工具不在当前可用 MCP 工具列表中，无法注册。如需注册请手动操作或确认工具名称。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260516T022839"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-introduction.md"
+}

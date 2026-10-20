@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "687342b076519df53ee6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "review camera ready checklist",
+  "task_key": "worker_review_camera_ready_checklist_20260526T214750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_camera_ready_checklist_20260526T214750_result.json",
+    "occurrence": 1,
+    "bytes": 2119013,
+    "sha256": "2cd213a6760dfede5aef2127aeafe5ce57d05eeb62f77cad54321e96f7bb523f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2119033,
+                "serialized_sha256": "a8984f1fd70ecf9009ef7c64954b381165f5fdcc7898e5505473b0625a4b51fb",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-camera-ready-checklist.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e0775890c490ad2ef55",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis t1 cleanup and save",
+  "task_key": "worker_analysis_t1_cleanup_and_save_20260518T051522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_t1_cleanup_and_save_20260518T051522_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "c2890f0b3f56ec585c57ad840109e1b63e84549531830e11d0b4be7c2483fef9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- 进程 657872 已 kill\n- `random_subset_ablation.json` (1.6 KB)\n- `fig_random_subset_ablation.pdf` (17.7 KB)\n- `fig_random_subset_ablation.png` (107 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t1-cleanup-and-save.md"
+}

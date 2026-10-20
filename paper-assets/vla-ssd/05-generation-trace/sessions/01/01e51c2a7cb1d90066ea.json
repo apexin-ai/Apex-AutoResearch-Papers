@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01e51c2a7cb1d90066ea",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778879069.md",
+  "task_key": "loop_3_1778879069",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778879069.md",
+    "occurrence": 1,
+    "bytes": 4721,
+    "sha256": "e03ac4e16ad9b820fcb949a854612e7551873a4ccf744827dc59bdde9e5e2cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T20:54:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 cuda:0 和 cuda:1，不可用其他卡\n- LIBERO-Goal 用的是 LIBERO-10 fine-tuned checkpoint（D017 决策），不是 base pretrained。lg_extract_trained/untrained 都基于此，不要换 checkpoint\n- AutoDL 服务器网络受限：模型加载必须 `local_files_only=True`，不能调 HF Hub（之前两次 Network is unreachable 崩溃的教训）\n- Goal classification probe 是 10-class 分类（10 tasks），chance = 10%，不是 binary\n- submit_training_job command 必须 `bash -c \"...\"` 包裹，tmux 默认 sh 不认 source\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，2×RTX PRO 6000\n- 工作目录：`/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/特征/结果）\n- Python：`/root/miniconda3/bin/python`，conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/` 下 openvla-7b / openvla-7b-untrained / dinov2-large\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（LIBERO-Goal 10 tasks x 50 demos）\n- 特征目录：\n  - trained VLA: `/root/autodl-tmp/vla-ssd/features/trained_libero_goal/`（10 h5, 33 layers, 4096 dim）\n  - untrained VLA: `/root/autodl-tmp/vla-ssd/features/untrained_libero_goal/`（同上）\n  - DINO-V2: `/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/`（刚提取完，待确认）\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/`\n- 活跃进程：\n  - lg_gc_trained: PID 634360, tmux=lg_gc_trained, cuda:1（trained VLA goal classification probe）\n  - lg_gc_untrained: PID 635364, tmux=lg_gc_untrained, cuda:0（untrained VLA goal classification probe，刚提交）\n\n### 3. 📊 当前状态\n收到 lg_dino_extract（DINO-V2 LIBERO-Goal 特征提取）cron 完成回调，已派 Worker `worker_analyze_lg_dino_extract_20260515T175027` 分析结果，**尚未回调**。\n\n同时发现 cuda:0 空闲，立即提交了 lg_gc_untrained（untrained VLA goal classification probe）填满 cuda:0。\n\nRegistry RUNNING/PREPARING:\n- `lg_gc_trained`（RUNNING, cuda:1）— trained VLA 33-layer goal classification，gate G1-GC: best acc > 40%\n- `lg_gc_untrained`（PREPARING→应已转 RUNNING, cuda:0）— untrained VLA baseline，expected ~10% chance\n\n等待中：\n- Worker 回调：`worker_analyze_lg_dino_extract` — 确认 DINO 特征提取结果，更新 registry\n- Worker 回调：`worker_analyze_lg_extract_untrained` — 可能是遗留 Worker（上一轮 session）\n- Cron 监控：lg_gc_trained / lg_gc_untrained 完成后自动回调\n- **尚未向 Director 汇报本轮状态**（等 lg_dino_extract 分析回来再一起报）\n\n### 4. 📋 待办\n- `worker_analyze_lg_dino_extract` 回调 → 确认 conclusion，若 success → 注册 `lg_gc_dino` 实验（DINO goal classification probe），排队等 cuda:0 或 cuda:1 空出后立即提交。Sanity gate: DINO acc ≤ 25%\n- `lg_gc_trained` cron 完成 → on-experiment-done 流程：分析 best-layer acc，判 G1-GC gate（> 40%）。若 pass → 核心证据成立（trained VLA 编码了 instruction）；若 fail → Framing 调整提案\n- `lg_gc_untrained` cron 完成 → 分析 best-layer acc，预期 ~10%。与 lg_gc_trained 对比 Δacc 是关键指标\n- 三个 GC probe 全部完成 → 综合判定：trained acc >> untrained acc ≈ DINO acc → instruction encoding claim 成立；否则 pivot\n- 向 Director 汇报时必须带 `[资源]` 行，附三组 probe 对比表\n\n### 5. 🎯 战略上下文\n- 核心 story：LIBERO-10（vision-sufficient）VLA 训练贡献小（MVP-1/MVP-2 已证 negative）；LIBERO-Goal（vision-ambiguous）VLA 的 language grounding 有机会体现 → 对比叙事\n- 决策链：D008(G2 FAIL) → D010(action probe) → D013/D014(MVP-2 判死) → D015(Pivot LIBERO-Goal, Option A) → D016/D017(用 LIBERO-10 fine-tuned checkpoint)\n- 当前阶段是 LIBERO-Goal pivot 的第一轮 probing，goal classification 是最直接的 instruction-conditioned probe\n- **易错点**：DINO 特征只有 1 layer x 1024 dim（cls_token），VLA 有 33 layers x 4096 dim。对比时注意维度差异对 probe capacity 的影响——如果 DINO 意外高准确率，可能需要讨论 probe 公平性\n- **易错点**：lg_gc_untrained 的 untrained model 保留了 SigLIP vision encoder（只有 LLM 部分是 random），所以 untrained acc 不一定是纯 chance——SigLIP 可能提供部分 visual goal 区分能力\n- CoRL 2026 deadline：Abstract May 26（11天），Paper May 29（14天）——时间紧，probe 结果出来后需要立即推进分析+可视化+论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778879069.md"
+}

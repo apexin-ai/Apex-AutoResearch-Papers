@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6115066fc53b449d57ae",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "data verify cf panel b values",
+  "task_key": "worker_data_verify_cf_panel_b_values_20260524T052103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_verify_cf_panel_b_values_20260524T052103_result.json",
+    "occurrence": 1,
+    "bytes": 2265,
+    "sha256": "37efb88c287345bc9a5b62d3df6765960b8b5d49c0b0719f7b319bff6cf90134"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整对比结果。\n\n## 数据查找结果\n- **数据可用**: YES\n- **找到的文件路径**:\n  - Phi-3-Vision: `tracvla_{goal,spatial,object,long}/untrained/counterfactual_combined.json`\n  - Qwen2.5-VL: `nora_{goal,spatial}/untrained/counterfactual_combined.json`\n  - 均位于 `/root/autodl-tmp/vla-ssd/results/`\n\n## 精确 per-condition 值（last layer cosine distance）\n\n**Phi-3-Vision (untrained, L31)**\n\n| Suite   | empty    | wrong    | shuffled | paraphrased | 图中值(flat) |\n|---------|----------|----------|----------|-------------|------------|\n| Goal    | 0.1530   | 0.0160   | 0.0839   | 0.0043      | 0.19       |\n| Spatial | 0.1805   | 0.0046   | 0.1395   | 0.0044      | 0.15       |\n| Object  | 0.1850   | 0.0044   | 0.0977   | 0.0052      | 0.19       |\n| Long    | 0.1734   | 0.0221   | 0.1204   | 0.0070      | 0.17       |\n\n**Qwen2.5-VL (untrained, L35)**\n\n| Suite   | empty    | wrong    | shuffled | paraphrased | 图中值(flat) |\n|---------|----------|----------|----------|-------------|------------|\n| Goal    | 0.0814   | 0.0143   | 0.0332   | 0.0041      | 0.08       |\n| Spatial | 0.0807   | 0.0020   | 0.0313   | 0.0047      | 0.05       |\n\n## 关键发现\n\n1. **图中用了 flat 值（每个 suite 4 个 condition 都相同），但实际数据存在巨大的 per-condition 差异**。以 Phi3V Goal 为例：empty=0.153 vs paraphrased=0.004，差 36 倍。\n\n2. **图中的 flat 值与实际数据不匹配任何标准聚合**：\n   - 不是 4 条件均值（Phi3V Goal 均值 = 0.064，图中 = 0.19）\n   - 不是 max condition（Phi3V Goal max = 0.153 empty，图中 = 0.19）\n   - 不是 empty 条件值（Phi3V Spatial empty = 0.181，图中 = 0.15）\n\n3. **Qwen2.5-VL Goal 的 0.08 与 empty=0.081 吻合**，但 Spatial 0.05 与 empty=0.081 不符。\n\n## 结论\n\n- **需要更新图表**: YES\n- **问题性质**: 图中 Phi-3-Vision 和 Qwen2.5-VL 的值是不精确的近似值，且用 flat 表示掩盖了 per-condition 的大幅差异（empty/shuffled 远 > wrong/paraphrased）\n- **建议**: 用实际 per-condition 精确值替换 flat 近似值，使 Panel B 的 reference VLM 数据与 Panel A 一样展示 4 条件差异"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-verify-cf-panel-b-values.md"
+}

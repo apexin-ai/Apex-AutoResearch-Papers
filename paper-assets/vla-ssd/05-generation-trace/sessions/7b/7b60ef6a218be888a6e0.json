@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b60ef6a218be888a6e0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug check both experiments",
+  "task_key": "worker_debug_check_both_experiments_20260518T073739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_check_both_experiments_20260518T073739_result.json",
+    "occurrence": 1,
+    "bytes": 2929,
+    "sha256": "d39616ee5a656e19ce7e930876529c78ff7eddb524157b38192465b7fc343a72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成。汇总如下：\n\n---\n\n## 1. threecond_multiseed.json\n\n3 conditions × 3 seeds (42, 123, 456) × 33 layers (L0–L32)，target = goal classification R²。\n\n| Layer | untrained (mean±std) | llama2base (mean±std) | trained (mean±std) |\n|-------|--------------------|-----------------------|-------------------|\n| L0 | 0.538±0.015 | 0.538±0.015 | 0.538±0.015 |\n| L1 | 0.444±0.017 | 0.537±0.018 | 0.534±0.020 |\n| L2 | 0.452±0.017 | 0.544±0.008 | 0.526±0.020 |\n| L6 | 0.448±0.008 | 0.530±0.015 | **0.544±0.010** |\n| L10 | 0.432±0.002 | **0.543±0.014** | **0.548±0.012** |\n| L13 | 0.326±0.120 | 0.526±0.023 | 0.546±0.015 |\n| L15 | 0.433±0.037 | 0.528±0.008 | 0.542±0.014 |\n| L20 | 0.220±0.285 | 0.512±0.023 | 0.475±0.031 |\n| L25 | 0.263±0.094 | 0.492±0.033 | 0.447±0.065 |\n| L29 | 0.117±0.225 | 0.466±0.008 | 0.396±0.097 |\n| L32 | 0.501±0.013 | 0.464±0.030 | 0.435±0.031 |\n\n关键观察：\n- **untrained**: 高 variance，深层急剧下降（L20–L31 大量负或近零值），L0 和 L32 是两个局部高点，中间层不稳定\n- **llama2base**: 非常平稳，从 L0 (0.538) 缓慢单调下降到 L32 (0.464)，std 很小\n- **trained**: 早/中层略高于 llama2base（peak ~L10 = 0.548），深层也下降但比 untrained 稳定得多\n- trained 和 llama2base 在 L0–L15 非常接近（差异 <0.02），深层 trained 略低于 llama2base\n\n---\n\n## 2. linear_probe_last_preaction.json\n\nLinear probe predicting next action a_{t+1}，trained vs untrained，33 layers。\n\n**Summary（JSON 自带）**:\n- **trained peak**: L13, R² = 0.596\n- **untrained peak**: L1, R² = 0.492\n- **inverted_U_trained**: true\n- **inverted_U_untrained**: true\n- trained > untrained at peak: true\n\n**Bootstrap comparisons**:\n- trained vs untrained (best-vs-best): Δ = 0.103, 95% CI [0.056, 0.167], p = 0.0\n- trained vs untrained (same layer at trained peak): Δ = 0.513, 95% CI [0.314, 0.789], p = 0.0\n\n| Layer | trained R² | untrained R² | Δ |\n|-------|-----------|-------------|-----|\n| L0 | -0.321 | -0.332 | +0.011 |\n| L1 | 0.192 | **0.492** | -0.300 |\n| L5 | 0.398 | 0.352 | +0.047 |\n| L9 | 0.540 | -0.037 | **+0.577** |\n| L13 | **0.596** | 0.083 | **+0.513** |\n| L16 | 0.592 | -0.066 | +0.658 |\n| L20 | 0.574 | -0.358 | +0.932 |\n| L25 | 0.534 | -0.151 | +0.685 |\n| L29 | 0.533 | -0.574 | +1.107 |\n| L32 | 0.466 | 0.438 | +0.028 |\n\n关键观察：\n- **trained**: 清晰的 inverted-U，L1–L13 单调上升，L13 peak (0.596)，之后缓慢下降到 L32 (0.466)\n- **untrained**: L1 spike (0.492)，之后迅速崩溃到负值，L9–L30 几乎全部 <0（大部分负值），L32 突然回到 0.438\n- trained 在 L5+ 全面碾压 untrained，差距在中深层极大\n- **MLP comparison**: MLP trained peak 也在 L13 (R²=0.678)，比 linear (0.596) 高 0.082；MLP untrained peak 在 L32 (0.609)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-check-both-experiments.md"
+}

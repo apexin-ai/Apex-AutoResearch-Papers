@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f6a096f651ef60b2a92",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 012 prep",
+  "task_key": "worker_code_plan_012_prep_20260516T002907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_012_prep_20260516T002907_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "3bdf98272c5d97c6b378aa4c3737eae27ecc960302237ff549350db02f2e3d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. CLIP 模型可用性：**BLOCKER**\n服务器上没有 CLIP ViT-L/14 权重。HF cache 仅有 `dinov2-large` 和 `openvla-7b`。服务器无外网，无法在线下载。\n\n**需要手动下载** `openai/clip-vit-large-patch14` 到 `/root/vla-ssd/checkpoints/clip-vit-large-patch14/`。权重约 1.7GB，需要的文件：\n- `config.json`, `preprocessor_config.json`\n- `pytorch_model.bin` 或 `model.safetensors`\n\n### 2. 脚本状态\n- **路径**: `/root/vla-ssd/scripts/extract_clip_features.py`\n- **状态**: 语法通过，`--help` 正常，等模型权重即可运行\n- 输出格式与 DINO 完全对齐：`traj_{i}/cls_token` + `traj_{i}/patch_mean`，(T, 1024) float16，gzip 压缩\n- 输出路径：`/root/autodl-tmp/vla-ssd/features/clip_libero_goal/`\n- RSA 脚本只需把 `load_dino_features` 中路径改为 `clip_libero_goal` 即可复用\n\n### 3. 预计资源需求\n- **GPU 内存**: ~1.5GB（CLIP ViT-L 仅 304M 参数，比 DINO ViT-L 略小）\n- **运行时间**: 10 task × 50 demo × ~150 frames ≈ 75K frames，batch_size=32 约 10-15 分钟（单 GPU）\n- 当前 GPU 被 plan_008 占用，需等其完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-012-prep.md"
+}

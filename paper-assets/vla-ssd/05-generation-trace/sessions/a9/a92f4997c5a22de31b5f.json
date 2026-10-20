@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a92f4997c5a22de31b5f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra fix openvla download",
+  "task_key": "worker_infra_fix-openvla-download_20260515T055301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-openvla-download_20260515T055301_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "7313780114ed2e2fa00cc0fd803ef203c95bb3d82f5ad1eb9e67226b6c90ee0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-openvla-download.md"
+}

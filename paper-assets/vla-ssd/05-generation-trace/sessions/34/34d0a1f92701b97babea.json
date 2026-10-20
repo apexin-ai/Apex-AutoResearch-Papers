@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d0a1f92701b97babea",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "submit tracvla object full",
+  "task_key": "worker_submit_tracvla_object_full_20260521T103933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_tracvla_object_full_20260521T103933_result.json",
+    "occurrence": 1,
+    "bytes": 99,
+    "sha256": "842f6a9752feea66539f8eec90d2da766235ad7ca9ced16196651d11617486e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动验证已在上条消息完成，任务正常运行中。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-tracvla-object-full.md"
+}

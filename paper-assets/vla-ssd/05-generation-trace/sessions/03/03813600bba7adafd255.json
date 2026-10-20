@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03813600bba7adafd255",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "scp three pdfs",
+  "task_key": "worker_scp_three_pdfs_20260523T173001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_scp_three_pdfs_20260523T173001_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "2075d8c9e1b78ff92017cf48bbe552c067c41f163bcb332e52a8e6a93decab58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 刚启动，还在初始化中。等待它完成传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scp-three-pdfs.md"
+}

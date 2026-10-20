@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "081bc189fd07fd46a0bf",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify lg extract trained",
+  "task_key": "worker_verify_lg_extract_trained_20260515T174035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_lg_extract_trained_20260515T174035_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "d326d137abeb29e2692b066736416eb10f1ba652a9a185cec5ee4e9791de3c98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### trained_libero_goal — **完整 ✓**\n\n| 指标 | 值 |\n|------|-----|\n| 文件数 | **10/10** |\n| 总大小 | **25 GB** |\n| 每个任务 demos | **50** |\n| Feature keys | `image_mean`, `last_preaction` |\n| Feature shape | `(T, 33, 4096)` float16（T 为时间步长，因 demo 而异） |\n\n逐文件明细：\n\n| 任务 | Demos | 大小 |\n|------|-------|------|\n| open_the_middle_drawer_of_the_cabinet | 50 | 2.90 GB |\n| open_the_top_drawer_and_put_the_bowl_inside | 50 | 4.21 GB |\n| push_the_plate_to_the_front_of_the_stove | 50 | 3.15 GB |\n| put_the_bowl_on_the_plate | 50 | 1.93 GB |\n| put_the_bowl_on_the_stove | 50 | 2.10 GB |\n| put_the_bowl_on_top_of_the_cabinet | 50 | 2.10 GB |\n| put_the_cream_cheese_in_the_bowl | 50 | 2.21 GB |\n| put_the_wine_bottle_on_the_rack | 50 | 3.63 GB |\n| put_the_wine_bottle_on_top_of_the_cabinet | 50 | 2.23 GB |\n| turn_on_the_stove | 50 | 1.84 GB |\n\n### untrained_libero_goal — **也已完成**\n\n10/10 h5 文件，与 trained 完全对应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-lg-extract-trained.md"
+}

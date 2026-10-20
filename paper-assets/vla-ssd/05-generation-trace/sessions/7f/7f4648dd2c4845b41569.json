@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f4648dd2c4845b41569",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_9_1779392462.md",
+  "task_key": "loop_9_1779392462",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1779392462.md",
+    "occurrence": 1,
+    "bytes": 4923,
+    "sha256": "229419538844ebd439dab1fd01ce5b025cfeb8afc50ae7469213c34d523e08f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-21T19:16:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，只能用这两张。白名单外的 GPU 即使 Director 指示也必须 push back\n- OpenVLA Long 用 OFT checkpoint (`openvla-7b-oft-finetuned-libero-10`)，不是标准微调 checkpoint。OFT 的 norm_stats 在 `dataset_statistics.json`（key=`libero_10_no_noops`），不在 config.json\n- NORA 必须用独立 venv (`/root/autodl-tmp/vla-ssd/envs/nora/`)，不能用 base conda（transformers 版本冲突 4.50 vs 4.48）\n- submit_training_job 的 command 必须用 `bash -c \"...\"` 包裹（tmux 默认 sh，不识别 source/conda activate）\n- 脚本 argparse 统一 `nargs='+'` + `choices=['trained','untrained']`（M015 教训，已全部审计修复）\n- submit 后 2 分钟内必须派 Worker 验证启动（M015）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/autodl-tmp/vla-ssd/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（TracVLA/OpenVLA）；NORA 用 `source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate`\n- Checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/`\n  - OpenVLA: openvla-7b (base), openvla-7b-finetuned-libero-goal, openvla-7b-finetuned-libero-object, openvla-7b-oft-finetuned-libero-10 (Long)\n  - TraceVLA: tracevla-phi3v (单一 checkpoint 全 suite 共用), phi3v-base (untrained)\n  - NORA: nora-libero-goal, nora-libero-spatial, qwen25-vl-3b-base (untrained). **无 Object/Long checkpoint**\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero/` 下 libero_goal/libero_spatial/libero_object/libero_10(=Long)\n- 结果：`/root/autodl-tmp/vla-ssd/results/`\n- 脚本：`/root/autodl-tmp/vla-ssd/scripts/`（包含各 pipeline + counterfactual_batch.py）\n- 活跃进程：tracvla_long_v1 (PID 568677, tmux=tracvla_long_v1, cuda:0), tracvla_goal_v1 (PID 568838, tmux=tracvla_goal_v1, cuda:1)。两个都在跑 trained Phase 5 counterfactual/paraphrased，之后还有完整 untrained pipeline，预计 3-4h 后完成\n\n### 3. 📊 当前状态\n**刚做完**：向 Director 汇报了 tracvla_long/goal 的 trained interim 结果（R², L1, cross-instr, counterfactual）。确认了 OpenVLA Long checkpoint 正确（OFT）、unnorm_key bug 已修复、counterfactual_batch.py 脚本已创建。\n\n**Registry RUNNING**：\n- `tracvla_long_v1` — cuda:0, trained Phase 5 CF 即将完成，untrained 未开始\n- `tracvla_goal_v1` — cuda:1, trained Phase 5 CF 即将完成，untrained 未开始\n\n**等待中**：\n- 两个实验的 cron 完成回调（预计 3-4h 后）\n- 无待处理的 Worker 回调\n- Director 无未决决策\n\n### 4. 📋 待办（条件触发式）\n- tracvla_long_v1 cron 回调到达 → 提取 trained+untrained 完整结果，更新 registry（metrics+conclusion），汇报 Director\n- tracvla_goal_v1 cron 回调到达 → 同上\n- cuda:0 空出 → 立即提交 `python scripts/libero_long_full_pipeline.py --only-counterfactual --conditions trained`（~15min，补 OpenVLA Long trained CF）\n- cuda:0 再次空出 → 提交 `python scripts/libero_long_full_pipeline.py --conditions untrained`（~1.5h，OpenVLA Long untrained 全流程）\n- cuda:1 空出 → 用 counterfactual_batch.py 批量补跑缺失 CF（tracvla_spatial untrained, tracvla_object untrained, openvla_object untrained）\n- 所有 CF 补完 → 汇报 Director 矩阵完成度，准备交 Paper Agent\n\n### 5. 🎯 战略上下文\n**项目核心**：VLA fine-tuning 在 LLM 内部创建 convergent entry-exit routing（R² inverted-U + exit collapse）。三架构（OpenVLA/Llama-2, TracVLA/Phi-3, NORA/Qwen2.5-VL）× 多 LIBERO suite 验证。目标 CoRL 2026（Abstract 5/26, Paper 5/29）。\n\n**关键决策链**：\n- D089: NORA 矩阵缩减为 Goal+Spatial（无 Object/Long checkpoint）\n- D090: 区分 training-induced（R² collapse, counterfactual）vs base-model-dependent（L1 instruction dominance）。论文 framing 需细化但不大改\n\n**易错点**：\n- OpenVLA \"untrained\" = openvla-7b（OXE pretrained VLA，已见 970K+ action 轨迹），不是 raw Llama-2。与 TracVLA/NORA 的 untrained（纯 VLM）语义不同，论文必须区分标注\n- OpenVLA Long L1=14/32 是真实的（checkpoint 确认正确），但 TracVLA Long L1=30/32 —— 说明这是 OpenVLA+OFT 特异性，不是 Long suite 特异性\n- TracVLA L1 instruction dominance 不是 training-induced（untrained 32/32, trained 30/32），只有 R² collapse 和 counterfactual 可以 claim 为 training effect\n- OFT checkpoint 的 norm_stats 行为和标准微调不同：config.json 保留 OXE keys，微调数据统计在 dataset_statistics.json。libero_long_full_pipeline.py 已修复但其他脚本可能需要同样处理\n- counterfactual_batch.py（884行）已创建在服务器上，支持 `--arch --suite --condition --method` 参数，untrained 自动用 cosine_dist\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1779392462.md"
+}

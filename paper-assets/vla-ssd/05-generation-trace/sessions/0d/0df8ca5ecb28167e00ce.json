@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0df8ca5ecb28167e00ce",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh plan008 rsa results",
+  "task_key": "worker_ssh_plan008-rsa-results_20260516T005546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan008-rsa-results_20260516T005546_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "0f525c66f6a65059a77f3f1ee84ec3bc40a54f105f2d5aae1964bcee1491eb81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## plan_008 RSA Instruction Control 结果\n\n### 对比表（last_preaction, peak layer = L16）\n\n| Condition | Peak RSA | Peak Layer | Δ vs normal |\n|-----------|----------|------------|-------------|\n| **normal** | 0.4888 | 16 | — |\n| **empty** | 0.4723 | 16 | -0.0165 |\n| **random_s0** | 0.4835 | 16 | -0.0053 |\n| **shuffled** | 0.4832 | 16 | -0.0056 |\n\n### 参考基线\n\n| Source | RSA |\n|--------|-----|\n| SigLIP+projector | 0.6153 |\n| **VLA normal** | **0.4888** |\n| DINO | 0.388 |\n\n### 结论\n\n**success** — Instruction content 不影响 RSA。所有条件（正常/空/随机乱码/打乱词序）均在 L16 达峰，RSA 值在 ±0.017 以内。random_s0 和 shuffled 甚至比 empty 更接近 normal（Δ 仅 -0.005/-0.006 vs empty 的 -0.017）。表征-动作对齐结构对 instruction 内容完全不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan008-rsa-results.md"
+}

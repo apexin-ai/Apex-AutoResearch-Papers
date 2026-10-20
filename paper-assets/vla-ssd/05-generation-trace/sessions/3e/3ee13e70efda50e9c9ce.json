@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ee13e70efda50e9c9ce",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis cf batch part2 v1",
+  "task_key": "worker_analysis_cf_batch_part2_v1_20260522T000604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cf_batch_part2_v1_20260522T000604_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "d32cc31a49ad7bbf4fd746162711a8a5e922f88f3b5860ac02d33155c4b8a7a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 `cf_batch_part2_v1` 分析结果：\n\n**状态**: 成功完成 (EXIT_CODE=0)，两个 suite 各 4 个 condition 全部跑完。\n\n**核心数据**:\n\n| Suite | Condition | cos_dist (L31) | \n|-------|-----------|---------------|\n| **Goal untrained** | empty | 0.1530 |\n| | shuffled | 0.0839 |\n| | wrong | 0.0160 |\n| | paraphrased | 0.0043 |\n| **Long untrained** | empty | 0.1734 |\n| | shuffled | 0.1204 |\n| | wrong | 0.0221 |\n| | paraphrased | 0.0070 |\n\n**Untrained ordering**: `empty >> shuffled > wrong > para` (两个 suite 一致)\n\n**与 trained 对比** (⚠️ 方法不同: trained 用 paired_mse, untrained 用 cosine_dist, 仅 ordering 可比):\n- Trained: `empty > wrong > shuffled > para`\n- Untrained: `empty >> shuffled > wrong > para`\n- 差异: wrong 和 shuffled 在 untrained 中互换了位置；untrained 的 empty 占绝对主导地位 (cos_dist 比第二名大 2-10 倍)\n\n已更新 registry (status=DONE, conclusion=success) 并注册分析报告 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cf-batch-part2-v1.md"
+}

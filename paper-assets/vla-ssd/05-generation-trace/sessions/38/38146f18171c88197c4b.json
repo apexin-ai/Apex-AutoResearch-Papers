@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "38146f18171c88197c4b",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis ood diagnostics",
+  "task_key": "worker_analysis_ood_diagnostics_20260518T025758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ood_diagnostics_20260518T025758.log",
+    "occurrence": 1,
+    "bytes": 1307227,
+    "sha256": "92ef1bf520d073c87e8eb449d4f0c2be35d3ee959bbab4efc1d78d0fc9d8c9b2"
+  },
+  "statistics": {
+    "messages": 966,
+    "user_turns": 1,
+    "tool_calls": 418,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 122,
+      "tool_call": 418,
+      "tool_result": 418,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 865,
+      "chunks": [
+        {
+          "path": "38146f18171c88197c4b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "38146f18171c88197c4b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "38146f18171c88197c4b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "38146f18171c88197c4b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "38146f18171c88197c4b-part-0005.json",
+          "message_count": 145
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "38146f18171c88197c4b-part-0005.json",
+          "message_count": 35
+        },
+        {
+          "path": "38146f18171c88197c4b-part-0006.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-ood-diagnostics.md"
+}

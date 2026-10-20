@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "78d393f99edd6f10274e",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code llama2 base probe continue",
+  "task_key": "worker_code_llama2_base_probe_continue_20260517T054618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2_base_probe_continue_20260517T054618.log",
+    "occurrence": 1,
+    "bytes": 1154919,
+    "sha256": "225be603ba8f55673c68f5ba540e2ddf6f06b5c86dc09e8ff961f273eb63d1e7"
+  },
+  "statistics": {
+    "messages": 536,
+    "user_turns": 1,
+    "tool_calls": 219,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 219,
+      "tool_result": 219,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 506,
+      "chunks": [
+        {
+          "path": "78d393f99edd6f10274e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "78d393f99edd6f10274e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "78d393f99edd6f10274e-part-0003.json",
+          "message_count": 146
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "78d393f99edd6f10274e-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama2-base-probe-continue.md"
+}

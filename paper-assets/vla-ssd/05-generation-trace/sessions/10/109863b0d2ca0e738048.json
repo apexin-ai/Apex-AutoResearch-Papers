@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "109863b0d2ca0e738048",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3520,
+    "sha256": "7b627df063eed5b80046a7a4650e4bb3aa1a46acb194c61e9fc26a33dafbd220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-27T06:20:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目无 GPU 分配，无实验在跑——纯论文写作阶段\n- 论文 body 必须 ≤8 页，无 `\\enlargethispage`（R15-N4 格式违规已复发两次，第三次 = CRITICAL）\n- Discussion 已用 `\\paragraph{Practical implications and conclusion.}` 合并段落省间距，不可再拆回两个 `\\paragraph`\n- 所有 figure vspace 已统一为 `-4pt`，不可回退到 `-6pt/-8pt`\n- 动态因果语言已清理（\"produces/drives/shapes\" → \"is associated with\"），新增文本必须延续 correlational phrasing\n- \"replacing rollout evaluation\" 已被 Director 标为 overclaim（SF-2），必须用 \"supplement\"\n\n### 2. 🖥️ 基础设施快照\n- 纯本地论文项目，无远程服务器/GPU\n- 工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/`\n- 论文源码：`docs/paper/`（main.tex → abstract.tex, introduction.tex, method.tex, experiments.tex, discussion.tex, appendix.tex, references.bib）\n- 编译：`cd docs/paper && pdflatex -interaction=nonstopmode main.tex`（需跑两遍解 cross-ref）\n- 产出目录：`artifacts/`（rebuttal 在 `artifacts/_project/paper/anticipated_rebuttal_v2.md`）\n- 活跃进程：无。无 cron，无 Worker，无 tmux session\n\n### 3. 📊 当前状态\n刚完成 R17 审稿 3 SF + 1 Minor 修复，已汇报 Director，等待 Director 回复。\n\n具体完成项：\n- SF-1：删除 `\\enlargethispage`，精简 Practical Implications（10→5 句），详细论述移入 Appendix `Extended Practical Implications`\n- SF-2：`replacing` → `supplement` + 内联 evidence qualification + `observed` 限定\n- SF-3：Appendix permutation test 描述扩展（明确 transition-type shuffle、9 trained values、test statistic）\n- M-1：`non-significant at conventional levels` 已内联\n\n编译状态：0 errors, 0 undefined refs, 0 Type 3 fonts, 43 pages, body 8 pages, References page 9\n\nRegistry：无 RUNNING/PREPARING 实验。全部实验线已关闭（D112 关闭 Action-Head Decoding）\n\n### 4. 📋 待办\n- Director 回复 R17 修复确认 → 无进一步动作（或按 Director 指令继续修改）\n- Director 要求提交 → 确认 camera-ready checklist 全绿（当前 11/12 passed, 1 minor），执行最终编译\n- Director 要求新一轮 review → 读 `review-reviewer-session-start` skill，执行全文审查\n- 任何新增文本 → 必须检查 (a) 不引入因果语言 (b) body 仍 ≤8 页 (c) 无 Type 3 fonts\n\n### 5. 🎯 战略上下文\n- 投稿目标：CoRL 2026（DDL 5/29）\n- 核心 story：VLM→VLA fine-tuning 的 exit collapse 是 training-associated（ΔR² 0.16-0.46），VLA→VLA 和 NLP controls 无此现象；L1 instruction routing 是 inherited backbone property\n- 论文经历多轮 Reviewer 审查（R15→R17），主要扣分项是 venue fit / practical impact（4/10），已通过扩展 use cases 和正面重构 specificity 来改善\n- 易错点：\n  - 页面空间极其紧张——任何文本增加都可能突破 8 页，必须先编译验证\n  - specificity caveat 已从防御性改为正面 \"distributed instruction integration\" 框架，不要改回去\n  - anticipated_rebuttal_v2.md 已有 12 个 Q&A（Q1-Q12），新增 Q 时注意更新开头 \"twelve\"\n  - 44 个未引用 labels 已清理，但保留了顶层 section labels（sec:introduction 等）\n  - Appendix 新增了 `sec:extended_practical_implications`，Discussion 里有 cross-ref 指向它\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-2.md"
+}

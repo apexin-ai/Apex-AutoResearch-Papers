@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcbe9998282577f28c5a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh d028 vla image mean rsa",
+  "task_key": "worker_ssh_d028-vla-image-mean-rsa_20260515T223122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d028-vla-image-mean-rsa_20260515T223122_result.json",
+    "occurrence": 1,
+    "bytes": 1178,
+    "sha256": "a5689d0daeeaa702005cd9cef9a701f1aeea0325a09b440e7655e27c45729294"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n### image_mean RSA 结果\n\n|  | last_preaction | image_mean | delta |\n|---|---|---|---|\n| **Trained** peak | 0.4876 | **0.5014** (L23) | +0.014 |\n| **Untrained** peak | 0.4846 | **0.4847** (L23) | +0.000 |\n| **SigLIP projector** | — | 0.6153 | — |\n\n### 解读\n\n1. **image_mean RSA ≈ 0.50，远低于 SigLIP 的 0.615**：聚合方式差异不能解释 gap。LLM self-attention 确实降解了 image token 中的 action-relevant 结构。\n\n2. **Trained vs Untrained 分离更清晰**：image_mean 下 trained-untrained delta = +0.017（peak layer 23），比 last_preaction 的 +0.003 明显更大。训练增强了 image token 表征的 action 相关性，但这个信号在 last_preaction（序列末位 token）中被稀释了。\n\n3. **Layer 0 一致性验证**：trained 和 untrained 在 layer 0 完全相同（0.4509），符合预期（LLM 处理之前）。\n\n4. **Trained 呈现 inverted-U 曲线**：RSA 从 layer 0（0.45）升至 layer 23（0.50）再降到 layer 32（0.44）。Untrained 几乎平坦（0.47-0.48）。\n\n结果已保存到 `/root/autodl-tmp/vla-ssd/results/rsa/rsa_image_mean.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d028-vla-image-mean-rsa.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bad1f07c9e6261e5223",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora spatial cf rerun",
+  "task_key": "worker_ssh_nora_spatial_cf_rerun_20260522T022455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_spatial_cf_rerun_20260522T022455_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "f3328b445ebd7073795aa95c1a0774a2e2c6da4db1324be5170388a94fcb91a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态**：\n- 旧进程 597075 + 子进程 597080 已杀，GPU 0 已释放\n- 新进程 **PID 597685** 已启动，参数 `--n-demos 5 --n-timesteps 100`（5000 samples）\n- 进度：200/5000，3 分钟后再查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-spatial-cf-rerun.md"
+}

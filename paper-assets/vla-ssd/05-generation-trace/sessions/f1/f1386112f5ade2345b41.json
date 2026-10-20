@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0",
+  "id": "f1386112f5ade2345b41",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "viz stat figs heatmap l1",
+  "task_key": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_viz_stat_figs_heatmap_l1_20260524T043227.jsonl",
+    "occurrence": 1,
+    "bytes": 22435,
+    "sha256": "ee2525a773e528f17b4f3e29548e8b0f41b2844643d2f2a7efde2cd1e6abf097"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T04:35:17.170641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T04:35:17.171015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T04:35:17.171207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install matplotlib numpy -q && python3 -c \"import matplotlib; print(f'matplotlib={matplotlib.__version__}')\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T04:35:17.171352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper",
+              "description": "Create output directory for figures"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T04:35:17.171496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"matplotlib=3.10.5\\\\n\\\", \\\"stderr\\\": \\\"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T04:35:17.171663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T04:35:17.171844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | /usr/bin/python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox_inches': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nDEEP_BLUE = '#0072B2'\nORANGE_RED = '#D55E00'\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper'\n\n# Data\nmodels = ['OpenVLA', 'TracVLA', 'NORA']\ndims = ['Goal', 'Spatial', 'Object', 'Long']\ntransitions = ['VLA→VLA', 'VLM→VLA', 'VLM→VLA']\n\ndata = np.array([\n    [0.016, 0.037, 0.037, 0.004],\n    [0.228, 0.138, 0.294, 0.198],\n    [0.691, 0.302, np.nan, np.nan],\n])\n\nmask = np.isnan(data)\n\n# Colormap: white to deep blue\ncmap = mcolors.LinearSegmentedColormap.from_list('w2blue', ['#FFFFFF', DEEP_BLUE])\ncmap.set_bad('#E0E0E0')\n\nfig, ax = plt.subplots(figsize=(7, 3.5))\n\nim = ax.imshow(data, cmap=cmap, vmin=0, vmax=0.75, aspect='auto')\n\nnrows, ncols = data.shape\n\n# Cell borders\nfor i in range(nrows):\n    for j in range(ncols):\n        rect = plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor='#CCCCCC', linewidth=0.5)\n        ax.add_patch(rect)\n\n# N/A cells: hatching\nfor i in range(nrows):\n    for j in range(ncols):\n        if mask[i, j]:\n            rect = plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=True, facecolor='#E0E0E0',\n                                  edgecolor='#999999', linewidth=0.5, hatch='///', zorder=2)\n            ax.add_patch(rect)\n            ax.text(j, i, 'N/A', ha='center', va='center', fontsize=10, color='#888888', zorder=3)\n\n# Annotate cells with transition type + value\nfor i in range(nrows):\n    for j in range(ncols):\n        if not mask[i, j]:\n            val = data[i, j]\n            txt_color = 'white' if val > 0.35 else '#222222'\n            # Transition type (smaller)\n            ax.text(j, i - 0.18, transitions[i], ha='center', va='center',\n                    fontsize=7.5, color=txt_color, style='italic', alpha=0.85)\n            # Value (bold)\n            ax.text(j, i + 0.18, f'{val:.3f}', ha='center', va='center',\n                    fontsize=10, fontweight='bold', color=txt_color)\n\n# Thick separator between OpenVLA (row 0) and TracVLA (row 1)\nax.axhline(y=0.5, xmin=0, xmax=1, color='#444444', linewidth=1.5, zorder=5)\n\n# Category labels on the left\nax.text(-0.85, 0, 'VLA→VLA', ha='center', va='center', fontsize=7.5, color='#555555',\n        rotation=90, transform=ax.get_yaxis_transform())\nax.text(-0.85, 1.5, 'VLM→VLA', ha='center', va='center', fontsize=7.5, color='#555555',\n        rotation=90, transform=ax.get_yaxis_transform())\n\nax.set_xticks(range(ncols))\nax.set_xticklabels(dims)\nax.set_yticks(range(nrows))\nax.set_yticklabels(models)\nax.tick_params(length=0)\n\n# Colorbar\ncbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.04)\ncbar.set_label('ΔR²', fontsize=10)\n# Threshold line at 0.10\ncbar.ax.axhline(y=0.10, color=ORANGE_RED, linestyle='--', linewidth=1.2)\ncbar.ax.text(1.3, 0.10, '0.10', transform=cbar.ax.get_yaxis_transform(),\n             va='center', ha='left', fontsize=7.5, color=ORANGE_RED)\n\nax.set_xlim(-0.5, ncols - 0.5)\nax.set_ylim(nrows - 0.5, -0.5)\n\nfig.savefig(f'{outdir}/fig_matrix_heatmap.pdf')\nfig.savefig(f'{outdir}/fig_matrix_heatmap.png', dpi=300)\nplt.close()\nprint('fig_matrix_heatmap done')\nPYEOF",
+              "description": "Generate fig_matrix_heatmap (3x4 heatmap)",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T04:35:17.172058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/__init__.py\", line 772, in __setitem__\n    cval = self.validate[key](val)\n           ~~~~~~~~~~~~~^^^^^\nKeyError: 'savefig.bbox_inches'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 8, in <module>\n  File \"<frozen _collections_abc>\", line 971, in update\n  File \"/home/ubuntu/.local/lib/python3.14/site-packages/matplotlib/__init__.py\", line 777, in __setitem__\n    raise KeyError(\n        f\"{key} is not a valid rc parameter (see rcParams.keys() for \"\n        f\"a list of valid parameters)\") from err\nKeyError: 'savefig.bbox_inches is not a valid rc parameter (see rcParams.keys() for a list of valid parameters)'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T04:35:17.172207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | /usr/bin/python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox_inches': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nSKY_BLUE = '#56B4E9'\nDEEP_BLUE = '#0072B2'\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper'\n\nmodels = ['OpenVLA', 'TracVLA', 'NORA']\nref_nums = [26, 32, 14]\nref_totals = [32, 32, 16]\ntrain_nums = [23, 29, 13]\ntrain_totals = [32, 32, 16]\n\nref_frac = [n/t for n, t in zip(ref_nums, ref_totals)]\ntrain_frac = [n/t for n, t in zip(train_nums, train_totals)]\n\nfig, ax = plt.subplots(figsize=(6, 3))\n\nbar_height = 0.35\ny = np.arange(len(models))\n\nbars_ref = ax.barh(y - bar_height/2, ref_frac, height=bar_height, color=SKY_BLUE,\n                   label='Reference (untrained)', edgecolor='white', linewidth=0.5, zorder=3)\nbars_train = ax.barh(y + bar_height/2, train_frac, height=bar_height, color=DEEP_BLUE,\n                     label='Trained', edgecolor='white', linewidth=0.5, zorder=3)\n\n# Annotate bars with \"n/total\" format\nfor i, (bar, n, t) in enumerate(zip(bars_ref, ref_nums, ref_totals)):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\nfor i, (bar, n, t) in enumerate(zip(bars_train, train_nums, train_totals)):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\n# 50% reference line\nax.axvline(x=0.5, color='#999999', linestyle='--', linewidth=1, alpha=0.5, zorder=1)\n\nax.set_yticks(y)\nax.set_yticklabels(models)\nax.set_xlim(0, 1.15)\nax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'])\nax.set_xlabel('Fraction of Instruction-Dominant Heads')\nax.invert_yaxis()\n\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#CCCCCC', fontsize=9)\n\nax.tick_params(axis='y', length=0)\n\nfig.savefig(f'{outdir}/fig_l1_attention.pdf')\nfig.savefig(f'{outdir}/fig_l1_attention.png', dpi=300)\nplt.close()\nprint('fig_l1_attention done')\nPYEOF",
+              "description": "Generate fig_l1_attention (horizontal bar chart)",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T04:35:17.172364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat << 'PYEOF' | /usr/bin/python3\nimport…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T04:35:17.172528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | /usr/bin/python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.pad_inches': 0.05,\n})\n\nDEEP_BLUE = '#0072B2'\nORANGE_RED = '#D55E00'\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper'\n\nmodels = ['OpenVLA', 'TracVLA', 'NORA']\ndims = ['Goal', 'Spatial', 'Object', 'Long']\ntransitions = ['VLA→VLA', 'VLM→VLA', 'VLM→VLA']\n\ndata = np.array([\n    [0.016, 0.037, 0.037, 0.004],\n    [0.228, 0.138, 0.294, 0.198],\n    [0.691, 0.302, np.nan, np.nan],\n])\n\nmask = np.isnan(data)\n\ncmap = mcolors.LinearSegmentedColormap.from_list('w2blue', ['#FFFFFF', DEEP_BLUE])\ncmap.set_bad('#E0E0E0')\n\nfig, ax = plt.subplots(figsize=(7, 3.5))\n\nim = ax.imshow(data, cmap=cmap, vmin=0, vmax=0.75, aspect='auto')\n\nnrows, ncols = data.shape\n\nfor i in range(nrows):\n    for j in range(ncols):\n        rect = plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor='#CCCCCC', linewidth=0.5)\n        ax.add_patch(rect)\n\nfor i in range(nrows):\n    for j in range(ncols):\n        if mask[i, j]:\n            rect = plt.Rectangle((j - 0.5, i - 0.5), 1, 1, fill=True, facecolor='#E0E0E0',\n                                  edgecolor='#999999', linewidth=0.5, hatch='///', zorder=2)\n            ax.add_patch(rect)\n            ax.text(j, i, 'N/A', ha='center', va='center', fontsize=10, color='#888888', zorder=3)\n\nfor i in range(nrows):\n    for j in range(ncols):\n        if not mask[i, j]:\n            val = data[i, j]\n            txt_color = 'white' if val > 0.35 else '#222222'\n            ax.text(j, i - 0.18, transitions[i], ha='center', va='center',\n                    fontsize=7.5, color=txt_color, style='italic', alpha=0.85)\n            ax.text(j, i + 0.18, f'{val:.3f}', ha='center', va='center',\n                    fontsize=10, fontweight='bold', color=txt_color)\n\nax.axhline(y=0.5, xmin=0, xmax=1, color='#444444', linewidth=1.5, zorder=5)\n\nax.text(-0.85, 0, 'VLA→VLA', ha='center', va='center', fontsize=7.5, color='#555555',\n        rotation=90, transform=ax.get_yaxis_transform())\nax.text(-0.85, 1.5, 'VLM→VLA', ha='center', va='center', fontsize=7.5, color='#555555',\n        rotation=90, transform=ax.get_yaxis_transform())\n\nax.set_xticks(range(ncols))\nax.set_xticklabels(dims)\nax.set_yticks(range(nrows))\nax.set_yticklabels(models)\nax.tick_params(length=0)\n\ncbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.04)\ncbar.set_label('ΔR²', fontsize=10)\ncbar.ax.axhline(y=0.10, color=ORANGE_RED, linestyle='--', linewidth=1.2)\ncbar.ax.text(1.3, 0.10, '0.10', transform=cbar.ax.get_yaxis_transform(),\n             va='center', ha='left', fontsize=7.5, color=ORANGE_RED)\n\nax.set_xlim(-0.5, ncols - 0.5)\nax.set_ylim(nrows - 0.5, -0.5)\n\nfig.savefig(f'{outdir}/fig_matrix_heatmap.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig_matrix_heatmap.png', dpi=300, bbox_inches='tight')\nplt.close()\nprint('fig_matrix_heatmap done')\nPYEOF",
+              "description": "Generate fig_matrix_heatmap",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T04:35:17.172696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_matrix_heatmap done"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T04:35:17.172831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | /usr/bin/python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.pad_inches': 0.05,\n})\n\nSKY_BLUE = '#56B4E9'\nDEEP_BLUE = '#0072B2'\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper'\n\nmodels = ['OpenVLA', 'TracVLA', 'NORA']\nref_nums = [26, 32, 14]\nref_totals = [32, 32, 16]\ntrain_nums = [23, 29, 13]\ntrain_totals = [32, 32, 16]\n\nref_frac = [n/t for n, t in zip(ref_nums, ref_totals)]\ntrain_frac = [n/t for n, t in zip(train_nums, train_totals)]\n\nfig, ax = plt.subplots(figsize=(6, 3))\n\nbar_height = 0.35\ny = np.arange(len(models))\n\nbars_ref = ax.barh(y - bar_height/2, ref_frac, height=bar_height, color=SKY_BLUE,\n                   label='Reference (untrained)', edgecolor='white', linewidth=0.5, zorder=3)\nbars_train = ax.barh(y + bar_height/2, train_frac, height=bar_height, color=DEEP_BLUE,\n                     label='Trained', edgecolor='white', linewidth=0.5, zorder=3)\n\nfor bar, n, t in zip(bars_ref, ref_nums, ref_totals):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\nfor bar, n, t in zip(bars_train, train_nums, train_totals):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\nax.axvline(x=0.5, color='#999999', linestyle='--', linewidth=1, alpha=0.5, zorder=1)\n\nax.set_yticks(y)\nax.set_yticklabels(models)\nax.set_xlim(0, 1.15)\nax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'])\nax.set_xlabel('Fraction of Instruction-Dominant Heads')\nax.invert_yaxis()\n\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#CCCCCC', fontsize=9)\nax.tick_params(axis='y', length=0)\n\nfig.savefig(f'{outdir}/fig_l1_attention.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig_l1_attention.png', dpi=300, bbox_inches='tight')\nplt.close()\nprint('fig_l1_attention done')\nPYEOF",
+              "description": "Generate fig_l1_attention",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T04:35:17.173004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_l1_attention done"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T04:35:17.173130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_matrix_heatmap.{pdf,png} /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_l1_attention.{pdf,png}",
+              "description": "Verify output files exist and check sizes"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T04:35:17.173255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  12837 May 24 04:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_l1_attention.pdf\n-rw-r--r-- 1 ubuntu ubuntu  74169 May 24 04:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_l1_attention.png\n-rw-r--r-- 1 ubuntu ubuntu  26588 May 24 04:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_matrix_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu 142431 May 24 04:34 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_matrix_heatmap.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T04:35:17.173393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_matrix_heatmap.png"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T04:35:17.174089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T04:35:17.174263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_l1_attention.png"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T04:35:17.174671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T04:35:17.174840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | /usr/bin/python3\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.pad_inches': 0.05,\n})\n\nSKY_BLUE = '#56B4E9'\nDEEP_BLUE = '#0072B2'\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper'\n\nmodels = ['OpenVLA', 'TracVLA', 'NORA']\nref_nums = [26, 32, 14]\nref_totals = [32, 32, 16]\ntrain_nums = [23, 29, 13]\ntrain_totals = [32, 32, 16]\n\nref_frac = [n/t for n, t in zip(ref_nums, ref_totals)]\ntrain_frac = [n/t for n, t in zip(train_nums, train_totals)]\n\nfig, ax = plt.subplots(figsize=(6, 3))\n\nbar_height = 0.35\ny = np.arange(len(models))\n\nbars_ref = ax.barh(y - bar_height/2, ref_frac, height=bar_height, color=SKY_BLUE,\n                   label='Reference (untrained)', edgecolor='white', linewidth=0.5, zorder=3)\nbars_train = ax.barh(y + bar_height/2, train_frac, height=bar_height, color=DEEP_BLUE,\n                     label='Trained', edgecolor='white', linewidth=0.5, zorder=3)\n\nfor bar, n, t in zip(bars_ref, ref_nums, ref_totals):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\nfor bar, n, t in zip(bars_train, train_nums, train_totals):\n    ax.text(bar.get_width() + 0.02, bar.get_y() + bar.get_height()/2,\n            f'{n}/{t}', va='center', ha='left', fontsize=9, color='#333333')\n\nax.axvline(x=0.5, color='#999999', linestyle='--', linewidth=1, alpha=0.5, zorder=1)\n\nax.set_yticks(y)\nax.set_yticklabels(models)\nax.set_xlim(0, 1.15)\nax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])\nax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'])\nax.set_xlabel('Fraction of Instruction-Dominant Heads')\nax.invert_yaxis()\n\nax.legend(loc='upper left', framealpha=0.9, edgecolor='#CCCCCC', fontsize=9)\nax.tick_params(axis='y', length=0)\n\nfig.savefig(f'{outdir}/fig_l1_attention.pdf', bbox_inches='tight')\nfig.savefig(f'{outdir}/fig_l1_attention.png', dpi=300, bbox_inches='tight')\nplt.close()\nprint('fig_l1_attention done')\nPYEOF",
+              "description": "Regenerate fig_l1_attention with legend moved to upper left",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T04:35:17.175016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_l1_attention done"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T04:35:17.175142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_l1_attention.png"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T04:35:17.175561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T04:35:17.175770+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **远程服务器**: matplotlib 3.10.5 已安装\n- **fig_matrix_heatmap.pdf** (26KB): 3×4 热力图，白→深蓝色阶，N/A 灰底斜线，VLA→VLA / VLM→VLA 分隔线，colorbar 含 0.10 阈值线\n- **fig_l1_attention.pdf** (13KB): 水平柱状图，比例制 x 轴，柱端标注绝对数，50% 参考线，图例左上角无遮挡"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_stat_figs_heatmap_l1_20260524T043227"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/viz-stat-figs-heatmap-l1.md"
+}

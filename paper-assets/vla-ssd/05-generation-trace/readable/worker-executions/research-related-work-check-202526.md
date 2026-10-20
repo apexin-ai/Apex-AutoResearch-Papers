@@ -1,0 +1,5300 @@
+# research related work check 202526
+
+**Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_research_related_work_check_202526_20260524T233145.log`
+- **Structured JSON:** [`16c6d6e8cee8fdd0539b.json`](../../sessions/16/16c6d6e8cee8fdd0539b.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "207259bc-f7d9-40d7-9e52-ff8e1f8b7ec3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779670800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2a569005-0648-4009-8d44-37ed0fa2414b",
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to search for recent papers (2025.11-2026.05) that might be missing from their Related Work section. I need to use WebSearch to find relevant papers across several keyword combinations, then report findings.
+
+Let me start by loading the WebSearch tool, then do the searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "0eded3eb-9cc4-44bf-9473-9c74a878dac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBsaVwXk12ugQhkLUKTLUN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11626,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11626
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K5TiBJ9TaaztDcCT26nk4R`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "aee7ac77-6aeb-40e1-91a9-d6a70a4baf6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBsaVwXk12ugQhkLUKTLUN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11626,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11626
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T23:31:57.830Z_
+
+<details><summary>↩ Tool result · `toolu_01K5TiBJ9TaaztDcCT26nk4R`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "1dcc2e7a-b63e-4141-8242-6beee2010283",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch the searches in parallel. I'll do multiple WebSearch calls for the different keyword combinations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "ae57719a-de85-47a5-a3a8-5b216a730556",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始搜索 6 组关键词。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "9a0cd193-7b99-4386-85c2-71fd856d6dcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RLHTdCstXXD7wjsGGQMjxj`</summary>
+
+```json
+{
+  "query": "\"vision language action\" representation probing 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org",
+    "huggingface.co"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "8524cef6-0dae-4767-aa41-a030bfc13248",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012AUeM48B95rjFmUcxReYAR`</summary>
+
+```json
+{
+  "query": "VLA fine-tuning analysis representation 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "771681b6-89f5-493f-a1b2-e00ff2ef6f76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U9nfveuwZDPmjTJ2AYUnqn`</summary>
+
+```json
+{
+  "query": "\"instruction following\" robot attention mechanism analysis 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "e4118d17-247f-442b-9188-b46429c27f67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JwtQMArC5eNxoRcyodLw9S`</summary>
+
+```json
+{
+  "query": "\"representational collapse\" OR \"exit collapse\" language model fine-tuning 2025 2026",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "6a776da3-961b-4e77-9422-dbe5c353883e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wh19eqA3zNd1a5KUguuifm`</summary>
+
+```json
+{
+  "query": "OpenVLA analysis interpretability mechanistic 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "1fbd806e-70be-46ab-81e2-ba864c655041",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VrnRHndN4N3HwQgFyMPm64`</summary>
+
+```json
+{
+  "query": "\"vision language action model\" mechanistic interpretability 2025 2026",
+  "allowed_domains": [
+    "arxiv.org",
+    "scholar.google.com",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "ce10e80b-c970-45d2-afd9-02e76143dba1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XhzrbTVChb2pBnGyJ8CfND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 23467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 683
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T23:32:09.028Z_
+
+<details><summary>↩ Tool result · `toolu_01RLHTdCstXXD7wjsGGQMjxj`</summary>
+
+```text
+Web search results for query: ""vision language action" representation probing 2025 2026 arxiv"
+
+Links: [{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://arxiv.org/html/2502.04558"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and   Integration into a Cognitive Architecture","url":"https://arxiv.org/pdf/2502.04558"},{"title":"[2405.14093] A Survey on Vision-Language-Action Models for Embodied AI","url":"https://arxiv.org/abs/2405.14093"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"Alignment among Language, Vision and Action Representations","url":"https://arxiv.org/pdf/2601.22948"}]
+
+I found several relevant papers on arxiv regarding vision-language-action (VLA) representation and probing from 2025-2026:
+
+## Key Papers Found:
+
+1. **"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models"** (arxiv 2603.19233)
+   - This work studies Vision-Language-Action (VLA) models that combine visual encoders, language backbones, and action decoders into end-to-end policies
+   - Uses contrastive identification to recover manipulation concepts and causal ablation reveals sensitivity spanning 28–92% zero-effect rates
+   - Releases Action Atlas for interactive exploration of VLA representations across six models
+
+2. **"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture"** (arxiv 2502.04558, February 2025)
+   - Probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states
+   - Probing results show consistently high accuracies (> 0.90) for both object and action states across most layers
+
+3. **"A Survey on Vision-Language-Action Models for Embodied AI"** (arxiv 2405.14093)
+   - A comprehensive survey with recent updates through May 2026
+
+4. **"Alignment among Language, Vision and Action Representations"** (arxiv 2601.22948)
+   - Finds that LLMs and VLMs partially converge toward isomorphic embedding spaces, suggesting cross-modal alignment
+
+These papers explore representation learning and probing methods for understanding how VLA models encode visual, linguistic, and action information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "4c7da4a5-1a5a-48cf-8032-b44dec54f040",
+  "tool_use_result": {
+    "query": "\"vision language action\" representation probing 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GbB6bs7kVLxxMsc7QDg6Wc",
+        "content": [
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/html/2502.04558"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and   Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/pdf/2502.04558"
+          },
+          {
+            "title": "[2405.14093] A Survey on Vision-Language-Action Models for Embodied AI",
+            "url": "https://arxiv.org/abs/2405.14093"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          },
+          {
+            "title": "Alignment among Language, Vision and Action Representations",
+            "url": "https://arxiv.org/pdf/2601.22948"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv regarding vision-language-action (VLA) representation and probing from 2025-2026:\n\n## Key Papers Found:\n\n1. **\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arxiv 2603.19233)\n   - This work studies Vision-Language-Action (VLA) models that combine visual encoders, language backbones, and action decoders into end-to-end policies\n   - Uses contrastive identification to recover manipulation concepts and causal ablation reveals sensitivity spanning 28–92% zero-effect rates\n   - Releases Action Atlas for interactive exploration of VLA representations across six models\n\n2. **\"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture\"** (arxiv 2502.04558, February 2025)\n   - Probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states\n   - Probing results show consistently high accuracies (> 0.90) for both object and action states across most layers\n\n3. **\"A Survey on Vision-Language-Action Models for Embodied AI\"** (arxiv 2405.14093)\n   - A comprehensive survey with recent updates through May 2026\n\n4. **\"Alignment among Language, Vision and Action Representations\"** (arxiv 2601.22948)\n   - Finds that LLMs and VLMs partially converge toward isomorphic embedding spaces, suggesting cross-modal alignment\n\nThese papers explore representation learning and probing methods for understanding how VLA models encode visual, linguistic, and action information."
+    ],
+    "durationSeconds": 7.570098162
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T23:32:10.684Z_
+
+<details><summary>↩ Tool result · `toolu_01U9nfveuwZDPmjTJ2AYUnqn`</summary>
+
+```text
+Web search results for query: ""instruction following" robot attention mechanism analysis 2025 2026 arxiv"
+
+Links: [{"title":"FollowNet: Robot Navigation by Following Natural Language Directions   with Deep Reinforcement Learning","url":"https://arxiv.org/pdf/1805.06150"},{"title":"Instruction Following by Boosting Attention of Large Language Models","url":"https://arxiv.org/pdf/2506.13734"},{"title":"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/pdf/2602.03677"},{"title":"Astra: Efficient Transformer Architecture and Contrastive Dynamics Learning for Embodied Instruction Following","url":"https://arxiv.org/pdf/2408.01147"},{"title":"Cross-Modality Alignment Perception and Multi-Head Self-Attention Mechanism for Vision-Language-Action of Humanoid Robot","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12787822/"},{"title":"Integrating Historical Learning and Multi-View Attention with Hierarchical Feature Fusion for Robotic Manipulation","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11591612/"},{"title":"Instruct2Act: From Human Instruction to Actions Sequencing and Execution via Robot Action Network for Robotic Manipulation","url":"https://arxiv.org/pdf/2602.09940"}]
+
+Based on the web search results, here are several recent papers (2025-2026) on instruction following, robots, and attention mechanisms from arxiv:
+
+## Key Papers Found:
+
+1. **Instruction Following by Boosting Attention of Large Language Models (2025)** - This paper examines Transformer attention mechanisms and their role in instruction following, analyzing how attention probability distributions are computed within each layer.
+
+2. **Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration (February 2026)** - This work addresses multimodal instruction following (MIF) as a foundational capability for multimodal large language models, enabling the execution of complex user commands by integrating information across different modalities. The research shows that shallow attention layers route cues to instruction tokens to form a "latent buffer," while deep attention layers act as the "definitive arbiter" resolving modality competition.
+
+3. **Astra: Efficient Transformer Architecture and Contrastive Dynamics Learning for Embodied Instruction Following (2024)** - This paper introduces a novel Transformer architecture featuring trajectory attention and learnable action queries, designed to efficiently process segmented multimodal trajectories and predict actions for imitation learning.
+
+4. **Instruct2Act: From Human Instruction to Actions Sequencing and Execution (2026)** - This approach uses a compact BiLSTM with a multi-head-attention autoencoder that parses instructions into ordered sequences of atomic actions for robotic manipulation.
+
+These papers represent recent research combining instruction following, attention mechanisms, and robotic applications on arxiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "302f9901-057f-4d94-9776-34a8cfa4df04",
+  "tool_use_result": {
+    "query": "\"instruction following\" robot attention mechanism analysis 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WoUr4XAXGvyZi2JZ2gnWtP",
+        "content": [
+          {
+            "title": "FollowNet: Robot Navigation by Following Natural Language Directions   with Deep Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/1805.06150"
+          },
+          {
+            "title": "Instruction Following by Boosting Attention of Large Language Models",
+            "url": "https://arxiv.org/pdf/2506.13734"
+          },
+          {
+            "title": "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/pdf/2602.03677"
+          },
+          {
+            "title": "Astra: Efficient Transformer Architecture and Contrastive Dynamics Learning for Embodied Instruction Following",
+            "url": "https://arxiv.org/pdf/2408.01147"
+          },
+          {
+            "title": "Cross-Modality Alignment Perception and Multi-Head Self-Attention Mechanism for Vision-Language-Action of Humanoid Robot",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12787822/"
+          },
+          {
+            "title": "Integrating Historical Learning and Multi-View Attention with Hierarchical Feature Fusion for Robotic Manipulation",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11591612/"
+          },
+          {
+            "title": "Instruct2Act: From Human Instruction to Actions Sequencing and Execution via Robot Action Network for Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2602.09940"
+          }
+        ]
+      },
+      "Based on the web search results, here are several recent papers (2025-2026) on instruction following, robots, and attention mechanisms from arxiv:\n\n## Key Papers Found:\n\n1. **Instruction Following by Boosting Attention of Large Language Models (2025)** - This paper examines Transformer attention mechanisms and their role in instruction following, analyzing how attention probability distributions are computed within each layer.\n\n2. **Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration (February 2026)** - This work addresses multimodal instruction following (MIF) as a foundational capability for multimodal large language models, enabling the execution of complex user commands by integrating information across different modalities. The research shows that shallow attention layers route cues to instruction tokens to form a \"latent buffer,\" while deep attention layers act as the \"definitive arbiter\" resolving modality competition.\n\n3. **Astra: Efficient Transformer Architecture and Contrastive Dynamics Learning for Embodied Instruction Following (2024)** - This paper introduces a novel Transformer architecture featuring trajectory attention and learnable action queries, designed to efficiently process segmented multimodal trajectories and predict actions for imitation learning.\n\n4. **Instruct2Act: From Human Instruction to Actions Sequencing and Execution (2026)** - This approach uses a compact BiLSTM with a multi-head-attention autoencoder that parses instructions into ordered sequences of atomic actions for robotic manipulation.\n\nThese papers represent recent research combining instruction following, attention mechanisms, and robotic applications on arxiv."
+    ],
+    "durationSeconds": 7.301342808999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T23:32:11.387Z_
+
+<details><summary>↩ Tool result · `toolu_012AUeM48B95rjFmUcxReYAR`</summary>
+
+```text
+Web search results for query: "VLA fine-tuning analysis representation 2025 2026 arxiv"
+
+Links: [{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"[2512.11921] Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/abs/2512.11921"},{"title":"[2510.00406] VLA-RFT: Vision-Language-Action Reinforcement Fine-tuning with Verified Rewards in World Simulators","url":"https://arxiv.org/abs/2510.00406"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"[2510.25889] $π_\\texttt{RL}$: Online RL Fine-tuning for Flow-based Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.25889"}]
+
+Based on the search results, I found several relevant arxiv papers from 2025-2026 about VLA (Vision-Language-Action) fine-tuning and representation analysis:
+
+## Key Papers Found:
+
+1. **"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization"** (arxiv 2510.25616)
+   - Conducts t-SNE analysis of intermediate representations across VLM's and VLA's layers, revealing representation collapse in VLA models where standard action fine-tuning compresses diverse internal features into a narrow representation space.
+   - Proposes a lightweight Visual Representation Alignment method inspired by the Platonic Representation Hypothesis.
+
+2. **"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success"** (arxiv 2502.19645, April 2025)
+   - Studies key VLA adaptation design choices such as different action decoding schemes, action representations, and learning objectives for fine-tuning, proposing an Optimized Fine-Tuning (OFT) recipe that integrates parallel decoding, action chunking, a continuous action representation, and L1 regression-based learning objective.
+
+3. **"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts"** (arxiv 2605.06175)
+   - Discusses how end-to-end robotic fine-tuning may overwrite core spatial representations, proposing post hoc restoration through backbone reversal and model merging.
+
+4. **"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models"** (arxiv 2512.11921, December 2025)
+   - Proposes a resource-efficient fine-tuning strategy using Low-Rank Adaptation (LoRA) and quantization techniques for adapting VLA models.
+
+5. **"πRL: Online RL Fine-tuning for Flow-based Vision-Language-Action Models"** (arxiv 2510.25889, January 2026)
+   - Addresses challenges of applying reinforcement learning to large-scale flow-based VLAs like π0 and π0.5.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f66308a0-f533-48fa-bc48-6428dfe99893",
+  "tool_use_result": {
+    "query": "VLA fine-tuning analysis representation 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DH94cXZXVrCCTUYA87aaZx",
+        "content": [
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          },
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v2"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "[2512.11921] Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/abs/2512.11921"
+          },
+          {
+            "title": "[2510.00406] VLA-RFT: Vision-Language-Action Reinforcement Fine-tuning with Verified Rewards in World Simulators",
+            "url": "https://arxiv.org/abs/2510.00406"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "[2510.25889] $π_\\texttt{RL}$: Online RL Fine-tuning for Flow-based Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.25889"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant arxiv papers from 2025-2026 about VLA (Vision-Language-Action) fine-tuning and representation analysis:\n\n## Key Papers Found:\n\n1. **\"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\"** (arxiv 2510.25616)\n   - Conducts t-SNE analysis of intermediate representations across VLM's and VLA's layers, revealing representation collapse in VLA models where standard action fine-tuning compresses diverse internal features into a narrow representation space.\n   - Proposes a lightweight Visual Representation Alignment method inspired by the Platonic Representation Hypothesis.\n\n2. **\"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success\"** (arxiv 2502.19645, April 2025)\n   - Studies key VLA adaptation design choices such as different action decoding schemes, action representations, and learning objectives for fine-tuning, proposing an Optimized Fine-Tuning (OFT) recipe that integrates parallel decoding, action chunking, a continuous action representation, and L1 regression-based learning objective.\n\n3. **\"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts\"** (arxiv 2605.06175)\n   - Discusses how end-to-end robotic fine-tuning may overwrite core spatial representations, proposing post hoc restoration through backbone reversal and model merging.\n\n4. **\"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models\"** (arxiv 2512.11921, December 2025)\n   - Proposes a resource-efficient fine-tuning strategy using Low-Rank Adaptation (LoRA) and quantization techniques for adapting VLA models.\n\n5. **\"πRL: Online RL Fine-tuning for Flow-based Vision-Language-Action Models\"** (arxiv 2510.25889, January 2026)\n   - Addresses challenges of applying reinforcement learning to large-scale flow-based VLAs like π0 and π0.5."
+    ],
+    "durationSeconds": 8.937491126000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T23:32:11.812Z_
+
+<details><summary>↩ Tool result · `toolu_01Wh19eqA3zNd1a5KUguuifm`</summary>
+
+```text
+Web search results for query: "OpenVLA analysis interpretability mechanistic 2025 2026 arxiv"
+
+Links: [{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"[2509.00328] Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/abs/2509.00328"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233"},{"title":"Emergent World Representations in OpenVLA","url":"https://arxiv.org/html/2509.24559v1"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://arxiv.org/html/2509.00328v1"},{"title":"[2605.17204] Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies","url":"https://arxiv.org/abs/2605.17204"}]
+
+I found several recent papers analyzing OpenVLA through mechanistic interpretability approaches. Here are the key findings:
+
+## Recent OpenVLA Interpretability Research
+
+**Mechanistic Interpretability for Steering VLAs:**
+Research projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection. This method has been evaluated on OpenVLA, demonstrating zero-shot behavioral control in simulation (LIBERO) and on a physical robot (UR5).
+
+**Emergent World Representations:**
+Evidence suggests a linear world model in OpenVLA, motivating a practical pipeline for interpretable planning where the model's intended action is translated into an explicit prediction about how the environment representation will change.
+
+**Feature Analysis Challenges:**
+VLAs process heterogeneous token sequences interleaving vision, language, and proprioception, and mean-pooling activations across token positions destroys action-critical information, causing catastrophic task failure despite high reconstruction quality.
+
+**Event-Grounded Sparse Autoencoders:**
+Event-grounded sparse autoencoder (SAE) analysis grounded in closed-loop behavioral events yields the strongest causal effects on OpenVLA and transfers to other models.
+
+The search results show active research into understanding OpenVLA's internal mechanisms, with papers from 2025-2026 focusing on steering, sparse features, and world representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "b55d3750-fc65-4c1a-ae70-2bbacd1c8e44",
+  "tool_use_result": {
+    "query": "OpenVLA analysis interpretability mechanistic 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DyZ8TJoNoxHqNCM7BSbLGF",
+        "content": [
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "[2509.00328] Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/abs/2509.00328"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233"
+          },
+          {
+            "title": "Emergent World Representations in OpenVLA",
+            "url": "https://arxiv.org/html/2509.24559v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2509.00328v1"
+          },
+          {
+            "title": "[2605.17204] Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies",
+            "url": "https://arxiv.org/abs/2605.17204"
+          }
+        ]
+      },
+      "I found several recent papers analyzing OpenVLA through mechanistic interpretability approaches. Here are the key findings:\n\n## Recent OpenVLA Interpretability Research\n\n**Mechanistic Interpretability for Steering VLAs:**\nResearch projects feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection. This method has been evaluated on OpenVLA, demonstrating zero-shot behavioral control in simulation (LIBERO) and on a physical robot (UR5).\n\n**Emergent World Representations:**\nEvidence suggests a linear world model in OpenVLA, motivating a practical pipeline for interpretable planning where the model's intended action is translated into an explicit prediction about how the environment representation will change.\n\n**Feature Analysis Challenges:**\nVLAs process heterogeneous token sequences interleaving vision, language, and proprioception, and mean-pooling activations across token positions destroys action-critical information, causing catastrophic task failure despite high reconstruction quality.\n\n**Event-Grounded Sparse Autoencoders:**\nEvent-grounded sparse autoencoder (SAE) analysis grounded in closed-loop behavioral events yields the strongest causal effects on OpenVLA and transfers to other models.\n\nThe search results show active research into understanding OpenVLA's internal mechanisms, with papers from 2025-2026 focusing on steering, sparse features, and world representations."
+    ],
+    "durationSeconds": 6.835315456
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T23:32:11.901Z_
+
+<details><summary>↩ Tool result · `toolu_01JwtQMArC5eNxoRcyodLw9S`</summary>
+
+```text
+Web search results for query: ""representational collapse" OR "exit collapse" language model fine-tuning 2025 2026"
+
+Links: [{"title":"Better Fine-Tuning by Reducing Representational Collapse","url":"https://arxiv.org/pdf/2008.03156"},{"title":"Layer Collapse in Diffusion Language Models","url":"https://arxiv.org/html/2605.06366"},{"title":"The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety","url":"https://arxiv.org/pdf/2602.15799"},{"title":"Privacy Collapse: Benign Fine-Tuning Can Break Contextual Privacy in Language Models","url":"https://arxiv.org/pdf/2601.15220"},{"title":"[2008.03156] Better Fine-Tuning by Reducing Representational Collapse","url":"https://arxiv.org/abs/2008.03156"},{"title":"[PDF] Better Fine-Tuning by Reducing Representational Collapse | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Better-Fine-Tuning-by-Reducing-Representational-Aghajanyan-Shrivastava/b88c11922cac84e5ea902f82d27ae21c3dda2e04"},{"title":"Representation Projection Invariance Mitigates Representation Collapse","url":"https://arxiv.org/pdf/2205.11603"}]
+
+I've performed a web search for research on representational collapse and exit collapse in language model fine-tuning for 2025-2026. Here are the findings:
+
+## Representational Collapse
+
+Representational collapse refers to the degradation of generalizable representations from pre-trained models as they are fine-tuned for a specific end task. This can lead to instability, sub-optimal performance, and weak generalization.
+
+Recent work from 2020 onwards has proposed methods to address this issue. One approach uses trust region theory with parametric noise to discourage representation change during fine-tuning without hurting performance. Additionally, Representation Projection Invariance (REPINA) is a novel regularization method to maintain information content of representation and reduce representation collapse during fine-tuning.
+
+## Recent 2025-2026 Work
+
+The search results include several recent papers from 2025-2026:
+
+- Models such as LLaDA-8B and DREAM-7B match the quality of autoregressive counterparts on standard benchmarks. Research from 2025-2026 examines layer collapse in diffusion language models, which presents different challenges than in autoregressive models.
+
+- Privacy collapse is a new failure mode for large language models, distinct from other known issues.
+
+- Recent work focuses on understanding and preserving safety in fine-tuned LLMs.
+
+The search results show active research into various forms of collapse phenomena in fine-tuning, particularly concerning representational degradation, privacy, safety, and alignment issues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "5fbd29a5-9d68-4186-9488-e0e95774d77e",
+  "tool_use_result": {
+    "query": "\"representational collapse\" OR \"exit collapse\" language model fine-tuning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013HmcXaTqjhVLyHvaeCnR5t",
+        "content": [
+          {
+            "title": "Better Fine-Tuning by Reducing Representational Collapse",
+            "url": "https://arxiv.org/pdf/2008.03156"
+          },
+          {
+            "title": "Layer Collapse in Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.06366"
+          },
+          {
+            "title": "The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety",
+            "url": "https://arxiv.org/pdf/2602.15799"
+          },
+          {
+            "title": "Privacy Collapse: Benign Fine-Tuning Can Break Contextual Privacy in Language Models",
+            "url": "https://arxiv.org/pdf/2601.15220"
+          },
+          {
+            "title": "[2008.03156] Better Fine-Tuning by Reducing Representational Collapse",
+            "url": "https://arxiv.org/abs/2008.03156"
+          },
+          {
+            "title": "[PDF] Better Fine-Tuning by Reducing Representational Collapse | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Better-Fine-Tuning-by-Reducing-Representational-Aghajanyan-Shrivastava/b88c11922cac84e5ea902f82d27ae21c3dda2e04"
+          },
+          {
+            "title": "Representation Projection Invariance Mitigates Representation Collapse",
+            "url": "https://arxiv.org/pdf/2205.11603"
+          }
+        ]
+      },
+      "I've performed a web search for research on representational collapse and exit collapse in language model fine-tuning for 2025-2026. Here are the findings:\n\n## Representational Collapse\n\nRepresentational collapse refers to the degradation of generalizable representations from pre-trained models as they are fine-tuned for a specific end task. This can lead to instability, sub-optimal performance, and weak generalization.\n\nRecent work from 2020 onwards has proposed methods to address this issue. One approach uses trust region theory with parametric noise to discourage representation change during fine-tuning without hurting performance. Additionally, Representation Projection Invariance (REPINA) is a novel regularization method to maintain information content of representation and reduce representation collapse during fine-tuning.\n\n## Recent 2025-2026 Work\n\nThe search results include several recent papers from 2025-2026:\n\n- Models such as LLaDA-8B and DREAM-7B match the quality of autoregressive counterparts on standard benchmarks. Research from 2025-2026 examines layer collapse in diffusion language models, which presents different challenges than in autoregressive models.\n\n- Privacy collapse is a new failure mode for large language models, distinct from other known issues.\n\n- Recent work focuses on understanding and preserving safety in fine-tuned LLMs.\n\nThe search results show active research into various forms of collapse phenomena in fine-tuning, particularly concerning representational degradation, privacy, safety, and alignment issues."
+    ],
+    "durationSeconds": 7.558578419
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T23:32:11.956Z_
+
+<details><summary>↩ Tool result · `toolu_01VrnRHndN4N3HwQgFyMPm64`</summary>
+
+```text
+Web search results for query: ""vision language action model" mechanistic interpretability 2025 2026"
+
+Links: [{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"[2509.00328] Mechanistic interpretability for steering vision-language-action models","url":"https://arxiv.org/abs/2509.00328"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/abs/2511.22697"},{"title":"Towards Vision-Language Mechanistic Interpretability: A Causal Tracing   Tool for BLIP","url":"https://arxiv.org/pdf/2308.14179"}]
+
+Based on the web search results, here are key findings on vision-language-action model mechanistic interpretability research from 2025-2026:
+
+## Recent Research Directions
+
+Researchers are applying mechanistic interpretability techniques to understand VLA models, including training Sparse Autoencoders (SAEs) on hidden layer activations. Recent work has introduced the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.
+
+## Key Findings
+
+Studies have found that the large majority of extracted SAE features correspond to memorized sequences from specific training demonstrations. Contrastive identification has recovered 82+ manipulation concepts, and causal ablation reveals sensitivity spanning 28–92% zero-effect rates independent of representation width.
+
+## Application to Fine-tuning
+
+A mechanistic interpretability-based finetuning approach called Robotic Steering leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads, outperforming LoRA while achieving superior robustness and enhanced interpretability.
+
+## Methodological Challenges
+
+Applying mechanistic interpretability to VLAs presents distinct challenges, such as processing heterogeneous token sequences interleaving vision, language, and proprioception, where mean-pooling activations across token positions destroys action-critical information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "d20701af-f481-44c0-b025-562d234d3225",
+  "tool_use_result": {
+    "query": "\"vision language action model\" mechanistic interpretability 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KPvwQCQr4vVysW1CCguEc7",
+        "content": [
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "[2509.00328] Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://arxiv.org/abs/2509.00328"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/abs/2511.22697"
+          },
+          {
+            "title": "Towards Vision-Language Mechanistic Interpretability: A Causal Tracing   Tool for BLIP",
+            "url": "https://arxiv.org/pdf/2308.14179"
+          }
+        ]
+      },
+      "Based on the web search results, here are key findings on vision-language-action model mechanistic interpretability research from 2025-2026:\n\n## Recent Research Directions\n\nResearchers are applying mechanistic interpretability techniques to understand VLA models, including training Sparse Autoencoders (SAEs) on hidden layer activations. Recent work has introduced the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.\n\n## Key Findings\n\nStudies have found that the large majority of extracted SAE features correspond to memorized sequences from specific training demonstrations. Contrastive identification has recovered 82+ manipulation concepts, and causal ablation reveals sensitivity spanning 28–92% zero-effect rates independent of representation width.\n\n## Application to Fine-tuning\n\nA mechanistic interpretability-based finetuning approach called Robotic Steering leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads, outperforming LoRA while achieving superior robustness and enhanced interpretability.\n\n## Methodological Challenges\n\nApplying mechanistic interpretability to VLAs presents distinct challenges, such as processing heterogeneous token sequences interleaving vision, language, and proprioception, where mean-pooling activations across token positions destroys action-critical information."
+    ],
+    "durationSeconds": 6.553161102000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have a lot of results. Now let me do a few more targeted searches to find papers I might have missed, especially around specific topics like counterfactual perturbation, VLA representation collapse, and newer VLA architectures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "6ab67192-6e48-4f71-9a13-a4ad50329656",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+第一轮搜索完成，发现了多个候选论文。再做几轮补充搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "8124ff65-5d5f-407f-aafa-02bd56a84c18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011oXwx3udDpLgYTsmAYWBmB`</summary>
+
+```json
+{
+  "query": "arxiv 2603.19233 \"Not All Features Are Created Equal\" VLA mechanistic",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "e4193b99-ba74-4631-9eb5-8ce7503083b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015UwxgiGq4DZRd8CGX7nrvF`</summary>
+
+```json
+{
+  "query": "arxiv 2603.19183 \"Sparse Autoencoders\" VLA steerable features",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "a8e1e0b0-ef78-491b-bd46-a99da7df0bd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xr632HUpvUfW3nDUzD5S47`</summary>
+
+```json
+{
+  "query": "arxiv 2605.06175 VLA-GSE parameter efficient fine-tuning experts",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "c587835a-0c3b-4964-ad39-aea210078845",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C4MqPGxvefRDfQE7cZZ3vm`</summary>
+
+```json
+{
+  "query": "arxiv 2602.03677 \"Instruction Anchors\" modality arbitration causal",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "fcfd280a-498e-4cb6-8fd3-e5467ad9f477",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N6cuDdx9V4o5t3vkNvx93F`</summary>
+
+```json
+{
+  "query": "arxiv 2601.22948 \"Alignment among Language Vision and Action Representations\"",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "3880b90b-5f8b-4f50-ab54-697b2b980bcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019HXrmau5ZbLLTN9kz7oqcz`</summary>
+
+```json
+{
+  "query": "arxiv 2605.17204 \"Event-Grounded Sparse Autoencoders\" VLA",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "c6cd3d27-4778-4640-896d-ffbe92eaee66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S6YvRz6XaitYhRDUhsQWs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5111,
+      "cache_read_input_tokens": 24150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5111
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T23:32:24.662Z_
+
+<details><summary>↩ Tool result · `toolu_011oXwx3udDpLgYTsmAYWBmB`</summary>
+
+```text
+Web search results for query: "arxiv 2603.19233 "Not All Features Are Created Equal" VLA mechanistic"
+
+Links: [{"title":"[2603.19233] Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.19233"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/html/2603.19233v1"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.05487"},{"title":"Understanding Multimodal LLMs: the Mechanistic Interpretability of Llava   in Visual Question Answering","url":"https://arxiv.org/pdf/2411.10950"}]
+
+I found the paper! Here's information about the arxiv paper 2603.19233:
+
+**Title:** Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models
+
+**Authors:** Bryce Grant, Xijia Zhao, and Peng Wang from Case Western Reserve University
+
+**Submission Date:** March 19, 2026
+
+**Overview:** The paper studies how Vision-Language-Action (VLA) models combine perception, language, and motor control in a single architecture to translate multimodal inputs into actions.
+
+**Methodology:** The researchers apply activation injection, sparse autoencoders (SAEs), and linear probes to six models spanning 80M-7B parameters across 394,000+ rollout episodes on four benchmarks.
+
+**Key Findings:**
+- The visual pathway dominates action generation across all architectures, with injecting baseline activations into null-prompt episodes recovering near-identical behavior
+- Language sensitivity depends on task structure, not model design—when visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential
+- In multi-pathway architectures, expert pathways encode motor programs while VLM pathways encode goal semantics
+
+The paper also includes a resource called Action Atlas for interactive exploration of these findings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "d29ed0e3-3a4d-4599-baff-65c21f92900f",
+  "tool_use_result": {
+    "query": "arxiv 2603.19233 \"Not All Features Are Created Equal\" VLA mechanistic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HNp4jctsKrXV5Lf83aXpCi",
+        "content": [
+          {
+            "title": "[2603.19233] Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.19233"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.19233v1"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.05487"
+          },
+          {
+            "title": "Understanding Multimodal LLMs: the Mechanistic Interpretability of Llava   in Visual Question Answering",
+            "url": "https://arxiv.org/pdf/2411.10950"
+          }
+        ]
+      },
+      "I found the paper! Here's information about the arxiv paper 2603.19233:\n\n**Title:** Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\n\n**Authors:** Bryce Grant, Xijia Zhao, and Peng Wang from Case Western Reserve University\n\n**Submission Date:** March 19, 2026\n\n**Overview:** The paper studies how Vision-Language-Action (VLA) models combine perception, language, and motor control in a single architecture to translate multimodal inputs into actions.\n\n**Methodology:** The researchers apply activation injection, sparse autoencoders (SAEs), and linear probes to six models spanning 80M-7B parameters across 394,000+ rollout episodes on four benchmarks.\n\n**Key Findings:**\n- The visual pathway dominates action generation across all architectures, with injecting baseline activations into null-prompt episodes recovering near-identical behavior\n- Language sensitivity depends on task structure, not model design—when visual context uniquely specifies the task, language is ignored; when multiple goals share a scene, language becomes essential\n- In multi-pathway architectures, expert pathways encode motor programs while VLM pathways encode goal semantics\n\nThe paper also includes a resource called Action Atlas for interactive exploration of these findings."
+    ],
+    "durationSeconds": 6.879114247000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T23:32:24.886Z_
+
+<details><summary>↩ Tool result · `toolu_015UwxgiGq4DZRd8CGX7nrvF`</summary>
+
+```text
+Web search results for query: "arxiv 2603.19183 "Sparse Autoencoders" VLA steerable features"
+
+Links: [{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/abs/2603.19183"},{"title":"Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies","url":"https://arxiv.org/html/2605.17204"},{"title":"Interpretable and Steerable Concept Bottleneck Sparse Autoencoders","url":"https://arxiv.org/pdf/2512.10805"},{"title":"[2512.10805] Interpretable and Steerable Concept Bottleneck Sparse Autoencoders","url":"https://arxiv.org/abs/2512.10805"},{"title":"Sparse Autoencoders Learn Monosemantic Features in Vision-Language Models","url":"https://arxiv.org/html/2504.02821v3"},{"title":"Steering CLIP's vision transformer with sparse autoencoders","url":"https://arxiv.org/pdf/2504.08729"},{"title":"Sparse Autoencoders Learn Monosemantic Features in Vision-Language Models","url":"https://arxiv.org/pdf/2504.02821"}]
+
+I found the paper you're searching for! Here's what I found:
+
+**Title:** Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models
+
+**Authors:** Aiden Swann, Lachlain McGranahan, Hugo Buurmeijer, Monroe Kennedy III, and Mac Schwager from Stanford University
+
+**Key Findings:**
+
+Vision-Language-Action (VLA) models have emerged as a promising approach for general-purpose robot manipulation, but their generalization is inconsistent with fine-tuned variants often failing on novel objects, scenes, and instructions.
+
+The researchers applied mechanistic interpretability techniques and trained Sparse Autoencoders (SAEs) on hidden layer activations of the VLA. SAEs learn a sparse dictionary whose features act as a compact, interpretable basis for the model's computation.
+
+While the large majority of extracted SAE features correspond to memorized sequences from specific training demonstrations, some features correspond to interpretable, general, and steerable motion primitives and semantic properties, offering a promising glimpse toward VLA generalizability.
+
+The paper was published on March 19, 2026 (arXiv:2603.19183v1).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f9a625a3-6683-4eb5-ab5d-02310bf10052",
+  "tool_use_result": {
+    "query": "arxiv 2603.19183 \"Sparse Autoencoders\" VLA steerable features",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RALPyYrThzBnKRV6bNDqze",
+        "content": [
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/abs/2603.19183"
+          },
+          {
+            "title": "Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies",
+            "url": "https://arxiv.org/html/2605.17204"
+          },
+          {
+            "title": "Interpretable and Steerable Concept Bottleneck Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2512.10805"
+          },
+          {
+            "title": "[2512.10805] Interpretable and Steerable Concept Bottleneck Sparse Autoencoders",
+            "url": "https://arxiv.org/abs/2512.10805"
+          },
+          {
+            "title": "Sparse Autoencoders Learn Monosemantic Features in Vision-Language Models",
+            "url": "https://arxiv.org/html/2504.02821v3"
+          },
+          {
+            "title": "Steering CLIP's vision transformer with sparse autoencoders",
+            "url": "https://arxiv.org/pdf/2504.08729"
+          },
+          {
+            "title": "Sparse Autoencoders Learn Monosemantic Features in Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2504.02821"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here's what I found:\n\n**Title:** Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models\n\n**Authors:** Aiden Swann, Lachlain McGranahan, Hugo Buurmeijer, Monroe Kennedy III, and Mac Schwager from Stanford University\n\n**Key Findings:**\n\nVision-Language-Action (VLA) models have emerged as a promising approach for general-purpose robot manipulation, but their generalization is inconsistent with fine-tuned variants often failing on novel objects, scenes, and instructions.\n\nThe researchers applied mechanistic interpretability techniques and trained Sparse Autoencoders (SAEs) on hidden layer activations of the VLA. SAEs learn a sparse dictionary whose features act as a compact, interpretable basis for the model's computation.\n\nWhile the large majority of extracted SAE features correspond to memorized sequences from specific training demonstrations, some features correspond to interpretable, general, and steerable motion primitives and semantic properties, offering a promising glimpse toward VLA generalizability.\n\nThe paper was published on March 19, 2026 (arXiv:2603.19183v1)."
+    ],
+    "durationSeconds": 6.586771012999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T23:32:27.389Z_
+
+<details><summary>↩ Tool result · `toolu_01C4MqPGxvefRDfQE7cZZ3vm`</summary>
+
+```text
+Web search results for query: "arxiv 2602.03677 "Instruction Anchors" modality arbitration causal"
+
+Links: [{"title":"[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/abs/2602.03677"},{"title":"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration","url":"https://arxiv.org/pdf/2602.03677"},{"title":"When Audio-LLMs Don’t Listen: A Cross-Linguistic Study of Modality Arbitration","url":"https://arxiv.org/html/2602.11488v1"},{"title":"[2602.11488] When Audio-LLMs Don't Listen: A Cross-Linguistic Study of Modality Arbitration","url":"https://arxiv.org/abs/2602.11488"},{"title":"A Unified Causal View of Instruction Tuning","url":"https://arxiv.org/pdf/2402.06220"},{"title":"Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs","url":"https://arxiv.org/html/2503.02597v1"},{"title":"Patches of Nonlinearity: Instruction Vectors in Large Language Models","url":"https://arxiv.org/pdf/2602.07930"}]
+
+I found the paper you're looking for! Here are the results:
+
+The paper "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" (arXiv:2602.03677) was submitted on February 3, 2026, by Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai chen, Pengfei Zhang, Yang Xiang, and Min Zhang.
+
+The paper investigates how multimodal large language models (MLLMs) selectively use multimodal contexts based on user instructions. The key findings reveal that instruction tokens function as structural anchors for modality arbitration: Shallow attention layers perform non-selective information transfer, routing multimodal cues to these anchors as a latent buffer; Modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force.
+
+The research identifies a Cross-Modal Relay Mechanism where visual and textual cues are routed to a specific structural bottleneck—the "Instruction Anchors" instead of being directly extracted by the generation tokens. The researchers also identify a sparse set of specialized attention heads that drive this arbitration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "a1bd73e7-03dd-4e48-83bf-42ba134238b6",
+  "tool_use_result": {
+    "query": "arxiv 2602.03677 \"Instruction Anchors\" modality arbitration causal",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YJJn4JUTesikzY6V29gs2E",
+        "content": [
+          {
+            "title": "[2602.03677] Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/abs/2602.03677"
+          },
+          {
+            "title": "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration",
+            "url": "https://arxiv.org/pdf/2602.03677"
+          },
+          {
+            "title": "When Audio-LLMs Don’t Listen: A Cross-Linguistic Study of Modality Arbitration",
+            "url": "https://arxiv.org/html/2602.11488v1"
+          },
+          {
+            "title": "[2602.11488] When Audio-LLMs Don't Listen: A Cross-Linguistic Study of Modality Arbitration",
+            "url": "https://arxiv.org/abs/2602.11488"
+          },
+          {
+            "title": "A Unified Causal View of Instruction Tuning",
+            "url": "https://arxiv.org/pdf/2402.06220"
+          },
+          {
+            "title": "Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs",
+            "url": "https://arxiv.org/html/2503.02597v1"
+          },
+          {
+            "title": "Patches of Nonlinearity: Instruction Vectors in Large Language Models",
+            "url": "https://arxiv.org/pdf/2602.07930"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the results:\n\nThe paper \"Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration\" (arXiv:2602.03677) was submitted on February 3, 2026, by Yu Zhang, Mufan Xu, Xuefeng Bai, Kehai chen, Pengfei Zhang, Yang Xiang, and Min Zhang.\n\nThe paper investigates how multimodal large language models (MLLMs) selectively use multimodal contexts based on user instructions. The key findings reveal that instruction tokens function as structural anchors for modality arbitration: Shallow attention layers perform non-selective information transfer, routing multimodal cues to these anchors as a latent buffer; Modality competition is resolved within deep attention layers guided by the instruction intent, while MLP layers exhibit semantic inertia, acting as an adversarial force.\n\nThe research identifies a Cross-Modal Relay Mechanism where visual and textual cues are routed to a specific structural bottleneck—the \"Instruction Anchors\" instead of being directly extracted by the generation tokens. The researchers also identify a sparse set of specialized attention heads that drive this arbitration."
+    ],
+    "durationSeconds": 6.708704492999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T23:32:28.457Z_
+
+<details><summary>↩ Tool result · `toolu_01Xr632HUpvUfW3nDUzD5S47`</summary>
+
+```text
+Web search results for query: "arxiv 2605.06175 VLA-GSE parameter efficient fine-tuning experts"
+
+Links: [{"title":"[2605.06175] VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/abs/2605.06175"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"MLAE: Masked LoRA Experts for Visual Parameter-Efficient Fine-Tuning","url":"https://arxiv.org/pdf/2405.18897"},{"title":"MoLEx: Mixture of Layer Experts for Finetuning with Sparse Upcycling","url":"https://arxiv.org/pdf/2503.11144"},{"title":"Let the Expert Stick to His Last: Expert-Specialized Fine-Tuning for   Sparse Architectural Large Language Models","url":"https://arxiv.org/pdf/2407.01906"},{"title":"Pushing Mixture of Experts to the Limit: Extremely Parameter Efficient   MoE for Instruction Tuning","url":"https://arxiv.org/pdf/2309.05444"},{"title":"TuckA: Hierarchical Compact Tensor Experts for Efficient Fine-Tuning","url":"https://arxiv.org/pdf/2511.06859"}]
+
+Based on the search results, here's the information about the arXiv paper 2605.06175:
+
+VLA-GSE is a parameter-efficient VLA fine-tuning framework that improves control adaptation while retaining PEFT's knowledge preservation advantage. Vision-language-action (VLA) models inherit rich visual-semantic priors from pre-trained vision-language backbones, but adapting them to robotic control remains challenging.
+
+The paper addresses a gap in existing approaches: Full fine-tuning (FFT) is prone to overfitting on downstream robotic data and catastrophic forgetting of pretrained vision-language capabilities, while parameter-efficient fine-tuning (PEFT) better preserves pre-trained knowledge, yet existing PEFT methods still struggle to adapt effectively to robot control tasks.
+
+VLA-GSE (Generalized and Specialized Experts) is initialized by spectrally decomposing the frozen backbone, assigning leading singular components to generalized experts (shared experts) and disjoint residual components to specialized experts (routed experts).
+
+The paper was submitted on May 7, 2026 and authored by Yuhua Jiang, Junjie Lu, Xinyao Qin, Xiaoyu Chen, Kaixin Wang, Feifei Gao, and Li Zhao from Microsoft Research Asia and Tsinghua University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "486063a6-f81e-456e-88cc-1fcd43857d84",
+  "tool_use_result": {
+    "query": "arxiv 2605.06175 VLA-GSE parameter efficient fine-tuning experts",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qxu32EXEqmePUuZbrbmhKv",
+        "content": [
+          {
+            "title": "[2605.06175] VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/abs/2605.06175"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "MLAE: Masked LoRA Experts for Visual Parameter-Efficient Fine-Tuning",
+            "url": "https://arxiv.org/pdf/2405.18897"
+          },
+          {
+            "title": "MoLEx: Mixture of Layer Experts for Finetuning with Sparse Upcycling",
+            "url": "https://arxiv.org/pdf/2503.11144"
+          },
+          {
+            "title": "Let the Expert Stick to His Last: Expert-Specialized Fine-Tuning for   Sparse Architectural Large Language Models",
+            "url": "https://arxiv.org/pdf/2407.01906"
+          },
+          {
+            "title": "Pushing Mixture of Experts to the Limit: Extremely Parameter Efficient   MoE for Instruction Tuning",
+            "url": "https://arxiv.org/pdf/2309.05444"
+          },
+          {
+            "title": "TuckA: Hierarchical Compact Tensor Experts for Efficient Fine-Tuning",
+            "url": "https://arxiv.org/pdf/2511.06859"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the arXiv paper 2605.06175:\n\nVLA-GSE is a parameter-efficient VLA fine-tuning framework that improves control adaptation while retaining PEFT's knowledge preservation advantage. Vision-language-action (VLA) models inherit rich visual-semantic priors from pre-trained vision-language backbones, but adapting them to robotic control remains challenging.\n\nThe paper addresses a gap in existing approaches: Full fine-tuning (FFT) is prone to overfitting on downstream robotic data and catastrophic forgetting of pretrained vision-language capabilities, while parameter-efficient fine-tuning (PEFT) better preserves pre-trained knowledge, yet existing PEFT methods still struggle to adapt effectively to robot control tasks.\n\nVLA-GSE (Generalized and Specialized Experts) is initialized by spectrally decomposing the frozen backbone, assigning leading singular components to generalized experts (shared experts) and disjoint residual components to specialized experts (routed experts).\n\nThe paper was submitted on May 7, 2026 and authored by Yuhua Jiang, Junjie Lu, Xinyao Qin, Xiaoyu Chen, Kaixin Wang, Feifei Gao, and Li Zhao from Microsoft Research Asia and Tsinghua University."
+    ],
+    "durationSeconds": 8.722055683000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T23:32:28.749Z_
+
+<details><summary>↩ Tool result · `toolu_01N6cuDdx9V4o5t3vkNvx93F`</summary>
+
+```text
+Web search results for query: "arxiv 2601.22948 "Alignment among Language Vision and Action Representations""
+
+Links: [{"title":"[2601.22948] Alignment among Language, Vision and Action Representations","url":"https://arxiv.org/abs/2601.22948"},{"title":"Alignment among Language, Vision and Action Representations","url":"https://arxiv.org/pdf/2601.22948"},{"title":"Grounding Hierarchical Vision-Language-Action Models Through Explicit Language-Action Alignment","url":"https://arxiv.org/pdf/2604.05614"},{"title":"Shared representations of human actions across vision and language","url":"https://www.biorxiv.org/content/10.1101/2023.11.06.565690.full.pdf"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"},{"title":"ROCKET: Residual-Oriented Multi-Layer Alignment for Spatially-Aware Vision-Language-Action Models","url":"https://arxiv.org/pdf/2602.17951"}]
+
+I found the paper you're looking for! Here's what the search reveals:
+
+**Alignment among Language, Vision and Action Representations** is a paper by Nicola Milano and Stefano Nolfi from the Institute of Cognitive Sciences and Technologies at the National Research Council in Rome, Italy. The paper addresses a fundamental question in cognitive science and AI: whether different learning modalities—language, vision, and action—give rise to distinct or shared internal representations.
+
+The researchers investigated this by training a transformer-based agent to execute goal-directed behaviors in response to natural language instructions using behavioral cloning on the BabyAI platform, generating action-grounded language embeddings shaped exclusively by sensorimotor control requirements. They then compared these representations with those extracted from state-of-the-art large language models (LLaMA, Qwen, DeepSeek, BERT) and vision-language models (CLIP, BLIP).
+
+Despite substantial differences in training data, modality, and objectives, they observed robust cross-modal alignment, with action representations aligning strongly with decoder-only language models and BLIP (precision@15: 0.70–0.73), approaching the alignment observed among language models themselves. These findings indicate that linguistic, visual, and action representations converge toward partially shared semantic structures, supporting modality-independent semantic organization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "acab678c-9adf-49bd-b6f5-78c18599f94b",
+  "tool_use_result": {
+    "query": "arxiv 2601.22948 \"Alignment among Language Vision and Action Representations\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SrvGXvAQ4CHC3TqbX5JppF",
+        "content": [
+          {
+            "title": "[2601.22948] Alignment among Language, Vision and Action Representations",
+            "url": "https://arxiv.org/abs/2601.22948"
+          },
+          {
+            "title": "Alignment among Language, Vision and Action Representations",
+            "url": "https://arxiv.org/pdf/2601.22948"
+          },
+          {
+            "title": "Grounding Hierarchical Vision-Language-Action Models Through Explicit Language-Action Alignment",
+            "url": "https://arxiv.org/pdf/2604.05614"
+          },
+          {
+            "title": "Shared representations of human actions across vision and language",
+            "url": "https://www.biorxiv.org/content/10.1101/2023.11.06.565690.full.pdf"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          },
+          {
+            "title": "ROCKET: Residual-Oriented Multi-Layer Alignment for Spatially-Aware Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2602.17951"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search reveals:\n\n**Alignment among Language, Vision and Action Representations** is a paper by Nicola Milano and Stefano Nolfi from the Institute of Cognitive Sciences and Technologies at the National Research Council in Rome, Italy. The paper addresses a fundamental question in cognitive science and AI: whether different learning modalities—language, vision, and action—give rise to distinct or shared internal representations.\n\nThe researchers investigated this by training a transformer-based agent to execute goal-directed behaviors in response to natural language instructions using behavioral cloning on the BabyAI platform, generating action-grounded language embeddings shaped exclusively by sensorimotor control requirements. They then compared these representations with those extracted from state-of-the-art large language models (LLaMA, Qwen, DeepSeek, BERT) and vision-language models (CLIP, BLIP).\n\nDespite substantial differences in training data, modality, and objectives, they observed robust cross-modal alignment, with action representations aligning strongly with decoder-only language models and BLIP (precision@15: 0.70–0.73), approaching the alignment observed among language models themselves. These findings indicate that linguistic, visual, and action representations converge toward partially shared semantic structures, supporting modality-independent semantic organization."
+    ],
+    "durationSeconds": 6.969444075999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T23:32:29.105Z_
+
+<details><summary>↩ Tool result · `toolu_019HXrmau5ZbLLTN9kz7oqcz`</summary>
+
+```text
+Web search results for query: "arxiv 2605.17204 "Event-Grounded Sparse Autoencoders" VLA"
+
+Links: [{"title":"[2605.17204] Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies","url":"https://arxiv.org/abs/2605.17204"},{"title":"Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies","url":"https://arxiv.org/html/2605.17204"},{"title":"[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/abs/2603.19183"},{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"E-VLA: Event-Augmented Vision-Language-Action Model for Dark and Blurred Scenes","url":"https://arxiv.org/pdf/2604.04834"},{"title":"Sparse Autoencoders Enable Scalable and Reliable Circuit Identification   in Language Models","url":"https://arxiv.org/pdf/2405.12522"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"Learning Representations of Event Time Series with Sparse Autoencoders for Anomaly Detection, Similarity Search, and Unsupervised Classification","url":"https://arxiv.org/html/2507.11620v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies
+
+**Authors and Affiliation:** Xinchen Jin, Aditya Chatterjee, Pranav Kumar, and Rohan Paleja from Purdue University
+
+**Submission Date:** Submitted on 17 May 2026
+
+**Overview:** Vision-Language-Action (VLA) policies translate language and visual inputs into robot actions, where their hidden representations directly shape closed-loop behavior. However, mechanistic interpretability tools from language and vision-language models do not transfer cleanly to VLAs: outputs are robot actions rather than human-readable tokens, and interventions can only be tested via expensive closed-loop rollouts.
+
+**Main Contribution:** The authors propose an event-grounded interpretability pipeline that anchors SAE feature analysis to behavioral events rather than text contexts. End-effector keyframes are clustered within each task using visual, state, and temporal cues, linking SAE features to behaviorally salient events and, via optional VLM annotations, to semantic context.
+
+**Key Findings:** Event-grounded ranking yields the strongest causal effects on OpenVLA and transfers to the continuous action chunks of π₀.₅.
+
+You can access the full paper at https://arxiv.org/abs/2605.17204.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "c4ccfca7-a303-45af-9170-0f753bf80984",
+  "tool_use_result": {
+    "query": "arxiv 2605.17204 \"Event-Grounded Sparse Autoencoders\" VLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SZk7jzrzAnAnAREAKHjMhL",
+        "content": [
+          {
+            "title": "[2605.17204] Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies",
+            "url": "https://arxiv.org/abs/2605.17204"
+          },
+          {
+            "title": "Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies",
+            "url": "https://arxiv.org/html/2605.17204"
+          },
+          {
+            "title": "[2603.19183] Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/abs/2603.19183"
+          },
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "E-VLA: Event-Augmented Vision-Language-Action Model for Dark and Blurred Scenes",
+            "url": "https://arxiv.org/pdf/2604.04834"
+          },
+          {
+            "title": "Sparse Autoencoders Enable Scalable and Reliable Circuit Identification   in Language Models",
+            "url": "https://arxiv.org/pdf/2405.12522"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "Learning Representations of Event Time Series with Sparse Autoencoders for Anomaly Detection, Similarity Search, and Unsupervised Classification",
+            "url": "https://arxiv.org/html/2507.11620v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Title:** Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies\n\n**Authors and Affiliation:** Xinchen Jin, Aditya Chatterjee, Pranav Kumar, and Rohan Paleja from Purdue University\n\n**Submission Date:** Submitted on 17 May 2026\n\n**Overview:** Vision-Language-Action (VLA) policies translate language and visual inputs into robot actions, where their hidden representations directly shape closed-loop behavior. However, mechanistic interpretability tools from language and vision-language models do not transfer cleanly to VLAs: outputs are robot actions rather than human-readable tokens, and interventions can only be tested via expensive closed-loop rollouts.\n\n**Main Contribution:** The authors propose an event-grounded interpretability pipeline that anchors SAE feature analysis to behavioral events rather than text contexts. End-effector keyframes are clustered within each task using visual, state, and temporal cues, linking SAE features to behaviorally salient events and, via optional VLM annotations, to semantic context.\n\n**Key Findings:** Event-grounded ranking yields the strongest causal effects on OpenVLA and transfers to the continuous action chunks of π₀.₅.\n\nYou can access the full paper at https://arxiv.org/abs/2605.17204."
+    ],
+    "durationSeconds": 6.992947952000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do a few more searches to cover additional angles, particularly around:
+- "Don't Blind Your VLA" paper (2510.25616) - this is about representation collapse in VLA, very relevant
+- The "Emergent World Representations in OpenVLA" paper (2509.24559)
+- "Mechanistic Finetuning" paper (2511.22697)
+- "Observing and Controlling Features" paper (2603.05487)
+- Any counterfactual perturbation papers for VLA
+- The "forgetting" / continual learning angle
+- Check which of these are already cited
+
+
+- Now I should check the related_work.tex file to see what's already been included.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "0b2951d6-e012-49da-869f-bba22d096526",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+找到多个候选论文，再做几轮补充搜索并读取已有引用列表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "062f85ea-6353-4b33-888e-8830acee1ade",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0187vy65xxzeTjt4yPYkbw4R`</summary>
+
+```json
+{
+  "query": "arxiv 2510.25616 \"Don't Blind Your VLA\" representation collapse visual alignment",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "145bad8c-61e1-48bb-948b-4bc54775e9b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bHikxMesnQ2oneDbWGpdA`</summary>
+
+```json
+{
+  "query": "arxiv 2509.24559 \"Emergent World Representations\" OpenVLA",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f4847c64-bae7-434a-9cdd-f0feb02334bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DcPNEkV46FVAAgzBR4vJeX`</summary>
+
+```json
+{
+  "query": "arxiv 2511.22697 \"Mechanistic Finetuning\" VLA few-shot demonstrations",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "9520d8d5-0fe6-45d1-8ec9-49925082994f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Mz4auUU14DWVxGoVFhMuD`</summary>
+
+```json
+{
+  "query": "arxiv 2602.15799 \"Geometry of Alignment Collapse\" fine-tuning safety",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "21801209-e3e4-4f9c-8552-fa16f77490e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E1Pe2xacCWAG7xKvSs3NZU`</summary>
+
+```json
+{
+  "query": "arxiv 2605.06366 \"Layer Collapse\" diffusion language models",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "ee53c61d-5d86-473e-a9dd-c6a072a8c639",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TmfZzkJC4tSSqP8LREG2MG`</summary>
+
+```json
+{
+  "query": "\"counterfactual\" \"robot\" \"instruction\" \"perturbation\" VLA 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f7993d8e-3619-4977-a9cc-e57b1f490c4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KYHAk3iARchk8joQguCm6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4764,
+      "cache_read_input_tokens": 29261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-24T23:32:43.728Z_
+
+<details><summary>↩ Tool result · `toolu_0187vy65xxzeTjt4yPYkbw4R`</summary>
+
+```text
+Web search results for query: "arxiv 2510.25616 "Don't Blind Your VLA" representation collapse visual alignment"
+
+Links: [{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"},{"title":"[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616"},{"title":"[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/abs/2510.25616v1"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"},{"title":"Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model","url":"https://arxiv.org/html/2510.12276v1"}]
+
+Based on the search results, here's what I found about arxiv paper 2510.25616:
+
+**Paper Title:** Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization
+
+**Authors:** Nikita Kachaev and 4 other authors
+
+**Main Topic:** The paper studies Vision-Language-Action (VLA) models and how well their original Vision-Language Model (VLM) representations and knowledge are preserved when adapted to the action modality.
+
+**Key Findings:**
+
+1. **Representation Collapse:** The researchers conducted a t-SNE analysis which exposed a clear representation collapse in VLA models – indicating that standard action fine-tuning compresses diverse internal features into a narrow representation space, reducing representational diversity and generalization capacity.
+
+2. **Domain-Specific Forgetting:** VLAs lose VL knowledge about domains absent from the robotics fine-tuning data.
+
+3. **Proposed Solution:** The researchers introduce a simple yet effective method that mitigates degradation and yields improved generalization to out-of-distribution (OOD) scenarios.
+
+The paper was submitted on October 29, 2025, and code is publicly available on their GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "75211131-6511-4d60-b7c5-620d6101a6ba",
+  "tool_use_result": {
+    "query": "arxiv 2510.25616 \"Don't Blind Your VLA\" representation collapse visual alignment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Egwp4qifQeL6kQWE4rE554",
+        "content": [
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          },
+          {
+            "title": "[2510.25616] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616"
+          },
+          {
+            "title": "[2510.25616v1] Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/abs/2510.25616v1"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          },
+          {
+            "title": "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model",
+            "url": "https://arxiv.org/html/2510.12276v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arxiv paper 2510.25616:\n\n**Paper Title:** Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\n\n**Authors:** Nikita Kachaev and 4 other authors\n\n**Main Topic:** The paper studies Vision-Language-Action (VLA) models and how well their original Vision-Language Model (VLM) representations and knowledge are preserved when adapted to the action modality.\n\n**Key Findings:**\n\n1. **Representation Collapse:** The researchers conducted a t-SNE analysis which exposed a clear representation collapse in VLA models – indicating that standard action fine-tuning compresses diverse internal features into a narrow representation space, reducing representational diversity and generalization capacity.\n\n2. **Domain-Specific Forgetting:** VLAs lose VL knowledge about domains absent from the robotics fine-tuning data.\n\n3. **Proposed Solution:** The researchers introduce a simple yet effective method that mitigates degradation and yields improved generalization to out-of-distribution (OOD) scenarios.\n\nThe paper was submitted on October 29, 2025, and code is publicly available on their GitHub."
+    ],
+    "durationSeconds": 6.169461608000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T23:32:44.477Z_
+
+<details><summary>↩ Tool result · `toolu_019bHikxMesnQ2oneDbWGpdA`</summary>
+
+```text
+Web search results for query: "arxiv 2509.24559 "Emergent World Representations" OpenVLA"
+
+Links: [{"title":"[2509.24559] Emergent World Representations in OpenVLA","url":"https://arxiv.org/abs/2509.24559"},{"title":"Emergent World Representations in OpenVLA","url":"https://arxiv.org/pdf/2509.24559"},{"title":"Emergent World Representations in OpenVLA","url":"https://arxiv.org/html/2509.24559v1"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=2050&show=50"},{"title":"Emergent world representations: Exploring a sequence model trained on a synthetic task","url":"https://arxiv.org/html/2210.13382v5"}]
+
+I found the paper! Here are the key details about arxiv 2509.24559:
+
+**Title:** Emergent World Representations in OpenVLA
+
+**Authors:** Marco Molinari and 3 other authors
+
+**Main Research Question:** It remains unclear whether VLAs implicitly learn world models, a hallmark of model-based RL.
+
+**Methodology:** The authors propose an experimental methodology using embedding arithmetic on state representations to probe whether OpenVLA contains latent knowledge of state transitions, specifically measuring the difference between embeddings of sequential environment states and testing whether this transition vector is recoverable from intermediate model activations.
+
+**Key Findings:** Using linear and non linear probes trained on activations across layers, they find statistically significant predictive ability on state transitions exceeding baselines, indicating that OpenVLA encodes an internal world model. Additionally, they investigate the predictive ability of an earlier checkpoint of OpenVLA, and uncover hints that the world model emerges as training progresses.
+
+**Submission Date:** September 29, 2025
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "95390287-fbf1-4e72-a184-348966ae991b",
+  "tool_use_result": {
+    "query": "arxiv 2509.24559 \"Emergent World Representations\" OpenVLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CBuNMu3f3toMfqb4QgQxba",
+        "content": [
+          {
+            "title": "[2509.24559] Emergent World Representations in OpenVLA",
+            "url": "https://arxiv.org/abs/2509.24559"
+          },
+          {
+            "title": "Emergent World Representations in OpenVLA",
+            "url": "https://arxiv.org/pdf/2509.24559"
+          },
+          {
+            "title": "Emergent World Representations in OpenVLA",
+            "url": "https://arxiv.org/html/2509.24559v1"
+          },
+          {
+            "title": "Machine Learning Sep 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-09?skip=2050&show=50"
+          },
+          {
+            "title": "Emergent world representations: Exploring a sequence model trained on a synthetic task",
+            "url": "https://arxiv.org/html/2210.13382v5"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arxiv 2509.24559:\n\n**Title:** Emergent World Representations in OpenVLA\n\n**Authors:** Marco Molinari and 3 other authors\n\n**Main Research Question:** It remains unclear whether VLAs implicitly learn world models, a hallmark of model-based RL.\n\n**Methodology:** The authors propose an experimental methodology using embedding arithmetic on state representations to probe whether OpenVLA contains latent knowledge of state transitions, specifically measuring the difference between embeddings of sequential environment states and testing whether this transition vector is recoverable from intermediate model activations.\n\n**Key Findings:** Using linear and non linear probes trained on activations across layers, they find statistically significant predictive ability on state transitions exceeding baselines, indicating that OpenVLA encodes an internal world model. Additionally, they investigate the predictive ability of an earlier checkpoint of OpenVLA, and uncover hints that the world model emerges as training progresses.\n\n**Submission Date:** September 29, 2025"
+    ],
+    "durationSeconds": 6.091829525000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-24T23:32:46.306Z_
+
+<details><summary>↩ Tool result · `toolu_01DcPNEkV46FVAAgzBR4vJeX`</summary>
+
+```text
+Web search results for query: "arxiv 2511.22697 "Mechanistic Finetuning" VLA few-shot demonstrations"
+
+Links: [{"title":"[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/abs/2511.22697"},{"title":"Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations","url":"https://arxiv.org/pdf/2511.22697"},{"title":"Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior","url":"https://arxiv.org/pdf/2604.01570"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning","url":"https://arxiv.org/pdf/2602.10503"},{"title":"Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach","url":"https://arxiv.org/pdf/2509.13774"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations
+
+**Authors:** Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, and Roei Herzig
+
+**Key Contributions:**
+
+The paper hypothesizes that it is more effective to finetune sparse model representations specific to a given task, and introduces Robotic Steering, a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.
+
+**Main Problem Addressed:** Unlike VLMs in the vision-language domain, VLAs for robotics require finetuning to contend with varying physical factors like robot embodiment, environment characteristics, and spatial relationships of each task, and existing fine-tuning methods lack specificity, adapting the same set of parameters regardless of a task's visual, linguistic, and physical characteristics.
+
+**Results:** Robotic Steering outperforms LoRA while achieving superior robustness under task variation, reduced computational cost, and enhanced interpretability for adapting VLAs to diverse robotic tasks.
+
+The paper was submitted on November 27, 2025, and you can access it at https://arxiv.org/abs/2511.22697.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "c262b06e-84e5-496f-89ee-63f3fd387e22",
+  "tool_use_result": {
+    "query": "arxiv 2511.22697 \"Mechanistic Finetuning\" VLA few-shot demonstrations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W9RKi6c5gGSSdgmU17k1GA",
+        "content": [
+          {
+            "title": "[2511.22697] Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/abs/2511.22697"
+          },
+          {
+            "title": "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations",
+            "url": "https://arxiv.org/pdf/2511.22697"
+          },
+          {
+            "title": "Boosting Vision-Language-Action Finetuning with Feasible Action Neighborhood Prior",
+            "url": "https://arxiv.org/pdf/2604.01570"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning",
+            "url": "https://arxiv.org/pdf/2602.10503"
+          },
+          {
+            "title": "Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach",
+            "url": "https://arxiv.org/pdf/2509.13774"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Title:** Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations\n\n**Authors:** Chancharik Mitra, Yusen Luo, Raj Saravanan, Dantong Niu, Anirudh Pai, Jesse Thomason, Trevor Darrell, Abrar Anwar, Deva Ramanan, and Roei Herzig\n\n**Key Contributions:**\n\nThe paper hypothesizes that it is more effective to finetune sparse model representations specific to a given task, and introduces Robotic Steering, a finetuning approach grounded in mechanistic interpretability that leverages few-shot demonstrations to identify and selectively finetune task-specific attention heads aligned with the physical, visual, and linguistic requirements of robotic tasks.\n\n**Main Problem Addressed:** Unlike VLMs in the vision-language domain, VLAs for robotics require finetuning to contend with varying physical factors like robot embodiment, environment characteristics, and spatial relationships of each task, and existing fine-tuning methods lack specificity, adapting the same set of parameters regardless of a task's visual, linguistic, and physical characteristics.\n\n**Results:** Robotic Steering outperforms LoRA while achieving superior robustness under task variation, reduced computational cost, and enhanced interpretability for adapting VLAs to diverse robotic tasks.\n\nThe paper was submitted on November 27, 2025, and you can access it at https://arxiv.org/abs/2511.22697."
+    ],
+    "durationSeconds": 7.360764192000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T23:32:46.447Z_
+
+<details><summary>↩ Tool result · `toolu_011Mz4auUU14DWVxGoVFhMuD`</summary>
+
+```text
+Web search results for query: "arxiv 2602.15799 "Geometry of Alignment Collapse" fine-tuning safety"
+
+Links: [{"title":"[2602.15799] The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety","url":"https://arxiv.org/abs/2602.15799"},{"title":"The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety","url":"https://arxiv.org/pdf/2602.15799"},{"title":"When Safety Geometry Collapses: Fine-Tuning Vulnerabilities in Agentic Guard Models","url":"https://arxiv.org/html/2605.02914"},{"title":"[2605.02914] When Safety Geometry Collapses: Fine-Tuning Vulnerabilities in Agentic Guard Models","url":"https://arxiv.org/abs/2605.02914"},{"title":"Curvature-Aware Safety Restoration In LLMs Fine-Tuning","url":"https://arxiv.org/pdf/2511.18039"},{"title":"Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets","url":"https://arxiv.org/pdf/2506.05346"}]
+
+Based on the search results, I found the paper you're looking for. Here's what it's about:
+
+"The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety" addresses how fine-tuning aligned language models on benign tasks unpredictably degrades safety guardrails, even when training data contains no harmful content and developers have no adversarial intent.
+
+The paper's key findings are:
+
+1. **Challenging the orthogonality assumption**: The prevailing explanation that fine-tuning updates should be orthogonal to safety-critical directions in high-dimensional parameter space offers false reassurance, as this orthogonality is structurally unstable and collapses under the dynamics of gradient descent.
+
+2. **Geometric analysis of alignment**: The authors show that alignment concentrates in low-dimensional subspaces with sharp curvature, creating a brittle structure that first-order methods cannot detect or defend.
+
+3. **The curvature problem**: While initial fine-tuning updates may avoid these subspaces, the curvature of the fine-tuning loss generates second-order acceleration that systematically steers trajectories into alignment-sensitive regions.
+
+The paper was submitted on February 17, 2026 and provides important insights into why safety mechanisms in large language models can collapse during fine-tuning despite benign intent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "a3a3bee9-7115-4c78-8c29-a37a4a842293",
+  "tool_use_result": {
+    "query": "arxiv 2602.15799 \"Geometry of Alignment Collapse\" fine-tuning safety",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XWYGPbh7wQcmRbZfoszuTW",
+        "content": [
+          {
+            "title": "[2602.15799] The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety",
+            "url": "https://arxiv.org/abs/2602.15799"
+          },
+          {
+            "title": "The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety",
+            "url": "https://arxiv.org/pdf/2602.15799"
+          },
+          {
+            "title": "When Safety Geometry Collapses: Fine-Tuning Vulnerabilities in Agentic Guard Models",
+            "url": "https://arxiv.org/html/2605.02914"
+          },
+          {
+            "title": "[2605.02914] When Safety Geometry Collapses: Fine-Tuning Vulnerabilities in Agentic Guard Models",
+            "url": "https://arxiv.org/abs/2605.02914"
+          },
+          {
+            "title": "Curvature-Aware Safety Restoration In LLMs Fine-Tuning",
+            "url": "https://arxiv.org/pdf/2511.18039"
+          },
+          {
+            "title": "Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets",
+            "url": "https://arxiv.org/pdf/2506.05346"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what it's about:\n\n\"The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety\" addresses how fine-tuning aligned language models on benign tasks unpredictably degrades safety guardrails, even when training data contains no harmful content and developers have no adversarial intent.\n\nThe paper's key findings are:\n\n1. **Challenging the orthogonality assumption**: The prevailing explanation that fine-tuning updates should be orthogonal to safety-critical directions in high-dimensional parameter space offers false reassurance, as this orthogonality is structurally unstable and collapses under the dynamics of gradient descent.\n\n2. **Geometric analysis of alignment**: The authors show that alignment concentrates in low-dimensional subspaces with sharp curvature, creating a brittle structure that first-order methods cannot detect or defend.\n\n3. **The curvature problem**: While initial fine-tuning updates may avoid these subspaces, the curvature of the fine-tuning loss generates second-order acceleration that systematically steers trajectories into alignment-sensitive regions.\n\nThe paper was submitted on February 17, 2026 and provides important insights into why safety mechanisms in large language models can collapse during fine-tuning despite benign intent."
+    ],
+    "durationSeconds": 6.493265082000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-24T23:32:48.942Z_
+
+<details><summary>↩ Tool result · `toolu_01E1Pe2xacCWAG7xKvSs3NZU`</summary>
+
+```text
+Web search results for query: "arxiv 2605.06366 "Layer Collapse" diffusion language models"
+
+Links: [{"title":"[2605.06366] Layer Collapse in Diffusion Language Models","url":"https://arxiv.org/abs/2605.06366"},{"title":"Layer Collapse in Diffusion Language Models","url":"https://arxiv.org/html/2605.06366"},{"title":"Breaking AR's Sampling Bottleneck: Provable Acceleration via Diffusion Language Models","url":"https://arxiv.org/pdf/2505.21400"},{"title":"LaCo: Large Language Model Pruning via Layer Collapse","url":"https://arxiv.org/pdf/2402.11187"},{"title":"Machine-generated text detection prevents language model collapse","url":"https://arxiv.org/pdf/2502.15654"},{"title":"Minimal neuron ablation triggers catastrophic collapse in the language core of Large Vision-Language Models","url":"https://arxiv.org/pdf/2512.00918"}]
+
+I found the paper! Here's what the search revealed:
+
+The paper studies diffusion language models (DLMs) as alternatives to autoregressive language models, examining differences in their activation dynamics. The authors characterized dynamics in LLaDA-8B and identified a layer-collapse property where a few early layers exhibit highly similar, collapsed activation patterns dominated by a single large super-outlier persisting over a long token range.
+
+Despite its apparent redundancy, this outlier is critical: pruning it causes outputs to degrade into repetitive random token loops. Paradoxically, layers in LLaDA contain more redundant representations overall, with redundancy most pronounced in earlier layers -- the reverse of autoregressive models, where deeper layers grow redundant due to undertraining. The analysis indicates that layer collapse in DLMs is driven by overtraining rather than undertraining, with a dominant outlier becoming an indispensable information carrier while remaining representations collapse.
+
+The paper was authored by Alexander Conzelmann, Albert Catalan-Tatjer, and Shiwei Liu from the Tübingen AI Center and Max Planck Institute for Intelligent Systems, and was submitted on May 7, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "7e11dc1a-0ef0-487e-8c2a-3c9a58ac8317",
+  "tool_use_result": {
+    "query": "arxiv 2605.06366 \"Layer Collapse\" diffusion language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014c97ZnpAoycSyicSwJxsgJ",
+        "content": [
+          {
+            "title": "[2605.06366] Layer Collapse in Diffusion Language Models",
+            "url": "https://arxiv.org/abs/2605.06366"
+          },
+          {
+            "title": "Layer Collapse in Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.06366"
+          },
+          {
+            "title": "Breaking AR's Sampling Bottleneck: Provable Acceleration via Diffusion Language Models",
+            "url": "https://arxiv.org/pdf/2505.21400"
+          },
+          {
+            "title": "LaCo: Large Language Model Pruning via Layer Collapse",
+            "url": "https://arxiv.org/pdf/2402.11187"
+          },
+          {
+            "title": "Machine-generated text detection prevents language model collapse",
+            "url": "https://arxiv.org/pdf/2502.15654"
+          },
+          {
+            "title": "Minimal neuron ablation triggers catastrophic collapse in the language core of Large Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2512.00918"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nThe paper studies diffusion language models (DLMs) as alternatives to autoregressive language models, examining differences in their activation dynamics. The authors characterized dynamics in LLaDA-8B and identified a layer-collapse property where a few early layers exhibit highly similar, collapsed activation patterns dominated by a single large super-outlier persisting over a long token range.\n\nDespite its apparent redundancy, this outlier is critical: pruning it causes outputs to degrade into repetitive random token loops. Paradoxically, layers in LLaDA contain more redundant representations overall, with redundancy most pronounced in earlier layers -- the reverse of autoregressive models, where deeper layers grow redundant due to undertraining. The analysis indicates that layer collapse in DLMs is driven by overtraining rather than undertraining, with a dominant outlier becoming an indispensable information carrier while remaining representations collapse.\n\nThe paper was authored by Alexander Conzelmann, Albert Catalan-Tatjer, and Shiwei Liu from the Tübingen AI Center and Max Planck Institute for Intelligent Systems, and was submitted on May 7, 2026."
+    ],
+    "durationSeconds": 8.030633388000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T23:32:49.994Z_
+
+<details><summary>↩ Tool result · `toolu_01TmfZzkJC4tSSqP8LREG2MG`</summary>
+
+```text
+Web search results for query: ""counterfactual" "robot" "instruction" "perturbation" VLA 2025 2026 arxiv"
+
+Links: [{"title":"[2508.13446] CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models","url":"https://arxiv.org/abs/2508.13446"},{"title":"CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2508.13446"},{"title":"Robotics","url":"https://arxiv.org/list/cs.RO/new"},{"title":"Towards Long-horizon Embodied Agents with Tool-Aligned Vision-Language-Action Models","url":"https://arxiv.org/html/2605.13119v1"},{"title":"Published as a conference paper at ICLR 2026 ON ROBUSTNESS","url":"https://arxiv.org/pdf/2510.00037v4"},{"title":"Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.","url":"https://arxiv.org/html/2605.17268"},{"title":"SABER: A Stealthy Agentic Black-Box Attack Framework for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.24935"}]
+
+I found several relevant papers from arXiv matching your search query about counterfactual learning, robots, instructions, perturbations, and VLA (Vision-Language-Action) models from 2025-2026:
+
+1. **CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models** (arXiv:2508.13446, August 2025)
+   - This paper presents a method to augment robot datasets by leveraging vision language models to create counterfactual labels, which improves the language-following capabilities of VLAs by increasing the diversity and granularity of language grounding for robot datasets.
+   - Counterfactual relabeling, without any additional data collection, significantly improves instruction-following in VLA policies, increasing success rate by 27% on navigation tasks.
+
+2. **DEFLECT: Delay-Robust Execution via Flow-matching Likelihood-Estimated Counterfactual Tuning for VLA Policies** (2026 IEEE International Conference)
+   - Mentioned in the search results as addressing counterfactual tuning for VLA policies to handle asynchronous inference in robot execution.
+
+3. **When vision overrides language: evaluating and mitigating counterfactual failures in VLAs** (arXiv:2602.17659, 2026)
+   - This paper evaluates and mitigates counterfactual failures in VLAs.
+
+4. **Is VLA Reasoning Faithful?** (DriveX Workshop, CVPR 2026)
+   - This work identifies silent failures where models produce different trajectories but provide identical reasoning, violating counterfactual faithfulness.
+
+5. **SABER: A Stealthy Agentic Black-Box Attack Framework for Vision-Language-Action Models**
+   - This paper shows that small instruction perturbations can induce VLA malfunctions, and applies stealthy edits to manipulation instructions through various perturbation attacks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "1e7a68e8-fa74-4194-8779-9c931416d2e6",
+  "tool_use_result": {
+    "query": "\"counterfactual\" \"robot\" \"instruction\" \"perturbation\" VLA 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R48rGR1hKRhjdprA1695Ju",
+        "content": [
+          {
+            "title": "[2508.13446] CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2508.13446"
+          },
+          {
+            "title": "CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2508.13446"
+          },
+          {
+            "title": "Robotics",
+            "url": "https://arxiv.org/list/cs.RO/new"
+          },
+          {
+            "title": "Towards Long-horizon Embodied Agents with Tool-Aligned Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.13119v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 ON ROBUSTNESS",
+            "url": "https://arxiv.org/pdf/2510.00037v4"
+          },
+          {
+            "title": "Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.",
+            "url": "https://arxiv.org/html/2605.17268"
+          },
+          {
+            "title": "SABER: A Stealthy Agentic Black-Box Attack Framework for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.24935"
+          }
+        ]
+      },
+      "I found several relevant papers from arXiv matching your search query about counterfactual learning, robots, instructions, perturbations, and VLA (Vision-Language-Action) models from 2025-2026:\n\n1. **CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models** (arXiv:2508.13446, August 2025)\n   - This paper presents a method to augment robot datasets by leveraging vision language models to create counterfactual labels, which improves the language-following capabilities of VLAs by increasing the diversity and granularity of language grounding for robot datasets.\n   - Counterfactual relabeling, without any additional data collection, significantly improves instruction-following in VLA policies, increasing success rate by 27% on navigation tasks.\n\n2. **DEFLECT: Delay-Robust Execution via Flow-matching Likelihood-Estimated Counterfactual Tuning for VLA Policies** (2026 IEEE International Conference)\n   - Mentioned in the search results as addressing counterfactual tuning for VLA policies to handle asynchronous inference in robot execution.\n\n3. **When vision overrides language: evaluating and mitigating counterfactual failures in VLAs** (arXiv:2602.17659, 2026)\n   - This paper evaluates and mitigates counterfactual failures in VLAs.\n\n4. **Is VLA Reasoning Faithful?** (DriveX Workshop, CVPR 2026)\n   - This work identifies silent failures where models produce different trajectories but provide identical reasoning, violating counterfactual faithfulness.\n\n5. **SABER: A Stealthy Agentic Black-Box Attack Framework for Vision-Language-Action Models**\n   - This paper shows that small instruction perturbations can induce VLA malfunctions, and applies stealthy edits to manipulation instructions through various perturbation attacks."
+    ],
+    "durationSeconds": 8.007120975999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found several more interesting papers. Let me do a few more searches to fill gaps:
+- The "Actions as Language" paper (2509.22195) about fine-tuning VLAs without catastrophic forgetting
+- The CAST paper (2508.13446) about counterfactual labels for VLA
+- The "Observing and Controlling Features" paper (2603.05487)
+- "Spatial Forcing" paper (2510.12276)
+- Check for any VLA representation analysis papers I might have missed
+
+Also, let me check my findings against what's already cited. Let me read the related_work.tex file to verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f47daf77-0b24-4dac-83c5-6679a79b4e06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T53nKrifCpuUeY86vgtxXm`</summary>
+
+```json
+{
+  "query": "arxiv 2509.22195 \"Actions as Language\" VLA catastrophic forgetting",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "7aa8d360-4079-404f-8d3f-00a59f6326b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LT6LFu1gvhPJhambgJ3TvM`</summary>
+
+```json
+{
+  "query": "arxiv 2603.05487 \"Observing and Controlling Features\" VLA",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "84ee7303-6485-4244-b36d-ccd5cbff0a6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VhCf9eknNegT4xycTj6CD8`</summary>
+
+```json
+{
+  "query": "arxiv 2508.13446 CAST counterfactual labels VLA instruction following",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "6143eb08-7472-4475-9c35-d3662ffea692",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bd2PcGkzSDeaEbuLgb7aBd`</summary>
+
+```json
+{
+  "query": "\"vision language action\" \"representation\" \"collapse\" OR \"forgetting\" fine-tuning 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "11fa5523-c717-4e13-ac83-494f83783847",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013WfvdLUCziXiSNUQY1Fn1Q`</summary>
+
+```json
+{
+  "pattern": "**/related_work.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "24800ba6-6e3c-4ea2-94ed-78021cc6993e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011pED266xFcTPgv1qLFKfpd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 34025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T23:33:01.356Z_
+
+<details><summary>↩ Tool result · `toolu_013WfvdLUCziXiSNUQY1Fn1Q`</summary>
+
+```text
+artifacts/_project/paper/related_work.tex
+docs/paper-a-plus-backup/related_work.tex
+docs/paper/related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "2606239f-7358-43f0-bdc1-b2108b15777c",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/related_work.tex",
+      "docs/paper-a-plus-backup/related_work.tex",
+      "docs/paper/related_work.tex"
+    ],
+    "durationMs": 41,
+    "numFiles": 3,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T23:33:04.929Z_
+
+<details><summary>↩ Tool result · `toolu_01T53nKrifCpuUeY86vgtxXm`</summary>
+
+```text
+Web search results for query: "arxiv 2509.22195 "Actions as Language" VLA catastrophic forgetting"
+
+Links: [{"title":"[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/abs/2509.22195"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy","url":"https://arxiv.org/pdf/2512.11218"},{"title":"BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197v1"},{"title":"LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries","url":"https://arxiv.org/html/2601.15197v5"},{"title":"Information-Theoretic Constraints for Continual Vision-Language-Action Alignment","url":"https://arxiv.org/pdf/2603.13335"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/pdf/2603.03818"},{"title":"NoTVLA: Narrowing of Dense Action Trajectories for Generalizable Robot Manipulation","url":"https://arxiv.org/pdf/2510.03895"}]
+
+Based on the search results, here's what I found about arxiv 2509.22195 "Actions as Language" and VLA catastrophic forgetting:
+
+## Paper Overview
+
+The paper is titled "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting" by Asher J. Hancock and co-authors, submitted on September 26, 2025.
+
+## The Problem
+
+Fine-tuning vision-language models (VLMs) on robot teleoperation data to create vision-language-action (VLA) models suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.
+
+## Root Cause and Solution
+
+The paper argues that catastrophic forgetting is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.
+
+The authors introduce VLM2VLA, a VLA training paradigm that resolves this mismatch at the data level by representing low-level actions with natural language, and train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting.
+
+## Results
+
+Through extensive Visual Question Answering (VQA) studies and over 800 real-world robotics experiments, VLM2VLA preserves the VLM's core capabilities, enabling zero-shot generalization to novel tasks that require open-world semantic reasoning and multilingual instruction following.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "231874e9-7943-4be8-a048-4e53392bdff0",
+  "tool_use_result": {
+    "query": "arxiv 2509.22195 \"Actions as Language\" VLA catastrophic forgetting",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nxsmfogi5voZdrgT3PuinZ",
+        "content": [
+          {
+            "title": "[2509.22195] Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/abs/2509.22195"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy",
+            "url": "https://arxiv.org/pdf/2512.11218"
+          },
+          {
+            "title": "BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/html/2601.15197v1"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries",
+            "url": "https://arxiv.org/html/2601.15197v5"
+          },
+          {
+            "title": "Information-Theoretic Constraints for Continual Vision-Language-Action Alignment",
+            "url": "https://arxiv.org/pdf/2603.13335"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/pdf/2603.03818"
+          },
+          {
+            "title": "NoTVLA: Narrowing of Dense Action Trajectories for Generalizable Robot Manipulation",
+            "url": "https://arxiv.org/pdf/2510.03895"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arxiv 2509.22195 \"Actions as Language\" and VLA catastrophic forgetting:\n\n## Paper Overview\n\nThe paper is titled \"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\" by Asher J. Hancock and co-authors, submitted on September 26, 2025.\n\n## The Problem\n\nFine-tuning vision-language models (VLMs) on robot teleoperation data to create vision-language-action (VLA) models suffers from a fundamental tradeoff: learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding, hindering generalization to novel scenarios, instruction following, and semantic understanding.\n\n## Root Cause and Solution\n\nThe paper argues that catastrophic forgetting is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.\n\nThe authors introduce VLM2VLA, a VLA training paradigm that resolves this mismatch at the data level by representing low-level actions with natural language, and train VLAs solely with Low-Rank Adaptation (LoRA), thereby minimally modifying the VLM backbone and averting catastrophic forgetting.\n\n## Results\n\nThrough extensive Visual Question Answering (VQA) studies and over 800 real-world robotics experiments, VLM2VLA preserves the VLM's core capabilities, enabling zero-shot generalization to novel tasks that require open-world semantic reasoning and multilingual instruction following."
+    ],
+    "durationSeconds": 8.051124478000013
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-24T23:33:08.262Z_
+
+<details><summary>↩ Tool result · `toolu_01Bd2PcGkzSDeaEbuLgb7aBd`</summary>
+
+```text
+Web search results for query: ""vision language action" "representation" "collapse" OR "forgetting" fine-tuning 2026 arxiv"
+
+Links: [{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"Mechanistic Analysis of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning","url":"https://arxiv.org/html/2601.18699"},{"title":"[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/abs/2603.03818"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"},{"title":"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/pdf/2510.25616"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/pdf/2603.03818"},{"title":"Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy","url":"https://arxiv.org/pdf/2512.11218"},{"title":"LangForce: Bayesian Decomposition of Vision Language ...","url":"https://arxiv.org/pdf/2601.15197"}]
+
+I found several relevant arxiv papers from 2025-2026 on vision-language-action (VLA) models dealing with representation collapse and forgetting during fine-tuning:
+
+**Key Papers:**
+
+1. **"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations"** (September 2025): Directly fine-tuning pretrained VLMs for this objective often results in representation collapse and limited generalization. The paper proposes using siamese encoders and co-training with vision-language datasets to prevent catastrophic forgetting and enhance generalization.
+
+2. **"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting"** (September 2025): Fine-tuning vision-language models on robot teleoperation data creates a fundamental tradeoff where learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding. This catastrophic forgetting is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.
+
+3. **"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization"** (October 2025): Standard action fine-tuning compresses diverse internal features into a narrow representation space, reducing representational diversity and generalization capacity. VLAs experience systematic, domain-specific forgetting after action fine-tuning.
+
+4. **"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning"** (March 2026): Large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.
+
+5. **"Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy"** (December 2025): The pursuit of out-of-distribution generalization in Vision-Language-Action models is often hindered by catastrophic forgetting of the Vision-Language Model backbone during fine-tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "a991bfef-73be-4bde-9e8a-d5bfaee22c33",
+  "tool_use_result": {
+    "query": "\"vision language action\" \"representation\" \"collapse\" OR \"forgetting\" fine-tuning 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M6p4x9a6wJhewWxCkkQJ4u",
+        "content": [
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          },
+          {
+            "title": "Mechanistic Analysis of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning",
+            "url": "https://arxiv.org/html/2601.18699"
+          },
+          {
+            "title": "[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/abs/2603.03818"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          },
+          {
+            "title": "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/pdf/2510.25616"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/pdf/2603.03818"
+          },
+          {
+            "title": "Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy",
+            "url": "https://arxiv.org/pdf/2512.11218"
+          },
+          {
+            "title": "LangForce: Bayesian Decomposition of Vision Language ...",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers from 2025-2026 on vision-language-action (VLA) models dealing with representation collapse and forgetting during fine-tuning:\n\n**Key Papers:**\n\n1. **\"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations\"** (September 2025): Directly fine-tuning pretrained VLMs for this objective often results in representation collapse and limited generalization. The paper proposes using siamese encoders and co-training with vision-language datasets to prevent catastrophic forgetting and enhance generalization.\n\n2. **\"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting\"** (September 2025): Fine-tuning vision-language models on robot teleoperation data creates a fundamental tradeoff where learning to produce actions often diminishes the VLM's foundational reasoning and multimodal understanding. This catastrophic forgetting is due to a distribution mismatch between the VLM's internet-scale pretraining corpus and the robotics fine-tuning data.\n\n3. **\"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\"** (October 2025): Standard action fine-tuning compresses diverse internal features into a narrow representation space, reducing representational diversity and generalization capacity. VLAs experience systematic, domain-specific forgetting after action fine-tuning.\n\n4. **\"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\"** (March 2026): Large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.\n\n5. **\"Seeing to Act, Prompting to Specify: A Bayesian Factorization of Vision Language Action Policy\"** (December 2025): The pursuit of out-of-distribution generalization in Vision-Language-Action models is often hindered by catastrophic forgetting of the Vision-Language Model backbone during fine-tuning."
+    ],
+    "durationSeconds": 7.789973123000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T23:33:08.612Z_
+
+<details><summary>↩ Tool result · `toolu_01LT6LFu1gvhPJhambgJ3TvM`</summary>
+
+```text
+Web search results for query: "arxiv 2603.05487 "Observing and Controlling Features" VLA"
+
+Links: [{"title":"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.05487"},{"title":"Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/html/2603.05487v1"},{"title":"Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models","url":"https://arxiv.org/html/2603.19183v1"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v3"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"Unveiling the Potential of Vision-Language-Action Models with Open-Ended Multimodal Instructions","url":"https://arxiv.org/html/2505.11214v1"},{"title":"A Survey on Vision-Language-Action Models for Autonomous Driving","url":"https://arxiv.org/html/2506.24044v1"}]
+
+I found the paper! Here are the search results for arxiv 2603.05487:
+
+Vision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. The paper titled "Observing and Controlling Features in Vision-Language-Action Models" was submitted on March 5, 2026, and is authored by Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, and Marco Pavone.
+
+The work introduces and analyzes two main concepts: feature-observability and feature-controllability. More specifically, the authors first study features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and then use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region.
+
+VLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads, which is why insights from mechanistic interpretability in LLMs do not trivially transfer to VLA counterparts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "8a62923a-9c76-4239-8348-773afc50e3c1",
+  "tool_use_result": {
+    "query": "arxiv 2603.05487 \"Observing and Controlling Features\" VLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ExM4BKJFWo9hPXDEd2g6R8",
+        "content": [
+          {
+            "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.05487"
+          },
+          {
+            "title": "Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.05487v1"
+          },
+          {
+            "title": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models",
+            "url": "https://arxiv.org/html/2603.19183v1"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v3"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "Unveiling the Potential of Vision-Language-Action Models with Open-Ended Multimodal Instructions",
+            "url": "https://arxiv.org/html/2505.11214v1"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models for Autonomous Driving",
+            "url": "https://arxiv.org/html/2506.24044v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for arxiv 2603.05487:\n\nVision-Language-Action Models (VLAs) have shown remarkable progress towards embodied intelligence. The paper titled \"Observing and Controlling Features in Vision-Language-Action Models\" was submitted on March 5, 2026, and is authored by Hugo Buurmeijer, Carmen Amo Alonso, Aiden Swann, and Marco Pavone.\n\nThe work introduces and analyzes two main concepts: feature-observability and feature-controllability. More specifically, the authors first study features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and then use a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output towards a desired region.\n\nVLAs exhibit higher complexity due to their multi-modal inputs/outputs and often hybrid nature of transformer and diffusion heads, which is why insights from mechanistic interpretability in LLMs do not trivially transfer to VLA counterparts."
+    ],
+    "durationSeconds": 11.24257241699999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-24T23:33:10.222Z_
+
+<details><summary>↩ Tool result · `toolu_01VhCf9eknNegT4xycTj6CD8`</summary>
+
+```text
+Web search results for query: "arxiv 2508.13446 CAST counterfactual labels VLA instruction following"
+
+Links: [{"title":"[2508.13446] CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models","url":"https://arxiv.org/abs/2508.13446"},{"title":"CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models","url":"https://arxiv.org/pdf/2508.13446"},{"title":"CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models","url":"https://arxiv.org/html/2508.13446v1"},{"title":"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs","url":"https://arxiv.org/html/2602.17659v1"},{"title":"[2602.17659v1] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs","url":"https://arxiv.org/abs/2602.17659v1"}]
+
+I found the paper! Here's what the search results show:
+
+CAST presents a novel method to augment existing robot datasets by leveraging vision language models to create counterfactual labels, which improves the language-following capabilities of VLAs by increasing the diversity and granularity of language grounding for robot datasets by generating counterfactual language and actions.
+
+The paper evaluates the resulting model's ability to follow language instructions, ranging from simple object-centric commands to complex referential tasks, by conducting visual language navigation experiments in 3 different indoor and outdoor environments.
+
+The experiments demonstrate that counterfactual relabeling, without any additional data collection, significantly improves instruction-following in VLA policies, making them competitive with state-of-the-art methods and increasing success rate by 27% on navigation tasks.
+
+The paper was authored by Catherine Glossop, William Chen, Arjun Bhorkar, Dhruv Shah, and Sergey Levine from UC Berkeley and Princeton University, and was submitted to arXiv on August 19, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "7b60c6df-c843-4466-8609-026e13a2380c",
+  "tool_use_result": {
+    "query": "arxiv 2508.13446 CAST counterfactual labels VLA instruction following",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017C9RUXGkzHxs7XZ6NrF5y2",
+        "content": [
+          {
+            "title": "[2508.13446] CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2508.13446"
+          },
+          {
+            "title": "CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2508.13446"
+          },
+          {
+            "title": "CAST: Counterfactual Labels Improve Instruction Following in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2508.13446v1"
+          },
+          {
+            "title": "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+            "url": "https://arxiv.org/html/2602.17659v1"
+          },
+          {
+            "title": "[2602.17659v1] When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+            "url": "https://arxiv.org/abs/2602.17659v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search results show:\n\nCAST presents a novel method to augment existing robot datasets by leveraging vision language models to create counterfactual labels, which improves the language-following capabilities of VLAs by increasing the diversity and granularity of language grounding for robot datasets by generating counterfactual language and actions.\n\nThe paper evaluates the resulting model's ability to follow language instructions, ranging from simple object-centric commands to complex referential tasks, by conducting visual language navigation experiments in 3 different indoor and outdoor environments.\n\nThe experiments demonstrate that counterfactual relabeling, without any additional data collection, significantly improves instruction-following in VLA policies, making them competitive with state-of-the-art methods and increasing success rate by 27% on navigation tasks.\n\nThe paper was authored by Catherine Glossop, William Chen, Arjun Bhorkar, Dhruv Shah, and Sergey Levine from UC Berkeley and Princeton University, and was submitted to arXiv on August 19, 2025."
+    ],
+    "durationSeconds": 11.939293779999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current related_work.tex and check which papers are already cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "f020f6fc-3721-4191-a633-b8c5f6ad467e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaJjoAWmMsL859WpArprNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1007,
+      "cache_creation_input_tokens": 2714,
+      "cache_read_input_tokens": 38629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CuWGqT1RuVdeU3uqWZ9Vgz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "b1754370-59f8-4237-8eb3-357899bfe649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaJjoAWmMsL859WpArprNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1007,
+      "cache_creation_input_tokens": 2714,
+      "cache_read_input_tokens": 38629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-24T23:33:14.025Z_
+
+<details><summary>↩ Tool result · `toolu_01CuWGqT1RuVdeU3uqWZ9Vgz`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related_work}
+2	
+3	\paragraph{Vision-language-action models.}
+4	VLAs fine-tune large language models on robot demonstrations to produce actions from visual and language input~\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,hung2025nora,xiao2025ava}.
+5	NLP instruction tuning is well-characterized behaviorally~\cite{wei2022finetuned,ouyang2022training}, but the representational effects of VLA fine-tuning remain unexamined.
+6	Fine-tuning operates in a low intrinsic dimension~\cite{aghajanyan2021intrinsic} and can distort pretrained features~\cite{kumar2022finetuning}; recent VLA-specific work proposes representation-preserving strategies~\cite{grover2025preserving}. Existing analyses target single architectures and cannot separate training dynamics from backbone artifacts.
+7	
+8	\paragraph{Mechanistic and behavioral analysis.}
+9	Mechanistic interpretability has revealed residual stream communication~\cite{elhage2021}, induction heads~\cite{olsson2022}, and task circuits~\cite{wang2023_ioi,conmy2023}; causal tracing localizes factual recall~\cite{meng2022_rome}; attention probing shows heads encode syntactic relations~\cite{clark2019} and most can be pruned~\cite{michel2019sixteen}.
+10	In VLMs, recent work characterizes visual token redundancy~\cite{fan2026visual} and progressive visual-textual alignment~\cite{neo2025interpreting,long2026understanding}.
+11	Behavioral evaluations of VLAs reveal visual dominance~\cite{grant2026,hou2026,fei2025}; mechanistic studies identify sparse semantic directions~\cite{haon2025}, interpretable features~\cite{swann2026,buurmeijer2026}, symbolic representations~\cite{lu2025,molinari2025}, and comprehension-action trade-offs~\cite{fang2025}.
+12	Concurrent continual-learning studies find that pretrained VLAs resist forgetting under sequential fine-tuning~\cite{liu2026forgetting}, consistent with our observation that VLA-to-VLA transitions preserve exit-layer structure.
+13	All prior representational analyses target a single architecture; our $3 \times 4$ cross-architecture matrix tests whether mechanisms replicate across backbone families.
+14	
+15	\paragraph{Concurrent work.}
+16	Two concurrent studies address complementary aspects of VLA understanding.
+17	Fang et al.~\cite{fang2026when} construct a behavioral benchmark of counterfactual instruction failures on LIBERO and propose inference-time mitigation; their evaluation measures \emph{whether} the model follows the correct instruction, while our counterfactual perturbation measures \emph{how much} hidden-state geometry changes under instruction replacement (\S\ref{sec:cf_sensitivity}), providing a representational sensitivity metric rather than a behavioral success metric.
+18	Our analysis thus provides the internal representational basis that may underlie the vision-override patterns they observe.
+19	Buurmeijer et al.~\cite{buurmeijer2026} probe low-level motor features (position, gripper state) in OpenVLA via linear probes and explicitly identify abstract semantic features as future work; instruction-level routing is the focus of our analysis.
+20	We additionally distinguish training-associated from inherited effects through trained/reference contrasts across three architectures, a decomposition absent from prior single-architecture studies.
+21	
+22	\paragraph{Probing and similarity methodology.}
+23	RSA~\cite{kriegeskorte2008}, CKA~\cite{kornblith2019}, and linear probes~\cite{alain2017,belinkov2022} provide complementary geometric and functional evaluation.
+24	We adopt RSA and MLP probes (CKA in appendix); the two metrics can diverge on the same data (Appendix~\ref{sec:cka_appendix}), and Cohen's $d$ vs.\ cosine distance are not comparable across trained/reference conditions (\S\ref{sec:cf_sensitivity}).
+25	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "39bbf173-9125-42e8-84a6-c2f7a54f3e23",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{Vision-language-action models.}\nVLAs fine-tune large language models on robot demonstrations to produce actions from visual and language input~\\cite{brohan2023_rt2,kim2024_openvla,karamcheti2024,black2024_pi0,zheng2024tracevla,hung2025nora,xiao2025ava}.\nNLP instruction tuning is well-characterized behaviorally~\\cite{wei2022finetuned,ouyang2022training}, but the representational effects of VLA fine-tuning remain unexamined.\nFine-tuning operates in a low intrinsic dimension~\\cite{aghajanyan2021intrinsic} and can distort pretrained features~\\cite{kumar2022finetuning}; recent VLA-specific work proposes representation-preserving strategies~\\cite{grover2025preserving}. Existing analyses target single architectures and cannot separate training dynamics from backbone artifacts.\n\n\\paragraph{Mechanistic and behavioral analysis.}\nMechanistic interpretability has revealed residual stream communication~\\cite{elhage2021}, induction heads~\\cite{olsson2022}, and task circuits~\\cite{wang2023_ioi,conmy2023}; causal tracing localizes factual recall~\\cite{meng2022_rome}; attention probing shows heads encode syntactic relations~\\cite{clark2019} and most can be pruned~\\cite{michel2019sixteen}.\nIn VLMs, recent work characterizes visual token redundancy~\\cite{fan2026visual} and progressive visual-textual alignment~\\cite{neo2025interpreting,long2026understanding}.\nBehavioral evaluations of VLAs reveal visual dominance~\\cite{grant2026,hou2026,fei2025}; mechanistic studies identify sparse semantic directions~\\cite{haon2025}, interpretable features~\\cite{swann2026,buurmeijer2026}, symbolic representations~\\cite{lu2025,molinari2025}, and comprehension-action trade-offs~\\cite{fang2025}.\nConcurrent continual-learning studies find that pretrained VLAs resist forgetting under sequential fine-tuning~\\cite{liu2026forgetting}, consistent with our observation that VLA-to-VLA transitions preserve exit-layer structure.\nAll prior representational analyses target a single architecture; our $3 \\times 4$ cross-architecture matrix tests whether mechanisms replicate across backbone families.\n\n\\paragraph{Concurrent work.}\nTwo concurrent studies address complementary aspects of VLA understanding.\nFang et al.~\\cite{fang2026when} construct a behavioral benchmark of counterfactual instruction failures on LIBERO and propose inference-time mitigation; their evaluation measures \\emph{whether} the model follows the correct instruction, while our counterfactual perturbation measures \\emph{how much} hidden-state geometry changes under instruction replacement (\\S\\ref{sec:cf_sensitivity}), providing a representational sensitivity metric rather than a behavioral success metric.\nOur analysis thus provides the internal representational basis that may underlie the vision-override patterns they observe.\nBuurmeijer et al.~\\cite{buurmeijer2026} probe low-level motor features (position, gripper state) in OpenVLA via linear probes and explicitly identify abstract semantic features as future work; instruction-level routing is the focus of our analysis.\nWe additionally distinguish training-associated from inherited effects through trained/reference contrasts across three architectures, a decomposition absent from prior single-architecture studies.\n\n\\paragraph{Probing and similarity methodology.}\nRSA~\\cite{kriegeskorte2008}, CKA~\\cite{kornblith2019}, and linear probes~\\cite{alain2017,belinkov2022} provide complementary geometric and functional evaluation.\nWe adopt RSA and MLP probes (CKA in appendix); the two metrics can diverge on the same data (Appendix~\\ref{sec:cka_appendix}), and Cohen's $d$ vs.\\ cosine distance are not comparable across trained/reference conditions (\\S\\ref{sec:cf_sensitivity}).\n",
+      "numLines": 25,
+      "startLine": 1,
+      "totalLines": 25
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the .bib file to see the full list of cited papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "85210992-5938-4a9e-9cc5-99f87ca22744",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GPcJyJ3JvwvXcygjhdb1wc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2175,
+      "cache_read_input_tokens": 41343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2175
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NMQmraA9rXcLcBRPyw7CqX`</summary>
+
+```json
+{
+  "pattern": "**/*.bib",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "65fa5bc6-1463-4c19-a68a-6d5e802b957d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GPcJyJ3JvwvXcygjhdb1wc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2175,
+      "cache_read_input_tokens": 41343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2175
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-24T23:33:18.340Z_
+
+<details><summary>↩ Tool result · `toolu_01NMQmraA9rXcLcBRPyw7CqX`</summary>
+
+```text
+docs/paper/references.bib
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "24b8c17d-a5c2-4045-8dba-b29732784489",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/references.bib"
+    ],
+    "durationMs": 10,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Wp71i49qGbVYdzj9vjLmEx`</summary>
+
+```json
+{
+  "command": "grep -E '^\\s*@' /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/references.bib | head -80",
+  "description": "List all bib entry keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "cb0bf743-8756-4d8f-88a0-96bcce226350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGafLrK4URgzPmhhQM7jus",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 43518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 156
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-24T23:33:21.409Z_
+
+<details><summary>↩ Tool result · `toolu_01Wp71i49qGbVYdzj9vjLmEx`</summary>
+
+```text
+@article{liu2026forgetting,
+@article{grover2025preserving,
+@article{hung2025nora,
+@article{zheng2024tracevla,
+@article{abdin2024phi3,
+@inproceedings{kim2024_openvla,
+@inproceedings{karamcheti2024,
+@article{brohan2023_rt2,
+@inproceedings{liu2023_libero,
+@article{kriegeskorte2008,
+@inproceedings{kornblith2019,
+@inproceedings{alain2017,
+@inproceedings{zhai2023_siglip,
+@article{oquab2024_dinov2,
+@inproceedings{radford2021_clip,
+@article{grant2026,
+@inproceedings{haon2025,
+@article{hou2026,
+@article{fei2025,
+@article{swann2026,
+@article{buurmeijer2026,
+@article{lu2025,
+@article{molinari2025,
+@article{wang2025seeing,
+@article{pei2025rethinking,
+@article{belinkov2022,
+@inproceedings{meng2022_rome,
+@article{elhage2021,
+@article{olsson2022,
+@inproceedings{wang2023_ioi,
+@inproceedings{conmy2023,
+@inproceedings{clark2019,
+@inproceedings{hewitt2019control,
+@article{nili2014toolbox,
+@inproceedings{aghajanyan2021intrinsic,
+@inproceedings{kumar2022finetuning,
+@article{lakens2017equivalence,
+@article{fang2026when,
+@article{fang2025,
+@article{touvron2023_llama2,
+@inproceedings{padalkar2023_oxe,
+@inproceedings{black2024_pi0,
+@inproceedings{ghosh2024_octo,
+@inproceedings{michel2019sixteen,
+@inproceedings{wei2022finetuned,
+@inproceedings{ouyang2022training,
+@inproceedings{fan2026visual,
+@inproceedings{neo2025interpreting,
+@inproceedings{long2026understanding,
+@inproceedings{xiao2025ava,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "b0a13726-7e29-4762-8b39-69758a04bd8d",
+  "tool_use_result": {
+    "stdout": "@article{liu2026forgetting,\n@article{grover2025preserving,\n@article{hung2025nora,\n@article{zheng2024tracevla,\n@article{abdin2024phi3,\n@inproceedings{kim2024_openvla,\n@inproceedings{karamcheti2024,\n@article{brohan2023_rt2,\n@inproceedings{liu2023_libero,\n@article{kriegeskorte2008,\n@inproceedings{kornblith2019,\n@inproceedings{alain2017,\n@inproceedings{zhai2023_siglip,\n@article{oquab2024_dinov2,\n@inproceedings{radford2021_clip,\n@article{grant2026,\n@inproceedings{haon2025,\n@article{hou2026,\n@article{fei2025,\n@article{swann2026,\n@article{buurmeijer2026,\n@article{lu2025,\n@article{molinari2025,\n@article{wang2025seeing,\n@article{pei2025rethinking,\n@article{belinkov2022,\n@inproceedings{meng2022_rome,\n@article{elhage2021,\n@article{olsson2022,\n@inproceedings{wang2023_ioi,\n@inproceedings{conmy2023,\n@inproceedings{clark2019,\n@inproceedings{hewitt2019control,\n@article{nili2014toolbox,\n@inproceedings{aghajanyan2021intrinsic,\n@inproceedings{kumar2022finetuning,\n@article{lakens2017equivalence,\n@article{fang2026when,\n@article{fang2025,\n@article{touvron2023_llama2,\n@inproceedings{padalkar2023_oxe,\n@inproceedings{black2024_pi0,\n@inproceedings{ghosh2024_octo,\n@inproceedings{michel2019sixteen,\n@inproceedings{wei2022finetuned,\n@inproceedings{ouyang2022training,\n@inproceedings{fan2026visual,\n@inproceedings{neo2025interpreting,\n@inproceedings{long2026understanding,\n@inproceedings{xiao2025ava,",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of what's already cited. Let me now compile the results and check which important papers are missing.
+
+Already cited papers/authors:
+- grant2026 - behavioral VLA analysis (visual dominance) → This is the Grant et al. 2603.19233 paper ("Not All Features Are Created Equal")
+- haon2025 - sparse semantic directions
+- swann2026 - interpretable features → This is Swann et al. 2603.19183 ("SAEs Reveal Interpretable Features in VLA")
+- buurmeijer2026 - motor feature probing → This is Buurmeijer et al. 
+
+2603.05487 ("Observing and Controlling Features")
+- lu2025 - symbolic representations → This is likely Lu et al. 2502.04558 ("Probing VLA for Symbolic States")
+- molinari2025 - world representations → This is Molinari et al. 2509.24559 ("Emergent World Representations in OpenVLA")
+- fang2026when - counterfactual benchmark
+- fang2025 - comprehension-action trade-offs
+- liu2026forgetting - continual learning
+- grover2025preserving - representation preserving
+- fan2026visual - visual token redundancy
+- neo2025interpreting - progressive visual
+- textual alignment
+- long2026understanding - VLM understanding
+- hou2026 - visual dominance
+- fei2025 - visual dominance
+- xiao2025ava - AVA VLA model
+
+Now I'm cross-checking which papers are already in my citations. Grant et al., Swann et al., Buurmeijer et al., and Molinari et al. are all accounted for, and I'm verifying the rest of my references against what I've already documented.
+
+I notice there are two papers I haven't cited yet that are directly relevant to my work. Kachaev et al.'s paper on representation collapse during VLA fine-tuning is particularly important since it aligns with my exit collapse findings, and Hancock et al.'s work on fine-tuning VLMs into VLAs without catastrophic forgetting also seems worth including. Cross-modal alignment analysis that's somewhat relevant but focused on different architectures. I'm also noting several other papers on sparse autoencoders for VLAs, mechanistic interpretability approaches to fine-tuning, and counterfactual relabeling methods—all concurrent or recent work that touches on our analysis but weren't cited in the original paper.
+
+Looking at the Fang et al. paper on vision overriding language, I can see we already have this one cited as fang2026when, so that's covered. Then there's work on geometric analysis of alignment collapse in LLMs during fine-tuning, which is conceptually related to our collapse analysis but more focused on safety than VLAs—probably optional to include. The diffusion language model paper seems less directly relevant to VLAs.
+
+Now checking this paper on VLAs resisting forgetting in continual learning—it matches the description of what we cite as liu2026forgetting, but I need to verify if it's actually the same paper or if there's a different Liu author we should be tracking.
+
+I should stop verifying each one individually and just compile my findings. Looking at the fine-tuning paper from February 2025, it covers design choices for action decoding and training recipes but doesn't seem to be cited in the work, though it's relevant to our analysis. There's also another continual learning paper on information-theoretic constraints that might be worth including.
+
+Let me focus on organizing the uncited papers that fall within the 2025.11-2026.05 window as the user specified.
+
+I'm filtering through the candidates now. The October 2025 paper on representation collapse in VLAs is highly relevant to exit collapse but technically falls just outside the requested timeframe. The November 2025 paper on mechanistic finetuning using few-shot demonstrations is a strong candidate—it directly applies mechanistic interpretability to identify task-specific attention heads in VLAs. There's also a paper on instruction anchors that appears to be cut off but seems relevant to understanding modality arbitration dynamics. I'm verifying the publication dates for several papers to ensure they fall within the November 2025 to May 2026 window, and I notice a few edge cases like the October 2025 paper that's just outside the cutoff but still highly relevant. Let me finalize which papers to include in the report and double-check any I'm uncertain about. I'm also checking whether 2603.03818 matches the Liu paper on forgetting, and doing another search to catch any VLA papers or analysis work I might have overlooked.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "8e410e01-68e7-4b5c-b77f-9d3c87956597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcMmoxWydBY1uXnj55xw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 43674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+读取了 related_work.tex，确认已引用列表。再做最后几轮补充搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "b36f1741-54aa-4f74-8fe0-42ca25edc995",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcMmoxWydBY1uXnj55xw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 43674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xy5vrdBYNL8bX48UnF3Gnu`</summary>
+
+```json
+{
+  "query": "arxiv 2603.03818 \"Pretrained Vision-Language-Action Models\" \"Resistant to Forgetting\"",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "eae7b712-6d19-4679-8b6b-c7eb8e4ff65b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcMmoxWydBY1uXnj55xw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 43674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vo8aHSCyDfKacyaHUcQFU7`</summary>
+
+```json
+{
+  "query": "\"vision language action\" probing linear probe representation analysis 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "3def264a-be1d-425f-b47d-23f7da1c0407",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcMmoxWydBY1uXnj55xw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 43674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NkNpkGK2ucYjTNssrj7nr6`</summary>
+
+```json
+{
+  "query": "VLA \"attention head\" \"instruction\" routing mechanism interpretability 2025 2026 arxiv",
+  "allowed_domains": [
+    "arxiv.org",
+    "semanticscholar.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "6caf6ce7-338e-4791-9977-e279b68552d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcMmoxWydBY1uXnj55xw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 43674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T23:34:24.899Z_
+
+<details><summary>↩ Tool result · `toolu_01Vo8aHSCyDfKacyaHUcQFU7`</summary>
+
+```text
+Web search results for query: ""vision language action" probing linear probe representation analysis 2026 arxiv"
+
+Links: [{"title":"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://arxiv.org/html/2502.04558v1"},{"title":"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.19233"},{"title":"[2603.05487] Observing and Controlling Features in Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.05487"},{"title":"Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/html/2604.13386v1"},{"title":"Probing a Vision-Language-Action Model for Symbolic States and   Integration into a Cognitive Architecture","url":"https://arxiv.org/pdf/2502.04558"},{"title":"[2409.01821] When Does Visual Prompting Outperform Linear Probing for Vision-Language Models? A Likelihood Perspective","url":"https://arxiv.org/abs/2409.01821"},{"title":"[2502.04558] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture","url":"https://arxiv.org/abs/2502.04558"},{"title":"Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement","url":"https://arxiv.org/pdf/2603.06459"}]
+
+Based on the search results, I found several relevant papers on vision-language-action models with probing and linear probe analysis:
+
+## Key Papers Found:
+
+1. **"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture"** (arXiv:2502.04558, February 2025)
+   
+   This work probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states, enabling integration with a cognitive architecture for enhanced interpretability and robustness. The authors train linear probes on different layers of OpenVLA to predict symbolic states during manipulation tasks. Their probing results show consistently high accuracies (> 0.90) for both object and action states across most layers.
+
+2. **"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models"** (arXiv:2603.19233)
+   
+   This methodology combines four techniques (activation injection, counterfactual prompting, SAEs, and linear probes) applied uniformly across all six models.
+
+3. **"Observing and Controlling Features in Vision-Language-Action Models"** (arXiv:2603.05487, March 2026)
+   
+   The work studies features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and uses a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output.
+
+These papers directly address probing vision-language-action models using linear probes for representation analysis in 2026 and late 2025 on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "e1df70dc-fbe6-4538-a1df-b7e598da80b9",
+  "tool_use_result": {
+    "query": "\"vision language action\" probing linear probe representation analysis 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hj8uZMQGGqfxZi17u6RXVU",
+        "content": [
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/html/2502.04558v1"
+          },
+          {
+            "title": "Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.19233"
+          },
+          {
+            "title": "[2603.05487] Observing and Controlling Features in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.05487"
+          },
+          {
+            "title": "Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling",
+            "url": "https://arxiv.org/html/2604.13386v1"
+          },
+          {
+            "title": "Probing a Vision-Language-Action Model for Symbolic States and   Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/pdf/2502.04558"
+          },
+          {
+            "title": "[2409.01821] When Does Visual Prompting Outperform Linear Probing for Vision-Language Models? A Likelihood Perspective",
+            "url": "https://arxiv.org/abs/2409.01821"
+          },
+          {
+            "title": "[2502.04558] Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture",
+            "url": "https://arxiv.org/abs/2502.04558"
+          },
+          {
+            "title": "Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement",
+            "url": "https://arxiv.org/pdf/2603.06459"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on vision-language-action models with probing and linear probe analysis:\n\n## Key Papers Found:\n\n1. **\"Probing a Vision-Language-Action Model for Symbolic States and Integration into a Cognitive Architecture\"** (arXiv:2502.04558, February 2025)\n   \n   This work probes OpenVLA's hidden layers to uncover symbolic representations of object properties, relations, and action states, enabling integration with a cognitive architecture for enhanced interpretability and robustness. The authors train linear probes on different layers of OpenVLA to predict symbolic states during manipulation tasks. Their probing results show consistently high accuracies (> 0.90) for both object and action states across most layers.\n\n2. **\"Not All Features Are Created Equal: A Mechanistic Study of Vision-Language-Action Models\"** (arXiv:2603.19233)\n   \n   This methodology combines four techniques (activation injection, counterfactual prompting, SAEs, and linear probes) applied uniformly across all six models.\n\n3. **\"Observing and Controlling Features in Vision-Language-Action Models\"** (arXiv:2603.05487, March 2026)\n   \n   The work studies features that are linearly encoded in representation space, showing how they can be observed by means of a linear classifier, and uses a minimal linear intervention grounded in optimal control to accurately place internal representations and steer the VLA's output.\n\nThese papers directly address probing vision-language-action models using linear probes for representation analysis in 2026 and late 2025 on arXiv."
+    ],
+    "durationSeconds": 6.580660640999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-24T23:34:26.386Z_
+
+<details><summary>↩ Tool result · `toolu_01NkNpkGK2ucYjTNssrj7nr6`</summary>
+
+```text
+Web search results for query: "VLA "attention head" "instruction" routing mechanism interpretability 2025 2026 arxiv"
+
+Links: [{"title":"Arxiv","url":"https://arxiv.org/pdf/2509.06951"},{"title":"[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/abs/2511.18960"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"Mechanistic Interpretability of Fine-Tuned Vision Transformers on   Distorted Images: Decoding Attention Head Behavior for Transparent and   Trustworthy AI","url":"https://arxiv.org/pdf/2503.18762"},{"title":"Mechanistic Interpretability for Steering Vision-Language-Action Models","url":"https://arxiv.org/html/2509.00328v1"},{"title":"Directional Routing in Transformers","url":"https://arxiv.org/pdf/2603.14923"},{"title":"Interpreting Transformers Through Attention Head Intervention","url":"https://arxiv.org/pdf/2601.04398"},{"title":"arXiv:2506.24044v1 [cs.CV] 30 Jun 2025","url":"https://arxiv.org/pdf/2506.24044"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 on arXiv related to VLA (Vision-Language-Action) models and interpretability:
+
+## Key Findings:
+
+1. **Mechanistic Interpretability for VLA Steering** (September 2025): A framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.
+
+2. **Directional Routing in Transformers**: A lightweight mechanism that gives each transformer attention head learned suppression directions controlled by a shared router, at 3.9% parameter cost. Routing becomes the load-bearing computational mechanism in this approach.
+
+3. **F1 VLA Framework**: A progressive attention scheme that regulates information exchange across experts: intra-expert attention captures rich token interactions, while inter-expert attention enforces a causal flow from understanding to foresight to action, ensuring stability and interpretability.
+
+4. **AVA-VLA (April 2026)**: A paper on "Improving Vision-Language-Action models with Active Visual Attention" was recently updated on arXiv.
+
+5. **Attention Head Interpretability**: Mechanistic understanding enables targeted control of model behavior, successfully suppressing toxic outputs and manipulating semantic content through selective attention head intervention.
+
+These papers demonstrate active research into understanding attention mechanisms in VLAs, with particular focus on routing mechanisms and instruction-based control for improved interpretability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "361abd67-b8b2-449e-8815-a14589af46ff",
+  "tool_use_result": {
+    "query": "VLA \"attention head\" \"instruction\" routing mechanism interpretability 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SQ6TdFbSMAo2yqQ7CytahC",
+        "content": [
+          {
+            "title": "Arxiv",
+            "url": "https://arxiv.org/pdf/2509.06951"
+          },
+          {
+            "title": "[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/abs/2511.18960"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "Mechanistic Interpretability of Fine-Tuned Vision Transformers on   Distorted Images: Decoding Attention Head Behavior for Transparent and   Trustworthy AI",
+            "url": "https://arxiv.org/pdf/2503.18762"
+          },
+          {
+            "title": "Mechanistic Interpretability for Steering Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2509.00328v1"
+          },
+          {
+            "title": "Directional Routing in Transformers",
+            "url": "https://arxiv.org/pdf/2603.14923"
+          },
+          {
+            "title": "Interpreting Transformers Through Attention Head Intervention",
+            "url": "https://arxiv.org/pdf/2601.04398"
+          },
+          {
+            "title": "arXiv:2506.24044v1 [cs.CV] 30 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.24044"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 on arXiv related to VLA (Vision-Language-Action) models and interpretability:\n\n## Key Findings:\n\n1. **Mechanistic Interpretability for VLA Steering** (September 2025): A framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time.\n\n2. **Directional Routing in Transformers**: A lightweight mechanism that gives each transformer attention head learned suppression directions controlled by a shared router, at 3.9% parameter cost. Routing becomes the load-bearing computational mechanism in this approach.\n\n3. **F1 VLA Framework**: A progressive attention scheme that regulates information exchange across experts: intra-expert attention captures rich token interactions, while inter-expert attention enforces a causal flow from understanding to foresight to action, ensuring stability and interpretability.\n\n4. **AVA-VLA (April 2026)**: A paper on \"Improving Vision-Language-Action models with Active Visual Attention\" was recently updated on arXiv.\n\n5. **Attention Head Interpretability**: Mechanistic understanding enables targeted control of model behavior, successfully suppressing toxic outputs and manipulating semantic content through selective attention head intervention.\n\nThese papers demonstrate active research into understanding attention mechanisms in VLAs, with particular focus on routing mechanisms and instruction-based control for improved interpretability."
+    ],
+    "durationSeconds": 7.45381169100001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-24T23:34:26.489Z_
+
+<details><summary>↩ Tool result · `toolu_01Xy5vrdBYNL8bX48UnF3Gnu`</summary>
+
+```text
+Web search results for query: "arxiv 2603.03818 "Pretrained Vision-Language-Action Models" "Resistant to Forgetting""
+
+Links: [{"title":"[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/abs/2603.03818"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/html/2603.03818v1"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly","url":"https://arxiv.org/pdf/2603.03818"},{"title":"Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning","url":"https://arxiv.org/html/2603.11653"},{"title":"Continual Pre-Training Mitigates Forgetting in Language and Vision","url":"https://arxiv.org/pdf/2205.09357"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting","url":"https://arxiv.org/pdf/2509.22195"},{"title":"Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning","url":"https://arxiv.org/pdf/2603.11653"}]
+
+I found the paper! Here are the key details about arXiv 2603.03818:
+
+**Title:** Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning
+
+**Authors:** Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, and Yuke Zhu
+
+**Main Findings:**
+- Pretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch.
+- Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.
+- Pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.
+
+**Research Context:**
+Continual learning is a long-standing challenge in robot policy learning, where a policy must acquire new skills over time without catastrophically forgetting previously learned ones. While prior work has extensively studied continual learning in relatively small behavior cloning (BC) policy models trained from scratch, its behavior in modern large-scale pretrained Vision-Language-Action (VLA) models remains underexplored.
+
+The paper was submitted on March 4, 2026 and last revised on March 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "11dbfc15-1c9a-4d73-ac58-2701035ad790",
+  "tool_use_result": {
+    "query": "arxiv 2603.03818 \"Pretrained Vision-Language-Action Models\" \"Resistant to Forgetting\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018uBU3AaugBWADkvDE5FRn7",
+        "content": [
+          {
+            "title": "[2603.03818] Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/abs/2603.03818"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/html/2603.03818v1"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly",
+            "url": "https://arxiv.org/pdf/2603.03818"
+          },
+          {
+            "title": "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.11653"
+          },
+          {
+            "title": "Continual Pre-Training Mitigates Forgetting in Language and Vision",
+            "url": "https://arxiv.org/pdf/2205.09357"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting",
+            "url": "https://arxiv.org/pdf/2509.22195"
+          },
+          {
+            "title": "Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2603.11653"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arXiv 2603.03818:\n\n**Title:** Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning\n\n**Authors:** Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, and Yuke Zhu\n\n**Main Findings:**\n- Pretrained VLAs are remarkably resistant to forgetting compared with smaller policy models trained from scratch.\n- Simple Experience Replay (ER) works surprisingly well on VLAs, sometimes achieving zero forgetting even with a small replay data size.\n- Pretraining plays a critical role in downstream continual learning performance: large pretrained models mitigate forgetting with a small replay buffer size while maintaining strong forward learning capabilities.\n\n**Research Context:**\nContinual learning is a long-standing challenge in robot policy learning, where a policy must acquire new skills over time without catastrophically forgetting previously learned ones. While prior work has extensively studied continual learning in relatively small behavior cloning (BC) policy models trained from scratch, its behavior in modern large-scale pretrained Vision-Language-Action (VLA) models remains underexplored.\n\nThe paper was submitted on March 4, 2026 and last revised on March 17, 2026."
+    ],
+    "durationSeconds": 9.578948827000016
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check if 2603.03818 (Liu et al. 2026) is the same as `liu2026forgetting` already cited. Looking at the bib entry key `liu2026forgetting` and the authors (Huihan Liu et al.), and the content matches "pretrained VLAs resist forgetting under sequential fine-tuning" from the related_work.tex. Yes, this is likely the same paper.
+
+Let me also check if the "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting" paper is from the same group. Authors: Huihan Liu, Changyeon Kim, Bo Liu, Minghuan Liu, Yuke Zhu. 
+
+This matches the description in the related_work.tex, so 2603.03818 is the same as `liu2026forgetting` and already cited. Now I'm compiling the final report, focusing on papers from the 2025.11-2026.05 window that haven't been cited yet and are relevant to the work. I'm identifying the key papers that directly compete with or are highly related to the research but are missing from the citations.
+
+The first critical paper is "Don't Blind Your VLA" (2510.25616) from October 2025, which identifies representation collapse in vision-language-action models during fine-tuning through t-SNE analysis and proposes visual representation alignment—essentially the same phenomenon as the "exit collapse" observed here. This absolutely needs to be cited since it describes the same collapse effect from a different perspective. The second is "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations" (2511.22697) from November 2025, which also appears directly relevant to the fine-tuning mechanisms being studied.
+
+The third paper, "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration" (2602.03677) from February 2026, examines how instruction tokens function as structural anchors for modality arbitration in multimodal LLMs and identifies a cross-modal relay mechanism—directly applicable to the instruction routing analysis being conducted here.
+
+Looking at complementary work, there's concurrent SAE research on VLAs like "Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies" (2605.17204) from May 2026, which extends the mechanistic interpretability approach beyond the Swann2026 baseline. There's also "Actions as Language: Fine-Tuning VLMs into VLAs Without..." which appears to be another relevant paper on VLA fine-tuning approaches. Catastrophic Forgetting"**
+   - arXiv: 2509.22195
+   - Date: Sep 26, 2025 (before window)
+   - Authors: Hancock et al.
+   - Relation: Addresses catastrophic forgetting during VLM→VLA fine-tuning via natural language action representation + LoRA. Relevant to our exit collapse finding.
+   - Already cited: NO
+   - Importance: **建议引用** — Proposes a practical solution to the representation collapse we observe.
+
+6. **"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts"**
+   - arXiv: 2605.06175
+   - Date: May 7, 2026
+   - Authors: Jiang et al. (MSRA + Tsinghua)
+   - Relation: PEFT for VLAs that preserves spatial representations through spectral decomposition, and another method confirming the importance of our collapse finding. The next few papers explore related themes around representation alignment and instruction following in VLAs, with varying degrees of direct relevance to our work—some more conceptually aligned like the Milano & Nolfi paper on cross-modal representation convergence, others more tangentially related. The geometric analysis of alignment collapse during fine-tuning presents an interesting parallel to our exit collapse mechanism, though it's framed in a safety context rather than VLA performance. There's also a more applied paper on VLA fine-tuning design choices that's less focused on mechanistic analysis. Now I'm compiling these into a structured report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "e0db3f79-655d-46d3-b34d-b213ba23cd70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiGtwSjkhcPYmcL2RJFcEE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1523,
+      "cache_creation_input_tokens": 3751,
+      "cache_read_input_tokens": 44410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3751
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+搜索完成。以下是完整报告。
+
+---
+
+## Related Work 遗漏论文检查报告
+
+### 已确认引用（无需操作）
+
+以下搜索中频繁出现的论文已在 `related_work.tex` 中引用：
+- Grant et al. (2603.19233) → `grant2026`
+- Swann et al. (2603.19183) → `swann2026`
+- Buurmeijer et al. (2603.05487) → `buurmeijer2026`
+- Molinari et al. (2509.24559) → `molinari2025`
+- Lu et al. (2502.04558) → `lu2025`
+- Haon et al. (2509.00328) → `haon2025`
+- Fang et al. counterfactual benchmark → `fang2026when`
+- Liu et al. (2603.03818) continual learning → `liu2026forgetting`
+- Grover et al. → `grover2025preserving`
+
+---
+
+### 必须引用（3 篇）
+
+#### 1. "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization"
+- **arXiv**: [2510.25616](https://arxiv.org/abs/2510.25616)
+- **时间**: 2025-10-29
+- **作者**: Kachaev et al.
+- **与我们的关系**: **直接竞争** — 通过 t-SNE 分析发现 VLA 在 action fine-tuning 时产生 representation collapse（多样化内部特征被压缩到狭窄表征空间），这与我们的 exit collapse (ΔR² > 0.10) 本质上是同一现象的不同观测角度。他们还观察到 domain-specific forgetting。提出轻量级 visual representation alignment 方法缓解。
+- **为什么必须引**: 如果 reviewer 看到我们声称发现 exit collapse 但没引这篇，会认为 novelty claim 有问题。需在 VLA paragraph 或 concurrent work 中讨论，区分我们的贡献（跨架构对照、量化 ΔR² metric）和他们的（t-SNE 可视化 + alignment 方法）。
+
+#### 2. "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations"
+- **arXiv**: [2511.22697](https://arxiv.org/abs/2511.22697)
+- **时间**: 2025-11-27
+- **作者**: Mitra, Luo, Saravanan, Niu, Pai, Thomason, Darrell, Anwar, Ramanan, Herzig
+- **与我们的关系**: **互补** — 提出 "Robotic Steering"，利用 mechanistic interpretability 识别 task-specific attention heads 并选择性微调。他们用 attention head 分析 → 指导 fine-tuning，我们用 cross-architecture probing → 理解 routing 机制。
+- **为什么必须引**: 这是唯一一篇将 VLA mechanistic interpretability 与 attention head selection 直接关联的工作。我们的 L1 instruction attention 发现与他们的 task-specific head identification 互为佐证。放在 mechanistic analysis paragraph。
+
+#### 3. "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration"
+- **arXiv**: [2602.03677](https://arxiv.org/abs/2602.03677)
+- **时间**: 2026-02-03
+- **作者**: Zhang, Xu, Bai, Chen, Zhang, Xiang, Zhang
+- **与我们的关系**: **方法相关 + 互补** — 研究 multimodal LLM 中 instruction token 如何充当 modality arbitration 的结构锚点。发现 shallow attention layers 将多模态信息路由到 instruction tokens 形成 "latent buffer"，deep layers 解决模态竞争。这与我们发现的 "L1 instruction attention 来自预训练 backbone" 高度吻合。
+- **为什么必须引**: 他们的 "instruction anchors" 机制是我们 instruction routing 发现在 VLM 领域的直接 counterpart。尽管他们的分析对象是通用 MLLM 而非 VLA，但机制层面的一致性值得讨论。放在 mechanistic analysis paragraph，指出他们在 VLM 中发现的 instruction routing 模式在我们的 VLA 分析中同样成立。
+
+---
+
+### 建议引用（4 篇）
+
+#### 4. "Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies"
+- **arXiv**: [2605.17204](https://arxiv.org/abs/2605.17204)
+- **时间**: 2026-05-17
+- **作者**: Jin, Chatterjee, Kumar, Paleja (Purdue)
+- **与我们的关系**: **互补/concurrent** — 提出 event-grounded SAE pipeline，将 SAE 特征分析锚定到行为事件而非文本上下文。在 OpenVLA 和 π₀.₅ 上验证。扩展了 Swann2026 的 SAE 工作线。
+- **建议位置**: Concurrent work paragraph，与 swann2026 并列。
+
+#### 5. "CAST: Counterfactual Labels Improve Instruction Following in VLAs"
+- **arXiv**: [2508.13446](https://arxiv.org/abs/2508.13446)
+- **时间**: 2025-08-19
+- **作者**: Glossop, Chen, Bhorkar, Shah, Levine (Berkeley)
+- **与我们的关系**: **互补** — 用 VLM 生成 counterfactual labels 来增强 VLA 的 instruction following（成功率提升 27%）。与我们的 counterfactual perturbation 分析和 Fang2026 的 counterfactual benchmark 形成三方互补。
+- **建议位置**: Concurrent work paragraph 中讨论 counterfactual 方法时提及。
+
+#### 6. "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting"
+- **arXiv**: [2509.22195](https://arxiv.org/abs/2509.22195)
+- **时间**: 2025-09-26
+- **作者**: Hancock et al.
+- **与我们的关系**: **互补** — 指出 VLM→VLA 的 catastrophic forgetting 源于分布 mismatch，提出 VLM2VLA（natural language actions + LoRA）。为我们观察到的 exit collapse 提供了一种实际解决方案。
+- **建议位置**: VLA paragraph，与 grover2025preserving 并列讨论 representation-preserving 策略。
+
+#### 7. "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts"
+- **arXiv**: [2605.06175](https://arxiv.org/abs/2605.06175)
+- **时间**: 2026-05-07
+- **作者**: Jiang et al. (MSRA + Tsinghua)
+- **与我们的关系**: **互补** — 通过 spectral decomposition 分离 generalized/specialized experts，避免 fine-tuning 覆写核心 spatial representations。从方法角度印证我们 exit collapse 发现的重要性。
+- **建议位置**: VLA paragraph，作为 representation-preserving 方法的最新进展。
+
+---
+
+### 可选引用（3 篇）
+
+#### 8. "Alignment among Language, Vision and Action Representations"
+- **arXiv**: [2601.22948](https://arxiv.org/abs/2601.22948)
+- **时间**: 2026-01
+- **作者**: Milano & Nolfi
+- **关系**: 在 BabyAI 平台上发现跨模态表征趋同，概念相关但实验规模和对象差异较大。
+
+#### 9. "The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety"
+- **arXiv**: [2602.15799](https://arxiv.org/abs/2602.15799)
+- **时间**: 2026-02
+- **关系**: 从几何角度分析 fine-tuning 导致的 alignment collapse，机制分析有概念借鉴意义，但领域是 LLM safety 而非 VLA。
+
+#### 10. "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success"
+- **arXiv**: [2502.19645](https://arxiv.org/abs/2502.19645)
+- **时间**: 2025-02
+- **关系**: 系统研究 VLA fine-tuning 设计选择（action decoding, action representation, learning objective），偏应用性。
+
+---
+
+### 总结
+
+**必须引用的遗漏**有 3 篇，按紧急程度排序：
+
+1. **Kachaev et al. (2510.25616)** — 与 exit collapse 发现直接重叠，不引会被 reviewer 质疑 novelty
+2. **Mitra et al. (2511.22697)** — VLA mechanistic interpretability + attention head 分析，与我们的核心方法论最接近
+3. **Zhang et al. (2602.03677)** — instruction anchors 机制与我们的 instruction routing 发现高度一致
+
+**建议引用** 4 篇（Jin 2605.17204, Glossop 2508.13446, Hancock 2509.22195, Jiang 2605.06175），可丰富 related work 的覆盖面但不引也不致命。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "uuid": "7e312a33-3f57-44ae-9d95-cd9b9b67d484",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiGtwSjkhcPYmcL2RJFcEE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1523,
+      "cache_creation_input_tokens": 3751,
+      "cache_read_input_tokens": 44410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3751
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+搜索完成。以下是完整报告。
+
+---
+
+## Related Work 遗漏论文检查报告
+
+### 已确认引用（无需操作）
+
+以下搜索中频繁出现的论文已在 `related_work.tex` 中引用：
+- Grant et al. (2603.19233) → `grant2026`
+- Swann et al. (2603.19183) → `swann2026`
+- Buurmeijer et al. (2603.05487) → `buurmeijer2026`
+- Molinari et al. (2509.24559) → `molinari2025`
+- Lu et al. (2502.04558) → `lu2025`
+- Haon et al. (2509.00328) → `haon2025`
+- Fang et al. counterfactual benchmark → `fang2026when`
+- Liu et al. (2603.03818) continual learning → `liu2026forgetting`
+- Grover et al. → `grover2025preserving`
+
+---
+
+### 必须引用（3 篇）
+
+#### 1. "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization"
+- **arXiv**: [2510.25616](https://arxiv.org/abs/2510.25616)
+- **时间**: 2025-10-29
+- **作者**: Kachaev et al.
+- **与我们的关系**: **直接竞争** — 通过 t-SNE 分析发现 VLA 在 action fine-tuning 时产生 representation collapse（多样化内部特征被压缩到狭窄表征空间），这与我们的 exit collapse (ΔR² > 0.10) 本质上是同一现象的不同观测角度。他们还观察到 domain-specific forgetting。提出轻量级 visual representation alignment 方法缓解。
+- **为什么必须引**: 如果 reviewer 看到我们声称发现 exit collapse 但没引这篇，会认为 novelty claim 有问题。需在 VLA paragraph 或 concurrent work 中讨论，区分我们的贡献（跨架构对照、量化 ΔR² metric）和他们的（t-SNE 可视化 + alignment 方法）。
+
+#### 2. "Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations"
+- **arXiv**: [2511.22697](https://arxiv.org/abs/2511.22697)
+- **时间**: 2025-11-27
+- **作者**: Mitra, Luo, Saravanan, Niu, Pai, Thomason, Darrell, Anwar, Ramanan, Herzig
+- **与我们的关系**: **互补** — 提出 "Robotic Steering"，利用 mechanistic interpretability 识别 task-specific attention heads 并选择性微调。他们用 attention head 分析 → 指导 fine-tuning，我们用 cross-architecture probing → 理解 routing 机制。
+- **为什么必须引**: 这是唯一一篇将 VLA mechanistic interpretability 与 attention head selection 直接关联的工作。我们的 L1 instruction attention 发现与他们的 task-specific head identification 互为佐证。放在 mechanistic analysis paragraph。
+
+#### 3. "Instruction Anchors: Dissecting the Causal Dynamics of Modality Arbitration"
+- **arXiv**: [2602.03677](https://arxiv.org/abs/2602.03677)
+- **时间**: 2026-02-03
+- **作者**: Zhang, Xu, Bai, Chen, Zhang, Xiang, Zhang
+- **与我们的关系**: **方法相关 + 互补** — 研究 multimodal LLM 中 instruction token 如何充当 modality arbitration 的结构锚点。发现 shallow attention layers 将多模态信息路由到 instruction tokens 形成 "latent buffer"，deep layers 解决模态竞争。这与我们发现的 "L1 instruction attention 来自预训练 backbone" 高度吻合。
+- **为什么必须引**: 他们的 "instruction anchors" 机制是我们 instruction routing 发现在 VLM 领域的直接 counterpart。尽管他们的分析对象是通用 MLLM 而非 VLA，但机制层面的一致性值得讨论。放在 mechanistic analysis paragraph，指出他们在 VLM 中发现的 instruction routing 模式在我们的 VLA 分析中同样成立。
+
+---
+
+### 建议引用（4 篇）
+
+#### 4. "Event-Grounded Sparse Autoencoders for Vision-Language-Action Policies"
+- **arXiv**: [2605.17204](https://arxiv.org/abs/2605.17204)
+- **时间**: 2026-05-17
+- **作者**: Jin, Chatterjee, Kumar, Paleja (Purdue)
+- **与我们的关系**: **互补/concurrent** — 提出 event-grounded SAE pipeline，将 SAE 特征分析锚定到行为事件而非文本上下文。在 OpenVLA 和 π₀.₅ 上验证。扩展了 Swann2026 的 SAE 工作线。
+- **建议位置**: Concurrent work paragraph，与 swann2026 并列。
+
+#### 5. "CAST: Counterfactual Labels Improve Instruction Following in VLAs"
+- **arXiv**: [2508.13446](https://arxiv.org/abs/2508.13446)
+- **时间**: 2025-08-19
+- **作者**: Glossop, Chen, Bhorkar, Shah, Levine (Berkeley)
+- **与我们的关系**: **互补** — 用 VLM 生成 counterfactual labels 来增强 VLA 的 instruction following（成功率提升 27%）。与我们的 counterfactual perturbation 分析和 Fang2026 的 counterfactual benchmark 形成三方互补。
+- **建议位置**: Concurrent work paragraph 中讨论 counterfactual 方法时提及。
+
+#### 6. "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting"
+- **arXiv**: [2509.22195](https://arxiv.org/abs/2509.22195)
+- **时间**: 2025-09-26
+- **作者**: Hancock et al.
+- **与我们的关系**: **互补** — 指出 VLM→VLA 的 catastrophic forgetting 源于分布 mismatch，提出 VLM2VLA（natural language actions + LoRA）。为我们观察到的 exit collapse 提供了一种实际解决方案。
+- **建议位置**: VLA paragraph，与 grover2025preserving 并列讨论 representation-preserving 策略。
+
+#### 7. "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts"
+- **arXiv**: [2605.06175](https://arxiv.org/abs/2605.06175)
+- **时间**: 2026-05-07
+- **作者**: Jiang et al. (MSRA + Tsinghua)
+- **与我们的关系**: **互补** — 通过 spectral decomposition 分离 generalized/specialized experts，避免 fine-tuning 覆写核心 spatial representations。从方法角度印证我们 exit collapse 发现的重要性。
+- **建议位置**: VLA paragraph，作为 representation-preserving 方法的最新进展。
+
+---
+
+### 可选引用（3 篇）
+
+#### 8. "Alignment among Language, Vision and Action Representations"
+- **arXiv**: [2601.22948](https://arxiv.org/abs/2601.22948)
+- **时间**: 2026-01
+- **作者**: Milano & Nolfi
+- **关系**: 在 BabyAI 平台上发现跨模态表征趋同，概念相关但实验规模和对象差异较大。
+
+#### 9. "The Geometry of Alignment Collapse: When Fine-Tuning Breaks Safety"
+- **arXiv**: [2602.15799](https://arxiv.org/abs/2602.15799)
+- **时间**: 2026-02
+- **关系**: 从几何角度分析 fine-tuning 导致的 alignment collapse，机制分析有概念借鉴意义，但领域是 LLM safety 而非 VLA。
+
+#### 10. "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success"
+- **arXiv**: [2502.19645](https://arxiv.org/abs/2502.19645)
+- **时间**: 2025-02
+- **关系**: 系统研究 VLA fine-tuning 设计选择（action decoding, action representation, learning objective），偏应用性。
+
+---
+
+### 总结
+
+**必须引用的遗漏**有 3 篇，按紧急程度排序：
+
+1. **Kachaev et al. (2510.25616)** — 与 exit collapse 发现直接重叠，不引会被 reviewer 质疑 novelty
+2. **Mitra et al. (2511.22697)** — VLA mechanistic interpretability + attention head 分析，与我们的核心方法论最接近
+3. **Zhang et al. (2602.03677)** — instruction anchors 机制与我们的 instruction routing 发现高度一致
+
+**建议引用** 4 篇（Jin 2605.17204, Glossop 2508.13446, Hancock 2509.22195, Jiang 2605.06175），可丰富 related work 的覆盖面但不引也不致命。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 237862,
+  "duration_api_ms": 393901,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "2d4674a4-e0f8-43e4-827c-e3401bc07959",
+  "total_cost_usd": 1.2141359999999999,
+  "usage": {
+    "input_tokens": 2541,
+    "cache_creation_input_tokens": 36320,
+    "cache_read_input_tokens": 334318,
+    "output_tokens": 10608,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36320,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1523,
+        "output_tokens": 4472,
+        "cache_read_input_tokens": 44410,
+        "cache_creation_input_tokens": 3751,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3751
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 232952,
+      "outputTokens": 11824,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 25,
+      "costUSD": 0.542072,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 2541,
+      "outputTokens": 10608,
+      "cacheReadInputTokens": 334318,
+      "cacheCreationInputTokens": 36320,
+      "webSearchRequests": 0,
+      "costUSD": 0.672064,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3223bd51-570a-49b1-97d7-f7e9a567f84c"
+}
+```
+
+</details>
+
+---

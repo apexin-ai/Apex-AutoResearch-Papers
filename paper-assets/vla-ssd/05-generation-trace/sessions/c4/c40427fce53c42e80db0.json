@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c40427fce53c42e80db0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code timestep accuracy analysis",
+  "task_key": "worker_code_timestep-accuracy-analysis_20260515T170152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_timestep-accuracy-analysis_20260515T170152_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "11faa5760fd291a8648fdba62dce31650c35f254f0ed1eb7fe408c97c6db8eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都已创建并验证通过。\n\n**已完成：**\n\n1. **`/root/vla-ssd/scripts/analyze_timestep_accuracy.py`** — Per-timestep goal classification accuracy 分析\n   - 复用 `train_probes.py` 的 `scan_features`、`load_layer_features`、`GoalClassificationProbe` 等\n   - 对每层重新训练 probe，评估时按 relative timestep (t/T) 分 N 个 bin 计算 accuracy\n   - 额外计算 front 30% 和 back 30% accuracy，检测是否存在后期泄漏\n   - 输出 JSON 到 `{output_dir}/goal_classification/timestep_analysis.json`\n   - 支持 `--best_layer_only` 快速分析单层\n\n2. **`/root/vla-ssd/scripts/plot_timestep_accuracy.py`** — 可视化\n   - 读取三个模型的 `timestep_analysis.json`\n   - 画 line plot: 三条线 (trained/untrained/DINO) + chance level (10%) + 25% gate 线\n   - 绿色阴影标注 \"front 30%\" 区域\n   - 额外生成 front-30% vs back-30% bar chart\n   - PDF + PNG 输出到 `results/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-timestep-accuracy-analysis.md"
+}

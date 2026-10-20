@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84fbe071ec5c93df0a28",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag urgent gpu recovery 20260521T1610",
+  "task_key": "worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754_result.json",
+    "occurrence": 1,
+    "bytes": 4498,
+    "sha256": "16a3c7eea8678f412117278f15a52f30e55df6fb7e040033aea8eff665ce3d73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## 任务 1: openvla_long_pipeline_v1 诊断\n\n**状态：部分完成，非完全失败**\n\n- `/tmp/exp_openvla_long_pipeline_v1.log` 不存在，无日志可查\n- `results/libero_long/` 下有 **4 个 JSON**（无 trained/untrained 子目录）：\n  - `action_r2_probing.json` ✓\n  - `l1_attention_profile.json` ✓\n  - `cross_instruction_classification.json` ✓\n  - `rsa_analysis.json` ✓\n- **缺失**：`counterfactual_combined.json` — 第 6 阶段（counterfactual）未完成\n- **关键问题**：脚本定义了 trained/untrained 两个 condition，但结果直接写入 `RESULTS_BASE/` 而非子目录。目前只有一组数据，推测**第一个 condition 的前 4/5 阶段完成后崩溃**，第二个 condition 未开始\n- R2 probing 数值特征（image_mean ~0.87-0.88，very flat across layers）符合 **trained OpenVLA** 的模式\n\n---\n\n## 任务 2: tracvla_spatial_untrained_v1 结果\n\n**状态：3/4 阶段完成，缺 counterfactual**\n\n### R2 Probing (untrained)\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|---------------|\n| L0 | 0.7761 | 0.5911 |\n| L4 | 0.7812 | 0.7132 |\n| L8 | 0.7892 | 0.6942 |\n| L12 | 0.7806 | 0.7195 |\n| L16 | 0.7961 | 0.7207 |\n| L20 | 0.7814 | 0.7139 |\n| L24 | 0.7694 | 0.7116 |\n| L28 | 0.7714 | 0.7036 |\n| L31 | 0.7589 | 0.7065 |\n\nPattern: image R2 高且平（~0.76-0.80），last_preaction 从 L0 的 0.59 快速升至 L4 的 0.71 后也趋于平坦。\n\n### L1 Attention (untrained)\n- **32/32 heads instruction-dominant**（0 mixed, 0 image-dominant）\n- Top 5: head_8 (0.996), head_26 (0.984), head_19 (0.983), head_1 (0.959), head_28 (0.955)\n- 最低: head_2 (0.569), head_24 (0.602)\n\n### Cross-instruction Classification (untrained)\n- 所有层 image_mean = 1.0, last_preaction = 1.0（仅 L0_last_preaction = 0.977）\n- 近乎完美的 10-way 分类 → 每层表征都能完美区分不同指令\n\n### Counterfactual: **未完成**（文件不存在）\n\n---\n\n## 任务 3: tracvla_spatial_full_v2 (trained)\n\n**PID 521837 已结束。结果完整 — 4/4 JSON 齐全。**\n\n### R2 Probing (trained)\n\n| Layer | image_mean | last_preaction |\n|-------|-----------|---------------|\n| L0 | 0.8059 | 0.6656 |\n| L4 | 0.8091 | 0.7954 |\n| L8 | 0.8134 | 0.7908 |\n| L12 | 0.8231 | 0.7980 |\n| L16 | 0.8311 | 0.8035 |\n| L20 | 0.8310 | 0.7981 |\n| L24 | 0.8169 | 0.7463 |\n| L28 | 0.8223 | **0.6150** |\n| L29 | 0.8136 | **0.5040** |\n| L30 | 0.7970 | **0.4472** |\n| L31 | 0.7907 | 0.6712 |\n\n**关键发现**：trained 模型 last_preaction R2 在 L28-L30 急剧下降（0.80→0.45），L31 部分回升至 0.67。Image R2 保持高位。这个 \"action token R2 collapse\" 在 untrained 中不存在。\n\n### L1 Attention (trained)\n- 30/32 instruction-dominant, **2 mixed** (head_13: 0.450, head_22: 0.474), 0 image-dominant\n- Training 使部分 heads 从 instruction-dominant 转向 mixed\n\n### Cross-instruction Classification (trained)\n- 所有层 ≥ L1: image_mean=1.0, last_preaction=1.0\n- L0: image=1.0, last_preaction=0.923\n\n### Counterfactual (trained) — **完整**\n\n| Condition | Cohen's d | MSE |\n|-----------|----------|-----|\n| empty | 1.327 | 0.107 |\n| shuffled | 1.295 | 0.094 |\n| paraphrased | 1.183 | 0.072 |\n| wrong | 1.172 | 0.080 |\n\n所有条件 d>1（大效应量），wrong condition token_divergence_rate=1.0。\n\n---\n\n## 任务 4: 下一批脚本就绪状态\n\n| 脚本 | 存在 | 大小 |\n|------|------|------|\n| tracvla_long_full_pipeline.py | ✓ | 24.7KB |\n| tracvla_goal_full_pipeline.py | ✓ | 23.3KB |\n\ntracvla_long 配置确认正确：TracVLA-Phi3V + Phi-3-Vision base，输出到 `{trained,untrained}/` 子目录，包含完整 5 阶段。\n\n---\n\n## 任务 5: GPU 状态\n\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| 0 | 0% | 0 / 97887 MiB |\n| 1 | 0% | 0 / 97887 MiB |\n\n**两卡完全空闲，可立即启动下一批实验。**\n\n---\n\n## 行动建议摘要\n\n1. **openvla_long**：部分完成（4/5 阶段 × 1 condition），且没有 trained/untrained 分目录。需检查脚本是否有 bug 导致两个 condition 写到同一目录互相覆盖，以及 counterfactual 阶段崩溃原因\n2. **tracvla_spatial untrained**：缺 counterfactual。可单独补跑 counterfactual 阶段\n3. **tracvla_spatial trained**：**完整可用**，数据质量好\n4. GPU 空闲，可启动 tracvla_long 或 tracvla_goal"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-urgent-gpu-recovery-20260521t1610.md"
+}

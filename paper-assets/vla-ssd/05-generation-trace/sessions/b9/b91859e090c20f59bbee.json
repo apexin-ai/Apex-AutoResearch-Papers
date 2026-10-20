@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b91859e090c20f59bbee",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code counterfactual instruction",
+  "task_key": "worker_code_counterfactual_instruction_20260518T165804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_counterfactual_instruction_20260518T165804_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "36a749d0f9bd1cc4aff1757169dbd28428e3a23374f444515f7747692002aade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在 82-88% 利用率，15.5GB 显存使用，实验正常运行。\n\n脚本 `scripts/counterfactual_instruction.py` 已创建并提交到 westd-19183，registry 状态已更新为 RUNNING。\n\n实验配置：\n- 3 tasks × 10 demos × 50 timesteps = 1500 samples/condition\n- GPU 0: correct + wrong + empty（4500 forward passes）\n- GPU 1: correct + shuffled + paraphrased（4500 forward passes）\n- 输出：`/root/autodl-tmp/vla-ssd/results/counterfactual_{correct,wrong,empty,shuffled,paraphrased,combined}.json`\n- 日志：`/root/autodl-tmp/vla-ssd/results/counterfactual_instruction.log`\n\n注意：multiprocessing spawn 的 stdout 重定向会导致日志输出有延迟，但 GPU 利用率和进程状态确认实验在正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-counterfactual-instruction.md"
+}

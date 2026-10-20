@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3008084dfed06d9dff45",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code initial frame gc prep",
+  "task_key": "worker_code_initial-frame-gc-prep_20260515T180438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_initial-frame-gc-prep_20260515T180438_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "e976016adc68b7014da943e2d1959382141ac679dd762de4c84f187f566d67e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。总结：\n\n**修改文件**: `scripts/train_probes.py`，4 处改动：\n1. **L71-72** — `parse_args()` 添加 `--max_frames` 参数（default=None）\n2. **L916** — `run_goal_classification()` 打印 early-frame 模式信息\n3. **L924-926** — 特征加载后截取 `features[:max_frames]`\n4. **L975** — 结果 metadata 记录 `max_frames` 值\n\n**验证结果**：\n| 配置 | train samples | val samples | 行为 |\n|------|-------------|------------|------|\n| `--max_frames 1` | 400 (=400×1) | 100 (=100×1) | 每 traj 仅 t=0 |\n| `--max_frames 3` | 1200 (=400×3) | 300 (=100×3) | 每 traj t=0~2 |\n| 不传（兼容） | 50880 | 12848 | 全部帧，行为不变 |\n\n**后续运行命令模板**：\n```bash\n# N=1,3,5 的 early-frame goal classification\nfor N in 1 3 5; do\n  python scripts/train_probes.py \\\n    --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ \\\n    --output_dir /root/autodl-tmp/vla-ssd/results/trained_libero_goal_maxframes${N}/ \\\n    --probe_type goal_classification \\\n    --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\n    --max_frames $N \\\n    --gpu 0\ndone\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-initial-frame-gc-prep.md"
+}

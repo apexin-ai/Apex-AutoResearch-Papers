@@ -1,0 +1,1574 @@
+{
+  "schema_version": "1.0",
+  "id": "e136791ab98211d2b4b6",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "run bootstrap cuda1 retry and long",
+  "task_key": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_run_bootstrap_cuda1_retry_and_long_20260522T152609.jsonl",
+    "occurrence": 1,
+    "bytes": 47322,
+    "sha256": "0d7fad503cbc922e868f23e94297c6bb5ced52d518085baab84be9b4e5d7363f"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "tool_call": 39,
+      "tool_result": 39,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:28:52.428021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T15:28:52.428349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T15:28:52.428536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_*.json 2>/dev/null"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T15:28:52.428682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T15:28:52.428808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T15:28:52.428971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  5 root root   82 May 22 23:24 .\\\\ndrwxr-xr-x 63 root root 8192 May 22 22:40 ..\\\\ndrwxr-xr-x  2 root root   26 May 22 22:40 openvla_goal\\\\ndrwxr-xr-x  2 root root    6 May 22 23:25 openvla_long\\\\ndrwxr-xr-x  2 root root    6 May 22 23:25 tracvla_long\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T15:28:52.429122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/ -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T15:28:52.429249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/clustered_bootstrap/openvla_goal/trained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T15:28:52.429399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -50 /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T15:28:52.429581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Clustered Bootstrap R2 Probing — fixes temporal leakage via demo-level splitting.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, os, sys, time, types\\\\nos.environ[\\\\\\\"HDF5_USE_FILE_LOCKING\\\\\\\"] = \\\\\\\"FALSE\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport h5py\\\\nimport torch\\\\nfrom PIL import Image\\\\nfrom sklearn.linear_model import RidgeCV\\\\nimport importlib.util\\\\n\\\\n\\\\ndef log(msg):\\\\n    print(f\\\\\\\"[{time.strftime('%H:%M:%S')}] {msg}\\\\\\\", flush=True)\\\\n\\\\n\\\\nCKPT = {\\\\n    \\\\\\\"openvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-object\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n        \\\\\\\"long\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\\\\\"},\\\\n    },\\\\n    \\\\\\\"tracvla\\\\\\\": {\\\\n        \\\\\\\"goal\\\\\\\":    {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"spatial\\\\\\\": {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\\\\",\\\\n                    \\\\\\\"untrained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base\\\\\\\"},\\\\n        \\\\\\\"object\\\\\\\":  {\\\\\\\"trained\\\\\\\": \\\\\\\"/root/autodl-tmp/vla-ssd/checkpoin\n…[truncated 1065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T15:28:52.429744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/bootstrap_cuda0.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T15:28:52.429873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T15:28:52.430030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:52:31]     4400/5000 samples\\\\n[22:52:33]     4450/5000 samples\\\\n[22:52:35]     4500/5000 samples\\\\n[22:52:35]   Task 9/10: turn_on_the_stove\\\\n[22:52:37]     4550/5000 samples\\\\n[22:52:40]     4600/5000 samples\\\\n[22:52:42]     4650/5000 samples\\\\n[22:52:44]     4700/5000 samples\\\\n[22:52:46]     4750/5000 samples\\\\n[22:52:48]     4800/5000 samples\\\\n[22:52:50]     4850/5000 samples\\\\n[22:52:52]     4900/5000 samples\\\\n[22:52:55]     4950/5000 samples\\\\n[22:52:57]     5000/5000 samples\\\\n[22:52:57]   Extraction done: 5000 samples, 100 demos\\\\n[22:52:57] Extraction: 219.4s\\\\n[22:52:57]   100 demos, split 80/20\\\\n[22:52:57]   Canonical split -- fitting RidgeCV per layer...\\\\n[22:55:35]   Precomputing kernel matrices...\\\\n[22:55:41]   Bootstrap (10000 iterations)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T15:28:52.430180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1787, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/b9f757ce0e81273d/modeling_phi3_v.py\\\\\\\", line 1301, in forward\\\\n    outputs = self.model(\\\\n              ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1776, in _wrapped_call_impl\\\\n    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1787, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/b9f757ce0e81273d/modeling_phi3_v.py\\\\\\\", line 1114, in forward\\\\n    past_key_values = DynamicCache.from_legacy_cache(past_key_values)\\\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nAttributeError: type object 'DynamicCache' has no attribute 'from_legacy_cache'\\\\n[Fri May 22 23:09:09 CST 2026] FAILED: tracvla_object_untrained\\\\n[Fri May 22 23:09:09 CST 2026] cuda:1 batch complete!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T15:28:52.430346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/ -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T15:28:52.430474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/vla-ssd/results/clustered_bootstrap/openvla_goal/trained.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T15:28:52.430594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"from_legacy_cache\" /root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/b9f757ce0e81273d/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T15:28:52.430718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/b9f757ce0e81273d/modeling_phi3_v.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T15:28:52.430835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/.cache/huggingface/modules/transformers_modules/ -name \"modeling_phi3_v.py\" -type f"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T15:28:52.430984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/63ace36e1a97b4d6/modeling_phi3_v.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T15:28:52.431145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"from_legacy_cache\\|DynamicCache\" /root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/63ace36e1a97b4d6/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T15:28:52.431269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T15:28:52.431387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -rn \"from_legacy_cache\\|DynamicCache\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T15:28:52.431506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T15:28:52.431660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -rn \"from_legacy_cache\\|DynamicCache\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T15:28:52.431788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T15:28:52.431905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"from_legacy_cache\" /root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/63ace36e1a97b4d6/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T15:28:52.432052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T15:28:52.432178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"from_legacy_cache\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T15:28:52.432300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T15:28:52.432415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"DynamicCache\" /root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/63ace36e1a97b4d6/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T15:28:52.432535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:from transformers.cache_utils import Cache, DynamicCache\\\\n1114:                past_key_values = DynamicCache()\\\\n1116:                cache = DynamicCache()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T15:28:52.432684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"DynamicCache\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T15:28:52.432806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:from transformers.cache_utils import Cache, DynamicCache\\\\n1114:                past_key_values = DynamicCache()\\\\n1116:                cache = DynamicCache()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T15:28:52.432936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"from_legacy_cache\" /root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T15:28:52.433066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T15:28:52.433181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"output_dir\" /root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T15:28:52.433309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"362:    p.add_argument(\\\\\\\"--output_dir\\\\\\\",\\\\n422:    out_dir = os.path.join(args.output_dir, f\\\\\\\"{args.arch}_{args.suite}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T15:28:52.433457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_goal -type f"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T15:28:52.433574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_spatial -type f"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T15:28:52.433691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_goal': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T15:28:52.433807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_spatial': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T15:28:52.433936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_object -type f"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T15:28:52.434061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_long -type f"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T15:28:52.434177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/vla-ssd/results/clustered_bootstrap/tracvla_object': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T15:28:52.434291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T15:28:52.434452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -80 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T15:28:52.434647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Fri May 22 23:07:51 CST 2026] Starting cuda:1 bootstrap batch (TracVLA)\\\\n[Fri May 22 23:07:51 CST 2026] === TracVLA goal trained ===\\\\n[23:07:54] === tracvla / goal / trained ===\\\\n[23:07:54] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\n[23:07:54] Data: /root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\n[23:07:54] demos=10 timesteps=50 bootstrap=10000\\\\n[23:07:54] Tasks: 10\\\\n[23:07:54] Loading tracvla from /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\n[transformers] Missing validation function in 'RotaryEmbeddingConfigMixin' for 'rope_type'='su'\\\\n\\\\rLoading weights:   0%|          | 0/593 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 593/593 [00:00<00:00, 65454.94it/s]\\\\n[transformers] `Phi3VProcessor` defines `image_processor_class = 'Phi3VImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\\\n[transformers] Missing validation function in 'RotaryEmbeddingConfigMixin' for 'rope_type'='su'\\\\n[23:08:08]   Loaded in 13.9s\\\\n[23:08:08]   Task 0/10: open_the_middle_drawer_of_the_cabinet\\\\n[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\\\\\\", line 430, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\\\\\\", line 395, in main\\\\n    features, actions, demo_ids = extract_features(\\\\n                                  ^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/vla-ssd/scripts/clustered_bootstrap_probe.py\\\\\\\", line 226, in extract_features\\\\n    out = model(**inputs, output_hidden_states=True)\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1776, in _wrapped_call_impl\\\\n    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\n…[truncated 5030 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T15:28:52.434838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/.cache/huggingface/modules/transformers_modules/tracevla_hyphen_phi3v -name \"modeling_phi3_v.py\" -type f"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T15:28:52.434994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T15:28:52.435122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "find /root/.cache/huggingface/modules/transformers_modules/ -type d"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T15:28:52.435268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/modules/transformers_modules/\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_spatial\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_spatial/5a6b943e94665a35\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_spatial/4b3c82bb32e81729\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_spatial/f37d022e32ff9c2a\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_spatial/9980e0383db760bd\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b/5a6b943e94665a35\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b/9980e0383db760bd\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b/f37d022e32ff9c2a\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_goal\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_goal/5a6b943e94665a35\\\\n/root/.cache/huggingface/modules/transformers_modules/openvla_hyphen_7b_hyphen_finetuned_hyphen_libero_hyphen_goal/a1fe1487ecd75d79\\\\n/root/.cache/huggingface/modules/transformers_modules/tracevla_hyphen_phi3v\\\\n/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base\\\\n/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/7c73ced754d6fffb\\\\n/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/7c73ced754d6fffb/__pycache__\\\\n/root/.cache/huggingface/modules/transformers_modules/phi3v_hyphen_base/63ace36e1a97b4d6\\\\n/root/.cache/huggingface/modules/transformers_modu\n…[truncated 917 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T15:28:52.435450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -n \"DynamicCache\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T15:28:52.435603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "grep -c \"from_legacy_cache\" /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/modeling_phi3_v.py"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T15:28:52.435940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:from transformers.cache_utils import Cache, DynamicCache\\\\n1114:                past_key_values = DynamicCache()\\\\n1116:                cache = DynamicCache()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T15:28:52.436197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T15:28:52.436391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat > /root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh << 'SCRIPT'\n#!/bin/bash\nset -e\ncd /root/autodl-tmp/vla-ssd\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\nexport CUDA_VISIBLE_DEVICES=1\n\nSCRIPT_PY=\"scripts/clustered_bootstrap_probe.py\"\nOUT=\"results/clustered_bootstrap\"\n\necho \"[$(date)] Starting cuda:1 full TracVLA batch (trained + untrained, all suites)\"\n\n# All suites: goal, spatial, object (both conditions)\nfor suite in goal spatial object; do\n    for cond in trained untrained; do\n        OUT_DIR=\"${OUT}/tracvla_${suite}\"\n        OUT_FILE=\"${OUT_DIR}/${cond}.json\"\n        if [ -f \"$OUT_FILE\" ]; then\n            echo \"[$(date)] SKIP: tracvla_${suite}_${cond} already exists\"\n        else\n            echo \"[$(date)] === TracVLA ${suite} ${cond} ===\"\n            python $SCRIPT_PY --arch tracvla --suite $suite --condition $cond --gpu 0 --n_bootstrap 10000 --output_dir $OUT 2>&1 || echo \"[$(date)] FAILED: tracvla_${suite}_${cond}\"\n        fi\n    done\ndone\n\n# Long suite (both conditions)\nfor cond in trained untrained; do\n    OUT_DIR=\"${OUT}/tracvla_long\"\n    OUT_FILE=\"${OUT_DIR}/${cond}.json\"\n    if [ -f \"$OUT_FILE\" ]; then\n        echo \"[$(date)] SKIP: tracvla_long_${cond} already exists\"\n    else\n        echo \"[$(date)] === TracVLA long ${cond} ===\"\n        python $SCRIPT_PY --arch tracvla --suite long --condition $cond --gpu 0 --n_bootstrap 10000 --output_dir $OUT 2>&1 || echo \"[$(date)] FAILED: tracvla_long_${cond}\"\n    fi\ndone\n\necho \"[$(date)] cuda:1 full TracVLA batch complete!\"\nSCRIPT\nchmod +x /root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T15:28:52.436566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T15:28:52.436706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tmux kill-session -t bootstrap_cuda1 2>/dev/null; tmux new-session -d -s bootstrap_cuda1 'bash /root/autodl-tmp/vla-ssd/scripts/run_bootstrap_cuda1_retry.sh > /tmp/bootstrap_cuda1.log 2>&1'"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T15:28:52.436842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T15:28:52.437020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -15 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T15:28:52.437170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Fri May 22 23:28:10 CST 2026] Starting cuda:1 full TracVLA batch (trained + untrained, all suites)\\\\n[Fri May 22 23:28:10 CST 2026] === TracVLA goal trained ===\\\\n[23:28:13] === tracvla / goal / trained ===\\\\n[23:28:13] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\n[23:28:13] Data: /root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\n[23:28:13] demos=10 timesteps=50 bootstrap=10000\\\\n[23:28:13] Tasks: 10\\\\n[23:28:13] Loading tracvla from /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T15:28:52.437315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -10 /tmp/bootstrap_cuda0.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T15:28:52.437456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:52:50]     4850/5000 samples\\\\n[22:52:52]     4900/5000 samples\\\\n[22:52:55]     4950/5000 samples\\\\n[22:52:57]     5000/5000 samples\\\\n[22:52:57]   Extraction done: 5000 samples, 100 demos\\\\n[22:52:57] Extraction: 219.4s\\\\n[22:52:57]   100 demos, split 80/20\\\\n[22:52:57]   Canonical split -- fitting RidgeCV per layer...\\\\n[22:55:35]   Precomputing kernel matrices...\\\\n[22:55:41]   Bootstrap (10000 iterations)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T15:28:52.437623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -10 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T15:28:52.437770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\\\n/root/.cache/huggingface/modules/transformers_modules/tracevla_hyphen_phi3v/f3492885b69136ef/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:71: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:172: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:202: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\nYou are not running the flash-attention implementation, expect numerical differences.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T15:28:52.437944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -8 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T15:28:52.438097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:71: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:172: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:202: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\nYou are not running the flash-attention implementation, expect numerical differences.\\\\n[23:28:24]     50/5000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T15:28:52.438251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -3 /tmp/bootstrap_cuda0.log"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T15:28:52.438384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[22:52:57]   Canonical split -- fitting RidgeCV per layer...\\\\n[22:55:35]   Precomputing kernel matrices...\\\\n[22:55:41]   Bootstrap (10000 iterations)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T15:28:52.438541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /tmp/bootstrap_cuda0.log"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T15:28:52.438669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "head -5 /tmp/bootstrap_cuda0.log"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T15:28:52.438797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 8763 May 22 22:55 /tmp/bootstrap_cuda0.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T15:28:52.438940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Fri May 22 22:48:52 CST 2026] Starting cuda:0 bootstrap batch (OpenVLA + NORA)\\\\n[Fri May 22 22:48:52 CST 2026] === OpenVLA goal trained ===\\\\n[22:48:54] === openvla / goal / trained ===\\\\n[22:48:54] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\\n[22:48:54] Data: /root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T15:28:52.439084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tmux ls 2>/dev/null; nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader 2>/dev/null"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T15:28:52.439215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_cuda0: 1 windows (created Fri May 22 22:48:52 2026)\\\\nbootstrap_cuda1: 1 windows (created Fri May 22 23:28:10 2026)\\\\n670838, python, 2126 MiB\\\\n678398, python, 8918 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T15:28:52.439357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -3 /tmp/bootstrap_cuda1.log"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T15:28:52.439487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[23:28:34]     200/5000 samples\\\\n[23:28:38]     250/5000 samples\\\\n[23:28:41]     300/5000 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T15:28:52.439743+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**cuda:1 retry** — 已启动，DynamicCache 修复生效。TracVLA goal trained 正在 extraction（300/5000 samples）。因为之前 trained 和 untrained 全部失败，脚本会跑全部 8 个 run（goal/spatial/object 各 trained+untrained + long trained+untrained）。\n\n**cuda:0** — 两个 session 都活跃。cuda:0 正在 OpenVLA goal trained 的 bootstrap 10000 迭代阶段（CPU 密集，日志不更新是正常的）。GPU 占用 2126 MiB。\n\n**注意**：原计划只重跑 3 个 untrained + 2 个 long，但实际 TracVLA 完全没有结果（trained 也全部失败在同一个 DynamicCache bug），所以脚本改为跑全部 8 个 TracVLA conditions。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_bootstrap_cuda1_retry_and_long_20260522T152609"
+          },
+          "id": "event-000079"
+        }
+      ],
+      "message_count": 79
+    }
+  ],
+  "readable_path": "readable/conversations/run-bootstrap-cuda1-retry-and-long.md"
+}

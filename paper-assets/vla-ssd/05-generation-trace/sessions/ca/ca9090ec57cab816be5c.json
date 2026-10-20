@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9090ec57cab816be5c",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "sync specificity figure fix",
+  "task_key": "worker_sync_specificity_figure_fix_20260520T035208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_specificity_figure_fix_20260520T035208.log",
+    "occurrence": 1,
+    "bytes": 703631,
+    "sha256": "6397b2d08766daaa0adfab2bc372790c3794012e7263a7c4e73ba64802fdec84"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 1,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 72,
+      "tool_result": 71,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "ca9090ec57cab816be5c-part-0001.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "ca9090ec57cab816be5c-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "ca9090ec57cab816be5c-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-specificity-figure-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e9234723cf28c1ed59",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research redream evidence compilation",
+  "task_key": "worker_research_redream-evidence-compilation_20260516T001832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_redream-evidence-compilation_20260516T001832_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "fb9277541cc6a3ff25e7dd78f6a10ff720835db43322dfaae1aa484bc2bd83f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册（`art_20260516_fbe988`）。\n\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/redream_evidence_v2.md`\n\n内容覆盖：\n- **C1 Vision Encoder Dominance** (4.5/5)：RSA smoking gun + functional probe + DINO 三方对比，6 条 primary + 7 条 supporting\n- **C2 LLM Redistributes** (4.0/5)：RSA 降解 + R² 降解 + readout concentration + training-dependency + CKA dissociation (C7) 完整展开\n- **C3 Training = Routing** (3.5/5)：Bootstrap CI invariance + readout Δ=0.045 (p<0.0001) + 7 条 negative results 作为排除证据；plan_008 marked as placeholder\n- **D030 失败分析**：逐项列出当时缺失的 8 条新证据\n- **Remaining gaps**：plan_008 (P0 RUNNING), plan_012 (P1), plan_010 (P2), delta last_preaction (P2)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-redream-evidence-compilation.md"
+}

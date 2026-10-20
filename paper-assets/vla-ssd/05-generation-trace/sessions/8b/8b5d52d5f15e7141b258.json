@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b5d52d5f15e7141b258",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "data update r2 table 15seed",
+  "task_key": "worker_data_update_r2_table_15seed_20260520T094741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_update_r2_table_15seed_20260520T094741_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "5e54db62cab6c14fa2f926eae0870955645005ca3ad515d830d2861722fe46c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n- **33 层数据完整** (L0–L32)\n- **Peak 仍在 L11**: R² = 0.634 ± 0.009 (5-seed 时为 0.634 ± 0.007，mean 几乎不变，std 略增)\n- **L0**: -0.330 ± 0.002\n- **L32**: 0.550 ± 0.007\n- **平均 CI 宽度** (mean std): 0.0097 (5-seed 时约 0.0075，符合预期——更多 seeds 暴露了更多 variance)\n\n更新内容：\n1. `cross_arch_r2_table.tex` — Phi3V 列标题改为 `(15 seeds)`，数据替换为 15-seed mean±std\n2. `phi3v_r2_per_layer.json` — 两份副本均更新为 `num_seeds: 15`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-update-r2-table-15seed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5dca34b5e17ee89f2f4",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3918,
+    "sha256": "97de2bf3e41bc5e9debb087f0d78d0735e24e35b10099d22d055c1ece483a5d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-15T10:04:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0, cuda:1（westd-19183 分配的 2×RTX PRO 6000）\n- OpenVLA 模型路径：`/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`，不要碰根分区\n- features/ 是 symlink → `/root/autodl-tmp/vla-ssd/features/`，不要删 symlink 重建真实目录\n- MVP PASS 判据已更新：Δρ 对照组是 **untrained model**（不是 timestep baseline），三分支判定（PASS/CONDITIONAL/FAIL）\n- OpenVLA 下载反复出问题（xet 超时），hf-mirror.com + `HF_ENDPOINT` 才有效，`HF_HUB_DISABLE_XET=1` 对此 repo 无效\n- 不要同时开多个进程下载同一文件（之前 4+ 进程竞争导致文件损坏 + 速度暴跌）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183, `ssh -p 19183 root@connect.westd.seetacloud.com`\n- 工作目录：`/root/vla-ssd/`（代码），数据盘 `/root/autodl-tmp/vla-ssd/`（模型/数据/features）\n- Python：aml-train 镜像，conda base 环境，`/root/miniconda3/bin/python`\n- 模型：OpenVLA 7B `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`（3/3 shards 已验证）；DINO-V2 已就绪；untrained checkpoint **尚未生成**（`openvla-7b-untrained/` 不存在）\n- 数据：LIBERO-10 全 10 task HDF5 就绪；LIBERO-90 部分下载中\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：cuda:0 trained 特征提取（tmux session `openvla-trained-extract`，~15% 进度，~37.8 step/s）；cuda:1 空闲\n- DINO-V2 features 已提取完成：`/root/autodl-tmp/vla-ssd/features/dinov2/`，503MB\n\n### 3. 📊 当前状态\n- **cuda:0**: OpenVLA trained 特征提取正在跑（task 1/10，15%），预计 4-6h 完成全部 10 task\n- **cuda:1**: 空闲 — 我刚发了指令让 Agent 执行 init_untrained.py → untrained 特征提取，但 Agent 还在处理队列，尚未确认启动\n- Registry: mvp_001 (PREPARING)\n- DINO-V2 probe 已完成：temporal distance ρ=0.833, Oracle ρ=1.0\n- 代码全部就绪：extract_features.py, train_probes.py, analyze_results.py, init_untrained.py, extract_dinov2.py\n- Reviewer 代码审查的 2 个 bug 已修复（CONDITIONAL 分支 + untrained init 统一为 from_config）\n- 等待：Agent 回调确认 untrained 提取启动；trained 提取完成回调\n\n### 4. 📋 待办\n- Agent 回调确认 untrained 启动 → 确保 cuda:1 利用率 > 0%；如果 init_untrained 失败 → 诊断并重试\n- trained + untrained 特征提取均完成 → 派 Worker 跑 probe 训练（trained/untrained/cross-traj Control B）+ analyze_results.py\n- MVP probe 结果出来 → 按三分支判定：\n  - PASS（ρ>0.3, Δρ>0.1, VLA≥DINO 或 AUC>0.7）→ complete_mvp() 进入 research\n  - CONDITIONAL（Δρ>0.1 但 VLA<DINO 且 AUC<0.7）→ pivot DINO-V2 pipeline + negative finding\n  - FAIL（ρ≤0.3 或 Δρ≤0.1）→ 终止\n- 如 VLA ≈ DINO-V2（Δρ<0.05）→ 检查 sub-task predicate AUC 是否 >0.7 作为替代 PASS 路径\n\n### 5. 🎯 战略上下文\n- 核心假设：VLA 预训练表征编码了 task-progress 信息，可自我打分 demo 质量\n- **RoPE 不是混淆因素**（每 timestep 独立 forward pass，RoPE 只编码 sequence 内 token position）→ 这简化了控制实验，也是论文 positive point\n- DINO-V2 ρ=0.833 设了高 bar — VLA 必须显著超越纯视觉 baseline。Reviewer 分析了三种场景：远超/微超/不如，只有场景 1（远超）对 CoRL 有力\n- Reviewer 提醒：temporal distance probing ≠ quality scoring，VLA 可能在 Stage 2-3 downstream 有优势即使 probing 不如 DINO-V2\n- CoRL DDL：abstract May 26, paper May 29。时间紧但 GPU-hours 充足\n- 易踩的坑：(1) AutoDL 上 HF 下载必须 `source /etc/network_turbo` + SSL 证书 + `HF_ENDPOINT=hf-mirror.com`；(2) 不要多进程下载同一文件；(3) untrained checkpoint 还没生成，是当前 cuda:1 空闲的原因\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

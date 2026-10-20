@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa0ba14adf701cbb9c0",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code nora goal pipeline prep",
+  "task_key": "worker_code_nora_goal_pipeline_prep_20260521T021532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nora_goal_pipeline_prep_20260521T021532.log",
+    "occurrence": 1,
+    "bytes": 999221,
+    "sha256": "7313f67eb8746afa55ceeffea0bff554dcf6c01ec9c5c003df3fff396635a2c9"
+  },
+  "statistics": {
+    "messages": 393,
+    "user_turns": 1,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 86,
+      "tool_call": 149,
+      "tool_result": 149,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 321,
+      "chunks": [
+        {
+          "path": "2aa0ba14adf701cbb9c0-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "2aa0ba14adf701cbb9c0-part-0002.json",
+          "message_count": 180
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "2aa0ba14adf701cbb9c0-part-0003.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-nora-goal-pipeline-prep.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f036f2280302ed0f68fa",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code p0 image mean rsa verify",
+  "task_key": "worker_code_p0_image_mean_rsa_verify_20260515T223349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_image_mean_rsa_verify_20260515T223349.log",
+    "occurrence": 1,
+    "bytes": 514179,
+    "sha256": "70fac6c0149a1df4a4af4a4a2104e61b06b0d20de95f31321b6dea7211848b93"
+  },
+  "statistics": {
+    "messages": 390,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 390,
+      "chunks": [
+        {
+          "path": "f036f2280302ed0f68fa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f036f2280302ed0f68fa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f036f2280302ed0f68fa-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p0-image-mean-rsa-verify.md"
+}

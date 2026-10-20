@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cec7761caca7bbe37285",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh lg extraction progress",
+  "task_key": "worker_ssh_lg-extraction-progress_20260515T171527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_lg-extraction-progress_20260515T171527_result.json",
+    "occurrence": 1,
+    "bytes": 1863,
+    "sha256": "b4217c9cde4ee7ccb2ffb6079a88d968c725d1298e357d93a56931dace67e6af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LIBERO-Goal 特征提取进度报告\n\n### 进程状态\n| 进程 | PID | 运行时间 | 内存(RSS) | CPU |\n|------|-----|---------|-----------|-----|\n| lg_extract_trained | 627256 | 30m27s | ~2.4GB | 987% |\n| lg_extract_untrained | 627335 | 30m25s | ~2.3GB | 955% |\n\n两个进程均存活，CPU 使用正常。\n\n### GPU 使用\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 16,417 / 97,887 MiB |\n| cuda:1 | 0% | 16,375 / 97,887 MiB |\n\nGPU 利用率瞬时为 0%（推理是 burst 式的，snapshot 抓到空闲间隙），显存占用 ~16GB 正常。\n\n### 提取进度\n\n**Trained (cuda:0)**: **6/10 tasks 完成**，正在处理第 7 个 task\n| 已完成 task | 文件大小 |\n|------------|---------|\n| open_the_middle_drawer_of_the_cabinet | 2.70 GB |\n| open_the_top_drawer_and_put_the_bowl_inside | 3.92 GB |\n| push_the_plate_to_the_front_of_the_stove | 2.94 GB |\n| put_the_bowl_on_the_plate | 1.80 GB |\n| put_the_bowl_on_the_stove | 1.95 GB |\n| put_the_bowl_on_top_of_the_cabinet | 1.02 GB |\n\n**Untrained (cuda:1)**: **5/10 tasks 完成**，正在处理第 6 个 task\n| 已完成 task | 文件大小 |\n|------------|---------|\n| open_the_middle_drawer_of_the_cabinet | 2.71 GB |\n| open_the_top_drawer_and_put_the_bowl_inside | 3.93 GB |\n| push_the_plate_to_the_front_of_the_stove | 2.94 GB |\n| put_the_bowl_on_the_plate | 1.80 GB |\n| put_the_bowl_on_the_stove | 1.72 GB |\n\n### 预估剩余时间\n- 平均 ~5 min/task（30 min 完成 5-6 tasks）\n- **Trained**: 剩余 4 tasks → ~20 min\n- **Untrained**: 剩余 5 tasks → ~25 min\n\n### DINO LIBERO-Goal 特征\n`/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/` **不存在**，尚未开始提取。\n\n### 异常\n无异常。local_files_only 修复后两个进程均稳定运行，预计再 25-30 分钟全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-lg-extraction-progress.md"
+}

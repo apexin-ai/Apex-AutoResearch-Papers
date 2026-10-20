@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00ab19fa64ca4110db54",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head comparison plot",
+  "task_key": "worker_code_action_head_comparison_plot_20260526T205555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_comparison_plot_20260526T205555_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "bcea5696939e76cfd3c8097ff4db61eee25a40824f07528b89c2d0d6ce496921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成了双 panel 对比图（PNG + PDF），已注册为 artifact：\n\n- `art_20260526_b8d482` — PNG (300 dpi)\n- `art_20260526_ca216f` — PDF 矢量版\n\n图表展示：上 panel Independent Linear Probe R² 在 L9 达到 mid-layer peak (0.637) 后逐层下降，L31 exit collapse (0.488)；下 panel Frozen Action Head 全层 R² < 0，trained 在后半段（L18+）优于 untrained，两者在 exit layer (L32) 趋近但仍为负值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-comparison-plot.md"
+}

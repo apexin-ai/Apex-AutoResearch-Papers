@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72bcd71cdc7825c01b32",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "run bootstrap fix and rerun all",
+  "task_key": "worker_run_bootstrap_fix_and_rerun_all_20260523T005006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_bootstrap_fix_and_rerun_all_20260523T005006_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "006c2f48957c8efb84975d7012d3dd967ece08172c2b4bac113197391f453fdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **Dry-run JSON**：peak=L35, exit=L35, delta=0.0, CI=[0.0, 0.0]（dry-run 数据量太小导致 peak==exit，属正常）\n2. **两个 tmux session 已启动**：`bootstrap_cuda0` + `bootstrap_cuda1`\n3. **GPU 占用确认**：GPU0 84% / 15393 MiB，GPU1 55% / 8927 MiB，两卡均在跑\n\ncuda0 正在处理 openvla/goal/trained（feature extraction 阶段），cuda1 已在 tracvla/goal/trained 的 extraction 中（450/5000 samples）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-bootstrap-fix-and-rerun-all.md"
+}

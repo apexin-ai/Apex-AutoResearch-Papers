@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7a0e21c41531fd7803e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix random init label critical",
+  "task_key": "worker_fix_random_init_label_critical_20260523T201244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_random_init_label_critical_20260523T201244_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "f9a7018b6cf44dc01bc7251c76531dbd8f8f9377d9c1ad339bfe28483c304654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。两张图验证通过：\n\n- **fig_multi_layer_attn.pdf**: legend 显示 \"Trained VLA\"、\"Llama-2 Base\"、\"Random Init\"（红色虚线，0/32 heads，底部平线）\n- **fig_32layer_attention.pdf**: legend 显示 \"VLA Trained\"、\"Llama-2 Base\"、\"Random Init\"（红色虚线，全层 0 heads，底部平线）\n\n随机初始化条件的标签已从 \"Reference VLA\" 正确改为 \"Random Init\"，其他条件标签未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-random-init-label-critical.md"
+}

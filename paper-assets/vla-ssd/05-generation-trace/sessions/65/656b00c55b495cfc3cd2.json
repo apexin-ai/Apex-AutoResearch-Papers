@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "656b00c55b495cfc3cd2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code paper compile and visual check",
+  "task_key": "worker_code_paper_compile_and_visual_check_20260517T105223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper_compile_and_visual_check_20260517T105223_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "9a5e5ff4c5beb298584dbb8df3f00e0b91b27f963a36c6043671a27c3472cc4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果汇总\n\n### 任务 1：编译结果\n\n**Errors: 0** — 编译成功，生成 19 页 PDF。\n\n**Warnings (7 条):**\n\n| # | Warning | 位置 |\n|---|---------|------|\n| 1-4 | `'h' float specifier changed to 'ht'` (×4) | appendix.tex |\n| 5 | `Underfull \\vbox (badness 10000)` | p7, discussion.tex |\n| 6 | `Underfull \\vbox (badness 4859)` | p3, method.tex |\n| 7 | `Underfull \\hbox (badness 10000)` (×2) | main.bbl, 长 URL 换行 |\n\n另有几个低 badness 的 underfull vbox（p2, p4, p14），均为页面底部留白，cosmetic 问题。\n\n---\n\n### 任务 2：Figure 字体检查\n\n**所有 16 个 figure 均 ≥ 7pt，无违规。**\n\n需关注的边界情况：\n- **fig_32layer_attention.pdf** — 注释文字 (\"entry\", \"routing\", \"exit\", \"mid-layer\") 恰好 7.00pt，legend 8pt。如果栏宽缩小可能难读，建议调到 7.5-8pt。\n- **fig_l1_stacked_bar.pdf** — 最小字号 7.00pt，刚好达标。\n- **fig3.pdf** — legend 8.5pt，轴标签 10pt，无问题。\n\n---\n\n### 任务 3：corl_example.tex 检查\n\n| 检查项 | 结果 |\n|--------|------|\n| main.tex 是否 include corl_example？ | **否**，未被引用 |\n| corl_example.tex 含假引用？ | 是（Gauss1857, Lagrange1788），但仅存在于模板示例文件 |\n| 假引用是否泄漏到正文/bib？ | **否**，其他 .tex 和 .bib 均未出现 |\n\n该文件是 CoRL 模板自带的示例，未编译进论文，无风险。可删除以保持目录整洁。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-compile-and-visual-check.md"
+}

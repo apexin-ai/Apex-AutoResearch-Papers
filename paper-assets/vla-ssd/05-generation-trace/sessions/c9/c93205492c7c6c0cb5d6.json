@@ -1,0 +1,1261 @@
+{
+  "schema_version": "1.0",
+  "id": "c93205492c7c6c0cb5d6",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "paper readability microedits",
+  "task_key": "worker_paper_readability_microedits_20260519T134637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_readability_microedits_20260519T134637.log",
+    "occurrence": 1,
+    "bytes": 51093,
+    "sha256": "e96e3346a2f1438650e10ae3f30e13e61e450445afab4e3bb85fd468630e9b5b"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+                "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "dd811358-3a2b-4f7f-bb84-6ae05c6e2a93",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779216000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "af47a737-ce8e-4a87-9926-ae2e23a46bfa",
+                "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the relevant files to understand the current content and make the requested changes.",
+              "signature": "EqcCClkIDRgCKkBDgWi2kc8/3rCNRQXGhTkvVpb34QVjhtXd4MrAdkaAgo3YC5gPrUTxJKPVIrVhHilzVnRhrYeBh16cCKaAJgTfMg9jbGF1ZGUtb3B1cy00LTY4ABIMlX40oIf0zzBhxD8ZGgxUO7vjs3GXNPTA+IsiMNfF429SuaO4jcOQk1am3WQdujnu3jpyLPwlBtEaRzqAIxQxi1UeQk8yi5lSpbGYqSp8epEb6t/GLeHWzLOmuPMNh7Nw1lCKzOmV9MXgaYSFVxpKghvYpJJVVfHe566NCCAFFeZEEnMNpkbBUv5D66mJcF+MP0LNneUTcxxmZHaF2m98zRAepR2wdClVIj1kEJ+HaIf7d82DeagCOfUPCsFyqePClOwcHPqXUK2u3RgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "5b5ba931-8201-4914-87ff-bb8b182ce005",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RKdRJVuw11VkWQD9ng8ft",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11696,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me locate and read the relevant files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "86757788-dec4-4050-8a0e-1c45ac310a5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RKdRJVuw11VkWQD9ng8ft",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11696,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Zkv6X7ig1oTisYghzCoWj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "cad57c50-8e73-467c-b160-91c1020ab61a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RKdRJVuw11VkWQD9ng8ft",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11696,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:46:52.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Zkv6X7ig1oTisYghzCoWj",
+              "type": "tool_result",
+              "content": "1\tVision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.\n2\tWe present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.\n3\tThree findings emerge.\n4\tFirst, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).\n5\tSeven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$).\n6\tSecond, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.\n7\tArchitecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.\n8\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "3c0f5aaf-8ba5-48bb-bb8e-c523e0292917",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex",
+                "content": "Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.\nWe present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.\nThree findings emerge.\nFirst, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).\nSeven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$).\nSecond, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.\nArchitecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.\n",
+                "numLines": 8,
+                "startLine": 1,
+                "totalLines": 8
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FVJFW5EWHDSZwbmahZbj97",
+              "name": "Grep",
+              "input": {
+                "pattern": "L1 readout attention across",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "29ed7c56-7247-4b9d-9a7f-dbc88d05c8ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RKdRJVuw11VkWQD9ng8ft",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11696,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11696
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:46:52.418Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FVJFW5EWHDSZwbmahZbj97",
+              "type": "tool_result",
+              "content": "docs/paper/experiments.tex:53:L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "f231bd4c-8ca7-4aac-94b3-6e14e84c0cd8",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/experiments.tex:53:L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+              "numLines": 1
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three locations found. Now let me read the experiments.tex context around line 53."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "bfed9b2c-c8b5-4f9a-867e-01fd01e800c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbPyVaf7fU9ZkBgP3kJGBw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 826,
+                "cache_read_input_tokens": 23537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 826
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017yoikUXrxJEV812ZV2uK3g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+                "offset": 48,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "0db675a4-963f-4a30-9b24-aca1e033f965",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbPyVaf7fU9ZkBgP3kJGBw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 826,
+                "cache_read_input_tokens": 23537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 826
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:46:55.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017yoikUXrxJEV812ZV2uK3g",
+              "type": "tool_result",
+              "content": "48\t%------------------------------------------------------------------\n49\t\\subsection{VLA Fine-Tuning Front-Loads Instruction Routing}\n50\t\\label{sec:learned_routing}\n51\t\n52\t\\paragraph{Three-level routing gradient at L1.}\n53\tL1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.\n54\tPer-token normalization ($38.2\\times$ text-to-image ratio; Appendix~\\ref{sec:attention_decomp}) corroborates this redistribution.\n55\t\n56\t\\paragraph{Redistribution of routing across depth.}\n57\tThe 32-layer profile (Figure~\\ref{fig:attention_profile}) shows qualitatively distinct patterns."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "a6e890fe-9698-4b40-aff5-34ba3ed4408a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+                "content": "%------------------------------------------------------------------\n\\subsection{VLA Fine-Tuning Front-Loads Instruction Routing}\n\\label{sec:learned_routing}\n\n\\paragraph{Three-level routing gradient at L1.}\nL1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.\nPer-token normalization ($38.2\\times$ text-to-image ratio; Appendix~\\ref{sec:attention_decomp}) corroborates this redistribution.\n\n\\paragraph{Redistribution of routing across depth.}\nThe 32-layer profile (Figure~\\ref{fig:attention_profile}) shows qualitatively distinct patterns.",
+                "numLines": 10,
+                "startLine": 48,
+                "totalLines": 158
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll apply all three edits."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "5723c5d9-654f-48a5-80d9-88dd05f7e72b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUDMuCMGEV7cmhzaprn7sF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 407,
+                "cache_read_input_tokens": 24363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 407
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UGi3csG8Av7qmT1AbZ16qN",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex",
+                "old_string": "We present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.",
+                "new_string": "We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "5ce7a4ac-e230-49e9-9714-32273068956f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUDMuCMGEV7cmhzaprn7sF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 407,
+                "cache_read_input_tokens": 24363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 407
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:47:00.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UGi3csG8Av7qmT1AbZ16qN",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "aedafd6b-ee0d-431d-9b5f-6c8a100d95ab",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex",
+              "oldString": "We present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.",
+              "newString": "We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.",
+              "originalFile": "Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.\nWe present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.\nThree findings emerge.\nFirst, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).\nSeven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$).\nSecond, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.\nArchitecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 5,
+                  "newStart": 1,
+                  "newLines": 5,
+                  "lines": [
+                    " Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.",
+                    "-We present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.",
+                    "+We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.",
+                    " Three findings emerge.",
+                    " First, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).",
+                    " Seven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$)."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019EGHmq7st5hHVWin692YDd",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex",
+                "old_string": "Architecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.",
+                "new_string": "Token-level analysis reveals strict functional specialization: image tokens remain instruction-blind across all 32 layers while the readout token serves as the primary multimodal integration site."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "cc8159c1-ae68-4430-be34-8e2c276cb2aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUDMuCMGEV7cmhzaprn7sF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 407,
+                "cache_read_input_tokens": 24363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 407
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:47:01.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019EGHmq7st5hHVWin692YDd",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "b8afa960-fa7c-453c-9843-bbf8dae11c92",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex",
+              "oldString": "Architecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.",
+              "newString": "Token-level analysis reveals strict functional specialization: image tokens remain instruction-blind across all 32 layers while the readout token serves as the primary multimodal integration site.",
+              "originalFile": "Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.\nWe decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.\nThree findings emerge.\nFirst, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).\nSeven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$).\nSecond, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.\nArchitecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 4,
+                  "oldLines": 4,
+                  "newStart": 4,
+                  "newLines": 4,
+                  "lines": [
+                    " First, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth, while VLA training shifts this to entry-layer routing (L0--L1) with exit-layer re-engagement (L31).",
+                    " Seven complementary analyses, including dose-response ablation (8 conditions, monotonic $d = 0.48 \\to 0.64$) and counterfactual instruction analysis (4 perturbation types, $d = 0.63$--$0.97$), support instruction-conditioned action generation through distributed L1 routing, with routing dependence $2.5\\times$ stronger for instruction-discriminative tasks ($p = 0.033$).",
+                    " Second, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.",
+                    "-Architecture-expected token specialization (instruction-blind image tokens, perfect readout classification from L1) is empirically verified as a framework sanity check.",
+                    "+Token-level analysis reveals strict functional specialization: image tokens remain instruction-blind across all 32 layers while the readout token serves as the primary multimodal integration site."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GNiFP127hkciPkkq1gYAkh",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+                "old_string": "L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+                "new_string": "We compare L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained networks allocate 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "52aadc77-13d4-4be1-88b7-768389c8ef8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUDMuCMGEV7cmhzaprn7sF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 407,
+                "cache_read_input_tokens": 24363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 407
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:47:03.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GNiFP127hkciPkkq1gYAkh",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "f399b1a8-2705-4439-af30-2b71a411351d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "oldString": "L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+              "newString": "We compare L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained networks allocate 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+              "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\nWe evaluate OpenVLA-7B~\\cite{kim2024_openvla,karamcheti2024} on LIBERO-Goal~\\cite{liu2023_libero} (10 tasks, 50 demonstrations each).\nRepresentations are extracted from six sources spanning the VLA pipeline (\\S\\ref{sec:repr_extraction}): DinoSigLIP+Projector, LLM image\\_mean and readout tokens at each of 32 layers, DINOv2~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}), CLIP~\\cite{radford2021_clip} (\\texttt{patch\\_mean}), and branch-split (DINOv2 1{,}024-D / SigLIP 1{,}152-D before fusion).\nThree LLM conditions are compared: VLA-trained, pretrained Llama-2 base (no VLA fine-tuning), and untrained (6.74B parameters reinitialized to random weights), crossed with instruction presence (\\S\\ref{sec:model_data}).\nRSA computes Spearman $\\rho$ between cosine-distance representation RDMs and Euclidean-distance action RDMs, with 10{,}000 bootstrap CIs (\\S\\ref{sec:rsa}).\nMLP probes (input $\\to$ 256 $\\to$ 7; Adam, lr${}=10^{-3}$, 50 epochs, early stopping) report mean $R^2$ (\\S\\ref{sec:probes}).\nThis yields $N = 63{,}228$ observations (after excluding terminal frames without next-action labels; $63{,}728$ total); RSA uses task-level blocking ($N_\\text{eff} = 10$) and probes use demo-level train/test splits.\nAll patterns reproduce with a linear probe (Appendix~\\ref{sec:linear_probe}).\n\n%------------------------------------------------------------------\n\\subsection{Framework Validation: Token-Level Specialization}\n\\label{sec:token_specialization}\n\nAs a sanity check on the experimental framework, we train cross-instruction probes (\\S\\ref{sec:cross_instruction_probes}): given the same visual frame with each of 10 task instructions, we classify which instruction was present from per-layer activations.\n\n\\paragraph{Image tokens are instruction-blind (expected).}\nAs predicted by the causal mask and frozen encoder, image\\_mean instruction classification remains at chance ($10\\%$) across all 32 layers in all conditions (Table~\\ref{tab:dense_routing_main}).\nBoth linear and MLP probes corroborate this, as does standalone DINOv2 ($10\\%$; Appendix~\\ref{sec:instruction_invariance_appendix}).\n\n\\paragraph{Readout token as multimodal hub.}\nTrained readout achieves $100\\%$ 10-way classification from L1 through L31 (LOOCV-confirmed; Appendix~\\ref{sec:loocv}); untrained achieves $100\\%$ at L1 but decays to $82\\%$ by L31.\nThe readout is thus the primary locus of multimodal integration, with richer task-relevant content than standalone DINOv2 (QA probe $86.3\\%$ vs.\\ $82.7\\%$; Appendix~\\ref{sec:qa_probe}), replicating on LIBERO-Spatial (Appendix~\\ref{sec:cross_benchmark_appendix}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-instruction 10-way classification at selected layers (full profile in Appendix~\\ref{sec:dense_routing}). Image\\_mean remains at chance ($10\\%$) in all conditions; trained readout reaches $100\\%$ at L1 and holds; untrained readout decays from L1 to L31.}\n\\label{tab:dense_routing_main}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nLayer & Trained readout & Untrained readout & Image\\_mean \\\\\n\\midrule\nL0 & 10.0\\% & 10.0\\% & 10.0\\% \\\\\nL1 & 100.0\\% & 100.0\\% & 10.0\\% \\\\\nL4 & 100.0\\% & 99.1\\% & 10.0\\% \\\\\nL8 & 100.0\\% & 98.2\\% & 10.0\\% \\\\\nL16 & 100.0\\% & 92.3\\% & 10.0\\% \\\\\nL31 & 100.0\\% & 82.0\\% & 10.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%------------------------------------------------------------------\n\\subsection{VLA Fine-Tuning Front-Loads Instruction Routing}\n\\label{sec:learned_routing}\n\n\\paragraph{Three-level routing gradient at L1.}\nL1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.\nPer-token normalization ($38.2\\times$ text-to-image ratio; Appendix~\\ref{sec:attention_decomp}) corroborates this redistribution.\n\n\\paragraph{Redistribution of routing across depth.}\nThe 32-layer profile (Figure~\\ref{fig:attention_profile}) shows qualitatively distinct patterns.\nLlama-2 base concentrates instruction attention at mid-depth (L9--L16: 15--22 heads).\nVLA fine-tuning shifts to an entry-exit pattern (L0--L1: 21--24 heads, L31: 18), with intermediate layers markedly lower (0--11 at L2--L30).\nHead counts reflect single-sample extraction; threshold sensitivity (30\\%--70\\%) analysis confirms ordering robustness across classification boundaries (Appendix~\\ref{sec:threshold_sensitivity}).\n\n\\paragraph{Task-specific sharpening.}\nA fourth condition (OpenVLA-7B fine-tuned on LIBERO) shows stable L1 entry routing (22/32 heads) but complete loss of L31 exit re-engagement (0 vs.\\ 18 heads) and further mid-depth compression (L9--L16: 1--7 vs.\\ 6--11), an $N=2$ comparison consistent with the hypothesis that exit routing serves multi-task flexibility, though training data diversity differences may also contribute.\nProbe accuracy is preserved (L1: $99.7\\%$; Appendix~\\ref{app:finetuned_probe}).\n\n\\paragraph{Probe robustness corroborates the pattern.}\nCross-instruction probes corroborate the three-condition gradient (Appendix Figure~\\ref{fig:probe_conditions_appendix}).\nTraining effects concentrate at the readout ($R^2$ $+0.069$, attention $+46$pp) while image\\_mean changes minimally ($\\Delta \\leq 1.7\\%$; Appendix~\\ref{sec:training_effect_summary},~\\ref{sec:action_r2_threecond}).\n\n\\paragraph{Open-loop functional sensitivity.}\nWe ablate attention to instruction tokens at the readout position.\nAblating all 24 dominant heads at L1 increases action $R^2$ by $+0.042$ (baseline $0.517$)\\footnote{$R^2$ values differ from Table~\\ref{tab:rsa_overview} due to the feature reconstruction pipeline; all comparisons are within-experiment.}.\nWe compare against 10 random subsets of 24 heads (Appendix~\\ref{sec:random_subset_ablation}): random ablation yields a larger mean increase of $+0.077 \\pm 0.013$ ($z = -2.73$, $p = 0.003$).\nDominant heads produce a smaller gain because they carry organized routing signals (structured noise for the probe); random heads lack such organization.\nIn the original extraction pipeline (\\S\\ref{sec:repr_extraction}), L1 ablation increases $R^2$ by $+0.059$ vs.\\ no-ablation baseline, decaying at deeper layers (L8: $+0.018$; L13: $\\Delta \\approx 0$); instruction routing is an entry-layer phenomenon, consistent across all 10 tasks (Table~\\ref{tab:per_task_r2}).\n\n\\paragraph{Action trajectory validation.}\nAblating 24 instruction-dominant heads alters $72.3\\%$ of action tokens ($d = 0.65$); control ablation (8 heads) yields $d = 0.41$ ($29.3\\%$), concentrated on the gripper dimension (shift $0.291$ vs.\\ $< 0.034$; Tables~\\ref{tab:attention_decomp},~\\ref{tab:per_dim_mae}; Appendix~\\ref{sec:action_trajectory}).\n\n\\paragraph{Dose-response gradient.}\nAblating 4--32 instruction-dominant heads yields monotonic divergence ($d = 0.482 \\to 0.639$; Figure~\\ref{fig:dose_response}), with steep rise through 12 heads and plateau beyond 20 (Appendix~\\ref{sec:action_trajectory}).\n\n\\paragraph{Counterfactual instruction analysis.}\nReplacing the original instruction with four perturbation types all produce substantial divergence: empty ($d = 0.968$), wrong task ($0.844$), paraphrased ($0.697$), shuffled ($0.625$; Table~\\ref{tab:counterfactual}).\nToken novelty ($1 - \\text{Jaccard}$) predicts the ordering ($\\rho = 1.0$): paraphrased (Jaccard $0.533$) exceeds shuffled (Jaccard $1.0$), though shuffled $d = 0.625$ with identical tokens reveals positional sensitivity.\nL1 ablation ($d = 0.65$) falls within this range (Appendix~\\ref{sec:action_trajectory}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Instruction routing at L1. Mode: immed./gradual/incid. $=$ acquisition speed; +stable/+forget $=$ retention. Accuracy gap (99.6\\% vs.\\ 100.0\\% in Table~\\ref{tab:dense_routing_main}): task-level vs.\\ LOOCV splits.}\n\\label{tab:routing_gradient}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & Heads & Text attn & L1 acc & L31 acc & Mode \\\\\n\\midrule\nVLA Trained & 24/32 & 57.7\\% & 99.6\\% & 100.0\\% & immed.+stable \\\\\nLlama-2 base & 9/32 & 36.5\\% & 80.2\\% & 100.0\\% & gradual+stable \\\\\nUntrained & 0/32 & 11.7\\% & 100.0\\% & 82.0\\% & incid.+forget \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig_32layer_attention.pdf}\n\\caption{Instruction-dominant heads ($>50\\%$ text) across 32 layers. VLA-trained: entry-exit (L0--L1: 21--24, L31: 18); Llama-2 base: mid-depth (L9--L16: 15--22); untrained: zero. Probe accuracy in Appendix Figure~\\ref{fig:probe_conditions_appendix}.}\n\\label{fig:attention_profile}\n\\end{figure}\n\n%------------------------------------------------------------------\n\\subsection{Non-Monotonic Refinement of Vision Encoder Output}\n\\label{sec:nonmonotonic}\n\n\\paragraph{Vision encoder provides geometric foundation.}\nTable~\\ref{tab:rsa_overview} reports RSA $\\rho$ and probe $R^2$ between representations and actions.\nDINOv2 \\texttt{cls\\_token} achieves the highest RSA ($\\rho = 0.692$), exceeding the VLA peak ($0.628$ at L12) and CLIP ($0.557$); this ordering is metric-dependent (CKA reverses it; Appendix~\\ref{sec:cka_appendix}).\n\n\\paragraph{Middle-layer peak (metric-dependent).}\nUnder RSA and action-probe decodability, visual representations show a middle-layer peak: trained image\\_mean $\\rho$ is stable through L12 ($0.628$), then declines to $0.422$ at L32 (Figure~\\ref{fig:layer_curves}); probe $R^2$ peaks at L8--L10 ($0.655 \\pm 0.002$; Appendix~\\ref{sec:seed_sensitivity}).\nThe readout achieves $R^2 = 0.678$ (L13), exceeding the projector by $\\Delta = 0.048$ (Table~\\ref{tab:rsa_overview}).\nUnder linear CKA, this pattern disappears (monotonic increase; Appendix~\\ref{sec:cka_appendix}); the non-monotonic trajectory characterizes rank-order geometry specifically, not global covariance structure.\n\n\\paragraph{Training primarily enhances readout decodability.}\nBest-vs-best RSA gain is non-significant on LIBERO-Goal ($\\Delta\\rho = 0.017$, $3\\%$, $N{=}10$ tasks; Appendix Table~\\ref{tab:training_effects}), though LIBERO-Spatial yields a significant geometric gain ($\\Delta = +0.023$, $p < 0.001$; Appendix~\\ref{sec:cross_benchmark_appendix}).\nThe $N = 10$ instruction set limits statistical power for detecting small effects; non-significant differences should not be interpreted as evidence of absence.\nFunctional improvements are larger: readout $R^2$ $\\Delta = +0.069$ ($p < 0.0001$, 95\\% CI $[0.047, 0.090]$), image\\_mean $\\Delta = +0.015$ ($p = 0.006$), surviving FDR correction at 29--30/33 layers.\n\n\\begin{table}[t]\n\\centering\n\\caption{RSA $\\rho$ and probe $R^2$ alignment with actions. DINOv2 achieves highest RSA ($0.692$); ordering is metric-dependent (Appendix~\\ref{sec:cka_appendix}). VLA rows: peak values. \\textbf{Bold}: best; \\underline{underline}: second.}\n\\label{tab:rsa_overview}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nSource & RSA $\\rho$ & $R^2$ & RSA Peak & $R^2$ Peak \\\\\n\\midrule\nDINOv2 cls\\_token & \\textbf{0.692} & 0.634 & --- & --- \\\\\nVLA Trained readout & \\underline{0.643} & \\textbf{0.678} & L12 & L13 \\\\\nFused DinoSigLIP & 0.634 & --- & --- & --- \\\\\nVLA Trained image\\_mean & 0.628 & \\underline{0.655} & L12 & L8--L10$^\\dagger$ \\\\\nDinoSigLIP+Projector & 0.615 & 0.630 & --- & --- \\\\\nVLA Untrained image\\_mean & 0.612 & 0.640 & L0 & L0 \\\\\nVLA Untrained readout & 0.626 & 0.609 & L1 & L32 \\\\\nCLIP ViT-L/14$^\\ddagger$ & 0.557 & 0.587 & --- & --- \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\footnotesize $^\\dagger$$R^2$ peak region across 5 seeds ($0.655 \\pm 0.002$; Appendix~\\ref{sec:seed_sensitivity}).} \\\\\n\\multicolumn{5}{l}{\\footnotesize $^\\ddagger$RSA uses \\texttt{patch\\_mean}; $R^2$ uses \\texttt{cls\\_token} (each encoder's best aggregation).}\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.92\\columnwidth]{figures/fig3.pdf}\n\\caption{Per-layer RSA ($\\rho$). Trained image\\_mean follows an inverted-U (L0 $0.612 \\to$ L12 $0.628 \\to$ L32 $0.422$); untrained decays monotonically. Dashed: DINOv2 cls ($0.692$), DinoSigLIP ($0.634$), Projector ($0.615$).}\n\\label{fig:layer_curves}\n\\end{figure}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 50,
+                  "oldLines": 7,
+                  "newStart": 50,
+                  "newLines": 7,
+                  "lines": [
+                    " \\label{sec:learned_routing}",
+                    " ",
+                    " \\paragraph{Three-level routing gradient at L1.}",
+                    "-L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained allocates 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+                    "+We compare L1 readout attention across three conditions (Table~\\ref{tab:routing_gradient}; Figure~\\ref{fig:attention_profile}): untrained networks allocate 0/32 instruction-dominant heads ($11.7\\%$ text); Llama-2 base 9/32 ($36.5\\%$); VLA fine-tuning 24/32 ($57.7\\%$), a redistribution beyond inherited priors.",
+                    " Per-token normalization ($38.2\\times$ text-to-image ratio; Appendix~\\ref{sec:attention_decomp}) corroborates this redistribution.",
+                    " ",
+                    " \\paragraph{Redistribution of routing across depth.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three edits applied. Now compile and check."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "bb0f3596-cc07-46dd-b303-f8b48f9e5438",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JX2BnETV5N2QHSx5LK9o9F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 24770,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ZtW9KjyiYxzhD74wwhSJp",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf main.tex 2>&1 | tail -20",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "d85fbfb0-d16f-49b7-953e-3478c21ba88b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JX2BnETV5N2QHSx5LK9o9F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 24770,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1001
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:47:08.572Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ZtW9KjyiYxzhD74wwhSJp",
+              "type": "tool_result",
+              "content": "0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr\ni8a.pfb>\nOutput written on main.pdf (27 pages, 563793 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "b6d5ea6b-6750-4979-b48c-afa1666189e0",
+            "tool_use_result": {
+              "stdout": "0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr\ni8a.pfb>\nOutput written on main.pdf (27 pages, 563793 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FAujEkdpyGKbXDpp1xi1ss",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c \"^\\\\\\\\end{document}\" main.tex && pdfinfo main.pdf 2>/dev/null | grep Pages || echo \"pdfinfo not available\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "21f559ee-6a49-4705-aeb9-059950fa8a57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yc5gzNYHJHhcB14Q8akpKL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 25771,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:47:12.439Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FAujEkdpyGKbXDpp1xi1ss",
+              "type": "tool_result",
+              "content": "1\nPages:           27",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "8aadf213-59ca-498f-b887-08024b3215da",
+            "tool_use_result": {
+              "stdout": "1\nPages:           27",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V3RV28qdebNyZobAxfCTsB",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c \"error\\|Error\" main.log | head -1 && grep \"^!\" main.log || echo \"No LaTeX errors\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "03588a2b-c0d2-490e-b01c-87d90933c4a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yc5gzNYHJHhcB14Q8akpKL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 25771,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:47:14.395Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V3RV28qdebNyZobAxfCTsB",
+              "type": "tool_result",
+              "content": "1\nNo LaTeX errors",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "31f8d0a4-3445-43e8-86f6-065b1d3c07e8",
+            "tool_use_result": {
+              "stdout": "1\nNo LaTeX errors",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，27 页（含 appendix，与之前一致）。\n\n修改汇总：\n\n| # | 文件:行 | 修改 |\n|---|---------|------|\n| 1 | `abstract.tex:2` | S2 压缩：去掉 \"systematic framework for token-level analysis of VLAs, applying\"，改为 \"decompose OpenVLA-7B ... using\"，缩减 ~15 词 |\n| 2 | `abstract.tex:7` | S7 结尾句：从 sanity check 改为 takeaway（token specialization 作为独立发现） |\n| 3 | `experiments.tex:53` | 句子碎片修复：补主语 \"We compare\"，\"untrained\" → \"untrained networks\" |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "uuid": "0c0776b4-6cc4-4f0d-8830-f134a3c52c86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018pXvgjpFiohCVPGgEWvr1v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 26460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 230
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors，27 页（含 appendix，与之前一致）。\n\n修改汇总：\n\n| # | 文件:行 | 修改 |\n|---|---------|------|\n| 1 | `abstract.tex:2` | S2 压缩：去掉 \"systematic framework for token-level analysis of VLAs, applying\"，改为 \"decompose OpenVLA-7B ... using\"，缩减 ~15 词 |\n| 2 | `abstract.tex:7` | S7 结尾句：从 sanity check 改为 takeaway（token specialization 作为独立发现） |\n| 3 | `experiments.tex:53` | 句子碎片修复：补主语 \"We compare\"，\"untrained\" → \"untrained networks\" |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 37334,
+            "duration_api_ms": 37368,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "b332f36f-1b7d-491e-b7d9-8d22067d57f0",
+            "total_cost_usd": 0.20544525,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 14849,
+              "cache_read_input_tokens": 136742,
+              "output_tokens": 1707,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 14849,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 214,
+                  "cache_read_input_tokens": 26460,
+                  "cache_creation_input_tokens": 230,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 230
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1468,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001553,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1707,
+                "cacheReadInputTokens": 136742,
+                "cacheCreationInputTokens": 14849,
+                "webSearchRequests": 0,
+                "costUSD": 0.20389225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "300b4722-897c-4052-a0e0-eabfd48f99e0"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-readability-microedits.md"
+}

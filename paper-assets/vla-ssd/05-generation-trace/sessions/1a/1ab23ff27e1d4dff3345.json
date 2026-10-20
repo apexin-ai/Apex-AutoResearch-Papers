@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab23ff27e1d4dff3345",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis probe total N",
+  "task_key": "worker_analysis_probe_total_N_20260517T185400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_probe_total_N_20260517T185400_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "69cb23b729bd8543c90a20bffc3b2cec996048edabb2b322726be76fd6d73eae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|---|---|\n| Tasks | 10 |\n| Demos/task | 50 |\n| Total demos | 500 |\n| **N (total obs-action pairs)** | **63,728** |\n| N_train (80%) | 50,982 |\n| MLP probe params | 1,050,631 (1.05M) |\n| **N_train / params ratio** | **0.05** |\n\n每个 task 都恰好 50 demos，所以 all demos 和 50 demos/task 版本相同。\n\nN/params ratio = 0.05，即训练样本数只有参数量的 5%。这是一个严重欠定的 regime（通常希望 ratio >> 1），说明 probe 的泛化能力高度依赖正则化或特征质量，也从侧面说明如果 probe 仍然能学到有意义的表征，那底层特征的质量是很高的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-probe-total-n.md"
+}

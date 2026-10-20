@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0cee4f3f67670931eb5f",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code ablation p3 per dof",
+  "task_key": "worker_code_ablation_p3_per_dof_20260516T085732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p3_per_dof_20260516T085732.log",
+    "occurrence": 1,
+    "bytes": 535393,
+    "sha256": "1804aa18f747aa0b440d94bba0da6f9f293eee8230386933db911ce31039999a"
+  },
+  "statistics": {
+    "messages": 333,
+    "user_turns": 0,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 139,
+      "tool_result": 139,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 333,
+      "chunks": [
+        {
+          "path": "0cee4f3f67670931eb5f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0cee4f3f67670931eb5f-part-0002.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ablation-p3-per-dof.md"
+}

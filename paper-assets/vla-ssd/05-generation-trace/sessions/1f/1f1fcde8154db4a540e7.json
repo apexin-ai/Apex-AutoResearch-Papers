@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1f1fcde8154db4a540e7",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis dino subtask auc",
+  "task_key": "worker_analysis_dino-subtask-auc_20260515T120832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dino-subtask-auc_20260515T120832.log",
+    "occurrence": 1,
+    "bytes": 765220,
+    "sha256": "96880d1016bdad0af57285d743b07c986dd1c09fad8e9abc4daa7436c1031522"
+  },
+  "statistics": {
+    "messages": 359,
+    "user_turns": 0,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 136,
+      "tool_result": 136,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 359,
+      "chunks": [
+        {
+          "path": "1f1fcde8154db4a540e7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f1fcde8154db4a540e7-part-0002.json",
+          "message_count": 179
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-dino-subtask-auc.md"
+}

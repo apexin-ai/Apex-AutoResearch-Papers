@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "42f6aeb1920c06cbbc1c",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "infra env setup download",
+  "task_key": "worker_infra_env-setup-download_20260515T045630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-download_20260515T045630.log",
+    "occurrence": 1,
+    "bytes": 790500,
+    "sha256": "c01dc0ab17133eb4ccb8f5a402bdc31b1c6988f317a97045b409222127d211ef"
+  },
+  "statistics": {
+    "messages": 518,
+    "user_turns": 1,
+    "tool_calls": 173,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 145,
+      "tool_call": 173,
+      "tool_result": 173,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 73,
+      "chunks": [
+        {
+          "path": "42f6aeb1920c06cbbc1c-part-0001.json",
+          "message_count": 73
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 445,
+      "chunks": [
+        {
+          "path": "42f6aeb1920c06cbbc1c-part-0001.json",
+          "message_count": 107
+        },
+        {
+          "path": "42f6aeb1920c06cbbc1c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "42f6aeb1920c06cbbc1c-part-0003.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-download.md"
+}

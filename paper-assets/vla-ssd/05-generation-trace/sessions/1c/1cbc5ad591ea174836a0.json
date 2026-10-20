@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "1cbc5ad591ea174836a0",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh rsa no inst gate",
+  "task_key": "worker_ssh_rsa-no-inst-gate_20260515T211150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rsa-no-inst-gate_20260515T211150.log",
+    "occurrence": 1,
+    "bytes": 1749887,
+    "sha256": "a1595b824eb088b7d3ed8fa9c7c5a503b2e3de2d2c9eb7d2985c7c2aa0235604"
+  },
+  "statistics": {
+    "messages": 864,
+    "user_turns": 2,
+    "tool_calls": 352,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 148,
+      "tool_call": 352,
+      "tool_result": 352,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "1cbc5ad591ea174836a0-part-0001.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 675,
+      "chunks": [
+        {
+          "path": "1cbc5ad591ea174836a0-part-0001.json",
+          "message_count": 19
+        },
+        {
+          "path": "1cbc5ad591ea174836a0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1cbc5ad591ea174836a0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1cbc5ad591ea174836a0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1cbc5ad591ea174836a0-part-0005.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "1cbc5ad591ea174836a0-part-0005.json",
+          "message_count": 64
+        },
+        {
+          "path": "1cbc5ad591ea174836a0-part-0006.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-rsa-no-inst-gate.md"
+}

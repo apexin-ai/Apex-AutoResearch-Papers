@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22da1fdbabf6a0b8a91d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh initial frame gc",
+  "task_key": "worker_ssh_initial-frame-gc_20260515T191053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_initial-frame-gc_20260515T191053_result.json",
+    "occurrence": 1,
+    "bytes": 1841,
+    "sha256": "43f0d2ec01d6bfdfd42fec13d03423f58548c68e5e5f7356b242a9fcab7344f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部完成。汇总如下：\n\n## --max_frames 1 (t=0 Initial Frame Only) Goal Classification 三方对比\n\n| Model | Best Layer | Best Accuracy | Best Macro F1 | n_classes | n_train | n_val |\n|-------|-----------|---------------|---------------|-----------|---------|-------|\n| **Trained VLA** | 3 | **1.0000** | **1.0000** | 10 | 400 | 100 |\n| **Untrained VLA** | 2 | **1.0000** | **1.0000** | 10 | 400 | 100 |\n| **DINO-V2** | 0 | **0.1500** | **0.0911** | 10 | 400 | 100 |\n\n### 逐层精度对比（关键层）\n\n| Layer | Trained VLA | Untrained VLA | DINO-V2 |\n|-------|------------|---------------|---------|\n| 0 | 0.10 | 0.10 | 0.15 |\n| 1 | 0.39 | 0.95 | — |\n| 2 | 0.58 | **1.00** | — |\n| 3 | **1.00** | 0.99 | — |\n| 4-18 | **1.00** | 0.98-1.00 | — |\n| 19 | **1.00** | 0.91 | — |\n| 28 | **1.00** | 0.90 | — |\n| 31 | **1.00** | 0.88 | — |\n| 32 | **1.00** | 0.98 | — |\n\n### 关键发现\n\n1. **DINO-V2 完全失败（15%≈随机）**：纯视觉特征无法从 t=0 的初始帧区分 10 个 goal task。这验证了 language grounding 假说——DINO 只看图像，不接触语言指令，在初始场景相似的情况下无法判断 goal。\n\n2. **Trained VLA vs Untrained VLA 差距出人意料地小**：两者在 best layer 都达到 100%。关键差异在于：\n   - **Trained VLA**：从 Layer 3 开始全部 100%，极其稳定\n   - **Untrained VLA**：虽然 best layer=2 达到 100%，但高层（19-31）精度波动剧烈（88%-100%），说明 untrained 的 language grounding 信号在深层不稳定\n\n3. **Untrained VLA 也能做 goal classification**：这说明 Llama backbone 的预训练 language 能力已经足以让 probe 从语言 token 特征区分 task，VLA training 的贡献主要在于让这个信号在所有层都稳定一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-initial-frame-gc.md"
+}

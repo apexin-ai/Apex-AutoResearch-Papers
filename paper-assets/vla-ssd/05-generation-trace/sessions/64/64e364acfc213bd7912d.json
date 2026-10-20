@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64e364acfc213bd7912d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis statistical supplements",
+  "task_key": "worker_analysis_statistical_supplements_20260520T174541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_statistical_supplements_20260520T174541_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "34d502006bf15938e1dd6c4eaec0644b1b2bc5c88badc51ef0825fb9fee2c24b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部完成，结果汇总：\n\n---\n\n### 任务 1: TOST 等价性检验\n| 指标 | 值 |\n|------|-----|\n| OpenVLA peak | **L9**, mean R²=0.6372, std=0.0086, N=15 |\n| Phi3V peak | **L11**, mean R²=0.6340, std=0.0089, N=15 |\n| Δ (mean_diff) | **0.003253** |\n| ε (bound) | 0.05 |\n| p_TOST | **< 0.0001** |\n| 90% CI | **[−0.0022, 0.0087]** — 完全落在 [−0.05, +0.05] 内 |\n| 结论 | **equivalent** |\n| 传统 t-test | t=1.016, p=0.318 (差异不显著) |\n\n---\n\n### 任务 2: Power Analysis\n| 指标 | RSA | R² |\n|------|-----|-----|\n| Within-task SD | 0.0302 | 0.0258 |\n| Δ of interest | 0.017 | 0.069 |\n| Cohen's d | 0.5624 | 2.6785 |\n| Power at N=10 | **0.356** | **1.000** |\n| Min detectable Δ (N=10, d=0.996) | 0.0301 | 0.0257 |\n\nRSA Δ=0.017 的 power 仅 0.36（underpowered），但 R² Δ=0.069 的 power 为 1.0（充足）。N=10 能可靠检出 Δ≥0.030 的 RSA 差异。\n\n---\n\n### 任务 3: Paired Cohen's d_z\n| Comparison | d_z | N pairs |\n|------------|-----|---------|\n| RSA trained vs untrained (L12) | **0.5461** | 10 |\n| L1 ablation dominant-24 vs baseline | **1.1673** | 10 |\n| L1 ablation random-24 vs baseline | **1.8423 ± 0.33** | 30×10 |\n| Dose-response 32v4 (MSE) | **1.7917** | 3 |\n| Dose-response 32v4 (KL) | **3.1538** | 3 |\n| RSA inst vs no_inst | **0.0563** (negligible) | 10 |\n| Cross-arch OpenVLA L9 vs Phi3V L11 | **0.4772** (small-medium) | 15 |\n\n所有文件已保存到 `/root/autodl-tmp/vla-ssd/results/statistical_supplements/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-statistical-supplements.md"
+}

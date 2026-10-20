@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ccdaead48862eaae3ff",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code update analyze script",
+  "task_key": "worker_code_update-analyze-script_20260515T110435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-analyze-script_20260515T110435_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "bd858404fd4338de7613a7b817cfcb2060ddadad48d5b263715fcc91f785fe8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部改动验证通过。汇总：\n\n| 改动 | 行号 | 状态 |\n|------|------|------|\n| ρ 下限 0.3→0.5 | L277 `best_rho > 0.5` | OK |\n| `bootstrap_delta_rho()` | L249 定义, L294 调用 | OK |\n| Δρ CI 排除 0 才 PASS | L303 `max_delta > 0.1 and ci_excludes_zero` | OK |\n| subtask gate: `vla_AUC > 0.7 AND > dino_AUC + 0.05` | L323 | OK |\n| `plot_per_layer_rho_profile()` | L210 定义, L414 调用 | OK |\n| 三分支判定逻辑 | L331-337 | OK |\n| 语法检查 | `ast.parse` SYNTAX_OK | OK |\n| 原文件备份 | `analyze_results.py.bak` | OK |\n\n文件从 377 行增长到 448 行（+71 行：bootstrap 函数、per-layer profile 图、更丰富的 criteria 字段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-analyze-script.md"
+}

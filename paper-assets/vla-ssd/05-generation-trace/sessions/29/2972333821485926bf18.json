@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2972333821485926bf18",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing experiments d041",
+  "task_key": "worker_paper_writing_experiments_d041_20260516T043441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_d041_20260516T043441_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "f98b94a242aa07f337e492c63faa2f0dfa153cbd1dc44f133982081490e1b05d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex 已全量重写。主要变更：\n\n- **§4.1**: 新增 source (f) branch-split，其余保持简洁\n- **§4.2**: DINO cls_token 0.692 领先；新增 branch-split 段落（DINOv2=0.619 ≈ SigLIP=0.621，fusion=0.634 > 两者，projector 压缩 0.634→0.615）；CKA 反转讨论保留\n- **§4.3**: 标题改为 \"Non-Monotonic LLM Transformation\"；核心叙事：inverted-U（L0=0.612→L12=0.628 peak ABOVE projector 0.615→L32=0.422）；RSA-CKA dissociation；readout concentration 保留\n- **§4.4**: 标题改为 \"Training Redistributes, Does Not Create\"；best-vs-best Δ=+0.017 n.s.；same-layer L12 Δ=+0.079 p<0.0001；instruction invariance |Δ|<0.006\n\n所有 \\label 与旧版一致，数字均来自权威数据表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-d041.md"
+}

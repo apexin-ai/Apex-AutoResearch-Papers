@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e715f3667947c72768c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research intermediate checkpoints",
+  "task_key": "worker_research_intermediate_checkpoints_20260520T150440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_intermediate_checkpoints_20260520T150440_result.json",
+    "occurrence": 1,
+    "bytes": 1790,
+    "sha256": "695a8c2c9a2fb6ae3fd104d843b2a9b56f2f1a4eff35b1dc9a35f70520b3e9d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Checkpoint 清单\n\n| 目录 | 类型 | 大小 | Intermediate checkpoints |\n|------|------|------|--------------------------|\n| `openvla-7b/` | pretrained base (HF 下载) | 15G | 无 — 仅 final weights |\n| `openvla-7b-llama2base/` | 自制 Llama2 base 变体 | 15G | 无 — 仅 final weights |\n| `openvla-7b-finetuned-libero-goal/` | 官方 LoRA fine-tuned (HF 下载) | 14G | 无 — 仅 final weights |\n| `openvla-phi3v/` | 仅 README + LICENSE，无模型文件 | ~0 | 无 |\n| `tracevla-phi3v/` | TracVLA-Phi3V (HF 下载) | 7.8G | 无 — 仅 final weights (2 个 .bin 文件) |\n| `dinov2-large/` | DINOv2 vision encoder | — | N/A |\n\n### 关键结论\n\n**没有任何 intermediate checkpoints。** 所有模型目录都只包含 final checkpoint（完整训练结束后的单一快照）。\n\n- 没有 `checkpoint-XXXX/`、`step-XXXX/`、`epoch-X/` 子目录\n- 没有 `trainer_state.json`（HuggingFace Trainer 保存中间 checkpoint 时会生成）\n- 训练脚本中没有 `save_steps`、`save_strategy`、`save_total_limit` 配置\n- `openvla-7b-finetuned-libero-goal` 的 README 显示训练了 60K gradient steps（8×A100），但官方只发布了 final checkpoint\n- HF cache 中也没有其他 openvla 版本\n\n### 对 routing emergence dynamics 分析的影响\n\n**不可行。** 分析 L1 instruction-dominant heads 在训练过程中何时出现，需要至少 5-10 个均匀分布的中间 checkpoint。当前只有训练前（pretrained）和训练后（fine-tuned）两个点，只能做 before/after 对比，无法追踪 emergence trajectory。\n\n要获取 intermediate checkpoints，需要自行 fine-tune 并配置 `save_steps`（例如每 5K steps 保存一次，60K steps 训练可产生 12 个中间点）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-intermediate-checkpoints.md"
+}

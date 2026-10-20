@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cca47f765cf0f1620e5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "infra openvla download v3",
+  "task_key": "worker_infra_openvla-download-v3_20260515T060130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openvla-download-v3_20260515T060130_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "db96224af45541f45c7371ea8128c82f20ed963553671c10413f034184f9ff80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 下载完成报告\n\n| 项目 | 结果 |\n|------|------|\n| **下载方式** | hf-mirror.com wget 直接下载（绕过 xet）；shard 1 来自 huggingface-cli 初次下载的残留完整文件 |\n| **safetensors 文件** | |\n| model-00001-of-00003.safetensors | **6.5G** (6,948,961,960 bytes) |\n| model-00002-of-00003.safetensors | **6.5G** (6,971,232,040 bytes) |\n| model-00003-of-00003.safetensors | **1.1G** (1,162,406,824 bytes) |\n| **总目录大小** | **15G** |\n| **config 验证** | ✅ model_type=openvla, trust_remote_code 加载成功 |\n| **符号链接** | ✅ `/root/vla-ssd/checkpoints` → `/root/autodl-tmp/vla-ssd/checkpoints` |\n| **下载速度/耗时** | shard 3: 3.27MB/s (~6min); shard 2: 1.69MB/s (~68min); shard 1: 来自初次 huggingface-cli 下载的完整缓存文件 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-openvla-download-v3.md"
+}

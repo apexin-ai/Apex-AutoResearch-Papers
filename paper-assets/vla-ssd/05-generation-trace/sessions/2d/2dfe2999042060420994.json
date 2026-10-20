@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dfe2999042060420994",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis random subset ablation",
+  "task_key": "worker_analysis_random_subset_ablation_20260518T021745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random_subset_ablation_20260518T021745_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "4bea5867f5850423ec04af624822e549b55423c3c60305900c47c38aea1c5aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting ~3 min for the validation test to finish. With 5 demos it should complete Phase 1 in ~2.5 min and Phase 2+3 quickly after."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-subset-ablation.md"
+}

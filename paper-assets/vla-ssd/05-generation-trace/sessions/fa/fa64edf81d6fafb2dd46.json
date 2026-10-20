@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa64edf81d6fafb2dd46",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code dino probe rerun",
+  "task_key": "worker_code_dino-probe-rerun_20260515T132727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dino-probe-rerun_20260515T132727_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "594cc162ebff53280406b0290688e3c39374c1a635dbed9d26d559b322afcde7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果对比\n\n| 指标 | 旧版 | 新版 | Δ |\n|------|------|------|---|\n| pooled_rho | 0.8331 | 0.9001 | **+0.0670** |\n| per_task_mean_rho | (缺失) | 0.9008 | — |\n| R² | 0.6865 | 0.8030 | +0.1165 |\n| MAE | 0.1272 | 0.0990 | -0.0282 |\n| epochs_trained | 9 | 15 | +6 |\n\n**异常标记**：pooled ρ 差异 0.067 >> 0.01 阈值。新版代码训练了 15 个 epoch（旧版 9），所有指标显著提升。这不是随机波动，而是新版 `train_probes.py` 的训练逻辑（数据对采样、早停策略、或学习率等）发生了变化导致的系统性提升。\n\n新结果已包含 `per_task_rho`（10 个 task，范围 0.840–0.927）和 `per_task_mean_rho = 0.9008`。旧结果备份在 `temporal_distance_old_backup/`。\n\n需要确认：是否接受新版结果作为 DINO baseline（ρ 从 0.833 → 0.900），还是需要排查代码变更原因？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dino-probe-rerun.md"
+}

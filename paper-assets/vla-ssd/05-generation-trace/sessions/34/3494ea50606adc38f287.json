@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3494ea50606adc38f287",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code submit cross inst extraction",
+  "task_key": "worker_code_submit_cross_inst_extraction_20260516T233922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_cross_inst_extraction_20260516T233922_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "180f70788ef8ce93e77761fa72613bb9dcfc4d7120ad0821ad1a141cd2372f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process alive and CPU-busy (112% CPU, 1:27 elapsed) — it's building the random LLM in RAM. It'll hit GPU shortly.\n\n**Summary:**\n\nBoth cross-instruction extraction jobs submitted on westd-19183:\n\n| Condition | GPU | PID | Output |\n|-----------|-----|--------|--------|\n| trained | cuda:0 | 751661 | `trained_cross_inst.h5` |\n| untrained | cuda:1 | 751972 | `untrained_cross_inst.h5` |\n\n- Trained job already processing at ~20 fwd/s (Task 1 in progress)\n- Untrained job reinitializing 7B LLM backbone on CPU, will start GPU inference momentarily\n- Both output to `/root/autodl-tmp/vla-ssd/results/cross_instruction/`\n- Estimated ~26 min each (running in parallel)\n- Existing probe job (PID 749462) undisturbed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-cross-inst-extraction.md"
+}

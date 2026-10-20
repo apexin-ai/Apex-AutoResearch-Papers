@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "549faf90a0da8c3875fb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code plan 010 check and analyze",
+  "task_key": "worker_code_plan_010_check_and_analyze_20260516T062453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_check_and_analyze_20260516T062453_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "663b99a69644cc00d453b7f85dba24aa22b58d61f1a32e723705f592d0b0ad84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在运行。\n\n**状态报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **Extraction** | 完成 — trained 10/10 (24GB), untrained 10/10 (25GB), 两个 EXIT_CODE=0 |\n| **RSA 分析** | 已启动 — PID 708431, tmux `plan010_rsa_spatial`, cuda:0 (实际 CPU-only), timeout 4h |\n| **Action probe** | 已启动 — PID 708576, tmux `plan010_action_probe_spatial`, cuda:0+1 (双 GPU 并行 trained/untrained), timeout 6h |\n| **GPU** | 2x H800 97GB, 当前 0% 利用率（数据加载阶段） |\n\n**日志路径：**\n- RSA: `/root/autodl-tmp/vla-ssd/logs/rsa_spatial.log`\n- Probe: `/root/autodl-tmp/vla-ssd/logs/action_probe_spatial.log`\n\n**结果输出：**\n- RSA: `/root/autodl-tmp/vla-ssd/results/rsa/rsa_libero_spatial.json`\n- Probe: `/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_libero_spatial.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-check-and-analyze.md"
+}

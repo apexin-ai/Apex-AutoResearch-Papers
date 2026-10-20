@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "448514ed42a6952222d5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "review figure quality audit",
+  "task_key": "worker_review_figure_quality_audit_20260526T214732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_figure_quality_audit_20260526T214732_result.json",
+    "occurrence": 1,
+    "bytes": 2105809,
+    "sha256": "c3705afc544c2f1903ff1fb5250198e3cd37d669c0454318b74709a826102fcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2105829,
+                "serialized_sha256": "53973449bbd64bd7a8abd9241e5dd078e5f22d0f9ba1a05adf23f2eac741b03b",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-figure-quality-audit.md"
+}

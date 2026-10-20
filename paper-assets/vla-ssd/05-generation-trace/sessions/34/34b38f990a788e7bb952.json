@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34b38f990a788e7bb952",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis openvla goal standardized v1",
+  "task_key": "worker_analysis_openvla_goal_standardized_v1_20260522T041113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_openvla_goal_standardized_v1_20260522T041113_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "8f8956cb4cd3b0b5b28d540a8bd67e4c6fe28a6624cba8568a1ad7a86ec05cf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入并注册 (`art_20260522_df83d8`)。\n\n核心发现：\n\n1. **R2 exit collapse: 未确认**（与 Object/Long/Spatial 不同）。Trained R2 从 L8 到 L31 保持平坦（0.853-0.869），peak-to-exit delta 仅 -0.016。Untrained 反而在 exit 层下降更多（-0.056）。\n\n2. **L1 attention**: Finetuning 将 3 个头从 instruction-dominant 转为 mixed（26→23 instr-dom, 6→9 mixed）。h3/h6/h9/h13/h21/h24 是两个条件共有的 mixed heads。\n\n3. **Cross-instruction**: 两个条件从 L1 起 last_preaction 分类准确率均为 1.0。\n\n4. **RSA**: 两个条件均在 L16_last_preaction 达到峰值（trained 0.607, untrained 0.605），几乎一致。\n\n5. **Counterfactual**: Trained ordering = wrong > empty > shuffled > para; untrained = empty > shuffled > wrong > para。与预期 (empty > wrong > shuffled > para) 有微小排序偏差（top-2 差值 <0.013d），但整体梯度成立。Finetuning 将所有 effect sizes 均匀放大约 +0.3d。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-openvla-goal-standardized-v1.md"
+}

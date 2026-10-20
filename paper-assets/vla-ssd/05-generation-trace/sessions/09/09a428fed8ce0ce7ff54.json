@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "09a428fed8ce0ce7ff54",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "draw fig1 overview",
+  "task_key": "worker_draw_fig1_overview_20260523T193324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig1_overview_20260523T193324.log",
+    "occurrence": 1,
+    "bytes": 1105335,
+    "sha256": "eef9b4d26fd8b831c11059fdbc49a14e3fbc2aecd6543f713d8bbc16eb89480e"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 2,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 95,
+      "tool_result": 95,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "09a428fed8ce0ce7ff54-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "09a428fed8ce0ce7ff54-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "09a428fed8ce0ce7ff54-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "09a428fed8ce0ce7ff54-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/draw-fig1-overview.md"
+}

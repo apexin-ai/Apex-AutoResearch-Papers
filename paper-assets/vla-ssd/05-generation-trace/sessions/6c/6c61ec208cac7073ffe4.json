@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6c61ec208cac7073ffe4",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code dinov2 extract",
+  "task_key": "worker_code_dinov2-extract_20260515T065320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dinov2-extract_20260515T065320.log",
+    "occurrence": 1,
+    "bytes": 688195,
+    "sha256": "1aab75d5021518028b9622e293885ab39df3b3f08e590388c8a7d96ec66cfee7"
+  },
+  "statistics": {
+    "messages": 532,
+    "user_turns": 0,
+    "tool_calls": 238,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 238,
+      "tool_result": 238,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 532,
+      "chunks": [
+        {
+          "path": "6c61ec208cac7073ffe4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c61ec208cac7073ffe4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c61ec208cac7073ffe4-part-0003.json",
+          "message_count": 172
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-dinov2-extract.md"
+}

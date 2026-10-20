@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2034484b0a6a39b0ec4f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code pca control probe prep",
+  "task_key": "worker_code_pca-control-probe-prep_20260515T143024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pca-control-probe-prep_20260515T143024_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "7b5a46170dcddab4356822a358005fe0f40b85fe325c0bb61879e9bd554d1000"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验并行运行中：\n- **action_prediction** PCA-1024: PID=617019, GPU 0, 全 33 层\n- **action_delta** PCA-1024: PID=617371, GPU 1, 全 33 层\n\n---\n\n## 总结\n\n### 已完成\n\n1. **`train_probes.py` 修改**（`--pca_dim N` 参数）：\n   - 新增 `apply_pca()` 函数，使用 sklearn PCA，仅在 train set 上 fit\n   - 支持所有 probe types：action_prediction、action_delta、temporal_distance、subtask_predicate\n   - 自动保存 `explained_variance_ratio` 到结果 JSON\n   - output_dir 自动加 `_pca{N}` 后缀\n\n2. **Dry-run 对比结果** (Layer 4, trained features)：\n\n   | 指标 | Baseline (4096→256→7) | PCA-1024 (1024→256→7) |\n   |---|---|---|\n   | overall_r2 | 0.536 | **0.671** (+25%) |\n   | mean_task_r2 | 0.543 | **0.679** (+25%) |\n   | gripper_acc | 0.855 | **0.897** |\n   | PCA variance | — | 99.85% |\n\n   PCA 降维不仅没有降低性能，反而显著提升 — 去除了噪声维度。\n\n3. **正式实验已启动**：两个全层实验在双 GPU 上并行运行，预计 ~1 小时完成。\n\n### 启动命令参考\n\n```bash\n# action_prediction + PCA-1024\npython3 scripts/train_probes.py \\\n  --features_dir features/trained/ \\\n  --output_dir results/trained/ \\\n  --probe_type action_prediction \\\n  --pca_dim 1024 \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/\n\n# action_delta + PCA-1024\npython3 scripts/train_probes.py \\\n  --features_dir features/trained/ \\\n  --output_dir results/trained/ \\\n  --probe_type action_delta \\\n  --pca_dim 1024 \\\n  --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_10/ \\\n  --gpu 1\n```\n\n### 查看进度\n\n```bash\ntail -f /tmp/pca1024_action_prediction.log\ntail -f /tmp/pca1024_action_delta.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pca-control-probe-prep.md"
+}

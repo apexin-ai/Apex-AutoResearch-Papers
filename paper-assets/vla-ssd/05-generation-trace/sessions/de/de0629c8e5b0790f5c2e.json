@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "de0629c8e5b0790f5c2e",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis trajectory level cohens d",
+  "task_key": "worker_analysis_trajectory_level_cohens_d_20260519T013222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trajectory_level_cohens_d_20260519T013222.log",
+    "occurrence": 1,
+    "bytes": 1061431,
+    "sha256": "e9e823d1650269f8389c06725647a7ebf1ad224b481ff3df6f96478985f1c53e"
+  },
+  "statistics": {
+    "messages": 554,
+    "user_turns": 1,
+    "tool_calls": 231,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 231,
+      "tool_result": 231,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 518,
+      "chunks": [
+        {
+          "path": "de0629c8e5b0790f5c2e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "de0629c8e5b0790f5c2e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "de0629c8e5b0790f5c2e-part-0003.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "de0629c8e5b0790f5c2e-part-0003.json",
+          "message_count": 22
+        },
+        {
+          "path": "de0629c8e5b0790f5c2e-part-0004.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-trajectory-level-cohens-d.md"
+}

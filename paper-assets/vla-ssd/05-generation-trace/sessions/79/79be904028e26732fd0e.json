@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79be904028e26732fd0e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code action head decoding untrained v2",
+  "task_key": "worker_code_action_head_decoding_untrained_v2_20260526T193447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_action_head_decoding_untrained_v2_20260526T193447_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "2ae2710a8baa4d7397f9624df09ab4640f1a72407c1af09310961657ef67db82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果摘要：**\n- **5000 samples**（10 tasks × 50 demos × 10 frames），与 trained 实验统一\n- **运行时间**：270 秒（~18.5 samp/s，cuda:1 RTX PRO 6000）\n- **所有 32 层 R² 均为负值**：overall_R² 范围 -1.03（L31）到 -3.02（L14），与之前 500 samples 结果一致\n- 产出 JSON 已存至本地 artifacts 并注册\n- Registry `action_head_decoding_openvla_goal_untrained` 已更新为 DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-action-head-decoding-untrained-v2.md"
+}

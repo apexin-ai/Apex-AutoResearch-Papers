@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "31fe5d53403276ea3e60",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code definitive rsa recalc",
+  "task_key": "worker_code_definitive_rsa_recalc_20260516T030716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_definitive_rsa_recalc_20260516T030716_result.json",
+    "occurrence": 1,
+    "bytes": 2312320,
+    "sha256": "e53ddc9608aea2458e885c3754cbe024ed613c2c15ba41da27d8777a3792750c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2312340,
+                "serialized_sha256": "2acd1fe6ff18e78964d12401a94edc68316b9f8ac24486e1fc79a9ada1ad3ac7",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-definitive-rsa-recalc.md"
+}

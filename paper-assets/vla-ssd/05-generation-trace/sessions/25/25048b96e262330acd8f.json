@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25048b96e262330acd8f",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v attention profile",
+  "task_key": "worker_code_phi3v_attention_profile_20260519T174425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_attention_profile_20260519T174425_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "b8fb934317f5355d5ec448cbe290a6514c5f087803d8819bac53920ea8aa43bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**TracVLA-Phi3V Attention Profile (5 LIBERO-Goal tasks, 32 layers × 32 heads)**\n\n| 层段 | instruction-dominant heads | mean text attn | 模式 |\n|------|--------------------------|----------------|------|\n| L0 | 3/32 | 0.2249 | image-dominant |\n| **L1** | **32/32** | **0.7348** | **全 text-dominant** |\n| **L2** | **32/32** | **0.7807** | **全 text-dominant** |\n| L3-L8 | 0-3/32 | 0.27-0.35 | image-dominant |\n| L9-L28 | 3-12/32 | 0.33-0.49 | 渐进回升 |\n| L29-L31 | 17-18/32 | 0.52-0.65 | text-dominant 回升 |\n\n注意：实际 image tokens = 313（Phi3V 动态分辨率），非预期的 144。\n\nJSON 输出已保存至 `westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json`，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-attention-profile.md"
+}

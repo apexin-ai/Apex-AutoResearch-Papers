@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60ed2995c2e47816b8d2",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh kill gc processes",
+  "task_key": "worker_ssh_kill-gc-processes_20260515T195203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-gc-processes_20260515T195203_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "a432a368891e139bc64940fce22a283a15057b70dc2a3ef4f388d2f3d7e91053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n- **PID 648231**: 已不存在（之前已退出）\n- **PID 650060**: 已 kill（`train_probes.py --probe_type goal_classification`）\n- **残留进程**: 无\n- **GPU 状态**: 两张卡均已释放，显存占用 3 MiB / 97887 MiB，利用率 0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-gc-processes.md"
+}

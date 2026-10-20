@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bb39201cbacf9d9fb15",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis action trajectory cpu",
+  "task_key": "worker_analysis_action_trajectory_cpu_20260518T135614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_action_trajectory_cpu_20260518T135614_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "0f26dae7dcd7569a62ce89082600767b35abd4c75b60336f20c467bf5ba24e9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**Bootstrap CI on Per-Head Effect Size:**\n- Per-head d (instruction 24h): **0.0271** [0.0258, 0.0285]\n- Per-head d (control 8h): **0.0514** [0.0478, 0.0551]\n- Difference (ctrl - inst): **0.0244**, 95% CI [0.0203, 0.0281] — **显著排除 0**\n- Task-level paired t-test: t=7.356, **p=0.0018**，所有 5 个 task 都是 ctrl > inst\n- 结论：每个 control head 个体效应是 instruction head 的 ~1.9 倍。Instruction heads 通过 24 heads 的集体协调实现更大总效应 (d=0.651 vs 0.411)，而非个体强度。\n\n**Temporal Coherence Proxy:**\n- Per-dim CV：instruction ablation (1.30) < control (2.74) — instruction ablation 产生更一致的扰动\n- Cross-task I²：instruction (0.87) > control (0.78) — instruction ablation 效应更依赖任务内容\n- 符合 instruction heads 介导结构化、语言依赖计算的预期\n- 注意：精确的 within-demo autocorrelation 需要 per-timestep 原始数据（未保存在 JSON 中）\n\n结果保存在 `/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-action-trajectory-cpu.md"
+}

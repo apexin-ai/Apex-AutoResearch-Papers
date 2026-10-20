@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a3776f82479aa187c04",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analyze tracvla spatial untrained v1",
+  "task_key": "worker_analyze_tracvla_spatial_untrained_v1_20260521T160910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_tracvla_spatial_untrained_v1_20260521T160910_result.json",
+    "occurrence": 1,
+    "bytes": 4151,
+    "sha256": "abbf7316c7df5e76d09c19f57056d68042c7eb73412a246b90091284a178fc5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已获取。没有 RSA 或 counterfactual 结果（Phase 5 被跳过）。下面汇总。\n\n## Metrics Summary\n\n### Phase 2: R² Probing (Ridge, all 32 layers)\n\n| Layer | Trained img_mean | Untrained img_mean | Trained last_pre | Untrained last_pre |\n|-------|-----|------|------|------|\n| L0 | 0.8059 | 0.7761 | 0.6656 | 0.5911 |\n| L4 | 0.8091 | 0.7812 | 0.7954 | 0.7132 |\n| L8 | 0.8134 | 0.7892 | 0.7908 | 0.6942 |\n| L12 | 0.8231 | 0.7806 | 0.7980 | 0.7195 |\n| L16 | 0.8311 | 0.7961 | 0.8035 | 0.7207 |\n| **L17** | **0.8317** | 0.7919 | **0.8090** (peak) | 0.7156 |\n| **L19** | **0.8347** (peak) | 0.7901 | 0.8051 | 0.7178 |\n| L24 | 0.8169 | 0.7694 | 0.7463 | 0.7116 |\n| L28 | 0.8223 | 0.7714 | **0.6150** | 0.7036 |\n| L29 | 0.8136 | 0.7731 | **0.5040** | 0.7037 |\n| L30 | 0.7970 | 0.7696 | **0.4472** | 0.6969 |\n| **L31** | 0.7907 | 0.7589 | **0.6712** | **0.7065** |\n\n### Phase 3: L1 Attention Profile\n\n| Metric | Trained | Untrained |\n|--------|---------|-----------|\n| Instruction-dominant heads | 30/32 | 32/32 |\n| Image-dominant heads | 2/32 | 0/32 |\n\n### Phase 4: Cross-instruction Classification\n\n| Layer | Trained img | Untrained img | Trained last_pre | Untrained last_pre |\n|-------|-------------|---------------|-------------------|---------------------|\n| L0 | 1.000 | 1.000 | 0.923 | 0.977 |\n| L1+ | 1.000 | 1.000 | 1.000 | 1.000 |\n\n### Phase 5: Counterfactual\n- Trained: empty d=1.3268, shuffled d=1.2947\n- Untrained: **skipped** (untrained model cannot generate meaningful actions)\n\n---\n\n## Trained vs Untrained Comparison\n\n### 1. R² Collapse — **Training-induced (CONFIRMED)**\n\nThe defining finding. Trained last_preaction shows dramatic late-layer collapse; untrained is flat:\n\n| Metric | Trained | Untrained |\n|--------|---------|-----------|\n| last_pre peak | 0.8090 (L17) | 0.7224 (L18) |\n| last_pre @ L30 (nadir) | **0.4472** | 0.6969 |\n| last_pre @ L31 (exit) | 0.6712 | 0.7065 |\n| Peak→L30 drop | **-0.3618** | **-0.0255** |\n| img_mean @ L31 | 0.7907 | 0.7589 |\n| L31 gap (img - last_pre) | **0.1195** | 0.0524 |\n| L30 gap (img - last_pre) | **0.3498** | 0.0727 |\n\nTrained model develops a massive **routing divergence**: image tokens maintain R² while last_preaction collapses in layers 26–30, then partially recovers at L31. Untrained model has no such pattern — both modalities decline gently and in parallel.\n\n### 2. L1 Instruction Dominance — **Pre-existing architectural property (NOT training-induced)**\n\nUntrained: 32/32 instruction-dominant. Trained: 30/32. Training actually *reduces* instruction dominance slightly (introduces 2 image-dominant heads). This is an architectural bias of Phi-3-Vision, not an emergent training effect.\n\n### 3. Cross-instruction Classification — **Pre-existing (NOT training-induced)**\n\nBoth conditions achieve near-perfect classification (1.0) at all layers. Task-discriminative representations exist in the pretrained model already.\n\n### 4. Counterfactual — **No comparison possible**\n\nSkipped for untrained (no meaningful action generation without fine-tuning).\n\n---\n\n## Conclusion\n\n**success** — Hypothesis partially confirmed with one important nuance.\n\nThe core claim holds: the **R² collapse pattern is training-induced**. The trained model develops a dramatic routing divergence where last_preaction R² collapses by 0.36 (L17→L30) while image_mean stays elevated, creating a late-layer gap of up to 0.35. The untrained model shows no such pattern — both modalities follow a flat, parallel trajectory (max drop 0.026). This is the strongest evidence that VLA fine-tuning creates specialized information routing.\n\nHowever, **L1 instruction dominance is NOT training-induced** — it's a pre-existing architectural property of Phi-3-Vision (32/32 untrained vs 30/32 trained). Similarly, cross-instruction classification is pre-existing. These should not be cited as training-induced effects.\n\nThe counterfactual comparison is unavailable (untrained cannot generate actions), but the R² probing contrast alone is decisive for the routing hypothesis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-tracvla-spatial-untrained-v1.md"
+}

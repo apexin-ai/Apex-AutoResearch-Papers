@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2b2fd9299d679e3e22",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh matrix result audit",
+  "task_key": "worker_ssh_matrix_result_audit_20260522T010700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_matrix_result_audit_20260522T010700_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "8a230531f27d4562addb10f3306ecd88e7fdb638537b3e17e3e8dc5c86d3e554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/_project/report/matrix_result_audit_20260522.md`。\n\n核心发现：\n\n**24 个 cell 中：4 个完整 (5/5)，13 个部分完成，7 个完全缺失。**\n\n关键问题：\n\n1. **RSA 系统性缺失** — 所有 TracVLA (8 cells) 和所有 NORA (4 cells) 均无 `rsa_analysis.json`，共 12 个 cell 受影响\n2. **整 cell 缺失** — OpenVLA Spatial (T+U)、NORA Object (T+U)、NORA Long (T+U) 共 7 个 cell 为 0/5\n3. **Registry 不一致** — `nora_spatial_pipeline_v2` 标记 success 但 untrained CF 文件实际缺失\n4. **正在补跑** — `openvla_goal_standardized_v1` (RUNNING) 和 `openvla_spatial_standardized_v1` (PREPARING) 正在填补 OpenVLA Goal/Spatial 缺口；NORA Object/Long 尚无任何实验注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-matrix-result-audit.md"
+}

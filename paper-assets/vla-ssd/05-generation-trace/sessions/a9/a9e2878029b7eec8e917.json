@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9e2878029b7eec8e917",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh submit cf batch",
+  "task_key": "worker_ssh_submit_cf_batch_20260521T210957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_cf_batch_20260521T210957_result.json",
+    "occurrence": 1,
+    "bytes": 2384,
+    "sha256": "6984abf94a1fafa5e1e4c5ffb54bf8917eae8a1b52165cb278c09943bed42d44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. counterfactual_batch.py 参数说明\n\n| 参数 | 必填 | 说明 |\n|------|------|------|\n| `--arch` | ✓ | `openvla` / `tracvla` / `nora` |\n| `--suite` | ✓ | `goal` / `spatial` / `object` / `long` |\n| `--condition` | ✓ | `trained` / `untrained` |\n| `--method` | | `auto`(默认) / `action_mse` / `cosine_dist`。auto 逻辑：nora 或 untrained → `cosine_dist`，其余 → `action_mse` |\n| `--gpu` | | GPU 编号，默认 0 |\n| `--n-demos` | | 每任务 demo 数，默认 10 |\n| `--n-timesteps` | | 每 demo 时间步数，默认 50 |\n| `--results-dir` | | 覆盖输出目录 |\n| `--dry-run` | | 快速测试：2 tasks, 1 demo, 2 timesteps |\n\n### 2. 缺失确认\n\n已有 `counterfactual_combined.json` 的组合：\n\n| 组合 | 状态 |\n|------|------|\n| nora_goal trained/untrained | ✓ |\n| nora_spatial trained | ✓ |\n| tracvla_{spatial,object,long,goal} trained | ✓ |\n| openvla_{goal,spatial,long,object} trained | ✓ (旧格式) |\n\n**确认缺失的 3 个：**\n- `openvla object untrained` — checkpoint: `openvla-7b`，auto → cosine_dist ✓\n- `tracvla spatial untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓\n- `tracvla object untrained` — checkpoint: `phi3v-base`，auto → cosine_dist ✓\n\nTracVLA untrained 用 phi3v-base（纯 VLM），cosine_dist 只需隐藏层表示，不需要动作头，可以正常运行。\n\n> 额外注意：`nora_spatial untrained`、`openvla_{goal,long} untrained`、`tracvla_{goal,long} untrained` 也没有 counterfactual 结果，但不在本次任务范围。\n\n### 3. 提交命令\n\n```bash\ntmux new-session -d -s cf_untrained 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/counterfactual_batch.py --arch openvla --suite object --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite spatial --condition untrained --gpu 1 && python scripts/counterfactual_batch.py --arch tracvla --suite object --condition untrained --gpu 1\"'\n```\n\n### 4. 预计运行时间\n\n- openvla untrained（7B 模型，10 tasks × 10 demos × 50 timesteps × 5 conditions）：约 2-3 小时\n- tracvla untrained（phi3v ~4B，同样规模）：每个约 1-2 小时\n- **总计：约 4-7 小时**，取决于 GPU 型号和推理速度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-cf-batch.md"
+}

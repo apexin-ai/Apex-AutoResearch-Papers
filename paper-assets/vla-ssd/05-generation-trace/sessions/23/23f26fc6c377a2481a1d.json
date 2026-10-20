@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23f26fc6c377a2481a1d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh post restart status check",
+  "task_key": "worker_ssh_post_restart_status_check_20260522T020852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_post_restart_status_check_20260522T020852_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "3802c9e9d34707a7b9bc455c9fa8d2a4076e2f3c3da9c2bc25f9c7b823b775b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. openvla_goal_standardized_v1 (PID 591230)\n- **状态**: 运行中\n- **运行时间**: 1h36m\n- **当前位置**: Phase 6/6 (counterfactual analysis), condition \"paraphrased\" 1600/5000 (32%)\n- **Phase 6 内部进度**: 4 个 condition 中第 4 个（wrong ✓, empty ✓, shuffled ✓, paraphrased 进行中）\n- **Pipeline 进度**: 正在处理第 1 个 pipeline condition（`trained`），还有 `untrained` 待跑。**整体约 ~45%**\n- **GPU**: GPU 1, 82% 利用率, 15.3GB / 97.9GB VRAM\n\n### 2. openvla_spatial_standardized_v1 (PID 594575)\n- **状态**: 运行中（卡在下载）\n- **运行时间**: 32min\n- **当前位置**: checkpoint 下载阶段，~5.3GB 已下载，尚未开始计算\n- **GPU**: GPU 0, 0% 利用率, 0 MiB VRAM（未加载模型）\n- **注意**: 下载速度偏慢且波动大（曾到 8.5GB 又回落到 5.2GB），可能有多个文件在轮流下载\n\n### tmux sessions\n两个 session 均正常存活：`openvla_goal_standardized_v1` 和 `openvla_spatial_standardized_v1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-post-restart-status-check.md"
+}

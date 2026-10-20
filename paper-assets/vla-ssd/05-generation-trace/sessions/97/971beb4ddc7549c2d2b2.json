@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "971beb4ddc7549c2d2b2",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "reviewer / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3464,
+    "sha256": "370b531499140371bfff09aec28830b5e55c55fc35ed9b72e87a6a8c471f6ac6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-17T21:57:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（gpu_ids=[0,1]），越界立即 critical\n- 消融代码用 INSTRUCTION_HEADS_24 = 24 个头，但 Abstract 写 \"21--25 heads\"、Table 2 写 \"25/32\"。三个数字不统一，尚未确认 ground truth。审查论文时必须追踪此不一致是否已修复\n- Llama-2 base probe 脚本内部写 GPU=0 但 launch 用 CUDA_VISIBLE_DEVICES=1（映射正确），不要误判为越界\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，代码根目录 /root/vla-ssd\n- Python：/root/miniconda3/bin/python3.12\n- 模型：/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b（VLA trained）、openvla-7b-llama2base（Llama-2 base）\n- 数据：/root/autodl-tmp/vla-ssd/data/libero/libero_goal/（10 tasks × 50 demos）\n- 结果：/root/autodl-tmp/vla-ssd/results/（l1_head_ablation/, functional_validation/, attention/, action_probe/）\n- 特征缓存：/root/autodl-tmp/vla-ssd/features/llama2base_libero_goal/（10/10 h5 已提取完）\n- 活跃进程：llama2base_action_probe PID 913317（tmux 无，直接 bash -c 启动），cuda:1，Phase 2 probe 训练中（CPU-bound，GPU 0% 正常）\n- control8 tmux session l1_head_ablation_control8 仍在但进程已退出（EXIT_CODE=0）\n\n### 3. 📊 当前状态\n刚完成 50-demo L1 消融全量结果审查并发送 Director 两条报告（主报告 + 特异性配对检验补充）。\n\n**Registry：**\n- llama2base_action_probe: RUNNING — Llama-2 base 33 层 action probe，特征提取完成，probe 训练中\n- l1_head_ablation_50demos: PREPARING — 旧 entry，实际工作已拆分到 ablation_50demos_main/control8（均 DONE）\n- 其余 70 个实验全部 DONE\n\n**等待中：**\n- llama2base_action_probe 完成 → 核实三条件梯度（untrained < llama2base < trained）\n- Paper Agent Round 5 提交 → 章节写作审查\n- head count 不一致修复确认\n\n### 4. 📋 待办\n- llama2base_action_probe 完成（检查 /root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json 或 exit file）→ 读结果，核实 R² 是否满足 untrained < llama2base < trained 梯度，发 Director 报告\n- Paper Agent 提交章节审查 → 按 5.1-5.3 维度审查，重点检查：消融数据是否更新为 50-demo、head count 是否统一、C3 是否降级为 observation、CKA 叙事是否诚实\n- Director 转发 framing 调整提案 → Read negative-framing-review skill，四维度审查\n- 如发现 cuda:0/1 外有新进程 → 立即 critical\n\n### 5. 🎯 战略上下文\n- 论文目标 CoRL 2026（Abstract DDL 5/26，Paper DDL 5/29），接受率估 35-50%\n- 核心叙事已 reframe：C1 降为 methodological framework（causal mask 使 image blindness 成架构属性），C2 升为核心 claim（front-loaded routing + 因果消融证据），C3 降为 observation（RSA inverted-U 是 metric-dependent，CKA 单调增）\n- 50-demo 消融是 N3 response 的关键弹药：Δ=+0.059, p<0.0001，层特异性 + 头特异性均确认\n- **易错点**：\n  1. 不要把 5-demo 和 50-demo 消融数据混用（效应量差 ~2×）\n  2. RSA \"rise\" Δρ=+0.016 是 borderline n.s.（p=0.053），论文应写 \"stable\" 而非 \"rises\"\n  3. control8 有小但可能不显著的效应（Δ=+0.017），不要声称 control 完全无效应\n  4. GPU 预算已紧张（~26h 总量，~20-22h 已用），llama2base probe 后基本耗尽\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-3.md"
+}

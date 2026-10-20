@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0175fecf580994da979c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "urgent tracvla status and results",
+  "task_key": "worker_urgent_tracvla_status_and_results_20260521T124554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_tracvla_status_and_results_20260521T124554_result.json",
+    "occurrence": 1,
+    "bytes": 5220,
+    "sha256": "1f6b65cc5de81320dd327fd318420a1ffe7acb59f7cc2951c98beb2aa9a4e22c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都还在 **Trained Phase 5 (counterfactual)**，都还没到 untrained。下面是完整状态报告。\n\n---\n\n## GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | PID |\n|-----|------|---------|--------|-----|\n| cuda:0 | RTX PRO 6000 Blackwell (96GB) | 9025/97887 MiB | 42% | 551650 |\n| cuda:1 | RTX PRO 6000 Blackwell (96GB) | 9023/97887 MiB | 50% | 551322 |\n\nPID 551645 (Spatial wrapper) 运行 2h05m，ALIVE。\n\n---\n\n## 1. TraceVLA Spatial (cuda:0) — `tracvla_spatial_full_v2`\n\n### 进度\n- Phase 1-4 (trained): **完成**\n- Phase 5 counterfactual (trained): **shuffled 4600/5000**，paraphrased 未开始\n- Untrained: **未开始**\n\n### Trained — Action R² Probing (img_mean / last_preaction)\n\n| Layer | img_mean | last_pre | \n|-------|----------|----------|\n| L0 | 0.8059 | 0.6656 |\n| L8 | 0.8134 | 0.7908 |\n| L16 | **0.8311** | 0.8035 |\n| L19 | **0.8347** ← peak | 0.8051 |\n| L24 | 0.8169 | 0.7463 |\n| L31 | 0.7907 | 0.6712 |\n\n**Peak img_mean: L19 = 0.8347** | Peak last_pre: L17 = 0.8090 | 深层(L29-L30) last_pre 骤降至 0.50/0.45\n\n### Trained — L1 Attention Profile\n\n| 统计 | 值 |\n|------|-----|\n| Instruction-dominant heads | **30/32** |\n| Image-dominant heads | 0 |\n| Mixed | 2 (head_13=0.450, head_22=0.474) |\n| Top heads | head_8=**0.945**, head_26=0.913, head_19=0.903, head_20=0.859, head_1=0.839 |\n\n### Trained — Cross-instruction Classification (10-class, chance=0.1)\n\n| Layer | img_mean | last_pre |\n|-------|----------|----------|\n| L0 | 1.000 | **0.923** |\n| L1 | 1.000 | 0.998 |\n| L2-L31 | 1.000 | **1.000** |\n\n**所有层 img_mean 全部 1.0，last_pre 从 L2 起也 1.0** — 指令信息在每一层完美可分。\n\n### Trained — Counterfactual (实时 log 数据，当前 full run)\n\n| Condition | Global Cohen's d | Cross-task mean | Status |\n|-----------|-------------------|-----------------|--------|\n| wrong | 1.1724 | 1.2407 | done |\n| empty | 1.3268 | 1.3569 | done |\n| shuffled | — | — | **running 4600/5000** |\n| paraphrased | — | — | pending |\n\n> 注：results 目录下已有旧的 counterfactual_combined.json（2 tasks, 4 samples 的小规模测试），当前 full run (10 tasks × 5000) 完成后会覆盖。\n\n---\n\n## 2. TraceVLA Object (cuda:1) — `tracvla_object_full_v1`\n\n### 进度\n- Phase 1-4 (trained): **完成**\n- Phase 5 counterfactual (trained): **paraphrased 1400/5000**\n- Untrained: **未开始**\n\n### Trained — Action R² Probing (img_mean / last_preaction)\n\n| Layer | img_mean | last_pre |\n|-------|----------|----------|\n| L0 | 0.7458 | 0.6214 |\n| L8 | 0.7562 | 0.7506 |\n| L16 | 0.7687 | 0.7544 |\n| L19 | **0.7741** ← peak | 0.7433 |\n| L22 | 0.7757 ← (true peak) | 0.7016 |\n| L24 | 0.7620 | 0.6605 |\n| L31 | 0.7483 | 0.4699 |\n\n**Peak img_mean: L22 = 0.7757** | Peak last_pre: L9 = 0.7636 | 深层 last_pre 崩溃更严重 (L30=0.186)\n\n### Trained — L1 Attention Profile\n\n| 统计 | 值 |\n|------|-----|\n| Instruction-dominant heads | **30/32** |\n| Image-dominant heads | 0 |\n| Mixed | 2 (head_13=0.472, head_22=0.472) |\n| Top heads | head_8=**0.939**, head_26=0.920, head_19=0.901, head_20=0.867, head_1=0.851 |\n\n### Trained — Cross-instruction Classification (10-class, chance=0.1)\n\n| Layer | img_mean | last_pre |\n|-------|----------|----------|\n| L0 | 1.000 | **0.858** |\n| L1 | 1.000 | 0.999 |\n| L2-L31 | 1.000 | **1.000** |\n\nObject L0 last_pre (0.858) 比 Spatial (0.923) 低，其余层全 1.0。\n\n### Trained — Counterfactual (实时 log 数据)\n\n| Condition | Global Cohen's d | Cross-task mean | Status |\n|-----------|-------------------|-----------------|--------|\n| wrong | 1.0595 | 1.0881 | done |\n| empty | 1.2117 | 1.2892 | done |\n| shuffled | 1.1643 | 1.1825 | done |\n| paraphrased | — | — | **running 1400/5000** |\n\n---\n\n## 3. Spatial vs Object 对比摘要（仅 Trained，数据齐全部分）\n\n| Metric | Spatial | Object | 差异 |\n|--------|---------|--------|------|\n| Peak R² (img_mean) | **0.8347** (L19) | 0.7757 (L22) | Spatial +7.6% |\n| Peak R² (last_pre) | **0.8090** (L17) | 0.7636 (L9) | Spatial +5.9% |\n| Attn profile | 30 instr / 2 mixed | 30 instr / 2 mixed | 相同 |\n| Cross-instr L0 (last_pre) | 0.923 | 0.858 | Spatial +7.6% |\n| Counterfactual d (wrong) | 1.1724 | 1.0595 | Spatial +10.7% |\n| Counterfactual d (empty) | 1.3268 | 1.2117 | Spatial +9.5% |\n\n> **⚠️ C001 约束：untrained 数据全部缺失，不做任何 conclusion。以上仅为 trained 数值记录。**\n\n---\n\n## 4. 时间估算\n\n| 实验 | 剩余 trained counterfactual | untrained full pipeline | 预计完成 |\n|------|---------------------------|------------------------|---------|\n| Spatial | ~36 min (shuffled 尾声 + paraphrased 全程) | ~120 min | **~23:25** |\n| Object | ~22 min (paraphrased 剩余) | ~110 min | **~22:55** |\n\n---\n\n## 5. 下一批实验就绪状态\n\n| 项目 | 状态 |\n|------|------|\n| OFT checkpoint | **就绪** — 4 safetensors (14.2GB) + action_head + lora_adapter |\n| 磁盘 | 82GB 可用 / 250GB (68% used) — 充足 |\n| GPU | 两块 GPU 被当前实验占用，OFT 实验需等当前跑完 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-tracvla-status-and-results.md"
+}

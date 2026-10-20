@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a66efad5596b305bef24",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research plan 010 read results",
+  "task_key": "worker_research_plan_010_read_results_20260516T072440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_010_read_results_20260516T072440_result.json",
+    "occurrence": 1,
+    "bytes": 3535,
+    "sha256": "6a5713c9ce0f6ebb31f7d181167390f3518b261c179c2c61ac03ca3bbcaa9b2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，以下是 LIBERO-Spatial plan_010 分析报告。\n\n---\n\n## LIBERO-Spatial 分析结果\n\n### GPU 状态\n| GPU | Util | Mem Used | Total |\n|-----|------|----------|-------|\n| 0 | 0% | 0 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n\n---\n\n### RSA (Method B: within-task, cosine rep dist, euclidean action dist)\n\n| Condition | Peak Layer | Peak RSA |\n|-----------|-----------|----------|\n| trained_image_mean | **L14** | **0.6911** |\n| trained_last_preaction | **L15** | **0.6945** |\n| untrained_image_mean | L0 | 0.6523 |\n| untrained_last_preaction | L1 | 0.6659 |\n\n**Trained layer profile (image_mean):**\n- L0: 0.652 → rises to L14: 0.691 → declines to L32: 0.630\n- **Mild inverted-U confirmed**\n\n**Untrained**: flat/monotonically declining from L0-L1. No inverted-U.\n\n---\n\n### Action Probe (Linear, target=a_{t+1}, z-score norm)\n\n| Condition | Peak Layer | Peak R² |\n|-----------|-----------|---------|\n| trained_image_mean | **L13** | **0.6963** |\n| trained_last_preaction | **L21** | **0.6748** |\n| untrained_image_mean | L0 | 0.6732 |\n| untrained_last_preaction | L1 | 0.6348 |\n\n**Trained image_mean profile:**\n- L0: 0.673 → peak L13: 0.696 → L20: 0.638 → L30: 0.597 → L32: 0.577\n- **Clear inverted-U**\n\n**Untrained last_preaction profile (dramatic collapse):**\n- L1: 0.635 → L4: 0.526 → L5-L31: 大量层 ≈ −0.015（degenerate probe）→ L32: 0.621（output layer 恢复）\n- 中间层零星非零值: L6: 0.40, L12: 0.45, L21: 0.30\n\n---\n\n### Bootstrap Pairwise Comparisons\n\n| Comparison | Δ | 95% CI | p |\n|-----------|---|--------|---|\n| trained vs untrained image_mean (best-vs-best) | +0.023 | [0.012, 0.036] | <0.001 |\n| trained vs untrained last_preaction (best-vs-best) | +0.040 | [0.019, 0.057] | 0.0004 |\n| trained vs untrained image_mean (same-layer@L13) | +0.711 | [0.685, 0.740] | <0.001 |\n| trained vs untrained last_preaction (same-layer@L21) | +0.370 | [0.317, 0.427] | <0.001 |\n\n---\n\n### 核心发现\n\n1. **Inverted-U pattern**: Trained model 在两个指标上都呈现 inverted-U（RSA peak L14-15, Probe peak L13-21）。Untrained 无此 pattern——peak 在 L0-1，之后 flat 或 collapse。\n\n2. **Untrained last_preaction 极端退化**: 中间层（L5-L31）大量出现 R² ≈ −0.015（probe 退化为预测 mean action），仅 L32 output layer 恢复。这说明 pretrained LLM 的深层表示对 action 完全无信息编码，fine-tuning 是必要条件。\n\n3. **Best-vs-best delta 虽小但显著**: image_mean +0.023, last_preaction +0.040。训练改善幅度不大是因为 L0（shared embedding）已有很高 baseline（0.67），训练主要是让 middle layers 超越这个 baseline。\n\n4. **Same-layer delta 巨大**: 在 trained peak layer（L13/L21），untrained 表示几乎为零。这是 fine-tuning 效应最强的证据。\n\n---\n\n### 与 LIBERO-Goal 对比（定性）\n\n| 维度 | LIBERO-Goal | LIBERO-Spatial |\n|------|-------------|----------------|\n| RSA peak layer (trained) | ~L14-16 | L14-15 |\n| Probe peak layer (trained) | ~L13-15 | L13 (img), L21 (preact) |\n| Untrained collapse | 类似 | 类似 |\n| Task 区分维度 | 不同 goal object | 同一 goal，不同 spatial config |\n\n两个 suite 的 peak layer 位置高度一致，表明 **action-relevant representation 的层深度与 task differentiation 类型无关**——无论是 goal-level 还是 spatial-level 的区分，都在 L13-15 达到最大 representational alignment。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-010-read-results.md"
+}

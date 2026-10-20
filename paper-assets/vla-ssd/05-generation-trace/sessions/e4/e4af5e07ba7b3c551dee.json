@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4af5e07ba7b3c551dee",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "monitor bootstrap until complete",
+  "task_key": "worker_monitor_bootstrap_until_complete_20260522T231941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_bootstrap_until_complete_20260522T231941_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "6ea1cd2c90c7cfeb2c658bfaa0a577ae1eda12753a8ee8026af2eac2f504fa94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：11/20 JSON 完成，两个 tmux session 都在活跃运行 bootstrap 阶段。15 分钟后自动检查下一轮进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bootstrap-until-complete.md"
+}

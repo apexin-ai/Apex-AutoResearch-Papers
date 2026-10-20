@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af57744033ac89058be5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper writing related work d097",
+  "task_key": "worker_paper_writing_related_work_d097_20260522T060541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_d097_20260522T060541_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "ffa9fccbe9052f968d9398b63f9551379e96db94b1d19ebec294b74f1733bb08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D097 compliance check:\n- \"architecture-independent\": absent\n- \"7-10×\": absent\n- L1 attention = base-model prior (line 12: \"reflects base-model language priors rather than VLA training, since Phi-3-Vision saturates at 32/32 before any action training\")\n- \"significantly\" without stats: absent\n- NORA `\\cite{TODO_nora}`, TracVLA `\\cite{zheng2024tracevla}`: correct (line 4)\n- No em-dashes: confirmed\n- No -ing phrase endings: confirmed\n\nAll 5 paragraphs updated:\n1. **VLA models**: added TracVLA/NORA, cross-architecture positioning, replaced \"redistributes rather than distorts\" with \"exit collapse and counterfactual sensitivity while L1 attention reflects inherited base-model priors\"\n2. **Mechanistic interp**: D097-corrected L1 claim (24/32 is base-model prior, not training effect)\n3. **Behavioral/mechanistic VLA**: cross-architecture matrix positioning, explicit training-induced vs inherited decomposition\n4. **Token-level**: cross-architecture confirmation of instruction-blindness and readout integration\n5. **RSA/probing**: added metric limitations (RSA/CKA divergence + Cohen's d/cosine incomparability)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-d097.md"
+}

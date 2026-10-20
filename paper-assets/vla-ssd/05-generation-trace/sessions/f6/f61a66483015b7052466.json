@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f61a66483015b7052466",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v untrained seed expansion",
+  "task_key": "worker_code_phi3v_untrained_seed_expansion_20260520T111957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_untrained_seed_expansion_20260520T111957_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "fc2b457e4a1813d2ca40752e10ac08e5a9c9b1028746f38bbd6492d8fd47558b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并运行中：\n\n- **脚本**: `/root/vla-ssd/scripts/phi3v_untrained_seed_expansion.py` — Phase 2 only (probe training)，复用已有 features\n- **Seeds**: 5-14（与原始 0-4 不重叠，合计 15 seeds）\n- **PID**: 452350 → python 452355\n- **GPU**: cuda:0, westd-19183\n- **日志**: `~/runs/vla-ssd/phi3v_untrained_seed_expansion.log`（stdout 缓冲中，输出会延迟出现）\n- **输出**: `/root/autodl-tmp/vla-ssd/results/phi3v_untrained_seed_expansion/phi3v_untrained_seed_expansion.json`\n- **预计耗时**: ~20-30 min（参考 trained expansion 16 min / 10 seeds）\n- **Registry**: RUNNING，provenance 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-untrained-seed-expansion.md"
+}

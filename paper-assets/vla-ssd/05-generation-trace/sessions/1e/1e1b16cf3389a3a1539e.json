@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1b16cf3389a3a1539e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "knowledge writing plan draft",
+  "task_key": "worker_knowledge_writing-plan-draft_20260516T002952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_writing-plan-draft_20260516T002952_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "71ed5bf7893ae31f45d540053650b1ed71d858b9c977a3d5729e3a300c5d1054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "writing_plan.yaml 已保存。结构概览：\n\n**7 sections**，每个 section 带 core_evidence（引用 exp_id）和 key_numbers（可追溯到 registry metrics）。\n\n**6 figures**：\n- fig1: 架构分解概念图\n- fig2: RSA 主对比 bar chart（Proj 0.615 >> VLA ~0.50 >> DINO 0.388）\n- fig3: Per-layer RSA 降解曲线（4 条件）\n- fig4: Functional probe R² grouped bar（degradation + concentration + training-dependence）\n- fig5: 2×2 training×instruction matrix（invariance 可视化）\n- fig6: RSA vs CKA 对比（supplementary 候选）\n\n**3 tables**：tab1 RSA 主表，tab2 functional probe R² 分解，tab3 bootstrap CI 汇总。\n\n**Writing order**: Experiments → Method → Discussion → Introduction → Related Work → Conclusion → Abstract（evidence-first）。\n\n**Pending**: plan_008（RUNNING，instruction invariance 补充）和 plan_012（PLANNED，CLIP-ViT control），均有 fallback 方案不阻塞写作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-writing-plan-draft.md"
+}

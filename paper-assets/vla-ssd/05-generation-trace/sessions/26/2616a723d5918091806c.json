@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2616a723d5918091806c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code next pipeline prep and download check",
+  "task_key": "worker_code_next_pipeline_prep_and_download_check_20260521T025805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_next_pipeline_prep_and_download_check_20260521T025805_result.json",
+    "occurrence": 1,
+    "bytes": 2655,
+    "sha256": "42d5f6ca7f1737bb619e4dbd0300d5ddcb61735968b3c3a0c1788345837a9d86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有脚本验证通过。汇总报告：\n\n---\n\n## 汇总报告\n\n### Part A: 下载进度\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **Phi-3-Vision base** | ~60% 下载中 | PID 524060 已结束。两个并行下载在跑：HF (PID 521338, 52% 但频繁超时) + **ModelScope (PID 521488, 58%, 8.5GB)**。ModelScope 是主力 |\n| **OpenVLA-OFT checkpoint** | ~75% 下载中 | aria2c (PID 522184) 下载 `openvla-7b-oft-finetuned-libero-10` 到 14GB/~19GB。3 个 .safetensors 文件有 .aria2 标记（未完成），model-00004 尚未出现 |\n| **NORA Goal checkpoint** | ~70% 下载中 | aria2c (PID 523735) 下载 model-00002-of-00002.safetensors，当前 2.4G。model-00001 (4.7G) 已完成。总计 7.1GB |\n| **LIBERO-Long demo data** | **已有（以 libero_10 命名）** | `/root/autodl-tmp/vla-ssd/data/libero/libero_10/` 已有 10 个 hdf5 文件，即 LIBERO-Long。`libero_long/` 目录不存在但不需要下载，libero_10 = libero_long |\n\n### NORA Goal Pipeline 状态\n\n**已崩溃（EXIT_CODE=2）**。日志显示：\n```\nnora_goal_full_pipeline.py: error: unrecognized arguments: untrained\n```\n启动命令传了位置参数 `untrained`，但脚本期望 `--conditions trained,untrained` 格式。需要用正确参数重启。\n\n### 当前活跃任务\n- **OpenVLA Object pipeline** (tmux `libero_object_full_pipeline`, GPU:0)\n- **TraceVLA Spatial trained** (PID 521842, GPU:1)\n\n### Part B: 新建脚本\n\n| 脚本 | 路径 | 基于 | 关键修改 |\n|------|------|------|----------|\n| NORA Spatial | `/root/autodl-tmp/vla-ssd/scripts/nora_spatial_full_pipeline.py` | nora_goal | DATA→libero_spatial, CKPT→nora-libero-spatial, spatial tasks/paraphrases |\n| TraceVLA Object | `/root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py` | tracvla_spatial | DATA→libero_object, object tasks/paraphrases, 同 checkpoint |\n| OpenVLA Long | `/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py` | libero_object | CKPT→openvla-7b-oft-finetuned-libero-10, DATA→libero_10, 手写 INSTRUCTIONS（剥离 scene 前缀） |\n\n### 注意事项\n\n1. **NORA Spatial checkpoint `nora-libero-spatial/` 尚不存在**，需要从 HuggingFace 下载（`declare-lab/nora-long-finetuned-libero-spatial` 或类似名称）\n2. **OpenVLA Long 脚本可能需要调整模型加载逻辑**：OFT 模型有 LoRA adapter + 独立 action_head，与标准 OpenVLA 加载方式不同。`UNNORM = \"libero_10\"` 键名需等 `dataset_statistics.json` 确认\n3. **NORA Goal pipeline 需要用正确参数重启**：`python nora_goal_full_pipeline.py --conditions trained,untrained`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-next-pipeline-prep-and-download-check.md"
+}

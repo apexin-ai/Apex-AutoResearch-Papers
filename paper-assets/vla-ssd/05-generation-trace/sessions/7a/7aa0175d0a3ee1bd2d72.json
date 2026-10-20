@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aa0175d0a3ee1bd2d72",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose clustered bootstrap reanalysis v1",
+  "task_key": "worker_diagnose_clustered_bootstrap_reanalysis_v1_20260523T004605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_clustered_bootstrap_reanalysis_v1_20260523T004605_result.json",
+    "occurrence": 1,
+    "bytes": 3133,
+    "sha256": "05e7f9631388238d22c9a2b9225029c60e9ede21bee07e5485a65761abad16fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据到手。整理结果。\n\n# Bootstrap Reanalysis Status\n\n## Process Status\n- **cuda:0**: COMPLETE (finished 08:26:35 CST)\n- **cuda:1**: RUNNING — 当前: `tracvla_object untrained` bootstrap 阶段 (100 workers × 1000 iter, 自 08:44:41 CST 起)\n\ncuda:1 脚本剩余队列: `tracvla_long trained` → `tracvla_long untrained`。预估剩余 ~1.5–2h。\n\n## Completed Results (17/20)\n\n### OpenVLA (exit layer = L31)\n\n| Suite | Cond | Peak R² | @Layer | Exit R² | Δ | CI95(Δ) | Sig? |\n|-------|------|---------|--------|---------|------|---------|------|\n| goal | trained | 0.4164 | L1 | 0.2826 | 0.1339 | [0.0000, 0.0742] | **No** |\n| goal | untrained | 0.4026 | L10 | 0.3039 | 0.0988 | [0.0000, 0.0484] | **No** |\n| spatial | trained | 0.5452 | L24 | 0.4963 | 0.0489 | [0.0000, 0.0444] | **No** |\n| spatial | untrained | 0.5339 | L4 | 0.5180 | 0.0160 | [0.0000, 0.0362] | **No** |\n| object | trained | 0.5752 | L21 | 0.5509 | 0.0242 | [0.0000, 0.0269] | **No** |\n| object | untrained | 0.5932 | L14 | 0.5407 | 0.0525 | [0.0000, 0.0575] | **No** |\n| long | trained | 0.5121 | L25 | 0.4691 | 0.0430 | [0.0000, 0.0591] | **No** |\n| long | untrained | 0.5341 | L24 | 0.5080 | 0.0261 | [0.0000, 0.0692] | **No** |\n\n### TracVLA (exit layer = L31)\n\n| Suite | Cond | Peak R² | @Layer | Exit R² | Δ | CI95(Δ) | Sig? |\n|-------|------|---------|--------|---------|------|---------|------|\n| goal | trained | 0.5399 | L13 | 0.2065 | 0.3334 | [0.0924, 0.3545] | **Yes** |\n| goal | untrained | 0.5048 | L11 | 0.4403 | 0.0645 | [0.0000, 0.0776] | **No** |\n| spatial | trained | 0.6871 | L13 | 0.5315 | 0.1557 | [0.0487, 0.1619] | **Yes** |\n| spatial | untrained | 0.6120 | L4 | 0.5643 | 0.0477 | [0.0000, 0.0464] | **No** |\n| object | trained | 0.6315 | L13 | 0.2692 | 0.3623 | [0.0735, 0.3719] | **Yes** |\n\n### NoRA (exit layer = L35)\n\n| Suite | Cond | Peak R² | @Layer | Exit R² | Δ | CI95(Δ) | Sig? |\n|-------|------|---------|--------|---------|------|---------|------|\n| goal | trained | 0.4489 | L8 | -0.0062 | 0.4551 | [1.0253, 1.8867] | **Yes** |\n| goal | untrained | 0.4203 | L5 | 0.3397 | 0.0806 | [0.0046, 0.1076] | **Yes** |\n| spatial | trained | 0.5763 | L20 | 0.2683 | 0.3080 | [0.1097, 0.4715] | **Yes** |\n| spatial | untrained | 0.5125 | L4 | 0.4240 | 0.0885 | [0.0002, 0.0873] | **Yes** |\n\n## Missing Conditions (3)\n- `tracvla_object/untrained` — **正在运行**\n- `tracvla_long/trained` — 排队中\n- `tracvla_long/untrained` — 排队中\n\n## Summary\n\n17/20 conditions 完成，3 个剩余（均为 cuda:1 队列中的 tracvla）。\n\n显著性分布:\n- **OpenVLA**: 0/8 significant — 所有 CI 下界为 0.0000，delta 均不显著\n- **TracVLA**: 3/5 significant (全部是 trained) — trained 的 goal/spatial/object 均显著，untrained 不显著\n- **NoRA**: 4/4 significant — trained 和 untrained 均显著，但 trained Δ 远大于 untrained\n\n关键观察: OpenVLA 的 CI 下界全部精确为 0.0000，这可能表明 bootstrap 实现中对 CI 做了 `max(0, ...)` clamp，值得检查是否属于 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-clustered-bootstrap-reanalysis-v1.md"
+}

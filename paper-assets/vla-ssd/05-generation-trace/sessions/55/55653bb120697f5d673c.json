@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55653bb120697f5d673c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix openvla spatial download",
+  "task_key": "worker_fix_openvla_spatial_download_20260522T052447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_openvla_spatial_download_20260522T052447_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "f8504bf88421b2ed5b34e7f290d67f926a8648ddeb19268488edbb05abea54e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行，让我算下速度和 ETA。\n\n**诊断结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 主进程 PID 594575 | 运行中，已运行 ~4 小时 |\n| 下载进程 PID 594477 | 运行中，有活跃 socket |\n| network_turbo | 已激活（proxy 已设置） |\n| 下载位置 | `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-spatial/` |\n\n**下载进度：**\n\n| Shard | 大小 | 状态 |\n|-------|------|------|\n| model-00001-of-00004 | ~4.95 GB | **下载中**，已下载 4.74 GB（~95.7%） |\n| model-00002-of-00004 | 4.95 GB | ✅ 完成 |\n| model-00003-of-00004 | 4.95 GB | ✅ 完成 |\n| model-00004-of-00004 | 251 MB | ✅ 完成 |\n\n**速度测量：** 20 秒内下载了 10,485,760 bytes → **~512 KB/s**\n\n**剩余：** ~198 MB → 预计 **6-7 分钟**完成\n\n**问题根因：** 下载日志显示连接到 `cas-bridge.xethub.hf.co`（HF 的 xet CDN），尽管脚本设置了 `HF_HUB_DISABLE_XET=1`，但仍然走了 xet 通道，导致通过 AutoDL 代理访问时超时重试。\n\n**结论：** 只剩最后 ~200 MB，当前速度下 6-7 分钟可完成，不值得干预。让它自然跑完即可。无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-openvla-spatial-download.md"
+}

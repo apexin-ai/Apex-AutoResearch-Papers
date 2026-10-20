@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d83d466fbe9e5cca240d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "setup fix downloads modelscope",
+  "task_key": "worker_setup_fix_downloads_modelscope_20260521T042410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_fix_downloads_modelscope_20260521T042410_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "25d063b5be7dbf7156d368bea55a7aaa00d9f561671d0269d5365641bb0caa5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 模型 | 方法 | PID | 状态 |\n|------|------|-----|------|\n| **NORA Spatial** | ModelScope | 529814 | 下载中，~3.5-5 MB/s，已下 397M/4.62G + 368M/2.38G |\n| **Phi-3-Vision** | ModelScope | 529928 | 下载中，~5 MB/s，刚启动 |\n| **OFT** | aria2c (hf-mirror) | 522184 | 接近完成，14.5G 已下，剩 2 个文件（model-00004 251M/? + action_head 289M/?）|\n\n监控命令：\n```\ntail -5 /tmp/download_nora_spatial_ms.log\ntail -5 /tmp/download_phi3v_ms.log\nls -lh /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/*.aria2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-fix-downloads-modelscope.md"
+}

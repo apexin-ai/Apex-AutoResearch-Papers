@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ec28134f509e749c31",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "analysis paper consistency check",
+  "task_key": "worker_analysis_paper_consistency_check_20260518T192717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_consistency_check_20260518T192717.log",
+    "occurrence": 1,
+    "bytes": 922063,
+    "sha256": "281b5da7f1efd4d6cd3f370f81c52079a31a077f459b3a866a54eea3ca2f8e8b"
+  },
+  "statistics": {
+    "messages": 347,
+    "user_turns": 4,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 107,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "a0ec28134f509e749c31-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "a0ec28134f509e749c31-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "a0ec28134f509e749c31-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "a0ec28134f509e749c31-part-0001.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "a0ec28134f509e749c31-part-0001.json",
+          "message_count": 55
+        },
+        {
+          "path": "a0ec28134f509e749c31-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-paper-consistency-check.md"
+}

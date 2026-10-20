@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34c02cb55168c8477a3a",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "verify threecond r2 e2e",
+  "task_key": "worker_verify_threecond_r2_e2e_20260528T221321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_threecond_r2_e2e_20260528T221321_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "e645c53e22c68c028c2aadcfdad5d93e6498d8e032c9a1cfafd1918fceea8491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**结果**: Plot 脚本全部 192 个硬编码值与 `threecond_multiseed_v2.json`（3 seeds [42,123,456]，sequential split，denormalized R²）完全一致，零偏差。\n\n**之前抽检偏移的原因**: 对比的是 15-seed 的 local artifact 文件，而非 3-seed 的 v2 JSON。两者是同一管线不同种子数的实验，sample mean 自然不同（trained MAD=0.0117, untrained MAD=0.1208）。不是数据错误。\n\n报告已写入 `artifacts/verify_threecond_r2_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-threecond-r2-e2e.md"
+}

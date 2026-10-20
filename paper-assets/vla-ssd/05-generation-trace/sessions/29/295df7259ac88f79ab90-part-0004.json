@@ -1,0 +1,995 @@
+{
+  "schema_version": "1.0",
+  "session_id": "295df7259ac88f79ab90",
+  "rounds": [
+    {
+      "number": 78,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-15T14:05:05.727586+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "D009 已记录，ROADMAP 已更新。\n\n**当前评估**：\n\nAgent 处理正确。Subtask predicate 方向终止合理——DINO AUC 0.9717 已远超 0.95 gate，无需再花 GPU 验证。\n\nAction prediction probe 方向逻辑最强：vision encoder 不擅长预测动作，VLA 训练的核心就是学习 action generation，这里 Δ(trained vs untrained) 应该显著大于 temporal distance 的 4%。\n\n**关键风险我已标注在 ROADMAP**：\"VLA 能预测 action\" 本身可能被视为 trivial（模型就是训练来做这个的）。Story 需要聚焦在 **dissociation**：同一个 VLA 模型，temporal progress 信号来自 vision encoder（VLA 训练贡献微弱），而 action prediction 信号来自 LLM 训练（VLA 训练贡献显著）→ VLA 训练编码的是 \"motor planning\" 而非 \"general task understanding\"。这是一个有分析价值的发现。\n\n**下一步**：等两个 CPU Worker 调研完成（文献 + 技术可行性）→ 我做 action prediction probe 方向决策 + 设计 MVP-2 实验。Control B 完成后分析确认 probe 方法论有效性。不需要额外指令给 Agent，当前任务分配合理且资源饱和。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
+          },
+          "id": "event-000541"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-15T14:05:37.956376+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — D009 ROADMAP 更新 + Action Prediction Probe 方向\n\n**结论**: WARNING（方向科学逻辑成立，但有两个未被充分识别的审稿人攻击面）\n\n### 核实的内容\n\n1. **D009 决策链条**：subtask predicate terminated → action prediction probe。从 D001→D009 的决策链逻辑连贯，每步 pivot 都有数据支撑。\n\n2. **ROADMAP 已识别的风险**：\n   - ✅ \"VLA 能预测 action 是 trivial\"\n   - ✅ \"需要 story 是关于 HOW encoded，不是 WHETHER\"\n\n### 发现\n\n- [severity: warning] **遗漏攻击面 #1：\"Why not just use the VLA's own action head?\"** 如果目标是用 VLA hidden states 做 action probe → 评估表征质量，审稿人会问：VLA 本身就有 action prediction head，probe 的价值是什么？ROADMAP 只说了\"需要精心设计 story\"但没具体识别这个攻击点。建议在技术设计阶段明确回答：probe 的目标不是替代 action head，而是做 representation analysis（哪些层编码了 action knowledge、是否跨任务泛化、与 vision 信号是否解耦）。这些是 action head 无法回答的分析问题。\n\n- [severity: warning] **遗漏攻击面 #2：与原始 self-scoring 目标的连接断裂。** 项目核心问题是\"VLA 能否 self-score demo quality\"。Temporal distance → self-scoring 的连接清晰（ρ 高 = 能估计进度 = 能评分）。Action prediction → self-scoring 的连接需要显式建立：例如\"action deviation from predicted next-best-action 作为质量信号\"。如果 paper 只做 probing analysis 而不连回 self-scoring，原始 research question 悬空。\n\n- [severity: info] **技术可行性确认。** 已提取的 `last_preaction` token 隐状态非常适合 action prediction probing——这些 hidden states 是在 action 生成之前的表征，编码了模型的\"action plan\"。LIBERO HDF5 自带 7-DoF action labels。Features 已在 /root/autodl-tmp/vla-ssd/features/ 就绪，无需重新提取。实现代价低（修改 train_probes.py 加 action regression probe）。\n\n- [severity: info] **时间线可行。** 文献调研 + 技术设计（并行 workers，~1 天） → 实现（~0.5 天） → 实验（~1 小时/模型，features 已有） → 分析（~0.5 天）。总计 ~2-3 天出 MVP-2 结果。May 17-18 go/no-go 点合理。\n\n- [severity: info] **DINO action baseline 预期。** DINO-V2 无 action 训练，单帧 action prediction 应接近 chance level。untrained VLA 有 SigLIP 但 LLM 随机，action prediction 能力也应很弱。如果 trained >> untrained >> DINO，则证明 VLA 训练独特贡献。\n\n### 建议\n\n方向本身合理，但在技术设计完成前需要回答两个 framing 问题：\n1. \"action probe 的 paper 贡献是什么（不是'VLA can predict actions'）\"\n2. \"如何连回 self-scoring 原始目标\"\n\n如果两个问题都有好答案 → go。如果答不清楚 → 考虑转 negative finding paper（\"VLA training contribution to representation quality: a probing analysis\"这类 framing 可以涵盖 temporal distance + action + subtask 所有结果）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "reviewer"
+          },
+          "id": "event-000542"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-15T14:06:05.780777+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nWorker 已派出处理 P0 修复。同时向 Director 确认收到指令。\n\n---\n\n[Reviewer 回复]:\n## 审查报告 — clean-verdict (worker_analysis_clean-verdict)\n\n**结论**: PASS（verdict 数值正确，代码有一处不影响结果的 bug）\n\n### 独立核实\n\n**Verdict 输出（analysis/summary.json）**：\n- best_layer: **4**（排除 union 坍塌层后的 healthy best）\n- best_rho: **0.9550**（trained L4 per-task mean ρ，独立验证 layer_4.json 一致）\n- collapsed_layers_excluded: **16 层** [0,3,9,15,16,18,20,22,23,24,26,27,28,30,31,32]\n  - Trained-only: L16,18,22,23,24,28,30（7层）\n  - Untrained-only: L3,9,15,20,27,31（6层）\n  - Both: L0,26,32（3层）\n- delta_at_best (L4): **0.0427**, CI [0.036, 0.050], p=0.0\n- Gate 1: PASS (0.955 > 0.5)\n- Gate 2: **FAIL** (0.0427 < 0.1)\n- Gate 3: PASS (0.956 ≥ 0.901)\n- Overall: **FAIL**\n\n**Registry 更新核实**：mvp_probe_trained metrics 已正确更新为 verdict 值（best_layer=4, collapsed=16, healthy=17）。\n\n### 发现\n\n- [severity: info] **Verdict 正确。** 所有 gate 判定与原始数据一致。Gate 2 FAIL 是 robust 的——即使不排除坍塌层，最大 Δρ 也远低于 0.1 阈值。\n\n- [severity: info] **代码 minor bug（不影响结果）。** `compute_judgment()` 中 `vla_mean_rho` 使用 `rho_vla_pt.max()` 不排除坍塌层，得到 0.9562（L3）而非 healthy best 0.9550（L4）。由于 0.9550 ≥ 0.901 同样 PASS Gate 3，verdict 不受影响。\n\n- [severity: info] **GPU 合规。** Control B 两卡正确分配：trained PID 608749→GPU0(cuda:0), untrained PID 608891→GPU1(cuda:1)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "main_agent"
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-15T14:06:18.605071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 两个 warning 都成立，属于 framing 层面的攻击面，不影响当前执行（两个 Worker 调研 + Control B 继续跑），但在方向决策点必须有明确回答。\n\n**攻击面 #1 \"Why not just use the action head?\"** — 可回答。Probe 是诊断工具，目标是 representation analysis：层级分布（哪些层编码 action knowledge）、跨任务泛化（是否 transfer）、与 vision 信号解耦度。这些是 action head 无法回答的结构性问题。类比 NLP 里 probe BERT 做 syntax analysis——不是替代 parser，而是理解表征结构。\n\n**攻击面 #2 \"与 self-scoring 连接断裂\"** — 更需要推敲。两条可能的桥：\n- **路径 A**：action prediction quality 作为 quality signal（预测 action 与实际偏差 = action deviation score → 检测 suboptimal demonstrations）\n- **路径 B**：升级 framing 为 \"What does VLA training contribute to representations?\"——temporal distance = vision-sufficient（负面发现），action prediction = VLA-training-dependent（正面发现），对比本身就是 contribution。这条不依赖 self-scoring，但需要多模型/多 benchmark 支撑\n\n两条路径哪个更强，取决于 action probe 的实验结果和效应量。等 Worker 调研回来后一并做方向决策。\n\n当前不需要动作——两个 GPU 跑 Control B，两个 CPU Worker 做调研和技术设计，全部在正确轨道上。方向决策点在 Worker 调研完成后。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
+          },
+          "id": "event-000544"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-15T14:06:20.632155+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h1m\n  本轮累计 52 条消息 / 4h 1min\n\n⚠️ 你自己的 context 状态：已 78 条消息 / 4h 1min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-15T14:06:32.794814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-15T14:06:32.845898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-15T14:06:35.376051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ralph_respond",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-15T14:06:35.428110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-15T14:06:37.741394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-15T14:06:37.792093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-15T14:06:40.537852+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer + 自己一起重置。等系统发 [WRITE HANDOFF] 写交接文档。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
+          },
+          "id": "event-000552"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-15T14:06:40.542021+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-15T14:06:45.475506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__director_get_project_overview",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-15T14:06:45.475847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-15T14:06:48.235752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-15T14:06:48.437117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 vla-ssd 概况\\n\\n## 实验状态 (8 个)\\n\\n- **mvp_001**: DONE (negative) — \\n- **mvp_probe_untrained**: DONE (success) — \\n- **mvp_probe_trained**: DONE (negative) — \\n- **mvp_controlb_untrained**: RUNNING — \\n- **mvp_controlb_trained**: RUNNING — \\n- **openvla-untrained-extract**: DONE (success) — \\n- **openvla-trained-extract**: DONE (success) — \\n- **dinov2_baseline**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_controlb_untrained | Control B (label permutation): untrained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\n| mvp_controlb_trained | Control B (label permutation): trained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_001** (negative): OpenVLA 7B 隐状态编码了 task-progress 信息（temporal distance），且信号来自 task-semantic content 而非 positional shortcut (RoPE)\\n- **mvp_probe_untrained** (success): Control C: untrained OpenVLA (random LLM + preserved vision) temporal distance probe as baseline for Δρ comparison ← 基于 mvp_001\\n- **mvp_probe_trained** (negative): OpenVLA 7B trained model hidden states encode temporal distance (per-task mean ρ > 0.5), with signal from VLA training (Δρ vs untrained > 0.1) ← 基于 mvp_001\\n  [mvp_probe_analysis_report](/api/workspace-files/projects/vla-ssd/artifacts/mvp_probe_trained/report/mvp_probe_analysis.md)\\n\\n## 趋势\\n成功 4 / 负向 2 / 失败 0 / 共 6\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-19183: 无 GPU 信息\\n\\n## 告警\\n（无）\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 201
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-15T14:06:48.437624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-15T14:06:48.488639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:04 UTC | 更新原因: D009: subtask predicate terminated, pivoting to action prediction probe research\\\\n\\\\n## 核心方向\\\\n\\\\nVLA 预训练表征是否编码了足够的 task-progress 信息，能实现零外部模型的自我打分 demo 质量？\\\\n\\\\n**当前状态**：MVP 原始假设（temporal distance）FAIL，subtask predicate pivot 也终止（D009）。正在调研 action prediction probe——寻找\\\\\\\"视觉不可达\\\\\\\"的 probing task 来体现 VLA 训练的独特贡献。\\\\n\\\\n## 当前进展\\\\n\\\\n- **阶段**: MVP → 方向探索（action prediction probe 调研中）\\\\n- **MVP 结果**: G1 ✅ (ρ=0.955) | G2 ❌ (Δρ=0.043<<0.1) | G3 ✅ | **FAIL**\\\\n- **根因**: temporal distance ≈ visual change，vision encoder 天然擅长\\\\n- **Subtask predicate**: DINO AUC=0.9717 > 0.95 gate，视觉可辨，终止（D009）\\\\n- **Action prediction probe**: 预测 next action 需策略知识，vision encoder 不擅长 → VLA 训练有望贡献显著差异\\\\n- **目标会议**: CoRL 2026（abstract May 26 = 11 days, paper May 29）\\\\n\\\\n## Action Prediction Probe 逻辑\\\\n\\\\n**为什么可行**：\\\\n- Temporal distance 与视觉变化相关 → vision encoder 够用 → Δρ 小\\\\n- Action prediction 需要理解 task semantics + 策略 → vision encoder 不够 → Δ 应更大\\\\n- Action labels 现成（LIBERO HDF5 数据自带 7-DoF action）\\\\n- 如果 trained VLA >> untrained VLA >> DINO on action prediction → VLA 训练有独特贡献\\\\n\\\\n**风险**：\\\\n- \\\\\\\"VLA 能预测 action\\\\\\\" 可能被视为 trivial（它就是被训练来做这个的）\\\\n- 需要精心设计 story：不是证明 VLA 能预测 action，而是分析 action knowledge 如何编码在表征中（层级分布、跨任务泛化、与 vision 的解耦）\\\\n\\\\n## 近期任务\\\\n\\\\n- [ ] 文献调研: VLA probing beyond vision（Worker 运行中）\\\\n- [ ] Action prediction probe 技术设计: HDF5 action 格式 + probe 架构（Worker 运行中）\\\\n- [ ] Control B 完成 + 分析（cuda:0 + cuda:1 运行中）\\\\n- [ ] **方向决策点**: 两个 Worker 调研完成后，评估 action probe 可行性 + story 强度\\\\n- [ ] 如可行 → 设计 MVP-2 实验（action probe trained vs untrained vs DINO）\\\\n- [ ] **CoRL go/no-go**: ~May 17-18\\\\n\\\\n## GPU 预算\\\\n\\\\nwestd-19183: 2×RTX PRO 6000 | 当前 Control B 占用 2 卡\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D009 | 2026-05-15 | Subtask predicate pivot \n…[truncated 1107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-15T14:06:50.089886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,read_roadmap,read_project_file,get_agent_queue_status,get_resource_inventory",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-15T14:06:50.090333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-15T14:06:52.450236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "get_project_status read_roadmap read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-15T14:06:52.500800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-15T14:06:55.311135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-15T14:06:55.865916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `vla-ssd`\\n**阶段**: 🧪 MVP（验证阶段）\\n\\n── 📋 项目配置 ──\\n✓ 服务器    westd-19183 (connect.westd.seetacloud.com)\\n✓ 代码路径  /root/vla-ssd\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 9 条记录\\n\\n── 📊 研究进度 ──\\n实验: 8 个 (运行中 2 | 完成 6 | 成功 4)\\n\\n  mvp_001                    DONE (negative)\\n  mvp_probe_untrained        DONE (success)\\n  mvp_probe_trained          DONE (negative)\\n  mvp_controlb_untrained     RUNNING\\n  mvp_controlb_trained       RUNNING\\n  openvla-untrained-extract  DONE (success)\\n  openvla-trained-extract    DONE (success)\\n  dinov2_baseline            DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_controlb_untrained | Control B (label permutation): untrained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\n| mvp_controlb_trained | Control B (label permutation): trained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_001** (negative): OpenVLA 7B 隐状态编码了 task-progress 信息（temporal distance），且信号来自 task-semantic co\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 554
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-15T14:06:55.866332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-15T14:06:56.017294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:04 UTC | 更新原因: D009: subtask predicate terminated, pivoting to action prediction probe research\\\\n\\\\n## 核心方向\\\\n\\\\nVLA 预训练表征是否编码了足够的 task-progress 信息，能实现零外部模型的自我打分 demo 质量？\\\\n\\\\n**当前状态**：MVP 原始假设（temporal distance）FAIL，subtask predicate pivot 也终止（D009）。正在调研 action prediction probe——寻找\\\\\\\"视觉不可达\\\\\\\"的 probing task 来体现 VLA 训练的独特贡献。\\\\n\\\\n## 当前进展\\\\n\\\\n- **阶段**: MVP → 方向探索（action prediction probe 调研中）\\\\n- **MVP 结果**: G1 ✅ (ρ=0.955) | G2 ❌ (Δρ=0.043<<0.1) | G3 ✅ | **FAIL**\\\\n- **根因**: temporal distance ≈ visual change，vision encoder 天然擅长\\\\n- **Subtask predicate**: DINO AUC=0.9717 > 0.95 gate，视觉可辨，终止（D009）\\\\n- **Action prediction probe**: 预测 next action 需策略知识，vision encoder 不擅长 → VLA 训练有望贡献显著差异\\\\n- **目标会议**: CoRL 2026（abstract May 26 = 11 days, paper May 29）\\\\n\\\\n## Action Prediction Probe 逻辑\\\\n\\\\n**为什么可行**：\\\\n- Temporal distance 与视觉变化相关 → vision encoder 够用 → Δρ 小\\\\n- Action prediction 需要理解 task semantics + 策略 → vision encoder 不够 → Δ 应更大\\\\n- Action labels 现成（LIBERO HDF5 数据自带 7-DoF action）\\\\n- 如果 trained VLA >> untrained VLA >> DINO on action prediction → VLA 训练有独特贡献\\\\n\\\\n**风险**：\\\\n- \\\\\\\"VLA 能预测 action\\\\\\\" 可能被视为 trivial（它就是被训练来做这个的）\\\\n- 需要精心设计 story：不是证明 VLA 能预测 action，而是分析 action knowledge 如何编码在表征中（层级分布、跨任务泛化、与 vision 的解耦）\\\\n\\\\n## 近期任务\\\\n\\\\n- [ ] 文献调研: VLA probing beyond vision（Worker 运行中）\\\\n- [ ] Action prediction probe 技术设计: HDF5 action 格式 + probe 架构（Worker 运行中）\\\\n- [ ] Control B 完成 + 分析（cuda:0 + cuda:1 运行中）\\\\n- [ ] **方向决策点**: 两个 Worker 调研完成后，评估 action probe 可行性 + story 强度\\\\n- [ ] 如可行 → 设计 MVP-2 实验（action probe trained vs untrained vs DINO）\\\\n- [ ] **CoRL go/no-go**: ~May 17-18\\\\n\\\\n## GPU 预算\\\\n\\\\nwestd-19183: 2×RTX PRO 6000 | 当前 Control B 占用 2 卡\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D009 | 2026-05-15 | Subtask predicate pivot \n…[truncated 1107 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 150
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-15T14:06:56.218454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-15T14:06:56.320022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp_controlb_untrained | Control B (label permutation): untrained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\\\n| mvp_controlb_trained | Control B (label permutation): trained features with shuffled distance labels, expected ρ≈0 — null control for probe validity | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **mvp_001** (negative): OpenVLA 7B 隐状态编码了 task-progress 信息（temporal distance），且信号来自 task-semantic content 而非 positional shortcut (RoPE)\\\\n- **mvp_probe_untrained** (success): Control C: untrained OpenVLA (random LLM + preserved vision) temporal distance probe as baseline for Δρ comparison ← 基于 mvp_001\\\\n- **mvp_probe_trained** (negative): OpenVLA 7B trained model hidden states encode temporal distance (per-task mean ρ > 0.5), with signal from VLA training (Δρ vs untrained > 0.1) ← 基于 mvp_001\\\\n  [mvp_probe_analysis_report](/api/workspace-files/projects/vla-ssd/artifacts/mvp_probe_trained/report/mvp_probe_analysis.md)\\\\n\\\\n## 趋势\\\\n成功 4 / 负向 2 / 失败 0 / 共 6\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-19183: 无 GPU 信息\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 1228, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-15T14:06:59.630992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "decisions.yaml",
+              "max_chars": "8000"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-15T14:06:59.732054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 10\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-15 11:03 UTC\\\\n  summary: MVP 三分支判定标准校准：ρ下限0.3→0.5, Δρ加bootstrap CI, subtask gate加DINO baseline对比\\\\n  rationale: Reviewer 审查发现四项校准缺陷：(1) ρ>0.3 下限过低（DINO-V2 已达0.833，0.3只挡彻底失败）→ 提至0.5；(2)\\\\n    Δρ>0.1 仅为点估计缺统计检验 → 追加 bootstrapped 95% CI must exclude 0；(3) subtask_AUC>0.7\\\\n    无 baseline 锚点（不知道 DINO-V2 能做到多少）→ 增加条件 subtask_AUC > DINO_subtask_AUC + 0.05；(4)\\\\n    layer profile 不入正式判定但作为 mandatory supplementary analysis。修改后标准更严谨，降低 false positive\\\\n    PASS 风险。\\\\n  related_experiments:\\\\n  - exp_id: dino-v2-baseline\\\\n    role: baseline\\\\n    result: ρ=0.833\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-15 12:02 UTC\\\\n  summary: MVP 判定全面切换到 per-task mean ρ，弃用 pooled ρ\\\\n  rationale: Reviewer 指出 pooled ρ 受 cross-task variance 膨胀（DINO pooled=0.833 vs per-task\\\\n    mean=0.554）。pooled-vs-pooled 虽对称但偏严（可能 false negative）。切换 per-task mean 与 task-level\\\\n    bootstrap CI 方法论一致，且是更公平的 apples-to-apples 比较。影响：VLA≥DINO gate 从 ρ≥0.833 变为 per-task\\\\n    mean≥0.554；ρ>0.5 下限同样改为 per-task mean。\\\\n  related_experiments:\\\\n  - exp_id: dinov2_baseline\\\\n    role: baseline\\\\n    result: pooled ρ=0.833, per-task mean=0.554\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-15 12:31 UTC\\\\n  summary: 移除 subtask AUC gate，MVP 判定简化为纯 temporal distance (ρ) 路径\\\\n  rationale: DINO-V2 subtask AUC = 0.9717，Path B 要求 VLA > DINO + 0.05 = 1.0217，数学不可达（AUC\\\\n    上限 1.0）。根因：subtask 间视觉差异大，任何强视觉编码器都能高 AUC 区分——subtask discrimination 不是 VLA 的差异化能力。Temporal\\\\n    distance（连续进度信号）才是 VLA 可能独有的编码维度。简化后判定：PASS 需 VLA_ρ ≥ DINO_ρ (0.833)；CONDITIONAL\\\\n    需 Δρ > 0.1 但 VLA_ρ < DINO_ρ；FAIL 需 ρ ≤ 0.5 或 Δρ ≤ 0.1。Subtask AUC 保留为补充分析，不参与\\\\n    gate。\\\\n  related_experiments:\\\\n  - exp_id: dinov2_baseline\\\\n    role: trigger\\\\n    result: subtask AUC 0.9717 使 Path B 数学不可达\\\\n  depends_on:\\\\n  - D001\\\\n- id:\n…[truncated 5358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-15T14:06:59.782765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "memory.md",
+              "max_chars": "8000"
+            }
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-15T14:06:59.883750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\\\", \\\"content\\\": \\\"# VLA-SSD Project Memory\\\\n\\\\n## Subtask Predicate Pivot 不可行（2026-05-15，Director 确认）\\\\n\\\\n研究 Worker 调研 + Director 审查结论一致：**subtask predicate classification 不能解决根本问题。**\\\\n\\\\n原因：LIBERO tabletop 场景中所有 task-relevant predicates（is_grasped, is_on_table, is_in_drawer 等）在第三人称+手腕相机下**视觉可辨**。DINO-V2 auto-extracted subtask AUC=0.9717。换 BDDL predicates 结果也一样。Director 的 DINO gate check（AUC > 0.95 → 终止）与此一致。\\\\n\\\\n**根本问题**：需要找到**视觉不可达**的 probing task，VLA LLM 训练才能贡献差异。\\\\n\\\\n## 下一步方向：Action Prediction Probe（待 Director 审批）\\\\n\\\\n候选：\\\\n1. **Action prediction**（最优）：预测 next action，需策略知识，action labels 现成\\\\n2. **Cross-task transfer**：held-out task zero-shot，需 language grounding\\\\n3. **Causal/ordering reasoning**：需构造反事实数据，可行性低\\\\n\\\\n两个 Worker 在调研中：文献调研（VLA probing beyond vision）+ HDF5 action 格式探查。\\\\n\\\\n## D007: MVP Gate 2 FAIL（2026-05-15）\\\\n\\\\ntemporal distance probe 结果确认 VLA LLM 训练对 temporal progress 表征贡献不足（Δρ=0.043 << 0.1）。原因：temporal distance 与视觉变化高度相关，vision encoder (SigLIP) 天然擅长。\\\\n\\\\nmvp_001 已关闭为 DONE/negative。\\\\n\\\\n## MVP Clean Verdict (P0 修复后, 2026-05-15)\\\\n\\\\n| Gate | 值 | 阈值 | 结果 |\\\\n|------|---|------|------|\\\\n| G1: best_layer ρ | 0.955 (L4) | > 0.5 | PASS |\\\\n| G2: Δρ(trained−untrained) | 0.0427, CI [0.036, 0.050], p=0.0 | > 0.1 | FAIL |\\\\n| G3: VLA ρ ≥ DINO | 0.956 ≥ 0.901 | 0.901 | PASS |\\\\n\\\\nOverall: **FAIL**。统计显著但效应量不足。\\\\n\\\\n## Layer Collapse 问题 (2026-05-15)\\\\n\\\\n33 层中 16 层坍塌（ρ=0.0）。分布：\\\\n- Both collapsed: L0, L26, L32\\\\n- Trained-only collapsed: L16, L18, L22, L23, L24, L28, L30（7 层）\\\\n- Untrained-only collapsed: L3, L9, L15, L20, L27, L31（6 层）\\\\n\\\\nBest layer = L4（健康层中 trained ρ 最高）。17 个健康层中 16 个 Δρ 正向。\\\\n\\\\n## DINO Baseline 修正 (D006, 2026-05-15)\\\\n\\\\n新 per_task_mean_rho=**0.901**（新代码，5000 pairs/task）。旧 0.554 不可靠。\\\\n\\\\n## 核心发现：Vision Encoder 主导 Temporal Distance 信号\\\\n\\\\n- Untrained OpenVLA (random LLM + SigLIP): ρ=0.933\\\\n- Tra\n…[truncated 1050 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-15T14:07:03.650710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_agent_queue_status,list_ssh_hosts,load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-15T14:07:03.851546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 200
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-15T14:07:06.914668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "get_agent_queue list_ssh load_project",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-15T14:07:06.965213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-15T14:07:09.825203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-15T14:07:09.825695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_ssh_hosts"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts"
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-15T14:07:10.179212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_code_action-prediction-probe-prep_20260515T140041 已完成（status=done）。用 `get_worker_status('wor\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":66}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 354
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-15T14:07:10.179656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"hosts\\\": [{\\\"host_alias\\\": \\\"github.com\\\", \\\"hostname\\\": \\\"github.com\\\", \\\"user\\\": \\\"git\\\", \\\"identity_file\\\": \\\"~/.ssh/github_deploy\\\", \\\"registered\\\": false}], \\\"ssh_config_path\\\": \\\"/home/ubuntu/.ssh/config\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__list_ssh_hosts",
+            "elapsed_ms": 353
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-15T14:07:10.179965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "vla-ssd",
+              "section": "execution"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-15T14:07:10.280809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"vla-ssd\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/vla-ssd\\\", \\\"servers\\\": [\\\"westd-19183\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-15T14:07:21.028854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-15T14:07:21.080938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-15T14:07:23.641085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-15T14:07:23.692125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_code_action-prediction-probe-prep_20260515T140041 已完成（status=done）。用 `get_worker_status('wor\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":79}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000587"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "messages": [
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-15T14:07:39.094382+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你上一条回复没有用 <handoff>...</handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 <handoff>...</handoff> 包裹的正文,禁止任何标签外的寒暄或说明。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-15T14:07:39.381612+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 确认 verdict 数值完全正确，FAIL 判定 robust。minor bug（`vla_mean_rho` 取了含坍塌层的 max 而非 healthy best）不影响结论。\n\nAgent 正在处理 action-prediction-probe-prep worker 的完成回调，等它汇报结果再做方向决策。Control B 仍在运行中。当前无需额外干预。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
+          },
+          "id": "event-000589"
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "messages": [
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-15T14:07:40.890448+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 2 (Control B) | Worker 池 1 (GPU 0 / CPU 1: 文献调研中)\n\n## Action Prediction Probe 设计方案（请审批）\n\nWorker 完成 HDF5 数据格式调研 + probe 架构设计。核心发现和方案如下：\n\n### 为什么 Action Prediction 能区分 VLA 训练贡献\n\nTemporal distance 和 subtask predicate 都失败，根因是**视觉可辨**——vision encoder 天然擅长。\n\nAction prediction 不同：给定当前帧 hidden state h_t，预测 next action a_{t+1}（7-dim: position Δ + orientation Δ + gripper）。纯视觉无法推断\"下一步往哪个方向移动多远\"——需要理解 task goal + 当前 progress + 执行策略。VLA 被训练来预测 action，这是其训练目标的直接体现。\n\n### 技术方案\n\n| 项目 | 详情 |\n|------|------|\n| Probe | MLP (in→256→7), MSE loss, per-dim z-score standardization |\n| 预测目标 | a_{t+1}（next action，而非 a_t，更需策略理解）|\n| 核心指标 | per-task mean R² 的 Δ(trained − untrained) |\n| 辅助指标 | per-dim R², gripper accuracy, overall R² |\n| 对比组 | Trained VLA (33 layers) vs Untrained VLA (33 layers) vs DINO-V2 |\n| 数据 | 已有特征直接复用，action labels 从 LIBERO HDF5 加载 |\n| 代码改动 | ~170 行新增 + 20 行修改（`train_probes.py`），大量复用 |\n| 运行时间 | ~5-10 min/model，总计 ~20 min（不含 DINO） |\n\n### 预期结果\n\n| Model | 预期 action R² | 原因 |\n|-------|----------------|------|\n| Trained VLA | 高 | 训练目标直接对齐 |\n| Untrained VLA | 低 | 随机 LLM 无策略知识 |\n| DINO-V2 | 低-中 | 有视觉信息但无策略 |\n\nLayer-wise 预期：action 信息集中在 LLM 深层（靠近 action token 输出层）。\n\n### 风险检查\n\n若 DINO 也能不错地预测 action → action 与视觉状态高度相关。此时需 per-dim 分析：哪些 dims DINO 也行（如 gripper），哪些只有 trained VLA 才行（如精确 position deltas）。\n\n### 请求\n\n1. 审批此方案——批准后立即派 Worker 实现代码 + 提交实验\n2. 两 GPU 目前跑 Control B，完成后可直接复用跑 action prediction probe\n\n文献调研 Worker 仍在跑，完成后补充相关工作支撑。完整设计文档在 `artifacts/action_probe_design.md`。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "source": "agent"
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-15T14:08:17.528091+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 `cuda:0` 和 `cuda:1`（westd-19183），配置白名单 `execution.gpu_ids: [cuda:0, cuda:1]`\n- 服务器只有 `westd-19183`，SSH host 未在 list_ssh_hosts 中注册（通过 connect.westd.seetacloud.com 连接）\n- 根分区仅 ~30GB，所有大文件必须放 `/root/autodl-tmp/vla-ssd/`\n- 严格单进程下载（多 Worker 同时下载抢带宽的教训）\n- AutoDL 网络：必须 `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183（connect.westd.seetacloud.com），2×RTX PRO 6000\n- 工作目录：`/root/vla-ssd`\n- Python/conda：未明确记录，需首次连接探测（可能是 aml-train 镜像的 conda base）\n- 模型：OpenVLA 7B（trained + untrained via init_untrained.py，SigLIP ViT-SO400M preserved）\n- 数据：LIBERO tabletop，HDF5 格式（含 7-DoF action labels），每 task 特征 ~5.8GB\n- W&B：未配置\n- 活跃进程：mvp_controlb_untrained + mvp_controlb_trained 在 cuda:0 / cuda:1 上 RUNNING\n- Agent 当前正在处理 worker_done 回调（action-prediction-probe-prep worker 完成）\n\n### 3. 📊 当前状态\n**阶段**：MVP → 方向探索（原始假设 FAIL，正在寻找新 probing task）\n\n**Registry**：\n- `mvp_controlb_untrained` — RUNNING（Control B: shuffled labels, 预期 ρ≈0）\n- `mvp_controlb_trained` — RUNNING（Control B: shuffled labels, 预期 ρ≈0）\n- 其余 6 个实验全部 DONE（4 success, 2 negative）\n\n**关键结论**：MVP Gate 2 FAIL（Δρ=0.043 << 0.1）。Temporal distance 信号来自 SigLIP vision encoder 而非 VLA 训练。Subtask predicate pivot 也终止（DINO AUC=0.9717，视觉可辨）。\n\n**Agent 正在处理**：action-prediction-probe-prep worker 刚完成（HDF5 action 格式探查），另有文献调研 worker 可能也在进行中。\n\n### 4. 📋 待办（条件触发式）\n- Control B 两个实验完成 → 确认 ρ≈0（probe validity null control），关闭 MVP 实验系列\n- Action prediction probe 两个 Worker（文献调研 + HDF5 技术设计）都完成 → 评估 action probe 可行性 + story 强度 → 做方向决策\n- 方向决策通过 → 设计 MVP-2 实验（action probe: trained vs untrained vs DINO）\n- **CoRL go/no-go 决策点**：~May 17-18（abstract DDL May 26，paper May 29，仅剩 11 天）\n- 如 action probe 也 FAIL → 需要更根本的 pivot 或考虑 practical pipeline story（VLA ρ=0.95 已足够强做 self-scoring，不管信号来源）\n\n### 5. 🎯 战略上下文\n**核心问题**：VLA 预训练表征是否编码了\"视觉不可达\"的 task-progress 信息？前两个候选（temporal distance、subtask predicate）都因 vision encoder 太强而 FAIL。Action prediction 是第三个候选——预测 next action 需策略知识，vision encoder 天然不擅长。\n\n**决策链**：D001-D004 校准 MVP 判定标准 → D005-D006 DINO baseline 从 0.554 修正为 0.901（采样伪影） → D007 Gate 2 FAIL 确认 → D008 设 48h 决策窗口 → D009 subtask predicate 终止，转 action prediction probe\n\n**最容易判断错的事**：\n1. 不要低估 vision encoder 的能力——前两轮 pivot 都栽在\"以为 vision 做不到，结果 vision 做得很好\"\n2. Action probe story 需要精心设计：不是\"VLA 能预测 action\"（trivial），而是\"action knowledge 如何编码在表征中\"（层级分布、跨任务泛化、与 vision 的解耦）\n3. CoRL DDL 极紧（11 天），如果 action probe 也不 work，要快速决策是走 practical pipeline story 还是放弃 CoRL\n4. `paper_framing.md` 和 `experiment_plan.yaml` 尚未创建——仍在 MVP 阶段，不要过早启动 post-MVP kickoff\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
+          },
+          "id": "event-000591"
+        }
+      ]
+    }
+  ]
+}

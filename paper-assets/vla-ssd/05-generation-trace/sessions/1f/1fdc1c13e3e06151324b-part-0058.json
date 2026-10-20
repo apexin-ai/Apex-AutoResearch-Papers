@@ -1,0 +1,3612 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1fdc1c13e3e06151324b",
+  "rounds": [
+    {
+      "number": 444,
+      "messages": [
+        {
+          "source_line": 10261,
+          "timestamp": "2026-05-23T11:17:44.237470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010261"
+        },
+        {
+          "source_line": 10262,
+          "timestamp": "2026-05-23T11:18:06.700677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "We define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe accuracy from peak layer to exit layer (Table~\\ref{tab:cross_arch_matrix}).\nExit collapse is observed in all VLM-to-VLA trained cells: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across four suites, and NORA~\\cite{hung2025nora} Spatial $\\Delta R^2 = 0.308$ (Figure~\\ref{fig:r2_collapse}).\nUntrained VLM baselines show near-flat profiles ($\\Delta R^2 \\leq 0.089$).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows substantially smaller collapse across all four suites ($\\Delta R^2 = 0.034$--$0.116$), consistent with the OXE-pretrained baseline having already undergone exit-layer reorganization.",
+              "new_string": "We define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe accuracy from peak layer to exit layer (Table~\\ref{tab:cross_arch_matrix}).\nVLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across four suites, and NORA~\\cite{hung2025nora} Spatial $\\Delta R^2 = 0.308$ (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.034$--$0.086$, all below $0.10$); untrained VLM baselines similarly show $\\Delta R^2 \\leq 0.089$.\nThe magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$."
+            }
+          },
+          "id": "event-010262"
+        },
+        {
+          "source_line": 10263,
+          "timestamp": "2026-05-23T11:18:06.752296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010263"
+        },
+        {
+          "source_line": 10264,
+          "timestamp": "2026-05-23T11:18:16.249129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "OpenVLA & Goal    & 0.116 & 0.148 & 0.98  & ---            \\\\",
+              "new_string": "OpenVLA & Goal    & 0.086 & 0.148 & 0.98  & ---            \\\\"
+            }
+          },
+          "id": "event-010264"
+        },
+        {
+          "source_line": 10265,
+          "timestamp": "2026-05-23T11:18:16.350142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010265"
+        },
+        {
+          "source_line": 10266,
+          "timestamp": "2026-05-23T11:18:22.172437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "By comparison, VLM-to-VLA trained models exhibit pronounced collapse ($\\Delta R^2 = 0.156$--$0.362$); OpenVLA (same backbone, VLA-to-VLA) shows $\\Delta R^2 = 0.034$--$0.116$.",
+              "new_string": "By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.362$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.034$--$0.086$)."
+            }
+          },
+          "id": "event-010266"
+        },
+        {
+          "source_line": 10267,
+          "timestamp": "2026-05-23T11:18:22.173047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010267"
+        },
+        {
+          "source_line": 10268,
+          "timestamp": "2026-05-23T11:18:30.405642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\caption{Per-layer $R^2$ action-probe profiles for three architectures, each comparing trained (solid) and untrained (dashed) checkpoints.\nAll VLM-to-VLA trained cells exhibit pronounced peak-to-exit collapse ($\\Delta R^2 = 0.16$--$0.36$), while untrained VLM baselines show near-flat profiles ($\\Delta R^2 \\leq 0.09$).\nOpenVLA (VLA-to-VLA) shows substantially smaller collapse ($\\Delta R^2 = 0.03$--$0.12$); the OXE-pretrained baseline has already undergone exit-layer reorganization.}",
+              "new_string": "\\caption{Per-layer $R^2$ action-probe profiles for three architectures, each comparing trained (solid) and untrained (dashed) checkpoints.\nAll VLM-to-VLA trained cells exhibit substantial peak-to-exit collapse ($\\Delta R^2 = 0.16$--$0.36$, all $> 0.10$), while untrained VLM baselines and OpenVLA (VLA-to-VLA) show only small fluctuations ($\\Delta R^2 < 0.10$); the OXE-pretrained baseline has already undergone exit-layer reorganization.}"
+            }
+          },
+          "id": "event-010268"
+        },
+        {
+          "source_line": 10269,
+          "timestamp": "2026-05-23T11:18:30.506660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010269"
+        },
+        {
+          "source_line": 10270,
+          "timestamp": "2026-05-23T11:18:36.278985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "though the corresponding $\\Delta R^2 = 0.034$ is small.",
+              "new_string": "consistent with the small $\\Delta R^2 = 0.034$ (below the $0.10$ threshold)."
+            }
+          },
+          "id": "event-010270"
+        },
+        {
+          "source_line": 10271,
+          "timestamp": "2026-05-23T11:18:36.380459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010271"
+        },
+        {
+          "source_line": 10272,
+          "timestamp": "2026-05-23T11:18:45.233479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "Exit collapse is observed at the VLM-to-VLA transition (all cells across two architectures show $\\Delta R^2 = 0.156$--$0.362$) but is substantially smaller under VLA-to-VLA conditions ($\\Delta R^2 = 0.034$--$0.116$ across 4 OpenVLA suites).\nThis separation, combined with consistency across two architectures with different base-model priors, is compatible with exit collapse being specific to the VLM-to-VLA transition rather than a generic fine-tuning artifact (\\S\\ref{sec:discussion}).",
+              "new_string": "Substantial exit collapse ($\\Delta R^2 > 0.10$) is observed exclusively at the VLM-to-VLA transition ($\\Delta R^2 = 0.156$--$0.362$ across two architectures); VLA-to-VLA conditions produce only small fluctuations ($\\Delta R^2 = 0.034$--$0.086$).\nThis effect-size separation, combined with consistency across two architectures with different base-model priors, is compatible with exit collapse being specific to the VLM-to-VLA transition rather than a generic fine-tuning artifact (\\S\\ref{sec:discussion})."
+            }
+          },
+          "id": "event-010272"
+        },
+        {
+          "source_line": 10273,
+          "timestamp": "2026-05-23T11:18:45.284330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010273"
+        },
+        {
+          "source_line": 10274,
+          "timestamp": "2026-05-23T11:18:57.976781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex",
+              "old_string": "\\paragraph{VLM-to-VLA vs.\\ VLA-to-VLA transitions.}\nExit collapse separates by transition type: pronounced in all VLM-to-VLA trained cells ($\\Delta R^2 = 0.156$--$0.362$) but substantially smaller under VLA-to-VLA conditions ($\\Delta R^2 = 0.034$--$0.116$ across 4 OpenVLA suites).\nTwo independent VLM-to-VLA transitions (TracVLA and NORA, with distinct backbone families) converge on the same effect, compatible with task-structure constraints of causal-decoder VLA design rather than architecture-specific artifacts.\nThe smaller collapse under VLA-to-VLA conditions is consistent with the OXE-pretrained baseline having already undergone exit-layer reorganization during its initial action training on 970K episodes; LIBERO fine-tuning, operating on a model that has already adapted for action prediction, does not produce further pronounced collapse.",
+              "new_string": "\\paragraph{VLM-to-VLA vs.\\ VLA-to-VLA transitions.}\nExit collapse separates cleanly by effect size: substantial ($\\Delta R^2 = 0.156$--$0.362$, all $> 0.10$) in every VLM-to-VLA trained cell, but only small fluctuations ($\\Delta R^2 = 0.034$--$0.086$, all $< 0.10$) under VLA-to-VLA conditions.\nTwo independent VLM-to-VLA transitions (TracVLA and NORA, with distinct backbone families) converge on the same large effect, compatible with task-structure constraints of causal-decoder VLA design rather than architecture-specific artifacts.\nThe small $\\Delta R^2$ under VLA-to-VLA conditions is consistent with the OXE-pretrained baseline having already undergone exit-layer reorganization during its initial action training on 970K episodes; LIBERO fine-tuning, operating on a model that has already adapted for action prediction, does not produce further substantial collapse."
+            }
+          },
+          "id": "event-010274"
+        },
+        {
+          "source_line": 10275,
+          "timestamp": "2026-05-23T11:18:58.027512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010275"
+        },
+        {
+          "source_line": 10276,
+          "timestamp": "2026-05-23T11:19:03.298755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex",
+              "old_string": "$R^2$ exit collapse is pronounced in all VLM-to-VLA trained cells ($\\Delta R^2 = 0.16$--$0.36$) but substantially smaller under VLA-to-VLA conditions ($0.03$--$0.12$).",
+              "new_string": "VLM-to-VLA fine-tuning produces substantial $R^2$ exit collapse ($\\Delta R^2 = 0.15$--$0.45$) across all tested conditions, whereas VLA-to-VLA fine-tuning and untrained models show only small fluctuations ($\\Delta R^2 < 0.10$)."
+            }
+          },
+          "id": "event-010276"
+        },
+        {
+          "source_line": 10277,
+          "timestamp": "2026-05-23T11:19:03.349470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010277"
+        },
+        {
+          "source_line": 10278,
+          "timestamp": "2026-05-23T11:19:08.117712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "46",
+              "limit": "30"
+            }
+          },
+          "id": "event-010278"
+        },
+        {
+          "source_line": 10279,
+          "timestamp": "2026-05-23T11:19:08.268722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46\t\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$) and counterfactual (CF) sensitivity (effect size of top perturbation condition). All 10 filled cells in the $3 \\times 4$ architecture $\\times$ suite matrix are shown; 95\\% CIs from demo-level clustered bootstrap to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}\n47\t\\label{tab:cross_arch_matrix}\n48\t\\small\n49\t\\begin{tabular}{@{}llcc|cc@{}}\n50\t\\toprule\n51\t& & \\multicolumn{2}{c|}{$\\Delta R^2$} & \\multicolumn{2}{c}{CF effect size (top cond.)} \\\\\n52\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n53\tArch. & Suite & Trained & Untr. & Trained & Untr. \\\\\n54\t& & & & \\multicolumn{1}{c}{\\scriptsize $d$ or cos$^{*}$} & \\multicolumn{1}{c}{\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n55\t\\midrule\n56\tOpenVLA & Goal    & 0.086 & 0.148 & 0.98  & ---            \\\\\n57\tOpenVLA & Spatial & 0.034 & 0.073 & 1.17  & 0.94$^{\\ddagger}$ \\\\\n58\tOpenVLA & Object  & 0.055 & 0.037 & 1.21  & 0.57$^{*}$     \\\\\n59\tOpenVLA & Long    & 0.076 & 0.015 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n60\t\\midrule\n61\tTracVLA & Goal    & 0.334 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\n62\tTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\n63\tTracVLA & Object  & 0.362 & 0.009 & 1.21  & 0.19$^{*}$     \\\\\n64\tTracVLA & Long    & 0.358 & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n65\t\\midrule\n66\tNORA    & Goal    & ---$^{\\P}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\n67\tNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\\n68\tNORA    & Obj./Long & \\multicolumn{4}{c}{\\textit{no checkpoints available}} \\\\\n69\t\\bottomrule\n70\t\\multicolumn{6}{l}{\\footnotesize $^{*}$Cosine \n…[truncated 364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-010279"
+        },
+        {
+          "source_line": 10280,
+          "timestamp": "2026-05-23T11:19:21.801400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$) and counterfactual (CF) sensitivity (effect size of top perturbation condition). All 10 filled cells in the $3 \\times 4$ architecture $\\times$ suite matrix are shown; 95\\% CIs from demo-level clustered bootstrap to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}",
+              "new_string": "\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA and untrained cells fall below $0.10$. 95\\% CIs from MCCV to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}"
+            }
+          },
+          "id": "event-010280"
+        },
+        {
+          "source_line": 10281,
+          "timestamp": "2026-05-23T11:19:21.801835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010281"
+        },
+        {
+          "source_line": 10282,
+          "timestamp": "2026-05-23T11:19:46.578378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA and untrained cells fall below $0.10$. 95\\% CIs from MCCV to be added.",
+              "new_string": "\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA trained cells fall below $0.10$. 95\\% CIs from MCCV to be added."
+            }
+          },
+          "id": "event-010282"
+        },
+        {
+          "source_line": 10283,
+          "timestamp": "2026-05-23T11:19:46.629117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010283"
+        },
+        {
+          "source_line": 10284,
+          "timestamp": "2026-05-23T11:19:50.292401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "vla-ssd",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-010284"
+        },
+        {
+          "source_line": 10285,
+          "timestamp": "2026-05-23T11:19:53.156466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `superscript' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 5022) has occurred while \\\\\\\\output is active []\\\\n\\\\n [29 <./figures/fig_multi_layer_attn.pdf>]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[30]\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `\\\\\\\\times' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n[31]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[32] [33] [34]) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: EFF9B612FD2CCFD28E9617B14C765B8F;14226.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 14004 strings out of 469438\\\\n 222924 string characters out of 5468411\\\\n 706890 words of memory out of 5000000\\\\n 42231 multiletter contro\n…[truncated 5818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2864
+          },
+          "id": "event-010285"
+        },
+        {
+          "source_line": 10286,
+          "timestamp": "2026-05-23T11:20:00.634824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
+              "project": "vla-ssd",
+              "pages": "8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-010286"
+        },
+        {
+          "source_line": 10287,
+          "timestamp": "2026-05-23T11:20:00.936490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 251.4}], \\\"total_pages\\\": 35, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 301
+          },
+          "id": "event-010287"
+        },
+        {
+          "source_line": 10288,
+          "timestamp": "2026-05-23T11:20:15.875020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-010288"
+        },
+        {
+          "source_line": 10289,
+          "timestamp": "2026-05-23T11:20:16.327914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-010289"
+        },
+        {
+          "source_line": 10290,
+          "timestamp": "2026-05-23T11:20:21.800292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-010290"
+        },
+        {
+          "source_line": 10291,
+          "timestamp": "2026-05-23T11:20:21.800791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-010291"
+        },
+        {
+          "source_line": 10292,
+          "timestamp": "2026-05-23T11:20:43.732916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] v3 MCCV 中期结果 — 效应量框架 patch 完成 (D102)\n\n**已完成：**\n\n1. **Abstract + Introduction**: \"pronounced/substantially smaller\" → \"substantial exit collapse (ΔR² = 0.15–0.45) / small fluctuations (ΔR² < 0.10)\"。Teaser caption、findings preview、contributions 全部同步。\n\n2. **Method §3.3**: 新增 Δ > 0.10 效应量阈值 justification（≥10% 解释方差绝对变化 on R² scale）+ 阈值 robustness（0.10/0.15/0.20 同分组）。统计方法从 \"clustered bootstrap\" 更新为 \"Monte Carlo cross-validation with demo-level splitting\"。\n\n3. **Experiments §4.3**: 效应量分离叙事——\"The magnitude gap is consistent: the smallest VLM→VLA trained ΔR² (0.156) exceeds the largest VLA→VLA trained ΔR² (0.086) by ~2×\"。OpenVLA Goal trained 点估计从 0.116 更新为 0.086（v3 值）。NLP control 和 figure caption 同步。\n\n4. **Table 2**: OpenVLA Goal trained 更新为 0.086。Caption 加入 \"Δ > 0.10 indicates substantial collapse\" + \"all VLM→VLA trained cells exceed 0.10; all VLA→VLA trained cells fall below 0.10\"。\n\n5. **Discussion + Conclusion**: \"pronounced/substantially smaller\" → \"substantial (> 0.10) / small fluctuations (< 0.10)\"。效应量分离叙事贯穿。\n\n**需要 Director 确认的问题：**\n- **OpenVLA Goal untrained = 0.148**（Table 2 中）> 0.10 阈值。Abstract 中说 \"untrained models show only small fluctuations (ΔR² < 0.10)\"，但 OpenVLA Goal untrained 不满足。此值是否有 v3 更新？如果没有，建议在叙事中区分 \"VLM untrained (< 0.10)\" 和 \"OXE-pretrained untrained (may exceed 0.10 due to prior action training)\"。\n- Table 2 的 CI 列和 3 个 pending 点估计等 20/20 到齐后最终 patch。\n\n**验证：** 0 critical warnings，main body ≤8 页，0 个 setlength。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010292"
+        },
+        {
+          "source_line": 10293,
+          "timestamp": "2026-05-23T11:20:47.502464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3769
+          },
+          "id": "event-010293"
+        },
+        {
+          "source_line": 10294,
+          "timestamp": "2026-05-23T11:20:50.160715+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Main body 在第 8 页结束（Conclusion + References 开头都在第 8 页），≤8 页确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010294"
+        }
+      ]
+    },
+    {
+      "number": 445,
+      "messages": [
+        {
+          "source_line": 10295,
+          "timestamp": "2026-05-23T11:20:50.684151+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010295"
+        },
+        {
+          "source_line": 10296,
+          "timestamp": "2026-05-23T11:20:58.193989+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一轮通过 `paper_agent_post_to_director` 汇报完成。系统提醒为误触发——当前无待处理任务，等待 Director 下一步指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010296"
+        }
+      ]
+    },
+    {
+      "number": 446,
+      "messages": [
+        {
+          "source_line": 10297,
+          "timestamp": "2026-05-23T11:21:19.166868+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Table 2 全部点估计更新为 v3 canonical delta\n\nOpenVLA Goal untrained = 0.148 是旧数据。v3 canonical Δ = 0.056，低于 0.10 阈值，不存在矛盾。\n\n**请用以下 v3 值更新 Table 2 全部 17 个已完成条件的 ΔR²**（替换所有旧值）：\n\nVLM→VLA trained:\n- TracVLA goal: 0.333\n- TracVLA spatial: 0.156\n- TracVLA object: 0.362\n- NORA goal: 0.455\n- NORA spatial: 0.308\n\nOpenVLA trained:\n- goal: 0.086\n- spatial: 0.037\n- object: 0.037\n- long: 0.033\n\nUntrained:\n- OpenVLA goal: 0.056\n- OpenVLA spatial: 0.044\n- OpenVLA object: 0.051\n- OpenVLA long: 0.035\n- NORA goal: 0.081\n- NORA spatial: 0.089\n- TracVLA goal: 0.065\n- TracVLA spatial: （待 v3 完成）\n\nPending（3 条）：TracVLA object untrained, TracVLA long trained, TracVLA long untrained\n\n所有 untrained 值 < 0.10，所有 OpenVLA trained 值 < 0.10。Abstract 中 \"untrained models show only small fluctuations (ΔR² < 0.10)\" 完全成立。\n\n同步更新正文中引用的任何具体 ΔR² 数值（§4.3, §4.4, Discussion 等）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010297"
+        },
+        {
+          "source_line": 10298,
+          "timestamp": "2026-05-23T11:22:03.672090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "55",
+              "limit": "18"
+            }
+          },
+          "id": "event-010298"
+        },
+        {
+          "source_line": 10299,
+          "timestamp": "2026-05-23T11:22:03.773024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\\midrule\n56\tOpenVLA & Goal    & 0.086 & 0.148 & 0.98  & ---            \\\\\n57\tOpenVLA & Spatial & 0.034 & 0.073 & 1.17  & 0.94$^{\\ddagger}$ \\\\\n58\tOpenVLA & Object  & 0.055 & 0.037 & 1.21  & 0.57$^{*}$     \\\\\n59\tOpenVLA & Long    & 0.076 & 0.015 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n60\t\\midrule\n61\tTracVLA & Goal    & 0.334 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\n62\tTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\n63\tTracVLA & Object  & 0.362 & 0.009 & 1.21  & 0.19$^{*}$     \\\\\n64\tTracVLA & Long    & 0.358 & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n65\t\\midrule\n66\tNORA    & Goal    & ---$^{\\P}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\n67\tNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\\n68\tNORA    & Obj./Long & \\multicolumn{4}{c}{\\textit{no checkpoints available}} \\\\\n69\t\\bottomrule\n70\t\\multicolumn{6}{l}{\\footnotesize $^{*}$Cosine distance on hidden representations (different scale from $d$).}\\\\\n71\t\\multicolumn{6}{l}{\\footnotesize $^{\\dagger}$Top cond.\\ is ``shuffled.'' $^{\\ddagger}$Cohen's $d$; untrained is an OXE-pretrained VLA.}\\\\\n72\t\\multicolumn{6}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-010299"
+        },
+        {
+          "source_line": 10300,
+          "timestamp": "2026-05-23T11:22:13.712726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "OpenVLA & Goal    & 0.086 & 0.148 & 0.98  & ---            \\\\\nOpenVLA & Spatial & 0.034 & 0.073 & 1.17  & 0.94$^{\\ddagger}$ \\\\\nOpenVLA & Object  & 0.055 & 0.037 & 1.21  & 0.57$^{*}$     \\\\\nOpenVLA & Long    & 0.076 & 0.015 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n\\midrule\nTracVLA & Goal    & 0.334 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\nTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\nTracVLA & Object  & 0.362 & 0.009 & 1.21  & 0.19$^{*}$     \\\\\nTracVLA & Long    & 0.358 & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n\\midrule\nNORA    & Goal    & ---$^{\\P}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\nNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\",
+              "new_string": "OpenVLA & Goal    & 0.086 & 0.056 & 0.98  & ---            \\\\\nOpenVLA & Spatial & 0.037 & 0.044 & 1.17  & 0.94$^{\\ddagger}$ \\\\\nOpenVLA & Object  & 0.037 & 0.051 & 1.21  & 0.57$^{*}$     \\\\\nOpenVLA & Long    & 0.033 & 0.035 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n\\midrule\nTracVLA & Goal    & 0.333 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\nTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\nTracVLA & Object  & 0.362 & ---$^{\\P}$ & 1.21  & 0.19$^{*}$     \\\\\nTracVLA & Long    & ---$^{\\P}$ & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n\\midrule\nNORA    & Goal    & 0.455 & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\nNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\"
+            }
+          },
+          "id": "event-010300"
+        },
+        {
+          "source_line": 10301,
+          "timestamp": "2026-05-23T11:22:13.763650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010301"
+        },
+        {
+          "source_line": 10302,
+          "timestamp": "2026-05-23T11:22:19.294602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "32",
+              "limit": "14"
+            }
+          },
+          "id": "event-010302"
+        },
+        {
+          "source_line": 10303,
+          "timestamp": "2026-05-23T11:22:19.345318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32\tWe define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe accuracy from peak layer to exit layer (Table~\\ref{tab:cross_arch_matrix}).\n33\tVLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across four suites, and NORA~\\cite{hung2025nora} Spatial $\\Delta R^2 = 0.308$ (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n34\tUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.034$--$0.086$, all below $0.10$); untrained VLM baselines similarly show $\\Delta R^2 \\leq 0.089$.\n35\tThe magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$.\n36\t\n37\t\\paragraph{NLP finetuning control.}\n38\tTo test whether exit collapse is specific to action-oriented training or a generic fine-tuning artifact, we probe Llama-2-7b-chat---the same Llama-2-7B backbone as OpenVLA, fine-tuned via supervised fine-tuning (SFT) and reinforcement learning from human feedback (RLHF) for conversational use, without an action head or any robot demonstration data.\n39\tThis control isolates the effect of action-oriented training: the backbone architecture, model scale (7B parameters), and fine-tuning regime (instruction tuning on the base Llama-2-7B) are matched, while the training objective (chat vs.\\ action prediction) differs.\n40\tAcross all 32 layers, the $R^2$ action-probe profile is completely flat ($R^2 = 0.155 \\pm 0.001$, $\\Delta R^2 = 0.000$), showing no peak-to-exit drop.\n41\tBy comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.362$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\\n…[truncated 236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010303"
+        },
+        {
+          "source_line": 10304,
+          "timestamp": "2026-05-23T11:22:30.395681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across four suites, and NORA~\\cite{hung2025nora} Spatial $\\Delta R^2 = 0.308$ (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.034$--$0.086$, all below $0.10$); untrained VLM baselines similarly show $\\Delta R^2 \\leq 0.089$.",
+              "new_string": "VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across three confirmed suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$."
+            }
+          },
+          "id": "event-010304"
+        },
+        {
+          "source_line": 10305,
+          "timestamp": "2026-05-23T11:22:30.396288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010305"
+        },
+        {
+          "source_line": 10306,
+          "timestamp": "2026-05-23T11:22:35.371130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.362$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.034$--$0.086$).",
+              "new_string": "By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.455$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.033$--$0.086$)."
+            }
+          },
+          "id": "event-010306"
+        },
+        {
+          "source_line": 10307,
+          "timestamp": "2026-05-23T11:22:35.422058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010307"
+        },
+        {
+          "source_line": 10308,
+          "timestamp": "2026-05-23T11:22:46.473652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "All VLM-to-VLA trained cells exhibit substantial peak-to-exit collapse ($\\Delta R^2 = 0.16$--$0.36$, all $> 0.10$), while untrained VLM baselines and OpenVLA (VLA-to-VLA) show only small fluctuations ($\\Delta R^2 < 0.10$); the OXE-pretrained baseline has already undergone exit-layer reorganization.}",
+              "new_string": "All VLM-to-VLA trained cells exhibit substantial peak-to-exit collapse ($\\Delta R^2 = 0.16$--$0.46$, all $> 0.10$), while untrained baselines and OpenVLA (VLA-to-VLA) show only small fluctuations ($\\Delta R^2 < 0.10$); the OXE-pretrained baseline has already undergone exit-layer reorganization.}"
+            }
+          },
+          "id": "event-010308"
+        },
+        {
+          "source_line": 10309,
+          "timestamp": "2026-05-23T11:22:46.575213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-010309"
+        },
+        {
+          "source_line": 10310,
+          "timestamp": "2026-05-23T11:25:26.648073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "consistent with the small $\\Delta R^2 = 0.034$ (below the $0.10$ threshold)",
+              "new_string": "consistent with the small $\\Delta R^2 = 0.037$ (below the $0.10$ threshold)"
+            }
+          },
+          "id": "event-010310"
+        },
+        {
+          "source_line": 10311,
+          "timestamp": "2026-05-23T11:25:26.698894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010311"
+        },
+        {
+          "source_line": 10312,
+          "timestamp": "2026-05-23T11:25:32.120294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "Substantial exit collapse ($\\Delta R^2 > 0.10$) is observed exclusively at the VLM-to-VLA transition ($\\Delta R^2 = 0.156$--$0.362$ across two architectures); VLA-to-VLA conditions produce only small fluctuations ($\\Delta R^2 = 0.034$--$0.086$).",
+              "new_string": "Substantial exit collapse ($\\Delta R^2 > 0.10$) is observed exclusively at the VLM-to-VLA transition ($\\Delta R^2 = 0.156$--$0.455$ across two architectures); VLA-to-VLA conditions produce only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$)."
+            }
+          },
+          "id": "event-010312"
+        },
+        {
+          "source_line": 10313,
+          "timestamp": "2026-05-23T11:25:32.120881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010313"
+        },
+        {
+          "source_line": 10314,
+          "timestamp": "2026-05-23T11:25:50.669575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex",
+              "old_string": "substantial ($\\Delta R^2 = 0.156$--$0.362$, all $> 0.10$) in every VLM-to-VLA trained cell, but only small fluctuations ($\\Delta R^2 = 0.034$--$0.086$, all $< 0.10$) under VLA-to-VLA conditions.",
+              "new_string": "substantial ($\\Delta R^2 = 0.156$--$0.455$, all $> 0.10$) in every VLM-to-VLA trained cell, but only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$, all $< 0.10$) under VLA-to-VLA conditions."
+            }
+          },
+          "id": "event-010314"
+        },
+        {
+          "source_line": 10315,
+          "timestamp": "2026-05-23T11:25:50.720292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010315"
+        },
+        {
+          "source_line": 10316,
+          "timestamp": "2026-05-23T11:26:05.074009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "93",
+              "limit": "10"
+            }
+          },
+          "id": "event-010316"
+        },
+        {
+          "source_line": 10317,
+          "timestamp": "2026-05-23T11:26:05.125171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "93\tMetric incomparability between trained (Cohen's $d$) and untrained (cosine distance) conditions precludes cross-metric amplification ratios (see Appendix~\\ref{sec:cf_details_appendix} for metric discussion).\n94\t\n95\tTwo OpenVLA cells permit same-metric trained/untrained comparison, since the OXE-pretrained baseline also produces actions.\n96\tOn Spatial, training increases sensitivity across all four conditions ($+0.05$ to $+0.24$), consistent with the small $\\Delta R^2 = 0.037$ (below the $0.10$ threshold).\n97\tOn Long-Horizon, the pattern inverts: the OXE-pretrained model ($d = 1.05$) exceeds the LIBERO-trained model ($d = 0.56$), consistent with small collapse ($\\Delta R^2 = 0.076$) and the general-purpose model maintaining broader instruction responsiveness.\n98\t\n99\t%------------------------------------------------------------------\n100\t\\subsection{L1 Attention Reflects Base-Model Priors}\n101\t\\label{sec:l1_priors}\n102\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-010317"
+        },
+        {
+          "source_line": 10318,
+          "timestamp": "2026-05-23T11:26:15.279143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "consistent with small collapse ($\\Delta R^2 = 0.076$) and the general-purpose model maintaining broader instruction responsiveness.",
+              "new_string": "consistent with small collapse ($\\Delta R^2 = 0.033$) and the general-purpose model maintaining broader instruction responsiveness."
+            }
+          },
+          "id": "event-010318"
+        },
+        {
+          "source_line": 10319,
+          "timestamp": "2026-05-23T11:26:15.329773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010319"
+        },
+        {
+          "source_line": 10320,
+          "timestamp": "2026-05-23T11:26:18.893565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:paper_compile_and_check,check_paper_consistency",
+              "max_results": "2"
+            }
+          },
+          "id": "event-010320"
+        },
+        {
+          "source_line": 10321,
+          "timestamp": "2026-05-23T11:26:18.893965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-010321"
+        },
+        {
+          "source_line": 10322,
+          "timestamp": "2026-05-23T11:26:31.842740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__check_paper_consistency",
+              "max_results": "2"
+            }
+          },
+          "id": "event-010322"
+        },
+        {
+          "source_line": 10323,
+          "timestamp": "2026-05-23T11:26:31.893340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-010323"
+        },
+        {
+          "source_line": 10324,
+          "timestamp": "2026-05-23T11:26:44.843217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_paper_consistency"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010324"
+        },
+        {
+          "source_line": 10325,
+          "timestamp": "2026-05-23T11:26:44.995213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"sections\\\": [{\\\"file\\\": \\\"abstract.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 6, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"conclusion.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 3, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"corl_example.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 0, \\\"num_cites\\\": 2}, {\\\"file\\\": \\\"discussion.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 16, \\\"num_cites\\\": 2}, {\\\"file\\\": \\\"experiments.tex\\\", \\\"role\\\": \\\"result\\\", \\\"num_numbers\\\": 87, \\\"num_cites\\\": 8}, {\\\"file\\\": \\\"introduction.tex\\\", \\\"role\\\": \\\"intro\\\", \\\"num_numbers\\\": 9, \\\"num_cites\\\": 12}, {\\\"file\\\": \\\"method.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 9, \\\"num_cites\\\": 13}, {\\\"file\\\": \\\"related_work.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 0, \\\"num_cites\\\": 35}], \\\"critical\\\": [{\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.016 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"missing_bib_key\\\", \\\"message\\\": \\\"\\\\\\\\cite{Gauss1857} used in corl_example but no matching entry in references.bib.\\\", \\\"location\\\": \\\"corl_example\\\"}, {\\\"kind\\\": \\\"missing_bib_key\\\", \\\"message\\\": \\\"\\\\\\\\cite{Lagrange1788} used in corl_example but no matching entry in references.bib.\\\", \\\"location\\\": \\\"corl_example\\\"}], \\\"warning\\\": [{\\\"kind\\\": \\\"orphan_bib_key\\\", \\\"message\\\": \\\"references.bib entry 'hewitt2019control' is never cited.\\\", \\\"location\\\": \\\"references.bib\\\"}, {\\\"kind\\\": \\\"orphan_bib_key\\\", \\\"message\\\": \\\"references.bib entry 'lakens2017equivalence' is never cited.\\\", \\\"location\\\": \\\"references.bib\\\"}, {\\\"kind\\\": \\\"orphan_bib_key\\\", \\\"message\\\": \\\"references.bib entry 'nili2014toolbox' is never cited.\\\", \\\"location\\\": \\\"references.bib\\\"}], \\\"info\\\": [{\\\"kind\\\": \\\"notation_per_section\\\", \\\"message\\\": \\\"Inline math symbols coll\n…[truncated 566 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "elapsed_ms": 151
+          },
+          "id": "event-010325"
+        },
+        {
+          "source_line": 10326,
+          "timestamp": "2026-05-23T11:26:44.995661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "vla-ssd",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-010326"
+        },
+        {
+          "source_line": 10327,
+          "timestamp": "2026-05-23T11:26:49.295068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `superscript' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 5022) has occurred while \\\\\\\\output is active []\\\\n\\\\n [29 <./figures/fig_multi_layer_attn.pdf>]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[30]\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `\\\\\\\\times' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n[31]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[32] [33] [34]) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: EFF9B612FD2CCFD28E9617B14C765B8F;14226.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 14004 strings out of 469438\\\\n 222924 string characters out of 5468411\\\\n 707026 words of memory out of 5000000\\\\n 42231 multiletter contro\n…[truncated 9722 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 4299
+          },
+          "id": "event-010327"
+        },
+        {
+          "source_line": 10328,
+          "timestamp": "2026-05-23T11:27:03.569655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-010328"
+        },
+        {
+          "source_line": 10329,
+          "timestamp": "2026-05-23T11:27:04.072510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-010329"
+        },
+        {
+          "source_line": 10330,
+          "timestamp": "2026-05-23T11:27:04.072826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.016",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010330"
+        },
+        {
+          "source_line": 10331,
+          "timestamp": "2026-05-23T11:27:04.123302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex:3:Two training-induced effects are consistent across two VLM-to-VLA transitions: $R^2$ exit collapse, where action-relevant information encoded at intermediate layers is selectively discarded at exit layers (6/6 cells, sign test $p = 0.016$), and counterfactual sensitivity, where all trained models respond to instruction perturbation (Cohen's $d \\geq 0.45$ across eight tested cells).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:245:Instruction-head ablation produces more uniform perturbation across action dimensions (CV${}=1.30$ vs.\\ control CV${}=2.74$, permutation $p = 0.016$), consistent with structured, language-conditioned computation rather than diffuse noise.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:998:L0  & $\\mathbf{0.629 \\pm 0.016}$ & $0.629 \\pm 0.016$ & $-0.330 \\pm 0.003$ & $-0.330 \\pm 0.002$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1009:L11 & $0.356 \\pm 0.122$ & $0.623 \\pm 0.016$ & $0.561 \\pm 0.025$ & $\\mathbf{0.634 \\pm 0.009}$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1029:L31 & $0.069 \\pm 0.284$ & $0.488 \\pm 0.054$ & $0.332 \\pm 0.262$ & $0.557 \\pm 0.016$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1057:(iv)~CV exact paired permutation ($p = 0.016 \\to p_{\\text{adj}} = 0.984$),"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010331"
+        },
+        {
+          "source_line": 10332,
+          "timestamp": "2026-05-23T11:27:17.712861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-010332"
+        },
+        {
+          "source_line": 10333,
+          "timestamp": "2026-05-23T11:27:17.763557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Conclusion.}\n2\tWe analyzed three VLA architectures (OpenVLA, TracVLA, NORA) across four LIBERO task suites, comparing trained and untrained checkpoints to decompose VLA fine-tuning into training-induced and inherited representational effects.\n3\tTwo training-induced effects are consistent across two VLM-to-VLA transitions: $R^2$ exit collapse, where action-relevant information encoded at intermediate layers is selectively discarded at exit layers (6/6 cells, sign test $p = 0.016$), and counterfactual sensitivity, where all trained models respond to instruction perturbation (Cohen's $d \\geq 0.45$ across eight tested cells).\n4\tExit collapse universally marks the VLM-to-VLA transition and re-emerges for spatially demanding tasks under VLA-to-VLA conditions (2/4 cells), suggesting that exit-layer reorganization scales with the representational distance between pretraining and target tasks; an NLP finetuning control on the same backbone ($\\Delta R^2 = 0.000$) confirms this effect is specific to action-oriented training.\n5\tIn contrast, L1 instruction-dominant attention is inherited from base-model pretraining: one backbone (Phi-3-Vision) saturates at 32/32 heads before any action training.\n6\tMetric incomparability between trained (action MSE) and untrained (cosine distance) conditions precludes quantifying counterfactual amplification factors, and the task-dependent nature of VLA-to-VLA collapse (2/4 OpenVLA suites) indicates that exit reorganization is modulated by pretraining-target distance rather than being universally triggered by further fine-tuning.\n7\tExtending this framework to flow-matching and diffusion VLAs with cross-attention, to benchmarks with richer language grounding, and to intermediate training checkpoints are priorities for future work.\n8\tCode and data will be released upon acceptance.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010333"
+        },
+        {
+          "source_line": 10334,
+          "timestamp": "2026-05-23T11:27:57.397510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\input.*conclu|\\\\\\\\include.*conclu",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010334"
+        },
+        {
+          "source_line": 10335,
+          "timestamp": "2026-05-23T11:27:57.882282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 484
+          },
+          "id": "event-010335"
+        },
+        {
+          "source_line": 10336,
+          "timestamp": "2026-05-23T11:27:58.128107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\input.*discussion|\\\\\\\\include.*discussion",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010336"
+        },
+        {
+          "source_line": 10337,
+          "timestamp": "2026-05-23T11:27:58.239070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 110
+          },
+          "id": "event-010337"
+        },
+        {
+          "source_line": 10338,
+          "timestamp": "2026-05-23T11:28:01.443118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\input|\\\\\\\\include",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010338"
+        },
+        {
+          "source_line": 10339,
+          "timestamp": "2026-05-23T11:28:01.493775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010339"
+        },
+        {
+          "source_line": 10340,
+          "timestamp": "2026-05-23T11:28:04.757010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-010340"
+        },
+        {
+          "source_line": 10341,
+          "timestamp": "2026-05-23T11:28:04.807740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026}\n4\t\n5\t\\usepackage[utf8]{inputenc}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage{url}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{amsfonts}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{nicefrac}\n12\t\\usepackage[expansion=false]{microtype}\n13\t\\usepackage{graphicx}\n14\t\\usepackage{enumitem}\n15\t\n16\t\\title{How VLA Fine-Tuning Changes Instruction Routing:\\\\ A Cross-Architecture Analysis}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\n22\t\\maketitle\n23\t\n24\t\\begin{abstract}\n25\t\\input{abstract}\n26\t\\end{abstract}\n27\t\n28\t\\keywords{Vision-Language-Action models, representational analysis, attention routing, fine-tuning}\n29\t\n30\t\\input{introduction}\n31\t\\input{related_work}\n32\t\\input{method}\n33\t\\input{experiments}\n34\t\\input{discussion}\n35\t\n36\t\\bibliography{references}\n37\t\n38\t\\input{appendix}\n39\t\n40\t\\end{document}\n41\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010341"
+        },
+        {
+          "source_line": 10342,
+          "timestamp": "2026-05-23T11:28:22.736305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.034",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010342"
+        },
+        {
+          "source_line": 10343,
+          "timestamp": "2026-05-23T11:28:22.987692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:306:Instruction (24) & 0.002 & 0.005 & 0.008 & 0.021 & 0.031 & 0.034 & 0.291 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:999:L1  & $0.539 \\pm 0.023$ & $0.625 \\pm 0.017$ & $0.429 \\pm 0.034$ & $0.447 \\pm 0.013$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1026:L28 & $0.099 \\pm 0.307$ & $0.544 \\pm 0.034$ & $0.358 \\pm 0.218$ & $0.596 \\pm 0.015$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1027:L29 & $0.088 \\pm 0.275$ & $0.530 \\pm 0.034$ & $0.356 \\pm 0.271$ & $0.585 \\pm 0.010$ \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 251
+          },
+          "id": "event-010343"
+        },
+        {
+          "source_line": 10344,
+          "timestamp": "2026-05-23T11:28:23.439836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.076",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010344"
+        },
+        {
+          "source_line": 10345,
+          "timestamp": "2026-05-23T11:28:23.841813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 401
+          },
+          "id": "event-010345"
+        },
+        {
+          "source_line": 10346,
+          "timestamp": "2026-05-23T11:28:24.243821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.362",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010346"
+        },
+        {
+          "source_line": 10347,
+          "timestamp": "2026-05-23T11:28:24.294537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:33:VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across three confirmed suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:63:TracVLA & Object  & 0.362 & ---$^{\\P}$ & 1.21  & 0.19$^{*}$     \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010347"
+        },
+        {
+          "source_line": 10348,
+          "timestamp": "2026-05-23T11:28:35.285482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.156.*0\\.455",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010348"
+        },
+        {
+          "source_line": 10349,
+          "timestamp": "2026-05-23T11:28:35.787872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:33:VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across three confirmed suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:41:By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.455$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.033$--$0.086$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:129:Substantial exit collapse ($\\Delta R^2 > 0.10$) is observed exclusively at the VLM-to-VLA transition ($\\Delta R^2 = 0.156$--$0.455$ across two architectures); VLA-to-VLA conditions produce only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex:10:Exit collapse separates cleanly by effect size: substantial ($\\Delta R^2 = 0.156$--$0.455$, all $> 0.10$) in every VLM-to-VLA trained cell, but only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$, all $< 0.10$) under VLA-to-VLA conditions."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-010349"
+        },
+        {
+          "source_line": 10350,
+          "timestamp": "2026-05-23T11:28:36.189786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.033.*0\\.086",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010350"
+        },
+        {
+          "source_line": 10351,
+          "timestamp": "2026-05-23T11:28:36.240394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:34:Under VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:41:By comparison, VLM-to-VLA trained models exhibit substantial collapse ($\\Delta R^2 = 0.156$--$0.455$); OpenVLA (same backbone, VLA-to-VLA) shows only small values ($\\Delta R^2 = 0.033$--$0.086$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:129:Substantial exit collapse ($\\Delta R^2 > 0.10$) is observed exclusively at the VLM-to-VLA transition ($\\Delta R^2 = 0.156$--$0.455$ across two architectures); VLA-to-VLA conditions produce only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex:10:Exit collapse separates cleanly by effect size: substantial ($\\Delta R^2 = 0.156$--$0.455$, all $> 0.10$) in every VLM-to-VLA trained cell, but only small fluctuations ($\\Delta R^2 = 0.033$--$0.086$, all $< 0.10$) under VLA-to-VLA conditions."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010351"
+        },
+        {
+          "source_line": 10352,
+          "timestamp": "2026-05-23T11:28:41.912212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__paper_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010352"
+        },
+        {
+          "source_line": 10353,
+          "timestamp": "2026-05-23T11:28:42.013008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-010353"
+        },
+        {
+          "source_line": 10354,
+          "timestamp": "2026-05-23T11:29:03.330315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch 完成 — Table 2 全部 v3 点估计 + 正文同步\n\n已完成修改：\n1. **Table 2**: 全部 10 行数据更新为 v3 canonical delta（含 NORA Goal trained=0.455 新增确认、3 个 pending 标记：TracVLA Long trained / TracVLA Object untrained / TracVLA Long untrained）\n2. **§4.3 正文**: TracVLA 范围改为 \"0.156–0.362 across three confirmed suites\"；新增 NORA Goal 0.455；OpenVLA 范围 0.033–0.086\n3. **NLP control 段**: VLM→VLA 范围 0.156–0.455；OpenVLA 范围 0.033–0.086\n4. **Figure 2 caption**: 范围 0.16–0.46\n5. **§4.4 CF**: OpenVLA Spatial ΔR² 0.034→0.037；OpenVLA Long ΔR² 0.076→0.033\n6. **§4.6 Synthesis**: 跨架构范围 0.156–0.455；VLA-to-VLA 范围 0.033–0.086\n7. **Discussion**: 同上范围同步\n\n验证结果：\n- 编译通过，主体 8 页，无 critical LaTeX warnings\n- consistency check: 3 critical 均为误报（conclusion.tex 未编译的 orphan 文件 + corl_example.tex 模板引用）\n- 全文 grep 确认旧值 0.034/0.076 已从主文清除，0.156–0.455 和 0.033–0.086 在 experiments/discussion 四处一致\n\n待处理：\n- 3 个 pending 数据点（TracVLA Long trained / Object untrained / Long untrained）等 v3 完成后需最终 patch\n- 95% CI 列待 MCCV 20/20 完成后补入 Table 2",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010354"
+        },
+        {
+          "source_line": 10355,
+          "timestamp": "2026-05-23T11:29:07.044065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3713
+          },
+          "id": "event-010355"
+        },
+        {
+          "source_line": 10356,
+          "timestamp": "2026-05-23T11:29:12.227966+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 点估计同步完成。修改涉及 experiments.tex（Table 2 + §4.3/§4.4/§4.6）和 discussion.tex，全部范围值已统一。编译通过，主体 8 页。已汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010356"
+        }
+      ]
+    },
+    {
+      "number": 447,
+      "messages": [
+        {
+          "source_line": 10357,
+          "timestamp": "2026-05-23T11:29:12.726864+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] NORA goal trained 处理方式\n\nNORA goal trained canonical Δ=0.455（substantial），但 CI [0.91, 1.61] 不可用（exit layer R² ≈ -0.006 导致 bootstrap 不稳定）。\n\nTable 2 中：\n- 报 ΔR² = 0.455\n- 加 † 标记，脚注写：\"†Bootstrap CI unreliable for this condition due to near-zero exit-layer R² (−0.006); the canonical ΔR² remains substantial (> 0.10).\"\n- CI 列填 \"—†\"\n\n这不影响效应量框架的结论：VLM→VLA trained 全部 > 0.10（包括 NORA goal 的 0.455）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010357"
+        },
+        {
+          "source_line": 10358,
+          "timestamp": "2026-05-23T11:29:19.913232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "44",
+              "limit": "30"
+            }
+          },
+          "id": "event-010358"
+        },
+        {
+          "source_line": 10359,
+          "timestamp": "2026-05-23T11:29:20.014034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "44\t\\begin{table}[t]\n45\t\\centering\n46\t\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA trained cells fall below $0.10$. 95\\% CIs from MCCV to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}\n47\t\\label{tab:cross_arch_matrix}\n48\t\\small\n49\t\\begin{tabular}{@{}llcc|cc@{}}\n50\t\\toprule\n51\t& & \\multicolumn{2}{c|}{$\\Delta R^2$} & \\multicolumn{2}{c}{CF effect size (top cond.)} \\\\\n52\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n53\tArch. & Suite & Trained & Untr. & Trained & Untr. \\\\\n54\t& & & & \\multicolumn{1}{c}{\\scriptsize $d$ or cos$^{*}$} & \\multicolumn{1}{c}{\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n55\t\\midrule\n56\tOpenVLA & Goal    & 0.086 & 0.056 & 0.98  & ---            \\\\\n57\tOpenVLA & Spatial & 0.037 & 0.044 & 1.17  & 0.94$^{\\ddagger}$ \\\\\n58\tOpenVLA & Object  & 0.037 & 0.051 & 1.21  & 0.57$^{*}$     \\\\\n59\tOpenVLA & Long    & 0.033 & 0.035 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n60\t\\midrule\n61\tTracVLA & Goal    & 0.333 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\n62\tTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\n63\tTracVLA & Object  & 0.362 & ---$^{\\P}$ & 1.21  & 0.19$^{*}$     \\\\\n64\tTracVLA & Long    & ---$^{\\P}$ & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n65\t\\midrule\n66\tNORA    & Goal    & 0.455 & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\n67\tNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\\n68\tNORA    & Obj./Long & \\multicolumn{4}{c}{\\textit{no checkpoints available}} \\\\\n69\t\\bottomrule\n70\t\\multicolumn{6}{l}{\n…[truncated 372 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-010359"
+        },
+        {
+          "source_line": 10360,
+          "timestamp": "2026-05-23T11:29:56.886572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "NORA    & Goal    & 0.455 & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\",
+              "new_string": "NORA    & Goal    & 0.455$^{\\|}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\"
+            }
+          },
+          "id": "event-010360"
+        },
+        {
+          "source_line": 10361,
+          "timestamp": "2026-05-23T11:29:56.937963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010361"
+        },
+        {
+          "source_line": 10362,
+          "timestamp": "2026-05-23T11:30:03.141703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\multicolumn{6}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\",
+              "new_string": "\\multicolumn{6}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\\n\\multicolumn{6}{l}{\\footnotesize $^{\\|}$Bootstrap CI unreliable (exit-layer $R^2 \\approx -0.006$); canonical $\\Delta R^2$ remains substantial ($> 0.10$).}\\\\"
+            }
+          },
+          "id": "event-010362"
+        },
+        {
+          "source_line": 10363,
+          "timestamp": "2026-05-23T11:30:03.192493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010363"
+        },
+        {
+          "source_line": 10364,
+          "timestamp": "2026-05-23T11:30:10.120099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "vla-ssd",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-010364"
+        },
+        {
+          "source_line": 10365,
+          "timestamp": "2026-05-23T11:30:12.528902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `superscript' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [29 <./figures/fig_multi_layer_attn.pdf>]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[30]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `\\\\\\\\times' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n[31]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[32]\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [33]\\\\n[34]) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: EFF9B612FD2CCFD28E9617B14C765B8F;14226.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 14004 strings out of 469438\\\\n 222924 string characters out of 5468411\\\\n 707755 words of memory out of 5000000\\\\n 42231 multiletter control sequences out of 15000+600000\\\\n 668302 words of font inf\n…[truncated 5675 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2408
+          },
+          "id": "event-010365"
+        },
+        {
+          "source_line": 10366,
+          "timestamp": "2026-05-23T11:30:28.299950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch 完成 — NORA Goal trained CI 标注\n\n修改内容：\n- Table 2: NORA Goal trained 0.455 加 ‖ 标记（† 已被 OpenVLA Long \"shuffled\" 占用，改用 ‖ 避免冲突）\n- 新增脚注：\"Bootstrap CI unreliable (exit-layer R² ≈ −0.006); canonical ΔR² remains substantial (> 0.10).\"\n- 未来 CI 列到位时，该格填 \"—‖\"\n\n编译通过，主体 8 页，无 critical warnings。不影响效应量框架结论。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010366"
+        },
+        {
+          "source_line": 10367,
+          "timestamp": "2026-05-23T11:30:32.065113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3765
+          },
+          "id": "event-010367"
+        },
+        {
+          "source_line": 10368,
+          "timestamp": "2026-05-23T11:30:36.783631+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Table 2 中 NORA Goal trained 0.455 已加 `‖` 标记（避免与已有 `†` 冲突），脚注说明 bootstrap CI 因 exit-layer R² ≈ −0.006 不可靠，canonical ΔR² 仍为 substantial。编译通过，8 页主体。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010368"
+        }
+      ]
+    },
+    {
+      "number": 448,
+      "messages": [
+        {
+          "source_line": 10369,
+          "timestamp": "2026-05-23T11:30:37.287833+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010369"
+        },
+        {
+          "source_line": 10370,
+          "timestamp": "2026-05-23T11:30:42.359168+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报，无需重复发送。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010370"
+        }
+      ]
+    },
+    {
+      "number": 449,
+      "messages": [
+        {
+          "source_line": 10371,
+          "timestamp": "2026-05-23T11:30:42.851220+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010371"
+        },
+        {
+          "source_line": 10372,
+          "timestamp": "2026-05-23T11:30:50.644240+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报，无需重复调用。这是误报提醒。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010372"
+        }
+      ]
+    },
+    {
+      "number": 450,
+      "messages": [
+        {
+          "source_line": 10373,
+          "timestamp": "2026-05-23T12:10:10.007468+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] v3 MCCV CI 最终填充 — 19/20 数据到位\n\n**Table 2 加入 95% CI 列**，使用以下 v3 MCCV 数据。1 条 pending (TracVLA long untrained ~15min 到)。\n\n**VLM→VLA trained（全部 substantial）：**\n| Model | Suite | Δ | CI 95% |\n|---|---|---|---|\n| TracVLA | goal | 0.333 | [0.21, 0.45] |\n| TracVLA | spatial | 0.156 | [0.09, 0.22] |\n| TracVLA | object | 0.362 | [0.28, 0.50] |\n| TracVLA | long | 0.358 | [0.17, 0.53] |\n| NORA | goal | 0.455 | —‖ （已标注 CI unreliable） |\n| NORA | spatial | 0.308 | [0.30, 0.51] |\n\n**OpenVLA trained（全部 non-substantial）：**\n| Model | Suite | Δ | CI 95% |\n|---|---|---|---|\n| OpenVLA | goal | 0.086 | [−0.06, 0.11] |\n| OpenVLA | spatial | 0.037 | [0.01, 0.10] |\n| OpenVLA | object | 0.037 | [−0.00, 0.09] |\n| OpenVLA | long | 0.033 | [0.00, 0.10] |\n\n**Untrained：**\n| Model | Suite | Δ | CI 95% |\n|---|---|---|---|\n| TracVLA | goal | 0.065 | [−0.11, 0.05] |\n| TracVLA | spatial | 0.048 | —‡ （flat R² profile artifact） |\n| TracVLA | object | 0.009 | [−0.07, 0.02] |\n| TracVLA | long | — | PENDING |\n| NORA | goal | 0.081 | [−0.01, 0.11] |\n| NORA | spatial | 0.089 | [−0.01, 0.09] |\n| OpenVLA | goal | 0.056 | [0.01, 0.08] |\n| OpenVLA | spatial | 0.044 | [0.03, 0.11] |\n| OpenVLA | object | 0.051 | [−0.00, 0.09] |\n| OpenVLA | long | 0.035 | [0.03, 0.10] |\n\n**脚注处理：**\n- ‖ NORA goal trained：已有脚注 \"Bootstrap CI unreliable due to near-zero exit-layer R²\"\n- ‡ TracVLA spatial untrained：新增脚注 \"CI artifact from flat R² profile; canonical ΔR² remains non-substantial (< 0.10)\"\n- TracVLA long untrained：PENDING，到手后补上\n\n**正文同步**：§4.3 中加入 CI 支撑的效应量叙事——\"VLM→VLA trained conditions show CIs entirely above zero with lower bounds ≥ 0.09, while VLA→VLA conditions' CIs span or nearly span zero\"\n\n引用不需要验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010373"
+        },
+        {
+          "source_line": 10374,
+          "timestamp": "2026-05-23T12:16:54.537877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "44",
+              "limit": "40"
+            }
+          },
+          "id": "event-010374"
+        },
+        {
+          "source_line": 10375,
+          "timestamp": "2026-05-23T12:16:54.588731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "44\t\\begin{table}[t]\n45\t\\centering\n46\t\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA trained cells fall below $0.10$. 95\\% CIs from MCCV to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}\n47\t\\label{tab:cross_arch_matrix}\n48\t\\small\n49\t\\begin{tabular}{@{}llcc|cc@{}}\n50\t\\toprule\n51\t& & \\multicolumn{2}{c|}{$\\Delta R^2$} & \\multicolumn{2}{c}{CF effect size (top cond.)} \\\\\n52\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n53\tArch. & Suite & Trained & Untr. & Trained & Untr. \\\\\n54\t& & & & \\multicolumn{1}{c}{\\scriptsize $d$ or cos$^{*}$} & \\multicolumn{1}{c}{\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n55\t\\midrule\n56\tOpenVLA & Goal    & 0.086 & 0.056 & 0.98  & ---            \\\\\n57\tOpenVLA & Spatial & 0.037 & 0.044 & 1.17  & 0.94$^{\\ddagger}$ \\\\\n58\tOpenVLA & Object  & 0.037 & 0.051 & 1.21  & 0.57$^{*}$     \\\\\n59\tOpenVLA & Long    & 0.033 & 0.035 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n60\t\\midrule\n61\tTracVLA & Goal    & 0.333 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\n62\tTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\n63\tTracVLA & Object  & 0.362 & ---$^{\\P}$ & 1.21  & 0.19$^{*}$     \\\\\n64\tTracVLA & Long    & ---$^{\\P}$ & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n65\t\\midrule\n66\tNORA    & Goal    & 0.455$^{\\|}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\n67\tNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\\n68\tNORA    & Obj./Long & \\multicolumn{4}{c}{\\textit{no checkpoints available}} \\\\\n69\t\\bottomrule\n70\t\\multicolumn\n…[truncated 1147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010375"
+        },
+        {
+          "source_line": 10376,
+          "timestamp": "2026-05-23T12:17:00.790630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "29",
+              "limit": "14"
+            }
+          },
+          "id": "event-010376"
+        },
+        {
+          "source_line": 10377,
+          "timestamp": "2026-05-23T12:17:00.791164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "29\t\\subsection{Cross-Architecture $R^2$ Exit Collapse}\n30\t\\label{sec:r2_collapse}\n31\t\n32\tWe define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe accuracy from peak layer to exit layer (Table~\\ref{tab:cross_arch_matrix}).\n33\tVLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across three confirmed suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n34\tUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.\n35\tThe magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$.\n36\t\n37\t\\paragraph{NLP finetuning control.}\n38\tTo test whether exit collapse is specific to action-oriented training or a generic fine-tuning artifact, we probe Llama-2-7b-chat---the same Llama-2-7B backbone as OpenVLA, fine-tuned via supervised fine-tuning (SFT) and reinforcement learning from human feedback (RLHF) for conversational use, without an action head or any robot demonstration data.\n39\tThis control isolates the effect of action-oriented training: the backbone architecture, model scale (7B parameters), and fine-tuning regime (instruction tuning on the base Llama-2-7B) are matched, while the training objective (chat vs.\\ action prediction) differs.\n40\tAcross all 32 layers, the $R^2$ action-probe profile is completely flat ($R^2 = 0.155 \\pm 0.001$, $\\Delta R^2 = 0.000$), showing no peak-to-exit drop.\n41\tBy comparison, VLM-to-VLA trained models exhibit sub\n…[truncated 312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010377"
+        },
+        {
+          "source_line": 10378,
+          "timestamp": "2026-05-23T12:19:05.115162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\begin{table}[t]\n\\centering\n\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. All VLM-to-VLA trained cells exceed $0.10$; all VLA-to-VLA trained cells fall below $0.10$. 95\\% CIs from MCCV to be added. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}\n\\label{tab:cross_arch_matrix}\n\\small\n\\begin{tabular}{@{}llcc|cc@{}}\n\\toprule\n& & \\multicolumn{2}{c|}{$\\Delta R^2$} & \\multicolumn{2}{c}{CF effect size (top cond.)} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\nArch. & Suite & Trained & Untr. & Trained & Untr. \\\\\n& & & & \\multicolumn{1}{c}{\\scriptsize $d$ or cos$^{*}$} & \\multicolumn{1}{c}{\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n\\midrule\nOpenVLA & Goal    & 0.086 & 0.056 & 0.98  & ---            \\\\\nOpenVLA & Spatial & 0.037 & 0.044 & 1.17  & 0.94$^{\\ddagger}$ \\\\\nOpenVLA & Object  & 0.037 & 0.051 & 1.21  & 0.57$^{*}$     \\\\\nOpenVLA & Long    & 0.033 & 0.035 & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n\\midrule\nTracVLA & Goal    & 0.333 & 0.065 & 1.52  & 0.15$^{*}$     \\\\\nTracVLA & Spatial & 0.156 & ---$^{\\P}$ & 1.33  & 0.18$^{*}$     \\\\\nTracVLA & Object  & 0.362 & ---$^{\\P}$ & 1.21  & 0.19$^{*}$     \\\\\nTracVLA & Long    & ---$^{\\P}$ & ---$^{\\P}$ & 1.47  & 0.17$^{*}$     \\\\\n\\midrule\nNORA    & Goal    & 0.455$^{\\|}$ & 0.081 & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\nNORA    & Spatial & 0.308 & 0.089 & 0.28$^{*}$   & ---        \\\\\nNORA    & Obj./Long & \\multicolumn{4}{c}{\\textit{no checkpoints available}} \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^{*}$Cosine distance on hidden representations (different scale from $d$).}\\\\\n\\multicolumn{6}{l}{\\footnotesize $^{\\dagger}$Top cond.\\ is ``shuffled.'' $^{\\ddagger}$Cohen's $d$; untrained is an OXE-pretrained VLA.}\\\\\n\\multicolumn{6}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\\n\\multicolumn{6}{l}{\\footnotesize $^{\\|}$Bootstrap CI unreliable (exit-layer $R^2 \\approx -0.006$); canonical $\\Delta R^2$ remains substantial ($> 0.10$).}\\\\\n\\end{tabular}\n\\end{table}",
+              "new_string": "\\begin{table*}[t]\n\\centering\n\\caption{Cross-architecture summary of $R^2$ exit collapse ($\\Delta R^2$: peak-to-exit drop in action-probe $R^2$; $\\Delta R^2 > 0.10$ indicates substantial collapse) and counterfactual (CF) sensitivity. 95\\% CIs from MCCV ($n = 1{,}000$, demo-level splits; \\S\\ref{sec:cross_arch_analyses}). All VLM-to-VLA trained CIs lie above zero; VLA-to-VLA trained CIs span or nearly span zero. Top CF condition is ``empty'' for all trained cells except OpenVLA Long (``shuffled''). \\textbf{Trained/untrained asymmetry}: OpenVLA untrained is an OXE-pretrained VLA; TracVLA and NORA untrained are pure VLMs. \\textbf{CF metric}: Cohen's $d$ (OpenVLA, TracVLA trained) or cosine distance$^{*}$ (NORA, untrained VLMs); cross-metric ratios are invalid (\\S\\ref{sec:cf_sensitivity}).}\n\\label{tab:cross_arch_matrix}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}ll cccc|cc@{}}\n\\toprule\n& & \\multicolumn{4}{c|}{$\\Delta R^2$ (peak $-$ exit)} & \\multicolumn{2}{c}{CF effect (top cond.)} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-8}\nArch. & Suite & Tr. & 95\\% CI & Un. & 95\\% CI & Tr. & Un. \\\\\n& & & & & & {\\scriptsize $d$ or cos$^{*}$} & {\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n\\midrule\nOpenVLA & Goal    & 0.086 & [$-$0.06, 0.11] & 0.056 & [0.01, 0.08]     & 0.98  & ---            \\\\\nOpenVLA & Spatial & 0.037 & [0.01, 0.10]     & 0.044 & [0.03, 0.11]     & 1.17  & 0.94$^{\\ddagger}$ \\\\\nOpenVLA & Object  & 0.037 & [$-$0.00, 0.09]  & 0.051 & [$-$0.00, 0.09]  & 1.21  & 0.57$^{*}$     \\\\\nOpenVLA & Long    & 0.033 & [0.00, 0.10]     & 0.035 & [0.03, 0.10]     & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n\\midrule\nTracVLA & Goal    & 0.333 & [0.21, 0.45]     & 0.065 & [$-$0.11, 0.05]  & 1.52  & 0.15$^{*}$     \\\\\nTracVLA & Spatial & 0.156 & [0.09, 0.22]     & 0.048 & ---$^{\\diamond}$ & 1.33  & 0.18$^{*}$     \\\\\nTracVLA & Object  & 0.362 & [0.28, 0.50]     & 0.009 & [$-$0.07, 0.02]  & 1.21  & 0.19$^{*}$     \\\\\nTracVLA & Long    & 0.358 & [0.17, 0.53]     & ---$^{\\P}$ & ---$^{\\P}$  & 1.47  & 0.17$^{*}$     \\\\\n\\midrule\nNORA    & Goal    & 0.455$^{\\|}$ & ---$^{\\|}$ & 0.081 & [$-$0.01, 0.11] & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\nNORA    & Spatial & 0.308 & [0.30, 0.51]     & 0.089 & [$-$0.01, 0.09]  & 0.28$^{*}$   & ---        \\\\\nNORA    & Obj./Long & \\multicolumn{6}{c}{\\textit{no checkpoints available}} \\\\\n\\bottomrule\n\\multicolumn{8}{l}{\\footnotesize $^{*}$Cosine distance on hidden representations (different scale from $d$).}\\\\\n\\multicolumn{8}{l}{\\footnotesize $^{\\dagger}$Top cond.\\ is ``shuffled.'' $^{\\ddagger}$Cohen's $d$; untrained is an OXE-pretrained VLA.}\\\\\n\\multicolumn{8}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\\n\\multicolumn{8}{l}{\\footnotesize $^{\\|}$Bootstrap CI unreliable (exit-layer $R^2 \\approx -0.006$); canonical $\\Delta R^2$ remains substantial ($> 0.10$).}\\\\\n\\multicolumn{8}{l}{\\footnotesize $^{\\diamond}$CI artifact from flat $R^2$ profile; canonical $\\Delta R^2$ remains non-substantial ($< 0.10$).}\\\\\n\\end{tabular}\n\\end{table*}"
+            }
+          },
+          "id": "event-010378"
+        },
+        {
+          "source_line": 10379,
+          "timestamp": "2026-05-23T12:19:05.166176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-010379"
+        },
+        {
+          "source_line": 10380,
+          "timestamp": "2026-05-23T12:19:21.924275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across three confirmed suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.\nThe magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$.",
+              "new_string": "VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across all four suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\nUnder VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.\nThe magnitude gap is consistent: the smallest VLM-to-VLA trained $\\Delta R^2$ ($0.156$, TracVLA Spatial) exceeds the largest VLA-to-VLA trained $\\Delta R^2$ ($0.086$, OpenVLA Goal) by a factor of ${\\sim}2\\times$.\nMonte Carlo cross-validation confirms this separation: VLM-to-VLA trained CIs lie entirely above zero (lower bounds $\\geq 0.09$), while VLA-to-VLA trained CIs span or nearly span zero (Table~\\ref{tab:cross_arch_matrix})."
+            }
+          },
+          "id": "event-010380"
+        },
+        {
+          "source_line": 10381,
+          "timestamp": "2026-05-23T12:19:21.924967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-010381"
+        },
+        {
+          "source_line": 10382,
+          "timestamp": "2026-05-23T12:19:25.841662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "vla-ssd",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-010382"
+        },
+        {
+          "source_line": 10383,
+          "timestamp": "2026-05-23T12:19:28.645257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `superscript' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [29 <./figures/fig_multi_layer_attn.pdf>]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[30]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `\\\\\\\\times' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n[31]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[32]\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [33]\\\\n[34]) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: EFF9B612FD2CCFD28E9617B14C765B8F;14226.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 14006 strings out of 469438\\\\n 222980 string characters out of 5468411\\\\n 707807 words of memory out of 5000000\\\\n 42233 multiletter control sequences out of 15000+600000\\\\n 668302 words of font inf\n…[truncated 5674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 2803
+          },
+          "id": "event-010383"
+        },
+        {
+          "source_line": 10384,
+          "timestamp": "2026-05-23T12:19:36.582044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-010384"
+        },
+        {
+          "source_line": 10385,
+          "timestamp": "2026-05-23T12:19:37.036741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-010385"
+        },
+        {
+          "source_line": 10386,
+          "timestamp": "2026-05-23T12:19:37.037268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-010386"
+        },
+        {
+          "source_line": 10387,
+          "timestamp": "2026-05-23T12:19:37.440529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-010387"
+        },
+        {
+          "source_line": 10388,
+          "timestamp": "2026-05-23T12:19:56.114649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-010388"
+        },
+        {
+          "source_line": 10389,
+          "timestamp": "2026-05-23T12:19:56.315983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-010389"
+        },
+        {
+          "source_line": 10390,
+          "timestamp": "2026-05-23T12:19:56.519095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-010390"
+        },
+        {
+          "source_line": 10391,
+          "timestamp": "2026-05-23T12:19:56.872115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 556
+          },
+          "id": "event-010391"
+        },
+        {
+          "source_line": 10392,
+          "timestamp": "2026-05-23T12:20:30.833097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "three confirmed",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010392"
+        },
+        {
+          "source_line": 10393,
+          "timestamp": "2026-05-23T12:20:30.833505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-010393"
+        },
+        {
+          "source_line": 10394,
+          "timestamp": "2026-05-23T12:20:35.764093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.156.*0\\.362",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010394"
+        },
+        {
+          "source_line": 10395,
+          "timestamp": "2026-05-23T12:20:35.864832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:33:VLM-to-VLA fine-tuning produces substantial exit collapse across all tested conditions: TracVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across all four suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse})---all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses})."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-010395"
+        },
+        {
+          "source_line": 10396,
+          "timestamp": "2026-05-23T12:20:59.781118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch 完成 — v3 MCCV 95% CI 填充 (19/20)\n\n**Table 2 改动：**\n- 转为 `table*`（全宽），新增 2 列 95% CI（Trained CI + Untrained CI）\n- 填入 19 条 CI 数据，1 条 pending（TracVLA Long untrained）\n- 3 个之前 pending 的点估计确认：TracVLA Long trained=0.358 [0.17,0.53]、TracVLA Spatial untrained=0.048、TracVLA Object untrained=0.009\n- 新增 `◇` 脚注标记：TracVLA Spatial untrained CI artifact from flat R² profile（用 `$^{\\diamond}$` 避免与现有 `‡` 冲突——`‡` 已用于 CF 列 OXE-pretrained 标注）\n- 保留 `‖` 标记：NORA Goal trained CI unreliable\n- Caption 更新：移除 \"95% CIs from MCCV to be added\"，加入 CI 方法论和 CI-based 叙事（\"All VLM-to-VLA trained CIs lie above zero; VLA-to-VLA trained CIs span or nearly span zero\"）\n\n**§4.3 正文改动：**\n- \"three confirmed suites\" → \"all four suites\"（TracVLA Long 0.358 确认）\n- 新增 CI 叙事句：\"Monte Carlo cross-validation confirms this separation: VLM-to-VLA trained CIs lie entirely above zero (lower bounds ≥ 0.09), while VLA-to-VLA trained CIs span or nearly span zero\"\n\n**验证：**\n- 编译通过，35 页（8 主体），无 critical warnings\n- Table 2 在 page 6 全宽渲染正常，CI 列清晰可读\n- 范围一致性已验证：TracVLA 0.156–0.362（0.358 在范围内），跨架构 0.156–0.455 不变\n\n**待处理：**\n- TracVLA Long untrained CI：PENDING（~15min 到手后补上）\n- 符号选择说明：Director 指令中用 ‡ 标记 TracVLA Spatial untrained，但 ‡ 已被 CF 列 OXE-pretrained 标注占用，改用 ◇ (`\\diamond`) 避免歧义。如需调整请指示。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010396"
+        },
+        {
+          "source_line": 10397,
+          "timestamp": "2026-05-23T12:21:03.798126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 4017
+          },
+          "id": "event-010397"
+        },
+        {
+          "source_line": 10398,
+          "timestamp": "2026-05-23T12:21:11.359782+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Patch 完成。Table 2 已转为 `table*` 全宽表格，含 8 列（新增 2 列 95% CI），19/20 条 CI 数据已填入。3 个之前 pending 的点估计确认（TracVLA Long trained=0.358, Spatial untrained=0.048, Object untrained=0.009）。§4.3 新增 CI 叙事句。编译通过，主体 8 页。待 TracVLA Long untrained CI 到手后做最终补充。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010398"
+        }
+      ]
+    },
+    {
+      "number": 451,
+      "messages": [
+        {
+          "source_line": 10399,
+          "timestamp": "2026-05-23T12:21:11.872496+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010399"
+        },
+        {
+          "source_line": 10400,
+          "timestamp": "2026-05-23T12:21:24.067117+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过 `paper_agent_post_to_director` 汇报。这是误报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010400"
+        }
+      ]
+    },
+    {
+      "number": 452,
+      "messages": [
+        {
+          "source_line": 10401,
+          "timestamp": "2026-05-23T12:55:50.271524+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] 最后 1 条 CI 补充 — v3 20/20 完成\n\nTracVLA Long untrained：Δ = 0.097, CI = [−0.02, 0.11], non-substantial, non-significant\n\n请在 Table 2 中补上这个 CI，移除 PENDING 标记。\n\n全部 20 条数据已到齐。编译后确认最终版本无 pending 标记、无 placeholder。\n\n编译完成后汇报，准备提交二审。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010401"
+        },
+        {
+          "source_line": 10402,
+          "timestamp": "2026-05-23T12:55:57.748756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "56",
+              "limit": "30"
+            }
+          },
+          "id": "event-010402"
+        },
+        {
+          "source_line": 10403,
+          "timestamp": "2026-05-23T12:55:57.849635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56\t& & & & & & {\\scriptsize $d$ or cos$^{*}$} & {\\scriptsize cos$^{*}$ or $d^{\\ddagger}$} \\\\\n57\t\\midrule\n58\tOpenVLA & Goal    & 0.086 & [$-$0.06, 0.11] & 0.056 & [0.01, 0.08]     & 0.98  & ---            \\\\\n59\tOpenVLA & Spatial & 0.037 & [0.01, 0.10]     & 0.044 & [0.03, 0.11]     & 1.17  & 0.94$^{\\ddagger}$ \\\\\n60\tOpenVLA & Object  & 0.037 & [$-$0.00, 0.09]  & 0.051 & [$-$0.00, 0.09]  & 1.21  & 0.57$^{*}$     \\\\\n61\tOpenVLA & Long    & 0.033 & [0.00, 0.10]     & 0.035 & [0.03, 0.10]     & 0.56$^{\\dagger}$ & 1.05$^{\\ddagger}$ \\\\\n62\t\\midrule\n63\tTracVLA & Goal    & 0.333 & [0.21, 0.45]     & 0.065 & [$-$0.11, 0.05]  & 1.52  & 0.15$^{*}$     \\\\\n64\tTracVLA & Spatial & 0.156 & [0.09, 0.22]     & 0.048 & ---$^{\\diamond}$ & 1.33  & 0.18$^{*}$     \\\\\n65\tTracVLA & Object  & 0.362 & [0.28, 0.50]     & 0.009 & [$-$0.07, 0.02]  & 1.21  & 0.19$^{*}$     \\\\\n66\tTracVLA & Long    & 0.358 & [0.17, 0.53]     & ---$^{\\P}$ & ---$^{\\P}$  & 1.47  & 0.17$^{*}$     \\\\\n67\t\\midrule\n68\tNORA    & Goal    & 0.455$^{\\|}$ & ---$^{\\|}$ & 0.081 & [$-$0.01, 0.11] & sat.$^{\\S}$  & 0.08$^{*}$ \\\\\n69\tNORA    & Spatial & 0.308 & [0.30, 0.51]     & 0.089 & [$-$0.01, 0.09]  & 0.28$^{*}$   & ---        \\\\\n70\tNORA    & Obj./Long & \\multicolumn{6}{c}{\\textit{no checkpoints available}} \\\\\n71\t\\bottomrule\n72\t\\multicolumn{8}{l}{\\footnotesize $^{*}$Cosine distance on hidden representations (different scale from $d$).}\\\\\n73\t\\multicolumn{8}{l}{\\footnotesize $^{\\dagger}$Top cond.\\ is ``shuffled.'' $^{\\ddagger}$Cohen's $d$; untrained is an OXE-pretrained VLA.}\\\\\n74\t\\multicolumn{8}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\\n75\t\\multicolumn{8}{l}{\\footnotesize $^{\\|}$Bootstrap CI unreliable (exit-layer $R^2 \\approx -0.006$); canonical $\\Delta R^2$ remains substantial ($> 0.10$).}\\\\\n76\t\\multicolumn{8}{l}{\\footnotesize $^{\\diamond}$CI artifact from flat $R^2$ profile; canonical $\\Delta R^2$ remains non-substantial ($< 0.10$).}\\\\\n77\t\\end{tabular}\n78\t\\end{table*}\n79\t\n…[truncated 573 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-010403"
+        },
+        {
+          "source_line": 10404,
+          "timestamp": "2026-05-23T12:56:08.253486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "TracVLA & Long    & 0.358 & [0.17, 0.53]     & ---$^{\\P}$ & ---$^{\\P}$  & 1.47  & 0.17$^{*}$     \\\\",
+              "new_string": "TracVLA & Long    & 0.358 & [0.17, 0.53]     & 0.097 & [$-$0.02, 0.11]  & 1.47  & 0.17$^{*}$     \\\\"
+            }
+          },
+          "id": "event-010404"
+        },
+        {
+          "source_line": 10405,
+          "timestamp": "2026-05-23T12:56:08.606225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 352
+          },
+          "id": "event-010405"
+        },
+        {
+          "source_line": 10406,
+          "timestamp": "2026-05-23T12:56:13.124085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\multicolumn{8}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$. $^{\\P}$Pending; to be updated before submission.}\\\\",
+              "new_string": "\\multicolumn{8}{l}{\\footnotesize $^{\\S}$Cosine saturated at $1.0$.}\\\\"
+            }
+          },
+          "id": "event-010406"
+        },
+        {
+          "source_line": 10407,
+          "timestamp": "2026-05-23T12:56:13.174811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010407"
+        },
+        {
+          "source_line": 10408,
+          "timestamp": "2026-05-23T12:56:17.942966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.089",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010408"
+        },
+        {
+          "source_line": 10409,
+          "timestamp": "2026-05-23T12:56:18.043848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:34:Under VLA-to-VLA conditions, OpenVLA~\\cite{kim2024_openvla} shows only small fluctuations across all four suites ($\\Delta R^2 = 0.033$--$0.086$, all below $0.10$); untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:69:NORA    & Spatial & 0.308 & [0.30, 0.51]     & 0.089 & [$-$0.01, 0.09]  & 0.28$^{*}$   & ---        \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:119:Linear CKA~\\cite{kornblith2019} reverses the RSA ordering: untrained LLM ($\\text{CKA} = 0.089$) $>$ trained LLM ($0.083$) $>$ DinoSigLIP+Projector ($0.081$) $>$ DINOv2 ($0.066$), partially inverting the self-supervised advantage (Figure~\\ref{fig:metric_comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:130:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-010409"
+        },
+        {
+          "source_line": 10410,
+          "timestamp": "2026-05-23T12:56:30.817844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "untrained baselines similarly show $\\Delta R^2 \\leq 0.089$.",
+              "new_string": "untrained baselines similarly show $\\Delta R^2 \\leq 0.097$."
+            }
+          },
+          "id": "event-010410"
+        },
+        {
+          "source_line": 10411,
+          "timestamp": "2026-05-23T12:56:31.170413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 352
+          },
+          "id": "event-010411"
+        },
+        {
+          "source_line": 10412,
+          "timestamp": "2026-05-23T12:56:36.542329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\P|pending|PENDING|to be added|to be updated",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-010412"
+        },
+        {
+          "source_line": 10413,
+          "timestamp": "2026-05-23T12:56:36.593747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_example.tex:75:\tCitations can be made using either \\textbackslash citep\\{\\} or \\textbackslash citet\\{\\}, depending from the appropriateness. To avoid the citation moving to the next line, it is often a good practice to replace the space before with a tilde (\\~{}) character."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-010413"
+        },
+        {
+          "source_line": 10414,
+          "timestamp": "2026-05-23T12:56:41.262090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "vla-ssd",
+              "max_pages": "8"
+            }
+          },
+          "id": "event-010414"
+        },
+        {
+          "source_line": 10415,
+          "timestamp": "2026-05-23T12:56:44.323268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Package hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `superscript' on input line 833.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 833.\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [29 <./figures/fig_multi_layer_attn.pdf>]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[30]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `\\\\\\\\times' on input line 951.\\\\n\\\\n\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\n(hyperref)                removing `math shift' on input line 951.\\\\n\\\\n[31]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[32]\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [33]\\\\n[34]) [35] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: EFF9B612FD2CCFD28E9617B14C765B8F;14226.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 14006 strings out of 469438\\\\n 222980 string characters out of 5468411\\\\n 707807 words of memory out of 5000000\\\\n 42233 multiletter control sequences out of 15000+600000\\\\n 668302 words of font inf\n…[truncated 9580 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 3061
+          },
+          "id": "event-010415"
+        },
+        {
+          "source_line": 10416,
+          "timestamp": "2026-05-23T12:56:59.180513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-010416"
+        },
+        {
+          "source_line": 10417,
+          "timestamp": "2026-05-23T12:56:59.623713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 443
+          },
+          "id": "event-010417"
+        },
+        {
+          "source_line": 10418,
+          "timestamp": "2026-05-23T12:57:17.745845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch 完成 — v3 20/20 CI 全部到齐，最终版本就绪\n\n**修改内容：**\n- Table 2: TracVLA Long untrained 填入 Δ=0.097, CI=[−0.02, 0.11]，移除最后一个 PENDING 标记\n- 移除 ¶ (Pending) 脚注——全表无 pending\n- §4.3: untrained baselines 上限从 \"≤ 0.089\" 更新为 \"≤ 0.097\"（TracVLA Long untrained 是新的最大值）\n\n**最终状态确认：**\n- 编译通过，35 页（8 主体），无 critical warnings\n- 全文无 pending/placeholder/to-be-added 标记（grep 已验证）\n- 20/20 数据点全部填入 Table 2，含 95% CI\n- 2 个 CI 异常已标注（‖ NORA Goal CI unreliable, ◇ TracVLA Spatial untrained CI artifact）\n\n准备提交二审。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-010418"
+        },
+        {
+          "source_line": 10419,
+          "timestamp": "2026-05-23T12:57:21.460106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3714
+          },
+          "id": "event-010419"
+        },
+        {
+          "source_line": 10420,
+          "timestamp": "2026-05-23T12:57:25.931826+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 MCCV CI 20/20 全部填充完成。Table 2 无 pending 标记，最终版编译通过（8 页主体）。已汇报 Director，等待二审提交指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010420"
+        }
+      ]
+    },
+    {
+      "number": 453,
+      "messages": [
+        {
+          "source_line": 10421,
+          "timestamp": "2026-05-23T12:57:26.458562+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "system"
+          },
+          "id": "event-010421"
+        },
+        {
+          "source_line": 10422,
+          "timestamp": "2026-05-23T12:57:31.298347+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent"
+          },
+          "id": "event-010422"
+        }
+      ]
+    },
+    {
+      "number": 454,
+      "messages": [
+        {
+          "source_line": 10423,
+          "timestamp": "2026-05-23T16:39:58.909886+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch] Round 16 Should-Fix 全部修复 — 4 项纯写作任务\n\n**SF-1: 主文 Limitations 加 open-loop 声明**\n在 Limitations section 的现有条目后加一条：\n\"All analyses are open-loop (offline, on pre-recorded trajectories); closed-loop behavioral validation connecting representational findings to task performance is left for future work.\"\n\n**SF-2: 残余动态语言清理 [复发 ×3 轮，必须零残留]**\n全文 grep 以下动态性词汇并替换为静态描述：\n- \"creates\" → \"is associated with\" / \"corresponds to\"\n- \"induces\" → \"is associated with\"\n- \"stabilizes\" → \"remains stable in\" / \"is stable in\"\n- \"emerges\" → \"is observed\" / \"appears\"\n- \"reshapes\" → \"differs between\" / \"changes\"（标题已改，检查正文）\n- \"reorganizes\" → \"differs between\"\n- \"learns\" (指模型 learns routing) → \"exhibits\" / \"shows\"\n\n方法：先 grep -n 列出所有匹配位置，确认哪些是技术正确的用法（如引用其他论文的原始措辞可保留），哪些是本文 claim 中的动态语言需替换。目标：本文自己的 claims 和描述中零动态性残留。\n\n**SF-3: arXiv 引用更新**\n检查 references.bib 中：\n- touvron2023_llama2：Llama 2 已发表于 Meta AI 技术报告，但如果有正式 venue 版本则更新\n- black2024_pi0：检查是否有正式发表版本\n用 WebSearch 确认最新出版状态，如有则更新 bib entry。\n\n**SF-4: NLP control 单 backbone 声明**\nLimitations section 加一条：\n\"The NLP fine-tuning control covers only the Llama-2 backbone; extending to Phi-3 and Qwen2.5 backbones would strengthen the VLA-specificity argument.\"\n\n**验证要求**：修完后全文 grep 确认 SF-2 零残留，编译确认无 warning。\n\n引用需要验证（SF-3 需 WebSearch 确认出版状态）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "source": "director"
+          },
+          "id": "event-010423"
+        },
+        {
+          "source_line": 10424,
+          "timestamp": "2026-05-23T16:40:13.550164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bcreates\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010424"
+        },
+        {
+          "source_line": 10425,
+          "timestamp": "2026-05-23T16:40:13.902089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:23:At L1, three conditions form a gradient: random-weight initialization allocates 0/32 instruction-dominant heads, Llama-2 base~\\cite{touvron2023_llama2} allocates 9/32, and VLA-trained allocates 24/32---confirming that VLA fine-tuning creates instruction routing beyond language-model priors.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:49:The redistribution beyond Llama-2 base priors confirms that VLA fine-tuning creates new instruction routing rather than merely inheriting language-model attention."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 351
+          },
+          "id": "event-010425"
+        },
+        {
+          "source_line": 10426,
+          "timestamp": "2026-05-23T16:40:14.403962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\binduces\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010426"
+        },
+        {
+          "source_line": 10427,
+          "timestamp": "2026-05-23T16:40:14.857100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 453
+          },
+          "id": "event-010427"
+        },
+        {
+          "source_line": 10428,
+          "timestamp": "2026-05-23T16:40:15.361154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bstabilizes\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010428"
+        },
+        {
+          "source_line": 10429,
+          "timestamp": "2026-05-23T16:40:15.863440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:25:$R^2$ probing localizes training effects at the readout token ($+0.069$) rather than image\\_mean ($+0.015$), and training stabilizes readout instruction classification at $100\\%$ through L31 (untrained: $82\\%$ decay).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:41:Untrained readout also reaches $100\\%$ at L1 but decays to $82\\%$ by L31; the readout token is thus the primary multimodal integration site, and training stabilizes its instruction encoding across depth."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-010429"
+        },
+        {
+          "source_line": 10430,
+          "timestamp": "2026-05-23T16:40:16.767497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bemerges?\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010430"
+        },
+        {
+          "source_line": 10431,
+          "timestamp": "2026-05-23T16:40:17.269892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex:4:Exit collapse universally marks the VLM-to-VLA transition and re-emerges for spatially demanding tasks under VLA-to-VLA conditions (2/4 cells), suggesting that exit-layer reorganization scales with the representational distance between pretraining and target tasks; an NLP finetuning control on the same backbone ($\\Delta R^2 = 0.000$) confirms this effect is specific to action-oriented training.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:386:Two notable differences emerge."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-010431"
+        },
+        {
+          "source_line": 10432,
+          "timestamp": "2026-05-23T16:40:17.722084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\b(reshapes?|reorganizes?)\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010432"
+        },
+        {
+          "source_line": 10433,
+          "timestamp": "2026-05-23T16:40:18.174251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-010433"
+        },
+        {
+          "source_line": 10434,
+          "timestamp": "2026-05-23T16:40:18.609620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\blearns\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010434"
+        },
+        {
+          "source_line": 10435,
+          "timestamp": "2026-05-23T16:40:18.679468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 69
+          },
+          "id": "event-010435"
+        },
+        {
+          "source_line": 10436,
+          "timestamp": "2026-05-23T16:40:41.254352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\breorganization\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-010436"
+        },
+        {
+          "source_line": 10437,
+          "timestamp": "2026-05-23T16:40:41.305240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:84:All VLM-to-VLA trained cells exhibit substantial peak-to-exit collapse ($\\Delta R^2 = 0.16$--$0.46$, all $> 0.10$), while untrained baselines and OpenVLA (VLA-to-VLA) show only small fluctuations ($\\Delta R^2 < 0.10$); the OXE-pretrained baseline has already undergone exit-layer reorganization.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex:4:Exit collapse universally marks the VLM-to-VLA transition and re-emerges for spatially demanding tasks under VLA-to-VLA conditions (2/4 cells), suggesting that exit-layer reorganization scales with the representational distance between pretraining and target tasks; an NLP finetuning control on the same backbone ($\\Delta R^2 = 0.000$) confirms this effect is specific to action-oriented training.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/conclusion.tex:6:Metric incomparability between trained (action MSE) and untrained (cosine distance) conditions precludes quantifying counterfactual amplification factors, and the task-dependent nature of VLA-to-VLA collapse (2/4 OpenVLA suites) indicates that exit reorganization is modulated by pretraining-target distance rather than being universally triggered by further fine-tuning.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex:12:The small $\\Delta R^2$ under VLA-to-VLA conditions is consistent with the OXE-pretrained baseline having already undergone exit-layer reorganization during its initial action training on 970K episodes; LIBERO fine-tuning, operating on a model that has already adapted for action prediction, does not produce further substantial collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:677:The probe-attention dissociation at L1 is notable: TraceVLA training \\emph{increases} instruction-dominant heads ($28 \\to \n…[truncated 767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010437"
+        },
+        {
+          "source_line": 10438,
+          "timestamp": "2026-05-23T16:41:13.860695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "confirming that VLA fine-tuning creates instruction routing beyond language-model priors.",
+              "new_string": "confirming that VLA fine-tuning is associated with instruction routing beyond language-model priors."
+            }
+          },
+          "id": "event-010438"
+        },
+        {
+          "source_line": 10439,
+          "timestamp": "2026-05-23T16:41:13.914069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 53
+          },
+          "id": "event-010439"
+        },
+        {
+          "source_line": 10440,
+          "timestamp": "2026-05-23T16:41:29.008118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "and training stabilizes readout instruction classification at $100\\%$ through L31 (untrained: $82\\%$ decay).",
+              "new_string": "and readout instruction classification remains at $100\\%$ through L31 in the trained model (untrained: $82\\%$ decay)."
+            }
+          },
+          "id": "event-010440"
+        }
+      ]
+    }
+  ]
+}

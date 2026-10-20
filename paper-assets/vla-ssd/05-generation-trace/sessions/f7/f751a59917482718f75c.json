@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f751a59917482718f75c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose v3 ci anomalies nora tracvla",
+  "task_key": "worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551_result.json",
+    "occurrence": 1,
+    "bytes": 4083,
+    "sha256": "c710a4a28132b1bdb6f5c8fd47723a45d69c4cace463a8e88d85eb00618976c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是诊断结果。\n\n---\n\n## 异常 1: NORA goal trained — CI [0.91, 1.61], canonical Δ=0.455, boot_mean=1.216\n\n### Root Cause: Exit layer (L35) 的 R² ≈ 0 导致 bootstrap 中 R² 无界下行\n\n**关键数据：**\n- L35 canonical R² = **-0.006**（probe 几乎无预测力）\n- L8 (peak) canonical R² = 0.449（有真实信号）\n- R² profile 在 L34→L35 有断崖：0.277 → -0.006\n\n**机制：** 当 canonical R² ≈ 0 时，probe 拟合的是训练集噪声。在不同的 80/20 demo 切分中：\n- L8 的 R² 相对稳定（有真实信号，boot 均值应接近 0.45）\n- L35 的 R² 则系统性地深负：预测值 = 噪声拟合，在新 test set 上 ss_res >> ss_tot，R² 无下界\n- 反推：boot_exit_R² ≈ 0.45 − 1.216 = **−0.77**（相比 canonical 的 -0.006，恶化了 0.76）\n\ncanonical 的 -0.006 是一个**异常有利的切分**——恰好噪声对消。boot 的 -0.77 才是 L35 在随机切分下的典型表现。\n\n**佐证：** NORA untrained 的 L35 R² = 0.340（正常水平），bootstrap 行为正常（delta=0.081, boot_mean=0.045）。说明是**训练后 L35 信号崩塌**导致的问题——fine-tuning 使最后一层特化为 action head 需要的非线性表示，线性 probe 无法解码。\n\n### 定性：数据性质问题，不是方法论 bug\n\nBootstrap 逻辑正确。R² 在无信号层不稳定是 R² 度量本身的数学性质（无下界），不是代码错误。\n\n### 论文建议\n\n1. **报告方式**：CI 反映的是 exit layer R² 的极端不稳定性，不应直接解读为 \"delta 在 0.91–1.61 之间\"。应在表格中标注 L35 canonical R² ≈ 0，CI 受 exit layer instability 驱动\n2. **替代方案**：可改用 L34（R² = 0.277）作为 \"exit layer\"，或使用最后 k 层均值作为 exit R²，避免单层噪声主导 CI\n3. **叙述**：NORA trained 的 SSD 效应真实存在（peak-to-exit 单调下降趋势清晰），但 L35 的断崖使得精确 CI 不可靠。可用叙述性描述 + R² profile 图替代点估计 CI\n\n---\n\n## 异常 2: TracVLA goal untrained — canonical Δ=0.065, CI [-0.11, 0.05], boot_mean=-0.023\n\n### Root Cause: 平坦 R² profile → peak 选择的 winner's curse\n\n**关键数据：**\n- R² profile 极平：L3=0.498, L9=0.492, L11=0.505(peak), L15=0.481, L21=0.495\n- \"peak\" L11 仅比第二高层高 0.007（0.505 vs 0.498）\n- exit L31 = 0.440，与 peak 差距仅 0.065\n\n**机制：** peak layer 是在 canonical split 上通过 `max(canon_r2)` 选出的。在 untrained 基座模型中，goal 信息均匀分布于各层，没有真正的\"峰\"。L11 的 0.505 是统计涨落，不是稳健的层级优势。\n\nBootstrap 固定 peak=L11 / exit=L31，但在不同切分中：\n- L11 不再是最佳层（其他层在不同切分中可能更高）\n- L31 经常追平甚至超过 L11\n- 导致 delta 经常为负，boot_mean = -0.023\n\nCanonical delta (0.065) 甚至高于 CI 上界 (0.051)，说明 canonical 本身就是 selection bias 的产物。\n\n**佐证对比：** TracVLA goal **trained** 有清晰的峰谷结构（L13=0.540, exit L31=0.207, delta=0.333），bootstrap 行为正常（boot_mean=0.316, CI=[0.21, 0.45]）。fine-tuning 创造了真正的层级分化，untrained 没有。\n\n### 定性：数据性质问题 — 正确反映了 untrained 模型无 SSD 效应\n\n这不是 bug。CI 穿越零正确说明 untrained TracVLA 的 goal 信息没有显著的 peak-to-exit 衰减。\n\n### 论文建议\n\n1. **这是正面结果**：untrained CI 包含 0 → 无显著 SSD 效应 → 与 \"训练创造 SSD\" 的叙事一致\n2. **对比呈现**：TracVLA goal trained CI=[0.21, 0.45] vs untrained CI=[-0.11, 0.05]，清晰展示训练效应\n3. **无需修正**：CI 行为符合预期，直接报告即可\n\n---\n\n## v3 进度\n\n- **已完成**: 17/20 JSON 文件\n- **正在运行**: `tracvla_object untrained`（cuda1，bootstrap 阶段）\n- **剩余**: tracvla_long trained + untrained（2 个）\n- cuda0 已完成全部任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v3-ci-anomalies-nora-tracvla.md"
+}

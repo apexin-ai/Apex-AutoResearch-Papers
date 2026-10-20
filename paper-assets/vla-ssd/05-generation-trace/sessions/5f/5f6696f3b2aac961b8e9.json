@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f6696f3b2aac961b8e9",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code l1 head ablation v3",
+  "task_key": "worker_code_l1_head_ablation_v3_20260517T124429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_head_ablation_v3_20260517T124429_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "a4eb2c654388fe7d2d2c1ed7e0a1dd664d01c2c97abf49a3404764d927f631ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job submitted successfully.\n\n- **Script**: `/root/vla-ssd/scripts/l1_head_ablation.py`\n- **Job**: `l1_head_ablation` (tmux session, log at `~/runs/vla-ssd/l1_head_ablation.log`)\n- **Output**: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results.json`\n\n实验设计：\n- 3 conditions: `baseline` (no ablation), `ablate_all24` (24 instruction-attending heads zeroed), `ablate_control8` (8 non-instruction heads zeroed)\n- 50 images (10 tasks × 5 demos × frame 0) × 10 instructions = 500 forward passes/condition\n- Features extracted at layers [1, 8, 16, 31], 10-way task classification (train on demos 0-2, test on demos 3-4)\n- 预计运行 25-30 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l1-head-ablation-v3.md"
+}

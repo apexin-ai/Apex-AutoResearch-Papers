@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f3a04d1752c977b3eb",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778878478.md",
+  "task_key": "loop_3_1778878478",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778878478.md",
+    "occurrence": 1,
+    "bytes": 4905,
+    "sha256": "5b60834cf1b7c5a6efcaaf564f99441dca4951d0da7794f702099b695c3ec857"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T20:54:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0, cuda:1（westd-19183），禁止用其他 GPU\n- 服务器无外网：所有 HF/AutoProcessor 操作必须 `local_files_only=True`\n- Untrained model = `from_config()` 重新初始化 LLM（6.74B random），保留 SigLIP（0.80B），不是 before-fine-tuning\n- d021_instruction_ablation 是 HARD GATE：PASS → 锁定 Option B framing；FAIL → 必须立即回退 Option A（Representational Redundancy）。不得在 gate 结果出来前动 paper\n- Instruction ablation gate 阈值（D025 修订）：PASS = Δ(with-no) > 0.10 + bootstrap CI excludes 0 + no-inst RSA ≤ DINO(0.388) + 0.05；FAIL = no-inst ≥ with-inst(0.49) − 0.05\n- 分析 Worker 不得覆盖 registry spec 字段\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-19183, 2×RTX PRO 6000\n- **工作目录**: `/root/vla-ssd`（代码），`/root/autodl-tmp/vla-ssd/`（数据/特征/checkpoints/结果）\n- **Python**: 需 `detect_image` 确认环境（aml-train 镜像用 conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b/`（trained）, `openvla-7b-untrained/`（untrained）\n- **特征路径**: `/root/autodl-tmp/vla-ssd/features/{trained,untrained,dinov2}_libero_goal/`\n- **数据路径**: `/root/autodl-tmp/vla-ssd/data/libero/libero_goal/`（10 tasks × 50 demos）\n- **结果路径**: `/root/autodl-tmp/vla-ssd/results/rsa/`（RSA），`/root/autodl-tmp/vla-ssd/results/`（其他）\n- **活跃 Worker**: \n  - `worker_ssh_instruction-ablation-v2`（running）— 在 GPU:0 上跑无 instruction 的特征提取 + RSA\n  - `worker_research_literature-map-build`（running）— 构建 literature_map.yaml\n- **活跃 Cron**: reconcile 返回 0（无活跃 cron）\n\n### 3. 📊 当前状态\n**刚完成**: d021_output_head_analysis（negative）— shallow adaptation 假设 FAIL，LLM 权重差异均匀分布全部 32 层，output head 不特殊（1.12x vs 3x 阈值）。但 vision backbone + projector 完全 IDENTICAL，补强了 Option B framing。\n\n**正在跑**: d021_instruction_ablation（RUNNING）— Worker 正在 westd-19183 GPU:0 上提取无 instruction 的 untrained VLA 特征并跑 RSA。这是整个论文 framing 的 HARD GATE。\n\n**Registry 汇总**: 33 个实验，18 success / 6 negative / 0 failed。核心模式跨 6 轮方法论一致：trained ≈ untrained >> DINO。\n\n**等待中**:\n- d021_instruction_ablation Worker 回调 → 分析结果决定 framing 走向\n- literature-map-build Worker 回调 → 文献图谱完善\n\n### 4. 📋 待办（条件触发式）\n- **d021_instruction_ablation Worker 完成 → 立即分析 RSA 结果**：\n  - no-inst RSA < 0.438（DINO+0.05）且 Δ > 0.10 → PASS → 向 Director 汇报\"Option B 锁定\"，进入 complete_mvp → research/writing 阶段\n  - no-inst RSA ≥ 0.44 → FAIL → 产出 Framing 调整提案（Option A: Representational Redundancy），向 Director 汇报，暂停 paper 工作\n  - 中间值 → INCONCLUSIVE → 设计补充实验（trained VLA 同样做 instruction ablation 作为对照）\n- **literature-map-build Worker 完成 → 整合到 literature_map.yaml**，确认 Grant 2026 和 novelty gap 已记录\n- **Framing 锁定后 → 立即 spawn paper-plan Worker**，CoRL abstract DDL = May 26（11 天），paper DDL = May 29（14 天）\n- **任何实验完成 → 更新 report.md + registry + 向 Director 汇报（带 [资源] 行）**\n\n### 5. 🎯 战略上下文\n**核心发现链**: MVP-1 temporal distance → G2 FAIL → MVP-2 action prediction → G2 FAIL → goal classification → dimension confound → PCA+linear → still FAIL → RSA（D019/D020）→ G2 FAIL (Δρ=0.003) → D021 pivot to \"instruction input pathway\"\n\n**当前 framing**（D023 Reviewer 共识）: \"Instruction Input Pathway Drives Conditioning, Not Training\"。6 轮 probing 一致支持 trained ≈ untrained >> DINO。Claim 精确到\"instruction input pathway\"（非泛化的\"architecture\"）。\n\n**决策链**: D017→D018→D019→D020→D021→D022→D023→D024→D025→D026，核心转折在 D021（pivot to Option B）和 D023（Reviewer 共识收窄 claim）。\n\n**易错点**:\n- 不要把 GC4-par 和 GC4-seq 直接对比\n- Untrained 是 random init LLM，不是 before-fine-tuning——两者差异被 pretrained vs random 主导，Related Work 必须 qualify\n- Grant 2026 用 OFT checkpoint，我们用 standard fine-tuning，不能直接合并结论\n- Layer stability（31/33 vs 15/33）看似与 \"training doesn't change representation\" 矛盾——须定位为 \"reorganization without new knowledge injection\"\n- 论文 scope 限定 OpenVLA-class，不 over-claim generality\n- `if args.task_instruction:` 对空字符串返回 False 的 bug 已修复（Worker 之前发现过）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778878478.md"
+}

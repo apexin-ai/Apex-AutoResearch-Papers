@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3d1273b4974f844d6e6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check phi3 full r2 profile",
+  "task_key": "worker_check_phi3_full_r2_profile_20260523T235913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phi3_full_r2_profile_20260523T235913_result.json",
+    "occurrence": 1,
+    "bytes": 2558,
+    "sha256": "13de2c8f5362e9f1535a02cfb4513f8edde818de2ed29832b3ace697ad49cef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama-2-chat 也有 NLP control 数据（在 `llama2chat_action_probe/` 目录下，note 同样标注 \"text-only model\"）。\n\n## Phi-3-mini-instruct (L0–L31)\n\n| Layer | R² |\n|-------|------|\n| L0 | 0.1555 |\n| L1 | 0.1552 |\n| L2 | 0.1555 |\n| L3 | 0.1553 |\n| L4 | 0.1554 |\n| L5 | 0.1555 |\n| L6 | 0.1554 |\n| L7 | 0.1554 |\n| L8 | 0.1555 |\n| L9 | 0.1555 |\n| L10 | 0.1552 |\n| L11 | 0.1552 |\n| L12 | 0.1554 |\n| L13 | 0.1555 |\n| L14 | 0.1555 |\n| L15 | 0.1555 |\n| L16 | 0.1555 |\n| L17 | 0.1555 |\n| L18 | 0.1555 |\n| L19 | 0.1555 |\n| L20 | 0.1555 |\n| L21 | 0.1555 |\n| L22 | 0.1555 |\n| L23 | 0.1555 |\n| L24 | 0.1555 |\n| L25 | 0.1555 |\n| L26 | 0.1555 |\n| L27 | 0.1555 |\n| L28 | 0.1555 |\n| L29 | 0.1555 |\n| L30 | 0.1555 |\n| L31 | 0.1555 |\n\n- **Peak**: L0 (R²=0.1555) — 多层并列\n- **Exit**: L31 (R²=0.1555)\n- **ΔR² (peak–exit)**: 0.0000\n- **ΔR² (max–min)**: 0.0003 (0.1555 − 0.1552)\n- **Mean R²**: 0.1555\n\n## Llama-2-7b-chat (L0–L31)\n\n| Layer | R² |\n|-------|------|\n| L0 | 0.1553 |\n| L1 | 0.1554 |\n| L2 | 0.1551 |\n| L3 | 0.1554 |\n| L4 | 0.1552 |\n| L5 | 0.1554 |\n| L6 | 0.1547 |\n| L7 | 0.1551 |\n| L8 | 0.1552 |\n| L9 | 0.1553 |\n| L10 | 0.1553 |\n| L11 | 0.1553 |\n| L12 | 0.1554 |\n| L13 | 0.1554 |\n| L14 | 0.1554 |\n| L15 | 0.1555 |\n| L16 | 0.1551 |\n| L17 | 0.1552 |\n| L18 | 0.1553 |\n| L19 | 0.1553 |\n| L20 | 0.1554 |\n| L21–L31 | 0.1555 |\n\n- **Peak**: L15 (R²=0.1555) — L21+ 并列\n- **Exit**: L31 (R²=0.1555)\n- **ΔR² (peak–exit)**: 0.0000\n- **ΔR² (max–min)**: 0.0008 (0.1555 − 0.1547)\n- **Mean R²**: 0.1553\n\n## 对比\n\n两个 backbone 的 NLP control R² profile 完全一致：\n\n1. **所有层 R² ≈ 0.1555**，波动在 ±0.0003（Phi-3）和 ±0.0008（Llama-2）范围内，本质上是噪声。\n2. **无 layer-wise 变化趋势**：没有 peak、没有 exit collapse、没有单调递增/递减。R² 完全 flat。\n3. **std = 0.0**（action_r2_probing.json），说明单次 seed 运行，数值波动来自 Ridge 回归的数值精度而非实质性差异。\n4. **n_unique_hidden_states = 10**：text-only model 对同一 task instruction 每个 timestep 产生相同 hidden state，hidden state 只有 10 个唯一值（对应 10 个 task），线性 probe 无法从中预测 action → R² ≈ baseline 水平，符合预期。\n\n结论：NLP control 验证通过——纯文本 LLM 的 hidden states 不包含 action-predictive 信息，R² 在所有层均为 chance level (~0.155)，跨两个 backbone 结果一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phi3-full-r2-profile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a51b3b58bf9c8e94f94",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper fig1 dual and taskdep move",
+  "task_key": "worker_paper_fig1_dual_and_taskdep_move_20260519T155504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_dual_and_taskdep_move_20260519T155504_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "fab8c15f9882237fb0e544c50eb1a2e790019b7537035cab1366bd3d5585ad1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**任务 1 — Fig 1 双面板**\n- `experiments.tex:104-117`: 替换为 minipage 双面板布局，panel (a) 32-layer attention + panel (b) dose-response\n- `\\label{fig:attention_profile}` 保留，正文引用不变\n- Appendix `fig:dose_response`（appendix.tex:157-162）未动，`\\ref{fig:dose_response}` 引用仍指向 appendix 详细版\n\n**任务 2 — Task-dependent routing 移入 Experiments**\n- `experiments.tex:119-121`: 在 §4.3 末尾（Fig 1 之后）新增 `\\paragraph{Task-dependent routing modulation.}`，含 2.5×/p=0.033、6.5×/p=0.008 数据\n- `discussion.tex:19-21 → 17-18`: 删除原 `\\paragraph{Task-dependent routing.}` 整段，将 deployment 建议句合并至 \"Functional stages and predictions\" 段尾\n- Introduction line 18 的 \"2.5× stronger\" 现在对应 experiments.tex 中的段落\n\n**编译验证**\n- 0 errors, 0 undefined references\n- 正文 ≤8 页（References 从 page 8 开始）\n- 总 27 页"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-dual-and-taskdep-move.md"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "e3c5739be0ed4721f6bf",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "run phi3 nlp control",
+  "task_key": "worker_run_phi3_nlp_control_20260523T231450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phi3_nlp_control_20260523T231450.log",
+    "occurrence": 1,
+    "bytes": 1368994,
+    "sha256": "0fc6886556e5a7b96b83a4b158877646b69145b42017b11a01d10b22c2c985e0"
+  },
+  "statistics": {
+    "messages": 956,
+    "user_turns": 1,
+    "tool_calls": 409,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 128,
+      "tool_call": 409,
+      "tool_result": 409,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 815,
+      "chunks": [
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0005.json",
+          "message_count": 95
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 141,
+      "chunks": [
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0005.json",
+          "message_count": 85
+        },
+        {
+          "path": "e3c5739be0ed4721f6bf-part-0006.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-phi3-nlp-control.md"
+}

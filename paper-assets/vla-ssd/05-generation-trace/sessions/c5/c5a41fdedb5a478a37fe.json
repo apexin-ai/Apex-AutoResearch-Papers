@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "c5a41fdedb5a478a37fe",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "exp phase2 extraction",
+  "task_key": "worker_exp_phase2-extraction_20260515T074614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase2-extraction_20260515T074614.log",
+    "occurrence": 1,
+    "bytes": 1109230,
+    "sha256": "82ea57aeaba2c619a4a68b9f0fe88d3a36c89a38d794c1e58e32638d24a26d6c"
+  },
+  "statistics": {
+    "messages": 428,
+    "user_turns": 1,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 145,
+      "tool_call": 138,
+      "tool_result": 138,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "c5a41fdedb5a478a37fe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5a41fdedb5a478a37fe-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5a41fdedb5a478a37fe-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "c5a41fdedb5a478a37fe-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-phase2-extraction.md"
+}

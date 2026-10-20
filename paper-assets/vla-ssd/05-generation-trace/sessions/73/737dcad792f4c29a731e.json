@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "737dcad792f4c29a731e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation p3 per dof",
+  "task_key": "worker_code_ablation_p3_per_dof_20260516T085732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p3_per_dof_20260516T085732_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "e8fb73eccfd022d2b1a7444181678b4c9ed30161ef1ec5aeb869e93fa4deb87b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整且一致。\n\n**结果摘要:**\n\n| Condition | xyz peak | rpy peak | gripper peak | full peak |\n|-----------|----------|----------|-------------|-----------|\n| trained_image_mean | L13, 0.193 | L12, 0.175 | L13, 0.106 | L13, 0.176 |\n| trained_last_preaction | L12, 0.294 | L13, 0.296 | L12, 0.180 | L12, 0.280 |\n| untrained_image_mean | L0, 0.184 | L0, 0.159 | L0, 0.093 | L0, 0.163 |\n| untrained_last_preaction | L1, 0.190 | L2, 0.187 | L2, 0.103 | L1, 0.171 |\n\n**Dominance**: xyz 在所有条件下贡献最大（略高于 rpy），gripper 贡献最低。trained_last_preaction 中 xyz ≈ rpy（0.294 vs 0.294），差距极小。\n\n**关键发现:**\n- xyz 和 rpy 贡献接近，translation 略占优\n- gripper（离散 0/1）RSA 显著低于连续维度（预期行为）\n- Trained 模型 RSA 峰值在 L12-13（中间层），untrained 在 L0-2（早期层即衰减）\n\n脚本: `/root/vla-ssd/scripts/ablations/rsa_per_dof.py`\n结果: `/root/autodl-tmp/vla-ssd/results/ablations/rsa_per_dof.json` (612s, 18KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-p3-per-dof.md"
+}

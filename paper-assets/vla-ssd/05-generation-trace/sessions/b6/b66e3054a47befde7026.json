@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b66e3054a47befde7026",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis bootstrap block check",
+  "task_key": "worker_analysis_bootstrap_block_check_20260517T191334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_block_check_20260517T191334_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "189a90b953fc49290c9be2ca485631088e32be8ea2eb577b0d6ff49f3d2a0489"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键代码已找到。让我确认核心逻辑：\n\n**Bootstrap resample 单位：task-level（per-task RSA values）**\n\n具体证据（`/root/vla-ssd/scripts/rsa_definitive.py`）：\n\n1. **Line 155-166**: `compute_task_rsa()` — 对每个 task 内所有 demo pairs 计算一个单一的 Spearman ρ（RSA 值）。pairing 是 within-task demo combinations。\n\n2. **Line 237-255**: `compute_single_model()` — 对 10 个 tasks 各得到一个 RSA 值，存入 `rsa_values` 列表（长度 = task 数，最多 10）。\n\n3. **Line 203-207**: `bootstrap_ci(values)` — bootstrap 的输入是 `rsa_values`（per-task RSA 值数组）。resample 操作是：\n   ```python\n   means = [np.mean(rng.choice(values, size=n, replace=True)) for _ in range(n_boot)]\n   ```\n   即从 10 个 task-level RSA 值中 resample with replacement。\n\n**结论：已正确处理。**\n\nBootstrap resample 单位是 **task**（每个 task 产生一个 RSA 值，bootstrap 在这 10 个 task-level 值上 resample）。这比 demo-level block bootstrap 更保守。Within-task 的 temporal autocorrelation 完全不影响 CI，因为：\n- 每个 task 内部先将所有 demo pairs 聚合为单个 Spearman ρ\n- Bootstrap 只在 task 之间 resample，不触及 timestep 或 demo 内部结构"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-block-check.md"
+}

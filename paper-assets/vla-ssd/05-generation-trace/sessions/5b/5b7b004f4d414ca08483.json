@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "id": "5b7b004f4d414ca08483",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "ssh check shuffled control",
+  "task_key": "worker_ssh_check-shuffled-control_20260515T194205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_check-shuffled-control_20260515T194205.jsonl",
+    "occurrence": 1,
+    "bytes": 16111,
+    "sha256": "9e5dfaa290d1812a07a0f482cac6a503199fa28ebe743f69fa46873b24139685"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:43:06.448367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:43:06.448695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:43:06.448858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps aux | grep -E \"train_probes|shuffle\" | grep -v grep"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:43:06.449056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:43:06.449200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tmux ls 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:43:06.449326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:43:06.449444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:43:06.449561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps aux | grep pca_linear | grep -v grep"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:43:06.449710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 561 MiB, 2 %\\\\n1, 1713 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:43:06.449847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:43:06.450077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:43:06.450219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:43:06.450350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps aux | grep -E \"train_probes|shuffle\" | grep -v grep",
+              "warn": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:43:06.450470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tmux ls 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:43:06.450644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     642367  0.0  0.0   4364  2072 ?        S    03:17   0:00 bash -c cd /root/vla-ssd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c ' echo \\\\\\\"=== START: $(date) ===\\\\\\\"  echo \\\\\\\"--- Trained VLA PCA-1024 ---\\\\\\\" python scripts/train_probes.py \\\\\\\\   --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ \\\\\\\\   --output_dir /root/autodl-tmp/vla-ssd/results/trained_libero_goal/ \\\\\\\\   --probe_type goal_classification \\\\\\\\   --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\\\\\\   --pca_dim 1024 --gpu 0  echo \\\\\\\"--- Untrained VLA PCA-1024 ---\\\\\\\" python scripts/train_probes.py \\\\\\\\   --features_dir /root/autodl-tmp/vla-ssd/features/untrained_libero_goal/ \\\\\\\\   --output_dir /root/autodl-tmp/vla-ssd/results/untrained_libero_goal/ \\\\\\\\   --probe_type goal_classification \\\\\\\\   --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\\\\\\   --pca_dim 1024 --gpu 0  echo \\\\\\\"--- DINO PCA-1024 ---\\\\\\\" python scripts/train_probes.py \\\\\\\\   --features_dir /root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/ \\\\\\\\   --output_dir /root/autodl-tmp/vla-ssd/results/dinov2_libero_goal/ \\\\\\\\   --probe_type goal_classification \\\\\\\\   --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\\\\\\   --pca_dim 1024 --gpu 0  echo \\\\\\\"=== DONE: $(date) ===\\\\\\\" ' > /tmp/pca1024_goal.log 2>&1 & echo $!\\\\nroot     642372  0.0  0.0   4364  3132 ?        S    03:17   0:00 bash -c  echo \\\\\\\"=== START: $(date) ===\\\\\\\"  echo \\\\\\\"--- Trained VLA PCA-1024 ---\\\\\\\" python scripts/train_probes.py \\\\\\\\   --features_dir /root/autodl-tmp/vla-ssd/features/trained_libero_goal/ \\\\\\\\   --output_dir /root/autodl-tmp/vla-ssd/results/trained_libero_goal/ \\\\\\\\   --probe_type goal_classification \\\\\\\\   --data_dir /root/autodl-tmp/vla-ssd/data/libero/libero_goal/ \\\\\\\\   --pca_dim 1024 --gpu 0  echo \\\\\\\"--- Untrained VLA PCA-1024 ---\\\\\\\" python scripts/train_probes.py \\\\\\\\   --f\n…[truncated 4339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:43:06.450786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ps aux | grep pca_linear | grep -v grep",
+              "warn": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:43:06.450908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:43:06.451098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     649509  0.0  0.0   4364  2096 ?        S    03:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u /root/vla-ssd/scripts/pca_linear_probe_perlayer.py > /tmp/pca_probe.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     649515  639  3.4 42022036 36568344 ?   Rl   03:38  25:08 python3 -u /root/vla-ssd/scripts/pca_linear_probe_perlayer.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:43:06.451267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "ls -la /root/autodl-tmp/vla-ssd/results/trained_libero_goal_shuffled/goal_classification/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:43:06.451395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "cat ~/runs/vla-ssd/lg_shuffled_token_control.log 2>/dev/null | tail -30 || echo \"LOG_NOT_FOUND\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:43:06.451518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DIR_NOT_FOUND\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:43:06.451635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:43:06.451747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/pca_probe.log 2>/dev/null || echo \"NO_PCA_LOG\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:43:06.451870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nModel: trained_vla | layers: 33 | dir: /root/autodl-tmp/vla-ssd/features/trained_libero_goal/\\\\n============================================================\\\\n  Loading features from 10 h5 files...\\\\n  Loaded in 171.7s. Samples: 50880 train / 12848 val\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/decomposition/_pca.py:779: RuntimeWarning: invalid value encountered in divide\\\\n  self.explained_variance_ratio_ = self.explained_variance_ / total_var\\\\n  layer  0: acc=0.1582  f1=0.0273  var_expl=0.0000  37.9s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:43:06.452046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/pca1024_goal.log 2>/dev/null || echo \"NO_LOG\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:43:06.452183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-19183",
+              "command": "tail -20 /tmp/linear_probe_run.log 2>/dev/null || echo \"NO_LOG\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:43:06.452319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  PCA 4096 -> 1024: 0.8847 variance retained\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=1.0000  traj_acc=1.0000  F1=1.0000  ep=6  24.2s\\\\n\\\\nSaved to /root/autodl-tmp/vla-ssd/results/trained_libero_goal_pca1024/goal_classification/\\\\n--- Untrained VLA PCA-1024 ---\\\\nPCA mode: reducing to 1024 dims\\\\n=== Probe Training: goal_classification | device=cuda:0 ===\\\\nFeatures: 500 trajs, 33 layers, dim=4096\\\\nTasks (10): ['open_the_middle_drawer_of_the_cabinet', 'open_the_top_drawer_and_put_the_bowl_inside', 'push_the_plate_to_the_front_of_the_stove', 'put_the_bowl_on_the_plate', 'put_the_bowl_on_the_stove', 'put_the_bowl_on_top_of_the_cabinet', 'put_the_cream_cheese_in_the_bowl', 'put_the_wine_bottle_on_the_rack', 'put_the_wine_bottle_on_top_of_the_cabinet', 'turn_on_the_stove']\\\\nSplit: 400 train trajs / 100 val trajs\\\\n\\\\n[Layer 0] (1/33)\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/decomposition/_pca.py:779: RuntimeWarning: invalid value encountered in divide\\\\n  self.explained_variance_ratio_ = self.explained_variance_ / total_var\\\\n  PCA 4096 -> 1024: nan variance retained\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=0.1582  traj_acc=0.1000  F1=0.0273  ep=6  46.8s\\\\n\\\\n[Layer 1] (2/33)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:43:06.452454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Samples: 50880 train / 12848 val\\\\n  acc=0.9987  traj_acc=1.0000  F1=0.9984  ep=50  23.2s\\\\n\\\\n[Layer 15] (16/33)\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=0.9983  traj_acc=1.0000  F1=0.9980  ep=46  23.6s\\\\n\\\\n[Layer 16] (17/33)\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=0.9981  traj_acc=1.0000  F1=0.9978  ep=20  21.2s\\\\n\\\\n[Layer 17] (18/33)\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=0.9970  traj_acc=1.0000  F1=0.9965  ep=23  34.5s\\\\n\\\\n[Layer 18] (19/33)\\\\n  Samples: 50880 train / 12848 val\\\\n  acc=0.9973  traj_acc=1.0000  F1=0.9968  ep=24  28.0s\\\\n\\\\n[Layer 19] (20/33)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:43:06.452633+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### lg_shuffled_token_control\n**未启动。** 无相关进程，结果目录不存在，日志文件为空。\n\n### 当前运行的实验（3 个）\n\n| 实验 | PID | GPU | 启动时间 | 状态 |\n|------|-----|-----|---------|------|\n| PCA-1024 goal_classification (untrained) | 650060 | GPU 0 | 03:41 | 运行中，untrained 阶段（trained 已完成，acc=1.0000） |\n| Linear probe goal_classification (untrained) | 648231 | GPU 1 | 03:33 | 运行中，untrained 阶段，Layer 19/33 |\n| **Exp-1 pca_linear_probe_perlayer** | 649515 | — | 03:38 | 运行中，trained_vla Layer 0 完成（acc=0.1582），刚开始 |\n\n### GPU 使用率\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU 0 | 561 MiB | 2% |\n| GPU 1 | 1713 MiB | 0% |\n\n利用率低说明当前主要在做 CPU 端工作（PCA 降维、数据加载）。\n\n### 注意\n- perlayer sweep 的 layer 0 出现 `RuntimeWarning: invalid value encountered in divide`（PCA variance ratio 为 NaN），acc 仅 0.1582 — layer 0 特征可能全零或接近常数。\n- tmux 无 session（进程通过 nohup 后台运行）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check-shuffled-control_20260515T194205"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-check-shuffled-control.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68713e700e50e3bcf39e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code l1 head ablation fix",
+  "task_key": "worker_code_l1_head_ablation_fix_20260517T130432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l1_head_ablation_fix_20260517T130432_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "990c0994f91ca67baa32f6692e68433a591f3aa20175d16760b3ccb8798135fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整运行已提交。\n\n- **PID**: 891475, **tmux session**: `l1_head_ablation`\n- **日志**: `~/runs/vla-ssd/l1_head_ablation.log`\n- **输出**: `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/results_v2.json`\n\n三处修改总结：\n1. **标签逻辑**: label 从 `task_idx` 改为 `instruction_id`(0-9)，train/test split 从 demo-based 改为 task-based (tasks 0-7 train, 8-9 test)\n2. **PCA-256**: StandardScaler 之后加 `PCA(n_components=256)` 降维\n3. **ablate_top5**: 新增条件 `[0, 10, 14, 22, 25]`，总共 4 个条件\n\n50 images × 10 instructions × 4 conditions = 2000 次前向传播，预计 ~30-40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l1-head-ablation-fix.md"
+}

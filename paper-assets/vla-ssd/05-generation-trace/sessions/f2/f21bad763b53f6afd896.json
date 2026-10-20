@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f21bad763b53f6afd896",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code verify probe scripts",
+  "task_key": "worker_code_verify-probe-scripts_20260515T110030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-probe-scripts_20260515T110030_result.json",
+    "occurrence": 1,
+    "bytes": 1595,
+    "sha256": "ea4e4b9a28739cb772c77b07c5dd6a97044b1871d1c1bf6ad91294d5ae6a4b20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the summary:\n\n```\n兼容性：✅ 全部通过，无需修复\n\n  数据加载：\n    ✅ HDF5 格式正确处理 (glob *.h5)\n    ✅ OpenVLA: demo_X → last_preaction (T,33,4096) fp16 / image_mean (T,33,4096) fp16\n    ✅ DINO-V2: traj_X → cls_token (T,1024) / patch_mean (T,1024)\n    ✅ AGG_MAP fallback 机制: last_preaction→cls_token, image_mean→patch_mean\n\n  Feature key / Shape：\n    ✅ is_3d 标志正确区分 3D(T,33,4096) vs 2D(T,1024)\n    ✅ 层索引: ds[:,layer,:] (3D) / ds[:] (2D)\n\n  Pair sampling：\n    ✅ Distance-stratified (n_bins=10, pairs_per_bin=50)\n    ✅ Cross-trajectory (Control B) 单独实现\n\n  Split：\n    ✅ 按 task 分组，每 task 内 80/20 trajectory 划分（非 frame-level）\n\n已修复：无（脚本与实际格式完全兼容）\n\nSmoke test（DINO-V2 temporal_distance）：\n  ✅ 500 trajs, 1 layer, dim=1024\n  ✅ 400 train / 100 val\n  ✅ rho = 0.8331 (7.5s)\n\n已提取 trained 特征：4/10 tasks (24GB)\n  KITCHEN_SCENE3 (5.1G), KITCHEN_SCENE4 (4.8G),\n  KITCHEN_SCENE6 (5.9G), KITCHEN_SCENE8 (6.6G)\n\nSub-task predicate：❌ LIBERO HDF5 中无标注\n  Demo 数据只有: actions, dones, obs, rewards, robot_states, states\n  Demo attrs 只有: init_state, model_file, num_samples\n  → 需要 LIBERO simulator 回放提取 predicate ground truth\n\n建议下一步：\n  1. 等 trained 特征提取完成（剩余 6/10 tasks）\n  2. Sub-task predicate 需写 LIBERO env 回放脚本，在 simulator 中逐帧 evaluate predicates 并导出标注 JSON\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-probe-scripts.md"
+}

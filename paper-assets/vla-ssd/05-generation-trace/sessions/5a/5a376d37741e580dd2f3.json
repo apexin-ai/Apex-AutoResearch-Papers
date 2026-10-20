@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a376d37741e580dd2f3",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fix p2 demo sensitivity",
+  "task_key": "worker_code_fix_p2_demo_sensitivity_20260516T102929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_p2_demo_sensitivity_20260516T102929_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "f349c94ffe46425ce4bb2ebb51361685630a6a481af9a2142217d45e00b8949e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**脚本修复完毕，dry-run 验证通过。**\n\n- **L0 RSA 50demos = 0.6117**（与主分析一致，之前错误值是 0.048）\n- **L0 RSA 25demos = 0.5931**\n- Probe 部分未动，L0 50demos=0.6448, 25demos=0.5709\n\n修复内容：`compute_rsa_for_layer` 从 \"demo-mean-then-distance\" 改为 Method B \"timestep-wise pdist then average\"——对每个 timestep 算 pairwise cosine rep distance + euclidean action distance，跨 timestep 平均后做 Spearman。\n\n旧进程（PID 720674，跑了 32 分钟的错误代码）已一并 kill。等待 submit_training_job 提交完整实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-p2-demo-sensitivity.md"
+}

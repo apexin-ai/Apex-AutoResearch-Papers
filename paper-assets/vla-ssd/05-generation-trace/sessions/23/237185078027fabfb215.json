@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237185078027fabfb215",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper abstract threestage and bootstrap appendix",
+  "task_key": "worker_paper_abstract_threestage_and_bootstrap_appendix_20260519T155518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract_threestage_and_bootstrap_appendix_20260519T155518_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "f627fe2b996d836861c5114e700de134684bd133bfd811aae92f91980762b8c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正文 7 页（References 从第 8 页开始），在 CoRL 8 页限制内。\n\n编译 0 errors，27 页 PDF，正文 7 页（≤8）。\n\n**修改汇总：**\n\n| 任务 | 文件 | 位置 | 内容 |\n|------|------|------|------|\n| 4 | `abstract.tex:6` | \"Seven complementary analyses...\" 之后、\"Second, vision encoder...\" 之前 | 插入 three-stage sentence |\n| 5 | `appendix.tex:757-758` | `\\subsection{Task Complexity}` 末尾，leave-one-out 段落之后 | 插入 bootstrap CI 段落 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-threestage-and-bootstrap-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99d37afd4355bb5328dd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug check t1 final results",
+  "task_key": "worker_debug_check_t1_final_results_20260518T051044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_check_t1_final_results_20260518T051044_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "74b25784e2f1467a2a45bf784a7a861114df2399d03e69824af144486336c018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**进程状态**：卡死。PID 657872 仍在运行但挂起（sleeping on futex, GPU 0%, log 自 13:10 无更新，已 1.5+ 小时无进展）。\n\n**完成了 10/20 seeds，无 JSON/PDF 输出**（Phase 3 统计和保存未执行）。\n\n### 已获取的数据\n\n| 指标 | 值 |\n|---|---|\n| **Baseline R2** | 0.5169 |\n| **Dominant-24 R2** | 0.5592 |\n| **Dominant-24 R2 increase** | 0.0423 |\n\n**10 个 random-24 seeds**：\n\n| seed | R2 | R2 increase |\n|---|---|---|\n| 0 | 0.5896 | 0.0727 |\n| 1 | 0.5845 | 0.0676 |\n| 2 | 0.5811 | 0.0642 |\n| 3 | 0.5893 | 0.0724 |\n| 4 | 0.6040 | 0.0871 |\n| 5 | 0.6021 | 0.0852 |\n| 6 | 0.6028 | 0.0859 |\n| 7 | 0.5748 | 0.0579 |\n| 8 | 0.5897 | 0.0728 |\n| 9 | 0.6185 | 0.1016 |\n\n**10-seed 统计（手算）**：\n- Random mean increase: **0.0767**\n- Random SD: ~0.0126\n- Dominant-24 increase (0.0423) **低于所有 10 个 random subsets**\n- z-score ≈ (0.0423 − 0.0767) / 0.0126 ≈ **−2.73**\n- Percentile: **0%**（dominant-24 是最低的）\n\n### 关键发现\n\nDominant-24 ablation 的 R2 increase（0.0423）**显著低于** random-24 subsets（均值 0.0767）。方向与预期相反：dominant heads ablation 后 action prediction 改善幅度比随机 subset 更小，不是更大。\n\n### 建议\n\n进程需要 kill 并处理。已有 10 个 seeds 的数据已经足够得出结论（z = −2.73），是否需要我：\n1. Kill 卡死进程，用已有 10-seed 数据手动生成 JSON + 图？\n2. Kill 后重跑完整 20 seeds？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-check-t1-final-results.md"
+}

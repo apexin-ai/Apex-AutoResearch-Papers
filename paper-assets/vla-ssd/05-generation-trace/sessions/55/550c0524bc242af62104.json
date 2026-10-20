@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "550c0524bc242af62104",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh untrained last preaction probe",
+  "task_key": "worker_ssh_untrained-last-preaction-probe_20260515T234931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_untrained-last-preaction-probe_20260515T234931.log",
+    "occurrence": 1,
+    "bytes": 1141317,
+    "sha256": "b15646924fdebd41775a28f5de0249cca020a433342431391f929a84a4934be5"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 1,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 212,
+      "tool_result": 212,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 468,
+      "chunks": [
+        {
+          "path": "550c0524bc242af62104-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "550c0524bc242af62104-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "550c0524bc242af62104-part-0003.json",
+          "message_count": 108
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "550c0524bc242af62104-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-untrained-last-preaction-probe.md"
+}

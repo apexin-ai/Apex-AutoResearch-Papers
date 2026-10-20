@@ -1,0 +1,1606 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9a29c95422970b10d04e",
+  "rounds": [
+    {
+      "number": 402,
+      "messages": [
+        {
+          "source_line": 3961,
+          "timestamp": "2026-05-21T16:41:25.747232+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "该 Worker 结果已在本 session 开始时读取并处理完毕。Checkpoint 审计、TraceVLA Long/Goal 脚本准备的结果已汇报给 Director，两个新实验已提交。无需重复处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003961"
+        }
+      ]
+    },
+    {
+      "number": 403,
+      "messages": [
+        {
+          "source_line": 3962,
+          "timestamp": "2026-05-21T16:41:26.342184+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_cross_arch_summary_20260521T155716 已完成（status=done）。用 `get_worker_status('worker_analysis_cross_arch_summary_20260521T155716')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_cross_arch_summary_20260521T155716\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003962"
+        },
+        {
+          "source_line": 3963,
+          "timestamp": "2026-05-21T16:41:32.174696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_cross_arch_summary_20260521T155716"
+            }
+          },
+          "id": "event-003963"
+        },
+        {
+          "source_line": 3964,
+          "timestamp": "2026-05-21T16:41:32.225771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_cross_arch_summary_20260521T155716\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:cross_arch_summary\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T15:57:16.209518+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:04:39.854642+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"数据收集完毕。以下是跨架构实验数据汇总。\\\\n\\\\n---\\\\n\\\\n## Cross-Architecture Probing Comparison Summary\\\\n\\\\n### 1. R² Action Probing — Peak & Exit\\\\n\\\\n**标准化格式数据 (image_mean / last_preaction)**\\\\n\\\\n| 架构 | Suite | Cond | Layers | Peak Ly (img) | Peak R² (img) | Peak Ly (preact) | Peak R² (preact) | Exit R² (img) | Exit R² (preact) |\\\\n|------|-------|------|--------|--------------|---------------|------------------|------------------|--------------|-----------------|\\\\n| **OpenVLA** (Llama-2-7B) | Object | trained | 32 | L12 | 0.807 | L13 | 0.787 | 0.793 | 0.666 |\\\\n| OpenVLA | Object | untrained | 32 | L29 | 0.791 | L19 | 0.761 | 0.781 | 0.685 |\\\\n| **TracVLA** (Phi-3-mini) | Spatial | trained | 32 | L19 | 0.835 | L17 | 0.809 | 0.791 | 0.671 |\\\\n| TracVLA | Object | trained | 32 | L19 | 0.774 | L9 | 0.764 | 0.748 | 0.470 |\\\\n| TracVLA | Object | untrained | 32 | L20 | 0.753 | L23 | 0.690 | 0.736 | 0.681 |\\\\n| **NORA** (Qwen2.5-VL-3B) | Goal | trained | 36 | L10 | 0.697 | L9 | 0.688 | **-0.004** | **-0.004** |\\\\n| NORA | Goal | untrained | 36 | L9 | 0.735 | L15 | 0.660 | 0.656 | 0.619 |\\\\n| NORA | Spatial | trained | 36 | L10 | 0.721 | L24 | 0.720 | 0.553 | 0.417 |\\\\n| NORA | Spatial | untrained | 36 | L11 | 0.725 | L19 | 0.629 | 0.668 | 0.596 |\\\\n\\\\n**旧格式数据 (overall_r2 / last_preaction only)**\\\\n\\\\n| 架构 | Suite | Cond | Peak Ly | Peak R² | Exit Ly | Exit R² |\\\\n|------|-------|------|---------|---------|---------|---------|\\\\n| OpenVLA | Goal | trained | L19 | 0.677 | L32 | 0.618 |\\\\n| OpenVLA | Goal | untrained | L1 | 0.566* | L32 | 0.607 |\\\\n| TracVLA | Goal | trained | L11 | 0.634 | L32 | 0.5\n…[truncated 2547 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-003964"
+        },
+        {
+          "source_line": 3965,
+          "timestamp": "2026-05-21T16:41:43.110103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027"
+            }
+          },
+          "id": "event-003965"
+        },
+        {
+          "source_line": 3966,
+          "timestamp": "2026-05-21T16:41:43.161556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"verify:startup_tracvla_long_goal_20260521T1641\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:40:27.948792+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:41:06.815505+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个实验均已成功启动，确认如下：\\\\n\\\\n| 实验 | PID | 运行时间 | GPU | 显存占用 | 进度 | 状态 |\\\\n|------|-----|---------|-----|---------|------|------|\\\\n| tracvla_long_v1 | 568677 | ~1h28m | cuda:0 (52% util) | 9377/97887 MiB | 2100/5000 (Task 4/10) | 正常 |\\\\n| tracvla_goal_v1 | 568838 | ~1h22m | cuda:1 (51% util) | 9371/97887 MiB | 2000/5000 (Task 4/10) | 正常 |\\\\n\\\\n无报错，两个实验进度接近，都在稳定推进中。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-003966"
+        },
+        {
+          "source_line": 3967,
+          "timestamp": "2026-05-21T16:41:47.764510+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并稳定运行：\n- **cuda:0** tracvla_long_v1: PID 568677, 52% GPU util, 2100/5000 samples (Task 4/10)\n- **cuda:1** tracvla_goal_v1: PID 568838, 51% GPU util, 2000/5000 samples (Task 4/10)\n\n两张 GPU 已恢复满载运行。等待 cron 回调通知实验完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003967"
+        }
+      ]
+    },
+    {
+      "number": 404,
+      "messages": [
+        {
+          "source_line": 3968,
+          "timestamp": "2026-05-21T16:41:48.381090+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **OpenVLA Long 结果异常，需先排查技术问题再解读科学含义**\n\n## 紧急确认：使用的 checkpoint 是否正确？\n\nOpenVLA Long **必须用 OFT checkpoint**（openvla-7b-finetuned-libero-long 或类似），不是标准 openvla-7b-finetuned（那是 Goal/Spatial/Object 的）。\n\n用 ssh_read_only 检查脚本中 trained checkpoint 路径：\n```bash\ngrep -n \"checkpoint\\|model_path\\|TRAINED\" /root/vla-ssd/scripts/libero_long_full_pipeline.py | head -20\n```\n\n如果用了错误 checkpoint，这解释了为什么 L1 只有 14/32（Goal fine-tuned 模型跑 Long 数据当然表现不同）。\n\n## 修复计划（同意）\n1. 先修 unnorm_key bug（同已知问题）\n2. **同时确认 checkpoint 路径正确**\n3. 修好后 cuda:0 立即重跑\n\n## 关于科学解读\n**暂不下结论**。如果 checkpoint 正确（OFT），那 Long suite 的 no-collapse + 14/32 heads 确实是重要发现（长程任务需要持续深层处理）。如果 checkpoint 错误，数据作废需全部重跑。先确认再说。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-003968"
+        },
+        {
+          "source_line": 3969,
+          "timestamp": "2026-05-21T16:42:06.838600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:openvla_long_checkpoint_verify",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh']",
+              "task_prompt": "紧急：确认 OpenVLA Long 实验使用的 checkpoint 是否正确。服务器: westd-19183\n\n## 背景\nOpenVLA Long 实验 L1 attention 只有 14/32 instruction-dominant（其他 suite 是 24/32），Director 怀疑可能用错了 checkpoint。Long suite 必须用 OFT checkpoint（openvla-7b-oft-finetuned-libero-10），不能用 Goal/Object 的 checkpoint。\n\n## 检查步骤（全部 ssh_read_only）\n\n1. 检查脚本中 checkpoint 配置：\n```bash\ngrep -n \"checkpoint\\|model_path\\|TRAINED\\|trained_path\\|CHECKPOINT\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py | head -30\n```\n\n2. 确认 OFT checkpoint 的实际路径：\n```bash\nls -la /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10/\n```\n\n3. 对比其他 OpenVLA 脚本用的 checkpoint（看是不是直接从模板复制忘了改）：\n```bash\ngrep -n \"checkpoint\\|model_path\\|TRAINED\" /root/autodl-tmp/vla-ssd/scripts/libero_object_full_pipeline.py | head -10\necho \"=== Goal ===\"\ngrep -n \"checkpoint\\|model_path\\|TRAINED\" /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py | head -10\n```\n\n4. 查看实际加载日志（如果有）：\n```bash\ncat /root/autodl-tmp/vla-ssd/results/libero_long/r2_probing_results.json 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print('model_path:', d.get('model_path','NOT_FOUND')); print('checkpoint:', d.get('checkpoint','NOT_FOUND')); print('metadata:', {k:v for k,v in d.items() if k not in ['image_mean','last_preaction_token','overall_r2']})\" 2>/dev/null || echo \"Cannot parse metadata from results\"\n```\n\n5. 如果结果文件没有 metadata，检查日志：\n```bash\ncat ~/runs/vla-ssd/openvla_long_pipeline_v1.log 2>/dev/null | grep -i \"loading\\|checkpoint\\|model\\|path\" | head -20\n```\n\n汇报：脚本中配置的 trained checkpoint 路径是什么？是 OFT (`openvla-7b-oft-finetuned-libero-10`) 还是其他？"
+            }
+          },
+          "id": "event-003969"
+        },
+        {
+          "source_line": 3970,
+          "timestamp": "2026-05-21T16:42:12.713030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_openvla_long_checkpoint_verify_20260521T164207\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_diag_openvla_long_checkpoint_verify_20260521T164207.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_openvla_long_checkpoint_verify_20260521T164207 started. Use get_worker_status('worker_diag_openvla_long_checkpoint_verify_20260521T164207') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5874
+          },
+          "id": "event-003970"
+        },
+        {
+          "source_line": 3971,
+          "timestamp": "2026-05-21T16:42:16.168469+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出验证 checkpoint。等待结果后立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003971"
+        }
+      ]
+    },
+    {
+      "number": 405,
+      "messages": [
+        {
+          "source_line": 3972,
+          "timestamp": "2026-05-21T16:42:16.658304+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analyze_tracvla_spatial_untrained_v1_20260521T160910 已完成（status=done）。用 `get_worker_status('worker_analyze_tracvla_spatial_untrained_v1_20260521T160910')` 读取结果，然后处理。\n\n- worker_id: worker_analyze_tracvla_spatial_untrained_v1_20260521T160910\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003972"
+        },
+        {
+          "source_line": 3973,
+          "timestamp": "2026-05-21T16:42:22.330031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analyze_tracvla_spatial_untrained_v1_20260521T160910"
+            }
+          },
+          "id": "event-003973"
+        },
+        {
+          "source_line": 3974,
+          "timestamp": "2026-05-21T16:42:22.380971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_tracvla_spatial_untrained_v1_20260521T160910\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analyze:tracvla_spatial_untrained_v1\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:09:11.071874+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:11:06.642226+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"所有数据已获取。没有 RSA 或 counterfactual 结果（Phase 5 被跳过）。下面汇总。\\\\n\\\\n## Metrics Summary\\\\n\\\\n### Phase 2: R² Probing (Ridge, all 32 layers)\\\\n\\\\n| Layer | Trained img_mean | Untrained img_mean | Trained last_pre | Untrained last_pre |\\\\n|-------|-----|------|------|------|\\\\n| L0 | 0.8059 | 0.7761 | 0.6656 | 0.5911 |\\\\n| L4 | 0.8091 | 0.7812 | 0.7954 | 0.7132 |\\\\n| L8 | 0.8134 | 0.7892 | 0.7908 | 0.6942 |\\\\n| L12 | 0.8231 | 0.7806 | 0.7980 | 0.7195 |\\\\n| L16 | 0.8311 | 0.7961 | 0.8035 | 0.7207 |\\\\n| **L17** | **0.8317** | 0.7919 | **0.8090** (peak) | 0.7156 |\\\\n| **L19** | **0.8347** (peak) | 0.7901 | 0.8051 | 0.7178 |\\\\n| L24 | 0.8169 | 0.7694 | 0.7463 | 0.7116 |\\\\n| L28 | 0.8223 | 0.7714 | **0.6150** | 0.7036 |\\\\n| L29 | 0.8136 | 0.7731 | **0.5040** | 0.7037 |\\\\n| L30 | 0.7970 | 0.7696 | **0.4472** | 0.6969 |\\\\n| **L31** | 0.7907 | 0.7589 | **0.6712** | **0.7065** |\\\\n\\\\n### Phase 3: L1 Attention Profile\\\\n\\\\n| Metric | Trained | Untrained |\\\\n|--------|---------|-----------|\\\\n| Instruction-dominant heads | 30/32 | 32/32 |\\\\n| Image-dominant heads | 2/32 | 0/32 |\\\\n\\\\n### Phase 4: Cross-instruction Classification\\\\n\\\\n| Layer | Trained img | Untrained img | Trained last_pre | Untrained last_pre |\\\\n|-------|-------------|---------------|-------------------|---------------------|\\\\n| L0 | 1.000 | 1.000 | 0.923 | 0.977 |\\\\n| L1+ | 1.000 | 1.000 | 1.000 | 1.000 |\\\\n\\\\n### Phase 5: Counterfactual\\\\n- Trained: empty d=1.3268, shuffled d=1.2947\\\\n- Untrained: **skipped** (untrained model cannot generate meaningful actions)\\\\n\\\\n---\\\\n\\\\n## Trained vs Untrained Comparison\\\\\n…[truncated 2597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-003974"
+        },
+        {
+          "source_line": 3975,
+          "timestamp": "2026-05-21T16:42:35.325465+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "TracVLA Spatial 分析结果已收到。关键科学发现已记录：\n\n- **R² collapse: 训练诱导（确认）** — trained last_preaction L17→L30 暴跌 0.36, untrained 几乎平坦（仅 -0.026）\n- **L1 instruction dominance: 架构预存（非训练效应）** — untrained 32/32, trained 30/32。训练反而*减少*了指令主导性\n- **Cross-instruction classification: 架构预存** — 两种条件都接近 1.0\n\n这对论文 framing 很重要：TracVLA 的核心训练效应是 R² collapse（路由分化），不是 L1 attention 模式。\n\n等待 OpenVLA Long checkpoint 验证 Worker 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003975"
+        }
+      ]
+    },
+    {
+      "number": 406,
+      "messages": [
+        {
+          "source_line": 3976,
+          "timestamp": "2026-05-21T16:42:35.935885+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_openvla_long_pipeline_v1_20260521T160330 已完成（status=done）。用 `get_worker_status('worker_diagnose_openvla_long_pipeline_v1_20260521T160330')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_openvla_long_pipeline_v1_20260521T160330\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003976"
+        },
+        {
+          "source_line": 3977,
+          "timestamp": "2026-05-21T16:42:41.507056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_openvla_long_pipeline_v1_20260521T160330"
+            }
+          },
+          "id": "event-003977"
+        },
+        {
+          "source_line": 3978,
+          "timestamp": "2026-05-21T16:42:41.557796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_openvla_long_pipeline_v1_20260521T160330\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:openvla_long_pipeline_v1\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:03:30.521717+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:13:40.863181+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"---\\\\n\\\\n## 修复总结\\\\n\\\\n### 修复内容\\\\n\\\\n**文件**：`/root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py`（备份在 `.bak`）\\\\n\\\\n**改动 1 — UNNORM key 修复（根因）**：\\\\n- `UNNORM = \\\\\\\"libero_10\\\\\\\"` → 拆为两个常量：\\\\n  - `UNNORM_TRAINED = \\\\\\\"libero_10_no_noops\\\\\\\"` — trained 模型（OFT微调）的 `dataset_statistics.json` 中的实际 key\\\\n  - `UNNORM_UNTRAINED = \\\\\\\"bridge_orig\\\\\\\"` — base 模型 `config.json` 中的 OXE key\\\\n- `main()` 循环中按 condition 切换 `global UNNORM`\\\\n\\\\n**改动 2 — OFT 模型 norm_stats 合并**：\\\\n- 加载模型后检测并合并 `dataset_statistics.json` 到 `model.norm_stats`，因为 OFT 微调模型的 `config.json` 未更新 norm_stats（仍是 base 模型的 OXE keys）\\\\n\\\\n**改动 3 — `--only-counterfactual` 增量重跑**：\\\\n- 新增 CLI flag，跳过 Phase 1-5 直接执行 Phase 6\\\\n\\\\n### 根因分析\\\\n\\\\nLong pipeline 用的是 **OFT (Orthogonal Fine-Tuning)** 微调的模型 (`openvla-7b-oft-finetuned-libero-10`)。与标准微调不同，OFT 方式不更新 `config.json` 中的 `norm_stats`（仍保留 base 模型的 OXE dataset keys），而是将微调数据集的统计信息单独存在 `dataset_statistics.json` 中（key 为 `libero_10_no_noops`）。Object pipeline 用的是标准微调模型，其 `config.json` 直接包含 `libero_object` key，所以不受此影响。\\\\n\\\\n### 增量重跑结论\\\\n\\\\n**可以增量重跑**。Phase 1-5 trained 的 4 个输出文件完整存在。Phase 6 独立于 Phase 1-5（直接调用 `generate_action`，不依赖提取的特征）。使用 `--only-counterfactual --conditions trained` 只跑 trained Phase 6；untrained 需全量跑（Phase 1-6 全部未执行）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-003978"
+        },
+        {
+          "source_line": 3979,
+          "timestamp": "2026-05-21T16:43:00.086020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_openvla_long_checkpoint_verify_20260521T164207"
+            }
+          },
+          "id": "event-003979"
+        },
+        {
+          "source_line": 3980,
+          "timestamp": "2026-05-21T16:43:00.187462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_openvla_long_checkpoint_verify_20260521T164207\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diag:openvla_long_checkpoint_verify\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:42:07.518396+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-003980"
+        },
+        {
+          "source_line": 3981,
+          "timestamp": "2026-05-21T16:43:25.428730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (cuda:0 tracvla_long_v1 PID 568677 Phase2 ~50% | cuda:1 tracvla_goal_v1 PID 568838 Phase2 ~50%) | Worker 2 (GPU 0 / CPU 2)\n\n## 回答 Director 紧急问题：OpenVLA Long checkpoint 确认\n\n### ✅ Checkpoint 正确 — 用的是 OFT\nWorker 诊断确认脚本使用 `openvla-7b-oft-finetuned-libero-10`（OFT 微调 checkpoint），不是 Goal/Object 的标准微调 checkpoint。\n\n**14/32 L1 heads 是真实的 Long-specific 结果**，不是 checkpoint 错误。\n\n### 根因已确认并修复\nOFT 微调不更新 `config.json` 中的 norm_stats（仍保留 OXE keys），而是把微调数据的统计信息存在单独的 `dataset_statistics.json`（key = `libero_10_no_noops`）。脚本用了错误的 key `libero_10`，导致 AssertionError。\n\n**Worker 已在服务器上完成三项修复**：\n1. UNNORM key 拆分：trained 用 `libero_10_no_noops`，untrained 用 `bridge_orig`\n2. 加载 OFT 模型后自动合并 `dataset_statistics.json` 到 `model.norm_stats`\n3. 新增 `--only-counterfactual` CLI flag，可增量重跑 Phase 6\n\n### 重跑计划\n- **Trained counterfactual**: `--only-counterfactual --conditions trained`（~15min，利用已有 Phase 1-5 结果）\n- **Untrained 全流程**: `--conditions untrained`（~1.5h）\n- **现状**: cuda:0 正在跑 tracvla_long_v1，无法立即提交。tracvla_long 完成后立即安排。\n\n### 附：TracVLA Spatial trained vs untrained 对比（重要科学发现）\n跨架构分析 Worker 确认：\n- **R² collapse 是 training-induced**（trained L17→L30 下降 0.36，untrained 最大下降仅 0.026）—— 最强证据\n- **L1 instruction dominance 不是 training-induced**（untrained 32/32，trained 30/32）—— 是 Phi-3-Vision 的架构属性\n- **Cross-instruction classification 不是 training-induced**（两者都近乎完美 1.0）\n- 这意味着论文中只有 R² collapse 和 counterfactual 可以 claim 为 training effect；L1 和 cross-instr 对 TraceVLA 是 pre-existing\n\n### 待 Director 决策\n1. Long 的 14/32 heads + R²无明显 collapse（如果有的话）如何解读？等 counterfactual 补跑完再讨论？\n2. TraceVLA L1 不是 training-induced —— 是否需要调整 paper framing？（OpenVLA 是 training-induced: 9→24 heads；但 TracVLA 是 pre-existing）",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-003981"
+        },
+        {
+          "source_line": 3982,
+          "timestamp": "2026-05-21T16:43:29.143304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3714
+          },
+          "id": "event-003982"
+        },
+        {
+          "source_line": 3983,
+          "timestamp": "2026-05-21T16:43:35.321796+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报已发。当前状态：\n- cuda:0/1 各跑 TracVLA Long/Goal（~50% 进度）\n- OpenVLA Long 脚本已修复，等 GPU 空出后重跑\n- 等待 Director 对 L1 framing 和 Long 解读的决策"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003983"
+        }
+      ]
+    },
+    {
+      "number": 407,
+      "messages": [
+        {
+          "source_line": 3984,
+          "timestamp": "2026-05-21T16:43:35.965486+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754 已完成（status=done）。用 `get_worker_status('worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754')` 读取结果，然后处理。\n\n- worker_id: worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003984"
+        },
+        {
+          "source_line": 3985,
+          "timestamp": "2026-05-21T16:43:44.356431+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在之前读取过该 Worker 结果并处理完毕（诊断 openvla_long 失败 + 提取 tracvla_spatial_untrained 结果 + 确认 GPU 状态）。结果已整合到 registry 和 Director 汇报中。无需重复处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003985"
+        }
+      ]
+    },
+    {
+      "number": 408,
+      "messages": [
+        {
+          "source_line": 3986,
+          "timestamp": "2026-05-21T16:43:45.003830+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **三个决策 + 后续指令**\n\n## 决策 1: NORA 矩阵范围 (D089)\nNORA 只有 Goal+Spatial checkpoint，Object/Long 放弃。不需要再查。\n\n## 决策 2: Counterfactual 缺口统一修复\n多个实验 counterfactual 阶段缺失（tracvla_spatial, tracvla_object, openvla_object untrained, openvla_long trained+untrained）。\n\n**方案**：等当前两个实验（tracvla_long + tracvla_goal）完成后，创建一个 **counterfactual-only 批处理脚本**，只跑 Phase 6，复用已有的 Phase 1 extracted features。这比重跑全 pipeline 高效得多。\n\n**但先诊断 bug**：\n- openvla_long trained counterfactual 崩溃是**不同于** untrained unnorm_key 的 bug（trained model 应该有 norm_stats）。派 Worker 用 ssh_read_only 找日志/traceback 确认具体错误。\n- untrained 的 unnorm_key 问题：改为用 cosine distance 不依赖 action generation。\n\n当前 GPU 在跑不用动，这些诊断 + 脚本准备用 CPU Worker 做。\n\n## 决策 3: 优先级排序\n\n**当前在跑**（不动）：\n- cuda:0: tracvla_long_v1\n- cuda:1: tracvla_goal_v1\n\n**GPU 空出后下一批**：\n1. OpenVLA Long 修复重跑（补 counterfactual + untrained 全流程）\n2. Counterfactual batch 补跑（所有缺失的 CF phases）\n\n**现在并行做**（CPU Worker）：\n1. 诊断 openvla_long trained CF 崩溃的具体原因\n2. 准备 counterfactual-only 脚本模板\n3. 确认 tracvla_spatial_trained 是否有完整结果（之前 PID 消失）\n\n汇报时带上 tracvla_long_v1 和 tracvla_goal_v1 的启动日志确认（submit 后 2 分钟检查规则）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-003986"
+        },
+        {
+          "source_line": 3987,
+          "timestamp": "2026-05-21T16:44:39.833630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:counterfactual_batch_template",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh']",
+              "task_prompt": "创建 counterfactual-only 批处理脚本模板。服务器: westd-19183\n\n## 背景\n\n多个实验的 Phase 6 (counterfactual) 缺失，需要补跑。已有 Phase 1-5 的结果。需要创建一个通用的 counterfactual-only 脚本，可以对不同架构/suite 补跑 Phase 6。\n\n缺失的 counterfactual 列表：\n1. **tracvla_spatial untrained** — 结果目录: /root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/\n2. **tracvla_object untrained** — 结果目录: /root/autodl-tmp/vla-ssd/results/tracvla_object/untrained/  \n3. **openvla_object untrained** — 结果目录: /root/autodl-tmp/vla-ssd/results/libero_object_untrained/\n4. **openvla_long trained** — 结果目录: /root/autodl-tmp/vla-ssd/results/libero_long/ (已修复，有 --only-counterfactual flag)\n5. **openvla_long untrained** — 需全流程，不是 counterfactual-only\n\n## 任务\n\n### Step 1: 理解现有 counterfactual 实现\n\n先读取一个已完成的 pipeline 脚本的 counterfactual 部分，理解它的逻辑：\n```bash\n# 读 tracvla_object 脚本（有完整 trained counterfactual）的 Phase 6 部分\ngrep -n \"counterfactual\\|Phase 6\\|def run_counterfactual\\|CONDITION_MAP\\|paraphrased\\|shuffled\\|empty\\|wrong\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py | head -40\n```\n\n然后读取实际的 counterfactual 函数代码（可能是 Phase 6 区域的 50-100 行）。\n\n### Step 2: 理解两种 counterfactual 方法\n\n检查脚本中有两种方法：\n- **action-space MSE** (OpenVLA trained): 用 `model.predict_action()` 生成 action，对比不同 instruction 条件的 action MSE + Cohen's d\n- **representation-space cosine distance** (NORA): 用模型 hidden states 的 cosine distance，不需要 action generation\n\n对于 **untrained 模型**（没有 action head 或 norm_stats 不匹配），必须用 cosine distance 方法。\n\n### Step 3: 创建批处理脚本\n\n创建 `/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py`，支持：\n\n```python\n# 用法示例：\n# python counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\n# python counterfactual_batch.py --arch openvla --suite long --condition trained\n# python counterfactual_batch.py --arch openvla --suite object --condition untrained\n```\n\n参数：\n- `--arch`: openvla / tracvla / nora\n- `--suite`: goal / spatial / object / long\n- `--condition`: trained / untrained\n- `--method`: auto / action_mse / cosine_dist （auto = trained 用 action_mse，untrained 用 cosine_dist）\n- `--gpu`: GPU index (default 0)\n\n脚本逻辑：\n1. 根据 arch + suite + condition 自动解析 checkpoint 路径和结果输出目录\n2. 加载模型（注意 OFT 的 norm_stats 合并逻辑，参考 libero_long_full_pipeline.py 的修复）\n3. 加载 LIBERO 数据（task instructions + images）\n4. 对 4 个条件（empty, shuffled, wrong, paraphrased）分别：\n   - 如果 method=action_mse: 用 predict_action 生成 action，计算 MSE + Cohen's d\n   - 如果 method=cosine_dist: 提取 hidden states，计算 cosine distance + Cohen's d\n5. 输出 `counterfactual_combined.json` 到对应结果目录\n\n### Step 4: Checkpoint 路径映射\n\n从现有脚本中提取路径映射（ssh_read_only）：\n```bash\ngrep -n \"CHECKPOINT\\|checkpoint\\|model_path\\|TRAINED_PATH\\|UNTRAINED_PATH\" /root/autodl-tmp/vla-ssd/scripts/tracvla_object_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/nora_goal_full_pipeline.py /root/autodl-tmp/vla-ssd/scripts/libero_long_full_pipeline.py | head -30\n```\n\n### Step 5: 验证\n\n创建完脚本后验证：\n```bash\npython /root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py --help\n```\n\n**不要运行实际实验**，只创建脚本并验证 argparse。\n\n### 重要注意事项\n\n- 所有 ssh 写操作用 ssh_execute，读操作用 ssh_read_only\n- 参考现有脚本的实现，不要从头写新逻辑\n- 脚本顶部写文件注释说明用途\n- untrained OpenVLA 用 openvla-7b（OXE pretrained），untrained TracVLA 用 phi3v-base，untrained NORA 用 qwen25-vl-3b-base\n- OFT checkpoint (openvla_long trained) 需要合并 dataset_statistics.json 到 norm_stats\n- TracVLA/NORA 的 counterfactual 方法用 cosine distance（参考 nora_goal_full_pipeline.py 的实现）\n- 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（TracVLA/OpenVLA 都用 base conda）\n- NORA 需要单独 venv: `source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate`"
+            }
+          },
+          "id": "event-003987"
+        },
+        {
+          "source_line": 3988,
+          "timestamp": "2026-05-21T16:44:45.659396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_counterfactual_batch_template_20260521T164440\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_counterfactual_batch_template_20260521T164440.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_counterfactual_batch_template_20260521T164440 started. Use get_worker_status('worker_code_counterfactual_batch_template_20260521T164440') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5825
+          },
+          "id": "event-003988"
+        },
+        {
+          "source_line": 3989,
+          "timestamp": "2026-05-21T16:45:01.727817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (cuda:0 tracvla_long_v1 ~50% | cuda:1 tracvla_goal_v1 ~50%) | Worker 2 (GPU 0 / CPU 2)\n\n## D089 确认\nNORA 矩阵范围缩减为 Goal + Spatial，不再查 Object/Long checkpoint。\n\n## 三个 CPU 任务执行状态\n\n### 1. openvla_long trained CF 崩溃诊断 — ✅ 已有答案\n之前 Worker 已完整诊断：**是同一类 unnorm_key bug**，不是不同的 bug。\n\n原因：OFT 微调 ≠ 标准微调。标准微调更新 config.json 的 norm_stats（直接包含 `libero_object` 等 key）；OFT 不更新 config.json（仍是 OXE keys），微调数据的统计信息单独存在 `dataset_statistics.json`（key = `libero_10_no_noops`）。所以即使是 trained OFT model，脚本用 `libero_10` 查 config.json 的 norm_stats 也找不到。\n\n**修复已应用**：Worker 已在服务器修好脚本（合并 dataset_statistics.json + 拆分 UNNORM key + 添加 --only-counterfactual flag）。\n\n### 2. counterfactual-only 批处理脚本 — 🔄 Worker 编写中\n正在创建 `counterfactual_batch.py`，支持 `--arch {openvla,tracvla,nora} --suite --condition --method {auto,action_mse,cosine_dist}`。自动根据 condition 选方法（trained→action_mse, untrained→cosine_dist）。\n\n### 3. tracvla_spatial_trained 完整性 — ✅ 已确认\n之前 Worker 确认 4/4 JSON 齐全：R² probing, L1 attention (30/32 instr-dominant, 2 mixed: h13/h22), cross-instruction (all 1.0), counterfactual (empty d=1.33, shuffled d=1.29, para d=1.18, wrong d=1.17)。\n\n### 启动验证 — ✅ 已完成\n两个实验均确认正常运行（PID 存活，GPU ~50% util，各约 2000/5000 samples processed）。预计 ETA ~1.5-2h。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-003989"
+        },
+        {
+          "source_line": 3990,
+          "timestamp": "2026-05-21T17:03:45.278426+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "向 Director 汇报当前执行状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003990"
+        }
+      ]
+    },
+    {
+      "number": 409,
+      "messages": [
+        {
+          "source_line": 3991,
+          "timestamp": "2026-05-21T17:03:45.776075+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027 已完成（status=done）。用 `get_worker_status('worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027')` 读取结果，然后处理。\n\n- worker_id: worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003991"
+        },
+        {
+          "source_line": 3992,
+          "timestamp": "2026-05-21T17:03:51.338180+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已读过该 Worker 结果（两个实验均正常运行）。无需额外处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003992"
+        }
+      ]
+    },
+    {
+      "number": 410,
+      "messages": [
+        {
+          "source_line": 3993,
+          "timestamp": "2026-05-21T17:03:51.925105+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_openvla_long_checkpoint_verify_20260521T164207 已完成（status=done）。用 `get_worker_status('worker_diag_openvla_long_checkpoint_verify_20260521T164207')` 读取结果，然后处理。\n\n- worker_id: worker_diag_openvla_long_checkpoint_verify_20260521T164207\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-003993"
+        },
+        {
+          "source_line": 3994,
+          "timestamp": "2026-05-21T17:03:57.495108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_openvla_long_checkpoint_verify_20260521T164207"
+            }
+          },
+          "id": "event-003994"
+        },
+        {
+          "source_line": 3995,
+          "timestamp": "2026-05-21T17:03:57.596330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_openvla_long_checkpoint_verify_20260521T164207\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:openvla_long_checkpoint_verify\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:42:07.518396+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:43:33.916191+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 结论：Checkpoint 正确\\\\n\\\\n日志第 4 行明确记录：\\\\n\\\\n```\\\\n[23:37:59] Checkpoint: /root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-oft-finetuned-libero-10\\\\n```\\\\n\\\\n**脚本配置和实际加载都是 OFT checkpoint (`openvla-7b-oft-finetuned-libero-10`)，没有用错。**\\\\n\\\\n对比三个 suite 的 trained checkpoint：\\\\n\\\\n| Suite | TRAINED_CKPT |\\\\n|-------|-------------|\\\\n| Long | `openvla-7b-oft-finetuned-libero-10` (OFT) |\\\\n| Object | `openvla-7b-finetuned-libero-object` |\\\\n| Goal | （脚本不存在，可能命名不同） |\\\\n\\\\nLong suite 的 L1 attention 只有 14/32 instruction-dominant 不是 checkpoint 错误导致的，需要从其他角度解释（如 long-horizon 任务本身的特性）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-003995"
+        },
+        {
+          "source_line": 3996,
+          "timestamp": "2026-05-21T17:04:02.656349+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "二次确认：日志第 4 行明确记录加载了 OFT checkpoint。与之前诊断一致，已汇报 Director。无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-003996"
+        }
+      ]
+    },
+    {
+      "number": 411,
+      "messages": [
+        {
+          "source_line": 3997,
+          "timestamp": "2026-05-21T17:04:03.277664+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **收到 checkpoint 确认 + bug 修复 + TracVLA L1 分析。以下是决策：**\n\n## 决策 1: OpenVLA Long 14/32 heads — 等完整数据\n同意等 counterfactual + untrained 补跑完再解读。tracvla_long 完成后立即在 cuda:0 安排：\n1. `--only-counterfactual --conditions trained`（~15min）\n2. `--conditions untrained`（~1.5h）\n按这个顺序跑。\n\n## 决策 2: TraceVLA L1 framing (D090)\n**不需要大改 framing，需要细化。** 跨架构一致的 training effect 是 **R² exit collapse**（三架构都有），不是 L1 head count。L1 梯度是 OpenVLA-specific（base model 没有语言能力才会出现 0→9→24 的梯度）。\n\n论文中需要区分：\n- **Training-induced (architecture-independent)**: R² inverted-U + exit collapse, counterfactual sensitivity\n- **Base-model-dependent (not training-induced)**: L1 instruction dominance（VLM base 已有强 L1 routing）\n\n这实际上是更精确的贡献——区分 \"VLA 训练学到什么\" vs \"从 base model 继承什么\"。等矩阵更完整后交给 Paper Agent 处理。\n\n## 当前实验继续跑\n- cuda:0 tracvla_long_v1 和 cuda:1 tracvla_goal_v1 继续，不动\n- `--only-counterfactual` flag 修好了很好，GPU 空出后批量补跑所有缺失 CF\n- 等当前实验完成后汇报结果"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-003997"
+        },
+        {
+          "source_line": 3998,
+          "timestamp": "2026-05-21T17:04:15.137090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (cuda:0 tracvla_long_v1 运行中 | cuda:1 tracvla_goal_v1 运行中) | Worker 1 (GPU 0 / CPU 1: counterfactual batch 脚本准备中)\n\n收到 D089/D090 决策，确认执行：\n\n1. **NORA 矩阵**: Goal+Spatial only，Object/Long 放弃\n2. **OpenVLA Long 补跑顺序**: tracvla_long 完成后 cuda:0 先跑 `--only-counterfactual --conditions trained`（~15min），再跑 `--conditions untrained`（~1.5h）\n3. **TraceVLA L1 framing (D090)**: 区分 training-induced（R² collapse, counterfactual）vs base-model-dependent（L1 instruction dominance）。等矩阵完整后交 Paper Agent\n4. **Counterfactual batch 脚本**: CPU Worker 正在准备通用 counterfactual-only 批处理脚本，GPU 空出后批量补跑所有缺失 CF\n\n当前两个实验继续跑，完成后立即汇报结果。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-003998"
+        },
+        {
+          "source_line": 3999,
+          "timestamp": "2026-05-21T17:04:18.901570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3764
+          },
+          "id": "event-003999"
+        },
+        {
+          "source_line": 4000,
+          "timestamp": "2026-05-21T17:04:21.860402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-004000"
+        },
+        {
+          "source_line": 4001,
+          "timestamp": "2026-05-21T17:04:21.911049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-004001"
+        },
+        {
+          "source_line": 4002,
+          "timestamp": "2026-05-21T17:04:28.485409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-004002"
+        },
+        {
+          "source_line": 4003,
+          "timestamp": "2026-05-21T17:04:28.536206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\\\", \\\"content\\\": \\\"# VLA-SSD Project Memory\\\\n\\\\n## ⚠️ Untrained Baseline 定义澄清 (2026-05-21)\\\\n\\\\n**\\\\\\\"OpenVLA base LLM = 0/32\\\\\\\" 标注有误。** 0/32 来自 random init，不是 Llama-2 base。\\\\n\\\\n### OpenVLA Goal 三条件梯度（实际数据）\\\\n| 条件 | Checkpoint | L1 instruction-dominant |\\\\n|------|-----------|------------------------|\\\\n| random init | 随机初始化权重 | **0/32** |\\\\n| Llama-2-7b-hf base | meta-llama/Llama-2-7b-hf | **~9/32** |\\\\n| OXE pretrained (openvla-7b) | openvla-7b | **~24/32** |\\\\n| LIBERO finetuned | openvla-7b-finetuned | **24-26/32** |\\\\n\\\\n### 各架构 \\\\\\\"untrained\\\\\\\" baseline 实际模型\\\\n| 架构 | \\\\\\\"Untrained\\\\\\\" 模型 | 性质 | 已见 action data? |\\\\n|------|-----------------|------|-----------------|\\\\n| OpenVLA | openvla-7b | OXE 预训练 VLA | ✅ 970K+ 轨迹 |\\\\n| TraceVLA | phi3v-base (Phi-3-Vision) | 纯 VLM | ❌ |\\\\n| NORA | qwen25-vl-3b-base | 纯 VLM | ❌ |\\\\n\\\\n三架构 \\\\\\\"untrained\\\\\\\" 语义不一致。OpenVLA 的是 pre-VLA，其他两个是 pre-VLM。\\\\n\\\\n## NORA Goal: Third Architecture Confirms Convergent Routing (2026-05-21)\\\\n\\\\n### 三模型 Exit Layer Collapse 确认\\\\nNORA (Qwen2.5-VL-3B, 36 layers, GQA 16h/2kv) 在 LIBERO-Goal 上展现与 OpenVLA (Llama-2) / TraceVLA (Phi-3) 一致的 convergent routing pattern：\\\\n- **R² collapse**: L10 peak=0.697 → L35=-0.004（trained），untrained L35=0.656（无崩塌）\\\\n- **Cross-instruction L35**: trained=0.085 (≈chance)，untrained=0.990\\\\n- **Counterfactual L35**: cosine distance=1.0（所有条件表征相同）\\\\n- **L1 attention**: 13/16 instruction-dominant（但 trained/untrained 分布一致——GQA 特性）\\\\n\\\\n### NORA Untrained Counterfactual 完整结果 (2026-05-21)\\\\n4 conditions 全部完成，Last-layer (L35) metrics：\\\\n| Condition | cos_dist | Cohen's d |\\\\n|-----------|----------|-----------|\\\\n| empty | 0.0814 | 19.01 |\\\\n| shuffled | 0.0332 | 7.43 |\\\\n| wrong | 0.0143 | 7.71 |\\\\n| paraphrased | 0.0041 | 7.11 |\\\\n\\\\n### Claim 升级\\\\n从 \\\\\\\"two-model observation\\\\\\\" → \\\\\\\"architecture-independent phenomenon\\\\\\\"。三个不同 backbone（Llama-2,\n…[truncated 2218 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-004003"
+        },
+        {
+          "source_line": 4004,
+          "timestamp": "2026-05-21T17:05:01.326583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "memory.md",
+              "content": "# VLA-SSD Project Memory\n\n## ⚠️ Untrained Baseline 定义澄清 (2026-05-21)\n\n**\"OpenVLA base LLM = 0/32\" 标注有误。** 0/32 来自 random init，不是 Llama-2 base。\n\n### OpenVLA Goal 三条件梯度（实际数据）\n| 条件 | Checkpoint | L1 instruction-dominant |\n|------|-----------|------------------------|\n| random init | 随机初始化权重 | **0/32** |\n| Llama-2-7b-hf base | meta-llama/Llama-2-7b-hf | **~9/32** |\n| OXE pretrained (openvla-7b) | openvla-7b | **~24/32** |\n| LIBERO finetuned | openvla-7b-finetuned | **24-26/32** |\n\n### 各架构 \"untrained\" baseline 实际模型\n| 架构 | \"Untrained\" 模型 | 性质 | 已见 action data? |\n|------|-----------------|------|-----------------|\n| OpenVLA | openvla-7b | OXE 预训练 VLA | ✅ 970K+ 轨迹 |\n| TraceVLA | phi3v-base (Phi-3-Vision) | 纯 VLM | ❌ |\n| NORA | qwen25-vl-3b-base | 纯 VLM | ❌ |\n\n三架构 \"untrained\" 语义不一致。OpenVLA 的是 pre-VLA，其他两个是 pre-VLM。\n\n## D090: Training-induced vs Base-model-dependent 效应区分 (2026-05-21)\n\nDirector 决策：论文需区分两类效应，**不需要大改 framing，但需细化**。\n\n### Training-induced (architecture-independent) — 可 claim\n- **R² exit collapse**: 三架构一致，trained 有、untrained 无\n- **Counterfactual sensitivity**: trained model 对指令替换敏感\n\n### Base-model-dependent (NOT training-induced) — 不可 claim 为训练效果\n- **L1 instruction dominance**: VLM base 已有强 L1 routing（TracVLA untrained 32/32，trained 30/32）\n- **Cross-instruction classification**: 预训练模型已能完美区分指令（两条件都 1.0）\n- OpenVLA 的 L1 梯度（0→9→24）是特例，因 base LLM 没有视觉能力\n\n### 精确贡献定位\n\"VLA 训练学到什么\" vs \"从 base model 继承什么\" — 这是更精确的科学贡献。\n\n## D089: NORA 矩阵范围 (2026-05-21)\n\nNORA 只有 Goal + Spatial checkpoint，**Object/Long 放弃**。3×4 矩阵变为：\n- OpenVLA: 4 suites (Goal, Spatial, Object, Long)\n- TraceVLA: 4 suites (单一 checkpoint 覆盖全部)\n- NORA: 2 suites (Goal, Spatial)\n\n## OFT Checkpoint 特殊行为 (2026-05-21)\n\n**OFT (Orthogonal Fine-Tuning) ≠ 标准微调**：\n- 标准微调：更新 config.json 中的 norm_stats（包含新 dataset key）\n- OFT 微调：**不更新** config.json（保留 OXE keys），将微调数据统计单独存在 `dataset_statistics.json`（key = `libero_10_no_noops`）\n- 因此 OFT trained model 的 counterfactual 也会触发 unnorm_key bug\n- 修复：加载后合并 dataset_statistics.json 到 model.norm_stats\n\n## OpenVLA Long L1 = 14/32 (2026-05-21)\n\nCheckpoint 确认正确（OFT）。14/32 是真实的 Long-specific 结果，不是 checkpoint 错误。\n**待解读**：等 counterfactual + untrained 补跑完再下结论。可能因 long-horizon 任务需要更多 heads 参与 action 编码。\n\n## NORA Goal: Third Architecture Confirms Convergent Routing (2026-05-21)\n\n### 三模型 Exit Layer Collapse 确认\nNORA (Qwen2.5-VL-3B, 36 layers, GQA 16h/2kv) 在 LIBERO-Goal 上展现与 OpenVLA (Llama-2) / TraceVLA (Phi-3) 一致的 convergent routing pattern：\n- **R² collapse**: L10 peak=0.697 → L35=-0.004（trained），untrained L35=0.656（无崩塌）\n- **Cross-instruction L35**: trained=0.085 (≈chance)，untrained=0.990\n- **Counterfactual L35**: cosine distance=1.0（所有条件表征相同）\n- **L1 attention**: 13/16 instruction-dominant（但 trained/untrained 分布一致——GQA 特性）\n\n### NORA Untrained Counterfactual 完整结果 (2026-05-21)\n4 conditions 全部完成，Last-layer (L35) metrics：\n| Condition | cos_dist | Cohen's d |\n|-----------|----------|-----------|\n| empty | 0.0814 | 19.01 |\n| shuffled | 0.0332 | 7.43 |\n| wrong | 0.0143 | 7.71 |\n| paraphrased | 0.0041 | 7.11 |\n\n### Claim 升级\n从 \"two-model observation\" → \"architecture-independent phenomenon\"。三个不同 backbone（Llama-2, Phi-3, Qwen2.5-VL）、不同规模（7B, 3.8B, 3B）、不同注意力（MHA, MHA, GQA）均展现一致的 entry-exit routing。\n\n## NORA Spatial Results (2026-05-21)\n\n### R² Probing\n- **Trained**: last_pre peak L24=0.720, exit L35=0.417 (collapse ✓)\n- **Untrained**: last_pre peak L8=0.632, exit L35=0.596 (no collapse ✓)\n\n### L1 Attention — GQA anomaly 跨 suite 确认\n- Trained: 12/16, Untrained: 14/16（与 Goal 13/16 both 一致）\n- 确认是 GQA 结构性特征，非偶然\n\n### Counterfactual (trained, L35)\nwrong cos_dist=0.275, empty=0.238, shuffled=0.114, paraphrased=0.023\n注意：Spatial 比 Goal (cosine=1.0) 保留了更多 instruction 敏感性——可能因为方位词直接映射动作方向。\n\n## OpenVLA Object Results (2026-05-21)\n\n### Trained\n- R² probing: img_mean peak L12=0.807, last_pre peak L13=0.787, exit L31=0.666\n- L1 attention: 24/32 instruction-dominant\n- Cross-instruction: 1.000 all layers (ceiling effect)\n- Counterfactual: empty d=1.212, wrong d=1.188, shuffled d=1.122, paraphrased d=0.896\n- RSA: best L28=0.622\n\n### Untrained (openvla-7b, Phase 1-5 only, Phase 6 crash)\n- R² probing: last_pre peak L19=0.761, exit L31=0.685\n- L1 attention: 24/32 (same as trained — because openvla-7b already VLA-pretrained)\n- Counterfactual: MISSING (crash: unnorm_key not in norm_stats)\n\n## 操作教训 (2026-05-21)\n\n### M015: submit 后必须 2 分钟内验证启动\nsubmit_training_job 后立即派 Worker 检查日志前几行。不依赖 cron 延迟发现。\n\n### M015: argparse --conditions 统一格式\n所有 pipeline 脚本必须用 `nargs='+'` + `choices=['trained','untrained']`。全部 7 个脚本已审计修复。\n\n## Ridge vs MLP Probing Decision (2026-05-21)\nMLP 118min/层 → Ridge 秒级。所有 pipeline 已切换。\n\n## Streaming Attention Fix (2026-05-21)\nPhase 1 存 5000 个 attention 矩阵 ~50GB → streaming 即时计算 <1KB。\n\n## AutoDL 环境经验 (2026-05-21)\n- OpenVLA processor auto_map 指向 HF repo → 改本地路径\n- ModelScope CDN >> HF 代理\n- NORA 需独立 venv (transformers=4.50.0)\n- submit_training_job 用 tmux，不怕 SSH 断连\n- CUDA_VISIBLE_DEVICES 自动映射，脚本内用 cuda:0\n\n## TraceVLA-Phi3V Checkpoint Info (2026-05-19)\n- 服务器: westd-19183, 路径: `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/`\n- 来源: HuggingFace `trace-ai/tracevla-phi3v`\n- 架构: Phi-3-mini, 32 layers, hidden=3072\n"
+            }
+          },
+          "id": "event-004004"
+        },
+        {
+          "source_line": 4005,
+          "timestamp": "2026-05-21T17:05:01.327179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-004005"
+        },
+        {
+          "source_line": 4006,
+          "timestamp": "2026-05-21T17:05:10.178390+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新，写入 D089（NORA 矩阵范围）、D090（training-induced vs base-model-dependent 区分）、OFT checkpoint 特殊行为、OpenVLA Long 14/32 待解读。\n\n当前状态：两个 GPU 实验运行中，counterfactual batch 脚本 Worker 准备中。等实验完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-004006"
+        }
+      ]
+    },
+    {
+      "number": 412,
+      "messages": [
+        {
+          "source_line": 4007,
+          "timestamp": "2026-05-21T17:05:10.682232+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_counterfactual_batch_template_20260521T164440 已完成（status=done）。用 `get_worker_status('worker_code_counterfactual_batch_template_20260521T164440')` 读取结果，然后处理。\n\n- worker_id: worker_code_counterfactual_batch_template_20260521T164440\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-004007"
+        },
+        {
+          "source_line": 4008,
+          "timestamp": "2026-05-21T17:05:16.453062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_counterfactual_batch_template_20260521T164440"
+            }
+          },
+          "id": "event-004008"
+        },
+        {
+          "source_line": 4009,
+          "timestamp": "2026-05-21T17:05:16.554350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_counterfactual_batch_template_20260521T164440\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:counterfactual_batch_template\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T16:44:40.552263+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T16:54:02.980461+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"脚本已创建: `/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py` (884 行)\\\\n\\\\n功能:\\\\n- 支持 `--arch openvla/tracvla/nora`, `--suite goal/spatial/object/long`, `--condition trained/untrained`\\\\n- `--method auto` 自动选择: trained openvla/tracvla → action_mse, nora 和所有 untrained → cosine_dist\\\\n- 内置全部 checkpoint/data/results 路径映射，匹配现有 pipeline 脚本的 task 顺序\\\\n- OFT checkpoint 自动合并 dataset_statistics.json 到 norm_stats\\\\n- `--dry-run` 快速验证, `--results-dir` 可覆盖输出目录\\\\n- `--gpu`, `--n-demos`, `--n-timesteps` 可调\\\\n\\\\n用法:\\\\n```bash\\\\npython counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\\\\npython counterfactual_batch.py --arch openvla --suite long --condition trained\\\\npython counterfactual_batch.py --arch openvla --suite object --condition untrained\\\\n```\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-004009"
+        },
+        {
+          "source_line": 4010,
+          "timestamp": "2026-05-21T17:05:26.598401+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Counterfactual batch 脚本就绪：`/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py`（884 行），支持所有架构/suite/condition 组合，自动选择 action_mse 或 cosine_dist 方法。\n\n当前状态稳定：\n- cuda:0: tracvla_long_v1 运行中\n- cuda:1: tracvla_goal_v1 运行中\n- counterfactual_batch.py 就绪，GPU 空出后立即批量补跑\n- 等待实验完成回调"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-004010"
+        }
+      ]
+    },
+    {
+      "number": 413,
+      "messages": [
+        {
+          "source_line": 4011,
+          "timestamp": "2026-05-21T19:11:01.669531+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **实验应已完成，立即检查并提取结果**\n\ntracvla_long_v1 (cuda:0) 和 tracvla_goal_v1 (cuda:1) 提交已超过 2 小时，应已完成。\n\n## 第一步：SSH 检查（ssh_read_only，一条命令）\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader && echo \"---TMUX---\" && tmux ls 2>/dev/null && echo \"---PID---\" && ps aux | grep -E \"568677|568838|pipeline\" | grep -v grep && echo \"---RESULTS---\" && ls -lt /root/vla-ssd/results/libero_long/ 2>/dev/null | head -10 && echo \"---\" && ls -lt /root/vla-ssd/results/ 2>/dev/null | head -10\n```\n\n## 第二步：根据结果\n- **如果完成**：提取 tracvla_long_v1 和 tracvla_goal_v1 的完整结果（R² per-layer, L1 attention, cross-instruction, counterfactual），汇报给我\n- **如果还在跑**：汇报进度\n- **如果失败**：汇报错误日志\n\n## 第三步：GPU 恢复\n实验完成的 GPU 立即安排下一个实验：\n- cuda:0 优先：OpenVLA Long `--only-counterfactual --conditions trained`（~15min）\n- cuda:1 优先：OpenVLA Long `--conditions untrained`（~1.5h）\n- 或两张卡分别跑 counterfactual batch 补跑\n\n**不要等我确认，直接执行。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-004011"
+        },
+        {
+          "source_line": 4012,
+          "timestamp": "2026-05-21T19:11:36.241063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:check_tracvla_results_and_recover",
+              "project": "vla-ssd",
+              "tool_groups": "['ssh']",
+              "task_prompt": "紧急：检查两个实验状态并提取结果。服务器: westd-19183\n\n## Step 1: 状态检查（ssh_read_only，一条组合命令）\n\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader && echo \"---TMUX---\" && tmux ls 2>/dev/null && echo \"---PID---\" && ps aux | grep -E \"568677|568838|pipeline\" | grep -v grep && echo \"---RESULTS---\" && ls -la /root/autodl-tmp/vla-ssd/results/tracvla_long/ 2>/dev/null && echo \"---\" && ls -la /root/autodl-tmp/vla-ssd/results/tracvla_goal/ 2>/dev/null && echo \"---LOGS---\" && tail -5 ~/runs/vla-ssd/tracvla_long_v1.log 2>/dev/null && echo \"===\" && tail -5 ~/runs/vla-ssd/tracvla_goal_v1.log 2>/dev/null\n```\n\n## Step 2: 如果完成，提取完整结果\n\n### tracvla_long_v1 结果提取\n对 trained 和 untrained 两个子目录分别提取：\n\n```bash\nfor cond in trained untrained; do\n  echo \"=== tracvla_long $cond ===\"\n  DIR=\"/root/autodl-tmp/vla-ssd/results/tracvla_long/$cond\"\n  \n  # R² probing\n  echo \"--- R2 ---\"\n  cat $DIR/r2_probing_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor key in ['image_mean','last_preaction_token']:\n  vals=d.get(key,{})\n  layers=[0,4,8,12,16,20,24,28,31]\n  peak_l=max(vals,key=lambda x:vals[x])\n  print(f'{key}: peak={vals[peak_l]:.4f}@L{peak_l}, exit={vals.get(\\\"31\\\",vals.get(31,\\\"N/A\\\")):.4f}')\n  print('  '+' '.join(f'L{l}={vals.get(str(l),0):.4f}' for l in layers))\n\" 2>/dev/null || echo \"NO R2 DATA\"\n\n  # L1 attention\n  echo \"--- L1 ---\"\n  cat $DIR/l1_attention_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nratios=d.get('per_head_instruction_ratio',{})\ninstr=sum(1 for v in ratios.values() if v>0.5)\nmixed=sum(1 for v in ratios.values() if 0.3<=v<=0.7)\nprint(f'Instruction-dominant: {instr}/{len(ratios)}')\ntops=sorted(ratios.items(),key=lambda x:-x[1])[:5]\nprint('Top 5: '+', '.join(f'{k}={v:.3f}' for k,v in tops))\nbottoms=sorted(ratios.items(),key=lambda x:x[1])[:3]\nprint('Bottom 3: '+', '.join(f'{k}={v:.3f}' for k,v in bottoms))\n\" 2>/dev/null || echo \"NO L1 DATA\"\n\n  # Cross-instruction\n  echo \"--- Cross-instr ---\"\n  cat $DIR/cross_instruction_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor k in ['image_mean','last_preaction_token']:\n  vals=d.get(k,{})\n  if vals:\n    l0=vals.get('0',vals.get(0,'N/A'))\n    l31=vals.get('31',vals.get(31,'N/A'))\n    print(f'{k}: L0={l0}, L31={l31}')\n\" 2>/dev/null || echo \"NO CROSS DATA\"\n\n  # Counterfactual\n  echo \"--- Counterfactual ---\"\n  cat $DIR/counterfactual_combined.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor k,v in d.items():\n  if isinstance(v,dict):\n    cos=v.get('mean_cos_dist',v.get('cos_dist','N/A'))\n    cd=v.get('cohens_d','N/A')\n    mse=v.get('mean_mse','N/A')\n    print(f'{k}: cos_dist={cos}, cohens_d={cd}, mse={mse}')\n\" 2>/dev/null || echo \"NO CF DATA\"\n  \n  echo \"\"\ndone\n```\n\n### tracvla_goal_v1 结果提取（同样格式）\n```bash\nfor cond in trained untrained; do\n  echo \"=== tracvla_goal $cond ===\"\n  DIR=\"/root/autodl-tmp/vla-ssd/results/tracvla_goal/$cond\"\n  \n  echo \"--- R2 ---\"\n  cat $DIR/r2_probing_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor key in ['image_mean','last_preaction_token']:\n  vals=d.get(key,{})\n  layers=[0,4,8,12,16,20,24,28,31]\n  peak_l=max(vals,key=lambda x:vals[x])\n  print(f'{key}: peak={vals[peak_l]:.4f}@L{peak_l}, exit={vals.get(\\\"31\\\",vals.get(31,\\\"N/A\\\")):.4f}')\n  print('  '+' '.join(f'L{l}={vals.get(str(l),0):.4f}' for l in layers))\n\" 2>/dev/null || echo \"NO R2 DATA\"\n\n  echo \"--- L1 ---\"\n  cat $DIR/l1_attention_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nratios=d.get('per_head_instruction_ratio',{})\ninstr=sum(1 for v in ratios.values() if v>0.5)\nprint(f'Instruction-dominant: {instr}/{len(ratios)}')\ntops=sorted(ratios.items(),key=lambda x:-x[1])[:5]\nprint('Top 5: '+', '.join(f'{k}={v:.3f}' for k,v in tops))\nbottoms=sorted(ratios.items(),key=lambda x:x[1])[:3]\nprint('Bottom 3: '+', '.join(f'{k}={v:.3f}' for k,v in bottoms))\n\" 2>/dev/null || echo \"NO L1 DATA\"\n\n  echo \"--- Cross-instr ---\"\n  cat $DIR/cross_instruction_results.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor k in ['image_mean','last_preaction_token']:\n  vals=d.get(k,{})\n  if vals:\n    l0=vals.get('0',vals.get(0,'N/A'))\n    l31=vals.get('31',vals.get(31,'N/A'))\n    print(f'{k}: L0={l0}, L31={l31}')\n\" 2>/dev/null || echo \"NO CROSS DATA\"\n\n  echo \"--- Counterfactual ---\"\n  cat $DIR/counterfactual_combined.json 2>/dev/null | python3 -c \"\nimport sys,json\nd=json.load(sys.stdin)\nfor k,v in d.items():\n  if isinstance(v,dict):\n    cos=v.get('mean_cos_dist',v.get('cos_dist','N/A'))\n    cd=v.get('cohens_d','N/A')\n    mse=v.get('mean_mse','N/A')\n    print(f'{k}: cos_dist={cos}, cohens_d={cd}, mse={mse}')\n\" 2>/dev/null || echo \"NO CF DATA\"\n  \n  echo \"\"\ndone\n```\n\n## Step 3: 如果实验失败\n\n检查错误日志：\n```bash\ntmux capture-pane -t tracvla_long_v1 -p 2>/dev/null | tail -50\necho \"===\"\ntmux capture-pane -t tracvla_goal_v1 -p 2>/dev/null | tail -50\n```\n\n全部用 ssh_read_only。汇总所有发现，特别注意：\n1. 每个实验是完成/运行中/失败？\n2. 如果完成，trained 和 untrained 两个 condition 都有结果吗？\n3. R² exit collapse 模式是否与其他 TracVLA suite 一致？\n4. L1 heads 数量？counterfactual ranking？"
+            }
+          },
+          "id": "event-004012"
+        },
+        {
+          "source_line": 4013,
+          "timestamp": "2026-05-21T19:11:42.067850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_check_tracvla_results_and_recover_20260521T191136\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_diag_check_tracvla_results_and_recover_20260521T191136.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_check_tracvla_results_and_recover_20260521T191136 started. Use get_worker_status('worker_diag_check_tracvla_results_and_recover_20260521T191136') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5826
+          },
+          "id": "event-004013"
+        },
+        {
+          "source_line": 4014,
+          "timestamp": "2026-05-21T19:11:45.497840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-004014"
+        },
+        {
+          "source_line": 4015,
+          "timestamp": "2026-05-21T19:11:45.598594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 100
+          },
+          "id": "event-004015"
+        },
+        {
+          "source_line": 4016,
+          "timestamp": "2026-05-21T19:11:48.612227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-004016"
+        },
+        {
+          "source_line": 4017,
+          "timestamp": "2026-05-21T19:11:49.168022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4992}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 555
+          },
+          "id": "event-004017"
+        },
+        {
+          "source_line": 4018,
+          "timestamp": "2026-05-21T19:11:53.739132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'tracvla_long_v1'}",
+              "project": "vla-ssd",
+              "fields": "['status', 'conclusion', 'metrics', 'failure_reason', 'notes']"
+            }
+          },
+          "id": "event-004018"
+        },
+        {
+          "source_line": 4019,
+          "timestamp": "2026-05-21T19:11:54.244067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4828}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-004019"
+        },
+        {
+          "source_line": 4020,
+          "timestamp": "2026-05-21T19:11:57.505435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "limit": "5",
+              "fields": "['status', 'conclusion', 'failure_reason', 'updated_at']"
+            }
+          },
+          "id": "event-004020"
+        },
+        {
+          "source_line": 4021,
+          "timestamp": "2026-05-21T19:11:57.856958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"openvla_long_pipeline_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-21T16:40:48.486Z\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"tracvla_spatial_full_v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"updated_at\\\": \\\"2026-05-21T16:40:41.623Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"tracvla_spatial_untrained_v1\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"updated_at\\\": \\\"2026-05-21T16:40:14.099Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"tracvla_goal_v1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-21T16:39:20.851Z\\\"}, \\\"tracvla_long_v1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-21T16:39:15.206Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 140, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3766}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-004021"
+        },
+        {
+          "source_line": 4022,
+          "timestamp": "2026-05-21T19:12:07.342092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_check_tracvla_results_and_recover_20260521T191136",
+              "verbose": "True"
+            }
+          },
+          "id": "event-004022"
+        },
+        {
+          "source_line": 4023,
+          "timestamp": "2026-05-21T19:12:07.442939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_check_tracvla_results_and_recover_20260521T191136\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diag:check_tracvla_results_and_recover\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T19:11:36.879999+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"执行 Step 1 状态检查。\\\", \\\"turn_count\\\": 11}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-004023"
+        },
+        {
+          "source_line": 4024,
+          "timestamp": "2026-05-21T19:12:10.441432+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 在 turn 11，积极提取数据。等待完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-004024"
+        }
+      ]
+    },
+    {
+      "number": 414,
+      "messages": [
+        {
+          "source_line": 4025,
+          "timestamp": "2026-05-21T19:13:58.184588+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_check_tracvla_results_and_recover_20260521T191136 已完成（status=done）。用 `get_worker_status('worker_diag_check_tracvla_results_and_recover_20260521T191136')` 读取结果，然后处理。\n\n- worker_id: worker_diag_check_tracvla_results_and_recover_20260521T191136\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-004025"
+        },
+        {
+          "source_line": 4026,
+          "timestamp": "2026-05-21T19:14:05.018138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_check_tracvla_results_and_recover_20260521T191136"
+            }
+          },
+          "id": "event-004026"
+        },
+        {
+          "source_line": 4027,
+          "timestamp": "2026-05-21T19:14:05.071322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_check_tracvla_results_and_recover_20260521T191136\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:check_tracvla_results_and_recover\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-21T19:11:36.879999+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T19:13:56.654462+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 汇总\\\\n\\\\n### 实验状态\\\\n\\\\n| 实验 | 状态 | 当前阶段 | 进度 |\\\\n|------|------|---------|------|\\\\n| tracvla_long_v1 | **运行中** | trained / Phase 5 counterfactual / paraphrased | ~200/5000 |\\\\n| tracvla_goal_v1 | **运行中** | trained / Phase 5 counterfactual / paraphrased | ~400/5000 |\\\\n\\\\n- GPU: 2× ~9GB/98GB，43% 利用率\\\\n- **`untrained/` 目录尚未创建**——两个实验都还在跑 trained 条件\\\\n- paraphrased 是第 4 个 counterfactual 条件（前 3 个: wrong, empty, shuffled 已完成）\\\\n- 预计 paraphrased 还需 ~28min，之后整个 untrained pipeline（Phase 1-5）约需 3h+\\\\n\\\\n---\\\\n\\\\n### tracvla_long — trained 已完成结果\\\\n\\\\n**R² Probing (action_r2_probing.json):**\\\\n\\\\n| Layer | image_mean | last_preaction |\\\\n|-------|-----------|----------------|\\\\n| L0 | 0.7950 | 0.6160 |\\\\n| L4 | 0.8027 | 0.7733 |\\\\n| L8 | 0.8103 | 0.7924 |\\\\n| L11 | 0.8163 | **0.8168** (peak) |\\\\n| L16 | **0.8264** (peak) | 0.8079 |\\\\n| L20 | 0.8242 | 0.7980 |\\\\n| L24 | 0.8180 | 0.7496 |\\\\n| L28 | 0.8115 | 0.6144 |\\\\n| L30 | 0.7987 | **0.4336** (trough) |\\\\n| L31 | 0.7900 | 0.6186 (bounce) |\\\\n\\\\n- image_mean: 平坦（0.795→0.790），几乎无衰减\\\\n- last_preaction: **严重 exit collapse**，peak 0.817@L11 → trough 0.434@L30，Δ=0.383\\\\n\\\\n**L1 Attention:**\\\\n- Instruction-dominant: **30/32**，mixed: 2，image-dominant: 0\\\\n- Top 5: head_8=0.949, head_26=0.886, head_19=0.873, head_20=0.854, head_1=0.853\\\\n- Mixed heads: head_13=0.430, head_22=0.464\\\\n\\\\n**Cross-instruction Classification:**\\\\n- image_mean: **1.0** all layers（L0-L31）\\\\n- last_preaction: L0=0.983, L1+=**1.0**\\\\n\\\\n**Counterfactual (interim d-values from log):**\\\\n- wrong: d=1.418, empty: d=1.473, shuffled: d=1.391, paraphras\n…[truncated 1662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 53
+          },
+          "id": "event-004027"
+        },
+        {
+          "source_line": 4028,
+          "timestamp": "2026-05-21T19:14:24.997432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "tracvla_long_v1",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "vla-ssd",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\"', 'server': 'westd-19183', 'gpu': ['cuda:0'], 'pid': '568677', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_10/', 'data_count': 500, 'model_name': 'tracevla-phi3v / phi3v-base', 'seed': 42}"
+            }
+          },
+          "id": "event-004028"
+        },
+        {
+          "source_line": 4029,
+          "timestamp": "2026-05-21T19:14:25.400170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4119}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-004029"
+        },
+        {
+          "source_line": 4030,
+          "timestamp": "2026-05-21T19:14:28.450277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "tracvla_long_v1",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-004030"
+        },
+        {
+          "source_line": 4031,
+          "timestamp": "2026-05-21T19:14:30.217980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"tracvla_long_v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:39:01.752Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:14:29.141Z\\\", \\\"hypothesis\\\": \\\"The convergent entry-exit routing architecture (inverted-U R² profile, L1 instruction-dominance with consistent mixed heads h13/h22, counterfactual sensitivity) observed in TraceVLA on Spatial/Object generalizes to LIBERO-Long (multi-step tasks). Tests cross-suite consistency for second architecture family. Both trained and untrained conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"568677\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/tracvla_long_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T16:39:14.839Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7445}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1767
+          },
+          "id": "event-004031"
+        },
+        {
+          "source_line": 4032,
+          "timestamp": "2026-05-21T19:14:34.686060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "tracvla_long_v1",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "vla-ssd",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\"', 'server': 'westd-19183', 'gpu': ['cuda:0'], 'pid': '568677', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_10/', 'data_count': 500, 'model_name': 'tracevla-phi3v / phi3v-base', 'seed': 42}"
+            }
+          },
+          "id": "event-004032"
+        },
+        {
+          "source_line": 4033,
+          "timestamp": "2026-05-21T19:14:36.044367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"tracvla_long_v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:39:01.752Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:14:35.071Z\\\", \\\"hypothesis\\\": \\\"The convergent entry-exit routing architecture (inverted-U R² profile, L1 instruction-dominance with consistent mixed heads h13/h22, counterfactual sensitivity) observed in TraceVLA on Spatial/Object generalizes to LIBERO-Long (multi-step tasks). Tests cross-suite consistency for second architecture family. Both trained and untrained conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_long_full_pipeline.py --conditions trained untrained\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"568677\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/tracvla_long_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T16:39:14.839Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_10/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"tracevla-phi3v / phi3v-base\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3041}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1358
+          },
+          "id": "event-004033"
+        },
+        {
+          "source_line": 4034,
+          "timestamp": "2026-05-21T19:14:39.006071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "tracvla_goal_v1",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-004034"
+        },
+        {
+          "source_line": 4035,
+          "timestamp": "2026-05-21T19:14:40.263301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"tracvla_goal_v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:39:07.781Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:14:39.368Z\\\", \\\"hypothesis\\\": \\\"TraceVLA (Phi-3-mini) on LIBERO-Goal shows convergent entry-exit routing when fine-tuned, absent in untrained Phi-3-Vision base. Completing the Goal column for TraceVLA architecture. Both trained and untrained conditions with full 5-phase pipeline.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_goal_full_pipeline.py --conditions trained untrained\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"568838\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/tracvla_goal_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T16:39:20.464Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.252}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1257
+          },
+          "id": "event-004035"
+        },
+        {
+          "source_line": 4036,
+          "timestamp": "2026-05-21T19:14:44.680320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "tracvla_goal_v1",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "vla-ssd",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_goal_full_pipeline.py --conditions trained untrained\"', 'server': 'westd-19183', 'gpu': ['cuda:1'], 'pid': '568838', 'data_path': '/root/autodl-tmp/vla-ssd/data/libero/libero_goal/', 'data_count': 500, 'model_name': 'tracevla-phi3v / phi3v-base', 'seed': 42}"
+            }
+          },
+          "id": "event-004036"
+        },
+        {
+          "source_line": 4037,
+          "timestamp": "2026-05-21T19:14:45.985157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"tracvla_goal_v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:39:07.781Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:14:45.089Z\\\", \\\"hypothesis\\\": \\\"TraceVLA (Phi-3-mini) on LIBERO-Goal shows convergent entry-exit routing when fine-tuned, absent in untrained Phi-3-Vision base. Completing the Goal column for TraceVLA architecture. Both trained and untrained conditions with full 5-phase pipeline.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && python scripts/tracvla_goal_full_pipeline.py --conditions trained untrained\\\\\\\"\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"568838\\\", \\\"log_path\\\": \\\"~/runs/vla-ssd/tracvla_goal_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T16:39:20.464Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"tracevla-phi3v / phi3v-base\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2763}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1304
+          },
+          "id": "event-004037"
+        },
+        {
+          "source_line": 4038,
+          "timestamp": "2026-05-21T19:15:08.631453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (cuda:0 tracvla_long_v1 Phase5-CF/paraphrased ~200/5000 | cuda:1 tracvla_goal_v1 Phase5-CF/paraphrased ~400/5000) | Worker 0 (GPU 0 / CPU 0)\n\n## 状态：两个实验仍在运行\n\n两个实验都在跑 trained condition 的最后一个 counterfactual（paraphrased），之后还需跑完整 untrained pipeline。GPU 43% 利用率，非空闲。\n\n**预计时间线**：\n- Trained paraphrased 完成：~30min\n- Untrained 全流程：~3h\n- 总计完成：约 3-4h 后\n\n## Trained 结果预览（interim，仅供参考）\n\n### TracVLA Long trained\n| Metric | 值 |\n|--------|-----|\n| R² last_pre peak | **0.817 @ L11** |\n| R² last_pre exit L30 | **0.434** (Δ=0.383) |\n| L1 instruction-dominant | **30/32** (mixed: h13=0.430, h22=0.464) |\n| Cross-instruction | 1.0 all layers |\n| Counterfactual interim | empty d=1.473, wrong d=1.418, shuffled d=1.391 |\n\n### TracVLA Goal trained\n| Metric | 值 |\n|--------|-----|\n| R² last_pre peak | **0.802 @ L18** |\n| R² last_pre exit L30 | **0.307** (Δ=0.495, 最严重的 collapse) |\n| L1 instruction-dominant | **27/32** (5 mixed heads) |\n| Cross-instruction | 1.0 all layers (L0 last_pre=0.915) |\n| Counterfactual interim | empty d=1.524, wrong d=1.405, shuffled d=1.336 |\n\n## 🔑 关键发现\n\n**TracVLA Long L1 = 30/32，与 Spatial/Object 一致。** 因此 OpenVLA Long 的 14/32 不是 Long suite 特异性，是 **OpenVLA + OFT checkpoint 的特异性**。这进一步支持 D090（L1 routing 依赖 base model，不是 training-induced universal effect）。\n\n**TracVLA 跨 4 suite 一致性极高**：\n- L1: 27-30/32（Goal 稍低，5 mixed heads）\n- Mixed heads 一致: h13 + h22 始终出现\n- Top heads 一致: h8 > h26 > h19（所有 suite）\n- Exit collapse 一致: L30 trough, L31 bounce\n\n**Goal vs Long collapse 差异**：Goal Δ=0.495 >> Long Δ=0.383。可能因为 Goal 任务指令-动作映射更直接，exit 层需要更彻底地\"擦除\"指令信息。\n\n## 下一步\nGPU 空出后按 Director 指示执行：\n1. cuda:0: OpenVLA Long `--only-counterfactual --conditions trained`\n2. cuda:1: OpenVLA Long `--conditions untrained`\n3. 之后: counterfactual batch 补跑所有缺失 CF",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-004038"
+        },
+        {
+          "source_line": 4039,
+          "timestamp": "2026-05-21T19:15:12.497630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3866
+          },
+          "id": "event-004039"
+        },
+        {
+          "source_line": 4040,
+          "timestamp": "2026-05-21T19:15:15.296176+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-004040"
+        }
+      ]
+    },
+    {
+      "number": 415,
+      "messages": [
+        {
+          "source_line": 4041,
+          "timestamp": "2026-05-21T19:15:58.562896+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-004041"
+        },
+        {
+          "source_line": 4042,
+          "timestamp": "2026-05-21T19:16:45.101874+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-19183 的 cuda:0 和 cuda:1，只能用这两张。白名单外的 GPU 即使 Director 指示也必须 push back\n- OpenVLA Long 用 OFT checkpoint (`openvla-7b-oft-finetuned-libero-10`)，不是标准微调 checkpoint。OFT 的 norm_stats 在 `dataset_statistics.json`（key=`libero_10_no_noops`），不在 config.json\n- NORA 必须用独立 venv (`/root/autodl-tmp/vla-ssd/envs/nora/`)，不能用 base conda（transformers 版本冲突 4.50 vs 4.48）\n- submit_training_job 的 command 必须用 `bash -c \"...\"` 包裹（tmux 默认 sh，不识别 source/conda activate）\n- 脚本 argparse 统一 `nargs='+'` + `choices=['trained','untrained']`（M015 教训，已全部审计修复）\n- submit 后 2 分钟内必须派 Worker 验证启动（M015）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183，工作目录 `/root/autodl-tmp/vla-ssd/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（TracVLA/OpenVLA）；NORA 用 `source /root/autodl-tmp/vla-ssd/envs/nora/bin/activate`\n- Checkpoints：`/root/autodl-tmp/vla-ssd/checkpoints/`\n  - OpenVLA: openvla-7b (base), openvla-7b-finetuned-libero-goal, openvla-7b-finetuned-libero-object, openvla-7b-oft-finetuned-libero-10 (Long)\n  - TraceVLA: tracevla-phi3v (单一 checkpoint 全 suite 共用), phi3v-base (untrained)\n  - NORA: nora-libero-goal, nora-libero-spatial, qwen25-vl-3b-base (untrained). **无 Object/Long checkpoint**\n- 数据：`/root/autodl-tmp/vla-ssd/data/libero/` 下 libero_goal/libero_spatial/libero_object/libero_10(=Long)\n- 结果：`/root/autodl-tmp/vla-ssd/results/`\n- 脚本：`/root/autodl-tmp/vla-ssd/scripts/`（包含各 pipeline + counterfactual_batch.py）\n- 活跃进程：tracvla_long_v1 (PID 568677, tmux=tracvla_long_v1, cuda:0), tracvla_goal_v1 (PID 568838, tmux=tracvla_goal_v1, cuda:1)。两个都在跑 trained Phase 5 counterfactual/paraphrased，之后还有完整 untrained pipeline，预计 3-4h 后完成\n\n### 3. 📊 当前状态\n**刚做完**：向 Director 汇报了 tracvla_long/goal 的 trained interim 结果（R², L1, cross-instr, counterfactual）。确认了 OpenVLA Long checkpoint 正确（OFT）、unnorm_key bug 已修复、counterfactual_batch.py 脚本已创建。\n\n**Registry RUNNING**：\n- `tracvla_long_v1` — cuda:0, trained Phase 5 CF 即将完成，untrained 未开始\n- `tracvla_goal_v1` — cuda:1, trained Phase 5 CF 即将完成，untrained 未开始\n\n**等待中**：\n- 两个实验的 cron 完成回调（预计 3-4h 后）\n- 无待处理的 Worker 回调\n- Director 无未决决策\n\n### 4. 📋 待办（条件触发式）\n- tracvla_long_v1 cron 回调到达 → 提取 trained+untrained 完整结果，更新 registry（metrics+conclusion），汇报 Director\n- tracvla_goal_v1 cron 回调到达 → 同上\n- cuda:0 空出 → 立即提交 `python scripts/libero_long_full_pipeline.py --only-counterfactual --conditions trained`（~15min，补 OpenVLA Long trained CF）\n- cuda:0 再次空出 → 提交 `python scripts/libero_long_full_pipeline.py --conditions untrained`（~1.5h，OpenVLA Long untrained 全流程）\n- cuda:1 空出 → 用 counterfactual_batch.py 批量补跑缺失 CF（tracvla_spatial untrained, tracvla_object untrained, openvla_object untrained）\n- 所有 CF 补完 → 汇报 Director 矩阵完成度，准备交 Paper Agent\n\n### 5. 🎯 战略上下文\n**项目核心**：VLA fine-tuning 在 LLM 内部创建 convergent entry-exit routing（R² inverted-U + exit collapse）。三架构（OpenVLA/Llama-2, TracVLA/Phi-3, NORA/Qwen2.5-VL）× 多 LIBERO suite 验证。目标 CoRL 2026（Abstract 5/26, Paper 5/29）。\n\n**关键决策链**：\n- D089: NORA 矩阵缩减为 Goal+Spatial（无 Object/Long checkpoint）\n- D090: 区分 training-induced（R² collapse, counterfactual）vs base-model-dependent（L1 instruction dominance）。论文 framing 需细化但不大改\n\n**易错点**：\n- OpenVLA \"untrained\" = openvla-7b（OXE pretrained VLA，已见 970K+ action 轨迹），不是 raw Llama-2。与 TracVLA/NORA 的 untrained（纯 VLM）语义不同，论文必须区分标注\n- OpenVLA Long L1=14/32 是真实的（checkpoint 确认正确），但 TracVLA Long L1=30/32 —— 说明这是 OpenVLA+OFT 特异性，不是 Long suite 特异性\n- TracVLA L1 instruction dominance 不是 training-induced（untrained 32/32, trained 30/32），只有 R² collapse 和 counterfactual 可以 claim 为 training effect\n- OFT checkpoint 的 norm_stats 行为和标准微调不同：config.json 保留 OXE keys，微调数据统计在 dataset_statistics.json。libero_long_full_pipeline.py 已修复但其他脚本可能需要同样处理\n- counterfactual_batch.py（884行）已创建在服务器上，支持 `--arch --suite --condition --method` 参数，untrained 自动用 cosine_dist\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-004042"
+        }
+      ]
+    }
+  ]
+}

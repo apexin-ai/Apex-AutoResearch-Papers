@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef82bac61c764186c40",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix nlp wait and run cuda0",
+  "task_key": "worker_fix_nlp_wait_and_run_cuda0_20260522T095810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_nlp_wait_and_run_cuda0_20260522T095810_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "3606a4c658585d48e3dec26d8d8cd3c88b49000af861ae5fb03dcc94c2b50ecd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`CUDA_VISIBLE_DEVICES=1` 已改为 `CUDA_VISIBLE_DEVICES=0`，进程 613202/613207 仍在运行。脚本在循环等待模型下载，实际启动 python 时会读取新值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-nlp-wait-and-run-cuda0.md"
+}

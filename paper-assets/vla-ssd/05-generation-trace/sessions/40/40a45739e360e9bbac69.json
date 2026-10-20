@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a45739e360e9bbac69",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug l1 ablation diagnostic",
+  "task_key": "worker_debug_l1_ablation_diagnostic_20260517T142940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_l1_ablation_diagnostic_20260517T142940_result.json",
+    "occurrence": 1,
+    "bytes": 1653,
+    "sha256": "170769f42b29e61b5c5b674c39becba06ebcb718b30123d6e398e881f2dc3e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diagnostic results are clear. Let me summarize the key findings:\n\n## Diagnostic Results\n\n### 1. INST_START = 257: Correct\n`input_ids` has 22 text tokens, but the model prepends 256 image tokens internally, making the actual attention seq_len ~278. INST_START=257 is the first text token position in the attention layer. The diagnostic's \"Correct: No\" is a false alarm (it checked `input_ids.shape` instead of attention seq_len).\n\n### 2. Monkey-patch mechanism: WORKING\nDespite section 5 reporting \"BUG CONFIRMED\", this is a **false alarm**. The `@deprecate_kwarg` decorator in transformers 4.57.6 wraps `forward`, so `type(attn_mod).forward.__globals__` points to the wrapper's module (`transformers.utils.deprecation`). But the original `forward` code still executes with `modeling_llama`'s globals, so patching `llama_mod.eager_attention_forward` DOES reach the original function.\n\nProof from section 3:\n- Ablated heads inst attention: **0.000000** (was 0.029116 baseline)\n- Control heads preserved: 0.020751 (unchanged)\n- L1 hidden state cosine sim: **0.972655** (significant change)\n- L2 distance: **1.507398**\n\n### 3. Root cause of 1.0 accuracy: Not a bug\nThe ablation IS working, but:\n- Baseline readout→inst attention is already small (0.027)\n- 8 control heads still carry instruction signal (0.021 each)\n- Residual connection from layer 0 preserves instruction info\n- 10-way classification is easy enough that degraded-but-not-destroyed signal suffices\n\n**The 1.0 accuracy is a genuine result, not a bug.** The L1 instruction-attending heads are not the sole bottleneck for instruction discrimination."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-l1-ablation-diagnostic.md"
+}

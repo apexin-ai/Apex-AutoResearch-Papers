@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "88d6325d5a1800bcfa8c",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code llama2 base probe execution",
+  "task_key": "worker_code_llama2_base_probe_execution_20260517T050705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2_base_probe_execution_20260517T050705.log",
+    "occurrence": 1,
+    "bytes": 1111227,
+    "sha256": "cc1a390c9f6e8eea18383a94d8e664ab7fbb91473316f61c0a6f714ba6ec2207"
+  },
+  "statistics": {
+    "messages": 940,
+    "user_turns": 1,
+    "tool_calls": 421,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 5,
+      "assistant": 86,
+      "tool_call": 421,
+      "tool_result": 421,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 911,
+      "chunks": [
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0006.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "88d6325d5a1800bcfa8c-part-0006.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama2-base-probe-execution.md"
+}

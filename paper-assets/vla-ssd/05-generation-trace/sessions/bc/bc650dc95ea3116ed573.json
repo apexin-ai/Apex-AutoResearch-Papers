@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bc650dc95ea3116ed573",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh d027 siglip only rsa",
+  "task_key": "worker_ssh_d027-siglip-only-rsa_20260515T221202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d027-siglip-only-rsa_20260515T221202.log",
+    "occurrence": 1,
+    "bytes": 599174,
+    "sha256": "4d65d87212ec93fb472ff303812b790289b9c0574258b633003c3b577e76cbb8"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 125,
+      "tool_result": 125,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "bc650dc95ea3116ed573-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc650dc95ea3116ed573-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d027-siglip-only-rsa.md"
+}

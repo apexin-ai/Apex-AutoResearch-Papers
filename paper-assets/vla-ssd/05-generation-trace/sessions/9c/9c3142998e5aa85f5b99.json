@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3142998e5aa85f5b99",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "figure fig r2 collapse v2",
+  "task_key": "worker_figure_fig_r2_collapse_v2_20260522T125718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig_r2_collapse_v2_20260522T125718_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "f294525aff52adb421bd3caed37cf71c94119db7cc89180a21f40a85fdf0e6a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已完成。总结：\n\n**fig_r2_collapse 已更新**，包含 1×3 subplots：\n\n| Subplot | 模型 | Trained Peak | Exit R² | Δ | NLP Baseline |\n|---------|------|-------------|---------|------|-------------|\n| OpenVLA (Llama-2-7B) | 32层 | 0.8693 (L10) | 0.8532 | 0.0161 | ✅ R²=0.155 灰色虚线 |\n| TracVLA (Phi-3-mini) | 32层 | 0.8024 (L18) | 0.5741 | 0.2283 | — |\n| NORA (Qwen2.5-VL-3B) | 36层 | 0.6875 (L9) | -0.0039 | 0.6914 | — |\n\n每个 subplot 含蓝色实线(trained)、红色虚线(untrained)，OpenVLA subplot 加了 Llama-2-chat NLP control baseline (R²=0.155) 灰色点线。\n\n文件位置（服务器 westd-19183）：\n- PDF: `/root/autodl-tmp/vla-ssd/figures/fig_r2_collapse.pdf` (36KB)\n- PNG: `/root/autodl-tmp/vla-ssd/figures/fig_r2_collapse.png` (285KB)\n- 同步到: `/root/autodl-tmp/vla-ssd/docs/paper/figures/`\n- 脚本: `/root/vla-ssd/scripts/gen_fig_r2_collapse_v2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig-r2-collapse-v2.md"
+}

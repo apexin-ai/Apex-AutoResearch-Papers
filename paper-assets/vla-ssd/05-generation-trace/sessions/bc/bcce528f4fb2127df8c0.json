@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcce528f4fb2127df8c0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "draw fig l1 attention fraction v3",
+  "task_key": "worker_draw_fig_l1_attention_fraction_v3_20260523T205005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig_l1_attention_fraction_v3_20260523T205005_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "85aced7863c481a5f2602ade77efe79413b8edcdc5d2da5b02671567c5d0499c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，NORA Reference 已修正为 **14/16** (0.875)。本地 PDF/PNG 已覆盖。\n\n注意：NORA 行的标注与右下角 legend 有轻微重叠。如需调整 legend 位置（如改为 `upper right`），可以再改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig-l1-attention-fraction-v3.md"
+}

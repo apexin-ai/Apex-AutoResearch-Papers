@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0edd7bd6aa29507600",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh kill pid 653455",
+  "task_key": "worker_ssh_kill-pid-653455_20260515T202128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-pid-653455_20260515T202128_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "7d7f5c13e60eebca68a04b2d34b0ff6ea7dd447f9ac67d3915fd63ed8f23d105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 653455 已终止。GPU 状态：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 16377 MiB | 0% |\n| 1 | 0 MiB | 0% |\n\nGPU 0 显存还未完全释放（16GB 残留），应该会在几秒内自动释放。GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-pid-653455.md"
+}

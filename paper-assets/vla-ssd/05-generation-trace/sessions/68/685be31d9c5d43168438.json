@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "685be31d9c5d43168438",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis libero object full pipeline",
+  "task_key": "worker_analysis_libero_object_full_pipeline_20260521T050524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_libero_object_full_pipeline_20260521T050524_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "d287e3787159b35ff0c41397ad4cd3a68be23e939af830f946dd6e27e4f82118"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验分析完成。\n\n**`libero_object_full_pipeline` — FAILED**\n\n| 项目 | 详情 |\n|------|------|\n| **失败原因** | 脚本在 RAM 中存储了 5000 个 L1 attention 矩阵（32×281×281 float32 ≈ 50GB），大概率 OOM 崩溃 |\n| **完成度** | Phase 1（提取）完成，Phase 2（probing）仅到 L8，Phase 3-6 从未执行 |\n| **结果文件** | 无（未写出任何 JSON） |\n| **部分数据** | L0: img_mean R²=0.695, last_pre R²=0.571; L8: img_mean R²=0.673, last_pre R²=0.675 |\n\n**重跑修复方向**：将 `extract_features` 中的 `l1_attns.append(l1)` 改为流式统计（提取时直接计算 per-head instruction ratio），不要在内存中保存全部 attention 矩阵。或拆分成多个阶段分别运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-libero-object-full-pipeline.md"
+}

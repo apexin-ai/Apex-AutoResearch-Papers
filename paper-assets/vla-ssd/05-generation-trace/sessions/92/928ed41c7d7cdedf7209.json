@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "928ed41c7d7cdedf7209",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code unified rsa recalc",
+  "task_key": "worker_code_unified_rsa_recalc_20260516T025219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unified_rsa_recalc_20260516T025219_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "74e57d285aceb49493d9a2e431fb8a1475888e4174703ad47031a97e015acb2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Method B 统一重算完成（6 个 VLA 条件 × 33 层）**\n\n核心数字（image_mean）：\n\n| 条件 | Best Layer | Peak RSA |\n|------|-----------|----------|\n| trained_with_inst | L12 | **0.6282** |\n| untrained_with_inst | L0 | 0.6117 |\n| trained_no_inst | L13 | 0.6225 |\n| untrained_no_inst | L0 | 0.6106 |\n\nlast_preaction: trained L12 = **0.6425**, untrained L1 = 0.6262\n\nInstruction control 4 条件几乎相同（0.6225–0.6283），instruction 内容无影响。\n\n**与 baseline 对比：**\n- SigLIP+Projector = 0.615 → VLA trained = 0.6282 (Δ=+0.013，VLA 未退化)\n- Trained vs Untrained Δ = +0.017（训练效果小）\n- DINO cls = 0.692 仍是最高\n\n**与旧 Method A 对比：** Method B 值一致偏高 ~0.13，但相对排序不变。\n\nJSON 已保存到 `/root/autodl-tmp/vla-ssd/results/rsa/unified_rsa_results.json`，summary 在本地 `artifacts/unified_rsa_summary.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unified-rsa-recalc.md"
+}

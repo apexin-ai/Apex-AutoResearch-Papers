@@ -1,0 +1,1012 @@
+{
+  "schema_version": "1.0",
+  "id": "fa630ed95d8cfa76d8c4",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260522T061909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260522T061909.log",
+    "occurrence": 1,
+    "bytes": 139838,
+    "sha256": "7edb87ce76ea8007c3d133a4141e5d80472298f0b75ba83e92e49950c3184bae"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd",
+                "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b969ee15-c385-4e7e-a481-f1e0341868ad",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779448200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "29d9ea0a-b4d0-4e56-8d47-8ba90472c852",
+                "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the required skill files and the current method.tex."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "71d31f6a-1287-49d4-b7db-8f9d33613e15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vSwrmTeRGuxUmG4VQ9igt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12391,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12391
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M2GkXUxj9rL97yggdts5LU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "a74c143f-450b-4911-b942-db8dba975c48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vSwrmTeRGuxUmG4VQ9igt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12391,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12391
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:19:26.851Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M2GkXUxj9rL97yggdts5LU",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "f321fdd1-cdab-468f-8bb6-d52a2f49e7cf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PoXnMd2rSwt3StE3G1cA2F",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "70d9c872-c643-4dc4-b9bb-fcf3af96c980",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vSwrmTeRGuxUmG4VQ9igt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12391,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12391
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:19:27.292Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PoXnMd2rSwt3StE3G1cA2F",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "a3e87d86-be99-4408-990b-cedf01d221f4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DRjmJrKJcwvNfgpo8i9gfT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "ca53115e-960e-47cd-bc08-49b9391d1540",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vSwrmTeRGuxUmG4VQ9igt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12391,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12391
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:19:27.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DRjmJrKJcwvNfgpo8i9gfT",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n5\t\n6\t%------------------------------------------------------------------\n7\t\\subsection{Architectures and Data}\n8\t\\label{sec:arch_data}\n9\t\n10\tWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n11\t\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\n12\tIts base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n13\t\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n14\t\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.\n15\t\n16\tEach architecture is evaluated in trained and untrained conditions.\n17\tA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\n18\tOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\n19\tThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\n20\tFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n21\t\n22\tWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\n23\tThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n24\t\n25\t\\begin{table}[t]\n26\t\\centering\n27\t\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n28\t\\label{tab:arch_overview}\n29\t\\footnotesize\n30\t\\setlength{\\tabcolsep}{3pt}\n31\t\\begin{tabular}{@{}llccll@{}}\n32\t\\toprule\n33\tArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n34\t\\midrule\n35\tOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\n36\tTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\n37\tNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n38\t\\bottomrule\n39\t\\end{tabular}\n40\t\\end{table}\n41\t\n42\t%------------------------------------------------------------------\n43\t\\subsection{Representation Extraction}\n44\t\\label{sec:repr_extraction}\n45\t\n46\tFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\n47\tL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\n48\tIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n49\t\n50\tWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\n51\tOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n52\t\n53\t%------------------------------------------------------------------\n54\t\\subsection{Cross-Architecture Analyses}\n55\t\\label{sec:cross_arch_analyses}\n56\t\n57\tThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n58\t\n59\t\\paragraph{$R^2$ action probes.}\n60\tTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\n61\tTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\n62\tWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n63\t\n64\t\\paragraph{L1 attention head profiling.}\n65\tAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\n66\tResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\n67\tSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n68\t\n69\t\\paragraph{Counterfactual instruction perturbation.}\n70\tThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\n71\tA metric constraint arises from the trained/untrained asymmetry.\n72\tTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\n73\tUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\n74\tCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\n75\tOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n76\t\n77\t%------------------------------------------------------------------\n78\t\\subsection{OpenVLA-Specific Analyses}\n79\t\\label{sec:openvla_analyses}\n80\t\n81\tThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n82\t\n83\t\\paragraph{Cross-instruction probes.}\n84\tEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\n85\tA 10-way linear classifier identifies which instruction was present, applied separately to image\\_mean and readout positions, with leave-one-out cross-validation (LOOCV) over 10 folds.\n86\t\n87\t\\paragraph{Representational similarity analysis (RSA).}\n88\tRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\n89\tFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\n90\tAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\n91\tWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\n92\tBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n93\t\n94\t\\paragraph{External baselines.}\n95\tDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n96\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "17b65375-f303-47cd-a8fc-319acc94db45",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\nWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n\n%------------------------------------------------------------------\n\\subsection{Architectures and Data}\n\\label{sec:arch_data}\n\nWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIts base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.\n\nEach architecture is evaluated in trained and untrained conditions.\nA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\nOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\nThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\nFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n\nWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\nThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n\n\\begin{table}[t]\n\\centering\n\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n\\label{tab:arch_overview}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccll@{}}\n\\toprule\nArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n\\midrule\nOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\nTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\nNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%------------------------------------------------------------------\n\\subsection{Representation Extraction}\n\\label{sec:repr_extraction}\n\nFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\nL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\nIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n\nWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\nOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n\n%------------------------------------------------------------------\n\\subsection{Cross-Architecture Analyses}\n\\label{sec:cross_arch_analyses}\n\nThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n\n\\paragraph{$R^2$ action probes.}\nTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\nTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\nWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n\n\\paragraph{L1 attention head profiling.}\nAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\nResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\nSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n\n\\paragraph{Counterfactual instruction perturbation.}\nThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\nA metric constraint arises from the trained/untrained asymmetry.\nTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\nUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\nCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\nOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n\n%------------------------------------------------------------------\n\\subsection{OpenVLA-Specific Analyses}\n\\label{sec:openvla_analyses}\n\nThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n\n\\paragraph{Cross-instruction probes.}\nEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\nA 10-way linear classifier identifies which instruction was present, applied separately to image\\_mean and readout positions, with leave-one-out cross-validation (LOOCV) over 10 folds.\n\n\\paragraph{Representational similarity analysis (RSA).}\nRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\nFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\nAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\nWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\nBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n\n\\paragraph{External baselines.}\nDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n",
+                "numLines": 96,
+                "startLine": 1,
+                "totalLines": 96
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me analyze what needs to change:\n\n### 1. §3.1 Architecture balance\nCurrent state:\n- **OpenVLA** (line 11-12): ~2.5 lines of detail — mentions DinoSigLIP, specific dim (2176-D→4096-D), Llama-2-7B, 6.74B params, 32 layers, 32 MHA heads, autoregressive 7-D action decoding.\n- **TracVLA** (line 13): ~1 line — mentions Phi-3-mini, 32 layers, 32 MHA heads, SigLIP encoder + spatial trace conditioning, OXE subset.\n\n\n- **NORA** (line 14): ~1 line — mentions Qwen2.5-VL-3B, 36 layers, GQA with 16 query/2 KV heads, native vision encoder.\n\nFix: Compress OpenVLA, expand TracVLA and NORA.\n\nFor OpenVLA: Remove the MLP projector dimensions (2176-D → 4096-D) and the 6.74B parameter count — these can be inferred from Table 1 or are excessive detail. Keep the essentials.\n\nFor TracVLA: Add 3.8B parameter count, briefly explain spatial trace conditioning.\n\nFor NORA: Add ~3B parameter count, briefly explain native vision encoder.\n\n### 2.\n\nNow I'm scanning through the document for terminology consistency — checking that terms like \"$R^2$ exit collapse,\" \"counterfactual sensitivity,\" \"instruction-dominant,\" \"readout token,\" and \"cross-instruction probes\" are used correctly throughout. Spot-checking a few key lines shows the terminology is already aligned, so I'll do a more comprehensive pass to catch any remaining inconsistencies.\n\nI'm also reviewing the CoRL style guidelines — looking for em-dashes, -ing phrase endings, and transition words like \"Furthermore\" or \"Notably\" that might need adjustment. The text appears clean on these fronts so far.\n\nBefore making edits, I want to confirm what stays untouched: the §3.4 structure, Table 1, all citation and label commands, and cross-references. Now I'm ready to draft the specific edits, starting with balancing the architecture descriptions in §3.1. TracVLA uses Phi-3-mini with spatial trace conditioning on an OXE subset, while NORA leverages Qwen2.5-VL-3B with its native vision encoder and grouped-query attention. NORA uses Qwen2.5-VL, a 3B parameter model with grouped-query attention, paired with its native vision encoder that handles variable resolution images directly. I need to balance the detail across all three architectures so they're roughly equal in length and information density. OpenVLA currently has more specifics than TracVLA and NORA, so I'm trimming the projector dimension details while keeping the parameter count since I'm adding it for the other two models. My plan is to give each architecture about 2-3 lines with consistent levels of detail—OpenVLA gets its vision backbone and parameter count, TracVLA gets the spatial trace conditioning and parameters, and NORA gets its native vision encoder and parameters.\n\nWriting the architecture descriptions... I'm completing the OpenVLA description—it's pretrained on Open X-Embodiment, a large-scale dataset with nearly a million episodes across different robot platforms, which gives it broad behavioral coverage.\n\nFor TracVLA, I need to add that it's around 3.8B parameters and uses spatial trace conditioning to incorporate trajectory information, also trained on an OXE subset.\n\nNORA is roughly 3B parameters and uses its own native vision encoder rather than relying on frozen backbones like the others. I'm noting the updates to the model descriptions—OpenVLA's architecture is being clarified with the specific vision backbone components and parameter counts, while TracVLA is being revised to emphasize how spatial trace conditioning overlays trajectory annotations onto images to guide action prediction. I'm working through the model descriptions and refining how I present each architecture. For NORA, I need to specify that it uses Qwen2.5-VL-3B with around 3 billion parameters, 36 layers, and grouped-query attention configuration, while noting that its vision encoder handles images at dynamic resolution without requiring a separate projection step.\n\nNow I'm checking the visual balance across all model descriptions—OpenVLA and TracVLA each take about 2-3 lines, so NORA should match that length. I'm also verifying the writing style stays consistent with the paper's conventions: no em-dashes, no gerund endings, and avoiding transitional phrases like \"Furthermore\" or \"Additionally.\" The descriptions should be direct and concise.\n\nI'm doing a terminology pass through the document to catch any inconsistencies—checking for terms like \"exit-layer collapse,\" \"R² collapse,\" and \"counterfactual responsiveness\" to make sure they're used correctly throughout. The file appears to use \"$R^2$\" properly in the action probes section, and I see \"counterfactual sensitivity\" is the right term being used.\n\nFor the readout terminology, I'm examining the context carefully. The document defines \"image_mean\" as the mean activation over image tokens and \"readout\" as the hidden state at the final pre-action token, so in line 85 where it mentions \"readout positions,\" I need to determine if that's referring to sequence positions or if it should just be \"readout\" to match the established terminology. I need to be consistent with the terminology defined earlier—\"image_mean\" and \"readout\" are the specific extraction position names established in the paper, so line 85 should drop \"positions\" and just say \"applied separately to image_mean and readout\" to match that convention.\n\nLet me also verify the other terminology is aligned: \"Cross-instruction probes\" on line 83 is correct, and the 4096-D dimension mention in line 51 is fine since it's about the actual representation dimensionality being extracted rather than architectural specs.\n\nSo my final edits are: rebalance the architecture descriptions in lines 11-14, and change line 85 to remove \"positions\" for consistency.\n\nActually, I need to reconsider the \"positions\" phrasing on line 85. The paper defines \"readout\" as the key term (bolded on line 46), so I should use just \"readout\" to match that definition rather than \"readout positions.\" The phrase \"applied separately to image_mean and readout\" flows better and stays consistent with the paper's own terminology.\n\nBefore finalizing all the edits, let me verify there aren't any other formatting issues like em-dashes in the file. I notice line 61 has en-dashes in the number ranges (\"demos 0--39 vs. 40--49\"), which is standard LaTeX notation and aligns with the writing conventions for numeric ranges.\n\nNow I need to carefully identify the exact text I'm replacing for the architecture balance fix. \\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n\\textbf{NORA} uses Qwen2.5-VL-3B (36 layers, grouped-query attention with 16 query heads and 2 KV heads) with its native vision encoder. I'm second-guessing myself on whether to keep \"vision\" in \"vision backbone\" — it's actually a standard terminology, so I should restore it. Let me finalize these model descriptions with the proper technical terms intact. I'm checking the line counts to make sure the model descriptions are balanced across the paper—OpenVLA, TracVLA, and NORA are now roughly similar in length when rendered. I'm also verifying that I've removed the projector dimension specifications as requested while keeping the vision backbone descriptions intact.\n\nFor TracVLA, I'm adding the Phi-3-mini parameter count (3.8B) and clarifying how spatial trace conditioning works—it overlays visual trajectories on images to guide action prediction. For NORA, I'm including the Qwen2.5-VL-3B parameter count and explaining that its native vision encoder processes images at dynamic resolution without needing a separate projection layer, which is a key architectural advantage.\n\nNow I'm making the edits, starting with the readout terminology fix on line 85—changing \"applied separately to image_mean and readout positions\" to \"applied separately at image_mean and readout\" for consistency. I should also scan the rest of the file to catch any other terminology inconsistencies I might have missed, particularly around \"readout,\" \"cross-instruction,\" and other key terms.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "c8077776-4d98-4ddb-8a37-2ad5344f14c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MHucZj5CgBbSH3ug2oNsSy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13974,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13974
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll make two edits: rebalance the architecture descriptions in §3.1, and fix a terminology issue on line 85."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "bf533cb3-1c7f-4d0d-8f8b-62213bdc6854",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MHucZj5CgBbSH3ug2oNsSy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13974,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13974
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016hXbysExXX8hoCBvTEE3wn",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+                "old_string": "\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIts base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.",
+                "new_string": "\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).\nSpatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.\nTracVLA is trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "c75c71db-fda6-4500-b264-bdfc74c65335",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MHucZj5CgBbSH3ug2oNsSy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13974,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13974
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:21:48.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016hXbysExXX8hoCBvTEE3wn",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "e2961bb1-495b-46f5-82fb-2c6fd253f048",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+              "oldString": "\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIts base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.",
+              "newString": "\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).\nSpatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.\nTracVLA is trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.",
+              "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n\n%------------------------------------------------------------------\n\\subsection{Architectures and Data}\n\\label{sec:arch_data}\n\nWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIts base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.\n\nEach architecture is evaluated in trained and untrained conditions.\nA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\nOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\nThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\nFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n\nWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\nThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n\n\\begin{table}[t]\n\\centering\n\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n\\label{tab:arch_overview}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccll@{}}\n\\toprule\nArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n\\midrule\nOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\nTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\nNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%------------------------------------------------------------------\n\\subsection{Representation Extraction}\n\\label{sec:repr_extraction}\n\nFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\nL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\nIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n\nWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\nOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n\n%------------------------------------------------------------------\n\\subsection{Cross-Architecture Analyses}\n\\label{sec:cross_arch_analyses}\n\nThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n\n\\paragraph{$R^2$ action probes.}\nTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\nTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\nWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n\n\\paragraph{L1 attention head profiling.}\nAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\nResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\nSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n\n\\paragraph{Counterfactual instruction perturbation.}\nThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\nA metric constraint arises from the trained/untrained asymmetry.\nTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\nUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\nCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\nOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n\n%------------------------------------------------------------------\n\\subsection{OpenVLA-Specific Analyses}\n\\label{sec:openvla_analyses}\n\nThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n\n\\paragraph{Cross-instruction probes.}\nEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\nA 10-way linear classifier identifies which instruction was present, applied separately to image\\_mean and readout positions, with leave-one-out cross-validation (LOOCV) over 10 folds.\n\n\\paragraph{Representational similarity analysis (RSA).}\nRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\nFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\nAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\nWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\nBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n\n\\paragraph{External baselines.}\nDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 8,
+                  "oldLines": 10,
+                  "newStart": 8,
+                  "newLines": 12,
+                  "lines": [
+                    " \\label{sec:arch_data}",
+                    " ",
+                    " We study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).",
+                    "-\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector (2{,}176-D $\\to$ 4{,}096-D), and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.",
+                    "-Its base checkpoint is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).",
+                    "-\\textbf{TracVLA}~\\cite{zheng2024tracevla} uses Phi-3-mini~\\cite{abdin2024phi3} (32 layers, 32 MHA heads) with a SigLIP encoder augmented by spatial trace conditioning, trained on an OXE subset.",
+                    "-\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B (36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with its native vision encoder.",
+                    "+\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.",
+                    "+It is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).",
+                    "+\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).",
+                    "+Spatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.",
+                    "+TracVLA is trained on an OXE subset.",
+                    "+\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.",
+                    " ",
+                    " Each architecture is evaluated in trained and untrained conditions.",
+                    " A critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PmciuguVped4HvsbU1NMwB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+                "old_string": "applied separately to image\\_mean and readout positions, with",
+                "new_string": "applied separately at image\\_mean and readout, with"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "ec47a36f-6844-4ad1-8688-2bb46a2bd1d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011zQKBNWUHaKYkzUo2s9PxN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8609,
+                "cache_read_input_tokens": 38206,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8609
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:21:52.870Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PmciuguVped4HvsbU1NMwB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "4caa4b51-fc09-4eb2-ac1f-d581b3c15086",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+              "oldString": "applied separately to image\\_mean and readout positions, with",
+              "newString": "applied separately at image\\_mean and readout, with",
+              "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n\n%------------------------------------------------------------------\n\\subsection{Architectures and Data}\n\\label{sec:arch_data}\n\nWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).\nSpatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.\nTracVLA is trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.\n\nEach architecture is evaluated in trained and untrained conditions.\nA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\nOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\nThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\nFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n\nWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\nThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n\n\\begin{table}[t]\n\\centering\n\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n\\label{tab:arch_overview}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccll@{}}\n\\toprule\nArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n\\midrule\nOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\nTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\nNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%------------------------------------------------------------------\n\\subsection{Representation Extraction}\n\\label{sec:repr_extraction}\n\nFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\nL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\nIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n\nWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\nOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n\n%------------------------------------------------------------------\n\\subsection{Cross-Architecture Analyses}\n\\label{sec:cross_arch_analyses}\n\nThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n\n\\paragraph{$R^2$ action probes.}\nTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\nTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\nWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n\n\\paragraph{L1 attention head profiling.}\nAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\nResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\nSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n\n\\paragraph{Counterfactual instruction perturbation.}\nThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\nA metric constraint arises from the trained/untrained asymmetry.\nTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\nUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\nCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\nOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n\n%------------------------------------------------------------------\n\\subsection{OpenVLA-Specific Analyses}\n\\label{sec:openvla_analyses}\n\nThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n\n\\paragraph{Cross-instruction probes.}\nEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\nA 10-way linear classifier identifies which instruction was present, applied separately to image\\_mean and readout positions, with leave-one-out cross-validation (LOOCV) over 10 folds.\n\n\\paragraph{Representational similarity analysis (RSA).}\nRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\nFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\nAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\nWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\nBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n\n\\paragraph{External baselines.}\nDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 84,
+                  "oldLines": 7,
+                  "newStart": 84,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\paragraph{Cross-instruction probes.}",
+                    " Each visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.",
+                    "-A 10-way linear classifier identifies which instruction was present, applied separately to image\\_mean and readout positions, with leave-one-out cross-validation (LOOCV) over 10 folds.",
+                    "+A 10-way linear classifier identifies which instruction was present, applied separately at image\\_mean and readout, with leave-one-out cross-validation (LOOCV) over 10 folds.",
+                    " ",
+                    " \\paragraph{Representational similarity analysis (RSA).}",
+                    " RSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X3s7RXWgzjW5C8vpBZCod1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "35774d49-4c2a-4259-80fc-6b0bdadaa1de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011eaS374o5MXE4ioz4Wf1S4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 218,
+                "cache_read_input_tokens": 46815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 218
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T06:21:57.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X3s7RXWgzjW5C8vpBZCod1",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n5\t\n6\t%------------------------------------------------------------------\n7\t\\subsection{Architectures and Data}\n8\t\\label{sec:arch_data}\n9\t\n10\tWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n11\t\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\n12\tIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n13\t\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).\n14\tSpatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.\n15\tTracVLA is trained on an OXE subset.\n16\t\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.\n17\t\n18\tEach architecture is evaluated in trained and untrained conditions.\n19\tA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\n20\tOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\n21\tThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\n22\tFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n23\t\n24\tWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\n25\tThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n30\t\\label{tab:arch_overview}\n31\t\\footnotesize\n32\t\\setlength{\\tabcolsep}{3pt}\n33\t\\begin{tabular}{@{}llccll@{}}\n34\t\\toprule\n35\tArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n36\t\\midrule\n37\tOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\n38\tTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\n39\tNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n40\t\\bottomrule\n41\t\\end{tabular}\n42\t\\end{table}\n43\t\n44\t%------------------------------------------------------------------\n45\t\\subsection{Representation Extraction}\n46\t\\label{sec:repr_extraction}\n47\t\n48\tFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\n49\tL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\n50\tIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n51\t\n52\tWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\n53\tOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n54\t\n55\t%------------------------------------------------------------------\n56\t\\subsection{Cross-Architecture Analyses}\n57\t\\label{sec:cross_arch_analyses}\n58\t\n59\tThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n60\t\n61\t\\paragraph{$R^2$ action probes.}\n62\tTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\n63\tTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\n64\tWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n65\t\n66\t\\paragraph{L1 attention head profiling.}\n67\tAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\n68\tResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\n69\tSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n70\t\n71\t\\paragraph{Counterfactual instruction perturbation.}\n72\tThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\n73\tA metric constraint arises from the trained/untrained asymmetry.\n74\tTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\n75\tUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\n76\tCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\n77\tOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n78\t\n79\t%------------------------------------------------------------------\n80\t\\subsection{OpenVLA-Specific Analyses}\n81\t\\label{sec:openvla_analyses}\n82\t\n83\tThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n84\t\n85\t\\paragraph{Cross-instruction probes.}\n86\tEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\n87\tA 10-way linear classifier identifies which instruction was present, applied separately at image\\_mean and readout, with leave-one-out cross-validation (LOOCV) over 10 folds.\n88\t\n89\t\\paragraph{Representational similarity analysis (RSA).}\n90\tRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\n91\tFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\n92\tAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\n93\tWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\n94\tBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n95\t\n96\t\\paragraph{External baselines.}\n97\tDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n98\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "e99a8217-0fb1-41b6-aaed-8641df363a4d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\nWe investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.\n\n%------------------------------------------------------------------\n\\subsection{Architectures and Data}\n\\label{sec:arch_data}\n\nWe study three VLAs that span distinct backbone families (Table~\\ref{tab:arch_overview}).\n\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.\nIt is pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).\n\\textbf{TracVLA}~\\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).\nSpatial trace conditioning renders visual trajectory overlays on input images to provide spatial guidance for action prediction.\nTracVLA is trained on an OXE subset.\n\\textbf{NORA}~\\cite{TODO_nora} uses Qwen2.5-VL-3B ($\\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.\n\nEach architecture is evaluated in trained and untrained conditions.\nA critical asymmetry distinguishes the untrained baselines: OpenVLA's untrained checkpoint is the OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while TracVLA and NORA untrained checkpoints are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.\nOpenVLA trained-vs-untrained comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measure VLM-to-VLA transitions.\nThis asymmetry affects the interpretation of all trained/untrained comparisons throughout the paper.\nFor OpenVLA, two additional conditions support deep-dive analyses (\\S\\ref{sec:openvla_routing}): the Llama-2 base language model (no VLA fine-tuning) and a random-weight initialization via \\texttt{from\\_config()}.\n\nWe evaluate on LIBERO~\\cite{liu2023_libero}, comprising four task suites (Goal, Spatial, Object, Long-Horizon) with 10 tasks and 50 demonstrations each.\nThe three architectures and four suites form a $3 \\times 4$ matrix; 10 of 12 cells are filled (NORA Object and Long-Horizon lack available checkpoints).\n\n\\begin{table}[t]\n\\centering\n\\caption{Architectures studied. The untrained baselines differ in kind: OpenVLA's baseline is an OXE-pretrained VLA that produces actions; TracVLA and NORA baselines are pure VLMs with no action training.}\n\\label{tab:arch_overview}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccll@{}}\n\\toprule\nArch. & Backbone & Layers & Attention & Vision Enc. & Untrained Baseline \\\\\n\\midrule\nOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\nTracVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision (VLM) \\\\\nNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL (VLM) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%------------------------------------------------------------------\n\\subsection{Representation Extraction}\n\\label{sec:repr_extraction}\n\nFrom each architecture, we extract hidden states at every transformer layer from two token positions: (a)~\\textbf{image\\_mean}, the mean activation over image tokens, and (b)~\\textbf{readout}, the hidden state at the final pre-action token, which follows both image and instruction tokens in the causal sequence and can attend to all preceding context.\nL0 denotes the embedding layer output, L1 through L$N$ the hidden states after each transformer layer ($N = 32$ for OpenVLA and TracVLA, $N = 36$ for NORA), with the final layer including the output layer norm.\nIn all three architectures, image tokens precede instruction tokens; the causal mask prevents image tokens from attending to instructions by construction.\n\nWe cross two factors in a $2 \\times 2$ factorial design: \\emph{training status} (trained vs.\\ untrained) and \\emph{instruction presence} (with vs.\\ without task description), applied to all 10 available cells in the cross-architecture matrix.\nOpenVLA additionally provides representations from the DinoSigLIP projector output (4{,}096-D), DINOv2 and CLIP external baselines, and the branch-split before fusion; these sources support the OpenVLA deep-dive analyses (\\S\\ref{sec:openvla_routing}).\n\n%------------------------------------------------------------------\n\\subsection{Cross-Architecture Analyses}\n\\label{sec:cross_arch_analyses}\n\nThree analyses are applied to every available cell in the $3 \\times 4$ matrix.\n\n\\paragraph{$R^2$ action probes.}\nTwo-layer MLP probes~\\cite{alain2017} ($d_\\text{in} \\to 256 \\to 7$, ReLU) are trained to predict 7-D action vectors from frozen representations at each layer (Adam, lr${}=10^{-3}$, batch size 256, 50 epochs, early stopping patience 5).\nTrain/test splits follow demonstration boundaries (demos 0--39 vs.\\ 40--49) to prevent within-trajectory leakage.\nWe report per-task macro-averaged $R^2$ with bootstrap paired comparisons (10{,}000 resamples).\n\n\\paragraph{L1 attention head profiling.}\nAt L1, each attention head is classified as instruction-dominant ($>50\\%$ of readout-token attention allocated to instruction tokens) or image-dominant.\nResults are reported as $k/N$ instruction-dominant heads, where $N$ is the total L1 head count: 32 for OpenVLA and TracVLA (MHA), 16 for NORA (GQA query heads).\nSensitivity analysis at thresholds from $30\\%$ to $70\\%$ confirms ordering robustness (Appendix~\\ref{sec:threshold_sensitivity}).\n\n\\paragraph{Counterfactual instruction perturbation.}\nThe instruction is replaced with four conditions: empty string, wrong task from the same suite, shuffled tokens, and paraphrased instruction.\nA metric constraint arises from the trained/untrained asymmetry.\nTrained models produce action outputs; their sensitivity is measured via Cohen's $d$ on action MSE (OpenVLA, TracVLA) or cosine distance on action representations (NORA).\nUntrained VLMs (Phi-3-Vision, Qwen2.5-VL) do not generate actions; their sensitivity is measured via cosine distance on hidden representations, a metric with different scale and distributional properties.\nCross-metric ratios between Cohen's $d$ and cosine distance are therefore invalid (\\S\\ref{sec:cf_sensitivity}).\nOpenVLA's OXE-pretrained untrained checkpoint is the exception: because it produces actions, same-metric (Cohen's $d$) trained-vs-untrained comparison is possible for that condition.\n\n%------------------------------------------------------------------\n\\subsection{OpenVLA-Specific Analyses}\n\\label{sec:openvla_analyses}\n\nThree additional analyses are applied to OpenVLA to characterize instruction encoding and representational geometry.\n\n\\paragraph{Cross-instruction probes.}\nEach visual frame is paired with all 10 LIBERO-Goal task instructions, producing 10 representation vectors per frame per layer.\nA 10-way linear classifier identifies which instruction was present, applied separately at image\\_mean and readout, with leave-one-out cross-validation (LOOCV) over 10 folds.\n\n\\paragraph{Representational similarity analysis (RSA).}\nRSA~\\cite{kriegeskorte2008} quantifies geometric alignment between representations and the action space.\nFor each task, we compute pairwise representational dissimilarity matrices (RDMs) using cosine distances for representations and Euclidean distances for 7-D action vectors, from within-task observation pairs across 50 demonstrations.\nAlignment is measured via Spearman $\\rho$ between upper-triangular RDM entries; we report mean $\\rho$ across 10 tasks with 95\\% confidence intervals from 10{,}000 bootstrap resamples at the task level~\\cite{nili2014toolbox}.\nWe prefer RSA over CKA~\\cite{kornblith2019}: RSA captures relative distance structure via scale-invariant rank correlation, suited to comparing high- and low-dimensional spaces (4{,}096-D vs.\\ 7-D), while CKA measures global subspace overlap that can remain high when geometric structure differs.\nBoth metrics are reported in Appendix~\\ref{sec:cka_appendix}; their divergence (\\S\\ref{sec:routing_synthesis}) confirms that neither alone fully characterizes representational structure.\n\n\\paragraph{External baselines.}\nDINOv2 ViT-L/14~\\cite{oquab2024_dinov2} (\\texttt{cls\\_token}/\\texttt{patch\\_mean}) and CLIP ViT-L/14~\\cite{radford2021_clip} (\\texttt{patch\\_mean}) provide self-supervised and vision-language pretrained reference points for probing and RSA.\n",
+                "numLines": 98,
+                "startLine": 1,
+                "totalLines": 98
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file looks good. Let me verify:\n\n1. **Architecture balance** ✓\n   - OpenVLA: 2 sentences (~2 lines) — removed projector dimensions, kept essentials\n   - TracVLA: 3 sentences (~2.5 lines) — added 3.8B params, explained spatial trace conditioning\n   - NORA: 1 long sentence (~2 lines) — added ~3B params, described native vision encoder\n\n2. **Terminology** ✓\n   - \"readout positions\" → \"readout\" on line 87\n   - CoRL style maintained throughout — direct sentences without em-dashes, -ing endings, or hedging phrases\n   - All structural elements preserved: section title, table, citations, and cross-references intact\n\nEverything checks out.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "1e84ef04-93d3-4560-b2c7-3b528382ce40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V4CiLTCTuvppUSmmQpLN8Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2890,
+                "cache_read_input_tokens": 47033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。两处变更：\n\n1. **§3.1 架构描述平衡**：OpenVLA 删除了 MLP projector 维度细节 `(2,176-D → 4,096-D)`；TracVLA 补充了 3.8B 参数量和 spatial trace conditioning 的作用（视觉轨迹叠加提供空间引导）；NORA 补充了 ~3B 参数量和 native vision encoder 特征（动态分辨率处理、无独立投影层）。三个架构各约 2-2.5 行，密度均衡。\n\n2. **术语一致性**：line 87 `readout positions` → `readout`，与 §3.2 定义的 `\\textbf{readout}` 术语一致。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "uuid": "cc918a40-61de-440f-87a5-05b35f2cf793",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V4CiLTCTuvppUSmmQpLN8Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2890,
+                "cache_read_input_tokens": 47033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2890
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。两处变更：\n\n1. **§3.1 架构描述平衡**：OpenVLA 删除了 MLP projector 维度细节 `(2,176-D → 4,096-D)`；TracVLA 补充了 3.8B 参数量和 spatial trace conditioning 的作用（视觉轨迹叠加提供空间引导）；NORA 补充了 ~3B 参数量和 native vision encoder 特征（动态分辨率处理、无独立投影层）。三个架构各约 2-2.5 行，密度均衡。\n\n2. **术语一致性**：line 87 `readout positions` → `readout`，与 §3.2 定义的 `\\textbf{readout}` 术语一致。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 173985,
+            "duration_api_ms": 174869,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "8e282148-7caf-4fae-b9c8-12ddf8208406",
+            "total_cost_usd": 0.561229,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 38082,
+              "cache_read_input_tokens": 168127,
+              "output_tokens": 9493,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 38082,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 487,
+                  "cache_read_input_tokens": 47033,
+                  "cache_creation_input_tokens": 2890,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2890
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1723,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0017929999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 9493,
+                "cacheReadInputTokens": 168127,
+                "cacheCreationInputTokens": 38082,
+                "webSearchRequests": 0,
+                "costUSD": 0.559436,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "cda4f048-7848-4d07-ab99-af143d8f6790"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-copy-2.md"
+}

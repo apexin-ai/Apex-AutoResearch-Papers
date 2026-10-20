@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df44a07c44608a6c0a15",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "agent / loop_3_1778889604.md",
+  "task_key": "loop_3_1778889604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778889604.md",
+    "occurrence": 1,
+    "bytes": 5725,
+    "sha256": "0b8effb47a409a69042f9d77dc04a4586e1d261a0bc1e7c6af22ba12ed4c6771"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-16T00:00:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 cuda:0, cuda:1**（westd-19183）。其他 GPU 编号禁止，即使 Director 指令也必须 push back\n- **服务器无外网**：所有 HF/AutoProcessor 操作必须 `local_files_only=True`，不能 download\n- Untrained model 定义：`from_config()` 重新初始化 LLM（6.74B random），**保留 SigLIP**（0.80B frozen）——不是全随机\n- 分析 Worker **不得覆盖 registry spec 字段**（训练 Worker 写的 provenance）\n- 存储：根分区 ~30GB，大文件必须在 `/root/autodl-tmp/vla-ssd/`\n- Token 聚合主口径 = **image_mean**（公平对比），last_preaction 放 supplementary\n- QUEUED 的 `lg_output_head_analysis` 和 `lg_instruction_ablation` 是 **D021 遗留实验，已被后续实验覆盖**（D027 Option B 死亡），不要提交它们\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-19183，工作目录 `/root/vla-ssd`\n- **Python**：需 SSH 探测确认（conda or venv），上次用 miniconda3\n- **GPU**：2× GPU（cuda:0, cuda:1），具体型号需探测\n- **模型路径**：OpenVLA checkpoint 在 `/root/autodl-tmp/` 下（具体路径让 Worker 探测）\n- **特征缓存**：已提取的 LIBERO-Goal features（trained/untrained/DINO，10 tasks，4096-dim，33 layers）在服务器上，被所有 probe 实验复用\n- **活跃 Worker**（2 个，无 cron）：\n  - `worker_ssh_plan009-cka-verification_20260515T234351`：CKA 验证，turn 24，正在做 step 5（trained last_preaction 全层扫描）\n  - `worker_ssh_untrained-last-preaction-probe_20260515T234931`：**C001 关键缺失数据点**——untrained last_preaction R²，turn 15\n- **无活跃 cron**，reconcile = 0\n\n### 3. 📊 当前状态\n**刚完成**：plan_011 functional action probe 全部 PASS（D031），Claim 2 从 \"LLM degrades\" 升级为 \"LLM redistributes\"。p0_functional_probe_v2 补了 DINO 三方对比，发现 DINO R²=0.712 ≈ Projector 0.706（p=0.22），但 RSA 几何差异显著（0.388 vs 0.615）——说明 geometric alignment ≠ information content。\n\n**正在进行**：\n- **C001 untrained last_preaction R²**（Worker running）——这是 paper_framing.md 中唯一标 TBD 的关键数据点。如果 untrained last_preaction 也高（≈0.731），则 redistribution 是 architecture-intrinsic（不需 training）；如果低，则 redistribution 需要 training。**这决定 Claim 2 的精确表述**\n- **plan_009 CKA verification**（Worker running，CPU-only）——Dream 指出 CKA 下 gap 可能缩小（C7），需要正面讨论 metric dependency\n\n**Registry 统计**：42 实验，39 DONE（27 success / 5 negative / 7 killed），2 QUEUED（遗留，不跑），1 PREPARING\n\n**等待中**：\n- 2 个 Worker 回调 → 拿到结果后更新 registry + paper_framing.md + 汇报 Director\n- re-dream（framing 更新后必须做，验证新 story 是否达 acceptance）\n- Director 决策：何时启动 Paper Agent\n\n### 4. 📋 待办（条件触发式）\n- **C001 Worker 完成** → 更新 paper_framing.md 中 \"Untrained last_preaction L19 = TBD\" 行 → 如果 R²≥0.71 则 redistribution = architecture-intrinsic，加强 Claim 2；如果 <0.68 则需加 caveat \"redistribution partially training-dependent\" → 汇报 Director\n- **plan_009 CKA Worker 完成** → 对比 CKA vs RSA 的 gap 大小 → 如果 CKA gap <0.05 则论文需正面讨论 metric dependency（C7）→ 更新 memory.md + 汇报 Director\n- **两个 Worker 都完成后** → 触发 re-dream（验证 redistribution framing 下 acceptance 是否提升）→ 如果 re-dream 达 weak accept+ → 向 Director 申请启动 Paper Agent\n- **GPU 空出后（两个 probe 都是 CPU-only，GPU 现在应该空闲）** → 可跑 plan_008 random instruction control（只需 random_s0 + shuffled，~1h/条件）或 plan_012 CLIP-ViT control → 向 Director 请示优先级\n- **Paper Agent 启动前** → 必须 Read `academic-writer.skill.md` + `latex-paper.skill.md` + `red-section` 规范\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D027: Instruction ablation FAIL → Option B 死亡，锁定 Option A（vision encoder dominance）\n- D028: SigLIP-only RSA=0.615 SMOKING GUN PASS\n- D031: Functional probe → Claim 2 pivot: \"degrades\" → \"redistributes\"（image tokens degraded，但 readout token concentrated）\n- D032: Option A framing 确认（\"LLM routes, not creates\"）\n- D033: DINO ≈ Projector in R²（p=0.22）但 RSA 差异显著 → geometric alignment ≠ information content\n\n**Headline**：frozen vision encoder 提供 action-relevant representations（RSA=0.615, R²=0.706），LLM 在 image token 层面降解（R²→0.683）但通过 attention 聚合到 readout token（R²=0.731）。Training 和 instruction 均不改变此模式。\n\n**易错点**：\n- **不要把 image_mean 和 last_preaction 口径混用**。主文数值全用 image_mean，last_preaction 放 supplementary。两种口径对 Claim 2 的方向性结论不同（image_mean: Proj > LLM；last_preaction: LLM > Proj）\n- **DINO baseline 有两个版本**：LIBERO-10 的（MVP-2 时代，R²=0.676）和 LIBERO-Goal 的（v2，R²=0.712）。论文中 DINO 数字必须标注数据集\n- **QUEUED 的 lg_output_head_analysis / lg_instruction_ablation 不要提交**——它们是 D021 时代的实验设计，后续实验已覆盖其假设\n- **CoRL DDL**：Abstract 5/26，Paper 5/29。剩 ~11 天写完 8 页论文。re-dream 通过后必须立即铺 Paper Agent\n- **Dream 历史**：D030 时三档均低于 acceptance（best = borderline reject）。D031 pivot 后尚未 re-dream。新 framing 是否能过 dream 仍有风险\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778889604.md"
+}

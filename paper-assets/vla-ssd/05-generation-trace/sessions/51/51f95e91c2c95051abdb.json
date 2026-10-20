@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "51f95e91c2c95051abdb",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh instruction ablation v2",
+  "task_key": "worker_ssh_instruction-ablation-v2_20260515T202549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_instruction-ablation-v2_20260515T202549.log",
+    "occurrence": 1,
+    "bytes": 997917,
+    "sha256": "61b35f4cb0ae40990a209468fe82e1cfa0e572e9ce43975a815a897bf7f106c2"
+  },
+  "statistics": {
+    "messages": 586,
+    "user_turns": 1,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 169,
+      "tool_call": 205,
+      "tool_result": 205,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 548,
+      "chunks": [
+        {
+          "path": "51f95e91c2c95051abdb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "51f95e91c2c95051abdb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "51f95e91c2c95051abdb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "51f95e91c2c95051abdb-part-0004.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "51f95e91c2c95051abdb-part-0004.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-instruction-ablation-v2.md"
+}

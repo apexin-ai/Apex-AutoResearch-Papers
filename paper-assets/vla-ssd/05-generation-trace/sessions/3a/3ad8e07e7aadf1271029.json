@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ad8e07e7aadf1271029",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix bootstrap long paths and tracvla",
+  "task_key": "worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "fcfb2b4d7bcfc7dd9effcb8329bbf5eb79383f0b453e370bf21b539f5ea9477e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 问题 1: Long suite 数据/checkpoint 路径 — 已修复\n\n**根因**：`clustered_bootstrap_probe.py` 将 `--suite long` 映射到 `libero_long/` 目录，但 LIBERO-Long 数据实际存储在 `libero_10/`（Long 任务是 LIBERO-10 的子集）。OpenVLA Long trained checkpoint 是 OFT 微调版本 `openvla-7b-oft-finetuned-libero-10`，不是脚本中写的 `openvla-7b-finetuned-libero-long`。\n\n**修复内容**（`clustered_bootstrap_probe.py`）：\n- 第 27 行：checkpoint 从 `openvla-7b-finetuned-libero-long` → `openvla-7b-oft-finetuned-libero-10`\n- 第 381 行：data 路径加特判 `long → libero_10`\n\n**附带修复**：OFT checkpoint 的 `modeling_prismatic.py` 中 `_supports_sdpa` 属性在 `__init__` 阶段 crash（`language_model` 尚未创建），加了 `getattr` 安全检查。\n\n### 问题 2: TracVLA/phi3v DynamicCache 兼容性 — 已修复\n\n**根因**：transformers 5.9.0 移除了三个 API：\n1. `DynamicCache.from_legacy_cache()` — 已移除\n2. `DynamicCache.get_usable_length()` → 改为 `get_seq_length()`\n3. `use_legacy_cache` 变量被删后下游引用报 NameError\n\n**修复位置**（4 个文件，2 个 checkpoint 源 + 2 个 HF 缓存副本）：\n- `checkpoints/phi3v-base/modeling_phi3_v.py`\n- `checkpoints/tracevla-phi3v/modeling_phi3_v.py`\n\n**dry_run 验证全部通过**：OpenVLA Long trained ✓、TracVLA Long untrained ✓\n\n### cuda:0 进度\n\nPID 670830 仍在运行 `run_bootstrap_cuda0.sh`，当前在 `openvla_goal` 的 10000 次 bootstrap 迭代中（自 22:55:41 开始）。日志无进度输出是正常的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-long-paths-and-tracvla.md"
+}

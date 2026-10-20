@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd748be0edc787cbaf5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap urgent status",
+  "task_key": "worker_check_bootstrap_urgent_status_20260522T162657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_urgent_status_20260522T162657_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "0b2d201e9bc2bae7c5045020f5f8c2cf4c3eb7f68576f6d1f88205bc0ee5e4a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**状态：正常运行中，未崩溃。**\n\n### tmux sessions\n- `bootstrap_cuda0` — 存在，运行中\n- `bootstrap_cuda1` — 存在，运行中\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 | 进程 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Black (98GB) | 2135 MiB | **0%** | python3 (PID 679958) |\n| 1 | RTX PRO 6000 Black (98GB) | 691 MiB | **0%** | python3 (PID 679960) |\n\n### 进程\n- GPU 0: `clustered_bootstrap_probe.py --arch openvla --suite goal --condition trained --n_bootstrap 1000` — CPU 时间 687 min\n- GPU 1: `clustered_bootstrap_probe.py --arch tracvla --suite goal --condition trained --n_bootstrap 1000` — CPU 时间 694 min\n\n### 当前阶段\n两卡都已完成 feature extraction（5000/5000 samples），正在执行 **Bootstrap (1000 iterations)**。Bootstrap 阶段是纯 CPU 计算（kernel matrix + ridge regression 重采样），所以 **GPU 利用率 0% 是正常的**——不是崩了，是计算已经离开 GPU 转到 CPU 上了。\n\n- cuda0 (openvla): 00:03:16 开始 bootstrap，已运行约 24 分钟\n- cuda1 (tracvla): 00:03:08 开始 bootstrap，已运行约 24 分钟\n\n### 结果文件\n尚无 `.json` 输出——bootstrap 1000 次迭代还在跑，完成后才会写结果文件。\n\n### 结论\n**无需干预。** 两个任务都在正常执行 bootstrap 阶段，GPU 空闲是预期行为。等 bootstrap 完成后会自动写入结果 JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-urgent-status.md"
+}

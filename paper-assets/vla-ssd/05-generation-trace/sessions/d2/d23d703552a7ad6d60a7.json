@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d23d703552a7ad6d60a7",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code nora setup and dryrun",
+  "task_key": "worker_code_nora_setup_and_dryrun_20260521T002441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nora_setup_and_dryrun_20260521T002441_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "6c040ac90823188d61fdf77b8840da61646837ad39981ae1223592e9ab9a9fb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个步骤完成。总结：\n\n---\n\n**NORA VLA 分析环境搭建完成** (westd-19183, cuda:1)\n\n**已完成：**\n1. SmolVLA 残留清理，释放 ~3GB + HF 缓存清理释放 ~6GB\n2. 独立 venv 环境 (`/root/autodl-tmp/vla-ssd/envs/nora/`)，transformers=4.50.0，base env 的 4.48.3 未受影响\n3. NORA checkpoint 下载完成 (7.5GB, 2 shards)\n4. Qwen2.5-VL-3B-Instruct base 下载完成 (7.5GB, 2 shards)\n5. 架构分析：36 层, hidden=2048, GQA 16h/2kv, 32 层 ViT 视觉编码器\n6. Token layout：LIBERO 128×128 → 25 image tokens (5×5), 总 53 tokens\n7. Dry-run 成功：10 timesteps, L0/L_last hidden states + attention 提取正常\n\n**关键发现：**\n- NORA 与 OpenVLA 差异显著：GQA vs MHA, 动态 vs 固定图像 tokens, M-RoPE, FAST+ 2048 action tokens\n- L0 readout std=0.026 vs L_last readout std=3.699 → 深层表征 enrichment 与 OpenVLA 一致\n- 需要 `AutoModelForImageTextToText` 加载，不同于 OpenVLA/TracVLA\n\n**报告：** `artifacts/nora_analysis_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nora-setup-and-dryrun.md"
+}

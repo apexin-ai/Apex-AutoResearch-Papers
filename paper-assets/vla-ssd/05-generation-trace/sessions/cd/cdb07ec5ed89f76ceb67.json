@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb07ec5ed89f76ceb67",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code bootstrap v3 mccv",
+  "task_key": "worker_code_bootstrap_v3_mccv_20260523T064112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_v3_mccv_20260523T064112_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "a4a5ae8955938b82fe4b2972415fd7f8f0ab907aa853fe867441c5994d25495f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n## 1. v3 代码改动摘要\n\n| 位置 | v2 | v3 |\n|------|----|----|\n| 全局变量 | `_MP_RESAMPLES` | `_MP_SEEDS`（per-iteration 随机种子数组） |\n| `_bootstrap_single(b)` | `resampled = _MP_RESAMPLES[b]` 然后按位置切 `[:n_train]` / `[n_train:]` | `rng_b = np.random.default_rng(_MP_SEEDS[b])` → `rng_b.permutation()` 无放回切分 + `assert` 验证不重叠 |\n| 种子生成 | `rng2.choice(unique_demos, size=n_total, replace=True)` ×B | `rng2.integers(0, 2**63, size=n_bootstrap)` |\n| 输出目录 | `results/clustered_bootstrap/` | `results/bootstrap_v3/` |\n| docstring | 标注 v3 Monte Carlo CV 修复说明 |\n\n## 2. Dry-run 结果\n\n- tracvla/goal/trained, n_bootstrap=10, dry_run (4 demos, 20 samples)\n- Peak R²=-1.4703 @ L23, Exit R²=-2.0955 @ L31\n- Delta=0.6252, CI95=[-0.2945, 1.2055]\n- **无 assertion 错误**（train/test demo 完全不重叠）\n- R²为负是因为 dry-run 样本极少，正常\n\n## 3. 双卡启动确认\n\n| 卡 | tmux session | PID | 当前任务 | 条件数 |\n|----|-------------|-----|---------|-------|\n| cuda:0 | `bootstrap_v3_cuda0` | 724283 | openvla/goal/trained | 12（openvla×8 + nora×4） |\n| cuda:1 | `bootstrap_v3_cuda1` | 724305 | tracvla/goal/trained | 8（tracvla×8） |\n\n## 4. 预计完成时间\n\nv2 单条件（1000 bootstrap）约 20-30 分钟（特征提取 ~15min + bootstrap ~5-10min）。\n- cuda:0（12 条件）：~5-6 小时\n- cuda:1（8 条件）：~3-4 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-v3-mccv.md"
+}

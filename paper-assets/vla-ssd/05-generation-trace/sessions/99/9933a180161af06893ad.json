@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9933a180161af06893ad",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis bootstrap task ratio",
+  "task_key": "worker_analysis_bootstrap_task_ratio_20260519T154920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_task_ratio_20260519T154920_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "3af31867206e5e8c58a30ad2e5e0d972f0a00262ce97bce8183a16462bd25b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：**2.5× [1.0, 11.1]**\n\n95% CI 下界 > 1.0，ratio 显著大于 1。但 CI 极宽（上界 11.1×），主要因为 simple 组 n=4 且含 outlier \"cream cheese in bowl\"（|ΔR²|=0.159 远高于其余 simple tasks）。当 bootstrap 重采样到该 outlier 占比低时 simple 均值很小，推高 ratio。\n\n输出已写入 `artifacts/bootstrap_task_ratio.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-task-ratio.md"
+}

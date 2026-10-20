@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cb9383923634e96d2d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "submit tracvla spatial untrained",
+  "task_key": "worker_submit_tracvla_spatial_untrained_20260521T103927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_tracvla_spatial_untrained_20260521T103927_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "3bbf0d8a57cd3f92fbd35591298147813b83679af5be4d9c748caea662076072"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，运行正常。\n\n- **PID**: 551645，已运行 1m42s，ALIVE\n- **进度**: trained 条件正在提取表征，Task 3/10，~1900/5000 samples\n- **UNTRAINED_CKPT**: 已修正为本地路径 `/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/`\n- **Registry**: `tracvla_spatial_full_v2` → ALLOCATED\n- **超时**: 6h\n- **日志**: `~/runs/vla-ssd/tracvla_spatial_full_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-tracvla-spatial-untrained.md"
+}

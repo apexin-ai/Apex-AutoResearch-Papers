@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaffe494d0fc8d332fc1",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "debug checkpoint identity and behavioral restart",
+  "task_key": "worker_debug_checkpoint_identity_and_behavioral_restart_20260518T105748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_checkpoint_identity_and_behavioral_restart_20260518T105748_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "e9f92618b6e57014209677ae4e7b0c22381468a238828298a29aa22d417f2c40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认了关键发现：\n\n1. Token IDs 在正确范围内 ([31744-31924])\n2. 反归一化正确\n3. 动作数值合理\n4. 但 3/3 episode 全部失败（两种评估脚本均如此）\n\n这几乎肯定是 **mujoco 版本问题**。服务器上是 mujoco 3.8.1，而 OpenVLA LIBERO 微调模型是在 mujoco 2.x 上收集的演示训练的。物理模拟的细微差异导致闭环行为发散。\n\n验证总结报告：\n\n**完成的步骤：**\n- Step 1: 确认服务器 `openvla-7b` 是 base 预训练模型（Open X-Embodiment），非 LIBERO 微调\n- Step 2: 从 HuggingFace 找到正确模型 `openvla/openvla-7b-finetuned-libero-goal`\n- Step 3: 下载 ~15GB checkpoint 到 `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/`\n- Step 4: 修复 auto_map、复制 custom code 文件，模型加载成功\n- Step 5: 安装 transformers==4.40.1（模型要求版本），更新 `behavioral_pilot.py` (MODEL_PATH, UNNORM_KEY, center_crop)\n- 模型加载验证通过：`norm_stats={'libero_goal'}`, `action_dim=7`, `vocab_size=32000`\n\n**未通过的验证：**\n- 3-episode baseline SR = 0/3（两种不同脚本均确认）\n- 原因：**mujoco 3.8.1（当前）vs 模型训练时的 mujoco ~2.3 物理模拟不一致**\n- 模型输出合理 action（token IDs 正确、值在合理范围），但在新版 mujoco 的物理引擎下无法完成任务\n\n**建议的下一步：**\n1. 安装 `mujoco==2.3.7`（或 `mujoco-py`）以匹配训练环境\n2. 或在有兼容 mujoco 版本的机器上运行评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-checkpoint-identity-and-behavioral-restart.md"
+}

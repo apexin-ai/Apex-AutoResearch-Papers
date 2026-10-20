@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b98b4959402c0a1ab81c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "paper appendix cpu analysis tables",
+  "task_key": "worker_paper_appendix_cpu_analysis_tables_20260518T182523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_cpu_analysis_tables_20260518T182523_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "143405f8e95f858be04b7a4b511d64c0b12425aef5eddd134f2572e396933c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**添加的 3 个表格（appendix.tex L591-668）：**\n\n| 表格 | 标签 | 内容 |\n|---|---|---|\n| Table: Attention Decomp | `tab:attention_decomp` | L1 注意力分解：instr-dom 24h (62.4% instr) vs control 8h (44.9% instr)，Δ=+17.5pp |\n| Table: Per-Dim MAE | `tab:per_dim_mae` | 7 维 MAE 对比：translation dims 3-5× ratio，rotation 1.9-2.6×，gripper 2.07× |\n| Table: Per-Task R² | `tab:per_task_r2` | 10 tasks 全部 Δ>0，range +0.007 ~ +0.235，mean Δ=+0.107 |\n\n**主文引用（experiments.tex）：**\n- L68: `Table~\\ref{tab:per_task_r2}` — ablation paragraph\n- L71: `Tables~\\ref{tab:attention_decomp},~\\ref{tab:per_dim_mae}` — trajectory paragraph\n\n编译通过，0 errors，0 undefined references。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-cpu-analysis-tables.md"
+}

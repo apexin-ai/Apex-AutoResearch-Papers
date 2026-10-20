@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a7a750f58aa326dd1dfd",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "ssh plan009 cka verification",
+  "task_key": "worker_ssh_plan009-cka-verification_20260515T234351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan009-cka-verification_20260515T234351.log",
+    "occurrence": 1,
+    "bytes": 572466,
+    "sha256": "92c696110e504991634e414843a8e8cd4059d6247a72143c76d38f18f7610c47"
+  },
+  "statistics": {
+    "messages": 329,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 329,
+      "chunks": [
+        {
+          "path": "a7a750f58aa326dd1dfd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7a750f58aa326dd1dfd-part-0002.json",
+          "message_count": 149
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-plan009-cka-verification.md"
+}

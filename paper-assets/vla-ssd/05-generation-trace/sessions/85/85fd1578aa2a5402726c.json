@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85fd1578aa2a5402726c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "check bootstrap cron false alarm",
+  "task_key": "worker_check_bootstrap_cron_false_alarm_20260523T002801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bootstrap_cron_false_alarm_20260523T002801_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "b9877006c28b810ccbf9821777ff2fad6a4be1c8b23a562d8d9e2e86b2d8d932"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**假警报确认。** cuda:0 进程正常完成退出，cuda:1 仍在运行。\n\n状态汇总：\n\n| 项 | 状态 |\n|---|---|\n| GPU 0 | 空闲（0%, 0 MiB）— cuda:0 batch 已于 08:26:35 全部完成 |\n| GPU 1 | 运行中（48%, 12623 MiB）— 正在提取 task 6/10, 3400/5000 samples |\n| 已完成 JSON | 17 个 |\n\n**cuda:0 已完成的最后一项：** `nora_spatial/untrained` (Peak R²=0.5125 @ L4, Exit R²=0.424 @ L35)\n\n**cuda:1 进度：** 正在处理中（~68% extraction），预计还需数小时完成剩余任务。\n\n缺失结果（待 cuda:1 完成）：\n- `tracvla_object/untrained`（当前正在跑）\n- `nora_object/trained` + `untrained`\n- `tracvla_long/trained` + `untrained`\n- `nora_long/trained` + `untrained`\n\n无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bootstrap-cron-false-alarm.md"
+}

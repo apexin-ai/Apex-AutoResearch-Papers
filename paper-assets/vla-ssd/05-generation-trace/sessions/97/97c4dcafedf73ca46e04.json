@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97c4dcafedf73ca46e04",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diag tracvla spatial status",
+  "task_key": "worker_diag_tracvla_spatial_status_20260521T155509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_tracvla_spatial_status_20260521T155509_result.json",
+    "occurrence": 1,
+    "bytes": 1833,
+    "sha256": "b6b542d77e339e951da2b569ac9b8fccbeaead3c065cb0ec69bca27ff20dee79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 实验 1: tracvla_spatial_trained (PID 521837)\n\n**状态: CRASHED (被 kill，EXIT_CODE=143)**\n\n日志显示 Phase 1（representation extraction, 5000 samples）正常完成，进入 Phase 2（action R2 probing）后被 `Terminated`（SIGTERM, exit code 143）。不是正常结束。\n\n**结果文件**: 无。这个进程在 Phase 2 中被杀，没有产出结果文件。\n\n### 实验 2: tracvla_spatial_full_v2\n\n**状态: COMPLETED (trained 部分), FAILED (untrained 部分)**\n\n- **trained condition**: 正常跑完所有 5 个 Phase，耗时 160 分钟。`EXIT_CODE=0`。\n- **untrained condition**: 加载 `/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/` 时报错 **FlashAttention2 未安装**，跳过了 untrained condition。\n\n**结果文件** (`/root/autodl-tmp/vla-ssd/results/tracvla_spatial/trained/`):\n- `action_r2_probing.json` (6.3KB)\n- `counterfactual_combined.json` (31KB)\n- `cross_instruction_classification.json` (1.7KB)\n- `l1_attention_profile.json` (5KB)\n\n**untrained 目录**: `/root/autodl-tmp/vla-ssd/results/tracvla_spatial/untrained/` 存在但**为空**。\n\n### pipeline 日志 (tracvla_spatial_pipeline.log)\n\n这是一个更早的运行（与 full_v2 不同的实例），同样在 untrained 阶段失败——但原因是**网络不可达**（HuggingFace 连接失败，没有 `source /etc/network_turbo`），被 OOM killer 杀掉（EXIT_CODE=129/137）。\n\n### 关键问题\n\n1. **trained condition 数据齐全**（来自 full_v2），4 个结果 JSON 已产出\n2. **untrained condition 缺失**——full_v2 因 flash-attn 未安装失败，pipeline 因网络问题失败\n3. 要补齐 untrained 数据，需要：安装 `flash-attn`，或者加载 untrained 模型时禁用 FlashAttention2（设 `attn_implementation=\"eager\"`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-tracvla-spatial-status.md"
+}

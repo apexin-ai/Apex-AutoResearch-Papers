@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "03fcc3fc8949c3a89649",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code ablation p0 cosine metric",
+  "task_key": "worker_code_ablation_p0_cosine_metric_20260516T083517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_p0_cosine_metric_20260516T083517.log",
+    "occurrence": 1,
+    "bytes": 856655,
+    "sha256": "04f031aaa3dfb61122b5415ec6509e1bb5b3aca0c25eac0f3d49be246213c23a"
+  },
+  "statistics": {
+    "messages": 608,
+    "user_turns": 0,
+    "tool_calls": 273,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 56,
+      "tool_call": 273,
+      "tool_result": 273,
+      "record": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 608,
+      "chunks": [
+        {
+          "path": "03fcc3fc8949c3a89649-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "03fcc3fc8949c3a89649-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "03fcc3fc8949c3a89649-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "03fcc3fc8949c3a89649-part-0004.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ablation-p0-cosine-metric.md"
+}

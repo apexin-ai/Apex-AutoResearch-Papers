@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891387a392bb9b586738",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis fdr correction",
+  "task_key": "worker_analysis_fdr_correction_20260517T195613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fdr_correction_20260517T195613_result.json",
+    "occurrence": 1,
+    "bytes": 2001,
+    "sha256": "502c15a412b3d24f18bed47c25ae6fb4cde71c332d2e627c7d30fbf6efc27082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four analyses complete. Here are the results:\n\n---\n\n## FDR Correction Results (Benjamini-Hochberg, Wilcoxon signed-rank, 10 tasks paired, 33 layers L0-L32)\n\n### 1. RSA trained vs untrained (image_mean)\n\n**25/33 layers significant after FDR (q<0.05)**\n\n| Significant | L1-L21, L29-L32 |\n|---|---|\n| **Not significant** | **L0, L22-L28** |\n\n| Layer | mean_diff | p_raw | q_fdr | sig |\n|-------|-----------|-------|-------|-----|\n| L0 | 0.0000 | 1.000000 | 1.000000 | |\n| L1 | 0.0412 | 0.009766 | 0.013428 | * |\n| L2-L15 | 0.05-0.08 | 0.001953 | 0.004958 | ** |\n| L16-L20 | 0.05-0.06 | 0.003906 | 0.005859 | ** |\n| L21 | 0.0472 | 0.009766 | 0.013428 | * |\n| L22-L28 | -0.03 to 0.02 | 0.049-0.922 | 0.060-0.951 | |\n| L29 | -0.0483 | 0.037109 | 0.048984 | * |\n| L30-L32 | -0.10 to -0.12 | 0.003906 | 0.005859 | ** |\n\nEarly-mid layers (L1-L21): trained > untrained. Late layers (L29-L32): untrained > trained (negative diff, but still significant difference).\n\n### 2. RSA trained vs untrained (last_preaction)\n\n**0/33 layers significant after FDR (q<0.05)**\n\nNo layer survives correction. Closest: L1 (p_raw=0.0059, q=0.081) and L13 (p_raw=0.0059, q=0.081).\n\n### 3. Probe R² trained vs untrained (image_mean)\n\n**30/33 layers significant after FDR (q<0.05)**\n\n| Significant | L1-L27, L29-L30, L32 |\n|---|---|\n| **Not significant** | **L0, L28, L31** |\n\nNearly all layers show significant trained vs untrained difference. Most at q=0.0026 level.\n\n### 4. Probe R² trained vs untrained (last_preaction)\n\n**29/33 layers significant after FDR (q<0.05)**\n\n| Significant | L1, L4-L31 |\n|---|---|\n| **Not significant** | **L0, L2, L3, L32** |\n\nMassive effects at mid-late layers (L12-L22 show mean_diff ~0.95-1.00 in R²).\n\n---\n\n**Summary**: RSA image_mean and both Probe readouts show robust trained-vs-untrained differences surviving FDR correction across most layers. RSA last_preaction shows no significant differences after correction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fdr-correction.md"
+}

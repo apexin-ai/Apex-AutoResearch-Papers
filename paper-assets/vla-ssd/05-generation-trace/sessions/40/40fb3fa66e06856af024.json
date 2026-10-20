@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40fb3fa66e06856af024",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code behavioral smoketest",
+  "task_key": "worker_code_behavioral_smoketest_20260519T042351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_behavioral_smoketest_20260519T042351_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "3a57cef4bc1a79e6151c99578a1ca165612d2b4fb5fccc9b6abaa26587c644b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境验证完成，smoke test 正在运行。汇报如下：\n\n---\n\n## 环境验证结果\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| conda env `libero` | ✅ | `/root/miniconda3/envs/libero/` |\n| MuJoCo | ✅ 3.8.1 | 需在 shell 层面设 `LD_LIBRARY_PATH` (Python 内 `os.environ` 对当前进程 `dlopen` 无效) |\n| EGL rendering | ✅ | `MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1` |\n| LIBERO | ✅ | 需 `NUMBA_DISABLE_JIT=1` 绕过 NumPy 2.0 vs numba 不兼容 |\n| Checkpoint | ✅ | `/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/` (4 shards, 加载成功) |\n| 已有脚本 | ✅ | `behavioral_smoketest.py` 已存在 |\n\n## 之前失败的原因（已修复）\n\n之前 `behavioral_pilot_w4` SR=0/3 的根因是 **MuJoCo 加载失败**（`libmujoco.so.3.1.6 not found`），导致 env 根本无法正常创建。这次修复了两个关键问题：\n\n1. **`LD_LIBRARY_PATH`**：必须在 shell 层面设置，不能在 Python 内用 `os.environ`（Linux `dlopen` 在进程启动时缓存 `LD_LIBRARY_PATH`）\n2. **`MUJOCO_EGL_DEVICE_ID=1`**：robosuite 断言 EGL device ID 必须在 `CUDA_VISIBLE_DEVICES` 字符串中\n\n## 当前状态\n\n- **PID**: 107414，westd-19183 cuda:1\n- **日志**: `/root/autodl-tmp/vla-ssd/results/behavioral_smoketest_v2.log`\n- 模型已成功加载，Phase 1 (Baseline) 正在跑 3 episodes\n- 预计 15-20 分钟完成\n- Registry 已更新 notes（无法重置 DONE→RUNNING，notes 记录了 v2 重跑信息）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-behavioral-smoketest-copy-3.md"
+}

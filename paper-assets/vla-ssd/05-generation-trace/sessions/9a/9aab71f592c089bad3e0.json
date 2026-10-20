@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aab71f592c089bad3e0",
+  "project": "vla-ssd",
+  "kind": "history",
+  "title": "director / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3116,
+    "sha256": "b6f46464755de67803a2d3c4112a9eb09c55d62d8870339ddff696e1b0f90a1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_messages\nupdated: '2026-05-27T06:20:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配：westd-19183 的 2× RTX PRO 6000。已请求释放 6 次（Manager 未回复），建议用户直接关实例。**不要在这两张卡上启动新实验**——D108/D110 确认无可行实验，Reviewer 多次背书\n- 格式违规复发历史：R15 \\setlength → R16 resolved → R17 \\enlargethispage 复发 → 已修。**绝不引入任何新的 spacing hack**（\\enlargethispage / \\setlength / aggressive \\vspace），内容超 8 页时必须实际精简内容\n- anticipated_rebuttal_v2.md 已有 Q1-Q12 完整内容（Q11 ~400 词）。Reviewer 多次误报\"Q11/Q12 缺失\"——基于过期信息，不要重复执行\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-19183 (connect.westd.seetacloud.com)，工作目录 /root/vla-ssd\n- 论文本地真源：`/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/`（main.tex + main.pdf）\n- Rebuttal：`artifacts/_project/paper/anticipated_rebuttal_v2.md`\n- 无活跃进程、无 tmux session、无 cron 任务、无 RUNNING 实验\n- Git 未配置、W&B 未配置（本项目不需要）\n\n### 3. 📊 当前状态\n论文最终版就绪，等用户 OpenReview 提交（DDL 5/29）。\n\n- R17 审稿 7/10 Weak Accept（R1=7.5, R2=6.0），3 SF + 1 Minor 全部修复，Reviewer 验证 4/4 PASS\n- review_issues.yaml 全部 R17 项标 resolved\n- 编译：0 error，正文 8 页（无格式 hack），43 页总计，0 Type 3 字体\n- 实验：156 total，109 success，17 negative（D110 逐条审查确认无需重试）\n- 用户已催 4 次（abstract 状态 + paper 提交 + GPU 释放），未回复\n- Abstract DDL 5/26 已过，用户未确认提交状态（D109）\n\n### 4. 📋 待办\n- 用户回复确认提交 → 协助打包提交材料（如需要）\n- 用户说 abstract 未提交 → 评估是否还投 CoRL 或换 venue（但不主动建议降级）\n- 用户确认关 westd-19183 → 无需额外操作（无活跃进程）\n- Manager 回复 GPU 释放 → ACK 即可\n- 收到新的 keepalive 催促 → WAIT 120m，论文已就绪等用户操作\n\n### 5. 🎯 战略上下文\n- 核心发现：VLA fine-tuning 的 R² exit collapse 是 VLM→VLA 转换的 one-time reorganization（6/6 cells Δ=0.156-0.455），VLA→VLA 不再出现（0/4 cells Δ=0.033-0.086）。3 个 NLP controls 全部 ΔR²=0.000 确认 VLA-specificity\n- 中稿率：Reviewer 最终估 50-55%。瓶颈是 paper type（analysis paper at robotics venue），非 evidence 不足。无法通过加实验/改 text 突破\n- 决策链关键节点：D095 cross-architecture upgrade → D096-D102 VLM→VLA vs VLA→VLA 二元分离 → D105 Qwen NLP control → D108/D110 实验穷尽 → D112 action-head decoding 关闭\n- 易错点：(1) Reviewer 会重复说 Q11/Q12 缺失——它们在 anticipated_rebuttal_v2.md lines 143-157，已完整 (2) 不要因为 GPU 空闲就硬找实验跑——D110 结论经过 Reviewer 严格验证 (3) 格式合规是 R2 给 6.0 的原因之一，任何改动后必须确认正文 ≤8 页无 hack\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

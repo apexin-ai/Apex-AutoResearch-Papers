@@ -1,0 +1,2306 @@
+{
+  "schema_version": "1.0",
+  "session_id": "89b3e63ef624e21c8296",
+  "rounds": [
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-15T23:46:11.789447+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA worker 已在运行，DINO probe 也在运行。推进 delta probe 到 DONE 并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001081"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-15T23:46:39.811962+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] Framing 决策：**采用 Option A（\"LLM routes, not creates\"）**。D031 redistribution 方向确认。\n\n但 Reviewer 发现 CRITICAL——当前 GATE: PASS 缺乏统计检验。**必须修正 action_probe_projector.py 后重跑**。具体修正：\n\n**1. [CRITICAL] 添加 projector vs image_mean_trained_L19 的 bootstrap CI**\n这是 paper 的主比较（0.706 vs 0.683）。当前脚本只做了 projector vs last_preaction 的 bootstrap（不是主比较）。gate 判定改为：该 bootstrap CI 下界 > 0 → PASS。删掉硬编码 0.683 阈值。\n\n**2. [CRITICAL] 添加 DINO action probe**\n用 `dinov2_libero_goal/` 的特征，在同一脚本中完成三方对比。几乎零额外成本。\n\n**3. [WARNING] 排查 untrained L10/L11 异常**\nR² 从 0.632 骤降到 0.029/0.054 再回 0.621。检查 h5 特征文件 L10/L11 的 stats（mean/std/shape），看是否特征提取 bug。\n\n**4. [WARNING] Delta probe BELOW 需如实记录**\n更新 registry：raw action PASS（pending stat test），delta BELOW（CI 含 0，差异不显著）。论文需汇报双维度。\n\n**5. 两个实验 registry 状态更新**\np0_functional_action_probe 和 p0_functional_action_delta_probe 仍标 PREPARING，实际已完成。先更新 registry，再重跑修正版。\n\n修正后重跑是 **re-dream 的前置条件**。优先级最高，用 cuda:0。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-15T23:46:49.906768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_action_probe",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-15T23:46:50.108012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → QUEUED. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.137}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-15T23:47:00.011133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_action_probe",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-15T23:47:00.262893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: DONE → QUEUED. Allowed: ['DEPLOYING', 'PREPARING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2655}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-15T23:47:06.548079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['status', 'conclusion']"
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-15T23:47:06.699486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_009_cka_verification\\\": {\\\"status\\\": \\\"PREPARING\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1308}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-15T23:47:11.767177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'exp_id': 'p0_functional_action_probe'}",
+              "fields": "['status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-15T23:47:11.867946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1251}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-15T23:47:15.030075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "limit": "5",
+              "fields": "['status', 'conclusion']"
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-15T23:47:15.180958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"p0_functional_action_delta_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_009_cka_verification\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"p0_functional_action_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"p0_bootstrap_ci_training_effect\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"p0_image_mean_rsa_verify\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 5, \\\"total\\\": 41, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1364}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 150
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-15T23:47:29.123197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_action_delta_probe",
+              "field": "notes",
+              "value": "Delta probe: projector (0.118) BELOW LLM (0.122), CI=[-0.007, +0.001] 含 0, p=0.04. 差异不显著。论文需如实汇报：raw action PASS (projector > image_mean), delta BELOW (差异不显著)。双维度呈现。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-15T23:47:31.062236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_action_delta_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:21:52.667Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:47:29.211Z\\\", \\\"hypothesis\\\": \\\"P0 BLOCKING Functional Validation: Action-delta prediction (Δa = a_{t+1}-a_t) on SigLIP+projector output features. Removes autocorrelation. Compare with LLM best (L14, R²=0.059) and DINO (R²=0.060). Also tests image_mean aggregation.\\\", \\\"metrics\\\": {\\\"projector\\\": {\\\"mean_R2\\\": 0.1181, \\\"overall_R2\\\": 0.1053}, \\\"trained_image_mean_L14\\\": {\\\"mean_R2\\\": 0.1215, \\\"overall_R2\\\": 0.1091}, \\\"untrained_best_L0\\\": {\\\"mean_R2\\\": 0.1174, \\\"overall_R2\\\": 0.107}, \\\"bootstrap_proj_vs_trained\\\": {\\\"delta\\\": -0.0034, \\\"ci_95\\\": [-0.0066, 0.0005], \\\"p_value\\\": 0.04}, \\\"note\\\": \\\"image_mean R² (~0.12) substantially higher than last_preaction (~0.06). Per-dim: dz=0.46, dx=0.29, dy=0.25 most predictable.\\\", \\\"gate\\\": \\\"Projector (0.118) ≈ LLM (0.122), gap tiny (Δ=0.003). Consistent with redistribution narrative.\\\", \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe task)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_delta_probe_projector.json\\\", \\\"completed_at\\\": \\\"2026-05-15T23:45:44.568Z\\\", \\\"notes\\\": \\\"Delta probe: projector (0.118) BELOW LLM (0.122), CI=[-0.007, +0.001] 含 0, p=0.04. 差异不显著。论文需如实汇报：raw action PASS (projector > image_mean), delta BELOW (差异不显著)。双维度呈现。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2261}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1939
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-15T23:47:31.117937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_action_probe",
+              "field": "notes",
+              "value": "V1 完成但缺统计检验：(1) 缺 projector vs image_mean_L19 bootstrap CI (主比较 0.706 vs 0.683), (2) 缺 DINO probe, (3) untrained L10/L11 异常需排查。V2 修正版见 p0_functional_probe_v2。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-15T23:47:31.558458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_action_probe\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:21:52.011Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:47:31.338Z\\\", \\\"hypothesis\\\": \\\"P0 BLOCKING Functional Validation: Action prediction probe on SigLIP+projector output features. If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation. If < LLM but > DINO (0.676) → partial. If ≤ DINO → degradation claim needs reeval. Also tests image_mean aggregation from LLM hidden states.\\\", \\\"metrics\\\": {\\\"projector\\\": {\\\"mean_R2\\\": 0.7063, \\\"overall_R2\\\": 0.7169, \\\"grip_acc\\\": 0.9221}, \\\"image_mean_trained_L19\\\": {\\\"mean_R2\\\": 0.6832, \\\"overall_R2\\\": 0.6961, \\\"grip_acc\\\": 0.9182}, \\\"image_mean_trained_L23\\\": {\\\"mean_R2\\\": 0.5736, \\\"overall_R2\\\": 0.59, \\\"grip_acc\\\": 0.8924}, \\\"llm_last_preaction_L19\\\": {\\\"mean_R2\\\": 0.7309, \\\"overall_R2\\\": 0.7397, \\\"grip_acc\\\": 0.9184}, \\\"untrained_image_mean_L0\\\": {\\\"mean_R2\\\": 0.7136, \\\"overall_R2\\\": 0.7234, \\\"grip_acc\\\": 0.9218}, \\\"bootstrap_ci_proj_vs_llm_last_preaction\\\": {\\\"delta\\\": -0.0246, \\\"ci_95\\\": [-0.04, -0.009], \\\"p_value\\\": 0.0014}, \\\"gate_judgment\\\": \\\"PASS — projector 0.706 ≥ 0.683 threshold. But LLM last_preaction (0.731) > projector (0.706), p=0.001.\\\", \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe evaluation)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json\\\", \\\"completed_at\\\": \\\"2026-05-15T23:43:02.159Z\\\", \\\"notes\\\": \\\"V1 完成但缺统计检验：(1) 缺 projector vs image_mean_L19 bootstrap CI (主比较 0.706 vs 0.683), (2) 缺 DINO probe, (3) untrained L10/L11 异常需排查。V2 修正版见 p0_functional_probe_v2。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4021}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 440
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-15T23:47:31.860088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-15T23:47:32.262004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:47:31.973Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-15T23:47:37.531456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "hypothesis",
+              "value": "V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-15T23:47:38.487157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:47:37.628Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2102}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 955
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-15T23:48:09.111876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:p0-functional-probe-v2",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：P0 CRITICAL — Functional Probe V2（修正版重跑）\n\n这是 re-dream 的前置条件，最高优先级。\n\n### 已有 V1 结果（参考，不需重新训练已有的）\n\n| Source | Action R² (mean) |\n|---|---|\n| LLM last_preaction L19 | 0.7309 |\n| Untrained image_mean L0 | 0.7136 |\n| **SigLIP+Projector** | **0.7063** |\n| VLA trained image_mean L19 | 0.6832 |\n\nV1 结果文件: `/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json`\nV1 脚本: `/root/vla-ssd/action_probe_projector.py`（如果存在）\n\n### 需要修正的三件事\n\n#### 1. [CRITICAL] 添加 projector vs image_mean_trained_L19 的 bootstrap CI\n**这是 paper 的主比较**（projector 0.706 vs image_mean 0.683）。V1 只做了 projector vs last_preaction 的 bootstrap。\n\n方法：\n- 从 V1 结果的 per-task R² 中提取 projector 和 image_mean_L19 的 10 个 task-level R²\n- Task-level resampling bootstrap 10000 次\n- 计算 Δ = projector_mean - image_mean_L19_mean\n- 报告 95% CI 和 p-value\n- **新 GATE：CI 下界 > 0 → PASS（projector 显著优于 LLM image_mean）**\n\n如果 V1 结果 JSON 中已有 per-task R²，直接用。如果没有，需要重新加载特征跑一次获取 per-task 数据。\n\n#### 2. [CRITICAL] 添加 DINO action probe\n- DINO features: `/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/`\n- Feature key: 可能是 `cls_token` 或 `patch_mean`，先探查\n- Feature dim: 1024 (DINOv2 ViT-L/14)\n- 用**完全相同**的 probe 方法（同样的 MLP architecture，注意 input dim 不同）\n- 报告: per-task R², mean R², overall R², per-dim R², gripper accuracy\n- 同时做 **action-delta probe** on DINO\n- Bootstrap CI: DINO vs projector\n\n注意：已经有个 Worker 在跑 DINO probe（worker_ssh_p0-dino-action-probe），但它可能用的是旧脚本。你需要确保用完全一致的方法。如果那个 Worker 的结果文件已存在（`/root/autodl-tmp/vla-ssd/results/functional_validation/dino_action_probe.json`），先检查它的内容是否可用。\n\n#### 3. [WARNING] 排查 untrained L10/L11 异常\n- V1 发现 untrained image_mean 在 L10/L11 的 R² 从 0.632 骤降到 0.029/0.054\n- 检查 H5 特征文件中 L10 和 L11 的统计值：\n```python\nimport h5py, numpy as np\nf = h5py.File('/root/autodl-tmp/vla-ssd/features/untrained/<any_task>.h5', 'r')\nfor layer in [9, 10, 11, 12]:\n    feat = f[f'image_mean/layer_{layer}'][:]\n    print(f'L{layer}: shape={feat.shape}, mean={np.mean(feat):.4f}, std={np.std(feat):.4f}, min={np.min(feat):.4f}, max={np.max(feat):.4f}')\n```\n- 如果 stats 异常（全零、NaN、极端值）→ 特征提取 bug，记录\n- 如果 stats 正常 → 可能是 random init LLM 在这些层有 pathological behavior\n\n### 环境\n- 服务器: westd-19183\n- GPU: **cuda:0**\n- conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目代码: `/root/vla-ssd/`\n\n### 产出\n保存修正结果到 `/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json`\n```json\n{\n  \"v1_results\": {从 V1 JSON 复制核心数据},\n  \"bootstrap_proj_vs_image_mean_L19\": {\n    \"proj_per_task_R2\": [...],\n    \"image_mean_L19_per_task_R2\": [...],\n    \"delta\": ..., \"ci_95\": [...], \"p_value\": ...,\n    \"gate\": \"PASS/FAIL\"\n  },\n  \"dino_action\": {\"per_task_R2\": {...}, \"mean_R2\": ..., ...},\n  \"dino_action_delta\": {\"per_task_R2\": {...}, \"mean_R2\": ..., ...},\n  \"bootstrap_dino_vs_proj\": {\"delta\": ..., \"ci_95\": [...], \"p_value\": ...},\n  \"three_way_summary\": {\n    \"projector\": ..., \"llm_image_mean_L19\": ..., \"dino\": ...,\n    \"ordering\": \"proj > dino > llm_image_mean OR ...\"\n  },\n  \"untrained_L10_L11_diagnosis\": {\n    \"stats\": {...}, \"verdict\": \"feature_bug / pathological_random_init\"\n  }\n}\n```\n用 `register_artifact` 注册。\n\n### 注意\n- `local_files_only=True`\n- Action labels 从 trained features H5 获取\n- 确保所有 probe 用完全相同的 architecture/hyperparameters/train-val split\n- 这是 re-dream 前置条件，必须严谨",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-15T23:48:14.989277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-probe-v2_20260515T234809\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_ssh_p0-functional-probe-v2_20260515T234809.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_p0-functional-probe-v2_20260515T234809 started. Use get_worker_status('worker_ssh_p0-functional-probe-v2_20260515T234809') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5877
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-15T23:48:28.012251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 2 (cuda:0 probe-v2 + DINO probe, cuda:1 空闲) | Worker 池 3 (GPU 2: probe-v2 + DINO probe / CPU 1: CKA verification)\n\n## Director 修正指令执行中\n\n### 已完成\n- ✅ Registry 状态更新：p0_functional_action_probe=DONE(success), p0_functional_action_delta_probe=DONE(success)\n- ✅ Delta probe notes 更新：BELOW 如实记录，CI 含 0\n- ✅ p0_functional_probe_v2 实验创建 + Worker `p0-functional-probe-v2` 已派出 (cuda:0)\n\n### Worker 执行内容\n1. **[CRITICAL] Projector vs image_mean_L19 bootstrap CI** — 从 V1 per-task R² 做 task-level bootstrap\n2. **[CRITICAL] DINO action probe + action-delta probe** — 三方对比\n3. **[WARNING] Untrained L10/L11 异常排查** — 检查 H5 特征 stats\n\n### 并行执行中\n- `p0-dino-action-probe` Worker 也在运行（可能有结果重叠，v2 Worker 会检查并复用）\n- `plan009-cka-verification` CPU Worker 运行中\n\nV2 Worker 预计 10-15 分钟完成。结果出来后立即汇报。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-15T23:48:29.218428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1206
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-15T23:48:31.458551+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出。向 Director 确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001105"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "messages": [
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-15T23:48:59.786099+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 紧急补充 — 加入 v2 probe]\n\n**Reviewer CRITICAL: 缺 untrained last_preaction probe**\n\nv2 probe 中必须加入：**untrained model 的 last_preaction L19 R²**。\n\n当前只有 trained last_preaction (R²=0.731 > projector 0.706)。如果 untrained last_preaction 也 > projector → redistribution 是架构属性（支持 Claim 3 training invariance）。如果 < projector → 矛盾 Claim 3，framing 需调整。\n\nuntrained 特征已有，只需加一节 probe 代码，~2 min 运行。这是 C001 合规要求，blocking。\n\n同时确认 v2 还包含：\n1. projector vs image_mean_trained bootstrap CI\n2. DINO action probe（如果与另一个 worker 重叠，复用结果即可）\n3. L10/L11 排查"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-15T23:49:05.912592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_p0-functional-probe-v2_20260515T234809",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-15T23:49:06.013619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-probe-v2_20260515T234809\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:p0-functional-probe-v2\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-15T23:48:09.650615+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"数据盘点完成。DINO probe 已完成（含 action_delta 和 bootstrap），关键缺失是 **projector vs image_mean_L19 的 bootstrap CI** 和 **untrained L10/L11 诊断**。\\\\n\\\\n现在查看 probe 脚本确认方法论，同时诊断 untrained L10/L11。\\\", \\\"turn_count\\\": 9}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-15T23:49:31.263829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:untrained-last-preaction-probe",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：Untrained last_preaction Action Probe（紧急补充）\n\n### 背景\n我们有 trained VLA 的 last_preaction L19 action probe R²=0.731。**必须补做 untrained model 的 last_preaction probe** 作为对照。\n\n如果 untrained last_preaction 也 > projector (0.706) → 信息集中是架构属性。如果 < projector → 需调整 framing。\n\n### 数据\n- **Untrained features**: `/root/autodl-tmp/vla-ssd/features/untrained/` — 10 个 task 的 H5 文件\n- Feature key: `last_preaction`，33 layers\n- Action labels: 应在同一 H5 文件中，或从 trained features 获取\n\n### 已有 probe 脚本\n- 查看 `/root/vla-ssd/action_probe_projector.py` 或 `/root/vla-ssd/train_probes.py`\n- 用**完全相同**的 MLP probe architecture + hyperparameters + train/val split\n\n### 要做什么\n1. 读已有 probe 脚本了解方法\n2. 在 untrained features 的 **L19 和全 33 层** 上训练 action probe (last_preaction key)\n3. 报告:\n   - L19 的 per-task R², mean R², overall R², per-dim R², gripper accuracy\n   - 全层 best layer 及其 R²\n   - Per-task R² 列表（供后续 bootstrap）\n4. 同时做 **action-delta probe** (Δa = a_{t+1}-a_t) on untrained last_preaction（至少 L19 和 best layer）\n\n### 环境\n- 服务器: westd-19183\n- GPU: **cuda:1**（cuda:0 被 v2 worker 占用）\n- conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 产出\n保存到 `/root/autodl-tmp/vla-ssd/results/functional_validation/untrained_last_preaction_probe.json`\n```json\n{\n  \"untrained_last_preaction_L19\": {\n    \"per_task_R2\": {...}, \"mean_R2\": ..., \"overall_R2\": ..., \"per_dim_R2\": {...}, \"grip_acc\": ...\n  },\n  \"untrained_last_preaction_best\": {\n    \"best_layer\": ..., \"per_task_R2\": {...}, \"mean_R2\": ..., ...\n  },\n  \"untrained_last_preaction_delta_L19\": {\n    \"per_task_R2\": {...}, \"mean_R2\": ..., ...\n  },\n  \"comparison\": {\n    \"trained_last_preaction_L19\": 0.7309,\n    \"projector\": 0.7063,\n    \"untrained_last_preaction_L19\": ...,\n    \"verdict\": \"architecture property / training matters\"\n  }\n}\n```\n用 `register_artifact` 注册。\n\n### 注意\n- `local_files_only=True`\n- 这是 C001 合规要求，blocking\n- 预期 ~2-5 分钟完成（单层或少数层 probe on pre-extracted features）",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-15T23:49:37.140117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_untrained-last-preaction-probe_20260515T234931\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_ssh_untrained-last-preaction-probe_20260515T234931.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_untrained-last-preaction-probe_20260515T234931 started. Use get_worker_status('worker_ssh_untrained-last-preaction-probe_20260515T234931') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5876
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-15T23:49:44.081294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 2 (cuda:0 probe-v2, cuda:1 untrained-last-preaction) | Worker 池 4 (GPU 2 / CPU 2: DINO probe + CKA)\n\n## 紧急补充已执行\n\nWorker `untrained-last-preaction-probe` 已派出 (cuda:1)，与 v2 并行。预计 2-5 分钟。\n\nV2 worker (cuda:0) 当前 turn 9，正在诊断 L10/L11 + 准备 bootstrap CI。DINO probe 结果已被 v2 worker 发现可复用。\n\n两个 Worker 完成后合并结果汇报。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-15T23:49:45.285934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1204
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-15T23:49:47.965914+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "V2 worker 在 turn 9，还在诊断阶段，尚未跑 probe。无法注入新需求到已运行 worker。并行派小 Worker 专跑 untrained last_preaction probe（~2 min）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001113"
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "messages": [
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-15T23:51:28.768162+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ssh_p0-functional-probe-v2_20260515T234809 已完成（status=done）。用 `get_worker_status('worker_ssh_p0-functional-probe-v2_20260515T234809')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_p0-functional-probe-v2_20260515T234809\n- project: vla-ssd\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "worker:done"
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-15T23:51:35.387870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_p0-functional-probe-v2_20260515T234809"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-15T23:51:35.439274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-probe-v2_20260515T234809\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ssh:p0-functional-probe-v2\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-15T23:48:09.650615+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:51:27.414674+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"三件事全部完成。结果汇总：\\\\n\\\\n### 1. Bootstrap CI: Projector vs Image_mean_trained_L19 — **PASS**\\\\n\\\\n| | Mean R² |\\\\n|---|---|\\\\n| Projector (SigLIP+Proj) | 0.7063 |\\\\n| LLM image_mean L19 | 0.6832 |\\\\n| **Δ** | **+0.0231** |\\\\n| 95% CI | [0.0105, 0.0367] |\\\\n| p-value | < 0.001 |\\\\n\\\\nCI 下界 > 0，projector 显著优于 LLM image_mean。\\\\n\\\\n### 2. DINO Action Probe\\\\n\\\\n| Source | Mean R² |\\\\n|---|---|\\\\n| DINO (cls_token) | **0.7116** |\\\\n| Projector | 0.7063 |\\\\n| LLM image_mean L19 | 0.6832 |\\\\n\\\\nDINO vs Projector: Δ=+0.005, CI [-0.008, 0.019], p=0.22 — 无显著差异。\\\\nAction-delta probe: DINO 0.100, Projector 0.118 — 均较低。\\\\n\\\\n**Three-way ordering: DINO ≈ Projector > LLM image_mean**\\\\n\\\\n### 3. Untrained L10/L11 诊断 — **pathological_random_init**\\\\n\\\\nFeature stats 正常（L10 std=5.29, L9 std=5.05，无 NaN/Inf/全零），但 probe R² 从 L9 的 0.632 骤降到 L10 的 0.029。结论：随机初始化 LLM 在 L10/L11 的内部表示虽然数值分布正常，但不包含可线性解码的 action 信息。\\\\n\\\\n结果已保存到 `action_probe_v2.json` 并注册为 artifact `art_20260515_2a55c0`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-15T23:51:53.058113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "metrics",
+              "value": "{'bootstrap_proj_vs_image_mean_L19': {'proj_mean_R2': 0.7063, 'image_mean_L19_mean_R2': 0.6832, 'delta': 0.0231, 'ci_95': [0.0105, 0.0367], 'p_value': 0.001, 'gate': 'PASS — CI lower bound > 0'}, 'dino_action': {'mean_R2': 0.7116, 'feature_key': 'cls_token'}, 'dino_action_delta': {'mean_R2': 0.1}, 'bootstrap_dino_vs_proj': {'delta': 0.005, 'ci_95': [-0.008, 0.019], 'p_value': 0.22, 'significant': False}, 'three_way_ordering': 'DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)', 'untrained_L10_L11_diagnosis': {'verdict': 'pathological_random_init', 'detail': 'Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.'}, 'result_path': '/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json'}",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-15T23:51:53.360180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:51:53.193Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2803}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-15T23:51:53.912302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "conclusion",
+              "value": "success",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-15T23:51:54.364322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:51:53.987Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2242}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-15T23:51:55.317962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "checkpoint_path",
+              "value": "N/A (probe task)",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-15T23:51:55.771225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:51:55.418Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe task)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2224}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-15T23:51:56.224084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-15T23:51:56.527358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:51:56.377Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe task)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2567}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-15T23:52:00.040452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-15T23:52:00.544014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:52:00.201Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe task)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.491}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-15T23:52:03.610048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "p0_functional_probe_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-15T23:52:04.065508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"p0_functional_probe_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:47:31.973Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:52:03.717Z\\\", \\\"hypothesis\\\": \\\"V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\", \\\"metrics\\\": {\\\"bootstrap_proj_vs_image_mean_L19\\\": {\\\"proj_mean_R2\\\": 0.7063, \\\"image_mean_L19_mean_R2\\\": 0.6832, \\\"delta\\\": 0.0231, \\\"ci_95\\\": [0.0105, 0.0367], \\\"p_value\\\": 0.001, \\\"gate\\\": \\\"PASS — CI lower bound > 0\\\"}, \\\"dino_action\\\": {\\\"mean_R2\\\": 0.7116, \\\"feature_key\\\": \\\"cls_token\\\"}, \\\"dino_action_delta\\\": {\\\"mean_R2\\\": 0.1}, \\\"bootstrap_dino_vs_proj\\\": {\\\"delta\\\": 0.005, \\\"ci_95\\\": [-0.008, 0.019], \\\"p_value\\\": 0.22, \\\"significant\\\": false}, \\\"three_way_ordering\\\": \\\"DINO (0.712) ≈ Projector (0.706) > LLM image_mean (0.683)\\\", \\\"untrained_L10_L11_diagnosis\\\": {\\\"verdict\\\": \\\"pathological_random_init\\\", \\\"detail\\\": \\\"Feature stats normal (no NaN/Inf/zeros, std~5), but probe R² drops L9=0.632→L10=0.029. Random LLM weights create non-decodable representations at these layers.\\\"}, \\\"result_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (probe task)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_v2.json\\\", \\\"completed_at\\\": \\\"2026-05-15T23:52:03.717Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4463}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-15T23:52:08.971805+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "V2 probe DONE。等 untrained last_preaction worker 完成后合并汇报 Director。DINO ≈ Projector 的发现对论文叙事有重要意义——action prediction capacity 来自通用视觉特征，非 VL 预训练特有。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001129"
+        }
+      ]
+    },
+    {
+      "number": 85,
+      "messages": [
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-15T23:56:11.683086+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] V2 probe 核心结果已处理（D033）。三个重要更新：\n\n**1. DINO R²=0.712 ≈ Projector R²=0.706 — Claim 1 已 reframe**\n这不是问题，是新 finding：geometric-functional dissociation。SigLIP 优势在 RSA geometric alignment (0.615 vs DINO 0.388)，不在 functional prediction。paper_framing.md 已更新。\n\n**2. Bootstrap CI confirmed: projector vs image_mean p<0.001 ✅**\nImage token degradation 统计确认。\n\n**3. [仅剩 1 项 BLOCKING] untrained last_preaction probe**\n这是 re-dream 前唯一的 blocker。~2 min 运行，复用已有 untrained 特征。请立即执行：\n- 在 untrained model features 上，提取 last_preaction token（L19 或 best layer），跑 action probe\n- 如果 untrained last_preaction R² > projector (0.706) → redistribution 是 architecture-intrinsic ✅\n- 如果 < projector → redistribution needs training，Claim 3 需微调\n\n**次优先级（non-blocking）**：\n- 调查 DINO MVP-2 R²=0.676 vs V2 R²=0.712 差异原因（方法论 or 数据差异？）\n- plan_009 CKA 进度？\n- plan_008 准备状态？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-15T23:56:20.914263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_untrained-last-preaction-probe_20260515T234931",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-15T23:56:21.015109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_untrained-last-preaction-probe_20260515T234931\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:untrained-last-preaction-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-15T23:49:31.801753+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 21}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-15T23:56:21.015519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "vla-ssd",
+              "status": "running"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-15T23:56:21.066049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ssh_plan009-cka-verification_20260515T234351\\\", \\\"task_type\\\": \\\"ssh:plan009-cka-verification\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T23:43:51.952236+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_ssh_untrained-last-preaction-probe_20260515T234931\\\", \\\"task_type\\\": \\\"ssh:untrained-last-preaction-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T23:49:31.801753+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-001134"
+        }
+      ]
+    },
+    {
+      "number": 86,
+      "messages": [
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-15T23:56:22.466170+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-15T23:56:32.536441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 1 (cuda:1 untrained-last-preaction) | Worker 池 2 (GPU 1: untrained-last-preaction / CPU 1: CKA verification)\n\n## 状态确认\n\n### Blocker: untrained last_preaction probe\nWorker `untrained-last-preaction-probe` 已在运行中（上轮紧急补充时派出，cuda:1）。当前 turn 21，正在执行。结果到手后立即汇报。\n\n### Non-blocking 状态\n- **plan_009 CKA**: Worker 运行中 (CPU)，turn 数未知\n- **plan_008 random instruction**: 代码准备完成（之前 `plan_008_prep` worker 已 done），GPU 空出后提交\n- **DINO R² 差异** (MVP-2 0.676 vs V2 0.712): 最可能原因是数据差异——MVP-2 在 LIBERO-10 特征上跑，V2 在 LIBERO-Goal 特征上跑。不同 benchmark 不同 task 结构导致 R² baseline 不同。V2 是 LIBERO-Goal 上的公平对比，应以 V2 为准。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-15T23:56:36.415191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3878
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-15T23:56:40.574047+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Untrained last_preaction worker 已在运行中（之前 Director 紧急补充时派出的 `worker_ssh_untrained-last-preaction-probe_20260515T234931`）。检查进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001138"
+        }
+      ]
+    },
+    {
+      "number": 87,
+      "messages": [
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-15T23:56:47.875240+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **plan_008 批准，立即启动。**\n\n两张 GPU 都空着不可接受。plan_008 random instruction control 用双卡并行：\n- cuda:0: random_s0 条件特征提取 + RSA\n- cuda:1: shuffled 条件特征提取 + RSA\n\n只跑这两种最关键条件（节省 GPU 时间）。wrong_task 如果时间允许再补。\n\n注册实验时关联 plan_008，claim 3。\n\n同时：untrained last_preaction 结果一出来立即汇报——那是 re-dream 唯一 blocker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-15T23:56:49.430895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-15T23:56:49.481486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-15T23:56:52.296711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-15T23:56:52.848811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-15T23:56:52.850131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (75,180 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-15T23:56:53.352689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 503
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-15T23:56:53.353128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-15T23:56:53.855351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- lg_output_head_analysis: D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \\\\\\\"shallow adaptation\\\\\\\", output head weight diff >> middle layer weight diff. Explains \\\\\\\"representations unchanged but behavior improved\\\\\\\".（排队等待 GPU）\\\\n- lg_instruction_ablation: D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.（排队等待 GPU）\\\\n- plan_009_cka_verification: Plan 009: CKA verification — replicate RSA findings with CKA metric to ensure conclusions are not metric-dependent. CPU-only, uses existing features. SigLIP+projector CKA should show same dominance pattern as RSA.（准备中）\\\\n\\\\n## 近期结论\\\\n- **p0_functional_probe_v2** (success): V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.\\\\n- **p0_functional_action_probe** (success): P0 BLOCKING Functional Validation: Action prediction probe on SigLIP+projector output features. If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation. If < LLM but > DINO (0.676) → partial. If ≤ DINO → degradation claim needs reeval. Also tests image_mean aggregation from LLM hidden states.\\\\n- **p0_functional_action_delta_probe** (success): P0 BLOCKING Functional Validation: Action-delta prediction (Δa = a_{t+1}-a_t) on SigLIP+projector output features. Removes autocorrelation. Compare wit\n…[truncated 556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 502
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-15T23:56:53.855821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-15T23:56:54.107077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 23:45 UTC | 更新原因: plan_011 PASS (D031), Claim 2 upgraded to redistribution\\\\n\\\\n## 核心方向\\\\nVLA 中 action-relevant 表征的来源 + LLM 对其的 redistribution 机制。核心发现：frozen SigLIP+projector 提供 action-relevant 信息（RSA=0.615, R²=0.706），LLM 降解分布式 image token 表征（R²→0.683）但通过 attention 将信号 concentrate 到 readout token（R²=0.731）。训练和 instruction 对表征几何无显著影响。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research phase, post-Dream, plan_011 PASS (D031)**。Claim 2 已从 \\\\\\\"degradation\\\\\\\" 升级为 \\\\\\\"redistribution\\\\\\\"。需 re-dream 验证新 framing，然后启动 Paper Agent。\\\\n\\\\n## 已完成核心实验\\\\n- ✅ plan_001-007: RSA 组件分解 + 2×2 matrix + per-layer curve + instruction ablation\\\\n- ✅ plan_011: **Functional action probe PASS** — Proj R²=0.706 > LLM img_mean 0.683; LLM readout 0.731 > Proj (p=0.001)\\\\n- ✅ Aggregation robustness (image_mean): Claim 2 holds, gap=0.114\\\\n- ✅ Bootstrap CI: training effect CI includes 0, Claim 3 holds\\\\n- ✅ No-inst image_mean RSA: 2×2 matrix complete (trained ±inst = 0.501, untrained ±inst ≈ 0.482-0.485)\\\\n\\\\n## 近期任务\\\\n- [ ] action-delta probe（cuda:1 运行中）\\\\n- [ ] plan_009: CKA verification（CPU-only，立即启动）\\\\n- [ ] DINO action probe on LIBERO-Goal（补三方对比公平性）\\\\n- [ ] plan_008: Random instruction control（GPU 空出后，只跑 random_s0 + shuffled）\\\\n- [ ] Re-dream: framing 更新后必须 re-dream 验证\\\\n- [ ] Paper Agent 启动: re-dream 达标后 Full Draft\\\\n\\\\n## GPU 预算\\\\nwestd-19183: 2× GPU（当前 cuda:1 在用）\\\\n剩余预算: ~8 GPU·h（plan_011 用了 ~1h）\\\\n\\\\n## 关键里程碑\\\\n| 日期 | 事件 |\\\\n|------|------|\\\\n| 5/15 | MVP PASS, Dream 完成, D030 分析 |\\\\n| 5/16 | **plan_011 PASS, Claim 2 → \\\\\\\"redistribution\\\\\\\" (D031)** |\\\\n| 5/16-17 | plan_008 + plan_009 + re-dream（目标） |\\\\n| 5/17-18 | Paper Agent 启动 Full Draft（目标） |\\\\n| 5/26 | CoRL abstract DDL |\\\\n| 5/29 | CoRL paper DDL |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D033 | 20\n…[truncated 1375 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 251
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-15T23:56:54.157807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "vla-ssd",
+              "status": "running"
+            }
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-15T23:56:54.208632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ssh_plan009-cka-verification_20260515T234351\\\", \\\"task_type\\\": \\\"ssh:plan009-cka-verification\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T23:43:51.952236+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_ssh_untrained-last-preaction-probe_20260515T234931\\\", \\\"task_type\\\": \\\"ssh:untrained-last-preaction-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T23:49:31.801753+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-15T23:56:54.405188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "memory.md",
+              "max_chars": "1000"
+            }
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-15T23:56:54.757022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\\\", \\\"content\\\": \\\"# VLA-SSD Project Memory\\\\n\\\\n## ⚠️ Functional Probe 分离发现（2026-05-15，p0_functional_action_probe = negative）\\\\n\\\\n**RSA 与 functional probe 发生分离——这是论文 Claim 2 的关键转折点。**\\\\n\\\\n| 度量 | Projector | LLM image_mean L19 | LLM last_preaction L19 |\\\\n|------|-----------|--------------------|-----------------------|\\\\n| RSA | 0.615 | ~0.49 | ~0.49 |\\\\n| Action R² | **0.706** | 0.683 | **0.731** |\\\\n\\\\n**机制**：LLM self-attention 将 action-relevant 信息从分布式 visual tokens **重新路由**到 output position (last_preaction)。visual tokens 的几何结构 (RSA) 和功能性 (image_mean R²) 都降低了，但 action token 集中了更多信息。\\\\n\\\\n**关键数字**：Projector 已提供 LLM 96.6% 的 functional capacity (0.706/0.731)。LLM 边际贡献仅 +3.5%。\\\\n\\\\n**对 Claim 2 的影响**：不能再说 \\\\\\\"LLM degrades\\\\\\\"，需精炼为 \\\\\\\"LLM redistributes\\\\\\\"（推荐 Option A）。Framing 提案已提交 Director，待决策。\\\\n\\\\n## SMOKING GUN 确认：SigLIP+Projector RSA = 0.6153（2026-05-15）\\\\n\\\\n**d027_siglip_only_rsa 结果**: SigLIP+projector 直接输出（不过 LLM）的 RSA = 0.6153 [95% CI: 0.5257, 0.6954]。\\\\n\\\\n**关键发现：LLM 降低 action alignment（不是 passthrough）**：\\\\n- SigLIP+projector: **0.6153**\\\\n- Full VLA（\\\\n\\\\n... [截断: 省略 3214 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 4214, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 351
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-15T23:56:54.757603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "vla-ssd",
+              "status": "done",
+              "limit": "5"
+            }
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-15T23:56:54.809167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_plan_008_prep_20260515T231944\\\", \\\"task_type\\\": \\\"code:plan_008_prep\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:19:44.427860+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:29:26.505747+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-action-probe_20260515T232234\\\", \\\"task_type\\\": \\\"ssh:p0-functional-action-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:22:34.210139+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:39:23.317951+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-action-delta-probe_20260515T232553\\\", \\\"task_type\\\": \\\"ssh:p0-functional-action-delta-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:25:54.005321+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:41:56.980371+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_p0-dino-action-probe_20260515T234230\\\", \\\"task_type\\\": \\\"ssh:p0-dino-action-probe\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:42:30.865861+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:45:57.232199+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_p0-functional-probe-v2_20260515T234809\\\", \\\"task_type\\\": \\\"ssh:p0-functional-probe-v2\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:48:09.650615+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:51:27.414674+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 51
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-15T23:57:03.215101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract registry state",
+              "prompt": "Read the file /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\n\nThis is JSON with schema: {result: string}. The result field is itself a JSON string that needs to be parsed.\n\nI need you to extract and return:\n1. All experiments with status RUNNING, PREPARING, PENDING, QUEUED, or ALLOCATED — for each: exp_id, status, hypothesis, server, gpu, spec (command, data_path, model_name)\n2. All experiments with status DONE — just exp_id, conclusion, and metrics (brief)\n3. Total count of experiments by status\n4. Any experiments that have cron_id set\n\nUse jq or python to parse. Return the findings in a structured format.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-15T23:57:04.169798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-15T23:57:04.587242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-15T23:57:05.924432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_plan_008_prep_20260515T231944"
+            }
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-15T23:57:06.027260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_plan_008_prep_20260515T231944\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:plan_008_prep\\\", \\\"project\\\": \\\"vla-ssd\\\", \\\"started_at\\\": \\\"2026-05-15T23:19:44.427860+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:29:26.505747+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Everything verified. Here's the summary:\\\\n\\\\n---\\\\n\\\\n## 产出\\\\n\\\\n### 脚本路径\\\\n- **Feature extraction**: `/root/vla-ssd/scripts/extract_features_rand_inst.py`\\\\n- **RSA comparison**: `/root/vla-ssd/scripts/rsa_instruction_control.py`\\\\n\\\\n### Dry-run 验证\\\\n全部 3 种模式通过:\\\\n- `random` (seed=0): 生成 \\\\\\\"civoq tixe mef wugi di wapon\\\\\\\"，所有 task 用同一字符串\\\\n- `shuffled`: 每个 task 独立 word-level shuffle（如 \\\\\\\"open the middle drawer...\\\\\\\" → \\\\\\\"of middle the open the drawer cabinet\\\\\\\"）\\\\n- `wrong_task`: cyclic shift（task i 用 task i+1 的 instruction）\\\\n\\\\nOutput shape 正确: `(T, 33, 4096)` for both `last_preaction` and `image_mean`.\\\\n\\\\nRSA 脚本验证: normal=0.4888 vs empty=0.4723 at layer 16，与已有结果一致。\\\\n\\\\n### GPU 时间预估\\\\n单次 extraction (10 tasks × 50 demos): **~48 min** (基于已有 trained_libero_goal 的文件时间戳)\\\\n\\\\n| 模式 | 运行次数 | 单次时间 |\\\\n|------|---------|---------|\\\\n| random (3 seeds) | 3 | 48 min × 3 = 144 min |\\\\n| shuffled | 1 | 48 min |\\\\n| wrong_task | 1 | 48 min |\\\\n| **合计** | **5** | **~240 min (4h)** |\\\\n\\\\n利用 2 GPU 并行可缩短至 **~2.5h**:\\\\n- Batch 1 (gpu0 + gpu1): random_s0 + random_s1\\\\n- Batch 2 (gpu0 + gpu1): random_s2 + shuffled\\\\n- Batch 3 (gpu0): wrong_task\\\\n\\\\nRSA 计算 (CPU-only): ~30s/layer × 33 layers × 7 conditions ≈ **~10 min**\\\\n\\\\n### 推荐执行命令\\\\n\\\\n```bash\\\\ncd /root/vla-ssd\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\n# Batch 1: 两GPU并行\\\\nnohup python scripts/extract_features_rand_inst.py --instruction_mode random --seed 0 --gpu 0 > /tmp/rand_s0.log 2>&1 &\\\\nnohup python scripts/extract_features_rand_inst.py --instruction_mode random --seed 1 --gpu 1 > /tmp/rand_s1.log 2>&1 &\\\\n\\\n…[truncated 607 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-15T23:57:08.512480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-15T23:57:08.814693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (31143 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-15T23:57:12.030108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt",
+              "limit": "500"
+            }
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-15T23:57:12.281361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (31143 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-15T23:57:15.894600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt",
+              "offset": "0",
+              "limit": "200"
+            }
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-15T23:57:16.145875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (31143 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-15T23:57:16.782444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_008_random_inst_control",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-15T23:57:19.493093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_008_random_inst_control\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:57:16.908Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:57:16.908Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4487}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2710
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-15T23:57:19.493627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_008_random_inst_control",
+              "field": "hypothesis",
+              "value": "Plan_008 (Claim 3): Random instruction control. Replace real instruction with random gibberish (random_s0) or word-shuffled version (shuffled). If RSA ≈ normal instruction (0.488) → instruction content irrelevant, supports invariance. If RSA drops significantly → instruction content matters.",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-15T23:57:19.746099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_008_random_inst_control\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:57:16.908Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:57:19.629Z\\\", \\\"hypothesis\\\": \\\"Plan_008 (Claim 3): Random instruction control. Replace real instruction with random gibberish (random_s0) or word-shuffled version (shuffled). If RSA ≈ normal instruction (0.488) → instruction content irrelevant, supports invariance. If RSA drops significantly → instruction content matters.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2328}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-15T23:57:19.962060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt",
+              "description": "Count lines in the registry file"
+            }
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-15T23:57:20.166392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 204
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-15T23:57:26.541174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\", \"r\") as f:\n    raw = json.load(f)\n\n# The outer JSON has a \"result\" field which is itself a JSON string\nresult_str = raw[\"result\"]\nregistry = json.loads(result_str)\n\n# registry could be a dict or list — let's see the structure\nprint(\"Type:\", type(registry))\nif isinstance(registry, dict):\n    print(\"Top-level keys:\", list(registry.keys())[:20])\nelif isinstance(registry, list):\n    print(\"List length:\", len(registry))\n    if len(registry) > 0:\n        print(\"First item keys:\", list(registry[0].keys()) if isinstance(registry[0], dict) else type(registry[0]))\nPYEOF\n",
+              "description": "Parse the outer JSON structure of the registry file"
+            }
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-15T23:57:26.591857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: <class 'dict'>\nTop-level keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-15T23:57:31.667303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\", \"r\") as f:\n    raw = json.load(f)\n\nresult_str = raw[\"result\"]\nregistry = json.loads(result_str)\n\ndata = registry[\"data\"]\nprint(\"Data type:\", type(data))\nif isinstance(data, dict):\n    print(\"Data keys:\", list(data.keys())[:20])\nelif isinstance(data, list):\n    print(\"Data length:\", len(data))\n\n# Check metadata\nprint(\"\\nMetadata:\", json.dumps(registry.get(\"metadata\"), indent=2, default=str)[:500])\nPYEOF\n",
+              "description": "Explore the data structure inside the registry"
+            }
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-15T23:57:31.717960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data type: <class 'dict'>\nData keys: ['experiments', 'count', 'total', 'baseline']\n\nMetadata: {\n  \"elapsed_seconds\": 0.1248\n}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-15T23:57:36.997198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:plan008-random-s0",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：Plan 008 — Random Instruction (seed=0) 特征提取 + RSA\n\n### 背景\n验证 instruction content 是否影响 VLA 表征结构。用随机无意义字符串替代真实 instruction，提取特征后跑 RSA。如果 RSA ≈ 正常 instruction (~0.488) → instruction content 无关。\n\n### 脚本（已就绪）\n- Feature extraction: `/root/vla-ssd/scripts/extract_features_rand_inst.py`\n- RSA analysis: `/root/vla-ssd/scripts/rsa_instruction_control.py`\n\n### 执行步骤\n\n1. 环境激活:\n```bash\ncd /root/vla-ssd\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n```\n\n2. 提取特征（~48 min）:\n```bash\npython scripts/extract_features_rand_inst.py --instruction_mode random --seed 0 --gpu 0\n```\n- 输出到 `/root/autodl-tmp/vla-ssd/features/random_s0/`\n- 10 tasks × 50 demos，输出 shape (T, 33, 4096) for last_preaction 和 image_mean\n\n3. 等提取完成后，跑 RSA:\n```bash\npython scripts/rsa_instruction_control.py --conditions random_s0 --token_type last_preaction\npython scripts/rsa_instruction_control.py --conditions random_s0 --token_type image_mean\n```\n\n4. 如果 RSA 脚本需要调整参数，先读脚本 help:\n```bash\npython scripts/rsa_instruction_control.py --help\n```\n\n### 环境\n- 服务器: westd-19183\n- GPU: **cuda:0**\n- conda 环境\n\n### 关键指标\n- normal instruction RSA (baseline): ~0.488 (last_preaction), ~0.501 (image_mean)\n- empty instruction RSA: ~0.480\n- 预期 random_s0: 应接近 empty 或 normal\n\n### 产出\n- 特征文件: `/root/autodl-tmp/vla-ssd/features/random_s0/`\n- RSA 结果: 保存到 `/root/autodl-tmp/vla-ssd/results/rsa/instruction_control_random_s0.json`\n- 用 `register_artifact` 注册\n\n### 注意\n- `local_files_only=True`（服务器无外网）\n- 特征提取是长任务（~48 min），用 nohup 后台运行然后轮询。或直接前台跑（如果 SSH 超时可配置）\n- 提取完成后立即跑 RSA，不要等另一个 GPU 的任务\n- 用 `update_registry` 更新 plan_008_random_inst_control 的 metrics（partial results ok）",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-15T23:57:45.857019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_plan008-random-s0_20260515T235737\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_ssh_plan008-random-s0_20260515T235737.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_plan008-random-s0_20260515T235737 started. Use get_worker_status('worker_ssh_plan008-random-s0_20260515T235737') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 8859
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-15T23:57:46.009528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:plan008-shuffled",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：Plan 008 — Shuffled Instruction 特征提取 + RSA\n\n### 背景\n验证 instruction content 是否影响 VLA 表征结构。用 word-level shuffle 打乱 instruction 词序（保留所有词），提取特征后跑 RSA。如果 RSA ≈ 正常 instruction (~0.488) → 词序无关，instruction 语义不影响表征。\n\n### 脚本（已就绪）\n- Feature extraction: `/root/vla-ssd/scripts/extract_features_rand_inst.py`\n- RSA analysis: `/root/vla-ssd/scripts/rsa_instruction_control.py`\n\n### 执行步骤\n\n1. 环境激活:\n```bash\ncd /root/vla-ssd\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n```\n\n2. **先检查 cuda:1 是否空闲**（可能有 untrained probe 在跑）:\n```bash\nnvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv -i 1\n```\n如果 cuda:1 被占用，等待完成后再启动。如果空闲，立即开始。\n\n3. 提取特征（~48 min）:\n```bash\npython scripts/extract_features_rand_inst.py --instruction_mode shuffled --gpu 1\n```\n- 输出到 `/root/autodl-tmp/vla-ssd/features/shuffled/`\n- 10 tasks × 50 demos，输出 shape (T, 33, 4096) for last_preaction 和 image_mean\n\n4. 等提取完成后，跑 RSA:\n```bash\npython scripts/rsa_instruction_control.py --conditions shuffled --token_type last_preaction\npython scripts/rsa_instruction_control.py --conditions shuffled --token_type image_mean\n```\n\n### 环境\n- 服务器: westd-19183\n- GPU: **cuda:1**\n- conda 环境\n\n### 关键指标\n- normal instruction RSA (baseline): ~0.488 (last_preaction), ~0.501 (image_mean)\n- empty instruction RSA: ~0.480\n- 预期 shuffled: 应接近 normal（保留了词汇，只打乱词序）\n\n### 产出\n- 特征文件: `/root/autodl-tmp/vla-ssd/features/shuffled/`\n- RSA 结果: 保存到 `/root/autodl-tmp/vla-ssd/results/rsa/instruction_control_shuffled.json`\n- 用 `register_artifact` 注册\n\n### 注意\n- `local_files_only=True`（服务器无外网）\n- 特征提取是长任务（~48 min），用 nohup 后台运行然后轮询\n- 提取完成后立即跑 RSA\n- 用 `update_registry` 更新 plan_008_random_inst_control 的 metrics",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-15T23:57:47.001837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\", \"r\") as f:\n    raw = json.load(f)\n\nresult_str = raw[\"result\"]\nregistry = json.loads(result_str)\nexperiments = registry[\"data\"][\"experiments\"]\n\nprint(f\"Total experiments: {len(experiments)}\")\nprint(f\"Count field: {registry['data']['count']}\")\nprint(f\"Total field: {registry['data']['total']}\")\nprint()\n\n# Count by status\nstatus_counts = Counter()\nfor exp in experiments:\n    status_counts[exp.get(\"status\", \"UNKNOWN\")] += 1\n\nprint(\"=== STATUS COUNTS ===\")\nfor status, count in sorted(status_counts.items()):\n    print(f\"  {status}: {count}\")\n\nprint()\n\n# ============================\n# ACTIVE experiments (RUNNING, PREPARING, PENDING, QUEUED, ALLOCATED)\n# ============================\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"QUEUED\", \"ALLOCATED\"}\nprint(\"=== ACTIVE EXPERIMENTS ===\")\nfor exp in experiments:\n    if exp.get(\"status\") in active_statuses:\n        exp_id = exp.get(\"exp_id\", exp.get(\"id\", \"?\"))\n        status = exp.get(\"status\")\n        hypothesis = exp.get(\"hypothesis\", \"N/A\")\n        server = exp.get(\"server\", exp.get(\"spec\", {}).get(\"server\", \"N/A\") if isinstance(exp.get(\"spec\"), dict) else \"N/A\")\n        gpu = exp.get(\"gpu\", exp.get(\"gpu_ids\", \"N/A\"))\n        spec = exp.get(\"spec\", {})\n        command = spec.get(\"command\", \"N/A\") if isinstance(spec, dict) else \"N/A\"\n        data_path = spec.get(\"data_path\", \"N/A\") if isinstance(spec, dict) else \"N/A\"\n        model_name = spec.get(\"model_name\", \"N/A\") if isinstance(spec, dict) else \"N/A\"\n        \n        print(f\"\\n  exp_id: {exp_id}\")\n        print(f\"  status: {status}\")\n        print(f\"  hypothesis: {hypothesis}\")\n        print(f\"  server: {server}\")\n        print(f\"  gpu: {gpu}\")\n        print(f\"  spec.command: {str(command)[:200]}\")\n        print(f\"  spec.data_path: {data_path}\")\n        print(f\"  spec.model_name: {model_name}\")\n        # Print any other spec fields\n        if isinstance(spec, dict):\n            for k, v in spec.items():\n                if k not in (\"command\", \"data_path\", \"model_name\", \"server\"):\n                    print(f\"  spec.{k}: {str(v)[:150]}\")\n\nprint()\n\n# ============================\n# DONE experiments\n# ============================\nprint(\"=== DONE EXPERIMENTS ===\")\nfor exp in experiments:\n    if exp.get(\"status\") == \"DONE\":\n        exp_id = exp.get(\"exp_id\", exp.get(\"id\", \"?\"))\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        metrics = exp.get(\"metrics\", {})\n        # Summarize metrics briefly\n        if isinstance(metrics, dict):\n            metrics_brief = {k: v for k, v in metrics.items()}\n            metrics_str = json.dumps(metrics_brief, default=str)[:300]\n        else:\n            metrics_str = str(metrics)[:300]\n        \n        print(f\"\\n  exp_id: {exp_id}\")\n        print(f\"  conclusion: {conclusion}\")\n        print(f\"  metrics: {metrics_str}\")\n\nprint()\n\n# ============================\n# Experiments with cron_id\n# ============================\nprint(\"=== EXPERIMENTS WITH CRON_ID ===\")\nfor exp in experiments:\n    cron_id = exp.get(\"cron_id\")\n    if cron_id:\n        exp_id = exp.get(\"exp_id\", exp.get(\"id\", \"?\"))\n        status = exp.get(\"status\")\n        print(f\"  exp_id: {exp_id}, status: {status}, cron_id: {cron_id}\")\n\nPYEOF\n",
+              "description": "Parse all experiments from registry: active, done, status counts, cron_ids",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-15T23:57:47.506102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTotal experiments: 42\nCount field: 42\nTotal field: 42\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 19, in <module>\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 504
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-15T23:57:48.879677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_plan008-shuffled_20260515T235746\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_ssh_plan008-shuffled_20260515T235746.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_plan008-shuffled_20260515T235746 started. Use get_worker_status('worker_ssh_plan008-shuffled_20260515T235746') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2870
+          },
+          "id": "event-001182"
+        },
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-15T23:57:53.535443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\", \"r\") as f:\n    raw = json.load(f)\n\nresult_str = raw[\"result\"]\nregistry = json.loads(result_str)\nexperiments = registry[\"data\"][\"experiments\"]\n\n# Check type of experiments\nprint(\"Type of experiments:\", type(experiments))\nif isinstance(experiments, list):\n    print(\"First item type:\", type(experiments[0]))\n    print(\"First item:\", str(experiments[0])[:500])\nelif isinstance(experiments, dict):\n    keys = list(experiments.keys())[:5]\n    print(\"First keys:\", keys)\n    for k in keys:\n        print(f\"\\n  Key '{k}' -> type: {type(experiments[k])}\")\n        print(f\"  Value: {str(experiments[k])[:500]}\")\nPYEOF\n",
+              "description": "Check the structure of experiments data"
+            }
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-15T23:57:53.636291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of experiments: <class 'dict'>\nFirst keys: ['p0_functional_probe_v2', 'p0_functional_action_probe', 'p0_functional_action_delta_probe', 'plan_009_cka_verification', 'p0_bootstrap_ci_training_effect']\n\n  Key 'p0_functional_probe_v2' -> type: <class 'dict'>\n  Value: {'status': 'DONE', 'retry_count': 0, 'created_at': '2026-05-15T23:47:31.973Z', 'updated_at': '2026-05-15T23:52:37.355Z', 'hypothesis': 'V2 corrected functional probe: (1) Add projector vs image_mean_L19 bootstrap CI as primary gate (0.706 vs 0.683), (2) Add DINO action probe for three-way comparison, (3) Diagnose untrained L10/L11 anomaly (R² drops from 0.632 to 0.029). Re-dream prerequisite.', 'metrics': {'bootstrap_proj_vs_image_mean_L19': {'proj_mean_R2': 0.7063, 'image_mean_L19_mean_R2': 0.6\n\n  Key 'p0_functional_action_probe' -> type: <class 'dict'>\n  Value: {'status': 'DONE', 'retry_count': 0, 'created_at': '2026-05-15T23:21:52.011Z', 'updated_at': '2026-05-15T23:47:31.338Z', 'hypothesis': 'P0 BLOCKING Functional Validation: Action prediction probe on SigLIP+projector output features. If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation. If < LLM but > DINO (0.676) → partial. If ≤ DINO → degradation claim needs reeval. Also tests image_mean aggregation from LLM hidden states.', 'metrics': {'projector': {'mean_R2': 0.7063, 'o\n\n  Key 'p0_functional_action_delta_probe' -> type: <class 'dict'>\n  Value: {'status': 'DONE', 'retry_count': 0, 'created_at': '2026-05-15T23:21:52.667Z', 'updated_at': '2026-05-15T23:47:29.211Z', 'hypothesis': 'P0 BLOCKING Functional Validation: Action-delta prediction (Δa = a_{t+1}-a_t) on SigLIP+projector output features. Removes autocorrelation. Compare with LLM best (L14, R²=0.059) and DINO (R²=0.060). Also tests image_mean aggregation.', 'metrics': {'projector': {'mean_R2': 0.1181, 'overall_R2': 0.1053}, 'trained_image_mean_L14': {'mean_R2': 0.1215, 'overall_R2': \n\n  Key 'plan_009_cka_verification' -> type: <class 'dict'>\n  Value: {'status': 'PRE\n…[truncated 916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-15T23:58:00.040676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 2 (cuda:0 random_s0, cuda:1 shuffled 待 untrained probe 完成) | Worker 池 4 (GPU 2: plan008-random-s0 + plan008-shuffled / CPU 1: CKA / GPU 1: untrained-last-preaction 接近完成)\n\n## Plan 008 双卡并行已启动\n\n- **cuda:0**: `plan008-random-s0` — random gibberish instruction (seed=0) 特征提取 + RSA\n- **cuda:1**: `plan008-shuffled` — word-shuffled instruction 特征提取 + RSA（会先检查 cuda:1 是否被 untrained probe 占用，空闲后启动）\n\n每条件 ~48 min 提取 + ~30s RSA。预计 ~50 min 后出结果。\n\n实验 `plan_008_random_inst_control` 已注册，关联 Claim 3。\n\nuntrained last_preaction probe 结果一出立即汇报。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-15T23:58:01.296996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1256
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-15T23:58:03.745900+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码就绪。创建实验并双卡并行派 Worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-15T23:58:06.075912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/366747d3-fcb7-4279-a8c3-273d7c6fd878/tool-results/mcp-agent-ml-research-read_registry-1778889412678.txt\", \"r\") as f:\n    raw = json.load(f)\n\nresult_str = raw[\"result\"]\nregistry = json.loads(result_str)\nexperiments = registry[\"data\"][\"experiments\"]\n\nprint(f\"Total experiments: {len(experiments)}\")\nprint()\n\n# Count by status\nstatus_counts = Counter()\nfor exp_id, exp in experiments.items():\n    status_counts[exp.get(\"status\", \"UNKNOWN\")] += 1\n\nprint(\"========================================\")\nprint(\"  STATUS COUNTS\")\nprint(\"========================================\")\nfor status, count in sorted(status_counts.items()):\n    print(f\"  {status}: {count}\")\n\nprint()\nprint(\"========================================\")\nprint(\"  ACTIVE EXPERIMENTS (RUNNING/PREPARING/PENDING/QUEUED/ALLOCATED)\")\nprint(\"========================================\")\n\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"QUEUED\", \"ALLOCATED\"}\nfor exp_id, exp in experiments.items():\n    if exp.get(\"status\") in active_statuses:\n        status = exp.get(\"status\")\n        hypothesis = exp.get(\"hypothesis\", \"N/A\")\n        server = exp.get(\"server\", \"N/A\")\n        gpu = exp.get(\"gpu\", exp.get(\"gpu_ids\", \"N/A\"))\n        spec = exp.get(\"spec\", {})\n        if isinstance(spec, dict):\n            command = spec.get(\"command\", \"N/A\")\n            data_path = spec.get(\"data_path\", \"N/A\")\n            model_name = spec.get(\"model_name\", \"N/A\")\n        else:\n            command = data_path = model_name = \"N/A\"\n        \n        print(f\"\\n--- {exp_id} ---\")\n        print(f\"  status: {status}\")\n        print(f\"  hypothesis: {hypothesis}\")\n        print(f\"  server: {server}\")\n        print(f\"  gpu: {gpu}\")\n        if isinstance(spec, dict) and spec:\n            print(f\"  spec.command: {str(command)[:250]}\")\n            print(f\"  spec.data_path: {data_path}\")\n            print(f\"  spec.model_name: {model_name}\")\n            for k, v in spec.items():\n                if k not in (\"command\", \"data_path\", \"model_name\"):\n                    print(f\"  spec.{k}: {str(v)[:200]}\")\n        else:\n            print(f\"  spec: (empty)\")\n\nprint()\nprint(\"========================================\")\nprint(\"  DONE EXPERIMENTS\")\nprint(\"========================================\")\n\nfor exp_id, exp in experiments.items():\n    if exp.get(\"status\") == \"DONE\":\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        metrics = exp.get(\"metrics\", {})\n        if isinstance(metrics, dict):\n            metrics_str = json.dumps(metrics, default=str)\n            if len(metrics_str) > 400:\n                metrics_str = metrics_str[:400] + \"...\"\n        else:\n            metrics_str = str(metrics)[:400]\n        \n        print(f\"\\n--- {exp_id} ---\")\n        print(f\"  conclusion: {conclusion}\")\n        print(f\"  metrics: {metrics_str}\")\n\nprint()\nprint(\"========================================\")\nprint(\"  EXPERIMENTS WITH CRON_ID\")\nprint(\"========================================\")\n\nfound_cron = False\nfor exp_id, exp in experiments.items():\n    cron_id = exp.get(\"cron_id\")\n    if cron_id:\n        found_cron = True\n        print(f\"  {exp_id}: status={exp.get('status')}, cron_id={cron_id}\")\n\nif not found_cron:\n    print(\"  (none)\")\n\nPYEOF\n",
+              "description": "Full extraction of registry experiments: active, done, status counts, cron_ids",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-15T23:58:06.177618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 42\n\n========================================\n  STATUS COUNTS\n========================================\n  DONE: 39\n  PREPARING: 1\n  QUEUED: 2\n\n========================================\n  ACTIVE EXPERIMENTS (RUNNING/PREPARING/PENDING/QUEUED/ALLOCATED)\n========================================\n\n--- plan_009_cka_verification ---\n  status: PREPARING\n  hypothesis: Plan 009: CKA verification — replicate RSA findings with CKA metric to ensure conclusions are not metric-dependent. CPU-only, uses existing features. SigLIP+projector CKA should show same dominance pattern as RSA.\n  server: N/A\n  gpu: N/A\n  spec: (empty)\n\n--- lg_output_head_analysis ---\n  status: QUEUED\n  hypothesis: D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \"shallow adaptation\", output head weight diff >> middle layer weight diff. Explains \"representations unchanged but behavior improved\".\n  server: N/A\n  gpu: N/A\n  spec: (empty)\n\n--- lg_instruction_ablation ---\n  status: QUEUED\n  hypothesis: D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from ρ≈0.49 to <0.15. PASS: ρ<0.15; PARTIAL: 0.15<ρ<0.30; FAIL: ρ≥0.30.\n  server: N/A\n  gpu: N/A\n  spec: (empty)\n\n========================================\n  DONE EXPERIMENTS\n========================================\n\n--- p0_functional_probe_v2 ---\n  conclusion: success\n  metrics: {\"bootstrap_proj_vs_image_mean_L19\": {\"proj_mean_R2\": 0.7063, \"image_mean_L19_mean_R2\": 0.6832, \"delta\": 0.0231, \"ci_95\": [0.0105, 0.0367], \"p_value\": 0.001, \"gate\": \"PASS \\u2014 CI lower bound > 0\"}, \"dino_action\": {\"mean_R2\": 0.7116, \"feature_key\": \"cls_token\"}, \"dino_action_delta\": {\"mean_R2\": 0.1}, \"bootstrap_dino_vs_proj\": {\"delta\": 0.005, \"ci_95\": [-0.008, 0.019], \"p_value\": 0.22, \"significa...\n\n--- p0_functional_action_probe ---\n  conclusion\n…[truncated 13998 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001189"
+        }
+      ]
+    },
+    {
+      "number": 88,
+      "messages": [
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-15T23:58:10.007829+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-15T23:58:46.940276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the structured extraction from the registry:\n\n---\n\n## Status Counts (42 total)\n\n| Status | Count |\n|--------|-------|\n| DONE | 39 |\n| PREPARING | 1 |\n| QUEUED | 2 |\n\nNo experiments are RUNNING, PENDING, or ALLOCATED. No experiments have a `cron_id` set.\n\n---\n\n## Active Experiments (3)\n\n### 1. `plan_009_cka_verification` — PREPARING\n- **hypothesis**: Plan 009: CKA verification — replicate RSA findings with CKA metric to ensure conclusions are not metric-dependent. CPU-only, uses existing features. SigLIP+projector CKA should show same dominance pattern as RSA.\n- **server**: N/A\n- **gpu**: N/A\n- **spec**: (empty)\n\n### 2. `lg_output_head_analysis` — QUEUED\n- **hypothesis**: D021 Exp-2: Output Head Analysis. Compare trained vs untrained VLA weight differences across layers. If training does \"shallow adaptation\", output head weight diff >> middle layer weight diff. Explains \"representations unchanged but behavior improved\".\n- **server**: N/A\n- **gpu**: N/A\n- **spec**: (empty)\n\n### 3. `lg_instruction_ablation` — QUEUED\n- **hypothesis**: D021 Exp-1: Instruction Ablation. Extract LIBERO-Goal features with empty instruction (trained + untrained VLA), then run RSA. If instruction pathway is the source of action-relevant structure, RSA should collapse from rho~0.49 to <0.15. PASS: rho<0.15; PARTIAL: 0.15<rho<0.30; FAIL: rho>=0.30.\n- **server**: N/A\n- **gpu**: N/A\n- **spec**: (empty)\n\n---\n\n## DONE Experiments (39)\n\n### Successes (27):\n\n| exp_id | Key Metrics |\n|--------|-------------|\n| `p0_functional_probe_v2` | proj R²=0.706, image_mean_L19 R²=0.683, delta CI=[0.011, 0.037], DINO R²=0.712 |\n| `p0_functional_action_probe` | projector R²=0.706, llm_last_preaction_L19 R²=0.731, untrained_image_mean_L0 R²=0.714 |\n| `p0_functional_action_delta_probe` | projector delta R²=0.118, trained_image_mean_L14 R²=0.122, untrained_best_L0 R²=0.117 |\n| `p0_bootstrap_ci_training_effect` | image_mean delta=0.021, CI=[-0.031, 0.064], p=0.2 (not significant). Claim 3 invariance holds |\n| \n…[truncated 3411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Agent",
+            "elapsed_ms": 103725
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-15T23:58:46.991185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/memory.md\\\", \\\"content\\\": \\\"# VLA-SSD Project Memory\\\\n\\\\n## ⚠️ Functional Probe 分离发现（2026-05-15，p0_functional_action_probe = negative）\\\\n\\\\n**RSA 与 functional probe 发生分离——这是论文 Claim 2 的关键转折点。**\\\\n\\\\n| 度量 | Projector | LLM image_mean L19 | LLM last_preaction L19 |\\\\n|------|-----------|--------------------|-----------------------|\\\\n| RSA | 0.615 | ~0.49 | ~0.49 |\\\\n| Action R² | **0.706** | 0.683 | **0.731** |\\\\n\\\\n**机制**：LLM self-attention 将 action-relevant 信息从分布式 visual tokens **重新路由**到 output position (last_preaction)。visual tokens 的几何结构 (RSA) 和功能性 (image_mean R²) 都降低了，但 action token 集中了更多信息。\\\\n\\\\n**关键数字**：Projector 已提供 LLM 96.6% 的 functional capacity (0.706/0.731)。LLM 边际贡献仅 +3.5%。\\\\n\\\\n**对 Claim 2 的影响**：不能再说 \\\\\\\"LLM degrades\\\\\\\"，需精炼为 \\\\\\\"LLM redistributes\\\\\\\"（推荐 Option A）。Framing 提案已提交 Director，待决策。\\\\n\\\\n## SMOKING GUN 确认：SigLIP+Projector RSA = 0.6153（2026-05-15）\\\\n\\\\n**d027_siglip_only_rsa 结果**: SigLIP+projector 直接输出（不过 LLM）的 RSA = 0.6153 [95% CI: 0.5257, 0.6954]。\\\\n\\\\n**关键发现：LLM 降低 action alignment（不是 passthrough）**：\\\\n- SigLIP+projector: **0.6153**\\\\n- Full VLA（任何条件）: ~0.48-0.49\\\\n- DINO: 0.388\\\\n\\\\nLLM 不仅没增强 action-relevant structure，反而将 RSA 从 0.615 降到 ~0.488（约 20% 下降）。这比 \\\\\\\"passthrough\\\\\\\" 更强——是 \\\\\\\"degradation\\\\\\\"。\\\\n\\\\n**机制解释**: SigLIP image-text 预训练产生的 visual features 天然具有强 action-relevant 结构。Projector 保持这一结构（cos_sim=1.0 frozen）。LLM 的高维 token mixing 稀释了这种结构（trained 和 untrained LLM 稀释程度一致）。\\\\n\\\\n## Per-Layer Degradation Curve 发现（2026-05-15）\\\\n\\\\n**plan_003_perlayer_degradation 结果**：降解非单调，集中在 embedding interface。\\\\n\\\\n**关键机制洞察**：\\\\n- Proj→L1 是最大 single-step drop（0.13–0.25，~20–40%），token embedding 是 degradation bottleneck\\\\n- L0（embedding layer）是异常值：trained 模型 RSA≈0，结构从 L1 才开始恢复\\\\n- 中间层有 partial recovery（non-monotonic），LLM 不是 \\\\\\\"progressive degrader\\\\\\\"\\\\n- **no-inst trained 独特模式**：唯一呈 L1→L30 持续上升的条件（peak at L30），training 在无 instruction\n…[truncated 2672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102821
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-15T23:58:46.992363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — vla-ssd\\\\n\\\\n## Target Venue\\\\n- Primary: CoRL 2026\\\\n- Deadline: Abstract May 26, Paper May 29\\\\n- Format: 8 pages + references\\\\n\\\\n## Core Claims (3 条)\\\\n\\\\n1. **Vision Encoder Dominance**: VLA 中 action-relevant 表征结构由 frozen vision encoder（SigLIP）决定。SigLIP+projector 的 RSA 与 action structure 的相关性（ρ=0.615）远高于完整 VLA（ρ≈0.501, image_mean 聚合）和 standalone vision model（DINOv2 ρ=0.388）。\\\\n2. **LLM Redistributes Action-Relevant Structure**: LLM 不是纯 degrader，而是 redistributor。(a) Image token level：LLM 降解分布式 action-relevant 结构（RSA: 0.615→0.501；functional R²: 0.706→0.683, bootstrap CI=[0.011, 0.037], p=0.001），Proj→L1 interface 是主要降解点（drop 20-40%）。(b) Readout token level：LLM 通过 attention 将分散的 action 信号聚合到 last_preaction token（R²=0.731 > Projector 0.706，bootstrap p=0.001）。净效果：vision encoder 是 action information 的源头，LLM 的贡献是 signal concentration 而非 new information injection。\\\\n3. **Training and Instruction Invariance**: VLA task-specific fine-tuning 和 instruction input 均不显著改变 LLM hidden state 中的 action-relevant 表征结构。image_mean 聚合下 training Δ=0.021，95% CI=[−0.031, +0.064]，p=0.20；last_preaction 下 Δ=0.008，95% CI=[−0.040, +0.056]，p=0.37。两个 CI 均包含 0。2×2 matrix（training × instruction）四格收敛于 0.48-0.50。\\\\n\\\\n## Paper 主数值基准（image_mean 聚合，公平对比）\\\\n\\\\n| Model / Condition | RSA (image_mean) | Notes |\\\\n|---|---|---|\\\\n| **SigLIP+Projector** | **0.615** | Smoking gun, LLM input |\\\\n| VLA trained with-inst | 0.501 | Peak L23 |\\\\n| VLA untrained with-inst | 0.485 | Peak L23 |\\\\n| VLA trained no-inst | 0.501 | Peak L23, identical to with-inst |\\\\n| VLA untrained no-inst | 0.482 | Peak L29 |\\\\n| DINO-V2 | 0.388 | Vision-only baseline |\\\\n\\\\nlast_preaction 数值（trained 0.488, untrained 0.485）放 supplementary 作为 robustness check。\\\\n\\\\n## Functional Probe 数值基准\\\\n\\\\n### Raw Action Prediction R²\\\\n\\\\n| Model | mean_R² | Notes |\\\\n|---|-\n…[truncated 8537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102405
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-15T23:58:51.359751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-15T23:58:51.410371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-15T23:58:52.519435+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** on westd-19183。禁止用其他 GPU\n- 服务器无外网：所有 HF/AutoProcessor 操作必须 `local_files_only=True`\n- 论文主数值用 **image_mean 聚合**（公平对比），last_preaction 放 supplementary\n- Claim 2 已从 \"LLM degrades\" reframe 为 **\"LLM redistributes\"**（D031/D033 决策）。不要再用 \"degrades\" 措辞\n- Untrained model = `from_config()` 重新初始化 LLM（random），保留 SigLIP。不是 fine-tuned vs pre-fine-tuning\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-19183**，2×RTX PRO 6000\n- 工作目录：`/root/vla-ssd/`（代码），`/root/autodl-tmp/vla-ssd/`（数据/特征/结果）\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 已提取特征：`/root/autodl-tmp/vla-ssd/features/{trained,untrained}/`（10 task × 50 demos × 33 layers × 4096d H5）\n- SigLIP projector 特征：`/root/autodl-tmp/vla-ssd/results/siglip_projector_features/`\n- DINO 特征：`/root/autodl-tmp/vla-ssd/features/dinov2_libero_goal/`\n- 结果目录：`/root/autodl-tmp/vla-ssd/results/{rsa,functional_validation,figure_data}/`\n- Plan 008 脚本：`/root/vla-ssd/scripts/extract_features_rand_inst.py` + `rsa_instruction_control.py`\n- 活跃进程：plan008-random-s0 (cuda:0, ~48min extraction)，plan008-shuffled (cuda:1, ~48min)，CKA verification (CPU)，untrained-last-preaction probe (cuda:1, 接近完成)\n\n### 3. 📊 当前状态\n**刚做完**：Functional probe V2（三方对比 + bootstrap CI + L10/L11 诊断）。所有 Director 修正已执行。\n\n**等待回调的 Worker**：\n- `worker_ssh_untrained-last-preaction-probe` — **re-dream 唯一 blocker**，turn 21，应即将完成\n- `worker_ssh_plan008-random-s0` — cuda:0 特征提取 ~48 min\n- `worker_ssh_plan008-shuffled` — cuda:1 特征提取 ~48 min（等 untrained probe 结束后启动）\n- `worker_ssh_plan009-cka-verification` — CPU CKA 分析\n\n**Registry PREPARING**：plan_008_random_inst_control, plan_009_cka_verification\n\n### 4. 📋 待办\n- **untrained-last-preaction 回调到达** → 读结果，更新 registry。若 R² > 0.706 → redistribution 是 architecture-intrinsic（支持 Claim 3）。若 < 0.706 → Claim 3 需微调。**立即汇报 Director，这解除 re-dream blocker**\n- **plan008 两个 Worker 回调** → 合并 random_s0 + shuffled RSA 结果，与 normal (0.488) 和 empty (0.480) 对比。更新 plan_008 registry + 汇报\n- **plan009 CKA 回调** → 验证 CKA 是否与 RSA 一致（预期一致），更新 registry\n- **Director re-dream 后** → 根据新 dream 结果决定是否启动 Paper Agent（CoRL DDL: abstract May 26, paper May 29）\n- **GPU 空出后（plan008 完成）** → 如时间允许，跑 wrong_task 条件（plan_008 第三种控制）\n\n### 5. 🎯 战略上下文\n**核心发现链**：SigLIP+projector RSA=0.615 >> VLA ~0.49 >> DINO 0.388（geometric）。但 functional probe 发现 DINO(0.712) ≈ Projector(0.706) > LLM image_mean(0.683) < LLM last_preaction(0.731)。形成 **geometric-functional dissociation**。\n\n**D031/D033 确定的 3 Claims**：\n1. Vision Encoder Dominance（geometric alignment 由 SigLIP 决定）\n2. LLM Redistributes（geometric 降解 but functional 信息集中到 output token，净贡献仅 +3.5%）\n3. Training & Instruction Invariance（2×2 matrix + bootstrap CI 含 0）\n\n**易错点**：\n- DINO action R²=0.712 与 projector 0.706 无显著差异（p=0.22）——不要说 \"DINO beats projector\"\n- Untrained image_mean L10/L11 R² 骤降是 pathological random init，不是 feature extraction bug\n- MVP-2 的 DINO R²=0.676 是 LIBERO-10 数据，V2 的 0.712 是 LIBERO-Goal——不同 benchmark，以 V2 为准\n- paper_framing.md 已更新到 redistribution narrative，Evidence Inventory 中 bootstrap CI on training effect 标绿\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001196"
+        }
+      ]
+    }
+  ]
+}

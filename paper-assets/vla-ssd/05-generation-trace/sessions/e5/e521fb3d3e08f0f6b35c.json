@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e521fb3d3e08f0f6b35c",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code bootstrap ci delta r2",
+  "task_key": "worker_code_bootstrap_ci_delta_r2_20260524T203754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_ci_delta_r2_20260524T203754_result.json",
+    "occurrence": 1,
+    "bytes": 1383,
+    "sha256": "304aeb382225b1cbdda13e41048126ee8c6007a421b3bb975f820e78dec894d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\nBootstrap CI 分析完成。利用已有的 bootstrap_v3 MCCV 结果（1000 iterations, demo-level resampling）聚合了 10 个 cell 的 ΔR²。\n\n### Gap 显著性检验\n\n**Strict test fails**: 存在微小 CI 重叠。\n- VLA→VLA max CI_upper = **0.1064** (openvla_goal)\n- VLM→VLA min CI_lower = **0.0906** (tracvla_spatial)  \n- Gap = **-0.016** (overlap)\n\n### 关键发现\n\n| Category | Cell | ΔR² | 95% CI |\n|----------|------|-----|--------|\n| VLA→VLA | openvla_long | 0.033 | [0.004, 0.103] |\n| VLA→VLA | openvla_object | 0.037 | [-0.004, 0.085] |\n| VLA→VLA | openvla_spatial | 0.037 | [0.009, 0.102] |\n| VLA→VLA | openvla_goal | 0.086 | [-0.056, 0.106] |\n| VLM→VLA | tracvla_spatial | 0.156 | [0.091, 0.224] |\n| VLM→VLA | nora_spatial | 0.308 | [0.301, 0.512] |\n| VLM→VLA | tracvla_goal | 0.333 | [0.207, 0.451] |\n| VLM→VLA | tracvla_long | 0.358 | [0.171, 0.533] |\n| VLM→VLA | tracvla_object | 0.362 | [0.283, 0.504] |\n\n重叠仅由 **tracvla_spatial**（VLM→VLA 中 ΔR² 最低的 cell）和 **openvla_goal**（VLA→VLA 中 CI 最宽的 cell）驱动，重叠量仅 0.016。其余 cell 之间 gap 清晰。NORA-Goal 因 exit layer R² 极不稳定（L35 R²≈-0.006）被标记排除。\n\n结果保存于 `westd-19183:/root/autodl-tmp/vla-ssd/results/bootstrap_ci/bootstrap_ci_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-delta-r2.md"
+}

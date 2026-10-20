@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68abefa51d355c0a7261",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research instruction probing literature",
+  "task_key": "worker_research_instruction-probing-literature_20260515T171543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_instruction-probing-literature_20260515T171543_result.json",
+    "occurrence": 1,
+    "bytes": 1650,
+    "sha256": "a6e0816f9bb3a1d917dc5404daa38d357f7048c57e1b877df2e2a98382198782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。产出已保存到 `artifacts/literature_survey_instruction_probing.md`。\n\n## 核心发现\n\n**14 篇论文覆盖 4 个方向**，关键结论：\n\n### \"Vision dominates\" 已是共识\nGrant 2026、VLM4VLA 2026、LangForce 2026 都独立验证了 VLA 在标准 benchmark 上几乎忽略 language。LangForce 将此命名为 **Information Collapse**——当 vision 足以预测 action 时，language 信号被 shortcut 掉。\n\n### LIBERO-Goal 是突破口\nGrant et al. 2026 是最直接的相关工作：在 LIBERO-Goal 上，正确 prompt 97-100% vs 错误 prompt 0-10%，同时发现 **\"encoded but not used\" paradox**（π0.5 L17 有 99.3% prompt accuracy 但行为不变）。\n\n### 我们的 novelty 空白\n\n| 维度 | 已有工作 | 我们的差异 |\n|------|---------|-----------|\n| 分析方法 | Grant: behavioral intervention | **Diagnostic probing (trained vs untrained)** |\n| 粒度 | Grant: 单层 prompt accuracy | **Layer × timestep heatmap** |\n| 对比 | 各论文只看单 regime | **Vision-sufficient → vision-ambiguous 系统对比** |\n| 训练效果 | 无人做 | **Trained vs untrained 回答 \"VLA 训练改变了什么\"** |\n\n### 最直接竞争者\n\n1. **Grant et al. 2026** — 高威胁但方法正交（intervention vs probing）\n2. **LangForce 2026** — 互补（他们提理论+修复，我们提 representation 证据）\n3. **Häon et al. 2025** — 互补（causal steering vs diagnostic probing）\n\n**底线：representation probing × vision-ambiguous scenarios × trained vs untrained comparison 这个交叉点目前是空白，这是我们的位置。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-instruction-probing-literature.md"
+}

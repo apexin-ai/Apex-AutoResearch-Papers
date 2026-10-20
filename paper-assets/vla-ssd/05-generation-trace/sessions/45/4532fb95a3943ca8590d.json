@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4532fb95a3943ca8590d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "research rsa method audit",
+  "task_key": "worker_research_rsa_method_audit_20260516T023726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rsa_method_audit_20260516T023726_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "b0202e9814d5e80488eb4a6c43b576f481b1f5cf67b858cb0edef0c8c8609a35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。核心发现：\n\n**DINO RSA=0.388 与 CLIP RSA=0.5572 不可直接比较**，存在两个关键方法学差异：\n\n1. **配对范围不同** — `rsa_analysis.py` 做跨任务全局配对（~4950 pairs，含跨任务对），`rsa_clip.py` 只做任务内配对（~45 pairs/task，再取均值）。前者混入了 task-level confound。\n\n2. **Action 距离度量不同** — `rsa_analysis.py` 对 7-dim action 用 **cosine distance**，`rsa_clip.py` 用 **euclidean distance**。异构维度（位移/旋转/gripper）上两者行为差异很大。\n\n此外还有中等差异：`rsa_analysis.py` 做 3-phase temporal binning 后取均值（late phase=0.2601 拉低了整体），`rsa_clip.py` 直接用全轨迹。\n\n**0.388 来源确认**：由 `/root/vla-ssd/rsa_analysis.py` 生成，输出到 `/root/autodl-tmp/vla-ssd/results/rsa/rsa_results.json`，= mean(early=0.4909, mid=0.4132, late=0.2601)。\n\n报告路径：`artifacts/rsa_method_audit_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rsa-method-audit.md"
+}

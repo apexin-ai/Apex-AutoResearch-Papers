@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f43b9a037cc090f07d6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose tracvla spatial pipeline",
+  "task_key": "worker_diagnose_tracvla_spatial_pipeline_20260521T021542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_tracvla_spatial_pipeline_20260521T021542_result.json",
+    "occurrence": 1,
+    "bytes": 3110,
+    "sha256": "65ff38807d79acd85ec326378c20c1f9a20668cea9a5a19765c6552f54476490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告\n\n### 根因\n\n**两个独立问题叠加：**\n\n**问题 1（主要）：untrained 模型未预下载，网络不通导致加载失败**\n\n脚本逻辑（第 638-641 行）：先检查本地缓存 `UNTRAINED_CACHE` 目录下有无 `config.json`，没有则从 HuggingFace 在线下载 `microsoft/Phi-3-vision-128k-instruct`。\n\n实际情况：\n- `/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/config.json` **不存在**\n- 缓存目录内只有 tokenizer 文件和两个 `.incomplete` 的 blob（10MB + 20MB），模型权重未下载完\n- 网络不通（`[Errno 101] Network is unreachable`），HF 重试 5 次后失败\n- 脚本 catch 了异常，打印 `Skipping untrained condition`，只跑了 trained 一半\n\n**问题 2（次要）：EXIT_CODE=129 (SIGHUP)**\n\n进程收到 SIGHUP 信号。但 trained 条件的 4 个结果文件已全部生成（`action_r2_probing.json`, `counterfactual_combined.json`, `cross_instruction_classification.json`, `l1_attention_profile.json`），说明 trained 条件实际跑完了。SIGHUP 发生在脚本结束阶段或之后。\n\n### 关键日志摘录\n\n```\n[Errno 101] Network is unreachable\n\n[10:09:05]   ERROR loading untrained model: We couldn't connect to \n'https://huggingface.co' to load this file, couldn't find it in the \ncached files and it looks like microsoft/Phi-3-vision-128k-instruct \nis not the path to a directory containing a file named config.json.\n\n[10:09:05]   Skipping untrained condition\n[10:09:05] All done in 4.2 min\nEXIT_CODE=129\n```\n\n### 当前状态\n\n| 条件 | 状态 | 结果文件 |\n|------|------|----------|\n| trained | **完成** | 4 个 JSON 全部生成 |\n| untrained | **跳过** | 目录不存在 |\n\n### 修复方案\n\n1. **先下载 untrained 模型到本地**（在网络通的时候）：\n   ```bash\n   source /etc/network_turbo\n   export HF_HOME=/root/autodl-tmp/.hf_cache\n   python3 -c \"\n   from transformers import AutoModelForCausalLM, AutoProcessor\n   m = AutoModelForCausalLM.from_pretrained('microsoft/Phi-3-vision-128k-instruct', \n       trust_remote_code=True, torch_dtype='auto',\n       cache_dir='/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/')\n   m.save_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/')\n   p = AutoProcessor.from_pretrained('microsoft/Phi-3-vision-128k-instruct',\n       trust_remote_code=True,\n       cache_dir='/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/')\n   p.save_pretrained('/root/autodl-tmp/vla-ssd/checkpoints/phi3v-base/')\n   \"\n   ```\n   下载完后 `config.json` 会存在，脚本会自动走本地路径。\n\n2. **只重跑 untrained 条件**（trained 已完成，无需重跑）：\n   ```bash\n   tmux new -s tracvla\n   python /root/autodl-tmp/vla-ssd/scripts/tracvla_spatial_full_pipeline.py --conditions untrained\n   ```\n\n3. **用 tmux 防止 SIGHUP**。\n\n### 能否直接重试\n\n不能直接重试——先要把 untrained 模型下载到本地。下载完成后，只需跑 `--conditions untrained`，trained 的结果可以复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-tracvla-spatial-pipeline.md"
+}

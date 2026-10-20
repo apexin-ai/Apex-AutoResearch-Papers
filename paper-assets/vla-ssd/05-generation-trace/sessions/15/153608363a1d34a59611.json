@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "153608363a1d34a59611",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code counterfactual batch template",
+  "task_key": "worker_code_counterfactual_batch_template_20260521T164440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_counterfactual_batch_template_20260521T164440_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "9bd621a20d1d4e49dde1761c26499726821f258c8fc6385ec55324ca5e77392b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建: `/root/autodl-tmp/vla-ssd/scripts/counterfactual_batch.py` (884 行)\n\n功能:\n- 支持 `--arch openvla/tracvla/nora`, `--suite goal/spatial/object/long`, `--condition trained/untrained`\n- `--method auto` 自动选择: trained openvla/tracvla → action_mse, nora 和所有 untrained → cosine_dist\n- 内置全部 checkpoint/data/results 路径映射，匹配现有 pipeline 脚本的 task 顺序\n- OFT checkpoint 自动合并 dataset_statistics.json 到 norm_stats\n- `--dry-run` 快速验证, `--results-dir` 可覆盖输出目录\n- `--gpu`, `--n-demos`, `--n-timesteps` 可调\n\n用法:\n```bash\npython counterfactual_batch.py --arch tracvla --suite spatial --condition untrained\npython counterfactual_batch.py --arch openvla --suite long --condition trained\npython counterfactual_batch.py --arch openvla --suite object --condition untrained\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-counterfactual-batch-template.md"
+}

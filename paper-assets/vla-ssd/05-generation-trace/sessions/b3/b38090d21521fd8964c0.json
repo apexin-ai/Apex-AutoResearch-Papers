@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "id": "b38090d21521fd8964c0",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code libero object cleanup and run",
+  "task_key": "worker_code_libero_object_cleanup_and_run_20260520T230545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_libero_object_cleanup_and_run_20260520T230545.log",
+    "occurrence": 1,
+    "bytes": 2176160,
+    "sha256": "a68ca30189e81ecc7345d7fbf16b6abfd14a12cded9632c9c51c14702c146de1"
+  },
+  "statistics": {
+    "messages": 1175,
+    "user_turns": 3,
+    "tool_calls": 422,
+    "roles": {
+      "log": 1,
+      "system": 52,
+      "record": 1,
+      "assistant": 273,
+      "tool_call": 422,
+      "tool_result": 422,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "b38090d21521fd8964c0-part-0001.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "b38090d21521fd8964c0-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0003.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 708,
+      "chunks": [
+        {
+          "path": "b38090d21521fd8964c0-part-0003.json",
+          "message_count": 118
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "b38090d21521fd8964c0-part-0007.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "b38090d21521fd8964c0-part-0007.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-libero-object-cleanup-and-run.md"
+}

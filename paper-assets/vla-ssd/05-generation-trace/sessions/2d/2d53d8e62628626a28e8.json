@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d53d8e62628626a28e8",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh data conflict check",
+  "task_key": "worker_ssh_data-conflict-check_20260515T205901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_data-conflict-check_20260515T205901_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "ba03bd808f368203ac40b7b03dfc21149085433f2c3be336186caa96e272246e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态报告\n\n**1. 进程排查**\n- PID 658056（GPU 1）：untrained no-instruction 特征提取，运行 ~35 min，正常\n- PID 659993：已不存在，无冲突\n- 无重复进程，无需 kill\n\n**2. 数据问题发现与修复**\n- **trained_no_inst 每个文件只有 10 demos（应 50）**——全部 10 个文件已删除并重新提取\n- 新进程 PID 661030 已在 GPU 0 启动，用 `--max_demos 50` 重新提取\n\n**3. 四个特征目录状态**\n\n| 目录 | 文件数 | Demos/文件 | 状态 |\n|------|--------|-----------|------|\n| trained_inst | 10/10 | 50 | 完整 |\n| untrained_inst | 10/10 | 50 | 完整 |\n| trained_no_inst | 0/10 → 提取中 | 50 | GPU 0 重新提取（PID 661030） |\n| untrained_no_inst | 3/10 → 提取中 | 50 | GPU 1 进行中（PID 658056） |\n\n**4. GPU 状态**\n- GPU 0：RTX PRO 6000, 16.4GB/97.9GB, 63% util — trained_no_inst 提取\n- GPU 1：RTX PRO 6000, 16.4GB/97.9GB, 68% util — untrained_no_inst 提取\n\n**5. 预计完成时间**\n- 每个 task ~3-4 min，两个进程并行\n- untrained_no_inst：剩 7 个 task，约 25 min\n- trained_no_inst：剩 10 个 task，约 35 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-data-conflict-check.md"
+}

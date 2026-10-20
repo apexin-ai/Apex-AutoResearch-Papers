@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "253e92a2aa6f5a593c34",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analysis openvla trained extract",
+  "task_key": "worker_analysis_openvla-trained-extract_20260515T130845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_openvla-trained-extract_20260515T130845_result.json",
+    "occurrence": 1,
+    "bytes": 2131,
+    "sha256": "fb1968aecf67ded2b4caf014736b17d3c43b6217f90ab3d1ad01f65879237f53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇总如下：\n\n---\n\n## openvla-trained-extract 结果\n\n### Trained Extraction: **SUCCESS** (10/10 tasks完成)\n\n- **EXIT_CODE**: 0，无 Error/Traceback\n- **总耗时**: 185.3 min (~3h 5min)\n- **格式**: HDF5 (.h5)，每文件 50 demos，每 demo 含 `image_mean` + `last_preaction` 两个特征\n- **特征维度**: (timesteps, **33 layers**, **4096 dim**)，dtype=**float16**\n- **总大小**: 53GB\n\n| Task | 大小 | Shape (demo_0) | 耗时 |\n|------|------|----------------|------|\n| KITCHEN_SCENE3_turn_on_the_stove... | 5.1G | (272, 33, 4096) | 757s |\n| KITCHEN_SCENE4_put_the_black_bowl... | 4.8G | (261, 33, 4096) | 701s |\n| KITCHEN_SCENE6_put_the_yellow_mug... | 5.9G | (329, 33, 4096) | 880s |\n| KITCHEN_SCENE8_put_both_moka_pots... | 8.0G | (457, 33, 4096) | 1332s |\n| LIVING_ROOM_SCENE1_alphabet_soup... | 5.2G | (242, 33, 4096) | 804s |\n| LIVING_ROOM_SCENE2_alphabet_soup... | 5.7G | (388, 33, 4096) | 892s |\n| LIVING_ROOM_SCENE2_cream_cheese... | 5.0G | (258, 33, 4096) | 1106s |\n| LIVING_ROOM_SCENE5_white_mug... | 5.0G | (275, 33, 4096) | 1048s |\n| LIVING_ROOM_SCENE6_white_mug... | 4.9G | (203, 33, 4096) | 3081s |\n| STUDY_SCENE1_pick_up_book... | 3.7G | (234, 33, 4096) | 508s |\n\n### Untrained Extraction: **9/10 tasks 完成，STUDY_SCENE1 不完整**\n\n- **总大小**: 52GB，10 个 .h5 文件\n- 前 9 个 task 均有 **50 demos**，维度一致 (timesteps, 33, 4096)\n- **STUDY_SCENE1 只有 18/50 demos**（754MB vs trained 的 3.7GB）\n- untrained 日志显示 EXIT_CODE=**130**（被 SIGINT 中断），中断时在 LIVING_ROOM_SCENE6 的 63% 处；之后可能重启过但 STUDY_SCENE1 未跑完\n\n### 运行中的进程\n\n无正在运行的 extract_features 进程。\n\n### 异常\n\n1. **untrained STUDY_SCENE1 不完整** — 需要补跑这 1 个 task（剩余 32 demos）\n2. trained 日志有 transformers 版本不匹配警告（期望 4.40.1，实际 4.57.6），但不影响提取结果\n3. LIVING_ROOM_SCENE6 trained 耗时异常偏高（3081s vs 其他 ~700-1300s），可能是 GPU 资源争抢（与 untrained 并行跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-openvla-trained-extract.md"
+}

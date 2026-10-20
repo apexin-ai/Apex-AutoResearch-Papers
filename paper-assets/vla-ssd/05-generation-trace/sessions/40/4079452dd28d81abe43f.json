@@ -1,0 +1,693 @@
+{
+  "schema_version": "1.0",
+  "id": "4079452dd28d81abe43f",
+  "project": "vla-ssd",
+  "kind": "conversation",
+  "title": "cron hook matched ablation controls",
+  "task_key": "cron_hook_matched_ablation_controls",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_matched_ablation_controls.jsonl",
+    "occurrence": 1,
+    "bytes": 22038,
+    "sha256": "e55bcc1068cc36d1cdd9694ce9270a8d3e7e8f5583d178c3246164a765726542"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T04:08:40.767577+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: matched_ablation_controls\n- project: vla-ssd\n- server: westd-19183\n- log_path: /root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T04:08:55.359276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T04:08:55.610357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "ToolSearch",
+            "elapsed_ms": 251
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T04:08:58.877114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T04:08:58.877601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T04:08:59.836216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (171,229 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-6ae4d062/b13fa37f-0d39-46bb-bba8-3cca0cc751cf/tool-results/mcp-agent-ml-research-read_registry-1779163739524.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-6ae4d062/b13fa37f-0d39-46bb-bba8-3cca0cc751cf/tool-results/mcp-agent-ml-research-read_registry-1779163739524.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 959
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T04:08:59.836599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 959
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T04:08:59.836761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "vla-ssd",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T04:08:59.836899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T04:08:59.888367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T04:08:39Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 98 个实验 — DONE 91, PREPARING 6, RUNNING 1\\\\n**DONE 分布**: failed 1, killed 10, negative 12, success 68\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-19183:cuda:0, westd-19183:cuda:1\\\\n- **空闲（分配了没跑）**: westd-19183:cuda:0, westd-19183:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-19183**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `behavioral_smoketest` | westd-19183 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `matched_ablation_controls` [failed] — 2026-05-19T04:08:37 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `task_routing_loo_sensitivity` [success] — 2026-05-19T02:46:40\\\\n- `attention_normalization_entropy` [success] — 2026-05-19T02:46:20\\\\n- `trajectory_level_cohens_d` [success] — 2026-05-19T02:42:00\\\\n- `groundtruth_action_error` [negative] — 2026-05-19T02:33:04\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `matched_ablation_controls`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| behavioral_smoketest | Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing. | — | — | — |\\\\n\\\\n## 待处理\\\\n- action_trajectory_cpu_analysis: Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-\n…[truncated 2817 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T04:08:59.889070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\\\", \\\"content\\\": \\\"# vla-ssd — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 03:26 UTC | 更新原因: GPU 实验启动 + 文本修复全部完成 + Reviewer 评估请求\\\\n\\\\n## 核心方向\\\\nVLA fine-tuning primarily reorganizes instruction routing (entry-exit L1+L31 pattern). Instruction-conditioned action generation operates through **distributed L1 routing** where instruction-attention fraction predicts per-head contribution magnitude. 详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Round 9 Response — GPU 实验启动中 + 文本修复完成 + Reviewer 评估整体 story**\\\\n\\\\n## 已完成的修改（用户 9 条指令）\\\\n- ✅ \\\\\\\"Ablation confirms routing function\\\\\\\" → \\\\\\\"Open-loop functional sensitivity\\\\\\\"\\\\n- ✅ Counterfactual → lexical/positional sensitivity (Spearman ρ=1.0)\\\\n- ✅ 删除推测性解释 (\\\\\\\"limited statistical power\\\\\\\")\\\\n- ✅ 全文 causal/behavioral claim 降级\\\\n- ✅ Trajectory-level d 填充（token-level 保守估计，~4x 低估）\\\\n- ✅ GT action error 报告（negative: ΔMSE=-0.001, 支持 Information vs Computation 框架）\\\\n- ✅ LOO sensitivity（max p=0.083, 无定性反转）\\\\n- ✅ Attention normalization + entropy（38.2x per-token ratio, entropy 0.465 vs 0.569）\\\\n\\\\n## 进行中\\\\n- [ ] 🔄 Matched-size ablation controls: random-24 + image-dominant-24（cuda:0, Agent 已派发）\\\\n- [ ] 🔄 LIBERO closed-loop smoke test（cuda:1, behavioral_pilot_v2.py）\\\\n- [ ] 🔄 Reviewer 系统性评估整体 story + claim 强度\\\\n- [ ] Paper Agent 整合剩余实验结果\\\\n\\\\n## Score Path（更新）\\\\n| 路径 | 预估分 | 状态 |\\\\n|------|--------|------|\\\\n| 当前版本（text fixes + CPU analyses） | 5.5-6.5 | ✅ 完成 |\\\\n| + Matched-size ablation controls | +0.2-0.3 | 🔄 运行中 |\\\\n| + LIBERO closed-loop SR drop | +0.5-1.0 | 🔄 smoke test |\\\\n| 综合 | 6.5-7.5 | 🔄 |\\\\n\\\\n## DDL\\\\n- Abstract: May 26 (7 天)\\\\n- Paper: May 29 (10 天)\\\\n\\\\n## GPU 预算\\\\n2 张卡 (westd-19183 cuda:0, cuda:1)，均在用。\\\\n- Ablation controls ~2h (cuda:0)\\\\n- LIBERO smoke test ~30min, 全量 ~3-4h (cuda:1)\\\\n- Manager 扩容申请待回复（如 smoke test 通过需全量跑）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\n…[truncated 1275 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 52
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T04:09:06.478667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'exp_id': 'matched_ablation_controls'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T04:09:08.487619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2835}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2008
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T04:09:08.990152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T04:09:08.991037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_6ae4d062."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T04:09:09.041561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T04:09:09.092671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_6ae4d062."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T04:09:13.081762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15 -name \"on-experiment-failed.skill.md\" 2>/dev/null | head -5",
+              "description": "Find on-experiment-failed skill file"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T04:09:13.533847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T04:09:13.684916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15 -name \"resource-saturation.skill.md\" 2>/dev/null | head -5",
+              "description": "Find resource-saturation skill file"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T04:09:14.039351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "Bash",
+            "elapsed_ms": 354
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T04:09:15.144478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'hypothesis', 'parent', 'spec', 'metrics', 'log_path', 'checkpoint_path', 'updated_at']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T04:09:15.497233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"matched_ablation_controls\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T04:08:37.488Z\\\", \\\"parent\\\": \\\"specificity_control_action\\\", \\\"hypothesis\\\": \\\"Random-24 heads ablation produces similar or larger d than instruction-dominant-24 (d=0.65), while image-dominant-24 produces different d, establishing that action trajectory divergence from instruction head ablation is not specific to instruction heads but is a general property of removing 24/32 heads at L1.\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/matched_ablation_controls.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal\\\", \\\"data_count\\\": \\\"3 tasks x 10 demos x 50 steps = 1500 samples, 7 passes each = 10500 total\\\", \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": \\\"42,123,456,789,1024 (random-24); deterministic (image-dominant-24)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\", \\\"eval_data\\\": \\\"LIBERO libero_goal 3 tasks, 10 demos each, 50 timesteps\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"task_routing_loo_sensitivity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T02:46:40.353Z\\\", \\\"parent\\\": \\\"task_complexity_routing\\\", \\\"hypothesis\\\": \\\"Task complexity grouping is robust: no single task removal or reassignment reverses the statistical significance of the complex vs simple routing dependence difference.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/task_routing_loo_sensitivity.json\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/vla-ssd/results/loo_sensitivity.py\\\", \\\"metrics\\\": {\\\"original_p\\\": 0.0333, \\\"loo_fragile_count\\\": \\\"6/10\\\", \\\"loo_max_p\\\": 0.0833, \\\"swap_flipped_count\\\": \\\"6/10\\\", \\\"median_split_p\\\": 0.004, \\\"kmeans_p\\\": \n…[truncated 5674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T04:09:31.313366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T04:09:31.364132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T04:09:34.076405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "vla-ssd",
+              "status": "running"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T04:09:34.528592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 452
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T04:09:34.529009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T04:09:35.130758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-19183\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-19183\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-19183\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 601
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T04:09:35.181290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "vla-ssd",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T04:09:35.534518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"behavioral_smoketest\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T03:26:07.290Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:56:58.272Z\\\", \\\"parent\\\": \\\"behavioral_pilot_w4\\\", \\\"hypothesis\\\": \\\"Fine-tuned OpenVLA achieves non-zero success rate on LIBERO-Goal closed-loop rollout, and ablating L1 instruction-dominant heads reduces success rate, providing behavioral evidence of functional routing.\\\", \\\"spec\\\": {\\\"command\\\": \\\"NUMBA_DISABLE_JIT=1 CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python behavioral_smoketest.py\\\", \\\"server\\\": \\\"westd-19183\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/LIBERO\\\", \\\"data_count\\\": \\\"1 task x 3 ep\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"LIBERO-Goal task_id=0, 3 episodes\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3153}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T04:10:02.054912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:matched_ablation_controls",
+              "project": "vla-ssd",
+              "task_prompt": "## 任务：诊断两个实验问题\n\n### 1. 诊断 matched_ablation_controls 失败原因\n\n实验 `matched_ablation_controls` 在 westd-19183 上失败，进程异常退出 5 次，没有产生有效的 W&B metrics。\n\n**请 SSH 到 westd-19183 执行以下步骤**：\n\n1. 读取日志文件 `/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.log`（先 tail -200 看最后部分，找 error/traceback）\n2. 检查脚本 `/root/vla-ssd/scripts/matched_ablation_controls.py` 的关键逻辑（是否有明显 bug）\n3. 检查 GPU 内存是否可能 OOM：`nvidia-smi`\n4. 检查磁盘空间：`df -h /root/autodl-tmp`\n5. 检查 python 环境是否正常：`source /root/miniconda3/bin/activate && python -c \"import torch; print(torch.cuda.is_available())\"`\n\n**产出要求**：\n- 用 `save_project_file` 写一个诊断报告到 `artifacts/matched_ablation_controls_diagnosis.md`，包含：\n  - 失败根因（具体 error message 或 traceback）\n  - 是否可重试（环境问题 vs 代码 bug）\n  - 如果是代码 bug，需要怎么修复\n  - 修复建议\n\n### 2. 检查 behavioral_smoketest 状态\n\n实验 `behavioral_smoketest` 在 registry 中标记为 RUNNING，但 GPU 使用率显示两张卡都空闲。\n\n**请 SSH 到 westd-19183 检查**：\n1. `ps aux | grep behavioral_smoketest` 看进程是否还在\n2. 如果有日志，tail 看最新状态\n3. `nvidia-smi` 查看 GPU 实际使用情况\n\n**产出要求**：\n- 在同一个诊断报告中追加 behavioral_smoketest 的状态\n- 如果进程已死，明确说明",
+              "tool_groups": "['ssh', 'knowledge']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T04:10:05.465204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_matched_ablation_controls_20260519T041002\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_diagnose_matched_ablation_controls_20260519T041002.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_matched_ablation_controls_20260519T041002 started. Use get_worker_status('worker_diagnose_matched_ablation_controls_20260519T041002') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3410
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T04:10:09.417844+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发诊断 matched_ablation_controls 失败原因 + 检查 behavioral_smoketest 进程状态。等待 Worker 回调后更新 registry 并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:matched_ablation_controls"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-matched-ablation-controls.md"
+}

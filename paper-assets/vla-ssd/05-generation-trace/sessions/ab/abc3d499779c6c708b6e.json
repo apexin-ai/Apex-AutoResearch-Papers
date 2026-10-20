@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abc3d499779c6c708b6e",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "diagnose nora goal v3 exit check",
+  "task_key": "worker_diagnose_nora_goal_v3_exit_check_20260521T070606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_nora_goal_v3_exit_check_20260521T070606_result.json",
+    "occurrence": 1,
+    "bytes": 3495,
+    "sha256": "cc3bcc9120ab1319f9920e56a10bf1c4ec6cacc67c25665c6c8951541df5b9c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全了。以下是完整诊断。\n\n---\n\n## 1. 状态：部分完成，untrained counterfactual 缺失\n\n- **trained**: 4/4 JSON 文件全部写入 ✓ (action_r2_probing, l1_attention_profile, cross_instruction_classification, counterfactual_combined)\n- **untrained**: 3/4 文件 ✓，**缺 counterfactual_combined.json** ✗\n- 日志只有 89 行，仅记录到 trained Phase 4 开头（L1），untrained 部分无日志。无 error/traceback/OOM。推测 stdout 缓冲问题导致日志不完整，进程在 untrained counterfactual 阶段崩溃或静默退出。\n\n---\n\n## 2. Trained vs Untrained 两条件对比\n\n两条件的 Phase 1-3 + trained Phase 4-5 全跑完，untrained Phase 4 (cross-instruction) 跑完，Phase 5 (counterfactual) 缺失。\n\n---\n\n## 3. 关键 Metrics（Raw）\n\n### R² Probing (action_r2_probing.json)\n\n| Layer | Trained img_mean | Trained last_pre | Untrained img_mean | Untrained last_pre |\n|-------|-----------------|-----------------|--------------------|--------------------|\n| L0 | 0.6860 | 0.6392 | 0.7277 | 0.5925 |\n| L8 | 0.6898 | 0.6847 | 0.7317 | 0.6501 |\n| **L9** | **0.6908** | **0.6875** | **0.7346** | 0.6496 |\n| L10 | **0.6968** | 0.6815 | 0.7289 | 0.6441 |\n| L16 | 0.6853 | 0.6730 | 0.7023 | 0.6514 |\n| L24 | 0.6687 | 0.6509 | 0.6788 | 0.6464 |\n| L32 | 0.6233 | 0.5994 | 0.6648 | 0.6381 |\n| **L35** | **-0.0039** | **-0.0039** | **0.6556** | **0.6194** |\n\n- **Trained peak**: L10 img_mean=0.6968, L9 last_pre=0.6875\n- **Untrained peak**: L9 img_mean=0.7346, L8 last_pre=0.6501\n- **L35 trained**: R² 崩塌到 -0.004（FAST+ action token 完全不编码 action 信息）\n- **L35 untrained**: R² = 0.656（未崩塌，仍保留 action 可预测性）\n\n### L1 Attention Profile\n\n| | Trained | Untrained |\n|---|---------|-----------|\n| instr-dominant | 13 | 13 |\n| image-dominant | 0 | 0 |\n| mixed | 3 | 3 |\n\n两者 attention 分布几乎一致（都是 13/0/3），具体 head 分配略有差异（trained head_10 instr-dom / head_14 mixed → untrained head_10 mixed / head_14 instr-dom）。\n\n### Cross-Instruction Classification Accuracy\n\n| Layer | Trained img | Trained last_pre | Untrained img | Untrained last_pre |\n|-------|------------|-----------------|--------------|-------------------|\n| L0 | 0.926 | 1.000 | 0.989 | 1.000 |\n| L8 | 0.926 | 1.000 | 0.993 | 1.000 |\n| L16 | 0.914 | 1.000 | 0.992 | 1.000 |\n| L24 | 0.910 | 1.000 | 0.990 | 1.000 |\n| L32 | 0.922 | 1.000 | 0.993 | 1.000 |\n| **L35** | **0.085** | **0.085** | **0.990** | **1.000** |\n\n- Chance = 0.1\n- **Trained L35**: 崩塌到 0.085（≈chance），instruction 信息在 action token 最终层完全丢失\n- **Untrained L35**: 0.990/1.000，instruction 信息全程保留\n\n### Counterfactual (仅 Trained)\n\n方法：representation cosine distance（NORA 用 FAST+ action tokens，非 MSE）\n\n| Condition | L0 | L9 | L24 | L30 | L35 |\n|-----------|------|-------|--------|--------|------|\n| wrong | 0.005 | 0.058 | 0.123 | 0.142 | **1.0** |\n| empty | (同) | (同) | (同) | (同) | **1.0** |\n| shuffled | (同) | (同) | (同) | (同) | **1.0** |\n| paraphrased | (同) | (同) | (同) | (同) | **1.0** |\n\n- L35 所有条件 cosine distance = 1.0，Cohen's d = 0.0\n- 含义：trained 模型在最终层 action readout position，不同 instruction（wrong/empty/shuffled/paraphrased vs correct）的表征**完全相同**\n\n**Untrained counterfactual: 缺失，需要补跑。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-nora-goal-v3-exit-check.md"
+}

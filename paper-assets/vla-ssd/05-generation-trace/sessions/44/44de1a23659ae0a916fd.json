@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44de1a23659ae0a916fd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code llama2base full layer probe",
+  "task_key": "worker_code_llama2base_full_layer_probe_20260517T063130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2base_full_layer_probe_20260517T063130_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "54b2853a22d61581007983e3911a43a6504ad0cc0c267da310b21ac0b189f501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Llama2base 全层 profile 结果：\n\n| Layer Range | Accuracy |\n|---|---|\n| L0 | 10% (chance) |\n| L1 | 80.2% |\n| L2-L4 | 98.7% → 99.5% |\n| L5-L31 | 99.8%-100% (saturated) |\n\n关键发现：llama2base 从 L5 开始就接近饱和（99.9-100%），L9-L31 全部维持在 99.8-100%，没有出现像 untrained 条件那样的衰减。\n\n结果已保存至 `/root/autodl-tmp/vla-ssd/results/cross_instruction_dense/llama2base_full_layer_classification.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama2base-full-layer-probe.md"
+}

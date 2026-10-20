@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daebd6a1e8b6b0f9aead",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh check gpu state",
+  "task_key": "worker_ssh_check-gpu-state_20260515T144052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-gpu-state_20260515T144052_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "9b614c5252bec61d97e2193c16f1d5764a029f58dcce46bef8f2c7bfc0a1328f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 | 进程 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Black (96GB) | 1297MiB / 97887MiB | 0% | python3 (PID 617024) — PCA action_prediction |\n| 1 | RTX PRO 6000 Black (96GB) | 1297MiB / 97887MiB | 0% | python3 (PID 617376) — PCA action_delta |\n\n两块 GPU 都在跑 PCA 实验，显存占用极低（~1.3GB），利用率 0%（当前可能在做 PCA/CPU 计算阶段）。\n\n### 实验状态\n\n| 实验 | 模型 | 状态 | 详情 |\n|------|------|------|------|\n| **action_prediction** | trained | 完成 | 33 层全部完成 + summary |\n| **action_prediction** | untrained | 完成 | 33 层全部完成 + summary |\n| **action_delta** | trained | 仅 layer_4 | dry-run 结果，只有 1 层 |\n| **action_delta** | untrained | 不存在 | 目录不存在 |\n| **DINO action_prediction** | dinov2 | 仅 layer_0 | 只有 1 层结果，未完整 |\n| **DINO action_delta** | dinov2 | 不存在 | 目录不存在 |\n| **PCA action_prediction** | trained, pca=1024 | **运行中** | GPU0, 已完成 2/33 层 (正在跑 Layer 2)，运行 3h16m |\n| **PCA action_delta** | trained, pca=1024 | **运行中** | GPU1, 已完成 1/33 层 (正在跑 Layer 1)，运行 2h22m |\n\n### 关键发现\n- 两个 PCA 实验正在跑，每层约 90-120 秒，预计各需约 1 小时完成剩余层\n- DINO 的 action_prediction 只跑了 layer_0 就停了，action_delta 完全没跑\n- 原始 action_prediction (trained/untrained) 已全部完成\n- action_delta 之前只做了 trained layer_4 的 dry-run"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-state.md"
+}

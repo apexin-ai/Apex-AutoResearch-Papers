@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c081084af504f92cf6",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "ssh nora cf extract",
+  "task_key": "worker_ssh_nora_cf_extract_20260522T023605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_nora_cf_extract_20260522T023605_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "fa35602c30b9af7193a8495d20a0704883cedfe4ec80c7634fc4a9ae5216e976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行（17:29 elapsed），当前 2800/5000 of \"wrong\" condition。\n\n**状态总结**：\n- 进程 PID 597691 活跃（CPU 1100%+, GPU 7922 MiB）\n- 当前：`wrong` condition 2800/5000\n- 速率变化：task 0-4 快（34s/200样本），task 5+ 慢（~5min/200样本）\n- 估计 \"wrong\" condition 剩余：~55 分钟\n- 还有 3 个 condition（empty, shuffled, paraphrased），每个 ~70 分钟\n- **预计总完成时间：约 4-5 小时**（非原估计的 15 分钟）\n\n这个慢速可能是因为 task 5+ 的 instruction 更长，导致 tokenization 和 attention 计算量增大。\n\n后台等待脚本已在 `/tmp/cf_wait_done.txt` 监控。进程完成后该文件会写入最终结果。要继续等待还是做其他处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-nora-cf-extract.md"
+}

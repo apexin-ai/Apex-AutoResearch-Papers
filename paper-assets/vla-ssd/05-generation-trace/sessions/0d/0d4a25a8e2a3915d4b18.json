@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d4a25a8e2a3915d4b18",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code fig full 32layer attention lineplot",
+  "task_key": "worker_code_fig_full_32layer_attention_lineplot_20260517T073909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig_full_32layer_attention_lineplot_20260517T073909_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "929c8376cb99486efe7ee93691d4e2fa25898487476cc84eca80e2ac5b32d889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF + PNG 已生成至 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/fig_full_32layer_attention.{pdf,png}`。\n\n关键 pattern 总结：\n- **VLA Trained**: L0-L1 峰值 (21, 24 heads) 标注 \"entry routing\"，L31 回升 (18 heads) 标注 \"exit routing\"，中间层低谷\n- **Llama-2 Base**: L10-L16 区域高峰 (最高 22 heads) 标注 \"mid-layer processing\"，两端低\n- **Untrained VLA**: 全零，mean attention 恒定 0.0778\n\n脚本也已保存至服务器 `/root/vla-ssd/scripts/plot_full_32layer_attention.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-full-32layer-attention-lineplot.md"
+}

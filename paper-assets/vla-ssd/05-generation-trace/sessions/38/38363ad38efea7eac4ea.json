@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "38363ad38efea7eac4ea",
+  "project": "vla-ssd",
+  "kind": "worker",
+  "title": "code llama2base action probe",
+  "task_key": "worker_code_llama2base_action_probe_20260517T204531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama2base_action_probe_20260517T204531.log",
+    "occurrence": 1,
+    "bytes": 1549971,
+    "sha256": "63b9edc093b000503380293dbdab6e13c7200bdf8d825e6e9da93955ab31e2b6"
+  },
+  "statistics": {
+    "messages": 1074,
+    "user_turns": 3,
+    "tool_calls": 437,
+    "roles": {
+      "log": 1,
+      "system": 123,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 437,
+      "user": 3,
+      "tool_result": 437,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "38363ad38efea7eac4ea-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "38363ad38efea7eac4ea-part-0001.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "38363ad38efea7eac4ea-part-0001.json",
+          "message_count": 48
+        },
+        {
+          "path": "38363ad38efea7eac4ea-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 810,
+      "chunks": [
+        {
+          "path": "38363ad38efea7eac4ea-part-0002.json",
+          "message_count": 96
+        },
+        {
+          "path": "38363ad38efea7eac4ea-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "38363ad38efea7eac4ea-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "38363ad38efea7eac4ea-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "38363ad38efea7eac4ea-part-0006.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama2base-action-probe.md"
+}

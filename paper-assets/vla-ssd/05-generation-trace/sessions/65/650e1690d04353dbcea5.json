@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "650e1690d04353dbcea5",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "fix argparse audit all pipelines",
+  "task_key": "worker_fix_argparse_audit_all_pipelines_20260521T090252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_argparse_audit_all_pipelines_20260521T090252_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "c6ccc1e5015077ee78b6cc61ac6b2b26bb42435bda039efb5bd865efbda298e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 修复结果汇总\n\n| # | 脚本 | 修复前 | 修复后 | 状态 |\n|---|------|--------|--------|------|\n| 1 | `nora_goal_full_pipeline.py` | `nargs=\"+\"`, `choices=[\"trained\",\"untrained\"]`, `default=[\"trained\",\"untrained\"]` | — | **无需修复** ✓ |\n| 2 | `nora_spatial_full_pipeline.py` | 同上 | — | **无需修复** ✓ |\n| 3 | `tracvla_spatial_full_pipeline.py` | `default=\"trained,untrained\"`, 无 nargs/choices, `.split(\",\")` 解析 | `nargs=\"+\"`, `choices`, `default=[list]`, 直接 `args.conditions` | **已修复** |\n| 4 | `tracvla_object_full_pipeline.py` | 同 #3 | 同 #3 | **已修复** |\n| 5 | `tracvla_spatial_probing_only.py` | `default=\"trained\"`, 无 nargs/choices, `.split(\",\")` 解析 | `nargs=\"+\"`, `choices`, `default=[\"trained\"]` | **已修复** |\n| 6 | `libero_object_full_pipeline.py` | `default=\"trained\"`, `choices` 有但无 nargs, 单值字符串, 无条件循环 | `nargs=\"+\"`, `default=[\"trained\",\"untrained\"]`, 条件循环, `TRAINED_CKPT`/`UNTRAINED_CKPT`/`RESULTS_BASE` | **已修复** |\n| 7 | `libero_long_full_pipeline.py` | 无 `--conditions` 参数, 无 untrained 支持 | 新增完整条件支持: `nargs=\"+\"`, `UNTRAINED_CKPT=openvla-7b`, 条件循环 | **已修复** |\n| 8 | `libero_object_untrained_full_pipeline.py` | 专用 untrained 脚本, 无 --conditions | — | **无需修复**（#6 修好后可废弃） |\n\n输出路径隔离确认：\n- **libero_object**: trained → `results/libero_object/`, untrained → `results/libero_object_untrained/`\n- **libero_long**: trained → `results/libero_long/`, untrained → `results/libero_long_untrained/`\n- **tracvla_\\***: trained → `results/tracvla_{spatial,object}/trained/`, untrained → `…/untrained/`\n- **nora_\\***: 同 tracvla 模式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-argparse-audit-all-pipelines.md"
+}

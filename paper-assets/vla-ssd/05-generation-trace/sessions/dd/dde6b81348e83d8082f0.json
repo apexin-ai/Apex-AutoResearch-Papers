@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dde6b81348e83d8082f0",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code check p1 and write p2",
+  "task_key": "worker_code_check_p1_and_write_p2_20260516T095208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_p1_and_write_p2_20260516T095208_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "9777fc375388a8cd81ff4e0524d2497586444fb2ae5835d590d4eae065e8b3ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n**汇总：**\n\n## Task 1: P1 Seed Robustness ✅ 已完成\n| 指标 | 值 |\n|------|-----|\n| Peak layers (5 seeds) | [9, 16, 9, 10, 9] |\n| Peak layer mean±std | 10.6 ± 2.7 |\n| Peak R² (5 seeds) | [0.6534, 0.6549, 0.6529, 0.6531, 0.6587] |\n| Peak R² mean±std | **0.6546 ± 0.0022** |\n\nR² 跨 seed 极稳定（std < 0.003）。Peak layer 除 seed=1 (layer 16) 外均集中在 9-10。\n\n## Task 2: P2 Demo Sensitivity 脚本 ✅ 已部署 + dry-run 通过\n\n- 脚本路径: `/root/vla-ssd/scripts/ablations/demo_sensitivity.py`\n- Dry-run (layer 0) 结果: RSA 50=0.0484 / 25=0.0198, Probe 50=0.6448 / 25=0.5709\n- 单层耗时 ~51s，完整 33 层预计 ~28 min\n- 运行命令: `python scripts/ablations/demo_sensitivity.py --gpu 0`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-p1-and-write-p2.md"
+}

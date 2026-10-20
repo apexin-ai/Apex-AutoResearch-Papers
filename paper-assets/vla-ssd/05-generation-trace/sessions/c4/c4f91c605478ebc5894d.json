@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4f91c605478ebc5894d",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code phi3v probe trained",
+  "task_key": "worker_code_phi3v_probe_trained_20260519T180554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phi3v_probe_trained_20260519T180554_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "330c83233238d2ff77b09b9d35db4c391b79fbdf438613184cfc88a06d2500e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## Phi3V Trained Cross-Instruction 10-way Probe 结果\n\n| Token Position | L0 | L1 | L2-L31 |\n|---|---|---|---|\n| **image_mean** | 0.10 | 0.10 | 0.095-0.103 (chance) |\n| **last_preaction** | 0.10 | **0.836** | **1.000** |\n\n**C1 readout pattern 完全确认**：\n- `last_preaction`：L2 起 100%，L1 已达 83.6%\n- `image_mean`：全 32 层均为 chance level (~10%)\n- 与 OpenVLA (Llama-2 7B) 的 pattern 一致，跨架构泛化成立\n\n输出文件：\n- HDF5: `westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_cross_inst.h5` (1883 MB)\n- JSON: `westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json`\n- Registry: `phi3v_probe_trained` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phi3v-probe-trained.md"
+}

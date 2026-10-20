@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db2e2de0f09baf4200fd",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "code ablation 50demos main",
+  "task_key": "worker_code_ablation_50demos_main_20260517T182747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation_50demos_main_20260517T182747_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "482a1461912909f4f108c57440a053253cadd5be702ff25d1dadd01124079eae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动，模型正在加载。\n\n**总结：**\n- 脚本 `/root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py` 已修改：\n  - `demos_per_task` 默认值 5→50\n  - 输出路径改为 `action_probe_50demos.json`\n  - 添加 `bootstrap_paired_ci` 函数（10,000 resamples，paired by task，95% CI + two-sided p-value）\n  - conditions 保持原来的 3 个（baseline/ablate_all24/ablate_all32），layers 保持 [1,8,13]\n- 已在 cuda:0 上提交运行，tmux session: `l1_head_ablation_50demos`\n- 日志：`~/runs/vla-ssd/l1_head_ablation_50demos.log`\n- 预计运行 2-3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-50demos-main.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "713702a6d86eea4040fb",
+  "project": "vla-ssd",
+  "kind": "result",
+  "title": "analyze lg gc untrained",
+  "task_key": "worker_analyze_lg_gc_untrained_20260515T180209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_lg_gc_untrained_20260515T180209_result.json",
+    "occurrence": 1,
+    "bytes": 2784,
+    "sha256": "bad007c40c545098e4c954be42e0a5001dbeea0d6958cdbd1e7ae04c1f68d5d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整分析。\n\n---\n\n## lg_gc_untrained 实验结果\n\n### 数值汇总\n\n| 指标 | 值 |\n|------|-----|\n| best_layer | 1 (layers 1-9 均为 100%) |\n| best_accuracy | **1.0000** |\n| best_traj_accuracy | 1.0000 |\n| best_macro_f1 | 1.0000 |\n| worst_layer | 31 (acc=0.9971) |\n| n_classes / n_train / n_val | 10 / 50880 / 12848 |\n\nLayer 0 = 15.82% (random level, 只预测 class 1)。Layer 1 起直接跳到 100%。深层略有下降但最差也 99.71%。\n\n### Gate 判定\n\n**G2-GC: FAIL**\n- Δ(trained - untrained) = 1.0 - 1.0 = **0.0 pp** (阈值 25pp)\n- 两者从 layer 1 起完全一致\n\n### 三组实验交叉分析\n\n| 实验 | best_acc | Layer 0 | Layer 1+ | feature_dim |\n|------|----------|---------|----------|-------------|\n| **lg_gc_trained** (trained VLA) | 100% | 15.82% | 100% all layers | 4096 |\n| **lg_gc_untrained** (random LLM) | 100% | 15.82% | 100% → 99.71% | 4096 |\n| **lg_gc_dino** (DINO-V2) | 86.26% | — | 86.26% (1 layer) | 1024 |\n\n### 核心发现\n\n1. **Goal classification 不是有效的 trained vs untrained 判别器。** 随机 LLM 权重 + 一层 transformer 就能把 10 个 goal 类别完美分开。4096 维空间中 10 个类别的线性可分性在随机投影下几乎必然成立——这是高维空间的几何性质，不是训练的贡献。\n\n2. **Layer 0 的 15.82% 值得注意。** Trained 和 untrained 的 layer 0 acc 完全相同（都是 15.82%，都只预测 class 1）。这说明 SigLIP 视觉编码经过投影层进入 LLM 嵌入空间后，class-discriminative 信息被破坏了（无论 LLM 是否 trained）。而 DINO 用 1024-dim 原始视觉特征能达到 86.26%——确认 goals 在视觉上可区分，但投影层丢失了这个信息。\n\n3. **Untrained 比 trained 在深层略差（~0.3pp）。** 这是唯一差异，但远不足以通过 25pp 的 gate。可能反映 trained LLM 的深层 attention pattern 比随机权重稍微更稳定，但差异微不足道。\n\n### 对论文 story 的影响\n\n**Goal classification probe 这条线作废了。** 原本想说\"trained VLA encodes goal knowledge that untrained VLA doesn't\"，但数据完全不支持——随机 LLM 同样能做到。这不是因为 goals 不重要，而是 MLP probe + 4096-dim features + 10 classes 这个实验设计太容易了。\n\n**可能的 pivot 方向**：\n- 用**线性 probe** (logistic regression) 替代 MLP，降低 probe 的拟合能力\n- 增加类别数（更细粒度的 goal 区分）\n- 换成更难的任务：**action prediction probe**（不是分类 10 个 goal，而是回归连续动作空间）——这对 trained vs untrained 更有区分度\n- 看 LIBERO-Goal 实验是否应该直接跳到 action decoding 类型的 probe"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-lg-gc-untrained.md"
+}
