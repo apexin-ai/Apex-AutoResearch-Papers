@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ba81dd32f3ca86575588",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：gen-depth-contamination Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-cont",
+  "task_key": "38215879-e88e-4d61-b595-0c1c5863eacd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/38215879-e88e-4d61-b595-0c1c5863eacd.jsonl",
+    "occurrence": 1,
+    "bytes": 753787,
+    "sha256": "2a7b0dfeec2c2a15f7428397f95e26bd503912adfe554e747714fdecb5054900"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "record": 50,
+      "user": 1,
+      "assistant": 36,
+      "tool_call": 68,
+      "tool_result": 68
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba81dd32f3ca86575588-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "ba81dd32f3ca86575588-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "ba81dd32f3ca86575588-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-gen-depth-contamination-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-ge-copy-2.md"
+}

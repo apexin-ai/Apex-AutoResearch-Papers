@@ -1,0 +1,1669 @@
+{
+  "schema_version": "1.0",
+  "id": "7b6a121e7a4e0fe13acc",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find bootstrap CI scripts in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ — specifi",
+  "task_key": "agent-a6f8fbc29078dceb8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a6f8fbc29078dceb8.jsonl",
+    "occurrence": 1,
+    "bytes": 133851,
+    "sha256": "8d2d0b4598de4ea45e6cc61bce180410f23429a9cfe4ce3bd889a1ce10761dfa"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T11:22:05.864Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find bootstrap CI scripts in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ — specifically look for `crossscorer_bootstrap_ci.py`, `c4_power_curve.py`, or any script with \"bootstrap\" in the name under the `scripts/` directory. Also check for any Python files that contain \"bootstrap\" as a keyword. I need to understand the bootstrap resampling logic used in this project. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "85e50faa-2311-4015-81ef-70698a6761de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T11:22:07.341Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and analyze the bootstrap CI scripts in this project. Let me start with a systematic search."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85e50faa-2311-4015-81ef-70698a6761de",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtRb61MBG3ZJ6cVtaU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "58ce0338-c2fe-491e-8052-543782a9ede6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ys2p7BDtkHcRmgo6eahzG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18821,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18821,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T11:22:07.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AyUbMaUHAte2BGRarajLsE",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/bootstrap*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58ce0338-c2fe-491e-8052-543782a9ede6",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtRb61MBG3ZJ6cVtaU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d017d6fe-21e9-446d-8ba1-c0d1848b45e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ys2p7BDtkHcRmgo6eahzG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18821,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18821,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T11:22:07.970Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AyUbMaUHAte2BGRarajLsE",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d017d6fe-21e9-446d-8ba1-c0d1848b45e8",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "5145174b-860a-4b9e-8875-97a54531ce5b",
+            "sourceToolAssistantUUID": "d017d6fe-21e9-446d-8ba1-c0d1848b45e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T11:22:08.036Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QS8fwWTsk7PjFcErs44F82",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/scripts/*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5145174b-860a-4b9e-8875-97a54531ce5b",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtRb61MBG3ZJ6cVtaU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cddc0795-56dd-4e71-9c2d-bac0f6289ea2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ys2p7BDtkHcRmgo6eahzG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18821,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18821,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T11:22:08.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QS8fwWTsk7PjFcErs44F82",
+              "type": "tool_result",
+              "content": "scripts/run_pipeline.py\nscripts/run_cross_transfer.py\nscripts/run_exp013_cross_transfer.py\nscripts/plot_exp003_decoding_ablation.py\nscripts/run_exp009_dose_response.py\nscripts/run_exp015_neural_probe.py\nscripts/exp006_analyze_results.py\nscripts/exp006_fill_discussion.py\nscripts/analyze_exp006.py\nscripts/exp_B_14d_ablation.py\nscripts/exp_D_obd_n500_v2.py\nscripts/exp_D_mcnemar.py\nscripts/exp_E_paired_stats.py\nartifacts/scripts/plot_summary_auc_decay.py\nscripts/draw_kstar_theta.py\nartifacts/scripts/transfer_heatmap.py\nartifacts/scripts/plot_auc_decay_ci.py\nartifacts/scripts/plot_filtering_strategies.py\nscripts/draw_pipeline_figure.py\nscripts/exp025_pythia_filtering.py\nscripts/plot_fig_jsd_decay.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cddc0795-56dd-4e71-9c2d-bac0f6289ea2",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "08cfff4e-9dfd-4ee7-af76-bcd246941916",
+            "sourceToolAssistantUUID": "cddc0795-56dd-4e71-9c2d-bac0f6289ea2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T11:22:08.482Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TbLzvU4ZHtAmMJaU5d4ZyM",
+              "name": "Grep",
+              "input": {
+                "pattern": "bootstrap",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "type": "py",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08cfff4e-9dfd-4ee7-af76-bcd246941916",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtRb61MBG3ZJ6cVtaU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "89f6acd7-314b-4d00-8462-5c6c16ed570d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ys2p7BDtkHcRmgo6eahzG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18821,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 326,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18821
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 326,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18821,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18821,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T11:22:08.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TbLzvU4ZHtAmMJaU5d4ZyM",
+              "type": "tool_result",
+              "content": "Found 18 files\nartifacts/exp008_retrain_chain.py\nartifacts/scripts/plot_auc_decay_ci.py\nscripts/draw_kstar_theta.py\nscripts/exp_D_mcnemar.py\nscripts/exp_D_obd_n500_v2.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backend_tk.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_axes.py\n.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.pyi\n.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.py\n.venv/lib/python3.14/site-packages/matplotlib/rcsetup.py\n.venv/lib/python3.14/site-packages/matplotlib/pyplot.py\n.venv/lib/python3.14/site-packages/matplotlib/cbook.pyi\n.venv/lib/python3.14/site-packages/matplotlib/cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/_animation_data.py\n.venv/lib/python3.14/site-packages/pip/_vendor/distlib/util.py\n.venv/lib/python3.14/site-packages/pip/_vendor/distlib/compat.py\nscripts/run_exp015_neural_probe.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89f6acd7-314b-4d00-8462-5c6c16ed570d",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "b525c606-98b8-47a8-9493-c56ea6e07327",
+            "sourceToolAssistantUUID": "89f6acd7-314b-4d00-8462-5c6c16ed570d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T11:22:09.978Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good start. Let me search more specifically and read the relevant files that mention bootstrap:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b525c606-98b8-47a8-9493-c56ea6e07327",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b524ee4-a791-462b-bf6c-5706e5233d6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T11:22:10.855Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KZzAjCBZa9fz9iDi55ynnK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_auc_decay_ci.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b524ee4-a791-462b-bf6c-5706e5233d6c",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "53f71e97-dbe3-40df-9dfc-7ed5244158ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T11:22:10.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KZzAjCBZa9fz9iDi55ynnK",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"AUC decay curves with bootstrap confidence interval bands.\n3\t\n4\tInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json,\n5\t        results_*/pairwise_auc.json (per_fold → approximate CI)\n6\tOutput: artifacts/figures/fig_s1_auc_decay_ci.pdf\n7\tDeps:   matplotlib, numpy\n8\t\"\"\"\n9\t\n10\timport argparse\n11\timport json\n12\timport re\n13\timport matplotlib\n14\tmatplotlib.use(\"Agg\")\n15\timport matplotlib.pyplot as plt\n16\timport numpy as np\n17\tfrom pathlib import Path\n18\t\n19\tTABLEAU_COLORS = [\n20\t    \"#4e79a7\", \"#e15759\", \"#76b7b2\", \"#59a14f\",\n21\t    \"#b07aa1\", \"#ff9da7\", \"#9c755f\", \"#bab0ac\",\n22\t    \"#edc948\", \"#f28e2b\",\n23\t]\n24\tMARKERS = [\"o\", \"s\", \"^\", \"D\", \"v\", \"P\", \"X\", \"*\", \"h\", \"<\"]\n25\tPAIR_KEYS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n26\tX_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n27\t\n28\t\n29\tdef infer_label(source_path, metadata=None):\n30\t    \"\"\"Infer model label from file path or JSON metadata.\"\"\"\n31\t    if metadata and \"experiment\" in metadata:\n32\t        exp = metadata[\"experiment\"].lower()\n33\t    else:\n34\t        exp = str(source_path).lower()\n35\t    patterns = [\n36\t        (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n37\t        (r\"qwen.*base\", \"Qwen-base\"),\n38\t        (r\"qwen.*7b\", \"Qwen-7B\"),\n39\t        (r\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\", \"Qwen-cont\"),\n40\t        (r\"pythia.*greedy\", \"Pythia-greedy\"),\n41\t        (r\"pythia.*nuc\", \"Pythia-nuc0.9\"),\n42\t        (r\"pythia.*t07|pythia.*t0\\.7\", \"Pythia-T0.7\"),\n43\t        (r\"pythia.*t12|pythia.*t1\\.2\", \"Pythia-T1.2\"),\n44\t        (r\"pythia\", \"Pythia\"),\n45\t        (r\"olmo\", \"OLMo\"),\n46\t        (r\"mistral\", \"Mistral-7B\"),\n47\t        (r\"llama.*8b\", \"LLaMA-8B\"),\n48\t        (r\"length.?128\", \"Length-128\"),\n49\t        (r\"length.?256\", \"Length-256\"),\n50\t        (r\"length.?512\", \"Length-512\"),\n51\t    ]\n52\t    for pat, label in patterns:\n53\t        if re.search(pat, exp, re.IGNORECASE):\n54\t            return label\n55\t    name = source_path.stem if source_path.is_file() else source_path.name\n56\t    name = re.sub(r\"^exp\\d+_\", \"\", name).replace(\"bootstrap_ci\", \"\").replace(\"pairwise_auc\", \"\").strip(\"_\")\n57\t    return name or source_path.parent.name\n58\t\n59\t\n60\tdef discover_ci_sources(root):\n61\t    \"\"\"Find bootstrap CI JSONs and pairwise_auc.json with per_fold data.\"\"\"\n62\t    ci_patterns = [\n63\t        \"artifacts/*bootstrap*ci*.json\",\n64\t        \"artifacts/exp*_bootstrap_ci.json\",\n65\t        \"results_*/*bootstrap*ci*.json\",\n66\t        \"results/*/*bootstrap*ci*.json\",\n67\t    ]\n68\t    auc_patterns = [\n69\t        \"results_*/pairwise_auc.json\",\n70\t        \"results/*/pairwise_auc.json\",\n71\t    ]\n72\t    files = set()\n73\t    for pat in ci_patterns:\n74\t        files.update(root.glob(pat))\n75\t    ci_files = sorted(files)\n76\t\n77\t    auc_files_set = set()\n78\t    for pat in auc_patterns:\n79\t        auc_files_set.update(root.glob(pat))\n80\t    auc_files = sorted(auc_files_set)\n81\t\n82\t    return ci_files, auc_files\n83\t\n84\t\n85\tdef load_bootstrap_ci(json_path):\n86\t    \"\"\"Load from bootstrap CI JSON. Returns {pair: {mean, ci_lower, ci_upper}}.\"\"\"\n87\t    with open(json_path) as f:\n88\t        raw = json.load(f)\n89\t\n90\t    result = {}\n91\t    pairs_data = raw.get(\"pairs\", raw)\n92\t    for k in PAIR_KEYS:\n93\t        if k in pairs_data:\n94\t            entry = pairs_data[k]\n95\t            if isinstance(entry, dict) and \"ci_lower\" in entry:\n96\t                result[k] = {\n97\t                    \"mean\": entry.get(\"boot_mean\", entry.get(\"auc\", entry.get(\"auc_mean_folds\"))),\n98\t                    \"ci_lower\": entry[\"ci_lower\"],\n99\t                    \"ci_upper\": entry[\"ci_upper\"],\n100\t                }\n101\t    return result if result else None, raw\n102\t\n103\t\n104\tdef load_pairwise_auc_ci(json_path):\n105\t    \"\"\"Compute approximate CI from per-fold AUCs (mean ± 1.96*SE).\"\"\"\n106\t    with open(json_path) as f:\n107\t        raw = json.load(f)\n108\t\n109\t    per_fold = raw.get(\"per_fold\")\n110\t    mean_data = raw.get(\"mean\")\n111\t    if not per_fold or not mean_data:\n112\t        return None, raw\n113\t\n114\t    result = {}\n115\t    for k in PAIR_KEYS:\n116\t        if k in per_fold and k in mean_data:\n117\t            folds = np.array(per_fold[k])\n118\t            m = mean_data[k]\n119\t            se = np.std(folds, ddof=1) / np.sqrt(len(folds))\n120\t            result[k] = {\n121\t                \"mean\": m,\n122\t                \"ci_lower\": m - 1.96 * se,\n123\t                \"ci_upper\": m + 1.96 * se,\n124\t            }\n125\t    return result if result else None, raw\n126\t\n127\t\n128\tdef parse_args():\n129\t    parser = argparse.ArgumentParser(description=\"Plot AUC decay with confidence bands\")\n130\t    parser.add_argument(\"--results-dir\", type=Path,\n131\t                        default=Path(__file__).resolve().parent.parent.parent,\n132\t                        help=\"Root directory to scan\")\n133\t    parser.add_argument(\"--output\", type=Path, default=None,\n134\t                        help=\"Output PDF path\")\n135\t    parser.add_argument(\"--filter\", type=str, default=None,\n136\t                        help=\"Filter models by substring\")\n137\t    return parser.parse_args()\n138\t\n139\t\n140\tdef main():\n141\t    args = parse_args()\n142\t    root = args.results_dir\n143\t\n144\t    ci_files, auc_files = discover_ci_sources(root)\n145\t    if not ci_files and not auc_files:\n146\t        print(f\"No CI or pairwise_auc files found under {root}\")\n147\t        return\n148\t\n149\t    models = {}\n150\t\n151\t    for fp in ci_files:\n152\t        data, metadata = load_bootstrap_ci(fp)\n153\t        if data is None:\n154\t            continue\n155\t        label = infer_label(fp, metadata)\n156\t        if args.filter and args.filter.lower() not in label.lower():\n157\t            continue\n158\t        label = label + \" (bootstrap)\"\n159\t        models[label] = data\n160\t\n161\t    for fp in auc_files:\n162\t        data, metadata = load_pairwise_auc_ci(fp)\n163\t        if data is None:\n164\t            continue\n165\t        label = infer_label(fp, metadata)\n166\t        if args.filter and args.filter.lower() not in label.lower():\n167\t            continue\n168\t        if any(label.split(\" (\")[0] in k for k in models):\n169\t            continue\n170\t        models[label] = data\n171\t\n172\t    if not models:\n173\t        print(\"No valid CI data found after filtering\")\n174\t        return\n175\t\n176\t    x = np.arange(len(PAIR_KEYS))\n177\t\n178\t    plt.rcParams.update({\n179\t        \"font.family\": \"serif\",\n180\t        \"font.size\": 11,\n181\t        \"axes.linewidth\": 0.8,\n182\t        \"xtick.major.width\": 0.8,\n183\t        \"ytick.major.width\": 0.8,\n184\t    })\n185\t\n186\t    fig, ax = plt.subplots(figsize=(7, 4.5), constrained_layout=True)\n187\t\n188\t    ax.axhline(0.60, color=\"grey\", ls=\"--\", lw=0.8, zorder=1)\n189\t    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\"$\\theta = 0.60$\",\n190\t            fontsize=8.5, color=\"grey\", va=\"bottom\", ha=\"right\")\n191\t    ax.axhline(0.50, color=\"lightgrey\", ls=\"--\", lw=0.8, zorder=1)\n192\t    ax.text(len(PAIR_KEYS) - 0.45, 0.508, \"chance\",\n193\t            fontsize=8.5, color=\"silver\", va=\"bottom\", ha=\"right\")\n194\t\n195\t    handles = []\n196\t    for i, (label, ci_data) in enumerate(models.items()):\n197\t        color = TABLEAU_COLORS[i % len(TABLEAU_COLORS)]\n198\t        marker = MARKERS[i % len(MARKERS)]\n199\t\n200\t        means = [ci_data.get(k, {}).get(\"mean\", float(\"nan\")) for k in PAIR_KEYS]\n201\t        lowers = [ci_data.get(k, {}).get(\"ci_lower\", float(\"nan\")) for k in PAIR_KEYS]\n202\t        uppers = [ci_data.get(k, {}).get(\"ci_upper\", float(\"nan\")) for k in PAIR_KEYS]\n203\t\n204\t        ax.fill_between(x, lowers, uppers, color=color, alpha=0.15, zorder=2)\n205\t        line, = ax.plot(x, means, \"-\", color=color, lw=1.8, marker=marker,\n206\t                        markersize=5, label=label, zorder=3)\n207\t        handles.append(line)\n208\t\n209\t    ax.set_xticks(x)\n210\t    ax.set_xticklabels(X_LABELS)\n211\t    ax.set_xlabel(\"Depth Pair\")\n212\t    ax.set_ylabel(\"Pairwise AUC\")\n213\t    ax.set_ylim(0.45, 1.05)\n214\t    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\n215\t    ax.tick_params(direction=\"in\")\n216\t\n217\t    ax.legend(handles=handles, fontsize=8.5, loc=\"upper right\",\n218\t              bbox_to_anchor=(1.0, 0.98), framealpha=0.9, edgecolor=\"0.8\")\n219\t\n220\t    if args.output:\n221\t        out_path = args.output\n222\t    else:\n223\t        out_dir = Path(__file__).resolve().parent.parent / \"figures\"\n224\t        out_dir.mkdir(parents=True, exist_ok=True)\n225\t        out_path = out_dir / \"fig_s1_auc_decay_ci.pdf\"\n226\t\n227\t    out_path.parent.mkdir(parents=True, exist_ok=True)\n228\t    fig.savefig(out_path, dpi=300, bbox_inches=\"tight\")\n229\t    png_path = out_path.with_suffix(\".png\")\n230\t    fig.savefig(png_path, dpi=300, bbox_inches=\"tight\")\n231\t    plt.close(fig)\n232\t\n233\t    pdf_size = out_path.stat().st_size\n234\t    png_size = png_path.stat().st_size\n235\t    print(f\"Discovered {len(models)} configs: {list(models.keys())}\")\n236\t    print(f\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\")\n237\t    assert pdf_size > 3 * 1024, f\"PDF too small: {pdf_size}\"\n238\t    print(\"OK\")\n239\t\n240\t\n241\tif __name__ == \"__main__\":\n242\t    main()\n243\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53f71e97-dbe3-40df-9dfc-7ed5244158ca",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "8bb34ad7-09bd-43ec-aeff-883883381a43",
+            "sourceToolAssistantUUID": "53f71e97-dbe3-40df-9dfc-7ed5244158ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T11:22:11.306Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018JcQYPhCQFfrFpbNBk4Sab",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bb34ad7-09bd-43ec-aeff-883883381a43",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "740d7d10-51b2-4c84-b397-fe2b63f67200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T11:22:11.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018JcQYPhCQFfrFpbNBk4Sab",
+              "type": "tool_result",
+              "content": "1\t\"\"\"EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.\n2\t\n3\tRe-runs OBD out-of-fold predictions on the same 500 samples as exp-011,\n4\tthen performs McNemar exact test and bootstrap CI on accuracy differences.\n5\t\"\"\"\n6\timport csv\n7\timport json\n8\timport re\n9\tfrom pathlib import Path\n10\t\n11\timport numpy as np\n12\t\n13\tPROJECT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n14\tDATA_DIR = PROJECT / \"data_exp001_pythia\"\n15\tSAMPLES_PATH = PROJECT / \"artifacts\" / \"exp011_samples.jsonl\"\n16\tGPT_PATH = PROJECT / \"artifacts\" / \"exp011_results_gpt_5_5.jsonl\"\n17\tCLAUDE_PATH = PROJECT / \"artifacts\" / \"exp011_results_claude_opus_4_6.jsonl\"\n18\tOUT_PATH = PROJECT / \"artifacts\" / \"exp_D_mcnemar.json\"\n19\t\n20\tFEAT_COLS = [\n21\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n22\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n23\t    \"surp_d2_mean\", \"surp_d2_std\",\n24\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n25\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n26\t]\n27\t\n28\tMAX_DEPTH = 5\n29\tN_SPLITS = 5\n30\tN_BOOTSTRAP = 10000\n31\tSEED = 42\n32\t\n33\t\n34\tdef load_features():\n35\t    feat_path = DATA_DIR / \"features.csv\"\n36\t    with open(feat_path) as f:\n37\t        reader = csv.DictReader(f)\n38\t        rows = list(reader)\n39\t    depths = np.array([int(r[\"depth\"]) for r in rows])\n40\t    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n41\t    X = np.array([\n42\t        [float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS]\n43\t        for r in rows\n44\t    ])\n45\t    col_means = np.nanmean(X, axis=0)\n46\t    for j in range(X.shape[1]):\n47\t        mask = np.isnan(X[:, j])\n48\t        X[mask, j] = col_means[j]\n49\t    return X, depths, doc_ids\n50\t\n51\t\n52\tdef run_obd_oof(X, y, groups, max_depth, n_splits):\n53\t    import lightgbm as lgb\n54\t    from sklearn.model_selection import GroupKFold\n55\t\n56\t    n = len(y)\n57\t    cum_probs = np.zeros((n, max_depth))\n58\t    gkf = GroupKFold(n_splits=n_splits)\n59\t    fold_indices = list(gkf.split(X, y, groups=groups))\n60\t\n61\t    for k in range(max_depth):\n62\t        y_bin = (y > k).astype(int)\n63\t        for train_idx, test_idx in fold_indices:\n64\t            clf = lgb.LGBMClassifier(\n65\t                n_estimators=200, max_depth=6, learning_rate=0.05,\n66\t                num_leaves=31, verbose=-1, n_jobs=-1,\n67\t            )\n68\t            clf.fit(X[train_idx], y_bin[train_idx])\n69\t            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\n70\t\n71\t    n_classes = max_depth + 1\n72\t    class_probs = np.zeros((n, n_classes))\n73\t    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\n74\t    for k in range(1, max_depth):\n75\t        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\n76\t    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\n77\t    class_probs = np.clip(class_probs, 0, None)\n78\t    row_sums = class_probs.sum(axis=1, keepdims=True)\n79\t    row_sums[row_sums == 0] = 1.0\n80\t    class_probs /= row_sums\n81\t\n82\t    return class_probs.argmax(axis=1)\n83\t\n84\t\n85\tdef parse_exp011_doc_id(doc_id_str):\n86\t    m = re.match(r\"pythia_d(\\d+)_(\\d+)\", doc_id_str)\n87\t    if not m:\n88\t        raise ValueError(f\"Cannot parse doc_id: {doc_id_str}\")\n89\t    return int(m.group(1)), int(m.group(2))\n90\t\n91\t\n92\tdef load_llm_predictions(path):\n93\t    preds = {}\n94\t    with open(path) as f:\n95\t        for line in f:\n96\t            rec = json.loads(line)\n97\t            preds[rec[\"doc_id\"]] = rec[\"predicted_depth\"]\n98\t    return preds\n99\t\n100\t\n101\tdef mcnemar_test(obd_correct, llm_correct):\n102\t    \"\"\"McNemar exact test using binomial test on discordant pairs.\"\"\"\n103\t    from scipy.stats import binomtest\n104\t\n105\t    b = int(np.sum(obd_correct & ~llm_correct))  # OBD right, LLM wrong\n106\t    c = int(np.sum(~obd_correct & llm_correct))   # OBD wrong, LLM right\n107\t    a = int(np.sum(obd_correct & llm_correct))     # both right\n108\t    d = int(np.sum(~obd_correct & ~llm_correct))   # both wrong\n109\t\n110\t    n_discordant = b + c\n111\t    if n_discordant == 0:\n112\t        p_value = 1.0\n113\t    else:\n114\t        result = binomtest(b, n_discordant, 0.5, alternative='two-sided')\n115\t        p_value = result.pvalue\n116\t\n117\t    return {\"a\": a, \"b\": b, \"c\": c, \"d\": d}, p_value\n118\t\n119\t\n120\tdef bootstrap_diff_ci(y_true, obd_preds, llm_preds, n_boot, seed):\n121\t    rng = np.random.RandomState(seed)\n122\t    n = len(y_true)\n123\t    diffs = np.empty(n_boot)\n124\t    for i in range(n_boot):\n125\t        idx = rng.randint(0, n, size=n)\n126\t        acc_obd = np.mean(obd_preds[idx] == y_true[idx])\n127\t        acc_llm = np.mean(llm_preds[idx] == y_true[idx])\n128\t        diffs[i] = acc_obd - acc_llm\n129\t    return diffs\n130\t\n131\t\n132\tdef run_comparison(y_true, obd_preds, llm_preds, llm_name):\n133\t    obd_correct = obd_preds == y_true\n134\t    llm_correct = llm_preds == y_true\n135\t\n136\t    acc_obd = float(np.mean(obd_correct))\n137\t    acc_llm = float(np.mean(llm_correct))\n138\t    diff = acc_obd - acc_llm\n139\t\n140\t    table, p_value = mcnemar_test(obd_correct, llm_correct)\n141\t\n142\t    diffs = bootstrap_diff_ci(y_true, obd_preds, llm_preds, N_BOOTSTRAP, SEED)\n143\t    ci_lower = float(np.percentile(diffs, 2.5))\n144\t    ci_upper = float(np.percentile(diffs, 97.5))\n145\t\n146\t    print(f\"\\n--- OBD vs {llm_name} ---\")\n147\t    print(f\"  OBD accuracy:  {acc_obd:.3f}\")\n148\t    print(f\"  {llm_name} accuracy: {acc_llm:.3f}\")\n149\t    print(f\"  Difference:    {diff:+.3f}\")\n150\t    print(f\"  Contingency:   a={table['a']}, b={table['b']}, c={table['c']}, d={table['d']}\")\n151\t    print(f\"  McNemar exact p = {p_value:.4f}\")\n152\t    print(f\"  Bootstrap 95% CI on diff: [{ci_lower:+.4f}, {ci_upper:+.4f}]\")\n153\t    print(f\"  CI includes 0: {'YES' if ci_lower <= 0 <= ci_upper else 'NO'}\")\n154\t\n155\t    return {\n156\t        \"accuracy_obd\": round(acc_obd, 4),\n157\t        \"accuracy_llm\": round(acc_llm, 4),\n158\t        \"accuracy_diff\": round(diff, 4),\n159\t        \"contingency_table\": table,\n160\t        \"mcnemar_p\": round(p_value, 4),\n161\t        \"bootstrap_ci_lower\": round(ci_lower, 4),\n162\t        \"bootstrap_ci_upper\": round(ci_upper, 4),\n163\t        \"bootstrap_n\": N_BOOTSTRAP,\n164\t        \"n_samples\": len(y_true),\n165\t    }\n166\t\n167\t\n168\tdef main():\n169\t    print(\"Loading features and running OBD OOF...\")\n170\t    X, depths, doc_ids = load_features()\n171\t    oof_preds = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\n172\t\n173\t    # Build lookup: (depth, orig_doc_id) -> row index\n174\t    lookup = {}\n175\t    for i in range(len(depths)):\n176\t        lookup[(int(depths[i]), int(doc_ids[i]))] = i\n177\t\n178\t    # Load exp-011 samples and LLM predictions\n179\t    with open(SAMPLES_PATH) as f:\n180\t        samples = [json.loads(line) for line in f]\n181\t    gpt_preds_map = load_llm_predictions(GPT_PATH)\n182\t    claude_preds_map = load_llm_predictions(CLAUDE_PATH)\n183\t\n184\t    # Align all predictions by sample order\n185\t    y_true_list = []\n186\t    obd_pred_list = []\n187\t    gpt_pred_list = []\n188\t    claude_pred_list = []\n189\t    skipped = 0\n190\t\n191\t    for s in samples:\n192\t        doc_id = s[\"doc_id\"]\n193\t        d, orig_id = parse_exp011_doc_id(doc_id)\n194\t        key = (d, orig_id)\n195\t\n196\t        if key not in lookup:\n197\t            skipped += 1\n198\t            continue\n199\t        if doc_id not in gpt_preds_map or doc_id not in claude_preds_map:\n200\t            skipped += 1\n201\t            continue\n202\t\n203\t        true_depth = s[\"true_depth\"]\n204\t        # Cap at 4 for 5-class comparison (depths 0-4 only)\n205\t        if true_depth > 4:\n206\t            skipped += 1\n207\t            continue\n208\t\n209\t        row_idx = lookup[key]\n210\t        y_true_list.append(true_depth)\n211\t        obd_pred_list.append(min(oof_preds[row_idx], 4))\n212\t        gpt_pred_list.append(min(gpt_preds_map[doc_id], 4))\n213\t        claude_pred_list.append(min(claude_preds_map[doc_id], 4))\n214\t\n215\t    y_true = np.array(y_true_list)\n216\t    obd_preds = np.array(obd_pred_list)\n217\t    gpt_preds = np.array(gpt_pred_list)\n218\t    claude_preds = np.array(claude_pred_list)\n219\t\n220\t    print(f\"Aligned {len(y_true)} samples (skipped {skipped})\")\n221\t\n222\t    result_gpt = run_comparison(y_true, obd_preds, gpt_preds, \"GPT-5.5\")\n223\t    result_claude = run_comparison(y_true, obd_preds, claude_preds, \"Claude\")\n224\t\n225\t    output = {\n226\t        \"obd_vs_gpt55\": result_gpt,\n227\t        \"obd_vs_claude\": result_claude,\n228\t        \"method\": \"McNemar exact test (binomial) + bootstrap 10k difference CI, OBD out-of-fold\",\n229\t        \"seed\": SEED,\n230\t    }\n231\t\n232\t    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n233\t    with open(OUT_PATH, \"w\") as f:\n234\t        json.dump(output, f, indent=2)\n235\t    print(f\"\\nSaved to {OUT_PATH}\")\n236\t\n237\t\n238\tif __name__ == \"__main__\":\n239\t    main()\n240\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "740d7d10-51b2-4c84-b397-fe2b63f67200",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "aa12a936-282c-41f7-9e25-b788f4e62aa7",
+            "sourceToolAssistantUUID": "740d7d10-51b2-4c84-b397-fe2b63f67200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T11:22:11.730Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019nZnPYBJbx3YEyL1sGWRga",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa12a936-282c-41f7-9e25-b788f4e62aa7",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1f579925-c711-4f4d-9bd2-aab759944b3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T11:22:11.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019nZnPYBJbx3YEyL1sGWRga",
+              "type": "tool_result",
+              "content": "1\t\"\"\"EXP-D v2: OBD-LightGBM accuracy on the SAME N=500 samples as exp-011 LLM baselines.\n2\t\n3\tCorrects exp_D v1 which used plain multiclass LightGBM instead of true OBD.\n4\t\n5\tMethod:\n6\t  - True Ordinal Binary Decomposition: K-1 binary LightGBM classifiers for P(Y > k)\n7\t  - Hyperparameters from exp-010 (paper-consistent): n_estimators=200, max_depth=6, lr=0.05, num_leaves=31\n8\t  - 5-fold GroupKFold CV on full Pythia data (depths 0-5, N=30000)\n9\t  - Extract OOF predictions for the specific 500 samples from exp011_samples.jsonl\n10\t  - Report 5-class accuracy (depths 0-4) + bootstrap CI\n11\t\"\"\"\n12\timport csv\n13\timport json\n14\timport re\n15\tfrom pathlib import Path\n16\t\n17\timport numpy as np\n18\t\n19\tPROJECT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n20\tDATA_DIR = PROJECT / \"data_exp001_pythia\"\n21\tSAMPLES_PATH = PROJECT / \"artifacts\" / \"exp011_samples.jsonl\"\n22\tOUT_PATH = PROJECT / \"artifacts\" / \"exp_D_obd_n500_v2.json\"\n23\t\n24\tFEAT_COLS = [\n25\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n26\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n27\t    \"surp_d2_mean\", \"surp_d2_std\",\n28\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n29\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n30\t]\n31\t\n32\tMAX_DEPTH = 5  # depths 0-5, 6 classes (matching exp-010 / paper)\n33\tN_SPLITS = 5\n34\tN_BOOTSTRAP = 1000\n35\t\n36\t\n37\tdef load_features():\n38\t    feat_path = DATA_DIR / \"features.csv\"\n39\t    with open(feat_path) as f:\n40\t        reader = csv.DictReader(f)\n41\t        rows = list(reader)\n42\t\n43\t    depths = np.array([int(r[\"depth\"]) for r in rows])\n44\t    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n45\t    X = np.array([\n46\t        [float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS]\n47\t        for r in rows\n48\t    ])\n49\t    col_means = np.nanmean(X, axis=0)\n50\t    for j in range(X.shape[1]):\n51\t        mask = np.isnan(X[:, j])\n52\t        X[mask, j] = col_means[j]\n53\t\n54\t    return X, depths, doc_ids\n55\t\n56\t\n57\tdef run_obd_oof(X, y, groups, max_depth, n_splits):\n58\t    \"\"\"OBD: K-1 binary LightGBM classifiers for P(Y > k), out-of-fold.\"\"\"\n59\t    import lightgbm as lgb\n60\t    from sklearn.model_selection import GroupKFold\n61\t\n62\t    n = len(y)\n63\t    cum_probs = np.zeros((n, max_depth))\n64\t\n65\t    gkf = GroupKFold(n_splits=n_splits)\n66\t    fold_indices = list(gkf.split(X, y, groups=groups))\n67\t\n68\t    for k in range(max_depth):\n69\t        y_bin = (y > k).astype(int)\n70\t        for train_idx, test_idx in fold_indices:\n71\t            clf = lgb.LGBMClassifier(\n72\t                n_estimators=200, max_depth=6, learning_rate=0.05,\n73\t                num_leaves=31, verbose=-1, n_jobs=-1,\n74\t            )\n75\t            clf.fit(X[train_idx], y_bin[train_idx])\n76\t            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\n77\t\n78\t    n_classes = max_depth + 1\n79\t    class_probs = np.zeros((n, n_classes))\n80\t    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\n81\t    for k in range(1, max_depth):\n82\t        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\n83\t    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\n84\t    class_probs = np.clip(class_probs, 0, None)\n85\t    row_sums = class_probs.sum(axis=1, keepdims=True)\n86\t    row_sums[row_sums == 0] = 1.0\n87\t    class_probs /= row_sums\n88\t\n89\t    preds = class_probs.argmax(axis=1)\n90\t    return preds\n91\t\n92\t\n93\tdef parse_exp011_doc_id(doc_id_str):\n94\t    \"\"\"Parse 'pythia_d{depth}_{orig_id}' -> (depth, orig_id).\"\"\"\n95\t    m = re.match(r\"pythia_d(\\d+)_(\\d+)\", doc_id_str)\n96\t    if not m:\n97\t        raise ValueError(f\"Cannot parse doc_id: {doc_id_str}\")\n98\t    return int(m.group(1)), int(m.group(2))\n99\t\n100\t\n101\tdef bootstrap_ci(y_true, y_pred, n_bootstrap, seed=42):\n102\t    rng = np.random.RandomState(seed)\n103\t    n = len(y_true)\n104\t    accs = []\n105\t    for _ in range(n_bootstrap):\n106\t        idx = rng.randint(0, n, size=n)\n107\t        accs.append(float(np.mean(y_pred[idx] == y_true[idx])))\n108\t    return np.array(accs)\n109\t\n110\t\n111\tdef main():\n112\t    print(\"Loading features...\")\n113\t    X, depths, doc_ids = load_features()\n114\t    print(f\"  {len(depths)} samples, {len(FEAT_COLS)} features, depths {depths.min()}-{depths.max()}\")\n115\t\n116\t    print(\"Running OBD 5-fold CV (K-1 binary classifiers)...\")\n117\t    oof_preds = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\n118\t    full_acc = float(np.mean(oof_preds == depths))\n119\t    print(f\"  Full OBD accuracy (N={len(depths)}, {MAX_DEPTH+1}-class): {full_acc:.4f}\")\n120\t\n121\t    print(\"Loading exp-011 samples...\")\n122\t    with open(SAMPLES_PATH) as f:\n123\t        samples = [json.loads(line) for line in f]\n124\t    print(f\"  {len(samples)} samples loaded\")\n125\t\n126\t    # Build (depth, doc_id) -> row index mapping\n127\t    lookup = {}\n128\t    for i in range(len(depths)):\n129\t        lookup[(int(depths[i]), int(doc_ids[i]))] = i\n130\t\n131\t    # Match exp-011 samples to features.csv rows\n132\t    matched_indices = []\n133\t    matched_true_depths = []\n134\t    missing = 0\n135\t    for s in samples:\n136\t        d, orig_id = parse_exp011_doc_id(s[\"doc_id\"])\n137\t        key = (d, orig_id)\n138\t        if key in lookup:\n139\t            matched_indices.append(lookup[key])\n140\t            matched_true_depths.append(d)\n141\t        else:\n142\t            missing += 1\n143\t            print(f\"  WARNING: sample {s['doc_id']} not found in features.csv\")\n144\t\n145\t    matched_indices = np.array(matched_indices)\n146\t    matched_true_depths = np.array(matched_true_depths)\n147\t    print(f\"  Matched {len(matched_indices)} / {len(samples)} samples (missing: {missing})\")\n148\t\n149\t    # Verify depth consistency\n150\t    assert np.all(depths[matched_indices] == matched_true_depths), \"Depth mismatch!\"\n151\t\n152\t    # Compute accuracy on the 500 samples\n153\t    y_true = depths[matched_indices]\n154\t    y_pred = oof_preds[matched_indices]\n155\t    accuracy = float(np.mean(y_pred == y_true))\n156\t    print(f\"\\n  OBD 5-class accuracy on N=500 (exp-011 samples): {accuracy:.4f}\")\n157\t\n158\t    # Per-depth accuracy\n159\t    for d in sorted(set(matched_true_depths)):\n160\t        mask = matched_true_depths == d\n161\t        d_acc = float(np.mean(y_pred[mask] == y_true[mask]))\n162\t        print(f\"    depth {d}: {d_acc:.4f} (n={mask.sum()})\")\n163\t\n164\t    # Bootstrap CI\n165\t    print(f\"\\n  Bootstrap CI ({N_BOOTSTRAP} resamples)...\")\n166\t    boot_accs = bootstrap_ci(y_true, y_pred, N_BOOTSTRAP)\n167\t    ci_lower = float(np.percentile(boot_accs, 2.5))\n168\t    ci_upper = float(np.percentile(boot_accs, 97.5))\n169\t    print(f\"  95% CI: [{ci_lower:.4f}, {ci_upper:.4f}]\")\n170\t\n171\t    gpt_acc = 0.332\n172\t    claude_acc = 0.331\n173\t\n174\t    result = {\n175\t        \"obd_n500_accuracy\": round(accuracy, 4),\n176\t        \"obd_n500_ci_lower\": round(ci_lower, 4),\n177\t        \"obd_n500_ci_upper\": round(ci_upper, 4),\n178\t        \"n_bootstrap\": N_BOOTSTRAP,\n179\t        \"n_samples\": len(matched_indices),\n180\t        \"sample_source\": \"exp011_samples.jsonl (same as LLM baseline)\",\n181\t        \"gpt55_n500_accuracy\": gpt_acc,\n182\t        \"claude_n500_accuracy\": claude_acc,\n183\t        \"obd_full_accuracy\": round(full_acc, 4),\n184\t        \"obd_full_n\": len(depths),\n185\t        \"method\": \"OBD-LightGBM out-of-fold predictions, same 500 samples as exp-011\",\n186\t        \"obd_hyperparams\": {\n187\t            \"n_estimators\": 200,\n188\t            \"max_depth\": 6,\n189\t            \"learning_rate\": 0.05,\n190\t            \"num_leaves\": 31,\n191\t            \"n_binary_classifiers\": MAX_DEPTH,\n192\t            \"n_folds\": N_SPLITS,\n193\t        },\n194\t        \"per_depth_accuracy\": {\n195\t            str(d): round(float(np.mean(y_pred[matched_true_depths == d] == y_true[matched_true_depths == d])), 4)\n196\t            for d in sorted(set(matched_true_depths))\n197\t        },\n198\t        \"conclusion\": (\n199\t            f\"OBD at N=500 achieves {accuracy:.1%} \"\n200\t            f\"[{ci_lower:.1%}, {ci_upper:.1%}], \"\n201\t            f\"above LLM baselines (GPT-5.5: {gpt_acc:.1%}, Claude: {claude_acc:.1%})\"\n202\t        ),\n203\t    }\n204\t\n205\t    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n206\t    with open(OUT_PATH, \"w\") as f:\n207\t        json.dump(result, f, indent=2)\n208\t    print(f\"\\nSaved to {OUT_PATH}\")\n209\t    print(f\"Conclusion: {result['conclusion']}\")\n210\t\n211\t\n212\tif __name__ == \"__main__\":\n213\t    main()\n214\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f579925-c711-4f4d-9bd2-aab759944b3c",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "f034c461-6f80-4654-b345-6daa8ff3e6c5",
+            "sourceToolAssistantUUID": "1f579925-c711-4f4d-9bd2-aab759944b3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T11:22:12.149Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JUZoSuKXzddeHFdr18mK7P",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f034c461-6f80-4654-b345-6daa8ff3e6c5",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff264894-450e-41e5-9e4a-4fe2251259e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T11:22:12.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JUZoSuKXzddeHFdr18mK7P",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"K* as a function of theta: auto-discovers bootstrap CI JSONs.\n3\t\n4\tInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json\n5\tOutput: docs/paper/figures/fig_kstar_theta.pdf\n6\tDeps:   matplotlib, numpy\n7\t\"\"\"\n8\t\n9\timport argparse\n10\timport json\n11\timport re\n12\timport matplotlib\n13\tmatplotlib.use(\"Agg\")\n14\timport matplotlib.pyplot as plt\n15\timport numpy as np\n16\tfrom pathlib import Path\n17\t\n18\tTABLEAU_COLORS = [\n19\t    \"#4e79a7\", \"#e15759\", \"#76b7b2\", \"#59a14f\",\n20\t    \"#b07aa1\", \"#ff9da7\", \"#9c755f\", \"#bab0ac\",\n21\t    \"#edc948\", \"#f28e2b\",\n22\t]\n23\tMARKERS = [\"o\", \"s\", \"^\", \"D\", \"v\", \"P\", \"X\", \"*\", \"h\", \"<\"]\n24\tLINESTYLES = [\"-\", \"--\", \"-.\", \":\", \"-\", \"--\", \"-.\", \":\"]\n25\t\n26\t\n27\tdef infer_label(source_path: Path, metadata: dict | None = None) -> str:\n28\t    \"\"\"Infer model label from file path or JSON metadata.\"\"\"\n29\t    if metadata and \"experiment\" in metadata:\n30\t        exp = metadata[\"experiment\"].lower()\n31\t        patterns = [\n32\t            (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n33\t            (r\"qwen.*base\", \"Qwen-base\"),\n34\t            (r\"qwen.*7b\", \"Qwen-7B\"),\n35\t            (r\"qwen.*cont|qwen.*1\\.5\", \"Qwen-cont\"),\n36\t            (r\"pythia\", \"Pythia\"),\n37\t            (r\"olmo\", \"OLMo\"),\n38\t            (r\"mistral\", \"Mistral-7B\"),\n39\t            (r\"llama.*8b\", \"LLaMA-8B\"),\n40\t        ]\n41\t        for pat, label in patterns:\n42\t            if re.search(pat, exp, re.IGNORECASE):\n43\t                return label\n44\t\n45\t    name = source_path.stem if source_path.is_file() else source_path.name\n46\t    name = re.sub(r\"^exp\\d+_\", \"\", name).replace(\"bootstrap_ci\", \"\").strip(\"_\")\n47\t    patterns = [\n48\t        (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n49\t        (r\"qwen.*base\", \"Qwen-base\"),\n50\t        (r\"qwen.*7b\", \"Qwen-7B\"),\n51\t        (r\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\", \"Qwen-cont\"),\n52\t        (r\"pythia\", \"Pythia\"),\n53\t        (r\"olmo\", \"OLMo\"),\n54\t        (r\"mistral\", \"Mistral-7B\"),\n55\t        (r\"llama\", \"LLaMA-8B\"),\n56\t    ]\n57\t    for pat, label in patterns:\n58\t        if re.search(pat, name, re.IGNORECASE):\n59\t            return label\n60\t    return name or source_path.parent.name\n61\t\n62\t\n63\tdef discover_ci_files(root: Path) -> list[Path]:\n64\t    \"\"\"Find all bootstrap CI JSON files.\"\"\"\n65\t    patterns = [\n66\t        \"artifacts/*bootstrap*ci*.json\",\n67\t        \"artifacts/exp*_bootstrap_ci.json\",\n68\t        \"results_*/*bootstrap*ci*.json\",\n69\t        \"results_*/bootstrap_ci.json\",\n70\t        \"results/*/*bootstrap*ci*.json\",\n71\t    ]\n72\t    files = set()\n73\t    for pat in patterns:\n74\t        files.update(root.glob(pat))\n75\t    return sorted(files)\n76\t\n77\t\n78\tdef load_ci_lower_bounds(json_path: Path) -> tuple[list[float], dict | None]:\n79\t    \"\"\"Extract CI lower bounds for ordered pairs. Returns ([ci_lower...], metadata).\"\"\"\n80\t    with open(json_path) as f:\n81\t        raw = json.load(f)\n82\t\n83\t    pair_keys = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n84\t    ci_lowers = []\n85\t\n86\t    if \"pairs\" in raw:\n87\t        pairs = raw[\"pairs\"]\n88\t        for k in pair_keys:\n89\t            if k in pairs:\n90\t                ci_lowers.append(pairs[k].get(\"ci_lower\", pairs[k].get(\"auc\", 0.5)))\n91\t        return ci_lowers, raw\n92\t    else:\n93\t        for k in pair_keys:\n94\t            if k in raw:\n95\t                val = raw[k]\n96\t                if isinstance(val, dict):\n97\t                    ci_lowers.append(val.get(\"ci_lower\", val.get(\"auc\", 0.5)))\n98\t                else:\n99\t                    ci_lowers.append(val)\n100\t        return ci_lowers, raw\n101\t\n102\t\n103\tdef compute_kstar(auc_list: list[float], theta: float) -> int:\n104\t    \"\"\"Compute K* = max consecutive pairs with AUC >= theta.\"\"\"\n105\t    k = 0\n106\t    for auc in auc_list:\n107\t        if auc >= theta:\n108\t            k += 1\n109\t        else:\n110\t            break\n111\t    return k\n112\t\n113\t\n114\tdef parse_args():\n115\t    parser = argparse.ArgumentParser(description=\"Plot K*(theta) step function\")\n116\t    parser.add_argument(\"--results-dir\", type=Path,\n117\t                        default=Path(__file__).resolve().parent.parent,\n118\t                        help=\"Root directory to scan for bootstrap CI files\")\n119\t    parser.add_argument(\"--output\", type=Path, default=None,\n120\t                        help=\"Output PDF path\")\n121\t    parser.add_argument(\"--filter\", type=str, default=None,\n122\t                        help=\"Filter models by substring\")\n123\t    return parser.parse_args()\n124\t\n125\t\n126\tdef main():\n127\t    args = parse_args()\n128\t    root = args.results_dir\n129\t\n130\t    ci_files = discover_ci_files(root)\n131\t    if not ci_files:\n132\t        print(f\"No bootstrap CI files found under {root}\")\n133\t        return\n134\t\n135\t    models = {}\n136\t    for fp in ci_files:\n137\t        ci_lowers, metadata = load_ci_lower_bounds(fp)\n138\t        if not ci_lowers or len(ci_lowers) < 2:\n139\t            continue\n140\t        label = infer_label(fp, metadata)\n141\t        if args.filter and args.filter.lower() not in label.lower():\n142\t            continue\n143\t        models[label] = ci_lowers\n144\t\n145\t    if not models:\n146\t        print(\"No valid CI data found after filtering\")\n147\t        return\n148\t\n149\t    thetas = np.arange(0.50, 0.751, 0.01)\n150\t\n151\t    plt.rcParams.update({\n152\t        \"font.family\": \"serif\",\n153\t        \"font.size\": 11,\n154\t        \"axes.linewidth\": 0.8,\n155\t        \"xtick.direction\": \"in\",\n156\t        \"ytick.direction\": \"in\",\n157\t    })\n158\t\n159\t    fig, ax = plt.subplots(figsize=(6, 3.5))\n160\t\n161\t    for i, (name, aucs) in enumerate(models.items()):\n162\t        color = TABLEAU_COLORS[i % len(TABLEAU_COLORS)]\n163\t        marker = MARKERS[i % len(MARKERS)]\n164\t        ls = LINESTYLES[i % len(LINESTYLES)]\n165\t        ks = [compute_kstar(aucs, t) for t in thetas]\n166\t        ax.step(thetas, ks, where=\"post\", label=name,\n167\t                linewidth=1.8, color=color, linestyle=ls)\n168\t\n169\t    ax.axvline(x=0.60, color=\"grey\", linestyle=\"--\", linewidth=0.8, alpha=0.7)\n170\t    ax.text(0.605, max(len(list(models.values())[0]), 4) + 0.3,\n171\t            r\"$\\theta=0.60$\", color=\"grey\", fontsize=9, va=\"top\")\n172\t\n173\t    ax.set_xlabel(r\"Threshold $\\theta$\")\n174\t    ax.set_ylabel(r\"$K^*(\\theta)$\")\n175\t    ax.set_xlim(0.495, 0.755)\n176\t    max_k = max(len(v) for v in models.values())\n177\t    ax.set_ylim(-0.2, max_k + 0.5)\n178\t    ax.set_yticks(range(max_k + 1))\n179\t    ax.legend(loc=\"best\", fontsize=9, framealpha=0.9, edgecolor=\"none\")\n180\t    ax.grid(axis=\"y\", color=\"#e0e0e0\", linewidth=0.5)\n181\t\n182\t    fig.tight_layout()\n183\t\n184\t    if args.output:\n185\t        out_path = args.output\n186\t    else:\n187\t        out_dir = Path(__file__).resolve().parent.parent / \"docs\" / \"paper\" / \"figures\"\n188\t        out_dir.mkdir(parents=True, exist_ok=True)\n189\t        out_path = out_dir / \"fig_kstar_theta.pdf\"\n190\t\n191\t    out_path.parent.mkdir(parents=True, exist_ok=True)\n192\t    fig.savefig(out_path, bbox_inches=\"tight\")\n193\t    fig.savefig(out_path.with_suffix(\".png\"), bbox_inches=\"tight\", dpi=300)\n194\t    plt.close(fig)\n195\t\n196\t    print(f\"Discovered {len(models)} models: {list(models.keys())}\")\n197\t    print(f\"Saved to {out_path}\")\n198\t    pdf_size = out_path.stat().st_size\n199\t    assert pdf_size > 3 * 1024, f\"PDF too small: {pdf_size}\"\n200\t    print(\"OK\")\n201\t\n202\t\n203\tif __name__ == \"__main__\":\n204\t    main()\n205\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff264894-450e-41e5-9e4a-4fe2251259e3",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "1c0c453a-0a72-4742-b72b-35dc90fd6e43",
+            "sourceToolAssistantUUID": "ff264894-450e-41e5-9e4a-4fe2251259e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T11:22:12.311Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011nbLmHxG3up5JemEDf7kiC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp008_retrain_chain.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c0c453a-0a72-4742-b72b-35dc90fd6e43",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtczgfUM4QT9yVvXqV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "44a3264a-52d9-4363-961b-772c5f0851b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KDDRCmbY4jbZApkUfRqJRU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 18821,
+                "output_tokens": 417,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1879
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 417,
+                    "cache_read_input_tokens": 18821,
+                    "cache_creation_input_tokens": 1879,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1879,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T11:22:12.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011nbLmHxG3up5JemEDf7kiC",
+              "type": "tool_result",
+              "content": "1\t# exp-008: Retrain-chain ecological validity experiment\n2\t# Each generation: LoRA fine-tune Pythia-1.4B on depth_d → generate depth_{d+1}\n3\t# Independent LoRA per generation (no accumulation), simulating real-world model collapse scenario\n4\t\n5\timport argparse\n6\timport gc\n7\timport json\n8\timport logging\n9\timport math\n10\timport os\n11\timport shutil\n12\timport sys\n13\tfrom collections import Counter\n14\tfrom pathlib import Path\n15\t\n16\timport numpy as np\n17\timport torch\n18\tfrom scipy import stats\n19\tfrom tqdm import tqdm\n20\t\n21\tlogging.basicConfig(\n22\t    level=logging.INFO,\n23\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n24\t    datefmt=\"%H:%M:%S\",\n25\t    handlers=[logging.StreamHandler(sys.stdout)],\n26\t)\n27\tlog = logging.getLogger(__name__)\n28\t\n29\t\n30\t# ---------------------------------------------------------------------------\n31\t# Config\n32\t# ---------------------------------------------------------------------------\n33\t\n34\tPYTHIA_PATH = \"/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\"\n35\tSCORER_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"\n36\tSEED_DATA = \"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/depth_0.jsonl\"\n37\t\n38\tLORA_RANK = 16\n39\tLORA_ALPHA = 32\n40\tLORA_TARGET_MODULES = [\"query_key_value\"]\n41\tTRAIN_LR = 2e-4\n42\tTRAIN_BATCH_SIZE = 4\n43\tGRADIENT_ACCUMULATION = 4\n44\tTRAIN_EPOCHS = 1\n45\t\n46\tGEN_TOP_P = 0.95\n47\tGEN_TEMPERATURE = 1.0\n48\tGEN_MAX_NEW_TOKENS = 256\n49\tGEN_BATCH_SIZE = 8\n50\t\n51\tMAX_DEPTH = 4\n52\tNUM_SAMPLES = 5000\n53\t\n54\t\n55\t# ---------------------------------------------------------------------------\n56\t# Utilities\n57\t# ---------------------------------------------------------------------------\n58\t\n59\tdef load_jsonl(path):\n60\t    with open(path) as f:\n61\t        return [json.loads(line) for line in f]\n62\t\n63\t\n64\tdef save_jsonl(records, path):\n65\t    Path(path).parent.mkdir(parents=True, exist_ok=True)\n66\t    with open(path, \"w\") as f:\n67\t        for r in records:\n68\t            f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n69\t\n70\t\n71\tdef ngrams(tokens, n):\n72\t    return [tuple(tokens[i:i+n]) for i in range(len(tokens) - n + 1)]\n73\t\n74\t\n75\tdef simple_bleu(candidate_tokens, reference_tokens, max_n=4):\n76\t    if len(candidate_tokens) == 0:\n77\t        return 0.0\n78\t    precisions = []\n79\t    for n in range(1, max_n + 1):\n80\t        cand_ngrams = ngrams(candidate_tokens, n)\n81\t        ref_ngrams = ngrams(reference_tokens, n)\n82\t        if not cand_ngrams:\n83\t            precisions.append(0.0)\n84\t            continue\n85\t        ref_counts = Counter(ref_ngrams)\n86\t        clipped = sum(min(cnt, ref_counts.get(ng, 0)) for ng, cnt in Counter(cand_ngrams).items())\n87\t        precisions.append(clipped / len(cand_ngrams))\n88\t    if any(p == 0 for p in precisions):\n89\t        return 0.0\n90\t    log_avg = sum(math.log(p) for p in precisions) / max_n\n91\t    bp = min(1.0, math.exp(1 - len(reference_tokens) / max(len(candidate_tokens), 1)))\n92\t    return bp * math.exp(log_avg)\n93\t\n94\t\n95\t# ---------------------------------------------------------------------------\n96\t# Phase 1: LoRA Fine-tuning\n97\t# ---------------------------------------------------------------------------\n98\t\n99\tdef finetune_lora(base_model_path, train_texts, device=\"cuda:0\"):\n100\t    from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling\n101\t    from peft import LoraConfig, get_peft_model, TaskType\n102\t    from torch.utils.data import Dataset, DataLoader\n103\t\n104\t    log.info(f\"Loading base model for fine-tuning ({len(train_texts)} texts)...\")\n105\t    tokenizer = AutoTokenizer.from_pretrained(base_model_path)\n106\t    if tokenizer.pad_token is None:\n107\t        tokenizer.pad_token = tokenizer.eos_token\n108\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n109\t\n110\t    model = AutoModelForCausalLM.from_pretrained(\n111\t        base_model_path, torch_dtype=torch.float16, device_map={\"\": device}\n112\t    )\n113\t\n114\t    lora_config = LoraConfig(\n115\t        task_type=TaskType.CAUSAL_LM,\n116\t        r=LORA_RANK,\n117\t        lora_alpha=LORA_ALPHA,\n118\t        target_modules=LORA_TARGET_MODULES,\n119\t        lora_dropout=0.05,\n120\t        bias=\"none\",\n121\t    )\n122\t    model = get_peft_model(model, lora_config)\n123\t    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\n124\t    total = sum(p.numel() for p in model.parameters())\n125\t    log.info(f\"LoRA params: {trainable:,} / {total:,} ({100*trainable/total:.2f}%)\")\n126\t\n127\t    class TextDataset(Dataset):\n128\t        def __init__(self, texts, tokenizer, max_length=256):\n129\t            self.encodings = []\n130\t            for t in texts:\n131\t                ids = tokenizer.encode(t, add_special_tokens=True, truncation=True, max_length=max_length)\n132\t                self.encodings.append(torch.tensor(ids, dtype=torch.long))\n133\t\n134\t        def __len__(self):\n135\t            return len(self.encodings)\n136\t\n137\t        def __getitem__(self, idx):\n138\t            ids = self.encodings[idx]\n139\t            return {\"input_ids\": ids, \"labels\": ids.clone()}\n140\t\n141\t    dataset = TextDataset(train_texts, tokenizer, max_length=GEN_MAX_NEW_TOKENS)\n142\t    collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)\n143\t    dataloader = DataLoader(\n144\t        dataset, batch_size=TRAIN_BATCH_SIZE, shuffle=True, collate_fn=collator\n145\t    )\n146\t\n147\t    optimizer = torch.optim.AdamW(\n148\t        [p for p in model.parameters() if p.requires_grad], lr=TRAIN_LR\n149\t    )\n150\t\n151\t    model.train()\n152\t    total_loss = 0.0\n153\t    steps = 0\n154\t    optimizer.zero_grad()\n155\t\n156\t    for epoch in range(TRAIN_EPOCHS):\n157\t        for batch_idx, batch in enumerate(tqdm(dataloader, desc=\"Fine-tuning\")):\n158\t            batch = {k: v.to(device) for k, v in batch.items()}\n159\t            outputs = model(**batch)\n160\t            loss = outputs.loss / GRADIENT_ACCUMULATION\n161\t            loss.backward()\n162\t            total_loss += loss.item() * GRADIENT_ACCUMULATION\n163\t\n164\t            if (batch_idx + 1) % GRADIENT_ACCUMULATION == 0:\n165\t                optimizer.step()\n166\t                optimizer.zero_grad()\n167\t                steps += 1\n168\t\n169\t        # final accumulation step\n170\t        if (batch_idx + 1) % GRADIENT_ACCUMULATION != 0:\n171\t            optimizer.step()\n172\t            optimizer.zero_grad()\n173\t            steps += 1\n174\t\n175\t    avg_loss = total_loss / max(len(dataloader), 1)\n176\t    log.info(f\"Fine-tuning done. Avg loss: {avg_loss:.4f}, steps: {steps}\")\n177\t\n178\t    model.eval()\n179\t    return model, tokenizer\n180\t\n181\t\n182\t# ---------------------------------------------------------------------------\n183\t# Phase 2: Text Generation (continuation mode for base model)\n184\t# ---------------------------------------------------------------------------\n185\t\n186\tdef generate_texts(model, tokenizer, input_texts, device=\"cuda:0\"):\n187\t    log.info(f\"Generating {len(input_texts)} texts (nucleus p={GEN_TOP_P}, T={GEN_TEMPERATURE})...\")\n188\t    tokenizer.padding_side = \"left\"\n189\t    results = []\n190\t\n191\t    for start in tqdm(range(0, len(input_texts), GEN_BATCH_SIZE), desc=\"Generating\"):\n192\t        batch_texts = input_texts[start:start + GEN_BATCH_SIZE]\n193\t\n194\t        # continuation mode: use first half as prefix, generate rest\n195\t        prefix_texts = []\n196\t        for text in batch_texts:\n197\t            ids = tokenizer.encode(text, add_special_tokens=False)\n198\t            prefix_len = max(1, len(ids) // 2)\n199\t            prefix_texts.append(tokenizer.decode(ids[:prefix_len], skip_special_tokens=True))\n200\t\n201\t        inputs = tokenizer(\n202\t            prefix_texts, return_tensors=\"pt\", padding=True, truncation=True, max_length=256\n203\t        ).to(device)\n204\t\n205\t        with torch.no_grad():\n206\t            outputs = model.generate(\n207\t                **inputs,\n208\t                max_new_tokens=GEN_MAX_NEW_TOKENS,\n209\t                do_sample=True,\n210\t                top_p=GEN_TOP_P,\n211\t                temperature=GEN_TEMPERATURE,\n212\t                pad_token_id=tokenizer.pad_token_id,\n213\t            )\n214\t\n215\t        for j, out_ids in enumerate(outputs):\n216\t            prompt_len = inputs[\"input_ids\"].shape[1]\n217\t            generated_ids = out_ids[prompt_len:]\n218\t            text = tokenizer.decode(generated_ids, skip_special_tokens=True).strip()\n219\t            results.append(text)\n220\t\n221\t        torch.cuda.empty_cache()\n222\t\n223\t    return results\n224\t\n225\t\n226\t# ---------------------------------------------------------------------------\n227\t# Phase 3: Feature extraction (using scorer)\n228\t# ---------------------------------------------------------------------------\n229\t\n230\tSURPRISAL_COLS = [\n231\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n232\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n233\t    \"surp_d2_mean\", \"surp_d2_std\",\n234\t]\n235\tVOCAB_COLS = [\"ttr\", \"hapax_ratio\", \"self_bleu\"]\n236\tTAIL_COLS = [\"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\"]\n237\tALL_FEAT_COLS = SURPRISAL_COLS + VOCAB_COLS + TAIL_COLS\n238\t\n239\t\n240\tdef compute_surprisal_features(model, tokenizer, texts, batch_size=8):\n241\t    features = []\n242\t    tokenizer.padding_side = \"left\"\n243\t\n244\t    for start in tqdm(range(0, len(texts), batch_size), desc=\"Surprisal\"):\n245\t        batch_texts = texts[start:start + batch_size]\n246\t        inputs = tokenizer(\n247\t            batch_texts, return_tensors=\"pt\", padding=True, truncation=True, max_length=512\n248\t        ).to(model.device)\n249\t\n250\t        with torch.no_grad():\n251\t            outputs = model(**inputs)\n252\t            logits = outputs.logits\n253\t\n254\t        for j in range(len(batch_texts)):\n255\t            ids = inputs[\"input_ids\"][j]\n256\t            attn = inputs[\"attention_mask\"][j]\n257\t            valid_len = attn.sum().item()\n258\t            if valid_len < 3:\n259\t                features.append([0.0] * 9)\n260\t                continue\n261\t\n262\t            valid_logits = logits[j, :valid_len - 1]\n263\t            valid_targets = ids[1:valid_len]\n264\t\n265\t            log_probs = torch.log_softmax(valid_logits.float(), dim=-1)\n266\t            token_surprisals = -log_probs.gather(1, valid_targets.unsqueeze(1)).squeeze(1)\n267\t            surp = token_surprisals.cpu().numpy()\n268\t\n269\t            if len(surp) < 2:\n270\t                features.append([0.0] * 9)\n271\t                continue\n272\t\n273\t            s_mean = float(np.mean(surp))\n274\t            s_std = float(np.std(surp))\n275\t            s_skew = float(stats.skew(surp)) if len(surp) >= 3 else 0.0\n276\t            s_kurt = float(stats.kurtosis(surp)) if len(surp) >= 4 else 0.0\n277\t\n278\t            d1 = np.diff(surp)\n279\t            d1_mean = float(np.mean(d1)) if len(d1) > 0 else 0.0\n280\t            d1_std = float(np.std(d1)) if len(d1) > 0 else 0.0\n281\t            d1_skew = float(stats.skew(d1)) if len(d1) >= 3 else 0.0\n282\t\n283\t            d2 = np.diff(d1)\n284\t            d2_mean = float(np.mean(d2)) if len(d2) > 0 else 0.0\n285\t            d2_std = float(np.std(d2)) if len(d2) > 0 else 0.0\n286\t\n287\t            features.append([s_mean, s_std, s_skew, s_kurt, d1_mean, d1_std, d1_skew, d2_mean, d2_std])\n288\t\n289\t        torch.cuda.empty_cache()\n290\t\n291\t    return features\n292\t\n293\t\n294\tdef compute_vocab_diversity(texts, tokenizer, depth_texts_map, depth, bleu_refs=100):\n295\t    same_depth_tokens = [tokenizer.encode(t, add_special_tokens=False) for t in texts]\n296\t    features = []\n297\t\n298\t    for idx, tokens in enumerate(tqdm(same_depth_tokens, desc=f\"Vocab d={depth}\", leave=False)):\n299\t        total = len(tokens)\n300\t        if total == 0:\n301\t            features.append([0.0, 0.0, 0.0])\n302\t            continue\n303\t\n304\t        ttr = len(set(tokens)) / total\n305\t        freq = Counter(tokens)\n306\t        hapax_ratio = sum(1 for v in freq.values() if v == 1) / max(len(set(tokens)), 1)\n307\t\n308\t        rng_local = np.random.RandomState(idx)\n309\t        ref_pool = [j for j in range(len(same_depth_tokens)) if j != idx]\n310\t        if len(ref_pool) > bleu_refs:\n311\t            ref_pool = rng_local.choice(ref_pool, bleu_refs, replace=False).tolist()\n312\t        bleu_scores = [simple_bleu(tokens, same_depth_tokens[j]) for j in ref_pool]\n313\t        self_bleu = float(np.mean(bleu_scores)) if bleu_scores else 0.0\n314\t\n315\t        features.append([ttr, hapax_ratio, self_bleu])\n316\t\n317\t    return features\n318\t\n319\t\n320\tdef compute_tail_features(texts):\n321\t    features = []\n322\t    for text in texts:\n323\t        tokens = text.split()\n324\t        if len(tokens) < 2:\n325\t            features.append([0.0, 0.0, 0.0])\n326\t            continue\n327\t        freq = Counter(tokens)\n328\t        counts = np.array(list(freq.values()), dtype=float)\n329\t        kurt = float(stats.kurtosis(counts)) if len(counts) >= 4 else 0.0\n330\t        total = counts.sum()\n331\t        probs = counts / total\n332\t        entropy = float(-np.sum(probs * np.log2(probs + 1e-12)))\n333\t        low_freq_ratio = float(np.sum(counts <= 2)) / max(len(counts), 1)\n334\t        features.append([kurt, entropy, low_freq_ratio])\n335\t    return features\n336\t\n337\t\n338\tdef extract_all_features(scorer_path, data_dir, max_depth, device=\"cuda:0\"):\n339\t    import csv\n340\t    from transformers import AutoModelForCausalLM, AutoTokenizer\n341\t\n342\t    out_path = data_dir / \"features.csv\"\n343\t    log.info(f\"Loading scorer from {scorer_path}...\")\n344\t    tokenizer = AutoTokenizer.from_pretrained(scorer_path, trust_remote_code=True)\n345\t    if tokenizer.pad_token is None:\n346\t        tokenizer.pad_token = tokenizer.eos_token\n347\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n348\t    tokenizer.padding_side = \"left\"\n349\t\n350\t    model = AutoModelForCausalLM.from_pretrained(\n351\t        scorer_path, torch_dtype=torch.float16, device_map={\"\": device}, trust_remote_code=True\n352\t    )\n353\t    model.eval()\n354\t\n355\t    depth_texts = {}\n356\t    for d in range(max_depth + 1):\n357\t        records = load_jsonl(data_dir / f\"depth_{d}.jsonl\")\n358\t        depth_texts[d] = [r[\"text\"] for r in records]\n359\t\n360\t    rows = []\n361\t    for d in range(max_depth + 1):\n362\t        texts = depth_texts[d]\n363\t        records = load_jsonl(data_dir / f\"depth_{d}.jsonl\")\n364\t        doc_ids = [r[\"doc_id\"] for r in records]\n365\t        log.info(f\"  Extracting features depth {d}: {len(texts)} texts\")\n366\t\n367\t        surp = compute_surprisal_features(model, tokenizer, texts, batch_size=8)\n368\t        vocab = compute_vocab_diversity(texts, tokenizer, depth_texts, d)\n369\t        tail = compute_tail_features(texts)\n370\t\n371\t        for i in range(len(texts)):\n372\t            row = {\"doc_id\": doc_ids[i], \"depth\": d}\n373\t            for j, col in enumerate(SURPRISAL_COLS):\n374\t                row[col] = surp[i][j]\n375\t            for j, col in enumerate(VOCAB_COLS):\n376\t                row[col] = vocab[i][j]\n377\t            for j, col in enumerate(TAIL_COLS):\n378\t                row[col] = tail[i][j]\n379\t            rows.append(row)\n380\t\n381\t    with open(out_path, \"w\", newline=\"\") as f:\n382\t        writer = csv.DictWriter(f, fieldnames=[\"doc_id\", \"depth\"] + ALL_FEAT_COLS)\n383\t        writer.writeheader()\n384\t        writer.writerows(rows)\n385\t    log.info(f\"Saved {len(rows)} feature rows to {out_path}\")\n386\t\n387\t    del model\n388\t    torch.cuda.empty_cache()\n389\t    gc.collect()\n390\t\n391\t\n392\t# ---------------------------------------------------------------------------\n393\t# Phase 4: Analysis (pairwise AUC, JSD, K*, bootstrap CI, permutation test)\n394\t# ---------------------------------------------------------------------------\n395\t\n396\tdef run_analysis(data_dir, results_dir, max_depth):\n397\t    import csv\n398\t    import lightgbm as lgb\n399\t    from sklearn.model_selection import GroupKFold\n400\t    from sklearn.metrics import roc_auc_score\n401\t\n402\t    results_dir.mkdir(parents=True, exist_ok=True)\n403\t    feat_path = data_dir / \"features.csv\"\n404\t    log.info(f\"Loading features from {feat_path}...\")\n405\t\n406\t    with open(feat_path) as f:\n407\t        reader = csv.DictReader(f)\n408\t        rows = list(reader)\n409\t\n410\t    depths = np.array([int(r[\"depth\"]) for r in rows])\n411\t    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n412\t    feat_matrix = np.array(\n413\t        [[float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in ALL_FEAT_COLS] for r in rows]\n414\t    )\n415\t    col_means = np.nanmean(feat_matrix, axis=0)\n416\t    for j in range(feat_matrix.shape[1]):\n417\t        mask = np.isnan(feat_matrix[:, j])\n418\t        feat_matrix[mask, j] = col_means[j]\n419\t\n420\t    # Pairwise AUC with GroupKFold\n421\t    log.info(\"Computing pairwise AUC...\")\n422\t    pairwise_auc = {}\n423\t    pairwise_auc_folds = {}\n424\t    for k in range(1, max_depth + 1):\n425\t        mask = (depths == k - 1) | (depths == k)\n426\t        X = feat_matrix[mask]\n427\t        y = (depths[mask] == k).astype(int)\n428\t        if len(np.unique(y)) < 2:\n429\t            pairwise_auc[f\"{k-1}v{k}\"] = float(\"nan\")\n430\t            continue\n431\t\n432\t        gkf = GroupKFold(n_splits=5)\n433\t        groups = doc_ids[mask]\n434\t        fold_aucs = []\n435\t        for train_idx, test_idx in gkf.split(X, y, groups=groups):\n436\t            clf = lgb.LGBMClassifier(\n437\t                n_estimators=200, max_depth=6, learning_rate=0.05,\n438\t                num_leaves=31, verbose=-1, n_jobs=-1,\n439\t            )\n440\t            clf.fit(X[train_idx], y[train_idx])\n441\t            proba = clf.predict_proba(X[test_idx])[:, 1]\n442\t            fold_aucs.append(roc_auc_score(y[test_idx], proba))\n443\t        auc_mean = float(np.mean(fold_aucs))\n444\t        auc_std = float(np.std(fold_aucs))\n445\t        pairwise_auc[f\"{k-1}v{k}\"] = round(auc_mean, 4)\n446\t        pairwise_auc_folds[f\"{k-1}v{k}\"] = [round(a, 4) for a in fold_aucs]\n447\t        log.info(f\"  AUC({k-1} vs {k}) = {auc_mean:.4f} +/- {auc_std:.4f}\")\n448\t\n449\t    with open(results_dir / \"pairwise_auc.json\", \"w\") as f:\n450\t        json.dump({\"mean\": pairwise_auc, \"per_fold\": pairwise_auc_folds}, f, indent=2)\n451\t\n452\t    # JSD\n453\t    log.info(\"Computing pairwise JSD...\")\n454\t    pairwise_jsd = {}\n455\t    for k in range(1, max_depth + 1):\n456\t        feat_prev = feat_matrix[depths == k - 1]\n457\t        feat_curr = feat_matrix[depths == k]\n458\t        jsds = []\n459\t        for j in range(feat_matrix.shape[1]):\n460\t            a, b = feat_prev[:, j], feat_curr[:, j]\n461\t            lo, hi = min(a.min(), b.min()), max(a.max(), b.max())\n462\t            if hi - lo < 1e-12:\n463\t                jsds.append(0.0)\n464\t                continue\n465\t            bins = np.linspace(lo, hi, 51)\n466\t            p = np.histogram(a, bins=bins, density=True)[0] + 1e-12\n467\t            q = np.histogram(b, bins=bins, density=True)[0] + 1e-12\n468\t            p, q = p / p.sum(), q / q.sum()\n469\t            m = 0.5 * (p + q)\n470\t            jsd = 0.5 * np.sum(p * np.log2(p / m)) + 0.5 * np.sum(q * np.log2(q / m))\n471\t            jsds.append(float(jsd))\n472\t        pairwise_jsd[f\"{k-1}v{k}\"] = round(float(np.mean(jsds)), 6)\n473\t        log.info(f\"  JSD({k-1} vs {k}) = {np.mean(jsds):.6f}\")\n474\t\n475\t    with open(results_dir / \"jsd.json\", \"w\") as f:\n476\t        json.dump(pairwise_jsd, f, indent=2)\n477\t\n478\t    # K*\n479\t    k_star = 0\n480\t    for k in range(1, max_depth + 1):\n481\t        if pairwise_auc.get(f\"{k-1}v{k}\", 0) > 0.60:\n482\t            k_star = k\n483\t    log.info(f\"K* = {k_star}\")\n484\t\n485\t    # Bootstrap CI\n486\t    log.info(\"Bootstrap CI (10000 resamples)...\")\n487\t    bootstrap_results = {}\n488\t    rng = np.random.RandomState(42)\n489\t    for k in range(1, max_depth + 1):\n490\t        mask = (depths == k - 1) | (depths == k)\n491\t        X = feat_matrix[mask]\n492\t        y = (depths[mask] == k).astype(int)\n493\t        groups = doc_ids[mask]\n494\t        if len(np.unique(y)) < 2:\n495\t            continue\n496\t\n497\t        n = len(X)\n498\t        boot_aucs = []\n499\t        for _ in range(10000):\n500\t            idx = rng.choice(n, n, replace=True)\n501\t            X_b, y_b = X[idx], y[idx]\n502\t            if len(np.unique(y_b)) < 2:\n503\t                continue\n504\t            clf = lgb.LGBMClassifier(\n505\t                n_estimators=100, max_depth=6, learning_rate=0.05,\n506\t                num_leaves=31, verbose=-1, n_jobs=-1,\n507\t            )\n508\t            clf.fit(X_b, y_b)\n509\t            proba = clf.predict_proba(X_b)[:, 1]\n510\t            boot_aucs.append(roc_auc_score(y_b, proba))\n511\t\n512\t        if boot_aucs:\n513\t            ci_lo = float(np.percentile(boot_aucs, 2.5))\n514\t            ci_hi = float(np.percentile(boot_aucs, 97.5))\n515\t            bootstrap_results[f\"{k-1}v{k}\"] = {\n516\t                \"mean\": round(float(np.mean(boot_aucs)), 4),\n517\t                \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n518\t            }\n519\t            log.info(f\"  Bootstrap AUC({k-1}v{k}): {np.mean(boot_aucs):.4f} [{ci_lo:.4f}, {ci_hi:.4f}]\")\n520\t\n521\t    with open(results_dir / \"bootstrap_ci.json\", \"w\") as f:\n522\t        json.dump(bootstrap_results, f, indent=2)\n523\t\n524\t    # Permutation test\n525\t    log.info(\"Permutation test (1000 permutations)...\")\n526\t    perm_results = {}\n527\t    for k in range(1, max_depth + 1):\n528\t        mask = (depths == k - 1) | (depths == k)\n529\t        X = feat_matrix[mask]\n530\t        y = (depths[mask] == k).astype(int)\n531\t        if len(np.unique(y)) < 2:\n532\t            continue\n533\t\n534\t        clf = lgb.LGBMClassifier(\n535\t            n_estimators=200, max_depth=6, learning_rate=0.05,\n536\t            num_leaves=31, verbose=-1, n_jobs=-1,\n537\t        )\n538\t        clf.fit(X, y)\n539\t        true_auc = roc_auc_score(y, clf.predict_proba(X)[:, 1])\n540\t\n541\t        null_aucs = []\n542\t        for _ in range(1000):\n543\t            y_perm = rng.permutation(y)\n544\t            clf_p = lgb.LGBMClassifier(\n545\t                n_estimators=200, max_depth=6, learning_rate=0.05,\n546\t                num_leaves=31, verbose=-1, n_jobs=-1,\n547\t            )\n548\t            clf_p.fit(X, y_perm)\n549\t            null_aucs.append(roc_auc_score(y_perm, clf_p.predict_proba(X)[:, 1]))\n550\t\n551\t        p_value = float(np.mean([a >= true_auc for a in null_aucs]))\n552\t        perm_results[f\"{k-1}v{k}\"] = {\"true_auc\": round(true_auc, 4), \"p_value\": round(p_value, 4)}\n553\t        log.info(f\"  Perm test({k-1}v{k}): true_auc={true_auc:.4f}, p={p_value:.4f}\")\n554\t\n555\t    with open(results_dir / \"permutation_test.json\", \"w\") as f:\n556\t        json.dump(perm_results, f, indent=2)\n557\t\n558\t    # Summary\n559\t    summary = {\n560\t        \"experiment\": \"exp-008 retrain-chain\",\n561\t        \"model\": \"Pythia-1.4B\",\n562\t        \"scorer\": \"Qwen2.5-1.5B\",\n563\t        \"protocol\": \"retrain-chain (independent LoRA per generation)\",\n564\t        \"lora_config\": {\"rank\": LORA_RANK, \"alpha\": LORA_ALPHA, \"target_modules\": LORA_TARGET_MODULES},\n565\t        \"decoding\": {\"top_p\": GEN_TOP_P, \"temperature\": GEN_TEMPERATURE},\n566\t        \"max_depth\": max_depth,\n567\t        \"num_samples\": NUM_SAMPLES,\n568\t        \"k_star\": k_star,\n569\t        \"pairwise_auc\": pairwise_auc,\n570\t        \"pairwise_jsd\": pairwise_jsd,\n571\t        \"bootstrap_ci\": bootstrap_results,\n572\t        \"permutation_test\": perm_results,\n573\t    }\n574\t    with open(results_dir / \"summary.json\", \"w\") as f:\n575\t        json.dump(summary, f, indent=2)\n576\t    log.info(f\"Summary saved. K*={k_star}\")\n577\t\n578\t    return summary\n579\t\n580\t\n581\t# ---------------------------------------------------------------------------\n582\t# Main pipeline\n583\t# ---------------------------------------------------------------------------\n584\t\n585\tdef main():\n586\t    parser = argparse.ArgumentParser(description=\"exp-008: retrain-chain ecological validity\")\n587\t    parser.add_argument(\"--data_dir\", type=str,\n588\t                        default=\"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain\")\n589\t    parser.add_argument(\"--results_dir\", type=str,\n590\t                        default=\"/root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain\")\n591\t    parser.add_argument(\"--log_file\", type=str,\n592\t                        default=\"/root/autodl-tmp/gen-depth-contamination/logs/exp_008_retrain_chain.log\")\n593\t    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n594\t    parser.add_argument(\"--max_depth\", type=int, default=MAX_DEPTH)\n595\t    parser.add_argument(\"--skip_generation\", action=\"store_true\", help=\"Skip to evaluation only\")\n596\t    args = parser.parse_args()\n597\t\n598\t    data_dir = Path(args.data_dir)\n599\t    results_dir = Path(args.results_dir)\n600\t    data_dir.mkdir(parents=True, exist_ok=True)\n601\t    results_dir.mkdir(parents=True, exist_ok=True)\n602\t\n603\t    # Setup file logging\n604\t    log_path = Path(args.log_file)\n605\t    log_path.parent.mkdir(parents=True, exist_ok=True)\n606\t    fh = logging.FileHandler(log_path)\n607\t    fh.setFormatter(logging.Formatter(\"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\"))\n608\t    logging.getLogger().addHandler(fh)\n609\t\n610\t    log.info(\"=\" * 60)\n611\t    log.info(\"exp-008: Retrain-chain ecological validity experiment\")\n612\t    log.info(f\"Model: {PYTHIA_PATH}\")\n613\t    log.info(f\"Scorer: {SCORER_PATH}\")\n614\t    log.info(f\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\")\n615\t    log.info(f\"Decoding: nucleus p={GEN_TOP_P}, T={GEN_TEMPERATURE}\")\n616\t    log.info(f\"Data dir: {data_dir}\")\n617\t    log.info(f\"Max depth: {args.max_depth}\")\n618\t    log.info(\"=\" * 60)\n619\t\n620\t    if not args.skip_generation:\n621\t        # Copy seed data\n622\t        seed_dest = data_dir / \"depth_0.jsonl\"\n623\t        if not seed_dest.exists():\n624\t            log.info(f\"Copying seed data from {SEED_DATA}\")\n625\t            shutil.copy2(SEED_DATA, seed_dest)\n626\t        log.info(f\"Seed data: {sum(1 for _ in open(seed_dest))} docs\")\n627\t\n628\t        # Retrain-chain loop\n629\t        for d in range(args.max_depth):\n630\t            log.info(\"=\" * 40 + f\" Generation {d} -> {d+1} \" + \"=\" * 40)\n631\t            out_path = data_dir / f\"depth_{d+1}.jsonl\"\n632\t\n633\t            if out_path.exists() and sum(1 for _ in open(out_path)) >= NUM_SAMPLES:\n634\t                log.info(f\"depth_{d+1}.jsonl already exists ({sum(1 for _ in open(out_path))} docs) — skipping\")\n635\t                continue\n636\t\n637\t            # Load training data for this depth\n638\t            train_records = load_jsonl(data_dir / f\"depth_{d}.jsonl\")\n639\t            train_texts = [r[\"text\"] for r in train_records]\n640\t            log.info(f\"Training on {len(train_texts)} texts from depth_{d}\")\n641\t\n642\t            # Fine-tune with LoRA\n643\t            model, tokenizer = finetune_lora(PYTHIA_PATH, train_texts, device=args.device)\n644\t\n645\t            # Generate next depth\n646\t            generated_texts = generate_texts(model, tokenizer, train_texts, device=args.device)\n647\t\n648\t            # Save\n649\t            records = [{\"text\": t, \"doc_id\": i} for i, t in enumerate(generated_texts)]\n650\t            save_jsonl(records, out_path)\n651\t            log.info(f\"Saved {len(records)} docs to {out_path}\")\n652\t\n653\t            # Cleanup\n654\t            del model, tokenizer\n655\t            torch.cuda.empty_cache()\n656\t            gc.collect()\n657\t            log.info(f\"Generation {d}->{d+1} complete, memory released\")\n658\t\n659\t    # Feature extraction\n660\t    log.info(\"=\" * 40 + \" Feature Extraction \" + \"=\" * 40)\n661\t    extract_all_features(SCORER_PATH, data_dir, args.max_depth, device=args.device)\n662\t\n663\t    # Analysis\n664\t    log.info(\"=\" * 40 + \" Analysis \" + \"=\" * 40)\n665\t    summary = run_analysis(data_dir, results_dir, args.max_depth)\n666\t\n667\t    log.info(\"=\" * 60)\n668\t    log.info(f\"DONE. K*={summary['k_star']}\")\n669\t    log.info(f\"Results: {results_dir}\")\n670\t    log.info(\"=\" * 60)\n671\t\n672\t\n673\tif __name__ == \"__main__\":\n674\t    main()\n675\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44a3264a-52d9-4363-961b-772c5f0851b7",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "2d796f5f-ed97-468b-ae83-3514be69f077",
+            "sourceToolAssistantUUID": "44a3264a-52d9-4363-961b-772c5f0851b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T11:22:19.713Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent findings. Let me search for a few more specific files and check if there's a dedicated bootstrap CI script in the scripts directory:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d796f5f-ed97-468b-ae83-3514be69f077",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtvCXrb9p88eZhhfC4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2a38df7f-587b-49fc-8e31-32e4461b08e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AddK4avyVo7CsQsVdA9fzw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23964,
+                "cache_read_input_tokens": 20700,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 23964,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T11:22:20.358Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qew1uLEPweYXD4HUbvJrzV",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a38df7f-587b-49fc-8e31-32e4461b08e0",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtvCXrb9p88eZhhfC4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "290fe67c-968c-4ad8-bfe1-a61edd0c1621",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AddK4avyVo7CsQsVdA9fzw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23964,
+                "cache_read_input_tokens": 20700,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 23964,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T11:22:20.523Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qew1uLEPweYXD4HUbvJrzV",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_cross_transfer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp013_cross_transfer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_pipeline_figure.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/analyze_exp006.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp025_pythia_filtering.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_B_14d_ablation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_E_paired_stats.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp006_fill_discussion.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp006_analyze_results.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp015_neural_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "290fe67c-968c-4ad8-bfe1-a61edd0c1621",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "e8f731a4-aec8-4d2b-bc34-de34c2031986",
+            "sourceToolAssistantUUID": "290fe67c-968c-4ad8-bfe1-a61edd0c1621",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T11:22:21.138Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWNJBsWS6oWYf2Qmteqya5",
+              "name": "Grep",
+              "input": {
+                "pattern": "def.*bootstrap|N_BOOTSTRAP|rng\\.(choice|randint)",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "type": "py",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8f731a4-aec8-4d2b-bc34-de34c2031986",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wtvCXrb9p88eZhhfC4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3eca8ed7-3764-499b-9429-0178836f384e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AddK4avyVo7CsQsVdA9fzw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23964,
+                "cache_read_input_tokens": 20700,
+                "output_tokens": 256,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23964
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 256,
+                    "cache_read_input_tokens": 20700,
+                    "cache_creation_input_tokens": 23964,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 23964,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T11:22:21.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GWNJBsWS6oWYf2Qmteqya5",
+              "type": "tool_result",
+              "content": "Found 19 files\nartifacts/exp008_retrain_chain.py\nartifacts/scripts/plot_auc_decay_ci.py\nartifacts/exp-004/intermediate/run_exp004_qwen7b_depth.py\nartifacts/run_exp004_qwen7b_depth.py\nscripts/exp_D_mcnemar.py\nscripts/exp_D_obd_n500_v2.py\nartifacts/exp006_filtering_strategies.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/cbook.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_randomstate_regression.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_randomstate.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_random.py\n.venv/lib/python3.14/site-packages/numpy/ma/tests/test_arrayobject.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_numeric.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_multithreading.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_mem_overlap.py\nscripts/run_exp015_neural_probe.py\nscripts/run_exp009_dose_response.py\nscripts/run_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3eca8ed7-3764-499b-9429-0178836f384e",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "6aa8974c-4e66-4824-9231-c467a485e4cf",
+            "sourceToolAssistantUUID": "3eca8ed7-3764-499b-9429-0178836f384e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T11:22:22.848Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me examine the remaining files that use bootstrap logic:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6aa8974c-4e66-4824-9231-c467a485e4cf",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wuZBm6wqM5g7abEez9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f056d63a-6ced-4406-bf35-275b5d797274",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y67rZ6kUDEsmfSkYRvaJLH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1404,
+                "cache_read_input_tokens": 44664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1404,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T11:22:23.024Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bncf5Gonozx1w4ja7CSerX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_E_paired_stats.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f056d63a-6ced-4406-bf35-275b5d797274",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wuZBm6wqM5g7abEez9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "225aa635-5d7f-4b55-a8df-b043aafdaa44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y67rZ6kUDEsmfSkYRvaJLH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1404,
+                "cache_read_input_tokens": 44664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1404,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T11:22:23.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bncf5Gonozx1w4ja7CSerX",
+              "type": "tool_result",
+              "content": "1\t\"\"\"EXP-E: Pairwise paired t-tests for 6 strategies × 5 seeds (MMLU & HellaSwag).\"\"\"\n2\t\n3\timport json\n4\timport os\n5\timport sys\n6\tfrom itertools import combinations\n7\timport numpy as np\n8\tfrom scipy import stats\n9\t\n10\tBASE_DIR = \"/root/autodl-tmp/gen-depth-contamination/outputs/exp006\"\n11\tOUT_PATH = \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json\"\n12\t\n13\tMAIN_STRATEGIES = [\"binary-ours\", \"binary-drayson\", \"surprisal\", \"graduated_a0.9\", \"dsir\", \"no-filter\"]\n14\tGRADUATED_ALPHAS = [\"graduated_a0.1\", \"graduated_a0.3\", \"graduated_a0.5\", \"graduated_a0.7\"]\n15\tALL_STRATEGIES = MAIN_STRATEGIES + GRADUATED_ALPHAS\n16\tSEEDS = [42, 123, 456, 789, 1024]\n17\t\n18\t\n19\tdef load_scores():\n20\t    data = {}\n21\t    for strat in ALL_STRATEGIES:\n22\t        data[strat] = {\"mmlu\": [], \"hellaswag\": []}\n23\t        for seed in SEEDS:\n24\t            path = os.path.join(BASE_DIR, f\"{strat}_s{seed}\", \"eval_results.json\")\n25\t            with open(path) as f:\n26\t                res = json.load(f)\n27\t            data[strat][\"mmlu\"].append(res[\"scores\"][\"mmlu\"][\"acc,none\"])\n28\t            data[strat][\"hellaswag\"].append(res[\"scores\"][\"hellaswag\"][\"acc_norm,none\"])\n29\t    return data\n30\t\n31\t\n32\tdef cohens_d_paired(x, y):\n33\t    x, y = np.array(x), np.array(y)\n34\t    pooled_sd = np.sqrt((np.var(x, ddof=1) + np.var(y, ddof=1)) / 2)\n35\t    return float(np.mean(x - y) / pooled_sd) if pooled_sd > 0 else 0.0\n36\t\n37\t\n38\tdef holm_bonferroni(p_values):\n39\t    n = len(p_values)\n40\t    indexed = sorted(enumerate(p_values), key=lambda x: x[1])\n41\t    corrected = [None] * n\n42\t    cummax = 0.0\n43\t    for rank, (orig_idx, p) in enumerate(indexed):\n44\t        adjusted = p * (n - rank)\n45\t        adjusted = max(adjusted, cummax)\n46\t        adjusted = min(adjusted, 1.0)\n47\t        cummax = adjusted\n48\t        corrected[orig_idx] = adjusted\n49\t    return corrected\n50\t\n51\t\n52\tdef run_pairwise(data, metric, strategies):\n53\t    pairs = list(combinations(strategies, 2))\n54\t    raw_ps = []\n55\t    results = []\n56\t\n57\t    for s1, s2 in pairs:\n58\t        x = np.array(data[s1][metric])\n59\t        y = np.array(data[s2][metric])\n60\t        t_stat, p_val = stats.ttest_rel(x, y)\n61\t        d = cohens_d_paired(x, y)\n62\t        raw_ps.append(p_val)\n63\t        results.append({\n64\t            \"pair\": [s1, s2],\n65\t            \"mean_diff\": float(np.mean(x - y)),\n66\t            \"t_stat\": float(t_stat),\n67\t            \"raw_p\": float(p_val),\n68\t            \"cohens_d\": float(d),\n69\t        })\n70\t\n71\t    corrected = holm_bonferroni(raw_ps)\n72\t    for i, r in enumerate(results):\n73\t        r[\"corrected_p\"] = float(corrected[i])\n74\t        r[\"significant\"] = bool(corrected[i] < 0.05)\n75\t\n76\t    results.sort(key=lambda r: r[\"raw_p\"])\n77\t    return results\n78\t\n79\t\n80\tdef summarize(mmlu_res, hswag_res):\n81\t    sig_mmlu = [r for r in mmlu_res if r[\"significant\"]]\n82\t    sig_hswag = [r for r in hswag_res if r[\"significant\"]]\n83\t    lines = []\n84\t    lines.append(f\"MMLU: {len(sig_mmlu)}/{len(mmlu_res)} pairs significant after Holm-Bonferroni correction.\")\n85\t    lines.append(f\"HellaSwag: {len(sig_hswag)}/{len(hswag_res)} pairs significant after Holm-Bonferroni correction.\")\n86\t\n87\t    top_mmlu = sorted(mmlu_res, key=lambda r: abs(r[\"cohens_d\"]), reverse=True)[:3]\n88\t    lines.append(\"Largest MMLU effect sizes: \" + \"; \".join(\n89\t        f\"{r['pair'][0]} vs {r['pair'][1]} (d={r['cohens_d']:.2f}, p_corr={r['corrected_p']:.4f})\"\n90\t        for r in top_mmlu\n91\t    ))\n92\t    top_hswag = sorted(hswag_res, key=lambda r: abs(r[\"cohens_d\"]), reverse=True)[:3]\n93\t    lines.append(\"Largest HellaSwag effect sizes: \" + \"; \".join(\n94\t        f\"{r['pair'][0]} vs {r['pair'][1]} (d={r['cohens_d']:.2f}, p_corr={r['corrected_p']:.4f})\"\n95\t        for r in top_hswag\n96\t    ))\n97\t    return \" \".join(lines)\n98\t\n99\t\n100\tdef main():\n101\t    data = load_scores()\n102\t\n103\t    # Print per-strategy means for verification\n104\t    print(\"=== Per-strategy means ===\")\n105\t    for strat in ALL_STRATEGIES:\n106\t        mmlu_mean = np.mean(data[strat][\"mmlu\"])\n107\t        hswag_mean = np.mean(data[strat][\"hellaswag\"])\n108\t        print(f\"  {strat:25s}  MMLU={mmlu_mean:.4f}  HellaSwag={hswag_mean:.4f}\")\n109\t\n110\t    # Main 6-strategy pairwise (C(6,2)=15 comparisons)\n111\t    mmlu_main = run_pairwise(data, \"mmlu\", MAIN_STRATEGIES)\n112\t    hswag_main = run_pairwise(data, \"hellaswag\", MAIN_STRATEGIES)\n113\t\n114\t    # All 10 strategies pairwise (C(10,2)=45 comparisons) for graduated alpha sweep\n115\t    mmlu_all = run_pairwise(data, \"mmlu\", ALL_STRATEGIES)\n116\t    hswag_all = run_pairwise(data, \"hellaswag\", ALL_STRATEGIES)\n117\t\n118\t    output = {\n119\t        \"mmlu\": {\n120\t            \"pairwise_comparisons\": mmlu_main,\n121\t            \"correction_method\": \"Holm-Bonferroni\",\n122\t            \"n_comparisons\": len(mmlu_main),\n123\t            \"n_seeds\": len(SEEDS),\n124\t            \"alpha\": 0.05,\n125\t        },\n126\t        \"hellaswag\": {\n127\t            \"pairwise_comparisons\": hswag_main,\n128\t            \"correction_method\": \"Holm-Bonferroni\",\n129\t            \"n_comparisons\": len(hswag_main),\n130\t            \"n_seeds\": len(SEEDS),\n131\t            \"alpha\": 0.05,\n132\t        },\n133\t        \"per_seed_data\": {\n134\t            strat: {\n135\t                \"mmlu\": data[strat][\"mmlu\"],\n136\t                \"hellaswag\": data[strat][\"hellaswag\"],\n137\t                \"seeds\": SEEDS,\n138\t            }\n139\t            for strat in ALL_STRATEGIES\n140\t        },\n141\t        \"graduated_alpha_sweep\": {\n142\t            \"mmlu\": {\n143\t                \"pairwise_comparisons\": [r for r in mmlu_all if any(\n144\t                    s.startswith(\"graduated\") for s in r[\"pair\"]\n145\t                )],\n146\t                \"correction_method\": \"Holm-Bonferroni\",\n147\t                \"n_comparisons\": len(mmlu_all),\n148\t            },\n149\t            \"hellaswag\": {\n150\t                \"pairwise_comparisons\": [r for r in hswag_all if any(\n151\t                    s.startswith(\"graduated\") for s in r[\"pair\"]\n152\t                )],\n153\t                \"correction_method\": \"Holm-Bonferroni\",\n154\t                \"n_comparisons\": len(hswag_all),\n155\t            },\n156\t        },\n157\t        \"key_findings\": summarize(mmlu_main, hswag_main),\n158\t    }\n159\t\n160\t    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\n161\t    with open(OUT_PATH, \"w\") as f:\n162\t        json.dump(output, f, indent=2)\n163\t    print(f\"\\nSaved to {OUT_PATH}\")\n164\t\n165\t    # Print main comparison table\n166\t    print(\"\\n=== MMLU Pairwise (6 main strategies, Holm-Bonferroni corrected) ===\")\n167\t    print(f\"{'Pair':50s} {'mean_diff':>10s} {'t':>8s} {'p_raw':>10s} {'p_corr':>10s} {'d':>8s} {'sig':>5s}\")\n168\t    for r in mmlu_main:\n169\t        pair_str = f\"{r['pair'][0]} vs {r['pair'][1]}\"\n170\t        sig = \"*\" if r[\"significant\"] else \"\"\n171\t        print(f\"{pair_str:50s} {r['mean_diff']:>10.5f} {r['t_stat']:>8.3f} {r['raw_p']:>10.4f} {r['corrected_p']:>10.4f} {r['cohens_d']:>8.3f} {sig:>5s}\")\n172\t\n173\t    print(\"\\n=== HellaSwag Pairwise (6 main strategies, Holm-Bonferroni corrected) ===\")\n174\t    print(f\"{'Pair':50s} {'mean_diff':>10s} {'t':>8s} {'p_raw':>10s} {'p_corr':>10s} {'d':>8s} {'sig':>5s}\")\n175\t    for r in hswag_main:\n176\t        pair_str = f\"{r['pair'][0]} vs {r['pair'][1]}\"\n177\t        sig = \"*\" if r[\"significant\"] else \"\"\n178\t        print(f\"{pair_str:50s} {r['mean_diff']:>10.5f} {r['t_stat']:>8.3f} {r['raw_p']:>10.4f} {r['corrected_p']:>10.4f} {r['cohens_d']:>8.3f} {sig:>5s}\")\n179\t\n180\t\n181\tif __name__ == \"__main__\":\n182\t    main()\n183\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "225aa635-5d7f-4b55-a8df-b043aafdaa44",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "d32a7606-003b-46d3-94ff-d15bda6a2c13",
+            "sourceToolAssistantUUID": "225aa635-5d7f-4b55-a8df-b043aafdaa44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T11:22:23.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015HHHxkDFvDB12PV3bcoxq6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d32a7606-003b-46d3-94ff-d15bda6a2c13",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wuZBm6wqM5g7abEez9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cb45b870-8df9-40ee-95b9-90691a07c69a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y67rZ6kUDEsmfSkYRvaJLH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1404,
+                "cache_read_input_tokens": 44664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1404,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T11:22:23.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015HHHxkDFvDB12PV3bcoxq6",
+              "type": "tool_result",
+              "content": "1\t\"\"\"exp009 Dose-Response — graduated vs binary filtering at varying synthetic injection ratios.\n2\t\n3\tMeasures downstream LM quality (MMLU/HellaSwag) after continued pretraining on data\n4\twith 10%/30%/50% synthetic injection, filtered by graduated vs binary-ours strategies.\n5\tFixed dataset size (default 5000) across all ratios ensures training cost parity.\n6\t\n7\tInput:  data/ directory (features.csv + depth_*.jsonl, same as exp-006)\n8\t        Qwen2.5-1.5B-Instruct base model (local path or HF hub)\n9\tOutput: outputs/exp009/r<ratio>_<strategy>_s<seed>/eval_results.json  (per-run)\n10\t        outputs/exp009/analysis.json                                   (paired t-tests)\n11\t\n12\tUsage:\n13\t    # Dry-run: 1 seed, 200 samples, 10 training steps, hellaswag-only eval (limit=20)\n14\t    python run_exp009_dose_response.py --dry-run\n15\t\n16\t    # Full experiment (30 runs)\n17\t    python run_exp009_dose_response.py\n18\t\n19\t    # Single config\n20\t    python run_exp009_dose_response.py --ratios 0.3 --strategies graduated --seeds 42\n21\t\n22\t    # Analyze existing results only\n23\t    python run_exp009_dose_response.py --analyze-only\n24\t\n25\tDependencies: torch, transformers, peft, lightgbm, lm_eval, numpy, pandas, scipy\n26\t\"\"\"\n27\t\n28\timport argparse\n29\timport json\n30\timport os\n31\timport sys\n32\timport time\n33\timport traceback\n34\tfrom collections import defaultdict\n35\t\n36\timport numpy as np\n37\timport pandas as pd\n38\timport torch\n39\tfrom torch.utils.data import Dataset, DataLoader, WeightedRandomSampler\n40\tfrom transformers import (\n41\t    AutoModelForCausalLM,\n42\t    AutoTokenizer,\n43\t    DataCollatorForLanguageModeling,\n44\t    Trainer,\n45\t    TrainingArguments,\n46\t    set_seed,\n47\t)\n48\tfrom peft import LoraConfig, get_peft_model, TaskType\n49\tfrom scipy import stats\n50\t\n51\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n52\tfrom exp006_filtering_strategies import STRATEGIES, FEATURE_COLS, load_data\n53\t\n54\t\n55\tdef prepare_dose_data(df, texts, ratio, seed, total_n):\n56\t    \"\"\"Subsample a fixed-size dataset at the target synthetic injection ratio.\n57\t\n58\t    Samples without replacement from human (depth=0) and synthetic (depth>0)\n59\t    pools to construct a dataset where exactly ratio*total_n samples are synthetic.\n60\t    All strategies at the same (ratio, seed) see identical data for fair comparison.\n61\t    \"\"\"\n62\t    rng = np.random.RandomState(seed)\n63\t\n64\t    human_idx = np.where(df[\"depth\"].values == 0)[0]\n65\t    synthetic_idx = np.where(df[\"depth\"].values > 0)[0]\n66\t\n67\t    n_synthetic = int(round(total_n * ratio))\n68\t    n_human = total_n - n_synthetic\n69\t\n70\t    if n_human > len(human_idx):\n71\t        raise ValueError(f\"Need {n_human} human samples but only have {len(human_idx)}\")\n72\t    if n_synthetic > len(synthetic_idx):\n73\t        raise ValueError(f\"Need {n_synthetic} synthetic samples but only have {len(synthetic_idx)}\")\n74\t\n75\t    sel_h = rng.choice(human_idx, size=n_human, replace=False)\n76\t    sel_s = rng.choice(synthetic_idx, size=n_synthetic, replace=False)\n77\t\n78\t    selected = np.concatenate([sel_h, sel_s])\n79\t    rng.shuffle(selected)\n80\t\n81\t    sub_df = df.iloc[selected].reset_index(drop=True)\n82\t    sub_texts = [texts[i] for i in selected]\n83\t    return sub_df, sub_texts\n84\t\n85\t\n86\tclass TextDataset(Dataset):\n87\t    def __init__(self, texts, tokenizer, max_length=512):\n88\t        self.texts = texts\n89\t        self.tokenizer = tokenizer\n90\t        self.max_length = max_length\n91\t\n92\t    def __len__(self):\n93\t        return len(self.texts)\n94\t\n95\t    def __getitem__(self, idx):\n96\t        enc = self.tokenizer(\n97\t            self.texts[idx],\n98\t            truncation=True,\n99\t            max_length=self.max_length,\n100\t            padding=False,\n101\t            return_attention_mask=False,\n102\t        )\n103\t        return {\"input_ids\": enc[\"input_ids\"]}\n104\t\n105\t\n106\tdef make_weighted_trainer(weights_array):\n107\t    \"\"\"Trainer subclass that uses WeightedRandomSampler when weights are non-uniform.\"\"\"\n108\t    uniform = np.allclose(weights_array, 1.0)\n109\t\n110\t    class WeightedTrainer(Trainer):\n111\t        def get_train_dataloader(self):\n112\t            if uniform:\n113\t                return super().get_train_dataloader()\n114\t            sampler = WeightedRandomSampler(\n115\t                weights=weights_array.tolist(),\n116\t                num_samples=len(weights_array),\n117\t                replacement=True,\n118\t            )\n119\t            return DataLoader(\n120\t                self.train_dataset,\n121\t                batch_size=self.args.per_device_train_batch_size,\n122\t                sampler=sampler,\n123\t                collate_fn=self.data_collator,\n124\t                num_workers=self.args.dataloader_num_workers,\n125\t                pin_memory=self.args.dataloader_pin_memory,\n126\t            )\n127\t\n128\t    return WeightedTrainer\n129\t\n130\t\n131\tdef train_one(model_name, texts, weights, output_dir, seed, args):\n132\t    \"\"\"LoRA continued pretraining on weighted text data. Returns adapter path.\"\"\"\n133\t    set_seed(seed)\n134\t    os.makedirs(output_dir, exist_ok=True)\n135\t\n136\t    tokenizer = AutoTokenizer.from_pretrained(\n137\t        model_name, cache_dir=args.cache_dir, trust_remote_code=True,\n138\t    )\n139\t    if tokenizer.pad_token is None:\n140\t        tokenizer.pad_token = tokenizer.eos_token\n141\t\n142\t    model = AutoModelForCausalLM.from_pretrained(\n143\t        model_name, cache_dir=args.cache_dir,\n144\t        torch_dtype=torch.bfloat16, trust_remote_code=True,\n145\t    )\n146\t\n147\t    lora_config = LoraConfig(\n148\t        task_type=TaskType.CAUSAL_LM,\n149\t        r=args.lora_rank,\n150\t        lora_alpha=args.lora_alpha,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb45b870-8df9-40ee-95b9-90691a07c69a",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "ca2ccf8a-146e-4b7d-b284-2e5814c6c7ab",
+            "sourceToolAssistantUUID": "cb45b870-8df9-40ee-95b9-90691a07c69a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T11:22:23.680Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RS6JmicCcYadzvwfX7Abpw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp006_filtering_strategies.py",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca2ccf8a-146e-4b7d-b284-2e5814c6c7ab",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wuZBm6wqM5g7abEez9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f7af3888-49a8-4d71-9415-b88e22103849",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y67rZ6kUDEsmfSkYRvaJLH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1404,
+                "cache_read_input_tokens": 44664,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1404
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 44664,
+                    "cache_creation_input_tokens": 1404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1404,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T11:22:23.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RS6JmicCcYadzvwfX7Abpw",
+              "type": "tool_result",
+              "content": "1\t\"\"\"exp006 Filtering Strategies — 6 data quality filters for depth chain data.\n2\t\n3\tInput:  features.csv (30000 rows: doc_id, depth, 15 features)\n4\t        depth_*.jsonl (text data, needed for DSIR)\n5\tOutput: per-sample weights [0,1] via get_weights(), boolean mask via get_mask()\n6\t\n7\tStrategies:\n8\t  1. no-filter      — uniform weights (baseline)\n9\t  2. binary-ours    — LightGBM binary (human vs synthetic), threshold=0.5\n10\t  3. binary-drayson — SIR resampling (Drayson et al. 2025), b=1, k=1.5\n11\t  4. graduated      — OBD-LightGBM ordinal + exp(-alpha*d) weighting\n12\t  5. surprisal      — surp_mean median threshold\n13\t  6. dsir           — n-gram importance resampling (Xie et al. 2023)\n14\t\"\"\"\n15\t\n16\timport argparse\n17\timport json\n18\timport os\n19\tfrom abc import ABC, abstractmethod\n20\tfrom collections import Counter\n21\tfrom hashlib import md5\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\t\n26\tFEATURE_COLS = [\n27\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n28\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n29\t    \"surp_d2_mean\", \"surp_d2_std\",\n30\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n31\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n32\t]\n33\t\n34\t\n35\tclass FilterStrategy(ABC):\n36\t    @abstractmethod\n37\t    def fit(self, features: np.ndarray, depths: np.ndarray, texts: list = None):\n38\t        ...\n39\t\n40\t    @abstractmethod\n41\t    def get_weights(self, features: np.ndarray, texts: list = None) -> np.ndarray:\n42\t        ...\n43\t\n44\t    def get_mask(self, features: np.ndarray, texts: list = None, threshold: float = 0.0) -> np.ndarray:\n45\t        return self.get_weights(features, texts) > threshold\n46\t\n47\t\n48\tclass NoFilter(FilterStrategy):\n49\t    def fit(self, features, depths, texts=None):\n50\t        pass\n51\t\n52\t    def get_weights(self, features, texts=None):\n53\t        return np.ones(len(features))\n54\t\n55\t\n56\tclass BinaryOurs(FilterStrategy):\n57\t    \"\"\"LightGBM binary: human (depth=0) vs synthetic (depth>=1).\n58\t    Weight = 1 - P(synthetic). Hard mask at P(synthetic) < threshold.\n59\t    Uses same 15D features as Graduated for fair comparison (C3 claim).\n60\t    \"\"\"\n61\t\n62\t    def __init__(self, threshold=0.5):\n63\t        self.threshold = threshold\n64\t        self.model = None\n65\t\n66\t    def fit(self, features, depths, texts=None):\n67\t        import lightgbm as lgb\n68\t        labels = (depths > 0).astype(int)\n69\t        self.model = lgb.LGBMClassifier(\n70\t            n_estimators=200, max_depth=6, learning_rate=0.05,\n71\t            subsample=0.8, colsample_bytree=0.8,\n72\t            random_state=42, verbose=-1,\n73\t        )\n74\t        self.model.fit(features, labels)\n75\t\n76\t    def get_weights(self, features, texts=None):\n77\t        return 1.0 - self.model.predict_proba(features)[:, 1]\n78\t\n79\t    def get_mask(self, features, texts=None, threshold=None):\n80\t        t = threshold if threshold is not None else self.threshold\n81\t        proba_syn = self.model.predict_proba(features)[:, 1]\n82\t        return proba_syn < t\n83\t\n84\t\n85\tclass BinaryDrayson(FilterStrategy):\n86\t    \"\"\"SIR (Drayson et al. 2025): w_j = (1-q(x_j))^b / Z, resample k*n.\"\"\"\n87\t\n88\t    def __init__(self, b=1, k=1.5, seed=42):\n89\t        self.b = b\n90\t        self.k = k\n91\t        self.seed = seed\n92\t        self.model = None\n93\t\n94\t    def fit(self, features, depths, texts=None):\n95\t        import lightgbm as lgb\n96\t        labels = (depths > 0).astype(int)\n97\t        self.model = lgb.LGBMClassifier(\n98\t            n_estimators=200, max_depth=6, learning_rate=0.05,\n99\t            subsample=0.8, colsample_bytree=0.8,\n100\t            random_state=42, verbose=-1,\n101\t        )\n102\t        self.model.fit(features, labels)\n103\t\n104\t    def get_weights(self, features, texts=None):\n105\t        q = self.model.predict_proba(features)[:, 1]\n106\t        raw = (1.0 - q) ** self.b\n107\t        return raw / raw.max()\n108\t\n109\t    def get_mask(self, features, texts=None, threshold=None):\n110\t        q = self.model.predict_proba(features)[:, 1]\n111\t        raw = (1.0 - q) ** self.b\n112\t        prob = raw / raw.sum()\n113\t        rng = np.random.RandomState(self.seed)\n114\t        n = len(features)\n115\t        selected = rng.choice(n, size=int(self.k * n), replace=True, p=prob)\n116\t        mask = np.zeros(n, dtype=bool)\n117\t        mask[np.unique(selected)] = True\n118\t        return mask\n119\t\n120\t\n121\tclass Graduated(FilterStrategy):\n122\t    \"\"\"OBD-LightGBM: K-1 binary classifiers for P(depth>k), then exp(-alpha * E[depth]).\"\"\"\n123\t\n124\t    def __init__(self, alpha=0.5, n_depths=6):\n125\t        self.alpha = alpha\n126\t        self.n_depths = n_depths\n127\t        self.models = []\n128\t\n129\t    def fit(self, features, depths, texts=None):\n130\t        import lightgbm as lgb\n131\t        self.models = []\n132\t        for k in range(self.n_depths - 1):\n133\t            labels = (depths > k).astype(int)\n134\t            clf = lgb.LGBMClassifier(\n135\t                n_estimators=200, max_depth=6, learning_rate=0.05,\n136\t                subsample=0.8, colsample_bytree=0.8,\n137\t                random_state=42, verbose=-1,\n138\t            )\n139\t            clf.fit(features, labels)\n140\t            self.models.append(clf)\n141\t\n142\t    def predict_depth_distribution(self, features):\n143\t        \"\"\"(n_samples, n_depths) matrix of P(depth=d).\"\"\"\n144\t        n = len(features)\n145\t        cum = np.zeros((n, self.n_depths - 1))\n146\t        for k, model in enumerate(self.models):\n147\t            cum[:, k] = model.predict_proba(features)[:, 1]\n148\t\n149\t        dist = np.zeros((n, self.n_depths))\n150\t        dist[:, 0] = 1.0 - cum[:, 0]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7af3888-49a8-4d71-9415-b88e22103849",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "ea5f7e23-40fb-46e5-813d-29dd1e3d7b01",
+            "sourceToolAssistantUUID": "f7af3888-49a8-4d71-9415-b88e22103849",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T11:22:24.913Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check one more file for additional bootstrap context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea5f7e23-40fb-46e5-813d-29dd1e3d7b01",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wujwRCFbuHzSrdkXcm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4d499b17-797e-4400-b23c-7b82d0d00106",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018AZa4GCHw6tLQhXsVPpFaa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7346,
+                "cache_read_input_tokens": 46068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7346,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T11:22:25.823Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BAiDLqajzR6R8sQXbBxPAD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d499b17-797e-4400-b23c-7b82d0d00106",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wujwRCFbuHzSrdkXcm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e9d3394b-d2a5-40db-9098-0e788718fa66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018AZa4GCHw6tLQhXsVPpFaa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7346,
+                "cache_read_input_tokens": 46068,
+                "output_tokens": 117,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7346
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 117,
+                    "cache_read_input_tokens": 46068,
+                    "cache_creation_input_tokens": 7346,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7346,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T11:22:25.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BAiDLqajzR6R8sQXbBxPAD",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tMVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)\n3\t\n4\tGenerates recursive depth chains from C4 seed data using Qwen2.5-1.5B,\n5\textracts statistical features, and runs distinguishability analysis.\n6\t\n7\tInput:  C4 validation split (streamed from HuggingFace)\n8\tOutput: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt\n9\t\n10\tKey deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport json\n15\timport logging\n16\timport math\n17\timport os\n18\timport sys\n19\tfrom collections import Counter\n20\tfrom pathlib import Path\n21\t\n22\timport numpy as np\n23\timport torch\n24\tfrom scipy import stats\n25\tfrom tqdm import tqdm\n26\t\n27\tlogging.basicConfig(\n28\t    level=logging.INFO,\n29\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n30\t    datefmt=\"%H:%M:%S\",\n31\t)\n32\tlog = logging.getLogger(__name__)\n33\t\n34\t\n35\t# ---------------------------------------------------------------------------\n36\t# Utility: simple 4-gram BLEU (no nltk dependency)\n37\t# ---------------------------------------------------------------------------\n38\t\n39\tdef ngrams(tokens, n):\n40\t    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]\n41\t\n42\t\n43\tdef simple_bleu(candidate_tokens, reference_tokens, max_n=4):\n44\t    \"\"\"Compute sentence-level BLEU up to max_n grams with brevity penalty.\"\"\"\n45\t    if len(candidate_tokens) == 0:\n46\t        return 0.0\n47\t    precisions = []\n48\t    for n in range(1, max_n + 1):\n49\t        cand_ngrams = ngrams(candidate_tokens, n)\n50\t        ref_ngrams = ngrams(reference_tokens, n)\n51\t        if not cand_ngrams:\n52\t            precisions.append(0.0)\n53\t            continue\n54\t        ref_counts = Counter(ref_ngrams)\n55\t        clipped = 0\n56\t        cand_counts = Counter(cand_ngrams)\n57\t        for ng, cnt in cand_counts.items():\n58\t            clipped += min(cnt, ref_counts.get(ng, 0))\n59\t        precisions.append(clipped / len(cand_ngrams))\n60\t    if any(p == 0 for p in precisions):\n61\t        return 0.0\n62\t    log_avg = sum(math.log(p) for p in precisions) / max_n\n63\t    bp = min(1.0, math.exp(1 - len(reference_tokens) / max(len(candidate_tokens), 1)))\n64\t    return bp * math.exp(log_avg)\n65\t\n66\t\n67\t# ===================================================================\n68\t# Step 2: Seed data preparation\n69\t# ===================================================================\n70\t\n71\tdef prepare_seed_data(tokenizer, data_dir: Path, num_samples: int, max_tokens: int = 256):\n72\t    \"\"\"Download C4 validation, truncate to max_tokens, save as depth_0.jsonl.\"\"\"\n73\t    out_path = data_dir / \"depth_0.jsonl\"\n74\t    if out_path.exists() and sum(1 for _ in open(out_path)) >= num_samples:\n75\t        log.info(\"depth_0.jsonl already exists with enough samples — skipping\")\n76\t        return\n77\t\n78\t    from datasets import load_dataset\n79\t\n80\t    # Use a single validation shard to avoid slow full-tree listing on proxied networks\n81\t    hf_endpoint = os.environ.get(\"HF_ENDPOINT\", \"https://huggingface.co\")\n82\t    C4_SHARD_URL = f\"{hf_endpoint}/datasets/allenai/c4/resolve/main/en/c4-validation.00000-of-00008.json.gz\"\n83\t    log.info(\"Loading C4 validation shard (streaming) ...\")\n84\t    try:\n85\t        ds = load_dataset(\"json\", data_files=C4_SHARD_URL, split=\"train\", streaming=True)\n86\t    except Exception as e:\n87\t        log.warning(f\"Direct shard download failed ({e}), falling back to full dataset listing\")\n88\t        ds = load_dataset(\"allenai/c4\", \"en\", split=\"validation\", streaming=True)\n89\t\n90\t    records = []\n91\t    for i, example in enumerate(tqdm(ds, total=num_samples, desc=\"Sampling C4\")):\n92\t        if i >= num_samples:\n93\t            break\n94\t        text = example[\"text\"].strip()\n95\t        if not text:\n96\t            continue\n97\t        ids = tokenizer.encode(text, add_special_tokens=False)[:max_tokens]\n98\t        truncated = tokenizer.decode(ids, skip_special_tokens=True)\n99\t        records.append({\"text\": truncated, \"doc_id\": len(records)})\n100\t        if len(records) >= num_samples:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9d3394b-d2a5-40db-9098-0e788718fa66",
+            "isSidechain": true,
+            "promptId": "8ab46256-1dcf-4174-9343-f64005e6f2a2",
+            "agentId": "a6f8fbc29078dceb8",
+            "type": "user",
+            "uuid": "100b293b-b0c1-44ff-92d0-c00176275910",
+            "sourceToolAssistantUUID": "e9d3394b-d2a5-40db-9098-0e788718fa66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T11:22:37.330Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive understanding of the bootstrap CI implementation. Let me compile the findings:\n\n## Bootstrap CI Scripts Summary\n\nI've successfully located and analyzed the bootstrap resampling logic used in this project. Here are the key findings:\n\n### Primary Bootstrap CI Implementation Files\n\n**1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py`** (Lines 120-129)\n   - Implements `bootstrap_diff_ci()` function for bootstrap difference confidence intervals\n   - **Logic**: Resamples data with replacement (n=10,000 bootstrap samples), computes accuracy differences between two methods per sample\n   - **CI Calculation**: Uses 2.5th and 97.5th percentiles of the bootstrap distribution\n   - Used for McNemar paired test + bootstrap CI comparing OBD vs LLM predictions\n\n**2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py`** (Lines 101-108)\n   - Implements `bootstrap_ci()` function\n   - **Logic**: Bootstrap resamples N=1,000 times, computing accuracy on each resample\n   - **CI Calculation**: Percentile method (2.5th/97.5th percentiles)\n   - Used for single-model bootstrap CI on OBD LightGBM classifier\n\n**3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp008_retrain_chain.py`** (Lines 485-522)\n   - Implements bootstrap CI within `run_analysis()` function\n   - **Logic**: 10,000 bootstrap resamples with replacement, trains classifier on each resample\n   - **Model Fitting**: LightGBM trained fresh on each bootstrap sample\n   - **CI Calculation**: Percentile method on bootstrap AUC distributions\n   - Comprehensive pipeline with pairwise AUC, JSD, K*, permutation tests\n\n**4. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_auc_decay_ci.py`** (Lines 85-125)\n   - **Data Loading**: Reads pre-computed bootstrap CI JSON files\n   - **Two Methods**:\n     - `load_bootstrap_ci()`: Loads from bootstrap_ci.json with explicit ci_lower/ci_upper\n     - `load_pairwise_auc_ci()`: Computes approximate CI from per-fold data using standard error (mean ± 1.96*SE)\n   - Used for visualization of AUC decay curves with CI bands\n\n**5. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py`** (Lines 78-111)\n   - Loads bootstrap CI JSON files and extracts ci_lower bounds\n   - Computes K*(theta) = max consecutive pairs with AUC >= theta threshold\n   - Used for K* step function visualization\n\n### Core Bootstrap Resampling Patterns\n\nThe project uses two main bootstrap approaches:\n\n1. **Simple Resampling** (Lines 125-129 in exp_D_mcnemar.py):\n   ```python\n   rng = np.random.RandomState(seed)\n   for i in range(n_boot):\n       idx = rng.randint(0, n, size=n)  # or rng.choice(n, n, replace=True)\n       # Compute statistic on resampled indices\n   ```\n\n2. **Percentile CI** (consistent across all files):\n   ```python\n   ci_lower = np.percentile(boot_statistics, 2.5)\n   ci_upper = np.percentile(boot_statistics, 97.5)\n   ```\n\n### Bootstrap Parameters Across Files\n\n- **N_BOOTSTRAP values**: 1,000 (exp_D_obd_n500_v2.py), 10,000 (exp_D_mcnemar.py, exp008), varies in visualization\n- **Random Seed**: Typically 42 for reproducibility\n- **CI Level**: 95% (2.5th and 97.5th percentiles)\n\n### Output Formats\n\nBootstrap CI results are saved to JSON files with structures like:\n- `{\"pairs\": {\"0v1\": {\"ci_lower\": X, \"ci_upper\": Y, \"boot_mean\": Z}, ...}}`\n- `{\"0v1\": {\"mean\": X, \"ci_95\": [lower, upper]}, ...}`\n\nAll implementations use numpy's percentile method for CI computation, ensuring consistency across the project."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "100b293b-b0c1-44ff-92d0-c00176275910",
+            "isSidechain": true,
+            "agentId": "a6f8fbc29078dceb8",
+            "requestId": "req_011Cb9wutzdeAgesX4bEf8uH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "76da91b8-b6eb-4f2e-8ff5-3fa3b5495b08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "0eb0119c-751b-4ee4-862f-7c124e4aa0a0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W9ah9LV8HyQxVKASJikS5E",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 53414,
+                "output_tokens": 1146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1481
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1146,
+                    "cache_read_input_tokens": 53414,
+                    "cache_creation_input_tokens": 1481,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1481,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-bootstrap-ci-scripts-in-home-ubuntu-agent-ml-research-idea-gen-0509-7-pro.md"
+}

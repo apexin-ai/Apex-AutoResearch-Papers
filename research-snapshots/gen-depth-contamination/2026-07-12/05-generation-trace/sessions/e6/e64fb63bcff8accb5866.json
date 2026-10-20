@@ -1,0 +1,2272 @@
+{
+  "schema_version": "1.0",
+  "id": "e64fb63bcff8accb5866",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to research two things for a paper revision: 1. **TTPL (Test-Time Perturbation Learning with Delayed Feedback for",
+  "task_key": "agent-aaadd70e821d54dca",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aaadd70e821d54dca.jsonl",
+    "occurrence": 1,
+    "bytes": 105417,
+    "sha256": "b75aaa93ee71449a063254f3bc21af0d7048606c5e63353efd6f768c19115d5d"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T20:19:06.225Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to research two things for a paper revision:\n\n1. **TTPL (Test-Time Perturbation Learning with Delayed Feedback for VLA Models)** - arXiv April 2026. Claims +7.4% on LIBERO via test-time perturbation learning with delayed feedback. I need to understand:\n   - What is their exact mechanism? (augmentation + voting? uncertainty estimation?)\n   - Do they require environment feedback during deployment?\n   - How does their approach compare to simply averaging predictions from augmented views?\n   - Search for \"TTPL test-time perturbation learning VLA\" and fetch the paper.\n\n2. **Test-time augmentation (TTA) for robot manipulation policies** - I need to understand what simple TTA baselines exist:\n   - Search \"test-time augmentation robot policy manipulation\"\n   - Search \"ensemble augmentation inference robot learning diffusion\"\n   - What's the state of the art for simple prediction averaging from augmented views?\n   - Has anyone compared TTA to more sophisticated filtering methods for robot policies?\n\n3. **Fast-WAM architecture details** - Search for \"Fast-WAM world action model\" and verify:\n   - Does it use flow-matching (velocity field) or diffusion (score)?\n   - How many integration steps?\n   - Is the code/checkpoint actually released on HuggingFace?\n   - Has it been evaluated on LIBERO-Plus anywhere?\n\nReport findings in detail."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "0b752609-df31-4f61-a0a9-e3f9819ea0fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T20:19:06.228Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0b752609-df31-4f61-a0a9-e3f9819ea0fa",
+                "isSidechain": true,
+                "agentId": "aaadd70e821d54dca",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "d5d6f686-3c81-4d01-99e8-0f6c1abb48b1",
+                "timestamp": "2026-05-10T20:19:06.228Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T20:19:11.816Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Loj4wU5pPqmS4qoeNBWNYS",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5d6f686-3c81-4d01-99e8-0f6c1abb48b1",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNCWjEME92b9ZVQb1M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "787fba9f-c43f-4007-9164-f7b207a7141d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKUXcDkaewiHojta9KfAZZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 878,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 878
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 878,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 878,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T20:19:11.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Loj4wU5pPqmS4qoeNBWNYS",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "787fba9f-c43f-4007-9164-f7b207a7141d",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "69a0ec0d-c1e0-4dca-aa55-1cbfb59e058d",
+            "sourceToolAssistantUUID": "787fba9f-c43f-4007-9164-f7b207a7141d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T20:19:15.412Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll research all three topics in parallel with multiple searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69a0ec0d-c1e0-4dca-aa55-1cbfb59e058d",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNcdofNphUCz23E6Cn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "566fd277-7805-42ab-8c5d-47440c2e9564",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sUfXAtiLRTai4K5FS6mKm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T20:19:15.895Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H5Rr3m49vRw5YhCNXsd3zW",
+              "name": "WebSearch",
+              "input": {
+                "query": "TTPL test-time perturbation learning VLA delayed feedback arXiv 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "566fd277-7805-42ab-8c5d-47440c2e9564",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNcdofNphUCz23E6Cn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfce4734-f225-45de-bf0f-678a5e4bc7bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sUfXAtiLRTai4K5FS6mKm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T20:19:16.404Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017BGookAXkm9nHoq6iSc2EA",
+              "name": "WebSearch",
+              "input": {
+                "query": "test-time augmentation robot policy manipulation prediction averaging 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfce4734-f225-45de-bf0f-678a5e4bc7bd",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNcdofNphUCz23E6Cn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d12ec5c5-a8c1-430a-85fc-0655939456b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sUfXAtiLRTai4K5FS6mKm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T20:19:16.932Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01538FfYvuaU3QKZ9giuTbZx",
+              "name": "WebSearch",
+              "input": {
+                "query": "ensemble augmentation inference robot learning diffusion policy"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d12ec5c5-a8c1-430a-85fc-0655939456b8",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNcdofNphUCz23E6Cn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "89683037-810e-41fe-8c06-d66ced098be4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sUfXAtiLRTai4K5FS6mKm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9101,
+                "output_tokens": 221,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 221,
+                    "cache_read_input_tokens": 9101,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T20:19:16.940Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013M5TgPcWYK6U6Y1tEBgxx8",
+              "name": "WebSearch",
+              "input": {
+                "query": "Fast-WAM world action model flow matching robot"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89683037-810e-41fe-8c06-d66ced098be4",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWNcdofNphUCz23E6Cn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9bf1dc0f-0312-467a-8840-51d3f8df7022",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sUfXAtiLRTai4K5FS6mKm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9101,
+                "output_tokens": 221,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 221,
+                    "cache_read_input_tokens": 9101,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T20:19:22.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013M5TgPcWYK6U6Y1tEBgxx8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Fast-WAM world action model flow matching robot\"\n\nLinks: [{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"World Action Models are Zero-shot Policies (arXiv:2602.15922v1) - ScienceStack\",\"url\":\"https://www.sciencestack.ai/paper/2602.15922\"},{\"title\":\"World Action Models as Zero-Shot Policies\",\"url\":\"https://www.emergentmind.com/papers/2602.15922\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…\",\"url\":\"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://yuantianyuan01.github.io/FastWAM/\"}]\n\nHere's what I found about Fast-WAM, the world action model using flow matching for robotics:\n\n## Overview\n\nFast-WAM is a WAM architecture that retains video co-training during training but skips future prediction at test time. World Action Models (WAMs) have emerged as a promising alternative to Vision-Language-Action (VLA) models for embodied control because they explicitly model how visual observations may evolve under action.\n\n## Training and Architecture\n\nFast-WAM is trained with a joint flow matching objective over action tokens and future video latents. Fast-WAM is built on a pretrained video Diffusion Transformer backbone and an action expert DiT. During training, it jointly learns action prediction and video modeling so the shared visual backbone acquires stronger world-grounded representations.\n\n## Key Finding\n\nFast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. This suggests that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\n\n## Performance\n\nFast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining. Notably, it runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bf1dc0f-0312-467a-8840-51d3f8df7022",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "e9ea2708-57bc-4d0f-9986-b45449f0cfdb",
+            "sourceToolAssistantUUID": "9bf1dc0f-0312-467a-8840-51d3f8df7022",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T20:19:22.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H5Rr3m49vRw5YhCNXsd3zW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"TTPL test-time perturbation learning VLA delayed feedback arXiv 2026\"\n\nLinks: [{\"title\":\"Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2604.18107\"},{\"title\":\"Test-Time Perturbation Learning with Delayed Feedback for\",\"url\":\"https://arxiv.org/pdf/2604.18107\"},{\"title\":\"[2604.18107] Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2604.18107\"},{\"title\":\"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2601.06748v1\"},{\"title\":\"Test-Time Learning for Large Language Models\",\"url\":\"https://arxiv.org/html/2505.20633v1\"},{\"title\":\"Test-Time Adaptation for Tactile-Vision-Language Models\",\"url\":\"https://arxiv.org/html/2602.15873v1\"},{\"title\":\"Reinforcement Learning for Control Systems with Time Delays: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2602.00399v1\"},{\"title\":\"[2505.20633] Test-Time Learning for Large Language Models\",\"url\":\"https://arxiv.org/abs/2505.20633\"},{\"title\":\"Paper page - TTRL: Test-Time Reinforcement Learning\",\"url\":\"https://huggingface.co/papers/2504.16084\"},{\"title\":\"[2504.16084] TTRL: Test-Time Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2504.16084\"}]\n\nBased on the search results, I found the paper you're looking for. Here's what I found:\n\n## Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\n\nThe paper proposes Perturbation learning with Delayed Feedback (PDF), a verifier-free test-time adaptation framework that improves decision performance without fine-tuning the base model.\n\n**Key Features:**\n\nPDF mitigates the spurious correlation through uncertainty-based data augmentation and action voting, while an adaptive scheduler allocates augmentation budgets to balance performance and efficiency. To further improve stability, PDF learns a lightweight perturbation module that retrospectively adjusts action logits guided by delayed feedback, correcting overconfidence issue.\n\n**Performance:**\n\nExperiments on LIBERO (+7.4% success rate) and Atari (+10.3 human normalized score) demonstrate consistent gains of PDF in task success over vanilla VLA and VLA with test-time adaptation.\n\n**arXiv Details:**\n\nThe paper was published on arXiv as **2604.18107** on April 20, 2026, and the code is available according to the paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfce4734-f225-45de-bf0f-678a5e4bc7bd",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "0a812165-0379-4030-befa-691a92d9a056",
+            "sourceToolAssistantUUID": "cfce4734-f225-45de-bf0f-678a5e4bc7bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T20:19:22.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017BGookAXkm9nHoq6iSc2EA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"test-time augmentation robot policy manipulation prediction averaging 2025 2026\"\n\nLinks: [{\"title\":\"[2502.00622] Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling\",\"url\":\"https://arxiv.org/abs/2502.00622\"},{\"title\":\"Ctrl-World: A Controllable Generative World Model for Robot Manipulation\",\"url\":\"https://arxiv.org/html/2510.10125v1\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"Video Prediction Policy: A Generalist Robot Policy with Predictive Visual Representations | OpenReview\",\"url\":\"https://openreview.net/forum?id=c0dhw1du33\"},{\"title\":\"A Step Toward World Models: A Survey on Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2511.02097v1\"},{\"title\":\"Awesome-Robotics-Manipulation/contents/low-level_learning-based_action_modelling.md at main · BaiShuanghao/Awesome-Robotics-Manipulation\",\"url\":\"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation/blob/main/contents/low-level_learning-based_action_modelling.md\"},{\"title\":\"GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub\",\"url\":\"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf\"}]\n\nI found several relevant research papers on robot policy and manipulation from 2025-2026. Here are the key findings:\n\n## Recent Research on Robot Policies and World Modeling (2025-2026)\n\nGenerative Predictive Control (GPC) is an inference-time method for improving pretrained behavior-cloning policies without retraining, which augments a frozen diffusion policy at deployment with an action-conditioned world model trained on expert demonstrations and random exploration rollouts.\n\nDreamZero, a World Action Model approach, unlocks new generalization capabilities beyond traditional VLAs across environments, tasks, and embodiments.\n\nVideo diffusion models demonstrate the ability to predict future frames and understanding of the physical world, and the Video Prediction Policy (VPP) learns implicit inverse dynamics models conditioned on predicted future representations inside VDMs.\n\nMotuBrain, an advanced World Action Model for robot control, achieves strong results on WorldArena benchmarks and can be adapted to new humanoid embodiments with minimal trajectories, suggesting unified world action models can scale in generality, controllability, and real-world deployability.\n\nThe research shows a shift toward leveraging world models and predictive capabilities at inference time to improve robot manipulation policies, with recent work in 2025-2026 focusing on test-time adaptation and prediction-based refinement methods.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d12ec5c5-a8c1-430a-85fc-0655939456b8",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "eec54c05-a8bb-4a0a-90de-392dcb6e3950",
+            "sourceToolAssistantUUID": "d12ec5c5-a8c1-430a-85fc-0655939456b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T20:19:24.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01538FfYvuaU3QKZ9giuTbZx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ensemble augmentation inference robot learning diffusion policy\"\n\nLinks: [{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"Diffusion Policy:\",\"url\":\"https://www.roboticsproceedings.org/rss19/p026.pdf\"},{\"title\":\"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025\",\"url\":\"https://journals.sagepub.com/doi/full/10.1177/02783649241273668\"},{\"title\":\"Diff-DAgger: Uncertainty Estimation with Diffusion Policy for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2410.14868v1\"},{\"title\":\"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://arxiv.org/abs/2303.04137\"},{\"title\":\"GitHub - mbreuss/diffusion-literature-for-robotics: Summary of key papers and blogs about diffusion models to learn about the topic. Detailed list of all published diffusion robotics papers. · GitHub\",\"url\":\"https://github.com/mbreuss/diffusion-literature-for-robotics\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion .\",\"url\":\"https://arxiv.org/pdf/2303.04137\"},{\"title\":\"GitHub - real-stanford/diffusion_policy: [RSS 2023] Diffusion Policy Visuomotor Policy Learning via Action Diffusion · GitHub\",\"url\":\"https://github.com/real-stanford/diffusion_policy\"},{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"}]\n\nBased on the web search results, here's what I found about ensemble augmentation inference in robot learning with diffusion policies:\n\n## Diffusion Policy Overview\n\nDiffusion Policy represents a robot's visuomotor policy as a conditional denoising diffusion process. The policy learns the gradient of the action-distribution score function and iteratively optimizes with respect to this gradient field during inference via a series of stochastic Langevin dynamics steps.\n\n## Data Augmentation\n\nMany methodologies employ diffusion-based data augmentation in vision-based manipulation tasks to scale up datasets and reconstruct scenes. Diffusion models for scene and image augmentation lie at the intersection of robotics and computer vision for vision-based tasks to enhance generalizability and data scarcity.\n\n## Ensemble Methods for Inference\n\nRegarding ensemble approaches, ensemble methods for robot-gated DAgger effectively distinguish in-distribution uni-modal from out-of-distribution data using action variance, though they fail at in-distribution multi-modal points due to policy disagreement. \n\nDiff-DAgger uses a single policy, reducing the wall clock time for both training and inference by the factor of the number of policies used for ensemble. In fact, Diff-DAgger reduced training time by a factor of 5.1, threshold setting time by a factor of 24.5, and inference time by a factor of 5.3 compared to Ensemble-DAgger.\n\n## Key Advantages\n\nThe diffusion formulation yields powerful advantages when used for robot policies, including gracefully handling multimodal action distributions, being suitable for high-dimensional action spaces, and exhibiting impressive training stability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89683037-810e-41fe-8c06-d66ced098be4",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "48ec9d24-2d8f-4981-a35a-d6fb78f9a05f",
+            "sourceToolAssistantUUID": "89683037-810e-41fe-8c06-d66ced098be4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T20:19:30.912Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch more details from the TTPL paper and Fast-WAM paper, and search for more specific information on TTA baselines."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48ec9d24-2d8f-4981-a35a-d6fb78f9a05f",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWPbrCdU6foRHYzLeq6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "187e474d-69f7-4251-8fa9-9290498b66d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkJgUSEVTmYumcyRSaC925",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 868,
+                "cache_creation_input_tokens": 2815,
+                "cache_read_input_tokens": 10989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T20:19:35.182Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012gDfwLuQPMee84v4qx4NGz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2604.18107",
+                "prompt": "Extract the full technical details of the method:\n1. What is the exact mechanism of the perturbation learning? Is it augmentation + voting?\n2. How does the uncertainty estimation work?\n3. Does the method require environment feedback during deployment? What kind of delayed feedback?\n4. How does it compare to simply averaging predictions from augmented views (naive TTA baseline)?\n5. What are the ablation results - what contributes most to the +7.4% gain on LIBERO?\n6. What is the \"adaptive scheduler\" and how does the augmentation budget work?\n7. What is the lightweight perturbation module?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "187e474d-69f7-4251-8fa9-9290498b66d0",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWPbrCdU6foRHYzLeq6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "df73a227-99f8-497c-bb1b-4142d32bf204",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkJgUSEVTmYumcyRSaC925",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 868,
+                "cache_creation_input_tokens": 2815,
+                "cache_read_input_tokens": 10989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T20:19:38.531Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WUjExbG9dN4gxna1vCGD8q",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.16666v1",
+                "prompt": "Extract details about Fast-WAM:\n1. Does it use flow-matching (velocity field) or diffusion (score-based)?\n2. How many integration/denoising steps at inference?\n3. Is the code or checkpoint released? Is there a HuggingFace link?\n4. Has it been evaluated on LIBERO-Plus?\n5. What are the exact LIBERO benchmark results?\n6. What is the architecture - DiT backbone details?\n7. What is the training objective formula?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df73a227-99f8-497c-bb1b-4142d32bf204",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWPbrCdU6foRHYzLeq6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "886571cd-ff7d-45ff-a18b-f7253899347f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkJgUSEVTmYumcyRSaC925",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 868,
+                "cache_creation_input_tokens": 2815,
+                "cache_read_input_tokens": 10989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T20:19:39.060Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnnSeD2qMwQQeTA8y3JsDt",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"test-time augmentation\" averaging predictions robot policy baseline comparison filtering 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "886571cd-ff7d-45ff-a18b-f7253899347f",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWPbrCdU6foRHYzLeq6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5e86565b-8b28-4ee0-b620-0c0e4bc71836",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkJgUSEVTmYumcyRSaC925",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 868,
+                "cache_creation_input_tokens": 2815,
+                "cache_read_input_tokens": 10989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T20:19:39.631Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JZ2c9q53M9UqD3Nz37N4qP",
+              "name": "WebSearch",
+              "input": {
+                "query": "TTPL PDF verifier-free test-time adaptation VLA action voting augmentation budget"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e86565b-8b28-4ee0-b620-0c0e4bc71836",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWPbrCdU6foRHYzLeq6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "211dee06-1f3b-4914-aa37-1893298c192f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkJgUSEVTmYumcyRSaC925",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 868,
+                "cache_creation_input_tokens": 2815,
+                "cache_read_input_tokens": 10989,
+                "output_tokens": 537,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2815
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 868,
+                    "output_tokens": 537,
+                    "cache_read_input_tokens": 10989,
+                    "cache_creation_input_tokens": 2815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2815,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T20:19:44.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WUjExbG9dN4gxna1vCGD8q",
+              "type": "tool_result",
+              "content": "# Fast-WAM: Key Technical Details\n\n## 1. Flow-Matching (Velocity Field)\nFast-WAM uses **flow-matching**, not diffusion. The paper states: \"The model is trained to predict the corresponding velocity field with a standard flow matching objective\" using interpolated samples and velocity prediction rather than score-based approaches.\n\n## 2. Inference Steps\n**10 denoising steps** with classifier-free guidance (CFG) scale of 1.0, as specified in the implementation details section.\n\n## 3. Code/Checkpoint Release\nThe paper provides a project website (https://yuantianyuan01.github.io/FastWAM/) but does not explicitly mention code release, GitHub repositories, or HuggingFace model availability in this HTML version.\n\n## 4. LIBERO-Plus Evaluation\nNot evaluated on LIBERO-Plus. The benchmark only covers standard LIBERO suites: Spatial, Object, Goal, and Long.\n\n## 5. LIBERO Results\nFast-WAM achieves **97.6% average success rate**:\n- Spatial: 98.2%\n- Object: 100.0%\n- Goal: 97.0%\n- Long: 95.2%\n\nThis was accomplished without embodied pretraining.\n\n## 6. Architecture\nBuilt on Wan2.2-5B backbone with a Mixture-of-Transformer (MoT) design: \"5B parameter video DiT and 1B action expert,\" totaling 6B parameters. Action horizon is 32 steps with 9 video frames per chunk.\n\n## 7. Training Objective\nUnified flow-matching loss: **L = L_act + λL_vid**, where both action and video losses follow the same velocity field prediction framework across their respective token types."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "886571cd-ff7d-45ff-a18b-f7253899347f",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "3c6640ff-6561-43e9-a928-7e953798d8b5",
+            "sourceToolAssistantUUID": "886571cd-ff7d-45ff-a18b-f7253899347f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T20:19:46.360Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012gDfwLuQPMee84v4qx4NGz",
+              "type": "tool_result",
+              "content": "# Technical Details of PDF (Perturbation Learning with Delayed Feedback)\n\n## 1. Perturbation Learning Mechanism\n\nThe approach combines data augmentation with voting and learned logit perturbations. The final logits are computed as:\n\n**z̃ₜ = hϕ(fₜ) + λhθ(fₜ)**\n\nwhere hϕ produces decision logits from the frozen VLA, and hθ (the trainable perturbation head) generates learnable adjustments. \"The resulting final logits z̃ₜ are detokenized into a set of candidate actions, from which the final action aₜ is then selected through majority voting.\"\n\n## 2. Uncertainty Estimation\n\nUncertainty uses normalized Shannon entropy of the predicted action distribution:\n\n**𝒰ₜ = -1/log K ∑ p(aₖ|sₖ) log p(aₖ|sₖ)**\n\nThis quantifies model decision confidence across possible action tokens.\n\n## 3. Environment Feedback Requirement\n\nYes, the method requires delayed feedback during deployment. \"Upon task completion, the agent receives delayed feedback signals rᵢ ∈ ℛ, i ∈ [1,T], which encapsulate task completion status or reward information.\" This feedback is episodic (end-of-episode), not per-step.\n\n## 4. Comparison to Naive Averaging\n\nThe paper doesn't explicitly compare against simple prediction averaging. However, PDF adds: (1) adaptive augmentation budgeting, and (2) learned perturbation corrections guided by feedback, which goes beyond naive averaging.\n\n## 5. Ablation Results on LIBERO\n\nKey findings from Table 2:\n- **Full PDF**: 0.89 success rate on Spatial (+0.04 over baseline)\n- **Without Delayed Feedback (DF)**: Major performance drops (0.50 on Object suite)\n- **Without Data Augmentation (DA)**: Modest degradation\n\nThe paper states: \"The synergy between DF and DA is evident. The full PDF model outperforms both variants and yields more stable results.\"\n\n## 6. Adaptive Scheduler & Augmentation Budget\n\nThe augmentation budget adapts to uncertainty:\n\n**Nₜ = Nₘₐₓ · 𝒰ₜ**\n\n\"Augmented observations are generated by applying transformations adaptively determined by the model's uncertainty.\" Higher uncertainty triggers more augmented views (up to Nₘₐₓ = 3). Figure 5 shows excessive augmentation degrades performance.\n\n## 7. Lightweight Perturbation Module\n\nThe P head hθ is a small learnable network (9M parameters total for the entire PDF system). It optimizes via:\n\n**ℒₚ𝒟𝓕 = -(r-b) log πϕ + λₖₗ 𝕀[r>b] KL(πϕ ∥ π̃)**\n\n\"Only the P head hθ is updated; all other VLA parameters remain frozen for efficient, stable test-time adaptation.\" The REINFORCE term increases likelihood when feedback exceeds baseline; KL regularization prevents excessive divergence when feedback is positive."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df73a227-99f8-497c-bb1b-4142d32bf204",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "bb36d441-1540-4d01-b42d-ed0cb0a2b3ba",
+            "sourceToolAssistantUUID": "df73a227-99f8-497c-bb1b-4142d32bf204",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T20:19:46.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GnnSeD2qMwQQeTA8y3JsDt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"test-time augmentation\" averaging predictions robot policy baseline comparison filtering 2025\"\n\nLinks: [{\"title\":\"Feature Augmentation based Test-Time Adaptation Younggeol Cho* Youngrae Kim*\",\"url\":\"https://openaccess.thecvf.com/content/WACV2025/papers/Cho_Feature_Augmentation_Based_Test-Time_Adaptation_WACV_2025_paper.pdf\"},{\"title\":\"MEMO: Test Time Robustness via Adaptation and Augmentation\",\"url\":\"https://openreview.net/pdf?id=vn74m_tWu8O\"},{\"title\":\"Greedy Policy Search: A Simple Baseline for Learnable Test-Time Augmentation\",\"url\":\"https://proceedings.mlr.press/v124/lyzhov20a.html\"},{\"title\":\"Test-Time Augmentation for Cross-Domain Leukocyte Classification via OOD Filtering and Self-Ensembling - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12470409/\"},{\"title\":\"EDAS: Effective Data Augmentation Strategies for test-time adaptation - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2405959525001110\"},{\"title\":\"MEMO: Test Time Robustness via Adaptation and Augmentation\",\"url\":\"https://arxiv.org/pdf/2110.09506\"},{\"title\":\"Greedy Policy Search: A Simple Baseline for Learnable Test-Time Augmentation | DeepAI\",\"url\":\"https://deepai.org/publication/greedy-policy-search-a-simple-baseline-for-learnable-test-time-augmentation\"},{\"title\":\"How to Use Test-Time Augmentation to Make Better Predictions - MachineLearningMastery.com\",\"url\":\"https://machinelearningmastery.com/how-to-use-test-time-augmentation-to-improve-model-performance-for-image-classification/\"},{\"title\":\"MEMO: Test Time Robustness via Adaptation and Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=XrGEkCOREX2\"},{\"title\":\"In Search of Lost Online Test-Time Adaptation: A Survey | International Journal of Computer Vision | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11263-024-02213-5\"}]\n\nI found several relevant papers and resources on test-time augmentation. Here's what the search results reveal:\n\n## Key Findings\n\n**Core Concept of Test-Time Augmentation:**\nTest-time data augmentation—averaging the predictions of a machine learning model across multiple augmented samples of data—is a widely used technique that improves the predictive performance.\n\n**Recent Approaches (2025 and Later):**\n\nTest-time adaptation (TTA) is a method of updating model parameters during inference using only unlabeled test data, though data augmentation may not function effectively in TTA settings due to discrepancies between predictions using original and augmented samples. A novel approach employs selected augmentations with distinct adaptation strategies customized for each transformation.\n\n**Filtering and Prediction Quality:**\nTest-time augmentation can solve the domain shift issue and improve robustness by aggregating predictions from multiple augmented versions of the same input, however, TTA may inadvertently generate unrealistic or Out-of-Distribution (OOD) samples that negatively affect prediction quality.\n\n**Aggregation Methods:**\nTest-time Augmentation applies data augmentations to input data during inference, creating multiple variations of the same test sample, and the final prediction typically aggregates these predictions through averaging or majority voting.\n\nThe search results include recent 2025 research on effective data augmentation strategies for test-time adaptation and methods addressing OOD filtering issues in test-time augmentation systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e86565b-8b28-4ee0-b620-0c0e4bc71836",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "1adf7425-bb62-4320-92d3-726529fd95c6",
+            "sourceToolAssistantUUID": "5e86565b-8b28-4ee0-b620-0c0e4bc71836",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T20:19:47.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JZ2c9q53M9UqD3Nz37N4qP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"TTPL PDF verifier-free test-time adaptation VLA action voting augmentation budget\"\n\nLinks: [{\"title\":\"Verifier-free Test-Time Sampling for Vision-Language-Action Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=UD4Rw8MOEK\"},{\"title\":\"Tool Verification for Test-Time Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2603.02203\"},{\"title\":\"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/399707107_On-the-Fly_VLA_Adaptation_via_Test-Time_Reinforcement_Learning\"},{\"title\":\"[2510.10975] RoVer: Robot Reward Model as Test-Time Verifier for Vision-Language-Action Model\",\"url\":\"https://arxiv.org/abs/2510.10975\"},{\"title\":\"WorldAgen: Unified State-Action Prediction with Test-Time World Model Training\",\"url\":\"https://openreview.net/pdf?id=egbFo1gvYp\"},{\"title\":\"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2601.06748v1\"},{\"title\":\"RoVer: Robot Reward Model as Test-Time Verifier for Vision-Language-Action Model | OpenReview\",\"url\":\"https://openreview.net/forum?id=o3HYrfai5D\"},{\"title\":\"RoVer: Robot Reward Model as Test-Time Verifier for Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2510.10975v2\"},{\"title\":\"VLA-Reasoner: Empowering Vision-Language-Action Models with\",\"url\":\"https://arxiv.org/pdf/2509.22643\"},{\"title\":\"(PDF) Steering Vision-Language-Action Models as Anti-Exploration: A Test-Time Scaling Approach\",\"url\":\"https://www.researchgate.net/publication/398269618_Steering_Vision-Language-Action_Models_as_Anti-Exploration_A_Test-Time_Scaling_Approach\"}]\n\nBased on the search results, here's what I found related to your query about test-time adaptation and VLA (Vision-Language-Action) methods:\n\n## Key Research Papers Found\n\nThe search returned several relevant papers on test-time scaling and adaptation for Vision-Language-Action models:\n\n### 1. **Verifier-free Test-Time Sampling**\nA novel framework called Masking Distribution Guided Selection (MG-Select) proposes a test-time scaling approach for VLAs that leverages the model's internal properties without requiring additional training or external modules, utilizing KL divergence from a reference action token distribution as a confidence metric for selecting optimal actions from multiple candidates.\n\n### 2. **RoVer: Robot Reward Model as Test-Time Verifier**\nRoVer is a test-time scaling framework that uses a Robot Process Reward Model (PRM) as a Test-Time Verifier to enhance the capabilities of existing VLA models without modifying their architectures or weights. By caching shared perception features, it can amortize perception cost and evaluate more candidates under the same test-time computational budget.\n\n### 3. **Test-Time Reinforcement Learning (TT-VLA)**\nTT-VLA is a framework that enables on-the-fly policy adaptation during inference, formulating a dense reward mechanism that leverages step-by-step task-progress signals to refine action policies during test time while preserving the SFT/RL-trained priors.\n\n### 4. **TACO: Anti-Exploration Test-Time Scaling**\nTACO is a test-time-scaling framework that applies a lightweight pseudo-count estimator as a high-fidelity verifier of action chunks, enabling VLA models to execute actions with maximum pseudo-count from sampled action chunks while preventing distribution shifts.\n\nThese papers collectively address test-time adaptation, action voting/selection, and computational budget optimization for Vision-Language-Action models in robotic tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "211dee06-1f3b-4914-aa37-1893298c192f",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "8e4f35a8-0dab-496b-a7bc-9002bacbf361",
+            "sourceToolAssistantUUID": "211dee06-1f3b-4914-aa37-1893298c192f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T20:19:54.150Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more details on the verifier-free sampling paper, the Fast-WAM project page for code release info, and the GPC paper about inference-time enhancement."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e4f35a8-0dab-496b-a7bc-9002bacbf361",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWRMr8sjUtb3495Wr6Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "096d6059-d67c-4147-9cdc-00bf401ba748",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVK2RqXwLCrmBxmDTdq9hn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4617,
+                "cache_read_input_tokens": 13804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4617,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T20:19:57.325Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018dQyNEHQ3PQLnhLRbpEHjf",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=UD4Rw8MOEK",
+                "prompt": "What is this paper about? Extract: 1) The method name and key idea. 2) Does it use test-time augmentation or prediction averaging? 3) How does it select among candidate actions? 4) What benchmarks does it test on? 5) Does it compare to simple TTA averaging baselines?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "096d6059-d67c-4147-9cdc-00bf401ba748",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWRMr8sjUtb3495Wr6Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e5a3c3d1-9070-4cf9-83d9-3ddc8c6dcf5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVK2RqXwLCrmBxmDTdq9hn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4617,
+                "cache_read_input_tokens": 13804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4617,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T20:19:58.552Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014d14i4tMmVDTJVEjHaSUFS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://yuantianyuan01.github.io/FastWAM/",
+                "prompt": "Extract all information about: 1) Code release - is there a GitHub link? 2) Model checkpoints - are they on HuggingFace? 3) Any mention of LIBERO-Plus evaluation. 4) Architecture details and flow matching specifics. 5) Number of inference steps."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5a3c3d1-9070-4cf9-83d9-3ddc8c6dcf5e",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWRMr8sjUtb3495Wr6Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ce03deda-14f7-4533-b4b3-0d29d355421b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVK2RqXwLCrmBxmDTdq9hn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4617,
+                "cache_read_input_tokens": 13804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4617,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T20:20:00.747Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MZsidvVftiv6DynZbezSEN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2502.00622",
+                "prompt": "What is Generative Predictive Control (GPC)? Extract: 1) Does it use test-time augmentation? 2) Does it average predictions from augmented views? 3) How does it filter/select actions at inference time? 4) What world model does it use? 5) What benchmarks and results?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce03deda-14f7-4533-b4b3-0d29d355421b",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWRMr8sjUtb3495Wr6Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "03bd45af-590c-4eee-bf65-cd42cc864a7a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVK2RqXwLCrmBxmDTdq9hn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4617,
+                "cache_read_input_tokens": 13804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4617,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T20:20:00.861Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LEihj4ueWN6zeXgcG4QhuK",
+              "name": "WebSearch",
+              "input": {
+                "query": "test-time augmentation action prediction averaging VLA robot manipulation simple baseline \"majority voting\" 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03bd45af-590c-4eee-bf65-cd42cc864a7a",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWRMr8sjUtb3495Wr6Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb71c5b3-f760-4c6c-be9a-0478e0224df3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVK2RqXwLCrmBxmDTdq9hn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4617,
+                "cache_read_input_tokens": 13804,
+                "output_tokens": 527,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4617
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 527,
+                    "cache_read_input_tokens": 13804,
+                    "cache_creation_input_tokens": 4617,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4617,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T20:20:02.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018dQyNEHQ3PQLnhLRbpEHjf",
+              "type": "tool_result",
+              "content": "# Summary of \"Verifier-free Test-Time Sampling for Vision-Language-Action Models\"\n\n## 1) Method Name and Key Idea\nThe paper introduces **MG-Select** (Masking Distribution Guided Selection), which \"leverages the model's internal properties without requiring additional training or external modules.\" The core innovation uses KL divergence from a reference distribution to identify optimal actions.\n\n## 2) Test-Time Augmentation vs. Averaging\nThe paper employs test-time scaling with multiple candidate sampling rather than simple averaging. It uses a reference distribution generated by masking inputs to guide selection, representing a more sophisticated approach than basic prediction averaging.\n\n## 3) Action Selection Mechanism\nMG-Select selects actions by comparing candidates against \"a reference action token distribution as a confidence metric for selecting optimal action from multiple candidates.\" The reference distribution comes from the same model with randomly masked states and language conditions.\n\n## 4) Benchmarks\nThe paper tests on \"diverse simulation and real-world benchmarks\" for robotic manipulation, though specific benchmark names aren't detailed in this excerpt.\n\n## 5) Comparison to Simple Baselines\nThe provided content doesn't explicitly mention comparisons to standard TTA averaging baselines. The focus is on distinguishing their approach from \"test-time scaling approaches using external verifiers,\" which they argue require additional training."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5a3c3d1-9070-4cf9-83d9-3ddc8c6dcf5e",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "d3466d56-2f59-49e6-b75c-219233d2b8fd",
+            "sourceToolAssistantUUID": "e5a3c3d1-9070-4cf9-83d9-3ddc8c6dcf5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T20:20:03.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014d14i4tMmVDTJVEjHaSUFS",
+              "type": "tool_result",
+              "content": "# Fast-WAM Information Extraction\n\n## 1) Code Release\nYes, a GitHub link is provided. The repository is available at: `https://github.com/yuantianyuan01/FastWAM`\n\n## 2) Model Checkpoints\nNo mention of HuggingFace model checkpoints is made in the provided content.\n\n## 3) LIBERO-Plus Evaluation\nThere is no reference to LIBERO-Plus evaluation in this material. The paper evaluates on standard LIBERO benchmarks (Spatial, Object, Goal, Long categories) but does not mention LIBERO-Plus specifically.\n\n## 4) Architecture Details\nThe backbone consists of a \"Wan2.2-5B video DiT with a 1B action expert.\" The design features a \"shared-attention Mixture-of-Transformer\" structure. During training, the system jointly learns action prediction and video modeling. At test time, it \"processes them with the video backbone once, and directly generates actions without explicit future video denoising.\" However, specifics regarding flow matching are not discussed.\n\n## 5) Number of Inference Steps\nThe document does not specify the number of inference steps. It emphasizes runtime efficiency, reporting \"190 ms\" latency on a single GPU, but does not detail step counts for the inference process."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce03deda-14f7-4533-b4b3-0d29d355421b",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "766a44c1-a9c6-4078-b3d1-d7c78a0ef972",
+            "sourceToolAssistantUUID": "ce03deda-14f7-4533-b4b3-0d29d355421b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T20:20:12.882Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MZsidvVftiv6DynZbezSEN",
+              "type": "tool_result",
+              "content": "# Generative Predictive Control (GPC) Summary\n\nBased on the arXiv abstract provided, here's what can be extracted:\n\n**Core Concept:**\nGPC is described as \"an inference-time method for improving pretrained behavior-cloning policies without retraining.\" It combines a frozen diffusion policy with an action-conditioned world model.\n\n**Addressing Your Questions:**\n\n1. **Test-time augmentation:** Not mentioned in the available content.\n\n2. **Prediction averaging:** Not addressed in this abstract.\n\n3. **Action filtering/selection:** GPC enables \"lightweight online planning that ranks and refines\" action proposals through model-based look-ahead, though specific filtering mechanisms aren't detailed.\n\n4. **World model:** An \"action-conditioned world model trained on expert demonstrations and random exploration rollouts\" predicts action consequences.\n\n5. **Benchmarks/results:** The abstract states GPC \"consistently outperforms standard behavior cloning and compares favorably with other inference-time adaptation baselines\" across \"diverse robotic manipulation tasks, including state- and vision-based settings in both simulation and real-world experiments,\" but specific numerical results aren't provided in this excerpt.\n\n**Note:** For complete technical details, benchmarks, and methodology, the full paper (available as PDF or HTML) would be necessary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03bd45af-590c-4eee-bf65-cd42cc864a7a",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "731ff910-f912-449e-8c91-efd4a08f378b",
+            "sourceToolAssistantUUID": "03bd45af-590c-4eee-bf65-cd42cc864a7a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T20:20:19.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LEihj4ueWN6zeXgcG4QhuK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"test-time augmentation action prediction averaging VLA robot manipulation simple baseline \"majority voting\" 2024 2025\"\n\nLinks: [{\"title\":\"VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting\",\"url\":\"https://arxiv.org/html/2507.05116\"},{\"title\":\"[2507.05116] VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting\",\"url\":\"https://arxiv.org/abs/2507.05116\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"Published as a conference paper at ICLR 2026 VERIFIER-FREE TEST-TIME SAMPLING\",\"url\":\"https://openreview.net/pdf?id=UD4Rw8MOEK\"},{\"title\":\"Verifier-free Test-Time Sampling for Vision Language Action Models\",\"url\":\"https://arxiv.org/html/2510.05681v1\"},{\"title\":\"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via\",\"url\":\"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf\"},{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"},{\"title\":\"RoVer: Robot Reward Model as Test-Time Verifier for Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2510.10975v2\"},{\"title\":\"HyperVLA: Efficient Inference in Vision-Language-Action Models via Hypernetworks\",\"url\":\"https://arxiv.org/html/2510.04898v1\"},{\"title\":\"Diffusion-VLA: Scaling Robot Foundation Models via Unified Diffusion and Autoregression\",\"url\":\"https://arxiv.org/html/2412.03293v1\"}]\n\nBased on the search results, I found several highly relevant papers on test-time augmentation and ensemble strategies for Vision-Language-Action (VLA) models in robot manipulation. Here are the key findings:\n\n## VOTE: Vision-Language-Action Optimization with Trajectory Ensemble Voting\n\nThe VOTE paper introduces an inference optimization technique with a novel voting-based ensemble strategy to combine current and previous action predictions, improving the utilization of generated actions and overall performance. The Average strategy simply averages all historical predictions. Table 5 compares the proposed action ensemble strategy, Vote Ensemble, with other strategies.\n\nVOTE achieves 39× faster inference than OpenVLA with 46 Hz throughput on edge platforms, demonstrating practical deployability.\n\n## Test-Time Scaling and Majority Voting Approaches\n\nThe search results also identified two other relevant test-time approaches:\n\n1. **MG-Select (Verifier-free Test-Time Sampling)**: MG-Select identifies the most confident action sequences by selecting actions with the highest KL divergence from an uncertainty-aware reference, while avoiding the limitations of likelihood-based selection.\n\n2. **RoVer (Robot Reward Model as Test-Time Verifier)**: To enhance VLA performance without further training, researchers have begun to increase the proportion of 'thinking' at test-time.\n\n## Limitations of Simple Averaging\n\nThe literature also discusses why simple arithmetic averaging may be insufficient: While this approach addresses some of the limitations associated with token discretization, multimodal states often correspond to multiple valid actions, and the attempt to model these states through techniques such as arithmetic averaging can result in infeasible or suboptimal action outputs.\n\nThese papers from 2024-2025 represent the current state of research on test-time augmentation and ensemble methods for VLA robot manipulation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb71c5b3-f760-4c6c-be9a-0478e0224df3",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "d237dbbf-56d8-40b7-acfb-a6f35ae9d586",
+            "sourceToolAssistantUUID": "cb71c5b3-f760-4c6c-be9a-0478e0224df3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T20:20:23.280Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more details on the VOTE paper and the full MG-Select paper, and also check if Fast-WAM's GitHub repo is actually available."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d237dbbf-56d8-40b7-acfb-a6f35ae9d586",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWTdHdpkRWSTaYXX7YV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "35a9c8df-ef11-4567-b2ad-70585c3196b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BjQHVF47oU5VGrhBH5KAmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2432,
+                "cache_read_input_tokens": 18421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2432,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T20:20:25.761Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQdB78SUebPLPXowEeo8wr",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2507.05116",
+                "prompt": "Extract details about VOTE: 1) What is the trajectory ensemble voting mechanism? 2) How does the Average baseline compare to the Vote Ensemble method? 3) What augmentation strategies are used? 4) What benchmarks and results? 5) Does it compare simple averaging/TTA to more sophisticated filtering? 6) What is the exact comparison between naive averaging and their voting method?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35a9c8df-ef11-4567-b2ad-70585c3196b0",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWTdHdpkRWSTaYXX7YV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6d1d8575-0fea-48d4-bd60-cca9cd69164c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BjQHVF47oU5VGrhBH5KAmT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2432,
+                "cache_read_input_tokens": 18421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2432,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T20:20:30.726Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0114BJnvTT9Msu5sJ28BPVsL",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.05681v1",
+                "prompt": "Extract details about MG-Select (verifier-free test-time sampling for VLA): 1) How does it generate multiple action candidates? 2) What is the reference distribution and KL divergence mechanism? 3) Does it compare to simple averaging of augmented predictions? 4) What benchmarks and results? 5) How many candidates are sampled? 6) Does it use any data augmentation at test time?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d1d8575-0fea-48d4-bd60-cca9cd69164c",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWTdHdpkRWSTaYXX7YV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b4ffe7ed-1e1f-4e10-83b1-e7bcee094778",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BjQHVF47oU5VGrhBH5KAmT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2432,
+                "cache_read_input_tokens": 18421,
+                "output_tokens": 414,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2432
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 414,
+                    "cache_read_input_tokens": 18421,
+                    "cache_creation_input_tokens": 2432,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2432,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T20:20:30.875Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XEjAeDMcdrRpMniT6t8Puq",
+              "name": "WebSearch",
+              "input": {
+                "query": "Fast-WAM github yuantianyuan01 code release checkpoint huggingface"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4ffe7ed-1e1f-4e10-83b1-e7bcee094778",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWTdHdpkRWSTaYXX7YV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3c21b9d8-9b0f-4ecd-8475-d37c20f19a16",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BjQHVF47oU5VGrhBH5KAmT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2432,
+                "cache_read_input_tokens": 18421,
+                "output_tokens": 414,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2432
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 414,
+                    "cache_read_input_tokens": 18421,
+                    "cache_creation_input_tokens": 2432,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2432,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T20:20:32.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQdB78SUebPLPXowEeo8wr",
+              "type": "tool_result",
+              "content": "# VOTE: Key Details Analysis\n\n## 1) Trajectory Ensemble Voting Mechanism\n\nThe voting mechanism operates by collecting historical action predictions from previous timesteps. At the current timestep, it computes cosine similarity between each historical prediction and the newest prediction. Actions are split into two groups—those with similarity above threshold τ (0.5) and those below. The subset with more members is averaged to produce the final action. As the paper states, this approach \"selects the actions with more votes, thus more likely to be correct.\"\n\n## 2) Average Baseline Comparison\n\nTable 5 directly compares strategies:\n- None (no ensemble): 47.1% average success\n- Temporal: 53.7%\n- Adaptive: 60.4%\n- Average: 61.6%\n- Vote: 64.5%\n\nVote Ensemble outperforms naive averaging by approximately 2.9 percentage points.\n\n## 3) Augmentation Strategies\n\nThe paper does not employ traditional data augmentation. Instead, it uses SimplerEnv's built-in variations, which introduces \"changes in lighting, color, texture, and camera pose\" to test robustness.\n\n## 4) Benchmarks and Results\n\n**LIBERO**: Achieves 98.0% average success rate (vs. OpenVLA-OFT's 95.3%)\n\n**SimplerEnv WidowX**: 58.3% average success rate, surpassing CogACT (51.3%)\n\n**Inference speedup**: 39× faster than OpenVLA on edge devices (46 Hz throughput on NVIDIA Jetson Orin)\n\n## 5) Filtering Sophistication\n\nUnlike \"straightforward action chunking\" or \"static weighted aggregation,\" the voting method \"effectively filters out unreasonable or inconsistent mode predictions, thereby enhancing reliability.\"\n\n## 6) Naive Averaging vs. Voting\n\nThe key distinction: naive averaging considers all historical predictions equally, potentially introducing incorrect predictions. Voting instead performs \"majority selection,\" discarding inconsistent predictions and only averaging actions that vote similarly to the current prediction."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d1d8575-0fea-48d4-bd60-cca9cd69164c",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "4a3265e9-adbb-4ec2-89b9-44b6302807f3",
+            "sourceToolAssistantUUID": "6d1d8575-0fea-48d4-bd60-cca9cd69164c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T20:20:38.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XEjAeDMcdrRpMniT6t8Puq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Fast-WAM github yuantianyuan01 code release checkpoint huggingface\"\n\nLinks: [{\"title\":\"GitHub - yuantianyuan01/FastWAM: Official codebase for Fast-WAM: Do World Action Models Need Test-time Future Imagination? · GitHub\",\"url\":\"https://github.com/yuantianyuan01/FastWAM\"},{\"title\":\"yuanty/fastwam · Hugging Face\",\"url\":\"https://huggingface.co/yuanty/fastwam\"},{\"title\":\"FastWAM/README.md at main · yuantianyuan01/FastWAM\",\"url\":\"https://github.com/yuantianyuan01/FastWAM/blob/main/README.md\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…\",\"url\":\"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/\"},{\"title\":\"Paper page - Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://huggingface.co/papers/2603.16666\"},{\"title\":\"[Feature Request]: Use the `huggingface_hub` library for downloading checkpoints from the HF Hub · Issue #8217 · AUTOMATIC1111/stable-diffusion-webui\",\"url\":\"https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/8217\"},{\"title\":\"FrancisRing/FlashPortrait · Hugging Face\",\"url\":\"https://huggingface.co/FrancisRing/FlashPortrait\"},{\"title\":\"Phr00t/WAN2.2-14B-Rapid-AllInOne · Hugging Face\",\"url\":\"https://huggingface.co/Phr00t/WAN2.2-14B-Rapid-AllInOne\"},{\"title\":\"Release FocalNet checkpoints on Hugging Face · Issue #56 · microsoft/FocalNet\",\"url\":\"https://github.com/microsoft/FocalNet/issues/56\"},{\"title\":\"huggingface/diffusers v0.33.0 on GitHub\",\"url\":\"https://newreleases.io/project/github/huggingface/diffusers/release/v0.33.0\"}]\n\nBased on the search results, here's what I found about Fast-WAM:\n\n## Fast-WAM GitHub Repository and Checkpoints\n\nThe official codebase for Fast-WAM is located at https://github.com/yuantianyuan01/FastWAM and contains the training and evaluation code for FastWAM on LIBERO and RoboTwin.\n\n## Official Checkpoints on Hugging Face\n\nThe Hugging Face repository releases the official FastWAM checkpoints for the open-source release of Fast-WAM: Do World Action Models Need Test-time Future Imagination? The checkpoints are available at: https://huggingface.co/yuanty/fastwam\n\nThe Hugging Face model repository contains checkpoint files in .pt format for LIBERO and RoboTwin benchmarks, including libero_uncond_2cam224.pt, libero_uncond_2cam224_dataset_stats.json, robotwin_uncond_3cam_384.pt, and robotwin_uncond_3cam_384_dataset_stats.json.\n\n## Downloading Checkpoints\n\nTo download the checkpoints, you can use: `pip install -U huggingface_hub` and then `huggingface-cli download yuanty/fastwam` with the specific checkpoint files and `--local-dir ./checkpoints/fastwam_release`.\n\n## Related Resources\n\nPreprocessed datasets for Fast-WAM are available on Hugging Face at https://huggingface.co/datasets/yuanty/LIBERO-fastwam and https://huggingface.co/datasets/yuanty/robotwin2.0-fastwam.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c21b9d8-9b0f-4ecd-8475-d37c20f19a16",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "ffa840e4-dbfb-4b30-bfba-20ed7cc9d8ed",
+            "sourceToolAssistantUUID": "3c21b9d8-9b0f-4ecd-8475-d37c20f19a16",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T20:20:38.534Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114BJnvTT9Msu5sJ28BPVsL",
+              "type": "tool_result",
+              "content": "# MG-Select: Verifier-free Test-Time Sampling for VLAs\n\n## 1. Multiple Action Candidate Generation\nMG-Select generates candidates through \"parallel stochastic sampling\" with temperature-controlled noise. The system samples N action sequences in parallel using: \"a~j(n)∼πθ(⋅∣ot,qt,I,a~<j(n);τ)\" where temperature τ controls distribution sharpness, with lower values approaching greedy decoding.\n\n## 2. Reference Distribution & KL Divergence\nThe key innovation uses \"condition-masking distributions\"—the same VLA model with randomly masked inputs (text, state, or both). The confidence metric measures \"KL(Qi∥Pi)\" where Qi represents the masked distribution and Pi the normal prediction. This creates \"maximum uncertainty while remaining aligned with the target task distribution.\"\n\n## 3. Comparison to Simple Averaging\nThe paper explicitly contrasts this approach to naive likelihood selection. Simple highest-probability selection fails because \"VLAs fine-tuned on target tasks often memorize expert trajectories, causing the probability distribution...to become overly concentrated.\" The masking approach provides more meaningful confidence signals than uniform baselines.\n\n## 4. Benchmarks & Results\nTesting covered:\n- **RoboCasa**: 168% improvement with 30 demonstrations on pick-and-place tasks\n- **SIMPLER-WidowX**: Consistent improvements across 4 tasks\n- **LIBERO**: Superior performance across multiple generalization axes\n- **Real robot (Franka)**: 28% gain in-distribution, 35% out-of-distribution\n\n## 5. Number of Candidates Sampled\nAblation studies show \"performance improves as N increases from 1 to 4,\" with N=4 being the sweet spot. Larger values (8, 16) show diminishing returns.\n\n## 6. Test-Time Data Augmentation\nNo test-time augmentation occurs. However, a \"joint training strategy\" applies dropout during training to both condition-masked and normal variants, enabling the model to learn both distributions simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4ffe7ed-1e1f-4e10-83b1-e7bcee094778",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "4e520e80-5ed8-4098-bc1a-7c0674160b70",
+            "sourceToolAssistantUUID": "b4ffe7ed-1e1f-4e10-83b1-e7bcee094778",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T20:20:45.601Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the final pieces of information - the GPC full paper details and check for any direct comparison of TTA vs filtering in robot policy literature."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e520e80-5ed8-4098-bc1a-7c0674160b70",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWV18oxbqVF1epL5GpR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2d6e5db5-0e28-4a14-9290-7f1da803d660",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CY8zV7NiqX1oSGbTtmeRvJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1009,
+                "cache_creation_input_tokens": 1421,
+                "cache_read_input_tokens": 20853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1421,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T20:20:47.969Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K3ggfEbv1jv3DJLabSmHgV",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2502.00622",
+                "prompt": "Extract detailed information about Generative Predictive Control (GPC): 1) How does it use the world model to filter/rank action proposals at inference? 2) Does it average predictions or select best ones? 3) What is the exact inference-time procedure? 4) What are the benchmark results? 5) How does it compare to baselines including simple averaging or TTA?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d6e5db5-0e28-4a14-9290-7f1da803d660",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWV18oxbqVF1epL5GpR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "763964d0-cc8b-437e-9643-2a934f7e87e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CY8zV7NiqX1oSGbTtmeRvJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1009,
+                "cache_creation_input_tokens": 1421,
+                "cache_read_input_tokens": 20853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1421,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T20:20:48.658Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UUgttrmEPw85bXe8mpeV5T",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"test-time augmentation\" \"action averaging\" robot policy multimodal action distribution failure mode 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "763964d0-cc8b-437e-9643-2a934f7e87e9",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWV18oxbqVF1epL5GpR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a19b94be-b213-4a22-ab09-12d0b8421309",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CY8zV7NiqX1oSGbTtmeRvJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1009,
+                "cache_creation_input_tokens": 1421,
+                "cache_read_input_tokens": 20853,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1421
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1009,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 20853,
+                    "cache_creation_input_tokens": 1421,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1421,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T20:20:55.881Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K3ggfEbv1jv3DJLabSmHgV",
+              "type": "tool_result",
+              "content": "# Generative Predictive Control (GPC): Key Details\n\n## 1) World Model Action Filtering\n\nGPC uses the world model to **rank and refine** action proposals rather than averaging them. The paper states: \"The generative policy proposes multiple action sequences that are evaluated in imagination using the predictive world model; the action with the highest predicted reward is selected.\"\n\n## 2) Selection vs. Averaging Strategy\n\nGPC employs **selection-based approaches**, not averaging:\n- **GPC-RANK**: Samples K action proposals, rolls each through the world model, and picks \"the one with highest reward\"\n- **GPC-OPT**: Takes a single proposal as warm-start and refines it via gradient ascent through the learned dynamics\n- **GPC-RANK+OPT**: Combines both strategies with multiple initializations\n\n## 3) Exact Inference-Time Procedure\n\nThe process follows three steps:\n1. Sample K action proposals from the frozen diffusion policy\n2. Unroll each through the world model to get predicted future observations\n3. Evaluate using a reward function (learned predictor or VLM) and select/optimize the best\n\nThe paper notes this requires \"K×M world model evaluations\" for the combined approach.\n\n## 4) Benchmark Results\n\n**Vision-based simulation tasks** (Table II):\n- Push-T: 0.739 (GPC-RANK vs. 0.642 behavior cloning baseline)\n- Block Stacking: 0.989\n- Triangle Drawing: 0.767\n\n**State-based Push-T**: Best variant achieved 0.952 IoU compared to 0.812 baseline\n\n**Real-world success rates**: GPC-RANK improved Push-T and cloth folding tasks over pure behavior cloning baselines\n\n## 5) Comparison to Baselines\n\nGPC substantially outperforms:\n- **Pure behavior cloning**: ~10-25% improvement across tasks\n- **Planning-only methods** (MPPI, CEM, gradient ascent without policy priors): \"achieve substantially lower performance...with success rates below 0.20\"\n- **Latent-space methods**: Outperforms LaDi-WM, V-GPS, and DreamerV3 on vision tasks\n\nThe paper emphasizes \"the importance of integrating generative priors with inference-time planning\" over planning alone."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "763964d0-cc8b-437e-9643-2a934f7e87e9",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "74ab8a96-e768-4936-8a20-dbe6107a6ddc",
+            "sourceToolAssistantUUID": "763964d0-cc8b-437e-9643-2a934f7e87e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T20:20:56.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UUgttrmEPw85bXe8mpeV5T",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"test-time augmentation\" \"action averaging\" robot policy multimodal action distribution failure mode 2024 2025\"\n\nLinks: [{\"title\":\"WARPD – World-model Assisted Reactive Policy Diffusion | OpenReview\",\"url\":\"https://openreview.net/forum?id=OS9eo7NQeO\"},{\"title\":\"Diffusion policy: Visuomotor policy learning via action diffusion\",\"url\":\"https://www.researchgate.net/publication/384857010_Diffusion_policy_Visuomotor_policy_learning_via_action_diffusion\"},{\"title\":\"One Demo is Worth a Thousand Trajectories: Action-View Augmentation for Visuomotor Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=Hu3NoPMAg4\"},{\"title\":\"Case Studies of Foundation Model Integration in Embodied ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.69.pdf\"},{\"title\":\"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via\",\"url\":\"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf\"},{\"title\":\"Understanding Test-Time Augmentation\",\"url\":\"https://arxiv.org/html/2402.06892v1\"},{\"title\":\"Beyond Model Adaptation at Test Time: A Survey\",\"url\":\"https://arxiv.org/html/2411.03687v1\"},{\"title\":\"Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025\",\"url\":\"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf\"},{\"title\":\"SEMANTIC WORLD MODELS Jacob Berg1 Chuning Zhu1 Yanda Bao1 Ishan Durugkar2\",\"url\":\"https://weirdlabuw.github.io/swm/static/documents/swm.pdf\"},{\"title\":\"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1566253525011248\"}]\n\nI found several relevant results related to robot policies, multimodal action distributions, and test-time techniques. Here's what the search revealed:\n\n## Key Findings:\n\n**Multimodal Action Distributions in Robot Policies:**\nDiffusion models are now widely used to train large, generalized policies that predict controls or trajectories, leveraging their ability to model multimodal action distributions. Regression methods, such as using a Mean Squared Error (MSE) loss, tend to average these diverse expert behaviors, resulting in conservative or even invalid actions.\n\n**Test-Time Techniques:**\nTest-Time Augmentation (TTA) is a very powerful heuristic that takes advantage of data augmentation during testing to produce averaged output. However, the search results don't specifically address failure modes of action averaging in multimodal distributions.\n\n**Recent VLA and Policy Architectures (2024-2025):**\nThe results show advances in vision-language-action (VLA) models and diffusion-based policies, with hierarchical and late fusion architectures achieving the highest manipulation success and generalization, and diffusion-based decoders demonstrating superior cross-domain transfer and robustness compared to autoregressive heads.\n\n**Failure Modes:**\nWhile the results mention Diffusion Policy (DP) suffers from a trade-off between performance and action horizon: fewer diffusion queries lead to larger trajectory chunks, which in turn accumulate tracking errors, specific failure modes related to averaging multimodal action distributions at test time are not extensively discussed in these results.\n\nThe search didn't return papers specifically focused on the failure modes of action averaging when dealing with multimodal action distributions. Would you like me to search for more specific information about this topic?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a19b94be-b213-4a22-ab09-12d0b8421309",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "b7df6146-2893-4aab-9a39-1508253c9794",
+            "sourceToolAssistantUUID": "a19b94be-b213-4a22-ab09-12d0b8421309",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T20:21:01.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LtosvdR6XLocG6LQyywHB7",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=Hu3NoPMAg4",
+                "prompt": "What is this paper about? Does it use test-time augmentation for robot policies? Does it compare augmented view averaging to other methods? Extract key details about the method and results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7df6146-2893-4aab-9a39-1508253c9794",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWWLEYQvKnCzQNCon9E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b56d0928-f434-4b50-af18-960d08e11358",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHvSB75kBeZrH2bJRsB2KU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2820,
+                "cache_read_input_tokens": 22274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2820,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-10T20:21:02.241Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CSKQqjVJVVoRLMsreHoGTZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "PDF \"perturbation learning delayed feedback\" LIBERO ablation \"data augmentation\" \"without\" environment reward"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b56d0928-f434-4b50-af18-960d08e11358",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWWLEYQvKnCzQNCon9E",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e7d81faf-5d07-4222-9855-b9ecd1377cb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHvSB75kBeZrH2bJRsB2KU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2820,
+                "cache_read_input_tokens": 22274,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2820
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 22274,
+                    "cache_creation_input_tokens": 2820,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2820,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-10T20:21:05.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LtosvdR6XLocG6LQyywHB7",
+              "type": "tool_result",
+              "content": "# Paper Summary\n\n## Topic\nThis research addresses a key challenge in robotic manipulation: visuomotor policies that fail when encountering new object configurations or obstacles. The work proposes a data augmentation framework to improve policy robustness without extensive manual data collection.\n\n## Method Overview\nThe approach generates synthetic training data by:\n- Creating realistic fisheye image sequences from real demonstrations\n- Generating physically feasible action trajectories through optimization\n- Using an adapted Gaussian Splatting technique for 3D scene reconstruction and editing with wide field-of-view cameras\n- Rendering novel viewpoints to augment the training dataset\n\nAs stated in the abstract, the method aims to produce \"visually realistic fisheye image sequences and corresponding physically feasible action trajectories.\"\n\n## Test-Time Augmentation & Comparison Details\nBased on the content provided, the paper does not contain information about whether it employs test-time augmentation for robot policies or whether it compares augmented view averaging against alternative methods. The abstract focuses on the augmentation framework's training-time application and empirical results showing \"improved success rate for various manipulation tasks.\"\n\n## Key Results\nExperiments demonstrated improvements across simulation and real-world tests, with better performance on both original tasks and scenarios requiring collision avoidance with novel obstacles."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b56d0928-f434-4b50-af18-960d08e11358",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "8f4b7a33-eb2a-499c-b141-c07eaac6fc9a",
+            "sourceToolAssistantUUID": "b56d0928-f434-4b50-af18-960d08e11358",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-10T20:21:09.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CSKQqjVJVVoRLMsreHoGTZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PDF \"perturbation learning delayed feedback\" LIBERO ablation \"data augmentation\" \"without\" environment reward\"\n\nLinks: [{\"title\":\"Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2604.18107\"},{\"title\":\"[2604.18107] Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2604.18107\"},{\"title\":\"Test-Time Perturbation Learning with Delayed Feedback for\",\"url\":\"https://arxiv.org/pdf/2604.18107\"},{\"title\":\"Universal Graph Contrastive Learning with a Novel Laplacian Perturbation\",\"url\":\"https://proceedings.mlr.press/v216/ko23a/ko23a.pdf\"},{\"title\":\"SURF: SEMI-SUPERVISED REWARD LEARNING WITH ...\",\"url\":\"https://openreview.net/pdf?id=TfhfZLQ2EJO\"},{\"title\":\"A Taxonomy for Learning with Perturbation and Algorithms | ACM Transactions on Knowledge Discovery from Data\",\"url\":\"https://dl.acm.org/doi/10.1145/3644391\"},{\"title\":\"Data-Efﬁcient Augmentation for Training Neural Networks Tian Yu Liu\",\"url\":\"https://baharanm.github.io/assets/pdf/liu22augmentation.pdf\"},{\"title\":\"Adapting Offline Reinforcement Learning with Online Delays\",\"url\":\"https://arxiv.org/pdf/2506.00131\"},{\"title\":\"A Survey of Reinforcement Learning from Human Feedback Timo Kaufmann\",\"url\":\"https://arxiv.org/pdf/2312.14925\"},{\"title\":\"Learning perturbation sets for robust machine learning\",\"url\":\"https://locuslab.github.io/2020-07-20-perturbation/\"}]\n\nBased on the web search results, I found the paper you're looking for! The search returned information about:\n\n**\"Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\"**\n\nThis paper proposes Perturbation learning with Delayed Feedback (PDF), a verifier-free test-time adaptation framework that improves decision performance without fine-tuning the base model. \n\nPDF mitigates spurious correlations through uncertainty-based data augmentation and action voting, while an adaptive scheduler allocates augmentation budgets to balance performance and efficiency. It also learns a lightweight perturbation module that retrospectively adjusts action logits guided by delayed feedback.\n\n**Regarding the ablation study you mentioned:** The ablation compares the baseline OpenVLA with variants of the proposed PDF, where \"PDF w/o DF\" denotes OpenVLA that selects actions solely via multi-view voting (without delayed feedback), and \"PDF w/o DA\" denotes OpenVLA that learns perturbations using only the original pixel observations (without data augmentation).\n\nExperiments on LIBERO demonstrate consistent gains of PDF in task success over vanilla VLA and VLA with test-time adaptation, with a +7.4% success rate improvement.\n\nThe paper is available on arXiv as document 2604.18107, and you can access both the HTML and PDF versions through the links in the search results.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7d81faf-5d07-4222-9855-b9ecd1377cb8",
+            "isSidechain": true,
+            "promptId": "3558a6dc-24ed-4795-b161-f58d83861b74",
+            "agentId": "aaadd70e821d54dca",
+            "type": "user",
+            "uuid": "53453c0f-2655-432d-a692-08cf02c06290",
+            "sourceToolAssistantUUID": "e7d81faf-5d07-4222-9855-b9ecd1377cb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-10T20:22:10.730Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information on all three topics. Here is my detailed research report:\n\n---\n\n## 1. TTPL / PDF (Test-Time Perturbation Learning with Delayed Feedback)\n\n**Paper**: [arXiv:2604.18107](https://arxiv.org/abs/2604.18107), April 2026. The method is actually called **PDF** (Perturbation learning with Delayed Feedback), though the paper title uses \"Test-Time Perturbation Learning.\"\n\n### Exact Mechanism\n\nPDF has three components working together:\n\n1. **Uncertainty-based Data Augmentation + Action Voting**: At each timestep, the model computes normalized Shannon entropy of the predicted action distribution: `U_t = -1/log(K) * sum(p(a_k|s_k) * log(p(a_k|s_k)))`. This uncertainty score drives an adaptive augmentation budget: `N_t = N_max * U_t` (with N_max = 3). Multiple augmented observations are generated, passed through the frozen VLA, and the resulting candidate actions are selected via **majority voting** (not simple averaging).\n\n2. **Adaptive Scheduler**: Allocates more augmented views when the model is uncertain, fewer when confident. This balances performance vs. computational cost.\n\n3. **Lightweight Perturbation Module (P-head)**: A small 9M-parameter learned head `h_theta` that adjusts action logits: `z_tilde_t = h_phi(f_t) + lambda * h_theta(f_t)`. Only `h_theta` is updated; all VLA parameters remain frozen.\n\n### Environment Feedback Requirement\n\n**Yes, it requires delayed episodic feedback during deployment.** Upon task completion, the agent receives a delayed reward signal `r_i` indicating task success/failure. The perturbation head is trained via REINFORCE: `L = -(r-b) * log(pi_phi) + lambda_kl * I[r>b] * KL(pi_phi || pi_tilde)`. This is a critical limitation -- it needs end-of-episode reward signals.\n\n### Comparison to Simple Averaging\n\nThe paper does NOT explicitly include a \"simple averaging of augmented views\" baseline. However, based on the ablation:\n- **PDF w/o DF** = multi-view voting only (no delayed feedback learning) -- this is essentially augment + vote without the learned perturbation\n- **PDF w/o DA** = perturbation learning with only original observations (no augmentation)\n- Both underperform the full method. Notably, without delayed feedback, performance drops substantially (0.50 on Object suite vs much higher with full method).\n\nThe key difference from naive TTA averaging: (1) they use majority voting not mean averaging; (2) the augmentation budget adapts to uncertainty; (3) the perturbation head learns from episodic feedback to correct overconfidence.\n\n### LIBERO Results: +7.4% average success rate improvement over vanilla OpenVLA.\n\n---\n\n## 2. Test-Time Augmentation (TTA) for Robot Manipulation Policies\n\n### State of the Art for Prediction Averaging / Filtering\n\nThe literature reveals several distinct approaches, none of which are simple TTA averaging:\n\n**a) MG-Select (ICLR 2026)** -- [Verifier-free Test-Time Sampling](https://arxiv.org/html/2510.05681v1)\n- Samples N=4 action candidates in parallel (temperature-controlled stochastic sampling)\n- Scores them using KL divergence between normal predictions and \"condition-masked\" predictions (model with randomly masked text/state inputs)\n- Selects the candidate with highest KL divergence (most \"confident\" deviation from uncertain baseline)\n- Does NOT use data augmentation at test time\n- Results: +168% on RoboCasa, +28%/+35% in/out-of-distribution on real Franka\n\n**b) VOTE (2025)** -- [Trajectory Ensemble Voting](https://arxiv.org/abs/2507.05116)\n- Collects action predictions across timesteps and uses cosine similarity to identify consensus\n- Actions split into two groups by threshold (tau=0.5); the larger group is averaged\n- Explicitly compares Vote Ensemble (64.5%) vs. naive Average (61.6%) vs. no ensemble (47.1%)\n- **This is the clearest direct comparison**: voting outperforms simple averaging by ~3 points\n\n**c) GPC (Generative Predictive Control, 2025)** -- [arXiv:2502.00622](https://arxiv.org/abs/2502.00622)\n- Samples K action proposals from frozen diffusion policy\n- Rolls each forward through a learned world model\n- Selects the one with highest predicted reward (GPC-RANK) or refines via gradient ascent (GPC-OPT)\n- ~10-25% improvement over pure behavior cloning\n\n**d) RoVer** -- Uses a learned Process Reward Model to score action chunks at test time\n\n### Key Finding: Why Simple Averaging Fails\n\nThe literature consistently notes that **averaging multimodal action distributions produces invalid or suboptimal actions**. MSE-style averaging of diverse expert behaviors results in conservative or infeasible actions (the \"averaging\" problem). This is why voting/selection methods dominate over simple mean-based TTA in robotics.\n\n### Has Anyone Compared TTA to Sophisticated Filtering?\n\n**Yes -- the VOTE paper (Table 5) is the most direct comparison**:\n- No ensemble: 47.1%\n- Simple Average: 61.6%  \n- Vote Ensemble (filtering): 64.5%\n\nMG-Select compares against likelihood-based selection but not against augmentation-based averaging specifically.\n\n---\n\n## 3. Fast-WAM Architecture Details\n\n**Paper**: [arXiv:2603.16666](https://arxiv.org/abs/2603.16666), March 2026.\n\n### Flow-Matching vs. Diffusion\n\n**Flow-matching (velocity field)**. The paper explicitly states it is \"trained to predict the corresponding velocity field with a standard flow matching objective.\" This is NOT score-based diffusion.\n\n### Integration Steps\n\n**10 denoising steps** at inference with classifier-free guidance (CFG) scale of 1.0.\n\n### Code and Checkpoint Release\n\nBoth are publicly available:\n- **GitHub**: https://github.com/yuantianyuan01/FastWAM (official codebase)\n- **HuggingFace checkpoints**: https://huggingface.co/yuanty/fastwam\n  - `libero_uncond_2cam224.pt` + stats JSON\n  - `robotwin_uncond_3cam_384.pt` + stats JSON\n- **Preprocessed datasets**: `huggingface.co/datasets/yuanty/LIBERO-fastwam` and `huggingface.co/datasets/yuanty/robotwin2.0-fastwam`\n\n### LIBERO-Plus Evaluation\n\n**No.** Fast-WAM has NOT been evaluated on LIBERO-Plus. It only evaluates on standard LIBERO suites (Spatial, Object, Goal, Long) and RoboTwin.\n\n### LIBERO Results\n\nAverage **97.6%** success rate:\n- Spatial: 98.2%\n- Object: 100.0%\n- Goal: 97.0%\n- Long: 95.2%\n\n### Architecture\n\n- Built on **Wan2.2-5B** video DiT backbone + 1B action expert DiT (6B total parameters)\n- **Mixture-of-Transformer (MoT)** design with shared attention\n- Action horizon: 32 steps; 9 video frames per chunk\n- Training: joint flow-matching loss `L = L_act + lambda * L_vid`\n- Inference latency: **190ms** on single GPU (4x faster than imagine-then-execute WAMs)\n- Key insight: video co-training during training improves representations, but explicit future video generation at test time is unnecessary\n\n---\n\n## Summary Table for Your Paper Revision\n\n| Method | Mechanism | Needs Env Feedback? | Simple Avg Baseline? |\n|--------|-----------|--------------------|--------------------|\n| PDF/TTPL | Augment + vote + learned perturbation | Yes (episodic reward) | Not directly compared |\n| MG-Select | Multi-sample + KL selection | No | No (compares to likelihood) |\n| VOTE | Temporal ensemble + cosine voting | No | Yes: Avg=61.6%, Vote=64.5% |\n| GPC | World model ranking/optimization | No (needs world model) | Not directly |\n| Fast-WAM | Flow-matching WAM (no test-time imagination) | No | N/A (not a TTA method) |\n\nSources:\n- [TTPL/PDF - arXiv:2604.18107](https://arxiv.org/abs/2604.18107)\n- [Fast-WAM - arXiv:2603.16666](https://arxiv.org/abs/2603.16666)\n- [Fast-WAM GitHub](https://github.com/yuantianyuan01/FastWAM)\n- [Fast-WAM HuggingFace](https://huggingface.co/yuanty/fastwam)\n- [MG-Select - Verifier-free Test-Time Sampling](https://arxiv.org/html/2510.05681v1)\n- [VOTE - Trajectory Ensemble Voting](https://arxiv.org/abs/2507.05116)\n- [GPC - Generative Predictive Control](https://arxiv.org/abs/2502.00622)\n- [RoVer - Robot Reward Model as Test-Time Verifier](https://arxiv.org/abs/2510.10975)\n- [Diff-DAgger - Uncertainty Estimation with Diffusion Policy](https://arxiv.org/html/2410.14868v1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53453c0f-2655-432d-a692-08cf02c06290",
+            "isSidechain": true,
+            "agentId": "aaadd70e821d54dca",
+            "requestId": "req_011CauWXFrtdsUHYN68SE63X",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "872fd232-2476-4f57-bd15-2fd8899811c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "4efdeba3-01a8-4084-b912-0729c5e53d52",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VAVhRXnBX77VQGTqYkKssb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1309,
+                "cache_read_input_tokens": 25094,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1309,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-research-two-things-for-a-paper-revision-1-ttpl-test-time-perturbati.md"
+}

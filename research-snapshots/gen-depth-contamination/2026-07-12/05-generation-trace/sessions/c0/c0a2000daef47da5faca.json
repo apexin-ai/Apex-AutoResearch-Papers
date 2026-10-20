@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "c0a2000daef47da5faca",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp_004_7b_crossscale - project: gen",
+  "task_key": "e4ccb5f4-bf7b-476e-893b-ce56f4476486",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/e4ccb5f4-bf7b-476e-893b-ce56f4476486.jsonl",
+    "occurrence": 1,
+    "bytes": 591720,
+    "sha256": "902514ec1205afcee334d332682a121de154c00aa660e6ee32b8e8a242a4175c"
+  },
+  "statistics": {
+    "messages": 139,
+    "user_turns": 4,
+    "tool_calls": 39,
+    "roles": {
+      "record": 34,
+      "user": 4,
+      "assistant": 24,
+      "tool_call": 39,
+      "tool_result": 38
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c0a2000daef47da5faca-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "c0a2000daef47da5faca-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c0a2000daef47da5faca-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "c0a2000daef47da5faca-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "c0a2000daef47da5faca-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c0a2000daef47da5faca-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-exp-004-7b-crossscale-pro.md"
+}

@@ -1,0 +1,769 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9fa9ae0fa046c1eb0d0a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2dde7fd9-7be2-456f-9672-71674bcb479a",
+                "sessionId": "120aee99-bf56-4b50-9486-7995b744b855"
+              }
+            }
+          ],
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI for exp-016 base model 1v2 AUC",
+                "sessionId": "120aee99-bf56-4b50-9486-7995b744b855"
+              }
+            }
+          ],
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-16T05:05:16.243Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xzcb9nFsUgsp7s7RABLNLK",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp016_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.",
+                "project": "gen-depth-contamination",
+                "exp_id": "exp_016_base_vs_instruct",
+                "content_filename": "exp016_bootstrap_ci.json",
+                "content": "{\"experiment\": \"exp-016 Qwen2.5-1.5B base continuation\", \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\", \"n_bootstrap\": 10000, \"n_permutation\": 10000, \"seed\": 42, \"total_seconds\": 282.0, \"pairs\": {\"0v1\": {\"auc\": 0.987, \"ci_lower\": 0.9853, \"ci_upper\": 0.9885, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.626, \"ci_lower\": 0.6168, \"ci_upper\": 0.6353, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5397, \"ci_upper\": 0.56, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5293, \"ci_lower\": 0.5188, \"ci_upper\": 0.5399, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5181, \"ci_lower\": 0.5075, \"ci_upper\": 0.5288, \"perm_p\": 0.0016}}}",
+                "tags": [
+                  "bootstrap",
+                  "ci",
+                  "exp-016",
+                  "base-model"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dde7fd9-7be2-456f-9672-71674bcb479a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fXTYhAVt4Zp61K9XcG",
+            "type": "assistant",
+            "uuid": "b5bff85a-313a-4a90-928f-c29c8b2b3b86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DC7SymkcgrckDw6S4d2gPQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1267,
+                "cache_read_input_tokens": 101263,
+                "output_tokens": 607,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1267,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 607,
+                    "cache_read_input_tokens": 101263,
+                    "cache_creation_input_tokens": 1267,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1267
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-16T05:05:16.254Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-016 Q...288, 'perm_p': 0.0016}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01Xzcb9nFsUgsp7s7RABLNLK"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5bff85a-313a-4a90-928f-c29c8b2b3b86",
+            "isSidechain": false,
+            "promptId": "034505f6-61cb-43ec-a51d-3e8625814385",
+            "type": "user",
+            "uuid": "bce60543-a649-44df-a267-17528072261b",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-016 Q...288, 'perm_p': 0.0016}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "b5bff85a-313a-4a90-928f-c29c8b2b3b86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-16T05:05:22.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TMhffWwsNnWrhBf1wFryEv",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp016_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.",
+                "project": "gen-depth-contamination",
+                "exp_id": "exp_016_base_vs_instruct",
+                "content_filename": "exp016_bootstrap_ci.json",
+                "content": "{\"experiment\":\"exp-016 Qwen2.5-1.5B base continuation\",\"method\":\"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\"n_bootstrap\":10000,\"n_permutation\":10000,\"seed\":42,\"pairs\":{\"0v1\":{\"auc\":0.987,\"ci_lower\":0.9853,\"ci_upper\":0.9885,\"perm_p\":0.0001},\"1v2\":{\"auc\":0.626,\"ci_lower\":0.6168,\"ci_upper\":0.6353,\"perm_p\":0.0001},\"2v3\":{\"auc\":0.5496,\"ci_lower\":0.5397,\"ci_upper\":0.56,\"perm_p\":0.0001},\"3v4\":{\"auc\":0.5293,\"ci_lower\":0.5188,\"ci_upper\":0.5399,\"perm_p\":0.0001},\"4v5\":{\"auc\":0.5181,\"ci_lower\":0.5075,\"ci_upper\":0.5288,\"perm_p\":0.0016}}}",
+                "tags": [
+                  "bootstrap",
+                  "ci",
+                  "exp-016",
+                  "base-model"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bce60543-a649-44df-a267-17528072261b",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fXwmaHorzenon69h4n",
+            "type": "assistant",
+            "uuid": "3c49630b-2f5e-4c7d-9b6a-fb364ac14643",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SMXjthu2psjRxeqTdrqY9r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 724,
+                "cache_read_input_tokens": 102530,
+                "output_tokens": 552,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 724,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 552,
+                    "cache_read_input_tokens": 102530,
+                    "cache_creation_input_tokens": 724,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 724
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-16T05:05:22.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-016 Q...288, 'perm_p': 0.0016}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01TMhffWwsNnWrhBf1wFryEv"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c49630b-2f5e-4c7d-9b6a-fb364ac14643",
+            "isSidechain": false,
+            "promptId": "034505f6-61cb-43ec-a51d-3e8625814385",
+            "type": "user",
+            "uuid": "1d43e11f-0c93-4035-902a-3fe542e84836",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-016 Q...288, 'perm_p': 0.0016}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "3c49630b-2f5e-4c7d-9b6a-fb364ac14643",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-16T05:05:25.829Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The content parameter needs to be a plain string, not a dict. I need to pass it as a JSON string. Let me try again with explicit string.",
+              "signature": "EsQCClkIDRgCKkCMEXxOThOFPDd10zON5afH6oyMuGn9ovEiZeub5Q1t/T2OmtE17N6nlKQ7PGQkiVXdOUzE++mV97CXNTsNnD0EMg9jbGF1ZGUtb3B1cy00LTY4ABIMJ0xXhyDw3hdSnObuGgyCBW7FMEM9uM0pxEsiMPpX3MXOV5ujXuu0ySAjaywIdwmJpUJbhnjaUVfevzFSLm+VaRuceTmt+PNnDEYVICqYAWutDmdvdDi7Kl92VjVK+0PTmCobcH5YbE72ww+jcP8hp7fL6klYQQ6hrcI4TmSWM9UoT/VfgmalzXK0TZ3xvW9PxMTjxeOsiD7MJrym9L0gHohjNi3MIbUAEKCrGIZHbQrv/Ok5BmzGQ6HZYn6wwK+aIFWytXDMP1VnpMwkHHuIAYIY0SeMhq/d6N4Aj49LyteplWtI36HSGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d43e11f-0c93-4035-902a-3fe542e84836",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fYRvVCrtDSF32448nj",
+            "type": "assistant",
+            "uuid": "edfa6875-5e96-46ce-8660-3b86a661306a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TFwtcnjAAU1kxTPH4bR4LC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 669,
+                "cache_read_input_tokens": 103254,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 669,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 103254,
+                    "cache_creation_input_tokens": 669,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 669
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-16T05:05:27.467Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mf5du1zSbBNbj3QguQdgxZ",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp016_bootstrap_ci.json 2>/dev/null || echo \"NOT_LOCAL\"",
+                "description": "Check if artifact exists locally"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edfa6875-5e96-46ce-8660-3b86a661306a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fYRvVCrtDSF32448nj",
+            "type": "assistant",
+            "uuid": "47d57c5f-f206-4861-a424-04900190ce82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TFwtcnjAAU1kxTPH4bR4LC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 669,
+                "cache_read_input_tokens": 103254,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 669,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 103254,
+                    "cache_creation_input_tokens": 669,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 669
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-16T05:05:27.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mf5du1zSbBNbj3QguQdgxZ",
+              "type": "tool_result",
+              "content": "NOT_LOCAL",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47d57c5f-f206-4861-a424-04900190ce82",
+            "isSidechain": false,
+            "promptId": "034505f6-61cb-43ec-a51d-3e8625814385",
+            "type": "user",
+            "uuid": "02323441-6109-4230-a816-8a545df49dbe",
+            "toolUseResult": {
+              "stdout": "NOT_LOCAL",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "47d57c5f-f206-4861-a424-04900190ce82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-16T05:05:37.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LFvZq412GGw6jaZV2XUfcN",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp016_bootstrap_ci.json",
+                "content": "{\n  \"experiment\": \"exp-016 Qwen2.5-1.5B base continuation\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"total_seconds\": 282.0,\n  \"pairs\": {\n    \"0v1\": {\n      \"auc\": 0.987,\n      \"auc_mean_folds\": 0.987,\n      \"fold_aucs\": [0.9881, 0.9884, 0.9852, 0.9851, 0.9882],\n      \"ci_lower\": 0.9853,\n      \"ci_upper\": 0.9885,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.9869,\n      \"boot_std\": 0.0008\n    },\n    \"1v2\": {\n      \"auc\": 0.626,\n      \"auc_mean_folds\": 0.6262,\n      \"fold_aucs\": [0.5963, 0.6362, 0.6366, 0.6337, 0.6282],\n      \"ci_lower\": 0.6168,\n      \"ci_upper\": 0.6353,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.6261,\n      \"boot_std\": 0.0047\n    },\n    \"2v3\": {\n      \"auc\": 0.5496,\n      \"auc_mean_folds\": 0.5496,\n      \"fold_aucs\": [0.5516, 0.5456, 0.5403, 0.5605, 0.5501],\n      \"ci_lower\": 0.5397,\n      \"ci_upper\": 0.56,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.5496,\n      \"boot_std\": 0.0052\n    },\n    \"3v4\": {\n      \"auc\": 0.5293,\n      \"auc_mean_folds\": 0.5294,\n      \"fold_aucs\": [0.5515, 0.5133, 0.5198, 0.535, 0.5276],\n      \"ci_lower\": 0.5188,\n      \"ci_upper\": 0.5399,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.5292,\n      \"boot_std\": 0.0054\n    },\n    \"4v5\": {\n      \"auc\": 0.5181,\n      \"auc_mean_folds\": 0.5182,\n      \"fold_aucs\": [0.5207, 0.5393, 0.5186, 0.5169, 0.4956],\n      \"ci_lower\": 0.5075,\n      \"ci_upper\": 0.5288,\n      \"perm_p\": 0.0016,\n      \"boot_mean\": 0.5181,\n      \"boot_std\": 0.0054\n    }\n  }\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02323441-6109-4230-a816-8a545df49dbe",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fYmmb1SLfGZcK6NZKx",
+            "type": "assistant",
+            "uuid": "5dd77d66-7a0f-4461-a128-e12a6ab3ac7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014HAqbZgFwxi6oFQGgvJLeE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 187,
+                "cache_read_input_tokens": 103923,
+                "output_tokens": 923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 187,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 923,
+                    "cache_read_input_tokens": 103923,
+                    "cache_creation_input_tokens": 187,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 187
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-16T05:05:37.346Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LFvZq412GGw6jaZV2XUfcN",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp016_bootstrap_ci.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5dd77d66-7a0f-4461-a128-e12a6ab3ac7d",
+            "isSidechain": false,
+            "promptId": "034505f6-61cb-43ec-a51d-3e8625814385",
+            "type": "user",
+            "uuid": "20927193-2691-47da-8cb8-20ae51da7374",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp016_bootstrap_ci.json",
+              "content": "{\n  \"experiment\": \"exp-016 Qwen2.5-1.5B base continuation\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"total_seconds\": 282.0,\n  \"pairs\": {\n    \"0v1\": {\n      \"auc\": 0.987,\n      \"auc_mean_folds\": 0.987,\n      \"fold_aucs\": [0.9881, 0.9884, 0.9852, 0.9851, 0.9882],\n      \"ci_lower\": 0.9853,\n      \"ci_upper\": 0.9885,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.9869,\n      \"boot_std\": 0.0008\n    },\n    \"1v2\": {\n      \"auc\": 0.626,\n      \"auc_mean_folds\": 0.6262,\n      \"fold_aucs\": [0.5963, 0.6362, 0.6366, 0.6337, 0.6282],\n      \"ci_lower\": 0.6168,\n      \"ci_upper\": 0.6353,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.6261,\n      \"boot_std\": 0.0047\n    },\n    \"2v3\": {\n      \"auc\": 0.5496,\n      \"auc_mean_folds\": 0.5496,\n      \"fold_aucs\": [0.5516, 0.5456, 0.5403, 0.5605, 0.5501],\n      \"ci_lower\": 0.5397,\n      \"ci_upper\": 0.56,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.5496,\n      \"boot_std\": 0.0052\n    },\n    \"3v4\": {\n      \"auc\": 0.5293,\n      \"auc_mean_folds\": 0.5294,\n      \"fold_aucs\": [0.5515, 0.5133, 0.5198, 0.535, 0.5276],\n      \"ci_lower\": 0.5188,\n      \"ci_upper\": 0.5399,\n      \"perm_p\": 0.0001,\n      \"boot_mean\": 0.5292,\n      \"boot_std\": 0.0054\n    },\n    \"4v5\": {\n      \"auc\": 0.5181,\n      \"auc_mean_folds\": 0.5182,\n      \"fold_aucs\": [0.5207, 0.5393, 0.5186, 0.5169, 0.4956],\n      \"ci_lower\": 0.5075,\n      \"ci_upper\": 0.5288,\n      \"perm_p\": 0.0016,\n      \"boot_mean\": 0.5181,\n      \"boot_std\": 0.0054\n    }\n  }\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "5dd77d66-7a0f-4461-a128-e12a6ab3ac7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-16T05:05:44.150Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AZHTqbCuf8cR4A7r6L1mBC",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp016_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.",
+                "project": "gen-depth-contamination",
+                "exp_id": "exp_016_base_vs_instruct",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp016_bootstrap_ci.json",
+                "tags": [
+                  "bootstrap",
+                  "ci",
+                  "exp-016",
+                  "base-model"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20927193-2691-47da-8cb8-20ae51da7374",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fZVmCJorCAJXKhM9Ds",
+            "type": "assistant",
+            "uuid": "bc38dff5-cf5b-425e-8350-4ee208ddcef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0186nC6dvGkxMFEKX57kC5D2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 979,
+                "cache_read_input_tokens": 104110,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 979,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 104110,
+                    "cache_creation_input_tokens": 979,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 979
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-16T05:05:44.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AZHTqbCuf8cR4A7r6L1mBC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_e71572\\\", \\\"name\\\": \\\"exp016_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/exp_016_base_vs_instruct/data/exp016_bootstrap_ci.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": \\\"exp_016_base_vs_instruct\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:05:44.156535+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"ci\\\", \\\"exp-016\\\", \\\"base-model\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc38dff5-cf5b-425e-8350-4ee208ddcef2",
+            "isSidechain": false,
+            "promptId": "034505f6-61cb-43ec-a51d-3e8625814385",
+            "type": "user",
+            "uuid": "0c605b50-a27d-4a06-86b6-941541bb45a1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_e71572\\\", \\\"name\\\": \\\"exp016_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/exp_016_base_vs_instruct/data/exp016_bootstrap_ci.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": \\\"exp_016_base_vs_instruct\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:05:44.156535+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"ci\\\", \\\"exp-016\\\", \\\"base-model\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_e71572\", \"name\": \"exp016_bootstrap_ci\", \"type\": \"data\", \"description\": \"Bootstrap CI (10K resamples) + permutation test (10K) for exp-016 Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.\", \"path\": \"projects/gen-depth-contamination/artifacts/exp_016_base_vs_instruct/data/exp016_bootstrap_ci.json\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": \"exp_016_base_vs_instruct\", \"skill\": \"\", \"created_at\": \"2026-05-16T05:05:44.156535+00:00\", \"tags\": [\"bootstrap\", \"ci\", \"exp-016\", \"base-model\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "bc38dff5-cf5b-425e-8350-4ee208ddcef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-16T05:05:56.221Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新，artifact 已注册。\n\n---\n\n## exp-016 Bootstrap CI 结果\n\n### 关键结论：1v2 CI lower = 0.6168 > θ=0.60 → **PASS**\n\n| Pair | AUC | 95% CI | Perm p |\n|------|-----|--------|--------|\n| 0v1 | 0.9870 | [0.9853, 0.9885] | <0.0001 |\n| **1v2** | **0.6260** | **[0.6168, 0.6353]** | **<0.0001** |\n| 2v3 | 0.5496 | [0.5397, 0.5600] | <0.0001 |\n| 3v4 | 0.5293 | [0.5188, 0.5399] | <0.0001 |\n| 4v5 | 0.5181 | [0.5075, 0.5288] | 0.0016 |\n\n方法: GroupKFold(5) OOF + doc-level bootstrap (10K) + label permutation (10K)\n\n### 分析\n\n1. **1v2 CI lower=0.6168 稳健地高于 θ=0.60**，尽管 fold 0 的 1v2=0.5963 < 0.60，aggregate 层面无问题\n2. **所有 5 个 pairs 统计显著** (p ≤ 0.0016)，4v5 的 p=0.0016 最大但仍远低于 0.05\n3. **2v3 CI upper=0.56 < 0.60**，干净地确认 K*=2 边界\n\n### 与 exp-017 (Instruct) 对比\n\n| | Base (exp-016) | Instruct (exp-017) |\n|--|---|---|\n| 1v2 AUC | 0.626 | 0.6114 |\n| 1v2 CI | [0.6168, 0.6353] | [0.6015, 0.6213] |\n\n两个 CI 有重叠 [0.6168, 0.6213]，base 和 instruct 的 1v2 区分度无显著差异。K*=2 不是 instruct-tuning 的副产物。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c605b50-a27d-4a06-86b6-941541bb45a1",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fa1StVRk7KQx6fCYww",
+            "type": "assistant",
+            "uuid": "5394e9ea-fda9-4f71-af52-5eb1bdc1b4fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "120aee99-bf56-4b50-9486-7995b744b855",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XS55DVwz97bKL2fMWsFYqA",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 105089,
+                "output_tokens": 629,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 620,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 629,
+                    "cache_read_input_tokens": 105089,
+                    "cache_creation_input_tokens": 620,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 620
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5394e9ea-fda9-4f71-af52-5eb1bdc1b4fd",
+                "sessionId": "120aee99-bf56-4b50-9486-7995b744b855"
+              }
+            }
+          ],
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI for exp-016 base model 1v2 AUC",
+                "sessionId": "120aee99-bf56-4b50-9486-7995b744b855"
+              }
+            }
+          ],
+          "id": "event-000376"
+        }
+      ]
+    }
+  ]
+}

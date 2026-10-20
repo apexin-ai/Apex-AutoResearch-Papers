@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "bc44c21deb2045043266",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-contamination ## 运行环境 - 服务器名: cqa1-22115 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "07b82912-111b-431e-902c-9c3ada4361ad",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/07b82912-111b-431e-902c-9c3ada4361ad.jsonl",
+    "occurrence": 1,
+    "bytes": 760912,
+    "sha256": "344aeda8a48809276da0c9ceacb8f6caacccd1f1b9a1d78a9b12e531f8d9eaf5"
+  },
+  "statistics": {
+    "messages": 318,
+    "user_turns": 1,
+    "tool_calls": 98,
+    "roles": {
+      "record": 60,
+      "user": 1,
+      "assistant": 61,
+      "tool_call": 98,
+      "tool_result": 98
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "bc44c21deb2045043266-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 316,
+      "chunks": [
+        {
+          "path": "bc44c21deb2045043266-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "bc44c21deb2045043266-part-0002.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-contamination-cqa1-22115-ssh-root-ssh-execute-submit-copy-285.md"
+}

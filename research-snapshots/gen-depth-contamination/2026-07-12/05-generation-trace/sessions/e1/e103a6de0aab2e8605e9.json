@@ -1,0 +1,1679 @@
+{
+  "schema_version": "1.0",
+  "id": "e103a6de0aab2e8605e9",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for and verify the following papers. For each, report: (1) whether the paper exists, (2) key metrics/claims. Use ",
+  "task_key": "agent-a7cc84d3069ab0b54",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7cc84d3069ab0b54.jsonl",
+    "occurrence": 1,
+    "bytes": 68464,
+    "sha256": "2f314d635c797bd95aff315262b3134fd6bd56cf31c2c81f2d5ed75265d116ff"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T09:25:40.656Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for and verify the following papers. For each, report: (1) whether the paper exists, (2) key metrics/claims. Use WebSearch and WebFetch.\n\n1. World-Value-Action (WAV) Model (arXiv 2604.14732, April 2026) - search for \"World-Value-Action WAV model robot manipulation arxiv 2604.14732\". Specifically verify: does it report 99.6% on LIBERO and 75.6% real-world? What table/figure are these in?\n\n2. Fast-WAM (arXiv 2603.16666) - search for \"Fast-WAM world action models without test-time video arxiv\". Verify: does it report 97.6% LIBERO-avg (Table 2) and 91.8% RoboTwin (Table 1) at 190ms?\n\n3. Search for any NEW papers (2026) on \"candidate selection\" or \"best-of-N\" or \"test-time compute\" for robot manipulation WAMs or world models that might not be cited in the submission. Try queries: \"world action model candidate selection 2026\", \"best-of-N robot policy inference 2026 arxiv\"\n\n4. Check if \"OA-WAM\" (arXiv 2605.06481) and \"CKT-WAM\" (arXiv 2605.06247) are real papers - what do they actually address?\n\nReport findings concisely."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "c1403ff9-9bb2-4ca0-ba56-6f5afa4fdd2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T09:25:41.561Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for and verify these papers systematically. Let me start with multiple parallel searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1403ff9-9bb2-4ca0-ba56-6f5afa4fdd2a",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "31d65362-2afa-4bad-bcc8-257ddec22156",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T09:25:41.781Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gi6He7SmmR83ebmqg1GQ4M",
+              "name": "WebSearch",
+              "input": {
+                "query": "World-Value-Action WAV model robot manipulation arxiv 2604.14732"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31d65362-2afa-4bad-bcc8-257ddec22156",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b37f7d2e-e8f7-46bc-9bba-a3a06cdb8a90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T09:25:41.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XmtQoQGbv8rn58sxqFKQFb",
+              "name": "WebSearch",
+              "input": {
+                "query": "Fast-WAM world action models without test-time video arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b37f7d2e-e8f7-46bc-9bba-a3a06cdb8a90",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7f705bfa-d187-46e9-85a8-4a38cc30037b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T09:25:42.207Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mofvva5pPfcBK6htYPwwXE",
+              "name": "WebSearch",
+              "input": {
+                "query": "world action model candidate selection 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f705bfa-d187-46e9-85a8-4a38cc30037b",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "653a417e-7b4e-4032-83ba-05649806273d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T09:25:42.211Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014pzhdUy5p9Aoduz43u4Lpg",
+              "name": "WebSearch",
+              "input": {
+                "query": "best-of-N robot policy inference 2026 arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "653a417e-7b4e-4032-83ba-05649806273d",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3af2888b-3112-4430-a110-4096149affc1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T09:25:42.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qh2tsQZtEEgrcG38FZTNsU",
+              "name": "WebSearch",
+              "input": {
+                "query": "OA-WAM arxiv 2605.06481"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3af2888b-3112-4430-a110-4096149affc1",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "933843b0-f540-4559-a9b0-d1d73adf7b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 767,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T09:25:42.526Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CEvLYcaBVH5jcGVkgBZJcJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "CKT-WAM arxiv 2605.06247"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "933843b0-f540-4559-a9b0-d1d73adf7b47",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYBwT8qdPvhGhavkQC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d4a900bd-92c4-468b-a2fe-40f3015bb0b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HM8MMjCQUBQr9uGNLt73Qr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 13791,
+                "output_tokens": 322,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 767
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 322,
+                    "cache_read_input_tokens": 13791,
+                    "cache_creation_input_tokens": 767,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 767,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T09:25:48.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XmtQoQGbv8rn58sxqFKQFb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Fast-WAM world action models without test-time video arxiv\"\n\nLinks: [{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://yuantianyuan01.github.io/FastWAM/\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…\",\"url\":\"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078\"},{\"title\":\"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination? - PULRC Portal\",\"url\":\"https://lrc.perdanauniversity.edu.my/sdi/fast-wam-do-world-action-models-need-test-time-future-imagination/\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"GitHub - yuantianyuan01/FastWAM: Official codebase for Fast-WAM: Do World Action Models Need Test-time Future Imagination? · GitHub\",\"url\":\"https://github.com/yuantianyuan01/FastWAM\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination? | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2603.16666v1\"}]\n\nBased on the search results, here's the information about Fast-WAM:\n\n## Overview\n\nFast-WAM is a WAM architecture that retains video co-training during training but skips future prediction at test time.\n\n## The Core Research Question\n\nThe paper asks whether WAMs need explicit future imagination at test time, or whether their benefit comes primarily from video modeling during training. Most existing WAMs follow an imagine-then-execute paradigm, incurring substantial test-time latency from iterative video denoising.\n\n## Key Findings\n\nFast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. These results suggest that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\n\n## Performance Results\n\nFast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining, and runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\n\n## Technical Architecture\n\nFast-WAM retains video co-training during training but removes explicit future generation at inference time, directly predicting actions from latent world representations in a single forward pass.\n\nThe paper (arXiv:2603.16666) was published in March 2026 by Tianyuan Yuan and colleagues.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f705bfa-d187-46e9-85a8-4a38cc30037b",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "653838e0-2634-40fc-bda5-bca00785d68b",
+            "sourceToolAssistantUUID": "7f705bfa-d187-46e9-85a8-4a38cc30037b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T09:25:48.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gi6He7SmmR83ebmqg1GQ4M",
+              "type": "tool_result",
+              "content": "Web search results for query: \"World-Value-Action WAV model robot manipulation arxiv 2604.14732\"\n\nLinks: [{\"title\":\"[2604.14732] World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems\",\"url\":\"https://arxiv.org/abs/2604.14732\"},{\"title\":\"World–Value–Action Model: Implicit Planning for Vision–Language–Action Systems\",\"url\":\"https://arxiv.org/html/2604.14732\"},{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"STARRY: Spatial-Temporal Action-Centric World Modeling for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.26848\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.19092v1\"},{\"title\":\"JailWAM: Jailbreaking World Action Models in Robot Control\",\"url\":\"https://arxiv.org/html/2604.05498\"},{\"title\":\"(PDF) World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems\",\"url\":\"https://www.researchgate.net/publication/403906061_World-Value-Action_Model_Implicit_Planning_for_Vision-Language-Action_Systems\"}]\n\nBased on the search results, I found detailed information about the World-Value-Action (WAV) model:\n\n## Overview\n\nThe World-Value-Action (WAV) model is a unified framework that enables implicit planning in VLA (Vision-Language-Action) systems.\n\n## Key Problem and Solution\n\nVision-Language-Action models have emerged as a promising paradigm for building embodied agents that ground perception and language into action. However, most existing approaches rely on direct action prediction, lacking the ability to reason over long-horizon trajectories and evaluate their consequences, which limits performance in complex decision-making tasks.\n\nRather than performing explicit trajectory optimization, the WAV model learns a structured latent representation of future trajectories conditioned on visual observations and language instructions. A learned world model predicts future states, while a trajectory value function evaluates their long-horizon utility.\n\n## Technical Approach\n\nAction generation is formulated as inference in this latent space, where the model progressively concentrates probability mass on high-value and dynamically feasible trajectories.\n\n## Results\n\nExtensive simulations and real-world experiments demonstrate that the WAV model consistently outperforms state-of-the-art methods, achieving significant improvements in task success rate, generalization ability, and robustness, especially in long-horizon and compositional scenarios.\n\nThe paper was submitted on April 16, 2026 and revised on April 19, 2026, with authors including Runze Li and seven collaborators.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b37f7d2e-e8f7-46bc-9bba-a3a06cdb8a90",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "fdbb6ad2-4922-4b29-b0cd-eec39e87d507",
+            "sourceToolAssistantUUID": "b37f7d2e-e8f7-46bc-9bba-a3a06cdb8a90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T09:25:48.531Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mofvva5pPfcBK6htYPwwXE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"world action model candidate selection 2026\"\n\nLinks: [{\"title\":\"World Model for Robot Learning: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2605.00080v1\"},{\"title\":\"Executable World Models for ARC-AGI-3 in the Era of Coding Agents Project code will be released publicly after acceptance.\",\"url\":\"https://arxiv.org/html/2605.05138\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"}]\n\nBased on the search results, I found several academic papers and research projects related to world action models and candidate selection in 2026. Here are the key findings:\n\n## World Action Models and Candidate Selection\n\nIn rollout-based candidate assessment, the policy proposes multiple action sequences, the world model predicts their future outcomes, and the system selects the candidate with the most favorable imagined consequence.\n\nSeveral 2026 approaches exemplify this:\n\n- GPC (Qi et al., 2026) augments a frozen generative robot policy at deployment with an action-conditioned world model and uses predictive look-ahead to rank and refine candidate actions online.\n\n- DreamPlan (Jia et al., 2026a) turns the same evaluator logic into a training signal by constructing preference pairs over candidate actions from world-model rollouts.\n\n- DreamZero, a World Action Model (WAM) built upon a pretrained video diffusion backbone, learns physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\nAcross these methods, the world model acts as a decision-time or near-decision-time selector that converts imagined futures into action choice.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "653a417e-7b4e-4032-83ba-05649806273d",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "0ba1fdbc-e0c5-47bd-bc9d-0e459625d7b9",
+            "sourceToolAssistantUUID": "653a417e-7b4e-4032-83ba-05649806273d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T09:25:49.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014pzhdUy5p9Aoduz43u4Lpg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"best-of-N robot policy inference 2026 arxiv\"\n\nLinks: [{\"title\":\"Mask World Model: Predicting What Matters for Robust Robot Policy Learning\",\"url\":\"https://arxiv.org/html/2604.19683\"},{\"title\":\"[2502.00622] Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling\",\"url\":\"https://arxiv.org/abs/2502.00622\"},{\"title\":\"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models\",\"url\":\"https://arxiv.org/html/2603.16065\"},{\"title\":\"Beyond Binary Success: Sample-Efficient and Statistically Rigorous Robot Policy Comparison\",\"url\":\"https://arxiv.org/html/2603.13616\"},{\"title\":\"FLOWER: Democratizing Generalist Robot Policies with Efficient Vision-Language-Action Flow Policies\",\"url\":\"https://arxiv.org/html/2509.04996v1\"},{\"title\":\"Evaluating Robot Policies in a World Model\",\"url\":\"https://arxiv.org/html/2506.00613v1\"},{\"title\":\"Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics\",\"url\":\"https://arxiv.org/html/2501.10100v1\"},{\"title\":\"RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies\",\"url\":\"https://arxiv.org/html/2506.18123v1\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"Reliable and Scalable Robot Policy Evaluation with Imperfect Simulators\",\"url\":\"https://arxiv.org/html/2510.04354\"}]\n\nBased on the search results, I found several relevant papers from arxiv related to robot policy inference in 2026:\n\n## Key Results:\n\n**Most Relevant - Inference-Time Enhancement Paper:**\nThe paper \"Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling\" (arXiv:2502.00622) presents Generative Predictive Control (GPC), an inference-time method for improving pretrained behavior-cloning policies without retraining. GPC augments a frozen diffusion policy at deployment with an action-conditioned world model and enables lightweight online planning that ranks and refines action proposals through model-based look-ahead.\n\n**Other Notable Recent Papers:**\n\n- A framework for robot policy comparison that is sample-efficient, statistically rigorous, and applicable to a broad set of evaluation metrics, based on safe, anytime-valid inference (SAVI) and addressing a wide range of informative metrics from discrete partial credit task progress to continuous measures.\n\n- A paper proposing to use video world models to evaluate robot policies and performing comprehensive studies using software simulators and real-robot videos.\n\n- DreamZero, which unlocks new generalization capabilities beyond traditional VLAs and previous world action models—across environments, across tasks, and across embodiments.\n\nThese papers all focus on various aspects of robot policy inference and evaluation in recent months of 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3af2888b-3112-4430-a110-4096149affc1",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "50632dc4-5604-41ad-847e-918d881a304c",
+            "sourceToolAssistantUUID": "3af2888b-3112-4430-a110-4096149affc1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T09:25:49.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CEvLYcaBVH5jcGVkgBZJcJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CKT-WAM arxiv 2605.06247\"\n\nLinks: [{\"title\":\"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\",\"url\":\"https://arxiv.org/html/2605.06247v1\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"[2602.06247] AI-Limited Fluid Antenna-Aided Integrated Sensing and Communication Systems\",\"url\":\"https://arxiv.org/abs/2602.06247\"},{\"title\":\"Untitled Document\",\"url\":\"https://arxiv.org/html/2405.06247\"},{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"Top arXiv papers\",\"url\":\"https://scirate.com/?date=2026-06-19&page=13&range=56\"},{\"title\":\"[2605.06620] Bulk-deformations, Floer complex bordism, and Grothendieck-Riemann-Roch\",\"url\":\"https://arxiv.org/abs/2605.06620\"},{\"title\":\"[2604.06247] SALLIE: Safeguarding Against Latent Language & Image Exploits\",\"url\":\"https://arxiv.org/abs/2604.06247\"},{\"title\":\"Artificial Intelligence\",\"url\":\"https://arxiv.org/list/cs.AI/pastweek?skip=185&show=1000\"},{\"title\":\"[2605.02621] Comment on `On computing quantum waves exactly from classical action'\",\"url\":\"https://arxiv.org/abs/2605.02621\"}]\n\nBased on the search results, I found information about the paper with arxiv ID 2605.06247:\n\n## CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\n\nCKT-WAM is a paper by researchers from Tsinghua University, LivsynRobotics, and Shanghai AI Laboratory that addresses the challenge of transferring knowledge across heterogeneous world action models (WAMs) due to mismatched latent interfaces, high adaptation cost, and the rigidity of conventional distillation objectives.\n\nThe proposed framework transfers a teacher WAM's knowledge into a student WAM through a compact context in the text embedding space, rather than output imitation or dense hidden-state matching.\n\nSpecifically, CKT-WAM extracts intermediate teacher hidden states, reduces the number of tokens via compressors' learnable-query cross attention (LQCA), and transforms them through an always-on generalized adapter, a lightweight router, and sparsely activated specialized adapters.\n\n**Results:**\n\nExperiments show that CKT-WAM consistently improves zero-shot generalization and achieves the best overall performance on LIBERO-Plus, reaching 86.1% total success rate with only 1.17% trainable parameters, while approaching full fine-tuning performance. Beyond simulation, CKT-WAM also demonstrates strong real-world long-horizon manipulation ability, achieving the best average success rate of 83.3% across four multi-step and long-horizon tasks.\n\nCode is available at https://github.com/YuhuaJiang2002/CKT-WAM.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4a900bd-92c4-468b-a2fe-40f3015bb0b7",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "bc1a573b-5acf-4a05-b3a3-2ecb2c3a5262",
+            "sourceToolAssistantUUID": "d4a900bd-92c4-468b-a2fe-40f3015bb0b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T09:25:49.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qh2tsQZtEEgrcG38FZTNsU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"OA-WAM arxiv 2605.06481\"\n\nLinks: [{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"[2602.06481] Derivation of the 3D quintic Gross--Pitaevskii equation\",\"url\":\"https://arxiv.org/abs/2602.06481\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"Top arXiv papers\",\"url\":\"https://scirate.com/?date=2026-06-30&page=7&range=56\"},{\"title\":\"X-WAM: Unified 4D World Action Modeling from Video ...\",\"url\":\"https://sharinka0715.github.io/X-WAM/\"},{\"title\":\"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\",\"url\":\"https://arxiv.org/html/2605.06247v1\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"GitHub - DravenALG/awesome-vla-wam: A Curated List of Vision-Language-Action (VLA) and World Action Models (WAM) Research and Beyond · GitHub\",\"url\":\"https://github.com/DravenALG/awesome-vla-wam\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"},{\"title\":\"Machine learning a fixed point action for SU(3) gauge theory with a gauge equivariant convolutional neural network\",\"url\":\"https://arxiv.org/html/2401.06481\"}]\n\nBased on the search results, here's what I found about OA-WAM (arxiv 2605.06481):\n\n## OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\n\nOA-WAM was published on May 7, 2026, with authors from Tsinghua University, Shanghai Jiao Tong University, and Nanyang Technological University.\n\n### Problem Statement\n\nWorld Action Models (WAM) enhance Vision-Language-Action (VLA) policies by jointly predicting scene evolution and robot actions, but most existing methods represent the predicted world as holistic images, video-token streams, or global latents—making it hard for the action decoder to locate a specific target object when an instruction refers to it.\n\n### Solution\n\nOA-WAM decomposes each frame into N+1 slot states, with one robot slot and N object slots. Each slot contains a persistent address vector and a time-varying content vector, and addressability is enforced by routing cross-slot attention through address-only keys and resetting the address slice at every transformer layer.\n\n### Performance\n\nOA-WAM matches strong VLA and WAM baselines on LIBERO (97.8%) and SimplerEnv (79.3%), reaches state-of-the-art performance on the most relevant LIBERO-Plus geometric axes, and remains competitive on the seven-axis aggregate.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "933843b0-f540-4559-a9b0-d1d73adf7b47",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "70840877-db96-4710-8eb6-9c5ad7f2a8d3",
+            "sourceToolAssistantUUID": "933843b0-f540-4559-a9b0-d1d73adf7b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T09:25:51.248Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual papers to verify the specific metrics mentioned:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70840877-db96-4710-8eb6-9c5ad7f2a8d3",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYskbhyEwoXqShjpnd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "080cb513-da35-4828-a9a2-beae69450bb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R7GBBfTjKo4pDSJqGK378E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 838,
+                "cache_creation_input_tokens": 5208,
+                "cache_read_input_tokens": 14558,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5208,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T09:25:52.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQuTqQDcbnadKwKa88Dqha",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2604.14732",
+                "prompt": "What are the LIBERO and real-world performance metrics? What are the exact numbers and which table/figure?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "080cb513-da35-4828-a9a2-beae69450bb6",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYskbhyEwoXqShjpnd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35d3f1a7-c72b-4781-a904-019fdcb5a044",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R7GBBfTjKo4pDSJqGK378E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 838,
+                "cache_creation_input_tokens": 5208,
+                "cache_read_input_tokens": 14558,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5208,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T09:25:52.677Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018VSwx25thDChi8fYCk3hZH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.16666",
+                "prompt": "What is the LIBERO-avg performance and RoboTwin performance reported? Are they 97.6% and 91.8%? Which tables?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35d3f1a7-c72b-4781-a904-019fdcb5a044",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateYskbhyEwoXqShjpnd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2ee41a0-3719-4a2b-96e0-c95c45ae7139",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R7GBBfTjKo4pDSJqGK378E",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 838,
+                "cache_creation_input_tokens": 5208,
+                "cache_read_input_tokens": 14558,
+                "output_tokens": 221,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5208
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 838,
+                    "output_tokens": 221,
+                    "cache_read_input_tokens": 14558,
+                    "cache_creation_input_tokens": 5208,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5208,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T09:25:54.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018VSwx25thDChi8fYCk3hZH",
+              "type": "tool_result",
+              "content": "I cannot find the specific performance metrics (97.6% and 91.8%) or table references in the provided content. The abstract mentions that \"Fast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks,\" but it does not include the actual numerical performance values or identify which tables contain these results.\n\nTo find this information, you would need to access the full paper PDF or HTML version linked on the arXiv page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2ee41a0-3719-4a2b-96e0-c95c45ae7139",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "b6c88496-47d4-4357-b18b-775cd29ca2bc",
+            "sourceToolAssistantUUID": "e2ee41a0-3719-4a2b-96e0-c95c45ae7139",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T09:25:55.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQuTqQDcbnadKwKa88Dqha",
+              "type": "tool_result",
+              "content": "# Response\n\nI cannot provide the specific LIBERO and real-world performance metrics you're requesting. The webpage content shown contains only the abstract and metadata for the paper arXiv:2604.14732. \n\nThe abstract mentions that \"Extensive simulations and real-world experiments demonstrate that the WAV model consistently outperforms state-of-the-art methods, achieving significant improvements in task success rate, generalization ability, and robustness,\" but does not include the actual numerical results or table/figure references.\n\nTo find these performance metrics, you would need to access the full PDF or HTML version of the paper using the links provided on the page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35d3f1a7-c72b-4781-a904-019fdcb5a044",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "e7cb4fd4-bf8e-4470-906d-6c677a3839cf",
+            "sourceToolAssistantUUID": "35d3f1a7-c72b-4781-a904-019fdcb5a044",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T09:25:56.168Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the HTML versions of the papers which should have more content:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7cb4fd4-bf8e-4470-906d-6c677a3839cf",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZFTKW5WABnGniHcje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ac29cb8b-417c-4558-845a-5b926c86120b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CZNYHAQjdw1T6YoH1edC4S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 145,
+                "cache_creation_input_tokens": 1227,
+                "cache_read_input_tokens": 19766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1227,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T09:25:56.601Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EQxYGHT95W3UUGsyqNmdAp",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2604.14732",
+                "prompt": "Find the LIBERO performance and real-world manipulation success rate. What are the exact numbers reported and which table or figure contains them?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac29cb8b-417c-4558-845a-5b926c86120b",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZFTKW5WABnGniHcje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5ebbf34d-7802-4454-919f-1d1a3f6b06f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CZNYHAQjdw1T6YoH1edC4S",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 145,
+                "cache_creation_input_tokens": 1227,
+                "cache_read_input_tokens": 19766,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1227
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 145,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 19766,
+                    "cache_creation_input_tokens": 1227,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1227,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T09:25:56.979Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012EyJS922m5fWnpzw4pQPkM",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.16666v1",
+                "prompt": "Find Table 1 and Table 2. What are the LIBERO-avg and RoboTwin success rates reported? Look for 97.6% and 91.8% metrics."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ebbf34d-7802-4454-919f-1d1a3f6b06f7",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZFTKW5WABnGniHcje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93ff5946-003a-48db-9b5e-34d04c0cc605",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CZNYHAQjdw1T6YoH1edC4S",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 145,
+                "cache_creation_input_tokens": 1227,
+                "cache_read_input_tokens": 19766,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1227
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 145,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 19766,
+                    "cache_creation_input_tokens": 1227,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1227,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T09:26:00.301Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012EyJS922m5fWnpzw4pQPkM",
+              "type": "tool_result",
+              "content": "# Fast-WAM Performance Metrics\n\nBased on Tables 1 and 2 in the paper:\n\n**LIBERO Average Success Rate:** 97.6%\n- Fast-WAM achieved \"an average success rate of 97.6% without embodied pretraining\" across all four LIBERO suites (Spatial, Object, Goal, and Long).\n\n**RoboTwin Average Success Rate:** 91.8%\n- On the RoboTwin benchmark, Fast-WAM reached \"91.8% success rate, exceeding all baselines without embodied pretraining.\"\n\nThese results demonstrate that Fast-WAM remains highly competitive with state-of-the-art methods while eliminating test-time future video generation, achieving real-time inference at 190ms latency—over 4× faster than imagine-then-execute alternatives."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93ff5946-003a-48db-9b5e-34d04c0cc605",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "a41a274f-ef68-4c46-a07d-34e2eb6c5f41",
+            "sourceToolAssistantUUID": "93ff5946-003a-48db-9b5e-34d04c0cc605",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T09:26:02.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EQxYGHT95W3UUGsyqNmdAp",
+              "type": "tool_result",
+              "content": "# WAV Model Performance Results\n\n## LIBERO Benchmark Performance\n\nThe paper reports comprehensive results in **Table 1 (Section 5.1)**. The WAV model achieves:\n\n- **Overall average: 98.1%** across all four task suites\n- Spatial: 100.0%\n- Object: 98.6%\n- Goal: 94.4%\n- Long: 98.1%\n\nThe authors note that their method demonstrates \"state-of-the-art (or competitive) performance across all task suites,\" with the model containing 2.2 billion parameters.\n\n## Real-World Manipulation Results\n\nResults appear in **Figure 2 (Section 5.2)**. The WAV model showed substantial improvements over the GE-ACT baseline:\n\n- **WAV average success rate: 75.6%**\n- **GE-ACT baseline average: 35.6%**\n\nThe comparison involved \"challenging manipulation tasks designed to probe key policy capabilities,\" including \"bowl organization, towel flattening, and a long-horizon drawer task.\" Each result averaged over 15 trials using a \"strict binary success metric\" where \"a trial is considered successful only if the task is fully completed, with no partial credit.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ebbf34d-7802-4454-919f-1d1a3f6b06f7",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "47badcf1-7103-4408-946e-918f63c0c040",
+            "sourceToolAssistantUUID": "5ebbf34d-7802-4454-919f-1d1a3f6b06f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T09:26:03.615Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the details on OA-WAM and CKT-WAM with fetches to get their specific contributions:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47badcf1-7103-4408-946e-918f63c0c040",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZmf1prj5skvgKo35J",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "43beffb6-1f5e-4a7c-8941-8b8f14760512",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CJLiFej5btzuxUkH5EyZUH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 219,
+                "cache_creation_input_tokens": 688,
+                "cache_read_input_tokens": 20993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T09:26:04.431Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PDzwmMqS8xqBKoqPRKacMw",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.06481v1",
+                "prompt": "What is the main technical contribution of OA-WAM? What specific problem does it address?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43beffb6-1f5e-4a7c-8941-8b8f14760512",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZmf1prj5skvgKo35J",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f27e330f-3c35-4bee-a0d6-bc80734b335b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CJLiFej5btzuxUkH5EyZUH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 219,
+                "cache_creation_input_tokens": 688,
+                "cache_read_input_tokens": 20993,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 688
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 219,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 20993,
+                    "cache_creation_input_tokens": 688,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 688,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T09:26:04.962Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NJ6W1oe7DH5eoN6Ptgr4R6",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.06247v1",
+                "prompt": "What is the main technical contribution of CKT-WAM? What specific problem does it solve?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f27e330f-3c35-4bee-a0d6-bc80734b335b",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateZmf1prj5skvgKo35J",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f2114d97-c53d-4df6-b2fd-e5ec5a25d922",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CJLiFej5btzuxUkH5EyZUH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 219,
+                "cache_creation_input_tokens": 688,
+                "cache_read_input_tokens": 20993,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 688
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 219,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 20993,
+                    "cache_creation_input_tokens": 688,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 688,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T09:26:10.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NJ6W1oe7DH5eoN6Ptgr4R6",
+              "type": "tool_result",
+              "content": "# CKT-WAM: Main Technical Contribution\n\n## Core Problem\nCKT-WAM addresses the challenge of efficiently transferring knowledge between heterogeneous World Action Models (WAMs) without requiring costly full fine-tuning or rigid architectural alignment.\n\n## Key Technical Contribution\nThe framework introduces a **parameter-efficient context knowledge transfer mechanism** that operates through an intermediate representation layer rather than output imitation or dense hidden-state matching. As the authors explain, the method transfers \"task-relevant sufficient knowledge through two stages: teacher-side context construction and student-side context injection.\"\n\n## Specific Solution Components\n\n1. **Learnable-Query Cross-Attention (LQCA) Compression**: Reduces teacher hidden states from N tokens to fixed-length compact contexts using learned query banks\n\n2. **Dual-Path Architecture**:\n   - Always-on generalized adapter capturing shared transfer patterns\n   - Sparsely-routed specialized adapters (8 adapters, only 2 active per instance) for input-dependent variation\n\n3. **Lightweight Conditioning Injection**: The compressed context appends to the student's textual embeddings through cross-attention, preserving the frozen denoising backbone\n\n## Practical Impact\nThe approach achieves 86.1% success on LIBERO-Plus while updating only **1.17% of parameters**, approaching full fine-tuning performance (86.3%) with minimal computational overhead."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2114d97-c53d-4df6-b2fd-e5ec5a25d922",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "0cf8c549-2d2e-4178-acfd-0fb0a582e2c7",
+            "sourceToolAssistantUUID": "f2114d97-c53d-4df6-b2fd-e5ec5a25d922",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T09:26:11.171Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PDzwmMqS8xqBKoqPRKacMw",
+              "type": "tool_result",
+              "content": "# OA-WAM: Main Technical Contribution and Problem\n\n## Primary Problem Addressed\n\nOA-WAM tackles a critical robustness failure in existing Vision-Language-Action (VLA) and World Action Models: when scenes undergo geometric perturbations—such as camera viewpoint shifts, object layout changes, or robot repositioning—policies collapse despite the target object remaining visible. The root cause is that holistic representations entangle object identity with surrounding context, causing action selection to drift when scene composition changes.\n\n## Core Technical Contribution\n\nThe paper introduces **object addressability** as an architectural principle. Each scene frame is decomposed into N+1 addressable slots (one robot, N objects), where every slot splits into two components:\n\n1. **Frozen identity address** (`addr_k`): Computed once per episode from language labels and initial visual features, never updated\n2. **Time-varying content** (`cnt_k^t`): Refreshed each step to reflect current object state\n\nThe key innovation is enforcing addressability through two parameter-free mechanisms at every transformer layer:\n\n- **Address-only key projection**: Cross-slot attention keys read solely from the frozen identity address\n- **Per-layer address reset**: The residual stream's address slice is reset after each layer, preventing identity drift\n\nAs the paper states, this creates a system where \"conditional on correct upstream slot extraction,\" which object the action head attends to depends only on frozen identity, not on \"time-varying content, scene context, or non-slot tokens.\"\n\nThis separates \"which object to act on\" from \"what that object currently is\" at the tensor level, enabling robust target selection under geometric scene shifts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f27e330f-3c35-4bee-a0d6-bc80734b335b",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "2529f489-a1d6-4b01-8e65-b212785fddef",
+            "sourceToolAssistantUUID": "f27e330f-3c35-4bee-a0d6-bc80734b335b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T09:26:14.707Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now let me do one more search to see if there are any other 2026 papers on candidate selection or best-of-N that might have been missed:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2529f489-a1d6-4b01-8e65-b212785fddef",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateaSJTciD78xYHF8gNk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7f741f49-584a-4998-b7e9-bb3ec0b8a9a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sz1kHN4U6S6VioWVq28cP7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 343,
+                "cache_creation_input_tokens": 833,
+                "cache_read_input_tokens": 21681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 833,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T09:26:14.717Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0113b7hwecxztEobB6Zf4bQh",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"world action model\" \"candidate selection\" 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f741f49-584a-4998-b7e9-bb3ec0b8a9a3",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateaSJTciD78xYHF8gNk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0994a81b-5e2a-4e7e-89d3-ab44defc9925",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sz1kHN4U6S6VioWVq28cP7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 343,
+                "cache_creation_input_tokens": 833,
+                "cache_read_input_tokens": 21681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 833,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T09:26:16.793Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KwYRpAPJzrRXJcwooMxsqz",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"test-time compute\" robot manipulation WAM 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0994a81b-5e2a-4e7e-89d3-ab44defc9925",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CateaSJTciD78xYHF8gNk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a4d5c7d9-b12e-4a9f-ace4-d08c1e6fc52a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sz1kHN4U6S6VioWVq28cP7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 343,
+                "cache_creation_input_tokens": 833,
+                "cache_read_input_tokens": 21681,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 833
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 343,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 21681,
+                    "cache_creation_input_tokens": 833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 833,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T09:26:22.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0113b7hwecxztEobB6Zf4bQh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"world action model\" \"candidate selection\" 2026\"\n\nLinks: [{\"title\":\"World Model for Robot Learning: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2605.00080v1\"},{\"title\":\"Executable World Models for ARC-AGI-3 in the Era of Coding Agents Project code will be released publicly after acceptance.\",\"url\":\"https://arxiv.org/html/2605.05138\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"}]\n\nI found several recent research papers and projects related to world action models and candidate selection from 2026. Here's what the search results show:\n\n## Key Findings on World Action Models and Candidate Selection\n\nIn rollout-based candidate assessment, the policy proposes multiple action sequences, the world model predicts their future outcomes, and the system selects the candidate with the most favorable imagined consequence.\n\nGPC (Qi et al., 2026) is a particularly clean example: rather than retraining the policy, it augments a frozen generative robot policy at deployment with an action-conditioned world model and uses predictive look-ahead to rank and refine candidate actions online.\n\nAcross these methods, the world model acts as a decision-time or near-decision-time selector that converts imagined futures into action choice.\n\n## Recent World Action Model Developments\n\nSeveral prominent 2026 projects showcase advances in this area:\n\n- DreamZero is a World Action Model (WAM) built upon a pretrained video diffusion backbone. Unlike VLAs, WAMs learn physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\n- Being-H0.7 is a Latent World-Action Model that differs from VLAs and WAMs. A latent reasoning space is introduced via a set of latent queries in the prior branch, and is further endowed with world modeling by the joint alignment with a future-aware posterior branch.\n\n- Recent world-action models have begun to jointly tune video generation and action modeling within unified generative frameworks, showing that future videos can provide dense world representations for action generation, policy learning, planning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0994a81b-5e2a-4e7e-89d3-ab44defc9925",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "1e79bdca-ff07-447b-aa9d-b507ff062e38",
+            "sourceToolAssistantUUID": "0994a81b-5e2a-4e7e-89d3-ab44defc9925",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T09:26:23.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KwYRpAPJzrRXJcwooMxsqz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"test-time compute\" robot manipulation WAM 2026\"\n\nLinks: [{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://yuantianyuan01.github.io/FastWAM/\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…\",\"url\":\"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/\"},{\"title\":\"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub\",\"url\":\"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"GitHub - yuantianyuan01/FastWAM: Official codebase for Fast-WAM: Do World Action Models Need Test-time Future Imagination? · GitHub\",\"url\":\"https://github.com/yuantianyuan01/FastWAM\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"Necessity of Test-Time Future Imagination in World Action Models\",\"url\":\"https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams\"}]\n\nBased on the search results, I found relevant information about test-time compute and robot manipulation research from 2026. Here's what the search revealed:\n\n## Fast-WAM: Challenging Test-Time Future Imagination in World Action Models\n\nWorld Action Models (WAMs) have emerged as a promising alternative to Vision-Language-Action (VLA) models for embodied control because they explicitly model how visual observations may evolve under action. Most existing WAMs follow an imagine-then-execute paradigm, incurring substantial test-time latency from iterative video denoising, yet it remains unclear whether explicit future imagination is actually necessary for strong action performance.\n\nA key 2026 paper addressing test-time compute in robot manipulation is **Fast-WAM**, which proposes a WAM architecture that retains video co-training during training but skips future prediction at test time.\n\n### Key Findings\n\nFast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining, running in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\n\nImportantly, these results suggest that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\n\nThe research evaluated Fast-WAM on LIBERO, RoboTwin 2.0, and a real-world towel-folding task. Folding a deformable object requires long-horizon planning and precise closed-loop manipulation, making it a useful testbed for both success and execution efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4d5c7d9-b12e-4a9f-ace4-d08c1e6fc52a",
+            "isSidechain": true,
+            "promptId": "bd89a5e3-b834-4347-a3de-895cb9a028dc",
+            "agentId": "a7cc84d3069ab0b54",
+            "type": "user",
+            "uuid": "ac39f40f-31cc-4a93-8756-d71ed3c0d507",
+            "sourceToolAssistantUUID": "a4d5c7d9-b12e-4a9f-ace4-d08c1e6fc52a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T09:26:36.706Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have comprehensive information. Let me compile the findings:\n\n## Findings Report\n\n### 1. **World-Value-Action (WAV) Model (arXiv 2604.14732) - VERIFIED**\n\n**Status:** Paper exists and is real.\n\n**Key Metrics:**\n- **LIBERO Performance:** 98.1% average (not 99.6%) across all four task suites (Spatial 100.0%, Object 98.6%, Goal 94.4%, Long 98.1%) - reported in **Table 1**\n- **Real-World Success Rate:** 75.6% average (verified as stated) - reported in **Figure 2** on challenging manipulation tasks (bowl organization, towel flattening, long-horizon drawer)\n\n**Note:** The LIBERO number you mentioned (99.6%) was not found; the paper reports 98.1%.\n\n---\n\n### 2. **Fast-WAM (arXiv 2603.16666) - VERIFIED**\n\n**Status:** Paper exists and metrics are accurate.\n\n**Key Metrics:**\n- **LIBERO-avg:** 97.6% success rate (verified as stated) - reported in **Table 2**\n- **RoboTwin:** 91.8% success rate (verified as stated) - reported in **Table 1**\n- **Inference Latency:** 190ms (verified as stated) - over 4× faster than imagine-then-execute WAMs\n\n---\n\n### 3. **2026 Papers on Candidate Selection/Best-of-N/Test-Time Compute**\n\n**Relevant Papers Found:**\n\n- **GPC (Generative Predictive Control) - Qi et al., 2026** (arXiv 2502.00622): Augments frozen generative policies with action-conditioned world models, uses predictive look-ahead to rank and refine candidate actions online\n- **Fast-WAM** itself addresses test-time compute reduction (removes test-time video generation)\n- **DreamZero/World Action Models are Zero-shot Policies** (arXiv 2602.15922): Uses video diffusion backbone for world modeling and action selection\n- **Being-H0.7** (arXiv 2605.00078): Latent World-Action Model with latent reasoning space\n- **EA-WM** (arXiv 2605.06192): Event-Aware Generative World Model\n- **MotuBrain** (arXiv 2604.27792): Advanced World Action Model for robot control\n\nNo papers specifically titled \"candidate selection\" found, but GPC (2502.00622) is the clearest candidate-selection example.\n\n---\n\n### 4. **OA-WAM (arXiv 2605.06481) - VERIFIED**\n\n**Status:** Paper exists and is real.\n\n**What it Addresses:**\nOA-WAM tackles **robustness failures under geometric perturbations** (camera viewpoint shifts, object layout changes, robot repositioning). Existing VLAs/WAMs collapse because holistic representations entangle object identity with context.\n\n**Technical Contribution:**\nIntroduces **object addressability** - decomposes scenes into N+1 addressable slots (one robot, N objects), each with:\n- Frozen identity address (computed once per episode)\n- Time-varying content (updated each step)\n\nResults: **97.8% on LIBERO**, 79.3% SimplerEnv, state-of-the-art on LIBERO-Plus geometric axes.\n\n---\n\n### 5. **CKT-WAM (arXiv 2605.06247) - VERIFIED**\n\n**Status:** Paper exists and is real.\n\n**What it Addresses:**\n**Parameter-efficient knowledge transfer between heterogeneous WAMs** without costly full fine-tuning. Solves the problem of mismatched latent interfaces and high adaptation costs.\n\n**Technical Contribution:**\nUses **Learnable-Query Cross-Attention (LQCA) compression** to extract teacher hidden states into compact contexts, plus dual-path adapters (always-on generalized + sparsely-routed specialized).\n\nResults: **86.1% on LIBERO-Plus** with only **1.17% trainable parameters** (approaching full fine-tuning at 86.3%), plus **83.3% real-world success** on long-horizon tasks.\n\n---\n\nSources:\n- [World-Value-Action Model arXiv](https://arxiv.org/abs/2604.14732)\n- [Fast-WAM arXiv](https://arxiv.org/abs/2603.16666)\n- [OA-WAM arXiv](https://arxiv.org/html/2605.06481v1)\n- [CKT-WAM arXiv](https://arxiv.org/html/2605.06247v1)\n- [Inference-Time Enhancement (GPC)](https://arxiv.org/abs/2502.00622)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac39f40f-31cc-4a93-8756-d71ed3c0d507",
+            "isSidechain": true,
+            "agentId": "a7cc84d3069ab0b54",
+            "requestId": "req_011CatebLr4peVRqNXqkd4yF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dbec3d4e-9679-41b6-b958-3916a74cc313",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3be8c96e-e3fb-4ca3-b801-2c9ace39f17f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0166eedtTmKQ96j5oPC1vHbr",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2332,
+                "cache_read_input_tokens": 22514,
+                "output_tokens": 1157,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2332
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1157,
+                    "cache_read_input_tokens": 22514,
+                    "cache_creation_input_tokens": 2332,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2332,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-and-verify-the-following-papers-for-each-report-1-whether-the-paper.md"
+}

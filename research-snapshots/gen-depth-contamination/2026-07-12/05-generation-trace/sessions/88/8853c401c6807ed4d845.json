@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8853c401c6807ed4d845",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 `cuda:0`@`autodl-4090d`（仅 ",
+  "task_key": "0d4f53b2-94c9-4558-92cb-51f474050a56",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/0d4f53b2-94c9-4558-92cb-51f474050a56.jsonl",
+    "occurrence": 1,
+    "bytes": 548706,
+    "sha256": "f82e58e7137a425cc5b877c8ee020809f35c0952bb5534f9e352f425b7a16993"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 1,
+    "tool_calls": 54,
+    "roles": {
+      "record": 41,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 54,
+      "tool_result": 54
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8853c401c6807ed4d845-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "8853c401c6807ed4d845-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8853c401c6807ed4d845-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-2-task-context-1-cuda-0-autodl-4090d.md"
+}

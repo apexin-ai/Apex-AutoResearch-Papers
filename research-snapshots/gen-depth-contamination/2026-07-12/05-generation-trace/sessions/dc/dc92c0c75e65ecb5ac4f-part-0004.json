@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "session_id": "dc92c0c75e65ecb5ac4f",
+  "rounds": [
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-16T06:08:23.431Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<task-notification>\n<task-id>bk1fuxfdb</task-id>\n<tool-use-id>toolu_018xhAYk1fuxtFrHgcdqEqxx</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/5f741fc9-3867-4916-9742-d8dd19280f6d/tasks/bk1fuxfdb.output</output-file>\n<status>killed</status>\n<summary>Background command \"Wait for all model downloads to complete\" was stopped</summary>\n</task-notification>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "869c9e57-374c-48dc-9fb4-4d72969cb93a",
+            "isSidechain": false,
+            "promptId": "c65ae609-b693-46d4-8bc4-7154063b6229",
+            "type": "user",
+            "uuid": "19672922-a5a9-4720-89fa-8adc53dd8983",
+            "permissionMode": "bypassPermissions",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "5f741fc9-3867-4916-9742-d8dd19280f6d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000541"
+        }
+      ]
+    }
+  ]
+}

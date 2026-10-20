@@ -1,0 +1,581 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e2889a656bc8c181ea",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need details on two papers that may be missing from a paper I'm reviewing: 1. SIGHT (arXiv 2602.11551, Feb 2026) - des",
+  "task_key": "agent-ae2bf78af122dfe27",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae2bf78af122dfe27.jsonl",
+    "occurrence": 1,
+    "bytes": 19117,
+    "sha256": "578dc103579912111cb939b2eb5ab5a1a543e96dfd9738268d29f2fd074d46e4"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T02:05:52.651Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need details on two papers that may be missing from a paper I'm reviewing:\n\n1. SIGHT (arXiv 2602.11551, Feb 2026) - described as using \"Self-Evidence and Information-Gain Diverse Branching\" to identify pivotal states where observations maximally reduce uncertainty. Please search for this paper and get its abstract.\n\n2. A2TGPO (arXiv 2605.06200, May 2026) - described as using \"Information Gain as intrinsic signal with turn-group normalization.\" Please search for this paper and get its abstract.\n\nFor each paper, report:\n1. Does it exist? What is its full title?\n2. Does it use graph topology or environment state structure for rollout allocation decisions?\n3. How does it relate to using graph topology signals for rollout allocation in agentic RL?\n\nThese are potentially missed related works in a paper about using environment state-transition graphs for rollout allocation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+            "agentId": "ae2bf78af122dfe27",
+            "type": "user",
+            "uuid": "7bb24ce5-43e3-49e4-ad3b-27d5d2cde318",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T02:05:52.656Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7bb24ce5-43e3-49e4-ad3b-27d5d2cde318",
+                "isSidechain": true,
+                "agentId": "ae2bf78af122dfe27",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "82b81022-96c5-41b0-a9ff-cd452882d0fd",
+                "timestamp": "2026-05-12T02:05:52.656Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T02:05:57.323Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for both papers on arXiv. Let me fetch them."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82b81022-96c5-41b0-a9ff-cd452882d0fd",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011Cawrcr3vgczuvMrWcdCpH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5fbe683d-dc88-4d3a-8d0a-5fe18509b70f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UWRKjvw3KqTLxWz4GVUcqD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 764,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T02:05:57.479Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016eVxNXsyejUWiwnMsufDzZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fbe683d-dc88-4d3a-8d0a-5fe18509b70f",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011Cawrcr3vgczuvMrWcdCpH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d2e02669-c9ed-4368-a9c5-3f474bf158d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UWRKjvw3KqTLxWz4GVUcqD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 764,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 94,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 764
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 94,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 764,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 764,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T02:05:57.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016eVxNXsyejUWiwnMsufDzZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2e02669-c9ed-4368-a9c5-3f474bf158d0",
+            "isSidechain": true,
+            "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+            "agentId": "ae2bf78af122dfe27",
+            "type": "user",
+            "uuid": "2e71d7b5-2b3f-436b-b0e6-c90f696672b1",
+            "sourceToolAssistantUUID": "d2e02669-c9ed-4368-a9c5-3f474bf158d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T02:06:00.001Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me fetch both papers from arXiv simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e71d7b5-2b3f-436b-b0e6-c90f696672b1",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011CawrdCpLmN32T4V3qzw8q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7e31199a-d68b-4ada-a87b-499de7416419",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019LXQUdQzShzGHuPtSpePca",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1403,
+                "cache_read_input_tokens": 8987,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1403,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T02:06:02.322Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GVKwFu9GkyHUpA9ZqeDWCe",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.11551",
+                "prompt": "Extract the full title, authors, and complete abstract of this paper. Also note any mentions of graph topology, environment state structure, rollout allocation, information gain, self-evidence, pivotal states, or uncertainty reduction."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e31199a-d68b-4ada-a87b-499de7416419",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011CawrdCpLmN32T4V3qzw8q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "623fe5ee-3fb3-4f3e-9a44-6ebaf99500f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019LXQUdQzShzGHuPtSpePca",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1403,
+                "cache_read_input_tokens": 8987,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1403,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T02:06:02.969Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NKgwJUpcuyKyT4wVzCEeSN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2605.06200",
+                "prompt": "Extract the full title, authors, and complete abstract of this paper. Also note any mentions of graph topology, environment state structure, rollout allocation, information gain, turn-group normalization, or intrinsic signals."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "623fe5ee-3fb3-4f3e-9a44-6ebaf99500f1",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011CawrdCpLmN32T4V3qzw8q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8d93e69c-7620-4192-80e8-313505fe0831",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019LXQUdQzShzGHuPtSpePca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1403,
+                "cache_read_input_tokens": 8987,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1403
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 8987,
+                    "cache_creation_input_tokens": 1403,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1403,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T02:06:07.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GVKwFu9GkyHUpA9ZqeDWCe",
+              "type": "tool_result",
+              "content": "# SIGHT Paper Summary\n\n**Full Title:**\n\"SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\"\n\n**Authors:**\nWenlin Zhong, Jinluan Yang, Yiquan Wu, Yi Liu, Jianhang Yao, Kun Kuang\n\n**Complete Abstract:**\nThe paper addresses a critical challenge in multi-turn search scenarios where \"Tunnel Vision\" occurs when agents misinterpret noisy early retrievals. The framework uses Self-Evidence Support (SES) to distill search results into high-fidelity evidence. It calculates an Information Gain score to \"pinpoint pivotal states where observations maximally reduce uncertainty.\" Dynamic Prompting Interventions—including deduplication, reflection, or adaptive branching—spawn new branches with SES. The approach integrates SES and correctness rewards via Group Relative Policy Optimization for robust exploration without external verifiers. Experiments show significant improvements on single-hop and multi-hop QA benchmarks with fewer search steps.\n\n**Key Concepts Present:**\n- **Information Gain**: Explicitly used to identify critical decision points\n- **Self-Evidence**: Central mechanism for evidence distillation\n- **Pivotal States**: Referenced as \"pivotal states where observations maximally reduce uncertainty\"\n- **Uncertainty Reduction**: Stated objective of the information gain scoring system\n- **Rollout Allocation**: Implied through adaptive branching strategies"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "623fe5ee-3fb3-4f3e-9a44-6ebaf99500f1",
+            "isSidechain": true,
+            "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+            "agentId": "ae2bf78af122dfe27",
+            "type": "user",
+            "uuid": "91e2ece4-b6b1-4859-ae22-94d950c7d845",
+            "sourceToolAssistantUUID": "623fe5ee-3fb3-4f3e-9a44-6ebaf99500f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T02:06:08.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NKgwJUpcuyKyT4wVzCEeSN",
+              "type": "tool_result",
+              "content": "# Paper Analysis\n\n**Full Title:**\n\"A²TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\"\n\n**Authors:**\nDingwei Chen, Zefang Zong, Zhipeng Ma, Leo Luo, Yang Li, Chengming Li, Peng Chen, Jie Jiang\n\n**Complete Abstract:**\nThe paper addresses reinforcement learning for agent-based language models that encounter sparse rewards at the trajectory level, creating difficulty in assessing individual tool-call contributions across multi-turn exchanges. The authors propose A²TGPO, which employs Information Gain (IG) as an intrinsic signal without external evaluators. The method introduces three key innovations: \"(i) turn-group normalization: normalizes IG within each (prompt, turn-index) group so that each turn is compared only against peers at the same interaction depth; (ii) variance-rescaled discounted accumulation: divides cumulative normalized IG by square root of accumulated terms to keep advantage magnitudes comparable across turn positions; and (iii) adaptive turn-level clipping: modulates each turn's clipping range based on its normalized IG.\"\n\n**Key Concepts Identified:**\n- **Information Gain (IG):** Central to the approach as an intrinsic process signal\n- **Turn-group normalization:** Explicitly featured and detailed in the abstract\n- **Intrinsic signals:** Mentioned as an alternative to external reward models\n- No mentions of graph topology, environment state structure, or rollout allocation were found in this content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d93e69c-7620-4192-80e8-313505fe0831",
+            "isSidechain": true,
+            "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+            "agentId": "ae2bf78af122dfe27",
+            "type": "user",
+            "uuid": "7c2fe346-020c-4e9e-9ad8-a23925de8ca2",
+            "sourceToolAssistantUUID": "8d93e69c-7620-4192-80e8-313505fe0831",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T02:06:34.588Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the findings on both papers:\n\n---\n\n## Paper 1: SIGHT (arXiv 2602.11551)\n\n**Exists:** Yes.\n\n**Full Title:** \"SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\"\n\n**Authors:** Wenlin Zhong, Jinluan Yang, Yiquan Wu, Yi Liu, Jianhang Yao, Kun Kuang\n\n**Abstract summary:** SIGHT addresses \"Tunnel Vision\" in multi-turn search agents, where noisy early retrievals lead to misinterpretation. It uses Self-Evidence Support (SES) to distill search results into high-fidelity evidence, and computes an Information Gain score to identify pivotal states where observations maximally reduce uncertainty. At those pivotal states, Dynamic Prompting Interventions (deduplication, reflection, or adaptive branching) spawn new branches augmented with SES. Training integrates SES and correctness rewards via Group Relative Policy Optimization. Experiments show improvements on single-hop and multi-hop QA benchmarks with fewer search steps.\n\n**Does it use graph topology or environment state structure for rollout allocation?** No. SIGHT's branching decisions are driven by an information-gain score computed from the agent's internal evidence (self-evidence support), not from any explicit graph over environment states or transitions. The \"branching\" is over search trajectories at pivotal states identified by uncertainty reduction, not by analyzing a state-transition graph's topology.\n\n**Relation to graph-topology-based rollout allocation:** SIGHT is thematically adjacent but methodologically distinct. Both SIGHT and a graph-topology-based approach aim to allocate compute (rollouts/branches) non-uniformly across a trajectory, concentrating effort at high-value decision points. However, SIGHT identifies those points via an information-theoretic signal derived from the content of retrieved evidence, whereas a graph-topology approach would use structural properties of the state-transition graph (e.g., branching factor, degree centrality, bottleneck nodes). SIGHT is a relevant related work because it shares the goal of selective branching/rollout allocation in agentic RL, but it does not leverage graph structure to make that decision.\n\n---\n\n## Paper 2: A2TGPO (arXiv 2605.06200)\n\n**Exists:** Yes.\n\n**Full Title:** \"A^2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\"\n\n**Authors:** Dingwei Chen, Zefang Zong, Zhipeng Ma, Leo Luo, Yang Li, Chengming Li, Peng Chen, Jie Jiang\n\n**Abstract summary:** A2TGPO tackles the sparse-reward credit assignment problem in multi-turn agentic RL, where a single trajectory-level reward makes it hard to assess individual tool-call contributions. It uses Information Gain (IG) as an intrinsic process signal (no external evaluator needed) and introduces three innovations: (i) turn-group normalization -- normalizing IG within each (prompt, turn-index) group so each turn is compared only to peers at the same interaction depth; (ii) variance-rescaled discounted accumulation to keep advantage magnitudes comparable across turn positions; and (iii) adaptive turn-level clipping that modulates each turn's clipping range based on its normalized IG.\n\n**Does it use graph topology or environment state structure for rollout allocation?** No. A2TGPO's focus is on credit assignment and policy optimization mechanics (how to weight gradient updates per turn), not on deciding where or how many rollouts to allocate. Its information-gain signal is used to shape per-turn advantages during training, not to guide a branching or rollout-allocation strategy over a state graph.\n\n**Relation to graph-topology-based rollout allocation:** A2TGPO is relevant as a related work in the broader space of \"using information-gain signals in agentic RL,\" but it addresses a different sub-problem. It uses IG to solve temporal credit assignment within a fixed set of rollouts, whereas a graph-topology approach uses structural signals to decide how to distribute rollouts across states before or during generation. The two are complementary rather than overlapping -- one could imagine combining graph-topology-guided rollout allocation with A2TGPO-style credit assignment.\n\n---\n\n## Summary for your review\n\nBoth papers exist and are genuine related works in the agentic RL space. Neither uses graph topology or environment state-transition structure for rollout allocation decisions:\n\n- **SIGHT** is the closer relative -- it performs selective branching at pivotal states using information gain, which parallels graph-topology-guided rollout allocation in goal but not in mechanism.\n- **A2TGPO** operates at a different level (credit assignment during policy optimization) and does not address rollout allocation at all.\n\nBoth are worth citing as related work if your paper frames itself in the broader context of \"non-uniform compute allocation in agentic RL,\" but neither is a direct competitor to a graph-topology-based approach. SIGHT in particular should be discussed as it shares the adaptive branching motivation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c2fe346-020c-4e9e-9ad8-a23925de8ca2",
+            "isSidechain": true,
+            "agentId": "ae2bf78af122dfe27",
+            "requestId": "req_011Cawre1HL4FpcH3c3AE2gR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd620738-65b4-436c-9685-b6ae49ef2c93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HxsWVLwvuR57sV6Kr1yUVd",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 991,
+                "cache_read_input_tokens": 10390,
+                "output_tokens": 1176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 991
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1176,
+                    "cache_read_input_tokens": 10390,
+                    "cache_creation_input_tokens": 991,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 991,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-details-on-two-papers-that-may-be-missing-from-a-paper-i-m-reviewing-1.md"
+}
