@@ -1,0 +1,35 @@
+paper_key: "huang-chi-squared"
+title: "Correcting the Mythos of KL-Regularization: Direct Alignment without Overoptimization via Chi-Squared Preference Optimization"
+venue: "ICLR 2025 Spotlight"
+full_text_available: false
+
+research:
+  baselines:
+    - "Direct Preference Optimization (DPO)"
+    - "KL-regularized RLHF methods"
+  metrics:
+    - {name: "alignment quality (overoptimization resistance)", direction: "higher_better"}
+    - {name: "sample complexity", direction: "lower_better"}
+  datasets:
+    - {name: "not specified in abstract", size: "N/A"}
+  ablation_dimensions:
+    - "regularization type (KL vs chi-squared)"
+    - "link function choice"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    details: "one-line change to DPO: replace log link function to implement chi-squared divergence regularization"
+  method_family: "direct alignment / divergence regularization"
+
+positioning:
+  core_claim: "KL-regularization is provably too weak to prevent overoptimization in offline alignment; chi-squared preference optimization (chiPO) -- a one-line change to DPO -- provides the first practical offline alignment algorithm with provable robustness to overoptimization."
+  key_results: "First sample-complexity guarantees based on single-policy concentrability for offline alignment; provably alleviates overoptimization where KL-regularized methods fail"
+  limitations:
+    - "theoretical guarantees may require assumptions not always met in practice"
+    - "empirical evaluation scope not detailed in abstract"
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

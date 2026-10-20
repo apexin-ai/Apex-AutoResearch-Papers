@@ -1,0 +1,34 @@
+paper_key: "math-shepherd"
+title: "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations"
+venue: "ACL 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - "Mistral-7B (base)"
+    - "outcome-level reward models"
+  metrics:
+    - {name: "accuracy on GSM8K", direction: "higher_better"}
+    - {name: "accuracy on MATH", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "~8.5K"}
+    - {name: "MATH", size: "~12.5K"}
+  ablation_dimensions:
+    - "verification (reranking) vs reinforcement (PPO)"
+    - "process reward vs outcome reward"
+    - "automatic vs human annotation for step-level supervision"
+  training_recipe:
+    method: "PPO with automatically constructed process-wise reward"
+    supervision: "automatic step-level labels (no human annotation)"
+    base_model: "Mistral-7B"
+  method_family: "process reward model (PRM) with automatic step-level supervision"
+
+positioning:
+  core_claim: "Automatic process-level supervision (without human annotations) can train step-wise reward models that improve LLM math reasoning via both verification and RL."
+  key_results: "Mistral-7B: GSM8K 77.9%→84.1% (PPO), 89.1% (verification); MATH 28.6%→33.0% (PPO), 43.5% (verification)"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

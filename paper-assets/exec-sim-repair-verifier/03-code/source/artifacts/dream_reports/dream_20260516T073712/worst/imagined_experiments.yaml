@@ -1,0 +1,824 @@
+tier: worst
+narrative_guidance: 'Pivot到三个互补angle: (1) Efficiency equivalence——CLS用1-token output达到CWM
+  N-token 相同accuracy，inference cost降低3-10x (GPU场景更显著); (2) Oracle characterization——
+  empirically grounded decision framework for when per-test helps (T≥2, regression  rate≥10%,
+  block-correlated errors); (3) Error complementarity——CLS/CWM failure modes 系统性互补（CLS漏报75.5%,
+  CWM误报83.1%），oracle ensemble 90.63%，suggesting formulation  diversity as verification
+  strategy。不再claim ''classification is better''，改为 ''classification and generation
+  are complementary formulations with predictable failure  modes''。仍冲EMNLP main作为empirical
+  characterization paper（类似analysis track）， fallback Findings。Repo-level evidence不足：multi-seed
+  mean accuracy 77-79%，seed间 variance 4-6pp，reviewer会要求额外seed或质疑prompt设计。DeepSeek实验显示不同pattern，
+  削弱architecture-independence claim——改为honest reporting "gap is architecture-dependent,  further
+  investigation needed"。Per-test diagnostic value降级为theoretical argument  with oracle
+  ceiling analysis（无re-repair实证）。
+
+  '
+imagined_experiments:
+- name: Diagnostic Re-repair Experiment
+  plan_id: diagnostic-rerepair
+  description: '给修复代理提供per-test failure predictions vs 无per-test信息， 在200个instances上比较resolve
+    rate。使用SWE-agent框架， classification模型提供per-test诊断。
+
+    '
+  expected_results:
+    baseline_resolve_rate_pct: 29.0
+    with_diagnostic_resolve_rate_pct: 29.5
+    resolve_rate_gain_pp: 0.5
+    gain_significant_at_005: false
+    mcnemar_p_value: 0.72
+    instances_helped_by_diagnostic: 5
+    instances_hurt_by_diagnostic: 4
+    net_helped: 1
+    diagnostic_precision_on_helped: 0.8
+    diagnostic_precision_on_hurt: 0.6
+    oracle_diagnostic_resolve_rate_pct: 33.5
+    oracle_vs_baseline_gain_pp: 4.5
+    oracle_vs_predicted_gap_pp: 4.0
+    time_cost_per_instance_baseline_min: 8.2
+    time_cost_per_instance_diagnostic_min: 8.5
+    T1_instances_in_200: 137
+    T1_gain_pp: 0.0
+    T2plus_instances_in_200: 63
+    T2plus_gain_pp: 1.6
+  result_rationale: 'Worst档假设"无downstream re-repair实验，per-test diagnostic value仅为theoretical  argument"。即使勉强跑完实验，gain仅+0.5pp（29.5%
+    vs 29.0%），原因： (1) 200个instances中~137个(68.7%)是T=1，per-test信息与trajectory-level数学等价，
+    诊断信号零增益； (2) 剩余63个T≥2 instances中，per-test prediction precision ~80%意味着每5个predicted-fail
+    中约1个是误报——修复代理基于错误诊断做了无效修复尝试（4个instances被误导）； (3) 仅5个instances中诊断真正帮助定位了具体失败测试并引导修复成功——但这些大多是
+    T=2且两个测试failure mode清晰分离的"easy"案例； (4) Oracle上界（33.5%）显示per-test信息在完美条件下有价值（+4.5pp），但predicted  diagnostic仅能实现11%的oracle
+    ceiling（0.5/4.5）； (5) McNemar p=0.72，远不显著——200个instances的power不足以检测<1pp的差异。 这个结果在worst档叙事中将Claim
+    2完全降级为theoretical argument。
+
+    '
+  tables:
+  - caption: 'Diagnostic re-repair: predicted vs oracle per-test information'
+    columns:
+    - Condition
+    - Resolve Rate (%)
+    - Δ vs Baseline (pp)
+    - p-value
+    rows:
+    - - No diagnostic (baseline)
+      - 29.0
+      - —
+      - —
+    - - Predicted per-test diagnostic
+      - 29.5
+      - '+0.5'
+      - '0.72'
+    - - Oracle per-test (ceiling)
+      - 33.5
+      - '+4.5'
+      - '0.02'
+  - caption: Re-repair gain stratified by F2P test count
+    columns:
+    - T bucket
+    - N instances
+    - Baseline resolve %
+    - Diagnostic resolve %
+    - Δ pp
+    rows:
+    - - T=1
+      - 137
+      - 30.7
+      - 30.7
+      - '0.0'
+    - - T=2
+      - 40
+      - 25.0
+      - 27.5
+      - '+2.5'
+    - - T≥3
+      - 23
+      - 21.7
+      - 21.7
+      - '0.0'
+    - - All
+      - 200
+      - 29.0
+      - 29.5
+      - '+0.5'
+  figures_description:
+  - 'Bar chart: three conditions (baseline, predicted, oracle) showing oracle ceiling
+    vs achievable gain, with error bars from bootstrap'
+  - 'Scatter plot: per-instance diagnostic precision vs re-repair success, showing
+    no correlation (r=0.04)'
+  analysis: 'Oracle ceiling（+4.5pp）与predicted gain（+0.5pp）之间的巨大gap（4.0pp） 证实了worst档的核心论断：per-test诊断的价值是真实的但目前prediction
+    quality 不足以释放这个价值。在pivot论文中，这成为"future work"的明确方向—— 提升per-test prediction precision到>90%可能释放更多oracle
+    ceiling。 但当前实验结论是negative：predicted diagnostics do not significantly  improve
+    repair outcomes。
+
+    '
+- name: SWE-bench Per-Test Dataset Construction
+  plan_id: swebench-pertest-data
+  description: 'Docker重新评估SWE-bench Verified patches，提取per-test labels。 构建SWE-bench-PerTest数据集（500
+    instances × 16 candidates）。
+
+    '
+  expected_results:
+    total_instances_attempted: 500
+    successful_evaluations: 458
+    failed_docker_builds: 27
+    timeout_evaluations: 15
+    total_candidate_test_pairs: 115872
+    avg_tests_per_instance: 15.8
+    avg_f2p_tests_per_instance: 2.1
+    median_f2p_tests: 1
+    pct_T1_instances: 71.2
+    pct_T2_instances: 16.8
+    pct_T3plus_instances: 12.0
+    avg_p2p_tests_per_instance: 13.7
+    pass_rate_overall: 0.73
+    fail_rate_overall: 0.27
+    p2p_regression_rate: 0.8
+    construction_time_hours: 24
+    gold_patch_all_pass_rate: 0.96
+    candidate_diversity_unique_test_signatures: 312
+  result_rationale: '数据集构建是工程任务，worst档不影响技术成功率。但分布特征在worst档下 对论文叙事不利： (1) T=1占71.2%（高于function-level
+    oracle sim的68.7%），意味着repo-level 数据中per-test粒度的理论优势更稀薄——超过7成instances只有1个F2P测试；
+    (2) median F2P=1确认了T=1 mode的dominance； (3) P2P regression rate仅0.8%（远低于oracle
+    sim中reg≥10%的threshold）， 意味着PASS_TO_PASS测试几乎不提供额外信号——patch极少破坏已通过的测试； (4) overall
+    pass rate 73%意味着class imbalance加剧（vs function-level ~50:50）， majority baseline就有73%，fine-tuned模型需要beat这个high
+    baseline； (5) 42/500 instances因Docker build failure或timeout丢失（8.4%）， 可能引入selection
+    bias——失败的往往是环境最复杂的instances，恰恰是 per-test可能最有价值的instances。
+
+    '
+  tables:
+  - caption: SWE-bench-PerTest dataset statistics
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - Instances (successful)
+      - 458
+    - - Candidates per instance (mean)
+      - 16
+    - - Total (code, test) pairs
+      - 115,872
+    - - F2P tests per instance (mean / median)
+      - 2.1 / 1
+    - - P2P tests per instance (mean)
+      - 13.7
+    - - T=1 instances
+      - 71.2%
+    - - T≥2 instances
+      - 28.8%
+    - - Overall pass rate
+      - 73%
+    - - P2P regression rate
+      - 0.8%
+  - caption: F2P test count distribution
+    columns:
+    - T
+    - '% Instances'
+    - Cumulative %
+    rows:
+    - - 1
+      - 71.2
+      - 71.2
+    - - 2
+      - 16.8
+      - 88.0
+    - - 3
+      - 5.2
+      - 93.2
+    - - 4-5
+      - 3.8
+      - 97.0
+    - - 6+
+      - 3.0
+      - 100.0
+  figures_description:
+  - 'Histogram: F2P test count distribution showing strong T=1 mode with long tail'
+  - 'Box plot: per-instance test count (F2P vs P2P) showing P2P >> F2P'
+  analysis: '数据集本身作为resource contribution有独立价值。但worst档下的分布特征 系统性地削弱per-test方法的pitch：T=1主导+低regression
+    rate意味着 大多数instances中per-test粒度退化为trajectory-level等价。 73%的pass rate使得"预测fail"成为稀有事件检测问题，precision-recall
+    tradeoff更不利。论文需诚实报告这些分布特征并作为characterization贡献。
+
+    '
+- name: DeepSeek-Coder CLS Function-Level
+  plan_id: deepseek-cls-func
+  description: 'DeepSeek-Coder-6.7B-Instruct LoRA (rank=16, alpha=32) 在function-level
+    数据上训练classification (pass/fail)。验证CLS formulation是否 architecture-independent。
+
+    '
+  expected_results:
+    overall_accuracy: 88.73
+    pass_f1: 88.85
+    fail_f1: 88.6
+    pass_precision: 90.5
+    pass_recall: 87.25
+    fail_precision: 87.0
+    fail_recall: 90.3
+    train_loss: 0.21
+    eval_loss: 0.075
+    train_runtime_sec: 4800
+    unparseable: 0
+    cls_vs_cwm_gap_deepseek_pp: 0.52
+    cls_vs_cwm_gap_qwen4b_pp: 1.25
+    cls_vs_cwm_gap_qwen8b_pp: 2.43
+    gap_trend_with_size: non-monotonic
+  result_rationale: 'Worst档核心假设："DeepSeek实验显示不同pattern，削弱architecture-independence
+    claim"。 DeepSeek-Coder-6.7B是code-specialized模型（vs Qwen3通用模型），其预训练数据 包含大量代码执行trace，这使得CWM
+    (generation)任务对DeepSeek相对更容易： (1) DeepSeek-CLS达到88.73%，介于Qwen-4B(88.43%)和Qwen-8B(89.40%)之间，
+    符合6.7B参数量的预期——这证明CLS在不同架构上表现一致； (2) 但CLS vs CWM gap仅0.52pp（远低于Qwen-4B的1.25pp和Qwen-8B的2.43pp），
+    因为DeepSeek-Coder的code generation能力使CWM受益更多—— CWM在DeepSeek上达到~88.2%（vs Qwen-4B的87.19%）；
+    (3) Gap trend变为non-monotonic：Qwen-4B 1.25pp → DeepSeek-6.7B 0.52pp →  Qwen-8B
+    2.43pp，无法claim "gap随model size单调增长"； (4) 这意味着CLS vs CWM gap不是architecture-independent的，而是依赖于
+    base model的code generation pretraining quality——pretraining越强的模型 CWM受益越多，gap越小。
+    Reviewer会据此质疑"formulation advantage"是否只是Qwen-specific artifact。
+
+    '
+  tables:
+  - caption: Cross-architecture CLS vs CWM comparison (function-level)
+    columns:
+    - Architecture
+    - Size
+    - CLS Acc %
+    - CWM Acc %
+    - Gap (pp)
+    rows:
+    - - Qwen3
+      - 4B
+      - 88.43
+      - 87.19
+      - '+1.25'
+    - - DeepSeek-Coder
+      - 6.7B
+      - 88.73
+      - 88.21
+      - '+0.52'
+    - - Qwen3
+      - 8B
+      - 89.4
+      - 86.96
+      - '+2.43'
+  figures_description:
+  - 'Grouped bar chart: CLS vs CWM accuracy across three model configs, showing non-monotonic
+    gap'
+  - 'Scatter plot: model size vs CLS-CWM gap, showing DeepSeek as outlier below Qwen
+    trend line'
+  analysis: 'DeepSeek的小gap直接削弱了"classification scales better with model size"的claim。
+    在worst档pivot论文中，这变为characterization finding："CLS-CWM gap depends on  base model''s
+    code generation capability, not just formulation"。 这实际上加强了complementarity角度——如果gap是architecture-dependent，
+    那么在不同模型上CLS和CWM的failure modes更可能不同，ensemble更有价值。
+
+    '
+- name: DeepSeek-Coder CWM Function-Level (seed default)
+  plan_id: deepseek-cwm-func
+  description: 'DeepSeek-Coder-6.7B-Instruct LoRA CWM generation baseline， function-level。已完成训练（eval_loss=0.04292），待测试集评估。
+
+    '
+  expected_results:
+    overall_accuracy: 88.21
+    pass_f1: 88.1
+    fail_f1: 88.32
+    pass_precision: 91.2
+    pass_recall: 85.2
+    fail_precision: 85.4
+    fail_recall: 91.4
+    exact_match_rate: 85.5
+    train_loss_final: 0.0986
+    eval_loss: 0.04292
+    train_runtime_sec: 5215
+    unparseable: 0
+    vs_qwen4b_cwm_gap_pp: 0.7
+    vs_qwen8b_cwm_gap_pp: 0.54
+  result_rationale: 'DeepSeek-CWM在function-level达到88.21%，高于Qwen-4B CWM(87.51%)和 Qwen-8B
+    CWM(87.67%)。原因： (1) DeepSeek-Coder-6.7B的eval_loss(0.043)显著低于Qwen-4B CWM(0.064)和
+    Qwen-8B CWM(0.055)，说明code-specialized pretraining让generation target 更容易拟合； (2)
+    Exact match rate 85.5%（vs Qwen-4B的84.02%），更多predictions能 完美复现execution output字面值；
+    (3) 这些output精确度的提升直接转化为分类准确率的提升——CWM的accuracy 上限受限于exact match quality； (4) 但与DeepSeek-CLS(88.73%)相比gap仅0.52pp，确认了在code-specialized
+    模型上classification advantage最小化。 Worst档叙事：DeepSeek的CWM强表现证明"CWM failure modes at
+    function-level" 不是因为generation inherently harder，而是因为base model的generation  capability不同。
+
+    '
+  tables:
+  - caption: CWM generation accuracy across architectures
+    columns:
+    - Architecture
+    - Size
+    - CWM Acc %
+    - Exact Match %
+    - Eval Loss
+    rows:
+    - - Qwen3
+      - 4B
+      - 87.51
+      - 84.02
+      - 0.064
+    - - DeepSeek-Coder
+      - 6.7B
+      - 88.21
+      - 85.5
+      - 0.043
+    - - Qwen3
+      - 8B
+      - 87.67
+      - 84.39
+      - 0.055
+  figures_description:
+  - 'Bar chart: CWM accuracy across architectures, showing DeepSeek highest despite
+    smaller size than 8B'
+  analysis: 'DeepSeek-CWM的优异表现是worst档的关键evidence：如果一个code-specialized 6.7B模型的CWM能match其CLS，那么CWM的"difficulty"不是generation
+    task 的inherent property，而是base model capability的function。 论文pivot：不再claim "generation
+    is harder than classification"， 改为"the relative difficulty depends on the model''s
+    generation capability"。
+
+    '
+- name: DeepSeek-Coder CWM Function-Level seed=123
+  plan_id: deepseek-cwm-func-s123
+  description: 'DeepSeek-Coder-6.7B CWM function-level with seed=123， 用于multi-seed
+    validation of DeepSeek CWM results。
+
+    '
+  expected_results:
+    overall_accuracy: 87.88
+    pass_f1: 87.75
+    fail_f1: 88.0
+    exact_match_rate: 85.1
+    eval_loss: 0.0445
+    train_runtime_sec: 5300
+    unparseable: 0
+    seed_default_accuracy: 88.21
+    seed_123_accuracy: 87.88
+    seed_gap_pp: 0.33
+    deepseek_cwm_mean_2seed: 88.05
+    deepseek_cwm_std_2seed: 0.23
+  result_rationale: 'Seed=123与default seed的差异仅0.33pp（87.88% vs 88.21%），在正常 seed variance范围内（std
+    ~0.23pp，低于Qwen-4B CWM的seed std ~0.35pp）。 DeepSeek-Coder的更低variance可能因为：(1) code-specialized
+    pretraining提供了 更稳定的初始化，LoRA微调的随机性影响更小；(2) 6.7B参数量比4B有更多冗余， 对随机seed的敏感度更低。 两个seed的mean(88.05%)确认DeepSeek-CWM稳定优于Qwen-4B
+    CWM(87.19%)， 但仅2个seed不足以做严格的statistical comparison。 Worst档影响：reviewer可能要求3-5个seed才接受architecture
+    comparison claim， 仅2个seed被视为insufficient evidence。
+
+    '
+  tables:
+  - caption: DeepSeek CWM multi-seed results (function-level)
+    columns:
+    - Seed
+    - Accuracy %
+    - Exact Match %
+    - Eval Loss
+    rows:
+    - - default
+      - 88.21
+      - 85.5
+      - 0.0429
+    - - '123'
+      - 87.88
+      - 85.1
+      - 0.0445
+    - - Mean±Std
+      - 88.05±0.23
+      - 85.30±0.28
+      - 0.0437±0.001
+  figures_description:
+  - 'Dot plot: DeepSeek CWM seed variability vs Qwen CWM seed variability'
+  analysis: '两个seed结果一致但sample size不足。Worst档下reviewer会说 "2 seeds is anecdotal, not
+    statistical"，要求至少3个seed。 如果deadline前无法补跑，DeepSeek comparison只能作为supplementary
+    observation而非formal claim。
+
+    '
+- name: DeepSeek-Coder CLS Repo-Level
+  plan_id: deepseek-cls-repo
+  description: 'DeepSeek-Coder-6.7B-Instruct LoRA classification在repo-level SWE-bench数据上训练。验证repo-level
+    CLS是否generalize across architectures。
+
+    '
+  expected_results:
+    best_checkpoint_accuracy: 78.15
+    best_checkpoint_f1_macro: 69.82
+    best_checkpoint_fail_f1: 55.3
+    best_checkpoint_pass_f1: 84.34
+    fail_precision: 72.5
+    fail_recall: 44.6
+    pass_precision: 79.8
+    pass_recall: 89.5
+    unparseable_pct: 1.8
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 5.19
+    vs_qwen4b_repo_cls_accuracy_diff_pp: -4.2
+    vs_qwen8b_repo_cls_accuracy_diff_pp: -5.37
+    overfitting_epoch: 2
+    eval_loss_trend: U-shaped, minimum at step 400-600
+    train_time_sec: 18000
+  result_rationale: 'Worst档核心假设："Repo-level CLS accuracy <80%或seed间variance>5pp"。
+    DeepSeek-CLS-repo达到78.15%（低于Qwen-4B的82.35%和Qwen-8B的83.52%）， 原因： (1) DeepSeek-Coder-6.7B虽然是code-specialized模型，但其pretraining
+    偏向code generation而非code understanding/classification——repo-level 的pass/fail判断需要理解长上下文中的语义一致性，这是code
+    understanding任务； (2) Repo-level input长度（5120-8192 tokens）对6.7B模型的attention capacity
+    构成挑战——DeepSeek-Coder-6.7B的有效context window可能不如Qwen3-8B； (3) LoRA rank=16可能对6.7B模型insufficient——Qwen实验中同样rank=16，
+    但Qwen3架构可能更LoRA-friendly（GQA vs MHA差异）； (4) 78.15%仅比majority baseline(73%)高5pp，在worst档范围[75,80]中部，
+    reviewer会质疑这个marginal improvement是否justify the fine-tuning cost； (5) fail_f1仅55.30%，说明模型在识别failing
+    tests方面表现差——这正是 per-test verification最需要的能力。
+
+    关键影响：DeepSeek在repo-level表现更差（vs function-level的88.73%）， drop幅度10.58pp（vs Qwen-4B的5.72pp
+    from 88.43→82.35），说明 DeepSeek在domain transfer (func→repo) 上比Qwen更脆弱。 这进一步复杂化了architecture
+    comparison story——不同架构在不同 complexity level上的ranking不同。
+
+    '
+  tables:
+  - caption: Repo-level CLS across architectures
+    columns:
+    - Architecture
+    - Size
+    - Accuracy %
+    - Fail F1 %
+    - Gap vs Majority (pp)
+    rows:
+    - - Qwen3
+      - 4B
+      - 82.35
+      - 60.87
+      - '+9.39'
+    - - DeepSeek-Coder
+      - 6.7B
+      - 78.15
+      - 55.3
+      - '+5.19'
+    - - Qwen3
+      - 8B
+      - 83.52
+      - 65.85
+      - '+10.56'
+  - caption: Function-to-repo performance drop by architecture
+    columns:
+    - Architecture
+    - Func Acc %
+    - Repo Acc %
+    - Drop (pp)
+    rows:
+    - - Qwen3-4B
+      - 88.43
+      - 82.35
+      - '-6.08'
+    - - DeepSeek-6.7B
+      - 88.73
+      - 78.15
+      - '-10.58'
+    - - Qwen3-8B
+      - 89.4
+      - 83.52
+      - '-5.88'
+  figures_description:
+  - 'Line plot: function-level vs repo-level accuracy by architecture, showing non-parallel
+    drops'
+  - 'Heatmap: architecture × complexity level → accuracy, showing DeepSeek''s disproportionate
+    repo-level drop'
+  analysis: 'DeepSeek在repo-level的相对劣势是worst档最damaging的finding之一。 它证明：(a) CLS formulation的effectiveness是architecture-dependent；
+    (b) code-specialized pretraining不自动转化为repo-level verification能力； (c) 不同架构在function-level
+    vs repo-level的ranking反转（DeepSeek func >  Qwen-4B func, 但DeepSeek repo < Qwen-4B
+    repo）。 论文必须降级architecture comparison为"preliminary observation"， 承认需要更多架构（CodeLlama,
+    StarCoder等）才能draw conclusions。
+
+    '
+- name: Repo-Level CLS Multi-Seed Validation
+  plan_id: repo-level-training
+  description: 'Repo-level CLS的multi-seed validation（seed42已完成，预测seed123/456结果）。 验证repo-level结果的稳定性。
+
+    '
+  expected_results:
+    seed42_accuracy: 82.35
+    seed42_fail_f1: 60.87
+    seed123_accuracy: 77.8
+    seed123_fail_f1: 53.2
+    seed456_accuracy: 79.5
+    seed456_fail_f1: 57.4
+    multiseed_mean_accuracy: 79.88
+    multiseed_std_accuracy: 2.32
+    multiseed_mean_fail_f1: 57.16
+    multiseed_std_fail_f1: 3.87
+    seed_range_accuracy_pp: 4.55
+    seed42_vs_mean_diff_pp: 2.47
+    cls_vs_cwm_repo_gap_pp: undefined (CWM repo failed)
+    reviewer_concern_seed_variance: true
+  result_rationale: 'Worst档核心指标：repo_cls_accuracy_multiseed在[75,80]，repo_cls_fail_f1在[50,62]。
+    Seed42的82.35%是cherry-picked best seed： (1) Seed123在repo-level的home server上已有partial
+    results——cls4b-seed123-ckpt800 val5120准确率87.92%（validation），但test准确率仅75.33%（大幅val-test
+    gap， 9784 samples），说明该seed严重过拟合； (2) Seed456预计79.50%——居中但低于seed42，因为不同random initialization
+    在repo-level的高维parameter space中找到不同local minima； (3) Multi-seed mean 79.88%落入worst档[75,80]范围，std
+    2.32pp表示 moderate但不negligible的variance； (4) Seed42比mean高2.47pp，reviewer会质疑是否report了best
+    seed； (5) Fail_f1 mean仅57.16%（std 3.87pp），说明模型对failing tests的识别 在不同seed间极不稳定——这是diagnostic
+    value的致命缺陷； (6) CWM repo-level实验全部failed（unparseable 53-93%），无法计算cls-cwm gap，
+    reviewer会归因于experimental design而非formulation差异。
+
+    '
+  tables:
+  - caption: Repo-level CLS multi-seed results (Qwen3-4B)
+    columns:
+    - Seed
+    - Accuracy %
+    - Fail F1 %
+    - Pass F1 %
+    - Unparseable %
+    rows:
+    - - 42
+      - 82.35
+      - 60.87
+      - 89.59
+      - 0.0
+    - - 123
+      - 77.8
+      - 53.2
+      - 85.1
+      - 1.5
+    - - 456
+      - 79.5
+      - 57.4
+      - 87.3
+      - 0.8
+    - - Mean±Std
+      - 79.88±2.32
+      - 57.16±3.87
+      - 87.33±2.25
+      - 0.77±0.75
+  figures_description:
+  - 'Box plot: repo-level accuracy across seeds, showing wide spread and seed42 as
+    outlier'
+  - 'Scatter: seed-level accuracy vs fail_f1, showing positive correlation but high
+    variance'
+  analysis: 'Multi-seed mean 79.88%低于majority baseline+10pp threshold that reviewers
+    typically expect for "meaningful" improvement。Seed42的82.35%看起来decent 但它是3个seed中最好的——如果论文只报告seed42，reviewer会质疑cherry-picking。
+    报告3-seed mean则只有79.88%，不足以支撑strong repo-level claim。 Fail_f1的高variance（std 3.87pp）意味着per-test
+    diagnostic在不同 random runs间不稳定——这与function-level（fail_f1 std ~0.92pp）形成鲜明对比。 在worst档pivot中，repo-level
+    results降级为"preliminary"， 承认需要更多compute和hyperparameter tuning。
+
+    '
+- name: Repo-Level CWM Revisited (Reviewer Challenge)
+  plan_id: repo-level-training
+  description: '预测reviewer对repo-level CWM失败的质疑及重做实验的结果。 Reviewer会认为CWM failure是max_new_tokens/prompt设计导致，
+    要求增大token budget重做。
+
+    '
+  expected_results:
+    cwm_v10_accuracy: 69.91
+    cwm_v10_unparseable_pct: 93.0
+    cwm_v10_with_tok512_accuracy: 72.5
+    cwm_v10_with_tok512_unparseable_pct: 45.0
+    cwm_v10_with_tok1024_accuracy: 74.8
+    cwm_v10_with_tok1024_unparseable_pct: 28.0
+    cwm_v10_with_tok2048_accuracy: 75.5
+    cwm_v10_with_tok2048_unparseable_pct: 18.0
+    cwm_tok2048_vs_cls_gap_pp: -4.38
+    cwm_tok2048_inference_cost_ratio: 35.0
+    reviewer_satisfied: false
+    rebuttal_risk: high
+  result_rationale: 'Worst档假设："Reviewer将CWM repo-level failure归因于max_new_tokens/prompt设计，
+    要求重做实验"。实际已有的cwm-v10结果：accuracy 69.91%但93%unparseable。 Reviewer的合理质疑： (1) max_new_tokens=64（D047记录）导致93%
+    unparseable——这是obvious  experimental error，不是formulation的inherent limitation；
+    (2) 增大token budget到512后unparseable降至~45%，accuracy升至72.50%—— 说明CWM failure是token
+    budget artifact而非fundamental； (3) 进一步增至1024 (28% unparseable, 74.80%) 和2048 (18%,
+    75.50%)， CWM持续改善，但改善速度递减（diminishing returns）； (4) 即使tok=2048，CWM仍低于CLS mean(79.88%)
+    约4.38pp——但这个gap 可能是因为CWM还可以进一步优化（prompt format、更大token budget、 post-processing）；
+    (5) Reviewer会说："You set up CWM to fail by limiting tokens.  A fair comparison
+    needs CWM with sufficient token budget."—— 即使我们argue CWM的高token cost是formulation的inherent
+    cost， reviewer关心的是accuracy comparison是否fair，not cost。
+
+    CWM-tok2048的35x inference cost是efficiency argument的支撑， 但worst档下reviewer可能不买账："efficiency
+    without accuracy parity  is not a contribution"。
+
+    '
+  tables:
+  - caption: Repo-level CWM accuracy vs token budget (Qwen3-4B)
+    columns:
+    - max_new_tokens
+    - Accuracy %
+    - Unparseable %
+    - Δ vs CLS mean (pp)
+    - Inference Cost (×)
+    rows:
+    - - 64
+      - 69.91
+      - 93.0
+      - '-9.97'
+      - 1.5×
+    - - 512
+      - 72.5
+      - 45.0
+      - '-7.38'
+      - 8×
+    - - 1024
+      - 74.8
+      - 28.0
+      - '-5.08'
+      - 16×
+    - - 2048
+      - 75.5
+      - 18.0
+      - '-4.38'
+      - 35×
+    - - CLS (1 token)
+      - 79.88
+      - 0.0
+      - —
+      - 1×
+  figures_description:
+  - 'Line plot: CWM accuracy vs token budget, showing diminishing returns curve approaching
+    but not reaching CLS'
+  - 'Dual-axis: accuracy (left) and unparseable rate (right) vs token budget, showing
+    tradeoff'
+  analysis: 'Token budget sweep是worst档rebuttal的核心风险。即使CWM-tok2048的accuracy 仍低于CLS，4.38pp
+    gap在reviewer眼中可能"来自其他confounds而非formulation"。 在pivot论文中，这变为efficiency-accuracy
+    tradeoff analysis： CLS用1-token达到CWM 2048-token的更高accuracy——这是genuine contribution
+    但需要careful framing避免being dismissed as "unfair comparison"。
+
+    '
+- name: Error Complementarity Deep Analysis
+  plan_id: matched-seed-8b-predictions
+  description: 'CLS和CWM在matched seeds上的error overlap分析。 已有4B seed42数据（oracle 90.63%），预测8B和multi-seed结果。
+
+    '
+  expected_results:
+    oracle_ensemble_4b_seed42: 90.63
+    oracle_ensemble_4b_5seed_mean: 90.25
+    oracle_ensemble_8b_seed42: 93.1
+    oracle_ensemble_8b_3seed_mean: 92.5
+    cls_only_correct_pct_4b: 3.12
+    cwm_only_correct_pct_4b: 2.8
+    both_wrong_pct_4b: 9.37
+    cls_only_correct_pct_8b: 4.5
+    cwm_only_correct_pct_8b: 2.1
+    both_wrong_pct_8b: 4.4
+    cls_fn_dominance_pct: 75.5
+    cwm_fp_dominance_pct: 83.1
+    kappa_predictions_4b: 0.88
+    kappa_correctness_4b: 0.73
+    kappa_predictions_8b: 0.82
+    kappa_correctness_8b: 0.65
+    practical_ensemble_accuracy_4b: 88.9
+    practical_ensemble_accuracy_8b: 91.2
+    ensemble_vs_oracle_gap_4b_pp: 1.73
+    ensemble_vs_oracle_gap_8b_pp: 1.9
+  result_rationale: 'Error complementarity是worst档pivot叙事的三大支柱之一。 4B seed42的已有数据：oracle
+    90.63%（both correct 84.71%, CLS-only 3.12%,  CWM-only 2.80%, both wrong 9.37%）。
+
+    Worst档下的补充预测： (1) 4B 5-seed mean oracle降至90.25%——某些seeds的CLS/CWM errors更相关 （overlap更大），削弱complementarity；
+    (2) 8B oracle升至93.10%，因为8B models各自更强（fewer errors）但complementarity pattern保持——CLS-only(4.5%)
+    > CWM-only(2.1%)说明CWM的8B improvement 更多来自修正CWM-specific errors； (3) CLS FN dominance
+    75.5%和CWM FP dominance 83.1%在不同seeds间 保持稳定（±3pp），说明这是formulation-level的systematic
+    pattern而非 random artifact——这是worst档pivot的strongest evidence； (4) Practical ensemble（simple
+    voting而非oracle）只达到88.90%/91.20%， 低于oracle 1.73pp/1.90pp，说明error complementarity存在但
+    simple aggregation无法fully exploit它； (5) Kappa(correctness)在8B下降至0.65（vs 4B的0.73），说明8B
+    models 的errors更diverse——更多potential for complementarity但也更难aggregate。
+
+    Worst档叙事：error complementarity是最robust的finding，不受 cls-vs-cwm accuracy comparison结果的影响。即使CLS≈CWM
+    in accuracy， 它们的failure modes仍systematically不同，这本身就是有价值的characterization。
+
+    '
+  tables:
+  - caption: Error overlap analysis (function-level, matched seeds)
+    columns:
+    - Category
+    - 4B seed42 (%)
+    - 4B 5-seed mean (%)
+    - 8B 3-seed mean (%)
+    rows:
+    - - Both correct
+      - 84.71
+      - 84.35
+      - 89.0
+    - - CLS-only correct
+      - 3.12
+      - 2.95
+      - 4.5
+    - - CWM-only correct
+      - 2.8
+      - 2.65
+      - 2.1
+    - - Both wrong
+      - 9.37
+      - 10.05
+      - 4.4
+    - - Oracle ensemble
+      - 90.63
+      - 90.25
+      - 93.1
+  - caption: Error type asymmetry (CLS vs CWM)
+    columns:
+    - Error Type
+    - CLS (%)
+    - CWM (%)
+    rows:
+    - - False Negative (miss bug)
+      - 75.5
+      - 16.9
+    - - False Positive (false alarm)
+      - 24.5
+      - 83.1
+  figures_description:
+  - 'Venn diagram: CLS errors vs CWM errors showing limited overlap'
+  - 'Stacked bar: error type breakdown for CLS vs CWM showing complementary asymmetry'
+  - 'Line plot: oracle ensemble accuracy across seeds, showing stability'
+  analysis: 'Error complementarity在worst档下是最defensible的contribution。 它不依赖于CLS > CWM的claim——即使CLS
+    ≈ CWM，它们fail on different  instances in predictable ways (CLS: conservative →
+    miss bugs;  CWM: noisy generation → false alarms)。Oracle ensemble 90.63% 作为upper
+    bound motivates future work on learned ensemble strategies。 在pivot论文中，这可以成为Section
+    5: "Complementary Failure Modes  as a Verification Strategy"的核心内容。
+
+    '
+- name: Efficiency Equivalence Analysis
+  plan_id: inference-cost-comparison
+  description: 'CLS (1-token) vs CWM (N-token) 的inference cost对比。 已有CPU数据（3.1x token
+    overhead, 1.09x latency）， 预测GPU场景和repo-level scaling。
+
+    '
+  expected_results:
+    func_level_cpu:
+      cls_output_tokens_mean: 2.0
+      cwm_output_tokens_mean: 6.2
+      token_ratio: 3.1
+      latency_ratio: 1.09
+      throughput_ratio: 0.92
+    func_level_gpu:
+      cls_latency_ms: 45
+      cwm_latency_ms: 85
+      latency_ratio: 1.89
+      cls_throughput_sps: 22.2
+      cwm_throughput_sps: 11.8
+      throughput_ratio: 1.88
+    repo_level_gpu:
+      cls_output_tokens: 2
+      cwm_output_tokens_mean: 45
+      cwm_output_tokens_p95: 180
+      token_ratio: 22.5
+      cls_latency_ms: 320
+      cwm_latency_ms: 2800
+      latency_ratio: 8.75
+      cls_throughput_sps: 3.1
+      cwm_throughput_sps: 0.36
+      throughput_ratio: 8.6
+    batch_inference_1000_instances:
+      cls_total_time_min: 5.4
+      cwm_total_time_min: 46.3
+      speedup: 8.6
+    cost_per_1000_instances_a100:
+      cls_cost_usd: 0.05
+      cwm_cost_usd: 0.43
+      cost_ratio: 8.6
+  result_rationale: 'Efficiency equivalence是worst档pivot的angle之一："CLS用1-token output
+    达到CWM N-token相同accuracy，inference cost降低"。
+
+    已有CPU数据显示仅1.09x latency差异，因为prefill dominates——但这 低估了real-world GPU差异： (1) Function-level
+    GPU：prefill仍dominates但per-token decode在GPU上 更parallel-efficient，CWM的6.2 mean output
+    tokens导致1.89x latency—— 比CPU的1.09x更明显但仍不dramatic，因为function-level outputs很短； (2)
+    Repo-level GPU：CWM output tokens mean=45 (p95=180)，latency ratio 升至8.75x——这是efficiency
+    argument的sweet spot； (3) 但worst档下accuracy comparison存疑（CLS 79.88% vs CWM ~75.50%@tok2048），
+    reviewer会说"efficiency comparison only meaningful at accuracy parity"； (4) Batch
+    inference场景：1000 instances处理时间CLS 5.4min vs CWM 46.3min， 8.6x speedup——在best-of-N
+    verification pipeline中（K=16 candidates ×  T=15 tests = 240 predictions per instance），CLS的low
+    latency is genuinely  valuable for interactive repair workflows。
+
+    Worst档影响：efficiency argument在function-level很弱（1.09-1.89x）， 只在repo-level显著（8.75x）。但repo-level
+    accuracy不足使得efficiency claim变为"faster at a task it doesn''t do well at"——需要careful
+    framing。
+
+    '
+  tables:
+  - caption: 'Inference cost comparison: CLS vs CWM'
+    columns:
+    - Setting
+    - CLS Latency
+    - CWM Latency
+    - Speedup
+    - Accuracy Gap
+    rows:
+    - - Func-level CPU
+      - 9.76s
+      - 10.61s
+      - 1.09×
+      - ~0pp
+    - - Func-level GPU
+      - 45ms
+      - 85ms
+      - 1.89×
+      - ~1.25pp
+    - - Repo-level GPU
+      - 320ms
+      - 2.8s
+      - 8.75×
+      - ~4.38pp
+  - caption: 'Cost projection: 1000-instance verification (A100)'
+    columns:
+    - Method
+    - Time (min)
+    - Cost (USD)
+    - Accuracy (%)
+    rows:
+    - - CLS (repo)
+      - 5.4
+      - $0.05
+      - 79.88
+    - - CWM tok-2048 (repo)
+      - 46.3
+      - $0.43
+      - 75.5
+    - - CWM tok-512 (repo)
+      - 12.1
+      - $0.11
+      - 72.5
+  figures_description:
+  - 'Pareto frontier: accuracy vs inference cost for CLS, CWM at various token budgets,
+    and LLM-judge baselines'
+  - 'Bar chart: speedup ratio across complexity levels (func vs repo)'
+  analysis: Efficiency是worst档中唯一的"clear win" for CLS——但只在repo-level显著。 Pareto frontier图将是论文的key
+    figure之一：CLS dominates at every cost level。 但reviewer可能要求CWM with unlimited tokens作为accuracy
+    upper bound， 如果CWM with sufficient tokens matches CLS accuracy，efficiency argument
+    reduces to "same accuracy, lower cost"——这是less exciting但still valid contribution。

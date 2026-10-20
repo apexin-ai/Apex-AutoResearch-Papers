@@ -1,0 +1,24 @@
+paper_key: "SWE-Bench Pro: Can AI Agents Solve Real-World Software Engineering Tasks?"
+title: "SWE-Bench Pro: Can AI Agents Solve Real-World Software Engineering Tasks?"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [SWE-bench, SWE-bench_Lite, SWE-bench_Verified]
+  metrics:
+    - {name: "resolve_rate", direction: "higher_better"}
+  datasets:
+    - {name: "SWE-Bench Pro", size: "1865 problems from 41 repos"}
+  ablation_dimensions: [task_complexity, repo_type, failure_mode]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "N/A"}
+  method_family: "benchmark"
+
+positioning:
+  core_claim: "Professional-difficulty SE benchmark (hours-to-days for human engineers) from 41 repos with contamination resistance"
+  key_results: "1865 problems requiring multi-file patches; tasks take hours-to-days for professionals"
+  limitations: ["Limited open evaluation", "Held-out commercial repos restrict reproducibility"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

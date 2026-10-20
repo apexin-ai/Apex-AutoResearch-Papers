@@ -1,0 +1,36 @@
+paper_key: "kwa-catastrophic-goodhart"
+title: "Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification"
+venue: "NeurIPS 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - "KL-regularized RLHF policies"
+    - "base (unaligned) model"
+  metrics:
+    - {name: "true utility", direction: "higher_better"}
+    - {name: "proxy reward", direction: "higher_better"}
+    - {name: "reward model tail heaviness", direction: "N/A (diagnostic)"}
+  datasets:
+    - {name: "reward model tail distribution measurements", size: "not specified"}
+  ablation_dimensions:
+    - "KL penalty coefficient"
+    - "reward error distribution (light-tailed vs heavy-tailed)"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    details: "theoretical analysis + discrete optimization for tail measurement"
+  method_family: "RLHF reward misspecification / Goodhart's law"
+
+positioning:
+  core_claim: "KL regularization prevents reward hacking only under light-tailed reward error; under heavy-tailed error, policies can achieve arbitrarily high reward with no utility gain over the base model (catastrophic Goodhart)."
+  key_results: "Current reward models empirically have light-tailed error, but heavy-tailed distributions are pervasive in real-world applications, making future catastrophic Goodhart plausible."
+  limitations:
+    - "current reward models appear light-tailed, so the failure mode is more a future risk than a present one"
+    - "tail measurement method is adapted from discrete optimization, may not scale"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

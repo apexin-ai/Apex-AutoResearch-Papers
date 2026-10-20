@@ -1,0 +1,24 @@
+paper_key: "thought-like-pro"
+title: "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics: []
+  datasets: []
+  ablation_dimensions: ["Prolog rule formulation", "imitation learning vs self-driven", "symbolic-to-NL translation"]
+  training_recipe:
+    method: "imitation learning on CoT trajectories derived from Prolog reasoning engine"
+    pipeline: "instruction -> Prolog rules -> Prolog engine execution -> NL trajectory -> self-improvement"
+  method_family: "symbolic-augmented CoT / neuro-symbolic reasoning"
+
+positioning:
+  core_claim: "LLMs can self-improve reasoning by imitating Prolog-derived chain-of-thought trajectories, combining symbolic logic rigor with natural language flexibility."
+  key_results: "Enhanced reasoning + robust generalization to out-of-distribution tasks (specific numbers not in abstract)"
+  limitations: ["Dependence on Prolog rule formulation quality", "Scalability to tasks not easily expressible in Prolog"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

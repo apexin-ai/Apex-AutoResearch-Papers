@@ -1,0 +1,27 @@
+paper_key: "gao-reward-overoptimization"
+title: "Scaling Laws for Reward Model Overoptimization"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines: ["gold-standard reward model (synthetic oracle)"]
+  metrics:
+    - {name: "gold RM score", direction: "higher_better"}
+    - {name: "proxy RM score", direction: "higher_better"}
+  datasets: []
+  ablation_dimensions: ["RL vs best-of-n optimization", "reward model parameter count", "training dataset size", "KL penalty coefficient"]
+  training_recipe:
+    setup: "synthetic gold RM + proxy RM to measure overoptimization"
+    optimization_methods: ["reinforcement learning (PPO-style)", "best-of-n sampling"]
+    key_finding: "different functional forms for RL vs best-of-n; coefficients scale smoothly with RM size"
+  method_family: "reward model scaling laws / Goodhart's law in RLHF"
+
+positioning:
+  core_claim: "Reward model overoptimization follows predictable scaling laws: gold score degrades as proxy optimization increases, with functional forms depending on optimization method and coefficients scaling smoothly with RM parameter count."
+  key_results: "Smooth scaling relationships between RM size, dataset size, KL penalty and overoptimization severity for both RL and best-of-n"
+  limitations: ["Synthetic gold RM may not fully capture real human preferences", "Studied primarily in controlled/synthetic setup"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

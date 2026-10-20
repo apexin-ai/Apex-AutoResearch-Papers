@@ -1,0 +1,77 @@
+paper_key: "LoRA: Low-Rank Adaptation of Large Language Models"
+title: "LoRA: Low-Rank Adaptation of Large Language Models"
+venue: "ICLR 2022"
+full_text_available: true
+
+research:
+  baselines: [full_finetuning, adapters, prefix_tuning, BitFit]
+  metrics:
+    - {name: "task_accuracy", direction: "higher_better"}
+    - {name: "trainable_parameters", direction: "lower_better"}
+    - {name: "inference_latency", direction: "lower_better"}
+  datasets:
+    - {name: "GLUE (RoBERTa/DeBERTa)", size: "standard"}
+    - {name: "E2E/WebNLG/DART (GPT-2)", size: "standard"}
+    - {name: "WikiSQL/MNLI/SAMSum (GPT-3 175B)", size: "standard"}
+  ablation_dimensions: [rank_r, weight_matrix_selection, scaling_alpha]
+  training_recipe: {optimizer: "Adam", lr: "varies", hardware: "GPT-3 via API"}
+  method_family: "parameter-efficient finetuning"
+
+positioning:
+  core_claim: "Low-rank weight update decomposition (ΔW = BA) achieves full finetuning quality with 10,000x fewer trainable parameters and zero additional inference latency"
+  key_results: "GPT-3 175B: matches full FT with 4.7M-37.7M params; 10,000x reduction; no latency overhead (weights merge)"
+  limitations: ["Difficult to batch different LoRA tasks", "Heuristic weight selection", "Limited MLP/LayerNorm exploration"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Full finetuning of large models is prohibitively expensive"
+  tension: "Existing PEFT methods (adapters, prefix-tuning) introduce latency or optimization difficulty"
+  key_insight: "Weight updates have surprisingly low intrinsic rank — even rank-1 works competitively (Section 7.2)"
+  argument_chain: "finetuning cost → intrinsic dimensionality hypothesis → low-rank decomposition → no latency (merge) → matches full FT"
+  contribution_framing: "Method + empirical validation + analysis of learned representations"
+  intro_structure: "4 paragraphs: (1) adaptation importance, (2) existing approaches' limitations, (3) LoRA proposal, (4) key insight about low rank"
+  notable_technique: "The theoretical grounding (intrinsic dimensionality) transforms a heuristic into a principled approach"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "LoRA architecture: frozen pretrained weights W with parallel low-rank path BA"
+    narrative_role: "Immediately conveys the core idea in one image"
+    design_elements: ["weight matrix diagram", "frozen vs trainable annotation", "merge operation"]
+    visual_style: "Minimal matrix diagram with color-coded frozen/trainable paths"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Validation performance vs rank r"
+      how_gain_highlighted: "Diminishing returns past small r validates low-rank hypothesis"
+      design_note: "Directly supports the core theoretical claim"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["weight_matrix_type (Wq, Wk, Wv, Wo)", "rank"]
+      design_note: "Subspace similarity analysis — deep analytical figure"
+  figure_narrative_role: "Fig1(method) → Fig2(rank ablation) → Fig3(subspace analysis)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "tasks × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + parameter count column"
+    statistical_reporting: "mean ± std (3 seeds)"
+    num_baselines: 5
+    design_note: "Parameter count column makes efficiency immediately visible alongside quality"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["weight_type (Wq/Wv/both)", "rank r"]
+      variation_style: "full_numbers"
+      design_note: "Grid search over where and how much to adapt"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full hyperparameter grids, per-task breakdowns"
+    reason: "Reproducibility details too extensive for main text"

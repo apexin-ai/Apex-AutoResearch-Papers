@@ -1,0 +1,27 @@
+paper_key: "Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation"
+title: "Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [o1, DeepSeek-R1, QwQ-32B, Claude-3.5-Sonnet]
+  metrics:
+    - {name: "output_prediction_accuracy", direction: "higher_better"}
+    - {name: "trace_error_rate", direction: "lower_better"}
+  datasets:
+    - {name: "HumanEval Plus", size: "164+"}
+    - {name: "LiveCodeBench", size: "subset"}
+    - {name: "Custom (427 snippets × 3 input types × 12 values)", size: "~15K instances"}
+  ablation_dimensions: [input_type (regular/edge/invalid), error_category, tool_augmentation]
+  training_recipe: {optimizer: "N/A (evaluation)", lr: "N/A", hardware: "API inference"}
+  method_family: "error analysis of execution simulation"
+
+positioning:
+  core_claim: "LLMs achieve 85-98% execution prediction accuracy but reasoning traces contain systematic errors categorizable into 9 types; tool augmentation corrects 58% of computation errors"
+  key_results: "85-98% accuracy; 9 error categories identified; tool support fixes 58% of computation errors"
+  limitations: ["Only 4 models evaluated", "Tool augmentation only tested on computation errors"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

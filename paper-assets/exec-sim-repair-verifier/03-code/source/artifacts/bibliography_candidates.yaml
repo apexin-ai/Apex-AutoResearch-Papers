@@ -1,0 +1,222 @@
+metadata:
+  purpose: "Dream A2: bibliography expansion candidates"
+  date: "2026-05-17"
+  target_count: "25-30 total references"
+  search_method: "WebSearch verified (no memory-based entries)"
+
+candidates:
+  # === Parameter-Efficient Fine-Tuning ===
+  - title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    authors: "Hu et al."
+    venue: "ICLR 2022"
+    year: 2022
+    arxiv: "2106.09685"
+    relevance: "Parameter-efficient fine-tuning method used in our CLS/CWM training"
+    bib_key: "hu2022lora"
+    category: "parameter-efficient-finetuning"
+
+  - title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+    authors: "Dettmers et al."
+    venue: "NeurIPS 2023"
+    year: 2023
+    arxiv: "2305.14314"
+    relevance: "4-bit quantized LoRA enabling large model fine-tuning on single GPU; directly relevant to our training setup"
+    bib_key: "dettmers2023qlora"
+    category: "parameter-efficient-finetuning"
+
+  # === SWE-bench Ecosystem ===
+  - title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+    authors: "Jimenez et al."
+    venue: "ICLR 2024 (Oral)"
+    year: 2024
+    arxiv: "2310.06770"
+    relevance: "Primary benchmark for real-world software engineering tasks; our verifier targets this evaluation setting"
+    bib_key: "jimenez2024swebench"
+    category: "swe-bench-ecosystem"
+
+  - title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+    authors: "Yang et al."
+    venue: "NeurIPS 2024"
+    year: 2024
+    arxiv: "2405.15793"
+    relevance: "State-of-the-art SWE-bench agent; our verifier provides execution-free feedback for such agents"
+    bib_key: "yang2024sweagent"
+    category: "swe-bench-ecosystem"
+
+  # === Code Evaluation Methods (Non-Execution) ===
+  - title: "ICE-Score: Instructing Large Language Models to Evaluate Code"
+    authors: "Zhuo"
+    venue: "Findings of EACL 2024"
+    year: 2024
+    arxiv: "2304.14317"
+    relevance: "LLM-based execution-free code evaluation; related approach but uses prompting rather than trained verifier"
+    bib_key: "zhuo2024icescore"
+    category: "code-evaluation-non-execution"
+
+  - title: "CodeScore: Evaluating Code Generation by Learning Code Execution"
+    authors: "Dong et al."
+    venue: "ACM TOSEM 2023"
+    year: 2023
+    arxiv: "2301.09043"
+    relevance: "Learns to predict execution outcomes for code evaluation; similar motivation to our execution simulation"
+    bib_key: "dong2023codescore"
+    category: "code-evaluation-non-execution"
+
+  - title: "CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code"
+    authors: "Zhou et al."
+    venue: "EMNLP 2023"
+    year: 2023
+    arxiv: "2302.05527"
+    relevance: "Embedding-based code evaluation metric; baseline approach for non-execution code assessment"
+    bib_key: "zhou2023codebertscore"
+    category: "code-evaluation-non-execution"
+
+  # === Reasoning and Verification Theory ===
+  - title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+    authors: "Wang et al."
+    venue: "ICLR 2023"
+    year: 2023
+    arxiv: "2203.11171"
+    relevance: "Majority voting / self-consistency decoding; theoretical basis for our consensus-based verification"
+    bib_key: "wang2023selfconsistency"
+    category: "reasoning-verification"
+
+  - title: "Let's Verify Step by Step"
+    authors: "Lightman et al."
+    venue: "arXiv 2023"
+    year: 2023
+    arxiv: "2305.20050"
+    relevance: "Process vs outcome reward models; motivates our process-level execution simulation approach"
+    bib_key: "lightman2023verify"
+    category: "reasoning-verification"
+
+  # === Code Reward Models / Verifiers (2022-2026) ===
+  - title: "SWE-RM: Execution-free Feedback For Software Engineering Agents"
+    authors: "Shum et al."
+    venue: "arXiv 2025"
+    year: 2025
+    arxiv: "2512.21919"
+    relevance: "Most directly related work: execution-free reward model for SWE agents using MoE architecture"
+    bib_key: "shum2025swerm"
+    category: "code-reward-model"
+
+  - title: "CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning"
+    authors: "Le et al."
+    venue: "NeurIPS 2022"
+    year: 2022
+    arxiv: "2207.01780"
+    relevance: "Pioneering code verifier as critic network for RL-based code generation"
+    bib_key: "le2022coderl"
+    category: "code-reward-model"
+
+  - title: "Process-Supervised Reinforcement Learning for Code Generation"
+    authors: "Ye et al."
+    venue: "arXiv 2025"
+    year: 2025
+    arxiv: "2502.01715"
+    relevance: "Process-level reward model for code using mutation/refactoring-verification; related to our mutation-based training signal"
+    bib_key: "ye2025prlcoder"
+    category: "code-reward-model"
+
+  - title: "DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding"
+    authors: "DreamPRM Team"
+    venue: "arXiv 2025"
+    year: 2025
+    arxiv: "2512.15000"
+    relevance: "Process reward model treating functions as reasoning steps; complementary verifier design philosophy"
+    bib_key: "dreamprm2025code"
+    category: "code-reward-model"
+
+  # === Mutation Testing ===
+  - title: "Contextual Predictive Mutation Testing"
+    authors: "Jain et al."
+    venue: "ESEC/FSE 2023"
+    year: 2023
+    arxiv: "2309.02389"
+    relevance: "ML-based prediction of mutation detection outcomes; directly related to our execution simulation of test/mutation interactions"
+    bib_key: "jain2023contextual"
+    category: "mutation-testing"
+
+  - title: "Predictive Mutation Analysis via the Natural Language Channel in Source Code"
+    authors: "Kim et al."
+    venue: "ACM TOSEM 2022"
+    year: 2022
+    arxiv: "2104.10865"
+    relevance: "Predicts kill matrix using NL features in code; foundational predictive mutation testing work"
+    bib_key: "kim2022seshat"
+    category: "mutation-testing"
+
+  - title: "A Comprehensive Study on Large Language Models for Mutation Testing"
+    authors: "Wang et al."
+    venue: "arXiv 2024"
+    year: 2024
+    arxiv: "2406.09843"
+    relevance: "LLM-generated mutants are more diverse and closer to real bugs; supports our use of mutations as training signal"
+    bib_key: "wang2024llmmutation"
+    category: "mutation-testing"
+
+  # === Foundation Models ===
+  - title: "Qwen3 Technical Report"
+    authors: "Yang et al. (Qwen Team)"
+    venue: "arXiv 2025"
+    year: 2025
+    arxiv: "2505.09388"
+    relevance: "Base model used in our experiments"
+    bib_key: "yang2025qwen3"
+    category: "foundation-models"
+
+  - title: "DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence"
+    authors: "Guo et al."
+    venue: "arXiv 2024"
+    year: 2024
+    arxiv: "2401.14196"
+    relevance: "Strong open-source code model; baseline and comparison point for code understanding"
+    bib_key: "guo2024deepseekcoder"
+    category: "foundation-models"
+
+  # === Code Generation Benchmarks ===
+  - title: "Evaluating Large Language Models Trained on Code"
+    authors: "Chen et al."
+    venue: "arXiv 2021"
+    year: 2021
+    arxiv: "2107.03374"
+    relevance: "Introduces HumanEval benchmark and pass@k metric; standard evaluation methodology"
+    bib_key: "chen2021humaneval"
+    category: "code-benchmarks"
+
+  - title: "Program Synthesis with Large Language Models"
+    authors: "Austin et al."
+    venue: "arXiv 2021"
+    year: 2021
+    arxiv: "2108.07732"
+    relevance: "Introduces MBPP benchmark; complements HumanEval for code generation evaluation"
+    bib_key: "austin2021mbpp"
+    category: "code-benchmarks"
+
+  - title: "CodeT: Code Generation with Generated Tests"
+    authors: "Chen et al."
+    venue: "ICLR 2023"
+    year: 2023
+    arxiv: "2207.10397"
+    relevance: "Uses generated tests for dual execution agreement to rank code; related test-based verification approach"
+    bib_key: "chen2023codet"
+    category: "code-benchmarks"
+
+  - title: "Competition-Level Code Generation with AlphaCode"
+    authors: "Li et al."
+    venue: "Science 2022"
+    year: 2022
+    arxiv: "2203.07814"
+    relevance: "Massive sampling + filtering/clustering for code generation; establishes generate-then-verify paradigm"
+    bib_key: "li2022alphacode"
+    category: "code-benchmarks"
+
+  - title: "AlphaCode 2 Technical Report"
+    authors: "AlphaCode Team (Google DeepMind)"
+    venue: "Technical Report, December 2023"
+    year: 2023
+    arxiv: null
+    url: "https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf"
+    relevance: "Gemini-powered code generation with search and reranking; advanced generate-filter-verify pipeline"
+    bib_key: "alphacode2023team"
+    category: "code-benchmarks"

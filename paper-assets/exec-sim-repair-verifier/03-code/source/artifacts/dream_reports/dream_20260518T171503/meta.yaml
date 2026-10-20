@@ -1,0 +1,2159 @@
+dream_id: dream_20260518T171503
+project: exec-sim-repair-verifier
+venue: ''
+focus: 论文经过 D116 framing pivot、D126 三层 framing、D135 overtraining→evaluation sensitivity
+  重设计后，和 Round 1 时已大幅改变。重点评估：(1) R2-W1 新颖性是否足以达到 EMNLP main 4.0; (2) 当前 contribution
+  framing 是否清晰有力; (3) 写作质量和 story 连贯性; (4) 还有什么具体改进能把分数从 borderline 推到 accept
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: DeepSeek repo-level 实验全线跑通，且 CWM 在 DeepSeek 上表现与 CLS 持平或更优——直接验证 'formulation
+        优劣是 model-contingent' 的核心叙事
+      key_assumptions:
+      - deepseek-cls-repo-v5 训练成功且 test acc ≥80%
+      - deepseek-cwm-repo eval unparseable rate <20%（vs Qwen 93%），acc 与 CLS 持平或反超
+      - Cross-model divergence 在 repo-level 清晰：Qwen CLS>>CWM, DeepSeek CWM≥CLS
+      - Func-level TOST equivalence 已锁定（p=0.007），无需额外实验
+      - DeepSeek TRAJ repo 8k 结果（75-81%）提供第三 formulation 的 repo-level 对比点
+      number_ranges:
+        deepseek_cls_repo_acc:
+        - 80
+        - 86
+        deepseek_cwm_repo_acc:
+        - 78
+        - 85
+        deepseek_cwm_repo_unparseable_pct:
+        - 5
+        - 20
+        qwen_cwm_repo_unparseable_pct:
+        - 90
+        - 95
+        func_level_cls_cwm_gap_pp:
+        - -1.5
+        - 1.0
+        repo_level_cross_model_reversal_pp:
+        - 3
+        - 15
+        oracle_ensemble_gain_pp:
+        - 2
+        - 4
+        expected_reviewer_score:
+        - 3.5
+        - 4.0
+      narrative_direction: 'Path B 完全成立。Title: "The Formulation Design Space for Neural
+        Code Verification"。 Headline: 没有单一 formulation 普遍最优；func-level 三种等价，repo-level
+        优劣取决于 model/tokenizer。 最强 novelty: CWM 在 Qwen 上 93% unparseable 但在 DeepSeek
+        上 <20%——证明失败是 tokenizer-specific 而非 formulation-inherent。 Complementarity
+        + efficiency（6-9x）作为实用 takeaway。 Claims 无需降级，所有 5 个 core findings 均有 cross-model
+        数据支撑。
+
+        '
+    median:
+      tier: median
+      meaning: DeepSeek repo-level CLS 勉强跑通但 CWM 仍然高 unparseable（与 Qwen 相似模式），cross-model
+        'reversal' 叙事不成立，退守为 'CLS 是 robust default'
+      key_assumptions:
+      - deepseek-cls-repo-v5 训练成功但 acc 75-82%（噪音大，test set 小 n≈48-100）
+      - deepseek-cwm-repo eval unparseable rate 40-70%——比 Qwen 好但仍不可用
+      - Cross-model divergence 存在但方向一致（两个模型族都是 CLS > CWM at repo-level）
+      - DeepSeek TRAJ repo 提供补充数据点但 test set 太小（n=48）无法做 significance test
+      - Func-level equivalence + repo-level 'CLS dominates' 是可发表但 predictable 的结论
+      number_ranges:
+        deepseek_cls_repo_acc:
+        - 75
+        - 82
+        deepseek_cwm_repo_acc:
+        - 55
+        - 70
+        deepseek_cwm_repo_unparseable_pct:
+        - 40
+        - 70
+        func_level_cls_cwm_gap_pp:
+        - -1.5
+        - 1.0
+        repo_cls_vs_cwm_gap_consistent_pp:
+        - 5
+        - 20
+        expected_reviewer_score:
+        - 3.0
+        - 3.5
+      narrative_direction: 'Path A 成立但 novelty 削弱。Framing 调整为: "CLS is the robust
+        formulation at repo-level; CWM generation fails at scale due to tokenizer-dependent
+        format compliance, but the severity varies across model families (93% vs ~50%
+        unparseable)."  Claim 2 (model-contingent divergence) 弱化为 "degree of CWM failure
+        is model-dependent" 而非 "which formulation wins is model-dependent"。 需要加强 complementarity
+        analysis 和 efficiency argument 来弥补 novelty gap。 补充实验建议: (1) CWM constrained
+        decoding ablation 证明 parsing 是瓶颈;  (2) 加入 process-vs-outcome supervision 的
+        Related Work section 强化 NLP 社区 relevance。 EMNLP main borderline，Findings 有把握。
+
+        '
+    worst:
+      tier: worst
+      meaning: DeepSeek repo-level 全部失败（延续 v1-v4 的 pattern），只有 Qwen 单模型族的 repo-level
+        数据，cross-model 验证仅限 func-level
+      key_assumptions:
+      - deepseek-cls-repo-v5 训练失败或 acc ≤ majority baseline（~73%）
+      - deepseek-cwm-repo eval 不可用（crash、unparseable >80%、或 acc 远低于 baseline）
+      - Repo-level 结论完全依赖 Qwen 单模型族——reviewer 会质疑 generalizability
+      - DeepSeek TRAJ repo 是唯一跑通的 DeepSeek repo-level 实验，但 n=48 太小
+      - Func-level 双模型族数据完整且 clean，但 repo-level 是 paper 的 differentiator
+      number_ranges:
+        deepseek_cls_repo_acc:
+        - 50
+        - 73
+        deepseek_cwm_repo_acc:
+        - 40
+        - 60
+        deepseek_cwm_repo_unparseable_pct:
+        - 70
+        - 95
+        qwen_cls_repo_best_acc:
+        - 83
+        - 86
+        qwen_cwm_repo_best_parseable_acc:
+        - 42
+        - 58
+        func_level_all_formulations_acc_range:
+        - 83
+        - 90
+        expected_reviewer_score:
+        - 2.5
+        - 3.0
+      narrative_direction: '核心 reframe: 放弃 repo-level 作为 main contribution，转为 secondary
+        finding。 新 angle 选项 (仍冲 EMNLP main): (1) "Per-Test vs Trajectory-Level Verification:
+        A Controlled Study" — 将 CLS vs TRAJ 的 粒度-效率 tradeoff 提为核心贡献（双模型族 func-level
+        数据完整 + Qwen repo-level 作 case study）。 强调 per-test 在 accuracy 不损失前提下提供 diagnostic
+        granularity + 6-9x speedup。 TOST equivalence p=0.007 是 solid statistical result。
+        (2) Block-correlation empirical validation (ICC=0.19, design effect=4.0) 作为
+        methodological contribution——揭示 per-test evaluation 中 i.i.d. 假设不成立的系统性偏差。
+        (3) CWM repo-level failure analysis 降为一个 section 而非 core claim，explicitly
+        scope 为 "Qwen3 case study, cross-model validation as future work"。 Re-repair
+        negative result 诚实报告为 future work motivation。 Efficiency + diagnostic granularity
+        + statistical methodology 三条线撑起 paper。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260518T171503/best/paper.pdf
+  imagined_experiments:
+  - name: DeepSeek CLS Repo-Level v5
+    plan_id: deepseek-cls-repo-v5
+    description: 'DeepSeek-R1-0528-Qwen3-8B LoRA fine-tuned on repo-level SWE-bench-PerTest
+      CLS (patched_code, test_code → pass/fail)。修复 v1-v4 的训练 pipeline 问题 （gradient
+      checkpointing, eval_loss NaN fix, lr=1e-4）。3 epochs, seq_len=8192。
+
+      '
+    expected_results:
+      test_accuracy: 82.1
+      f1_macro: 76.8
+      f1_pass: 88.3
+      f1_fail: 65.3
+      precision_fail: 78.5
+      recall_fail: 55.9
+      precision_pass: 84.2
+      recall_pass: 92.8
+      unparseable_rate: 0.012
+      unparseable_count: 117
+      majority_baseline: 72.96
+      gap_vs_majority_pp: 9.14
+      best_checkpoint: checkpoint-1200
+      train_loss_final: 0.38
+      eval_loss_best: 0.42
+      total_samples: 9784
+      gpu_hours: 32
+    result_rationale: 'DeepSeek 在 func-level CLS 达 86.93%，模型 verification 能力已验证。 v1-v4
+      失败原因均为工程层面：eval_loss=NaN（DeepSeek 已知问题）、OOM kill（seq_len 过长）、 lr 过大导致 epoch
+      3 发散。这些都不是 CLS formulation 或 DeepSeek 模型的能力瓶颈。 CLS 是最简单的 formulation——二分类，output
+      仅 1 token，对 tokenizer 无特殊要求。 参照 Qwen3-4B repo-level CLS 的 82.35%（ckpt-4600），DeepSeek
+      8B 应在同一水平。 虽然 DeepSeek 参数量更大（8B），但其 MLA 架构的 LoRA 适配效率可能略低于 Qwen3 的 standard
+      GQA，加上 DeepSeek tokenizer 对 code 的 compression ratio 不同， 预测 82.1% 而非更高。Fail
+      recall 偏低 (55.9%) 是 repo-level 共性—— fail 样本仅占 27%（class imbalance），且 repo-level
+      代码上下文更长更嘈杂。
+
+      '
+    tables:
+    - 'Table 3 row: DeepSeek CLS repo-level checkpoint sweep (ckpt-200/600/1000/1200,
+      val & test acc)'
+    figures_description:
+    - 'Training loss curve: convergence by epoch 2, eval_loss 不再 NaN（vs v4 对比）'
+    - 'Checkpoint accuracy trajectory: rapid improvement ckpt-200→600, plateau after
+      ckpt-1000'
+    analysis: '82.1% 显著超过 majority baseline (73.0%, +9.1pp) 和 0-shot baseline (48.5%,
+      +33.6pp)， fine-tuning 有效。与 Qwen3-4B CLS (82.35%) 基本持平（差 0.25pp）， 说明 CLS formulation
+      跨模型稳定——这是 best tier 叙事的重要前提： CLS 作为 "stable baseline" 不随模型变化，CWM 才是 model-sensitive
+      的 formulation。 此结果提供 CWM 比较的 anchor：CWM 需要 ≥82.1% 才能形成 reversal。
+
+      '
+  - name: DeepSeek CWM Repo-Level Epoch-2 Eval
+    plan_id: deepseek-cwm-repo-s42-epoch2-eval
+    description: '评估已训练完成的 DeepSeek CWM repo-level 模型（epoch 2 checkpoint）在 test set
+      上的表现。 模型预测 repo-level test 的执行输出，解析后与 ground truth 比对。 关键指标：unparseable rate（vs
+      Qwen 93%）和 parseable 样本准确率。
+
+      '
+    expected_results:
+      test_accuracy: 84.2
+      f1_macro: 78.5
+      f1_pass: 89.6
+      f1_fail: 67.4
+      unparseable_rate: 0.118
+      unparseable_count: 1155
+      parseable_accuracy: 88.7
+      parseable_n: 8629
+      precision_fail: 72.3
+      recall_fail: 63.1
+      precision_pass: 87.8
+      recall_pass: 91.5
+      majority_baseline: 72.96
+      gap_vs_majority_pp: 11.24
+      total_samples: 9784
+      gen_length_mean: 285
+      gen_length_median: 142
+      gen_length_max: 4200
+      eval_checkpoint: epoch-2
+      oracle_ensemble_with_cls: 87.0
+      oracle_ensemble_gain_pp: 2.8
+    result_rationale: "这是 best tier 的决定性实验，整条叙事成败系于此。 训练已成功完成（train_loss=0.021, 31.3\
+      \ GPU hours, 3 epochs），模型质量有保障。 核心论点：unparseable rate 从 Qwen 的 93% 降至 ~12%，证明\
+      \ CWM failure 是 tokenizer-specific。 推理链： (1) Func-level: 两模型 CWM 均 0% unparseable——短输出（~30\
+      \ tokens）两个 tokenizer 都能处理； (2) Qwen3 repo-level CWM 93% unparseable——Qwen tokenizer\
+      \ 在长结构化输出时崩溃，\n    可能因为 Qwen3 tokenizer 对 structured markers（如 test result delimiters）的\n\
+      \    token 边界切分不利于生成一致的格式；\n(3) DeepSeek tokenizer（100K vocab, 不同 BPE 训练语料）对\
+      \ code structured output\n    有更好的 inductive bias，特别是对 test output format 的\
+      \ delimiter 有更连贯的 tokenization；\n(4) 11.8% unparseable 主要来自最长的 ~15% 样本（gen_length\
+      \ > 1000 tokens），\n    这些样本的 output 包含多个测试结果拼接，长度超出模型有效生成窗口。\n在可解析样本上 88.7%\
+      \ 准确率接近 func-level 水平（DeepSeek CWM func 85.77%）， 说明当生成格式正确时，CWM 的 verification\
+      \ 能力跨复杂度迁移。 整体 84.2%（unparseable 计为错误）超过 CLS 的 82.1%，形成 +2.1pp reversal。 Oracle\
+      \ ensemble (CLS ∪ CWM) 达 87.0%（+2.8pp over best individual）， 因为 CLS 和 CWM 捕获不同类型的错误——CLS\
+      \ 在 boundary_removal 弱（46.9%）， CWM 在短 output 样本上更精准，互补性在 repo-level 同样成立。\n"
+    tables:
+    - 'Table 4 (headline): Unparseable rate comparison — Qwen3 CWM (93.0%) vs DeepSeek
+      CWM (11.8%)'
+    - 'Table 5: DeepSeek repo-level formulation comparison (CLS 82.1% vs CWM 84.2%
+      vs TRAJ 75.4%)'
+    - 'Table 6: Oracle ensemble analysis — CLS+CWM=87.0% on DeepSeek repo-level'
+    figures_description:
+    - 'Figure 3 (headline): Bar chart — CWM unparseable rate across models, Qwen 93%
+      vs DeepSeek 11.8%'
+    - 'Figure 4: Scatter plot — generation length vs parse success, failure concentrates
+      in top 15% longest'
+    - 'Figure 5: Venn diagram — CLS vs CWM error overlap on DeepSeek repo-level, showing
+      complementarity'
+    analysis: '11.8% vs 93% unparseable 是全文最强的 single result，直接 falsifies "CWM is
+      inherently unreliable at repo-level" 的 null hypothesis。这不是 marginal difference——是
+      order-of-magnitude 的差异，无法被 random variance 解释。 84.2% CWM > 82.1% CLS 形成 cross-model
+      reversal： - Qwen: CLS (82.4%) >>> CWM (~7% effective) → CLS dominates by ~75pp
+      - DeepSeek: CWM (84.2%) > CLS (82.1%) → CWM reverses by 2.1pp 这是 "formulation
+      design space is model-contingent" 的最直接证据。 Practical implication: 选择 CLS 还是 CWM
+      不能脱离部署模型讨论。 如果 tokenizer 支持 structured generation（如 DeepSeek），CWM 不仅可行而且可能更优，
+      因为它迫使模型 reason about execution semantics 而非做 shallow pattern matching。 如果 tokenizer
+      不支持（如 Qwen3），CLS 是唯一安全选择。
+
+      '
+  - name: DeepSeek CLS Repo-Level Seed 123
+    plan_id: deepseek-cls-repo-s123
+    description: 'DeepSeek CLS repo-level 第二个 seed（seed=123），同 v5 配置。 目的：multi-seed
+      验证，确认 repo-level CLS 结果非 seed-specific outlier。
+
+      '
+    expected_results:
+      test_accuracy: 80.8
+      f1_macro: 75.2
+      f1_pass: 87.5
+      f1_fail: 62.9
+      unparseable_rate: 0.013
+      majority_baseline: 72.96
+      gap_vs_majority_pp: 7.84
+      best_checkpoint: checkpoint-1000
+      total_samples: 9784
+      multi_seed_mean: 81.45
+      multi_seed_std: 0.92
+    result_rationale: 'Multi-seed 验证确保结果稳定。Repo-level 的 seed 方差比 func-level 更大，原因：
+      (1) Test set 虽有 9784 样本但来自较少的 instance (~130)，per-instance 方差累积； (2) Repo-level
+      代码更长更多样，模型对 LoRA 初始化更敏感。 参考 Qwen3 func-level CLS 的 multi-seed std=0.96pp，repo-level
+      预计 1-2pp。 80.8% 与 82.1% 相差 1.3pp，在 1-sigma 范围内，不构成 concern。 两个 seed 均 ≥80%，满足
+      best tier 假设 (deepseek_cls_repo_acc ∈ [80, 86])。 Mean 81.45% 是论文报告的主数字。
+
+      '
+    tables:
+    - 'Table 3 row: DeepSeek CLS repo-level — s42: 82.1%, s123: 80.8%, mean: 81.45
+      ± 0.92%'
+    figures_description:
+    - 'Error bar: DeepSeek CLS repo-level accuracy ± 1 std, overlaid with Qwen CLS
+      for comparison'
+    analysis: 'Mean 81.45 ± 0.92% 与 Qwen CLS (82.35%) 重叠——CLS 跨模型一致。 关键对比：CLS variance
+      小 (0.92pp) 而 CWM cross-model variance 巨大 (Qwen 7% vs DeepSeek 84%)。 这强化了核心 message:
+      CLS 是 "safe default"（稳定不依赖 tokenizer）， CWM 是 "high risk high reward"（在对的 tokenizer
+      上更好，在错的上崩溃）。
+
+      '
+  - name: SWE-bench-PerTest Dataset Construction
+    plan_id: swebench-pertest-data
+    description: 'Docker re-evaluation of SWE-bench Verified patches，提取 per-test pass/fail
+      labels。 构建 SWE-bench-PerTest 数据集（500 instances × 16 candidates）。作为 resource
+      contribution。
+
+      '
+    expected_results:
+      total_instances: 500
+      successful_instances: 467
+      coverage_rate: 0.934
+      total_candidates: 7472
+      total_test_pairs: 89664
+      avg_tests_per_instance: 19.2
+      median_tests_per_instance: 12
+      max_tests_per_instance: 147
+      docker_failures: 33
+      docker_failure_reasons:
+        env_setup_fail: 18
+        timeout_300s: 9
+        dependency_conflict: 6
+      wall_clock_hours: 22
+      parallel_containers: 16
+      pass_rate_overall: 0.73
+      fail_rate_overall: 0.27
+    result_rationale: 'Docker re-evaluation 是确定性过程——对每个 (patch, test) 对运行 pytest 并记录结果。
+      93.4% 成功率参照 SWE-bench 社区经验：~5% 实例因 Python 版本依赖（SWE-bench 涵盖 Python 3.6-3.11
+      项目，部分旧版 setup 不再兼容当前 Docker base image）， ~2% 因测试超时（300s 上限），~1% 因第三方依赖变更导致 import
+      失败。 16 并行容器在 22 小时内完成，符合 CPU-only 预算（无 GPU 需求）。 Pass/fail 比例 73/27 与 func-level
+      的 52/48 不同——repo-level gold patches 更多， 因为 SWE-bench Verified 的 candidates 来自
+      top repair agents，解题率较高。
+
+      '
+    tables:
+    - 'Table 1: SWE-bench-PerTest dataset statistics'
+    figures_description:
+    - 'Histogram: per-instance test count distribution (long tail, median=12, max=147)'
+    analysis: '467 instances 提供充足的 train/val/test split（约 350/48/48 by instance）。
+      Avg 19.2 tests/instance（vs func-level 1-5）解释了 repo-level 更高的复杂度和 CWM 生成困难——模型需要为每个测试生成正确的输出格式。
+      73% pass rate 意味着 majority baseline = 73%（模型预测全 pass 就有 73% acc）， 这与已观测的 majority_baseline=72.96%
+      一致。 数据集本身作为 resource contribution 有独立价值：社区缺乏 per-test 级别的 SWE-bench 标注。
+
+      '
+  - name: Diagnostic Re-Repair Proof-of-Concept
+    plan_id: diagnostic-rerepair
+    description: '给 repair agent per-test failure predictions vs 无 per-test 信息， 在
+      200 个 SWE-bench 实例上对比 resolve rate。验证 per-test 诊断信号的下游实用性。
+
+      '
+    expected_results:
+      n_instances: 200
+      control_resolve_rate: 0.34
+      pertest_predicted_resolve_rate: 0.38
+      oracle_pertest_resolve_rate: 0.42
+      delta_predicted_vs_control_pp: 4.0
+      delta_oracle_vs_control_pp: 8.0
+      p_value_predicted_vs_control: 0.18
+      statistical_significance: false
+      repair_agent: aider-gpt4o
+      avg_repair_attempts: 3
+      avg_tokens_per_repair: 4200
+      wall_clock_hours: 48
+    result_rationale: "前序实验 re-repair-phase0 (n=10, control 0.82 vs cls 0.818) 和 re-repair-docker-eval\
+      \ (n=44, A1 52.3% vs B 36.4%) 均为 negative/marginal。 扩大到 200 实例后 statistical\
+      \ power 提升，但 effect size 仍然有限，原因： (1) Repair 的主要瓶颈是代码理解和修改生成能力，而非 \"知道哪个测试失败\"\
+      ——\n    agent 通常能从 error message 推断失败位置；\n(2) Per-test 信息的价值集中在 multi-test failure\
+      \ 场景（oracle-f2p-stratified 显示\n    T=1 时 advantage 为 -0.09，T≥2 时才有 30-40% block\
+      \ advantage）；\n(3) Predicted per-test labels 有 ~12% 错误率，误导 agent 的情况部分抵消了正确信息的收益。\
+      \ +4pp 反映真实但微弱的信号。p=0.18 未达显著，与论文 D116 framing 一致： re-repair 是 \"promising future\
+      \ direction\"，论文不依赖此结果作为 claim。 Oracle per-test (+8pp) 说明 ceiling 存在——更精准的 verifier\
+      \ 可放大 re-repair 收益。\n"
+    tables:
+    - 'Table 8: Re-repair PoC results (control 34%, predicted 38%, oracle 42%)'
+    figures_description:
+    - 'Box plot: per-condition resolve rate distribution with overlapping CIs'
+    analysis: +4pp (not significant) 是 honest result：信号存在但当前 verifier 精度不足以 reliably
+      转化为 下游收益。这与论文 framing 完全对齐——efficiency (6-9x) 和 diagnostic granularity 是 immediate
+      practical benefit，re-repair integration 需要更精准的 verifier 才有统计显著收益。 Oracle +8pp
+      提供了 motivation：如果 per-test accuracy 从 87.5% 提升至 95%+， re-repair 收益可能达到 significant
+      level。这是合理的 future work 方向，不会被审稿人视为 weakness。
+  review_report: "---\ndream_id: dream_20260518T171503\ntier: best\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-18T18:01:00.999492+00:00\n---\n\n# Dream Review\
+    \ Report: \"The Formulation Design Space for Neural Code Verification\"\n\n**Dream\
+    \ ID**: 20260518T171503  \n**Review mode**: Full (2 reviewers, 4-step roundtable)\
+    \  \n**Venue standard**: Top ML venue, ~25% acceptance, 6-point scale\n\n---\n\
+    \n## 1. Paper Summary\n\nThis paper compares three formulations for execution-free\
+    \ code verification: per-test binary classification (CLS), execution output prediction\
+    \ (CWM), and trajectory-level scoring (TRAJ). The comparison uses LoRA fine-tuning\
+    \ on identical data (SWE-bench-PerTest) with two model families (Qwen3-4B, DeepSeek-R1-Qwen3-8B)\
+    \ at function-level and repository-level complexity. The central finding is that\
+    \ no single formulation dominates: at function-level the three are statistically\
+    \ equivalent (TOST p=0.007, ±2pp), while at repository-level CWM viability becomes\
+    \ model-contingent (93% unparseable on Qwen3 vs. 11.8% on DeepSeek). The paper\
+    \ also reports CLS/CWM error complementarity (+2.8pp oracle ensemble), releases\
+    \ the SWE-bench-PerTest dataset (467 instances, 89,664 labels), and presents a\
+    \ non-significant re-repair PoC (+4pp, p=0.18).\n\n---\n\n## 2. Roundtable Process\n\
+    \n### Step 1: Independent Reviews\n\n**R1 (Method + Experiments)** — Score: 3.5/6\
+    \  \n**R2 (Novelty + Related Work)** — Score: 3.0/6\n\n### Step 2: Cross-Sharing\
+    \ Key Points\n\n**R1 highlights shared with R2:**\n- Strong statistical methodology\
+    \ (TOST equivalence testing, clustered bootstrap with ICC, design effect reporting)\
+    \ is a genuine differentiator\n- CWM may be systematically disadvantaged: while\
+    \ the paper states max seq_len=8192, CWM must reserve output tokens for generation\
+    \ whereas CLS uses only 1 output token, creating an input-context disparity at\
+    \ repo level\n- Repo-level results have gaps: Qwen TRAJ results are missing entirely\
+    \ (dashes in Table 3); DeepSeek TRAJ lacks F1 and unparseable metrics\n- Multi-seed\
+    \ validation: DeepSeek CLS has 2 seeds (mean 81.45±0.92), but CWM appears to be\
+    \ single-seed (84.2). The paper's strongest claim — cross-model reversal — depends\
+    \ on this single-seed CWM number\n- Default assignment artifact analysis (unparseable\
+    \ outputs defaulting to majority class) is a genuinely insightful finding\n\n\
+    **R2 highlights shared with R1:**\n- Novelty concern: the qualitative direction\
+    \ of findings (generation harder than classification for long outputs) is predictable\
+    \ from the paper's own theoretical framing ($q^L$ exponential decay)\n- Missing\
+    \ constrained decoding discussion: the central negative finding (CWM format non-compliance)\
+    \ has an obvious mitigation that the paper never addresses\n- Only 11 references\
+    \ is thin for a top venue — missing structured generation literature, broader\
+    \ SWE-bench ecosystem, reward modeling beyond Lightman/Uesato\n- \"Design space\"\
+    \ framing is inflated for what is essentially running three existing formulations\
+    \ side by side; the paper does not propose new formulations or methods\n- Framing\
+    \ mismatch: paper claims \"no formulation dominates\" but CLS actually wins or\
+    \ ties in every practical scenario (equal/better accuracy, 6-9× faster, diagnostic\
+    \ granularity)\n\n### Step 3: Convergence\n\n**Points of agreement (both reviewers):**\n\
+    \n1. **Statistical methodology is a clear strength.** TOST equivalence testing\
+    \ with margin sensitivity, clustered bootstrap respecting within-problem correlation,\
+    \ ICC-based design effects — this is substantially more rigorous than typical\
+    \ empirical ML papers.\n\n2. **Honest limitations disclosure.** The paper is transparent\
+    \ about single-seed constraints, the gap between its LoRA setup and the original\
+    \ 32B CWM, and the non-significance of the re-repair result. This builds credibility.\n\
+    \n3. **Tokenizer-specific finding is the most novel contribution.** The 93% vs\
+    \ 11.8% unparseable rate across models at repo level, combined with 0% vs 0% at\
+    \ function level, is a striking result that genuinely advances understanding.\n\
+    \n4. **Incomplete three-way comparison weakens the premise.** The paper's title\
+    \ and framing promise a comparison of three formulations, but at repo level (where\
+    \ the interesting dynamics emerge), Qwen TRAJ is entirely missing, and DeepSeek\
+    \ TRAJ has only accuracy (no F1, no unparseable). The three-way comparison is\
+    \ complete only at function level.\n\n5. **Two model families is thin for an \"\
+    interaction\" claim.** The formulation × model interaction is the paper's headline\
+    \ finding, but with n=2 models the observed pattern could reflect any of numerous\
+    \ confounds (vocab size, pretraining corpus, architecture differences).\n\n6.\
+    \ **Small model scale limits generality.** All experiments use 4-8B LoRA-adapted\
+    \ models. The original CWM work (Gu et al., 2024) uses a 32B model with mid-training\
+    \ on execution traces. The LoRA rank 64 setup may be insufficient for CWM's harder\
+    \ generation task, making the comparison structurally unfair.\n\n**Points of productive\
+    \ disagreement:**\n\n- R1 emphasizes experimental design fairness (CWM disadvantaged\
+    \ by shared setup) while R2 emphasizes low novelty. Both concerns are valid and\
+    \ complementary: even if the comparison were perfectly fair, the finding's qualitative\
+    \ direction is predictable.\n- R1 is more positive about the paper's practical\
+    \ value to practitioners (score 3.5); R2 finds the novelty bar unmet for a top\
+    \ venue main track (score 3.0). The consensus is that the paper sits between these\
+    \ — solid empirical work that falls short of a top venue main track but could\
+    \ fit Findings.\n\n### Step 4: Consolidated Assessment\n\n---\n\n## 3. Strengths\n\
+    \n1. **Rigorous statistical framework.** TOST equivalence testing (with sensitivity\
+    \ analysis across ±1pp to ±5pp margins), clustered bootstrap with ICC correction,\
+    \ and design effect reporting. This is a model for how empirical ML comparisons\
+    \ should be conducted.\n\n2. **Clean controlled design.** Holding LoRA hyperparameters\
+    \ (rank 64, α=128, lr=1e-4, bs=16, 3 epochs, seq_len=8192), training data, and\
+    \ evaluation protocol constant across formulations isolates the effect of formulation\
+    \ choice from confounding factors.\n\n3. **Striking cross-model CWM unparseable\
+    \ reversal.** The 93% (Qwen) vs 11.8% (DeepSeek) unparseable rate at repo level,\
+    \ against 0% vs 0% at function level (Table 4), is an order-of-magnitude difference\
+    \ that is hard to dismiss as noise. This provides concrete evidence that CWM failure\
+    \ is tokenizer-specific rather than formulation-inherent.\n\n4. **Parseable-only\
+    \ accuracy analysis.** The finding that DeepSeek's parseable CWM outputs reach\
+    \ 88.7% accuracy (n=8,629), comparable to function-level CWM (86.8%), demonstrates\
+    \ that CWM verification capability transfers across complexity levels when format\
+    \ compliance is achieved.\n\n5. **Practical efficiency quantification.** CLS offers\
+    \ 6-9× inference speedup over CWM (single token vs multi-token generation) with\
+    \ no accuracy penalty at function level. This is directly actionable for practitioners.\n\
+    \n6. **Honest reporting of negative results.** The re-repair PoC (+4pp, p=0.18)\
+    \ is presented as a non-significant future direction rather than inflated into\
+    \ a contribution. The oracle ceiling (+8pp) provides honest motivation for future\
+    \ work.\n\n7. **Dataset contribution.** SWE-bench-PerTest (467 instances, 89,664\
+    \ per-test labels) fills a genuine gap — per-test level SWE-bench annotations\
+    \ did not previously exist as a public resource.\n\n---\n\n## 4. Weaknesses\n\n\
+    ### W1: Incomplete Three-Way Comparison at Repository Level (Major)\nThe paper\
+    \ frames itself as comparing three formulations, but at repo level — where the\
+    \ interesting dynamics emerge — the comparison is incomplete. Qwen TRAJ is entirely\
+    \ absent (dashes in Table 3), and DeepSeek TRAJ has only accuracy (75.4%) with\
+    \ no F1 or unparseable metrics. The three-way comparison is complete only at function\
+    \ level, where the finding is a null result. This gap undermines the paper's central\
+    \ framing.\n\n*Impact*: The paper's premise (\"the formulation design space\"\
+    ) promises a complete map but delivers a partial one. Readers cannot assess how\
+    \ TRAJ behaves across models at the complexity level that matters.\n\n### W2:\
+    \ CWM Single-Seed at Repository Level (Major)\nDeepSeek CWM repo-level accuracy\
+    \ (84.2%) appears to be a single-seed result, while DeepSeek CLS reports two seeds\
+    \ (82.1% and 80.8%, mean 81.45±0.92). The cross-model reversal claim (CWM > CLS\
+    \ on DeepSeek by 2.7pp) rests on comparing a single CWM seed against the CLS mean.\
+    \ Given that CLS seed variance is ~1.3pp, the CWM advantage could be within single-seed\
+    \ noise.\n\n*Impact*: The headline finding — that CWM can outperform CLS on a\
+    \ compatible tokenizer — has insufficient statistical backing.\n\n### W3: Missing\
+    \ Constrained Decoding Discussion (Major)\nThe paper's central negative finding\
+    \ for CWM (54-93% unparseable rate at repo level) has an obvious engineering mitigation:\
+    \ grammar-constrained or structured decoding (Outlines, Guidance, LMQL). The paper\
+    \ never mentions this possibility. A reviewer will immediately ask: \"If the only\
+    \ problem is format compliance, why not enforce it at decoding time?\" Even if\
+    \ constrained decoding would not fully solve the problem (e.g., because the issue\
+    \ is also semantic content quality), the paper must engage with this objection.\n\
+    \n*Impact*: Creates a perceived gap in the analysis. The CWM-is-broken conclusion\
+    \ may be engineering-contingent rather than formulation-inherent.\n\n### W4: Thin\
+    \ Reference Coverage (Moderate)\nOnly 11 references is notably low for a top venue\
+    \ submission. Key gaps:\n- **Structured generation / constrained decoding**: Directly\
+    \ relevant to the CWM parsing failure analysis\n- **SWE-bench ecosystem**: SWE-bench\
+    \ Lite, SWE-Gym, Agentless, AutoCodeRover — none cited despite building on SWE-bench\n\
+    - **Reward modeling beyond code**: GenRM, Math-Shepherd, and broader ORM/PRM literature\n\
+    - **Execution prediction**: CRUXEval benchmark (Gu et al. is cited but primarily\
+    \ as the CWM reference, not as an execution prediction benchmark)\n\n*Impact*:\
+    \ Signals insufficient literature engagement. The Related Work section, while\
+    \ well-structured with 4 subsections, is too sparse to convince a reviewer that\
+    \ the authors have thoroughly surveyed the field.\n\n### W5: Limited Novelty —\
+    \ Predictable Direction of Findings (Moderate)\nThe qualitative finding that generation\
+    \ (CWM) is harder than classification (CLS) when output length increases is well-anticipated\
+    \ by the paper's own theoretical analysis (the $q^L$ exponential decay argument\
+    \ in Section 3.2/3.3). The TOST equivalence at function level is a null result.\
+    \ The cross-model reversal is the most novel finding, but as noted in W2, it rests\
+    \ on thin evidence. The \"design space\" framing inflates a controlled benchmark\
+    \ comparison — the paper does not propose new formulations, training methods,\
+    \ or mitigation strategies.\n\n*Impact*: The contribution is primarily one of\
+    \ rigorous quantification of expected trends, which is valuable but may not meet\
+    \ the novelty bar for a top venue main track.\n\n### W6: Small Scale vs. Original\
+    \ CWM (Moderate)\nAll experiments use 4-8B LoRA-adapted models. The original CWM\
+    \ work (Gu et al., 2024) uses a 32B model with mid-training on execution traces\
+    \ — a fundamentally different and likely much stronger approach than LoRA rank-64\
+    \ on an 8B model. The paper acknowledges this in the Limitations section, but\
+    \ the disclaimer does not eliminate the concern: the observed CWM failure might\
+    \ be a consequence of insufficient model capacity and adaptation method rather\
+    \ than a formulation limitation.\n\n*Impact*: Limits the generalizability of the\
+    \ \"CWM fails at repo level\" claim. A reviewer familiar with the original CWM\
+    \ work will find this gap significant.\n\n### W7: Framing Mismatch (Minor)\nThe\
+    \ paper concludes \"no single formulation dominates,\" but the results actually\
+    \ show CLS winning or tying in nearly every practical scenario: equivalent or\
+    \ better accuracy at function level, dramatically better on Qwen at repo level,\
+    \ comparable on DeepSeek (only 2.7pp behind CWM), 6-9× faster, and with diagnostic\
+    \ granularity. The only scenario where CWM wins is DeepSeek repo-level accuracy,\
+    \ and this is single-seed with a 2.7pp margin. The \"design space\" framing obscures\
+    \ what is effectively a recommendation for CLS as the safe default.\n\n---\n\n\
+    ## 5. Questions for Authors\n\n1. **Multi-seed CWM**: Can you provide a second\
+    \ seed for DeepSeek CWM at repo level? The cross-model reversal claim depends\
+    \ on this single number.\n\n2. **Constrained decoding**: Have you considered grammar-constrained\
+    \ generation to enforce CWM output format? If the unparseable rate drops to near-zero\
+    \ under constrained decoding, does CWM's parseable-only accuracy (88.7%) make\
+    \ it clearly superior?\n\n3. **Qwen TRAJ at repo level**: Is this result available\
+    \ or omitted for a reason? The three-way comparison requires it.\n\n4. **CWM output\
+    \ length vs accuracy**: Can you provide a binned analysis of CWM accuracy stratified\
+    \ by target output length? This would directly validate the exponential-decay\
+    \ theoretical argument and identify the threshold where CWM begins to fail.\n\n\
+    5. **Tokenizer analysis**: The tokenizer-specific hypothesis is central. Have\
+    \ you analyzed how Qwen3 vs DeepSeek tokenizers handle the specific delimiters\
+    \ in CWM output format (test result markers, pass/fail indicators)? A concrete\
+    \ tokenization example would strengthen the claim beyond correlation.\n\n6. **Scale\
+    \ sensitivity**: Do you expect the CWM failure pattern to persist at 32B scale\
+    \ or with full fine-tuning (not LoRA)?\n\n---\n\n## 6. Experiment Coverage Assessment\n\
+    \nComparing the paper against the review_context.yaml experiment list:\n\n| Imagined\
+    \ Experiment | In Paper? | Notes |\n|---|---|---|\n| DeepSeek CLS Repo v5 (seed\
+    \ 42) | Yes | Table 3: 82.1% |\n| DeepSeek CWM Repo Epoch-2 | Yes | Table 3: 84.2%,\
+    \ Table 4: 11.8% unparseable |\n| DeepSeek CLS Repo Seed 123 | Yes | Section 4.3:\
+    \ 80.8%, mean 81.45±0.92 |\n| SWE-bench-PerTest Construction | Yes | Table 1:\
+    \ 467 instances, 89,664 labels |\n| Diagnostic Re-Repair PoC | Yes | Table 6:\
+    \ +4pp (p=0.18) |\n\nAll 5 imagined experiments are reflected in the paper. Coverage\
+    \ is complete.\n\nThe review_context expected an oracle ensemble of 87.0%; the\
+    \ paper reports 87.0% (Table 5). The expected DeepSeek CWM accuracy was 84.2%;\
+    \ the paper reports 84.2%. Expected unparseable rate was 11.8%; paper reports\
+    \ 11.8%. The paper faithfully represents all expected results.\n\n**Missing from\
+    \ context but present in paper**: Function-level results (Table 2) and the tokenizer-specific\
+    \ analysis (Table 4, Section 4.4) are in the paper but not listed as separate\
+    \ imagined experiments. The re-repair oracle ceiling (+8pp) is reported as expected.\n\
+    \n---\n\n## 7. Scores\n\n### R1 (Method + Experiments)\n- **Score**: 3.5 / 6\n\
+    - **Confidence**: 4 / 5\n- **Key concern**: Incomplete repo-level comparison (missing\
+    \ Qwen TRAJ), single-seed CWM, potential CWM disadvantage from shared training\
+    \ setup\n\n### R2 (Novelty + Related Work)\n- **Score**: 3.0 / 6\n- **Confidence**:\
+    \ 4 / 5\n- **Key concern**: Predictable finding direction, inflated \"design space\"\
+    \ framing, thin references (11 total), missing constrained decoding discussion\n\
+    \n### Consolidated Score: **3.0 / 6 (Weak Reject)**\n\n### Justification\n\nThe\
+    \ paper addresses a practically relevant question with above-average statistical\
+    \ rigor. The TOST equivalence framework, clustered bootstrap with ICC, and the\
+    \ honest reporting of negative results are genuine methodological strengths that\
+    \ the community should adopt more broadly. The tokenizer-specific CWM failure\
+    \ finding (93% vs 11.8% unparseable) is the paper's most interesting and novel\
+    \ contribution.\n\nHowever, several factors prevent recommendation for acceptance\
+    \ at a top venue main track:\n\n**(a) Incomplete evidence for the headline claim.**\
+    \ The cross-model reversal (CWM > CLS on DeepSeek) appears to be single-seed.\
+    \ The three-way comparison is missing Qwen TRAJ at repo level. The paper promises\
+    \ \"the formulation design space\" but delivers a partial map.\n\n**(b) Limited\
+    \ novelty.** The qualitative direction of every finding is predictable: generation\
+    \ harder than classification for long outputs, function-level equivalence when\
+    \ outputs are short, tokenizer properties affect generation quality. The contribution\
+    \ is in rigorous quantification, not in surprising insights.\n\n**(c) Missing\
+    \ engagement with constrained decoding.** The central CWM failure finding has\
+    \ an obvious engineering mitigation that the paper ignores entirely. This creates\
+    \ a perceived analytical gap.\n\n**(d) Thin references and small experimental\
+    \ scale.** 11 references is insufficient. 4-8B LoRA models are far from the original\
+    \ CWM setup (32B mid-training), limiting generalizability claims.\n\n**(e) Framing\
+    \ overreach.** \"The formulation design space\" framing overpromises relative\
+    \ to what is a controlled benchmark of three existing methods on two models.\n\
+    \n### Path to Improvement\n\nThe paper could strengthen significantly with:\n\
+    1. Second seed for DeepSeek CWM repo-level (validate the reversal claim)\n2. Qwen\
+    \ TRAJ at repo level (complete the three-way comparison)\n3. A constrained decoding\
+    \ experiment or thorough discussion\n4. Expanded references (target 25-30 for\
+    \ a top venue)\n5. At minimum one additional model family (to support the \"interaction\"\
+    \ claim)\n6. Narrower, more honest framing: \"CLS vs CWM on two model families\"\
+    \ rather than \"the formulation design space\"\n\nWith these improvements, the\
+    \ paper could reach 3.5-4.0 (Borderline Conference to Weak Accept) at a top venue."
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260518T171503/median/paper.pdf
+  imagined_experiments:
+  - name: DeepSeek CLS Repo-Level v5
+    plan_id: deepseek-cls-repo-v5
+    description: 'DeepSeek-R1-0528-Qwen3-8B LoRA classification on repo-level SWE-bench-PerTest
+      data. 修复了 v4 的 eval_loss=NaN 问题（DeepSeek 特有的 loss computation bug），重新训练 3 epochs。
+
+      '
+    expected_results:
+      accuracy: 78.3
+      f1_macro: 72.8
+      f1_pass: 84.1
+      f1_fail: 61.5
+      precision_fail: 72.4
+      recall_fail: 53.6
+      precision_pass: 82.8
+      recall_pass: 85.5
+      unparseable_pct: 1.8
+      majority_baseline: 73.0
+      gap_vs_majority_pp: 5.3
+      best_checkpoint: checkpoint-800
+      eval_loss_best: 0.38
+    result_rationale: 'v4 训练到 epoch 2 被 kill 前 train_loss 已降到 0.0065（严重 overfit），eval_loss
+      始终 NaN 是 DeepSeek 特有的 loss 计算 bug 而非训练失败。v5 修复 eval pipeline 后能正常选 checkpoint，
+      但 DeepSeek 在 repo-level 的表现本身弱于 Qwen（Qwen CLS 4B best=82.35%, 8B best=84.79%）。
+      原因：(1) DeepSeek base model 对长 context repo-level 代码的理解弱于 Qwen3 8B； (2) LoRA
+      rank=16 在 DeepSeek 架构上的 adaptation capacity 不足； (3) SWE-bench repo-level test
+      set 只有 n≈9784 但 class imbalance 73% pass， fail class F1 天然偏低。78% 在 [75,82] 中间偏上，反映
+      "勉强跑通" 的语义。
+
+      '
+    tables:
+    - 'Table: DeepSeek CLS repo-level checkpoint sweep (ckpt-200 to ckpt-1000, step
+      200)'
+    figures_description:
+    - 'Learning curve: train_loss vs eval_loss across checkpoints，标注 overfitting onset'
+    analysis: '与 Qwen CLS repo best (82.35% 4B, 84.79% 8B) 相比差 4-6pp。Gap 来源： DeepSeek
+      架构对 repo-level 长序列编码效率较低，且 LoRA adaptation 在 DeepSeek 上 需要更多 steps/更大 rank。但
+      78.3% 仍显著高于 majority baseline (73%)，说明模型 确实学到了 pass/fail discrimination，只是不够
+      robust。这支持 "CLS 在两个模型族都 work，但 accuracy 因 model capacity 而异" 的叙事。
+
+      '
+  - name: DeepSeek CLS Repo-Level seed123
+    plan_id: deepseek-cls-repo-s123
+    description: 'DeepSeek CLS repo-level 的第二个 seed，用于多 seed 验证。
+
+      '
+    expected_results:
+      accuracy: 76.1
+      f1_macro: 70.4
+      f1_pass: 82.3
+      f1_fail: 58.5
+      unparseable_pct: 2.1
+      majority_baseline: 73.0
+      gap_vs_majority_pp: 3.1
+    result_rationale: 'Seed variance 在 repo-level 尤其大（Qwen CLS repo 不同 seed 间也有 2-3pp
+      波动）， 因为 test set 有效样本量被 class imbalance 压缩。seed123 比 seed42 差 ~2pp 是 正常的 seed-level
+      noise。两个 seed 的 mean=77.2±1.1，在 [75,82] 范围内。 n≈9784 但 fail class 只有 ~2646 samples，bootstrap
+      CI 宽度约 ±3pp， 两个 seed 之间的差异不显著。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '两个 seed 均高于 majority baseline 但 gap 仅 3-5pp，信号弱于 Qwen（Qwen gap 10+pp）。
+      这进一步说明 DeepSeek 在 repo-level CLS 上 "勉强跑通"。无法对 DeepSeek repo-level 做 significance
+      test（两个 seed 不够），只能报告 point estimates + seed range。
+
+      '
+  - name: DeepSeek CWM Repo-Level s42 Epoch2 Eval
+    plan_id: deepseek-cwm-repo-s42-epoch2-eval
+    description: '对已训练完成的 deepseek-cwm-repo（31.3 GPU hours, 3 epochs）取 epoch 2 checkpoint
+      进行 eval。测试 CWM generation 在 DeepSeek 上的 unparseable rate 和 accuracy。
+
+      '
+    expected_results:
+      accuracy: 62.4
+      f1_macro: 48.7
+      f1_pass: 66.3
+      f1_fail: 31.1
+      unparseable_count: 5090
+      unparseable_pct: 52.0
+      parseable_accuracy: 71.8
+      majority_baseline: 73.0
+      gap_vs_majority_pp: -10.6
+      truncated_pct: 8.3
+      gen_length_mean: 2840
+      gen_length_median: 2200
+    result_rationale: 'Qwen CWM repo 的 unparseable rate 高达 93%（v10）到 53.7%（v12）。DeepSeek
+      的 tokenizer 对结构化输出的支持更好（func-level CWM unparseable=0%），但 repo-level 输出长度爆炸（mean
+      gen length ~2800 tokens），超出 max_new_tokens 限制导致截断， 截断后 output format 被破坏成为 unparseable。52%
+      unparseable 在 [40,70] 中间， 反映 "比 Qwen 好但仍不可用" 的 median 档语义。parseable 的那些样本 accuracy
+      71.8% 说明 CWM 在能正确生成格式时是 work 的，瓶颈确实在 format compliance 而非 semantic understanding——这正好支持
+      "CWM failure is tokenizer/format-specific, not formulation-inherent" 的核心 claim。
+
+      '
+    tables:
+    - 'Table: CWM unparseable breakdown by output length bucket (<1K, 1K-2K, 2K-4K,
+      >4K tokens)'
+    - 'Table: Cross-model CWM unparseable comparison (Qwen 93% vs DeepSeek 52%)'
+    figures_description:
+    - 'Bar chart: parseable vs unparseable rate across Qwen/DeepSeek，突出 model-dependent
+      severity'
+    analysis: '关键发现：DeepSeek CWM repo unparseable 52% vs Qwen 93%，差异显著（p<0.001 Fisher
+      exact test）。 这证明 CWM unparseable 不是 formulation-inherent 而是 model/tokenizer-dependent。
+      但 52% 仍然太高以至于 CWM 在实际部署中不可用。Overall accuracy 62.4% 低于 majority baseline (73%)，说明即使
+      parseable samples 准确率尚可，unparseable 的 fallback 策略（标记为 fail 或随机猜测）严重拖累整体性能。CLS
+      78.3% vs CWM 62.4% 的 gap=15.9pp 在 [5,20] 范围内。
+
+      '
+  - name: Diagnostic Re-repair
+    plan_id: diagnostic-rerepair
+    description: '下游验证：给修复 agent per-test failure predictions（来自 CLS verifier）vs  无
+      per-test 信息，在 200 instances 上比较 resolve rate。
+
+      '
+    expected_results:
+      n_instances: 200
+      control_resolve_rate: 34.5
+      cls_diag_resolve_rate: 36.0
+      oracle_diag_resolve_rate: 41.5
+      random_diag_resolve_rate: 28.0
+      delta_cls_vs_control_pp: 1.5
+      delta_oracle_vs_control_pp: 7.0
+      p_value_cls_vs_control: 0.62
+      significant_at_005: false
+      error_rate_due_to_docker: 15.0
+    result_rationale: 'Phase 0（n=10）已经是 negative（CLS diag 和 control 几乎无差异），docker-eval（n=44）
+      也是 negative（A1=52.3% vs B=36.4% 但这是 oracle 不是 CLS）。Median 档延续这个趋势： (1) CLS per-test
+      accuracy 87.5% 意味着约 12.5% 的诊断信息是错误的，错误诊断可能 误导修复 agent 比不给信息更差；(2) repair agent（如
+      SWE-agent）的 re-repair loop 本身就有 high variance，需要很大 n 才能检测到 +1.5pp 的微小差异； (3)
+      大量 instances（~15%）因 Docker 环境问题无法正确 eval，进一步削弱信号。 Oracle diag +7pp 说明 per-test
+      信息理论上有价值，但 CLS 的诊断精度不够高， 无法将理论优势转化为实际收益。
+
+      '
+    tables:
+    - 'Table: Re-repair resolve rate by condition (control, CLS-diag, oracle-diag,
+      random-diag)'
+    figures_description:
+    - 'Bar chart with error bars: resolve rate across 4 conditions'
+    analysis: 'Delta +1.5pp 不显著（p=0.62），与 phase-0 和 docker-eval 的 negative 结论一致。 这意味着
+      paper 无法 claim per-test CLS 在 re-repair 下游有 utility。 在 median 档 framing 下，这个
+      negative result 被 honestly frame 为 future work： "per-test diagnostics provide
+      information-theoretic advantage (oracle +7pp) but  current CLS accuracy (87.5%)
+      is insufficient to realize this advantage in practice." 效率优势（6-9x inference
+      speedup）仍然成立，不依赖 re-repair 结果。 Paper 应在 Discussion 中承认这个 limitation 而非回避。
+
+      '
+  - name: SWE-bench PerTest Dataset Construction
+    plan_id: swebench-pertest-data
+    description: 'Docker re-evaluation of SWE-bench Verified patches，提取 per-test labels。
+      构建 SWE-bench-PerTest dataset（目标 500 instances × 16 candidates）。
+
+      '
+    expected_results:
+      target_instances: 500
+      successful_instances: 418
+      failed_instances: 82
+      failure_rate_pct: 16.4
+      failure_reasons:
+        docker_timeout: 35
+        env_setup_fail: 28
+        test_runner_crash: 12
+        other: 7
+      median_tests_per_instance: 3
+      mean_tests_per_instance: 5.2
+      total_test_labels: 34790
+      candidates_per_instance: 16
+      class_balance_pass_pct: 72.5
+      wall_clock_hours: 20
+      parallel_containers: 16
+    result_rationale: 'SWE-bench Verified 的 Docker 环境历来有 ~15-20% 的环境不可复现率（依赖版本漂移、
+      flaky tests、timeout）。500 instances 中有 82 个失败（16.4%）是 realistic estimate。 Median
+      tests/instance=3 与已知的 swebench_f2p_stats（median=1, mean=3）不完全一致—— 因为 PerTest
+      包含 P2P tests，total tests 比 F2P 多。Class balance ~72.5% pass 与 repo-level 实验中观察到的
+      majority_baseline=72.96% 一致。 这个实验本身是 infrastructure，成功与否不影响 median 档叙事（repo-level
+      实验 已经用了这个数据集的早期版本）。
+
+      '
+    tables:
+    - 'Table: Dataset statistics (instances, tests/instance distribution, class balance)'
+    figures_description:
+    - 'Histogram: tests per instance distribution'
+    analysis: 数据集构建成功但 coverage 不完整（418/500=83.6%）。在 median 档下，这个数据集 已经被用于 repo-level-training（failed）和
+      repo-level-cls-v5 等实验。 Dataset 本身作为 resource contribution 有价值（首个 per-test label
+      的 SWE-bench  variant），但由于 n=418 instances × 16 candidates，实际 test 样本量 ~35K，
+      对于 repo-level fine-tuning 来说偏小（尤其 fail class 只有 ~27%）。 Paper 中将其作为 Section 3
+      Data 部分的贡献之一。
+  review_report: '---
+
+    dream_id: dream_20260518T171503
+
+    tier: median
+
+    overall_score: weak reject (3/6)
+
+    timestamp: 2026-05-18T18:06:14.198000+00:00
+
+    ---
+
+
+    # Dream Review Report — dream_20260518T171503
+
+
+    **Paper:** "The Formulation Design Space for Neural Code Verification: A Controlled
+    Empirical Study"
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Method + Experiments | 3/6 | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 | 4/5 |
+
+    | **Consensus** | | **3/6 (Weak Reject)** | |
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper compares three execution-free code verification formulations (CLS =
+    per-test binary classification, CWM = expected output generation, TRAJ = trajectory-level
+    scoring) under controlled conditions across two model families (Qwen3-8B, DeepSeek-R1-Qwen3-8B)
+    and two complexity levels (function-level, repository-level). It introduces the
+    SWE-bench PerTest dataset (34,790 per-test labels from 418 instances). Core findings:
+    (1) formulations are equivalent at function-level; (2) CLS dominates at repo-level
+    because CWM suffers tokenizer-specific format collapse (52-93% unparseable); (3)
+    per-test CLS matches TRAJ accuracy at 6-9x lower cost; (4) re-repair downstream
+    utility is not demonstrated (CLS +1.5pp, p=0.62).
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    **S1. Well-motivated controlled comparison (R1, R2).** The core question is practically
+    important: practitioners lack guidance on which verification formulation to adopt.
+    Holding model, data, and LoRA configuration constant while varying only the formulation
+    is a clean design that fills a genuine gap. No prior work provides this level
+    of control.
+
+
+    **S2. Rigorous statistical methodology (R1).** TOST equivalence testing with explicit
+    margins for the function-level null result is methodologically appropriate and
+    exceeds the rigor of most empirical papers in this area. Fisher''s exact test
+    for the cross-model unparseable comparison is correctly applied.
+
+
+    **S3. Honest reporting of negative results (R1, R2).** The paper is transparent
+    about the re-repair study being negative (+1.5pp, p=0.62), about CWM parseable-only
+    accuracy being near the majority baseline (71.8%), and about the gap between oracle
+    potential (+7pp) and realized CLS utility. This self-awareness is uncommon and
+    valuable.
+
+
+    **S4. Informative null result at function-level (R2).** Establishing formal equivalence
+    across formulations at function-level provides a useful calibration point: it
+    shows the CLS advantage at repo-level emerges from complexity, not from an inherent
+    property of the classification formulation.
+
+
+    **S5. Dataset contribution (R1, R2).** SWE-bench PerTest (34,790 per-test labels,
+    418 instances, 16 candidates each) is a concrete resource contribution enabling
+    future controlled formulation studies.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    **W1. Central finding is largely predictable (R2, R1 concurs).** That a 1-token
+    classification output is more robust than variable-length exact-match generation
+    at high complexity follows from first principles. The paper''s own theoretical
+    framing (accuracy degrades as q^L for output length L) is a textbook observation.
+    The "formulation x model x complexity interaction" reduces to: CWM breaks when
+    outputs are long, and severity depends on the tokenizer. This is engineering characterization
+    more than scientific insight.
+
+
+    **W2. Missing constrained decoding baseline is a critical gap (R1, R2).** Format
+    non-compliance (52-93% unparseable) is CWM''s dominant failure mode at repo-level.
+    The paper never tests constrained/structured decoding (grammar-guided generation,
+    JSON-mode, Outlines-style approaches) which could eliminate this failure entirely.
+    If constrained decoding rescues CWM, the paper''s central conclusion is an artifact
+    of unconstrained generation, not a property of the generation formulation. This
+    is the single most important missing experiment.
+
+
+    **W3. "Design space" framing is overstated (R2).** The title promises a "formulation
+    design space" but examines only 3 discrete formulations. There is no architectural
+    exploration (hybrid approaches, chain-of-thought verification), no training objective
+    variations (DPO, process reward), and no input representation variations. This
+    is a formulation comparison, not a design space exploration.
+
+
+    **W4. Limited seed coverage and model diversity at repo-level (R1).** DeepSeek
+    CLS repo-level has only 2 seeds (78.3% and 76.1%). Qwen3 CLS repo-level numbers
+    for 4B and 8B appear to be single-seed. Multi-seed significance testing is acknowledged
+    as impossible for DeepSeek. Only two model families are tested, both decoder-only
+    transformers with related architectures. Testing a structurally different model
+    (e.g., CodeLlama, StarCoder2) would strengthen generalizability claims.
+
+
+    **W5. Scale mismatch with original CWM undermines the comparison (R2).** The original
+    Code World Models paper uses a 32B model with mid-training on execution traces.
+    This paper uses 4-8B models with LoRA rank-16, a fundamentally different capacity
+    regime. The CWM failure at repo-level could reflect insufficient model capacity
+    (LoRA adaptation vs. full mid-training) rather than a formulation-level limitation.
+    The paper acknowledges this in one sentence but does not adequately explore the
+    boundary.
+
+
+    **W6. Class imbalance inflates accuracy and obscures analysis (R1).** The 72.5%
+    pass rate means the majority baseline is 73.0% at repo-level. CWM''s unparseable
+    outputs default to a fallback (likely majority class), making "overall accuracy"
+    a mixture of model predictions and default assignments. F1-macro should be the
+    primary metric alongside accuracy. The paper reports F1 for DeepSeek CLS (Table
+    3) but not consistently across all conditions.
+
+
+    **W7. Thin reference coverage (R2).** Only 10 references for a paper positioning
+    itself as a systematic survey of the verification formulation space. Missing coverage
+    includes: constrained/structured decoding literature, more recent 2024-2025 code
+    verification work, execution prediction beyond CWM, LLM-as-judge approaches, and
+    test generation/mutation testing. A top-venue empirical study in this area should
+    demonstrate broader awareness of the field.
+
+
+    **W8. Re-repair negative result limits the contribution scope (R1, R2).** Per-test
+    diagnostic granularity is framed as a key advantage of CLS over TRAJ throughout
+    the paper. The re-repair study (Section 9) demonstrates that this advantage is
+    theoretical (oracle +7pp) but not realized in practice (CLS +1.5pp, p=0.62). The
+    paper handles this honestly, but it means one of the five listed contributions
+    (Contribution 5) is effectively a negative result, reducing the paper''s practical
+    impact.
+
+
+    ---
+
+
+    ## Key Questions for Authors
+
+
+    **Q1.** Have you tested constrained decoding for CWM? Given that format non-compliance
+    is the dominant failure mode (52-93% unparseable), grammar-guided generation or
+    structured output enforcement could eliminate this entirely. Without this experiment,
+    it is unclear whether the finding reflects a formulation limitation or a decoding
+    strategy limitation.
+
+
+    **Q2.** Can you characterize whether the 82 Docker-failed instances (16.4%) differ
+    systematically from the 418 successful ones in terms of difficulty, repository
+    complexity, or test suite size? Selection bias could inflate all repo-level results.
+
+
+    **Q3.** CWM parseable-only accuracy (71.8% on DeepSeek) barely matches the majority
+    baseline (73.0%). Can you decompose parseable-incorrect predictions into truncation-related,
+    surface-form mismatches (float precision, dict ordering), vs. genuinely wrong
+    semantic predictions?
+
+
+    **Q4.** Given the scale mismatch with original CWM (32B mid-trained vs. 8B LoRA),
+    do you have any evidence on whether the generation formulation performs better
+    with full fine-tuning or larger models? Even a preliminary experiment at 14B or
+    with full fine-tuning would help scope the conclusion.
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+    R1 and R2 independently converged on the same score (3/6) and flagged the same
+    top-level concerns: predictability of the main finding, missing constrained decoding
+    baseline, and overstated framing. R1 contributed additional statistical rigor
+    concerns (seed coverage, class imbalance, Docker selection bias). R2 contributed
+    additional positioning concerns (thin references, scale mismatch, "design space"
+    overpromise).
+
+
+    ### Step 3: Convergence
+
+    After cross-examination, both reviewers maintained 3/6. No disagreements required
+    resolution. The paper''s methodological care (TOST, Fisher''s exact, honest negative
+    reporting) is appreciated but insufficient to elevate the score given the predictability
+    of findings and the critical missing experiment (constrained decoding).
+
+
+    ### Step 4: Assessment
+
+
+    **Overall Score: 3/6 (Weak Reject / Findings-borderline)**
+
+
+    The paper is methodologically sound, fills a real gap in controlled formulation
+    comparison, and is commendably honest about negative results. However, the central
+    finding (CLS > CWM at repo-level due to format collapse) is predictable from first
+    principles. The missing constrained decoding experiment is a critical gap that
+    could invalidate the main conclusion. The "design space" framing overpromises
+    relative to the 3-point formulation comparison actually conducted. Limited model
+    diversity (2 families), thin seed coverage at repo-level, and only 10 references
+    further limit the contribution. The re-repair negative result means the practical
+    utility argument (diagnostic granularity) is unsubstantiated.
+
+
+    **Verdict:** Below the bar for a top ML venue main conference (acceptance rate
+    ~25%). The work is a careful empirical study but the insight yield is low relative
+    to the experimental effort. With constrained decoding experiments, broader model
+    coverage, and stronger related work, this could reach Findings-level at a *ACL
+    venue.
+
+
+    **Actionable improvements for resubmission:**
+
+    1. Add constrained decoding experiments for CWM (highest priority)
+
+    2. Test at least one additional model family (e.g., CodeLlama or StarCoder2)
+
+    3. Expand references to 25-30+ covering structured generation, recent verification
+    work
+
+    4. Report F1-macro as co-primary metric across all conditions
+
+    5. Multi-seed all repo-level conditions (minimum 3 seeds)
+
+    6. Reframe title: "formulation comparison" rather than "design space"
+
+    7. Strengthen the re-repair study (larger n, better Docker reliability) or downweight
+    the diagnostic granularity claim
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260518T171503/worst/paper.pdf
+  imagined_experiments:
+  - name: CWM Generation Baseline (Qwen3-4B)
+    plan_id: cwm-baseline
+    description: Qwen3-4B LoRA CWM 生成 baseline，预测 execution output 而非 pass/fail
+    expected_results:
+      overall_accuracy: 87.51
+      pass_f1: 87.31
+      fail_f1: 87.71
+      exact_match_rate: 84.02
+      unparseable_predictions: 0
+    result_rationale: 'Func-level execution output 短且结构化（通常 <50 tokens），Qwen3-4B 能完美解析。
+
+      CWM 与 CLS 在 func-level 本质上等价：CWM 先生成 output 再隐式比较，CLS 直接二分类，
+
+      当 output 空间小时两者信息量一致。87.51% 与 CLS seed42 的 87.83% 在噪声范围内。
+
+      '
+    tables:
+    - 'Table 2: Func-level formulation comparison'
+    figures_description: []
+    analysis: 'func-level CWM=CLS 是 worst tier 的基础支撑——证明 formulation 选择在低复杂度下不重要，
+
+      这是一个有 statistical backing 的 null result（TOST p=0.007）。
+
+      '
+  - name: Multi-seed Core Comparison (CLS vs CWM vs TRAJ, Qwen3-4B)
+    plan_id: multi-seed-core
+    description: CLS/CWM 各 5 seeds + TRAJ 4 seeds 的 func-level 多种子验证
+    expected_results:
+      cls_4b_mean_acc: 88.43
+      cls_4b_std: 0.73
+      cls_4b_seeds:
+        s42: 87.83
+        s123: 89.52
+        s456: 87.88
+        s789: 89.0
+        s0: 87.94
+      cwm_4b_mean_acc: 87.19
+      cwm_4b_std: 0.37
+      cwm_4b_seeds:
+        s42: 87.51
+        s123: 87.2
+        s456: 86.98
+        s789: 86.67
+        s0: 87.57
+      traj_4b_mean_acc: 86.46
+      traj_4b_std: 1.01
+      traj_4b_seeds:
+        s0: 85.66
+        s123: 85.47
+        s456: 87.4
+        s789: 87.31
+      pooled_cls_cwm_gap_pp: -0.45
+      tost_p_value: 0.0071
+      tost_margin_pp: 2.0
+      cls_vs_traj_gap_pp: 1.97
+    result_rationale: '5-seed CLS 和 CWM 的 pooled gap 仅 0.45pp（CWM 略高），TOST 等价检验 p=0.007
+      在
+
+      ±2pp margin 内确认统计等价。TRAJ 略低 ~2pp 但方差更大（std=1.01 vs 0.73/0.37），
+
+      反映 trajectory-level aggregation 引入的 problem-level 随机性。三种 formulation
+
+      在 func-level 的差异不具有实际意义。
+
+      '
+    tables:
+    - 'Table 2: Func-level formulation comparison'
+    - 'Table 3: Multi-seed statistics'
+    figures_description:
+    - 'Fig 2: Box plot of per-seed accuracy across formulations'
+    analysis: '这是 paper 最 solid 的 statistical result。TOST p=0.007 是 reviewer 难以反驳的。
+
+      但 novelty concern 在于：func-level 等价本身是 predictable 的（output 短 → 生成不难）。
+
+      '
+  - name: Trace-then-Judge Ablation (Qwen3-4B)
+    plan_id: trace-then-judge
+    description: Chain-of-thought 式先推理后判断，测试显式 execution reasoning 是否有帮助
+    expected_results:
+      conclusion: failed
+      training_outcome: 模型未能学会生成有意义的 execution trace，输出退化为模板化文本
+    result_rationale: '4B LoRA 容量不足以同时学习 execution reasoning 和 pass/fail 判断。Trace
+      生成
+
+      引入了额外的 teacher-forcing 误差累积，且训练数据中没有 ground-truth trace 作为监督。
+
+      模型要么忽略 trace 直接跳到 label（使 trace 无意义），要么在 trace 阶段积累错误
+
+      导致最终判断变差。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '负面结果但有叙事价值：证明 "更多推理步骤" 在小模型 + LoRA 场景下不一定有帮助，
+
+      支持直接分类的 simplicity argument。在 worst tier 下降为 footnote。
+
+      '
+  - name: Trajectory-level Finetuned Baseline (Qwen3-4B)
+    plan_id: traj-level-finetuned
+    description: Qwen3-4B LoRA trajectory-level verifier (resolved/unresolved)
+    expected_results:
+      accuracy: 85.66
+      unresolved_f1: 87.5
+      resolved_f1: 83.18
+      per_test_consistency: 79.94
+    result_rationale: 'Trajectory-level 将多个 test 聚合为单一 resolved/unresolved 标签，丢失了
+      per-test
+
+      粒度信息。85.66% accuracy 低于 per-test CLS 的 88.43% mean，差异来自 aggregation
+
+      信息损失——当一个 problem 有 n 个 test 时，trajectory 模型需要从更长的拼接 input
+
+      中做出单一判断，而 CLS 可以独立判断每个 test。per_test_consistency=79.94% 表明
+
+      约 20% 的 per-test 判断与 trajectory 结论不一致。
+
+      '
+    tables:
+    - Table 2
+    figures_description: []
+    analysis: 'CLS vs TRAJ 的 ~2pp 差距支持 "per-test 粒度不损失精度" 的 claim。但 worst tier
+
+      下这个差距在 multi-seed 中有时反转（seed456 TRAJ=87.4% > CLS=87.88% 差距仅 0.48pp），
+
+      需要依赖 TOST 而非 point estimate 来论证。
+
+      '
+  - name: Model Size Scaling (Qwen3-8B CLS vs CWM)
+    plan_id: model-size-scaling
+    description: 8B 模型规模下的 CLS vs CWM 对比
+    expected_results:
+      cls_8b_mean_acc: 89.39
+      cls_8b_seeds:
+        s42: 90.48
+        s123: 89.37
+        s456: 88.31
+      cwm_8b_mean_acc: 86.96
+      cwm_8b_seeds:
+        s42: 87.67
+        s123: 86.98
+        s456: 86.24
+      cls_8b_vs_cwm_8b_gap_pp: 2.43
+      cls_4b_vs_8b_gain_pp: 0.96
+      cwm_4b_vs_8b_gain_pp: -0.23
+    result_rationale: 'CLS 从 4B→8B 提升约 1pp（88.43→89.39%），CWM 几乎不变（87.19→86.96%，甚至略降）。
+
+      这表明 CWM 的瓶颈不在模型容量而在 formulation 本身——生成 exact output 的 ceiling
+
+      由 exact_match 约束决定，更大模型不能突破。CLS 因为是 binary classification 任务，
+
+      更大模型的 representation capacity 能略微提升边界样本的判断。8B 规模下 CLS 首次
+
+      明确超过 CWM（2.43pp gap，超出 multi-seed 噪声范围）。
+
+      '
+    tables:
+    - Table 2
+    figures_description: []
+    analysis: '8B CLS > CWM 的 gap 比 4B 更明显，但仍然在 func-level。这个结果在所有 tier 共享，
+
+      worst tier 下支持 "scaling 不帮助 CWM" 的 finding。
+
+      '
+  - name: LLM Judge Zero-shot Baseline (Qwen3-8B/32B)
+    plan_id: llm-judge-baseline
+    description: 零样本 LLM-as-judge 基线，per-test + trajectory-level
+    expected_results:
+      per_test_8b_acc: 64.4
+      per_test_32b_acc: 71.69
+      majority_baseline: 51.75
+      traj_8b_acc: 99.1
+      traj_32b_acc: 99.12
+      traj_8b_true_resolved: 1
+      traj_8b_pred_resolved: 0
+    result_rationale: 'Per-test 零样本表现远低于 fine-tuned（64-72% vs 87-90%），因为模型需要理解
+
+      mutation 引入的 subtle 错误并预测 test 行为，而非简单的 pattern matching。
+
+      Trajectory-level 99.1% 是虚假高分——模型几乎总是预测 "unresolved"，在 114 个
+
+      problem 中只有 1 个是 resolved，majority baseline 就是 99.1%。这暴露了零样本
+
+      trajectory-level 评估在极度 imbalanced 场景下的无效性。
+
+      '
+    tables:
+    - 'Table 2: as baseline row'
+    figures_description: []
+    analysis: 'Fine-tuned vs zero-shot 的巨大 gap（87% vs 64-72%）证明 task-specific training
+
+      的必要性。Zero-shot TRAJ 的 99.1%（=majority baseline）是 cautionary result。
+
+      '
+  - name: Per-test Majority Voting (K=3)
+    plan_id: per-test-majority-voting
+    description: Self-consistency 多数投票，测试 K=3 采样是否提升准确率
+    expected_results:
+      accuracy_greedy: 87.51
+      accuracy_majority_vote: 86.83
+      delta_pp: -0.69
+      net_flips: -13
+      wall_time_ratio: 4.0
+    result_rationale: 'Greedy decoding 在 classification 任务上已接近模型能力上限。K=3 采样引入的随机性
+
+      对 high-confidence 正确预测无帮助，反而对 low-confidence 边界样本引入噪声：
+
+      28 个正确→错误 vs 15 个错误→正确 = net -13 flips。CLS 的 decision boundary 是
+
+      deterministic 的（logit > 0 → pass），temperature sampling 只会模糊这个边界。
+
+      这与 generation 任务（如 code generation）中 majority voting 有效不同。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '负面结果。排除了一个简单的 improvement avenue，但不影响核心叙事。
+
+      在 worst tier 下可以放入 appendix 或完全省略。
+
+      '
+  - name: DeepSeek Func-level Cross-model Validation (CLS + CWM + TRAJ)
+    plan_id: multi-seed-core
+    description: DeepSeek-Coder-6.7B 上重复 func-level 三种 formulation 对比
+    expected_results:
+      deepseek_cls_mean: 86.85
+      deepseek_cls_seeds:
+        s42: 86.93
+        s123: 86.77
+      deepseek_cwm_mean: 86.83
+      deepseek_cwm_seeds:
+        s42: 85.77
+        s123: 87.88
+      deepseek_traj_mean: 84.16
+      deepseek_traj_seeds:
+        v2: 83.24
+        v2_s123: 85.08
+      deepseek_cwm_unparseable_rate: 0.0
+      cross_model_cls_cwm_gap_pp: 0.02
+      cross_model_cls_traj_gap_pp: 2.69
+    result_rationale: 'DeepSeek func-level 重现了 Qwen 的 pattern：CLS≈CWM（86.85 vs 86.83%，gap
+      0.02pp），
+
+      TRAJ 略低（84.16%，gap ~2.7pp）。注意 DeepSeek CWM unparseable=0%，与 Qwen CWM
+
+      func-level 一致——func-level output 足够短，两种 tokenizer 都能完美解析。
+
+      DeepSeek TRAJ 比 Qwen TRAJ 低 ~2pp，可能因为 DeepSeek-Coder 的 instruction-following
+
+      能力在 trajectory aggregation 场景下略弱。
+
+      '
+    tables:
+    - 'Table 2: DeepSeek rows'
+    figures_description: []
+    analysis: 'Func-level 双模型族验证完整且 clean。CLS≈CWM 在两个模型族都成立。
+
+      这是 worst tier 最强的跨模型证据，但 reviewer 会认为 func-level 等价本身 novelty 低。
+
+      '
+  - name: Per-test Failure Prediction Precision/Recall
+    plan_id: per-test-precision-recall
+    description: Per-test 粒度的 failure 预测精度分析
+    expected_results:
+      accuracy: 87.51
+      fail_precision: 82.75
+      fail_recall: 93.64
+      fail_f1: 87.86
+      best_mutation: return_value (97.26%)
+      worst_mutation: off_by_one (82.56%)
+    result_rationale: 'High recall (93.64%) 意味着模型捕获了绝大多数真实 failure，但 precision (82.75%)
+
+      说明约 17% 的 failure 预测是误报。这在 diagnostic 场景下是可接受的——宁可多报
+
+      failure 也不要漏掉（fail-safe 偏好）。Mutation type 分析显示 return_value mutations
+
+      最容易检测（明显的输出差异），off_by_one 最难（微妙的边界差异）。
+
+      '
+    tables:
+    - 'Table 5: Per-test diagnostic quality'
+    figures_description:
+    - 'Fig 4: Per-mutation-type accuracy breakdown'
+    analysis: 'Diagnostic granularity 分析完整。但没有 downstream 验证（re-repair 为负），
+
+      worst tier 下只能声称 "potentially useful for debugging" 而非 "proven useful"。
+
+      '
+  - name: Oracle F2P Stratified Analysis
+    plan_id: oracle-f2p-stratified
+    description: 按 failing test 数量分层的 oracle advantage 分析
+    expected_results:
+      T1_pct: 68.7
+      T1_block_adv: -0.09
+      T2_pct: 19.1
+      T2_block_adv: 31.69
+      T3_5_block_adv: 40.74
+      T6plus_block_adv: 40.06
+      overall_block_adv: 10.93
+      T2_contribution_pct: 55.3
+    result_rationale: '68.7% 的 instances 只有 1 个 failing test (T=1)，此时 per-test 和 trajectory-level
+
+      信息等价（只有一个 test 决定成败）。Per-test 优势集中在 T≥2（31.5% 的 instances），
+
+      其中 T=2 贡献了 55.3% 的总 advantage。这是因为 T=2 时 per-test 能区分 "一个 test fail"
+
+      vs "两个 test fail" 而 trajectory 只能说 "unresolved"。T≥3 的 advantage 更大但
+
+      instance 更少。SWE-bench 的 median F2P=1 限制了 per-test 的 practical impact。
+
+      '
+    tables:
+    - Table 6
+    figures_description:
+    - 'Fig 5: Advantage by T-bucket'
+    analysis: 'Oracle analysis 显示 per-test 的理论优势存在但受限于 T=1 dominance。
+
+      Worst tier 下 reviewer 会指出 "68.7% 的 instances per-test 不提供额外信息"。
+
+      '
+  - name: Block Correlation Empirical Validation
+    plan_id: block-corr-empirical
+    description: 验证 per-test predictions 的 intra-problem 相关性结构
+    expected_results:
+      icc: 0.1909
+      icc_p_value: 0.0
+      design_effect: 3.9676
+      all_correct_observed: 46
+      all_correct_expected_iid: 16.35
+      all_correct_ratio: 2.81
+    result_rationale: 'ICC=0.19 表明同一 problem 内的 per-test 预测错误有显著相关性（p<0.001），
+
+      design effect=3.97 意味着 effective sample size 约为 nominal 的 1/4。
+
+      Observed all-correct rate (46/114=40.4%) 远高于 i.i.d. 预期 (14.3%)，
+
+      ratio=2.81 说明模型错误在 problem 内是 clustered 的——要么全对，要么错多个。
+
+      这挑战了 per-test evaluation 中常见的 i.i.d. 假设。
+
+      '
+    tables:
+    - 'Table 7: Block correlation analysis'
+    figures_description: []
+    analysis: '这是一个 methodological contribution：揭示 per-test evaluation 中 i.i.d. 假设
+
+      不成立，标准 CI 会低估 variance。ICC=0.19 + DE=3.97 是 clean statistical result。
+
+      Worst tier 下这可能是最独特的贡献——之前没有工作量化过 per-test verification 中的
+
+      intra-problem correlation。但 reviewer 可能认为这更适合 statistics 会议。
+
+      '
+  - name: Oracle Total (F2P+P2P) Validated
+    plan_id: oracle-total-validated
+    description: 包含 P2P regression tests 的 oracle advantage 验证
+    expected_results:
+      total_reg5pct_block_adv: -0.005
+      total_reg10pct_block_adv: 0.083
+      total_reg20pct_block_adv: 0.278
+      total_reg5pct_pass: false
+      total_reg10pct_pass: true
+    result_rationale: 'P2P regression rate ≤5% 时 per-test advantage 消失（-0.5pp），因为
+      P2P tests
+
+      几乎全 pass，不提供 discriminative 信息。只有 regression rate ≥10% 时 per-test
+
+      才有正 advantage。实际 regression rate 通常 <5%（高质量修复），这意味着
+
+      per-test 的优势主要在 F2P tests 上，P2P tests 是 noise source。
+
+      '
+    tables:
+    - Table 6 extended
+    figures_description: []
+    analysis: 'P2P 在低 regression rate 下无帮助甚至有害。Worst tier 下这个发现缩窄了 per-test
+
+      的 applicable scope，reviewer 会用这个来质疑 practical significance。
+
+      '
+  - name: Repo-level CLS (Qwen3-4B, best checkpoint)
+    plan_id: repo-level-training
+    description: Qwen3-4B LoRA repo-level classification，最优 checkpoint 评估
+    expected_results:
+      best_checkpoint: ckpt-4600
+      test_accuracy: 83.63
+      test_f1_macro: 75.63
+      test_fail_f1: 61.67
+      test_pass_f1: 89.59
+      majority_baseline: 72.96
+      gap_vs_baseline_pp: 10.67
+      val_accuracy: 90.07
+      val_test_gap_pp: 6.44
+    result_rationale: 'Repo-level CLS 在 Qwen3-4B 上达到 83.63% test accuracy，显著超过 majority
+      baseline
+
+      10.67pp。但 val-test gap 高达 6.44pp 暴露了 overfitting 或 distribution shift。
+
+      Fail_f1 仅 61.67%（vs func-level 88%），说明 repo-level 的长 context + 复杂依赖
+
+      大幅增加了分类难度。这是 worst tier Qwen repo-level 的 reference point。
+
+      '
+    tables:
+    - 'Table 4: Repo-level comparison'
+    figures_description: []
+    analysis: '83.63% 在 worst tier 范围 [83, 86] 的下端。只有 Qwen 一个模型族达到这个水平，
+
+      reviewer 会质疑 generalizability。
+
+      '
+  - name: Repo-level CLS (Qwen3-8B, best configurations)
+    plan_id: repo-level-training
+    description: Qwen3-8B LoRA repo-level classification，多 seed 多 checkpoint
+    expected_results:
+      best_s42_ckpt: ckpt-400
+      best_s42_test_acc: 84.79
+      best_s123_ckpt: ckpt-3000
+      best_s123_test_acc: 85.6
+      best_s123_val_acc: 88.69
+      majority_baseline: 72.96
+    result_rationale: '8B 比 4B 提升 1-2pp（84.79/85.60 vs 83.63），但 s42 和 s123 的 best
+      checkpoint
+
+      差异巨大（ckpt-400 vs ckpt-3000），暗示 repo-level 训练对 seed 和 checkpoint
+
+      选择极度敏感。Overfitting 严重——s42 继续训练到 ckpt-1000+ 后 accuracy 反而
+
+      下降到 83-84%。这种 instability 是 reviewer concern 的来源。
+
+      '
+    tables:
+    - Table 4
+    figures_description: []
+    analysis: '85.60% 是 Qwen repo-level CLS 的 ceiling。但 checkpoint 选择的高度敏感性
+
+      削弱了结果的可靠性。Worst tier 下 reviewer 会质问 "你怎么选 checkpoint"。
+
+      '
+  - name: Repo-level CWM (Qwen, all versions)
+    plan_id: repo-level-training
+    description: Qwen3 repo-level CWM generation，v3-v12 全部尝试
+    expected_results:
+      v10_accuracy: 69.91
+      v10_unparseable_pct: 93.0
+      v11_accuracy: 66.6
+      v11_unparseable_pct: 75.2
+      v12_accuracy: 58.04
+      v12_unparseable_pct: 53.7
+      best_parseable_accuracy: ~42-58% (估计)
+      all_versions_below_majority: true
+    result_rationale: 'Qwen tokenizer 在 repo-level 长 output 生成中灾难性失败。v10（max_new_tokens=64）
+
+      93% unparseable——token budget 太小无法生成完整 execution output。放宽到更大 budget
+
+      后 v12 unparseable 降到 53.7% 但 accuracy 更差（58%）——模型在长生成中 drift。
+
+      Qwen3 的 tokenizer 对结构化 execution output 的 token 效率极低，是 model-specific
+
+      failure 而非 formulation-inherent failure。
+
+      '
+    tables:
+    - 'Table 4: CWM row'
+    figures_description: []
+    analysis: 'CWM repo-level 在 Qwen 上彻底失败。Worst tier 下无法报告有意义的 CWM repo accuracy，
+
+      只能报告 unparseable rate 作为 negative finding。但这反而支持 "CWM failure 是
+
+      tokenizer-specific" 的 claim——如果 DeepSeek CWM repo 也失败（worst tier 假设），
+
+      则需要修改为 "CWM repo failure 可能是 formulation-inherent at small model scale"。
+
+      '
+  - name: DeepSeek CLS Repo-level v5 (seed42, full 3 epochs)
+    plan_id: repo-level-training
+    description: DeepSeek-Coder-6.7B repo-level CLS，v5 完整 3 epoch 训练
+    expected_results:
+      training_outcome: 完成但 acc 未超过 majority baseline
+      test_accuracy: 71.5
+      f1_macro: 54.2
+      f1_fail: 28.3
+      f1_pass: 80.1
+      majority_baseline: 72.96
+      gap_vs_baseline_pp: -1.46
+      unparseable_rate: 0.01
+      confusion_pattern: 严重偏向预测 pass，recall_fail < 20%
+    result_rationale: 'v4（2 epoch 不完整）eval_loss=NaN 所有 epoch，process killed。v5 是 v4
+      的完整重跑。
+
+      v4 已有的 ckpt-200 eval（71.37% acc）低于 majority baseline。s123 的完整训练
+
+      也只达到 74.93%（勉强高于 73% baseline），且 recall_fail=13.72% 几乎不识别 fail。
+
+      DeepSeek-Coder 在 repo-level 的核心问题：(1) max_seq_length=2048 对 repo context
+
+      截断过多（平均 repo input ~5000 tokens），丢失关键依赖信息；(2) 6.7B LoRA 容量
+
+      不足以学习 repo-level 的复杂 pass/fail pattern；(3) eval_loss=NaN 暗示训练不稳定，
+
+      3 epoch 可能过拟合或 loss landscape 有 pathological region。
+
+      Worst tier 预测 v5 在 70-73% 范围，不超过 majority baseline。
+
+      '
+    tables:
+    - 'Table 4: DeepSeek CLS row — 标注为 ≈baseline 或 below baseline'
+    figures_description: []
+    analysis: 'DeepSeek CLS repo v1-v5 全部失败。s123 的 74.93% 是唯一勉强高于 baseline 的数据点，
+
+      但 f1_fail=22.84% 说明模型几乎不能识别 failure（几乎全预测 pass）。
+
+      Worst tier 叙事：DeepSeek repo-level CLS 不可用，repo-level 比较仅限 Qwen。
+
+      '
+  - name: DeepSeek CLS Repo-level s123 (seed123)
+    plan_id: repo-level-training
+    description: DeepSeek-Coder-6.7B repo-level CLS seed=123 的评估结果
+    expected_results:
+      test_accuracy: 74.93
+      f1_macro: 53.94
+      f1_fail: 22.84
+      f1_pass: 85.03
+      recall_fail: 13.72
+      recall_pass: 97.62
+      majority_baseline: 72.96
+      gap_vs_baseline_pp: 1.97
+    result_rationale: '74.93% 仅比 majority baseline 高 1.97pp。F1_fail=22.84% 揭示模型几乎完全
+
+      collapse 到 majority class (pass)：recall_fail=13.72% 意味着 86% 的真实 failure
+
+      被误判为 pass。这不是一个有用的分类器——一个简单的 "always predict pass" baseline
+
+      就能达到 73%。Gap 1.97pp 在 multi-seed 噪声范围内不可靠。
+
+      '
+    tables:
+    - Table 4
+    figures_description: []
+    analysis: '这个结果已经 confirm worst-tier 假设。DeepSeek CLS repo essentially at majority
+      baseline。
+
+      Combined with v5 prediction, worst tier 叙事完全成立。
+
+      '
+  - name: DeepSeek CWM Repo-level s42 Epoch 3 (canonical seq2048)
+    plan_id: repo-level-training
+    description: 'D131: DeepSeek CWM repo s42 epoch 3 在 canonical seq2048 下的评估'
+    expected_results:
+      test_accuracy: 52.3
+      f1_macro: 44.8
+      f1_fail: 18.5
+      f1_pass: 71.1
+      unparseable_rate: 82.0
+      unparseable_count: 8023
+      parseable_only_accuracy: 48.5
+      majority_baseline: 72.96
+      gap_vs_baseline_pp: -20.66
+    result_rationale: 'seq2048 比 seq4096/8192 截断更严重，留给 output generation 的 token budget
+      更少。
+
+      D124 在 seq8192 下 running_acc=66.9%（31% 完成时 killed），seq4096 下 partial eval
+
+      显示更差的趋势。seq2048 进一步限制 context → 更多 truncation → 更多 unparseable。
+
+      Qwen CWM repo 在 seq2048 下 65.17% accuracy（已是 failure），DeepSeek 预期更差因为：
+
+      (1) DeepSeek-Coder tokenizer 的 token 效率对 Python execution output 更低；
+
+      (2) Epoch 3 过拟合（训练 loss 从 0.021 降到极低但 eval 退化）；
+
+      (3) 93% unparseable 在 Qwen 上的 pattern 在 DeepSeek 上可能同样严重或更严重。
+
+      Worst tier 预测 unparseable ≥80%，可用 accuracy 远低于 baseline。
+
+      '
+    tables:
+    - 'Table 4: DeepSeek CWM row — 标注为 N/A 或 ''unparseable >80%'''
+    figures_description: []
+    analysis: 'CWM repo 在 DeepSeek 上也失败（worst tier 假设核心之一）。如果两个模型族的 CWM repo
+
+      都失败，则不能说 "CWM failure 是 tokenizer-specific"——需要修改为 "CWM repo failure
+
+      appears formulation-inherent at 4-8B LoRA scale"。这削弱了原 framing 中
+
+      "tokenizer-specific" 这个最有 novelty 的 finding。
+
+      '
+  - name: DeepSeek CWM Repo-level s42 Epoch 2 (overtraining baseline)
+    plan_id: repo-level-training
+    description: 'D133: DeepSeek CWM repo s42 epoch 2 在 seq2048 下的评估，用于 overtraining
+      对比'
+    expected_results:
+      test_accuracy: 56.8
+      f1_macro: 47.2
+      f1_fail: 21.3
+      f1_pass: 73.1
+      unparseable_rate: 76.0
+      parseable_only_accuracy: 53.2
+      epoch3_accuracy: 52.3
+      overtraining_gap_pp: 4.5
+    result_rationale: 'Epoch 2 应比 epoch 3 略好（less overfitting），但差异可能很小（~4pp）。
+
+      原因：(1) CWM repo 的根本问题是 generation 任务本身在 repo-level context 下太难，
+
+      不仅仅是 overfitting；(2) eval_loss=NaN 在所有 epoch（已知 DeepSeek issue），
+
+      无法通过 eval loss 选择最优 epoch；(3) unparseable 问题在 epoch 2 就已存在，
+
+      epoch 3 只是略微恶化。
+
+      Worst tier 下 epoch 2 仍然不可用——unparseable ≥76%，accuracy 远低于 baseline。
+
+      Overtraining 可能存在但不是主要原因（根本原因是 formulation + scale mismatch）。
+
+      '
+    tables:
+    - 'Appendix: overtraining analysis'
+    figures_description: []
+    analysis: '即使 epoch 2 比 epoch 3 好 4-5pp，仍然在 majority baseline 以下。
+
+      结论变为 "CWM repo failure 不仅是 overfitting，也是 capacity limitation"。
+
+      这对叙事有双重影响：(1) 削弱 "只需更多训练调优" 的反驳；
+
+      (2) 也削弱 "tokenizer-specific" 的 claim（两个模型都失败）。
+
+      '
+  - name: DeepSeek CWM Repo-level s123 (seed 123 replication)
+    plan_id: repo-level-training
+    description: DeepSeek CWM repo seed=123 训练+评估
+    expected_results:
+      training_outcome: 训练中途死亡或仅完成 2 epochs
+      eval_accuracy: 55.0
+      unparseable_rate: 80.0
+      f1_macro: 42.5
+    result_rationale: 'Registry 显示 s123 训练已中断（D132 notes 提到 "s123 e3 checkpoint 不存在，
+
+      训练中途死亡"）。只有 epoch 2 checkpoint 可用。Worst tier 下评估结果与 s42
+
+      类似或更差：unparseable ≥80%，accuracy 远低于 baseline。训练不稳定进一步
+
+      证实 DeepSeek CWM repo 的 unreliability。
+
+      '
+    tables:
+    - 'Table 4: or Appendix'
+    figures_description: []
+    analysis: '训练中断 + 评估不可用 = deepseek-cwm-repo 完全不可报告。
+
+      Worst tier 下 Table 4 的 DeepSeek CWM 列标注为 "training failed" 或 "—"。
+
+      '
+  - name: DeepSeek TRAJ Repo-level (multi-seed, n=48)
+    plan_id: repo-level-training
+    description: DeepSeek-Coder-6.7B trajectory-level repo verifier，6 seeds
+    expected_results:
+      seed_results:
+        s42:
+          acc: 81.25
+          f1_macro: 80.58
+        s123:
+          acc: 75.0
+          f1_macro: 74.83
+        s0:
+          acc: 75.0
+          f1_macro: 72.68
+        s789:
+          acc: 66.67
+          f1_macro: 62.5
+        s456:
+          acc: 75.0
+          f1_macro: 75.0
+        s999:
+          acc: 79.2
+          f1_macro: 78.57
+      mean_accuracy: 75.35
+      std_accuracy: 4.89
+      majority_baseline: 54.2
+      gap_vs_baseline_pp: 21.15
+      test_set_size: 48
+    result_rationale: 'TRAJ repo 是唯一跑通的 DeepSeek repo-level formulation。Mean 75.35%
+      显著超过
+
+      majority baseline (54.2%)，但 (1) n=48 太小，CI 极宽；(2) std=4.89% 跨 seed
+
+      方差巨大（66.67%-81.25%）；(3) 无法与 Qwen TRAJ repo 直接对比因为 Qwen TRAJ repo
+
+      不存在（只有 CLS 和 CWM）。TRAJ 的 "成功" 可能因为 task 更简单——只需判断
+
+      resolved/unresolved 而非预测每个 test 的 pass/fail，对 input 质量要求更低。
+
+      '
+    tables:
+    - 'Table 4: DeepSeek TRAJ row'
+    figures_description: []
+    analysis: 'n=48 是 worst tier 的关键弱点。Reviewer 会指出：6 seeds 的 mean 75.35% 的 95% CI
+
+      约 [70.4, 80.3]（基于 t-distribution），如此宽的 CI 无法做任何有意义的 formulation
+
+      对比。只能作为 "supplementary evidence that TRAJ is feasible at repo-level" 而非
+
+      core finding。
+
+      '
+  - name: Zero-shot Baselines (Qwen + DeepSeek, func + repo)
+    plan_id: llm-judge-baseline
+    description: Qwen3-4B 和 DeepSeek-Coder-6.7B 的零样本基线
+    expected_results:
+      qwen_0shot_func_acc: 68.73
+      deepseek_0shot_func_acc: 63.02
+      qwen_0shot_repo_acc: 49.9
+      deepseek_0shot_repo_acc: 48.54
+      repo_majority_baseline: 72.96
+      func_majority_baseline: 51.75
+    result_rationale: '0-shot 在 func-level 超过 majority baseline (68.7/63.0 vs 51.75%)，但在
+      repo-level
+
+      几乎是 random（49.9/48.5% vs majority 73%）。Repo-level 0-shot 甚至低于 majority
+
+      baseline 24pp，说明无 finetuning 的模型完全无法处理 repo-level context。
+
+      DeepSeek 0-shot 比 Qwen 差 ~5pp，一致 pattern。
+
+      '
+    tables:
+    - 'Table 2 & 4: 0-shot baseline row'
+    figures_description: []
+    analysis: '0-shot baseline 建立了 fine-tuning 必要性的论证。Repo-level 0-shot 的灾难表现
+
+      也解释了为什么 repo-level fine-tuning 如此困难——task 本身在 0-shot 下不可解。
+
+      '
+  - name: Diagnostic Re-repair (downstream proof-of-concept)
+    plan_id: diagnostic-rerepair
+    description: 用 per-test failure 预测辅助 repair agent 的下游验证
+    expected_results:
+      prediction: 负面结果或未完成
+      control_pass1: 41.0
+      cls_diagnostic_pass1: 42.5
+      oracle_diagnostic_pass1: 44.0
+      random_diagnostic_pass1: 38.0
+      improvement_over_control_pp: 1.5
+      p_value: 0.42
+      n_instances: 44
+    result_rationale: '已有两个 preliminary 实验的负面结果：
+
+      - re-repair-phase0 (n=10): control 0.82, cls_diag 0.818, oracle_diag 0.809
+
+      - re-repair-docker-eval (n=44): A1=52.3, A2=43.2, B=36.4, C=38.6, D=40.9
+
+      两者都未显示 diagnostic information 的有意义改善。核心原因：(1) LLM repair agent
+
+      已经从 test source code 和 error message 中获取了大部分 diagnostic 信息，
+
+      per-test classifier 预测（87.5% acc）的额外信号被模型已有信息淹没；
+
+      (2) 12.5% 的错误预测会误导 repair agent；(3) 样本量太小（n=44）无法检测
+
+      微小效应。Worst tier 下该实验要么不运行（deadline 压力），要么确认负面结果。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Re-repair 负面结果是 worst tier 最大的 downstream utility gap。
+
+      Paper 必须将 efficiency（6-9x speedup）和 diagnostic granularity 定位为
+
+      independent contribution，而非依赖 re-repair 作为 downstream validation。
+
+      Reviewer 会问 "so what''s the point of per-test if it doesn''t help repair?"——
+
+      回答需要是 "per-test enables fine-grained verification feedback for developers,
+
+      not just automated repair" + "efficiency advantage is standalone"。
+
+      '
+  - name: SWE-bench PerTest Dataset Construction
+    plan_id: swebench-pertest-data
+    description: Docker re-evaluation 构建 SWE-bench per-test 数据集
+    expected_results:
+      prediction: 未完成或仅部分完成
+      instances_attempted: 500
+      instances_completed: 280
+      instances_with_clean_labels: 220
+      completion_rate: 0.44
+      label_quality_issues: Docker 环境差异导致约 20% 的 test 结果与原始不一致
+    result_rationale: '9 天到 deadline，Docker re-evaluation 需要 16-24h 计算 + 环境调试时间。
+
+      SWE-bench Docker 复现已知困难：(1) Python 版本依赖；(2) package version conflicts；
+
+      (3) test framework compatibility（pytest vs unittest）；(4) 部分 repo 需要
+
+      system-level dependencies (C extensions, database servers)。
+
+      Worst tier 下优先级低于 GPU 实验（deepseek repo-level），可能被搁置。
+
+      即使部分完成，数据质量可能不足以支撑 paper 中的 resource contribution claim。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'SWE-bench PerTest 作为 resource contribution 在 worst tier 下不可用。
+
+      Paper 只能使用现有 func-level 数据集（CRUXEval-based）+ Qwen repo-level 数据。
+
+      这进一步限制了 paper 的 contribution breadth。
+
+      '
+  - name: Qwen CWM Repo Epoch 2 Eval (D124)
+    plan_id: repo-level-training
+    description: Qwen CWM repo-level s42 epoch 2 评估，验证 overtraining
+    expected_results:
+      prediction: 略好于最终 epoch 但仍不可用
+      accuracy: 55.0
+      unparseable_rate: 88.0
+      parseable_accuracy: 48.0
+      epoch3_comparison: 与 epoch 3 差异 <5pp
+    result_rationale: 'Qwen CWM repo v10-v12 在最终 epoch 的 unparseable rate 53-93%。Epoch
+      2 理论上
+
+      过拟合更少，但 CWM 的核心问题是 generation task 本身对 repo-level 太难，
+
+      不是 epoch 数量的问题。Qwen tokenizer 在 repo-level output 上的低效率
+
+      导致即使 epoch 2 也有极高 unparseable rate。如果使用与 v10 相同的
+
+      max_new_tokens=64，unparseable 不会显著下降。
+
+      '
+    tables:
+    - 'Appendix: overtraining analysis'
+    figures_description: []
+    analysis: 'Overtraining analysis 可以放 appendix 作为 methodological rigor 的证据，
+
+      但不改变 "CWM repo 在 Qwen 上失败" 的核心结论。
+
+      '
+  - name: Worst-Tier Repo-level Summary Table 预测
+    plan_id: repo-level-training
+    description: Table 4 在 worst tier 下的完整面貌
+    expected_results:
+      qwen_cls_4b_test: 83.63
+      qwen_cls_8b_best_test: 85.6
+      qwen_cwm_4b_test: N/A (93% unparseable)
+      qwen_cwm_8b_test: N/A (75% unparseable)
+      qwen_traj_4b_test: N/A (not trained)
+      deepseek_cls_test: 71.5 (≈majority baseline 73%)
+      deepseek_cwm_test: N/A (82% unparseable)
+      deepseek_traj_test: 75.35±4.89 (n=48)
+      majority_baseline: 72.96
+      cross_model_validated: false
+      single_model_only: Qwen CLS
+    result_rationale: 'Table 4 只有两个有意义的 cell：Qwen CLS 4B (83.63%) 和 Qwen CLS 8B (85.60%)。
+
+      所有 CWM repo 都失败（双模型族）。DeepSeek CLS repo 在 majority baseline 附近。
+
+      DeepSeek TRAJ repo 有数据但 n=48 + high variance。
+
+      这意味着 repo-level 的 formulation comparison 完全不成立——
+
+      只有一种 formulation (CLS) 在一个模型族 (Qwen) 上有效。
+
+      '
+    tables:
+    - Table 4
+    figures_description: []
+    analysis: 'Worst tier 的 Table 4 本质上是一个 Qwen CLS 表，其他 cell 都是 N/A 或 ≈baseline。
+
+      这导致 paper 无法 claim "CLS > CWM at repo-level"（CWM 数据不可用，不是 CLS 更好），
+
+      也无法 claim cross-model consistency（只有 Qwen）。
+
+      Paper 必须重新定位 repo-level：不是 "formulation comparison" 而是
+
+      "case study showing that classification transfers to repo-level while generation
+      collapses"。
+
+      '
+  - name: Worst-Tier Paper Contribution 重评估
+    plan_id: ''
+    description: Worst tier 下 paper 三条贡献线的强度评估
+    expected_results:
+      contribution_1_formulation_equivalence:
+        strength: medium
+        evidence: func-level 双模型族 5-seed TOST p=0.007
+        weakness: func-level 等价是 predictable; repo-level 无法比较
+        reviewer_likely_score: 3.0
+      contribution_2_diagnostic_granularity:
+        strength: medium-weak
+        evidence: CLS vs TRAJ 2pp gap + 6-9x speedup + per-test diagnostics
+        weakness: no downstream validation; 68.7% instances T=1 无额外信息
+        reviewer_likely_score: 2.5
+      contribution_3_methodology:
+        strength: medium
+        evidence: ICC=0.19, DE=3.97 block-correlation; TOST framework
+        weakness: niche contribution; may not excite NLP reviewers
+        reviewer_likely_score: 3.0
+      overall_expected_score: 2.75
+      venue_outcome: Borderline Findings (2.5-3.0)
+    result_rationale: 'Worst tier 下三条线都有 solid 数据但没有 breakthrough：
+
+      (1) Func-level 等价是 well-executed null result 但 predictable；
+
+      (2) Diagnostic granularity 缺 downstream proof，efficiency 是 engineering 而非 science；
+
+      (3) Block-correlation 是 novel 但 niche（statistics contribution in NLP venue）。
+
+      没有一条线单独能达到 EMNLP main 4.0。组合起来 2.5-3.0 = Findings 水平。
+
+      如果写作极好（clear story + honest scoping），可能 push 到 3.0-3.5。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: "Worst tier 的 paper 策略：\n1. 放弃 repo-level 作为 core contribution → 降为\
+      \ \"exploratory case study\"\n2. 主推 func-level controlled comparison methodology\
+      \ + statistical rigor\n3. Block-correlation 作为 \"unexpected methodological finding\"\
+      \n4. Re-repair 负面结果诚实报告为 future work motivation\n5. 标题改为聚焦 func-level：\"Per-Test\
+      \ vs Trajectory-Level Verification:\n   A Controlled Study across Formulations\
+      \ and Model Families\"\n6. 投稿目标现实调整：EMNLP Findings 作为 primary goal"
+  review_report: "---\ndream_id: dream_20260518T171503\ntier: worst\noverall_score:\
+    \ 3/6 Weak Reject (EMNLP ARR ~2.5-3.0, Borderline Findings)\ntimestamp: 2026-05-18T18:09:42.383772+00:00\n\
+    ---\n\n# Dream Review Report\n\n**Paper**: \"Comparing Verification Formulations\
+    \ for Neural Code Repair: A Controlled Study across Model Families\"\n**Review\
+    \ mode**: full | **Reviewers**: R1 (Method + Experiments), R2 (Novelty + Related\
+    \ Work)\n\n---\n\n## Reviewer 1: Method + Experiments\n\n### Summary\nThe paper\
+    \ presents a controlled comparison of three execution-free verification formulations\
+    \ (CLS, CWM, TRAJ) across two model families at function-level and repository-level.\
+    \ The multi-seed protocol with TOST equivalence testing is rigorous, and the block\
+    \ correlation analysis (ICC/design effect) is a genuine methodological contribution.\
+    \ However, repository-level results are severely limited by single-model-family\
+    \ success, small test sets, and training instabilities that undermine the cross-model\
+    \ claims.\n\n### Strengths\n- **Rigorous controlled design**: Same LoRA config,\
+    \ same data, same eval pipeline across all formulations and models. Multi-seed\
+    \ replication (up to 5 seeds) is well above the norm in this area.\n- **TOST equivalence\
+    \ testing**: Correctly applied to confirm func-level statistical equivalence (p=0.007).\
+    \ This is a much stronger statistical claim than simply failing to reject a null\
+    \ hypothesis of difference.\n- **Block correlation analysis is novel and correct**:\
+    \ ICC=0.19, DE=3.97 is a clean statistical finding with broad applicability. The\
+    \ all-correct ratio (2.81x above i.i.d. expectation) is an intuitive illustration.\n\
+    - **Honest negative results**: Trace-then-judge failure, majority voting harm,\
+    \ and re-repair non-significance are all reported transparently. This builds credibility.\n\
+    - **Zero-shot baselines are comprehensive**: Testing 4B, 8B, and 32B zero-shot\
+    \ plus per-test and trajectory-level variants. The trajectory majority baseline\
+    \ exposure (99.1% accuracy = 99.1% majority class) is a useful cautionary finding.\n\
+    \n### Weaknesses (ranked by severity)\n1. **Repo-level cross-model validation\
+    \ essentially fails** (Critical). Only Qwen3 CLS produces results meaningfully\
+    \ above majority baseline. DeepSeek CLS is at or barely above baseline (71.5-74.9%\
+    \ vs 73.0% majority). CWM fails on both families. The paper's title and abstract\
+    \ claim \"across Model Families\" but at repo-level this is true for only one\
+    \ formulation on one family.\n2. **Underpowered repo-level comparisons** (Major).\
+    \ DeepSeek TRAJ uses n=48 with std=4.89% across 6 seeds (95% CI approximately\
+    \ [70.4, 80.3]). This is too wide for meaningful formulation comparison. The paper\
+    \ acknowledges this but still reports the numbers as findings rather than preliminary\
+    \ observations.\n3. **TOST margin of ±2pp is unjustified** (Major). The paper\
+    \ does not explain why ±2pp was chosen. At ±1.5pp, would equivalence still hold?\
+    \ The CLS-TRAJ gap of 1.97pp sits exactly at the ±2pp boundary, suggesting the\
+    \ margin was chosen to include TRAJ. A TOST sensitivity analysis (testing at ±1pp,\
+    \ ±1.5pp, ±2.5pp) is missing and critical for credibility.\n4. **Val-test gap\
+    \ not investigated** (Moderate). Qwen3-4B repo CLS shows a 6.44pp val-test gap\
+    \ (90.07% vs 83.63%). The paper notes this but does not investigate causes (distribution\
+    \ shift? overfitting? data leakage?). For the 8B model, optimal checkpoints differ\
+    \ by 2600 steps across seeds (step 400 vs step 3000), indicating training instability\
+    \ that is not analyzed.\n5. **Incomplete experimental matrix** (Moderate). Qwen3-8B\
+    \ TRAJ is missing. DeepSeek-8B is not tested. Multiple DeepSeek repo-level runs\
+    \ terminated early or produced NaN eval losses. The experiment plan lists TOST\
+    \ sensitivity analysis, but it does not appear in the paper.\n6. **Re-repair negative\
+    \ result undermines the practical story** (Moderate). The paper motivates per-test\
+    \ diagnostics partly for downstream repair, but n=44 with p=0.42 shows no benefit.\
+    \ The 6-9x inference speedup is engineering, not a scientific contribution that\
+    \ requires a paper.\n\n### Questions for Authors\n1. How sensitive is the TOST\
+    \ equivalence result to the margin? Please report p-values at ±1pp, ±1.5pp, and\
+    \ ±2.5pp margins.\n2. What causes the 6.44pp validation-test gap for Qwen3-4B\
+    \ repo CLS? Was early stopping based on validation performance?\n3. For DeepSeek\
+    \ repo-level CLS, the 2048-token sequence length truncates inputs that average\
+    \ ~5000 tokens. Was this a hardware constraint? What happens at 4096 or 8192?\n\
+    4. Is the ICC=0.19 consistent across different models and formulations, or is\
+    \ it computed only on one specific model's predictions?\n5. Given the training\
+    \ instability at repo-level (NaN eval losses, wildly different optimal checkpoints),\
+    \ how confident are you that the reported numbers represent stable training outcomes\
+    \ rather than artifacts of checkpoint selection?\n\n### Score: 3 (Weak Reject)\n\
+    ### Confidence: 4/5\n\n---\n\n## Reviewer 2: Novelty + Related Work\n\n### Summary\n\
+    The paper is a well-executed controlled comparison, but its core findings are\
+    \ largely predictable to anyone familiar with the area. Function-level equivalence\
+    \ between classification and short-form generation is expected when outputs are\
+    \ under 50 tokens. CWM collapse at repo-level with 4-8B LoRA models is unsurprising.\
+    \ The block correlation analysis (ICC=0.19, DE=3.97) is the most novel finding,\
+    \ but it is niche and may not excite reviewers at a top NLP/ML venue. The related\
+    \ work section is thin (12 references), and the framing overpromises relative\
+    \ to the actual evidence.\n\n### Strengths\n- **Block correlation is a genuine\
+    \ contribution**: ICC and design effect analysis for per-test code evaluation\
+    \ has not been previously characterized. The finding that standard CIs underestimate\
+    \ variance by ~4x is practically important and applicable beyond this paper.\n\
+    - **Statistical rigor sets a methodological example**: TOST equivalence testing,\
+    \ multi-seed protocols, and reporting of negative results raise the bar for empirical\
+    \ studies in this area.\n- **Honest scoping and limitations**: The paper does\
+    \ not hide its weaknesses. The limitations section explicitly acknowledges single-model-family\
+    \ repo results, lack of downstream utility, and CWM scale unfairness.\n- **Clear\
+    \ and well-structured writing**: The paper is readable, organized logically, and\
+    \ stays within page limits. The abstract answers the four key questions concisely.\
+    \ No obvious AI-writing artifacts detected.\n- **Practical guidance is actionable**:\
+    \ The recommendation to prefer CLS for simplicity and diagnostic capability is\
+    \ backed by evidence.\n\n### Weaknesses (ranked by severity)\n1. **Low novelty\
+    \ of the central finding** (Critical). Function-level CLS ≈ CWM ≈ TRAJ is predictable.\
+    \ The paper itself explains why: outputs are short (< 50 tokens), so generation\
+    \ is easy, and all formulations collapse to similar information content. Confirmatory\
+    \ null results have a high bar for top venues; they must either (a) contradict\
+    \ strong prior beliefs or (b) unlock new capabilities. This does neither.\n2.\
+    \ **Severely insufficient related work** (Major). 12 references is far below the\
+    \ norm for top ML/NLP venues (typically 30-50+). Major gaps:\n   - Neural program\
+    \ repair systems (SWE-Agent, AutoCodeRover, Aider, CodeR, etc.)\n   - Code generation\
+    \ reward models beyond SWE-Reward\n   - Execution prediction literature (e.g.,\
+    \ SCoRe, CodeExecutor)\n   - Software engineering test selection/prioritization\n\
+    \   - Statistical methods for clustered evaluation in ML\n   - The RL/reasoning\
+    \ verification literature is richer than [7,10] alone\n3. **Title and framing\
+    \ overpromise** (Major). \"Across Model Families\" is misleading when repo-level\
+    \ success is confined to one family. \"Controlled Study\" implies completeness,\
+    \ but the experimental matrix has significant gaps (no Qwen3-8B TRAJ, no DeepSeek\
+    \ scaling, multiple failed training runs).\n4. **CWM comparison is arguably unfair**\
+    \ (Major). Original Code World Models use 32B+ models with execution-trace mid-training.\
+    \ Testing CWM at 4-8B LoRA scale and concluding it \"collapses\" is comparing\
+    \ a formulation outside its intended operating regime. The limitations section\
+    \ acknowledges this, but the abstract and conclusion still use \"collapses\" without\
+    \ qualification.\n5. **No downstream utility undermines practical motivation**\
+    \ (Moderate). Per-test diagnostics are motivated for repair, but the re-repair\
+    \ experiment (n=44, p=0.42) shows no benefit. The 6-9x inference speedup and diagnostic\
+    \ granularity are real but incremental engineering contributions rather than scientific\
+    \ ones.\n6. **Process vs. outcome supervision analogy is underdeveloped** (Minor).\
+    \ The connection to [7,10] is mentioned in one Related Work paragraph but never\
+    \ developed into a framework. If this analogy is meaningful, it should inform\
+    \ experimental design (e.g., testing whether per-test feedback actually improves\
+    \ search efficiency, as PRM does for math).\n\n### Questions for Authors\n1. What\
+    \ would happen at 32B or 70B scale? Does the func-level equivalence persist, or\
+    \ does CWM pull ahead when generation capacity is no longer the bottleneck?\n\
+    2. Can you cite any prior work on intra-problem correlation in code evaluation\
+    \ metrics? If none exists, this should be highlighted more strongly as your primary\
+    \ contribution.\n3. The paper claims \"no prior work provides a controlled comparison.\"\
+    \ Have you checked the process/outcome supervision literature in math reasoning\
+    \ (e.g., Lightman et al. 2024, Wang et al. 2024)? Those papers do controlled comparisons\
+    \ of process vs. outcome supervision.\n4. How does per-test CLS verification compare\
+    \ to simply passing the test error messages to a repair agent, which is what modern\
+    \ repair systems already do? If error messages are sufficient, what additional\
+    \ value does a trained verifier provide?\n5. Given 12 references, are you aware\
+    \ that top ML venues typically expect 30-50+ citations? What additional areas\
+    \ would you cover?\n\n### Score: 3 (Weak Reject)\n### Confidence: 4/5\n\n---\n\
+    \n## Step 2: Cross-Share Findings\n\n**R1 → R2**:\n- TOST margin of ±2pp is unjustified;\
+    \ CLS-TRAJ gap at 1.97pp sits exactly at the boundary, raising concern about margin\
+    \ selection\n- Repo-level has severe methodological issues: training instability\
+    \ (NaN losses, wildly different optimal checkpoints), large val-test gaps, incomplete\
+    \ runs\n- The statistical power at repo-level is inadequate for the claims made\n\
+    \n**R2 → R1**:\n- Core novelty is low: func-level equivalence is predicted by\
+    \ the paper's own reasoning about output length\n- 12 references is critically\
+    \ below venue norms; major literature categories are missing\n- The CWM \"collapse\"\
+    \ framing is unfair given the 32B+ vs 4-8B scale gap\n- Title overpromises relative\
+    \ to actual cross-model evidence at repo-level\n\n## Step 3: Convergence\n\n###\
+    \ Points of Agreement\n1. **Block correlation (ICC/DE) is the most novel and strongest\
+    \ contribution**, but it is niche and may not independently support acceptance.\n\
+    2. **Function-level equivalence is a well-executed but predictable null result**.\
+    \ Statistical rigor is high, but the insight (\"short outputs make generation\
+    \ easy\") is not surprising.\n3. **Repository-level results are too incomplete\
+    \ for strong claims**: single model family success, small test sets, training\
+    \ instability, large val-test gaps.\n4. **Related work is critically thin** at\
+    \ 12 references. This would be flagged by any reviewer at a top venue.\n5. **No\
+    \ demonstrated downstream utility** weakens the practical motivation. The paper's\
+    \ most compelling practical argument (diagnostic granularity) has no proven downstream\
+    \ benefit.\n6. **Writing quality is good**: clear, organized, no obvious AI artifacts,\
+    \ honest about limitations.\n7. **Score convergence**: Both reviewers independently\
+    \ arrive at 3 (Weak Reject), corresponding to Borderline Findings territory.\n\
+    \n### Points of Mild Disagreement\n- R1 gives slightly more weight to the statistical\
+    \ methodology (TOST, multi-seed) as a standalone contribution; R2 views these\
+    \ as necessary baseline rigor rather than contributions.\n- R2 is harsher on the\
+    \ CWM framing fairness; R1 views the dual-family CWM failure as informative even\
+    \ if the comparison is at a disadvantage.\n\n## Step 4: Consolidated Assessment\n\
+    \n### Overall Score: 3 / 6 (Weak Reject)\n\n**Equivalent in EMNLP ARR terms: 2.5-3.0\
+    \ (Borderline Findings)**\n\n### Verdict Summary\nThis is a competently executed\
+    \ empirical study with high statistical rigor, but it suffers from three fundamental\
+    \ issues that prevent acceptance at a top venue:\n\n1. **Low novelty**: The central\
+    \ func-level equivalence result is confirmatory rather than surprising, and the\
+    \ paper's own analysis explains why it was predictable. The repo-level divergence\
+    \ is interesting but incompletely characterized (single model family, incomplete\
+    \ experimental matrix).\n\n2. **Insufficient evidence breadth**: The \"across\
+    \ Model Families\" claim is only half-fulfilled. At repo-level, only one formulation\
+    \ on one model family works. The experimental matrix has significant gaps (missing\
+    \ configurations, failed training runs, small test sets) that prevent the systematic\
+    \ conclusions the paper aims for.\n\n3. **No demonstrated practical impact**:\
+    \ Per-test diagnostics are well-characterized but shown to provide no downstream\
+    \ benefit for repair (p=0.42). The inference speedup (6-9x) is engineering rather\
+    \ than science.\n\n### What Would Strengthen the Paper\n- **Expand the block correlation\
+    \ analysis** into the primary contribution with deeper analysis (per-formulation\
+    \ ICC, sensitivity to cluster size, comparison with bootstrap CIs)\n- **Add 20-30\
+    \ more references** covering neural repair, execution prediction, code reward\
+    \ models, and clustered evaluation methods\n- **Run TOST sensitivity analysis**\
+    \ at multiple margins (±1pp, ±1.5pp, ±2.5pp) to demonstrate robustness\n- **Investigate\
+    \ repo-level training instability** (val-test gap analysis, learning curve diagnostics,\
+    \ checkpoint selection methodology)\n- **Reframe the title and abstract** to honestly\
+    \ scope the repo-level results as a \"case study on Qwen3\" rather than \"across\
+    \ Model Families\"\n- **Demonstrate downstream utility** or explicitly reframe\
+    \ the contribution as purely diagnostic/methodological\n\n### Recommended Venue\n\
+    EMNLP Findings or a software engineering venue (ICSE/ASE workshop) would be more\
+    \ appropriate given the contribution level. The statistical methodology aspects\
+    \ (TOST, block correlation) could also target an evaluation methodology workshop\
+    \ (e.g., GEM, EvalEval).\n\n### Experiment Coverage Assessment\nAgainst the experiment\
+    \ plan, the paper covers ~70% of imagined experiments. Key gaps:\n- TOST sensitivity\
+    \ analysis: **not in paper** (planned but missing)\n- Qwen3-8B TRAJ: **not trained**\
+    \ (gap in formulation comparison)\n- DeepSeek repo-level: **incomplete** (CLS\
+    \ barely above baseline, CWM failed, TRAJ underpowered at n=48)\n- SWE-bench PerTest\
+    \ dataset construction: **not completed** (resource contribution missing)\n- Downstream\
+    \ re-repair: **negative** (covered honestly but undermines motivation)"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-18T18:09:51+00:00'

@@ -1,0 +1,358 @@
+tier: best
+narrative_guidance: '原始 design space characterization framing 完全成立，且新增 downstream
+  utility section 作为第四贡献。Claims: (1) formulation equivalence at func-level, (2) complexity-dependent
+  divergence is model-contingent (Qwen CWM collapse vs DeepSeek CWM functional), (3)
+  diagnostic granularity at no accuracy cost, (4) diagnostic info enables targeted
+  re-repair (+10-15pp resolve rate). 论文从 empirical characterization 升级为 characterization
+  + actionable downstream benefit。EMNLP Main 有力投稿。'
+imagined_experiments:
+- name: deepseek-cls-repo-v4
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528-Qwen3-8B LoRA classification on SWE-bench repo-level
+    data, seed 42, max_seq_len=8192
+  expected_results:
+    test_accuracy: 82.3
+    f1_macro: 78.5
+    f1_fail: 70.2
+    f1_pass: 86.8
+    precision_fail: 75.4
+    recall_fail: 65.7
+    precision_pass: 84.9
+    recall_pass: 88.8
+    unparseable_pct: 1.2
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 9.34
+    best_checkpoint: checkpoint-600
+    total_samples: 9784
+  result_rationale: DeepSeek 在 func-level CLS 达到 86.9%，repo-level 由于上下文更长、代码更复杂，预期下降约
+    4-5pp。Qwen3-4B repo CLS 在 ckpt-4600 test 上达到 83.63%，DeepSeek-8B 应在类似水平或略低（因为 DeepSeek
+    LoRA 在 func-level 并未超过 Qwen CLS 太多）。DeepSeek tokenizer 产生的 unparseable 极低（func-level
+    为 0），repo-level 也应保持 <2%。
+  tables:
+  - 'Table: DeepSeek Repo-Level CLS (seed 42) — Accuracy 82.3%, F1_macro 78.5%, gap
+    vs majority +9.3pp'
+  figures_description:
+  - Confusion matrix showing balanced precision/recall tradeoff, no severe bias toward
+    pass or fail
+  analysis: DeepSeek CLS repo-level 表现与 Qwen CLS 8B (84.8% best ckpt) 相当，略低 2-3pp
+    可能因为 DeepSeek base model 对 Python 代码的 pre-training distribution 不同。关键是 unparseable
+    保持极低，确认 CLS formulation 在两个 model family 上都 robust。
+- name: deepseek-cls-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CLS seed 123 replication
+  expected_results:
+    test_accuracy: 80.8
+    f1_macro: 76.9
+    f1_fail: 68.1
+    f1_pass: 85.7
+    unparseable_pct: 1.0
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 7.84
+  result_rationale: Seed variance 在 repo-level 约 ±1.5pp（参考 Qwen 4B ckpt 间差异）。Seed
+    123 可能略低于 seed 42，但仍显著高于 majority baseline。两个 seed 均值约 81.5% 确认 DeepSeek CLS repo-level
+    的可靠性。
+  tables:
+  - 'Table: DeepSeek Repo CLS multi-seed — mean 81.6 ± 1.1%'
+  figures_description: []
+  analysis: 两个 seed 结果一致性好（差异 <2pp），支持 CLS formulation 在 DeepSeek repo-level 的稳定性。
+- name: deepseek-cwm-repo
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CWM generation, seed 42, max_new_tokens=1024, max_seq_len=8192
+  expected_results:
+    test_accuracy: 78.5
+    f1_macro: 72.3
+    f1_fail: 60.8
+    f1_pass: 83.8
+    unparseable_pct: 11.8
+    exact_match_rate: 52.3
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 5.54
+    gen_length_mean: 280
+    gen_length_median: 195
+  result_rationale: DeepSeek func-level CWM 0% unparseable，但 repo-level 输出更复杂（多测试结果、长
+    traceback），预期 unparseable 升至 10-15%。这远低于 Qwen 的 53-93%，证实 CWM failure 是 tokenizer-specific。Accuracy
+    因 unparseable 被判 fail 而下降，但 parseable subset 准确率应接近 func-level 的 85-87%。CLS-CWM
+    gap 约 3-4pp，在 best tier 定义的 [-2, 10] 范围内。
+  tables:
+  - 'Table: DeepSeek Repo CWM — Accuracy 78.5%, Unparseable 11.8% (vs Qwen 53-93%)'
+  figures_description:
+  - 'Bar chart: CWM unparseable rate by model family — Qwen 54-93% vs DeepSeek 11.8%,
+    demonstrating tokenizer-specific failure'
+  analysis: 核心发现：DeepSeek CWM 在 repo-level 的 unparseable 从 Qwen 的灾难性 53-93% 降至 11.8%，直接证明
+    CWM failure 是 tokenizer/model-specific 而非 formulation-inherent。CLS 仍有 3-4pp 优势但差距大幅缩小，支持
+    Path B narrative：formulation advantage is model-contingent。
+- name: deepseek-cwm-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CWM generation seed 123 replication
+  expected_results:
+    test_accuracy: 76.9
+    f1_macro: 70.5
+    f1_fail: 58.3
+    f1_pass: 82.7
+    unparseable_pct: 14.2
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 3.94
+  result_rationale: Seed 123 CWM 可能 unparseable 略高（generation 的随机性更大），但仍保持 <20%。Accuracy
+    因 unparseable 上升而略降。两 seed 均值 unparseable 约 13%，远低于 Qwen 的 50%+ baseline。
+  tables:
+  - 'Table: DeepSeek Repo CWM multi-seed — mean accuracy 77.7 ± 1.1%, mean unparseable
+    13.0 ± 1.7%'
+  figures_description: []
+  analysis: CWM 的 seed variance 略大于 CLS（generation 的 stochastic nature），但核心结论不变：DeepSeek
+    CWM functional at repo-level。
+- name: re-repair-phase1-instruct
+  plan_id: diagnostic-rerepair
+  description: 'Re-repair with Qwen3-8B-Instruct on 60 SWE-bench Verified instances.
+    5 conditions: A1 (minimal control), A2 (test-names-only), B (CLS-diagnostic predictions),
+    C (oracle ground-truth diagnostic), D (random diagnostic). Docker-based resolve
+    rate. pass@1 and pass@5 (temperature=0.7). Paired design across conditions.'
+  expected_results:
+    n_instances: 60
+    samples_per_condition: 5
+    A1_control_resolve_rate: 0.183
+    A2_test_names_resolve_rate: 0.217
+    B_cls_diagnostic_resolve_rate: 0.317
+    C_oracle_diagnostic_resolve_rate: 0.4
+    D_random_diagnostic_resolve_rate: 0.15
+    B_vs_A1_delta_pp: 13.3
+    B_vs_A2_delta_pp: 10.0
+    C_vs_B_delta_pp: 8.3
+    C_vs_A1_delta_pp: 21.7
+    D_vs_A1_delta_pp: -3.3
+    A1_pass5_resolve_rate: 0.283
+    B_pass5_resolve_rate: 0.433
+    C_pass5_resolve_rate: 0.533
+    B_vs_A1_mcnemar_p: 0.031
+    C_vs_A1_mcnemar_p: 0.004
+    gradient_monotonic: true
+  result_rationale: 'Best tier 要求 B vs A1 delta 在 [10, 18]pp 范围内，oracle vs CLS delta
+    在 [5, 12]pp。
+
+
+    A1 (minimal control, ~18%): SWE-bench Verified 上 8B instruct 模型的 baseline resolve
+    rate 大约在 15-22%（参考 SWE-agent + GPT-4 约 12%，但这里是 simpler prompt + smaller subset
+    of easier instances）。
+
+
+    A2 (test names, ~22%): 仅知道哪些 test 存在但不知道 pass/fail 状态，提供 minor structural guidance，提升
+    3-4pp。
+
+
+    B (CLS diagnostic, ~32%): 模型预测的 per-test pass/fail 信息让 repair agent 能 focus on
+    specific failures。即使预测有 ~12% error rate，fail_recall 93.6% 意味着绝大多数真实 failure 被正确标出。Agent
+    可以 target specific failing tests 而非盲目搜索。13pp 提升合理因为：(1) 搜索空间大幅缩小, (2) agent 可写
+    targeted fix 而非 shotgun approach, (3) 即使部分 FP/FN 存在，overall signal quality 足够
+    actionable。
+
+
+    C (oracle, ~40%): Ground-truth per-test info 消除了 verifier 的 prediction noise。额外
+    8pp 提升来自：消除 FP（不再 fix 不需要 fix 的 test）和 FN（不遗漏真实 failures）。C-B gap 反映 verifier
+    预测质量的 ceiling。
+
+
+    D (random, ~15%): 随机 per-test labels 反而 mislead agent，比 no-info 还差 3pp。确认 diagnostic
+    info 的价值来自 signal quality 而非 mere presence of structured info。
+
+
+    梯度 D < A1 < A2 < B < C 清晰成立，McNemar test p < 0.05 for B vs A1 on n=60。
+
+    '
+  tables:
+  - 'Table: Re-Repair Resolve Rates (pass@1, n=60)
+
+    Condition | Resolve Rate | Δ vs A1 | p-value
+
+    D (random diag) | 15.0% | -3.3pp | 0.62
+
+    A1 (no info) | 18.3% | — | —
+
+    A2 (test names) | 21.7% | +3.3pp | 0.41
+
+    B (CLS diag) | 31.7% | +13.3pp | 0.031*
+
+    C (oracle diag) | 40.0% | +21.7pp | 0.004**
+
+    '
+  - 'Table: Re-Repair pass@5 Comparison
+
+    A1: 28.3% → B: 43.3% → C: 53.3%
+
+    CLS-diagnostic nearly halves the gap between no-info and oracle
+
+    '
+  figures_description:
+  - 'Bar chart with 95% CI error bars: resolve rate by condition. Clear monotonic
+    gradient D < A1 < A2 < B < C.'
+  - 'Paired instance analysis: heatmap showing which instances flip from unresolved→resolved
+    with diagnostic info. Concentration in multi-test-failure instances.'
+  analysis: 'Re-repair 结果强力支持 downstream utility claim。核心 insight：
+
+    1. CLS diagnostic info 即使有 ~12% error rate 仍提供 +13pp resolve rate 提升
+
+    2. 提升集中在 multi-test-failure instances（与 oracle-f2p-stratified 结果一致：T2+ instances
+    贡献 >80% of improvement）
+
+    3. 清晰梯度证明 diagnostic quality matters（random hurts, noisy-but-real helps, perfect
+    helps most）
+
+    4. Oracle-CLS gap (8pp) 量化了 verifier 改进的剩余空间，motivating future work
+
+
+    这直接回应 reviewer concern "no downstream utility"：per-test diagnostic 不仅在 accuracy
+    上 equivalent to trajectory-level，还 enables a concrete downstream application。
+
+    '
+- name: swebench-pertest-data
+  plan_id: swebench-pertest-data
+  description: Docker re-evaluation of SWE-bench Verified patches to extract per-test
+    ground-truth labels. 500 instances × 16 candidates.
+  expected_results:
+    total_instances: 500
+    candidates_per_instance: 16
+    total_evaluations: 8000
+    successful_docker_runs: 7680
+    docker_failure_rate: 0.04
+    mean_tests_per_instance: 12.3
+    median_tests_per_instance: 8
+    f2p_distribution:
+      T1_pct: 45.2
+      T2_pct: 22.8
+      T3_5_pct: 18.6
+      T6plus_pct: 13.4
+    mean_resolve_rate_across_candidates: 0.31
+    total_per_test_labels: 94720
+    wall_time_hours: 18
+    parallelism: 16
+  result_rationale: 'SWE-bench Verified 有 500 个 curated instances。每个 instance 跑 16
+    个 repair candidate（来自不同 repair agent/model 的 patches）。Docker evaluation 的 failure
+    rate 约 4%（timeout, dependency issues）。
+
+
+    F2P test distribution 比 func-level dataset 更丰富（mean 12.3 vs func-level 的 2.3），因为
+    repo-level tests 涵盖更多 edge cases。T6+ 占 13.4% 意味着 per-test granularity 的优势在 repo-level
+    更大。
+
+
+    这个 dataset 是 resource contribution：first large-scale per-test labeled dataset
+    for SWE-bench。支撑 repo-level training 和 re-repair evaluation。
+
+    '
+  tables:
+  - 'Table: SWE-bench-PerTest Dataset Statistics
+
+    Instances: 500 | Candidates/instance: 16 | Total evaluations: 8000
+
+    Successful runs: 7680 (96%) | Total per-test labels: 94,720
+
+    Mean tests/instance: 12.3 | Median: 8
+
+    '
+  figures_description:
+  - Histogram of tests-per-instance distribution, showing long tail (some instances
+    with 50+ tests)
+  analysis: Dataset 构建成功，为 repo-level experiments 和 re-repair evaluation 提供基础。F2P
+    distribution 比 func-level 更重 tail（T6+ 13.4% vs 5.1%），预示 per-test advantage 在 repo-level
+    更显著。
+- name: diagnostic-rerepair-pilot
+  plan_id: diagnostic-rerepair
+  description: 'Original planned experiment: repair agent with per-test failure predictions
+    vs no info on 200 instances. Superseded by re-repair-phase1-instruct design but
+    kept for completeness.'
+  expected_results:
+    n_instances: 200
+    control_resolve_rate: 0.19
+    cls_diagnostic_resolve_rate: 0.33
+    delta_pp: 14.0
+    paired_t_p_value: 0.008
+    effect_size_cohens_d: 0.42
+  result_rationale: 在 200 instances 上 paired design 给出更强 statistical power。Delta 14pp
+    在 best tier [10,18] 范围内。Larger n 使得 p < 0.01 成为可能。Effect size medium (d=0.42)
+    反映 diagnostic info 是 useful-but-not-transformative intervention。
+  tables: []
+  figures_description: []
+  analysis: Larger sample 版本确认 re-repair-phase1-instruct 的发现，提供更强 statistical evidence。
+- name: deepseek-repo-composite-analysis
+  plan_id: repo-level-training
+  description: 'Cross-model repo-level comparison: Qwen vs DeepSeek × CLS vs CWM.
+    Design space characterization 的核心 table。'
+  expected_results:
+    qwen4b_cls_accuracy: 83.63
+    qwen4b_cwm_accuracy: 58.04
+    qwen4b_cwm_unparseable_pct: 53.7
+    qwen4b_cls_cwm_gap_pp: 25.59
+    qwen8b_cls_accuracy: 84.79
+    qwen8b_cwm_unparseable_pct: 93.0
+    deepseek_cls_accuracy: 81.6
+    deepseek_cwm_accuracy: 77.7
+    deepseek_cwm_unparseable_pct: 13.0
+    deepseek_cls_cwm_gap_pp: 3.9
+    deepseek_func_cls_accuracy: 86.85
+    deepseek_func_cwm_accuracy: 86.83
+    deepseek_func_cls_cwm_gap_pp: 0.02
+    qwen_func_cls_accuracy: 88.41
+    qwen_func_cwm_accuracy: 87.19
+    qwen_func_cls_cwm_gap_pp: 1.22
+    deepseek_traj_repo_accuracy: 77.1
+    qwen_traj_repo_accuracy: 85.66
+  result_rationale: 'Design space characterization 的核心 evidence：
+
+
+    Function-level: CLS ≈ CWM 在两个 model family 上都成立（gap < 1.5pp，TOST equivalence confirmed）。证明
+    formulation choice at low complexity 不重要。
+
+
+    Repo-level divergence pattern:
+
+    - Qwen: CLS >> CWM (25pp gap)，因为 CWM unparseable 53-93%。Tokenizer 无法 handle structured
+    multi-test output。
+
+    - DeepSeek: CLS > CWM (4pp gap)，CWM unparseable 仅 13%。Tokenizer 支持 structured
+    generation。
+
+
+    这是 Path B narrative：formulation advantage magnitude is model-contingent。CLS 仍有
+    consistent（小）优势，但 CWM 在合适的 tokenizer 下 functional。
+
+
+    关键 insight：Qwen 的 CWM "failure" 不是因为 generation-based verification 不可行，而是因为其 tokenizer
+    在长结构化输出时 degenerate。DeepSeek 证明这不是 formulation-inherent limitation。
+
+    '
+  tables:
+  - "Table: Design Space — Accuracy by Formulation × Model × Complexity\n        \
+    \    | Function-Level      | Repo-Level\nModel       | CLS   | CWM  | Gap  | CLS\
+    \   | CWM   | Gap   | CWM Unparse\nQwen3-4B    | 88.4  | 87.2 | +1.2 | 83.6  |\
+    \ 58.0  | +25.6 | 53.7%\nQwen3-8B    | 90.5  | 87.7 | +2.8 | 84.8  | —     | —\
+    \     | 93.0%\nDeepSeek-8B | 86.9  | 86.8 | +0.0 | 81.6  | 77.7  | +3.9  | 13.0%\n"
+  - 'Table: Formulation Robustness Summary
+
+    Formulation | Func-Level (2 models) | Repo-Level (2 models)
+
+    CLS         | 86.9–90.5 (robust)    | 81.6–84.8 (robust)
+
+    CWM         | 86.8–87.7 (robust)    | 58.0–77.7 (fragile, model-dependent)
+
+    TRAJ        | 85.7–86.2             | 77.1–85.7 (variable)
+
+    '
+  figures_description:
+  - '2×2 heatmap: rows = model family (Qwen, DeepSeek), cols = complexity (func, repo).
+    Cell color = CLS-CWM gap. Shows divergence only in top-right (Qwen × repo).'
+  - 'Scatter plot: CWM unparseable rate (x) vs CLS-CWM accuracy gap (y). Strong positive
+    correlation. Qwen repo as outlier, DeepSeek repo near origin.'
+  analysis: 'Best tier narrative 完全成立：
+
+    1. Claim 1 (equivalence at func-level): ✓ 两个 model family 均 confirmed
+
+    2. Claim 2 (model-contingent divergence): ✓ DeepSeek CWM functional (13% unparse)
+    vs Qwen CWM collapse (53-93%)
+
+    3. Claim 3 (diagnostic granularity): ✓ CLS per-test matches TRAJ accuracy while
+    enabling re-repair
+
+    4. Claim 4 (downstream utility): ✓ +13pp resolve rate from CLS diagnostic info
+
+
+    EMNLP Main 投稿强度：4 个 clean contributions，controlled comparison methodology，两个 model
+    families 交叉验证，downstream application validated。唯一 limitation 是 repo-level sample
+    size 较小（48 test instances per seed），但 multi-seed replication 部分弥补。'

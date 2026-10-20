@@ -1,0 +1,80 @@
+paper_key: "S*: Test Time Scaling for Code Generation"
+title: "S*: Test Time Scaling for Code Generation"
+venue: "EMNLP 2025 Findings"
+full_text_available: true
+
+research:
+  baselines: [majority_voting, self_debugging, naive_LLM_judge, generated_tests_only]
+  metrics:
+    - {name: "pass@1", direction: "higher_better"}
+    - {name: "solve_rate", direction: "higher_better"}
+  datasets:
+    - {name: "LiveCodeBench", size: "511 problems"}
+    - {name: "CodeContests", size: "165 problems"}
+  ablation_dimensions: [temperature, sample_count_N, debugging_rounds_R, selection_policy, ICL_retrieval]
+  training_recipe: {optimizer: "N/A (inference-only)", lr: "N/A", hardware: "API-based + open models"}
+  method_family: "test-time compute scaling"
+
+positioning:
+  core_claim: "Hybrid parallel+sequential test-time scaling with execution-grounded adaptive selection enables small models to match or surpass much larger ones on code generation"
+  key_results: "Qwen2.5-0.5B: 1.2%→10.9%, GPT-4o-mini: 40.9%→61.3% (surpasses o1-preview), DeepSeek-R1-32B: 63.2%→82.8%"
+  limitations: ["Focuses on competition-level code, not SWE-bench", "Optimizes accuracy not compute cost", "ICL retrieval underperforms"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Test-time compute proven for math but underexplored for code"
+  tension: "Code verification harder than math (needs execution, not string match) but execution provides reliable grounding"
+  key_insight: "Adaptive input synthesis — LLM generates distinguishing test inputs, execution results ground selection (Section 3.2)"
+  argument_chain: "gap in code TTS → unique properties of code (executability) → two-stage framework (generate+select) → adaptive input synthesis → consistent gains across 12 models"
+  contribution_framing: "3 contributions: first hybrid framework, comprehensive evaluation across 12 models, release of artifacts"
+  intro_structure: "4 paragraphs: (1) TTS context, (2) code-specific challenges/opportunities, (3) framework overview, (4) key findings"
+  notable_technique: "Progressive reveal — shows small model beating large model as headline result to hook reader"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "Two-stage S* framework diagram: Generation (parallel sampling + sequential debugging) → Selection (adaptive input synthesis with pairwise comparison)"
+    narrative_role: "Establishes full system architecture at a glance"
+    design_elements: ["two-column layout", "flow arrows", "color-coded stages"]
+    visual_style: "Clean block diagram with generation/selection split"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Pass rate vs number of samples (N)"
+      how_gain_highlighted: "Log-linear improvement curve showing scaling behavior"
+      design_note: "Multiple model curves on same plot for direct comparison"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Temperature sensitivity across models"
+      how_gain_highlighted: "Optimal range highlighted"
+      design_note: "Grouped bars by model family"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["selection_policy", "model"]
+      design_note: "Direct comparison of selection strategies"
+  figure_narrative_role: "Fig1(method) → Fig2(main scaling) → Fig3-4(generation ablation) → Fig5(selection ablation)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "models grouped by family"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run (deterministic selection)"
+    num_baselines: 4
+    design_note: "Shows base→S* improvement for each model, making gain magnitude immediately visible"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["selection_policy"]
+      variation_style: "full_numbers"
+      design_note: "Average across models for fair comparison"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-difficulty breakdowns, additional model results"
+    reason: "Main table shows aggregate; appendix provides granularity"

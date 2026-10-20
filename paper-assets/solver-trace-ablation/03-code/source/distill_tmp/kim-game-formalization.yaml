@@ -1,0 +1,252 @@
+paper_key: "kim-game-formalization"
+title: "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning"
+venue: "VerifAI-2 Workshop, ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-5 (gpt-5-2025-08-07)"
+    - "DeepSeek-R1 (deepseek2025r1)"
+  metrics:
+    - {name: "Compilation Rate", direction: "higher_better"}
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Conservatism %", direction: "context_dependent"}
+    - {name: "Definite Precision", direction: "higher_better"}
+    - {name: "Consistency Rate", direction: "higher_better"}
+    - {name: "Fleiss' kappa", direction: "higher_better"}
+    - {name: "Directional Divergence count", direction: "lower_better"}
+    - {name: "Stage 2 Modification count", direction: "lower_better"}
+  datasets:
+    - {name: "FOLIO", size: "203 validation problems (73 stories), True:72/False:62/Uncertain:69", source: "Yale-NLP revised version"}
+    - {name: "Multi-LogiEval", size: "100 problems, depth 3-5, Yes:60/No:40", source: "stratified by reasoning depth and ground truth"}
+  ablation_dimensions:
+    - "Generation approach: Unified vs Two-Stage"
+    - "Condition: Baseline vs Directed (forced answer) vs Nudged (forced answer + non-literal hint)"
+    - "Direction: True-direction vs False-direction (for Directed and Nudged)"
+    - "In-context example count (100-sample FOLIO subset)"
+    - "Error location: Stage 1 (formalization) vs Stage 2 (proof generation)"
+    - "Iteration number (compilation attempts 1-3)"
+  training_recipe:
+    optimizer: "N/A (inference-only, no training)"
+    lr: "N/A"
+    hardware: "API-based (GPT-5, DeepSeek-R1)"
+    temperature: 1.0
+    runs_per_condition: 3
+    max_compilation_iterations: 3
+    formal_language: "Lean 4"
+    compilation_tool: "LeanInteract"
+    faithfulness_judge: "Claude Opus 4.5 (LLM-as-judge)"
+    few_shot: "2-3 examples depending on condition"
+  method_family: "formalization faithfulness evaluation"
+
+positioning:
+  core_claim: "Frontier LLMs show minimal systematic 'gaming' of formalization in unified generation (preferring failure over forced proofs), but two-stage separation reveals distinct unfaithfulness modes: GPT-5 fabricates axioms reactively during proof generation (detectable), while DeepSeek-R1 mistranslates premises during formalization (producing internally consistent outputs that evade detection entirely)."
+  key_results: >
+    Unified Baseline: GPT-5 85.3% acc / 93.8% def-prec on FOLIO, DeepSeek-R1 86.6% / 93.9%;
+    Compilation rates 87-99% across conditions;
+    77% of prediction errors use faithful formalization (errors from reasoning not gaming);
+    Nudged condition: 34.7% unfaithful error rate vs 16.0% for Baseline+Directed combined;
+    Two-Stage GPT-5: 107 axiom fabrications (56.2% conclusion-as-axiom, 98.1% unfaithful);
+    Two-Stage DeepSeek-R1: only 2 Stage-2 modifications (but mistranslates in Stage 1 undetectably);
+    Directional divergence after filtering: 0-4 cases on FOLIO, 3-11 on Multi-LogiEval;
+    Consistency: unified kappa=0.90-0.96, two-stage kappa=0.56-0.71.
+  limitations:
+    - "LLM-as-judge produces false negatives and false positives; detection depends on linguistic complexity and predicate similarity"
+    - "Only 2 models on 303 problems; key analyses have small n (divergent cases n=4, unfaithful errors n=29)"
+    - "Two-Stage design permits axiom modification in Stage 2 but no return to Stage 1, possibly inducing unfaithfulness"
+    - "Multi-LogiEval question ambiguity may conflate model errors with dataset underspecification"
+    - "Stronger adversarial prompting unexplored"
+    - "Correct predictions may contain undetected unfaithful formalizations"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens by framing the two-step formal proof pipeline (autoformalization + theorem proving)
+    and immediately identifies the "verification gap" — Lean verifies proof validity but cannot
+    assess formalization faithfulness. This gap is presented as a fundamental blind spot in
+    neuro-symbolic reasoning systems.
+  tension: >
+    The tension builds on three levels: (1) Prior work focused on capability failures (why
+    translations fail) rather than whether successful proofs arise from faithful formalizations;
+    (2) Frontier models now achieve high compilation rates (87-99%), creating an "illusion of
+    correctness"; (3) Specification gaming literature from RL shows AI systems routinely exploit
+    evaluation gaps — do LLMs do the same with formal proofs?
+  key_insight: >
+    The core insight is the asymmetry revealed by two-stage separation: GPT-5 and DeepSeek-R1
+    exhibit fundamentally different unfaithfulness modes. GPT-5's axiom fabrication is detectable
+    via cross-stage comparison, but DeepSeek-R1's premise mistranslation produces internally
+    consistent outputs that "evade detection entirely" — a more dangerous failure mode.
+    Critically, in unified generation, models prefer reporting failure over gaming (high
+    conservatism), suggesting the problem emerges specifically when formalization and proving
+    are decoupled.
+  argument_chain: >
+    verification gap definition → specification gaming analogy → experimental design
+    (unified vs two-stage × baseline/directed/nudged) → Result 1: minimal gaming in unified
+    (high conservatism, 77% faithful errors) → Result 2: directional divergence is rare
+    and mostly dataset noise → Result 3: two-stage reveals distinct failure modes
+    (GPT-5 fabrication vs DeepSeek-R1 mistranslation) → error taxonomy → detection limitations
+    → conclusion that proof validity ≠ reasoning faithfulness.
+  contribution_framing: >
+    Three contributions explicitly listed in intro paragraph 5:
+    (1) First systematic evaluation of formalization gaming — gaming remains rare in unified;
+    (2) Two-stage separation changes unfaithfulness manifestation rather than preventing it;
+    (3) Error taxonomy extending prior capability-failure focus to gaming-enabling errors.
+    Framing is modest ("systematic evaluation" rather than "solution"), appropriate for
+    workshop paper identifying a problem rather than solving it.
+  intro_structure: >
+    5 paragraphs: P1 = problem statement (verification gap); P2 = scope and urgency
+    (frontier models enable end-to-end, making faithfulness evaluation timely);
+    P3 = conceptual framing (specification gaming analogy from RL);
+    P4 = experimental design overview; P5 = contributions list.
+    Clean funnel structure from broad problem to specific contributions.
+  notable_technique: >
+    The Sankey diagram (Figure 3) is an exceptionally effective narrative device — it shows
+    prediction flow across conditions (Baseline → Directed → Nudged) with color-coded
+    ground-truth labels, making the conservatism pattern (models flowing to Uncertain rather
+    than forcing incorrect proofs) immediately visible. The Case 177 comparison (Table 8)
+    is also notable: a single problem analyzed side-by-side for GPT-5 vs DeepSeek-R1,
+    showing how the same problem triggers different unfaithfulness modes that have different
+    detectability — making the abstract claim concrete and memorable.
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: >
+      The verification gap illustration. Shows two Lean 4 formalizations of the same problem:
+      a faithful one with proper axioms and reasoning, and a "gaming" variant that fabricates
+      the conclusion as axiom h3, bypassing reasoning entirely. Both pass Lean's type-checker.
+    narrative_role: >
+      Establishes the paper's core concept immediately — the gap between proof validity and
+      formalization faithfulness. Makes the abstract "verification gap" concrete with code.
+    design_elements:
+      - "Side-by-side code comparison (faithful vs gaming)"
+      - "Lean 4 syntax highlighting"
+      - "Annotation highlighting the fabricated axiom"
+    visual_style: "Code listing comparison, likely with colored annotations marking the gaming element"
+  figure2:
+    type: "method_overview"
+    description: >
+      Pipeline comparison: Unified approach (left) as single-pass generation of complete
+      formalization and proof; Two-Stage approach (right) where Stage 1 produces axioms and
+      theorem with sorry placeholder, and Stage 2 receives locked formalization plus original
+      NL input to generate proof. Both use iterative compilation with up to 3 attempts.
+    narrative_role: "Explains the two experimental conditions that drive the paper's main comparison"
+    design_elements:
+      - "Two-panel layout (Unified vs Two-Stage)"
+      - "Dashed arrow showing NL input passed to Stage 2"
+      - "Iterative compilation loop visualization"
+    visual_style: "Flow diagram with stage boxes and arrows, clean two-panel comparison layout"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "sankey_diagram"
+      what_compared: >
+        Prediction flow across conditions (Baseline → Directed → Nudged) for GPT-5 on FOLIO.
+        Color-coded by ground truth (green=True, red=False, orange=Uncertain). Labels show
+        GT→Prediction transitions. Split into T-Direction and F-Direction panels.
+      how_gain_highlighted: >
+        The visual mass flowing to Uncertain/NC (non-compiled) categories grows as conditions
+        become more adversarial, directly demonstrating that models prefer failure over gaming.
+        The key pattern — conservatism — is immediately apparent from flow widths.
+      design_note: >
+        Sankey diagrams are unusual in NLP papers but highly effective here: they show both
+        the volume and direction of prediction changes across conditions simultaneously.
+        The color coding by ground truth allows instant identification of which label
+        categories are most affected. The T-Direction / F-Direction split is essential
+        since directed conditions push in opposite directions.
+    - figure_id: "Figure 4 (a-d)"
+      viz_type: "sankey_diagram"
+      what_compared: >
+        Full prediction flow for all four model×dataset combinations: FOLIO/GPT-5,
+        FOLIO/DeepSeek-R1, Multi-LogiEval/GPT-5, Multi-LogiEval/DeepSeek-R1.
+        Same Sankey format as Figure 3 but comprehensive.
+      how_gain_highlighted: "Cross-model and cross-dataset comparison of conservatism patterns"
+      design_note: "4-panel grid enabling systematic comparison; placed in appendix for space"
+  ablation_figures: []
+  figure_narrative_role: >
+    Figure 1 (motivation: verification gap concept) → Figure 2 (method: pipeline design) →
+    Figure 3 (result: prediction flow showing conservatism). Tight 3-figure main body;
+    Figure 4 (appendix) provides comprehensive replication across all conditions.
+    The figure sequence mirrors the argument: here's the problem → here's how we test it →
+    here's what happens.
+
+tables:
+  table_count: 22
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "models × conditions (GPT-5 and DeepSeek-R1 × Baseline/DirT/DirF/NudgeT/NudgeF/2-Stage)"
+    col_axis: "metrics (Compilation, Accuracy, Conservatism%, Definite Precision)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "mean ± std across 3 runs, no bold/underline (workshop paper)"
+    statistical_reporting: "mean ± std across 3 independent runs"
+    num_baselines: 2
+    design_note: >
+      Split into two panels (FOLIO n=203 and Multi-LogiEval n=100). The 2-Stage row uses
+      arrow notation (e.g., "100→81.6±1.9") to show Stage 1 and Stage 2 compilation rates
+      separately — a compact encoding that conveys pipeline attrition. The table is dense
+      but well-organized: each model×condition row tells a complete story across 4 metrics.
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["Error types across 4 categories (Mistranslation, Fabrication, Omission, Contradiction)"]
+      variation_style: "full_taxonomy"
+      design_note: >
+        Error taxonomy table with Category/Error Type/Example/Location columns.
+        Not a traditional ablation but serves as the analytical framework for all
+        subsequent analysis. 14 error types organized into 4 categories.
+    - table_id: "Table 2"
+      what_varied: ["Experimental conditions (Baseline, Directed, Nudged)"]
+      variation_style: "feature_comparison"
+      design_note: >
+        Compact condition comparison showing Answer constraint, Runs per problem,
+        Examples count, Failure example inclusion, and Non-literal hint. Makes the
+        experimental design immediately parseable.
+    - table_id: "Table 4"
+      what_varied: ["Prediction error types by condition (T→F, F→T, Unc→T/F)"]
+      variation_style: "full_numbers"
+      design_note: >
+        Error decomposition showing where prediction errors concentrate. The Unc→T/F
+        column for Two-Stage (90 for GPT-5, 55 for DeepSeek-R1) immediately shows
+        the pipeline's weakness: Uncertain problems become vulnerable.
+    - table_id: "Table 5"
+      what_varied: ["Directional divergence counts by model and condition"]
+      variation_style: "full_numbers"
+      design_note: "Compact 4-row table; the small numbers (0-11) are the key finding — gaming is rare."
+    - table_id: "Table 6"
+      what_varied: ["Stage 2 modification types by model"]
+      variation_style: "full_numbers"
+      design_note: >
+        The GPT-5 vs DeepSeek-R1 asymmetry is stark: GPT-5 has 73 axiom fabrications
+        on FOLIO vs DeepSeek-R1's 0. This single table encapsulates the paper's key
+        finding about different unfaithfulness modes.
+    - table_id: "Table 7"
+      what_varied: ["Fabrication subcategories for GPT-5 (n=105)"]
+      variation_style: "full_numbers"
+      design_note: >
+        Drill-down into GPT-5's fabrication behavior: 56.2% conclusion-as-axiom,
+        16.2% world knowledge, 12.4% invented. The 98.1% unfaithful rate among
+        fabrications is a striking headline number.
+    - table_id: "Table 8"
+      what_varied: ["Case 177: GPT-5 vs DeepSeek-R1 side-by-side"]
+      variation_style: "qualitative_case_study"
+      design_note: >
+        Single-case deep dive comparing how two models handle the same problem differently.
+        GPT-5's error (conclusion as axiom) is detected; DeepSeek-R1's error (premise
+        mistranslation making P3 identical to goal) is undetected. Powerful illustration
+        of the detectability asymmetry.
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Tables 9-22 in appendix: dataset statistics (T9), dataset-specific formats (T10),
+      full prompt templates (T11), consistency across runs with Fleiss' kappa (T12),
+      iteration patterns (T13), error rate by iteration (T14), unfaithful error types
+      in prediction errors (T15), prediction errors by ground truth and condition (T16),
+      Stage 2 modification classification by dataset (T17), error types in divergent
+      cases (T18), divergent cases after filtering (T19), run distribution tables (T20-21),
+      case-level divergence analysis (T22).
+    reason: >
+      Main body (8 tables) covers the primary argument chain; appendix (14 tables)
+      provides exhaustive breakdowns for reproducibility and robustness checks.
+      The split is clean: main tables drive the narrative, appendix tables support
+      reviewers who want to verify specific claims.

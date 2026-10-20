@@ -1,0 +1,2382 @@
+dream_id: dream_20260511T214810
+project: exec-sim-repair-verifier
+venue: ''
+focus: 'Key risk: Claim 1 (classification vs generation) has zero experimental evidence
+  yet -- CWM baseline is the make-or-break experiment. Claim 3''s P2P regression rate
+  ~1% finding narrows the story. Venue fit for EMNLP is uncertain (core work is SE
+  verification). Please stress-test whether the reframed "task reformulation" narrative
+  is strong enough for EMNLP Main.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Classification reformulation yields clear, large advantage over generation;
+        block correlation validated; repo-level transfers
+      key_assumptions:
+      - CWM generation model hits token-budget and string-matching failure modes at
+        4B scale, producing large F1 gap vs classification
+      - Trace-then-Judge performs closer to CWM than to classification, confirming
+        formulation (not just output simplicity) drives the gap
+      - Block-correlated error structure empirically validated on trained model predictions
+      - Repo-level classification maintains ≥80% per-class F1 on SWE-bench-PerTest
+      - Diagnostic re-repair produces statistically significant resolve rate lift
+      number_ranges:
+        cwm_generation_per_class_f1:
+        - 68
+        - 76
+        classification_minus_cwm_gap:
+        - 11
+        - 19
+        trace_then_judge_f1:
+        - 72
+        - 78
+        repo_level_per_class_f1:
+        - 80
+        - 86
+        diagnostic_rerepair_resolve_lift_pct:
+        - 5
+        - 10
+        block_corr_spearman_vs_iid:
+        - 0.3
+        - 0.6
+        per_test_failure_precision:
+        - 0.82
+        - 0.9
+        per_test_failure_recall:
+        - 0.78
+        - 0.86
+      narrative_direction: '原始 framing 完全成立。Headline: "Classification reformulation
+        achieves 87% F1 vs generation''s ~72%,  a 15-point gap confirming that execution
+        simulation is better cast as classification than generation."  三个 claim 全部有实验支撑:
+        Claim 1 有大 gap + trace-then-judge ablation;  Claim 2 有 re-repair lift; Claim
+        3 oracle frontier + 实测 block correlation 互相印证。 EMNLP Main 投稿，NLP 角度 pitch
+        为 "task formulation matters:  classification vs generation as a general LLM
+        capability probe"。
+
+        '
+    median:
+      tier: median
+      meaning: Classification wins but gap is moderate; block correlation partially
+        holds; repo-level degraded; re-repair signal weak
+      key_assumptions:
+      - CWM generation model handles simple cases but fails on long outputs, producing
+        moderate F1 gap
+      - Trace-then-Judge sits between CWM and classification, partially confounding
+        the 'formulation vs simplicity' separation
+      - Block correlation exists but weaker than simulated; effective T closer to
+        iid than block model
+      - Repo-level classification degrades to 70-79% F1 due to longer context and
+        cross-file dependencies
+      - Re-repair shows small positive signal but not statistically significant at
+        n=200
+      number_ranges:
+        cwm_generation_per_class_f1:
+        - 77
+        - 82
+        classification_minus_cwm_gap:
+        - 5
+        - 10
+        trace_then_judge_f1:
+        - 79
+        - 84
+        repo_level_per_class_f1:
+        - 70
+        - 79
+        diagnostic_rerepair_resolve_lift_pct:
+        - 1
+        - 4
+        block_corr_spearman_vs_iid:
+        - 0.1
+        - 0.3
+        per_test_failure_precision:
+        - 0.75
+        - 0.82
+        per_test_failure_recall:
+        - 0.7
+        - 0.78
+      narrative_direction: 'Claim 1 需要降调: 不能说 "fundamentally simpler"，改为 "classification
+        offers a favorable accuracy-efficiency tradeoff  at small model scales, with
+        a 5-10 point F1 advantage that may narrow at larger scales."  Trace-then-Judge
+        结果模糊需要诚实讨论 confound。 Claim 2 从 "measurable downstream improvement" 弱化为 "diagnostic
+        signal quality analysis +  suggestive re-repair evidence"，re-repair 作为 pilot
+        而非主结果。 Claim 3 成为论文最强贡献——oracle frontier 分析 + block correlation 实测提供 decision
+        framework。 整体 reframe 为 "When and Why Per-Test Simulation Helps"，以 Claim 3
+        的 characterization 为主轴， Claim 1 的 classification advantage 为支撑。EMNLP Main
+        仍可投但 Findings 更稳妥。
+
+        '
+    worst:
+      tier: worst
+      meaning: Classification advantage negligible; per-test signal mostly redundant
+        with trajectory-level; story collapses to analysis paper
+      key_assumptions:
+      - CWM generation model performs comparably to classification at 4B (gap ≤4 F1
+        points), possibly because function-level tests are short enough to avoid token-budget
+        issues
+      - Trace-then-Judge matches or exceeds direct classification, undermining the
+        formulation argument
+      - Block correlation not observed empirically; errors are closer to iid, reducing
+        per-test advantage to oracle-predicted iid levels
+      - Repo-level classification below 70% F1, not competitive with execution
+      - Re-repair shows no meaningful lift; diagnostic signals too noisy to be actionable
+      - 68.7% T=1 dominance means per-test ≈ trajectory-level for most real instances
+      number_ranges:
+        cwm_generation_per_class_f1:
+        - 83
+        - 87
+        classification_minus_cwm_gap:
+        - 0
+        - 4
+        trace_then_judge_f1:
+        - 84
+        - 88
+        repo_level_per_class_f1:
+        - 55
+        - 69
+        diagnostic_rerepair_resolve_lift_pct:
+        - 0
+        - 1
+        block_corr_spearman_vs_iid:
+        - 0.0
+        - 0.1
+        per_test_failure_precision:
+        - 0.65
+        - 0.75
+        per_test_failure_recall:
+        - 0.6
+        - 0.7
+      narrative_direction: 'Claim 1 失败——classification 没有显著优于 generation，"task reformulation"
+        叙事不成立。 Claim 2 失败——诊断信号噪声太大，无下游价值。 Claim 3 的 oracle 分析成为唯一可回收资产。 论文必须重构为 analysis
+        paper: "Do We Need Per-Test Execution Simulation? An Empirical Investigation"。
+        核心贡献变为: (1) 系统的 oracle frontier 分析揭示 per-test 优势的严格条件 (T≥2, regression rate
+        ≥10%, block correlation);  (2) 实证表明当前 benchmark (SWE-bench) 的 test 分布 (T=1
+        dominant, ~1% regression) 不满足这些条件;  (3) classification vs generation 的 null
+        result 本身有信息量——说明在 function-level 尺度上 generation 并不像 CWM debugging 文献暗示的那么困难。
+        这个版本更适合 ICSE 2027 (SE venue, empirical study track) 而非 EMNLP。 EMNLP Findings
+        也可尝试，但需要 reframe 为 "probing LLM code reasoning: when does task formulation
+        matter?"'
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments:
+  - name: CWM Generation Baseline
+    plan_id: cwm-baseline
+    description: 'Train Qwen3-4B LoRA to predict execution output (stdout/stderr +
+      exit code) instead of binary pass/fail, using identical training data and hyperparameters
+      as MVP-B classification model. Evaluate per-class F1 on same held-out split.
+
+      '
+    expected_results:
+      overall_accuracy: 0.735
+      pass_f1: 0.703
+      fail_f1: 0.738
+      pass_precision: 0.721
+      pass_recall: 0.686
+      fail_precision: 0.714
+      fail_recall: 0.763
+      exact_match_output: 0.581
+      token_budget_exhaustion_rate: 0.127
+      string_mismatch_rate: 0.214
+      classification_minus_cwm_gap_pass_f1: 16.8
+      classification_minus_cwm_gap_fail_f1: 14.1
+    result_rationale: 'At 4B scale, CWM generation must produce exact execution output
+      tokens — a fundamentally harder target. Two failure modes dominate: (1) token-budget
+      exhaustion (~13% of test cases) where outputs exceed the generation window and
+      get truncated, producing systematic false-fail errors; (2) string value mismatch
+      (~21%) where the model predicts semantically equivalent but lexically different
+      outputs (e.g., floating-point formatting, dict ordering, whitespace). Together
+      these account for ~34% of predictions, dragging per-class F1 to low-70s. The
+      fail class scores slightly higher because error tracebacks have more stereotyped
+      patterns than correct outputs. The ~15-point gap versus classification (87.1/87.9)
+      is large and stable because classification sidesteps both failure modes entirely
+      — it never needs to produce output tokens, only judge pass/fail from code semantics.
+
+      '
+    tables:
+    - name: 'Table 2: Classification vs Generation Formulation (Qwen3-4B, Function-Level)'
+      columns:
+      - Model
+      - Formulation
+      - Pass F1
+      - Fail F1
+      - Macro F1
+      - Accuracy
+      rows:
+      - - Qwen3-4B-Cls
+        - Classification
+        - 87.1
+        - 87.9
+        - 87.5
+        - 87.5
+      - - Qwen3-4B-CWM
+        - Generation
+        - 70.3
+        - 73.8
+        - 72.1
+        - 73.5
+      - - Δ (Cls − CWM)
+        - —
+        - '+16.8'
+        - '+14.1'
+        - '+15.4'
+        - '+14.0'
+    - name: 'Table 3: CWM Failure Mode Breakdown'
+      columns:
+      - Failure Mode
+      - '% of Predictions'
+      - F1 if Excluded
+      rows:
+      - - Token-budget exhaustion
+        - 12.7%
+        - 76.8
+      - - String-value mismatch
+        - 21.4%
+        - 79.2
+      - - Both excluded
+        - 31.3%
+        - 82.6
+      - - All predictions
+        - 100%
+        - 72.1
+    figures_description:
+    - 'Figure 2: Confusion matrices side-by-side for classification (left) and CWM
+      (right), showing CWM''s higher false-fail rate from truncation and mismatch
+      failures.'
+    - 'Figure 3: Per-instance F1 scatter (classification y-axis vs CWM x-axis), with
+      points colored by dominant CWM failure mode. Cluster in lower-right shows classification
+      succeeding where CWM fails.'
+    analysis: 'The 15.4-point macro F1 gap is the paper''s headline result. Critically,
+      removing both failure modes from CWM evaluation only recovers ~10 points (to
+      82.6 F1), still 5 points below classification. This shows the advantage is not
+      purely mechanical (truncation/mismatch) but also reflects classification''s
+      fundamentally simpler decision boundary. The failure-mode breakdown table is
+      essential for reviewer persuasion — it gives a mechanistic explanation rather
+      than just reporting numbers.
+
+      '
+  - name: Trace-then-Judge Ablation
+    plan_id: trace-then-judge
+    description: 'Two-stage pipeline: Stage 1 uses Qwen3-4B to generate execution
+      trace (same as CWM), Stage 2 extracts binary pass/fail from the generated trace.
+      Also run with Qwen3-8B generator. Isolates whether classification advantage
+      comes from not needing traces at all (formulation) or just from having a simpler
+      final output (task simplicity).
+
+      '
+    expected_results:
+      ttj_4b_pass_f1: 0.734
+      ttj_4b_fail_f1: 0.752
+      ttj_4b_macro_f1: 0.743
+      ttj_4b_accuracy: 0.748
+      ttj_8b_pass_f1: 0.762
+      ttj_8b_fail_f1: 0.778
+      ttj_8b_macro_f1: 0.77
+      ttj_8b_accuracy: 0.773
+      ttj_4b_trace_quality_exact_match: 0.581
+      ttj_4b_judge_accuracy_given_correct_trace: 0.943
+      ttj_4b_judge_accuracy_given_wrong_trace: 0.612
+    result_rationale: 'Trace-then-Judge at 4B produces F1 ~74.3, only ~2 points above
+      raw CWM (72.1) and far below direct classification (87.5). This is the key ablation:
+      if the classification advantage were merely about having a simpler output format
+      (binary vs string), TtJ should close most of the gap since Stage 2 also outputs
+      binary. Instead, TtJ performs close to CWM because it still depends on trace
+      generation quality — garbage-in-garbage-out. When the trace is correct (58%
+      of cases), Stage 2 judge achieves 94% accuracy, proving the judge step itself
+      is easy. But when the trace is wrong (42%), the judge only achieves 61%, barely
+      above random. This confirms the bottleneck is trace generation, not output format
+      — the formulation itself (skip the trace entirely) is what drives classification''s
+      advantage. The 8B version improves to 77.0 F1 via better trace quality but still
+      trails 4B classification by 10+ points, reinforcing that scaling generation
+      doesn''t close the formulation gap efficiently.
+
+      '
+    tables:
+    - name: 'Table 4: Formulation Ablation — Direct Classification vs Trace-then-Judge
+        vs CWM'
+      columns:
+      - Model
+      - Method
+      - Pass F1
+      - Fail F1
+      - Macro F1
+      rows:
+      - - Qwen3-4B
+        - Direct Classification
+        - 87.1
+        - 87.9
+        - 87.5
+      - - Qwen3-4B
+        - Trace-then-Judge
+        - 73.4
+        - 75.2
+        - 74.3
+      - - Qwen3-4B
+        - CWM Generation
+        - 70.3
+        - 73.8
+        - 72.1
+      - - Qwen3-8B
+        - Trace-then-Judge
+        - 76.2
+        - 77.8
+        - 77.0
+    - name: 'Table 5: TtJ Stage 2 Judge Accuracy Conditioned on Trace Quality'
+      columns:
+      - Trace Quality
+      - '% of Cases'
+      - Judge Accuracy
+      rows:
+      - - Exact match
+        - 58.1%
+        - 94.3%
+      - - Semantically correct
+        - 8.2%
+        - 87.1%
+      - - Incorrect
+        - 33.7%
+        - 61.2%
+    figures_description:
+    - 'Figure 4: Bar chart comparing macro F1 across all three formulations at 4B
+      and 8B scales. Visual emphasis on the large gap between TtJ and classification
+      proving formulation (not output simplicity) drives the advantage.'
+    analysis: 'TtJ is the critical confound-isolation experiment. The near-CWM performance
+      of TtJ falsifies the alternative hypothesis that "classification is better just
+      because binary output is simpler." Instead, it confirms that the classification
+      formulation''s advantage is architectural — it lets the model reason about code
+      semantics directly without the intermediate trace-generation bottleneck. This
+      finding is the conceptual core of Claim 1 and the strongest argument for the
+      NLP-framing ("task formulation matters").
+
+      '
+  - name: Trajectory-Level Fine-tuned Baseline
+    plan_id: traj-level-finetuned
+    description: 'Qwen3-4B LoRA trained to predict binary resolved/unresolved from
+      full (code, test_suite) input. Same model and compute as per-test classification,
+      but predicts at trajectory level. Isolates granularity effect (per-test vs trajectory)
+      from formulation effect (classification vs generation).
+
+      '
+    expected_results:
+      traj_accuracy: 0.812
+      traj_precision: 0.823
+      traj_recall: 0.798
+      traj_f1: 0.81
+      traj_auc_roc: 0.874
+      per_test_macro_f1_for_comparison: 0.875
+      per_test_trajectory_accuracy_derived: 0.853
+    result_rationale: 'Trajectory-level classification achieves 81% accuracy — substantially
+      better than CWM (73.5%) because it shares the classification formulation advantage,
+      but worse than per-test classification''s derived trajectory accuracy (85.3%)
+      because it must reason about the entire test suite in one shot. With multiple
+      tests, subtle interactions between tests are harder to capture in a single binary
+      prediction. Per-test decomposition allows the model to focus on one (code, test)
+      pair at a time, reducing the reasoning burden per forward pass. The 4-point
+      gap (81.2% vs 85.3%) isolates the granularity contribution: per-test decomposition
+      helps even in a classification setting, but the formulation effect (classification
+      vs generation, ~15 points) dominates the granularity effect (~4 points). This
+      decomposition is important for the paper''s narrative — it shows both axes contribute
+      but formulation is the primary driver.
+
+      '
+    tables:
+    - name: 'Table 6: Decomposing Formulation vs Granularity Effects'
+      columns:
+      - Model
+      - Formulation
+      - Granularity
+      - Traj Acc
+      - Macro F1
+      rows:
+      - - Qwen3-4B-CWM
+        - Generation
+        - Per-test
+        - 73.5%
+        - 72.1
+      - - Qwen3-4B-Traj-Cls
+        - Classification
+        - Trajectory
+        - 81.2%
+        - 81.0
+      - - Qwen3-4B-PerTest-Cls
+        - Classification
+        - Per-test
+        - 85.3%*
+        - 87.5
+      footnotes:
+      - '*Trajectory accuracy derived from per-test predictions via AND-aggregation'
+    - name: Effect Sizes
+      columns:
+      - Effect
+      - Δ Traj Accuracy
+      rows:
+      - - Formulation (Gen→Cls, holding granularity)
+        - +7.7 pp
+      - - Granularity (Traj→PerTest, holding formulation)
+        - +4.1 pp
+      - - Combined
+        - +11.8 pp
+    figures_description:
+    - 'Figure 5: 2x2 effect decomposition showing formulation (x-axis) and granularity
+      (y-axis) contributions. Formulation effect is ~2x larger than granularity effect.'
+    analysis: 'This experiment completes the 2x2 factorial design (formulation × granularity)
+      that is the analytical backbone of Claim 1. The additive decomposition shows
+      formulation contributes ~65% of the total improvement and granularity ~35%,
+      which is a clean story: "reformulation helps more than decomposition, but both
+      contribute." The slight super-additivity (11.8 > 7.7+4.1) suggests per-test
+      granularity and classification formulation are mildly complementary — per-test
+      focus makes the classification decision even easier.
+
+      '
+  - name: Model Size Scaling (4B → 8B)
+    plan_id: model-size-scaling
+    description: 'Scale both classification and CWM models from 4B to 8B (Qwen3-8B
+      LoRA). Determine whether the classification advantage is an artifact of small
+      scale or persists/widens at larger size.
+
+      '
+    expected_results:
+      cls_8b_pass_f1: 0.897
+      cls_8b_fail_f1: 0.903
+      cls_8b_macro_f1: 0.9
+      cls_8b_accuracy: 0.901
+      cwm_8b_pass_f1: 0.754
+      cwm_8b_fail_f1: 0.781
+      cwm_8b_macro_f1: 0.768
+      cwm_8b_accuracy: 0.771
+      gap_8b_macro_f1: 13.2
+      gap_4b_macro_f1: 15.4
+      cls_scaling_gain: 2.5
+      cwm_scaling_gain: 4.7
+    result_rationale: 'At 8B, both models improve, but CWM benefits slightly more
+      from scale (+4.7 pp vs +2.5 pp) because larger models handle longer generation
+      sequences better and have lower token-budget exhaustion rates (~8% vs 13%).
+      The classification advantage narrows from 15.4 to 13.2 pp but remains large
+      and statistically significant. Classification at 4B (87.5) still outperforms
+      CWM at 8B (76.8), meaning you''d need to more than double the CWM model to match
+      a smaller classifier. This is the cost-efficiency argument: classification is
+      a more parameter-efficient formulation. The gap narrowing with scale is expected
+      and should be reported honestly — it suggests CWM could eventually close the
+      gap at very large scales (>70B), which we acknowledge as a limitation but argue
+      is irrelevant for practical deployment where cost matters.
+
+      '
+    tables:
+    - name: 'Table 7: Scaling Behavior — Classification vs Generation'
+      columns:
+      - Model Size
+      - Classification F1
+      - CWM F1
+      - Gap (pp)
+      rows:
+      - - 4B
+        - 87.5
+        - 72.1
+        - 15.4
+      - - 8B
+        - 90.0
+        - 76.8
+        - 13.2
+      - - Scaling gain
+        - '+2.5'
+        - '+4.7'
+        - −2.2
+    figures_description:
+    - 'Figure 6: Scaling curves (x=model size, y=macro F1) for classification and
+      CWM, with extrapolated crossover point annotated. Shows classification maintains
+      clear advantage in the practical 4B-8B range.'
+    analysis: 'The scaling experiment serves two purposes: (1) confirms classification
+      advantage is not a small-scale artifact, and (2) provides ammunition against
+      the reviewer objection "just use a bigger generation model." The fact that 4B
+      classification beats 8B CWM is a compelling cost-efficiency argument. The narrowing
+      gap should be presented honestly with the limitation note about very large scales,
+      which actually strengthens credibility.
+
+      '
+  - name: Diagnostic Re-repair
+    plan_id: diagnostic-rerepair
+    description: 'Downstream experiment: provide repair agent (SWE-agent) with per-test
+      failure predictions vs trajectory-level pass/fail only. Compare resolve rate
+      on 200 SWE-bench-like instances. Tests whether diagnostic signal translates
+      to practical repair improvement.
+
+      '
+    expected_results:
+      baseline_resolve_rate: 0.285
+      rerepair_with_diagnostics_resolve_rate: 0.306
+      rerepair_without_diagnostics_resolve_rate: 0.262
+      diagnostic_rerepair_resolve_lift_pct: 7.4
+      diagnostic_rerepair_resolve_lift_absolute: 0.044
+      n_instances: 200
+      n_rerepair_triggered: 87
+      rerepair_success_rate_with_diag: 0.253
+      rerepair_success_rate_without_diag: 0.126
+      p_value_paired_mcnemar: 0.023
+      instances_with_multi_f2p_lift: 12.1
+      instances_with_single_f2p_lift: 2.8
+    result_rationale: 'Re-repair is triggered on instances where the verifier predicts
+      at least one test failure. With per-test diagnostics, the repair agent knows
+      which specific tests fail, enabling targeted fixes (e.g., "test_parse_edge_case
+      fails but test_parse_basic passes — the issue is likely in edge case handling").
+      Without diagnostics, the agent only knows "some test fails" and must blindly
+      re-attempt. The 7.4% lift (30.6% vs 28.5% → from original baseline 26.2% without
+      any re-repair) comes primarily from multi-F2P instances where the diagnostic
+      signal is most informative (12.1% lift in that subgroup vs 2.8% in single-F2P).
+      The absolute numbers are modest (200 instances) but statistically significant
+      (McNemar p=0.023). This is deliberately a proof-of-concept, not a SOTA claim
+      — the goal is showing that per-test diagnostics provide actionable signal, not
+      that our specific re-repair pipeline is optimal.
+
+      '
+    tables:
+    - name: 'Table 8: Diagnostic Re-repair Results'
+      columns:
+      - Condition
+      - Resolve Rate
+      - Δ vs No Re-repair
+      rows:
+      - - No re-repair (baseline)
+        - 26.2%
+        - —
+      - - Re-repair without diagnostics
+        - 28.5%
+        - +2.3 pp
+      - - Re-repair with per-test diagnostics
+        - 30.6%
+        - +4.4 pp
+      - - Diagnostic lift
+        - —
+        - +2.1 pp (p=0.023)
+    - name: 'Table 9: Diagnostic Lift Stratified by F2P Count'
+      columns:
+      - F2P Count
+      - '% Instances'
+      - Lift with Diag
+      - Lift without Diag
+      rows:
+      - - T=1
+        - 69%
+        - +2.8%
+        - +1.9%
+      - - T=2
+        - 16%
+        - +8.7%
+        - +2.1%
+      - - T≥3
+        - 15%
+        - +12.1%
+        - +3.3%
+    figures_description:
+    - 'Figure 7: Bar chart of resolve rate across three conditions (no re-repair,
+      blind re-repair, diagnostic re-repair) with error bars. Inset shows stratification
+      by F2P count.'
+    analysis: 'The re-repair experiment is Claim 2''s anchor. The lift is statistically
+      significant but modest in absolute terms, which is appropriate for a proof-of-concept.
+      The stratification by F2P count is critical — it connects back to Claim 3''s
+      characterization and shows the diagnostic advantage concentrates exactly where
+      the oracle analysis predicts (multi-test instances). Reviewers may ask "why
+      not run a bigger experiment" — preempt by noting this is about demonstrating
+      the mechanism, not claiming SOTA repair rates.
+
+      '
+  - name: Per-test Precision/Recall
+    plan_id: per-test-precision-recall
+    description: 'Measure per-test failure prediction precision and recall against
+      ground-truth failing tests on the full held-out set. Directly evaluates diagnostic
+      signal quality.
+
+      '
+    expected_results:
+      per_test_failure_precision: 0.862
+      per_test_failure_recall: 0.823
+      per_test_failure_f1: 0.842
+      per_test_pass_precision: 0.891
+      per_test_pass_recall: 0.918
+      per_test_pass_f1: 0.904
+      false_positive_rate: 0.082
+      false_negative_rate: 0.177
+      precision_at_k1: 0.891
+      precision_at_k3: 0.847
+    result_rationale: 'The model achieves 86.2% failure precision and 82.3% failure
+      recall, both within the best-tier range. Precision exceeds recall because the
+      model is slightly conservative — it''s easier to confirm a test passes (more
+      stereotyped patterns) than to predict a specific failure mode. The false-positive
+      rate (8.2%) is low enough for practical use: a repair agent receiving per-test
+      predictions would waste effort on ~1 in 12 "failing" tests that actually pass,
+      an acceptable overhead. The false-negative rate (17.7%) means ~1 in 6 actual
+      failures is missed, which is the main limitation — but even partial diagnostic
+      information improves over no per-test signal at all (as the re-repair experiment
+      confirms). Pass-class metrics are higher because pass is the majority class
+      and has less variance in code behavior patterns.
+
+      '
+    tables:
+    - name: 'Table 10: Per-test Prediction Quality'
+      columns:
+      - Metric
+      - Fail Class
+      - Pass Class
+      - Macro
+      rows:
+      - - Precision
+        - 86.2%
+        - 89.1%
+        - 87.7%
+      - - Recall
+        - 82.3%
+        - 91.8%
+        - 87.1%
+      - - F1
+        - 84.2%
+        - 90.4%
+        - 87.3%
+    figures_description:
+    - 'Figure 8: Precision-recall curve for failure detection, with operating point
+      annotated. Shows tradeoff between aggressive and conservative failure prediction.'
+    analysis: 'This table directly supports both Claims 1 and 2. For Claim 1, it provides
+      the detailed per-class breakdown behind the headline F1 numbers. For Claim 2,
+      it establishes that the diagnostic signal is high-quality enough to be actionable
+      — 86% precision means most flagged failures are real, and 82% recall means most
+      real failures are caught. The precision-recall curve also shows the model can
+      be tuned toward higher precision (for conservative deployment) or higher recall
+      (for exhaustive failure detection).
+
+      '
+  - name: Oracle F2P-Stratified Analysis
+    plan_id: oracle-f2p-stratified
+    description: 'Stratify the oracle frontier analysis by FAIL_TO_PASS test count
+      (T=1, T=2, T=3+). Show that per-test advantage concentrates in multi-test instances.
+
+      '
+    expected_results:
+      T1_pct_instances: 0.687
+      T1_iid_adv_70_85: 0.02
+      T1_block_adv_70_85: 0.109
+      T2_pct_instances: 0.162
+      T2_iid_adv_70_85: 0.187
+      T2_block_adv_70_85: 0.412
+      T3plus_pct_instances: 0.151
+      T3plus_iid_adv_70_85: 0.298
+      T3plus_block_adv_70_85: 0.521
+      weighted_iid_adv: 0.074
+      weighted_block_adv: 0.228
+    result_rationale: 'At T=1 (68.7% of SWE-bench Verified), per-test and trajectory-level
+      predictions are mathematically equivalent for the F2P component — the only per-test
+      advantage comes from tie-breaking (2.0% iid) or block-correlation effects (10.9%
+      block). At T=2, per-test advantage jumps substantially (18.7% iid, 41.2% block)
+      because the model can distinguish "fails test A but passes test B" from "fails
+      both" — a distinction trajectory-level scoring collapses. At T≥3, the advantage
+      is largest (29.8% iid, 52.1% block) because the combinatorial space of failure
+      patterns grows and per-test predictions capture much more information. The population-weighted
+      advantage (7.4% iid, 22.8% block) is moderate because T=1 dominates the population,
+      but the advantage is concentrated and large where it exists. This stratification
+      is essential for honest reporting — per-test isn''t always better, but it''s
+      dramatically better when T>1.
+
+      '
+    tables:
+    - name: 'Table 11: Per-test Advantage Stratified by F2P Count'
+      columns:
+      - F2P Count
+      - '% Instances'
+      - Adv (i.i.d.)
+      - Adv (Block-corr)
+      rows:
+      - - T=1
+        - 68.7%
+        - 2.0%
+        - 10.9%
+      - - T=2
+        - 16.2%
+        - 18.7%
+        - 41.2%
+      - - T≥3
+        - 15.1%
+        - 29.8%
+        - 52.1%
+      - - Weighted
+        - 100%
+        - 7.4%
+        - 22.8%
+    figures_description:
+    - 'Figure 9: Stacked bar chart of per-test advantage by F2P stratum, showing advantage
+      concentrates in T≥2 (31.3% of instances) while T=1 (68.7%) contributes minimally.'
+    - 'Figure 10: Heatmap of oracle accuracy (traj-level vs per-test) across accuracy×T
+      grid, visualizing the interaction between model quality and test count.'
+    analysis: 'This is the core characterization result for Claim 3. The stratification
+      provides the practical decision framework promised in the abstract: deploy per-test
+      verification when the instance is likely to have multiple F2P tests (e.g., large
+      PRs, complex bug fixes). The T=1 near-equivalence is reported honestly and actually
+      makes the story more credible — it shows the advantage has a clear mechanism
+      (information gain from test decomposition) rather than being a mysterious universal
+      improvement.
+
+      '
+  - name: Block-Correlation Empirical Validation
+    plan_id: block-corr-empirical
+    description: 'Measure actual prediction error correlation structure from MVP-B
+      model''s per-test predictions. Compute within-instance error correlation (Spearman)
+      and compare with i.i.d. and block-correlated simulation assumptions.
+
+      '
+    expected_results:
+      within_instance_spearman: 0.452
+      within_instance_pearson: 0.438
+      between_instance_spearman: 0.031
+      iid_model_spearman: 0.0
+      block_model_spearman: 1.0
+      effective_correlation: 0.452
+      n_instances_analyzed: 487
+      avg_tests_per_instance: 4.7
+      correlation_by_T:
+        T2: 0.512
+        T3: 0.471
+        T4plus: 0.403
+    result_rationale: 'Within-instance error Spearman ρ=0.452, confirming that prediction
+      errors are neither i.i.d. (ρ=0) nor fully block-correlated (ρ=1), but substantially
+      correlated. This empirically validates the block-correlation modeling assumption
+      used in the oracle analysis. The correlation arises because tests within an
+      instance share the same patched code — if the model misunderstands the patch''s
+      semantics, it tends to get multiple related tests wrong (or right) together.
+      Between-instance correlation is near zero (0.031), confirming errors are instance-specific,
+      not systematic model biases. The slight decrease in correlation with more tests
+      (ρ=0.51 at T=2 vs 0.40 at T≥4) reflects that larger test suites are more diverse,
+      so shared patch misunderstanding doesn''t propagate as uniformly. The ρ≈0.45
+      value sits squarely in the best-tier range [0.3, 0.6] and means the oracle analysis''s
+      block-correlation results (which assume ρ≈1) are an upper bound, while i.i.d.
+      results (ρ=0) are a lower bound — reality falls between them, closer to block.
+
+      '
+    tables:
+    - name: 'Table 12: Empirical Error Correlation Structure'
+      columns:
+      - Scope
+      - Spearman ρ
+      - Interpretation
+      rows:
+      - - Within-instance
+        - 0.452
+        - Substantial positive correlation
+      - - Between-instance
+        - 0.031
+        - Near-zero (instance-specific errors)
+      - - i.i.d. model
+        - 0.0
+        - Lower bound
+      - - Block-corr model
+        - 1.0
+        - Upper bound
+    - name: 'Table 13: Within-Instance Correlation by Test Count'
+      columns:
+      - F2P Count
+      - Spearman ρ
+      - N instances
+      rows:
+      - - T=2
+        - 0.512
+        - 79
+      - - T=3
+        - 0.471
+        - 42
+      - - T≥4
+        - 0.403
+        - 31
+    figures_description:
+    - 'Figure 11: Histogram of per-instance error correlations with i.i.d. (δ at 0)
+      and block (δ at 1) reference lines. Distribution centered around 0.45, supporting
+      block-correlation as the better approximation.'
+    analysis: 'This experiment bridges the oracle simulation (Claim 3) with the trained
+      model (Claim 1). The ρ≈0.45 validates that the oracle analysis''s two simulation
+      regimes (i.i.d. and block) bracket reality, with block being the closer approximation.
+      This means the oracle''s block-correlated advantage estimates (36-52%) are optimistic
+      but directionally correct, while i.i.d. estimates (2-30%) are conservative.
+      The true per-test advantage likely falls between these bounds, weighted toward
+      block — exactly what the oracle analysis framework predicts.
+
+      '
+  - name: SWE-bench-PerTest Dataset Construction
+    plan_id: swebench-pertest-data
+    description: 'Docker re-evaluation of SWE-bench Verified patches to extract per-test
+      pass/fail labels. Build dataset of 500 instances × 16 candidates with per-test
+      ground truth.
+
+      '
+    expected_results:
+      n_instances_total: 500
+      n_instances_successful: 478
+      n_instances_docker_fail: 22
+      n_candidates_per_instance: 16
+      total_test_executions: 389248
+      avg_tests_per_instance: 51.2
+      avg_f2p_tests: 3.1
+      avg_p2p_tests: 48.1
+      median_f2p_tests: 2
+      docker_wall_clock_hours: 19.3
+      n_parallel_containers: 16
+      label_agreement_with_original: 0.987
+    result_rationale: 'Of 500 target instances, 478 successfully execute in Docker
+      (22 fail due to environment issues — dependency version conflicts, missing system
+      packages). Each instance has 16 candidate patches from SWE-agent runs. The average
+      instance has 51 total tests (3.1 F2P + 48.1 P2P), with median 2 F2P tests. Per-test
+      labels agree 98.7% with original SWE-bench resolved/unresolved labels (1.3%
+      disagreement from flaky tests and environment-sensitive assertions). The dataset
+      takes ~19 hours to build with 16 parallel containers, which is feasible as a
+      one-time cost. This dataset is a resource contribution independent of the paper''s
+      claims — it enables any future work on per-test verification for SWE-bench.
+
+      '
+    tables:
+    - name: 'Table 14: SWE-bench-PerTest Dataset Statistics'
+      columns:
+      - Statistic
+      - Value
+      rows:
+      - - Instances (successful)
+        - 478
+      - - Candidates per instance
+        - 16
+      - - Total (instance, candidate, test) triples
+        - 389,248
+      - - Avg F2P tests per instance
+        - 3.1
+      - - Avg P2P tests per instance
+        - 48.1
+      - - Label agreement with SWE-bench
+        - 98.7%
+    figures_description:
+    - 'Figure 12: Distribution of F2P test counts across SWE-bench-PerTest, confirming
+      heavy tail similar to SWE-bench Verified statistics.'
+    analysis: 'The dataset construction is a necessary prerequisite for repo-level
+      experiments. The 98.7% label agreement validates the Docker re-evaluation methodology.
+      The F2P distribution (median=2, mean=3.1) is slightly higher than the SWE-bench
+      Verified population (median=1, mean=3) because instances with more tests are
+      more likely to have successful Docker execution. This slight selection bias
+      should be noted but doesn''t affect the experimental conclusions.
+
+      '
+  - name: Repo-Level Training
+    plan_id: repo-level-training
+    description: 'Fine-tune Qwen3-4B and 8B on repo-level (patched_code, test_code)
+      → pass/fail using SWE-bench-PerTest data. Evaluate on held-out instances with
+      per-class F1.
+
+      '
+    expected_results:
+      repo_4b_pass_f1: 0.812
+      repo_4b_fail_f1: 0.828
+      repo_4b_macro_f1: 0.82
+      repo_4b_accuracy: 0.823
+      repo_8b_pass_f1: 0.841
+      repo_8b_fail_f1: 0.854
+      repo_8b_macro_f1: 0.848
+      repo_8b_accuracy: 0.85
+      context_length_median: 6842
+      context_length_p90: 14207
+      context_truncation_rate: 0.083
+      function_to_repo_f1_drop: 5.5
+    result_rationale: 'Repo-level per-class F1 at 4B is 82.0 and at 8B is 84.8, both
+      within the best-tier range [80, 86]. The ~5.5-point drop from function-level
+      (87.5) to repo-level (82.0) at 4B reflects three factors: (1) longer contexts
+      (median 6.8K tokens vs ~500 for function-level) make attention less focused;
+      (2) repo-level patches involve cross-file dependencies that are harder to reason
+      about; (3) context truncation affects 8.3% of cases where the full (patch, test)
+      pair exceeds the model''s context window. Despite the drop, 82% F1 at repo-level
+      is strong enough to demonstrate the classification formulation transfers beyond
+      function-level benchmarks. The 8B model''s improvement to 84.8% shows scaling
+      helps more at repo-level (3-point gain vs 2.5-point at function-level), consistent
+      with longer contexts benefiting from more capacity. Per-class F1 ≥80% satisfies
+      the best-tier threshold for all configurations.
+
+      '
+    tables:
+    - name: 'Table 15: Repo-Level Classification Results (SWE-bench-PerTest)'
+      columns:
+      - Model
+      - Pass F1
+      - Fail F1
+      - Macro F1
+      - Accuracy
+      rows:
+      - - Qwen3-4B
+        - 81.2%
+        - 82.8%
+        - 82.0%
+        - 82.3%
+      - - Qwen3-8B
+        - 84.1%
+        - 85.4%
+        - 84.8%
+        - 85.0%
+    - name: 'Table 16: Function-Level vs Repo-Level Gap'
+      columns:
+      - Level
+      - 4B Macro F1
+      - 8B Macro F1
+      rows:
+      - - Function-level
+        - 87.5%
+        - 90.0%
+      - - Repo-level
+        - 82.0%
+        - 84.8%
+      - - Gap
+        - −5.5 pp
+        - −5.2 pp
+    figures_description:
+    - 'Figure 13: Repo-level F1 as a function of input context length, showing graceful
+      degradation beyond 8K tokens but still above 75% F1 at 16K+.'
+    analysis: 'Repo-level results are the critical generalization test. The ≥80% F1
+      validates that the classification formulation isn''t limited to toy function-level
+      benchmarks. The consistent ~5.5-point gap between function and repo level across
+      model sizes suggests this is a domain difficulty effect, not a formulation limitation.
+      The context-length degradation analysis (Figure 13) provides actionable guidance
+      on when to expect reduced accuracy and could motivate future work on context-efficient
+      architectures.
+
+      '
+  - name: LLM-as-Judge Baselines
+    plan_id: llm-judge-baseline
+    description: 'Zero-shot Qwen3-8B and Qwen3-32B as LLM judges for both trajectory-level
+      and per-test verification. Provides reference points for the accuracy-cost Pareto
+      frontier.
+
+      '
+    expected_results:
+      qwen_8b_zeroshot_traj_accuracy: 0.683
+      qwen_8b_zeroshot_traj_f1: 0.671
+      qwen_8b_zeroshot_pertest_macro_f1: 0.634
+      qwen_32b_zeroshot_traj_accuracy: 0.741
+      qwen_32b_zeroshot_traj_f1: 0.728
+      qwen_32b_zeroshot_pertest_macro_f1: 0.702
+      qwen_8b_cost_per_instance: 0.003
+      qwen_32b_cost_per_instance: 0.012
+      finetuned_4b_cost_per_instance: 0.001
+    result_rationale: 'Zero-shot LLM judges perform substantially below fine-tuned
+      classifiers because execution simulation is not well-represented in pretraining
+      data — models can reason about code semantics but haven''t learned to reliably
+      predict pass/fail outcomes without training signal. Qwen3-8B zero-shot achieves
+      67.1% trajectory F1, below even the CWM generation model (72.1%), because it
+      lacks the fine-tuning that teaches output format and calibration. Qwen3-32B
+      improves to 72.8% F1, roughly matching CWM at 4B — showing that 8× more parameters
+      in zero-shot mode barely matches 4B fine-tuned generation. Per-test zero-shot
+      is worse than trajectory-level zero-shot because models struggle to reason about
+      individual test semantics without training. These baselines establish that fine-tuning
+      is essential (not just prompting) and that the fine-tuned 4B classifier dominates
+      the Pareto frontier (highest accuracy at lowest cost).
+
+      '
+    tables:
+    - name: 'Table 17: Pareto Frontier — Accuracy vs Cost'
+      columns:
+      - Method
+      - Params
+      - Fine-tuned
+      - Macro F1
+      - Cost/Instance
+      rows:
+      - - LLM-Judge ZS
+        - 8B
+        - 'No'
+        - 67.1%
+        - $0.003
+      - - LLM-Judge ZS
+        - 32B
+        - 'No'
+        - 72.8%
+        - $0.012
+      - - CWM Generation
+        - 4B
+        - 'Yes'
+        - 72.1%
+        - $0.001
+      - - Classification
+        - 4B
+        - 'Yes'
+        - 87.5%
+        - $0.001
+      - - Classification
+        - 8B
+        - 'Yes'
+        - 90.0%
+        - $0.002
+    figures_description:
+    - 'Figure 14: Pareto frontier plot (x=cost per instance, y=macro F1) showing fine-tuned
+      classification dominating zero-shot LLM judges across the cost spectrum.'
+    analysis: 'The LLM-judge baselines serve two roles: (1) they show fine-tuning
+      is necessary, ruling out the "just prompt a big model" alternative; (2) they
+      populate the Pareto frontier to demonstrate fine-tuned classification is cost-optimal.
+      For EMNLP reviewers, this also connects to the broader NLP question of when
+      task-specific fine-tuning beats general-purpose prompting — our answer is "for
+      structured prediction tasks like execution simulation, fine-tuning a small model
+      decisively beats prompting a large one."
+
+      '
+  - name: Per-test Majority Voting (K=3)
+    plan_id: per-test-majority-voting
+    description: 'Run classification model 3 times per test with temperature sampling,
+      take majority vote. Tests if self-consistency improves per-test accuracy at
+      3× inference cost.
+
+      '
+    expected_results:
+      k3_pass_f1: 0.886
+      k3_fail_f1: 0.893
+      k3_macro_f1: 0.89
+      k3_accuracy: 0.891
+      single_pass_macro_f1: 0.875
+      improvement_from_voting: 1.5
+      cost_multiplier: 3.0
+      disagreement_rate: 0.134
+    result_rationale: 'Majority voting at K=3 provides a modest 1.5-point F1 improvement
+      (87.5 → 89.0) at 3× inference cost. The improvement is small because the base
+      classifier is already well-calibrated at 87.5% — there''s limited room for self-consistency
+      to correct errors. The 13.4% disagreement rate (cases where not all 3 runs agree)
+      identifies the model''s uncertain predictions, which could be useful for selective
+      abstention. However, the cost-accuracy tradeoff (1.5 pp for 3× cost) is unfavorable
+      compared to simply using an 8B model (2.5 pp for ~2× cost). This experiment
+      is included as a P2 result for completeness but is not central to any claim.
+
+      '
+    tables:
+    - name: 'Table S1 (Appendix): Majority Voting Results'
+      columns:
+      - Method
+      - Macro F1
+      - Relative Cost
+      rows:
+      - - Single-pass (4B)
+        - 87.5%
+        - 1×
+      - - Majority K=3 (4B)
+        - 89.0%
+        - 3×
+      - - Single-pass (8B)
+        - 90.0%
+        - ~2×
+    figures_description: []
+    analysis: Appendix-level result. Shows self-consistency helps marginally but model
+      scaling is a more efficient path to higher accuracy. The disagreement rate is
+      potentially useful as a confidence calibration signal in deployment but is not
+      explored further in this paper.
+  review_report: '# [Dream Review — best]
+
+
+    Status: skipped (paper PDF not produced)
+
+    '
+  error: ''
+- tier: median
+  pdf_path: ''
+  imagined_experiments:
+  - name: CWM Generation Baseline
+    plan_id: cwm-baseline
+    description: 'Qwen3-4B LoRA 训练预测执行输出（generation），同数据同配置对比 classification (87.1/87.9%
+      F1)。
+
+      '
+    expected_results:
+      cwm_pass_f1: 0.79
+      cwm_fail_f1: 0.8
+      cwm_overall_accuracy: 0.795
+      cwm_per_class_f1_avg: 0.795
+      classification_minus_cwm_gap_pp: 7.8
+      cwm_token_budget_exhaust_rate: 0.12
+      cwm_string_mismatch_rate: 0.18
+    result_rationale: 'CWM 在简单 assertion 测试（assertEqual, assertTrue）上表现接近 classification，因为输出
+      短且可预测。但在复杂输出场景下显著退化：(1) ~12% 的样本因输出超过 LoRA 微调时的 max_new_tokens 而被截断，导致无法提取正确答案；(2)
+      ~18% 的样本因字符串值预测错误（浮点精度、格式差异、 动态值如时间戳）而判错。这两个失败模式正是 Debugging CWMs 论文指出的核心问题。
+      4B 模型容量有限，无法同时学好"理解代码语义"和"精确生成输出字符串"，导致 per-class F1 落在 79-80%，比 classification
+      低约 8pp。这个 gap 处于 moderate 范围——足以支撑 "classification 有优势"的叙事，但不足以称为 "fundamentally
+      simpler"。
+
+      '
+    tables:
+    - name: 'Table 1: Classification vs Generation (4B, Function-level)'
+      columns:
+      - Model
+      - Formulation
+      - Pass_F1
+      - Fail_F1
+      - Avg_F1
+      - Accuracy
+      rows:
+      - - Qwen3-4B LoRA
+        - Classification
+        - 0.871
+        - 0.879
+        - 0.875
+        - 0.875
+      - - Qwen3-4B LoRA
+        - CWM Generation
+        - 0.79
+        - 0.8
+        - 0.795
+        - 0.795
+      - - Delta
+        - '-'
+        - +8.1pp
+        - +7.9pp
+        - +8.0pp
+        - +8.0pp
+    figures_description:
+    - 'Error analysis pie chart: CWM failure modes 分解 — token exhaustion 12%, string
+      mismatch 18%, semantic error 70%'
+    analysis: '8pp gap 在 median 档是 make-or-break 的边界值。需要 multi-seed 验证确认 gap 稳定且显著。
+      如果 multi-seed 方差大到 CI 包含 3pp（kill 线），论文核心论点受威胁。
+
+      '
+  - name: Multi-Seed Core Comparison
+    plan_id: multi-seed-core
+    description: 'Classification 和 CWM 各 3 个 seed {0, 1, 42}，报告 mean ± std，paired
+      t-test 检验。
+
+      '
+    expected_results:
+      classification_f1_mean: 0.873
+      classification_f1_std: 0.003
+      cwm_f1_mean: 0.793
+      cwm_f1_std: 0.008
+      gap_mean_pp: 8.0
+      gap_std_pp: 0.9
+      paired_ttest_p: 0.008
+      significant_at_005: true
+      bootstrap_95ci_gap_lower_pp: 5.2
+      bootstrap_95ci_gap_upper_pp: 10.8
+    result_rationale: 'Classification 任务输出空间为二元标签，收敛行为稳定，seed 间方差小（std ~0.3pp）。 CWM
+      方差更大（std ~0.8pp），因为 generation 质量对初始化更敏感——不同 seed 学到的 输出格式化模式略有差异，导致 string
+      matching 成功率波动。 3 个 seed 的 paired t-test 自由度只有 2，p=0.008 刚好通过 0.05 阈值，但审稿人可能
+      质疑样本量。Bootstrap CI 下界 5.2pp 仍大于 3pp kill 线，确认 gap 稳健。 median 档下这个结果足以支撑论文，但不如
+      best 档那样压倒性。
+
+      '
+    tables:
+    - name: 'Table 2: Multi-Seed Stability'
+      columns:
+      - Formulation
+      - Seed_0
+      - Seed_1
+      - Seed_42
+      - Mean
+      - Std
+      rows:
+      - - Classification
+        - 0.876
+        - 0.87
+        - 0.873
+        - 0.873
+        - 0.003
+      - - CWM Generation
+        - 0.801
+        - 0.785
+        - 0.793
+        - 0.793
+        - 0.008
+      - - Gap (pp)
+        - 7.5
+        - 8.5
+        - 8.0
+        - 8.0
+        - 0.9
+    figures_description:
+    - 'Box plot: 3-seed F1 分布对比，classification 箱体窄，CWM 箱体宽'
+    analysis: 'Gap 显著（p<0.01），CI 下界 > kill 线。但 n=3 seeds 的统计效力有限，审稿人可能要求更多 seeds。
+      Median 档下建议在 limitation 中承认样本量约束。
+
+      '
+  - name: Trace-then-Judge Ablation
+    plan_id: trace-then-judge
+    description: '单 Qwen3-4B 模型训练先生成 ~50 token 执行推理 trace，再输出 pass/fail（CoT 风格）。 隔离分类优势来源：是跳过
+      trace 本身有用，还是任务简化有用？
+
+      '
+    expected_results:
+      ttj_pass_f1: 0.81
+      ttj_fail_f1: 0.82
+      ttj_avg_f1: 0.815
+      ttj_accuracy: 0.82
+      ttj_vs_classification_gap_pp: -5.8
+      ttj_vs_cwm_gap_pp: 2.0
+      trace_quality_exact_match: 0.45
+      trace_quality_semantic_correct: 0.68
+    result_rationale: 'Trace-then-Judge 的 F1 (~81.5%) 落在 CWM (79.5%) 和 classification
+      (87.5%) 之间， 这是 median 档最核心的 confound。两种解读都有道理： (a) "trace 有帮助"：TtJ 比 CWM 高 2pp，说明先推理再分类比直接生成输出好，支撑
+      "分类是更好的最终判定方式"。 (b) "trace 有害"：TtJ 比 direct classification 低 5.8pp，说明强制生成 trace
+      引入了 不必要的噪声——模型有时生成错误 trace 但据此做出错误判断，或生成正确 trace 但 提取 pass/fail 时出错。 这个结果无法干净分离
+      "formulation advantage" 和 "task simplicity advantage"， 因为 TtJ 同时包含两者的混合效应。论文必须诚实讨论这个
+      confound，不能简单声称 classification 的优势完全来自 formulation。 trace 质量分析显示只有 45% exact
+      match 和 68% 语义正确，解释了为何 TtJ 未能达到 classification 水平——trace 生成本身就是一个困难的中间任务。
+
+      '
+    tables:
+    - name: 'Table 3: Formulation Spectrum'
+      columns:
+      - Method
+      - Avg_F1
+      - vs Classification
+      - vs CWM
+      rows:
+      - - Classification (direct)
+        - 0.875
+        - '-'
+        - +8.0pp
+      - - Trace-then-Judge
+        - 0.815
+        - -6.0pp
+        - +2.0pp
+      - - CWM Generation
+        - 0.795
+        - -8.0pp
+        - '-'
+    figures_description:
+    - 'Bar chart: 三种 formulation 的 F1 对比，error bar 来自 multi-seed（如果有）'
+    - 'Confusion matrix 对比: TtJ 中 trace-correct-but-judge-wrong vs trace-wrong-but-judge-right
+      的交叉分析'
+    analysis: 'TtJ 位于两者之间是 median 档的关键特征。论文不能简单画 classification > TtJ > CWM 的递进关系，
+      因为 TtJ 的 CoT 设计与 CWM 的 full output generation 是不同的中间点。 建议在论文中呈现为 "execution
+      reasoning provides partial benefit, but the overhead of trace generation outweighs
+      the reasoning advantage compared to direct classification."
+
+      '
+  - name: Trajectory-Level Fine-tuned Baseline
+    plan_id: traj-level-finetuned
+    description: 'Qwen3-4B LoRA 训练 trajectory-level resolved/unresolved 预测。隔离 granularity
+      效应。
+
+      '
+    expected_results:
+      traj_accuracy: 0.835
+      traj_resolved_f1: 0.83
+      traj_unresolved_f1: 0.84
+      traj_avg_f1: 0.835
+      per_test_vs_traj_gap_pp: 4.0
+      traj_context_length_median_tokens: 2800
+      per_test_context_length_median_tokens: 850
+    result_rationale: 'Trajectory-level 将所有测试拼接为单一输入，输出 resolved/unresolved 二元标签。
+      任务本身仍是分类（非 generation），但上下文更长（中位 ~2800 tokens vs per-test ~850 tokens） 且需要隐式推理所有测试的聚合结果。
+      F1 ~83.5% 介于 per-test (87.5%) 和 CWM (79.5%) 之间，但更接近 per-test。 4pp gap 来自两个因素：(1)
+      长上下文降低了 4B 模型的注意力效率，部分测试信息被丢失； (2) 聚合预测要求模型隐式执行 "any test fails → unresolved"
+      的逻辑，而 per-test 模型 只需逐个判断。 这个结果表明 granularity 贡献了 ~4pp（per-test vs traj），formulation
+      贡献了 ~4pp （traj vs CWM），两者大致等分了 8pp 总 gap。这是一个有趣的分解，但也使得 "task reformulation"
+      的叙事需要更精确——不能将全部优势归于 formulation。
+
+      '
+    tables:
+    - name: 'Table 4: Granularity vs Formulation Decomposition'
+      columns:
+      - Method
+      - Formulation
+      - Granularity
+      - Avg_F1
+      - Gap_Source
+      rows:
+      - - Per-test Classification
+        - Classification
+        - Per-test
+        - 0.875
+        - Reference
+      - - Trajectory Classification
+        - Classification
+        - Trajectory
+        - 0.835
+        - 'Granularity: -4.0pp'
+      - - CWM Generation
+        - Generation
+        - Per-test
+        - 0.795
+        - 'Formulation: -4.0pp'
+    figures_description:
+    - '2x2 matrix heatmap: formulation (x) × granularity (y) → F1，显示两个因素的独立贡献'
+    analysis: 'Granularity 和 formulation 各贡献 ~4pp，意味着论文 Claim 1 不能仅强调 formulation——
+      必须承认 per-test granularity 本身也带来了显著增益。 建议将 Claim 1 改写为 "classification formulation
+      AND per-test granularity jointly provide..."
+
+      '
+  - name: Model Size Scaling (4B → 8B)
+    plan_id: model-size-scaling
+    description: 'Classification 和 CWM 均扩展到 8B，观察 gap 是否随规模缩小。
+
+      '
+    expected_results:
+      classification_8b_f1: 0.895
+      cwm_8b_f1: 0.84
+      gap_8b_pp: 5.5
+      gap_4b_pp: 8.0
+      gap_narrowing_pp: 2.5
+      classification_4b_to_8b_gain_pp: 2.0
+      cwm_4b_to_8b_gain_pp: 4.5
+    result_rationale: '8B 模型容量更大，CWM 获益更多（+4.5pp vs classification +2.0pp），因为额外参数主要帮助
+      解决 generation 的瓶颈——更好的输出格式化、更准确的字符串预测、更少的 token exhaustion。 Classification 已经在
+      4B 达到较高水平（87.5%），改进空间本就有限。 Gap 从 8pp 缩小到 5.5pp，支撑 median 档叙事："classification
+      advantage may narrow at larger scales"。但 5.5pp 仍然显著，说明 formulation difference
+      不会被纯粹的 scale 抹平——至少在 4B-8B 范围内。 推测在 32B+ 规模下 gap 可能进一步收窄到 2-3pp，但本实验无法验证。
+
+      '
+    tables:
+    - name: 'Table 5: Scaling Behavior'
+      columns:
+      - Model_Size
+      - Classification_F1
+      - CWM_F1
+      - Gap_pp
+      rows:
+      - - 4B
+        - 0.875
+        - 0.795
+        - 8.0
+      - - 8B
+        - 0.895
+        - 0.84
+        - 5.5
+      - - Delta
+        - +2.0pp
+        - +4.5pp
+        - -2.5pp
+    figures_description:
+    - 'Line plot: x=model_size, y=F1, 两条线（classification vs CWM），显示 gap 收敛趋势'
+    analysis: 'Gap 收窄但仍显著，是 median 档的典型结果。论文可以画一条外推虚线暗示更大模型可能收敛， 但不应做强断言。这个结果使 Claim
+      1 的 framing 必须包含 "at small model scales" 的限定词。
+
+      '
+  - name: Per-Test Failure Precision/Recall
+    plan_id: per-test-precision-recall
+    description: '在完整测试集上衡量 per-test failure 预测的 precision 和 recall。
+
+      '
+    expected_results:
+      failure_precision: 0.78
+      failure_recall: 0.74
+      failure_f1: 0.76
+      pass_precision: 0.88
+      pass_recall: 0.9
+      false_positive_rate: 0.1
+      false_negative_rate: 0.26
+      precision_at_k3_failures: 0.72
+      ndcg_failure_ranking: 0.81
+    result_rationale: '模型在预测"哪些测试会失败"上的 precision ~78% 意味着每 5 个 failure 预测中有 ~1 个是
+      false positive（实际 pass 的测试被错误标记为 fail）。Recall ~74% 意味着 ~26% 的真实 failure 被漏掉。
+      这种不对称是合理的：(a) pass 类更多（数据分布 52% pass），模型对 pass 的预测更有信心； (b) failure 模式多样（assertion
+      error, exception, timeout），部分 edge case 难以从 代码静态分析推断。 78% precision 对下游 re-repair
+      的含义是：repair agent 收到的 failure 信息有 ~22% 噪声， 可能导致修复方向偏移。这解释了为什么 re-repair lift
+      在 median 档只有 ~2.5%。
+
+      '
+    tables:
+    - name: 'Table 6: Diagnostic Signal Quality'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Failure Precision
+        - 0.78
+      - - Failure Recall
+        - 0.74
+      - - Failure F1
+        - 0.76
+      - - Pass Precision
+        - 0.88
+      - - Pass Recall
+        - 0.9
+      - - False Positive Rate
+        - 0.1
+    figures_description:
+    - Precision-Recall curve for failure class, 标注 operating point
+    - 'Confusion matrix heatmap: predicted vs actual pass/fail'
+    analysis: '这是 Claim 2 的前提实验。78%/74% 的 precision/recall 表明 diagnostic signal 存在但有噪声。
+      足以作为 "signal quality analysis" 的正面结果，但不足以支撑 "actionable diagnostics" 的强叙事。 建议论文讨论
+      precision 阈值——在什么 precision 下 per-test info 开始帮助 vs 误导 repair agent。
+
+      '
+  - name: Diagnostic Re-Repair Pilot
+    plan_id: diagnostic-rerepair
+    description: '200 实例上对比：repair agent 有 per-test failure 预测 vs 无 per-test 信息，比较
+      resolve rate。
+
+      '
+    expected_results:
+      baseline_resolve_rate: 0.32
+      with_pertest_resolve_rate: 0.345
+      resolve_rate_lift_pct: 2.5
+      lift_absolute_instances: 5
+      p_value_mcnemar: 0.12
+      significant_at_005: false
+      significant_at_010: false
+      n_instances: 200
+      effect_size_cohens_h: 0.05
+      power_at_n200: 0.28
+    result_rationale: '2.5% resolve rate lift（32% → 34.5%）在 n=200 下不显著（p=0.12）。 效应量极小（Cohen''s
+      h=0.05），统计检验功效只有 28%——需要 n≈2000 才能在 α=0.05 下 检测到这个 effect size。 lift 之所以小有三个原因：
+      (1) 69% 的实例只有 T=1 F2P 测试，per-test info 退化为 trajectory-level，无额外信息； (2) 78% precision
+      意味着 ~22% 的 failure 预测是错误的，repair agent 有时被误导； (3) 当前 repair agent（SWE-agent
+      级别）的 re-repair 能力有限，即使给出正确的 failure 定位，也不一定能修复。 这个结果在 median 档下是 "suggestive
+      but inconclusive"——方向正确但证据不足。 论文应呈现为 pilot study，承认 underpowered，建议未来工作用更大样本验证。
+
+      '
+    tables:
+    - name: 'Table 7: Re-Repair Pilot Results'
+      columns:
+      - Condition
+      - Resolve_Rate
+      - N
+      - 95% CI
+      rows:
+      - - No per-test info
+        - 32.0%
+        - 200
+        - '[25.6%, 38.4%]'
+      - - With per-test predictions
+        - 34.5%
+        - 200
+        - '[27.9%, 41.1%]'
+      - - Lift
+        - +2.5pp
+        - '-'
+        - p=0.12 (n.s.)
+    figures_description:
+    - 'Bar chart with error bars: resolve rate ± 95% CI，两个条件'
+    - 'Stratified lift by T: T=1 instances (lift ≈ 0%) vs T≥2 instances (lift ≈ 6-8%)'
+    analysis: '不显著的 re-repair lift 是 median 档对 Claim 2 的最大打击。论文策略： (1) 将 per-test-precision-recall
+      作为 Claim 2 的主要证据（signal 存在）； (2) re-repair 降级为 pilot/suggestive evidence； (3)
+      展示 T≥2 子集的 stratified lift（预计 6-8%）作为 "per-test info helps when it provides
+      new information" 的支撑。
+
+      '
+  - name: Oracle F2P Stratified Analysis
+    plan_id: oracle-f2p-stratified
+    description: '按 F2P 测试数量 T=1, T=2, T=3+ 分层，报告 per-test vs trajectory 的 oracle
+      advantage。
+
+      '
+    expected_results:
+      T1_pct_instances: 0.69
+      T1_iid_advantage: 0.02
+      T1_block_advantage: 0.05
+      T2_pct_instances: 0.19
+      T2_iid_advantage: 0.09
+      T2_block_advantage: 0.22
+      T3plus_pct_instances: 0.12
+      T3plus_iid_advantage: 0.18
+      T3plus_block_advantage: 0.38
+      population_weighted_iid_advantage: 0.046
+      population_weighted_block_advantage: 0.115
+    result_rationale: '这是 oracle 模拟的直接分解，结果由数学性质决定而非模型训练。 T=1 时 per-test 和 trajectory-level
+      在数学上几乎等价——唯一差异来自 per-test 模型 在该测试上的 calibration 可能不同于 trajectory 模型的整体 calibration。优势
+      ~2%。 T=2 时 per-test 可以区分"两个测试都失败"和"只有一个测试失败"的 patch，提供了 trajectory-level 无法获得的排序信号。i.i.d.
+      优势 ~9%，block-corr 下 ~22%。 T=3+ 时优势最大（i.i.d. 18%, block 38%），因为更多测试提供了更丰富的 ranking
+      信号。 但 T=3+ 只占 12% 的实例，所以 population-weighted advantage 被严重稀释。 Block correlation
+      在所有 T 下都放大优势，因为 correlated errors 降低了 effective 独立测试数，使每个测试的信息量更大。
+
+      '
+    tables:
+    - name: 'Table 8: Stratified Oracle Advantage'
+      columns:
+      - T_bucket
+      - Pct_Instances
+      - IID_Advantage
+      - Block_Advantage
+      rows:
+      - - T=1
+        - 69%
+        - 2.0%
+        - 5.0%
+      - - T=2
+        - 19%
+        - 9.0%
+        - 22.0%
+      - - T≥3
+        - 12%
+        - 18.0%
+        - 38.0%
+      - - Pop. Weighted
+        - 100%
+        - 4.6%
+        - 11.5%
+    figures_description:
+    - 'Grouped bar chart: per-T bucket advantage, i.i.d. vs block, 颜色区分'
+    - 'Stacked area: SWE-bench T 分布直方图，叠加 per-test advantage 曲线'
+    analysis: '这是 Claim 3 的核心表格，也是论文最强贡献。清晰展示 per-test advantage 集中在 T≥2 实例（31%），为
+      "when to deploy per-test simulation" 提供了 actionable decision rule。 建议论文标题或副标题直接引用这个发现。
+
+      '
+  - name: Block Correlation Empirical Validation
+    plan_id: block-corr-empirical
+    description: '从训练好的 classification 模型的 test-level 预测中测量误差相关结构， 与 i.i.d. 和 block-corr
+      模拟对比。
+
+      '
+    expected_results:
+      empirical_spearman_vs_iid: 0.18
+      empirical_spearman_vs_block: 0.72
+      effective_rho: 0.22
+      ratio_to_block_model_rho: 0.44
+      iid_model_ks_test_p: 0.003
+      block_model_ks_test_p: 0.08
+    result_rationale: '模型预测误差在同一 instance 内存在中等程度相关（Spearman vs i.i.d. = 0.18）， 因为共享的代码上下文导致类似的
+      failure 模式（如模型对某种 assertion 风格系统性判错）。 但这种相关远低于 block model 假设的完全相关（Spearman
+      vs block = 0.72）。 实际 effective rho ~0.22 大约是 block model rho 的 44%。 KS 检验显示
+      i.i.d. 模型被显著拒绝（p=0.003），block model 未被拒绝（p=0.08） 但也不算好的 fit。真实误差结构介于两者之间，更接近
+      i.i.d.。 这意味着 oracle 模拟中 block-corr 结果是上界估计，i.i.d. 结果更接近现实。 对论文叙事的影响：population-weighted
+      advantage 的 realistic estimate 更接近 4.6%（i.i.d.）而非 11.5%（block），降低了 per-test
+      的整体优势主张。
+
+      '
+    tables:
+    - name: 'Table 9: Error Correlation Structure'
+      columns:
+      - Metric
+      - Empirical
+      - IID_Model
+      - Block_Model
+      rows:
+      - - Intra-instance error Spearman
+        - 0.18
+        - 0.0
+        - 1.0
+      - - Effective ρ
+        - 0.22
+        - 0.0
+        - 0.5
+      - - KS test p-value
+        - '-'
+        - 0.003
+        - 0.08
+    figures_description:
+    - 'Scatter plot: empirical error correlation matrix (test-pair) vs predicted under
+      i.i.d. and block models'
+    analysis: '实证数据确认误差结构介于两个极端之间，effective T 更接近 i.i.d.。 这是论文诚实性的体现——block model
+      结果虽然好看，但不是最佳估计。 建议报告 calibrated advantage（插值 i.i.d. 和 block 结果）作为 point estimate。
+
+      '
+  - name: SWE-bench PerTest Data Construction
+    plan_id: swebench-pertest-data
+    description: 'Docker 重跑 SWE-bench Verified 的 patch，提取 per-test pass/fail 标签。 目标
+      500 instances × 16 candidates。
+
+      '
+    expected_results:
+      target_instances: 500
+      successful_instances: 420
+      failed_instances: 80
+      failure_rate: 0.16
+      failure_reasons:
+        docker_timeout: 35
+        env_setup_failure: 25
+        flaky_tests: 12
+        other: 8
+      total_candidate_test_pairs: 67200
+      avg_tests_per_instance: 42
+      avg_f2p_per_instance: 2.8
+      avg_p2p_per_instance: 39.2
+      compute_hours_wall: 22
+    result_rationale: '16% 失败率反映 SWE-bench Docker 环境的现实复杂度。主要失败原因： (1) Docker timeout（35
+      例）：部分 repo 的测试套件耗时超过容器限制，尤其是大型 Django/scipy 项目； (2) 环境搭建失败（25 例）：依赖版本冲突、系统库缺失、Python
+      版本不匹配； (3) Flaky tests（12 例）：测试结果在重跑间不一致，无法作为可靠标签。 420 个成功实例 × 16 candidates
+      = 6720 instance-candidate pairs，每个平均 ~42 个测试， 总计 ~67k test-level labels。这个数据量足以支撑
+      repo-level 训练实验。 22h wall clock 在 16 并行容器下合理（~1.3h per instance 平均，考虑排队和重试）。
+
+      '
+    tables: []
+    figures_description:
+    - 'Data statistics dashboard: instances per repo, T distribution histogram, failure
+      mode breakdown'
+    analysis: '420 个实例（vs 目标 500）是可接受的 yield。更关键的是数据质量——需要验证 flaky test 过滤是否充分，以及
+      per-test labels 与官方 SWE-bench 的 trajectory-level labels 一致性。
+
+      '
+  - name: Repo-Level Training
+    plan_id: repo-level-training
+    description: '在 SWE-bench-PerTest 数据上微调 Qwen3-4B/8B，预测 repo-level per-test pass/fail。
+
+      '
+    expected_results:
+      repo_4b_pass_f1: 0.72
+      repo_4b_fail_f1: 0.75
+      repo_4b_avg_f1: 0.735
+      repo_4b_accuracy: 0.74
+      repo_8b_pass_f1: 0.77
+      repo_8b_fail_f1: 0.79
+      repo_8b_avg_f1: 0.78
+      repo_8b_accuracy: 0.78
+      function_to_repo_drop_4b_pp: 14.0
+      function_to_repo_drop_8b_pp: 11.5
+      context_length_median_tokens: 4200
+      context_length_p95_tokens: 12800
+    result_rationale: 'Repo-level per-class F1 ~73.5% (4B) / ~78% (8B) 反映了 repo-level
+      任务的固有难度： (1) 上下文长度大幅增加（中位 ~4200 tokens，P95 ~12800 tokens），超过 function-level
+      的 ~850 tokens 约 5 倍，4B 模型的注意力容量受限； (2) 跨文件依赖要求模型理解 import 链、类继承、配置文件的影响，这在 function-level
+      不存在； (3) 训练数据量更少（420 instances vs function-level 数千条），过拟合风险更高； (4) 测试复杂度更高——repo-level
+      测试常涉及 fixture setup、database state、file I/O。 8B 模型比 4B 好 ~4.5pp，主要得益于更好的长上下文处理能力。
+      14pp drop（function → repo）对论文的影响：不能直接将 function-level 的结论泛化到 repo-level， 需要在论文中作为
+      separate evaluation 呈现，并诚实讨论 generalization gap。
+
+      '
+    tables:
+    - name: 'Table 10: Function-Level vs Repo-Level'
+      columns:
+      - Level
+      - Model
+      - Avg_F1
+      - Accuracy
+      rows:
+      - - Function
+        - 4B
+        - 0.875
+        - 0.875
+      - - Function
+        - 8B
+        - 0.895
+        - 0.895
+      - - Repo
+        - 4B
+        - 0.735
+        - 0.74
+      - - Repo
+        - 8B
+        - 0.78
+        - 0.78
+    figures_description:
+    - 'Grouped bar: function vs repo F1, 4B vs 8B, 误差条表示 per-repo 方差'
+    analysis: 'Repo-level F1 在 median 档 [70-79] 范围内。结果 usable 但不 impressive。 论文策略：作为
+      "preliminary extension" 呈现，强调 function-level 是主要贡献， repo-level 展示方法可行性但需要更多数据和更大模型。
+
+      '
+  - name: LLM-as-Judge Baselines
+    plan_id: llm-judge-baseline
+    description: 'Qwen3-8B/32B zero-shot LLM-as-judge，trajectory-level 和 per-test
+      两种模式。 作为 Pareto frontier 的参考点。
+
+      '
+    expected_results:
+      qwen3_8b_traj_accuracy: 0.65
+      qwen3_8b_pertest_accuracy: 0.62
+      qwen3_32b_traj_accuracy: 0.72
+      qwen3_32b_pertest_accuracy: 0.69
+      qwen3_8b_traj_f1: 0.63
+      qwen3_32b_traj_f1: 0.71
+      qwen3_8b_pertest_f1: 0.6
+      qwen3_32b_pertest_f1: 0.67
+      inference_cost_8b_per_instance_sec: 2.5
+      inference_cost_32b_per_instance_sec: 12.0
+    result_rationale: 'Zero-shot LLM judge 缺乏 task-specific fine-tuning 信号，必须依赖通用代码理解能力。
+      8B zero-shot (~63% F1) 远低于 4B fine-tuned (~87.5%)，说明 fine-tuning 在这个任务上 价值巨大——通用代码理解不足以可靠预测执行结果。
+      32B 通过更强的代码推理能力达到 ~71% F1，但仍低于 fine-tuned 4B。 Per-test 模式比 trajectory 略差 2-3pp，因为
+      per-test 需要更精细的推理（判断单个测试的 具体行为），而 trajectory-level 可以利用更多启发式规则（如"代码改动小 → 大概率
+      pass"）。 这些 baseline 在 Pareto frontier 上提供了 "high cost, moderate accuracy" 的参考点，
+      与 fine-tuned classification 的 "low cost, high accuracy" 形成清晰对比。
+
+      '
+    tables:
+    - name: 'Table 11: Pareto Frontier Reference Points'
+      columns:
+      - Model
+      - Mode
+      - Params
+      - Fine-tuned
+      - F1
+      - Cost_per_instance
+      rows:
+      - - Qwen3-4B LoRA
+        - Per-test Classification
+        - 4B
+        - true
+        - 0.875
+        - 0.3s
+      - - Qwen3-4B LoRA
+        - CWM Generation
+        - 4B
+        - true
+        - 0.795
+        - 0.8s
+      - - Qwen3-8B
+        - Zero-shot Traj
+        - 8B
+        - false
+        - 0.63
+        - 2.5s
+      - - Qwen3-8B
+        - Zero-shot Per-test
+        - 8B
+        - false
+        - 0.6
+        - 2.5s
+      - - Qwen3-32B
+        - Zero-shot Traj
+        - 32B
+        - false
+        - 0.71
+        - 12s
+      - - Qwen3-32B
+        - Zero-shot Per-test
+        - 32B
+        - false
+        - 0.67
+        - 12s
+    figures_description:
+    - 'Pareto frontier scatter: x=cost (inference time), y=F1, 每个方法一个点，Pareto 前沿线'
+    analysis: 'Fine-tuned 4B classification 在 Pareto frontier 上占据最优位置——最低成本且最高精度。
+      这个结果强化了 Claim 1 的实用性论点：不仅 formulation 更好，还更高效。 32B zero-shot 接近但未超过 4B fine-tuned
+      CWM，有趣但不意外。
+
+      '
+  - name: Per-Test Majority Voting (K=3)
+    plan_id: per-test-majority-voting
+    description: 'Classification 模型 K=3 self-consistency，测试多数投票是否提升 per-test 精度。
+
+      '
+    expected_results:
+      single_pass_f1: 0.875
+      majority_k3_f1: 0.885
+      improvement_pp: 1.0
+      compute_multiplier: 3.0
+      marginal_gain_per_compute: 0.33
+      agreement_rate_k3: 0.92
+      flip_rate_correct_to_wrong: 0.02
+      flip_rate_wrong_to_correct: 0.04
+    result_rationale: 'Majority voting 带来 ~1pp 改进（87.5% → 88.5%），因为 classification
+      任务已经在 单次推理下达到较高 calibration。92% 的样本三次预测完全一致，意味着大部分 uncertainty 已经在单次推理中被解决。
+      剩余 8% 不一致的样本中，4% 从错误翻转为正确（2:1 多数），2% 从正确翻转为错误（1:2 少数）。 净增益 = 4% - 2% = 2%，但由于只影响
+      8% 的样本，总体改进 ≈ 2% × 8% / (scale) ≈ 1pp。 3 倍推理成本换取 1pp 改进，成本效益比低。论文可以在 appendix
+      中报告但不作为主要结果。
+
+      '
+    tables:
+    - name: 'Table A1 (Appendix): Self-Consistency'
+      columns:
+      - K
+      - F1
+      - Compute
+      - Marginal_Gain_per_Compute
+      rows:
+      - - 1
+        - 0.875
+        - 1×
+        - '-'
+      - - 3
+        - 0.885
+        - 3×
+        - 0.33pp/×
+    figures_description: []
+    analysis: 边际收益递减，确认 classification formulation 已经达到该模型规模下的近最优预测。 这间接支撑了 Claim
+      1——classification 不需要额外 test-time compute tricks 就能达到高精度。
+  review_report: '# [Dream Review — median]
+
+
+    Status: skipped (paper PDF not produced)
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: ''
+  imagined_experiments:
+  - name: CWM Generation Baseline
+    plan_id: cwm-baseline
+    description: 'Qwen3-4B LoRA 训练 CWM generation（预测 execution output）， 与 classification
+      model (87.1/87.9 F1) 对比。
+
+      '
+    expected_results:
+      cwm_generation_pass_f1: 84.3
+      cwm_generation_fail_f1: 85.1
+      cwm_generation_overall_accuracy: 0.847
+      classification_minus_cwm_gap_pass_f1: 2.8
+      classification_minus_cwm_gap_fail_f1: 2.8
+      cwm_token_budget_overflow_rate: 0.03
+      cwm_exact_match_rate: 0.61
+    result_rationale: 'Function-level test 的 expected output 通常很短（单个返回值、True/False、短字符串），
+      token-budget exhaustion 在 CWM debugging 论文中报告的问题主要出现在 repo-level 长 trace 场景。
+      4B 模型在 function-level 生成短输出时不会遇到严重的 token 限制， string-value prediction error
+      也因输出简单而低频（overflow rate ~3%）。 因此 generation 与 classification 的差距被压缩到 ≤4 F1 点，
+      说明 "task reformulation" 的优势在 function-level 尺度上不显著—— classification 之所以更好，仅仅是因为输出空间更小，而非根本性的
+      formulation 优势。 exact match ~61% 看似不高，但 pass/fail 判定只需对 output 做二值判断， 大部分 non-exact-match
+      的 output 仍能正确推导出 pass/fail 结论。
+
+      '
+    tables:
+    - caption: Classification vs CWM Generation (Qwen3-4B, function-level)
+      columns:
+      - Model
+      - Formulation
+      - Pass_F1
+      - Fail_F1
+      - Accuracy
+      - Token_Overflow_Rate
+      rows:
+      - - Qwen3-4B-LoRA
+        - Classification
+        - 87.1
+        - 87.9
+        - 0.875
+        - N/A
+      - - Qwen3-4B-LoRA
+        - CWM Generation
+        - 84.3
+        - 85.1
+        - 0.847
+        - 0.03
+      - - Delta
+        - ''
+        - -2.8
+        - -2.8
+        - -0.028
+        - ''
+    figures_description:
+    - 'Per-class F1 bar chart: classification vs generation, 误差棒重叠显著，gap 不具统计显著性 (p>0.05,
+      bootstrap CI)'
+    analysis: '2.8 F1 的差距在统计上不显著（bootstrap 95% CI 横跨零点）。 function-level output 足够短，generation
+      不遭遇 CWM 论文中的 token-budget 瓶颈。 这意味着 "reformulation from generation to classification"
+      的叙事在 function-level 不成立—— classification 仅是 marginally better，无法支撑 Claim 1 的核心论点。
+
+      '
+  - name: Trace-then-Judge Ablation
+    plan_id: trace-then-judge
+    description: 'Qwen3-4B/8B 先生成 execution trace，再从 trace 中抽取 pass/fail。 隔离 classification
+      advantage 是来自 formulation（不需要 trace）还是 task simplicity。
+
+      '
+    expected_results:
+      ttj_4b_pass_f1: 85.2
+      ttj_4b_fail_f1: 85.9
+      ttj_8b_pass_f1: 87.8
+      ttj_8b_fail_f1: 88.4
+      ttj_4b_vs_direct_classification_gap: -1.9
+      ttj_8b_vs_direct_classification_gap: 0.7
+      trace_generation_accuracy: 0.78
+      trace_to_verdict_accuracy_given_correct_trace: 0.97
+    result_rationale: 'Trace-then-Judge 在 4B 时略低于 direct classification（-1.9 F1），
+      但在 8B 时反超（+0.7 F1）。这说明 trace generation 确实提供了中间推理步骤的价值， 只是 4B 模型容量不足以同时 generate
+      trace 并做 judgment。 8B 反超意味着 classification formulation 的优势不是根本性的， 而仅仅是 4B 规模下的
+      capacity 约束造成的—— 给足参数后，generation + extraction 方案同样有效甚至更好。 这直接摧毁了 "classification
+      is fundamentally simpler" 的论点： 它只是对小模型更友好，不是一个 formulation-level insight。
+
+      '
+    tables:
+    - caption: Trace-then-Judge vs Direct Classification
+      columns:
+      - Model
+      - Method
+      - Pass_F1
+      - Fail_F1
+      - Avg_F1
+      rows:
+      - - Qwen3-4B
+        - Direct Classification
+        - 87.1
+        - 87.9
+        - 87.5
+      - - Qwen3-4B
+        - Trace-then-Judge
+        - 85.2
+        - 85.9
+        - 85.6
+      - - Qwen3-8B
+        - Direct Classification
+        - 89.4
+        - 90.1
+        - 89.8
+      - - Qwen3-8B
+        - Trace-then-Judge
+        - 87.8
+        - 88.4
+        - 88.1
+    figures_description:
+    - 4B vs 8B 两组对比图，8B 组中 Trace-then-Judge 与 Direct Classification 的 CI 完全重叠
+    analysis: 'TTJ 8B 与 direct classification 8B 差距 <2 F1，且 TTJ 8B 与 direct classification
+      4B 性能相当。 这表明 trace generation 不是瓶颈——模型规模才是。 Claim 1 的 "formulation matters"
+      论点被 confound 于 model capacity，无法独立成立。
+
+      '
+  - name: Trajectory-level Finetuned Baseline
+    plan_id: traj-level-finetuned
+    description: 'Qwen3-4B LoRA 训练 trajectory-level resolved/unresolved 分类器， 隔离 granularity
+      effect vs formulation effect。
+
+      '
+    expected_results:
+      traj_level_accuracy: 0.852
+      traj_level_resolved_f1: 84.8
+      traj_level_unresolved_f1: 85.5
+      per_test_aggregated_to_traj_accuracy: 0.861
+      per_test_vs_traj_level_gap: 0.9
+    result_rationale: 'Trajectory-level finetuned 模型直接从 (code, full_test_suite) 预测
+      resolved/unresolved， 不需要 per-test 中间步骤。在 T=1 dominant (68.7%) 的分布下， trajectory-level
+      与 per-test-then-aggregate 的信息量几乎等价。 差距仅 0.9 ppt 说明 per-test granularity 在当前
+      benchmark 分布下 几乎不提供额外信息——aggregation 的理论优势被 T=1 dominance 抹平。 少量 T≥2 instances
+      上 per-test 有优势，但被 T=1 的等价性稀释。
+
+      '
+    tables:
+    - caption: Per-test Aggregated vs Trajectory-level (Qwen3-4B)
+      columns:
+      - Granularity
+      - Accuracy
+      - Resolved_F1
+      - Unresolved_F1
+      rows:
+      - - Per-test → Aggregate
+        - 0.861
+        - 85.7
+        - 86.4
+      - - Trajectory-level Direct
+        - 0.852
+        - 84.8
+        - 85.5
+      - - Delta
+        - 0.009
+        - 0.9
+        - 0.9
+    figures_description:
+    - Accuracy 对比柱状图，差异在 error bar 内不显著
+    analysis: 'Per-test → aggregate 方法比 trajectory-level 仅高 0.9 ppt， 在 bootstrap test
+      下 p=0.18，不显著。 对于 68.7% 的 T=1 instances 而言两种方法数学等价， per-test granularity 的优势仅在
+      T≥2 的 31.3% 子集上可能体现， 但被整体 accuracy 稀释到不可区分。
+
+      '
+  - name: Model Size Scaling (4B→8B)
+    plan_id: model-size-scaling
+    description: 'Classification 和 CWM generation 分别 scale 到 8B， 观察 classification
+      advantage 是否随规模保持。
+
+      '
+    expected_results:
+      classification_8b_pass_f1: 89.4
+      classification_8b_fail_f1: 90.1
+      cwm_generation_8b_pass_f1: 88.1
+      cwm_generation_8b_fail_f1: 88.7
+      gap_8b: 1.3
+      gap_4b: 2.8
+      gap_trend: narrowing
+    result_rationale: '8B 规模下 CWM generation 进一步逼近 classification（gap 从 2.8 缩小到 1.3）。
+      更大模型的 generation capacity 提升更快—— generation 的难度主要来自需要"记住"输出格式和预测具体值， 这些随参数量增加而快速改善。
+      Classification 的提升相对 moderate 因为 4B 已接近 function-level 的 ceiling。 gap narrowing
+      趋势进一步削弱 "formulation advantage" 论点—— 如果差距随 scale 消失，那 classification 只是小模型的
+      regularization effect， 不是一个 scale-invariant insight。
+
+      '
+    tables:
+    - caption: Classification vs Generation across Model Sizes
+      columns:
+      - Size
+      - Classification_Avg_F1
+      - Generation_Avg_F1
+      - Gap
+      rows:
+      - - 4B
+        - 87.5
+        - 84.7
+        - 2.8
+      - - 8B
+        - 89.8
+        - 88.4
+        - 1.3
+    figures_description:
+    - 'Scaling curve: x=model size, y=avg F1, 两条线收敛'
+    analysis: 'Gap 从 4B 的 2.8 缩小到 8B 的 1.3，趋势线外推到 ~14B 处交叉。 这意味着 classification advantage
+      是 small-model phenomenon， 不是一个 fundamental formulation insight。 论文若以此为 main
+      claim 将面临 "just use a bigger model" 的 reviewer 质疑。
+
+      '
+  - name: Diagnostic Re-repair
+    plan_id: diagnostic-rerepair
+    description: '200 instances 上比较：repair agent 使用 per-test failure predictions vs
+      无 per-test info， 衡量 resolve rate lift。
+
+      '
+    expected_results:
+      baseline_resolve_rate: 0.34
+      with_diagnostic_resolve_rate: 0.345
+      resolve_rate_lift_pct: 0.5
+      diagnostic_precision_at_threshold: 0.69
+      actionable_diagnostic_rate: 0.23
+    result_rationale: 'Diagnostic re-repair 要求两个条件同时满足：(1) per-test prediction 足够准确以识别
+      failing test， (2) repair agent 能利用 "test X fails" 信息生成 targeted fix。 在 worst
+      档位下，per-test failure precision 仅 0.69，意味着 ~31% 的诊断指向是错误的， 给 repair agent 引入噪声反而可能
+      mislead。 此外，即使诊断正确，repair agent 可能已经从 error message 中获得等价信息， 使得 per-test prediction
+      的边际信息量很低。 0.5% lift 在 200 instances 上对应 ~1 个额外 resolved instance， 远低于统计显著性门槛。
+
+      '
+    tables:
+    - caption: Diagnostic Re-repair Resolve Rates
+      columns:
+      - Condition
+      - Resolve_Rate
+      - N_Resolved
+      - Lift
+      rows:
+      - - No diagnostic
+        - 0.34
+        - 68/200
+        - —
+      - - With per-test diagnostic
+        - 0.345
+        - 69/200
+        - +0.5%
+    figures_description:
+    - Resolve rate 柱状图，error bar 完全重叠
+    - 'Error analysis: 诊断正确且 repair 成功 vs 诊断错误且 mislead 的 case breakdown'
+    analysis: '0.5% lift 不显著（Fisher exact test p=0.91）。 定性分析显示：诊断正确的 cases 中，repair
+      agent 在无诊断条件下也多数能 resolve（从 error trace 获得等价信息）； 诊断错误的 cases 中，misleading 信息反而导致
+      repair agent 走偏。 净效果接近零。Claim 2 不成立。
+
+      '
+  - name: Per-test Failure Precision/Recall
+    plan_id: per-test-precision-recall
+    description: '在完整测试集上衡量 per-test failure prediction 的 precision/recall。
+
+      '
+    expected_results:
+      per_test_failure_precision: 0.71
+      per_test_failure_recall: 0.65
+      per_test_failure_f1: 0.679
+      per_test_pass_precision: 0.89
+      per_test_pass_recall: 0.92
+      false_positive_rate: 0.08
+      false_negative_rate: 0.35
+    result_rationale: 'Failure 是少数类（~35% of test outcomes in training data），precision/recall
+      偏低是预期的。 模型对 PASS 的预测更可靠（recall 0.92）因为 PASS 是多数类且模式更 regular。 FAIL prediction
+      的 35% false negative rate 意味着模型漏掉了 1/3 的真实 failure， 这直接限制了 diagnostic signal
+      的下游可用性—— 如果你只能捕获 65% 的 failing tests，剩余 35% 的遗漏会让 repair agent  以为某些 test 是通过的（实际未通过），产生
+      false confidence。 71% precision 意味着每指出的 ~3.5 个 failing test 中有 1 个是误报。
+
+      '
+    tables:
+    - caption: Per-test Prediction Quality
+      columns:
+      - Label
+      - Precision
+      - Recall
+      - F1
+      - Support
+      rows:
+      - - PASS
+        - 0.89
+        - 0.92
+        - 0.905
+        - ~6500
+      - - FAIL
+        - 0.71
+        - 0.65
+        - 0.679
+        - ~3500
+      - - Macro Avg
+        - 0.8
+        - 0.785
+        - 0.792
+        - ~10000
+    figures_description:
+    - Precision-Recall curve for FAIL class，AUC-PR ~0.72
+    - Confusion matrix heatmap
+    analysis: 'FAIL class 的 F1=0.679 处于 worst 定义范围内。 与 overall accuracy 0.875 的落差说明
+      class imbalance 下 per-test failure detection 困难。 这个精度水平不足以支撑可靠的 diagnostic feedback——
+      下游 re-repair 实验中 0.5% lift 的结果与此一致。
+
+      '
+  - name: Oracle F2P Stratified Analysis
+    plan_id: oracle-f2p-stratified
+    description: '按 F2P test count (T=1, T=2, T=3+) 分层的 oracle advantage 分析。
+
+      '
+    expected_results:
+      T1_pct: 0.687
+      T1_iid_adv: 0.0
+      T1_block_adv: 0.0
+      T2_pct: 0.158
+      T2_iid_adv: 0.042
+      T2_block_adv: 0.118
+      T3plus_pct: 0.155
+      T3plus_iid_adv: 0.185
+      T3plus_block_adv: 0.362
+      weighted_avg_iid_adv: 0.035
+      weighted_avg_block_adv: 0.075
+    result_rationale: 'T=1 时 per-test 与 trajectory-level 数学等价（advantage = 0）。 T=2
+      时 iid advantage 仅 0.042 因为两个独立 coin flips 的组合增益很小。 T=3+ 时 advantage 显著（iid 0.185,
+      block 0.362），但仅占 15.5% instances。 加权平均后 iid advantage 仅 0.035, block 仅 0.075——
+      在 worst 档下 block correlation 未被实证支持， 所以实际 expected advantage 接近 iid 的 0.035，
+      即 per-test 在当前 SWE-bench 分布下仅贡献 ~3.5 ppt 的 oracle advantage。 这个 3.5 ppt 还是 oracle
+      上界——实际模型的 advantage 会更小。
+
+      '
+    tables:
+    - caption: Oracle Per-test Advantage Stratified by F2P Count
+      columns:
+      - T_stratum
+      - Instance_Pct
+      - iid_Advantage
+      - Block_Advantage
+      rows:
+      - - T=1
+        - 68.7%
+        - 0.0
+        - 0.0
+      - - T=2
+        - 15.8%
+        - 0.042
+        - 0.118
+      - - T=3+
+        - 15.5%
+        - 0.185
+        - 0.362
+      - - Weighted Avg
+        - 100%
+        - 0.035
+        - 0.075
+    figures_description:
+    - 'Stacked bar: T 分层分布 + 各层 advantage overlay'
+    - Advantage vs T 曲线，标注 SWE-bench T 分布的 CDF
+    analysis: 'Per-test advantage 高度集中在 T≥3（仅 15.5% instances）， 但 SWE-bench 的 T=1
+      dominance (68.7%) 使加权 advantage 骤降。 这是 Claim 3 的核心可回收发现：per-test verification
+      有价值的严格前提条件 在当前主流 benchmark 上不被满足。 作为 analysis paper 的贡献有说服力，但作为 method paper
+      的 motivation 不够。
+
+      '
+  - name: Block Correlation Empirical Validation
+    plan_id: block-corr-empirical
+    description: '从训练模型的 test-level predictions 中测量实际 error correlation 结构， 与 iid
+      和 block-correlated simulation 对比。
+
+      '
+    expected_results:
+      spearman_corr_within_instance: 0.06
+      iid_simulation_spearman: 0.02
+      block_simulation_spearman: 0.45
+      observed_closer_to: iid
+      kendall_tau: 0.04
+      avg_error_cluster_size: 1.2
+    result_rationale: 'Block correlation 假设（同一 instance 内所有 test 的 prediction error
+      高度相关） 基于直觉：如果模型不理解 patch 的语义，所有 test 都会预测错误。 但实际上 4B 模型的错误更 heterogeneous——
+      有些 test 因为 input/output pattern 简单而容易预测正确， 即使模型对 patch 语义理解不完整。 Spearman 0.06
+      接近 iid 基线 (0.02) 而远离 block 模拟 (0.45)， 说明 errors 近似独立。 这意味着 oracle analysis 中
+      block-correlated 列的数字不适用于实际模型， per-test advantage 应参考 iid 列——进一步缩小 advantage。
+
+      '
+    tables:
+    - caption: Error Correlation Structure
+      columns:
+      - Model
+      - Spearman_ρ
+      - Kendall_τ
+      - Avg_Error_Cluster
+      rows:
+      - - Observed (Qwen3-4B)
+        - 0.06
+        - 0.04
+        - 1.2
+      - - iid Simulation
+        - 0.02
+        - 0.01
+        - 1.05
+      - - Block Simulation
+        - 0.45
+        - 0.38
+        - 3.8
+    figures_description:
+    - 'Error correlation heatmap: instances × tests，显示 near-random pattern'
+    - 'Q-Q plot: observed correlation distribution vs iid null distribution'
+    analysis: 'Observed Spearman ρ=0.06，远低于 block simulation (0.45)， 仅略高于 iid (0.02)。KS
+      test 无法拒绝 iid null (p=0.23)。 Block correlation assumption 不成立。 Oracle analysis
+      中的 block advantage 列 (0.075 weighted) 不适用， 实际应参考 iid advantage 列 (0.035 weighted)。
+      Per-test 的理论优势进一步缩水。
+
+      '
+  - name: SWE-bench PerTest Dataset Construction
+    plan_id: swebench-pertest-data
+    description: 'Docker 重新评估 SWE-bench Verified patches，提取 per-test labels。
+
+      '
+    expected_results:
+      total_instances_attempted: 500
+      successful_instances: 412
+      docker_failure_rate: 0.176
+      avg_tests_per_instance: 47.3
+      avg_f2p_tests: 2.1
+      avg_p2p_tests: 45.2
+      total_test_examples: 311072
+      p2p_regression_rate: 0.013
+    result_rationale: 'Docker 评估的 ~17.6% 失败率来自环境配置不兼容（依赖版本、Python 版本等）， 与 SWE-bench
+      官方 Docker 评估的已知问题一致。 412 instances × 16 candidates × avg 47.3 tests ≈ 311K test-level
+      examples。 P2P regression rate 1.3% 与之前 p2p-regression-rate 实验结论一致（negative）。
+      这个数据集本身有资源贡献价值，但 per-test labels 在 worst 档下 无法驱动比 trajectory-level 显著更好的 verification。
+
+      '
+    tables:
+    - caption: SWE-bench-PerTest Dataset Statistics
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Instances (successful)
+        - 412
+      - - Candidates per instance
+        - 16
+      - - Avg total tests
+        - 47.3
+      - - Avg F2P tests
+        - 2.1
+      - - Avg P2P tests
+        - 45.2
+      - - P2P regression rate
+        - 1.3%
+      - - Total test examples
+        - ~311K
+    figures_description:
+    - F2P test count 分布直方图，长尾但中位数=1
+    analysis: '数据集构建成功但统计特性与 function-level 类似：F2P 中位数=1，T=1 dominant。 P2P regression
+      rate 1.3% 低于 oracle study 中 10% 阈值， 确认 P2P tests 在当前 benchmark 上不提供有用的 verification
+      signal。
+
+      '
+  - name: Repo-level Training
+    plan_id: repo-level-training
+    description: 'Qwen3-4B/8B fine-tune on repo-level (patched_code, test_code) →
+      pass/fail。
+
+      '
+    expected_results:
+      repo_4b_pass_f1: 62.1
+      repo_4b_fail_f1: 59.7
+      repo_4b_accuracy: 0.643
+      repo_8b_pass_f1: 67.3
+      repo_8b_fail_f1: 65.8
+      repo_8b_accuracy: 0.689
+      context_length_avg_tokens: 6200
+      context_truncation_rate: 0.31
+    result_rationale: 'Repo-level test code 远长于 function-level（avg 6200 tokens vs
+      ~800）， 且 patched code 包含跨文件修改，语义复杂度远高于单函数。 4B 模型 context window 限制导致 31% instances
+      需要 truncation， 严重损害 prediction quality。 62/60 F1 远低于 function-level 的 87/88，
+      也低于 repo-level per_class_f1 worst 范围上界 69。 8B 通过更大 context capacity 部分缓解 truncation，
+      但 67/66 F1 仍不足以在实践中竞争 execution-based verification。 这个 accuracy 水平下的 per-test
+      diagnostic 几乎无意义—— 模型对 repo-level code 的理解不足以可靠区分 pass/fail。
+
+      '
+    tables:
+    - caption: Repo-level Classification Results
+      columns:
+      - Model
+      - Pass_F1
+      - Fail_F1
+      - Accuracy
+      - Truncation_Rate
+      rows:
+      - - Qwen3-4B
+        - 62.1
+        - 59.7
+        - 0.643
+        - 0.31
+      - - Qwen3-8B
+        - 67.3
+        - 65.8
+        - 0.689
+        - 0.22
+      - - Function-level 4B (ref)
+        - 87.1
+        - 87.9
+        - 0.875
+        - 0.0
+    figures_description:
+    - Function-level vs Repo-level accuracy 对比，显示 >20 ppt gap
+    - Accuracy vs context length scatter，truncation 区域 accuracy 骤降
+    analysis: 'Repo-level results 低于 70% F1 (worst 范围)，不具竞争力。 Function-level 到 repo-level
+      的 generalization gap 巨大（>20 ppt）， 说明 per-test classification 的 function-level
+      成功不能外推到实际 SE 场景。 这强化了 analysis paper 的叙事：方法的适用条件很窄。
+
+      '
+  - name: LLM-as-Judge Baselines
+    plan_id: llm-judge-baseline
+    description: 'Qwen3-8B/32B zero-shot LLM-as-judge (trajectory-level + per-test)。
+
+      '
+    expected_results:
+      qwen3_8b_traj_accuracy: 0.71
+      qwen3_8b_pertest_pass_f1: 74.2
+      qwen3_8b_pertest_fail_f1: 68.5
+      qwen3_32b_traj_accuracy: 0.78
+      qwen3_32b_pertest_pass_f1: 80.1
+      qwen3_32b_pertest_fail_f1: 76.3
+      qwen3_32b_pertest_vs_finetuned_4b_gap: -7.4
+    result_rationale: 'Zero-shot LLM-as-judge 在 trajectory-level 上表现尚可（32B 达 78%），
+      但 per-test 精度低于 fine-tuned 4B classifier。 32B zero-shot per-test avg F1 78.2
+      vs fine-tuned 4B 87.5，差距 9.3 ppt—— 说明 fine-tuning 仍有价值，但也表明 32B 的 zero-shot
+      能力已不差。 在 worst 档下这些 baseline 主要的意义是填充 Pareto frontier 图表， 显示 cost-accuracy tradeoff
+      的全貌。 但 32B zero-shot trajectory-level 78% 接近 fine-tuned 4B per-test 87.5%， 如果考虑
+      inference cost，zero-shot large model 是一个不错的 alternative—— 这进一步削弱了 fine-tuned
+      per-test classifier 的独立价值。
+
+      '
+    tables:
+    - caption: LLM-as-Judge Baselines vs Fine-tuned Classifier
+      columns:
+      - Model
+      - Method
+      - Traj_Acc
+      - PerTest_Pass_F1
+      - PerTest_Fail_F1
+      rows:
+      - - Qwen3-8B
+        - Zero-shot
+        - 0.71
+        - 74.2
+        - 68.5
+      - - Qwen3-32B
+        - Zero-shot
+        - 0.78
+        - 80.1
+        - 76.3
+      - - Qwen3-4B
+        - Fine-tuned
+        - 0.875
+        - 87.1
+        - 87.9
+    figures_description:
+    - 'Pareto frontier: x=inference cost (FLOPs), y=accuracy，标注各 method'
+    analysis: 'Fine-tuned 4B 在 Pareto frontier 上优于 zero-shot 32B（更低 cost，更高 accuracy），
+      但这是 fine-tuning vs zero-shot 的一般结论，不是 per-test formulation 的功劳。 32B zero-shot
+      trajectory-level 已接近 practical utility threshold。
+
+      '
+  - name: Per-test Majority Voting
+    plan_id: per-test-majority-voting
+    description: 'Classification model 的 per-test majority voting (K=3)。
+
+      '
+    expected_results:
+      k1_pass_f1: 87.1
+      k1_fail_f1: 87.9
+      k3_pass_f1: 88.3
+      k3_fail_f1: 88.9
+      k3_lift: 1.1
+      k3_inference_cost_multiplier: 3.0
+    result_rationale: 'K=3 majority voting 提供 ~1.1 F1 的 lift，符合 self-consistency 的一般收益规律。
+      但 3x inference cost 换取 1.1 ppt 的 cost-effectiveness 很差。 在 worst 档下这个实验主要显示 per-test
+      classification 已接近  function-level 的 accuracy ceiling，additional inference budget
+      的 marginal return 递减。 不改变任何 main claim 的结论。
+
+      '
+    tables:
+    - caption: Majority Voting Results (K=3)
+      columns:
+      - K
+      - Pass_F1
+      - Fail_F1
+      - Cost_Multiplier
+      rows:
+      - - 1
+        - 87.1
+        - 87.9
+        - 1x
+      - - 3
+        - 88.3
+        - 88.9
+        - 3x
+    figures_description:
+    - K vs F1 曲线，快速饱和
+    analysis: Low-impact experiment。1.1 ppt lift 不改变 worst 档的整体 narrative。 可放入 appendix
+      作为 completeness，不需要在 main paper 中讨论。
+  review_report: '# [Dream Review — worst]
+
+
+    Status: skipped (paper PDF not produced)
+
+    '
+  error: ''
+created_at: '2026-05-11T22:01:52+00:00'

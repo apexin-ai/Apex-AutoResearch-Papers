@@ -1,0 +1,78 @@
+paper_key: "QLoRA: Efficient Finetuning of Quantized LLMs"
+title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines: [full_finetuning_16bit, LoRA_16bit, GPTQ_4bit, FP4]
+  metrics:
+    - {name: "MMLU_accuracy", direction: "higher_better"}
+    - {name: "Elo_rating", direction: "higher_better"}
+    - {name: "memory_GB", direction: "lower_better"}
+  datasets:
+    - {name: "Vicuna benchmark", size: "80 questions"}
+    - {name: "OASST1", size: "9K examples"}
+    - {name: "FLAN v2", size: "450K subset"}
+    - {name: "MMLU", size: "14K test"}
+  ablation_dimensions: [quantization_type, dataset_choice, model_size, adapter_rank]
+  training_recipe: {optimizer: "Paged AdamW 32-bit", lr: "2e-4", hardware: "single 48GB A6000"}
+  method_family: "parameter-efficient finetuning"
+
+positioning:
+  core_claim: "4-bit NormalFloat quantization + LoRA enables finetuning 65B models on single consumer GPU with no quality loss versus 16-bit full finetuning"
+  key_results: "Guanaco-65B: 99.3% ChatGPT quality; memory: >780GB→<48GB; NF4 > FP4 by ~1% MMLU"
+  limitations: ["Did not establish full equivalence at 33B/65B scale", "Limited benchmarks", "GPT-4 judge shows self-preference bias"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Finetuning LLMs requires enormous resources, limiting access"
+  tension: "Quantization saves memory but was thought to degrade quality; finetuning through quantized weights seems contradictory"
+  key_insight: "NF4 is information-theoretically optimal for normally-distributed weights, enabling lossless 4-bit training (Section 3.1)"
+  argument_chain: "memory barrier → quantization + adaptation → NF4 optimality → double quantization → paged optimizers → matches 16-bit"
+  contribution_framing: "3 technical innovations (NF4, double quant, paged optim) + Guanaco model family + evaluation insights"
+  intro_structure: "4 paragraphs: (1) finetuning importance, (2) memory challenge, (3) QLoRA solution, (4) surprising findings"
+  notable_technique: "Stacking 3 independent innovations that compound, each individually justified"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "teaser_result"
+    description: "Elo rating comparison showing Guanaco-65B near ChatGPT level"
+    narrative_role: "Establishes headline result — consumer GPU model competitive with commercial system"
+    design_elements: ["Elo ranking", "model size annotation", "ChatGPT reference line"]
+    visual_style: "Horizontal bar chart with rankings"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "Model size vs Elo rating across multiple model families"
+      how_gain_highlighted: "Guanaco points cluster near ChatGPT despite smaller size"
+      design_note: "Size-performance frontier visualization"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      dimensions_varied: ["quantization_type (NF4 vs FP4)", "dataset"]
+      design_note: "Direct quantization type comparison"
+  figure_narrative_role: "Fig1(headline result) → Fig2(method diagram) → Fig3(scaling) → Fig4-5(ablations) → Fig6(qualitative)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "benchmarks (MMLU, Vicuna Elo)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean across tasks"
+    num_baselines: 4
+    design_note: "Shows QLoRA matches full finetuning while using fraction of memory"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["dataset", "model_size"]
+      variation_style: "full_numbers"
+      design_note: "1000+ model grid showing dataset quality > size finding"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full Elo rankings, per-dataset MMLU, human vs GPT-4 agreement"
+    reason: "Evaluation methodology details and full rankings too extensive for main"

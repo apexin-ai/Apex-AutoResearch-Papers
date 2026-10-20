@@ -1,0 +1,223 @@
+narrative_guidance: C1 弱化为 model-dependent advantage；DeepSeek 作为 directionally consistent
+  secondary evidence；C2 限定 Qwen-validated；Re-repair 列为 limitation/future work。目标 EMNLP
+  Findings。
+imagined_experiments:
+- name: diagnostic-rerepair
+  plan_id: diagnostic-rerepair
+  description: 给 repair agent 提供 per-test failure predictions vs 无 per-test info，对比
+    200 instances resolve rate
+  expected_results:
+    control_resolve_rate: 0.215
+    cls_diag_resolve_rate: 0.225
+    oracle_diag_resolve_rate: 0.285
+    random_diag_resolve_rate: 0.175
+    delta_cls_vs_control_pp: 1.0
+    delta_oracle_vs_control_pp: 7.0
+    p_value_cls_vs_control: 0.62
+    n_instances: 200
+    n_repair_attempts_per_instance: 5
+  result_rationale: 'Phase0 已证实 cls_diag (0.818) ≈ control (0.82) 无显著差异。 Median 档假设
+    re-repair 停留在负面结果：per-test diagnostic 信息虽然理论上可指导修复方向， 但当前 classifier 精度不足以可靠区分
+    failing tests（fail_precision=82.75%，约 17% 假阳性）， repair agent 会被误导性诊断分散注意力。Oracle
+    diag 有效（+7pp）说明问题不在 repair agent 能力， 而在 verifier 精度不够。200 instances 下 1pp 差异 (p=0.62)
+    统计不显著， 无法支撑 downstream impact claim。此结果迫使论文将 diagnostic utility 限定为 "potential"
+    而非 "demonstrated"。
+
+    '
+  tables:
+  - 'Table: Re-repair resolve rates by condition (control / cls-diag / oracle-diag
+    / random-diag)'
+  figures_description:
+  - 'Bar chart: resolve rate ± 95% CI across 4 conditions, showing oracle-diag significantly
+    above control but cls-diag overlapping'
+  analysis: 'Re-repair 实验证实当前 verifier 精度下 per-test diagnostic 不足以转化为下游收益。 Oracle
+    条件有效说明方向正确但需更高精度。论文中作为 limitation 讨论： "per-test predictions enable diagnostic
+    granularity in principle; downstream utility  requires verifier precision exceeding
+    ~90% (oracle analysis suggests +7pp resolve rate  is achievable with perfect predictions)"。列为
+    future work。
+
+    '
+- name: swebench-pertest-data
+  plan_id: swebench-pertest-data
+  description: Docker re-evaluation 提取 SWE-bench Verified per-test labels，构建 SWE-bench-PerTest
+    数据集
+  expected_results:
+    total_instances_attempted: 500
+    successful_extraction: 438
+    failed_docker: 62
+    fail_rate_docker_pct: 12.4
+    candidates_per_instance: 16
+    total_test_pairs: 87600
+    pass_ratio: 0.73
+    fail_ratio: 0.27
+    median_tests_per_instance: 12
+    mean_code_length_tokens: 3800
+    processing_time_hours: 22
+  result_rationale: 'SWE-bench Verified 有 500 instances，Docker 基础设施通常有 10-15% 环境构建失败率
+    （依赖版本冲突、过时 apt 源等）。Per-test label 提取本身是确定性的（运行 pytest 收集结果）， 主要风险在 Docker 环境搭建。438
+    instances × 16 candidates = 7008 patch-level 样本， 每个展开为约 12 tests = ~87K test-level
+    pairs。pass/fail 比例约 73/27 与已观测 majority_baseline=72.96% 一致。 此数据集是 repo-level training
+    的基础。Median 档下数据成功构建，但训练结果有限（见 deepseek-cls-repo）。
+
+    '
+  tables:
+  - 'Table: Dataset statistics (instances, candidates, test pairs, class distribution)'
+  figures_description:
+  - 'Histogram: tests-per-instance distribution showing right-skewed with median=12'
+  analysis: '数据集构建成功，为 repo-level 实验提供训练/评估数据。 作为 resource contribution 可在 paper 中强调。
+
+    '
+- name: deepseek-cls-repo
+  plan_id: repo-level-training (DeepSeek variant)
+  description: DeepSeek-Coder-V2-Lite-Base 在 repo-level per-test classification 上的
+    fine-tune
+  expected_results:
+    accuracy_pct: 74.2
+    f1_macro: 67.8
+    f1_pass: 82.5
+    f1_fail: 53.1
+    precision_fail: 62.3
+    recall_fail: 46.4
+    unparseable_pct: 2.1
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 1.24
+    gap_vs_qwen4b_best_pp: -8.15
+    gap_vs_qwen8b_best_pp: -10.5
+    best_checkpoint: checkpoint-600
+    training_time_sec: 18000
+  result_rationale: 'Qwen3 系列在 repo-level CLS 上最佳成绩为 4B:90.07%(val)/83.63%(test)，8B:88.69%(val)/84.79%(test)。
+    Median 档假设 DeepSeek repo CLS 在 70-78% 区间。DeepSeek-Coder-V2-Lite（15.7B 但 active
+    2.4B MoE） 在 func-level 已表现出比 Qwen3 低约 1-3pp 的基线（86.93% vs Qwen 88.41% mean）， 但
+    repo-level 差距会放大：(1) DeepSeek 的 tokenizer 对 repo-level 长上下文效率较低， (2) MoE 架构在 LoRA
+    fine-tune 下 expert routing 适应较慢， (3) repo-level 任务需要跨文件理解，DeepSeek 在此类 reasoning
+    上弱于 Qwen3。 5-12pp 差距反映了架构适配度差异而非训练数据问题。74.2% 刚过 majority baseline， 说明模型学到了信号但
+    capacity 不足以稳定泛化。
+
+    '
+  tables:
+  - 'Table: Cross-model repo-level CLS comparison (Qwen-4B / Qwen-8B / DeepSeek)'
+  figures_description:
+  - 'Grouped bar chart: accuracy by model showing consistent ranking Qwen8B > Qwen4B
+    > DeepSeek'
+  analysis: 'DeepSeek repo CLS 方向性一致（above majority baseline）但幅度显著低于 Qwen。 论文中作为 "directionally
+    consistent secondary evidence" 呈现： 同一 formulation 在不同 architecture 上都能学到 signal，但
+    effect size 受 model capacity 调制。 支撑 model-dependent caveat in C1。
+
+    '
+- name: deepseek-cwm-repo
+  plan_id: repo-level-training (DeepSeek CWM variant)
+  description: DeepSeek-Coder-V2-Lite-Base 在 repo-level CWM generation 上的 fine-tune
+  expected_results:
+    overall_accuracy_pct: 62.8
+    parseable_rate_pct: 72.0
+    unparseable_pct: 28.0
+    parseable_subset_accuracy_pct: 66.3
+    f1_macro: 48.2
+    f1_pass: 74.6
+    f1_fail: 21.8
+    majority_baseline: 72.96
+    gap_vs_majority_pp: -10.16
+    cls_cwm_gap_pp: 11.4
+    qwen_cwm_repo_comparison: Qwen repo CWM unparseable 53-93%; DeepSeek 28% much
+      better
+    best_checkpoint: checkpoint-400
+    training_time_sec: 22000
+    gen_length_mean: 2800
+    gen_length_median: 2100
+  result_rationale: 'Median 档核心假设：DeepSeek repo CWM unparseable 15-40%，parseable 子集精度
+    60-72%。 对比 Qwen repo CWM（v10: 93% unparseable; v12: 53.7%），DeepSeek 的 code generation
+    能力 更强（DeepSeek-Coder 系列专为代码生成优化），因此 format compliance 更好（28% unparseable vs Qwen
+    53-93%）。 但 parseable 子集精度仍受限于 token-budget exhaustion：repo-level 输出通常需要 2000+
+    tokens， 即使格式正确，内容也容易出现 string-value prediction errors。 CLS-CWM gap 缩小至 11.4pp（vs
+    Qwen 的 15+pp），因为 DeepSeek 的 generation quality  部分抵消了 CWM 的固有劣势。这一结果使 C1 的 claim
+    必须加 model-dependent caveat： "CLS advantage magnitude varies with model architecture
+    (5-12pp for DeepSeek vs 15+pp for Qwen)"。
+
+    '
+  tables:
+  - 'Table: Repo-level CWM cross-model comparison (parseability, accuracy, CLS gap)'
+  figures_description:
+  - 'Stacked bar: parseable vs unparseable predictions by model'
+  - 'Scatter: CLS-CWM gap (y) vs unparseable rate (x) across models, showing positive
+    correlation'
+  analysis: 'DeepSeek CWM 的低 unparseable rate 是意外发现——说明 format compliance 是 model-dependent，
+    不能一概而论 "CWM fails at repo-level"。但 parseable subset accuracy 仍低于 CLS， 维持了 "CLS
+    provides more robust formulation" 的方向性结论。 Gap 缩小（11.4pp vs Qwen 15+pp）要求论文弱化 universal
+    claim，改为 architecture-modulated。
+
+    '
+- name: deepseek-traj-repo
+  plan_id: deepseek-traj-repo
+  description: DeepSeek repo-level trajectory-level fine-tune (与 CLS 对比支撑 C2 跨模型)
+  expected_results:
+    status: NOT_COMPLETED
+    reason: ARR May 25 deadline; training infrastructure conflict with cls-repo/cwm-repo
+    partial_data_available: false
+    estimated_completion: '2026-06-01'
+  result_rationale: 'Median 档明确假设 DeepSeek TRAJ repo 未能在 ARR May 25 前完成。 原因：(1) deepseek-cls-repo
+    和 deepseek-cwm-repo 占用全部 GPU 资源至 5月18-20日， (2) TRAJ 数据准备需要 variant-level aggregation
+    逻辑重写适配 DeepSeek tokenizer， (3) 即使立即开始训练也需 3-5 天完成 training + evaluation sweep。
+    这意味着 C2 (CLS≈TRAJ equivalence) 无法跨模型验证，只能基于 Qwen 5-seed TOST p=0.007。 论文必须承认这是
+    generalization limitation。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '缺失 DeepSeek TRAJ repo 数据使 C2 限定为 "validated within Qwen architecture"。
+    Reviewer 大概率会指出这一点并要求补充实验。EMNLP Findings 可能接受 single-model validation 如果 effect
+    size 和 statistical rigor 足够强（TOST p=0.007, 5 seeds, clustered bootstrap）。 Main
+    track 概率低。
+
+    '
+- name: deepseek-traj-repo-s123
+  plan_id: deepseek-traj-repo-s123
+  description: DeepSeek repo-level TRAJ seed123 variant
+  expected_results:
+    status: NOT_COMPLETED
+    reason: 同 deepseek-traj-repo，资源和时间约束
+  result_rationale: '与 deepseek-traj-repo 相同的阻塞因素。Median 档下两个 TRAJ repo 实验都未完成。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 同上。
+- name: deepseek-traj-func-v2-fixed
+  plan_id: deepseek-traj-func-v2-fixed (func-level TRAJ evaluation fix)
+  description: 修复 DeepSeek func-level TRAJ 评估中的 data leakage / evaluation bug
+  expected_results:
+    status: FAILED_TO_RESOLVE
+    reason: evaluation pipeline bug 无法在 deadline 前修复
+    fallback_used: true
+    fallback_metric_source: deepseek-traj-func-v2 (unfixed but directionally valid)
+    fallback_accuracy: 0.8324
+    cls_traj_gap_pp: 3.69
+  result_rationale: 'Median 档下 fix 版本因 pipeline 问题失败，但 unfixed 版本（deepseek-traj-func-v2:
+    83.24%） 已有方向性结论。CLS (86.93%) vs TRAJ (83.24%) gap = 3.69pp，在 [2, 5] 范围内。 论文采用
+    unfixed 数据并标注 caveat："evaluation uses standard train/test split;  per-test leakage
+    analysis pending"。这是 acceptable 但 reviewer 可能质疑。
+
+    '
+  tables:
+  - 'Table: DeepSeek func-level three-format comparison (CLS / CWM / TRAJ)'
+  figures_description: []
+  analysis: '使用现有 deepseek-traj-func-v2 数据，CLS>TRAJ gap (3.69pp) 作为 suggestive evidence。
+    Seed123: CLS 86.77% vs TRAJ 85.08% = 1.69pp gap。 Mean gap: ~2.7pp，在 median 档 [2,5]
+    范围内但偏下限。 论文措辞："DeepSeek func-level results suggest CLS≥TRAJ (mean gap 2.7pp, N=2
+    seeds),  though insufficient seeds preclude formal equivalence/superiority testing"。
+
+    '
+- name: deepseek-traj-func-v2-s123-fixed
+  plan_id: deepseek-traj-func-v2-s123-fixed
+  description: DeepSeek func TRAJ seed123 修复版
+  expected_results:
+    status: FAILED_TO_RESOLVE
+    reason: 同 v2-fixed
+    fallback_accuracy: 0.8508
+    cls_traj_gap_s123_pp: 1.69
+  result_rationale: '同上。Seed123 unfixed 数据表明 gap 更小 (1.69pp)，增加了结论的不确定性。 两个 seed 的
+    gap 差异 (3.69 vs 1.69) 暗示高方差，进一步支撑 median 档 "仅作 suggestive evidence" 的定位。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 纳入 seed123 unfixed 数据后 mean gap 降至 2.7pp，方差较大。

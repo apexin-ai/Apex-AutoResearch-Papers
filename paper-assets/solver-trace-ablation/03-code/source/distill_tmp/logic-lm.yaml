@@ -1,0 +1,120 @@
+paper_key: "logic-lm"
+title: "Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning"
+venue: "Findings of EMNLP 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Standard prompting (GPT-3.5-turbo)"
+    - "Standard prompting (text-davinci-003)"
+    - "Standard prompting (GPT-4)"
+    - "Chain-of-Thought prompting (GPT-3.5-turbo)"
+    - "Chain-of-Thought prompting (text-davinci-003)"
+    - "Chain-of-Thought prompting (GPT-4)"
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Execution Rate (Exe_Rate)", direction: "higher_better"}
+    - {name: "Execution Accuracy (Exe_Acc)", direction: "higher_better"}
+  datasets:
+    - {name: "PrOntoQA", size: "500 test examples", task: "5-hop deductive reasoning"}
+    - {name: "ProofWriter", size: "600 sampled test (depth-5)", task: "open-world deductive reasoning"}
+    - {name: "FOLIO", size: "204 expert-written examples", task: "first-order logic reasoning"}
+    - {name: "LogicalDeduction", size: "300 test examples (from BIG-Bench)", task: "constraint satisfaction ordering"}
+    - {name: "AR-LSAT", size: "230 test examples", task: "analytical reasoning from LSAT"}
+  ablation_dimensions:
+    - "Self-refinement rounds (0, 1, 2, 3)"
+    - "Reasoning depth (0-5 hops on ProofWriter)"
+    - "LLM backbone (ChatGPT vs GPT-3.5 vs GPT-4)"
+    - "Execution rate vs execution accuracy decomposition"
+  training_recipe:
+    optimizer: "N/A (no training; in-context learning only)"
+    lr: "N/A"
+    hardware: "API-based (OpenAI GPT-3.5/GPT-4)"
+    few_shot_examples: "task-specific demonstrations in prompt"
+    symbolic_solvers:
+      - "Pyke (logic programming / deductive reasoning)"
+      - "Prover9 (first-order logic theorem prover)"
+      - "python-constraint (constraint satisfaction)"
+      - "Z3 (SAT/SMT solver for analytical reasoning)"
+  method_family: "neurosymbolic LLM reasoning"
+
+positioning:
+  core_claim: "LLMs can serve as effective natural-language-to-symbolic translators, delegating actual logical inference to deterministic symbolic solvers, yielding faithful reasoning with 39.2% average gains over standard prompting across diverse logic tasks."
+  key_results: "GPT-4 + Logic-LM: PrOntoQA 83.2%, ProofWriter 79.66%, FOLIO 78.92%, LogicalDeduction 87.63%, AR-LSAT 43.04%. Average +39.2% over standard prompting, +18.4% over CoT. Advantage grows with reasoning depth: +7.1% at depth-0 to +39.4% at depth-5."
+  limitations:
+    - "Applicability bounded by symbolic solver expressiveness—problems outside solver's formal language cannot be handled"
+    - "In-context learning struggles with intricate grammar structures (AR-LSAT execution rate only 39.8% even with refinement)"
+    - "Self-refinement limited to syntactic error messages, cannot detect semantic formulation errors"
+    - "Relies on closed-source LLM APIs (GPT-3.5/GPT-4), no open-source model experiments"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Opens with the tension between LLMs' impressive but unreliable reasoning—they show 'human-like reasoning abilities' yet 'still struggle with complex logical problems.' A single sentence establishes both promise and failure."
+  tension: "Paragraph 2 sets up the fundamental dichotomy: LLMs are black-box probabilistic systems that produce unfaithful reasoning chains (conclusions contradicting premises), while symbolic engines guarantee faithful inference but cannot handle natural language. This creates a clear complementarity argument—each side has exactly what the other lacks."
+  key_insight: "The core insight is reframing the LLM's role: instead of asking LLMs to reason (which they do unreliably), use them as translators from natural language to formal logic. The reasoning itself is delegated to deterministic solvers. This is revealed in paragraph 3 of the intro as a natural synthesis of the tension from paragraph 2."
+  argument_chain: "LLMs reason but unfaithfully → symbolic solvers reason faithfully but can't parse NL → LLMs can translate NL to formal representations → combine: LLM translates, solver reasons → self-refinement closes the formalization gap → validated on 5 diverse datasets spanning 4 logic types"
+  contribution_framing: "Contributions are woven into the intro narrative rather than listed as explicit bullet points. The paper frames three implicit contributions: (1) the framework itself, (2) the self-refinement mechanism, and (3) comprehensive evaluation across diverse logic types. Performance numbers (39.2%, 18.4%) appear directly in the intro's final paragraph, serving as the hook's payoff."
+  intro_structure: "6 paragraphs: P1=problem (LLMs struggle with logic), P2=root cause (black-box vs symbolic dichotomy), P3=proposed solution (combine strengths), P4=framework details (three stages + self-refinement), P5=evaluation scope (5 datasets, 4 solver types), P6=results summary with key numbers. Classic problem-cause-solution-detail-scope-result arc."
+  notable_technique: "The complementarity framing is the strongest rhetorical device—rather than positioning symbolic solvers as competitors to LLMs, the paper frames them as natural partners with perfectly complementary strengths (NL understanding vs logical faithfulness). This avoids the 'LLMs are bad' narrative and instead builds a constructive 'best of both worlds' story."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "High-level pipeline diagram showing the three-stage Logic-LM framework. Top: Problem + Goal inputs feed into Problem Formulator (with LLM icon), producing Symbolic Formulation. Middle: Symbolic Reasoner produces Symbolic Result. Bottom: Result Interpreter produces final Answer. A Self-Refine feedback loop connects Symbolic Reasoner errors back to Problem Formulator."
+    narrative_role: "Provides the 30-second visual summary of the entire framework. Placed as Figure 1 to immediately concretize the verbal description from the intro. The self-refinement loop is visually prominent, emphasizing it as a key contribution."
+    design_elements:
+      - "Vertical three-stage pipeline with clear top-to-bottom flow"
+      - "Yellow-highlighted module boxes for the three core components"
+      - "Self-Refine feedback arrow forming a visible loop on the left side"
+      - "Small icons (brain/network for LLM, logic gates for solver, document for output)"
+      - "Gray intermediate outputs (Symbolic Formulation, Symbolic Result) branching right"
+    visual_style: "Clean, minimal flowchart with soft yellow background on component boxes, gray arrows, small illustrative icons. Professional but simple—no unnecessary decoration. The layout is compact and vertically oriented, fitting a single column."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Standard vs CoT vs Logic-LM accuracy across reasoning depths 0-5 on ProofWriter"
+      how_gain_highlighted: "Logic-LM line (green) stays nearly flat (81.7→71.1) while Standard (gray dashed) and CoT (blue) decline steeply (57.7→33.5 and 76.3→51.0). The widening gap visually demonstrates increasing advantage with complexity."
+      design_note: "Three-line plot with data labels on each point. Green solid line for Logic-LM clearly dominates. The divergence pattern is the key visual message—it tells the 'robustness to complexity' story more powerfully than any table could."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Accuracy and execution rate across 0-3 self-refinement rounds for GPT-3.5 and GPT-4 on FOLIO"
+      how_gain_highlighted: "Dual y-axis implied: accuracy lines (solid) and execution rates (shown in bottom rows). GPT-4 Logic-LM line stays above CoT baselines (dashed). Execution rates printed below x-axis for each model."
+      design_note: "Compact multi-series line plot with CoT baselines as horizontal dashed reference lines. Execution rates tabulated below the plot rather than as a separate figure—efficient use of space. Orange for GPT-3.5, green for GPT-4 provides clear model distinction."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["reasoning depth (0-5)"]
+      design_note: "Doubles as both a result figure and an ablation over reasoning complexity. The monotonic decline of baselines vs near-stability of Logic-LM is the central robustness argument."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["self-refinement rounds (0-3)", "LLM backbone (GPT-3.5 vs GPT-4)"]
+      design_note: "Shows diminishing returns from refinement—most gain in round 1, plateauing by round 2-3. Honest presentation of a mechanism with limited gains."
+  figure_narrative_role: "Figure 1 (method overview) → Figure 2 (detailed architecture with examples per solver type) → Figure 3 (robustness across depth = main selling point) → Figure 4 (self-refinement analysis) → Figure 5 (qualitative example of generated symbolic representation). Flow: what is it → how it works in detail → why it's better → does refinement help → what does output look like."
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (Standard / CoT / Logic-LM per LLM)"
+    col_axis: "datasets (PrOntoQA, ProofWriter, FOLIO, LogicalDeduction, AR-LSAT)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best per column (implied by description, standard practice)"
+    statistical_reporting: "single-run accuracy percentages (no variance reported)"
+    num_baselines: 6
+    design_note: "Three LLM blocks (ChatGPT, GPT-3.5, GPT-4) each with Standard/CoT/Logic-LM rows. This grouped structure lets readers compare within-model and across-model improvements simultaneously. Logic-LM is always the last row in each block, creating a visual 'punchline' pattern. Five diverse datasets as columns demonstrate breadth."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["execution rate with/without self-refinement", "execution accuracy with/without self-refinement", "LLM backbone"]
+      variation_style: "full_numbers"
+      design_note: "Decomposes accuracy into Exe_Rate (syntactic correctness) and Exe_Acc (semantic correctness of executable programs). This two-level decomposition is a key analytical contribution—it separates translation quality from reasoning quality. Shows +/- refinement side by side."
+    - table_id: "Table 1"
+      what_varied: ["symbolic formulation type across 5 datasets"]
+      variation_style: "full_numbers"
+      design_note: "Maps each dataset to its symbolic formulation type and solver, with examples. Functions as both a dataset summary and a method specification table. Placed before experiments to set up the multi-solver architecture."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: First-Order Logic grammar specification. Table 5: Dataset statistics (train/dev/test splits, label distributions, number of classes). Appendix also contains prompt examples, error analysis cases."
+    reason: "Grammar spec and dataset stats are reference material needed for reproducibility but would interrupt the main narrative flow. Error analysis in appendix keeps the main paper focused on positive results while still providing failure mode transparency."

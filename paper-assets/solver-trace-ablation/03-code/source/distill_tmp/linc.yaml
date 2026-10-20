@@ -1,0 +1,194 @@
+paper_key: "linc"
+title: "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers"
+venue: "EMNLP 2023 (Outstanding Paper Award)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Naive (direct label prediction)"
+    - "Scratchpad (generate FOL then LLM-predict label)"
+    - "Chain-of-Thought (CoT)"
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision (True/False)", direction: "higher_better"}
+    - {name: "Recall (True/False)", direction: "higher_better"}
+    - {name: "Error similarity ratio", direction: "lower_better"}
+  datasets:
+    - {name: "FOLIO", size: "182 validation examples (from 204, 22 removed due to errors)", type: "expert-written open-domain FOL reasoning"}
+    - {name: "ProofWriter (OWA balanced)", size: "360 examples (60 per depth 0-5, balanced across True/False/Uncertain)", type: "synthetic logical reasoning"}
+  ablation_dimensions:
+    - "K-way majority voting (K=1,3,5,10)"
+    - "Model scale (StarCoder+ 15.5B vs GPT-3.5 vs GPT-4)"
+    - "Proof depth (0-5 on ProofWriter)"
+    - "In-distribution vs out-of-distribution few-shot examples"
+    - "Error mode decomposition (LINC vs CoT failure types)"
+  training_recipe:
+    optimizer: "N/A (inference-only, no training)"
+    lr: "N/A"
+    hardware: "API-based (GPT-3.5, GPT-4) + GPU for StarCoder+ 15.5B"
+    temperature: 0.8
+    max_tokens: "1024 (FOLIO), 4096 (ProofWriter)"
+    few_shot: "8 manually-selected FOLIO training examples"
+    majority_vote: "10-way"
+    theorem_prover: "Prover9"
+  method_family: "neurosymbolic FOL reasoning (LLM as semantic parser + external symbolic solver)"
+
+positioning:
+  core_claim: "Offloading deductive inference from LLMs to a symbolic FOL theorem prover via neurosymbolic decomposition yields more reliable logical reasoning than end-to-end LLM reasoning, especially on longer proof chains and out-of-distribution settings."
+  key_results: >
+    ProofWriter: GPT-4+LINC 98.3% vs GPT-4+CoT 78.1% (+20.2pp);
+    StarCoder+(15.5B)+LINC 93.9% outperforms GPT-3.5+CoT and GPT-4+CoT;
+    FOLIO: StarCoder++LINC 56.0% vs CoT 41.8% (+14.2pp), GPT-3.5+LINC 62.6% vs CoT 54.9% (+7.7pp);
+    GPT-4 FOLIO: CoT 75.3% vs LINC 72.5% (not statistically significant, p=0.58);
+    Error similarity between LINC and CoT only 0.14-0.22, indicating complementary failure modes.
+  limitations:
+    - "Narrow scope: only short NL statements, unclear on paragraph-form premises"
+    - "FOL expressiveness ceiling: cannot handle higher-order logic or non-classical logics"
+    - "Scalability: more premises increase formalization error probability; theorem proving is NP-hard with timeout risk"
+    - "Limited comparison with advanced methods (Tree of Thoughts, Program of Thoughts, retrieval-augmented CoT)"
+    - "Implicit information loss: FOL cannot capture unstated assumptions in natural language"
+    - "Computational cost: majority voting multiplies API calls; substantial cost for OpenAI models"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: >
+    Opens with the definition of logical reasoning as deductive truth-value inference,
+    immediately grounding the problem as fundamental to AI. Then pivots to the practical
+    importance: retrieval-augmented chatbots, theorem proving, AI tutoring -- establishing
+    real-world stakes before revealing the gap.
+  tension: >
+    LLMs with prompting strategies (CoT etc.) "often fail in subtle and unpredictable ways" --
+    scaling helps some reasoning domains but NOT others (e.g., Modus Tollens shows no improvement
+    with scale). This creates a fundamental tension: LLMs are getting better at language but not
+    reliably at logic. The implicit question: is end-to-end neural reasoning a dead end for
+    formal logic?
+  key_insight: >
+    Revealed in paragraph 4-5 of intro: the key trade-off is exchanging "flexible natural
+    language expression space for syntactically strict logic formulas." The LLM need not reason
+    at all -- it only needs to translate. The symbolic prover handles the hard part (deduction)
+    with provable correctness. This reframes the problem from "how to make LLMs reason better"
+    to "how to make LLMs translate better."
+  argument_chain: >
+    (1) Logical reasoning is important but LLMs fail unreliably at it →
+    (2) Symbolic provers are provably correct but can't parse natural language →
+    (3) Propose LINC: LLM as semantic parser + Prover9 as reasoner →
+    (4) Evaluate on FOLIO (expert, in-domain) and ProofWriter (synthetic, OOD) →
+    (5) LINC dramatically outperforms on ProofWriter, competitive on FOLIO →
+    (6) Detailed error analysis reveals complementary failure modes (LINC fails on translation, CoT fails on reasoning) →
+    (7) Conclude neurosymbolic decomposition is a viable complement to end-to-end reasoning.
+  contribution_framing: >
+    Three explicit bullet-pointed contributions: (1) propose LINC, (2) comprehensive
+    comparison across 3 models x 4 methods x 2 datasets, (3) thorough error analysis
+    with distinct failure mode taxonomy. The framing emphasizes breadth of evaluation
+    and analysis depth rather than claiming SOTA.
+  intro_structure: >
+    5 paragraphs: P1 = task definition + importance (motivation),
+    P2 = gap in current LLM reasoning approaches (tension),
+    P3 = downstream applications reinforcing importance (stakes),
+    P4 = LINC proposal with mechanism description (solution),
+    P5 = key trade-off analysis + enumerated contributions (framing).
+    Notable: applications paragraph (P3) comes AFTER the gap (P2), which is unusual --
+    most papers do motivation → gap → solution. Here it's motivation → gap → more motivation → solution,
+    creating a double-hook structure.
+  notable_technique: >
+    The error analysis is the paper's strongest narrative move. Rather than just showing
+    LINC beats CoT, they provide a taxonomy of failure modes (L1-L3 for LINC, C1-C3 for CoT)
+    with concrete examples, then quantify error overlap (only 0.14-0.22 similarity).
+    This transforms a simple "method A vs B" comparison into an insight about the fundamental
+    complementarity of neural and symbolic reasoning. The error similarity metric is a
+    particularly clever device -- it makes the abstract claim of "different failure modes"
+    into a measurable quantity.
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-step LINC pipeline: (1) natural language problem input, (2) LLM samples
+      multiple FOL formulas (showing some with syntax/semantic errors), (3) theorem prover
+      filters and solves valid formulas, (4) majority-vote aggregation produces final label.
+      Shows the full flow from NL premises/conclusion through FOL translation to symbolic
+      deduction and voting.
+    narrative_role: >
+      Establishes the core mechanism visually -- makes the two-stage decomposition
+      (translation vs. reasoning) immediately clear. Placed early to anchor the reader's
+      understanding before experimental details.
+    design_elements:
+      - "Pipeline/flow diagram with directional arrows"
+      - "Example FOL formulas showing both valid and invalid outputs"
+      - "Error annotation (syntax errors, semantic errors marked)"
+      - "Majority voting aggregation visualization"
+      - "Natural language to formal language transformation shown explicitly"
+    visual_style: >
+      Horizontal flow diagram, left-to-right pipeline. Multiple sampled outputs shown
+      branching from the LLM, some crossed out (errors), then converging at voting.
+      Clean academic style with minimal color, focuses on information flow.
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar_chart"
+      what_compared: "4 methods (Naive, Scratchpad, CoT, LINC) across 3 models (StarCoder+, GPT-3.5, GPT-4) on FOLIO and ProofWriter"
+      how_gain_highlighted: "Dual panel (FOLIO left, ProofWriter right), error bars (±1 bootstrapped SD), dotted random-guess baseline. LINC bars visually dominate on ProofWriter panel."
+      design_note: >
+        Smart dual-panel layout lets reader see FOLIO (where gains are modest) and
+        ProofWriter (where gains are dramatic) side by side, creating visual contrast.
+        Error bars with bootstrap give statistical rigor without cluttering.
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Accuracy vs proof depth (0-5) for all 4 methods, separate subplot per model"
+      how_gain_highlighted: "Shaded ±1 SD regions, dotted 1/3 random baseline. LINC lines stay flat/high while CoT lines drop, creating a dramatic visual divergence as depth increases."
+      design_note: >
+        Three-panel layout (one per model) with shared y-axis makes cross-model comparison easy.
+        The diverging trajectories are the paper's most visually compelling evidence --
+        CoT degradation vs LINC stability tells the story without words.
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "confusion_matrix + heatmap"
+      dimensions_varied: ["LINC vs CoT prediction patterns", "cross-method error similarity"]
+      design_note: >
+        Four-panel analysis figure: (a) LINC confusion matrix, (b) CoT confusion matrix
+        side by side for visual comparison, (c) 2x2 consistency matrix between methods,
+        (d) error similarity heatmap across all method pairs. Panel (d) is the key visual --
+        shows LINC-CoT similarity is much lower than CoT-Scratchpad similarity,
+        quantifying the complementarity argument.
+  figure_narrative_role: >
+    Figure 1 (method overview) → Figure 2 (experimental setup/prompt construction) →
+    Figure 3 (main results: accuracy comparison) → Figure 4 (depth analysis: why LINC
+    is better on longer chains) → Figure 5 (error analysis: why failures are different).
+    The progression follows: what is LINC → how we test it → how well it works →
+    why it works better → what goes wrong and why that's interesting.
+    This is a "zoom-in" narrative: from overview to specifics to failure analysis.
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A (results presented as bar charts in Figure 3)"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A -- paper uses figures instead of tables for main results"
+    statistical_reporting: "±1 bootstrapped standard deviation shown as error bars; statistical significance tested (p-values reported for key comparisons)"
+    num_baselines: 3
+    design_note: >
+      Unusual choice: NO tables in the main paper body. All quantitative results are
+      presented as bar charts (Figure 3) and line plots (Figure 4). This is atypical
+      for NLP papers which normally have result tables. The choice works because the
+      paper has relatively few conditions (4 methods x 3 models x 2 datasets) and
+      the visual comparison (especially depth curves in Figure 4) tells a stronger
+      story than numbers in a table would. Tables are relegated to appendix.
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Appendix contains: model details/parameters (App B), FOLIO dataset preprocessing
+      details including 22 identified errors (App C), few-shot prompt examples for all
+      4 conditions (App D), detailed FOLIO error analysis with examples (App E),
+      StarCoder+ error analysis (App G), effect of K-way majority voting analysis (App H).
+      Future directions in App A.
+    reason: >
+      Main paper prioritizes visual storytelling (figures over tables) to maximize
+      narrative impact. Appendix handles reproducibility details (prompts, parameters)
+      and extended analysis (per-model error breakdowns, voting ablation).
+      This split keeps the main paper focused on the story while providing
+      exhaustive detail for reviewers who want to verify claims.

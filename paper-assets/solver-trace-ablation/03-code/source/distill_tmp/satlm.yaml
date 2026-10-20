@@ -1,0 +1,31 @@
+paper_key: "satlm"
+title: "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - "program-aided language models (imperative paradigm)"
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K (challenging subset)", size: "subset"}
+    - {name: "LSAT", size: "not specified"}
+    - {name: "BoardgameQA", size: "not specified"}
+    - {name: "5 additional datasets (unnamed in abstract)", size: "not specified"}
+  ablation_dimensions:
+    - "declarative vs imperative prompting"
+  training_recipe:
+    method: "prompting-based (no fine-tuning); LLM generates declarative specs, off-the-shelf SAT solver derives answer"
+    solver: "automated theorem prover / SAT solver"
+  method_family: "declarative prompting with SAT solver"
+
+positioning:
+  core_claim: "LLMs can generate declarative task specifications (closer to problem descriptions than imperative programs), and offloading solving to an automated theorem prover guarantees correctness and avoids planning errors."
+  key_results: "23% improvement over program-aided LMs on challenging GSM subset; SOTA on LSAT and BoardgameQA"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

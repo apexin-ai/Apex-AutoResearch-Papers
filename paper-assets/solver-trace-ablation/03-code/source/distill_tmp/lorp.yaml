@@ -1,0 +1,40 @@
+paper_key: "lorp"
+title: "LoRP: LLM-based Logical Reasoning via Prolog"
+venue: "Knowledge-Based Systems 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "Logic-of-Thought"
+    - "LLM-ARC"
+    - "Logic-LM"
+    - "direct LLM prompting"
+  metrics:
+    - {name: "reasoning accuracy", direction: "higher_better"}
+    - {name: "robustness", direction: "higher_better"}
+  datasets:
+    - {name: "FOLIO", size: "204 test examples"}
+    - {name: "ProntoQA", size: "500 test examples (5-hop fictional)"}
+    - {name: "ProofWriter", size: "depth-5 OWA subset"}
+  ablation_dimensions:
+    - "LLM backbone architecture"
+    - "reasoning depth (hop count)"
+    - "FOL-to-Prolog translation components"
+  training_recipe:
+    optimizer: "N/A (inference-time framework)"
+    lr: "N/A"
+    hardware: "not specified"
+    details: "4-stage pipeline: NL-to-FOL, FOL-to-Prolog, SWI-Prolog execution, answer extraction"
+  method_family: "neuro-symbolic reasoning / LLM + symbolic solver"
+
+positioning:
+  core_claim: "Decoupling language understanding from symbolic inference via systematic FOL-to-Prolog translation achieves state-of-the-art accuracy and robustness on logical reasoning, generalizing across LLM architectures."
+  key_results: "SOTA accuracy on FOLIO, ProntoQA, ProofWriter; improved deep reasoning and cross-architecture generalization"
+  limitations:
+    - "depends on quality of NL-to-FOL translation"
+    - "limited to tasks expressible in Prolog"
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

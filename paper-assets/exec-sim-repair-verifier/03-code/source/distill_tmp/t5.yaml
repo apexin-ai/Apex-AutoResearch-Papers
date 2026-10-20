@@ -1,0 +1,28 @@
+paper_key: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+venue: "JMLR 2020"
+full_text_available: false
+
+research:
+  baselines: [BERT, GPT-2, XLNet, various_architectures]
+  metrics:
+    - {name: "GLUE", direction: "higher_better"}
+    - {name: "SuperGLUE", direction: "higher_better"}
+    - {name: "SQuAD", direction: "higher_better"}
+    - {name: "ROUGE (summarization)", direction: "higher_better"}
+  datasets:
+    - {name: "C4 (Colossal Clean Crawled Corpus)", size: "750GB"}
+    - {name: "GLUE/SuperGLUE/SQuAD/CNN-DM", size: "standard"}
+  ablation_dimensions: [architecture, pretraining_objective, data_size, transfer_approach]
+  training_recipe: {optimizer: "Adafactor", lr: "varies", hardware: "TPU pods"}
+  method_family: "unified text-to-text pretraining"
+
+positioning:
+  core_claim: "Unified text-to-text formulation enables systematic comparison of transfer learning approaches and achieves SOTA through scale"
+  key_results: "SOTA on GLUE, SuperGLUE, SQuAD, summarization, translation"
+  limitations: ["Enormous compute requirements", "Text-to-text may be inefficient for classification"]
+  relation_to_us: "orthogonal"
+
+narrative: N/A
+figures: N/A
+tables: N/A

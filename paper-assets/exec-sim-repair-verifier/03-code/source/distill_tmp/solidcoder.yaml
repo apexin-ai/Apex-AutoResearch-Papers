@@ -1,0 +1,26 @@
+paper_key: "SolidCoder: Bridging the Mental-Reality Gap in LLM Code Generation through Concrete Execution"
+title: "SolidCoder: Bridging the Mental-Reality Gap in LLM Code Generation through Concrete Execution"
+venue: "arXiv 2026 (ACL 2026 Findings)"
+full_text_available: false
+
+research:
+  baselines: [GPT-4o_direct, GPT-4o_CoT, self_debugging]
+  metrics:
+    - {name: "pass@1", direction: "higher_better"}
+  datasets:
+    - {name: "HumanEval", size: "164"}
+    - {name: "CodeContests", size: "standard"}
+    - {name: "APPS", size: "standard"}
+  ablation_dimensions: [edge_case_awareness, execution_grounding, specification_gap, verification_gap]
+  training_recipe: {optimizer: "N/A (prompting framework)", lr: "N/A", hardware: "GPT-4o API + sandboxed execution"}
+  method_family: "execution-grounded code generation"
+
+positioning:
+  core_claim: "Forcing concrete execution instead of imagined traces ('don't imagine — execute') bridges the mental-reality gap in LLM code generation"
+  key_results: "HumanEval: 95.7% (+0.6), CodeContests: 77.0% (+4.3), APPS: 26.7% (+3.4)"
+  limitations: ["Requires sandboxed execution environment", "Gains modest on already-easy benchmarks (HumanEval)"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

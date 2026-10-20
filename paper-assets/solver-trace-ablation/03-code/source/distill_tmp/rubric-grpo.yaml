@@ -1,0 +1,36 @@
+paper_key: "rubric-grpo"
+title: "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "normalized reward", direction: "higher_better"}
+    - {name: "GSM8K accuracy", direction: "higher_better"}
+    - {name: "MATH accuracy", direction: "higher_better"}
+    - {name: "GPQA Main accuracy", direction: "higher_better"}
+    - {name: "GPQA Diamond accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "OSTI corpus", size: "~100K scientific documents"}
+    - {name: "GSM8K", size: "~8.5K"}
+    - {name: "MATH", size: "~12.5K"}
+    - {name: "GPQA Main", size: "unknown"}
+    - {name: "GPQA Diamond", size: "unknown"}
+  ablation_dimensions: ["rubric decomposition", "weighted criteria", "partial-credit vs binary reward"]
+  training_recipe:
+    base_model: "Llama-3.1-8B-Instruct"
+    algorithm: "GRPO (Group Relative Policy Optimization)"
+    reward: "frozen LLM judge with rubric-based multi-criterion scoring"
+    rubric_source: "derived from ~100K OSTI scientific documents"
+  method_family: "rubric-grounded RL / structured reward decomposition"
+
+positioning:
+  core_claim: "Decomposing RL rewards into weighted, verifiable rubric criteria evaluated by a frozen LLM judge provides partial-credit signals that improve generalizable reasoning."
+  key_results: "71.7% normalized reward on held-out evaluation; improvements on GSM8K, MATH, GPQA Main, GPQA Diamond"
+  limitations: ["Dependence on frozen LLM judge quality", "Rubric design requires domain corpus"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

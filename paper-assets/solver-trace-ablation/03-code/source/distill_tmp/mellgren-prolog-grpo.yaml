@@ -1,0 +1,38 @@
+paper_key: "mellgren-prolog-grpo"
+title: "Training Language Models to Use Prolog as a Tool"
+venue: "ACL 2025 Findings"
+full_text_available: false
+
+research:
+  baselines:
+    - "supervised fine-tuning baseline"
+    - "7B few-shot baselines (for MMLU comparison)"
+  metrics:
+    - {name: "accuracy on GSM8K", direction: "higher_better"}
+    - {name: "zero-shot accuracy on MMLU-STEM", direction: "higher_better"}
+    - {name: "zero-shot accuracy on MMLU-Pro", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K (cleaned, released as gsm8k-prolog-prover)", size: "~8.5K"}
+    - {name: "MMLU-STEM", size: "evaluation only"}
+    - {name: "MMLU-Pro", size: "evaluation only"}
+  ablation_dimensions:
+    - "prompt structure"
+    - "reward composition (execution, syntax, semantics, structure)"
+    - "inference protocol (single-try, multiple-try, agentic)"
+  training_recipe:
+    base_model: "Qwen2.5-3B-Instruct"
+    method: "GRPO (Group Relative Policy Optimization)"
+    data: "cleaned GSM8K (gsm8k-prolog-prover)"
+  method_family: "GRPO fine-tuning for neurosymbolic tool use (Prolog)"
+
+positioning:
+  core_claim: "GRPO-trained LLMs can learn to use Prolog as a symbolic reasoning tool, but there is a fundamental accuracy-auditability trade-off: high-accuracy configs delegate reasoning to natural language while high-auditability configs produce fully symbolic Prolog programs at lower accuracy."
+  key_results: "3B model achieves zero-shot MMLU-STEM/MMLU-Pro competitive with 7B few-shot baselines; identifies reward hacking as accuracy-auditability trade-off"
+  limitations:
+    - "accuracy-auditability trade-off limits practical neurosymbolic deployment"
+    - "reward hacking implications for safety-critical systems"
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

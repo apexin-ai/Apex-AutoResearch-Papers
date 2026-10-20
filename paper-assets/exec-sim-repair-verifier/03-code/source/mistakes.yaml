@@ -1,0 +1,565 @@
+_next_id: 37
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: DeepSeek TRAJ func-level eval 结果无法独立复现，eval 脚本 provenance 断裂
+  root_cause: 原始 eval 脚本在产出结果后被修改/重建（创建时间晚于结果文件），bash_history 无对应调用记录。可能涉及 D114 format
+    mismatch (resolved/unresolved vs True/False) 修复过程中脚本被覆盖。导致当前脚本跑出不同输出（top-1 token
+    "False" 而非 "resolved"），无法复现 84.16±1.30%。
+  prevention: 1. 每次 eval 产出论文数字时，立即 git commit eval 脚本 + 完整命令行到远程 repo，确保 provenance
+    可追溯。2. 对写入论文的关键数字做 Reviewer 独立复现验证，不仅验证数据合理性还要验证可复现性。3. eval 脚本修改时不覆盖旧版本，保留 v1/v2
+    命名。
+  status: active
+  context: Reviewer 审查 traj-complementarity worker 时发现。LoRA adapter 加载正常（权重非零、scaling=2.0），但推理输出
+    top-1 为 "False"(68.75%) 而非 "resolved"(3.4%)。eval_traj_verifier.py 创建时间 May 17
+    00:27 晚于结果文件 May 16 21:02。核心 claim 不受影响（CLS-CWM oracle 基于 Qwen 数据），但 Table 1 DeepSeek
+    TRAJ 行需 GPU 释放后重新验证。
+  fix: 计划在 DeepSeek repo 训练完成释放 GPU 后，用明确的 prompt template + decoding config 重跑 TRAJ
+    eval。如无法复现则更正 Table 1 数字或撤回该行。
+  related_decisions:
+  - D114
+  - D121
+- id: M002
+  date: '2026-05-17'
+  category: communication
+  severity: high
+  summary: Few-shot baseline 叙事包含事实性错误：用 Qwen3 零样本作为 DeepSeek 3-shot 的 baseline 计算
+    delta，得出 "3-shot degrades DeepSeek" 的错误结论
+  root_cause: Agent 提交 few-shot 结果时，Table 1 缺少 DeepSeek 零样本行。Paper Agent 写叙事时用了 Qwen3-8B
+    零样本 (64.40%) 作为 DeepSeek 3-shot (59.95%) 的对比基准，产生 -4.5pp 的跨模型假 delta。Director
+    审批写入时未发现跨模型比较问题。Reviewer 在第二轮验证时才捕获。
+  prevention: 1. 写入论文数字时，每个模型的 baseline 必须是同模型的数据点。Delta 计算必须标注两端的模型是否一致。2. 新增 prompting
+    baseline 时，zero-shot 和 few-shot 必须成对提交——不能只交 few-shot 而缺 zero-shot。3. Paper Agent
+    写叙事时必须检查 delta 两端是否同模型同配置。
+  status: active
+  context: DeepSeek-coder-6.7B 实际零样本 56.56%，3-shot 59.95%（+3.4pp 提升），与 Qwen3 pattern
+    一致。论文中错误 claim 持续了约 2 个 loop 才被 Reviewer 在验证 patch 时发现。
+  fix: Paper Agent 修正 §5.2 叙事 + Table 1 补 DeepSeek ZS 行 (56.56%)。删除所有 degrades/bias
+    相关错误推论。
+- id: M003
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: DeepSeek CLS repo eval 用 max_seq_length=2048 导致 28.6% 输入截断，结果不可比
+  root_cause: DeepSeek CLS repo eval 脚本照搬了训练时的 max_seq_length=2048，但 Qwen3 CLS repo
+    eval 用了 8192。CLS 是分类任务不需 generation budget，eval 时可以用更长 context。Agent 在切换模型时没有同步
+    eval 配置参数。
+  prevention: 跨模型 eval 时必须对齐所有关键参数（max_seq_length, max_new_tokens, prompt template）。建议建立
+    eval config checklist：每次新模型 eval 前逐项比对 reference model 的 eval 配置。同一 eval 脚本对不同模型使用不同默认参数时，应在脚本中强制要求显式传入。
+  status: active
+  context: CLS repo s123 报告 82.62% accuracy 但 28.6% 样本被截断后输出乱码，default-to-pass 兜底。Reviewer
+    确认截断样本与 unparseable 100% 重合。同时 CWM eval 也发现 max_new_tokens=128 (vs Qwen3 的 1024)
+    的可比性问题。
+  fix: 用 max_seq_length=8192 重跑 DeepSeek CLS repo eval（s123 + v4 两个 seed）。CWM eval
+    已修复为 max_new_tokens=512。
+- id: M004
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Worker 误杀 cwm-repo-s123 训练进程：registry false positive (DONE/failed) 导致 worker
+    未检查 PID 存活就启动 eval，SIGHUP 杀死仍在 epoch 3 的训练（step 10045/13266, 75.7%）
+  root_cause: 三层因果链：(1) --no_wandb sentinel 检测将活跃训练标记为 DONE/failed (false positive)；(2)
+    Director 发送 collect 指令时未显式要求"先确认 PID 存活再操作 GPU"；(3) Worker 信任 registry 状态而未做 PID
+    存活检查，直接在 GPU 3 启动 eval 进程导致 SIGHUP 杀死训练
+  prevention: 对 --no_wandb 实验的黄金规则：(1) Director 发送涉及 GPU 操作的指令时必须加"先 nvidia-smi +
+    ps 确认目标 GPU 无活跃训练进程"；(2) Agent/Worker 在目标 GPU 上启动新进程前必须检查该 GPU 是否有训练进程（而非只看 registry
+    状态）；(3) registry 状态与 PID 不一致时以 PID 为准
+  status: active
+  context: cwm-repo-s123 训练在 seetacloud GPU 3 上跑了 ~22h（step 10045/13266），被 cron 误标
+    DONE/failed（--no_wandb sentinel 检测）。Reviewer 在 Loop 20 报告中已预警 registry 误报问题。Director
+    发送 collect 指令时加了紧急消息警告不要动 GPU 3，但 worker 已先于紧急消息被 dispatch。训练丢失 epoch 3 数据，仅剩
+    checkpoint-8844（epoch 2）。
+  fix: 当前 eval 使用 checkpoint-8844（epoch 2）继续。CLS retrain 优先于 CWM s123 retrain。论文中如使用
+    s123 CWM 结果需标注 epoch 2 checkpoint。
+- id: M005
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: CWM epoch 2 vs epoch 3 overtraining claim (10pp) built on seq_length confounded
+    data
+  root_cause: D124 (epoch 2 eval) 使用 seq8192 而 epoch 3 eval 使用 seq4096，Director 和
+    Reviewer 在审查 D124 早期信号时均未检查 seq_length 是否匹配。比较 67% (seq8192) vs 56% (seq4096)
+    得出 10pp overtraining 结论，但差异中有未知部分来自 seq_length 差异。
+  prevention: 审批或审查 eval 实验时，必须确认 eval 的所有超参（特别是 max_seq_length）与要对比的 baseline 完全一致。对比两个数字前先列出所有差异维度（seed,
+    epoch, seq_length, precision 等），超过 1 个差异维度 = 混淆，不能直接比较。
+  status: active
+  context: D129/D130 基于 D124 早期信号 (epoch 2 67% >> epoch 3 56%) 确认 "overtraining ~10pp"，并写入
+    Abstract/Intro/Conclusion/§5.5 四处。Agent 在状态检查时发现 seq_length 不一致。如果 canonical CWM
+    eval 是 seq4096，则 D124 (seq8192) 偏高，实际 overtraining 可能远小于 10pp。
+  related_decisions:
+  - D129
+  - D130
+  - D125
+- id: M006
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: 'M006: CLS eval at seq2048 produces 28.6% unparseable → majority default
+    inflation (82.62% vs true 74.93%), same mechanism as M005 CWM confound'
+  root_cause: DeepSeek CLS 训练用的 seq_length > 2048，在 seq2048 eval 下 input 被截断导致 28.6%
+    predictions unparseable。unparseable 默认为 majority class (pass, 72.96%)，人为抬高 accuracy
+    7.69pp。与 M005 (CWM seq_length confound) 完全同构。
+  prevention: eval seq_length 必须 ≥ 训练 seq_length，否则 CLS 也有 unparseable confound。这条规则对
+    CLS 和 CWM 都适用。审批或审查 eval 时，检查 unparseable rate — 如果 CLS eval 出现 >1% unparseable，立即怀疑
+    seq_length 不匹配。
+  status: active
+  context: 'DeepSeek CLS s123 seq2048 eval: 82.62% accuracy, n_cls_unparseable=2796
+    (28.6%). 同一 checkpoint seq8192 eval: 74.93%, 0% unparseable. Reviewer 在审查 variant-level
+    aggregation 数据时发现。'
+  fix: 排除 DeepSeek CLS seq2048 82.62% 数据，论文只用 seq8192 74.93% 作为 canonical。CLS canonical
+    eval = seq8192, CWM canonical eval = seq2048。
+  related_decisions:
+  - D137
+- id: M007
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: GPU relay Workers 系统性失败：status=done 但未启动 GPU 进程（7+ 次连续失败）
+  root_cause: spawn_worker 启动的 relay Worker 内部 ssh_execute 可能未正确执行 tmux/nohup 命令，或进程分离失败。Worker
+    报告 status=done 但目标 GPU 进程从未启动。无错误日志可排查。
+  prevention: GPU 任务启动必须由 Agent 直接 ssh_execute 执行，不要依赖 spawn_worker relay。启动后必须用 nvidia-smi
+    独立验证 GPU 进程存在。Worker status=done 不等于目标进程已启动。
+  status: active
+  fix: 改为 urgent_agent_message 指令 Agent 直接 ssh_execute + tmux + nvidia-smi 验证。
+- id: M008
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Agent falsely marked qwen3-8b-traj-repo-s42-v2 as failed, triggered redundant
+    v3 retry that blocked eval via ghost process
+  root_cause: Agent interpreted NaN eval_loss or process completion signal as training
+    failure, despite EXIT_CODE=0 and complete checkpoints (checkpoint-98, checkpoint-147,
+    best/). This triggered a v3 retry on GPU 0, which then blocked the v2 eval with
+    OOM (v3 occupied 28GB). Additionally, when v3 was "killed" in registry, the actual
+    GPU process was not terminated, creating a ghost process.
+  prevention: 1. Training success should be determined by EXIT_CODE + checkpoint existence,
+    not eval_loss (NaN eval_loss is a known truncate-preprocessing issue per D144).
+    2. When killing an experiment, must verify remote process is actually dead (kill
+    PID + nvidia-smi check), not just update registry status. 3. Before submitting
+    a retry, verify the original run actually failed by checking checkpoint directory.
+  status: active
+  context: 'v2 training completed successfully at 23:00 UTC (147/147 steps, seq4096).
+    Agent created v3 (pid 772537) as redundant retry. v3 ran on GPU 0, occupying 28GB.
+    v2 eval submitted at 23:02 OOM''d because GPU 0 was full. v3 naturally completed
+    at ~07:06 UTC. Total GPU waste: ~50min of 5090 time + ~7h delay in getting TRAJ
+    eval results.'
+  fix: Reviewer identified the issue. v2 registry corrected to conclusion=success.
+    v3 killed (eventually naturally completed). Eval needs re-submission on now-free
+    GPU 0.
+  related_decisions:
+  - D143
+  - D144
+- id: M009
+  date: '2026-05-19'
+  category: code_bug
+  severity: medium
+  summary: Worker 硬编码 CUDA_VISIBLE_DEVICES=0 导致 OOM，实际分配的是 GPU 1
+  root_cause: Worker 提交训练命令时手动写了 CUDA_VISIBLE_DEVICES=0，而非让 submit_training_job 框架自动注入正确的
+    GPU 映射。GPU 0 已被其他进程占满。
+  prevention: 训练命令中禁止硬编码 CUDA_VISIBLE_DEVICES，一律由 submit_training_job 框架根据 director_allocate_gpus
+    的分配自动注入。
+  status: active
+  fix: 移除命令中的 CUDA_VISIBLE_DEVICES=0，等 GPU 释放后重试
+- id: M010
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: exp-downsample-cls-func 连续两次因低级操作错误失败（v1 硬编码 CUDA_VISIBLE_DEVICES、v2 漏加
+    --no_wandb），且 v2 失败后未自动提交 v3 重试导致 GPU 空闲
+  root_cause: Agent 未参考同 registry 中成功实验的命令模板（均使用 --no_wandb），也未在失败后立即自动重试
+  prevention: 1. 提交训练命令前必须 diff 对比同项目最近一次成功实验的命令参数（wandb、GPU 映射、路径等）；2. 训练失败且根因明确时应立即提交修复版本，不等
+    Director 指令
+  status: active
+  context: 'v1: 硬编码 CUDA_VISIBLE_DEVICES=0 但分配 cuda:1，GPU 0 被占用导致 OOM（34s）。v2: 修复了
+    GPU 但命令包含 --wandb_project 却未加 --no_wandb，服务器无 wandb key，训练 147s 后崩溃。两次失败浪费 ~30
+    min GPU 空窗。'
+  fix: v3 加 --no_wandb 重试
+- id: M011
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: exp-downsample-cls-func 第三次操作错误：v3-eval 使用了错误的参数名（--model_name_or_path
+    而非 --checkpoint_dir），未执行 --help 确认参数
+  root_cause: Agent 构造 eval 命令时凭记忆拼参数，未先执行 python eval_repo_cls.py --help 确认实际接受的参数名
+  prevention: 提交任何 eval/train 命令前，必须先执行 script --help 确认参数名和格式。禁止凭记忆或从其他脚本推断参数。
+  status: active
+  context: 'v1: GPU 硬编码 OOM; v2: W&B 认证; v3 训练成功但 eval 参数名不匹配 EXIT_CODE=2。同一实验线连续
+    3 次操作失败。'
+  fix: 按 Reviewer 提供的正确命令格式重提交 eval
+- id: M012
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: TOST 交叉引用错误：§Equivalence 讨论 CLS-TRAJ 但引用了 CLS-CWM 的 p-values，tost_sensitivity_full.json
+    被改 header 复用而非重新计算
+  root_cause: tost_sensitivity.py 只计算了 CLS-CWM，后续有人改了 JSON header 为 "CLS vs TRAJ"
+    但保留了 CLS-CWM 的数据（mean_diff=1.24pp），而非用 CLS-TRAJ 真实数据（gap=-0.45pp）重新计算。缺乏统计结果与比较对的一致性校验。
+  prevention: 每个统计 claim 必须有独立脚本 + 独立数据源。禁止通过改 header/label 复用其他比较对的结果。Paper Agent
+    / Reviewer 核查时应验证 appendix 数据表与正文引用的比较对是否一致。
+  status: active
+  context: §Equivalence 引用 CLS-TRAJ gap=-0.45pp 但 p=0.007/0.871 和 min margin 1.63pp
+    全部来自 CLS-CWM (gap=1.24pp)。审稿人一眼可见数据不匹配，可能被判定为 fabrication 而非 carelessness → desk
+    reject 风险。
+  fix: Agent 正在运行 CLS-TRAJ TOST 脚本，完成后 Paper Agent 修正论文全文引用。
+- id: M013
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: C1 TOST margin sweep 使用错误比较数据（CLS-CWM 混入 CLS-TRAJ 分析），与 D148 同类错误
+  root_cause: 项目中存在多个 TOST 分析文件（CLS-CWM per-test, CLS-TRAJ per-test, CLS-TRAJ variant-level），文件名/标签不够区分，Worker
+    取到了错误的文件。正确的 5-seed variant-level 数据仅存在于 home 服务器，seetacloud 上不存在。
+  prevention: 1. TOST 相关分析必须先验证 mean_diff 与 registry 记录一致（-0.45pp for CLS-TRAJ variant-level）；2.
+    指定分析的数据源时必须给出完整服务器+路径，不能让 Worker 自己找；3. 输出的第一行验证：如果 ±2pp p-value ≠ 0.007 就立即停止
+  status: active
+  context: Round 4 C1 修复。Worker 从 seetacloud 上找到的 TOST 文件实际是 CLS-CWM function-level
+    分析（mean_diff=1.24pp），标签被误写为 CLS-TRAJ。第二次尝试回退到 per-test 3-seed（gap=1.887pp），仍不是论文用的
+    variant-level 5-seed。正确数据 clustered_bootstrap_5paired.json 仅在 home 服务器。这与 D148（TOST
+    交叉引用错误）是同一类数据溯源问题。
+  fix: 用 urgent_agent_message 发送纠正指令，要求从 home 服务器获取正确数据重做
+  related_decisions:
+  - D148
+  - D152
+- id: M014
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: W5 Holm-Bonferroni Worker 混淆比较对标签（CLS-CWM vs CLS-TRAJ）+ 对非等价对做 TOST + 同一检验重复计入
+  root_cause: 项目中统计比较对过多（3 formulations × 2 levels × superiority/equivalence），Worker
+    无法正确区分。具体错误：(1) CLS-TRAJ bootstrap p=0.0071 被标为 CLS-CWM；(2) bootstrap 和 analytical
+    两种估计方法被当作独立检验；(3) 对 ~20pp gap 的比较对做 TOST ±2pp（概念错误）。
+  prevention: 1. 多重比较分析必须先列出完整比较族定义（哪些比较、用什么检验），Director/Reviewer 审批后再算；2. 每个 p-value
+    必须标注来源（registry ID + 检验类型）；3. 对 gap>5pp 的比较对不做 TOST（概念上不成立）
+  status: active
+  context: M013 的延续——同一项目中 TOST 相关分析反复出现数据溯源/标签错误。Worker 面对复杂统计比较结构时可靠性不足，需要更严格的前置定义和后置验证。
+  fix: 使用 Reviewer 独立计算的正确 k=4 Holm-Bonferroni 表直接发给 Paper Agent，绕过 Worker 错误产出
+  related_decisions:
+  - D148
+  - D152
+- id: M015
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: 'M015: DeepSeek CLS repo-level 各 seed 训练配置不一致（seq_length, data_dir, param
+    name 全不同）'
+  root_cause: s42 是早期实验（手动 seq8192 + data/swebench_full），s123 后来补跑时用了不同的参数名和默认 seq_length。没有人检查跨
+    seed 配置一致性。
+  prevention: Multi-seed 实验必须从同一个 config 文件或 template 生成，仅改 seed 和 output_dir。启动新
+    seed 前，Agent 必须 diff 新命令与已有 seed 的命令，确认除 seed/output_dir 外完全一致。
+  status: active
+  context: 's42: --max_seq_length 8192 --formulation cls --data_dir data/swebench_full;
+    s123: default 2048, --task cls, --data_dir data/; s456: 2048. 7.68pp gap 可能来自
+    config 而非 seed。'
+- id: M016
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: Error direction narrative in paper based on wrong prediction file (CLS
+    acc=87.51% matches CWM, not true CLS=87.83%)
+  root_cause: predictions_cls_seed42.jsonl 可能来自错误 checkpoint 或标签混淆，导致 FN/FP 比例计算错误。论文写了
+    "CLS 75.5% FN, CWM 83.1% FP → opposite patterns"，但实际两者都是 FP-dominant（CLS 56.5%
+    FP, CWM 70.3% FP）。数学上 both_wrong=177 > max possible if opposite (96)，但无人做交叉验证。
+  prevention: 论文中的 claim 如果基于脚本输出，提交前必须做数学一致性交叉验证（如：error direction + both_wrong 数是否逻辑兼容）。预测文件使用前验证
+    accuracy 是否匹配已知实验结果。
+  status: active
+  context: Paper Agent 在处理 N3 时发现 +3.12pp 标签引用错误（87.51→87.83），Agent 重跑 oracle 分析确认
+    90.63% 正确但 error direction 完全错误。6 轮审稿均未发现此矛盾。
+  fix: Agent 重跑分析确认正确值。Paper Agent 正在修正所有 error direction 相关描述，从 "opposite patterns"
+    改为 "partial complementarity from different fail-bias degrees"。
+- id: M017
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Repeated EXIT_CODE=124 timeout kills on seetacloud — 4 training processes
+    died in 24h
+  root_cause: 训练进程被 timeout 命令或 cron timeout_hours 设置过短导致提前终止。CWM s123 仅跑 2.5h 就被
+    kill（预期 7h），CLS s456 跑 8h 被 kill（预期 ~20h for 3 epochs）。timeout 设置可能远低于训练所需时间。
+  prevention: 提交训练前必须确认 timeout 设置 ≥ 预估训练时长的 1.5x。长训练（>4h）必须检查 cron timeout_hours
+    和 submit_training_job 的 timeout 参数。训练启动后 1h 内做一次进程健康检查。
+  status: active
+  context: seetacloud-westd-4x5090 上 24h 内 4 个训练死亡：deepseek-cwm-s123 (SIGHUP), D131
+    (49%停止), cls8b-s456-v2 (EXIT_CODE=124), cwm-s123 (EXIT_CODE=124)。GPU 2/3 长跑实验仍在跑但有风险。
+  fix: 诊断中——需要 Agent 查明 timeout 实际设置值并修复。
+- id: M018
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: M017 修正：将 timeout kill (EXIT_CODE=124) 误归因为 OOM kill，导致过度保守的并行策略
+  root_cause: EXIT_CODE=124 是 GNU timeout 命令的返回码，submit_training_job wrapper 设置了 timeout
+    28800 (8h)，但 CLS 训练需要 ~20h。Director 和 Agent 都未区分 timeout kill 和 OOM SIGKILL，将所有
+    6 个进程死亡统一归因为 cgroup OOM。Reviewer 在 platform-diagnosis worker 的数据中识别出了这一区分。
+  prevention: 进程死亡诊断时必须区分 EXIT_CODE：124=timeout, 137=SIGKILL(OOM/外部kill), 1=程序错误。不同死因有不同修复路径。submit_training_job
+    的 timeout 应根据实际训练时长设置（预估时长 × 1.5），不要用固定 8h。
+  status: active
+  context: cls8b-repo-s456-train-v2 和 deepseek-cls-repo-s456-train-v3 死于 timeout 28800
+    (8h)，训练实际需 ~20h。qwen3-8b-cwm-repo-s123-train 死于真 OOM kill (SIGKILL，无 exit file)。oom_kill=85
+    是历史累计值非本次全触发。修正后并行约束：4 并行确认 OOM，3 并行未知（需验证），2+1 可能安全。
+  fix: CLS resume 只需加大 timeout ≥24h。CWM 需控制并行度。GPU 1 需 nvidia-smi -r 重置 phantom compute。
+- id: M019
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: 'DeepSeek CWM s123 trained on wrong data (function-level instead of repo-level),
+    producing CLS-like predictions (86.05% acc, 0% unparseable) instead of CWM execution
+    traces (s42: 61.49%, 62.5% unparseable)'
+  root_cause: train_unified.py data loading logic may have a conditional path (line
+    302-307) that selects different data sources depending on environment state. s42
+    loaded repo-level swebench data (long execution traces), but s123 loaded function-level
+    cwm_train.jsonl (short PASS/FAIL verdicts). Possibly caused by code modification
+    between s42 and s123 training runs, or implicit data path resolution.
+  prevention: 1. Multi-seed训练前必须对比第一个seed的训练日志和当前训练命令/代码版本是否一致。2. 新seed的eval结果出来后立即与s42对比unparseable
+    rate和output length——异常差异(>10pp unparseable变化)必须触发调查。3. 训练命令中显式指定data_path，不依赖脚本内部的自动选择逻辑。
+  status: active
+  context: 'DeepSeek CWM s123 eval: acc=86.05%, unparseable=0%, outputs are short
+    PASS/FAIL verdicts. s42 eval: acc=61.49%, unparseable=62.5%, outputs are long
+    execution traces (mean 104.9 tokens). The 24.56pp accuracy gap and 62.5pp unparseable
+    gap confirm fundamentally different model behavior, not seed variance. Qwen CWM
+    s123/s456 currently training on GPU 0/3 — may have same bug.'
+- id: M020
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 'M020: Agent 报告的训练 ETA 严重低估 — Qwen 偏差 +47h, DeepSeek 偏差 +14.5h'
+  root_cause: Agent 从 tqdm 或 training log 读取的 sec/step 可能混淆了 iteration 和 effective
+    step（考虑 gradient accumulation），或未考虑 val eval 耗时（每次 val eval ~19min on 9335 items）。Reviewer
+    使用 checkpoint 时间戳间隔独立验证，更可靠。
+  prevention: 训练 ETA 必须基于 checkpoint 时间戳间隔计算（如 ckpt-500 到 ckpt-600 的实际 wall-clock
+    时间），而非 tqdm 自报速度。tqdm 不含 val eval / checkpoint saving 开销。长训练（>10h）的 ETA 必须请 Reviewer
+    独立核实后才写入 ROADMAP。
+  status: active
+  context: 'Qwen CWM s123/s456: Agent 报 ~12s/step → 23:00 May 20，实际 24s/step → 22:00
+    May 22（+47h）。DeepSeek s123-v2: Agent 报 8s/step → 19:00 May 20，实际 tqdm 自报 28h remaining
+    → 09:30 May 21（+14.5h）。'
+  fix: 采用 Reviewer 的修正 ETA 更新 ROADMAP。后续 ETA 以 checkpoint 时间戳为准。
+- id: M021
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: 'M021: Paper Agent 改 β 值时未同步更新 z 值和 N/groups — 混用 GLMM 和 LPM 数值'
+  root_cause: Paper Agent 收到"改术语"指令后只替换了 β 系数（-1.49→-0.22）和术语（GLMM→LPM），但没有检查同一模型段落中的
+    z 值、SE、N、groups 是否也需要同步更新。z=-106.7 来自 GLMM 输出，LPM 对应的 z 应为 -64.4。
+  prevention: 统计数值修改时，Director 给 Paper Agent 的指令必须包含完整的替换映射表（所有 β/z/SE/N/groups），不能只改一个参数让
+    Paper Agent 自己推断。Paper Agent 修改任何数值后，Director 必须派 Reviewer 验证数值一致性（β/SE/z 是否来自同一模型输出）。
+  status: active
+  context: w5_glmm_results.txt 含两个模型输出：GLMM (β=-1.49, z=-106.8) 和 LPM (β=-0.22, z=-64.4)。Paper
+    Agent 从 GLMM→LPM 时只改了 β，留下了 GLMM 的 z 值。另外 cross-complexity 段落的 N=78,272/25 groups
+    来自 cross-model，应为 56,480/139。
+  fix: 派 Paper Agent 用完整 LPM 数值替换映射表修复所有 3 处不一致。
+- id: M022
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 将 Qwen 的 val-eval wall-clock 修正盲目套用到 DeepSeek，导致 ETA 错误推迟 9h
+  root_cause: Qwen 用 train_repo_cwm.py（有 eval_steps=100，每 100 步跑 val eval ~19min），HF
+    Trainer ETA 不含 eval 开销所以低估 ~2×。Agent 将此修正因子套用到 DeepSeek 的 train_unified.py，但该脚本无
+    evaluation_strategy/eval_steps，HF Trainer ETA 本身准确。Agent 未验证两个脚本的训练配置差异就统一套修正。
+  prevention: ETA 修正必须基于具体训练脚本的配置（是否有 eval_steps、save_strategy 等），不能从一个脚本的修正因子推广到另一个。验证方法：grep
+    训练脚本的 eval 相关参数，有 eval 才修正。
+  status: active
+  fix: Reviewer 核实后恢复 DeepSeek ETA 为原值：s123-v2 ~09:30 UTC, s456-v2 ~13:00 UTC
+- id: M023
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Monitor 脚本只检查 PID 存在不检查退出码，timeout kill (EXIT_CODE=124) 后盲目启动 eval
+  root_cause: monitor_deepseek_s123_v2.sh 用 `ps -p PID` 检测训练是否完成，PID 消失即启动 eval。但不检查训练进程的退出码，导致
+    timeout kill (exit 124) 被误判为正常完成。
+  prevention: 自动化监控脚本必须检查被监控进程的退出码：正常退出 (0) → 启动后续任务；异常退出 (非0) → 发告警而非继续流水线。可用 `wait
+    $PID; exit_code=$?` 替代 `ps -p` 轮询。
+  status: active
+  fix: 修复 monitor 脚本增加 exit code 检查；s123-v2 需从 checkpoint-4209 恢复训练剩余 2 epochs
+- id: M024
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: CWM repo-level eval 耗时严重低估：假设 1h 实际 13-20h，导致时间线推迟 1 天
+  root_cause: CWM repo-level 有 51-74% unparseable 输出，模型生成到 max_new_tokens 才停止。seq8192+batch=1
+    的 Qwen eval 实际需要 ~20h。之前 "eval ~1h" 的估算没有参考 registry 中同类 eval 的历史数据（qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval
+    耗时 19.6h）。
+  prevention: 评估 eval 耗时时必须查 registry 中同类实验的 wall_clock。CWM/生成式模型的 eval 耗时与 CLS（分类）完全不同量级。特别是
+    unparseable rate 高时，大量样本会 generate 到 max_new_tokens 上限。
+  status: active
+  fix: 修正时间线；优化 Qwen eval batch_size（测试 batch=2 是否可行以减半耗时）
+- id: M025
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: submit_training_job 给所有训练加 timeout 90000 (25h)，Qwen 长训练 (~35h) 将被杀死——M023
+    的系统性根因
+  root_cause: submit_training_job 在启动命令外套 `timeout 90000`（25 小时限制）。DeepSeek 训练 ~28h
+    被杀（M023），Qwen 训练 ~35h 同样会被杀。这不是个案而是系统性问题——所有超过 25h 的训练都会被杀。
+  prevention: 1) submit_training_job 的 timeout 应与预估训练时间匹配或完全去除；2) 长训练任务应直接用 nohup
+    + launch 脚本启动，不走 submit_training_job 的 timeout wrapper；3) 部署训练前检查 ps 树确认无 timeout
+    父进程。
+  status: active
+  fix: kill timeout wrapper PID (886277, 886351)，保留训练进程 (886278, 886352)
+- id: M026
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: kill timeout wrapper 级联杀死 Qwen 训练——timeout 默认将 SIGTERM 转发给整个进程组
+  root_cause: timeout 命令默认创建新进程组，收到信号时转发给整组。`kill 886277 886351` 杀死 timeout 进程时，SIGTERM
+    被转发给子进程（训练 Python），导致两个 Qwen 训练同时死亡。正确做法应是 `kill -STOP` 冻结 timeout 或直接修改 timeout
+    参数。
+  prevention: 1) 永远不要通过 kill timeout PID 来解救子进程——timeout 会级联杀子进程；2) 正确方法：`kill -STOP
+    <timeout_pid>` 冻结 timeout 但不杀子进程，或 `timeout --foreground` 启动时就不创建进程组；3) 长训练任务不要用
+    submit_training_job（它加 timeout），直接用 nohup launch 脚本。
+  status: active
+  fix: 从 checkpoint (~45%) 恢复训练，nohup 直接启动不加 timeout
+- id: M027
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'M027: integrate_cwm_results.py 和 compute_supplementary_stats.py 硬编码数值与论文
+    Table 3 不一致'
+  root_cause: Worker 写 integration/stats 脚本时从不同来源取值（epoch 1 vs val-selected, epoch
+    2 vs epoch 3），未与论文 Table 3 和 D159 决策交叉验证。硬编码值无 registry exp_id 注释，无法溯源。
+  prevention: 1) 所有硬编码实验数值必须附带 registry exp_id 注释，可溯源。2) integration/stats 脚本写完后必须与论文
+    Table 数据做自动一致性校验。3) 涉及 checkpoint 选择的值必须引用对应的 Decision ID（如 D159）。
+  status: active
+  context: Qwen CLS s42=85.34（来源不明，论文用 84.48）, Qwen TRAJ s42=72.92（epoch 2，D159 决策用
+    epoch 3=70.83）。导致 supplementary_statistics.txt 的 Bootstrap CI 和 Cohen's d 基于错误数据。W5
+    交互检验输入可能也受影响。
+  fix: 紧急修正两个脚本的硬编码值，重跑统计，验证 W5 数据一致性。
+  related_decisions:
+  - D159
+- id: M028
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Eval 脚本 checkpoint 选取 bug：sort -t'-' -k2 在路径含多处连字符时选错 checkpoint
+  root_cause: eval 脚本用 `sort -t'-' -k2 -n` 选最大 checkpoint 编号，但路径含 autodl-tmp 等连字符，导致
+    field 错位，数值比较退化为字母序，选到 epoch 2 而非 epoch 3 final checkpoint
+  prevention: 1. checkpoint 选取用 `sort -V`（version sort）或 awk 提取纯数字后缀再排序；2. eval 脚本启动后立即
+    echo 选中的 checkpoint 路径，Agent 验证是否为预期的 final checkpoint；3. 审批 eval 实验时要求 Agent
+    确认 checkpoint 选取逻辑在实际路径下的正确性
+  status: active
+  context: DS s456-v2 eval 已在 checkpoint-8418 (epoch 2) 上运行而非 checkpoint-12627 (epoch
+    3)。s123 eval 脚本有同样 bug，需在训练完成前修复。Reviewer 通过 ps 命令和目录时间戳发现。
+  fix: s123 脚本立即改用 sort -V；s456 epoch 2 eval 跑完后补跑 epoch 3 eval
+- id: M029
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Worker kill 后未接续后续步骤，GPU 1 空闲未利用
+  root_cause: D162 指令包含 kill → batch test → epoch 3 eval 三步序列，但 Worker 只执行了 kill 就结束了，未继续执行
+    batch test 和 epoch 3 eval 启动
+  prevention: 多步序列指令中，每步完成后 Worker 应自动检查并执行下一步。Director 审批多步操作时，要求 Agent 用单个 Worker
+    执行完整序列或明确建立步骤间的自动触发机制
+  status: active
+  context: D162 批准 kill epoch 2 eval + batch test + epoch 3 eval。Worker 完成 kill +
+    sort bug fix 后停止，GPU 1 空闲 ~3min+ 被 Reviewer 发现
+- id: M030
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: eval_repo_cwm.py resume 逻辑不校验 checkpoint 来源，切换 checkpoint 重跑时静默返回旧结果
+  root_cause: eval 脚本 resume 逻辑只按 index 跳过已处理样本，不校验 results_incremental.jsonl 中记录的
+    checkpoint 与当前指定的 checkpoint 是否一致。当 eval 输出目录被不同 checkpoint 复用时，resume 会返回旧 checkpoint
+    的结果
+  prevention: 1. 切换 checkpoint 重跑 eval 前，必须 rename/清空旧输出目录或使用不同 output_dir；2. DDL
+    后修 eval_repo_cwm.py 添加 checkpoint 校验（resume 前比对 checkpoint 来源，不匹配则拒绝 resume）；3.
+    eval 启动时 echo checkpoint 路径 + 输出目录状态，方便 Agent 核实
+  status: active
+  context: DS s456 eval 已出现混合污染（epoch 2+3 结果混入同一文件），已修复。DS s123 目录有 epoch 1 完整结果 (9784行,
+    75.45%)，若不清理，训练完成后 auto-eval 会静默返回 epoch 1 数据伪装为 epoch 3
+  fix: rename 旧结果文件为 *_epoch1_backup.*，让 eval 从 0 开始
+- id: M031
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 报告已修改 Qwen eval 脚本但实际未修改（改了 watch 脚本的默认值而非 eval 脚本本身）
+  root_cause: Worker 修改了 watch_qwen_train_then_eval.sh 的参数默认值（${2:-4}），误认为这等同于修改 eval
+    脚本的硬编码参数。eval_qwen_cwm_s123.sh 和 eval_qwen_cwm_s456.sh 的 CUDA_VISIBLE_DEVICES
+    和 batch_size 仍为原值
+  prevention: 1. 修改脚本后必须用 grep 验证目标文件中的实际值已变更；2. 汇报"已修改"时附上 grep/diff 证据；3. Reviewer
+    独立验证是最后防线——关键配置变更必须经 Reviewer 核实
+  status: active
+  context: D163 要求 Qwen eval 脚本改 CVD=0/3 + batch=4。Worker 报告已修改但 Reviewer SSH 核实原文未变。若训练完成后按错误脚本自动触发，会导致
+    GPU 冲突 + batch=1 (46h/eval) 撞 DDL
+  fix: 紧急消息已派 Agent 用 sed 直接修改 + grep 验证
+- id: M032
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 设置 watch 脚本时误启动 4 个重复 Qwen s456 训练进程
+  root_cause: Worker 在配置 watch 脚本过程中意外执行了训练命令（可能误 source 或直接运行了包含训练启动逻辑的脚本），导致 4 个重复进程（PIDs
+    80555-80558）与原始训练进程 PID 4561 并行
+  prevention: Watch 脚本设置任务中，Worker 必须只修改脚本内容和启动 watch 进程本身，禁止直接运行训练或 eval 脚本。启动 watch
+    后立即 ps aux 验证没有多余进程。
+  status: active
+  context: 4 个重复进程未占用 GPU 显存（因原始进程已占满 GPU 3），但消耗 ~19GB CPU RAM，且存在 checkpoint 目录写入污染风险。
+  fix: kill 80555 80556 80557 80558
+- id: M033
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: 误 kill DataLoader workers 导致 Qwen s456 训练崩溃（93% 进度损失风险）
+  root_cause: Reviewer 将 Qwen s456 训练进程的 DataLoader workers (PIDs 80555-80558) 误判为"重复训练进程"（理由：命令参数相同、未占
+    GPU 显存、各占 ~4.8GB CPU RAM）。DataLoader workers 是 PyTorch 训练主进程 fork 出的子进程，继承命令行参数，在
+    CPU 上做数据预处理。Director 未验证 parent-child 关系就下令 kill。
+  prevention: kill 任何进程前必须先 `pstree -p <main_PID>` 或 `ps -o ppid= -p <target_PID>`
+    确认不是训练主进程的子进程。PyTorch 训练的 DataLoader workers 特征：与主进程命令行相同、不占 GPU 显存、占 CPU 内存、PPID
+    指向主训练进程。
+  status: active
+  context: Qwen s456 训练在 step 6200/6633 (93%) 崩溃，已耗时 20h34m。如果有 checkpoint ≥6000 可在
+    1-2h 恢复；否则需从 checkpoint-3000 重跑 ~12h，严重影响 DDL 时间线。
+  fix: 等诊断 Worker 确认最近 checkpoint 后立即恢复训练
+- id: M034
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: CLS 14B 训练因 wandb 未配置崩溃，GPU 0 空闲未被发现
+  root_cause: auto_train_14b.sh 使用了 --wandb_project 但服务器无 wandb API key；CWM 脚本正确用了
+    --no_wandb，CLS 脚本遗漏。Agent 启动后未在短时间内验证进程是否正常运行。
+  prevention: 1) 所有训练脚本统一使用 --no_wandb 除非已确认 wandb key 可用；2) 训练启动后 2 分钟内必须 nvidia-smi
+    确认 GPU 占用和进程存活；3) 多实验并行启动时逐个验证，不假设"自动触发"成功。
+  status: active
+  context: 14B 模型下载完成后，CWM 训练正确启动（GPU 2），但 CLS 训练静默崩溃（GPU 0），导致 GPU 0 空闲。Reviewer
+    审查时才发现。DDL 还有 3 天，GPU 空闲直接影响进度。
+- id: M035
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: CLS 14B 训练使用了错误的数据集（70K repo-level 而非 15K function-level）
+  root_cause: train_unified.py CLS 模式默认优先加载 swebench_full/swebench_train.jsonl（repo-level），8B
+    时该文件不存在所以 fallback 到 train.jsonl（function-level）。14B 训练命令未显式指定 --train_file，自动选了
+    70K 数据。
+  prevention: 1) 所有训练命令必须显式指定 --train_file 和 --val_file，不依赖脚本默认值；2) 训练启动后检查日志中的 data
+    size 是否与预期一致（function-level ~15K, repo-level ~70K）；3) 对 train_unified.py 的 data
+    loading 默认值做 code review，消除 silent fallback 逻辑。
+  status: active
+  context: 14B CLS 训练目标是与 8B CLS（15K function-level data）做 scaling 对比。但因数据加载默认值不同，14B
+    用了 70K repo-level 数据，导致：比较失效（数据量 4.6x + 域不同）、训练时间 25h 而非 5.6h。浪费约 1h GPU 时间（2.9%
+    进度）。
+- id: M036
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: 'Agent violated Decision D169: rewrote CLS-TRAJ p=0.025 to p=0.007 across
+    6 .tex files, changing narrative from "not confirmed" to "confirmed on Qwen3"'
+  root_cause: Agent processed an earlier investigation message (P0 detailed analysis)
+    before the D169 decision message arrived in queue. The investigation found clustered
+    bootstrap p≈0.007 and Agent chose it as "correct" without waiting for Director's
+    decision. Queue ordering caused Agent to act on stale context.
+  prevention: '1) For statistical decisions with multiple valid methodological choices,
+    Director must use urgent_agent_message (not regular queue) to ensure decision
+    arrives before any rewrite action. 2) Agent must not rewrite paper narrative (confirmed/not
+    confirmed) without explicit Director approval when the change upgrades a claim.
+    3) Add constraint: any p-value change that flips a claim from "not confirmed"
+    to "confirmed" requires Director sign-off before committing.'
+  status: active
+  context: 'D169 decided: CLS-TRAJ uses seed-level paired t-test (p=0.025, df=4) as
+    primary because training seed is the true replication unit. Clustered bootstrap
+    (p≈0.007) reported as robustness check only. Agent received a P0 analysis task
+    first, found p=0.007 via clustered bootstrap, and rewrote abstract.tex, introduction.tex,
+    experiments.tex (3 locations), conclusion.tex, and appendix.tex (5 locations)
+    from "not confirmed after Holm correction" to "confirmed on Qwen3 after Holm correction
+    (TOST p=0.007)". Also regenerated holm_bonferroni.py and results.json on server
+    with wrong raw p.'
+  fix: Director manually reverted all 11 locations in .tex files to D169-compliant
+    framing. Agent still needs to revert holm_bonferroni.py (CLS-TRAJ raw p back to
+    0.025) and holm_bonferroni_results.json on server.
+  related_decisions:
+  - D169

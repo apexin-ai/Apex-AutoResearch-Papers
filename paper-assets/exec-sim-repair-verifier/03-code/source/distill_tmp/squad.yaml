@@ -1,0 +1,70 @@
+paper_key: "SQuAD: 100,000+ Questions for Machine Comprehension of Text"
+title: "SQuAD: 100,000+ Questions for Machine Comprehension of Text"
+venue: "EMNLP 2016"
+full_text_available: false
+
+research:
+  baselines: [logistic_regression, sliding_window, random_baseline]
+  metrics:
+    - {name: "exact_match", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "SQuAD", size: "100,000+ questions on 500+ Wikipedia articles"}
+  ablation_dimensions: [question_type, reasoning_type, answer_length]
+  training_recipe: {optimizer: "various (baseline models)", lr: "N/A", hardware: "standard CPU/GPU 2016"}
+  method_family: "benchmark/extractive QA"
+
+positioning:
+  core_claim: "Large-scale reading comprehension dataset with extractive answers enables systematic evaluation of machine understanding — humans achieve 86.8% F1 vs machine 51%"
+  key_results: "Logistic regression: 51.0% F1; Human: 86.8% F1; gap = 35.8% F1"
+  limitations: ["Extractive answers only (no free-form generation)", "Wikipedia-only source", "Crowdworker bias in question style"]
+  relation_to_us: "orthogonal"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Prior reading comprehension datasets too small or too constrained"
+  tension: "Need large-scale dataset that requires genuine comprehension, not pattern matching"
+  key_insight: "Extractive formulation (answer = span in passage) enables automatic evaluation while requiring comprehension"
+  argument_chain: "RC importance → existing datasets limited → crowdsourced span extraction → large scale → human-machine gap analysis"
+  contribution_framing: "Dataset + analysis of reasoning types + baseline + human performance ceiling"
+  intro_structure: "3 paragraphs: (1) reading comprehension as AI challenge, (2) dataset landscape, (3) SQuAD construction"
+  notable_technique: "Human performance ceiling establishes clear 'solved' criterion for the community"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Example passage with question-answer pairs showing span extraction"
+    narrative_role: "Grounds the abstract task in concrete examples"
+    design_elements: ["highlighted spans", "passage context", "multiple Q&A pairs"]
+    visual_style: "Text excerpt with color-highlighted answer spans"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Model performance by reasoning type"
+      how_gain_highlighted: "Human ceiling line shows remaining gap"
+      design_note: "Reasoning-type breakdown guides future research directions"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(task example) → Fig2(dataset stats) → Fig3(per-type results) → Fig4(error analysis)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "metrics (EM, F1)"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "human ceiling as reference"
+    statistical_reporting: "single evaluation"
+    num_baselines: 3
+    design_note: "Human ceiling prominently placed to frame the challenge"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["reasoning_type"]
+      variation_style: "full_numbers"
+      design_note: "Per-reasoning-type performance breakdown"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A (short paper)"
+    reason: "Compact paper format"

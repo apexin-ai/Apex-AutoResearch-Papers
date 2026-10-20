@@ -1,0 +1,75 @@
+paper_key: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+venue: "NeurIPS 2024"
+full_text_available: false
+
+research:
+  baselines: [RAG_baseline, non_interactive_LM, shell_only_agent]
+  metrics:
+    - {name: "pass@1 (SWE-bench)", direction: "higher_better"}
+    - {name: "pass@1 (HumanEvalFix)", direction: "higher_better"}
+  datasets:
+    - {name: "SWE-bench", size: "2294 instances"}
+    - {name: "HumanEvalFix", size: "164 problems"}
+  ablation_dimensions: [ACI_design_choices, search_commands, edit_interface, context_management]
+  training_recipe: {optimizer: "N/A (prompting)", lr: "N/A", hardware: "GPT-4 API"}
+  method_family: "LLM agent with custom interface"
+
+positioning:
+  core_claim: "Purpose-built agent-computer interfaces dramatically improve LLM agent performance on SE tasks — interface design matters as much as model capability"
+  key_results: "SWE-bench: 12.5% pass@1, HumanEvalFix: 87.7% pass@1"
+  limitations: ["Requires GPT-4 (expensive)", "Interface design is manually engineered", "Single-agent architecture"]
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "LM agents are a new category of end users with distinct needs"
+  tension: "Raw shell/terminal interfaces designed for humans are suboptimal for LLMs"
+  key_insight: "ACI design principles from HCI transferred to LLM agents yield 12.5% on SWE-bench vs ~4% non-interactive"
+  argument_chain: "agents as users → HCI principles apply → custom ACI design → dramatic improvement → design guidelines"
+  contribution_framing: "System + evaluation + design insights"
+  intro_structure: "3 paragraphs: (1) agents as new users, (2) interface challenges, (3) SWE-agent overview"
+  notable_technique: "Framing LLMs as 'users' who need good UX creates memorable conceptual contribution"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "SWE-agent interaction loop: agent observes environment through ACI, takes actions, receives feedback"
+    narrative_role: "Establishes agent-environment interaction paradigm"
+    design_elements: ["loop diagram", "ACI as intermediary", "concrete command examples"]
+    visual_style: "Agent-environment loop with ACI layer highlighted"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "SWE-agent vs baselines on SWE-bench"
+      how_gain_highlighted: "3x improvement over non-interactive methods"
+      design_note: "Simple comparison highlighting magnitude of improvement"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["ACI component (search, edit, navigation)"]
+      design_note: "Ablates individual ACI design decisions"
+  figure_narrative_role: "Fig1(system) → Fig2(ACI details) → Fig3(main results) → Fig4(ablation) → Fig5(qualitative)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "benchmarks"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "pass@1"
+    num_baselines: 4
+    design_note: "Clean comparison showing SWE-agent's large margin"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["ACI_components"]
+      variation_style: "delta_from_base"
+      design_note: "Shows contribution of each interface design choice"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full ACI command reference, trajectory examples"
+    reason: "Implementation details too verbose for main text"

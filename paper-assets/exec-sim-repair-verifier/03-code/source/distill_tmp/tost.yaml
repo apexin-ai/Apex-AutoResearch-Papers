@@ -1,0 +1,25 @@
+paper_key: "A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability"
+title: "A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability"
+venue: "Journal of Pharmacokinetics and Biopharmaceutics 1987"
+full_text_available: false
+
+research:
+  baselines: [power_approach, classical_t_test]
+  metrics:
+    - {name: "type_I_error_control", direction: "lower_better"}
+    - {name: "power", direction: "higher_better"}
+  datasets:
+    - {name: "bioequivalence studies", size: "simulations"}
+  ablation_dimensions: [sample_size, equivalence_margin, variance]
+  training_recipe: {optimizer: "N/A (statistical method)", lr: "N/A", hardware: "N/A"}
+  method_family: "equivalence testing (TOST)"
+
+positioning:
+  core_claim: "Two One-Sided Tests (TOST) procedure provides proper type-I error control for equivalence testing, unlike the power approach"
+  key_results: "TOST maintains nominal alpha; power approach can inflate type-I error"
+  limitations: ["Assumes normality", "Requires pre-specified equivalence margins"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

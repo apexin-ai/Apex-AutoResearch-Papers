@@ -1,0 +1,27 @@
+paper_key: "Qwen2.5-Coder Technical Report"
+title: "Qwen2.5-Coder Technical Report"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [CodeLlama, DeepSeek-Coder, StarCoder2, CodeQwen1.5]
+  metrics:
+    - {name: "HumanEval pass@1", direction: "higher_better"}
+    - {name: "MBPP pass@1", direction: "higher_better"}
+    - {name: "MultiPL-E pass@1", direction: "higher_better"}
+  datasets:
+    - {name: "HumanEval/MBPP", size: "standard"}
+    - {name: "10+ code benchmarks", size: "various"}
+  ablation_dimensions: [model_size, pretraining_data_quality, synthetic_data]
+  training_recipe: {optimizer: "continued pretraining", lr: "N/A", hardware: "5.5T tokens"}
+  method_family: "code LLM"
+
+positioning:
+  core_claim: "Family of code-specific models (0.5B-32B) achieving SOTA on 10+ code benchmarks through careful data curation and synthetic data generation"
+  key_results: "SOTA across 10+ benchmarks in code generation, completion, reasoning, repair"
+  limitations: ["English/Python focused", "Closed training data details"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

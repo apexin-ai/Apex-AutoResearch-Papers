@@ -1,0 +1,26 @@
+paper_key: "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Parameters"
+title: "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Parameters"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [best_of_N, fixed_compute_allocation, larger_models]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "compute_efficiency", direction: "higher_better"}
+  datasets:
+    - {name: "MATH", size: "standard"}
+    - {name: "reasoning benchmarks", size: "various"}
+  ablation_dimensions: [compute_budget, prompt_difficulty, allocation_strategy]
+  training_recipe: {optimizer: "N/A (inference)", lr: "N/A", hardware: "standard"}
+  method_family: "test-time compute scaling"
+
+positioning:
+  core_claim: "Compute-optimal test-time scaling improves efficiency 4x over best-of-N; smaller models with TTS outperform 14x larger models in FLOPs-matched comparisons"
+  key_results: "4x efficiency over best-of-N; small models beat 14x larger ones"
+  limitations: ["Math-focused evaluation", "Requires verifier model", "Prompt difficulty estimation needed"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

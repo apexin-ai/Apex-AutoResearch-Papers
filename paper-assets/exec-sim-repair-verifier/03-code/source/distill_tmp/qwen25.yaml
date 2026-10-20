@@ -1,0 +1,24 @@
+paper_key: "Qwen2.5 Technical Report"
+title: "Qwen2.5 Technical Report"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [Llama-3-405B, GPT-4o-mini, GPT-4o]
+  metrics:
+    - {name: "general_benchmarks", direction: "higher_better"}
+  datasets:
+    - {name: "standard LLM benchmarks", size: "various"}
+  ablation_dimensions: [model_size, pretraining_scale, post_training_method]
+  training_recipe: {optimizer: "multi-stage RL", lr: "N/A", hardware: "18T tokens pretraining"}
+  method_family: "foundation model"
+
+positioning:
+  core_claim: "72B model matches Llama-3-405B quality at 5x smaller size through 18T token pretraining and multi-stage RL"
+  key_results: "72B-Instruct matches 405B; 18T tokens (up from 7T)"
+  limitations: ["Closed training details", "Primarily evaluated on English/Chinese"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

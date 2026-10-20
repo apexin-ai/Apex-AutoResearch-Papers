@@ -1,0 +1,1232 @@
+narrative_guidance: 'Median档叙事核心转变：Claim1从"CLS>CWM"降级为"CLS works where CWM fails"。
+  Function-level 4B null result (0pp gap, p=0.72) + 8B 2.43pp modest gap被接受但不视为exciting。
+  Repo-level CLS可用(82-85% accuracy)但CWM catastrophically fail(50-93% unparseable)，
+  部分reviewer质疑CWM failure是implementation问题(max_new_tokens设置、output format设计) 而非formulation固有限制，要求honest
+  discussion。 重心转向Claim2+3：per-test equivalence(TOST p=0.007, ±2pp)作为methodological
+  contribution， oracle characterization(T≥2 advantage集中在31.3% instances)作为practical
+  decision framework。 DeepSeek结果mixed——function-level gap方向不一致(CWM在DeepSeek上可能略优)，
+  repo-level CLS可用但无new insight。 Error complementarity(oracle ensemble 90.63%)成为supplementary
+  selling point。 仍可投EMNLP main但需strengthened related work、honest CWM limitations section。
+
+  '
+imagined_experiments:
+- name: CWM Generation Baseline (4B Function-Level)
+  plan_id: cwm-baseline
+  description: Qwen3-4B LoRA CWM vs CLS on function-level data, seed42
+  expected_results:
+    cls_accuracy: 87.51
+    cls_pass_f1: 87.1
+    cls_fail_f1: 87.9
+    cwm_accuracy: 87.51
+    cwm_pass_f1: 87.31
+    cwm_fail_f1: 87.71
+    accuracy_gap_pp: 0.0
+    cwm_exact_match_rate: 84.02
+    cwm_unparseable: 0
+  result_rationale: 'Function-level execution output短(通常<50 tokens)，CWM不触发token-budget
+    exhaustion 或string-value prediction failure modes。4B模型容量足以精确预测短输出。 两种formulation在此complexity
+    level达到identical accuracy(87.51%)。 Exact match rate 84.02% < accuracy 87.51%说明CWM有部分output不完全匹配但
+    通过pass/fail判断逻辑仍然correct——这预示repo-level上output matching会更困难。 Unparseable=0因为function-level输出格式统一简单。
+    Median tier下此null result是叙事基础：排除"CLS trivially easier"的concern， 建立complexity-dependent
+    advantage的前提。
+
+    '
+  tables:
+  - name: 'Table: Function-Level 4B CLS vs CWM (seed42)'
+    columns:
+    - Formulation
+    - Accuracy
+    - Pass F1
+    - Fail F1
+    - Exact Match
+    - Unparseable%
+    rows:
+    - - CLS
+      - 87.51
+      - 87.1
+      - 87.9
+      - N/A
+      - 0
+    - - CWM
+      - 87.51
+      - 87.31
+      - 87.71
+      - 84.02
+      - 0
+    - - Δ (CLS−CWM)
+      - 0.0
+      - −0.21
+      - 0.19
+      - —
+      - 0
+  figures_description:
+  - Per-class F1 bar chart, CLS与CWM几乎完全重叠
+  analysis: 'Null result confirmed. CWM exact_match (84.02%) < accuracy (87.51%)的gap(3.49pp)
+    暗示CWM在部分case上output不精确匹配但仍被判为correct—— repo-level上这个gap会急剧扩大导致catastrophic failure。
+
+    '
+- name: Multi-Seed Core Validation (5-seed, 4B)
+  plan_id: multi-seed-core
+  description: CLS 5-seed {42,123,456,789,0} + CWM 5-seed统计
+  expected_results:
+    cls_seeds:
+      s42:
+        accuracy: 87.83
+        pass_f1: 88.06
+        fail_f1: 87.59
+      s123:
+        accuracy: 89.52
+        pass_f1: 89.64
+        fail_f1: 89.4
+      s456:
+        accuracy: 87.88
+        pass_f1: 87.53
+        fail_f1: 88.21
+      s789:
+        accuracy: 89.0
+        pass_f1: 88.9
+        fail_f1: 89.1
+      s0:
+        accuracy: 87.94
+        pass_f1: 87.79
+        fail_f1: 88.08
+    cls_mean_accuracy: 88.43
+    cls_std_accuracy: 0.76
+    cwm_seeds:
+      s42:
+        accuracy: 87.51
+        pass_f1: 87.31
+        fail_f1: 87.71
+      s123:
+        accuracy: 87.2
+        pass_f1: 86.95
+        fail_f1: 87.44
+      s456:
+        accuracy: 86.98
+        pass_f1: 86.66
+        fail_f1: 87.29
+      s789:
+        accuracy: 86.67
+        pass_f1: 86.74
+        fail_f1: 86.6
+      s0:
+        accuracy: 87.57
+        pass_f1: 87.18
+        fail_f1: 87.93
+    cwm_mean_accuracy: 87.19
+    cwm_std_accuracy: 0.36
+    mean_gap_pp: 1.24
+    paired_t_p: ~0.06
+    significant_at_005: false
+  result_rationale: 'CLS 5-seed mean 88.43 vs CWM 87.19, gap 1.24pp。Paired t-test
+    p≈0.06，α=0.05下不显著。 CLS variance (std 0.76) > CWM (std 0.36)：CLS对LoRA初始化更敏感，因为binary
+    classification 的decision boundary位置对seed更敏感；CWM的generation target更deterministic，
+    不同seed主要影响generation fluency而非correctness。 Seed123是CLS的outlier high(89.52)和CWM的near-mean(87.20)，贡献了最大pair
+    gap。 Median tier：trend存在但不conclusive，这是4B function-level的inherent limitation——
+    task太简单，两种formulation的capacity均已饱和。
+
+    '
+  tables:
+  - name: 'Table: 4B 5-Seed CLS vs CWM'
+    columns:
+    - Seed
+    - CLS Acc
+    - CWM Acc
+    - Gap (pp)
+    rows:
+    - - 42
+      - 87.83
+      - 87.51
+      - 0.32
+    - - 123
+      - 89.52
+      - 87.2
+      - 2.32
+    - - 456
+      - 87.88
+      - 86.98
+      - 0.9
+    - - 789
+      - 89.0
+      - 86.67
+      - 2.33
+    - - 0
+      - 87.94
+      - 87.57
+      - 0.37
+    - - Mean±Std
+      - 88.43±0.76
+      - 87.19±0.36
+      - '+1.24'
+  figures_description:
+  - 5-seed accuracy dot plot with mean ± std bars, CLS蓝色、CWM橙色
+  analysis: 'p≈0.06处于borderline。Paper报告为"directional trend (p=0.06) at 4B,  becomes
+    significant at 8B"，building scaling narrative。
+
+    '
+- name: Trace-then-Judge Ablation
+  plan_id: trace-then-judge
+  description: 'Chain-of-thought style: generate reasoning trace → pass/fail'
+  expected_results:
+    training_status: failed
+    reason: output format instability, training diverged
+  result_rationale: '4B LoRA同时学习生成reasoning trace和predict pass/fail，两个objective竞争有限capacity。
+    Trace format不稳定导致pass/fail token被reasoning token侵蚀，accuracy崩溃。 这不是fundamental
+    impossibility而是engineering/capacity问题——更大模型或更精细的 format control可能解决。Median tier下dropped
+    from paper，brief mention in limitations。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '不影响core claims。如果成功，它会ablate away"CLS优势来自skipping reasoning"的concern；
+    failure意味着这个concern无法directly addressed，但8B scaling evidence间接addresses。
+
+    '
+- name: Trajectory-Level Fine-tuned Baseline
+  plan_id: traj-level-finetuned
+  description: 4B LoRA trained on resolved/unresolved prediction (5-seed)
+  expected_results:
+    seed42:
+      accuracy: 85.66
+      unresolved_f1: 87.5
+      resolved_f1: 83.18
+      consistency: 79.94
+    seed123:
+      accuracy: 85.47
+      unresolved_f1: 87.0
+      resolved_f1: 83.52
+      consistency: 78.59
+    seed456:
+      accuracy: 87.4
+      unresolved_f1: 88.7
+      resolved_f1: 85.8
+      consistency: 78.8
+    seed789:
+      accuracy: 87.31
+      unresolved_f1: 88.27
+      resolved_f1: 86.17
+      consistency: 76.74
+    seed0:
+      accuracy: 85.66
+      unresolved_f1: 87.37
+      resolved_f1: 83.41
+      consistency: 79.55
+    mean_accuracy: 86.3
+    std_accuracy: 0.93
+  result_rationale: 'Trajectory-level mean accuracy 86.30% vs per-test CLS 88.43%，gap
+    2.13pp。 这个gap的主要来源：(1) trajectory-level每个problem只产生1个训练样本 vs per-test产生T个， effective
+    training data量更少；(2) resolved需要ALL tests pass——这种conjunctive logic 比per-test的individual判断更难学。Consistency
+    rate ~78%说明同一problem内per-test predictions 有~22%不一致，暗示model在同一problem内对不同tests的判断受shared
+    context bias影响。 Median tier下此gap supports Claim 2的"per-test不损失accuracy"叙事，但gap部分
+    来自training data confound，需honest报告。
+
+    '
+  tables:
+  - name: 'Table: Trajectory-Level 5-Seed Results'
+    columns:
+    - Seed
+    - Accuracy
+    - Resolved F1
+    - Unresolved F1
+    - Consistency%
+    rows:
+    - - 42
+      - 85.66
+      - 83.18
+      - 87.5
+      - 79.94
+    - - 123
+      - 85.47
+      - 83.52
+      - 87.0
+      - 78.59
+    - - 456
+      - 87.4
+      - 85.8
+      - 88.7
+      - 78.8
+    - - 789
+      - 87.31
+      - 86.17
+      - 88.27
+      - 76.74
+    - - 0
+      - 85.66
+      - 83.41
+      - 87.37
+      - 79.55
+    - - Mean±Std
+      - 86.30±0.93
+      - 84.42±1.36
+      - 87.77±0.68
+      - 78.72±1.25
+  figures_description: []
+  analysis: 'Per-test ≥ trajectory at variant-level，TOST equivalence test (下述) 更rigorously
+    quantifies。
+
+    '
+- name: Model Size Scaling (8B, 3-seed)
+  plan_id: model-size-scaling
+  description: CLS vs CWM at 8B scale, seeds {42, 123, 456}
+  expected_results:
+    cls8b_seeds:
+      s42:
+        accuracy: 90.48
+        pass_f1: 90.86
+        fail_f1: 90.06
+      s123:
+        accuracy: 89.4
+        pass_f1: 89.54
+        fail_f1: 89.19
+      s456:
+        accuracy: 88.31
+        pass_f1: 88.2
+        fail_f1: 88.41
+    cls8b_mean_accuracy: 89.4
+    cls8b_std: 1.09
+    cwm8b_seeds:
+      s42:
+        accuracy: 87.67
+        pass_f1: 87.57
+        fail_f1: 87.77
+      s123:
+        accuracy: 86.98
+        pass_f1: 86.83
+        fail_f1: 87.13
+      s456:
+        accuracy: 86.24
+        pass_f1: 85.96
+        fail_f1: 86.51
+    cwm8b_mean_accuracy: 86.96
+    cwm8b_std: 0.72
+    mean_gap_pp: 2.43
+    per_seed_gaps:
+      s42: 2.81
+      s123: 2.42
+      s456: 2.07
+    cls_4b_to_8b_gain_pp: 0.97
+    cwm_4b_to_8b_gain_pp: -0.23
+  result_rationale: '8B CLS (89.40) vs CWM (86.96) gap扩大到2.43pp，所有3个seed方向一致(2.07-2.81pp)。
+    关键asymmetry：CLS从4B→8B提升0.97pp但CWM下降0.23pp。 CWM在8B未获益的原因：function-level generation的bottleneck在exact
+    string matching， 不是semantic understanding。额外的8B capacity没有reduce string matching
+    error—— 模型更好地"理解"了代码但仍然在output format上犯同样的errors。 CLS则从extra capacity中获益：binary
+    classification的decision boundary在高维space中 变得更smooth，reducing borderline case errors。
+    Median tier：2.43pp被接受为real but modest。Reviewer说"interesting but not dramatic"。
+    结合repo-level的catastrophic CWM failure讲故事：function-level hints at差异， repo-level放大为qualitative
+    failure。
+
+    '
+  tables:
+  - name: 'Table: 8B 3-Seed Scaling'
+    columns:
+    - Size
+    - CLS Mean Acc
+    - CWM Mean Acc
+    - Gap (pp)
+    rows:
+    - - 4B (5-seed)
+      - 88.43
+      - 87.19
+      - 1.24
+    - - 8B (seed42)
+      - 90.48
+      - 87.67
+      - 2.81
+    - - 8B (seed123)
+      - 89.4
+      - 86.98
+      - 2.42
+    - - 8B (seed456)
+      - 88.31
+      - 86.24
+      - 2.07
+    - - 8B (3-seed mean)
+      - 89.4
+      - 86.96
+      - 2.43
+  figures_description:
+  - 'Scaling plot: x=model size, y=accuracy, CLS和CWM两条线, 8B处diverge'
+  - Per-seed gap bar chart, 3 bars all positive (2.07-2.81)
+  analysis: '8B gap consistent across seeds is the function-level strongest evidence
+    for Claim 1。 但2.43pp在absolute terms仍modest。Paper frame为"scaling direction"而非"large
+    effect"。
+
+    '
+- name: Diagnostic Re-Repair (Downstream Proof-of-Concept)
+  plan_id: diagnostic-rerepair
+  description: Per-test failure predictions用于guide SWE-agent re-repair on 200 instances
+  expected_results:
+    n_instances_evaluated: 120
+    baseline_resolve_rate_pct: 24.2
+    with_pertest_resolve_rate_pct: 28.3
+    improvement_pp: 4.1
+    p_value_mcnemar: 0.11
+    significant_at_005: false
+    instances_diagnostic_helped: 14
+    instances_diagnostic_hurt: 9
+    net_helped: 5
+    avg_repair_attempts_baseline: 3.2
+    avg_repair_attempts_diagnostic: 2.8
+  result_rationale: 'Median tier下re-repair受三重限制：(1) 资源不足仅完成120/200 instances； (2)
+    per-test verifier error rate ~12.5%意味着约1/8的diagnostic信号是错误的， misleading repair
+    agent在错误方向搜索；(3) SWE-bench instances 68.7% T=1， 这些case per-test info退化为trajectory-level，不提供额外guidance。
+    4.1pp improvement方向正确，repair attempts减少(3.2→2.8)说明diagnostic确实 narrow了search space。但p=0.11在120
+    samples下不显著(power analysis显示需~400 instances)。 Net helped仅5(14-9)，说明diagnostic
+    precision不够——错误诊断导致9个case regression。 Median tier将此relegated to appendix/future
+    work，不作为main claim。
+
+    '
+  tables:
+  - name: 'Table (Appendix): Re-Repair Pilot Results'
+    columns:
+    - Condition
+    - Resolve Rate
+    - Avg Attempts
+    - N
+    rows:
+    - - Baseline (no per-test)
+      - 24.2%
+      - 3.2
+      - 120
+    - - With per-test diagnostic
+      - 28.3%
+      - 2.8
+      - 120
+    - - Δ
+      - +4.1pp (p=0.11)
+      - −0.4
+      - ''
+  figures_description:
+  - 'Paired comparison: helped(14) vs hurt(9) vs neutral(97) breakdown'
+  analysis: 'Directional but non-significant。Paper frame: "preliminary evidence for
+    diagnostic utility, limited by verifier accuracy and sample size; full evaluation
+    left to future work."
+
+    '
+- name: Per-Test Precision/Recall Analysis
+  plan_id: per-test-precision-recall
+  description: Per-test failure prediction quality on full function-level test set
+  expected_results:
+    accuracy: 87.51
+    fail_precision: 82.75
+    fail_recall: 93.64
+    fail_f1: 87.86
+    pass_precision: 93.24
+    pass_recall: 81.8
+    pass_f1: 87.15
+    FP_count: 58
+    FN_count: 178
+    FP_FN_ratio: 0.326
+    best_mutation: return_value (97.26%)
+    worst_mutation: off_by_one (82.56%)
+    bucket_6_10_acc: 96.3
+    bucket_11plus_acc: 87.12
+  result_rationale: '模型显著biased toward predicting fail：fail_recall(93.64%) >> pass_recall(81.80%)。
+    这是因为training data中mutation几乎都导致fail，模型学到了conservative prior。 FP:FN = 58:178 →
+    75.4% of errors are false negatives(miss actual fails)。 这quantifies CLS的characteristic
+    failure mode："miss bugs"而非"false alarms"。 Mutation类型分析：return_value最容易(97.26%)因为return值变化导致output大幅改变；
+    off_by_one最难(82.56%)因为边界条件变化subtle，模型需要precise numerical reasoning。 Bucket analysis：6-10
+    tests的problems accuracy最高(96.3%)因为multiple tests 提供redundant signal；11+ tests降至87.12%因为input
+    length增加导致attention稀释。
+
+    '
+  tables:
+  - name: 'Table: Per-Test Diagnostic Quality'
+    columns:
+    - Class
+    - Precision
+    - Recall
+    - F1
+    rows:
+    - - Fail (bug detected)
+      - 82.75
+      - 93.64
+      - 87.86
+    - - Pass (correct code)
+      - 93.24
+      - 81.8
+      - 87.15
+  - name: 'Table: Accuracy by Mutation Type'
+    columns:
+    - Mutation
+    - Accuracy
+    rows:
+    - - return_value
+      - 97.26%
+    - - variable_swap
+      - ~94%
+    - - operator_swap
+      - ~88%
+    - - off_by_one
+      - 82.56%
+  figures_description:
+  - Confusion matrix heatmap
+  - Accuracy by mutation type + test count bucket grouped bar chart
+  analysis: 'Error asymmetry (75% FN) 对downstream re-repair的影响：diagnostic signal会
+    under-report failures，导致repair agent可能miss真正的bug。 这与CWM的complementary failure
+    mode(83% false alarms)形成对比，支持oracle ensemble叙事。
+
+    '
+- name: Oracle F2P-Stratified Analysis
+  plan_id: oracle-f2p-stratified
+  description: Per-test advantage breakdown by FAIL_TO_PASS test count
+  expected_results:
+    T1_pct: 68.7
+    T1_block_adv: -0.09
+    T2_pct: 19.1
+    T2_block_adv: 31.69
+    T3_5_pct: 7.1
+    T3_5_block_adv: 40.74
+    T6plus_pct: 5.1
+    T6plus_block_adv: 40.06
+    overall_block_adv: 10.93
+    T2_contribution_pct: 55.3
+  result_rationale: 'T=1时per-test ≡ trajectory-level（只有一个fail test），advantage仅来自prediction
+    accuracy 微小差异（-0.09pp，essentially zero）。T=2时per-test advantage跳到31.69pp(block
+    model)： 原因是trajectory-level把两个tests的pass/fail合并为一个binary判断，丢失了which test failed的信息；
+    per-test分别预测，在一个test correct另一个wrong时仍能partial credit。 T≥3的advantage plateau在~40pp因为边际tests的marginal
+    information增量递减。 T2贡献55.3%的overall advantage因为它是最大的multi-test bucket(19.1%)且advantage显著。
+    Key insight for median tier：SWE-bench Verified 68.7%是T=1，限制了per-test的 population-level
+    impact。但targeting T≥2 subset (31.3%)时per-test显著优于trajectory。
+
+    '
+  tables:
+  - name: 'Table: Oracle Per-Test Advantage by F2P Count'
+    columns:
+    - T
+    - '% Instances'
+    - Block Adv (pp)
+    - Contribution to Overall
+    rows:
+    - - T=1
+      - 68.7
+      - -0.09
+      - −0.6%
+    - - T=2
+      - 19.1
+      - 31.69
+      - 55.3%
+    - - T=3−5
+      - 7.1
+      - 40.74
+      - 26.4%
+    - - T≥6
+      - 5.1
+      - 40.06
+      - 18.7%
+    - - Overall
+      - 100
+      - 10.93
+      - 100%
+  figures_description:
+  - 'Stacked bar: per-test advantage by T bucket with instance % overlay'
+  - SWE-bench F2P count distribution histogram
+  analysis: 'Claim 3的primary evidence。Actionable finding：deploy per-test only when
+    T≥2。 This characterization is the paper''s strongest unique contribution in median
+    tier。
+
+    '
+- name: Oracle Total (F2P+P2P) Validation
+  plan_id: oracle-total-validated
+  description: When P2P regression detection adds value vs hurts
+  expected_results:
+    total_reg5pct:
+      iid_adv: -0.01
+      block_adv: -0.005
+      beneficial: false
+    total_reg10pct:
+      iid_adv: 0.132
+      block_adv: 0.083
+      beneficial: true
+    total_reg20pct:
+      iid_adv: 0.357
+      block_adv: 0.278
+      beneficial: true
+    empirical_p2p_regression_rate: ~0.01
+  result_rationale: 'Empirical P2P regression rate仅~1%，远低于10%的breakeven threshold。
+    5% regression下per-test P2P monitoring实际HURTS(-0.01pp)：false positive P2P predictions
+    导致correct patches被wrongly rejected。只有当regression rate≥10%时， true positive detection才outweigh
+    false positive cost。 这是negative但highly informative finding。当前SWE-bench patch质量高，
+    几乎不break passing tests——但real-world场景中regression rate可能更高。
+
+    '
+  tables:
+  - name: 'Table: P2P Regression Threshold'
+    columns:
+    - Regression Rate
+    - Per-Test Adv (IID)
+    - Beneficial?
+    rows:
+    - - 1% (empirical)
+      - ≈0
+      - 'No'
+    - - 5%
+      - -0.01
+      - 'No'
+    - - 10%
+      - 0.132
+      - 'Yes'
+    - - 20%
+      - 0.357
+      - 'Yes'
+  figures_description:
+  - Regression rate vs per-test advantage curve with breakeven point marked
+  analysis: 'Honest negative finding。Strengthens paper credibility by showing nuanced
+    analysis rather than overclaiming P2P utility。
+
+    '
+- name: Block Correlation Empirical Validation
+  plan_id: block-corr-empirical
+  description: Measured ICC and design effect from trained model predictions
+  expected_results:
+    icc: 0.1909
+    icc_p_value: 0.0
+    design_effect: 3.9676
+    all_correct_observed: 46
+    all_correct_expected_iid: 16.35
+    all_correct_ratio: 2.81
+    error_std_observed: 0.1531
+    error_std_expected_iid: 0.0811
+    error_std_ratio: 1.89
+    n_samples: 1890
+    n_problems: 114
+  result_rationale: 'ICC=0.191说明19.1%的prediction error variance is between-problem(problem-level
+    effect)。 这显著高于iid的0%(p<0.001)但远低于full block correlation(ICC=1.0)。 Design effect
+    3.97意味着effective sample size = nominal/3.97， justifies ±2pp TOST margin：在effective
+    N更小时，2pp是practical equivalence。 All-correct ratio 2.81x：观测到46个全对problem vs iid预期16.35个。
+    模型对某些problems consistently correct(可能这些code patterns简单)， 对另一些consistently wrong(可能涉及complex
+    logic)——errors不是random per-test。 Median tier下ICC=0.19是moderate，supports block
+    model但effect size温和。 Oracle analysis中的block curve是upper bound，iid curve是lower
+    bound， reality在两者之间但closer to iid端。
+
+    '
+  tables:
+  - name: 'Table: Error Correlation Validation'
+    columns:
+    - Metric
+    - Observed
+    - IID Expected
+    - Ratio
+    rows:
+    - - All-correct problems
+      - 46
+      - 16.35
+      - 2.81×
+    - - Error rate std
+      - 0.153
+      - 0.081
+      - 1.89×
+    - - ICC
+      - 0.191
+      - 0
+      - —
+    - - Design Effect
+      - 3.97
+      - 1.0
+      - 3.97×
+  figures_description:
+  - 'Per-problem error rate distribution: observed vs IID-expected histogram overlay'
+  analysis: 'Validates block correlation assumption partially. The realistic per-test
+    advantage is between IID and block curves. Paper should present both bounds with
+    empirical ICC as the arbitrator rather than claiming only the optimistic block
+    estimate.
+
+    '
+- name: SWE-bench PerTest Dataset Construction
+  plan_id: swebench-pertest-data
+  description: Docker re-evaluation of 500 SWE-bench Verified instances × 16 candidates
+  expected_results:
+    target_instances: 500
+    successful_instances: 435
+    failed_instances: 65
+    success_rate_pct: 87.0
+    total_candidate_evaluations: 6960
+    total_pertest_labels: ~68000
+    avg_tests_per_instance: 156
+    avg_f2p_tests: 2.8
+    avg_p2p_tests: 153
+    p2p_regression_rate: 0.013
+    avg_code_tokens: 2800
+    construction_time_hours: 22
+  result_rationale: '65/500 Docker failures(13%)主要因为legacy Python packages unavailable
+    in 2026、 特定版本pinning broken、Docker image build timeouts for large repos。 435 instances足以support
+    repo-level training(350 train/85 test split approx)。 F2P stats与SWE-bench metadata一致(median
+    T=1, mean T=2.8)。 P2P regression rate ~1.3%再次confirms低regression率——P2P维度信号弱。 Code
+    tokens ~2800远超function-level的~200，这是repo-level generalization challenge的根源： 模型必须在10x更长的input上做judgment，attention
+    dilution显著。 Median tier下data collection是infrastructure contribution，paper brief
+    mention， detailed stats in appendix。
+
+    '
+  tables:
+  - name: 'Table (Appendix): SWE-bench-PerTest Stats'
+    columns:
+    - Statistic
+    - Value
+    rows:
+    - - Instances (successful)
+      - 435
+    - - Candidates/instance
+      - 16
+    - - Per-test labels
+      - ~68K
+    - - Avg F2P tests
+      - 2.8
+    - - Avg code tokens
+      - 2800
+    - - P2P regression rate
+      - 1.3%
+  figures_description:
+  - Test count distribution (F2P vs P2P)
+  analysis: 'Sufficient data for repo-level experiments. Docker failure rate acceptable.
+    P2P regression rate confirms prior negative finding.
+
+    '
+- name: Repo-Level Training (CLS + CWM, multi-attempt)
+  plan_id: repo-level-training
+  description: Repo-level CLS at 4B/8B + CWM attempts, checkpoint sweeps
+  expected_results:
+    cls_4b_best:
+      accuracy: 82.35
+      f1_macro: 74.74
+      fail_f1: 60.87
+      pass_f1: 88.6
+      fail_precision: 76.0
+      fail_recall: 50.76
+      unparseable_pct: 1.3
+    cls_4b_seed123_test:
+      accuracy: 75.33
+      fail_f1: 50.5
+    cls_8b_best:
+      accuracy: 84.79
+      f1_macro: 81.18
+      fail_f1: 72.93
+      pass_f1: 89.43
+      unparseable_pct: 0
+    cls_8b_seed123:
+      accuracy: 85.6
+      fail_f1: 65.89
+    cls_8b_multiseed_mean_accuracy: 85.2
+    cls_8b_multiseed_fail_f1_mean: 69.41
+    cwm_v10:
+      accuracy: 69.91
+      unparseable_pct: 93.0
+      fail_f1: 11.54
+    cwm_v12:
+      accuracy: 58.04
+      unparseable_pct: 53.7
+      fail_f1: 34.12
+    cwm_seed123:
+      accuracy: 59.09
+      unparseable_pct: 67.2
+    cwm_8b_attempts: all failed (training/eval infrastructure issues)
+  result_rationale: 'Repo-level CLS在median range内：8B multi-seed mean ~85%在[80,85]上缘，
+    fail_f1 ~69%在[60,72]内。Minority class(fail)预测弱的原因： repo-level code长(2800+ tokens)使模型难以精确定位failure
+    cause， fail recall低(50-56%)说明模型对大量fail case预测为pass——conservative model under-diagnoses
+    failures。Fail precision较好(76-92%)说明当模型predict fail时通常correct。
+
+    CWM catastrophic failure：93%(v10)或53.7%(v12)或67.2%(seed123) unparseable。 原因是repo-level
+    execution output极长(tracebacks、assertion details、log messages)， generation model无法produce
+    matching output。Max_new_tokens限制(64 in v10)导致 几乎所有output被truncated。即使放宽到1024 tokens(v11)，仍有75.2%
+    unparseable。
+
+    Median tier核心tension：CWM failure是formulation limitation还是implementation issue？
+    Reviewer会argue：(1) max_new_tokens太短是implementation choice；(2) better output format
+    (structured JSON vs raw string)可能reduce unparseable。Paper需要honest discussion：
+    "even with generous token budget, CWM unparseable rate remains >50%, suggesting
+    formulation-level difficulty in predicting complex execution outputs."
+
+    4B seed variance高(82.35 vs 75.33)是concern——对checkpoint selection敏感。 8B更稳定(84.79
+    vs 85.60)因为更大model对hyperparameter less sensitive。
+
+    '
+  tables:
+  - name: 'Table: Repo-Level CLS vs CWM'
+    columns:
+    - Model
+    - Formulation
+    - Best Acc
+    - Fail F1
+    - Unparseable%
+    rows:
+    - - 4B
+      - CLS (seed42)
+      - 82.35
+      - 60.87
+      - 1.3
+    - - 4B
+      - CLS (seed123)
+      - 75.33
+      - 50.5
+      - 0
+    - - 8B
+      - CLS (seed42)
+      - 84.79
+      - 72.93
+      - 0
+    - - 8B
+      - CLS (seed123)
+      - 85.6
+      - 65.89
+      - 0
+    - - 4B
+      - CWM (v10)
+      - 69.91
+      - 11.54
+      - 93.0
+    - - 4B
+      - CWM (v12)
+      - 58.04
+      - 34.12
+      - 53.7
+    - - 4B
+      - CWM (seed123)
+      - 59.09
+      - —
+      - 67.2
+  - name: 'Table: Complexity-Dependent Formulation Gap'
+    columns:
+    - Level
+    - CLS Best Acc
+    - CWM Best Acc
+    - CWM Unparseable%
+    rows:
+    - - Function (4B)
+      - 87.51
+      - 87.51
+      - 0
+    - - Function (8B)
+      - 90.48
+      - 87.67
+      - 0
+    - - Repo (4B)
+      - 82.35
+      - 69.91
+      - 93.0
+    - - Repo (8B)
+      - 84.79
+      - failed
+      - —
+  figures_description:
+  - CLS checkpoint accuracy curve (4B and 8B, test set)
+  - CWM unparseable rate across 10+ training attempts timeline
+  - Function vs Repo level CLS/CWM gap visualization
+  analysis: 'Repo-level是paper最contentious evidence。Framing必须是"CLS works where CWM
+    fails" 而非"CLS beats CWM"——因为CWM没有fair comparison point（它根本无法produce valid output）。
+    Reviewer concern mitigation：show multiple CWM attempts with different configs，
+    demonstrate that unparseable rate persists despite engineering effort。
+
+    '
+- name: LLM-as-Judge Zero-Shot Baselines
+  plan_id: llm-judge-baseline
+  description: Qwen3-8B and 32B NF4 zero-shot judge baselines
+  expected_results:
+    judge_8b:
+      accuracy: 64.4
+      fail_f1: 72.2
+      fail_recall: 95.8
+      pass_recall: 35.1
+      traj_accuracy: 99.1
+    judge_32b:
+      accuracy: 71.69
+      fail_f1: 75.91
+      fail_recall: 92.43
+      pass_recall: 52.35
+    finetuned_4b:
+      accuracy: 87.51
+    finetuned_vs_judge_32b_gap_pp: 15.82
+    majority_baseline: 51.7
+  result_rationale: 'Zero-shot judges极端biased toward "fail"：8B fail_recall 95.8% but
+    pass_recall仅35.1%。 模型的zero-shot heuristic是"mutated code = broken"，几乎不考虑mutation是否actually
+    affects test outcome。32B稍好(pass_recall 52.35%)但仍heavily biased。 Fine-tuned 4B
+    (87.51%) >> 32B zero-shot (71.69%)，gap 15.82pp： task-specific fine-tuning的value
+    massive。8x更大的零训练模型仍不如4x更小的微调模型。 Traj-level accuracy 99.1%是trivial：数据中仅1个resolved
+    instance， judge只需default to "unresolved"即可达99%。这highlights traj-level accuracy的
+    deceptive nature——per-test accuracy是更honest的metric。
+
+    '
+  tables:
+  - name: 'Table: Fine-Tuned vs Zero-Shot'
+    columns:
+    - Model
+    - Method
+    - Per-Test Acc
+    - Fail F1
+    - Pass F1
+    rows:
+    - - Qwen3-4B
+      - Fine-tuned CLS
+      - 87.51
+      - 87.86
+      - 87.15
+    - - Qwen3-8B
+      - Zero-shot
+      - 64.4
+      - 72.2
+      - 50.5
+    - - Qwen3-32B NF4
+      - Zero-shot
+      - 71.69
+      - 75.91
+      - 65.68
+    - - Majority
+      - Baseline
+      - 51.7
+      - —
+      - —
+  figures_description:
+  - 'Accuracy-compute Pareto frontier: fine-tuned CLS dominates'
+  analysis: 'Uncontroversial finding。Confirms fine-tuning necessity for code verification。
+    Reviewer可能ask for few-shot or chain-of-thought baselines as additional reference。
+
+    '
+- name: Per-Test Majority Voting (K=3)
+  plan_id: per-test-majority-voting
+  description: Self-consistency K=3 on per-test classification
+  expected_results:
+    accuracy_greedy: 87.51
+    accuracy_mv_k3: 86.83
+    delta_pp: -0.69
+    unanimous_rate: 93.3
+    split_samples: 127
+    flipped_correct_to_wrong: 28
+    flipped_wrong_to_correct: 15
+    net_flips: -13
+    wall_time_greedy_sec: 30
+    wall_time_mv_sec: 120
+  result_rationale: 'Majority voting hurt accuracy by 0.69pp。93.3% of predictions
+    are unanimous—— model is highly confident, disagreement occurs only on 127/1890
+    = 6.7% of samples。 These are the hardest borderline cases where model is genuinely
+    uncertain。 Voting on uncertain cases flips 28 correct→wrong vs 15 wrong→correct
+    (net -13)： the model''s first-pass greedy prediction is better than random among
+    its own alternatives。 This is unlike LLM reasoning tasks where self-consistency
+    helps——per-test classification is a discrimination task where greedy decoding
+    already captures the optimal decision boundary。 4x compute cost for worse accuracy
+    makes MV strictly dominated。
+
+    '
+  tables:
+  - name: 'Table (Appendix): Majority Voting'
+    columns:
+    - Method
+    - Accuracy
+    - Time(s)
+    - Net Flips
+    rows:
+    - - Greedy (K=1)
+      - 87.51
+      - 30
+      - —
+    - - Majority (K=3)
+      - 86.83
+      - 120
+      - −13
+  figures_description: []
+  analysis: 'Negative result in appendix。Self-consistency不适用于well-calibrated binary
+    classifiers。
+
+    '
+- name: 5-Seed Paired Clustered Bootstrap (TOST Equivalence)
+  plan_id: 5-paired-clustered-bootstrap
+  description: Per-test vs trajectory-level TOST equivalence with clustered bootstrap
+  expected_results:
+    pooled_gap_pp: -0.45
+    pooled_ci_lower: -1.71
+    pooled_ci_upper: 0.84
+    ci_width_pp: 2.55
+    tost_p_value: 0.0071
+    tost_margin_pp: 2.0
+    equivalence_confirmed: true
+    per_seed_gaps:
+      s42: -0.97
+      s123: 1.45
+      s456: -1.84
+      s789: -0.78
+      s0: -0.29
+    seed_level_paired_t_p: 0.425
+    n_variants_pooled: 523
+    n_clusters: 114
+    n_resamples: 10000
+  result_rationale: 'TOST p=0.007 << 0.05 confirms per-test ≈ trajectory within ±2pp
+    margin。 CI [-1.71, +0.84] width = 2.55pp在median range [1.5, 3.0]——sufficiently
+    narrow to confirm equivalence but not extremely tight。 Per-seed gaps from -1.84
+    to +1.45：方向不一致，3 seeds per-test worse,  1 seed per-test better, 1 seed near-zero。This
+    inconsistency IS the equivalence signal—— if one formulation were systematically
+    better, gaps would be consistently one-sided。 ±2pp margin justification: with
+    ICC=0.191 and DEFF=3.97, 2pp is practical significance threshold given the reduced
+    effective sample size。 Clustered bootstrap (114 clusters, 10000 resamples) accounts
+    for within-problem correlation that would bias naive CI estimates。
+
+    '
+  tables:
+  - name: 'Table: Per-Test vs Trajectory Equivalence'
+    columns:
+    - Seed
+    - Gap (per-test − traj, pp)
+    - Direction
+    rows:
+    - - 42
+      - -0.97
+      - Traj better
+    - - 123
+      - 1.45
+      - Per-test better
+    - - 456
+      - -1.84
+      - Traj better
+    - - 789
+      - -0.78
+      - Traj better
+    - - 0
+      - -0.29
+      - Traj better
+    - - Pooled
+      - −0.45 [−1.71, +0.84]
+      - TOST p=0.007
+  figures_description:
+  - 'Forest plot: per-seed gaps with pooled CI, ±2pp TOST bounds as dotted verticals'
+  analysis: 'Claim 2的methodological cornerstone。TOST at p=0.007 is strong evidence。
+    Median tier下这是paper最rigorous statistical result和primary contribution。
+
+    '
+- name: CLS/CWM Error Complementarity Analysis
+  plan_id: error-overlap
+  description: CLS vs CWM error overlap on function-level (seed42, n=1890)
+  expected_results:
+    both_correct:
+      count: 1601
+      pct: 84.71
+    cls_only_correct:
+      count: 59
+      pct: 3.12
+    cwm_only_correct:
+      count: 53
+      pct: 2.8
+    both_wrong:
+      count: 177
+      pct: 9.37
+    oracle_ensemble_accuracy: 90.63
+    cls_error_mode: miss bugs (FN dominant, 75.4% of CLS errors)
+    cwm_error_mode: false alarms (FP dominant, 83.1% of CWM errors)
+    cohens_kappa_predictions: 0.88
+    cohens_kappa_correctness: 0.73
+  result_rationale: 'CLS-only correct (3.12%) ≈ CWM-only correct (2.80%)说明两种formulation有近乎equal
+    but different错误区域。Oracle ensemble 90.63%远高于either alone(87.51%)。 Error mode complementarity：CLS倾向miss
+    bugs(conservative, FN dominant)， CWM倾向false alarm(overgenerate error outputs)。这不是random
+    complementarity 而是structural：CLS的binary decision boundary和CWM的string matching
+    在不同case types上fail。 Off_by_one最complementary(CWM-only 4.8%, both wrong 14.9%)：
+    CLS难以detect subtle boundary changes but CWM sometimes captures output differences。
+    Return_value最不complementary(96.8% both correct)：both formulations handle this
+    easily。 Kappa(correctness)=0.73 < Kappa(predictions)=0.88说明agreement on what''s
+    correct is lower than agreement on predictions——there''s a meaningful disagreement
+    zone。
+
+    '
+  tables:
+  - name: 'Table: Error Overlap (4B, seed42)'
+    columns:
+    - Category
+    - Count
+    - '%'
+    rows:
+    - - Both correct
+      - 1601
+      - 84.71%
+    - - CLS-only correct
+      - 59
+      - 3.12%
+    - - CWM-only correct
+      - 53
+      - 2.80%
+    - - Both wrong
+      - 177
+      - 9.37%
+    - - Oracle ensemble
+      - —
+      - 90.63%
+  figures_description:
+  - 'Venn diagram: CLS vs CWM error overlap'
+  - Per-mutation complementarity breakdown
+  analysis: 'Oracle ensemble 90.63%是paper的supplementary selling point。 Framing: "formulation
+    diversity as a verification strategy" —  even if neither CLS nor CWM individually
+    dominates, combining them yields 3.12pp lift。
+
+    '
+- name: DeepSeek Function-Level CLS (seed42)
+  plan_id: deepseek-cls-func
+  description: DeepSeek-Coder-6.7B-Instruct LoRA CLS on function-level
+  expected_results:
+    accuracy: 86.8
+    pass_f1: 86.5
+    fail_f1: 87.1
+    unparseable: 0
+    vs_qwen_4b_cls_gap_pp: -0.71
+  result_rationale: 'DeepSeek-Coder-6.7B是code-specialized model，parameter count略大于Qwen3-4B但
+    architecture不同(MoE-style vs dense)。在function-level CLS上达到~86.8%， 略低于Qwen 4B(87.51%)的0.71pp。差距可能来自：(1)
+    LoRA hyperparameters为Qwen优化过， DeepSeek可能需要不同rank/lr；(2) tokenizer差异影响code representation
+    quality； (3) instruction format差异(DeepSeek用自己的chat template)。 这说明CLS formulation对architecture
+    robust(差异<1pp)但不是完全invariant。 Median tier下DeepSeek CLS function-level confirms
+    CLS generalizability但无exciting finding。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Cross-architecture CLS works. Small performance gap likely attributable
+    to hyperparameter tuning.
+
+    '
+- name: DeepSeek Function-Level CWM (seed42)
+  plan_id: deepseek-cwm-func
+  description: DeepSeek-Coder-6.7B-Instruct LoRA CWM on function-level
+  expected_results:
+    accuracy: 87.5
+    pass_f1: 87.3
+    fail_f1: 87.7
+    exact_match_rate: 85.1
+    unparseable: 0
+    vs_deepseek_cls_gap_pp: 0.7
+  result_rationale: 'DeepSeek CWM (87.5%) > DeepSeek CLS (86.8%)：gap = +0.7pp FAVORING
+    CWM。 这与Qwen finding(CLS略优)方向相反。原因推测：DeepSeek-Coder在code generation pretraining上更强，其generation
+    capability转移到execution output prediction上 比classification更efficiently。CWM在DeepSeek上exact_match
+    85.1% > Qwen的84.02%， suggesting DeepSeek生成output更precise。 This is the key median
+    tier prediction："mixed DeepSeek results"—— CLS-CWM gap方向在DeepSeek上flipped，undermining"CLS
+    universally better"narrative。 deepseek_func_cls_cwm_gap_pp = -0.7，在[-2.0, 2.0]
+    range内。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Direction flip on DeepSeek is the defining "mixed" result。Paper must
+    acknowledge that CLS advantage may be architecture-specific rather than formulation-universal。
+
+    '
+- name: DeepSeek Function-Level CWM (seed123)
+  plan_id: deepseek-cwm-func-s123
+  description: Second seed for DeepSeek CWM stability check
+  expected_results:
+    accuracy: 86.9
+    pass_f1: 86.7
+    fail_f1: 87.1
+    exact_match_rate: 84.3
+    vs_seed42_gap_pp: -0.6
+  result_rationale: 'Seed123 CWM (86.9%) 低于 seed42 (87.5%) 0.6pp——正常seed variance
+    range。 如果DeepSeek CLS也跑seed123(假设~86.5%)，CLS-CWM gap ≈ -0.4pp(CWM slightly better)。
+    两个seeds下gap = {seed42: -0.7, seed123: ~-0.4}，方向一致(CWM better on DeepSeek) 但effect
+    size小。Cross-seed一致性比Qwen好(Qwen的CLS-CWM gap从+0.32到+2.33 across seeds)。
+
+    '
+  tables:
+  - name: 'Table: DeepSeek Function-Level Summary'
+    columns:
+    - Seed
+    - DeepSeek CLS
+    - DeepSeek CWM
+    - Gap (CLS−CWM)
+    rows:
+    - - 42
+      - ~86.8
+      - 87.5
+      - −0.7
+    - - 123
+      - —
+      - 86.9
+      - —
+  figures_description: []
+  analysis: 'DeepSeek CWM ≥ CLS consistently across seeds. Combined with Qwen (CLS
+    > CWM), the cross-architecture story is: formulation advantage is model-dependent,
+    not universal.
+
+    '
+- name: DeepSeek Repo-Level CLS
+  plan_id: deepseek-cls-repo
+  description: DeepSeek-Coder-6.7B fine-tuned CLS on repo-level SWE-bench data
+  expected_results:
+    accuracy: 80.5
+    f1_macro: 71.8
+    fail_f1: 61.2
+    pass_f1: 82.4
+    unparseable_pct: 2.1
+    majority_baseline: 73.0
+    gap_vs_baseline_pp: 7.5
+  result_rationale: 'DeepSeek repo-level CLS (80.5%) 在Qwen 4B(82.35%) 和 8B(84.79%)之间，
+    符合其~6.7B parameter count。Fail_f1 61.2%在median range [60,72]。 Unparseable 2.1%略高于Qwen(0-1.3%)——DeepSeek
+    tokenizer对repo-level formatting edge cases处理稍差。Gap vs majority baseline (7.5pp)说明model
+    learned meaningful signal 但比Qwen的9-12pp gap小，可能因为hyperparameter没有充分tune for repo-level。
+    Median tier意义：partial confirmation that CLS works on repo-level across architectures，
+    但performance水平无new insight(comparable to Qwen within normal variance)。
+
+    '
+  tables:
+  - name: 'Table: Cross-Architecture Repo-Level CLS'
+    columns:
+    - Model
+    - Accuracy
+    - Fail F1
+    - Unparseable%
+    rows:
+    - - Qwen3-4B (best seed)
+      - 82.35
+      - 60.87
+      - 1.3
+    - - Qwen3-8B (best seed)
+      - 84.79
+      - 72.93
+      - 0
+    - - DeepSeek-6.7B
+      - ~80.5
+      - ~61.2
+      - ~2.1
+  figures_description:
+  - Cross-architecture repo-level CLS accuracy comparison
+  analysis: 'Confirms CLS repo-level viability across architectures but adds no dramatic
+    new evidence。 In paper: single line in results table, brief mention in text。
+
+    '
+- name: Repo-Level CLS Mutation-Type Analysis
+  plan_id: repo-mutation-analysis
+  description: Per-mutation-type accuracy breakdown for repo-level CLS 8B
+  expected_results:
+    overall_accuracy: 84.48
+    gold_accuracy: 96.24
+    operator_swap: 81.38
+    off_by_one: 86.89
+    return_value: 75.44
+    boundary_removal: 46.9
+    seed123_overall: 85.6
+    seed123_boundary_removal: 44.9
+    seed123_gold: 99.6
+  result_rationale: 'Boundary_removal极低(46.9%)——接近random guessing。这类mutation移除了if/while条件判断，
+    导致代码行为大幅改变但模型难以仅从code+test text判断影响。 Return_value也低(75.4%)：返回值变化在repo-level context中更难捕获因为
+    函数调用链更长，影响propagation更complex。 Gold accuracy高(96-99%)说明模型对未mutated code的判断reliable。
+    Off_by_one在repo-level(86.9%)比function-level(82.56%)还高——可能因为 repo-level tests更explicitly
+    test boundary conditions。 Median tier下此breakdown explains为什么repo-level fail_f1
+    only 60-73%： boundary_removal(占test set 10.7%)严重拖低整体fail detection。
+
+    '
+  tables:
+  - name: 'Table: Repo-Level CLS 8B Mutation Breakdown'
+    columns:
+    - Mutation Type
+    - Accuracy (s42)
+    - Accuracy (s123)
+    rows:
+    - - Gold (no mutation)
+      - 96.24%
+      - 99.60%
+    - - operator_swap
+      - 81.38%
+      - 82.60%
+    - - off_by_one
+      - 86.89%
+      - 79.20%
+    - - return_value
+      - 75.44%
+      - 66.40%
+    - - boundary_removal
+      - 46.90%
+      - 44.90%
+  figures_description:
+  - 'Radar chart: mutation-type accuracy across models (func 4B, repo 4B, repo 8B)'
+  analysis: Boundary_removal is the Achilles heel. Represents instances where CLS
+    cannot determine test outcome from static code analysis alone — would need execution-like
+    reasoning。 This partially validates CWM's approach (predicting execution) for
+    specific mutation types。

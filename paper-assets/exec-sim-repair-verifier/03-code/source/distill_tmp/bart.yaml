@@ -1,0 +1,76 @@
+paper_key: "BART: Denoising Sequence-to-Sequence Pre-training for NLG, Translation, and Comprehension"
+title: "BART: Denoising Sequence-to-Sequence Pre-training for NLG, Translation, and Comprehension"
+venue: "ACL 2020"
+full_text_available: true
+
+research:
+  baselines: [BERT, GPT, UniLM, XLNet, RoBERTa]
+  metrics:
+    - {name: "ROUGE", direction: "higher_better"}
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "accuracy (GLUE)", direction: "higher_better"}
+    - {name: "F1 (SQuAD)", direction: "higher_better"}
+  datasets:
+    - {name: "CNN/DailyMail", size: "300K articles"}
+    - {name: "XSum", size: "226K articles"}
+    - {name: "GLUE", size: "standard"}
+    - {name: "SQuAD 1.1", size: "standard"}
+    - {name: "WMT16 RO-EN", size: "standard"}
+  ablation_dimensions: [noise_type, corruption_ratio, architecture_variant]
+  training_recipe: {optimizer: "Adam", lr: "3e-5 (finetuning)", hardware: "64 V100 GPUs"}
+  method_family: "pre-training method"
+
+positioning:
+  core_claim: "Denoising autoencoder with flexible corruption (especially text infilling) unifies generation and comprehension in one model — matches BERT-class on understanding while achieving new SOTA on generation"
+  key_results: "XSum: +6 ROUGE over prior SOTA; CNN/DM: 44.16 R1; SQuAD: 88.8 EM; WMT16: +1.1 BLEU"
+  limitations: ["Less effective when output loosely constrained by input (ELI5)", "MT approach needs back-translation data"]
+  relation_to_us: "orthogonal"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Self-supervised methods succeed but are typically task-specific (BERT for understanding, GPT for generation)"
+  tension: "No single pretraining approach excels at both comprehension and generation"
+  key_insight: "Text infilling (replacing spans with single mask) forces longer-range reasoning about sentence structure (Section 2.2)"
+  argument_chain: "task-specific limitation → flexible corruption → text infilling as key → encoder-decoder unification → strong on both understanding and generation"
+  contribution_framing: "Architecture + systematic noise comparison + SOTA on generation + competitive on comprehension"
+  intro_structure: "3 paragraphs: (1) self-supervised success, (2) task-specificity limitation, (3) BART proposal and flexibility"
+  notable_technique: "Systematic ablation of 5 noise types as controlled experiment — turns a design choice into a scientific finding"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "BART architecture: corrupted input → bidirectional encoder → autoregressive decoder → reconstruction"
+    narrative_role: "Shows how BART combines BERT encoder with GPT decoder"
+    design_elements: ["encoder-decoder diagram", "corruption examples", "reconstruction arrows"]
+    visual_style: "Standard transformer architecture diagram with noise visualization"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "Generated vs reference summaries"
+      how_gain_highlighted: "Shows abstractive capability (not just extractive)"
+      design_note: "Qualitative examples build intuition for BART's generative strength"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(architecture) → Fig2(qualitative examples)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (noise types)"
+    col_axis: "tasks (SQuAD, MNLI, ELI5, XSum, ConvAI2, CNN/DM)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_task_type"
+    highlight_strategy: "bold_best per column"
+    statistical_reporting: "single run"
+    num_baselines: 6
+    design_note: "Noise type comparison table is the paper's core contribution — systematic experimental design"
+  ablation_tables:
+    - table_id: "Table 1 (same)"
+      what_varied: ["noise_type (masking, deletion, infilling, permutation, rotation)"]
+      variation_style: "full_numbers"
+      design_note: "Each row is a different pre-training corruption — the ablation IS the main result"
+  supplementary_tables:
+    in_appendix: false
+    content: "Large-scale results (Tables 2-7) show downstream SOTA"
+    reason: "Flat structure — all results in main body"

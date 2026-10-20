@@ -1,0 +1,37 @@
+paper_key: "yue-rlvr-limits"
+title: "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "base models (as upper bounds at large k)"
+    - "distillation approaches"
+    - "six RLVR algorithm variants"
+  metrics:
+    - {name: "pass@k (varying k)", direction: "higher_better"}
+    - {name: "coverage analysis", direction: "N/A"}
+    - {name: "perplexity analysis", direction: "N/A"}
+  datasets:
+    - {name: "mathematics benchmarks", size: "not specified"}
+    - {name: "coding benchmarks", size: "not specified"}
+    - {name: "visual reasoning benchmarks", size: "not specified"}
+  ablation_dimensions:
+    - "RLVR vs base model at varying k"
+    - "RLVR vs distillation"
+    - "six different RL algorithms compared"
+  training_recipe:
+    method: "systematic evaluation of RLVR (Reinforcement Learning with Verifiable Rewards)"
+    scope: "multiple model families, multiple RL algorithms"
+  method_family: "empirical analysis of RLVR limitations"
+
+positioning:
+  core_claim: "RLVR does not create genuinely new reasoning capabilities beyond the base model; it merely recombines existing base model abilities, as shown by base models achieving higher pass@k at large k."
+  key_results: "RLVR models outperform base at k=1 but base models surpass RLVR at large k; six popular RLVR algorithms perform similarly and remain far from optimal"
+  limitations:
+    - "analysis is empirical; does not prove theoretical impossibility"
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

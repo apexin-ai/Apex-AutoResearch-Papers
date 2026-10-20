@@ -1,0 +1,26 @@
+paper_key: "SWE-RM: Execution-free Feedback for Software Engineering Agents"
+title: "SWE-RM: Execution-free Feedback for Software Engineering Agents"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [test_execution_feedback, majority_voting, LLM_judge]
+  metrics:
+    - {name: "SWE-bench Verified resolve_rate", direction: "higher_better"}
+    - {name: "classification_accuracy", direction: "higher_better"}
+    - {name: "calibration (for RL)", direction: "higher_better"}
+  datasets:
+    - {name: "SWE-bench Verified", size: "500"}
+  ablation_dimensions: [training_data_scale, policy_mixture, data_composition, RL_vs_TTS]
+  training_recipe: {optimizer: "RL training of reward model", lr: "N/A", hardware: "MoE 30B (3B active)"}
+  method_family: "execution-free reward model"
+
+positioning:
+  core_claim: "30B sparse MoE reward model provides execution-free trajectory verification competitive with test execution; calibration matters for RL effectiveness"
+  key_results: "Qwen3-Coder-Flash: 51.6%→62.0%; Qwen3-Coder-Max: 67.0%→74.6% (SOTA open-source)"
+  limitations: ["Trajectory-level (no per-test granularity)", "MoE architecture complexity", "Requires large training data"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

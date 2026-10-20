@@ -1,0 +1,37 @@
+paper_key: "karwowski-goodhart-rl"
+title: "Goodhart's Law in Reinforcement Learning"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - "standard RL (no early stopping)"
+    - "worst-case reward maximization"
+  metrics:
+    - {name: "true objective performance", direction: "higher_better"}
+    - {name: "proxy reward", direction: "higher_better"}
+    - {name: "regret bound", direction: "lower_better"}
+  datasets:
+    - {name: "wide range of RL environments", size: "not specified"}
+  ablation_dimensions:
+    - "environment type"
+    - "reward function specification"
+    - "KL penalty strength"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    details: "RL optimization over proxy rewards in MDPs"
+  method_family: "reward misspecification / Goodhart's law in RL"
+
+positioning:
+  core_claim: "Optimizing an imperfect proxy reward beyond a certain point reduces true objective performance (Goodhart's law in RL), and this can be mitigated by optimal early stopping with theoretical guarantees."
+  key_results: "Geometric explanations for Goodhart's law in MDPs; regret-bounded early stopping method; worst-case reward maximization under reward uncertainty"
+  limitations:
+    - "relies on knowing or estimating reward uncertainty"
+    - "environments tested may not cover all real-world complexity"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

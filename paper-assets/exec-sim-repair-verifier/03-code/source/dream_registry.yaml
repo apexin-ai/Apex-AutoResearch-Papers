@@ -1,0 +1,211 @@
+dreams:
+  dream_20260511T214810:
+    dream_id: dream_20260511T214810
+    project: exec-sim-repair-verifier
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key risk: Claim 1 (classification vs generation) has zero experimental
+      evidence yet -- CWM baseline is the make-or-break experiment. Claim 3''s P2P
+      regression rate ~1% finding narrows the story. Venue fit for EMNLP is uncertain
+      (core work is SE verification). Please stress-test whether the reframed "task
+      reformulation" narrative is strong enough for EMNLP Main.'
+    what_if: []
+    pid: 75048
+    started_at: '2026-05-11T21:48:10+00:00'
+    updated_at: '2026-05-11T22:01:52+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: all tiers failed
+    context_hash: 7904057bb93e1ffb405c955753c55a2a32600fce8935189cca3319752a9b6edc
+  dream_20260511T223609:
+    dream_id: dream_20260511T223609
+    project: exec-sim-repair-verifier
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Claim 1 reframed as complexity-dependent advantage: function-level classification
+      ≈ generation (null result confirmed), repo-level is the critical test. Focus
+      on whether the paper story holds under each tier given the function-level null
+      result and the need for repo-level validation.'
+    what_if: []
+    pid: 80608
+    chat_id: ''
+    card_message_id: ''
+    started_at: '2026-05-11T22:36:09+00:00'
+    updated_at: '2026-05-11T22:36:09+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: Dream requires an available Claude pool account
+      — none healthy.'
+    context_hash: d8af163a129c190865c897814aa36d1f7b8a08157b64a0d2c04b6358607825f2
+  dream_20260511T225536:
+    dream_id: dream_20260511T225536
+    project: exec-sim-repair-verifier
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Claim 1 reframed as complexity-dependent advantage: function-level classification
+      ≈ generation (null result confirmed), repo-level is the critical test. Focus
+      on whether the paper story holds under each tier given the function-level null
+      result and the need for repo-level validation.'
+    what_if: []
+    pid: null
+    chat_id: ''
+    card_message_id: ''
+    started_at: '2026-05-11T22:55:36+00:00'
+    updated_at: '2026-05-11T23:04:50+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: d8af163a129c190865c897814aa36d1f7b8a08157b64a0d2c04b6358607825f2
+  dream_20260511T230709:
+    dream_id: dream_20260511T230709
+    project: exec-sim-repair-verifier
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Claim 1 reframed as complexity-dependent advantage: function-level classification
+      ≈ generation (null result confirmed), repo-level is the critical test. Focus
+      on whether the paper story holds under each tier given the function-level null
+      result and the need for repo-level validation.'
+    what_if: []
+    pid: null
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6f125cca04a4c3b15af3b4c9dcb
+    started_at: '2026-05-11T23:07:09+00:00'
+    updated_at: '2026-05-11T23:14:24+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: d8af163a129c190865c897814aa36d1f7b8a08157b64a0d2c04b6358607825f2
+  dream_20260511T231719:
+    dream_id: dream_20260511T231719
+    project: exec-sim-repair-verifier
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Claim 1 reframed as complexity-dependent advantage: function-level classification
+      ≈ generation (null result confirmed), repo-level is the critical test. Focus
+      on whether the paper story holds under each tier given the function-level null
+      result and the need for repo-level validation.'
+    what_if: []
+    pid: 89407
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6f1276e864a0c437fb06c95b107
+    started_at: '2026-05-11T23:17:19+00:00'
+    updated_at: '2026-05-12T00:01:07+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d8af163a129c190865c897814aa36d1f7b8a08157b64a0d2c04b6358607825f2
+  dream_20260516T073712:
+    dream_id: dream_20260516T073712
+    project: exec-sim-repair-verifier
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 1130066
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6fb5a44bd0a0c38fc6ac62ce9ef
+    started_at: '2026-05-16T07:37:12+00:00'
+    updated_at: '2026-05-16T08:33:51+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 01e1a5de2f52b1a002458cfc6178a3bf3abc1ba60bd18355328238597d8b53a2
+  dream_20260516T150201:
+    dream_id: dream_20260516T150201
+    project: exec-sim-repair-verifier
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点关注：1) DeepSeek 跨模型验证（func-level 已完成，repo-level 训练中）对 C1/C3 claim 的加强效果；2)
+      TRAJ v2 修正后的三格式对比（CLS≥CWM≥TRAJ）是否足够支撑 C2；3) Round 1 审稿的 4 个 Critical 是否已充分回应；4)
+      当前 novelty 水平能否达到 EMNLP Findings 门槛
+    what_if: []
+    pid: 1194327
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6fbc20068498c29def00d39b748
+    started_at: '2026-05-16T15:02:01+00:00'
+    updated_at: '2026-05-16T15:56:57+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3460064b88cf088b9ee110f02701a849df061e0e4a9b294aa3634f0722e1f4e9
+  dream_20260517T034206:
+    dream_id: dream_20260517T034206
+    project: exec-sim-repair-verifier
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估加入 re-repair downstream utility section 后论文的整体说服力。重点关注：(1) re-repair
+      结果是否能有效回应 'no downstream utility' reviewer concern, (2) 即使 re-repair 是 moderate
+      positive (+5-10pp) 而非 strong positive，论文整体是否足够, (3) 如果 re-repair negative，论文是否仍可投稿
+    what_if:
+    - name: re-repair-phase1-instruct
+      claim: 'Downstream Utility: Diagnostic-Guided Re-repair'
+      description: 'Re-repair experiment with fixed confounds: Qwen3-8B-Instruct on
+        50-80 SWE-bench Verified instances. 5 conditions (A1-minimal control, A2-test-names-only,
+        B-CLS-diagnostic, C-oracle-diagnostic, D-random). Docker-based resolve rate
+        eval (pass@1, pass@5). Paired design. Two prompt formats for robustness. Expected
+        outcome: CLS-diagnostic (B) improves resolve rate by 5-15pp over A1/A2; Oracle
+        (C) as upper bound; Random (D) as lower bound.'
+      estimated_gpu_hours: 0.0
+    pid: 1284560
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6fa7de26201cc2a1cb9faac4b77
+    started_at: '2026-05-17T03:42:06+00:00'
+    updated_at: '2026-05-17T04:18:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: af90aa657f4943dc168874332d58f4b3cbaf293e210ef6482ca61387184455f8
+  dream_20260518T171503:
+    dream_id: dream_20260518T171503
+    project: exec-sim-repair-verifier
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 论文经过 D116 framing pivot、D126 三层 framing、D135 overtraining→evaluation sensitivity
+      重设计后，和 Round 1 时已大幅改变。重点评估：(1) R2-W1 新颖性是否足以达到 EMNLP main 4.0; (2) 当前 contribution
+      framing 是否清晰有力; (3) 写作质量和 story 连贯性; (4) 还有什么具体改进能把分数从 borderline 推到 accept
+    what_if: []
+    pid: 1557184
+    chat_id: oc_061c4b1115e483e8fdad01cae91c873a
+    card_message_id: om_x100b6f80df65fca4c3216a5813a8b83
+    started_at: '2026-05-18T17:15:03+00:00'
+    updated_at: '2026-05-18T18:09:52+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 2c5483df38a621bc22660b6546ea25e72f7d1cd402731c40de470b737d7b1514

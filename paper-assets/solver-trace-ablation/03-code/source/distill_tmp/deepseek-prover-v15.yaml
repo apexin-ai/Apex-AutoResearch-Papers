@@ -1,0 +1,32 @@
+paper_key: "deepseek-prover-v15"
+title: "DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search"
+venue: "ICLR 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "DeepSeek-Prover-V1"
+  metrics:
+    - {name: "pass rate on miniF2F", direction: "higher_better"}
+    - {name: "pass rate on ProofNet", direction: "higher_better"}
+  datasets:
+    - {name: "miniF2F", size: "high school level theorems"}
+    - {name: "ProofNet", size: "undergraduate level theorems"}
+  ablation_dimensions:
+    - "MCTS variant (RMaxTS vs standard)"
+    - "RL from proof assistant feedback vs SFT only"
+  training_recipe:
+    base_model: "DeepSeekMath-Base"
+    stages: "SFT on formal theorem proving data → RLPAF (RL from Proof Assistant Feedback)"
+    inference: "RMaxTS (intrinsic-reward-driven Monte-Carlo tree search)"
+  method_family: "RL + MCTS for formal theorem proving in Lean 4"
+
+positioning:
+  core_claim: "Combining proof assistant feedback as RL reward with an intrinsic-reward-driven MCTS variant achieves SOTA on formal theorem proving benchmarks."
+  key_results: "miniF2F test: 63.5%, ProofNet: 25.3%"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

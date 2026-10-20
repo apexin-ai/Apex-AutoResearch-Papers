@@ -1,0 +1,25 @@
+paper_key: "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling"
+title: "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines: [beam_search, best_of_N]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "FLOPs", direction: "lower_better"}
+  datasets:
+    - {name: "math reasoning benchmarks", size: "standard"}
+  ablation_dimensions: [granularity_g, compute_budget, task_difficulty]
+  training_recipe: {optimizer: "N/A (inference algorithm)", lr: "N/A", hardware: "standard GPU inference"}
+  method_family: "test-time compute scaling"
+
+positioning:
+  core_claim: "Variable Granularity Search (VG-Search) unifies beam search and best-of-N via tunable granularity parameter, achieving +3.1-3.6% accuracy with 52% FLOP reduction"
+  key_results: "+3.1% over beam search, +3.6% over best-of-N, 52% FLOP reduction"
+  limitations: ["Primarily validated on math", "Requires verifier model", "Granularity selection heuristic"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,74 @@
+paper_key: "SWE-bench: Can Language Models Resolve Real-world Github Issues?"
+title: "SWE-bench: Can Language Models Resolve Real-world Github Issues?"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: [Claude_2, GPT-4, ChatGPT-3.5, SWE-Llama_7b, SWE-Llama_13b]
+  metrics:
+    - {name: "resolve_rate", direction: "higher_better"}
+    - {name: "patch_application_rate", direction: "higher_better"}
+  datasets:
+    - {name: "SWE-bench", size: "2294 instances from 12 Python repos"}
+  ablation_dimensions: [retrieval_method, context_length, oracle_vs_BM25]
+  training_recipe: {optimizer: "AdamW (SWE-Llama)", lr: "2e-4", hardware: "LoRA + Flash Attention"}
+  method_family: "benchmark + baseline evaluation"
+
+positioning:
+  core_claim: "Real-world GitHub issues with test-based evaluation expose fundamental limitations of LLMs in software engineering — even with oracle retrieval, best models solve <5%"
+  key_results: "Claude 2: 4.8%, GPT-4: 1.7% (oracle retrieval); SWE-Llama-13b: 4.0%; BM25 degrades to 1.96%"
+  limitations: ["Python-only", "Execution-based testing insufficient for code quality", "Models generate shorter patches than references"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Existing benchmarks saturated, failing to reflect real-world complexity"
+  tension: "LLMs excel at self-contained problems but real SE requires multi-file navigation, understanding function interplay"
+  key_insight: "Even with oracle file retrieval, models barely solve 5% — the challenge is reasoning, not retrieval (Section 4.2)"
+  argument_chain: "benchmark saturation → real SE complexity → automated pipeline → evaluation reveals fundamental gap → community resource"
+  contribution_framing: "4 contributions: benchmark infrastructure, training dataset, open model, comprehensive analysis"
+  intro_structure: "5 paragraphs: (1) LM capabilities, (2) benchmark limitations, (3) real SE complexity, (4) SWE-bench proposal, (5) findings preview"
+  notable_technique: "Rhetorical question title creates intrigue; 'mere 4.8%' framing maximizes impact of negative result"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "Pipeline from GitHub PRs to SWE-bench instances: repo selection → attribute filtering → execution filtering"
+    narrative_role: "Shows systematic, reproducible benchmark construction"
+    design_elements: ["pipeline flow", "filtering funnel", "concrete numbers at each stage"]
+    visual_style: "Left-to-right pipeline with reduction counts"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Resolve rate per repository across models"
+      how_gain_highlighted: "Variation across repos highlights difficulty diversity"
+      design_note: "Per-repo breakdown reveals model strengths/weaknesses"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["context_length"]
+      design_note: "Performance vs context length shows degradation with more context"
+  figure_narrative_role: "Fig1(pipeline) → Fig2(task example) → Fig3(context analysis) → Fig4(per-repo) → Fig5(overlap)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "retrieval_setting × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 5
+    design_note: "Oracle vs BM25 columns make retrieval impact immediately visible"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["context_window_size", "retrieval_oracle_detail"]
+      variation_style: "full_numbers"
+      design_note: "Shows oracle-collapsed setting revealing localization challenge"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-repository statistics, dataset demographics, patch length distributions"
+    reason: "Benchmark characterization details too granular for main text"

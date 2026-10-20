@@ -1,0 +1,26 @@
+paper_key: "Scalable Supervising Software Agents with Patch Reasoner"
+title: "Scalable Supervising Software Agents with Patch Reasoner"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [test_execution, OpenAI_o3, majority_voting, LLM_judge]
+  metrics:
+    - {name: "verification_accuracy", direction: "higher_better"}
+    - {name: "SWE-bench Verified pass@1", direction: "higher_better"}
+    - {name: "verification_speed", direction: "lower_better"}
+  datasets:
+    - {name: "SWE-bench Verified", size: "500"}
+  ablation_dimensions: [RL_training, reasoning_depth, scaffold_complexity]
+  training_recipe: {optimizer: "RL with group-wise objectives", lr: "N/A", hardware: "Qwen3-32B base"}
+  method_family: "reasoning-based patch verification"
+
+positioning:
+  core_claim: "Reasoning-based patch verifier (R4P) achieves 72.2% accuracy, exceeding o3, at 50x speed of test execution; pure RL-trained Mini-SE reaches 26.2% with R4P rewards only"
+  key_results: "R4P: 72.2% accuracy (>o3); Mini-SE: 26.2%→32.8% with TTS; 50x faster than testing"
+  limitations: ["Binary verification only", "Requires reasoning model as base", "SWE-bench specific"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

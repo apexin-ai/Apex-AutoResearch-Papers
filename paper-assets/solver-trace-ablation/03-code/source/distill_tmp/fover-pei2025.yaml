@@ -1,0 +1,135 @@
+paper_key: "fover-pei2025"
+title: "FoVer: First-Order Logic Verification for Natural Language Reasoning"
+venue: "TACL 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "2-shot CoT (Chain-of-Thought prompting)"
+    - "Logic-LM (Pan et al., 2023) — LLM translates to logic format, verified by PyKE/Prover9"
+    - "Direct single decision (for REVEAL dataset)"
+  metrics:
+    - {name: "Accuracy (Total)", direction: "higher_better"}
+    - {name: "Accuracy of executable part (Acc)", direction: "higher_better"}
+    - {name: "Executability rate (Exe)", direction: "higher_better"}
+    - {name: "P_TF (Precision of True/False outputs)", direction: "higher_better"}
+    - {name: "R_TF (Recall of True/False)", direction: "higher_better"}
+    - {name: "R_U (Recall of Uncertain/Unknown)", direction: "higher_better"}
+  datasets:
+    - {name: "ProofWriter (OWA-5 test split)", size: "200 samples, each with 10-20 questions; balanced True/False/Unknown"}
+    - {name: "FOLIO (validation split)", size: "203 samples; human-annotated FOL reasoning"}
+    - {name: "REVEAL-StrategyQA", size: "120 questions; real LLM CoT outputs on StrategyQA"}
+    - {name: "REVEAL-MuSiQue", size: "120 questions; real LLM CoT outputs on MuSiQue"}
+  ablation_dimensions:
+    - "Common knowledge (+c vs -c): whether LLM-generated common knowledge is added to premises"
+    - "Relaxed evaluation (r): treating True/False predictions as correct when ground truth is Unknown"
+    - "Universal vs specific prompt (for FOLIO): single-sort Entity prompt vs multi-sort typed prompt"
+    - "Strict evaluation on ProofWriter: all 10-20 questions per sample must be correct"
+    - "Executability analysis across models (GPT-4o vs Claude 3.5 Sonnet)"
+    - "Error type distribution (mismatched sort, insufficient information, missing definitions, other)"
+  training_recipe:
+    optimizer: "N/A (inference-only pipeline, no training)"
+    lr: "N/A"
+    hardware: "N/A (API-based: GPT-4o and Claude 3.5 Sonnet via API)"
+    inference_settings: "temperature=0, top-p=1 for reproducibility"
+    few_shot: "2-shot CoT for baselines; few-shot demos with CoT annotation + Python function body for FoVer"
+    cost_note: "Long prompts incur notable API costs; mitigated by Batch API and Prompt Caching"
+  method_family: "neurosymbolic verification (LLM translation + SMT solver verification)"
+
+positioning:
+  core_claim: "By translating natural language reasoning into executable Python/Z3 first-order logic via LLM CoT prompting (not rigid FOL syntax), and verifying with the Z3 theorem prover, FoVer achieves significantly higher logical verification accuracy than existing methods while generalizing to real-world LLM outputs beyond specialized logical datasets."
+  key_results: "ProofWriter: 95.5% (GPT-4o) / 94.0% (Claude); FOLIO: 70.9% / 75.9% (with specific prompt +c); REVEAL-MuSiQue: 74.2% / 78.3% (+c); all significantly outperform CoT and Logic-LM baselines. Also identifies annotation errors in ProofWriter and FOLIO."
+  limitations:
+    - "LLMs still produce incorrect FOL translations for individual sentences; no iterative correction mechanism"
+    - "Long prompts incur notable API costs (mitigated by Batch API and Prompt Caching)"
+    - "Executability rate is a bottleneck — syntax/type errors in generated Z3 code reduce coverage (GPT-4o worse than Claude)"
+    - "Common knowledge sometimes introduces contradictions with translated claims, reducing executability on counter-factual datasets like ProofWriter"
+    - "Insufficient information errors: even with common knowledge, some conclusions cannot be verified"
+    - "Mismatched sorts remain a significant error source, especially for GPT-4o"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the well-known reliability problem of LLMs — hallucinations and logical inconsistency — framing it as a pressing concern for critical domains. The hook is the gap between impressive LLM capabilities and their unreliable reasoning."
+  tension: "Three-layer tension buildup: (1) LLMs generate plausible but logically flawed reasoning (hallucinations); (2) existing CoT/test-time-compute methods improve but don't guarantee correctness; (3) existing theorem-prover approaches (LINC, Logic-LM) use coarse-grained rigid FOL formats (non-ASCII symbols like forall/neg), have low executability, cannot handle real-world text, and underutilize LLM world knowledge. The key tension is between rigorous formal verification and practical applicability to messy real-world LLM outputs."
+  key_insight: "Revealed in paragraph 4 of the introduction: instead of translating to rigid FOL syntax, use LLMs to generate executable Python code wrapping Z3 API calls, with CoT annotation guiding the translation. This leverages LLMs' strong code generation ability and makes formal logic accessible without requiring non-ASCII logical symbols. The insight is that Python/Z3 is a more natural target language for LLMs than traditional FOL notation."
+  argument_chain: "LLMs are unreliable at reasoning → existing verification methods (CoT, theorem provers) have limited applicability to real-world text → FoVer bridges NL understanding and formal verification by using LLM-driven translation to Python/Z3 + automated verification → validated on both specialized logical datasets (ProofWriter, FOLIO) AND real-world LLM outputs (REVEAL) → discovers annotation errors in existing datasets as bonus"
+  contribution_framing: "Contributions are implicitly framed through the method description and evaluation scope rather than an explicit numbered list. The key contributions are: (1) the FoVer pipeline with novel coding conventions for LLM-to-Z3 translation, (2) state-of-the-art verification on 3 datasets with 2 LLMs, (3) discovery of dataset annotation errors, (4) potential for FOL dataset construction."
+  intro_structure: "6 paragraphs: P1 (LLM progress + reliability gap), P2 (CoT and test-time compute help but don't solve logical correctness; Figure 1a example), P3 (existing verification methods — theorem provers exist but limited to rigid formats and specialized datasets), P4 (FoVer proposal — translate to Python/Z3 via CoT, addressing both limited applicability and trustworthiness), P5 (FoVer bridges NL understanding and formal logic, identifies flaws in complex reasoning chains), P6 (implicit — transitions to related work via the method's positioning against prior approaches)"
+  notable_technique: "The paper uses a concrete running example (superconductivity/Woodrow Wilson) throughout — from Figure 1a (incorrect CoT) through Figure 2 (pipeline overview showing the same example), Figure 3 (CoT annotation), and Table 6 (full code). This single example threads through the entire paper as a narrative anchor, making the abstract pipeline tangible. Also notable: the serendipitous discovery of annotation errors is positioned as a compelling side benefit rather than a main contribution, adding credibility."
+
+figures:
+  figure_count: 16
+  figure1:
+    type: "problem_illustration"
+    description: "Two CoT answer examples: (a) a logically incorrect CoT from Press et al. 2023 where premises about superconductivity discovery cannot support the conclusion about Woodrow Wilson being president; (b) a correct CoT from REVEAL-MuSiQue where each reasoning step logically follows."
+    narrative_role: "Immediately concretizes the problem — shows readers exactly what 'logically incorrect reasoning' looks like in LLM outputs. Sets up the need for automated verification. The incorrect example becomes the running example for the entire paper."
+    design_elements: ["side-by-side correct vs incorrect comparison", "X mark (red) for incorrect / checkmark (green) for correct", "real QA examples with actual LLM outputs", "boxed text blocks with colored labels"]
+    visual_style: "Two stacked boxes with question-answer format. Clean white background, green/red status indicators. Text-heavy but well-structured with clear visual hierarchy (Question header, Answer body, colored verdict markers)."
+  figure2:
+    type: "method_overview"
+    description: "Overview of the FoVer pipeline showing two steps: (1) LLM Translator takes reasoning text (premises + conclusions), translates to a Python function with Z3 logic; (2) Theorem Prover processes the translated logic theory and returns True/False/Unknown results."
+    narrative_role: "Central method figure — gives the 30-second overview of the entire approach. Uses the same superconductivity example from Figure 1, creating continuity."
+    design_elements: ["left-to-right flow diagram", "code snippet in the center showing actual Python/Z3 output", "color-coded components (orange for LLM, green for theorem prover)", "arrow-based flow with labeled inputs/outputs"]
+    visual_style: "Horizontal pipeline flow. LLM icon on left, code block in center, theorem prover on right. Warm color palette (orange accents). The code snippet is the visual centerpiece, showing this is a code-generation approach."
+  result_figures:
+    - figure_id: "Figure 6"
+      viz_type: "confusion_matrix"
+      what_compared: "FoVer predictions vs ground truth on FOLIO, comparing universal vs specific prompts, for both GPT-4o and Claude 3.5 Sonnet (4 matrices total)"
+      how_gain_highlighted: "Reports P_TF, R_TF, R_U metrics alongside each matrix; highlights how specific prompts improve executability and unknown recall"
+      design_note: "Uses 2x2 grid of confusion matrices with T/F/U labels; annotates precision/recall directly on the figure for quick reading. Orange box highlights a suspected annotation error case."
+    - figure_id: "Figure 8"
+      viz_type: "pie_chart"
+      what_compared: "Distribution of primary error types of FoVer on REVEAL (4 pie charts: GPT-4o/Claude x StrategyQA/MuSiQue)"
+      how_gain_highlighted: "Color-coded error categories make it clear that mismatched sorts and insufficient information dominate, guiding future improvement directions"
+      design_note: "Four pie charts in 2x2 grid. Three error categories color-coded consistently across all charts for easy cross-comparison."
+    - figure_id: "Figure 9"
+      viz_type: "bar_chart"
+      what_compared: "Recall rate of True samples on REVEAL — Direct (single decision) vs FoVer, across GPT-4o and Claude on StrategyQA and MuSiQue"
+      how_gain_highlighted: "FoVer bars are consistently higher than Direct bars, visually emphasizing improved True recall"
+      design_note: "Grouped bar chart with two colors (blue=Direct, orange=FoVer). Simple and effective for showing consistent improvement."
+    - figure_id: "Figure 11"
+      viz_type: "bar_chart"
+      what_compared: "Executability rate of GPT-4o vs Claude 3.5 Sonnet across all datasets, with and without common knowledge (+C)"
+      how_gain_highlighted: "Claude consistently higher than GPT-4o; visual comparison makes the model difference immediately apparent"
+      design_note: "Grouped bars by dataset, two colors for two models. Y-axis 0-100%. Clean design with clear legend."
+  ablation_figures:
+    - figure_id: "Figure 8"
+      viz_type: "pie_chart"
+      dimensions_varied: ["error type (mismatched sort, insufficient information, missing definitions, other)", "model (GPT-4o vs Claude)", "dataset (StrategyQA vs MuSiQue)"]
+      design_note: "Error analysis as ablation — identifies which failure modes dominate and how they vary across models and datasets"
+  figure_narrative_role: "Figure 1 (problem: incorrect CoT) → Figure 2 (solution: FoVer pipeline overview) → Figure 3-4 (method details: CoT annotation and coding conventions) → Figure 5 (dataset examples) → Figure 6 (FOLIO confusion matrices: detailed accuracy analysis) → Figure 7 (REVEAL examples showing abstraction challenge) → Figure 8 (error type analysis) → Figure 9 (True recall improvement) → Figure 10 (implicit knowledge example) → Figure 11 (executability comparison) → Figures 12-16 in appendix (prompts, exceptional cases, annotation errors). The flow is problem → method → data → results → analysis → edge cases."
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "datasets (ProofWriter, FOLIO, REVEAL-StrategyQA, REVEAL-MuSiQue)"
+    col_axis: "methods (CoT, Logic-LM, FoVer -c, FoVer +c) x models (GPT-4o, Claude 3.5 Sonnet)"
+    row_organization: "by_category (specialized datasets first, then real-world datasets)"
+    col_organization: "grouped_by_model (GPT-4o block | Claude 3.5 Sonnet block)"
+    highlight_strategy: "bold_best per row per model group; statistical significance markers (* for vs CoT, dagger for vs Logic-LM)"
+    statistical_reporting: "McNemar test (p<0.05) for statistical significance against CoT and Logic-LM; single run per configuration"
+    num_baselines: 2
+    design_note: "Compact overview table — 4 datasets x 4 methods x 2 models. Uses '/' to indicate inapplicable baselines (Logic-LM cannot run on REVEAL). Statistical significance double-coded with * and dagger symbols. Effective at showing FoVer's broad advantage while acknowledging where it falls short (REVEAL-StrategyQA)."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["common knowledge (+c/-c)", "relaxed evaluation (r)", "strict evaluation", "model (GPT-4o vs Claude)"]
+      variation_style: "full_numbers (Exe/Acc/Total for each configuration)"
+      design_note: "Detailed ProofWriter breakdown. Separates executability, accuracy-of-executable, and total accuracy. Shows both standard and strict (all-questions-correct) evaluation. The 'strict' rows demonstrate FoVer's robustness."
+    - table_id: "Table 3"
+      what_varied: ["common knowledge (+c/-c)", "universal vs specific prompt", "model (GPT-4o vs Claude)"]
+      variation_style: "full_numbers (Exe/Acc/Total)"
+      design_note: "FOLIO detailed results. The specific prompt variant is the key ablation — shows how a FOLIO-tailored demo that uses single Entity sort dramatically improves executability (77.8%→96.1% for GPT-4o)."
+    - table_id: "Table 4"
+      what_varied: ["common knowledge (+c/-c)", "dataset (StrategyQA vs MuSiQue)", "model"]
+      variation_style: "full_numbers (Exe/Acc/Total)"
+      design_note: "REVEAL results. Compares against 'Direct' (single decision) baseline. Shows the executability-accuracy tradeoff clearly."
+    - table_id: "Table 5"
+      what_varied: ["common knowledge (+/-)", "all datasets", "both models"]
+      variation_style: "full_numbers with color-coded deltas (orange=decrease, green=increase vs no-common-knowledge)"
+      design_note: "Summary of common knowledge impact across all configurations. Color coding makes it instantly visible that common knowledge generally helps accuracy but sometimes hurts executability. Uses * for statistical significance."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6 in appendix: complete first demo of the FoVer few-shot prompt, showing the full Python function body with Z3 logic. This is the detailed code example corresponding to the running superconductivity/Wilson example. Full prompt available on GitHub."
+    reason: "The complete code demo is too long for the main text but essential for reproducibility and understanding the translation conventions. Main text shows conventions in Figure 4; appendix shows the complete working example."

@@ -1,0 +1,152 @@
+paper_key: "qwen-prm-lessons"
+title: "The Lessons of Developing Process Reward Models in Mathematical Reasoning"
+venue: "ACL 2025 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "Math-Shepherd-PRM-7B"
+    - "RLHFlow-PRM-Mistral-8B"
+    - "RLHFlow-PRM-Deepseek-8B"
+    - "Skywork-PRM-1.5B"
+    - "Skywork-PRM-7B"
+    - "EurusPRM-Stage1"
+    - "EurusPRM-Stage2"
+    - "Qwen2.5-Math-RM-72B (ORM baseline)"
+    - "GPT-4o-0806 (LLM-as-judge)"
+    - "o1-mini (LLM-as-judge)"
+    - "QwQ-32B (LLM-as-judge)"
+    - "Llama-3.3-70B (LLM-as-judge)"
+    - "Qwen2.5-Math-7B-PRM800K (human-annotated baseline)"
+    - "majority voting @8"
+  metrics:
+    - {name: "Best-of-N accuracy (N=8)", direction: "higher_better"}
+    - {name: "ProcessBench F1 (step-level error identification)", direction: "higher_better"}
+    - {name: "ProcessBench F1 per dataset (GSM8K, MATH, OlympiadBench, Omni-MATH)", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "~8.5K test"}
+    - {name: "MATH", size: "~5K test"}
+    - {name: "Minerva Math", size: "evaluation"}
+    - {name: "GaoKao 2023", size: "evaluation"}
+    - {name: "OlympiadBench", size: "evaluation"}
+    - {name: "College Math", size: "evaluation"}
+    - {name: "MMLU STEM", size: "evaluation"}
+    - {name: "ProcessBench", size: "3400 test cases, competition/olympiad level"}
+    - {name: "PRM800K (Lightman et al. 2023)", size: "265K human-annotated samples (training data reference)"}
+    - {name: "Math-Shepherd data", size: "440K MC-estimated samples (training data reference)"}
+    - {name: "Internal MC estimation data", size: "860K samples, ~344K after consensus filtering"}
+  ablation_dimensions:
+    - "data annotation method: MC estimation vs LLM-as-judge vs human annotation vs consensus filtering"
+    - "hard labels vs soft labels for step correctness"
+    - "MC threshold for hard labels (0/8, 1/8, 3/8, 4/8)"
+    - "data volume after consensus filtering (~40% retention)"
+    - "scoring strategy: last-step score vs product-of-step-scores vs min-step-score"
+    - "BoN evaluation bias analysis: process-correct vs outcome-correct responses"
+    - "minimum score distribution across steps (process vs outcome shift)"
+    - "model scale: 7B vs 72B"
+  training_recipe:
+    base_model: "Qwen2.5-Math-7B-Instruct / Qwen2.5-Math-72B-Instruct"
+    architecture: "base model with language modeling head replaced by scalar-value head"
+    loss: "cross-entropy loss on final token of each step (binary classification: correct/incorrect)"
+    data_construction: "500K queries with golden answers → 6-8 responses per query → 8 completions per step for MC estimation → consensus filtering with LLM-as-judge"
+    data_size: "860K MC samples → ~344K after consensus filtering (40% retention)"
+    precision: "BF16"
+    completion_model: "Qwen2-Math and Qwen2.5-Math models for diverse response generation"
+    judge_model: "Qwen2.5-72B-Instruct for LLM-as-judge verification"
+    step_separation: "double line breaks (\\n\\n) between steps, <extra_0> token as step separator"
+  method_family: "process reward models"
+
+positioning:
+  core_claim: "MC estimation-based PRM data synthesis is fundamentally inferior to LLM-as-judge/human annotation because it conflates step correctness with future outcome potential; consensus filtering combining MC + LLM-as-judge achieves comparable quality with 40% of data, and BoN evaluation alone is misleading due to systematic biases."
+  key_results: "Qwen2.5-Math-PRM-7B: 73.5% avg ProcessBench F1 (vs 56.5% PRM800K, 40.2% MC-only); BoN@8 avg 67.6% across 7 benchmarks (+1.4% over maj@8). Qwen2.5-Math-PRM-72B: 78.3% ProcessBench F1, 69.3% BoN@8 avg. Consensus filtering retains ~40% data but matches LLM-as-judge quality."
+  limitations:
+    - "Significant gap remains between PRM-guided BoN and pass@8 upper bound (~5-8%)"
+    - "Best practices for utilizing PRMs in reinforcement learning remain unexplored"
+    - "High-quality human annotation data underutilized in their pipeline"
+    - "Greedy search with PRMs shows suboptimal performance vs BoN selection"
+    - "~30-50% of correct-answer responses have flawed reasoning processes (dataset quality ceiling)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "PRMs are promising for process supervision in math reasoning, but development faces significant challenges in data annotation and evaluation — the community's standard practices are fundamentally flawed."
+  tension: "MC estimation (the dominant data construction method) conflates step correctness with future outcome potential, producing noisy labels. Meanwhile, BoN evaluation (the standard metric) systematically inflates scores by tolerating flawed-process-correct-answer responses."
+  key_insight: "The paper's core insight is a conceptual distinction: PRMs are deterministic evaluators of current-step correctness, while value models are predictive estimators of future solution potential. MC estimation produces value-model-style labels, not PRM labels — this mismatch explains why MC-trained PRMs underperform. Revealed through systematic comparison across annotation methods and through analysis of BoN evaluation biases."
+  argument_chain: "problem (PRM development is hard) → diagnosis 1 (MC estimation produces wrong kind of labels — value model labels, not verifier labels) → evidence (MC PRMs get 40.2% F1 vs 56.5% for human-annotated) → diagnosis 2 (BoN evaluation is biased: correct answers with flawed processes inflate scores) → evidence (30-50% of correct responses have process errors) → diagnosis 3 (PRMs shift from process to outcome evaluation under BoN optimization — minimum scores concentrate on final steps) → solution (consensus filtering: intersect MC and LLM-as-judge to get high-quality subset at 40% data cost) → validation (73.5% ProcessBench F1, SOTA on both BoN and step-level metrics)"
+  contribution_framing: "Three-part contribution: (1) systematic diagnosis of MC estimation limitations, (2) identification of three BoN evaluation biases, (3) practical consensus filtering mechanism + comprehensive evaluation framework. Framed as 'lessons learned' — experience report + practical guidelines, not just a new method."
+  intro_structure: "~5 paragraphs: P1 motivation (PRMs for process supervision), P2 problem statement (data annotation and evaluation challenges), P3 MC estimation analysis + comparison with LLM-as-judge/human, P4 BoN bias analysis (three specific biases enumerated), P5 proposed solutions (consensus filtering + dual evaluation) and contributions summary"
+  notable_technique: "The 'lessons learned' framing is powerful — positions the paper as experience-driven wisdom rather than just another method paper. Enumerating exactly three BoN biases gives structure and memorability. The PRM-vs-value-model conceptual distinction is crisp and reusable."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Illustrates the fundamental problem with MC estimation — shows how completion models can generate correct answers from incorrect steps (false negative for error) and incorrect answers from correct steps (false positive for error). Contrasts PRM (deterministic step verifier) with value model (future outcome predictor)."
+    narrative_role: "Sets up the core conceptual distinction that drives the paper. Makes the abstract MC-estimation problem concrete through examples."
+    design_elements: ["step-by-step reasoning trace with error annotation", "completion examples showing both failure modes", "visual contrast between PRM and value model objectives"]
+    visual_style: "Reasoning trace walkthrough with color-coded correct/incorrect steps, branching completions showing divergent outcomes from same step"
+  result_figures:
+    - figure_id: "Figure (BoN bias analysis)"
+      viz_type: "bar_chart"
+      what_compared: "Proportion of correct-answer responses with flawed processes across difficulty levels (GSM8K easy → Omni-MATH hard)"
+      how_gain_highlighted: "Shows monotonic increase from ~30% (easy) to ~50% (hard), demonstrating BoN unreliability scales with difficulty"
+      design_note: "Difficulty gradient makes the bias argument compelling — not just present but systematically worse on harder problems"
+    - figure_id: "Figure (minimum score distribution)"
+      viz_type: "bar_chart"
+      what_compared: "Distribution of minimum PRM scores across step positions for different PRMs — shows whether min scores concentrate on final answer step vs intermediate steps"
+      how_gain_highlighted: "EurusPRM/Math-Shepherd show 40%+ concentration on final step (outcome bias), while Qwen PRM shows <25% (process-focused)"
+      design_note: "Direct visual evidence of process-to-outcome shift; positions own model favorably"
+  ablation_figures:
+    - figure_id: "Figure (data annotation comparison)"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["annotation method (MC estimation, LLM-as-judge, human, consensus filtered)", "evaluation metric (BoN accuracy, ProcessBench F1)"]
+      design_note: "Side-by-side comparison makes the MC estimation gap immediately visible; consensus filtering bar approaching LLM-as-judge level despite 40% data is the key visual takeaway"
+    - figure_id: "Figure (scoring strategy comparison)"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["PRM training method", "scoring strategy (last-step, product, min)"]
+      design_note: "Shows that optimal scoring strategy depends on training method — MC-trained PRMs work best with last-step score (confirming outcome bias), while LLM-judge/human-trained work best with product score"
+  figure_narrative_role: "Figure 1 (problem illustration: why MC estimation fails) → Figures 2-3 (evidence: BoN biases quantified) → Figures 4-5 (solution: consensus filtering + ablations) → Figures 6-7 (validation: final model performance)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table 6 (Best-of-8 Performance)"
+    row_axis: "methods (PRM models + baselines)"
+    col_axis: "7 math benchmarks (GSM8K, MATH, Minerva, GaoKao, Olympiad, College, MMLU) + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run scores (no std reported for BoN)"
+    num_baselines: 10
+    design_note: "Clean 7-benchmark layout covers easy (GSM8K) to hard (Olympiad) spectrum. Majority voting @8 as strong non-PRM baseline. Average column enables quick model ranking."
+  ablation_tables:
+    - table_id: "Table 1-2 (MC estimation vs alternatives)"
+      what_varied: ["annotation method: MC estimation vs LLM-as-judge vs human (PRM800K)"]
+      variation_style: "full_numbers"
+      design_note: "Core evidence table — shows MC estimation at 40.2% ProcessBench F1 vs 56.5% human annotation. Raw numbers make the gap undeniable."
+    - table_id: "Table 3 (Consensus filtering ablation)"
+      what_varied: ["filtering mechanism: no filter vs consensus filter", "data volume: 860K vs ~344K"]
+      variation_style: "full_numbers"
+      design_note: "Shows 40% data retention achieving comparable or better performance — data efficiency argument"
+    - table_id: "Table 4 (Hard vs soft labels)"
+      what_varied: ["label type: hard binary vs soft MC probability"]
+      variation_style: "delta_from_base"
+      design_note: "Hard labels win decisively after consensus filtering; soft labels introduce noise from future outcome uncertainty"
+    - table_id: "Table 5 (MC threshold ablation)"
+      what_varied: ["MC threshold for hard labels: 0/8, 1/8, 3/8, 4/8"]
+      variation_style: "full_numbers"
+      design_note: "Threshold 0 (step correct if ANY completion succeeds) is optimal — counter-intuitive result that the most permissive threshold works best"
+  main_processbench_table:
+    table_id: "Table 7 (ProcessBench step-level F1)"
+    row_axis: "methods (PRMs + LLM-as-judge baselines)"
+    col_axis: "4 difficulty levels (GSM8K, MATH, OlympiadBench, Omni-MATH) + Average"
+    row_organization: "by_category (open-source PRMs, LLM-as-judge, proposed models)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "F1 scores"
+    num_baselines: 12
+    design_note: "Difficulty gradient from GSM8K to Omni-MATH; Qwen-PRM-72B (78.3%) approaches o1-mini (87.9%) and vastly outperforms all open-source PRMs. Dual-metric (BoN + ProcessBench) positioning is the paper's methodological contribution."
+  supplementary_tables:
+    in_appendix: true
+    content: "Detailed per-dataset breakdowns, additional scoring strategy comparisons, data statistics for MC estimation pipeline (queries, responses per query, completions per step)"
+    reason: "Main paper focuses on the three diagnostic findings and the consensus filtering solution; exhaustive numerical details deferred to appendix to maintain narrative clarity"

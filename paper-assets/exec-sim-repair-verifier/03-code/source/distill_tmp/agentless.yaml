@@ -1,0 +1,26 @@
+paper_key: "Agentless: Demystifying LLM-based Software Engineering Agents"
+title: "Agentless: Demystifying LLM-based Software Engineering Agents"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [SWE-agent, AutoCodeRover, Devin, RAG_approaches]
+  metrics:
+    - {name: "resolve_rate", direction: "higher_better"}
+    - {name: "cost_per_instance", direction: "lower_better"}
+  datasets:
+    - {name: "SWE-bench Lite", size: "300"}
+    - {name: "SWE-bench Lite-S (curated)", size: "subset"}
+  ablation_dimensions: [localization_method, repair_strategy, validation_approach]
+  training_recipe: {optimizer: "N/A (prompting)", lr: "N/A", hardware: "GPT-4 API"}
+  method_family: "non-agentic software repair"
+
+positioning:
+  core_claim: "Simple three-phase approach (localize, repair, validate) without agent scaffolding achieves 32% on SWE-bench Lite at $0.70/instance, outperforming complex agents"
+  key_results: "32% resolve rate, $0.70 cost, outperforms open-source agents"
+  limitations: ["Still requires strong base model (GPT-4)", "Validation is the weakest phase"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

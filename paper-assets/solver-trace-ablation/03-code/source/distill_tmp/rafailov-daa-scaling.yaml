@@ -1,0 +1,39 @@
+paper_key: "rafailov-daa-scaling"
+title: "Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms"
+venue: "NeurIPS 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - "Direct Preference Optimization (DPO)"
+    - "classical RLHF pipeline"
+    - "other Direct Alignment Algorithms (DAAs)"
+  metrics:
+    - {name: "proxy reward", direction: "higher_better"}
+    - {name: "true quality (win rate / human eval)", direction: "higher_better"}
+    - {name: "KL divergence from base model", direction: "N/A (budget variable)"}
+  datasets:
+    - {name: "preference datasets (not specified by name in abstract)", size: "not specified"}
+  ablation_dimensions:
+    - "alignment objective (DPO vs other DAAs)"
+    - "KL budget"
+    - "training regime (epochs)"
+    - "model scale"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    details: "extensive empirical study across objectives, training regimes, model scales"
+  method_family: "direct alignment / reward overoptimization"
+
+positioning:
+  core_claim: "Direct Alignment Algorithms exhibit reward overoptimization patterns analogous to classical RLHF -- performance degrades at higher KL budgets, often before completing even a single epoch."
+  key_results: "DAA methods deteriorate across a wide range of KL budgets; degradation can onset before one full epoch; scaling laws formalized for DAA overoptimization"
+  limitations:
+    - "does not propose a solution, primarily diagnostic"
+    - "scaling laws are empirical, not theoretically derived"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,27 @@
+paper_key: "moskovitz-constrained-rlhf"
+title: "Confronting Reward Model Overoptimization with Constrained RLHF"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["standard RLHF with fixed RM weighting"]
+  metrics:
+    - {name: "ground-truth reward", direction: "higher_better"}
+    - {name: "overoptimization detection", direction: "lower_better"}
+  datasets: []
+  ablation_dimensions: ["RM correlation effects", "constrained vs unconstrained RL", "Lagrange multiplier dynamics", "gradient-free vs gradient-based optimization"]
+  training_recipe:
+    algorithm: "constrained RLHF with Lagrange multipliers"
+    key_technique: "dynamic weight learning for component RMs via Lagrange multipliers"
+    optimization: "adaptive gradient-free method to find optimal points"
+  method_family: "constrained RLHF / reward model overoptimization mitigation"
+
+positioning:
+  core_claim: "Constrained RL with learned Lagrange multipliers prevents reward model overoptimization by keeping each component RM within its usefulness threshold, outperforming fixed-weight RM composition."
+  key_results: "Demonstrates RM correlation significantly affects overoptimization locus; constrained approach finds better operating points"
+  limitations: ["Requires defining per-RM usefulness thresholds", "Computational overhead of constraint optimization"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

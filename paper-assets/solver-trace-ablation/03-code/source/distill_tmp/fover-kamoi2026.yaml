@@ -1,0 +1,42 @@
+paper_key: "fover-kamoi2026"
+title: "FoVer: Generalizable Process Reward Models via Formally Verified Training Data"
+venue: "Findings of ACL 2026"
+full_text_available: false
+
+research:
+  baselines:
+    - "PRMs based on original LLMs (without FoVer training)"
+    - "state-of-the-art PRMs (human-annotated)"
+  metrics:
+    - {name: "step-level verification accuracy (ProcessBench)", direction: "higher_better"}
+    - {name: "Best-of-K performance", direction: "higher_better"}
+  datasets:
+    - {name: "ProcessBench", size: "not specified"}
+    - {name: "MATH", size: "not specified"}
+    - {name: "AIME", size: "not specified"}
+    - {name: "ANLI", size: "not specified"}
+    - {name: "MMLU", size: "not specified"}
+    - {name: "BBH (Big Bench Hard)", size: "not specified"}
+    - {name: "12 reasoning benchmarks total", size: "not specified"}
+  ablation_dimensions:
+    - "formal verification tool (Z3 vs Isabelle)"
+    - "training task type (formal logic vs theorem proving)"
+    - "cross-task generalization"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    details: "synthesize step-level error labels via formal verification (Z3, Isabelle); fine-tune LLM-based PRMs on annotated formal reasoning traces"
+  method_family: "process reward models / formal verification"
+
+positioning:
+  core_claim: "PRM training data can be automatically synthesized with accurate step-level error labels using formal verification tools, and PRMs trained on formal tasks generalize to diverse informal reasoning tasks without human annotation."
+  key_results: "FoVer-trained PRMs significantly outperform base LLM PRMs; competitive or superior to SOTA human-annotated PRMs across 12 benchmarks (MATH, AIME, ANLI, MMLU, BBH)"
+  limitations:
+    - "training data limited to tasks compatible with formal verification"
+    - "cross-task generalization mechanism not fully explained"
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

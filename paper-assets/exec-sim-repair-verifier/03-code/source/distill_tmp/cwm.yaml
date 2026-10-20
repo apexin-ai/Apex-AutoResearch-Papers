@@ -1,0 +1,29 @@
+paper_key: "CWM: An Open-Weights LLM for Research on Code Generation with World Models"
+title: "CWM: An Open-Weights LLM for Research on Code Generation with World Models"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [Qwen2.5-Coder-32B, DeepSeek-V3, Claude-3.5-Sonnet]
+  metrics:
+    - {name: "SWE-bench Verified pass@1", direction: "higher_better"}
+    - {name: "LiveCodeBench pass@1", direction: "higher_better"}
+    - {name: "Math-500 accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "SWE-bench Verified", size: "500"}
+    - {name: "LiveCodeBench", size: "standard"}
+    - {name: "Math-500", size: "500"}
+    - {name: "AIME 2024", size: "30"}
+  ablation_dimensions: [mid_training_data, RL_stages, context_length]
+  training_recipe: {optimizer: "RL (multi-task)", lr: "N/A", hardware: "Meta cluster (dense 32B)"}
+  method_family: "code world model (generation-based)"
+
+positioning:
+  core_claim: "32B open-weights model mid-trained on Python execution traces + RL achieves 65.8% on SWE-bench Verified with test-time scaling"
+  key_results: "SWE-bench Verified: 65.8%, LiveCodeBench: 68.6%, Math-500: 96.6%"
+  limitations: ["32B scale required", "Closed training data for traces", "Generation-based simulation"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

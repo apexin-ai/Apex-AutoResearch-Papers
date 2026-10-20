@@ -1,0 +1,238 @@
+tier: best
+narrative_guidance: 'Path B 完全成立。Title: "The Formulation Design Space for Neural Code
+  Verification"。 核心叙事：没有单一 formulation 普遍最优。Func-level 三种等价（TOST p=0.007）， repo-level
+  优劣取决于 model/tokenizer。最强 novelty: CWM 在 Qwen 上 93% unparseable 但在 DeepSeek 上 11.8%——证明失败是
+  tokenizer-specific 而非 formulation-inherent。 DeepSeek CWM 反超 CLS 形成 cross-model reversal，直接验证
+  model-contingent 核心假说。 Complementarity (oracle +3pp) + efficiency (6-9x) 作为实用 takeaway。
+  所有 5 个 core findings 均有 cross-model 数据支撑，expected reviewer score ~3.8。
+
+  '
+imagined_experiments:
+- name: DeepSeek CLS Repo-Level v5
+  plan_id: deepseek-cls-repo-v5
+  description: 'DeepSeek-R1-0528-Qwen3-8B LoRA fine-tuned on repo-level SWE-bench-PerTest
+    CLS (patched_code, test_code → pass/fail)。修复 v1-v4 的训练 pipeline 问题 （gradient checkpointing,
+    eval_loss NaN fix, lr=1e-4）。3 epochs, seq_len=8192。
+
+    '
+  expected_results:
+    test_accuracy: 82.1
+    f1_macro: 76.8
+    f1_pass: 88.3
+    f1_fail: 65.3
+    precision_fail: 78.5
+    recall_fail: 55.9
+    precision_pass: 84.2
+    recall_pass: 92.8
+    unparseable_rate: 0.012
+    unparseable_count: 117
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 9.14
+    best_checkpoint: checkpoint-1200
+    train_loss_final: 0.38
+    eval_loss_best: 0.42
+    total_samples: 9784
+    gpu_hours: 32
+  result_rationale: 'DeepSeek 在 func-level CLS 达 86.93%，模型 verification 能力已验证。 v1-v4
+    失败原因均为工程层面：eval_loss=NaN（DeepSeek 已知问题）、OOM kill（seq_len 过长）、 lr 过大导致 epoch 3
+    发散。这些都不是 CLS formulation 或 DeepSeek 模型的能力瓶颈。 CLS 是最简单的 formulation——二分类，output
+    仅 1 token，对 tokenizer 无特殊要求。 参照 Qwen3-4B repo-level CLS 的 82.35%（ckpt-4600），DeepSeek
+    8B 应在同一水平。 虽然 DeepSeek 参数量更大（8B），但其 MLA 架构的 LoRA 适配效率可能略低于 Qwen3 的 standard GQA，加上
+    DeepSeek tokenizer 对 code 的 compression ratio 不同， 预测 82.1% 而非更高。Fail recall 偏低
+    (55.9%) 是 repo-level 共性—— fail 样本仅占 27%（class imbalance），且 repo-level 代码上下文更长更嘈杂。
+
+    '
+  tables:
+  - 'Table 3 row: DeepSeek CLS repo-level checkpoint sweep (ckpt-200/600/1000/1200,
+    val & test acc)'
+  figures_description:
+  - 'Training loss curve: convergence by epoch 2, eval_loss 不再 NaN（vs v4 对比）'
+  - 'Checkpoint accuracy trajectory: rapid improvement ckpt-200→600, plateau after
+    ckpt-1000'
+  analysis: '82.1% 显著超过 majority baseline (73.0%, +9.1pp) 和 0-shot baseline (48.5%,
+    +33.6pp)， fine-tuning 有效。与 Qwen3-4B CLS (82.35%) 基本持平（差 0.25pp）， 说明 CLS formulation
+    跨模型稳定——这是 best tier 叙事的重要前提： CLS 作为 "stable baseline" 不随模型变化，CWM 才是 model-sensitive
+    的 formulation。 此结果提供 CWM 比较的 anchor：CWM 需要 ≥82.1% 才能形成 reversal。
+
+    '
+- name: DeepSeek CWM Repo-Level Epoch-2 Eval
+  plan_id: deepseek-cwm-repo-s42-epoch2-eval
+  description: '评估已训练完成的 DeepSeek CWM repo-level 模型（epoch 2 checkpoint）在 test set
+    上的表现。 模型预测 repo-level test 的执行输出，解析后与 ground truth 比对。 关键指标：unparseable rate（vs
+    Qwen 93%）和 parseable 样本准确率。
+
+    '
+  expected_results:
+    test_accuracy: 84.2
+    f1_macro: 78.5
+    f1_pass: 89.6
+    f1_fail: 67.4
+    unparseable_rate: 0.118
+    unparseable_count: 1155
+    parseable_accuracy: 88.7
+    parseable_n: 8629
+    precision_fail: 72.3
+    recall_fail: 63.1
+    precision_pass: 87.8
+    recall_pass: 91.5
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 11.24
+    total_samples: 9784
+    gen_length_mean: 285
+    gen_length_median: 142
+    gen_length_max: 4200
+    eval_checkpoint: epoch-2
+    oracle_ensemble_with_cls: 87.0
+    oracle_ensemble_gain_pp: 2.8
+  result_rationale: "这是 best tier 的决定性实验，整条叙事成败系于此。 训练已成功完成（train_loss=0.021, 31.3\
+    \ GPU hours, 3 epochs），模型质量有保障。 核心论点：unparseable rate 从 Qwen 的 93% 降至 ~12%，证明\
+    \ CWM failure 是 tokenizer-specific。 推理链： (1) Func-level: 两模型 CWM 均 0% unparseable——短输出（~30\
+    \ tokens）两个 tokenizer 都能处理； (2) Qwen3 repo-level CWM 93% unparseable——Qwen tokenizer\
+    \ 在长结构化输出时崩溃，\n    可能因为 Qwen3 tokenizer 对 structured markers（如 test result delimiters）的\n\
+    \    token 边界切分不利于生成一致的格式；\n(3) DeepSeek tokenizer（100K vocab, 不同 BPE 训练语料）对 code\
+    \ structured output\n    有更好的 inductive bias，特别是对 test output format 的 delimiter\
+    \ 有更连贯的 tokenization；\n(4) 11.8% unparseable 主要来自最长的 ~15% 样本（gen_length > 1000\
+    \ tokens），\n    这些样本的 output 包含多个测试结果拼接，长度超出模型有效生成窗口。\n在可解析样本上 88.7% 准确率接近 func-level\
+    \ 水平（DeepSeek CWM func 85.77%）， 说明当生成格式正确时，CWM 的 verification 能力跨复杂度迁移。 整体 84.2%（unparseable\
+    \ 计为错误）超过 CLS 的 82.1%，形成 +2.1pp reversal。 Oracle ensemble (CLS ∪ CWM) 达 87.0%（+2.8pp\
+    \ over best individual）， 因为 CLS 和 CWM 捕获不同类型的错误——CLS 在 boundary_removal 弱（46.9%），\
+    \ CWM 在短 output 样本上更精准，互补性在 repo-level 同样成立。\n"
+  tables:
+  - 'Table 4 (headline): Unparseable rate comparison — Qwen3 CWM (93.0%) vs DeepSeek
+    CWM (11.8%)'
+  - 'Table 5: DeepSeek repo-level formulation comparison (CLS 82.1% vs CWM 84.2% vs
+    TRAJ 75.4%)'
+  - 'Table 6: Oracle ensemble analysis — CLS+CWM=87.0% on DeepSeek repo-level'
+  figures_description:
+  - 'Figure 3 (headline): Bar chart — CWM unparseable rate across models, Qwen 93%
+    vs DeepSeek 11.8%'
+  - 'Figure 4: Scatter plot — generation length vs parse success, failure concentrates
+    in top 15% longest'
+  - 'Figure 5: Venn diagram — CLS vs CWM error overlap on DeepSeek repo-level, showing
+    complementarity'
+  analysis: '11.8% vs 93% unparseable 是全文最强的 single result，直接 falsifies "CWM is inherently
+    unreliable at repo-level" 的 null hypothesis。这不是 marginal difference——是 order-of-magnitude
+    的差异，无法被 random variance 解释。 84.2% CWM > 82.1% CLS 形成 cross-model reversal： - Qwen:
+    CLS (82.4%) >>> CWM (~7% effective) → CLS dominates by ~75pp - DeepSeek: CWM (84.2%)
+    > CLS (82.1%) → CWM reverses by 2.1pp 这是 "formulation design space is model-contingent"
+    的最直接证据。 Practical implication: 选择 CLS 还是 CWM 不能脱离部署模型讨论。 如果 tokenizer 支持 structured
+    generation（如 DeepSeek），CWM 不仅可行而且可能更优， 因为它迫使模型 reason about execution semantics
+    而非做 shallow pattern matching。 如果 tokenizer 不支持（如 Qwen3），CLS 是唯一安全选择。
+
+    '
+- name: DeepSeek CLS Repo-Level Seed 123
+  plan_id: deepseek-cls-repo-s123
+  description: 'DeepSeek CLS repo-level 第二个 seed（seed=123），同 v5 配置。 目的：multi-seed
+    验证，确认 repo-level CLS 结果非 seed-specific outlier。
+
+    '
+  expected_results:
+    test_accuracy: 80.8
+    f1_macro: 75.2
+    f1_pass: 87.5
+    f1_fail: 62.9
+    unparseable_rate: 0.013
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 7.84
+    best_checkpoint: checkpoint-1000
+    total_samples: 9784
+    multi_seed_mean: 81.45
+    multi_seed_std: 0.92
+  result_rationale: 'Multi-seed 验证确保结果稳定。Repo-level 的 seed 方差比 func-level 更大，原因： (1)
+    Test set 虽有 9784 样本但来自较少的 instance (~130)，per-instance 方差累积； (2) Repo-level 代码更长更多样，模型对
+    LoRA 初始化更敏感。 参考 Qwen3 func-level CLS 的 multi-seed std=0.96pp，repo-level 预计 1-2pp。
+    80.8% 与 82.1% 相差 1.3pp，在 1-sigma 范围内，不构成 concern。 两个 seed 均 ≥80%，满足 best tier
+    假设 (deepseek_cls_repo_acc ∈ [80, 86])。 Mean 81.45% 是论文报告的主数字。
+
+    '
+  tables:
+  - 'Table 3 row: DeepSeek CLS repo-level — s42: 82.1%, s123: 80.8%, mean: 81.45 ±
+    0.92%'
+  figures_description:
+  - 'Error bar: DeepSeek CLS repo-level accuracy ± 1 std, overlaid with Qwen CLS for
+    comparison'
+  analysis: 'Mean 81.45 ± 0.92% 与 Qwen CLS (82.35%) 重叠——CLS 跨模型一致。 关键对比：CLS variance
+    小 (0.92pp) 而 CWM cross-model variance 巨大 (Qwen 7% vs DeepSeek 84%)。 这强化了核心 message:
+    CLS 是 "safe default"（稳定不依赖 tokenizer）， CWM 是 "high risk high reward"（在对的 tokenizer
+    上更好，在错的上崩溃）。
+
+    '
+- name: SWE-bench-PerTest Dataset Construction
+  plan_id: swebench-pertest-data
+  description: 'Docker re-evaluation of SWE-bench Verified patches，提取 per-test pass/fail
+    labels。 构建 SWE-bench-PerTest 数据集（500 instances × 16 candidates）。作为 resource contribution。
+
+    '
+  expected_results:
+    total_instances: 500
+    successful_instances: 467
+    coverage_rate: 0.934
+    total_candidates: 7472
+    total_test_pairs: 89664
+    avg_tests_per_instance: 19.2
+    median_tests_per_instance: 12
+    max_tests_per_instance: 147
+    docker_failures: 33
+    docker_failure_reasons:
+      env_setup_fail: 18
+      timeout_300s: 9
+      dependency_conflict: 6
+    wall_clock_hours: 22
+    parallel_containers: 16
+    pass_rate_overall: 0.73
+    fail_rate_overall: 0.27
+  result_rationale: 'Docker re-evaluation 是确定性过程——对每个 (patch, test) 对运行 pytest 并记录结果。
+    93.4% 成功率参照 SWE-bench 社区经验：~5% 实例因 Python 版本依赖（SWE-bench 涵盖 Python 3.6-3.11 项目，部分旧版
+    setup 不再兼容当前 Docker base image）， ~2% 因测试超时（300s 上限），~1% 因第三方依赖变更导致 import 失败。
+    16 并行容器在 22 小时内完成，符合 CPU-only 预算（无 GPU 需求）。 Pass/fail 比例 73/27 与 func-level 的
+    52/48 不同——repo-level gold patches 更多， 因为 SWE-bench Verified 的 candidates 来自 top
+    repair agents，解题率较高。
+
+    '
+  tables:
+  - 'Table 1: SWE-bench-PerTest dataset statistics'
+  figures_description:
+  - 'Histogram: per-instance test count distribution (long tail, median=12, max=147)'
+  analysis: '467 instances 提供充足的 train/val/test split（约 350/48/48 by instance）。 Avg
+    19.2 tests/instance（vs func-level 1-5）解释了 repo-level 更高的复杂度和 CWM 生成困难——模型需要为每个测试生成正确的输出格式。
+    73% pass rate 意味着 majority baseline = 73%（模型预测全 pass 就有 73% acc）， 这与已观测的 majority_baseline=72.96%
+    一致。 数据集本身作为 resource contribution 有独立价值：社区缺乏 per-test 级别的 SWE-bench 标注。
+
+    '
+- name: Diagnostic Re-Repair Proof-of-Concept
+  plan_id: diagnostic-rerepair
+  description: '给 repair agent per-test failure predictions vs 无 per-test 信息， 在 200
+    个 SWE-bench 实例上对比 resolve rate。验证 per-test 诊断信号的下游实用性。
+
+    '
+  expected_results:
+    n_instances: 200
+    control_resolve_rate: 0.34
+    pertest_predicted_resolve_rate: 0.38
+    oracle_pertest_resolve_rate: 0.42
+    delta_predicted_vs_control_pp: 4.0
+    delta_oracle_vs_control_pp: 8.0
+    p_value_predicted_vs_control: 0.18
+    statistical_significance: false
+    repair_agent: aider-gpt4o
+    avg_repair_attempts: 3
+    avg_tokens_per_repair: 4200
+    wall_clock_hours: 48
+  result_rationale: "前序实验 re-repair-phase0 (n=10, control 0.82 vs cls 0.818) 和 re-repair-docker-eval\
+    \ (n=44, A1 52.3% vs B 36.4%) 均为 negative/marginal。 扩大到 200 实例后 statistical power\
+    \ 提升，但 effect size 仍然有限，原因： (1) Repair 的主要瓶颈是代码理解和修改生成能力，而非 \"知道哪个测试失败\"——\n \
+    \   agent 通常能从 error message 推断失败位置；\n(2) Per-test 信息的价值集中在 multi-test failure\
+    \ 场景（oracle-f2p-stratified 显示\n    T=1 时 advantage 为 -0.09，T≥2 时才有 30-40% block\
+    \ advantage）；\n(3) Predicted per-test labels 有 ~12% 错误率，误导 agent 的情况部分抵消了正确信息的收益。\
+    \ +4pp 反映真实但微弱的信号。p=0.18 未达显著，与论文 D116 framing 一致： re-repair 是 \"promising future\
+    \ direction\"，论文不依赖此结果作为 claim。 Oracle per-test (+8pp) 说明 ceiling 存在——更精准的 verifier\
+    \ 可放大 re-repair 收益。\n"
+  tables:
+  - 'Table 8: Re-repair PoC results (control 34%, predicted 38%, oracle 42%)'
+  figures_description:
+  - 'Box plot: per-condition resolve rate distribution with overlapping CIs'
+  analysis: +4pp (not significant) 是 honest result：信号存在但当前 verifier 精度不足以 reliably
+    转化为 下游收益。这与论文 framing 完全对齐——efficiency (6-9x) 和 diagnostic granularity 是 immediate
+    practical benefit，re-repair integration 需要更精准的 verifier 才有统计显著收益。 Oracle +8pp
+    提供了 motivation：如果 per-test accuracy 从 87.5% 提升至 95%+， re-repair 收益可能达到 significant
+    level。这是合理的 future work 方向，不会被审稿人视为 weakness。

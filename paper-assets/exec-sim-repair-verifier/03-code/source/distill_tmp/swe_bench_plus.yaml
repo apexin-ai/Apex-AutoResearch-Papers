@@ -1,0 +1,26 @@
+paper_key: "SWE-Bench+: Enhanced Coding Benchmark for LLMs"
+title: "SWE-Bench+: Enhanced Coding Benchmark for LLMs"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [SWE-bench_original, SWE-bench_Lite, SWE-bench_Verified]
+  metrics:
+    - {name: "resolve_rate", direction: "higher_better"}
+    - {name: "solution_leakage_rate", direction: "lower_better"}
+  datasets:
+    - {name: "SWE-bench", size: "2294"}
+    - {name: "SWE-bench+ (filtered)", size: "subset"}
+  ablation_dimensions: [leakage_type, test_adequacy, temporal_contamination]
+  training_recipe: {optimizer: "N/A (benchmark analysis)", lr: "N/A", hardware: "N/A"}
+  method_family: "benchmark analysis"
+
+positioning:
+  core_claim: "32.67% of SWE-bench has solution leakage in issue descriptions; 31.08% has weak tests; filtering drops resolve rate from 12.47% to 3.97%"
+  key_results: "32.67% leakage, 31.08% weak tests, 94% pre-cutoff contamination risk"
+  limitations: ["Analysis focused on SWE-Agent+GPT-4 only", "Strict filtering may remove valid instances"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

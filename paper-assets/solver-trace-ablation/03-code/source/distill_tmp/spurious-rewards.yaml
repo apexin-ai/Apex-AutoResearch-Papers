@@ -1,0 +1,134 @@
+paper_key: "spurious-rewards"
+title: "Spurious Rewards: Rethinking Training Signals in RLVR"
+venue: "arXiv 2506.10947 / NeurIPS 2025 submission"
+full_text_available: true
+
+research:
+  baselines:
+    - "Ground-truth reward (binary correctness)"
+    - "Majority-vote pseudo-labels (64 samples)"
+    - "TTRL (Test-Time RL)"
+    - "One-Shot RL"
+  metrics:
+    - {name: "MATH-500 accuracy", direction: "higher_better"}
+    - {name: "AMC accuracy", direction: "higher_better"}
+    - {name: "AIME 2024 accuracy", direction: "higher_better"}
+    - {name: "AIME 2025 accuracy", direction: "higher_better"}
+    - {name: "code frequency %", direction: "descriptive"}
+  datasets:
+    - {name: "DeepScaleR", size: "training set (math problems for RLVR)"}
+    - {name: "MATH-500", size: "500 problems (primary eval)"}
+    - {name: "AMC", size: "competition math (eval)"}
+    - {name: "AIME 2024", size: "competition math (eval)"}
+    - {name: "AIME 2025", size: "competition math (eval)"}
+  ablation_dimensions:
+    - "Reward type: ground truth → majority vote → format → random → incorrect"
+    - "Model family: Qwen2.5-Math (7B, 1.5B), Qwen2.5-7B, OLMo2-7B, Llama3.1/3.2 variants"
+    - "Code reasoning intervention: prompt-forcing vs RL-based Python reward vs compound no-code reward"
+    - "GRPO clipping mechanism: with/without clipping, varied batch sizes"
+    - "Random reward probability γ ∈ {0.001, 0.3, 0.5, 0.7}"
+  training_recipe:
+    algorithm: "GRPO (Group Relative Policy Optimization)"
+    optimizer: "not explicitly stated (standard GRPO)"
+    lr: "5e-7 (constant)"
+    hardware: "8 × A100 GPUs, ~24h per run"
+    batch_size: "mini-batch 128, rollout batch 64"
+    rollouts_per_prompt: 16
+    temperature: 1.0
+    kl_penalty: "λ=0 (no KL divergence penalty)"
+    entropy_loss: "none"
+    training_data: "DeepScaleR"
+  method_family: "RLVR training signal analysis / reward ablation"
+
+positioning:
+  core_claim: "RLVR improves math reasoning in Qwen2.5-Math even with spurious rewards (random, format-only, incorrect labels), but this effect is model-family-specific—driven by amplifying pre-existing code reasoning capabilities rather than by reward signal quality."
+  key_results: "Qwen2.5-Math-7B on MATH-500: +29.1% (ground truth), +24.1% (incorrect labels), +21.4% (random), +13.8% (format-only). Non-Qwen models show minimal or negative gains with spurious rewards. Code-forcing prompt: +15.0% on Qwen2.5-Math-7B but −21.6% on Llama3.1-8B-Instruct."
+  limitations:
+    - "Code reasoning is identified as one of multiple elicitable behaviors; other mechanisms not fully explored"
+    - "Exact mechanism for why incorrect and random rewards produce gains remains partially unexplained"
+    - "High sensitivity to prompt formatting acknowledged but not fully characterized"
+    - "Findings may be specific to math reasoning domain"
+  relation_to_us: "competitor"   # Directly relevant: challenges the assumption that reward signal quality matters in RLVR, which intersects with our solver-trace ablation thesis about what information in training signals drives learning
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Counterintuitive finding as opening—RLVR can improve math reasoning even with completely spurious rewards (random Bernoulli, format-only, deliberately incorrect labels), challenging the fundamental assumption that reward quality matters."
+  tension: "The RLVR literature has drawn conclusions primarily from Qwen models, creating a potential methodological bias. The field assumes reward signal quality drives improvement, but what if the gains come from elsewhere?"
+  key_insight: "The gains from spurious rewards are not about the reward at all—RLVR amplifies pre-existing reasoning strategies (specifically code reasoning) learned during pretraining. This is model-family-specific: Qwen has latent code reasoning that RLVR surfaces, while other models lack this capability."
+  argument_chain: "Counterintuitive observation (spurious rewards work on Qwen) → Cross-model falsification (they fail on non-Qwen) → Behavioral analysis (code reasoning frequency correlates with gains) → Interventional validation (forcing/blocking code reasoning confirms causal role) → Mechanistic analysis (GRPO clipping bias explains random reward case) → Practical warning (don't generalize from Qwen alone)"
+  contribution_framing: "5 contributions presented inline (not numbered list): (1) empirical demonstration of spurious reward gains, (2) extensive cross-model study showing critical divergence, (3) identification of code reasoning as the explanatory behavior, (4) interventional validation via prompting and RL, (5) practical warning for RLVR research methodology."
+  intro_structure: "~5 paragraphs: P1 counterintuitive finding + specific numbers → P2 hypothesis that RLVR surfaces pretraining representations → P3 cross-model divergence as key evidence → P4 code reasoning as mechanism → P5 practical warning and contributions"
+  notable_technique: "Opening with a counterintuitive empirical finding (spurious rewards work!) creates immediate reader engagement. Then systematically dismantling the finding's generality (it's Qwen-specific) transforms a positive result into a cautionary tale. The paper toggles between 'here's something surprising' and 'here's why you shouldn't trust it broadly'—a compelling dialectic structure."
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "teaser_result"
+    description: "Line plots showing MATH-500 accuracy across training steps for 5 reward types on Qwen2.5-Math-7B. All reward types (including random and incorrect) show substantial improvement, converging to similar final performance."
+    narrative_role: "Establishes the counterintuitive core finding immediately—even spurious rewards produce large gains. Sets up the central puzzle of the paper."
+    design_elements: ["multi-line comparison", "color-coded reward types", "accuracy trajectory over training steps"]
+    visual_style: "Clean line plots with smoothed curves and transparent unsmoothed overlays. Multiple reward types distinguished by color. Benchmark accuracy on y-axis, training progression on x-axis."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Qwen2.5-Math 7B and 1.5B performance trajectories on MATH and AMC across all reward types"
+      how_gain_highlighted: "Smoothed curves show convergence pattern; all spurious rewards approach ground-truth performance"
+      design_note: "Dual-panel layout (7B vs 1.5B) enables scale comparison"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "8-panel grid comparing all model families (Qwen variants, OLMo, Llama) across reward types"
+      how_gain_highlighted: "Flat or declining curves for non-Qwen models visually contrast with Qwen gains"
+      design_note: "Grid layout is the key visual argument—differential model behavior immediately visible at a glance"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "TTRL and One-Shot RL results across model families"
+      how_gain_highlighted: "Shows Qwen-specific gains persist even with different RL methods"
+      design_note: "Extends the cross-model divergence finding to other RLVR approaches"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["model family", "code frequency vs accuracy correlation"]
+      design_note: "3-panel plot linking code frequency increase to accuracy gain; establishes correlation before interventional experiments"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["Python reward training", "code frequency induction across models"]
+      design_note: "Shows RL-based code induction results to complement prompt-based intervention"
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["compound rewards (original + no-Python constraint)", "format/incorrect/ground truth"]
+      design_note: "3-panel comparison showing that blocking code reasoning reduces gains"
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      dimensions_varied: ["random reward probability γ ∈ {0.7, 0.5, 0.3, 0.001, 0}"]
+      design_note: "Parametric sweep of randomness level"
+    - figure_id: "Figure 11"
+      viz_type: "line_plot"
+      dimensions_varied: ["clipping enabled/disabled", "performance and code frequency"]
+      design_note: "Mechanistic ablation: removing GRPO clipping eliminates random reward gains, proving algorithmic bias drives the effect"
+  figure_narrative_role: "Figure 1 (teaser: spurious rewards work) → Figures 2-3 (systematic evidence + cross-model divergence) → Figure 4 (extends to other RL methods) → Figures 5-7 (code reasoning mechanism: qualitative + quantitative + decomposition) → Figures 8-9 (interventional validation) → Figures 10-11 (mechanistic explanation for random/incorrect cases)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models (Qwen2.5-Math-7B, Qwen2.5-Math-1.5B, Qwen2.5-7B, OLMo2-7B-SFT)"
+    col_axis: "code frequency % | accuracy with code | accuracy without code"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "No bold/underline; numbers speak for themselves—large gap between code vs non-code accuracy for Qwen models"
+    statistical_reporting: "point estimates (no confidence intervals)"
+    num_baselines: 4
+    design_note: "Compact diagnostic table rather than traditional main result table. Key numbers: Qwen2.5-Math-7B code=60.9% vs no-code=35.0% accuracy; OLMo2 reversed: code=21.0% vs no-code=40.0%. The reversal is the key visual insight."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["reasoning strategy switches: Code→Code, Code→Lang, Lang→Code, Lang→Lang"]
+      variation_style: "full_numbers"
+      design_note: "Contribution decomposition table showing percentage of total gain from each transition type. Lang→Code dominates for Qwen-Math, revealing the mechanism."
+    - table_id: "Table 3"
+      what_varied: ["code-forcing prompt intervention across 8 models"]
+      variation_style: "delta_from_base"
+      design_note: "Shows original accuracy, post-intervention accuracy, and absolute delta. Stark contrast: +15-24% for Qwen models, −20% for Llama. Clean interventional evidence."
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendices A-H contain: full GRPO preliminaries, gradient derivations for random rewards and clipping bias, AIME benchmark results, compound reward ablations, additional beneficial patterns beyond code, prompt sensitivity analysis, results on models with prior RL training, qualitative code reasoning examples."
+    reason: "Main paper focuses on the narrative arc (observation → cross-model divergence → mechanism → intervention). Mechanistic derivations, additional benchmarks, and robustness checks are deferred to maintain narrative momentum."

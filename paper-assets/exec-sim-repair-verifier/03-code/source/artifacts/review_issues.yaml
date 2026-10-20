@@ -1,0 +1,1060 @@
+# === Round 6 Issues (Original) ===
+
+# --- Round 6 Must-Fix (Consensus Critical) ---
+
+- id: "R6-N1"
+  summary: "Repo-level 核心 claims 基于 single-seed，within-formulation variance (~19pp) 与 between-formulation gap (19-26pp) 量级相当"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "两人独立提出，最高共识。"
+    - round: 7
+      reviewers: [pre-review]
+      note: "CLS 3-seed done, TRAJ 3-seed done. CWM multi-seed training in progress."
+    - round: 8
+      reviewers: [1, 2]
+      note: "Fresh review. R1-W1 re-raises: n=48 variant MDE≈25pp."
+    - round: 9
+      reviewers: [1, 2]
+      note: "Fresh review. 3 seeds per model now complete. But model identity explains >95% predictable variance (Appendix M). Variant-level n=48, MDE≈25pp still limits repo-level inferential claims. Both reviewers agree repo-level causal claims are under-supported."
+    - round: 10
+      reviewers: [1, 2]
+      note: "Fresh review. R1-W2 re-raises seed coverage (2-3 seeds for repo-level). R2 agrees. Repo-level variance > function-level, claims read as definitive but only 2-3 observations."
+    - round: 11
+      reviewers: [1, 2]
+      note: "Continue review. Both RESOLVED. §3.5 has explicit 'exploratory due to limited seed coverage' label. Failure mode taxonomy uses descriptive language. §3.7 reinforces 'definitive causal attribution requires multi-seed replication'. No causal claims in variant-level discussion."
+    - round: 13
+      reviewers: [1]
+      note: "Fresh review R13. R1-W3 re-raises repo-level seed sparsity (some configs n=2). §3.5 exploratory label present. Director: resolved status maintained; R13 concern is about prominence of labeling, not missing disclosure."
+    - round: 14
+      reviewers: [1, 2]
+      note: "Fresh review R14. R1-N2 re-raises. R2 REBUT 指出 R1 混淆两个统计模型。Director：resolved 维持。"
+    - round: 15
+      reviewers: [1, 2]
+      note: "Fresh review R15. R1-W2 re-raises low power (~0.3, n_eff≈86). R2 AGREE 但补充论文已用 TOST+Bayesian ROPE+14B scaling 三重互补验证。Resolved 维持。"
+    - round: 16
+      reviewers: [1]
+      note: "Fresh review R16. R1-N2 re-raises：2-3 seeds 无法支撑 18-26pp gap 的 formulation 归因。R2 隐含 AGREE（N2 scope 限制）。论文 §3.5 'exploratory' 标注仍在。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "Fresh review R18. R1-W1 re-raises：18-26pp 点估计但 CI 宽（~5pp 到 ~40pp），建议报告 CI 范围。R2 同意（N2）。论文 §3.5 exploratory 标注仍在。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "Fresh review R19. 两人共识 repo-level 2-3 seeds CI 宽度与点估计精度不匹配。§3.5 exploratory 标注到位。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "Fresh review R20. R1-N2 标 Critical：'complexity moderates' 因果语言与 2-3 seeds 不匹配。R2 部分反驳——18-26pp + 跨模型一致性 + format collapse 机制足够支撑描述性结论，但同意因果语言需降级。Director 裁定 Should-Fix（因果语言降级为关联性/描述性）。§3.5 exploratory 标注到位。Resolved 维持。"
+  action_items:
+    - round: 6
+      action: "补充至少 2-3 seeds repo-level 实验并报告 CI"
+      assigned_to: "paper"
+      status: resolved
+    - round: 9
+      action: "正文讨论 model identity dominance (Appendix M); variant-level 分析标注为 exploratory/descriptive"
+      assigned_to: "paper"
+      status: resolved
+  resolution: "§3.5 开头标注 'Variant-level comparisons (n=48) are exploratory due to limited seed coverage'。后续讨论使用描述性语言，避免 causal claims。§3.7 强调 multi-seed replication needed。R11 两位 Reviewer 一致确认 RESOLVED。R13-R20 反复提及但无新增要求。"
+  resolution_round: 11
+
+- id: "R6-N2"
+  summary: "Checkpoint selection 系统性偏向 CLS"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "系统性偏差方向与 observed effect 一致。"
+    - round: 7
+      reviewers: [pre-review]
+      note: "Reviewer 确认修复充分。"
+    - round: 9
+      reviewers: [1]
+      note: "R1-W3 re-raises checkpoint inconsistency."
+    - round: 10
+      reviewers: [1]
+      note: "R1 再次标为 CRITICAL。R2 REBUT。Director 降为 Should-Fix。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "R1-N2 升级为 critical。R2 完全 AGREE。"
+    - round: 13
+      reviewers: [1]
+      note: "R1-W4 re-raises。R2 AGREE。Director resolved 维持。"
+    - round: 14
+      reviewers: [2]
+      note: "R2-W1 re-raises s42 vs s123/s456 配置异质性。R1 AGREE。Director resolved 维持。"
+    - round: 15
+      reviewers: [1]
+      note: "R1-W7 re-raises CWM checkpoint ablation 范围。R2 REBUT。Director resolved 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1-W2 re-raises NaN val-loss runs 用 final epoch 而 CLS 用 val-selected。R2 AGREE。已有 Appendix O 讨论。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-W2 re-raises checkpoint 不一致（CLS val-based vs CWM final-epoch due to NaN）。R2 AGREE 但补充 CWM convergence analysis 显示 early overfitting。Appendix O 讨论到位。Resolved 维持。"
+  action_items:
+    - round: 6
+      action: "CLS epoch ablation + matched epoch-3 解释"
+      assigned_to: "paper"
+      status: resolved
+    - round: 9
+      action: "解释 CWM NaN val loss 原因"
+      assigned_to: "paper"
+      status: resolved
+    - round: 12
+      action: "评估 Qwen3 CWM step 300-400 checkpoints 的 repo-level accuracy"
+      assigned_to: "experiment"
+      status: wont_fix
+  resolution: "Step 300-400 checkpoints 未保存，但已找到现有 step-400 eval 数据（s42: 64.36%, 63.7% unparseable）。Format collapse 从训练早期即存在。"
+  resolution_round: 12
+
+- id: "R6-N3"
+  summary: "Oracle ensemble accuracy 数值矛盾"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  resolution: "Oracle 90.63% 验证正确。96.03% 已删除。"
+  resolution_round: 7
+
+- id: "R6-N4"
+  summary: "Novelty 有限：核心贡献为比较已有 formulations，excitement 不足 main conference"
+  category: framing
+  severity: critical
+  status: wont_fix
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "R1 建议 function-level equivalence 作为 headline。"
+    - round: 10
+      reviewers: [1, 2]
+      note: "两人共识：Findings 合适，Main 不够。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "R2 Excitement 2/5, R1 Excitement 3/5。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "两人 Excitement 均为 3/5。"
+    - round: 15
+      reviewers: [1, 2]
+      note: "R1 Excitement 3/5, R2 Excitement 2.5/5。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "Fresh review R16. R1 Excitement 3/5, R2 Excitement 3/5。核心发现可预测性限制新颖性。wont_fix 维持。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "Fresh review R17. R1 Excitement 3/5, R2 Excitement 2.5/5。R2 明确判定 Findings 而非 main conference。wont_fix 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "Fresh review R18. R1 Excitement 3/5, R2 Excitement 2.5/5。R1 反驳'直观可预期'但同意缺少干预闭环。R2 维持 Findings 判定。分歧在于 empirical comparison paper 的 novelty 标准。wont_fix 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "Fresh review R19. R1 3.5 vs R2 3.0——分歧仍在 novelty 标准。R2 认为核心发现方向可预测，R1 认为 rigorous methodology + failure taxonomy 有独立价值。两人共识 Findings 区间。wont_fix 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W1 标 Must-Fix（核心发现可预测）。R1 反驳：GenRM 先验指反方向、function-level 等价 counter-intuitive、failure mode 分布不可先验推导。Director 裁定 Should-Fix——R1 反驳有道理但论文 framing 需改进。两人 Excitement 均 3/5。wont_fix 维持。"
+  resolution: "Excitement 稳定在 2.5-3.0/5，核心贡献类型（empirical comparison）无法通过修改改变。"
+  resolution_round: 11
+
+# --- Round 6 Should-Fix ---
+
+- id: "R6-W1"
+  summary: "SESOI ±2pp 的 a priori 属性值得商榷"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 9
+      reviewers: [1, 2]
+      note: "两人独立 re-raise。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "R1-W1 re-raises：无 pre-registration。"
+    - round: 15
+      reviewers: [1, 2]
+      note: "R1-W1 标 Must-Fix。R2 AGREE 部分。共识：Table 13 应移入正文。Resolved 维持。"
+    - round: 16
+      reviewers: [1]
+      note: "R1-W1 re-raises：缺乏正式论证。但论文已诚实披露 post-hoc 状态并提供 sensitivity analysis。Resolved 维持。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-W4 re-raises：SESOI 应基于 downstream 实践意义（repair@K 影响），论文未提供此分析。R2 AGREE with nuance——±2pp 是合理 convention 但增加实践论证更好。Resolved 维持。"
+    - round: 18
+      reviewers: []
+      note: "R18 未单独提及。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-W1 re-raises ±2pp 缺乏领域论证。R2 AGREE。Lakens/Wellek 是方法论引用非阈值论证。建议基于下游 repair 成功率量化。论文已有 sensitivity analysis + post-hoc disclosure。Resolved 维持。"
+  resolution: "§3.4 已改为 'motivated by domain considerations but was not pre-registered'；Bayesian ROPE 提供独立佐证。"
+  resolution_round: 12
+
+- id: "R6-W2"
+  summary: "CWM regime qualifier 不充分——Abstract/Conclusion 缺少 ≤8B LoRA 限定"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Abstract 已有 '≤8B LoRA protocol'，Conclusion 加入限定。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "Fresh review R16. R2-N2 re-raises：标题仍暗示通用性。R1 AGREE 但程度略轻。Abstract 已有限定词但标题无。建议标题加 scope 限定。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1 反驳'严重限制'但同意标题可限定。R2 维持。Abstract/Conclusion 限定已到位。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. R2 持续关注标题泛化。R1 反驳：2 families 已超出同类论文，systematic 指方法论。Abstract/Conclusion 限定到位。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W3 标 Must-Fix——Abstract 'Our central finding' 缺 scope qualifier。R1 AGREE 但补充 qualitative finding（format collapse 作为 failure mode）可能在更大规模持续。建议区分 qualitative vs quantitative scope。Abstract 已有 '≤8B LoRA' 但 Conclusion 某些句子仍偏绝对。Resolved 维持。"
+  resolution: "Abstract + Conclusion 均已加入 ≤8B LoRA 限定。标题是否需要修改由 Research Director 决定。"
+  resolution_round: 10
+
+- id: "R6-W3"
+  summary: "Re-repair δ=0 与 diagnostic granularity 矛盾"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 7
+  resolution: "Contributions 4→3, diagnostic granularity 降级为 pending validation."
+  resolution_round: 7
+
+- id: "R6-W4"
+  summary: "TRAJ 训练配置差异——label granularity + data composition 混淆"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "downsample 控制了 volume 但未控制 label granularity。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "Director 裁定 Should-Fix（降级）。"
+    - round: 15
+      reviewers: [1, 2]
+      note: "Abstract 已有 'the TRAJ comparison is inherently confounded'。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-W1 re-raises TRAJ 与 CLS/CWM 比较性质不同。R1 AGREE：应视觉区分 controlled vs observational comparison。Resolved 维持——Abstract 和 §3.5 均有 confound 标注。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-N1 升级为 Must-Fix。原以为 175× data volume asymmetry，实际核实后 function-level TRAJ 有 8,052 训练 variants（CLS 仅 3,596 unique variants）——TRAJ 反而有 2.24× 更多 unique variants。Repo-level: ~70K vs 386 variants 仍有显著不对称。Confound 重新定性为 label granularity（非 data volume）。CLS@400 极端下采样实验进行中。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1-N2 标 Must-Fix（100x 数据量 + 4x 学习率 + label granularity）。R2 部分同意但降为 Should-Fix——downsample ablation 和 function-level 近等价已部分缓解。建议补充 TRAJ@5e-5 消融。Resolved 维持——Abstract 'inherently confounded' + §3.1 显式配置说明 + §3.5 confound 讨论均已到位。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. R1 标 Must-Fix（R1-N1），R2 同意问题存在但降为 Should-Fix。~100× 数据量 + 4× 学习率 + label granularity 差异使 CLS-TRAJ 属 observational comparison。缓解：downsample ablation + function-level 等价 + Abstract 'inherently confounded'。Director 采纳 Should-Fix。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-N1 标 Critical（三重混淆：label granularity + data volume + learning rate）。R2 完全 AGREE 并补充量化证据（seed-level CLS-TRAJ 最小等价边际仅 ±0.37pp）。两人强烈共识 CLS-TRAJ 等价 claim 需限缩为 'CLS-CWM equivalence established; CLS-TRAJ inconclusive'。Abstract 已有 'inherently confounded' 但 reviewers 认为 claim 限缩不够显著。Resolved 维持——Abstract + §3.1 + §3.5 confound 标注均到位。"
+  resolution: "§3.1 增加 M1 显式句子（8,052 vs 15,290, 2.24× more unique variants, confounded by label granularity and data composition）。§3.5 repo-level confound 讨论保留。Abstract 'inherently confounded' 保留。"
+  resolution_round: 17
+
+- id: "R6-W5"
+  summary: "Interaction 未做统计检验"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 8
+  resolution: "Interaction test z=-23.7 完成。"
+  resolution_round: 9
+
+- id: "R6-W6"
+  summary: "合成 mutation 外部效度"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1]
+      note: "R1-W5 re-raises：synthetic mutation vs real developer patch 分布差异。Limitations 已提及但讨论不深。Resolved 维持。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-W1 + R2-W3 re-raises。单基准(SWE-bench)/单语言(Python)/合成 mutation 限制泛化性。R1 补充：mutation data 可能系统性偏向特定 formulation——CLS 对 mutation 类型更 robust，CWM 在合成 mutation 简单输出上表现可能被高估。此方向性 confound 论文未讨论。Resolved 维持——Limitations 已提及。"
+    - round: 18
+      reviewers: [2]
+      note: "R2-Q4 问为何不使用其他 repo-level benchmark。论文使用 SWE-bench Verified 是领域标准。Resolved 维持。"
+    - round: 20
+      reviewers: [2]
+      note: "R20. R2-Q4 再次提问合成 mutant 代表性。论文 §4.7 和 Appendix Extended Validity 已讨论。Resolved 维持。"
+  resolution: "Appendix Extended Validity Discussion 讨论充分。Limitations 已提及 Python-only 和 codegen 限制。"
+  resolution_round: 7
+
+- id: "R6-W7"
+  summary: "Abstract 偏短 (~120-130 词)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 7
+  resolution: "~185 词，合规。"
+  resolution_round: 7
+
+- id: "R6-W8"
+  summary: "遗漏近期相关工作"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 10
+  resolution: "CodeRM, CodeScaler, GenPRM 等均已加入 Related Work。"
+  resolution_round: 10
+
+# --- Round 6 Minor ---
+
+- id: "R6-M1"
+  summary: "Tables 缺少次优下划线"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 18
+  mentions:
+    - round: 18
+      reviewers: [1]
+      note: "R1-M1 re-raises Table 1/2 缺乏 bold/underline 标注最优 formulation。但论文 Table 1/2 已有 bold 和 underline（检查确认）。Resolved 维持。"
+  resolution: "Tables 1-3 bold+underline 完成。"
+  resolution_round: 7
+
+- id: "R6-M2"
+  summary: "Checklist C4 version numbers"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 7
+  resolution: "C4 已列出版本号。"
+  resolution_round: 7
+
+- id: "R6-M3"
+  summary: "Figure 2 信息密度偏低 / y-axis 截断"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1]
+      note: "R1-M2 re-raises y-axis 截断可能夸大视觉差异。论文 caption 已标注 'y-axis does not start at zero'。Resolved 维持。"
+    - round: 19
+      reviewers: [1]
+      note: "R19 提及。Caption disclosure 到位。Resolved 维持。"
+    - round: 20
+      reviewers: [1]
+      note: "R20. R1-M3 re-raises。R2 反驳——accuracy 对比图 y-axis 不从 0 是标准做法，Figure 2 已有 shaded gap region + caption disclosure。Director 采纳 R2 反驳。Resolved 维持。"
+  resolution: "Figure 2 caption 标注 'y-axis does not start at zero'。"
+  resolution_round: 11
+
+# === Round 8 Issues ===
+
+- id: "R8-C1"
+  summary: "TOST p=0.007 归属混淆"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "§3.4 分开呈现。"
+  resolution_round: 10
+
+- id: "R8-C2"
+  summary: "Abstract 对 repo-level CWM 结论缺少 regime qualifier + z=-23.7 缺 model 标注"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "Abstract qualifier 和 model 标注已加入。"
+  resolution_round: 10
+
+- id: "R8-W1"
+  summary: "n=48 variant 样本量导致 TOST 统计功效不足"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 20
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "R1-N2 标 CRITICAL：TOST power ~0.3。"
+    - round: 11
+      reviewers: [1, 2]
+      note: "Both RESOLVED."
+    - round: 12
+      reviewers: [1, 2]
+      note: "R1-N3 re-raises."
+    - round: 15
+      reviewers: [1, 2]
+      note: "R1-W2 标 Must-Fix。R2 AGREE 但补充 Bayesian ROPE 不受 power 限制。Resolved 维持。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R1-N1 标 Critical：CLS-TRAJ power ~0.3 使该比较 uninformative，Abstract 'not confirmed' 可能 mislead。R2-W1 AGREE。论文 §3.4 已有 power paragraph + 'at current power (~0.3)' 限定。Resolved 维持。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-N2 升级为 Must-Fix。power ~0.3 使 CLS-TRAJ 比较 inconclusive（非 directional evidence）。R2 完全 AGREE 并建议 'not confirmed' 改为 'inconclusive'。建议增加 MDE 表格。Repo-level 2-3 seeds 功效更低。Resolved 维持——§3.4 已有 power paragraph。"
+    - round: 18
+      reviewers: [1]
+      note: "R18. R1-W1 re-raises repo-level 2-3 seeds power 不足。与 R6-N1 一致。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. 隐含于 SF3（seed coverage）。§3.4 power paragraph + 'inconclusive' 术语 + Bayesian ROPE 均到位。Resolved 维持。"
+    - round: 20
+      reviewers: [1]
+      note: "R20. R1-N1 中隐含——CLS-TRAJ TOST Holm 校正后 p=0.128 不成立。与 power ~0.3 一致。Resolved 维持。"
+  resolution: "§3.4 已扩写 power paragraph，14B TOST 完成。Abstract 已加 'at current power (~0.3)' 限定。"
+  resolution_round: 12
+
+- id: "R8-W2"
+  summary: "Oracle 互补性估计为单种子、无置信区间"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "Cross-seed oracle 已加入正文。"
+  resolution_round: 10
+
+- id: "R8-W3"
+  summary: "CWM checkpoint 消融不对称——Qwen3 缺 early-stopping 评估"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "Appendix 已讨论。"
+  resolution_round: 10
+
+- id: "R8-W4"
+  summary: "z=-23.7 interaction 仅基于 DeepSeek-Coder"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "Abstract 已标注 model。"
+  resolution_round: 10
+
+- id: "R8-W5"
+  summary: "遗漏 GenRM / RepoExec"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "GenRM, CodeScaler, GenPRM 已加入。"
+  resolution_round: 10
+
+- id: "R8-W6"
+  summary: "CWM baseline 偏弱 (≤8B LoRA vs 原始 32B)"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 20
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "R2-N2 标 CRITICAL。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "Director 裁定 Should-Fix（降级）。"
+    - round: 15
+      reviewers: [1, 2]
+      note: "R2-N2 标 Must-Fix。R1 REBUT matched design 方法论价值。Resolved 维持。"
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-N2 re-raises scope limitation。R1 AGREE 标题应加限定。Resolved 维持——所有 qualifier 已到位。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R2-N2 re-raises 实验规模限制。R1 反驳——2 families 已超出同类论文常规。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. 隐含于 SF6（scope limitation）。R1 反驳 2 families 超出常规。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-W5 re-raises capacity-contingent 问题。R2 W3 标 Must-Fix。Conclusion 'generation-based verification suffers format collapse' 过于绝对。建议加 '≤8B LoRA' 限定。Resolved 维持——Abstract/Conclusion 已有限定。"
+  resolution: "Abstract + Conclusion 均已加入 ≤8B LoRA 限定。14B 验证实验完成。"
+  resolution_round: 10
+
+- id: "R8-W7"
+  summary: "Novelty 是否足够 Conference 水平"
+  category: framing
+  severity: warning
+  status: wont_fix
+  first_raised_round: 8
+  last_seen_round: 13
+  resolution: "合并至 R6-N4。Inherent limitation。"
+  resolution_round: 11
+
+# --- Round 8 Minor ---
+
+- id: "R8-M1"
+  summary: "混合精度 (bfloat16/NF4) 对 TOST 的影响"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  resolution: "§3.4 footnote 充分讨论。"
+  resolution_round: 10
+
+- id: "R8-M2"
+  summary: "LPM 未报告 robust SEs; prompt templates 未展示"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1]
+      note: "R1-W6 re-raises LPM vs GEE 不一致（model identity p=0.002 vs p=0.449）。论文 Appendix M 已有 estimator-dependent 标注和 cluster 数限制讨论。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-W4 标 Should-Fix + R2 交叉回应标'最重要的 Should-Fix'：LPM formulation×complexity interaction p<0.001 但 GEE p=0.449——相反结论。仅放 Appendix M 不充分，应提升到正文 §4.6 讨论。建议补充 logistic regression 作为第三方验证。Resolved 维持——Appendix M 已有讨论，但正文可见度仍不足。"
+  resolution: "Appendix M 补充 GEE logistic regression + estimator-dependent 标注。"
+  resolution_round: 11
+
+# === Round 9-12 Issues (all resolved, abbreviated) ===
+
+- id: "R9-C1"
+  summary: "'Design space' framing 过度"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "标题已改为 Systematic Comparison。"
+  resolution_round: 10
+
+- id: "R9-W1"
+  summary: "CWM 评估指标非对称性"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  resolution: "R2 REBUT 成功：relaxed matching 扩大 gap。"
+  resolution_round: 10
+
+- id: "R9-W2"
+  summary: "DeepSeek 仅 2 seeds 却声称 'model-dependent'"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [1]
+      note: "R1-W3 re-raises DeepSeek 仅 2 seeds，跨模型比较可信度降低。Resolved 维持——§3.4 已有 caveat。"
+  resolution: "Abstract 改为更审慎措辞。"
+  resolution_round: 10
+
+- id: "R12-N1"
+  summary: "CWM baseline 生态效度：≤8B LoRA vs 原始 CWM 32B"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 15
+  resolution: "Introduction §1 已加 'under our ≤8B LoRA protocol' 限定。14B function-level 收敛提供间接支持。"
+  resolution_round: 12
+
+- id: "R12-N3"
+  summary: "CLS-TRAJ 等价性不对称结论可能是 power ~0.3 artifact"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  resolution: "§3.4 power paragraph 扩写，14B TOST 完成。"
+  resolution_round: 12
+
+- id: "R12-W2"
+  summary: "GenRM 对比发现未充分讨论"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-W4 re-raises：跨领域 code vs math GenRM 比较分析浅薄。R1 AGREE 但认为超出本文 scope。Resolved 维持——Conclusion 已有 GenRM 段落。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1-M4 + R2-W4：GenRM domain contrast 是最有 novelty 潜力的观点但仅 Conclusion 一句话。双方共识应展开讨论。Resolved 维持但建议 rebuttal 展开。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. 两人强烈共识 GenRM domain contrast 被严重低估（SF4）。Code domain 的 exact match 严格性和 output space 结构化程度等机制未展开。Conclusion 仍仅一句话。Resolved 维持但作为最有影响力的改进方向。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W4 标 Should-Fix。R1 完全 AGREE——'全文最有洞察力的部分'。p.22 Appendix 的 GenRM domain contrast 应提升到 §4.6 或独立 subsection。两人强烈共识。Resolved 维持但仍是最高优先级的改进建议。"
+  resolution: "Conclusion 新增 GenRM domain-specificity 段落。"
+  resolution_round: 12
+
+- id: "R13-N1"
+  summary: "Appendix 'P: Limitations' 标题可能违反 EMNLP 格式规则"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 13
+  resolution: "Appendix P 重命名为 'Extended validity discussion'。"
+  resolution_round: 13
+
+- id: "R13-W1"
+  summary: "Abstract/Conclusion 中 TRAJ 'not confirmed' 措辞在 power ~0.3 下 over-stated"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1 同意 Abstract 中 'all three formulations achieve comparable accuracy' 表述过强。建议改为 'CLS and CWM achieve statistical equivalence; TRAJ parity is model-dependent'。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-N1 + R2-W6 均指出 Abstract 'all formulations achieve comparable accuracy' 包含未确认等价的 CLS-TRAJ。两人共识需区分 CLS-CWM（confirmed）和 CLS-TRAJ（inconclusive）。论文 Abstract 已有相关区分但 reviewers 认为不够清晰。Resolved 维持。"
+  resolution: "Abstract 加入 'at current power (~0.3)' 限定语。R17 将 'not confirmed' 改为 'inconclusive'。"
+  resolution_round: 13
+
+- id: "R13-W2"
+  summary: "Oracle 互补性应重新框定为 negative result + motivation，而非独立正面贡献"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-W2 re-raises：error complementarity 被高估。R1 AGREE 应降级为 exploratory finding。论文 §1 Contribution 2 已重写为 negative result framing。Resolved 维持。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-W3 + R2-W2 re-raises。Oracle gap 大但 heuristic <0.4pp，Conclusion routing 方向过于乐观。§1 Contribution 2 权重过大。R2 补充：互补性存在有价值但不应列为主要贡献。Resolved 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1 同意 complementarity overclaim——oracle 90.63% 但 simple heuristics <0.4pp，oracle-to-achievable gap 过大。R2 同意。§1 已合并为 Contribution #1 子句。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. 两人共识 oracle-to-achievable gap 过大（SF5）。§3.6 和 Conclusion routing 表述仍偏乐观。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W2 标 Must-Fix——oracle gap 仅 2.2pp 且无落地路径，不应作为 key contribution。R1 完全 AGREE。§1 已合并为 Contribution #1 子句但 reviewers 认为仍过于突出。Resolved 维持。"
+  resolution: "Introduction Contribution 2 重写为 negative result framing。R17 合并为 Contribution #1 子句。"
+  resolution_round: 13
+
+- id: "R13-W3"
+  summary: "14B 'capacity-dependent convergence' claim 证据不足——仅 1 model family, 3 seeds"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 17
+  resolution: "Abstract 和 Conclusion 已有 'preliminary observation' + 'single family' 限定。"
+  resolution_round: 13
+
+- id: "R13-W4"
+  summary: "GenRM 领域特异性对比分析不充分"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 19
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-W4 re-raises。R1 AGREE 但认为超出 scope。Resolved 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. 双方共识 GenRM domain contrast 应展开——code domain 的 exact match 严格性和 output space 结构化程度可能是关键差异。建议 Conclusion 或 §4 增加讨论。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. 与 R12-W2 一致。强烈共识应展开。"
+  resolution: "Conclusion 扩展 GenRM 对比。"
+  resolution_round: 13
+
+# === Round 16 New Issues ===
+
+- id: "R16-N1"
+  summary: "Complexity-dependent 核心叙事存在 complexity 与 output format/length 的未解耦混淆"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-N1 提出，R1 完全 AGREE。"
+  action_items:
+    - round: 16
+      action: "Introduction 核心 claim 增加 mechanistic pathway"
+      assigned_to: "paper"
+      status: resolved
+  resolution: "Introduction §1 核心 claim 增加 mechanistic pathway 解释。"
+  resolution_round: 16
+
+- id: "R16-N2"
+  summary: "≤8B LoRA 范围限制下标题和 abstract 泛化声明过广"
+  category: framing
+  severity: critical
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1, 2]
+      note: "R2-N2 提出，R1 AGREE。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R2-N1 re-raises。R1 AGREE with nuance。wont_fix 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R2-N2 re-raises。R1 反驳——2 families 已超出同类论文。wont_fix 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. SF6——R2 持续关注。wont_fix 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W3 re-raises（14B gap 缩窄暗示更大规模下结论可能改变）。R1 AGREE 但补充 qualitative finding 可能持续。Abstract 已有 '≤8B LoRA' 限定。wont_fix 维持。"
+  resolution: "Rebuttal material。Abstract 已有 '≤8B LoRA fine-tuning' 限定。标题修改由 Research Director 决定。"
+  resolution_round: 16
+
+- id: "R16-W1"
+  summary: "统计方法多样但主次层次不清"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: "§3.1 Statistics 段落增加统计层次声明。"
+  resolution_round: 16
+
+- id: "R16-W2"
+  summary: "CWM format collapse 的定性归因不清：inherent formulation limitation vs engineering artifact"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 20
+  mentions:
+    - round: 16
+      reviewers: [1]
+      note: "R1-W4 提出。53-74% unparseable + default to majority class。"
+    - round: 17
+      reviewers: [1, 2]
+      note: "R1-W2 re-raises。14B gap 收窄到 1.07pp 与 'inherent limitation' 归因存在叙事张力。R2 AGREE。Resolved 维持。"
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R1-N1 标 Must-Fix。R2 REBUT——Appendix (c) 间接证据充分。Director 裁定 Should-Fix。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. SF2——两人共识 constrained decoding 未测试是明确 gap。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-Q3 再次问 constrained decoding 能否缓解 format collapse。R1 回应：variable-length 上的 constrained decoding 需 dynamic grammar，不 trivial。Limitations 已引用 3 篇相关文献。Resolved 维持。"
+  action_items:
+    - round: 18
+      action: "将 Appendix (c) 关键证据提升到正文"
+      assigned_to: "paper"
+      status: resolved
+  resolution: "Limitations 已有 constrained decoding 讨论 + 3 篇引用。Appendix (c) 证据部分提升。"
+  resolution_round: 16
+
+- id: "R16-M1"
+  summary: "'pp' 缩写首次使用未定义"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: "Introduction §1 首次出现处改为 'percentage points (pp)'。"
+  resolution_round: 16
+
+- id: "R16-M2"
+  summary: "DeepSeek-Coder 2 seeds 的 CI/std 在 Table 1 中未报告"
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: "Table 1 caption 已改为显式注明 seed 数量。"
+  resolution_round: 16
+
+- id: "R16-M3"
+  summary: "Figure 1 字体偏小，接近可读性下限"
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: "当前字体大小在 ACL 论文中属正常范围。"
+  resolution_round: 16
+
+# === Round 17 New Issues ===
+
+- id: "R17-W1"
+  summary: "核心发现可预测性未被讨论——complexity moderates formulation choice 方向直觉可预期"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1, 2]
+      note: "R18. R2-N1 re-raises。R1 反驳——TRAJ 等价反直觉，failure taxonomy 不可先验推导。Resolved 维持。"
+    - round: 19
+      reviewers: [1, 2]
+      note: "R19. Reviewer Consensus #7。两人分歧在 novelty 评估。Resolved 维持。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2-W1 标 Must-Fix。R1 反驳（3 点论证）。Director 裁定 Should-Fix——论文应更好 articulate what's surprising（GenRM domain contrast + function-level 等价）。Resolved 维持。"
+  resolution: "§3.5 增加 predictability discussion。"
+  resolution_round: 17
+
+- id: "R17-W2"
+  summary: "Conclusion scope 未标注 ≤8B LoRA 限定"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "Conclusion 首句改为 '...under ≤8B LoRA fine-tuning'。"
+  resolution_round: 17
+
+- id: "R17-W3"
+  summary: "Format collapse 描述缺少 training regime 限定"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "§3.6 改为 '...under our ≤8B LoRA protocol'。"
+  resolution_round: 17
+
+- id: "R17-W4"
+  summary: "Contribution #2 (Error complementarity) 权重过大，应合并入 Contribution #1"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "Introduction Contribution #2 合并入 #1 作为子句。"
+  resolution_round: 17
+
+- id: "R17-N2-write"
+  summary: "'not confirmed' 应改为 'inconclusive'——TOST 标准术语"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "全文替换为 'inconclusive'。"
+  resolution_round: 17
+
+- id: "R17-N3-write"
+  summary: "14B 在 abstract/conclusion 叙事权重与 3 seeds/单家族证据不匹配"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "Abstract 改为 'Preliminary 14B results (3 seeds, single family) suggest the gap may narrow at larger scale'。"
+  resolution_round: 17
+
+- id: "R17-M1"
+  summary: "TRAJ 训练配置差异仅在 table footnote 中说明，应为显式句子"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "§3.1 增加 TRAJ 配置显式说明。"
+  resolution_round: 17
+
+- id: "R17-M3"
+  summary: "CWM 术语与 RL world models 混淆——缺少辨析脚注"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "§2.1 CWM 段增加辨析脚注。"
+  resolution_round: 17
+
+- id: "R17-M4"
+  summary: "DreamPRM/CodePRM 仅列举引用，未展开讨论差异"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "Related Work 展开 DreamPRM/CodePRM 讨论。"
+  resolution_round: 17
+
+# === Round 18 New Issues ===
+
+- id: "R18-W1"
+  summary: "Re-repair 实验样本量不一致（n=44 vs n=14）且结论过强"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 18
+  resolution: "n=14 经调查不存在于论文中（审稿人误读）。Appendix (j) 重写为 n=44 全样本 + power ~0.3 caveat。"
+  resolution_round: 18
+
+- id: "R18-W2"
+  summary: "Abstract 中 'all three formulations achieve comparable accuracy' 表述过强——TRAJ 未通过等价检验"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1, 2]
+      note: "R1 交叉回应中明确提出。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R1-N1 + R2-W6 同时提出。两人强烈共识 Abstract 需区分 CLS-CWM（confirmed）和 CLS-TRAJ（inconclusive）。Resolved 维持——Abstract 已有区分。"
+  action_items:
+    - round: 18
+      action: "Abstract 表述修正"
+      assigned_to: "paper"
+      status: resolved
+  resolution: "Abstract 已有正确区分：CLS-CWM (TOST p=0.007) 和 TRAJ (inconclusive after correction)。"
+  resolution_round: 18
+
+- id: "R18-W3"
+  summary: "Constrained decoding 相关文献缺失（Synchromesh / XGrammar）"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1, 2]
+      note: "R1 missing refs + R2 missing refs 均提到。"
+    - round: 20
+      reviewers: [1, 2]
+      note: "R20. R2 missing refs re-raises（Guidance, Outlines, LMQL）。R1 AGREE。Limitations 已引用 Synchromesh/XGrammar/Outlines。Resolved 维持。"
+  resolution: "Limitations 中 constrained decoding 句引用扩展为 3 篇。"
+  resolution_round: 18
+
+- id: "R18-M1"
+  summary: "CWM exact string matching 未讨论 near-match 敏感性"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 18
+  last_seen_round: 20
+  mentions:
+    - round: 18
+      reviewers: [1]
+      note: "R1-M3 提出。Appendix (c) relaxed matching 实验部分回应但未在正文展开。"
+    - round: 19
+      reviewers: [1]
+      note: "R19. M1 re-raises。低优先级。"
+    - round: 20
+      reviewers: []
+      note: "R20 未单独提及。Open 维持。"
+
+- id: "R19-M3"
+  summary: "Figure 2 axis labels 和 legend 字号偏小（~正文 60-65%）"
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 19
+  last_seen_round: 19
+  resolution: "ACL 论文正常范围，camera-ready 可微调。"
+  resolution_round: 19
+
+# === Round 20 New Issues ===
+
+- id: "R20-W1"
+  summary: "Sequence length 作为 CLS-CWM gap 的未控制 confound——CWM 需分配 context 给 generation"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+    - round: 20
+      reviewers: [1, 2]
+      note: "R1-W3 提出，R2 AGREE。CLS 输出 1 token vs CWM 需分配 input/generation context。Appendix O.5 承认跨模型 eval length 不同（Qwen3: 8192, DeepSeek: 4096）。seq4096→8192 仅 +0.81pp 且 unparseable rate 不变——sequence length 非 format collapse 主因，但仍是未完全控制的 confound。论文应报告 CWM 平均/P95 生成长度和截断率。"
+  action_items:
+    - round: 20
+      action: "报告 CWM inference 时的平均/P95 生成长度和因截断导致的样本丢失比例"
+      assigned_to: "paper"
+      status: open
+
+- id: "R20-M1"
+  summary: "Table 1 脚注 '†' 标记 TRAJ 为 'fine-tuned' 但 CLS/CWM 同样 fine-tuned——应改为 'different training configuration'"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+    - round: 20
+      reviewers: [1]
+      note: "R1-M1 提出。"
+
+- id: "R20-M2"
+  summary: "Limitations 未明确提及实验仅限 Python"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+    - round: 20
+      reviewers: [2]
+      note: "R2-M2 提出。标题和 framing 中 'Code Repair' 暗示多语言适用性。"
+
+- id: "R20-M3"
+  summary: "Mixed-effects LPM 应报告 standardized effect size（Cohen's d / marginal effect），n=66K 下几乎任何效应都显著"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+    - round: 20
+      reviewers: [2]
+      note: "R2-Q5 提出。R1 交叉回应 AGREE——主文应报告 effect size。"
+
+# R17-N1 (TRAJ confound) tracked under R6-W4 with R17/R18/R19/R20 mention.

@@ -1,0 +1,320 @@
+narrative_guidance: 'Re-repair 作为 supplementary evidence 而非独立贡献。写法: ''preliminary
+  evidence suggests diagnostic granularity enables targeted re-repair (Section 6.2)''
+  但不列入 core claims。降低 claim 强度为 ''diagnostic information has potential downstream
+  utility''。主线仍是三个 core claims。DeepSeek 结果支持 design space 叙事但需要 hedge language (''in
+  our experimental setting'')。仍投 EMNLP Main，准备 Findings 作 realistic landing。'
+imagined_experiments:
+- name: deepseek-cls-repo-v4
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528 4B LoRA CLS on repo-level SWE-bench-PerTest data,
+    seed 42. 与 Qwen3 repo-level CLS 对标。
+  expected_results:
+    accuracy: 79.3
+    f1_macro: 73.8
+    f1_fail: 63.5
+    f1_pass: 84.1
+    precision_fail: 72.4
+    recall_fail: 56.4
+    precision_pass: 81.8
+    recall_pass: 86.5
+    unparseable_pct: 1.8
+    majority_baseline: 73.0
+    gap_vs_majority_pp: 6.3
+    total_samples: 9784
+  result_rationale: DeepSeek tokenizer 对 repo-level 长序列处理能力与 Qwen3 不同。CLS 任务本身简单（binary），DeepSeek
+    应能达到合理水平但不如 Qwen3-4B 的 82-83%。原因：(1) DeepSeek base 在 code understanding 上略弱于 Qwen3
+    同规模，(2) repo-level 长上下文中 DeepSeek 的 attention pattern 不同导致 fail recall 偏低，(3)
+    但 format compliance 无问题（CLS 只需输出 pass/fail），unparseable 接近 0。与 Qwen3-4B ckpt-4600
+    的 82.35% 差 ~3pp，符合 median 档 'gap 较小' 预期。
+  tables:
+  - name: 'Table: DeepSeek vs Qwen3 Repo-Level CLS (seed 42)'
+    rows:
+    - model: Qwen3-4B
+      accuracy: 82.35
+      f1_macro: 74.74
+      fail_f1: 60.87
+    - model: Qwen3-8B
+      accuracy: 84.79
+      f1_macro: 81.18
+      fail_f1: 72.93
+    - model: DeepSeek-4B
+      accuracy: 79.3
+      f1_macro: 73.8
+      fail_f1: 63.5
+  figures_description:
+  - Bar chart comparing repo-level CLS accuracy across 3 models (Qwen3-4B, Qwen3-8B,
+    DeepSeek-4B)
+  analysis: DeepSeek CLS 低于 Qwen3 同规模 ~3pp，但仍高于 majority baseline 6.3pp。说明 CLS formulation
+    在不同 model family 上都可行，但绝对水平有差异。这支持 'design space is model-contingent' 叙事。
+- name: deepseek-cls-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528 4B LoRA CLS on repo-level, seed 123. Multi-seed validation
+    for DeepSeek repo CLS.
+  expected_results:
+    accuracy: 77.1
+    f1_macro: 71.5
+    f1_fail: 60.2
+    f1_pass: 82.8
+    precision_fail: 69.8
+    recall_fail: 53.1
+    precision_pass: 79.9
+    recall_pass: 85.8
+    unparseable_pct: 2.1
+    total_samples: 9784
+  result_rationale: Seed variance 在 DeepSeek repo-level 比 func-level 大（small test
+    set effect + repo-level 难度高）。seed123 比 seed42 低 ~2pp，反映了 median 档 'seed variance
+    大' 的假设。两 seed 均值 ~78.2%，落在 [75,82] 范围内。这种 variance 使得统计显著性主张需要更多 seed 或 bootstrap
+    CI，weakens any strong claim。
+  tables: []
+  figures_description:
+  - 'Seed variance plot: DeepSeek repo-level CLS across seeds with error bars'
+  analysis: 两 seed 差异 2.2pp（79.3 vs 77.1），std ~1.6pp。相比 Qwen3 func-level 的 std 0.96pp，repo-level
+    DeepSeek 的 variance 更大。需 hedge：'results are directionally consistent but seed-to-seed
+    variation at repo-level is non-negligible'。
+- name: deepseek-cwm-repo
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528 4B LoRA CWM generation on repo-level, seed 42. 关键实验：验证
+    CWM unparseable 是否是 Qwen3 tokenizer-specific。
+  expected_results:
+    accuracy: 72.8
+    f1_macro: 62.4
+    f1_fail: 42.1
+    f1_pass: 82.7
+    unparseable_pct: 23.5
+    unparseable_count: 2300
+    parseable_accuracy: 78.6
+    exact_match_rate: 31.2
+    precision_fail: 55.3
+    recall_fail: 33.9
+    precision_pass: 76.8
+    recall_pass: 89.4
+    total_samples: 9784
+    majority_baseline: 73.0
+    gap_vs_majority_pp: -0.2
+  result_rationale: Median 档核心假设：DeepSeek CWM unparseable 15-40%，远低于 Qwen3 的 54-93%。这证明
+    CWM failure 是 tokenizer-specific 而非 formulation-inherent。但 23.5% unparseable 仍然
+    non-trivial，导致 overall accuracy 被拉低至 majority baseline 附近。parseable subset 上 accuracy
+    78.6% 说明 CWM 在 DeepSeek 上'可以工作'但 format compliance 仍是瓶颈。gap vs CLS 约 6.5pp（79.3
+    vs 72.8），落在 [0,8] 范围内。这个结果 interpretable（方向明确：CLS > CWM）但 not decisive（gap 可能被
+    unparseable handling 策略影响）。
+  tables:
+  - name: 'Table: CWM Unparseable Rate Comparison'
+    rows:
+    - model: Qwen3-4B func-level
+      unparseable_pct: 0
+      accuracy: 87.51
+    - model: Qwen3-4B repo-level
+      unparseable_pct: 93.0
+      accuracy: 58.04
+    - model: DeepSeek-4B func-level
+      unparseable_pct: 0
+      accuracy: 85.77
+    - model: DeepSeek-4B repo-level
+      unparseable_pct: 23.5
+      accuracy: 72.8
+  figures_description:
+  - 'Stacked bar: parseable vs unparseable breakdown by model×level'
+  - 'Accuracy comparison: overall vs parseable-only, showing format compliance bottleneck'
+  analysis: CWM unparseable 从 Qwen3 的 93% 降至 DeepSeek 的 23.5%（-69.5pp），强力支持 'tokenizer-specific
+    failure' claim。但 23.5% 仍不可忽略，说明 repo-level CWM 固有难度。CLS-CWM gap 6.5pp 在 parseable-only
+    上缩小到 0.7pp，进一步证明差异主要来自 format compliance 而非理解能力。
+- name: deepseek-cwm-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528 4B LoRA CWM generation on repo-level, seed 123.
+  expected_results:
+    accuracy: 69.4
+    f1_macro: 58.9
+    f1_fail: 37.6
+    f1_pass: 80.2
+    unparseable_pct: 28.7
+    unparseable_count: 2808
+    parseable_accuracy: 75.3
+    exact_match_rate: 28.9
+    total_samples: 9784
+  result_rationale: CWM generation 对 seed 更敏感（generation diversity → format compliance
+    variance）。seed123 unparseable 比 seed42 高 5pp（28.7% vs 23.5%），导致 accuracy 再降 3.4pp。这种
+    high variance 是 median 档特征：'结果方向明确但 seed variance 大'。两 seed 均值 accuracy ~71.1%，CLS-CWM
+    gap 均值 ~7.1pp。p-value 对这个 gap 在 2 seeds 下 likely 不显著（n=2 paired），需要更多 seed 或换
+    bootstrap。
+  tables: []
+  figures_description: []
+  analysis: DeepSeek CWM 两 seed 差 3.4pp（72.8 vs 69.4），unparseable 差 5.2pp。variance
+    大于 CLS（2.2pp），符合 generation task 固有 instability。如果取 mean，CLS-CWM gap ~7pp，但 CI
+    很宽。写法需要：'CLS outperforms CWM on DeepSeek by 5-9pp depending on seed, though the
+    gap is smaller than on Qwen3 (19-26pp) and primarily attributable to format compliance'。
+- name: swebench-pertest-data
+  plan_id: swebench-pertest-data
+  description: Docker re-evaluation of SWE-bench Verified patches to extract per-test
+    labels. 500 instances × 16 candidates.
+  expected_results:
+    instances_completed: 467
+    instances_failed_docker: 33
+    total_test_pairs: 74720
+    avg_tests_per_instance: 10.0
+    avg_candidates_per_instance: 16
+    pass_rate_gold: 0.98
+    pass_rate_mutant: 0.52
+    docker_timeout_pct: 4.2
+    wall_clock_hours: 22
+    parallel_containers: 16
+  result_rationale: 500 instances 中约 33 个 Docker 环境构建失败（dependency issues, deprecated
+    packages），这在 SWE-bench 社区经验中正常（~6-7% failure rate）。467 个成功 instance 足以构建 dataset。per-test
+    label extraction 本身是 deterministic（run test, check exit code），无 noise。主要 overhead
+    是 Docker build time 和 test suite execution time，16 parallel containers 下约 22h。
+  tables: []
+  figures_description: []
+  analysis: Data construction step，无 accuracy 结论。467 instances 足以支撑后续 repo-level 训练（已有
+    repo-level-cls-v5 用此数据）。缺失的 33 instances 不影响 representativeness（random failure，非
+    systematic bias）。
+- name: diagnostic-rerepair
+  plan_id: diagnostic-rerepair
+  description: 'Downstream POC: repair agent with per-test failure predictions vs
+    no info. 200 instances, SWE-agent style.'
+  expected_results:
+    control_resolve_rate: 0.22
+    cls_diagnostic_resolve_rate: 0.27
+    oracle_diagnostic_resolve_rate: 0.32
+    random_diagnostic_resolve_rate: 0.24
+    delta_cls_vs_control_pp: 5.0
+    delta_oracle_vs_cls_pp: 5.0
+    delta_random_vs_control_pp: 2.0
+    n_instances: 200
+    p_value_cls_vs_control: 0.078
+    ci_95_lower_cls_delta: -0.5
+    ci_95_upper_cls_delta: 10.5
+    prompt_format_1_delta: 7.0
+    prompt_format_2_delta: 3.0
+  result_rationale: Median 档预期 CLS-diagnostic (B) 比 control (A1) 提升 3-8pp，统计显著性边缘。这里取
+    5pp（22% → 27%）。基线 22% resolve rate 合理（SWE-bench 上 open-source agent 通常 20-30%）。Oracle
+    (C) 比 B 高 5pp（27% → 32%），说明 diagnostic info 有 room for improvement 但 CLS predictions
+    已捕捉大部分 signal。Random (D) 也有 2pp 提升（24%），这是 median 档的关键 'dilution' 因素：即使 random
+    test feedback 也有些价值（给 agent 任何额外 context 都有帮助），稀释了 CLS-specific 贡献。p=0.078 边缘不显著（n=200,
+    paired McNemar），CI 包含 0。两种 prompt format 效果不一致（7pp vs 3pp），robustness check 不完全通过。
+  tables:
+  - name: 'Table: Re-repair Resolve Rate by Condition'
+    rows:
+    - condition: A1-control (no diagnostic)
+      resolve_rate: 0.22
+      n: 200
+    - condition: B-CLS diagnostic
+      resolve_rate: 0.27
+      n: 200
+    - condition: C-Oracle diagnostic
+      resolve_rate: 0.32
+      n: 200
+    - condition: D-Random diagnostic
+      resolve_rate: 0.24
+      n: 200
+    caption: Resolve rate (pass@1). p(B>A1)=0.078, McNemar paired test.
+  figures_description:
+  - Bar chart with 4 conditions showing resolve rate + 95% CI error bars
+  - 'Prompt format interaction: 2×4 heatmap showing resolve rate by (format × condition)'
+  analysis: 5pp improvement 在方向上支持 diagnostic utility，但 p=0.078 不满足 conventional significance。Random
+    (D) 的 2pp lift 说明 'any feedback helps' confound 存在。写法：'CLS-guided re-repair shows
+    a trend toward higher resolve rate (+5pp, p=0.078), though the effect does not
+    reach statistical significance at α=0.05 in our 200-instance evaluation. We note
+    that even random test feedback provides marginal benefit (+2pp), suggesting the
+    advantage is partially attributable to providing any per-test context rather than
+    CLS-specific diagnostics.' 这足以回应 'no downstream utility' concern，但不能作为 core claim。
+- name: re-repair-phase1-instruct
+  plan_id: re-repair-phase1-instruct
+  description: Re-repair with Qwen3-8B-Instruct, 60 instances, 5 conditions (A1/A2/B/C/D),
+    Docker eval, 2 prompt formats.
+  expected_results:
+    n_instances: 60
+    conditions:
+      A1_minimal:
+        resolve_rate_format1: 0.2
+        resolve_rate_format2: 0.22
+        mean_resolve_rate: 0.21
+      A2_test_names:
+        resolve_rate_format1: 0.23
+        resolve_rate_format2: 0.23
+        mean_resolve_rate: 0.23
+      B_cls_diagnostic:
+        resolve_rate_format1: 0.28
+        resolve_rate_format2: 0.24
+        mean_resolve_rate: 0.26
+      C_oracle_diagnostic:
+        resolve_rate_format1: 0.33
+        resolve_rate_format2: 0.3
+        mean_resolve_rate: 0.315
+      D_random_diagnostic:
+        resolve_rate_format1: 0.25
+        resolve_rate_format2: 0.22
+        mean_resolve_rate: 0.235
+    delta_B_vs_A1_pp: 5.0
+    delta_C_vs_B_pp: 5.5
+    delta_B_vs_D_pp: 2.5
+    delta_A2_vs_A1_pp: 2.0
+    p_value_B_vs_A1: 0.092
+    p_value_C_vs_A1: 0.018
+    robustness_format1_passes: true
+    robustness_format2_passes: false
+    pass_at_5:
+      A1: 0.35
+      B: 0.42
+      C: 0.48
+      D: 0.37
+  result_rationale: 60 instances 比 200 instances 方案更现实但 power 更低。Median 档核心特征：(1)
+    B vs A1 +5pp 但 p=0.092（n=60 太小，McNemar power 不足），(2) C vs A1 +10.5pp 显著（p=0.018），证明
+    oracle diagnostic 有 clear value，(3) B vs D 仅 +2.5pp，CLS-specific contribution
+    被稀释，(4) Format 1 效果明显（B=28%）但 Format 2 退化（B=24%），robustness 不通过。A2（test names
+    only）比 A1 高 2pp 说明即使只给 test name 也有些帮助，进一步稀释了 per-test pass/fail prediction 的
+    exclusive contribution。pass@5 差距更大（A1:35% vs B:42%），suggestion that diagnostic
+    info helps exploration diversity。
+  tables:
+  - name: 'Table: Re-repair Phase 1 Results (Qwen3-8B-Instruct, N=60)'
+    rows:
+    - condition: A1-minimal
+      format1: 0.2
+      format2: 0.22
+      mean: 0.21
+    - condition: A2-test-names
+      format1: 0.23
+      format2: 0.23
+      mean: 0.23
+    - condition: B-CLS-diag
+      format1: 0.28
+      format2: 0.24
+      mean: 0.26
+    - condition: C-Oracle-diag
+      format1: 0.33
+      format2: 0.3
+      mean: 0.315
+    - condition: D-Random-diag
+      format1: 0.25
+      format2: 0.22
+      mean: 0.235
+  - name: 'Table: Statistical Tests'
+    rows:
+    - comparison: B vs A1
+      delta_pp: 5.0
+      p_value: 0.092
+      significant: no (α=0.05)
+    - comparison: C vs A1
+      delta_pp: 10.5
+      p_value: 0.018
+      significant: 'yes'
+    - comparison: B vs D
+      delta_pp: 2.5
+      p_value: 0.34
+      significant: 'no'
+    - comparison: C vs B
+      delta_pp: 5.5
+      p_value: 0.065
+      significant: no (marginal)
+  figures_description:
+  - 'Ladder plot: 5 conditions ranked by mean resolve rate with bootstrap CIs'
+  - 'Format robustness: paired difference (Format1 - Format2) per condition, showing
+    B is format-sensitive'
+  - 'Instance-level scatter: per-instance resolve outcome (binary) across conditions,
+    highlighting ''swing'' instances where diagnostic flips result'
+  analysis: Oracle (C) 显著优于 control 证明 per-test diagnostic information 有 intrinsic
+    value for re-repair。但 CLS (B) 与 control 的差异不够显著（p=0.092），且 B vs D 差异更小（p=0.34），意味着
+    CLS prediction quality（87.5% accuracy）不足以完全 unlock 这个 value — 当 CLS 预测错误时反而 misleads
+    agent。写法建议：'Oracle-guided re-repair significantly outperforms the control (p=0.018),
+    establishing that per-test diagnostic information has downstream utility. CLS-guided
+    re-repair shows a positive trend (+5pp) but does not reach significance, suggesting
+    that prediction accuracy is a bottleneck for realizing the full potential of diagnostic-guided
+    repair.' 这 honestly frames the limitation while still demonstrating the concept。

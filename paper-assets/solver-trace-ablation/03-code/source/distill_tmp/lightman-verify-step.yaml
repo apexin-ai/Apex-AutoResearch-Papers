@@ -1,0 +1,28 @@
+paper_key: "lightman-verify-step"
+title: "Let's Verify Step by Step"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["outcome-supervised reward model (ORM)"]
+  metrics:
+    - {name: "MATH accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "MATH", size: "~12.5K problems"}
+    - {name: "PRM800K", size: "800K step-level human feedback labels"}
+  ablation_dimensions: ["process vs outcome supervision", "active learning for label efficiency"]
+  training_recipe:
+    supervision: "step-level human labels (process supervision)"
+    active_learning: "used to enhance label efficiency"
+    dataset_released: "PRM800K"
+  method_family: "process reward model (PRM) / step-level verification"
+
+positioning:
+  core_claim: "Process supervision (step-level feedback) significantly outperforms outcome supervision (final-answer feedback) for training reliable mathematical reasoning, achieving 78% on MATH."
+  key_results: "78% solve rate on representative MATH test subset; process supervision > outcome supervision"
+  limitations: ["Requires expensive step-level human annotations", "Evaluated primarily on MATH"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

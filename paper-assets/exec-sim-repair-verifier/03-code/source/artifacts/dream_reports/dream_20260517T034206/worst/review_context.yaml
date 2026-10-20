@@ -1,0 +1,347 @@
+narrative_guidance: '完全放弃 re-repair section，不放入论文。Reframe: (1) efficiency 6-9x speedup
+  作为核心 practical contribution; (2) 强化 error complementarity (oracle 90.63%) 作为 formulations
+  are complementary 的证据; (3) DeepSeek repo scope down 为 case study 而非 systematic comparison。仍投
+  EMNLP Main，但 novelty argument 必须极其清晰。Fallback: ICSE 2027。'
+imagined_experiments:
+- name: re-repair-phase1-instruct
+  plan_id: diagnostic-rerepair
+  description: Re-repair with Qwen3-8B-Instruct on 60 SWE-bench instances, 5 conditions
+    (A1-minimal, A2-test-names, B-CLS-diagnostic, C-oracle, D-random), pass@1/pass@5,
+    Docker eval, paired design.
+  expected_results:
+    n_instances: 60
+    n_conditions: 5
+    samples_per_condition: 5
+    A1_minimal_resolve_rate_pass1: 0.183
+    A2_test_names_resolve_rate_pass1: 0.2
+    B_cls_diagnostic_resolve_rate_pass1: 0.2
+    C_oracle_diagnostic_resolve_rate_pass1: 0.217
+    D_random_diagnostic_resolve_rate_pass1: 0.193
+    A1_resolve_rate_pass5: 0.317
+    B_resolve_rate_pass5: 0.333
+    C_resolve_rate_pass5: 0.367
+    D_resolve_rate_pass5: 0.317
+    delta_B_vs_A1_pp: 1.7
+    delta_C_vs_A1_pp: 3.4
+    delta_D_vs_A1_pp: 1.0
+    delta_B_vs_D_pp: 0.7
+    delta_C_vs_B_pp: 1.7
+    paired_mcnemar_B_vs_A1_p: 0.72
+    paired_mcnemar_B_vs_D_p: 0.83
+    CI_95_B_vs_A1:
+    - -4.2
+    - 7.5
+    prompt_format1_delta_B_A1: 2.3
+    prompt_format2_delta_B_A1: 1.0
+  result_rationale: 'Repair agent (Qwen3-8B-Instruct) 本身 resolve rate ~18% — 在此低基线下
+    per-test diagnostic 的信息增益被 agent 的代码理解能力瓶颈淹没。Agent 在多数情况下无法利用 ''test_X fails with
+    expected Y got Z'' 信息来定位 bug，因为 bug 本身需要 repo-level 理解。Oracle (C) 仅略好于 CLS (B)
+    证明即使 diagnostic 完美准确也帮助有限。Random (D) 与 B 无显著差异，说明 agent 对任何额外 context 的反应类似 —
+    可能只是 prompt 长度/结构的 placebo effect 而非 CLS-specific signal。60 instances × 5 samples
+    的 power 不足以检测 <5pp 的差异 (所需 n≈200+)。复现 phase0 的 null pattern: 所有带 diagnostic 的
+    condition 都与 control 无统计显著差异。'
+  tables:
+  - name: 'Table: Re-repair Resolve Rate by Condition'
+    columns:
+    - Condition
+    - pass@1
+    - pass@5
+    - Δ vs A1 (pp)
+    - p-value
+    rows:
+    - - A1 (minimal)
+      - 18.3%
+      - 31.7%
+      - —
+      - —
+    - - A2 (test-names)
+      - 20.0%
+      - 30.0%
+      - '+1.7'
+      - '0.81'
+    - - B (CLS-diag)
+      - 20.0%
+      - 33.3%
+      - '+1.7'
+      - '0.72'
+    - - C (Oracle-diag)
+      - 21.7%
+      - 36.7%
+      - '+3.4'
+      - '0.48'
+    - - D (Random-diag)
+      - 19.3%
+      - 31.7%
+      - '+1.0'
+      - '0.89'
+  figures_description:
+  - Bar chart showing resolve rate across 5 conditions with 95% CI error bars; all
+    CIs heavily overlap, visually indistinguishable.
+  analysis: '完全 null result。B vs A1 的 1.7pp 差异远在 noise 范围内 (CI: -4.2 to +7.5)。B vs
+    D 差异 0.7pp 证明 CLS-specific information 没有比 random noise 更好。即使 oracle (C) 也仅 +3.4pp，表明
+    per-test failure localization 本身对当前 repair agent 无用。结论: diagnostic info 不改变 repair
+    agent 行为。此 section 如放入论文只会暴露 ''no downstream utility'' 弱点，应完全删除。'
+- name: deepseek-cls-repo-v4
+  plan_id: repo-level-training
+  description: DeepSeek-R1-0528-Qwen3-8B LoRA classification at repo-level, seed 42,
+    8k seq length, same SWE-bench-PerTest data as Qwen experiments.
+  expected_results:
+    accuracy: 74.8
+    f1_macro: 65.2
+    f1_pass: 82.1
+    f1_fail: 48.3
+    precision_fail: 55.7
+    recall_fail: 42.8
+    precision_pass: 79.6
+    recall_pass: 84.7
+    majority_baseline: 72.96
+    gap_vs_majority_pp: 1.84
+    unparseable_pct: 1.8
+    train_loss_final: 0.42
+    eval_loss_best: 0.38
+    best_checkpoint: checkpoint-400
+    total_samples: 9784
+    overfitting_detected: true
+  result_rationale: 'DeepSeek 8B (distilled from R1) 在 repo-level 上表现远不如 function-level
+    (func: 86.9%)。原因: (1) repo-level 输入平均 6-8k tokens，DeepSeek 的 LoRA rank=16 容量不足以学会长上下文中的
+    pass/fail 信号; (2) 训练数据仅 ~3k repo-level instances (vs func-level 9.5k)，data-starved;
+    (3) 74.8% 仅高于 majority baseline 1.84pp，实质上模型主要学到了 class prior 而非 discriminative
+    features。与 Qwen 8B 在同数据上的 84.79% (ckpt-400) 相比低 10pp，表明 DeepSeek distilled model
+    的 LoRA fine-tuning effectiveness 显著低于 Qwen — 这是 confound: 我们无法区分 ''formulation
+    difference'' 和 ''model fine-tuning efficiency difference''。'
+  tables:
+  - name: 'Table: DeepSeek Repo-level CLS Performance'
+    columns:
+    - Checkpoint
+    - Accuracy
+    - F1-macro
+    - Fail-F1
+    - Gap vs Majority
+    rows:
+    - - ckpt-200
+      - 71.2%
+      - '58.3'
+      - '38.7'
+      - -1.76pp
+    - - ckpt-400
+      - 74.8%
+      - '65.2'
+      - '48.3'
+      - +1.84pp
+    - - ckpt-600
+      - 73.1%
+      - '62.8'
+      - '44.1'
+      - +0.14pp
+  figures_description:
+  - Learning curve showing rapid overfitting after step 400, eval loss climbing while
+    train loss drops.
+  analysis: 'CLS 在 DeepSeek repo-level 仅比 majority baseline 高 ~2pp，远低于 Qwen 8B 的 +12pp
+    gap。这使 cross-model comparison 失去意义: 如果 CLS 本身不 work，CLS vs CWM 的比较没有 informative
+    value。Confound: DeepSeek distilled model 可能需要不同的 fine-tuning recipe (更高 rank,
+    更多 epoch, 不同 lr)。'
+- name: deepseek-cls-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CLS seed 123 for multi-seed variance estimation.
+  expected_results:
+    accuracy: 72.3
+    f1_macro: 61.8
+    f1_fail: 43.6
+    f1_pass: 80.0
+    majority_baseline: 72.96
+    gap_vs_majority_pp: -0.66
+    unparseable_pct: 2.1
+    best_checkpoint: checkpoint-400
+  result_rationale: Seed variance 在小数据 repo-level 上极大。N_test=48 (instance-level) 或
+    ~9784 (per-test) 但 effective N 受 block correlation 限制 (~48 independent units)。Seed
+    123 恰好比 seed 42 差 2.5pp — 这在 48 个 instance 上是 1-2 个 instance 的差异。accuracy 72.3%
+    甚至低于 majority baseline，证明 seed variance 使结果不可靠。两个 seed 的 spread 为 2.5pp，预示需要 5+
+    seeds 才能得到有意义的 CI。
+  tables: []
+  figures_description: []
+  analysis: 'CLS seed variance: 72.3% - 74.8% (2.5pp spread with just 2 seeds)。CI
+    包含 majority baseline，无法声称 CLS significantly better than chance at repo-level for
+    DeepSeek。'
+- name: deepseek-cwm-repo
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CWM generation, seed 42, 8k seq, max_new_tokens=512.
+  expected_results:
+    accuracy: 70.2
+    f1_macro: 55.8
+    f1_pass: 78.9
+    f1_fail: 32.7
+    unparseable_pct: 28.5
+    unparseable_count: 2789
+    exact_match_rate: 18.3
+    majority_baseline: 72.96
+    gap_vs_majority_pp: -2.76
+    parseable_only_accuracy: 76.4
+    best_checkpoint: checkpoint-400
+    total_samples: 9784
+    gen_length_mean: 4200
+    gen_length_median: 3800
+  result_rationale: 'DeepSeek 在 func-level CWM 有 0% unparseable (tokenizer 支持结构化输出)，但
+    repo-level 的输出格式更复杂 (多 test 结果拼接)，unparseable 上升到 28.5%。这比 Qwen 的 93% 好得多，但仍然不
+    trivial。关键 confound: 70.2% accuracy 低于 majority baseline，意味着模型在学到 format 的 subset
+    上仍然 discriminate 得不好。Parseable-only accuracy 76.4% 略高于 baseline 但 F1-fail 极低 (32.7%)，模型严重偏向预测
+    pass。DeepSeek CWM unparseable_pct=28.5% 处于 worst-case 范围 [5, 60] 的中间，足以使结果 ambiguous:
+    不像 Qwen (93%) 那样可以明确归因于 tokenizer failure，也不像 0% 那样可以 fairly compare。'
+  tables:
+  - name: 'Table: DeepSeek Repo CWM vs CLS'
+    columns:
+    - Formulation
+    - Accuracy
+    - Unparseable%
+    - F1-macro
+    - Δ vs Majority
+    rows:
+    - - CLS (s42)
+      - 74.8%
+      - 1.8%
+      - '65.2'
+      - +1.84pp
+    - - CWM (s42)
+      - 70.2%
+      - 28.5%
+      - '55.8'
+      - -2.76pp
+    - - Gap (CLS-CWM)
+      - +4.6pp
+      - —
+      - '+9.4'
+      - —
+  figures_description:
+  - Comparison showing both CLS and CWM hovering near majority baseline, with large
+    error bars from seed variance.
+  analysis: 'CLS-CWM gap = +4.6pp，在 worst-case 范围 [-5, 5] 的边界附近。但两者都接近/低于 majority
+    baseline，使 gap 的实际意义存疑。无法判断: 是 CLS genuinely better at repo-level (支持 Qwen narrative)，还是两者都
+    fail 只是 fail 的方式不同。28.5% unparseable 是 ''middle ground'' confound — 不够高以明确归因 tokenizer，不够低以
+    fairly compare accuracy。'
+- name: deepseek-cwm-repo-s123
+  plan_id: repo-level-training
+  description: DeepSeek repo-level CWM seed 123.
+  expected_results:
+    accuracy: 68.5
+    f1_macro: 52.1
+    f1_fail: 28.9
+    f1_pass: 75.3
+    unparseable_pct: 35.2
+    majority_baseline: 72.96
+    gap_vs_majority_pp: -4.46
+    best_checkpoint: checkpoint-600
+  result_rationale: 'Seed 123 的 CWM 表现更差: unparseable 上升到 35.2% (生成长度 distribution
+    shift)，accuracy 进一步低于 baseline。两个 CWM seeds 的 spread = 1.7pp accuracy，但 unparseable
+    spread = 6.7pp，说明生成质量高度不稳定。CLS-CWM gap 在此 seed = 72.3 - 68.5 = 3.8pp，与 seed42
+    的 4.6pp 方向一致但 magnitude 不同。问题: 在两者都低于 majority baseline 时，''CLS > CWM'' 的声称有什么意义？'
+  tables: []
+  figures_description: []
+  analysis: 'Cross-seed CWM: 68.5-70.2% (1.7pp spread)。Cross-seed CLS: 72.3-74.8%
+    (2.5pp)。Gap 范围 3.8-4.6pp。但 combined CI (bootstrap over seeds + instances) 会包含
+    0，无法达到统计显著。'
+- name: deepseek-repo-combined-analysis
+  plan_id: repo-level-training
+  description: 'Combined analysis across DeepSeek repo-level experiments: CLS vs CWM
+    with multi-seed bootstrap CI.'
+  expected_results:
+    cls_mean_accuracy: 73.55
+    cls_std_accuracy: 1.77
+    cwm_mean_accuracy: 69.35
+    cwm_std_accuracy: 1.2
+    cls_cwm_gap_mean_pp: 4.2
+    cls_cwm_gap_95CI:
+    - -1.8
+    - 10.2
+    paired_t_test_p: 0.18
+    majority_baseline: 72.96
+    cls_vs_majority_p: 0.71
+    cwm_vs_majority_p: 0.12
+    n_seeds: 2
+    effective_n_instances: 48
+    power_at_5pp_effect: 0.31
+  result_rationale: 只有 2 seeds × 48 effective instances，statistical power 极低 (0.31
+    for 5pp effect)。即使真实 effect 存在，也 underpowered to detect。CI [-1.8, 10.2] 包含 0，无法拒绝
+    H0。更致命的是 CLS 本身相对 majority baseline 不显著 (p=0.71)，说明 DeepSeek 在 repo-level 整体 fine-tuning
+    失败。这不是 formulation 问题而是 model/recipe 问题，使 CLS vs CWM 比较 confounded by underlying
+    training failure。
+  tables:
+  - name: 'Table: DeepSeek Repo-level Summary (Worst-case)'
+    columns:
+    - ''
+    - CLS
+    - CWM
+    - TRAJ (8k)
+    - Majority
+    rows:
+    - - Seed 42
+      - 74.8%
+      - 70.2%
+      - 81.25%
+      - 73.0%
+    - - Seed 123
+      - 72.3%
+      - 68.5%
+      - 75.0%
+      - 73.0%
+    - - Mean
+      - 73.6%
+      - 69.4%
+      - '78.1% (6seeds: 75.4±5.1)'
+      - 73.0%
+    - - vs Majority
+      - +0.6pp
+      - -3.6pp
+      - +5.1pp
+      - —
+  figures_description:
+  - 'Box plot showing DeepSeek repo-level results: all formulations cluster near majority
+    baseline with massive seed variance, TRAJ slightly above but with enormous spread.'
+  analysis: 'Confound 明确: (1) CLS 不 work (≈majority)，所以 CLS > CWM 的 claim 无法从 ''CLS
+    better'' 推断，只能说 ''CWM worse than chance''; (2) TRAJ 是唯一 reliably above majority
+    的 formulation (6 seeds mean 75.4%)，但 seed variance 5.1pp 极大; (3) 无法得出 directional
+    conclusion 关于 formulation ranking at repo-level for DeepSeek。只能 scope down: ''DeepSeek
+    repo-level 在当前 LoRA recipe 下 underfits，需要 larger-scale study with different hyperparameters''。'
+- name: swebench-pertest-data
+  plan_id: swebench-pertest-data
+  description: Docker re-evaluation of SWE-bench Verified patches, per-test label
+    extraction. CPU-only.
+  expected_results:
+    n_instances_attempted: 500
+    n_instances_successful: 423
+    n_instances_docker_fail: 77
+    n_candidates_per_instance: 16
+    total_per_test_labels: 87000
+    docker_timeout_pct: 8.2
+    median_tests_per_instance: 12
+    mean_tests_per_instance: 18.4
+    f2p_test_count_distribution:
+      T1: 0.45
+      T2: 0.22
+      T3_5: 0.18
+      T6plus: 0.15
+  result_rationale: '数据构建本身不受 worst tier 影响 — 这是 infrastructure work。423/500 成功率合理
+    (SWE-bench docker environments 有一定比例 flaky/timeout)。数据集本身会如预期构建完成。问题不在数据而在下游使用:
+    即使数据 ready，在 worst tier 下 repo-level training 和 re-repair 都不 work，数据集的 practical
+    value 仅限于 ''resource contribution''。'
+  tables: []
+  figures_description: []
+  analysis: 数据集构建预期成功。但 worst tier 下其下游 experiments 全部 null/confounded，削弱了数据集作为 contribution
+    的 narrative (需要 show 有人能用它做出有意义的结果)。
+- name: qwen-repo-error-complementarity
+  plan_id: repo-level-training
+  description: Error complementarity analysis between CLS and CWM at repo-level (Qwen),
+    analogous to function-level oracle ensemble.
+  expected_results:
+    cls_accuracy: 82.35
+    cwm_accuracy_parseable_only: 42.9
+    cwm_parseable_rate: 46.3
+    oracle_ensemble_accuracy_parseable_subset: 51.2
+    oracle_ensemble_full_set: null
+    complementarity_ratio: null
+  result_rationale: Qwen repo-level CWM 有 93% unparseable，使 complementarity analysis
+    无法执行 — 只有 7% 的 samples 有 CWM predictions。在可解析的 subset 上 CWM accuracy 仅 42.9%，低于
+    random。Oracle ensemble 在这个 tiny subset 上无统计意义。无法复现 function-level 的 error complementarity
+    story (90.63% oracle) at repo-level。
+  tables: []
+  figures_description: []
+  analysis: Error complementarity 只在 function-level 成立 (两个 formulation 都 work 时)。Repo-level
+    由于 CWM collapse 无法做此分析。这进一步限制了 paper 能讲的 story。

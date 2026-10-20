@@ -1,0 +1,2962 @@
+- id: art_20260511_168578
+  name: mvp_a_results
+  type: data
+  description: 'Monte Carlo simulation results: resolve rates and advantages at 45
+    accuracy levels x 2 noise models. PASS: block-corr advantage 36.2% >> 5% threshold.'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_results_summary.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T18:40:16.893323+00:00'
+  tags:
+  - mvp-a
+  - oracle-sim
+  - per-test-vs-trajectory
+  - pass
+- id: art_20260511_2f46c3
+  name: mvp-a-oracle-curves
+  type: chart
+  description: MVP-A Oracle 模拟精度-resolve rate 曲线（per-test vs trajectory-level, i.i.d.
+    + block-correlated）
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/chart/mvp_a_curves_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T18:41:12.022108+00:00'
+  tags:
+  - mvp
+  - oracle
+  - simulation
+- id: art_20260511_b01bb3
+  name: mvp-a-results-json
+  type: data
+  description: MVP-A 完整模拟结果数据（45 accuracy levels × 2 noise models）
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_results_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T18:41:14.132755+00:00'
+  tags:
+  - mvp
+  - oracle
+  - simulation
+- id: art_20260511_6491bf
+  name: mvp-b-training-data
+  type: data
+  description: 'MVP-B pass/fail binary classification training data (19,076 samples
+    from HumanEval+MBPP with 5 mutation types, execution-verified labels). Files:
+    train.jsonl (15,290), val.jsonl (1,896), test.jsonl (1,890), stats.json'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-b-data-prep/data/mvp-b-training-data-manifest.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-b-data-prep
+  skill: ''
+  created_at: '2026-05-11T19:00:27.284050+00:00'
+  tags:
+  - mvp-b
+  - training-data
+  - humaneval
+  - mbpp
+  - mutation-testing
+- id: art_20260511_b643ad
+  name: mvp-b-training-data
+  type: data
+  description: 'MVP-B (code, test) → pass/fail 训练数据: 19076 条 (train 15290 / val 1896
+    / test 1890), pass:fail = 52:48'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-b-data-prep/data/mvp_b_data_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-b-data-prep
+  skill: ''
+  created_at: '2026-05-11T19:01:36.582575+00:00'
+  tags:
+  - mvp
+  - training-data
+  - humaneval
+  - mbpp
+- id: art_20260511_e70683
+  name: MVP-A Sensitivity Results
+  type: data
+  description: 'Sensitivity analysis: T_med=3 iid=7.6% block=38.4%, T_med=7 iid=13.5%
+    block=38.3%, T_med=11 iid=18.6% block=36.4%. All PASS. Remote: /home/sonny/exec-sim-repair-verifier/mvp_a_sensitivity_results.json'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_sensitivity_pointer.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:03:04.014819+00:00'
+  tags:
+  - sensitivity
+  - mvp-a
+- id: art_20260511_a6a2de
+  name: MVP-A Real F2P Results (CRITICAL)
+  type: data
+  description: 'Real SWE-bench F2P dist (T med=1, 69% T=1): i.i.d. adv=1.98% FAIL,
+    block adv=10.88% PASS. Remote: /home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_results.json'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_real_f2p_pointer.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:03:08.839849+00:00'
+  tags:
+  - real-distribution
+  - mvp-a
+  - critical
+- id: art_20260511_580d62
+  name: SWE-bench Test Distribution
+  type: data
+  description: 'SWE-bench Verified F2P: median=1, 69% T=1, 88% T<=2. P2P: median=50.
+    Remote: /home/sonny/exec-sim-repair-verifier/swebench_test_dist.pdf + swebench_test_stats.json'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/swebench_test_dist_pointer.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-11T19:03:11.937332+00:00'
+  tags:
+  - swebench
+  - data-analysis
+- id: art_20260511_a913c0
+  name: mvp-a-sensitivity-curves
+  type: chart
+  description: MVP-A T 分布 sensitivity 曲线 (T_med=3/7/11) + 真实 F2P 分布模拟曲线
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/chart/mvp_a_sensitivity_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:22:08.995105+00:00'
+  tags:
+  - mvp
+  - oracle
+  - sensitivity
+  - swebench
+- id: art_20260511_be7f9b
+  name: mvp_a_total_sim_results
+  type: data
+  description: 'MVP-A Total (F2P+P2P) oracle simulation results JSON: 3 regression
+    rates × 2 noise models × 45 accuracy levels'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_total_results.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:36:03.437091+00:00'
+  tags:
+  - simulation
+  - total
+  - f2p+p2p
+  - oracle
+- id: art_20260511_e78641
+  name: mvp_a_total_sim_curves
+  type: chart
+  description: 'MVP-A Total (F2P+P2P) simulation curves PDF: 3 subplots for regression
+    rate 5%/10%/20%'
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/chart/mvp_a_total_curves.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:36:06.087086+00:00'
+  tags:
+  - visualization
+  - total
+  - f2p+p2p
+  - oracle
+- id: art_20260511_429a62
+  name: mvp-a-total-sim-curves
+  type: chart
+  description: MVP-A Total (F2P+P2P) 模拟曲线：3 档 regression rate × 2 noise models, 70-85%
+    区间标注
+  path: projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/chart/mvp_a_total_curves_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: mvp-a-oracle-sim
+  skill: ''
+  created_at: '2026-05-11T19:44:03.134078+00:00'
+  tags:
+  - mvp
+  - oracle
+  - total
+  - regression-rate
+- id: art_20260511_3548eb
+  name: P2P Regression Rate Analysis
+  type: report
+  description: 'Empirical measurement of P2P regression rate on SWE-bench Verified
+    using CoderForge data. Key finding: 1.04% mean regression rate, falls into less-than-5%
+    risk zone for per-test verifier project.'
+  path: projects/exec-sim-repair-verifier/artifacts/p2p-regression-rate/report/p2p_regression_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: p2p-regression-rate
+  skill: ''
+  created_at: '2026-05-11T20:04:23.342686+00:00'
+  tags:
+  - p2p
+  - regression-rate
+  - swe-bench
+  - measurement
+- id: art_20260512_7d9f65
+  name: swebench-pipeline-design
+  type: report
+  description: SWE-bench per-test data pipeline 技术方案：混合变异策略、Docker 执行、~75K 样本、32-62h
+    构建时间
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/swebench_pipeline_design.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T00:04:17.741487+00:00'
+  tags:
+  - swebench
+  - data-pipeline
+  - design
+- id: art_20260512_f24707
+  name: inference-cost-comparison
+  type: data
+  description: Classification vs CWM 推理效率对比：CWM 输出 3.1x tokens，CPU 延迟仅 1.09x（prefill
+    主导），GPU 差异待补测
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/inference_cost_results_summary.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T00:07:24.472776+00:00'
+  tags:
+  - inference
+  - efficiency
+  - classification-vs-cwm
+- id: art_20260512_e6c9c8
+  name: oracle_f2p_stratified_results
+  type: data
+  description: 'Stratified oracle simulation: T=1 adv=-0.09%, T=2 adv=31.7%, T=3-5
+    adv=40.7%, T=6+ adv=40.1%'
+  path: projects/exec-sim-repair-verifier/artifacts/oracle-f2p-stratified/data/oracle_f2p_stratified_results.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: oracle-f2p-stratified
+  skill: ''
+  created_at: '2026-05-12T05:12:59.868145+00:00'
+  tags:
+  - oracle
+  - simulation
+  - stratified
+  - f2p
+- id: art_20260512_438649
+  name: block-correlation-analysis-results
+  type: data
+  description: Block correlation analysis of per-test classifier errors. ICC=0.2329
+    (p=0.0), DEFF=4.62, confirming strong block correlation within problem_id.
+  path: projects/exec-sim-repair-verifier/artifacts/block-corr-empirical/data/block_corr_results_pointer.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: block-corr-empirical
+  skill: ''
+  created_at: '2026-05-12T08:36:52.124070+00:00'
+  tags:
+  - block-correlation
+  - icc
+  - validation
+- id: art_20260512_a00184
+  name: block_correlation_v2_bf16
+  type: data
+  description: Block-correlation analysis using consistent bfloat16 predictions from
+    eval_verifier.py (no 4-bit quantization). ICC=0.191, DEFF=3.97, accuracy=87.51%
+  path: projects/exec-sim-repair-verifier/artifacts/block-corr-empirical/data/eval_block_correlation_v2.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: block-corr-empirical
+  skill: ''
+  created_at: '2026-05-12T09:26:16.419188+00:00'
+  tags:
+  - block-correlation
+  - icc
+  - bfloat16
+  - v2
+- id: art_20260512_edde55
+  name: analysis_5paired_bootstrap
+  type: intermediate
+  description: Paired clustered bootstrap CI script for CLS vs CWM 5-seed comparison.
+    Supports JSONL/JSON input, problem_id clustering, TOST equivalence test.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/analysis_5paired_bootstrap.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T13:32:57.065527+00:00'
+  tags:
+  - statistics
+  - bootstrap
+  - CLS-vs-CWM
+  - TOST
+- id: art_20260512_c6dd6f
+  name: extract_predictions_generic
+  type: intermediate
+  description: Generic prediction extraction script for CLS/CWM checkpoints. Loads
+    LoRA adapter, runs batched inference, saves JSONL predictions.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/extract_predictions_generic.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T13:32:59.138107+00:00'
+  tags:
+  - inference
+  - predictions
+  - CLS
+  - CWM
+- id: art_20260512_3029de
+  name: 4B CLS vs CWM 5-paired statistical analysis
+  type: report
+  description: 5-seed paired statistical analysis comparing CLS vs CWM at 4B scale.
+    Mean gap +1.25pp, paired t-test p=0.0506 (borderline), bootstrap CI [+0.46, +2.04],
+    Cohen d=1.237, TOST 2pp not equivalent. CLS wins all 5 seeds.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/analysis_cls_vs_cwm_4b_5paired.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T14:29:57.490623+00:00'
+  tags:
+  - statistics
+  - cls-vs-cwm
+  - 4b
+  - paired-analysis
+- id: art_20260512_9b68a3
+  name: error_overlap_analysis
+  type: report
+  description: Error Overlap Analysis and Per-class F1 Breakdown for 4B function-level
+    CLS vs CWM experiments
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/error_overlap_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T14:57:55.615093+00:00'
+  tags:
+  - analysis
+  - cls-vs-cwm
+  - 4B
+  - function-level
+- id: art_20260512_962380
+  name: CLS vs CWM Error Overlap Analysis
+  type: data
+  description: Per-instance error overlap analysis between CLS (seed42) and CWM (seed42)
+    on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both
+    wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union
+    accuracy=90.63%.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_analysis.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:14:09.138733+00:00'
+  tags:
+  - dream5
+  - error-overlap
+  - cls-vs-cwm
+  - paper
+- id: art_20260512_9ce376
+  name: cls-seed42-per-instance-predictions
+  type: data
+  description: CLS seed42 per-instance predictions (1890 samples) for matched-seed
+    analysis
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls_seed42_predictions_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:30:19.722788+00:00'
+  tags:
+  - per-instance
+  - predictions
+  - cls
+  - seed42
+- id: art_20260512_67ffbb
+  name: cwm-seed42-per-instance-predictions
+  type: data
+  description: CWM seed42 per-instance predictions (1890 samples) for matched-seed
+    analysis
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cwm_seed42_predictions_ref.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:30:19.945020+00:00'
+  tags:
+  - per-instance
+  - predictions
+  - cwm
+  - seed42
+- id: art_20260512_33f0b2
+  name: cls-cwm-error-overlap-analysis
+  type: data
+  description: CLS vs CWM error overlap analysis (seed42, n=1890). Oracle combo=90.63%,
+    complementarity=5.9%, Cohen's kappa=0.73/0.88. Per-mutation breakdown included.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls_cwm_error_overlap.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:33:36.163280+00:00'
+  tags:
+  - error-analysis
+  - complementarity
+  - cls-vs-cwm
+  - oracle
+- id: art_20260512_89c484
+  name: 8B Scaling Gap Statistical Analysis
+  type: data
+  description: Seed-level statistical analysis of 8B CLS vs CWM gap with bootstrap
+    CI, permutation test, TOST, and 4B scaling comparison
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/8b_scaling_bootstrap_results.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:41:12.436164+00:00'
+  tags:
+  - 8b
+  - scaling
+  - bootstrap
+  - statistics
+  - cls-vs-cwm
+- id: art_20260512_0810f5
+  name: 8B Scaling Bootstrap Statistical Analysis
+  type: data
+  description: '8B CLS vs CWM paired bootstrap: gap=2.42pp (p=0.004), scaling widens
+    gap 4B to 8B +94% (p=0.016), TOST rejects equivalence, Cohen d=6.53'
+  path: null
+  url: home:/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json
+  project: exec-sim-repair-verifier
+  exp_id: model-size-scaling-cls8b
+  skill: ''
+  created_at: '2026-05-12T17:05:01.047739+00:00'
+  tags:
+  - scaling
+  - bootstrap
+  - statistical-test
+  - pillar4
+- id: art_20260512_518040
+  name: Matched-seed CLS vs CWM Error Overlap Analysis
+  type: data
+  description: 'Seed42 matched-pair error overlap: Oracle=90.63%, Kappa(pred)=0.88,
+    Kappa(correct)=0.73. CLS misses FAIL (75.5%), CWM misses PASS (83.1%) — complementary
+    errors. CWM exact_match=94.3% on CWM-only-correct samples.'
+  path: null
+  url: home:/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:06:13.058499+00:00'
+  tags:
+  - error-overlap
+  - matched-seed
+  - complementarity
+  - oracle
+- id: art_20260512_f9edce
+  name: 4B-8B CLS vs CWM Paired Bootstrap Corrected
+  type: data
+  description: 修正版 4B/8B CLS vs CWM paired bootstrap 统计分析。4B gap=1.25pp p=0.0253,
+    8B gap=2.26pp p=0.0066, Scaling P(8B>4B)=0.988
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/4b_8b_cls_cwm_paired_bootstrap_corrected.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:11:10.594769+00:00'
+  tags:
+  - statistics
+  - bootstrap
+  - scaling
+  - cls-vs-cwm
+- id: art_20260512_9388d0
+  name: repo_8b_training_plan
+  type: report
+  description: 8B repo-level训练计划：CLI参数调整、显存预估、前置条件、风险点。脚本无需修改。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/repo_8b_training_plan.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:14:33.735055+00:00'
+  tags:
+  - 8b
+  - repo-level
+  - training-plan
+- id: art_20260512_ba6f93
+  name: fig1_reformulation
+  type: chart
+  description: '论文 Fig 1: 三种代码验证流水线对比概念图 (CLS vs CWM vs TRAJ)，展示输入/模型/输出差异及 failure
+    modes'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:21:37.549046+00:00'
+  tags:
+  - paper
+  - figure
+  - introduction
+  - conceptual
+- id: art_20260512_2cb0ef
+  name: cls8b_seed42_predictions
+  type: data
+  description: '8B CLS seed42 per-instance predictions on test set (1890 samples).
+    Accuracy=90.48%, fail_f1=90.06%, pass_f1=90.86%. Files on server: eval_results/cls8b_seed42_predictions.json
+    (per-instance), eval_results/cls8b_seed42.json (aggregate metrics).'
+  path: null
+  url: /home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42_predictions.json
+  project: exec-sim-repair-verifier
+  exp_id: cls8b-eval-seed42
+  skill: ''
+  created_at: '2026-05-12T17:25:25.576989+00:00'
+  tags:
+  - eval
+  - cls8b
+  - seed42
+  - predictions
+- id: art_20260512_66363a
+  name: paper_materials
+  type: report
+  description: 论文素材汇总：35个实验的结构化指标表格 + 3个Claim证据审查 + 缺失清单（图表/统计/repo-level）
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/paper_materials.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:32:20.302919+00:00'
+  tags:
+  - paper
+  - metrics
+  - evidence-review
+- id: art_20260512_927a9d
+  name: fig1_reformulation
+  type: chart
+  description: 'Task reformulation conceptual diagram: three verification pipelines
+    (CLS/CWM/TRAJ) side-by-side comparison. CLS highlighted as proposed method, CWM
+    failure modes annotated.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_927a9d.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-12T17:35:40.252361+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+- id: art_20260512_2859d6
+  name: fig2_scaling_gap
+  type: chart
+  description: CLS vs CWM accuracy gap across model scales (4B, 8B) - grouped bar
+    chart showing gap widens from 1.24pp to 2.43pp
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_scaling_gap.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T17:37:41.098078+00:00'
+  tags:
+  - paper
+  - figure
+  - scaling
+  - experiments
+- id: art_20260512_3aeeb1
+  name: fig2_scaling_gap
+  type: chart
+  description: 'CLS vs CWM accuracy at 4B (5-seed) and 8B (3-seed) — grouped bar chart
+    showing gap widening from 1.24pp to 2.43pp. Data source: multi-seed-core, cls-seed789,
+    cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, model-size-scaling-cls8b,
+    cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_scaling_gap_3aeeb1.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-12T17:55:53.149606+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - scaling
+- id: art_20260512_096d73
+  name: fig3_oracle_stratified
+  type: chart
+  description: 'Oracle per-test advantage stratified by F2P test count (T=1/2/3-5/≥6).
+    Grouped bars for i.i.d. vs block-corr models. T=2 contributes 55.3% of total advantage.
+    Data source: oracle-f2p-stratified, mvp-a-oracle-sim.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig3_oracle_stratified.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-12T17:57:51.457618+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - oracle
+- id: art_20260512_e46a30
+  name: related_work_tex
+  type: paper
+  description: 'Related Work section for EMNLP 2026 paper. 4 clusters: Execution Simulation
+    (5 refs), LLM Verification (5 refs), APR (4 refs), Classification vs Generation
+    in NLP (3 refs). 17 citations total, all verified against references.bib.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/related_work.tex
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: latex-paper
+  created_at: '2026-05-12T18:20:39.893620+00:00'
+  tags:
+  - paper
+  - related_work
+  - emnlp2026
+- id: art_20260512_a00ef2
+  name: error-overlap-matched-seed-analysis
+  type: data
+  description: Matched-seed CLS vs CWM error overlap analysis (seed 0/42/456). Oracle
+    accuracy 90.14%, complementarity rate 34%, oracle gain +2.31pp over CLS / +2.79pp
+    over CWM.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_matched_seed.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T19:08:46.199143+00:00'
+  tags:
+  - error-overlap
+  - complementarity
+  - oracle
+  - claim3
+- id: art_20260512_e7a4c8
+  name: eval_repo_level
+  type: intermediate
+  description: Unified repo-level eval script for CLS and CWM modes on home-1x5090:/home/sonny/exec-sim-repair-verifier/eval_repo_level.py
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/eval_repo_level_info.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T19:30:06.300247+00:00'
+  tags:
+  - eval
+  - repo-level
+- id: art_20260512_389a26
+  name: paired_bootstrap_repo
+  type: intermediate
+  description: Paired bootstrap CLS vs CWM with D008 Go/No-Go on home-1x5090:/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/paired_bootstrap_repo_info.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T19:30:08.964597+00:00'
+  tags:
+  - bootstrap
+  - d008
+  - repo-level
+- id: art_20260512_b1476c
+  name: training_progress_20260512
+  type: report
+  description: Training progress check for repo-level-cwm-v6 and repo-level-cls-home
+    on 2026-05-12
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/training_progress_20260512.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T20:25:50.817508+00:00'
+  tags:
+  - training
+  - progress-check
+  - repo-level
+- id: art_20260512_d7f39f
+  name: eval_pipeline_prep
+  type: report
+  description: 'Repo-level eval pipeline preparation report: eval scripts, data paths,
+    checkpoint status, command templates, and missing items checklist'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/eval_pipeline_prep.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T20:26:52.897370+00:00'
+  tags:
+  - eval
+  - pipeline
+  - repo-level
+- id: art_20260512_6ec3b7
+  name: Method Section Draft (§3)
+  type: paper
+  description: EMNLP 2026 Method section (§3) covering problem setup, three verification
+    formulations (CLS/CWM/TRAJ), CWM failure mode analysis, and oracle accuracy-utility
+    framework. ~1100 words.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/method.tex
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T20:40:12.117213+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+  - draft
+- id: art_20260512_d30468
+  name: repo-level-eval-scripts
+  type: intermediate
+  description: Repo-level eval + paired bootstrap 脚本 (eval_repo_cls.py, eval_repo_cwm.py,
+    paired_bootstrap_repo.py)。统一 JSONL 输出格式，含 clustered bootstrap + TOST ±2pp + D008
+    Go/No-Go 决策。位于 home:/home/sonny/exec-sim-repair-verifier/
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/repo_level_eval_scripts_readme.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T23:58:53.126586+00:00'
+  tags:
+  - eval
+  - repo-level
+  - D008
+- id: art_20260513_e459d0
+  name: CLS v4 checkpoint-200 eval
+  type: report
+  description: Eval of repo-level CLS v4 checkpoint-200 on val set. Accuracy=66.11%,
+    F1_macro=56.61%, below majority baseline 72.96%.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cls_v4_checkpoint200_eval.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T07:00:12.121422+00:00'
+  tags:
+  - eval
+  - cls
+  - checkpoint-200
+  - qwen3-4b
+- id: art_20260513_30a91b
+  name: D008 Eval Command Templates
+  type: intermediate
+  description: CLS v5 + CWM v11 eval 命令模板，含 max_new_tokens 消融(256/512/1024)和 paired
+    bootstrap 命令。训练完成后零延迟启动 eval。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/d008_eval_commands.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T15:46:24.212138+00:00'
+  tags:
+  - eval
+  - d008
+  - template
+- id: art_20260514_515c1c
+  name: success-experiments-summary
+  type: report
+  description: 'All success experiments metrics summary: 8 tables (CLS/CWM/Traj/8B-scaling/LLM-judge/repo-level/analysis)
+    + core comparison numbers for paper'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/success_experiments_summary.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T00:42:51.161017+00:00'
+  tags:
+  - metrics
+  - summary
+  - paper
+- id: art_20260514_d9af88
+  name: d063_val_sweep_plan
+  type: report
+  description: D063 Val Set Checkpoint Sweep 准备方案：eval脚本支持情况、val set信息、完整命令列表、GPU状态
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/d063_val_sweep_plan.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:34:34.168395+00:00'
+  tags: []
+- id: art_20260514_5a64c3
+  name: D076 Val Unparseable Root Cause
+  type: report
+  description: Val 20.2% unparseable 完全由 2 个 problem_id 的 prompt 截断引起。sympy-14248
+    (1406 samples, ~4947 tokens) + pytest-5787 (477 samples, ~2352 tokens) = 1883
+    = 精确匹配。修复：eval 时 --max_seq_length 5120。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/d076_val_unparseable_root_cause.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:16:23.881575+00:00'
+  tags:
+  - D076
+  - val
+  - unparseable
+  - truncation
+- id: art_20260514_28b265
+  name: cls8b-seed123-ckpt3000-val-eval-pending
+  type: report
+  description: CLS 8B seed123 ckpt-3000 val eval pending submission - contains correct
+    checkpoint path and ready-to-submit command
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cls8b_seed123_ckpt3000_val_eval_pending.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:53:07.119289+00:00'
+  tags:
+  - eval
+  - seed123
+  - 8b
+  - val
+  - pending
+- id: art_20260514_08fc7e
+  name: val-test-distribution-analysis
+  type: report
+  description: Val/Test split 分布差异分析报告 — mutation type/repo/problem 维度的系统性偏移，解释 val-test
+    checkpoint ranking reversal 根因
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/val_test_distribution_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:36:22.450626+00:00'
+  tags:
+  - D085
+  - val-test-reversal
+  - distribution-shift
+- id: art_20260514_42d2fd
+  name: comprehensive_results_summary
+  type: report
+  description: 'All DONE+success experiments consolidated: function-level (CLS/CWM
+    4B/8B, 5 seeds), trajectory-level (5 seeds), repo-level (checkpoint sweeps, val/test,
+    max_seq_length), LLM judge baselines, statistical analyses, simulation results.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/comprehensive_results_summary.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:50:14.540769+00:00'
+  tags:
+  - results
+  - summary
+  - all-experiments
+- id: art_20260514_d54a91
+  name: comprehensive-results-summary
+  type: report
+  description: 41 个成功实验的全面结果汇总 — function/trajectory/repo-level, CLS vs CWM, zero-shot
+    baselines, 统计检验, 按 exp_id 标注来源
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/comprehensive_results_summary_d54a91.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:50:44.420079+00:00'
+  tags:
+  - results
+  - consolidation
+  - all-levels
+- id: art_20260514_02958d
+  name: eval_status_check_20260514
+  type: report
+  description: 'Status check of 3 eval experiments: cls8b-s42-ckpt800-val8192 (westd,
+    54.7% done, acc 84.6%), cls4b-v5-ckpt600-val5120 (home, 42.9% done, acc 82.8%),
+    v5-val5120-sweep (home, waiting)'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/eval_status_check_20260514.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:55:56.148831+00:00'
+  tags:
+  - eval
+  - status-check
+  - cls8b
+  - cls4b-v5
+- id: art_20260515_7c952a
+  name: training_status_20260515
+  type: report
+  description: 'Training progress report for 3 experiments on westd-4x5090 as of 2026-05-15:
+    cls-s42-resume 23%, cwm-v4 42%, cls-seed123 77%, plus completed eval results.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/training_status_20260515.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:02:26.545967+00:00'
+  tags:
+  - training
+  - status
+  - westd
+- id: art_20260515_15abeb
+  name: ckpt4400-val5120-partial-accuracy
+  type: data
+  description: Partial accuracy for ckpt-4400 val5120 eval (6544/9335 = 70.1% completed
+    before stuck process was killed)
+  path: projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval/data/ckpt4400_val5120_partial_accuracy.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: cls4b-v5-ckpt4400-val5120-eval
+  skill: ''
+  created_at: '2026-05-15T01:39:35.809392+00:00'
+  tags:
+  - eval
+  - ckpt-4400
+  - partial
+  - val5120
+- id: art_20260515_126c08
+  name: val_sweep_compilation
+  type: report
+  description: 'Complete eval sweep compilation: 8B s42 val/test@8192, 4B v5 val@5120,
+    cross-seed reference. Markdown tables + JSON for plotting.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/val_sweep_compilation.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:34:45.380911+00:00'
+  tags:
+  - eval
+  - sweep
+  - compilation
+  - 8b
+  - 4b
+  - val
+  - test
+- id: art_20260515_1a8f0d
+  name: CWM Error Analysis Paper Data
+  type: data
+  description: Structured error analysis data for CWM vs CLS repo-level comparison,
+    including error mode breakdown, per-repo variation, gap amplification, and paper
+    placement recommendations. Compiled from D082 analysis, registry experiments,
+    and cwm_error_mode_analysis.md.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/error_analysis_data.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:35:56.746454+00:00'
+  tags:
+  - error-analysis
+  - cwm
+  - paper
+  - C1-claim
+  - repo-level
+- id: art_20260515_2c3211
+  name: fig2_gap_amplification
+  type: chart
+  description: 'CLS-CWM accuracy gap amplification across complexity levels: 1.24pp
+    (function 4B) → 2.43pp (function 8B) → 25.99pp (repo-level). Data from multi-seed-core,
+    model-size-scaling-cls8b, repo-level-cwm-v12, cls8b-s42-ckpt1000-test8192-eval.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_gap_amplification.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T08:48:40.802369+00:00'
+  tags:
+  - paper
+  - experiments
+  - C1
+  - gap_amplification
+- id: art_20260515_19d875
+  name: fig3_oracle_stratified
+  type: chart
+  description: Oracle per-test advantage stratified by F2P test count. T=2 contributes
+    55% of total advantage. i.i.d. vs block-correlated comparison with instance distribution
+    overlay. Data from oracle-f2p-stratified.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig3_oracle_stratified_19d875.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T08:49:39.238228+00:00'
+  tags:
+  - paper
+  - experiments
+  - C3
+  - oracle
+- id: art_20260515_80e6ed
+  name: fig1_reformulation
+  type: chart
+  description: 'Conceptual diagram: three verification formulations — CLS (1-token
+    binary), CWM (N-token generation + exact match, failure modes highlighted), TRAJ
+    (1-token patch-level, no per-test). For Introduction.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_80e6ed.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T08:50:18.613089+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+- id: art_20260515_23b9ca
+  name: val_sweep_compilation
+  type: report
+  description: 'Eval sweep compilation updated: seed123 8B test curve 6/6 complete,
+    s42 test curve 8/8 complete, 4B seed123 F1 metrics filled in from registry'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/val_sweep_compilation_23b9ca.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:22:20.383493+00:00'
+  tags:
+  - eval
+  - seed123
+  - s42
+  - test-curve
+  - compilation
+- id: art_20260515_b5ca03
+  name: citation_verification_w6_w9
+  type: report
+  description: Citation verification (W9) and supplementary BibTeX entries (W6) for
+    exec-sim-repair-verifier paper
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/citation_verification_w6_w9.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:33:52.231290+00:00'
+  tags:
+  - citation
+  - W6
+  - W9
+  - rebuttal
+- id: art_20260515_77c4fb
+  name: CWM Relaxed Matching Analysis
+  type: data
+  description: 'Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing.
+    Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching
+    is NOT the cause of CWM underperformance.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/relaxed_matching_analysis.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:34:12.553109+00:00'
+  tags:
+  - rebuttal
+  - W4
+  - cwm
+  - relaxed-matching
+- id: art_20260515_73352d
+  name: TOST Multi-Margin Equivalence Results
+  type: report
+  description: Multi-margin TOST equivalence test results for CLS vs CWM at margins
+    1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/tost_multi_margin_results.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:34:49.302999+00:00'
+  tags:
+  - tost
+  - equivalence
+  - w2-response
+  - statistics
+- id: art_20260515_8b3358
+  name: cwm_cls_training_convergence_rebuttal
+  type: report
+  description: CWM vs CLS training-loss convergence comparison (function-level 4B/8B
+    + repo-level 8B). Rebuttal material for reviewer concern that CWM is undertrained.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cwm_cls_convergence.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:39:19.498717+00:00'
+  tags:
+  - rebuttal
+  - convergence
+  - loss-curves
+  - rank-ablation
+- id: art_20260515_53940f
+  name: mutation_type_analysis_w3w8_c1
+  type: report
+  description: Per-mutation-type accuracy analysis (W3/W8) and seed variance root
+    cause (C1) for CLS models on SWE-bench eval set
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/mutation_type_analysis_w3w8_c1.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:41:15.899305+00:00'
+  tags:
+  - mutation_type
+  - distribution_shift
+  - seed_variance
+  - rebuttal
+  - W3
+  - W8
+  - C1
+- id: art_20260515_1557c9
+  name: relaxed_matching_results
+  type: data
+  description: CLS vs CWM accuracy comparison under strict/normalized/enhanced matching,
+    with parse rates and upper bounds
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/relaxed_matching_results.csv
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:29:59.450350+00:00'
+  tags:
+  - paper-data
+  - relaxed-matching
+  - cls-vs-cwm
+- id: art_20260515_9242c9
+  name: tost_multi_margin
+  type: data
+  description: TOST equivalence test results at margins ±1/2/3pp, clustered bootstrap
+    with 10000 resamples, 4 CLS-CWM pairs
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/tost_multi_margin.csv
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:30:02.260265+00:00'
+  tags:
+  - paper-data
+  - tost
+  - equivalence-test
+  - statistical
+- id: art_20260515_e363ac
+  name: mutation_type_accuracy
+  type: data
+  description: Per-mutation-type accuracy for CLS 8B (s42/s123 multiple checkpoints)
+    and CWM 4B, with val/test distribution percentages
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/mutation_type_accuracy.csv
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:30:05.098605+00:00'
+  tags:
+  - paper-data
+  - mutation-type
+  - per-type-accuracy
+  - distribution-shift
+- id: art_20260515_693d9b
+  name: multi_seed_test_curves
+  type: data
+  description: Multi-seed test/val curves for CLS 8B/4B (s42, seed123), CWM 4B baselines,
+    seq2048 ablation, and majority baseline
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/multi_seed_test_curves.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:30:07.496604+00:00'
+  tags:
+  - paper-data
+  - training-curves
+  - multi-seed
+  - test-accuracy
+- id: art_20260515_0cace2
+  name: cwm-rank32-eval-command
+  type: intermediate
+  description: CWM rank=32 ablation eval command script. Matches rank=16 baseline
+    parameters (batch_size=16, max_seq=2048, max_new=64, full test set 1890 samples).
+    Ready to submit after training completes.
+  path: projects/exec-sim-repair-verifier/artifacts/cwm-rank32-ablation-v2/intermediate/cwm_rank32_eval_command.sh
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: cwm-rank32-ablation-v2
+  skill: ''
+  created_at: '2026-05-15T13:31:24.101467+00:00'
+  tags:
+  - eval
+  - cwm
+  - rank-ablation
+  - ready-to-submit
+- id: art_20260515_6c8e3a
+  name: cwm_rank64_train_command
+  type: intermediate
+  description: CWM 4B LoRA rank=64 alpha=128 training command for rank ablation study
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/cwm_rank64_train_command.sh
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:32:25.997916+00:00'
+  tags:
+  - ablation
+  - cwm
+  - rank64
+  - training
+- id: art_20260515_d88b8c
+  name: comprehensive_test_results
+  type: report
+  description: Complete test curve compilation for all CLS/CWM models across repo-level
+    and function-level evaluations. Includes per-checkpoint curves, val-selected vs
+    peak analysis, ablation results, and key takeaways.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/comprehensive_test_results.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:05:59.683866+00:00'
+  tags:
+  - test-results
+  - test-curve
+  - compilation
+  - repo-level
+  - function-level
+- id: art_20260515_180db3
+  name: CWM Relaxed Matching Analysis
+  type: report
+  description: 'D095 审稿 Action Item: 分析 CWM unparseable predictions 在 relaxed matching
+    下的表现。结论：relaxed matching 使 CWM 准确率更差（58%→56%），因为 unparseable 默认到 majority class
+    反而比模型实际预测更准。CLS vs CWM 的 gap 不可通过 matching 策略消除。'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cwm_relaxed_matching_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:12:47.517172+00:00'
+  tags:
+  - d095
+  - rebuttal
+  - cwm
+  - relaxed-matching
+  - reviewer-response
+- id: art_20260515_304198
+  name: introduction.tex
+  type: paper
+  description: EMNLP 2026 Introduction section — classification vs generation reformulation
+    for code repair verification
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/introduction_304198.tex
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:36:15.806765+00:00'
+  tags:
+  - paper
+  - introduction
+  - emnlp2026
+- id: art_20260515_3378f2
+  name: experiments.tex
+  type: paper
+  description: Experiments section (§4) for EMNLP 2026 paper — ~2800 words, 4 tables,
+    7 subsections covering function-level results, scaling, CLS-TRAJ equivalence,
+    oracle frontier, repo-level results, and analysis (ablations + error modes)
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/experiments_3378f2.tex
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:47:05.060065+00:00'
+  tags:
+  - paper
+  - experiments
+  - emnlp2026
+  - draft
+- id: art_20260515_7cbe30
+  name: cwm-rank32-alpha64-eval-results
+  type: data
+  description: 'Eval results for CWM rank=32 alpha=64 ablation: accuracy=87.04%, no
+    improvement over rank=16 baseline (87.51%)'
+  path: projects/exec-sim-repair-verifier/artifacts/cwm-rank32-alpha64-ablation/data/eval_results_summary.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: cwm-rank32-alpha64-ablation
+  skill: ''
+  created_at: '2026-05-15T15:48:39.531244+00:00'
+  tags:
+  - eval
+  - ablation
+  - rank32
+  - cwm
+- id: art_20260515_49e636
+  name: rank_ablation_chart_pdf
+  type: chart
+  description: LoRA rank ablation bar chart (PDF) comparing r16α32, r32α32, r32α64
+    on CWM 4B function-level accuracy
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/rank_ablation_chart.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:38:17.683263+00:00'
+  tags:
+  - rank-ablation
+  - cwm-4b
+  - lora
+  - paper-figure
+- id: art_20260515_a27979
+  name: rank_ablation_chart_png
+  type: chart
+  description: LoRA rank ablation bar chart (PNG 300dpi) comparing r16α32, r32α32,
+    r32α64 on CWM 4B function-level accuracy
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/rank_ablation_chart.png
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:38:19.689629+00:00'
+  tags:
+  - rank-ablation
+  - cwm-4b
+  - lora
+  - paper-figure
+- id: art_20260515_5c1b4c
+  name: rank_ablation_table
+  type: paper
+  description: LaTeX table for LoRA rank ablation results (Acc, F1, EM) on CWM 4B
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/rank_ablation_table.tex
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:38:21.207339+00:00'
+  tags:
+  - rank-ablation
+  - cwm-4b
+  - lora
+  - paper-table
+- id: art_20260515_e23a8e
+  name: paper_consistency_audit
+  type: report
+  description: 'Paper number consistency audit: all 60+ numbers verified against registry.
+    Found 5 issues: page count over limit (~9pp vs 8pp), 2 missing .bbl entries, abstract
+    rounding minor error, writing plan fig naming mismatch.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/paper_consistency_audit.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:27:06.624578+00:00'
+  tags:
+  - paper
+  - audit
+  - consistency
+- id: art_20260515_304f4a
+  name: 'Fig 1: Task Reformulation'
+  type: chart
+  description: 三行流程图：CLS/CWM/TRAJ 分色标注，CWM 标注 3 failure modes，TRAJ 标注 no per-test
+    signal。PDF+PNG。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_304f4a.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T18:23:57.585121+00:00'
+  tags:
+  - paper
+  - figure
+  - method
+- id: art_20260515_4759ed
+  name: 'Fig 2: Gap Amplification'
+  type: chart
+  description: Broken axis 柱状图：Function-level 0-5pp vs Repo-level 25.59pp，带 error
+    bars 和 single seed 标注。PDF+PNG。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_gap_amplification_4759ed.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T18:23:59.938145+00:00'
+  tags:
+  - paper
+  - figure
+  - results
+- id: art_20260515_ccb044
+  name: 'Fig 3: Oracle Stratified'
+  type: chart
+  description: 分组柱状图 + 右 Y 轴 Instance share 折线，T=2 处标注 55.3% of total advantage，T=1
+    两 bar 接近 0。PDF+PNG。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig3_oracle_stratified_ccb044.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T18:24:01.507710+00:00'
+  tags:
+  - paper
+  - figure
+  - analysis
+- id: art_20260515_938661
+  name: fig2_gap_amplification_v2
+  type: chart
+  description: 'Gap amplification bar chart (fixed): same-size 4B-4B 25.59pp, label
+    "Repo-level (same-size 4B)", ~21x multiplier annotation. Broken Y-axis.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_gap_amplification_938661.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:28:07.994091+00:00'
+  tags:
+  - paper
+  - figure
+  - reviewer-fix
+- id: art_20260515_65e9bf
+  name: fig1_reformulation_v2
+  type: chart
+  description: 'Conceptual diagram (fixed): CWM failure modes now explicitly list
+    "token-budget exhaustion, string-value errors, format compliance collapse".'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_65e9bf.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:28:09.591747+00:00'
+  tags:
+  - paper
+  - figure
+  - reviewer-fix
+- id: art_20260515_1a3e23
+  name: fig2_gap_amplification_v2
+  type: chart
+  description: 'Fig 2: Gap amplification bar chart (corrected: same-size 4B-4B 25.59pp,
+    multiplier 20.6x). Broken Y-axis, error bars, p-value annotation.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_gap_amplification_1a3e23.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:29:14.093060+00:00'
+  tags:
+  - paper
+  - figure
+  - reviewer-fix
+- id: art_20260515_be3bd5
+  name: fig1_reformulation_v2
+  type: chart
+  description: 'Fig 1: Conceptual diagram (updated: 3 failure modes with Format Compliance
+    Collapse explicitly labeled). Three verification pipelines: CLS/CWM/TRAJ.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_be3bd5.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:29:15.901144+00:00'
+  tags:
+  - paper
+  - figure
+  - reviewer-fix
+- id: art_20260515_843677
+  name: gen_fig2_gap_amplification_script
+  type: intermediate
+  description: Generation script for fig2_gap_amplification (corrected version, saved
+    to artifacts/figures/paper/).
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/gen_fig2_gap_amplification.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:29:17.826064+00:00'
+  tags:
+  - paper
+  - script
+- id: art_20260515_c1184f
+  name: reference_audit_report
+  type: report
+  description: 论文引用审计 + LaTeX 编译检查报告（2026-05-15）：26条bib全部被引用、无缺失引用、5篇抽查全部验证通过；发现2个必修问题（未引用的浮动图、不完整表格行）和3个key-year不匹配警告
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/reference_audit_report.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-15T18:36:41.821415+00:00'
+  tags:
+  - paper
+  - audit
+  - references
+  - latex
+- id: art_20260515_0557df
+  name: rank_ablation_data
+  type: data
+  description: LoRA rank ablation (D097/D098) and seq_length confound ablation (D094)
+    data with exp_ids for paper Table 5 and §3.6
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/rank_ablation_data.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:49:24.119105+00:00'
+  tags:
+  - ablation
+  - rank
+  - seq_length
+  - paper
+- id: art_20260515_ba24cc
+  name: val_sweep_status
+  type: data
+  description: CLS 8B s42 resume val sweep status — 8 existing original points, 21
+    running resume points, 5 unverified overlap points, coverage and consistency analysis
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/val_sweep_status.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:06:44.362614+00:00'
+  tags:
+  - val-sweep
+  - cls-8b
+  - s42
+  - resume
+  - checkpoint-selection
+- id: art_20260515_48b2ff
+  name: fig1_reformulation
+  type: chart
+  description: 'Figure 1: Task Reformulation Overview — three verification pipelines
+    (CLS/CWM/TRAJ) with CWM failure modes annotated. 16:9, PDF+PNG 300dpi. Placement:
+    introduction.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig1_reformulation_48b2ff.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T23:05:02.286737+00:00'
+  tags:
+  - paper
+  - figure
+  - introduction
+  - conceptual
+- id: art_20260515_7f61d2
+  name: fig2_gap_amplification
+  type: chart
+  description: 'Figure 2: Gap Amplification — CLS-CWM accuracy gap by complexity (1.24pp
+    func-4B, 2.43pp func-8B, 25.59pp repo-4B-4B). Broken axis, error bars, p-values.
+    4:3, PDF+PNG 300dpi. Placement: experiments.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_gap_amplification_7f61d2.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T23:05:06.539219+00:00'
+  tags:
+  - paper
+  - figure
+  - experiments
+  - statistical
+- id: art_20260515_30525a
+  name: fig3_oracle_stratified
+  type: chart
+  description: 'Figure 3: Oracle Advantage Stratified by F2P test count — block advantage
+    bars + instance % line. T=2 contributes 55.3% of total advantage. Dual-axis. 4:3,
+    PDF+PNG 300dpi. Placement: experiments.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig3_oracle_stratified_30525a.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T23:05:09.303178+00:00'
+  tags:
+  - paper
+  - figure
+  - experiments
+  - statistical
+- id: art_20260516_fd08cd
+  name: cls8b-s42-ckpt3600-mutation-breakdown
+  type: data
+  description: Per-mutation-type test accuracy breakdown for CLS 8B s42-resume ckpt-3600
+    (n=9784)
+  path: projects/exec-sim-repair-verifier/artifacts/cls8b-s42-resume-ckpt3600-mutation/data/mutation_breakdown.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: cls8b-s42-resume-ckpt3600-mutation
+  skill: ''
+  created_at: '2026-05-16T01:14:23.816472+00:00'
+  tags:
+  - mutation
+  - ablation
+  - test
+  - ckpt-3600
+- id: art_20260516_02ce10
+  name: experiment_status_check_loop19
+  type: report
+  description: 'Loop 19 experiment status check: all 4 experiments alive, 2 CLS evals
+    finishing soon, 2 CWM evals hours remaining'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/experiment_status_check_loop19.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:39:55.139130+00:00'
+  tags:
+  - status-check
+  - loop19
+- id: art_20260516_4744e6
+  name: per_mutation_precision_recall_8b_vs_4b
+  type: data
+  description: 'Per-mutation-type P/R/F1 comparing 8B (Qwen3-8B ckpt-3600) vs 4B (Qwen3-4B
+    ckpt-600) on test set. Full JSON on server: /root/autodl-tmp/eval_results/per_mutation_precision_recall_8b.json'
+  path: null
+  url: file:///root/autodl-tmp/eval_results/per_mutation_precision_recall_8b.json
+  project: exec-sim-repair-verifier
+  exp_id: cls8b-s42-ckpt3600-mutation-analysis
+  skill: ''
+  created_at: '2026-05-16T01:44:26.721385+00:00'
+  tags:
+  - cls
+  - 8b
+  - 4b
+  - per-mutation
+  - precision-recall
+  - scaling
+- id: art_20260516_d8f16d
+  name: cls8b_block_correlation
+  type: data
+  description: '8B CLS block-correlation analysis: ICC=0.3146, DEFF=114.41, 25 SWE-bench
+    problems, 9784 samples'
+  path: projects/exec-sim-repair-verifier/artifacts/cls8b-block-correlation-empirical/data/cls8b_block_correlation.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: cls8b-block-correlation-empirical
+  skill: ''
+  created_at: '2026-05-16T02:09:13.339522+00:00'
+  tags:
+  - block-correlation
+  - icc
+  - 8b
+  - cls
+- id: art_20260516_eb813b
+  name: CLS-4B ckpt-4600 test mutation breakdown
+  type: data
+  description: 'Per-mutation-type accuracy for CLS 4B v5 ckpt-4600 test: boundary_removal=46.9%,
+    operator_swap=78.91%, return_value=67.97%, off_by_one=58.47%, gold=98.25%'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls4b_ckpt4600_test_mutation_breakdown.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:30:05.833561+00:00'
+  tags:
+  - cls-4b
+  - test
+  - mutation-breakdown
+  - ckpt-4600
+- id: art_20260516_d7aa6c
+  name: cwm4b_mutation_breakdown
+  type: data
+  description: 'CWM 4B per-mutation-type breakdown (parseable-only accuracy) for s42
+    and seed123. Shows generation bottleneck: parseable-only accuracy is 42.9% vs
+    58% overall due to unparseable defaulting to pred=1.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cwm4b_mutation_breakdown.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:32:14.228482+00:00'
+  tags:
+  - cwm
+  - 4b
+  - mutation
+  - parseable
+  - generation-bottleneck
+- id: art_20260516_3c4a2f
+  name: cls8b_s42_ckpt3600_per_mutation_pr
+  type: data
+  description: CLS 8B s42 ckpt-3600 per-mutation-type precision/recall/confusion matrix
+    (test set)
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls8b_s42_ckpt3600_per_mutation_pr.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:37:34.568415+00:00'
+  tags:
+  - cls8b
+  - s42
+  - ckpt3600
+  - per-mutation
+  - precision-recall
+- id: art_20260516_f34b60
+  name: CLS-8B ckpt3600 per-test P/R/F1 + F2P bucket analysis
+  type: data
+  description: Per-problem and F2P-bucket-stratified fail detection metrics for CLS-8B
+    s42 ckpt-3600 on test set (n=9784, 25 problems). Includes overall P/R/F1, per-problem
+    stats, bucket analysis (T=1/T=2-5/T=6+), and breakdowns by test_type and mutation_type.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls8b_s42_ckpt3600_per_test_pr_bucketed.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:39:08.048414+00:00'
+  tags:
+  - cls8b
+  - ckpt3600
+  - test
+  - per-problem
+  - bucket-analysis
+  - fail-detection
+- id: art_20260516_0bae88
+  name: westd_status_loop17
+  type: report
+  description: Westd GPU and experiment status check for loop 17
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/westd_status_loop17.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:45:27.660942+00:00'
+  tags:
+  - status
+  - gpu
+  - eval
+  - loop17
+- id: art_20260516_1f174e
+  name: paper_completeness_report
+  type: report
+  description: EMNLP 2026 paper completeness and quality audit — section scores, number
+    verification, CWM 8B integration checklist, writing priorities
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/paper_completeness_report.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:49:35.935909+00:00'
+  tags:
+  - paper
+  - audit
+  - emnlp2026
+- id: art_20260516_5a3ce1
+  name: merge_cwm8b_shards
+  type: intermediate
+  description: Script to merge CWM 8B ckpt-400 test eval shards (v3/shard2/shard3),
+    dedup by index with priority, join mutation_type from test data, compute accuracy/F1/per-mutation
+    breakdown
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/merge_cwm8b_shards.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:50:46.817491+00:00'
+  tags:
+  - eval
+  - cwm-8b
+  - merge
+  - test
+- id: art_20260516_992050
+  name: mutation_comparison_summary_json
+  type: data
+  description: 'Structured JSON: 5 models × 5 mutation types accuracy matrix, P/R
+    breakdown, CWM parse rates, scaling effects, boundary_removal cross-model consistency,
+    CLS vs CWM bias comparison'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/mutation_comparison_summary.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:52:16.269700+00:00'
+  tags:
+  - per-mutation
+  - comparison
+  - cls
+  - cwm
+  - scaling
+  - precision-recall
+- id: art_20260516_b21eff
+  name: mutation_comparison_summary_report
+  type: report
+  description: 'Markdown report: per-mutation cross-model comparison with accuracy
+    matrix, P/R tables, CWM parse breakdown, scaling ranking, bias analysis, boundary_removal
+    consistency analysis. Paper discussion ready.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/mutation_comparison_summary.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:52:18.294513+00:00'
+  tags:
+  - per-mutation
+  - comparison
+  - report
+  - paper-material
+- id: art_20260516_12d596
+  name: reference_audit_report
+  type: report
+  description: 论文引用审计报告：28条引用全部真实，修复2个bib问题（liu2024codemind作者列表、chowdhury2024swebenchverified类型）
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/reference_audit_report_12d596.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-16T04:41:37.558062+00:00'
+  tags:
+  - paper
+  - reference
+  - audit
+- id: art_20260516_57c5c6
+  name: oracle_icc_sensitivity
+  type: chart
+  description: 'Oracle ICC sensitivity analysis (D107): per-test advantage vs ICC
+    sweep [0.00-0.50]. Shows advantage grows monotonically with ICC — function-level
+    ICC=0.191 (2.38pp) is conservative vs repo-level ICC=0.3146 (3.80pp, 1.60x). Two
+    panels: advantage curves by accuracy, bar chart of target zone (70-85%) advantage.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/oracle_icc_sensitivity.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:51:03.010095+00:00'
+  tags:
+  - D107
+  - oracle
+  - ICC
+  - sensitivity
+  - appendix
+- id: art_20260516_1d5a59
+  name: oracle_icc_sensitivity_data
+  type: data
+  description: 'JSON results for oracle ICC sensitivity analysis (D107): per-test
+    resolve rates, trajectory baseline, and advantage for 8 ICC values [0.00-0.50]
+    across accuracy range [0.55-0.99]. N=16, 10K trials, seed=42.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/oracle_icc_sensitivity.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:51:05.584750+00:00'
+  tags:
+  - D107
+  - oracle
+  - ICC
+  - sensitivity
+- id: art_20260516_e26de0
+  name: Re-Repair Experiment Design
+  type: report
+  description: 'Detailed experiment design for downstream re-repair evaluation: 4
+    conditions (control/cls-diag/oracle-diag/random-diag), McNemar + bootstrap stats,
+    compute budget, risk mitigation'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/re_repair_experiment_design.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:19:08.838655+00:00'
+  tags:
+  - re-repair
+  - experiment-design
+  - claim2
+  - downstream
+- id: art_20260516_742241
+  name: Re-Repair Evaluation Script
+  type: intermediate
+  description: 'Skeleton code for re-repair experiment: 4-phase pipeline (prepare/generate/verify/analyze)
+    with CLS inference, vLLM repair generation, Docker verification, McNemar + bootstrap
+    analysis'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/re_repair_eval.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:19:11.312695+00:00'
+  tags:
+  - re-repair
+  - code
+  - evaluation
+  - claim2
+- id: art_20260516_ea1842
+  name: inference_benchmark_results
+  type: data
+  description: 'CLS vs CWM inference efficiency benchmark on RTX 5090: func-level
+    4.7x speedup, repo-level 217.8x speedup'
+  path: null
+  url: file:///home/sonny/exec-sim-repair-verifier/artifacts/inference_benchmark_results.json
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T10:11:30.534157+00:00'
+  tags:
+  - benchmark
+  - inference
+  - efficiency
+  - paper
+- id: art_20260516_043ba0
+  name: deepseek-traj-func training launch
+  type: intermediate
+  description: 'DeepSeek-Coder-6.7B TRAJ func-level LoRA training on seetacloud-westd
+    cuda:2. PID=504483, 1512 steps (~50min ETA). Data: traj_train_cls=8052, traj_val_cls=1001.
+    Output: /root/autodl-tmp/checkpoints_deepseek_traj_func/'
+  path: projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func/intermediate/deepseek_traj_func_launch.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: deepseek-traj-func
+  skill: ''
+  created_at: '2026-05-16T12:08:05.541074+00:00'
+  tags:
+  - training
+  - deepseek
+  - traj
+  - func-level
+  - lora
+- id: art_20260516_3722e9
+  name: deepseek-traj-func-v2 诊断报告
+  type: report
+  description: 诊断 deepseek-traj-func-v2 和 v2-s123 实验状态：两个实验均正常运行，cron 误报源于服务器名配置错误
+  path: projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func-v2/report/diagnose_result.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: deepseek-traj-func-v2
+  skill: ''
+  created_at: '2026-05-16T13:49:28.181013+00:00'
+  tags:
+  - diagnosis
+  - training-status
+- id: art_20260516_2b4b61
+  name: repo-eval-precheck
+  type: report
+  description: Repo-level eval 预检报告：脚本/数据/依赖/checkpoint 状态检查，含 CLS 和 CWM eval 完整命令模板
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/repo-eval-precheck.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T14:21:53.698291+00:00'
+  tags:
+  - eval
+  - deepseek
+  - repo-level
+  - precheck
+- id: art_20260516_0cb400
+  name: traj-v2-results
+  type: report
+  description: 'DeepSeek TRAJ v2 eval results: s42 test accuracy 83.24%, s123 still
+    training'
+  path: projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func-v2/report/traj-v2-results.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: deepseek-traj-func-v2
+  skill: ''
+  created_at: '2026-05-16T14:22:24.174488+00:00'
+  tags:
+  - traj-v2
+  - eval
+  - deepseek
+- id: art_20260516_f39ba2
+  name: f1-macro-audit
+  type: report
+  description: 'F1-macro reporting completeness audit: paper tables vs eval script
+    capabilities, gap list, and code fix suggestions'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/f1-macro-audit.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:02:29.565651+00:00'
+  tags:
+  - paper
+  - reviewer-response
+  - f1-macro
+  - audit
+- id: art_20260516_2f746c
+  name: f1_macro_summary
+  type: data
+  description: F1-macro summary for all 79 experiments with computable per-class F1
+    data, back-computed from registry metrics
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/f1_macro_summary.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:28:33.946945+00:00'
+  tags:
+  - f1
+  - metrics
+  - paper
+- id: art_20260517_cfee61
+  name: error_analysis_func_level
+  type: data
+  description: 'Func-level CLS vs CWM error pattern analysis: per mutation type, test
+    count, problem-level breakdown. Oracle ensemble 89.84%, complementarity 31.2%,
+    error overlap 68.8%.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/error_analysis_func_level.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:10:53.696056+00:00'
+  tags:
+  - error-analysis
+  - cls-vs-cwm
+  - func-level
+  - D116
+- id: art_20260517_a5d5cc
+  name: qualitative_cwm_examples
+  type: data
+  description: 'Dream A5: 3 qualitative CWM output samples — 2 Qwen3 repo-level unparseable
+    (hallucinated test trace + autoregressive degeneration) + 1 DeepSeek func-level
+    parseable contrast'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/qualitative_cwm_examples.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:03:55.550672+00:00'
+  tags:
+  - dream-review
+  - A5
+  - cwm
+  - qualitative
+- id: art_20260517_00b5af
+  name: tost_sensitivity
+  type: data
+  description: 'TOST equivalence margin sensitivity analysis (A6): CLS vs CWM across
+    ±1/1.5/2/3/5pp margins for Qwen3-4B and DeepSeek-6.7B'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/tost_sensitivity.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:05:38.455597+00:00'
+  tags:
+  - tost
+  - equivalence
+  - sensitivity
+  - A6
+- id: art_20260517_d8bd45
+  name: bibliography_candidates
+  type: data
+  description: 'Dream A2: 23 bibliography expansion candidates across 7 categories
+    (PEFT, SWE-bench, code eval, verification, code RM, mutation testing, benchmarks).
+    WebSearch verified.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/bibliography_candidates.yaml
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:43:54.591201+00:00'
+  tags:
+  - dream-review
+  - A2
+  - bibliography
+- id: art_20260517_ae7dd5
+  name: qualitative_cls_error_examples
+  type: data
+  description: 'Dream A5 supplement: 3 CLS error examples — func-level FP (off_by_one
+    slice propagation), func-level FN (mathematical equivalence in tribonacci), repo-level
+    FP (cross-concern None propagation)'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/qualitative_cls_error_examples.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:45:52.115383+00:00'
+  tags:
+  - dream-review
+  - A5
+  - cls
+  - qualitative
+- id: art_20260517_7de558
+  name: bibliography_audit_report
+  type: data
+  description: 'Bibliography audit: 23/23 verified (0 hallucinations), 9 new entries
+    added to references.bib, 4 corrections (venue/year/author). Final bib count: 45.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/bibliography_audit_report.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:51:25.710727+00:00'
+  tags:
+  - dream-review
+  - A2
+  - bibliography
+  - audit
+- id: art_20260517_7b38ac
+  name: error_complementarity_deepseek
+  type: data
+  description: 'DeepSeek func-level CLS-CWM error complementarity: oracle 91.53%,
+    complementarity 55.1%, with full agreement breakdown and Qwen3 cross-model comparison'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/error_complementarity_deepseek.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T10:29:40.009109+00:00'
+  tags:
+  - error-analysis
+  - complementarity
+  - deepseek
+- id: art_20260517_e67823
+  name: efficiency_benchmark
+  type: data
+  description: CLS vs TRAJ inference efficiency benchmark on DeepSeek-coder-6.7B,
+    RTX 5090. Covers short/medium/long inputs, batch 1/8/16/32. CLS 24.4x faster at
+    func-level, 4.6x at repo-level.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/efficiency_benchmark.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:25:35.752070+00:00'
+  tags:
+  - efficiency
+  - cls
+  - traj
+  - c3-claim
+  - dream-review
+- id: art_20260517_163309
+  name: tost_sensitivity_full
+  type: data
+  description: TOST equivalence test at ±1/±2/±3pp margins for CLS vs TRAJ (Qwen3-4B,
+    5-seed). ±1pp not equivalent (p=0.871), ±2pp equivalent (p=0.007), ±3pp equivalent
+    (p<0.001). Min margin 1.63pp. Includes LaTeX table.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/tost_sensitivity_full.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:47:52.349335+00:00'
+  tags:
+  - tost
+  - equivalence
+  - c1-claim
+  - reviewer-response
+  - r1-w1
+- id: art_20260517_e745d4
+  name: mutation_type_distribution
+  type: data
+  description: Val-test mutation type distribution + per-type CLS accuracy (4B/8B,
+    s42/s123). operator_swap 19.1%→34.3% is main shift driver; boundary_removal ~47%
+    accuracy ceiling across scales. LaTeX table ready for appendix.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/mutation_type_distribution.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:48:48.096963+00:00'
+  tags:
+  - mutation-type
+  - distribution-shift
+  - appendix
+  - reviewer-response
+  - r1-w3
+  - r1-w8
+- id: art_20260517_b273cd
+  name: traj_complementarity_analysis
+  type: data
+  description: 'DeepSeek CLS-CWM error complementarity verified at 55.06% (1890 instances).
+    TRAJ complementarity NOT computed: original eval method untraceable (script created
+    after results), LoRA adapter produces unexpected outputs. Needs GPU to re-eval.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/traj_complementarity_analysis.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:53:13.331082+00:00'
+  tags:
+  - complementarity
+  - cls
+  - cwm
+  - traj
+  - deepseek
+  - provenance-issue
+- id: art_20260517_b2c21d
+  name: few_shot_baseline
+  type: data
+  description: '3-shot per-test classification baseline. DeepSeek-6.7B: 59.95% (fail-biased,
+    worse than zero-shot). Qwen3-8B: 68.78%. Both far below fine-tuned CLS (86-88%),
+    validating fine-tuning necessity.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/few_shot_baseline.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:04:44.352943+00:00'
+  tags:
+  - baseline
+  - few-shot
+  - deepseek
+  - qwen
+  - func-level
+  - manager-request
+- id: art_20260517_a3cb93
+  name: deepseek_zero_shot
+  type: data
+  description: DeepSeek-coder-6.7B zero-shot per-test classification. Accuracy 56.56%,
+    pass-F1 39.5%, fail-F1 66.12%. Heavily fail-biased (pass recall 27.4%). Fixes
+    cross-model comparison issue in §5.2.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/deepseek_zero_shot.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:19:30.992218+00:00'
+  tags:
+  - zero-shot
+  - deepseek
+  - baseline
+  - func-level
+  - reviewer-fix
+- id: art_20260517_95e3aa
+  name: lr_verification
+  type: data
+  description: 'Learning rate verification from checkpoints. Qwen CLS/CWM: 5e-5 (appendix
+    correct). DeepSeek all: 2e-4 (undocumented in appendix). No typo, but DeepSeek
+    column missing from hyperparameters table.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/lr_verification.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:42:06.042777+00:00'
+  tags:
+  - hyperparams
+  - lr
+  - appendix
+  - reviewer-fix
+- id: art_20260517_a1cf79
+  name: qwen3_8b_traj_s42_eval
+  type: data
+  description: 'Qwen3-8B TRAJ func-level s42 eval. Accuracy 87.60%, pass-F1 85.96%,
+    fail-F1 88.89%, 0% unparseable. 4B→8B scaling: +1.30pp. Fills Table 2 TRAJ 8B
+    gap.'
+  path: projects/exec-sim-repair-verifier/artifacts/qwen3-8b-traj-func-s42/data/qwen3_8b_traj_s42_eval.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: qwen3-8b-traj-func-s42
+  skill: ''
+  created_at: '2026-05-17T14:21:23.640366+00:00'
+  tags:
+  - traj
+  - qwen3-8b
+  - scaling
+  - table2
+  - d121
+- id: art_20260517_65105a
+  name: traj_accuracy_investigation
+  type: data
+  description: 'Investigation of TRAJ 8B s42 accuracy discrepancy (87.98% vs 87.60%).
+    Root cause: two eval scripts with different model loading (model.cuda vs device_map=auto),
+    4/1032 samples flip. Also documents TRAJ n=1032 vs CLS n=1890 granularity difference.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/traj_accuracy_investigation.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:29:55.906470+00:00'
+  tags:
+  - investigation
+  - traj
+  - accuracy
+  - granularity
+  - eval-methodology
+- id: art_20260517_c53e66
+  name: qwen3_8b_traj_s123_eval
+  type: data
+  description: 'Qwen3-8B TRAJ func-level s123 eval. Accuracy 87.79%, pass-F1 86.74%,
+    fail-F1 88.69%, 0% unparseable. 2-seed avg with s42: 87.70%. Confirms TRAJ 8B
+    stability.'
+  path: projects/exec-sim-repair-verifier/artifacts/qwen3-8b-traj-func-s123/data/qwen3_8b_traj_s123_eval.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: qwen3-8b-traj-func-s123
+  skill: ''
+  created_at: '2026-05-17T15:17:27.476023+00:00'
+  tags:
+  - traj
+  - qwen3-8b
+  - scaling
+  - table2
+  - d121
+  - seed123
+- id: art_20260517_80f346
+  name: deepseek_traj_func_m001_reverify
+  type: data
+  description: DeepSeek TRAJ func-level M001 provenance reverification on home-1x5090.
+    Accuracy 83.04% confirms reproducibility (vs original 83.24%, delta 0.20pp within
+    noise).
+  path: projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func-v2/data/deepseek_traj_func_m001_reverify.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: deepseek-traj-func-v2
+  skill: ''
+  created_at: '2026-05-17T17:31:21.187727+00:00'
+  tags:
+  - eval
+  - reverify
+  - traj
+  - deepseek
+  - provenance
+- id: art_20260517_4daf0c
+  name: qwen3-8b-3shot-repo-level-baseline-invalid
+  type: data
+  description: 'Qwen3-8B 3-shot repo-level baseline result — INVALID: 100% unparseable
+    due to context overflow. Accuracy 72.96% = majority class base rate. Informative
+    negative showing naive few-shot fails at repo-level.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/qwen3_8b_3shot_repo_baseline_result.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T22:37:09.425731+00:00'
+  tags:
+  - baseline
+  - few-shot
+  - repo-level
+  - invalid
+  - context-overflow
+- id: art_20260517_677e34
+  name: gpu_status_20260517
+  type: report
+  description: 'GPU status snapshot: 4x5090 all active running 4 eval jobs (2 CLS,
+    2 CWM), home-1x5090 idle'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/gpu_status_20260517.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T22:43:17.987431+00:00'
+  tags:
+  - gpu-status
+  - eval
+  - monitoring
+- id: art_20260518_fce401
+  name: gpu1-followup-s123-e2-seq2048-command
+  type: intermediate
+  description: 'GPU 1 follow-up command: s123 e2 @seq2048 eval, ready to execute when
+    CWM s42 e3 @seq4096 cron fires'
+  path: projects/exec-sim-repair-verifier/artifacts/D132-cwm-s123-e2-seq2048/intermediate/gpu1_followup_s123_e2_seq2048.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: D132-cwm-s123-e2-seq2048
+  skill: ''
+  created_at: '2026-05-18T15:45:03.610286+00:00'
+  tags:
+  - followup
+  - seq2048
+  - D132
+  - D133
+- id: art_20260518_d90d03
+  name: variant_level_aggregation
+  type: data
+  description: CLS/CWM per-test predictions aggregated to variant level (n=48) for
+    apple-to-apple comparison with TRAJ. AND rule applied. Full results on server.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/variant_level_aggregation_summary.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:42:12.158503+00:00'
+  tags:
+  - repo-level
+  - variant-aggregation
+  - table4
+- id: art_20260518_0b7001
+  name: variant-level-aggregation-results
+  type: data
+  description: CLS/CWM/TRAJ variant-level (n=48) aggregation results for Table 4 apple-to-apple
+    comparison
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/variant_level_aggregation_summary.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:55:51.042606+00:00'
+  tags:
+  - variant-level
+  - table4
+  - reviewer-response
+  - D136
+- id: art_20260518_4138aa
+  name: table2_seed_basis_answer
+  type: report
+  description: 'Answer to Reviewer Q5: Table 2 (scaling analysis) variance basis —
+    training seed vs bootstrap'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/table2_seed_basis_answer.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:56:18.735288+00:00'
+  tags:
+  - reviewer-response
+  - table2
+  - scaling
+  - Q5
+- id: art_20260518_3df360
+  name: DeepSeek TRAJ Repo Per-Seed Analysis
+  type: report
+  description: Per-seed accuracy breakdown for 6 DeepSeek TRAJ repo-level seeds with
+    binomial CI analysis showing observed SD (5pp) is within expected binomial noise
+    (6.22pp) for n=48
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/deepseek_traj_per_seed_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:57:48.735560+00:00'
+  tags:
+  - deepseek
+  - traj
+  - repo-level
+  - per-seed
+  - variance-analysis
+- id: art_20260518_5a2b47
+  name: D138 Data Investigation
+  type: report
+  description: Investigation of Qwen3-4B CLS 76.92% vs 83.63% discrepancy and fail
+    recall comparison across models
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/D138_data_investigation.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:29:43.669718+00:00'
+  tags:
+  - D138
+  - data-investigation
+  - qwen3-4b
+  - fail-recall
+  - variant-level
+- id: art_20260518_8953de
+  name: CLS v4 vs s123 Config Comparison
+  type: report
+  description: DeepSeek CLS repo s42 v4 vs s123 训练配置对比：不能直接合并为双 seed（v4 只训 2/3 epochs）。含
+    v5 差异分析和建议方案。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cls_v4_s123_config_comparison.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:07:15.282711+00:00'
+  tags:
+  - dual-seed
+  - config-check
+  - table4
+- id: art_20260518_c2b8cc
+  name: qwen3-8b-traj-repo-s42-v2-analysis
+  type: report
+  description: 'Qwen3-8B TRAJ repo-level s42-v2 training analysis: normal completion,
+    eval_loss=nan issue, eval command recommendations'
+  path: projects/exec-sim-repair-verifier/artifacts/qwen3-8b-traj-repo-s42-v2/report/qwen3-8b-traj-repo-s42-v2-analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: qwen3-8b-traj-repo-s42-v2
+  skill: ''
+  created_at: '2026-05-18T22:59:39.794692+00:00'
+  tags:
+  - training-analysis
+  - qwen3-8b
+  - traj
+  - repo-level
+- id: art_20260519_5e50fb
+  name: D146 CWM seq4096 Analysis
+  type: report
+  description: 'Qwen3-8B CWM repo-level @seq4096 eval analysis: cross-model comparison
+    with DeepSeek, seq_length impact, Table 3 implications'
+  path: projects/exec-sim-repair-verifier/artifacts/qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval/report/d146_cwm_seq4096_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval
+  skill: ''
+  created_at: '2026-05-19T19:53:37.585140+00:00'
+  tags:
+  - D146
+  - CWM
+  - cross-model
+  - seq_length
+  - Table3
+- id: art_20260520_5e5028
+  name: cls_multiseed_summary
+  type: data
+  description: 'CLS multi-seed summary statistics (JSON): Qwen3-8B CLS 3-seed, DeepSeek
+    CLS 2-seed, TRAJ baseline 3-seed, with mean/std/95% CI'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cls_multiseed_summary.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T00:52:39.448930+00:00'
+  tags:
+  - table3
+  - multi-seed
+  - cls
+  - traj
+- id: art_20260520_0bd286
+  name: cls_multiseed_table
+  type: report
+  description: 'CLS multi-seed Markdown table for Table 3: per-seed results, aggregated
+    mean±std, 95% CI, LaTeX-ready rows'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cls_multiseed_table.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T00:52:44.852236+00:00'
+  tags:
+  - table3
+  - multi-seed
+  - cls
+  - traj
+  - latex
+- id: art_20260520_c6a966
+  name: diagnose_deepseek_cwm_s123
+  type: report
+  description: 诊断报告：deepseek-cwm-repo-s123-train EXIT_CODE=2 为 wrapper 误报，训练实际成功完成（3
+    epochs, loss=0.0427, checkpoint 完整）
+  path: projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s123-train/report/diagnose_deepseek_cwm_s123.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: deepseek-cwm-repo-s123-train
+  skill: ''
+  created_at: '2026-05-20T02:57:44.782787+00:00'
+  tags:
+  - diagnosis
+  - deepseek
+  - cwm
+  - training
+- id: art_20260521_7019dc
+  name: supplementary_statistics
+  type: report
+  description: Bootstrap CI, Cohen's d, power analysis for Table 3 multi-seed data
+    (CLS/TRAJ repo-level). Appendix supplementary statistics.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/supplementary_statistics.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:47:41.967308+00:00'
+  tags:
+  - statistics
+  - bootstrap
+  - cohen-d
+  - power-analysis
+  - appendix
+- id: art_20260521_5f5492
+  name: CWM Repo-level Overfitting Analysis
+  type: report
+  description: CWM repo-level 过拟合预分析：汇总所有可用 epoch-level eval 数据，评估过拟合证据强度（中等偏弱），分析
+    3 个方向对论文 story 的影响，给出 paper 处理建议
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cwm_overfitting_analysis.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:54:11.761895+00:00'
+  tags:
+  - cwm
+  - overfitting
+  - repo-level
+  - analysis
+- id: art_20260521_7ea081
+  name: supplementary_completeness_audit
+  type: report
+  description: 'Audit of 132 success experiments vs paper citations: 88 referenced,
+    28 val/test sweep data points as potential supplementary figure, 16 training/intermediate.
+    All negative results already covered. Main recommendation: checkpoint sweep figure
+    for appendix.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/supplementary_completeness_audit.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:02:08.058899+00:00'
+  tags:
+  - paper
+  - audit
+  - supplementary
+  - completeness
+- id: art_20260521_38318e
+  name: rebuttal_framework
+  type: report
+  description: 'Rebuttal framework updated: added CLS overfitting robustness defense
+    (Attack #1), M027-corrected statistics (Attack #2), checkpoint sensitivity and
+    CWM epoch curve reserves'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/rebuttal_framework.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:43:48.453659+00:00'
+  tags:
+  - rebuttal
+  - emnlp2026
+  - defense
+- id: art_20260521_6e9b39
+  name: paper_number_audit
+  type: report
+  description: 'Full paper number consistency audit: ~180 numbers cross-verified against
+    registry. Found 3 high-severity, 2 medium-severity, 3 low-severity inconsistencies,
+    and 2 clarity warnings.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/paper_number_audit.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:43:41.198281+00:00'
+  tags:
+  - paper
+  - audit
+  - quality-check
+- id: art_20260521_ff8bee
+  name: cwm_data_fill_checklist
+  type: intermediate
+  description: CWM multi-seed 数据到齐后的论文文字更新清单：19 个位置，9 MUST_CHANGE / 6 SHOULD_UPDATE
+    / 4 CHECK_NUMBERS
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/cwm_data_fill_checklist.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:56:48.117226+00:00'
+  tags:
+  - paper
+  - cwm
+  - checklist
+  - pre-submission
+- id: art_20260521_d697c9
+  name: scenario_a_templates
+  type: intermediate
+  description: Scenario A 叙事预写模板：§4.3 divergence 段、Table 3 caption、Conclusion 段，含占位符和级联更新清单
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/scenario_a_templates.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:41:40.746684+00:00'
+  tags:
+  - paper
+  - cwm
+  - template
+  - scenario-a
+- id: art_20260521_4f0947
+  name: paper_draft_20260521
+  type: paper
+  description: 论文完整 PDF（含 5/21 所有修改：robust→significant, conclusion 补要素, oracle 段落移位,
+    forced-parse 提升主文, appendix 7 处修复, format collapse 段落）。21 页，0 undefined citations。CWM
+    Table 3 两格 \tbd 待填。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_draft_20260521.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:15:55.352955+00:00'
+  tags:
+  - paper
+  - pre-submission
+  - '2026-05-21'
+- id: art_20260521_d19511
+  name: pdf_visual_review_findings
+  type: report
+  description: PDF visual review of main.pdf (21 pages) — no critical issues found,
+    one minor suggestion about near-empty last page
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/pdf_visual_review_findings.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T18:05:34.096757+00:00'
+  tags:
+  - paper
+  - visual-review
+  - pre-submission
+- id: art_20260521_887a9a
+  name: pdf_visual_review_findings
+  type: report
+  description: 'PDF visual review of main.pdf (21 pages): no critical issues, all
+    13 check items pass. One optional suggestion (p21 near-blank page).'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/pdf_visual_review_findings_887a9a.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T18:09:26.138874+00:00'
+  tags:
+  - paper
+  - visual-review
+  - pre-submission
+- id: art_20260522_c327c3
+  name: final_paper_v7
+  type: paper
+  description: 'Final paper PDF v7: all CWM multi-seed data filled (Table 3), gap
+    range 18-26pp, 3 figures embedded, 8-page main text, 22 pages total. Ready for
+    Round 7 review.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/final_paper_v7.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T13:00:52.836446+00:00'
+  tags:
+  - paper
+  - v7
+  - emnlp2026
+  - final
+- id: art_20260522_cc5f5e
+  name: paper_round9_final
+  type: paper
+  description: Paper PDF after Round 9 reviewer changes - all C/W/M/Q items complete,
+    8-page main text verified
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_round9_final.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:33:03.226208+00:00'
+  tags:
+  - round9
+  - emnlp2026
+  - final
+- id: art_20260522_788f2a
+  name: paper_round10_final
+  type: paper
+  description: Paper PDF after Round 10 reviewer changes - all MF/SF/M/Q items complete,
+    8-page main text verified
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_round10_final.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T16:19:08.251071+00:00'
+  tags:
+  - round10
+  - emnlp2026
+- id: art_20260522_42c32b
+  name: routing-heuristic-analysis
+  type: report
+  description: 'Post-hoc routing heuristic analysis: tested 3 heuristics (complexity-based,
+    level-based, mutation-type) across 12 CLS-CWM pairs. Result: simple heuristics
+    capture at most 0.37pp of the 2-4pp oracle gap, not statistically significant.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/routing_analysis_report.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T16:32:46.936574+00:00'
+  tags:
+  - routing
+  - oracle
+  - complementarity
+  - CLS
+  - CWM
+  - heuristic
+  - negative-result
+- id: art_20260522_43ba07
+  name: fig2_scaling_gap_yaxis_from_zero
+  type: chart
+  description: Figure 2 (scaling gap) regenerated with y-axis starting from 0% per
+    reviewer request. Replaces old version that started at 55%.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/chart/fig2_scaling_gap_43ba07.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T17:03:43.496321+00:00'
+  tags:
+  - figure2
+  - reviewer-fix
+  - y-axis
+- id: art_20260522_b13e02
+  name: Bayesian ROPE Equivalence Report
+  type: report
+  description: 'Bayesian ROPE equivalence analysis for CLS vs CWM/TRAJ (Qwen3-4B,
+    5 seeds). Complements TOST with P(ROPE) and 95% HDI. CLS-CWM: P(ROPE)=0.975, equivalence
+    confirmed. CLS-TRAJ: P(ROPE)=0.542 (per-test, inconclusive) / 0.970 (variant,
+    equivalence).'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/bayesian_rope_report.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T17:09:05.296679+00:00'
+  tags:
+  - statistics
+  - bayesian
+  - rope
+  - equivalence
+  - tost
+- id: art_20260522_3e3246
+  name: Logistic Regression Marginal Effects Report
+  type: report
+  description: 'GEE logistic regression supplement for Appendix M: odds ratios, AMEs,
+    comparison with LPM, proposed appendix text and LaTeX table'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/logistic_regression_report.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T17:13:13.610094+00:00'
+  tags:
+  - appendix
+  - logistic-regression
+  - mixed-effects
+  - statistics
+- id: art_20260523_f012da
+  name: update_14b_table
+  type: intermediate
+  description: Python script to compute 14B 3-seed mean±std, TOST p-value, and updated
+    Table 2 LaTeX rows
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/update_14b_table.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:42:02.684361+00:00'
+  tags:
+  - 14b-multiseed
+  - table2
+  - tost
+- id: art_20260523_f1cb7e
+  name: plot_figure2_v3
+  type: intermediate
+  description: Parameterized Figure 2 script with CONFIRMED_14B toggle for exploratory→confirmed
+    transition
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/plot_figure2_v3.py
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:42:05.645380+00:00'
+  tags:
+  - 14b-multiseed
+  - figure2
+- id: art_20260523_401ba3
+  name: 14b_upgrade_checklist
+  type: intermediate
+  description: Checklist of all paper locations with exploratory/single-seed 14B qualifiers
+    to update after 3-seed confirmation
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/14b_upgrade_checklist.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:42:08.021291+00:00'
+  tags:
+  - 14b-multiseed
+  - paper-update
+- id: art_20260523_af67e4
+  name: eval_14b_multiseed
+  type: intermediate
+  description: Shell script for 4-way bf16 eval of 14B CLS/CWM s123/s456, auto-reads
+    best checkpoint from trainer_state.json
+  path: projects/exec-sim-repair-verifier/artifacts/_project/intermediate/eval_14b_multiseed.sh
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:42:10.810701+00:00'
+  tags:
+  - 14b-multiseed
+  - eval
+  - bf16
+- id: art_20260523_1661be
+  name: cwm8b_func_overfitting_comparison
+  type: data
+  description: Function-level CWM 8B epoch 2 vs epoch 3 overfitting comparison. Accuracy
+    drops 0.95pp from best (step 956) to final (step 1434).
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/cwm8b_func_overfitting_comparison.txt
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:32:27.485882+00:00'
+  tags:
+  - cwm
+  - 8b
+  - overfitting
+  - function-level
+  - R12-N2
+- id: art_20260523_4875ed
+  name: 14B Seed-Level Stats (D169)
+  type: data
+  description: Seed-level TOST and Bayesian ROPE for 14B CLS-CWM and CLS-TRAJ. D169
+    compliant. Shows paper values (p=0.043, P(ROPE)=0.956) are from per-test clustered
+    bootstrap, not seed-level.
+  path: projects/exec-sim-repair-verifier/artifacts/_project/data/14b_seed_level_stats.json
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:40:44.538136+00:00'
+  tags:
+  - statistics
+  - 14B
+  - D169
+  - TOST
+  - ROPE
+  - audit
+- id: art_20260523_27f3d9
+  name: Rebuttal Draft (R16 3.5)
+  type: report
+  description: 'Rebuttal material for R16 recurring issues: N2 title scope, TRAJ power,
+    repo seeds, format collapse attribution. Each point has 3-5 sentence response
+    + supporting data.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/rebuttal_draft.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:13:36.979612+00:00'
+  tags:
+  - rebuttal
+  - R16
+  - EMNLP2026
+- id: art_20260523_72ce39
+  name: data_audit_results
+  type: report
+  description: ARR 提交前数据正确性与可追溯性全面审计报告。覆盖全部 .tex 文件 ~50+ 数字，交叉核对 registry + artifacts。4
+    个 ⚠️ 项，5 个 ❌ 无法追溯项。
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/data_audit_results.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:36:34.676902+00:00'
+  tags:
+  - audit
+  - submission
+  - data-integrity
+- id: art_20260523_48dd18
+  name: CLS@400 Downsample Function-Level Results
+  type: report
+  description: 'CLS function-level downsample experiment (Qwen3-4B, ~447 samples,
+    3 seeds): Acc 78.57±0.78%, F1 78.53±0.82%. TRAJ outperforms by 7.73pp with same
+    data volume.'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/report/cls_downsample_400_results.md
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:43:54.337149+00:00'
+  tags:
+  - cls
+  - downsample
+  - ablation
+  - qwen3-4b
+  - function-level
+- id: art_20260525_272380
+  name: paper_v_4tasks
+  type: paper
+  description: 'Paper PDF after 4-task revision: expanded contributions, split tables,
+    promoted figures, 8-page verified'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_v_4tasks.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T11:47:01.413006+00:00'
+  tags:
+  - paper
+  - revision
+  - emnlp2026
+- id: art_20260525_bdc8be
+  name: paper_v_typfix
+  type: paper
+  description: 'Paper PDF after typographic fixes: smaller Figure 3 legend, Table
+    3 note formatting, widow word fix'
+  path: projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_v_typfix.pdf
+  url: null
+  project: exec-sim-repair-verifier
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T12:06:30.671536+00:00'
+  tags:
+  - paper
+  - typographic
+  - emnlp2026

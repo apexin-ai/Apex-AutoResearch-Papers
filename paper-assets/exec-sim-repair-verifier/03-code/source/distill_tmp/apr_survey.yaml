@@ -1,0 +1,27 @@
+paper_key: "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications"
+title: "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [traditional_APR, template_based, learning_based, LLM_based]
+  metrics:
+    - {name: "resolve_rate", direction: "higher_better"}
+    - {name: "plausible_patch_rate", direction: "higher_better"}
+  datasets:
+    - {name: "Defects4J", size: "standard"}
+    - {name: "SWE-bench variants", size: "various"}
+    - {name: "QuixBugs", size: "40"}
+  ablation_dimensions: [paradigm_type, LLM_size, repair_strategy]
+  training_recipe: {optimizer: "N/A (survey)", lr: "N/A", hardware: "N/A"}
+  method_family: "survey/taxonomy"
+
+positioning:
+  core_claim: "Comprehensive taxonomy of LLM-based APR covering generate-and-validate, agent-based, and verification-enhanced paradigms"
+  key_results: "N/A (survey paper)"
+  limitations: ["Rapidly evolving field", "Publication bias toward positive results"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

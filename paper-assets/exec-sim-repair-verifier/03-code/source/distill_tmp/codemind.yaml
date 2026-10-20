@@ -1,0 +1,29 @@
+paper_key: "CodeMind: A Framework to Challenge Large Language Models for Code Reasoning"
+title: "CodeMind: A Framework to Challenge Large Language Models for Code Reasoning"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [GPT-4, GPT-3.5, Claude, CodeLlama, WizardCoder, Phind]
+  metrics:
+    - {name: "IER_accuracy (execution prediction)", direction: "higher_better"}
+    - {name: "SR_accuracy (specification reasoning)", direction: "higher_better"}
+    - {name: "DSR_accuracy (dynamic semantics)", direction: "higher_better"}
+  datasets:
+    - {name: "HumanEval", size: "164"}
+    - {name: "MBPP", size: "427"}
+    - {name: "CRUXEval", size: "standard"}
+    - {name: "CodeNet", size: "standard"}
+  ablation_dimensions: [code_complexity, operator_type, data_type, API_usage]
+  training_recipe: {optimizer: "N/A (evaluation only)", lr: "N/A", hardware: "API + local inference"}
+  method_family: "code reasoning evaluation"
+
+positioning:
+  core_claim: "LLMs show code reasoning capabilities but degrade significantly with complexity; bug repair has no correlation with code reasoning performance"
+  key_results: "Performance drops with complex operators, non-primitive types, API calls; only frontier models use reasoning during repair"
+  limitations: ["Evaluation-only (no training improvement)", "Limited to Python"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

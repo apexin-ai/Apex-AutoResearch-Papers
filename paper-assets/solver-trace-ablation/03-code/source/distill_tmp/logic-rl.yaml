@@ -1,0 +1,33 @@
+paper_key: "logic-rl"
+title: "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "accuracy on AIME", direction: "higher_better"}
+    - {name: "accuracy on AMC", direction: "higher_better"}
+  datasets:
+    - {name: "synthetic logic puzzles", size: "5K"}
+    - {name: "AIME", size: "evaluation only"}
+    - {name: "AMC", size: "evaluation only"}
+  ablation_dimensions:
+    - "system prompt design"
+    - "format reward function (penalizing shortcuts)"
+    - "training recipe stability"
+  training_recipe:
+    base_model: "7B parameter model"
+    method: "rule-based RL (inspired by DeepSeek-R1)"
+    data: "5K synthetic logic problems with controllable complexity and straightforward verification"
+  method_family: "rule-based reinforcement learning for reasoning"
+
+positioning:
+  core_claim: "Rule-based RL on only 5K synthetic logic problems can elicit emergent reasoning capabilities (reflection, verification, summarization) that generalize to challenging math benchmarks."
+  key_results: "Generalizes from 5K logic puzzles to AIME and AMC; develops reasoning behaviors not present in training data"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"
